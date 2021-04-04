@@ -29,7 +29,7 @@ developing Java applications. The resources below will help you to get started.
 
 | Resource     |     Description                   |
 |--------------|-----------------------------------|
-| ProjeName | KivaKit |
+| Project Name | KivaKit |
 | Summary | Library code for developing Java applications |
 | Lead | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
 | Administrator | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
