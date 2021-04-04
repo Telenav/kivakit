@@ -1,0 +1,14 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                      http://maven.apache.org/xsd/settings-1.0.0.xsd">
+    <servers>
+        <server>
+            <id>kivakit-build</id>
+            <username>jonathanl-telenav</username>
+            <!-- Public token with `read:packages` scope -->
+            <password>&#103;hp_YDUJnCIaQNuPJj5vb9mBsf1ylryVfO4FqFaw</password>
+        </server>
+    </servers>
+
+</settings>
