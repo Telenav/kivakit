@@ -1,3 +1,5 @@
+![](images/kivakit-background-500.jpg)
+
 # KivaKit 0.9.0-SNAPSHOT &nbsp;&nbsp;![](images/kivakit-64.png)
 
 KivaKit is a set of integrated Java mini-frameworks that makes Java development faster and easier.
@@ -27,7 +29,7 @@ developing Java applications. The resources below will help you to get started.
 
 | Resource     |     Description                   |
 |--------------|-----------------------------------|
-| Project Name | KivaKit |
+| ProjeName | KivaKit |
 | Summary | Library code for developing Java applications |
 | Lead | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
 | Administrator | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
