@@ -1,12 +1,14 @@
 body {
-  font-family: 'Rosario', sans-serif;
+  font-family: Avenir,Arial,Helvetica,sans-serif;
+  background: #404040;
+  color: #c0c0c0;
 }
 
 #visualization {
   overflow: auto;
 }
 
-h1 {
+H1 {
   font-size: 62px;
   font-weight: 300;
   letter-spacing: -2px;

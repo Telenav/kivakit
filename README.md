@@ -54,7 +54,7 @@ KivaKit is a set of integrated Java development mini-frameworks.
 
 [**kivakit-core**](kivakit-core/README.md)  
 [**kivakit-data**](kivakit-data/README.md)  
-[**kivakit-web**](kivakit-web/README.md)  
+[**kivakit-web**](kivakit-web/README.md)
 
 [//]: # (start-user-text)
 
@@ -68,10 +68,9 @@ KivaKit is a set of integrated Java development mini-frameworks.
 
 ![](documentation/images/horizontal-line.png)
 
-[**Code**](https://bitbucket.telenav.com/projects/KivaKit) |
-[**Issues**](https://jira.telenav.com:8443/issues/?filter=40141)  |
+[**Issues**](https://github.com/Telenav/kivakit/issues) |
 [**Change Log**](change-log.md) |
-[**Code Flowers**](https://telenav.github.io/kivakit/codeflowers/index.html) |
+[**Code Flowers**](https://telenav.github.io/kivakit/codeflowers/site/index.html) |
 [**Java Migration Notes**](documentation/overview/java-migration-notes.md)
 
 [//]: # (end-user-text)
