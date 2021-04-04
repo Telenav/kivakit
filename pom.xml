@@ -132,8 +132,8 @@
     <distributionManagement>
 
         <repository>
-            <id>github-distribution</id>
-            <name>KivaKit</name>
+            <id>github</id>
+            <name>GitHub KivaKit Apache Maven Packages</name>
             <url>https://maven.pkg.github.com/Telenav/kivakit</url>
         </repository>
 
@@ -142,8 +142,8 @@
     <repositories>
 
         <repository>
-            <id>github-telenav</id>
-            <url>https://maven.pkg.github.com/Telenav/*</url>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/Telenav/kivakit-build</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
