@@ -1,4 +1,4 @@
-open module kivakit.serialization.json
+open module kivakit.core.serialization.json
 {
     requires transitive kivakit.core.kernel;
 

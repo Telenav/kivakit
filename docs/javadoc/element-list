@@ -180,6 +180,8 @@ module:kivakit.core.serialization.core
 com.telenav.kivakit.core.serialization.core
 module:kivakit.core.serialization.jersey.json
 com.telenav.kivakit.core.serialization.jersey.json
+module:kivakit.core.serialization.json
+com.telenav.kivakit.core.serialization.json
 module:kivakit.core.serialization.kryo
 com.telenav.kivakit.core.serialization.kryo
 module:kivakit.core.test
@@ -204,8 +206,6 @@ module:kivakit.data.formats.text
 com.telenav.kivakit.data.formats.library.text
 module:kivakit.data.formats.xml
 com.telenav.kivakit.data.formats.library.xml
-module:kivakit.serialization.json
-com.telenav.kivakit.core.serialization.json
 module:kivakit.web.jersey
 com.telenav.kivakit.web.jersey
 module:kivakit.web.jetty

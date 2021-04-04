@@ -22,9 +22,11 @@ You will need these products, or compatible products, set up to begin:
 
 The KivaKit project will look roughly like this when we're done with the setup process:
 
->* Workspace
->    * kivakit
->        * kivakit-core
+> * Workspace
+    >
+* kivakit
+  >
+* kivakit-core
 
 Notice how the *kivakit* project (**KIVAKIT_HOME**) is checked out in the IDE workspace called  
 *Workspace* (**KIVAKIT_WORKSPACE**).
@@ -32,9 +34,9 @@ Notice how the *kivakit* project (**KIVAKIT_HOME**) is checked out in the IDE wo
 To check out the *kivakit* project:
 
 1. If you're running macOS, and you want to switch your shell from *zsh* to *bash*, type:
-   
+
        chsh -s /bin/bash
-   
+
    If you don't like macOS complaining that you're not using *zsh*, add this line to your *.bash_profile*:
 
        export BASH_SILENCE_DEPRECATION_WARNING=1
@@ -132,7 +134,7 @@ Congratulations! You're set up and ready to build or help to develop KivaKit.
 
 [I want to build KivaKit](building.md)
 
-[I want to work on KivaKit](../development/index.md)
+[I want to work on KivaKit](../developing/index.md)
 
 
 <br/> 
