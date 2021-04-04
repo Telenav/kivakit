@@ -11,8 +11,8 @@ KivaKit is a set of integrated Java mini-frameworks.
 *The mission of KivaKit is to accelerate the development of Java software  
 through the use of integrated, modular, object-oriented design.*
 
-KivaKit provides quick and easy solutions to common everyday software problems,  
-by providing APIs and sometimes by "wrapping" them in a simplified abstraction.  
+KivaKit provides quick and easy solutions to common everyday software problems  
+by providing APIs, and sometimes by "wrapping" them in a simplified abstraction.  
 It is not KivaKit's goal to provide access to all features of underlying APIs,  
 but the most frequently used features are usually available or can be added.
 
@@ -31,7 +31,7 @@ KivaKit is a set of integrated Java development mini-frameworks.
 | Resource     |     Description                   |
 |--------------|-----------------------------------|
 | Project Name | KivaKit |
-| Synopsis | Library code for developing Java applications |
+| Summary | Library code for developing Java applications |
 | Lead | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
 | Administrator | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
 | Email | [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
