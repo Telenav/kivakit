@@ -1,4 +1,4 @@
-open module com.telenav.kivakit.data.formats.xml
+open module kivakit.data.formats.xml
 {
     requires transitive java.xml;
 

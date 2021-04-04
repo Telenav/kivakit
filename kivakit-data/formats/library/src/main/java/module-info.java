@@ -1,4 +1,4 @@
-open module com.telenav.kivakit.data.formats.library
+open module data.formats.library
 {
     requires transitive kivakit.core.resource;
 

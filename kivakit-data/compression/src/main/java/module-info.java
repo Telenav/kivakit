@@ -1,4 +1,4 @@
-open module com.telenav.kivakit.data.compression
+open module kivakit.data.compression
 {
     requires transitive kivakit.core.resource;
 
