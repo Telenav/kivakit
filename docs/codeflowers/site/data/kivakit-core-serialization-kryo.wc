@@ -1,0 +1,11 @@
+     140 com/telenav/kivakit/core/serialization/kryo/CoreKernelKryoTypes.java
+     172 com/telenav/kivakit/core/serialization/kryo/DebugKryo.java
+     538 com/telenav/kivakit/core/serialization/kryo/KryoSerializationSession.java
+     107 com/telenav/kivakit/core/serialization/kryo/KryoSerializer.java
+     107 com/telenav/kivakit/core/serialization/kryo/KryoTypeEntry.java
+     303 com/telenav/kivakit/core/serialization/kryo/KryoTypes.java
+      93 com/telenav/kivakit/core/serialization/kryo/KryoUnitTest.java
+      23 com/telenav/kivakit/core/serialization/kryo/project/SerializationKryoProject.java
+      12 com/telenav/kivakit/core/serialization/kryo/project/lexakai/diagrams/DiagramSerializationKryo.java
+      11 module-info.java
+    1506 total

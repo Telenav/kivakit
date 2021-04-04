@@ -1,0 +1,9 @@
+      29 com/telenav/kivakit/data/formats/library/xml/OpenTag.java
+     199 com/telenav/kivakit/data/formats/library/xml/XmlNode.java
+      32 com/telenav/kivakit/data/formats/library/xml/XmlNodeWithAttribute.java
+      34 com/telenav/kivakit/data/formats/library/xml/XmlPath.java
+     516 com/telenav/kivakit/data/formats/library/xml/XmlReader.java
+      21 com/telenav/kivakit/data/formats/library/xml/project/DataFormatsXmlProject.java
+      10 com/telenav/kivakit/data/formats/library/xml/project/lexakai/diagrams/DiagramXml.java
+       8 module-info.java
+     849 total

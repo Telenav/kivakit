@@ -41,11 +41,11 @@ KivaKit is a set of integrated Java development mini-frameworks.
 [**Setup**](documentation/overview/setup.md)  
 [**Building**](documentation/overview/building.md)  
 [**Maven Dependencies**](documentation/overview/maven-dependencies.md)  
-[**Development**](documentation/development/index.md)  
+[**Development**](documentation/development/index.md)
 
 ### Reference <a name = "reference"></a>&nbsp; ![](documentation/images/books-40.png)
 
-[**Javadoc**](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/index.html)  
+[**Javadoc**](https://telenav.github.io/kivakit/javadoc/kivakit/com/telenav/kivakit//index.html)  
 [**System Properties**](documentation/development/system-properties.md)
 
 [//]: # (end-user-text)
@@ -71,7 +71,7 @@ KivaKit is a set of integrated Java development mini-frameworks.
 [**Code**](https://bitbucket.telenav.com/projects/KivaKit) |
 [**Issues**](https://jira.telenav.com:8443/issues/?filter=40141)  |
 [**Change Log**](change-log.md) |
-[**Code Flowers**](http://graph-server.mypna.com:8080/codeflowers/) |
+[**Code Flowers**](https://telenav.github.io/kivakit/codeflowers/index.html) |
 [**Java Migration Notes**](documentation/overview/java-migration-notes.md)
 
 [//]: # (end-user-text)

@@ -35,7 +35,7 @@ You can then add traces like this:
 
 using the same formatting style as in the logging system (there are numerous substitution expressions  
 that can be used, for details,
-see [MessageFormatter](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.kernel/com/telenav/kivakit/core/kernel/messaging/messages/MessageFormatter.html))
+see [MessageFormatter](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/messaging/messages/MessageFormatter.html))
 . You can also add quibbles and warnings  
 with the same object in the same way. As with logging there are helpful templates available
 for [Eclipse](../../../documentation/development/setup.md).

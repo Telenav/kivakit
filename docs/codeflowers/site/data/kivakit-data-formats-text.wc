@@ -1,0 +1,7 @@
+      41 com/telenav/kivakit/data/formats/library/text/TextColumn.java
+      63 com/telenav/kivakit/data/formats/library/text/TextLine.java
+     131 com/telenav/kivakit/data/formats/library/text/TextReader.java
+      21 com/telenav/kivakit/data/formats/library/text/project/DataFormatsTextProject.java
+      10 com/telenav/kivakit/data/formats/library/text/project/lexakai/diagrams/DiagramText.java
+       6 module-info.java
+     272 total

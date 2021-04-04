@@ -33,7 +33,7 @@ This project facilitates object-oriented parsing of command line arguments and s
 The kivakit-core-commandline project is used by the [kivakit-core-application](../application/README.md) project to provide easy  
 command line parsing to KivaKit applications. A detailed example on how to parse command line  
 arguments and switches by extending the [*
-Application*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.application/com/telenav/kivakit/core/application/Application.html)
+Application*](https://telenav.github.io/kivakit/javadoc/kivakit.core.application/com/telenav/kivakit/core/application/Application.html)
 class is available there.
 
 [//]: # (end-user-text)

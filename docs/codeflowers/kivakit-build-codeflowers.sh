@@ -7,8 +7,8 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-DATA=$KIVAKIT_HOME/tools/codeflowers/site/data
+CODEFLOWERS_HOME=$KIVAKIT_HOME/docs/codeflowers
 
-mkdir -p $DATA
-cd $KIVAKIT_HOME/kivakit-core
-generate-codeflowers.pl . $DATA
+cd $CODEFLOWERS_HOME
+mkdir -p site/data
+perl generate-codeflowers.pl $KIVAKIT_HOME $CODEFLOWERS_HOME

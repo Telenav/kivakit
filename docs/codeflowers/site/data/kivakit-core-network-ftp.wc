@@ -1,0 +1,13 @@
+      55 com/telenav/kivakit/core/network/ftp/FtpNetworkLocation.java
+     289 com/telenav/kivakit/core/network/ftp/FtpResource.java
+      21 com/telenav/kivakit/core/network/ftp/project/CoreNetworkFtpProject.java
+      10 com/telenav/kivakit/core/network/ftp/project/lexakai/diagrams/DiagramFtp.java
+      10 com/telenav/kivakit/core/network/ftp/project/lexakai/diagrams/DiagramSecureFtp.java
+     141 com/telenav/kivakit/core/network/ftp/secure/SecureFtpConnector.java
+      69 com/telenav/kivakit/core/network/ftp/secure/SecureFtpInput.java
+      34 com/telenav/kivakit/core/network/ftp/secure/SecureFtpNetworkLocation.java
+     107 com/telenav/kivakit/core/network/ftp/secure/SecureFtpResource.java
+      75 com/telenav/kivakit/core/network/ftp/secure/SecureFtpSettings.java
+     173 com/telenav/kivakit/core/network/ftp/secure/SftpFolderWatcher.java
+      12 module-info.java
+     996 total

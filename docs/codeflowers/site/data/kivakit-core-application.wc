@@ -1,0 +1,7 @@
+     598 com/telenav/kivakit/core/application/Application.java
+      28 com/telenav/kivakit/core/application/ApplicationIdentifier.java
+      19 com/telenav/kivakit/core/application/Server.java
+      21 com/telenav/kivakit/core/application/project/CoreApplicationProject.java
+      10 com/telenav/kivakit/core/application/project/lexakai/diagrams/DiagramApplication.java
+       7 module-info.java
+     683 total

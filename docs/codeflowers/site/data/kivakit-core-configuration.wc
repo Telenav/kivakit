@@ -1,0 +1,15 @@
+      48 com/telenav/kivakit/core/configuration/ConfigurationEntry.java
+      65 com/telenav/kivakit/core/configuration/ConfigurationFolder.java
+      96 com/telenav/kivakit/core/configuration/ConfigurationIdentifier.java
+      97 com/telenav/kivakit/core/configuration/ConfigurationPackage.java
+     543 com/telenav/kivakit/core/configuration/ConfigurationSet.java
+     328 com/telenav/kivakit/core/configuration/Deployment.java
+     144 com/telenav/kivakit/core/configuration/DeploymentSet.java
+      47 com/telenav/kivakit/core/configuration/InstanceIdentifier.java
+     133 com/telenav/kivakit/core/configuration/lookup/Lookup.java
+      21 com/telenav/kivakit/core/configuration/project/CoreConfigurationProject.java
+      10 com/telenav/kivakit/core/configuration/project/lexakai/diagrams/DiagramConfiguration.java
+      10 com/telenav/kivakit/core/configuration/project/lexakai/diagrams/DiagramLookup.java
+     121 com/telenav/kivakit/core/configuration/settings/Settings.java
+       8 module-info.java
+    1671 total

@@ -1,0 +1,6 @@
+      41 com/telenav/kivakit/web/jersey/JettyJersey.java
+      10 com/telenav/kivakit/web/jersey/JettyJerseyRestApplication.java
+       8 com/telenav/kivakit/web/jersey/JettyJerseyRestResource.java
+      21 com/telenav/kivakit/web/jersey/project/WebJerseyProject.java
+      10 module-info.java
+      90 total
