@@ -142,16 +142,8 @@
     <repositories>
 
         <repository>
-            <id>github-kivakit-build-public</id>
-            <url>https://public:&#103;hp_YDUJnCIaQNuPJj5vb9mBsf1ylryVfO4FqFaw@maven.pkg.github.com/Telenav/kivakit-build</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-
-        <repository>
-            <id>github-lexakai-public</id>
-            <url>https://public:&#103;hp_YDUJnCIaQNuPJj5vb9mBsf1ylryVfO4FqFaw@maven.pkg.github.com/Telenav/lexakai</url>
+            <id>github-public</id>
+            <url>https://public:&#103;hp_YDUJnCIaQNuPJj5vb9mBsf1ylryVfO4FqFaw@maven.pkg.github.com/Telenav/*</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
