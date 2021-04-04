@@ -90,7 +90,7 @@ public class LogServiceLogger extends BaseLogger
                     else
                     {
                         throw new IllegalStateException("KIVAKIT_LOG=" + descriptor + " is invalid. "
-                                + "For details on this system property, see: https://spaces.telenav.com:8443/x/OyZECw");
+                                + "For details on this system property, see: http://tinyurl.com/zctf9bss");
                     }
                 }
 

@@ -1,4 +1,4 @@
-# kivakit-core-kernel - language.time   ![](../../../documentation/images/clock-40.png)
+# kivakit-core-kernel language.time   ![](../../../documentation/images/clock-40.png)
 
 ![](../documentation/images/horizontal-line.png)
 

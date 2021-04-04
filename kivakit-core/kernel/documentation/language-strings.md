@@ -1,4 +1,4 @@
-# kivakit-core-kernel - language.strings &nbsp; ![](../../../documentation/images/string-64.png)
+# kivakit-core-kernel language.strings &nbsp; ![](../../../documentation/images/string-64.png)
 
 ![](../documentation/images/horizontal-line.png)
 

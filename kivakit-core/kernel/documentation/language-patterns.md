@@ -1,4 +1,4 @@
-# kivakit-core-kernel - language.patterns &nbsp; ![](../../../documentation/images/pattern-48.png)
+# kivakit-core-kernel language.patterns &nbsp; ![](../../../documentation/images/pattern-48.png)
 
 ![](../documentation/images/horizontal-line.png)
 

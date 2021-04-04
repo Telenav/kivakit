@@ -1,0 +1,46 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "Language - Matching"
+    
+    abstract BaseIterable
+    
+    interface Matcher
+    
+    Matcher <|-- All
+    class All<T>
+    {
+    }
+    
+    BaseIterable <|-- Matching
+    abstract class Matching<T>
+    {
+        --(constructors)--
+        #Matching(Matcher<T>)
+        --(collection)--
+        #Iterator<T> values()
+    }
+    
+    Matcher <|-- None
+    class None<T>
+    {
+    }
+    
+    Matcher <|-- WithName
+    class WithName<T>
+    {
+        --(constructors)--
+        +WithName(Named)
+        +WithName(String)
+    }
+    
+    Matcher <|-- WithNameMatching
+    class WithNameMatching<T>
+    {
+        --(constructors)--
+        +WithNameMatching(Pattern)
+    }
+    
+@enduml
+

@@ -9,7 +9,7 @@
 
 if [ -z "$KIVAKIT_HOME" ]; then
     echo "You must set up your environment to use KivaKit."
-    echo "See https://spaces.telenav.com:8443/x/GCBECw for details."
+    echo "See http://tinyurl.com/yxzhpdcp for details."
     exit 1
 fi
 

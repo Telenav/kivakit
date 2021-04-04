@@ -1,0 +1,44 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.core.collections.primitive.map.multi.dynamic"
+    
+    interface PrimitiveScalarMultiMap
+    interface IntMultiMap
+    interface LongMultiMap
+    
+    PrimitiveMultiMap <|-- LongToIntMultiMap
+    IntMultiMap <|-- LongToIntMultiMap
+    PrimitiveScalarMultiMap <|-- LongToIntMultiMap
+    class LongToIntMultiMap
+    {
+        --(constructors)--
+        #LongToIntMultiMap()
+        +LongToIntMultiMap(String)
+        --(collection)--
+        +void add(long key, int value)
+        +boolean containsKey(long key)
+        +IntIterator iterator(long key)
+        +LongIterator keys()
+        +void putAll(long key, int[] values)
+    }
+    
+    PrimitiveMultiMap <|-- LongToLongMultiMap
+    LongMultiMap <|-- LongToLongMultiMap
+    PrimitiveScalarMultiMap <|-- LongToLongMultiMap
+    class LongToLongMultiMap
+    {
+        --(constructors)--
+        #LongToLongMultiMap()
+        +LongToLongMultiMap(String)
+        --(collection)--
+        +void add(long key, long value)
+        +boolean containsKey(long key)
+        +LongIterator iterator(long key)
+        +LongIterator keys()
+        +void putAll(long key, long[] values)
+    }
+    
+@enduml
+

@@ -1,0 +1,37 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "Security"
+    
+    interface Password
+    
+    PlainTextPassword <|-- DigestPassword
+    class DigestPassword
+    {
+        --(constructors)--
+        +DigestPassword(String)
+    }
+    
+    interface Matcher
+    Matcher <|-- Password
+    interface Password
+    {
+    }
+    
+    Password <|-- PlainTextPassword
+    class PlainTextPassword
+    {
+        --(constructors)--
+        +PlainTextPassword(String)
+    }
+    
+    Name <|-- UserName
+    class UserName
+    {
+        --(constructors)--
+        +UserName(String)
+    }
+    
+@enduml
+

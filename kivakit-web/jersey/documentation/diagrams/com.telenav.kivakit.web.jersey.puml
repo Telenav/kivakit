@@ -1,0 +1,24 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.web.jersey"
+    
+    JettyServlet <|-- JettyJersey
+    class JettyJersey
+    {
+        --(constructors)--
+        +JettyJersey(ResourceConfig)
+    }
+    
+    ResourceConfig <|-- JettyJerseyRestApplication
+    class JettyJerseyRestApplication
+    {
+    }
+    
+    class JettyJerseyRestResource
+    {
+    }
+    
+@enduml
+

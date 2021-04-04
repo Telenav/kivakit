@@ -1,4 +1,4 @@
-# kivakit-core-kernel - language.modules &nbsp; ![](../../../documentation/images/stars-48.png)
+# kivakit-core-kernel language.modules &nbsp; ![](../../../documentation/images/stars-48.png)
 
 ![](../documentation/images/horizontal-line.png)
 

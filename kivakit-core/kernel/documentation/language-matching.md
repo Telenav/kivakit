@@ -1,4 +1,4 @@
-# kivakit-core-kernel - language.matching &nbsp; ![](../../../documentation/images/puzzle-40.png)
+# kivakit-core-kernel language.matching &nbsp; ![](../../../documentation/images/puzzle-40.png)
 
 ![](../documentation/images/horizontal-line.png)
 

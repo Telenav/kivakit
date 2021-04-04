@@ -1,0 +1,47 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "Resources - Services"
+    
+    interface ResourceFactoryService
+    
+    ResourceFactoryService <|-- File.Factory
+    class File.Factory
+    {
+    }
+    
+    ResourceFactoryService <|-- PackageResource.Factory
+    class PackageResource.Factory
+    {
+    }
+    
+    ResourceFactoryService --> ResourceIdentifier : "parses"
+    ResourceFactoryService --> Resource : "creates"
+    interface ResourceFactoryService
+    {
+        --(factory)--
+        +Resource newResource(ResourceIdentifier)
+        --(filtering)--
+        +boolean accepts(ResourceIdentifier)
+    }
+    
+    ResourceFactoryServiceRegistry "1" o-- "*" ResourceFactoryService
+    class ResourceFactoryServiceRegistry
+    {
+        --(identity)--
+        +Resource forIdentifier(ResourceIdentifier)
+    }
+    
+    class ResourceIdentifier
+    {
+        --(constructors)--
+        +ResourceIdentifier(String)
+        --
+        +Resource resolve()
+        --(identity)--
+        +String identifier()
+    }
+    
+@enduml
+

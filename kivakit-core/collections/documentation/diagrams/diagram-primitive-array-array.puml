@@ -1,0 +1,61 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "Two-Dimensional Arrays"
+    
+    PrimitiveArrayArray <|-- ByteArrayArray
+    class ByteArrayArray
+    {
+        --(constructors)--
+        #ByteArrayArray()
+        +ByteArrayArray(String)
+        --
+        +int length(int identifier)
+        --(collection)--
+        +int add(ByteIterable values)
+        +int add(ByteIterator values)
+        +int add(byte[] values)
+        +ByteArray get(int identifier)
+    }
+    
+    PrimitiveArrayArray <|-- IntArrayArray
+    class IntArrayArray
+    {
+        --(constructors)--
+        #IntArrayArray()
+        +IntArrayArray(String)
+        --
+        +int length(int identifier)
+        --(collection)--
+        +int add(int[] values)
+        +int add(IntIterator values)
+        +int add(IntIterable values)
+        +IntArray get(int identifier)
+    }
+    
+    PrimitiveArrayArray <|-- LongArrayArray
+    class LongArrayArray
+    {
+        --(constructors)--
+        #LongArrayArray()
+        +LongArrayArray(String)
+        --
+        +int length(int identifier)
+        --(collection)--
+        +int add(LongIterable values)
+        +int add(LongIterator values)
+        +int add(long[] values)
+        +LongArray get(int identifier)
+    }
+    
+    PrimitiveArray <|-- PrimitiveArrayArray
+    abstract class PrimitiveArrayArray
+    {
+        --(constructors)--
+        #PrimitiveArrayArray()
+        #PrimitiveArrayArray(String)
+    }
+    
+@enduml
+

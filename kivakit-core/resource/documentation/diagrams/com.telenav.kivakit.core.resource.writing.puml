@@ -1,0 +1,54 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.core.resource.writing"
+    
+    abstract BaseReadableResource
+    abstract BaseRepeater
+    
+    interface WritableResource
+    interface Closeable
+    
+    BaseReadableResource <|-- BaseWritableResource
+    WritableResource <|-- BaseWritableResource
+    abstract class BaseWritableResource
+    {
+        --(constructors)--
+        #BaseWritableResource()
+        #BaseWritableResource(BaseWritableResource)
+        #BaseWritableResource(ResourcePath)
+        --
+        +void print(String output)
+        --(filesystem)--
+        +void copyFrom(Resource, CopyMode, ProgressReporter)
+        +boolean delete()
+        --(write)--
+        +ObjectOutputStream objectOutputStream()
+        +void save(InputStream, ProgressReporter)
+        +Writer textWriter()
+    }
+    
+    BaseRepeater <|-- BaseWriter
+    Closeable <|-- BaseWriter
+    abstract class BaseWriter
+    {
+    }
+    
+    class ResourceWriter
+    {
+        --(constructors)--
+        +ResourceWriter(WritableResource)
+        +ResourceWriter(WritableResource, Charset)
+        --
+        +Charset charset()
+        --(write)--
+        +ObjectOutputStream objectOutputStream()
+        +PrintWriter printWriter()
+        +void save(Object... objects)
+        +void save(String)
+        +Writer textWriter()
+    }
+    
+@enduml
+

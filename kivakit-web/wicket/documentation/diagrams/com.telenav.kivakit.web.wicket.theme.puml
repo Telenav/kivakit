@@ -1,0 +1,12 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.web.wicket.theme"
+    
+    class KivaKitTheme
+    {
+    }
+    
+@enduml
+

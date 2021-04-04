@@ -1,0 +1,25 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.core.kernel.language.values.name"
+    
+    interface Named
+    
+    Named <|-- Name
+    class Name
+    {
+        --(constructors)--
+        #Name()
+        +Name(String)
+        --
+        +String of(Object)
+        +String synthetic(Object)
+        --(checks)--
+        +boolean isFrench()
+        --(naming)--
+        +Name lowerCase()
+    }
+    
+@enduml
+

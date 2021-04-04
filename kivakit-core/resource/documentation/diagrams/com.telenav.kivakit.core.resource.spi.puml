@@ -1,0 +1,25 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.core.resource.spi"
+    
+    ResourceFactoryService --> ResourceIdentifier : "parses"
+    ResourceFactoryService --> Resource : "creates"
+    interface ResourceFactoryService
+    {
+        --(factory)--
+        +Resource newResource(ResourceIdentifier)
+        --(filtering)--
+        +boolean accepts(ResourceIdentifier)
+    }
+    
+    ResourceFactoryServiceRegistry "1" o-- "*" ResourceFactoryService
+    class ResourceFactoryServiceRegistry
+    {
+        --(identity)--
+        +Resource forIdentifier(ResourceIdentifier)
+    }
+    
+@enduml
+

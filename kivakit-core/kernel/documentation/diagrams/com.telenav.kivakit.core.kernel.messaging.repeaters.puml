@@ -1,0 +1,21 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.core.kernel.messaging.repeaters"
+    
+    interface Repeater
+    
+    Multicaster <|-- BaseRepeater
+    Repeater <|-- BaseRepeater
+    class BaseRepeater
+    {
+        --(constructors)--
+        #BaseRepeater()
+        #BaseRepeater(String)
+        +BaseRepeater(Class<?>)
+        +BaseRepeater(String, Class<?>)
+    }
+    
+@enduml
+

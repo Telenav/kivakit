@@ -1,4 +1,4 @@
-# kivakit-core-configuration &nbsp;&nbsp;![](../../documentation/images/tools-40.png)
+# kivakit-core configuration &nbsp;&nbsp;![](../../documentation/images/tools-40.png)
 
 This module manages sets of configuration objects, defined by properties files, which can be used to configure server  
 deployments. It also provides registration and lookup of objects.
@@ -8,20 +8,16 @@ deployments. It also provides registration and lookup of objects.
 ### Index
 
 [**Dependencies**](#dependencies)  
+
 [**Class Diagrams**](#class-diagrams)  
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
 
-![](documentation/images/horizontal-line.png)
-
-[//]: # (start-user-text)
-
-
-[//]: # (end-user-text)
-
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp;  ![](documentation/images/dependencies-40.png)
+### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
 [*Dependency Diagram*](documentation/diagrams/dependencies.svg)
+
+#### Maven Dependency  
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
@@ -29,56 +25,53 @@ deployments. It also provides registration and lookup of objects.
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+![](documentation/images/horizontal-line.png)
+
+[//]: # (start-user-text)
+
+
+
+[//]: # (end-user-text)
+
+### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
 
 [*Configuration and Deployment*](documentation/diagrams/diagram-configuration.svg)  
-[*Lookup*](documentation/diagrams/diagram-lookup.svg)
+[*Lookup*](documentation/diagrams/diagram-lookup.svg)  
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.core.configuration*](documentation/diagrams/com.telenav.kivakit.core.configuration.svg)  
 [*com.telenav.kivakit.core.configuration.lookup*](documentation/diagrams/com.telenav.kivakit.core.configuration.lookup.svg)  
 [*com.telenav.kivakit.core.configuration.project*](documentation/diagrams/com.telenav.kivakit.core.configuration.project.svg)  
-[*com.telenav.kivakit.core.configuration.settings*](documentation/diagrams/com.telenav.kivakit.core.configuration.settings.svg)
+[*com.telenav.kivakit.core.configuration.settings*](documentation/diagrams/com.telenav.kivakit.core.configuration.settings.svg)  
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
 | Class | Documentation Sections |
 |---|---|
-| [*
-ConfigurationEntry*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.configuration/com/telenav/kivakit/core/configuration/ConfigurationEntry.html) |  |  
-| [*
-ConfigurationFolder*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.configuration/com/telenav/kivakit/core/configuration/ConfigurationFolder.html) |  |  
-| [*
-ConfigurationIdentifier*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.configuration/com/telenav/kivakit/core/configuration/ConfigurationIdentifier.html) |  |  
-| [*
-ConfigurationPackage*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.configuration/com/telenav/kivakit/core/configuration/ConfigurationPackage.html) |  |  
-| [*
-ConfigurationSet*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.configuration/com/telenav/kivakit/core/configuration/ConfigurationSet.html) | The Global Configuration Set |  
+| [*ConfigurationEntry*](https://telenav.github.io/kivakit/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/ConfigurationEntry.html) |  |  
+| [*ConfigurationFolder*](https://telenav.github.io/kivakit/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/ConfigurationFolder.html) |  |  
+| [*ConfigurationIdentifier*](https://telenav.github.io/kivakit/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/ConfigurationIdentifier.html) |  |  
+| [*ConfigurationPackage*](https://telenav.github.io/kivakit/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/ConfigurationPackage.html) |  |  
+| [*ConfigurationSet*](https://telenav.github.io/kivakit/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/ConfigurationSet.html) | The Global Configuration Set |  
 | | Adding and Loading Configuration Objects |  
 | | Loading Configurations as DeploymentSets |  
 | | Locating Configurations with Lookup |  
 | | Locating Configuration Objects at Runtime |  
 | | Properties File Format |  
-| [*
-CoreConfigurationProject*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.configuration/com/telenav/kivakit/core/configuration/project/CoreConfigurationProject.html) |  |  
-| [*
-Deployment*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.configuration/com/telenav/kivakit/core/configuration/Deployment.html) | Configuring Applications |  
+| [*CoreConfigurationProject*](https://telenav.github.io/kivakit/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/project/CoreConfigurationProject.html) |  |  
+| [*Deployment*](https://telenav.github.io/kivakit/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/Deployment.html) | Configuring Applications |  
 | | Key Methods |  
 | | Example |  
-| [*
-Deployment.Converter*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.configuration/com/telenav/kivakit/core/configuration/Deployment.Converter.html) |  |  
-| [*
-DeploymentSet*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.configuration/com/telenav/kivakit/core/configuration/DeploymentSet.html) |  |  
-| [*
-InstanceIdentifier*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.configuration/com/telenav/kivakit/core/configuration/InstanceIdentifier.html) |  |  
-| [*
-Lookup*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.configuration/com/telenav/kivakit/core/configuration/lookup/Lookup.html) | Example |  
-| [*
-Settings*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.configuration/com/telenav/kivakit/core/configuration/settings/Settings.html) | Overriding Settings from the Command Line |  
+| [*Deployment.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/Deployment.Converter.html) |  |  
+| [*DeploymentSet*](https://telenav.github.io/kivakit/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/DeploymentSet.html) |  |  
+| [*InstanceIdentifier*](https://telenav.github.io/kivakit/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/InstanceIdentifier.html) |  |  
+| [*Lookup*](https://telenav.github.io/kivakit/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/lookup/Lookup.html) | Example |  
+| [*Settings*](https://telenav.github.io/kivakit/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/settings/Settings.html) | Overriding Settings from the Command Line |  
 | | Finding Settings |  
 
 [//]: # (start-user-text)
+
 
 
 [//]: # (end-user-text)
@@ -87,7 +80,7 @@ Settings*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.k
 
 ![](documentation/images/horizontal-line.png)
 
-<sub>Copyright 2011-2021 [Telenav](http://telenav.com), Inc. Licensed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by Lexakai on 2021.04.01</sub>    
-<sub>UML diagrams courtesy of PlantUML (http://plantuml.com)</sub>
+<sub>Copyright 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.04</sub>    
+<sub>UML diagrams courtesy of [PlantUML](http://plantuml.com)</sub>
 

@@ -1,0 +1,16 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.web.wicket.components.refresh"
+    
+    WebMarkupContainer <|-- UpdatingContainer
+    class UpdatingContainer
+    {
+        --(constructors)--
+        +UpdatingContainer(String, Frequency)
+        +UpdatingContainer(String, Frequency, Consumer<AjaxRequestTarget>)
+    }
+    
+@enduml
+

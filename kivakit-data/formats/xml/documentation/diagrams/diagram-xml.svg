@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1177.0833px" preserveAspectRatio="none" style="width:1081px;height:1177px;background:#333333;" version="1.1" viewBox="0 0 1081 1177" width="1081.25px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="65.625" x="500.5208" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="42.7083" x="511.9792" y="30.5583">XML</text><!--MD5=[608ff7f27b79d14be709208a9ff52967]
+class BaseObjectReader--><rect codeLine="6" fill="#282828" height="48.055" id="BaseObjectReader" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="153.125" x="235.9375" y="107.3486"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="153.125" x="235.9375" y="107.3486"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="153.125" x="235.9375" y="130.4036"/><rect codeLine="6" fill="none" height="48.055" id="BaseObjectReader" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="153.125" x="235.9375" y="107.3486"/><ellipse cx="250.5208" cy="123.0428" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M250.6348,119.7449 L249.7864,123.4741 L251.4893,123.4741 Z M249.5361,118.0969 L251.7395,118.0969 L254.1992,127.2095 L252.3987,127.2095 L251.8372,124.9573 L249.4263,124.9573 L248.877,127.2095 L247.0764,127.2095 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="115.625" x="267.1875" y="127.7669">BaseObjectReader</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="236.9792" x2="388.0208" y1="138.737" y2="138.737"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="236.9792" x2="388.0208" y1="147.0703" y2="147.0703"/><!--MD5=[c249847c086044a14a4ecd1d09905030]
+class Matcher--><rect codeLine="8" fill="#282828" height="48.055" id="Matcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="88.5417" x="781.7708" y="107.3486"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="88.5417" x="781.7708" y="107.3486"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="88.5417" x="781.7708" y="130.4036"/><rect codeLine="8" fill="none" height="48.055" id="Matcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="88.5417" x="781.7708" y="107.3486"/><ellipse cx="796.3542" cy="123.0428" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M793.2373,120.2047 L793.2373,118.6178 L798.6633,118.6178 L798.6633,120.2047 L796.8506,120.2047 L796.8506,126.1434 L798.6633,126.1434 L798.6633,127.7303 L793.2373,127.7303 L793.2373,126.1434 L795.05,126.1434 L795.05,120.2047 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="51.0417" x="813.0208" y="127.7669">Matcher</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="782.8125" x2="869.2708" y1="138.737" y2="138.737"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="782.8125" x2="869.2708" y1="147.0703" y2="147.0703"/><!--MD5=[b9fffb031fc12c43ade7ecb0cb873637]
+class OpenTag--><rect codeLine="11" fill="#282828" height="83.3781" id="OpenTag" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="125" x="654.1667" y="466.2028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="125" x="654.1667" y="466.2028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="125" x="654.1667" y="489.2578"/><rect codeLine="11" fill="none" height="83.3781" id="OpenTag" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="125" x="654.1667" y="466.2028"/><ellipse cx="681.875" cy="481.897" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M683.7854,486.322 Q683.3582,486.5417 682.8882,486.6516 Q682.4182,486.7615 681.8994,486.7615 Q680.0562,486.7615 679.0857,485.5469 Q678.1152,484.3323 678.1152,482.0374 Q678.1152,479.7363 679.0857,478.5217 Q680.0562,477.3071 681.8994,477.3071 Q682.4182,477.3071 682.8943,477.417 Q683.3704,477.5269 683.7854,477.7466 L683.7854,479.7485 Q683.3215,479.3213 682.8851,479.1229 Q682.4487,478.9246 681.9849,478.9246 Q680.9961,478.9246 680.4926,479.7089 Q679.989,480.4932 679.989,482.0374 Q679.989,483.5754 680.4926,484.3597 Q680.9961,485.144 681.9849,485.144 Q682.4487,485.144 682.8851,484.9457 Q683.3215,484.7473 683.7854,484.3201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="58.3333" x="701.4583" y="486.6211">OpenTag</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="655.2083" x2="778.125" y1="497.5911" y2="497.5911"/><ellipse cx="665.625" cy="532.961" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="92.7083" x="677.0833" y="539.8722">OpenTag(String)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="655.2083" x2="672.9167" y1="515.7969" y2="515.7969"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="676.0417" y="519.6065">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="760.4167" x2="778.125" y1="515.7969" y2="515.7969"/><!--MD5=[9029baca36f1dde7e0711526f9d07946]
+class XmlNode--><rect codeLine="17" fill="#282828" height="341.1499" id="XmlNode" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="291.6667" x="166.6667" y="828.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="291.6667" x="166.6667" y="828.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="291.6667" x="166.6667" y="851.7578"/><rect codeLine="17" fill="none" height="341.1499" id="XmlNode" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="291.6667" x="166.6667" y="828.7028"/><ellipse cx="276.0417" cy="844.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M277.9521,848.822 Q277.5248,849.0417 277.0549,849.1516 Q276.5849,849.2615 276.0661,849.2615 Q274.2228,849.2615 273.2524,848.0469 Q272.2819,846.8323 272.2819,844.5374 Q272.2819,842.2363 273.2524,841.0217 Q274.2228,839.8071 276.0661,839.8071 Q276.5849,839.8071 277.061,839.917 Q277.537,840.0269 277.9521,840.2466 L277.9521,842.2485 Q277.4882,841.8213 277.0518,841.6229 Q276.6154,841.4246 276.1515,841.4246 Q275.1628,841.4246 274.6592,842.2089 Q274.1557,842.9932 274.1557,844.5374 Q274.1557,846.0754 274.6592,846.8597 Q275.1628,847.644 276.1515,847.644 Q276.6154,847.644 277.0518,847.4457 Q277.4882,847.2473 277.9521,846.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="58.3333" x="298.9583" y="849.1211">XmlNode</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="167.7083" x2="457.2917" y1="860.0911" y2="860.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="167.7083" x2="457.2917" y1="868.4245" y2="868.4245"/><ellipse cx="178.125" cy="879.8828" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="159.375" x="189.5833" y="886.794">String attribute(String name)</text><ellipse cx="178.125" cy="899.6277" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="155.2083" x="189.5833" y="906.5389">XmlNode child(String name)</text><ellipse cx="178.125" cy="919.3726" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="66.6667" x="189.5833" y="926.2838">String text()</text><ellipse cx="178.125" cy="963.029" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="116.6667" x="189.5833" y="969.9402">boolean isOpenTag()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="167.7083" x2="285.9375" y1="945.8649" y2="945.8649"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="289.0625" y="949.6745">(checks)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="339.0625" x2="457.2917" y1="945.8649" y2="945.8649"/><ellipse cx="178.125" cy="1006.6854" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="169.7917" x="189.5833" y="1013.5966">StringToStringMap attributes()</text><ellipse cx="178.125" cy="1026.4303" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="259.375" x="189.5833" y="1033.3415">List&lt;XmlNode&gt; children(Matcher&lt;XmlNode&gt;)</text><ellipse cx="178.125" cy="1046.1751" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="145.8333" x="189.5833" y="1053.0863">List&lt;XmlNode&gt; children()</text><ellipse cx="178.125" cy="1065.92" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="251.0417" x="189.5833" y="1072.8312">List&lt;XmlNode&gt; childrenNamed(String name)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="167.7083" x2="278.125" y1="989.5213" y2="989.5213"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="281.25" y="993.3309">(collection)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="346.875" x2="457.2917" y1="989.5213" y2="989.5213"/><ellipse cx="178.125" cy="1109.5764" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="245.8333" x="189.5833" y="1116.4876">T asObject(Class&lt;T&gt; type, XmlPath... paths)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="167.7083" x2="273.9583" y1="1092.4123" y2="1092.4123"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="70.8333" x="277.0833" y="1096.2219">(conversion)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="351.0417" x2="457.2917" y1="1092.4123" y2="1092.4123"/><ellipse cx="178.125" cy="1153.2328" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="75" x="189.5833" y="1160.144">String name()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="167.7083" x2="284.375" y1="1136.0687" y2="1136.0687"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="50" x="287.5" y="1139.8783">(naming)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="340.625" x2="457.2917" y1="1136.0687" y2="1136.0687"/><!--MD5=[0f4e2e769ddd44f3a54492f596f17866]
+class XmlNodeWithAttribute--><rect codeLine="37" fill="#282828" height="83.3781" id="XmlNodeWithAttribute" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="237.5" x="815.625" y="466.2028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="237.5" x="815.625" y="466.2028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="237.5" x="815.625" y="489.2578"/><rect codeLine="37" fill="none" height="83.3781" id="XmlNodeWithAttribute" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="237.5" x="815.625" y="466.2028"/><ellipse cx="854.5833" cy="481.897" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M856.4937,486.322 Q856.0665,486.5417 855.5965,486.6516 Q855.1265,486.7615 854.6077,486.7615 Q852.7645,486.7615 851.794,485.5469 Q850.8236,484.3323 850.8236,482.0374 Q850.8236,479.7363 851.794,478.5217 Q852.7645,477.3071 854.6077,477.3071 Q855.1265,477.3071 855.6026,477.417 Q856.0787,477.5269 856.4937,477.7466 L856.4937,479.7485 Q856.0299,479.3213 855.5935,479.1229 Q855.1571,478.9246 854.6932,478.9246 Q853.7044,478.9246 853.2009,479.7089 Q852.6973,480.4932 852.6973,482.0374 Q852.6973,483.5754 853.2009,484.3597 Q853.7044,485.144 854.6932,485.144 Q855.1571,485.144 855.5935,484.9457 Q856.0299,484.7473 856.4937,484.3201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="145.8333" x="876.6667" y="486.6211">XmlNodeWithAttribute</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="816.6667" x2="1052.0833" y1="497.5911" y2="497.5911"/><ellipse cx="827.0833" cy="532.961" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="205.2083" x="838.5417" y="539.8722">XmlNodeWithAttribute(String, String)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="816.6667" x2="890.625" y1="515.7969" y2="515.7969"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="893.75" y="519.6065">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="978.125" x2="1052.0833" y1="515.7969" y2="515.7969"/><!--MD5=[e5b543eaba62ac8987b9777f9001e9d3]
+class XmlPath--><rect codeLine="43" fill="#282828" height="155.1127" id="XmlPath" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="166.6667" x="907.2917" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="166.6667" x="907.2917" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="166.6667" x="907.2917" y="76.7578"/><rect codeLine="43" fill="none" height="155.1127" id="XmlPath" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="166.6667" x="907.2917" y="53.7028"/><ellipse cx="956.7708" cy="69.397" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M956.8848,66.099 L956.0364,69.8283 L957.7393,69.8283 Z M955.7861,64.4511 L957.9895,64.4511 L960.4492,73.5636 L958.6487,73.5636 L958.0872,71.3114 L955.6763,71.3114 L955.127,73.5636 L953.3264,73.5636 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="53.125" x="979.6875" y="74.1211">XmlPath</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="908.3333" x2="1072.9167" y1="85.0911" y2="85.0911"/><polygon fill="#FFFF44" points="918.75,115.2527,922.9167,119.4194,918.75,123.586,914.5833,119.4194" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="86.4583" x="930.2083" y="127.3722">XmlPath(String)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="908.3333" x2="946.875" y1="103.2969" y2="103.2969"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="950" y="107.1065">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1034.375" x2="1072.9167" y1="103.2969" y2="103.2969"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="908.3333" x2="1072.9167" y1="137.0809" y2="137.0809"/><ellipse cx="918.75" cy="148.5392" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="134.375" x="930.2083" y="155.4504">String extract(XmlNode)</text><ellipse cx="918.75" cy="192.1956" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="75" x="930.2083" y="199.1069">String name()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="908.3333" x2="962.5" y1="175.0315" y2="175.0315"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="50" x="965.625" y="178.8411">(naming)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1018.75" x2="1072.9167" y1="175.0315" y2="175.0315"/><!--MD5=[69b06816b9f6d8cee16db352f4b55fce]
+class XmlReader--><rect codeLine="55" fill="#282828" height="471.0307" id="XmlReader" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="610.4167" x="7.2917" y="272.4528"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="610.4167" x="7.2917" y="272.4528"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="610.4167" x="7.2917" y="295.5078"/><rect codeLine="55" fill="none" height="471.0307" id="XmlReader" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="610.4167" x="7.2917" y="272.4528"/><ellipse cx="270.8333" cy="288.147" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M272.7437,292.572 Q272.3165,292.7917 271.8465,292.9016 Q271.3765,293.0115 270.8577,293.0115 Q269.0145,293.0115 268.044,291.7969 Q267.0736,290.5823 267.0736,288.2874 Q267.0736,285.9863 268.044,284.7717 Q269.0145,283.5571 270.8577,283.5571 Q271.3765,283.5571 271.8526,283.667 Q272.3287,283.7769 272.7437,283.9966 L272.7437,285.9985 Q272.2799,285.5713 271.8435,285.3729 Q271.4071,285.1746 270.9432,285.1746 Q269.9544,285.1746 269.4509,285.9589 Q268.9473,286.7432 268.9473,288.2874 Q268.9473,289.8254 269.4509,290.6097 Q269.9544,291.394 270.9432,291.394 Q271.4071,291.394 271.8435,291.1957 Q272.2799,290.9973 272.7437,290.5701 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="68.75" x="293.75" y="292.8711">XmlReader</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="8.3333" x2="616.6667" y1="303.8411" y2="303.8411"/><ellipse cx="18.75" cy="339.211" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="119.7917" x="30.2083" y="346.1222">XmlReader(Resource)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="268.75" y1="322.0469" y2="322.0469"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="271.875" y="325.8565">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="356.25" x2="616.6667" y1="322.0469" y2="322.0469"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="616.6667" y1="355.8309" y2="355.8309"/><ellipse cx="18.75" cy="367.2892" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="30.2083" y="374.2004">void advance()</text><ellipse cx="18.75" cy="387.0341" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="235.4167" x="30.2083" y="393.9453">XmlNode advanceTo(Matcher&lt;XmlNode&gt;)</text><ellipse cx="18.75" cy="406.779" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="188.5417" x="30.2083" y="413.6902">XmlNode advanceTo(String name)</text><ellipse cx="18.75" cy="426.5238" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="404.1667" x="30.2083" y="433.4351">XmlNode advanceToButNotBeyond(String searchName, String stopName)</text><ellipse cx="18.75" cy="446.2687" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="578.125" x="30.2083" y="453.1799">XmlNode advanceToButNotBeyond(Matcher&lt;XmlNode&gt; searchName, Matcher&lt;XmlNode&gt; stopMatcher)</text><ellipse cx="18.75" cy="466.0136" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="103.125" x="30.2083" y="472.9248">XmlNode current()</text><ellipse cx="18.75" cy="485.7585" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="218.75" x="30.2083" y="492.6697">XmlNode fastAdvanceTo(String search)</text><ellipse cx="18.75" cy="505.5033" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="430.2083" x="30.2083" y="512.4146">XmlNode fastAdvanceToButNotBeyond(String regularExpression, String stop)</text><ellipse cx="18.75" cy="525.2482" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="153.125" x="30.2083" y="532.1594">String fastGetCurrentText()</text><ellipse cx="18.75" cy="544.9931" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="177.0833" x="30.2083" y="551.9043">boolean lookingAt(String name)</text><ellipse cx="18.75" cy="564.738" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="223.9583" x="30.2083" y="571.6492">boolean lookingAt(Matcher&lt;XmlNode&gt;)</text><ellipse cx="18.75" cy="584.4828" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="71.875" x="30.2083" y="591.394">int position()</text><ellipse cx="18.75" cy="628.1392" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="332.2917" x="30.2083" y="635.0505">Iterable&lt;XmlNode&gt; childrenMatching(Matcher&lt;XmlNode&gt;)</text><ellipse cx="18.75" cy="647.8841" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="285.4167" x="30.2083" y="654.7953">Iterable&lt;XmlNode&gt; childrenMatching(String name)</text><ellipse cx="18.75" cy="667.629" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="320.8333" x="30.2083" y="674.5402">Iterable&lt;XmlNode&gt; nodesMatching(Matcher&lt;XmlNode&gt;)</text><ellipse cx="18.75" cy="687.3739" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="273.9583" x="30.2083" y="694.2851">Iterable&lt;XmlNode&gt; nodesMatching(String name)</text><ellipse cx="18.75" cy="707.1187" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="490.625" x="30.2083" y="714.0299">Iterable&lt;XmlNode&gt; siblingsMatching(Matcher&lt;XmlNode&gt;, Matcher&lt;XmlNode&gt; stopAt)</text><ellipse cx="18.75" cy="726.8636" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="330.2083" x="30.2083" y="733.7748">Iterable&lt;XmlNode&gt; siblingsMatching(Matcher&lt;XmlNode&gt;)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="278.125" y1="610.9751" y2="610.9751"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="281.25" y="614.7847">(collection)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="346.875" x2="616.6667" y1="610.9751" y2="610.9751"/><!--MD5=[2bc188936e87097c6d7289fd471977bc]
+reverse link Matcher to OpenTag--><path codeLine="10" d="M813.4063,175.609 C792.1042,248.557 749.3229,395.0257 728.5417,466.182 " fill="none" id="Matcher-backto-OpenTag" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="806.4375,173.4424,819.2813,155.4945,820.4375,177.5361,806.4375,173.4424" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[90e4c7f86f51a6e38ece97a443eeca5e]
+reverse link Matcher to XmlNodeWithAttribute--><path codeLine="36" d="M838.5521,175.609 C859.6563,248.557 902.0313,395.0257 922.6146,466.182 " fill="none" id="Matcher-backto-XmlNodeWithAttribute" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="831.5208,177.5257,832.7396,155.4945,845.5313,173.4736,831.5208,177.5257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f2586306a8464f61bce57598bb933c62]
+reverse link BaseObjectReader to XmlReader--><path codeLine="53" d="M312.5,176.5153 C312.5,201.8278 312.5,235.7549 312.5,272.2549 " fill="none" id="BaseObjectReader-backto-XmlReader" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="305.2083,176.3278,312.5,155.4945,319.7917,176.3278,305.2083,176.3278" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[05d7473aafbb1ebeb58f8306cba03772]
+link XmlReader to XmlNode--><path codeLine="54" d="M312.5,743.307 C312.5,770.1403 312.5,797.1299 312.5,823.0049 " fill="none" id="XmlReader-to-XmlNode" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="312.5,828.5049,316.6667,819.1299,312.5,823.2965,308.3333,819.1299,312.5,828.5049" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="35.4167" x="316.6667" y="790.7878">reads</text><!--MD5=[6a5b1c6bd934c40a773440014cfcb5f1]
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "XML"
+    
+    abstract BaseObjectReader
+    
+    interface Matcher
+    
+    Matcher <|- - OpenTag
+    class OpenTag
+    {
+        - -(constructors)- -
+        +OpenTag(String)
+    }
+    
+    class XmlNode
+    {
+        - -
+        +String attribute(String name)
+        +XmlNode child(String name)
+        +String text()
+        - -(checks)- -
+        +boolean isOpenTag()
+        - -(collection)- -
+        +StringToStringMap attributes()
+        +List<XmlNode> children(Matcher<XmlNode>)
+        +List<XmlNode> children()
+        +List<XmlNode> childrenNamed(String name)
+        - -(conversion)- -
+        +T asObject(Class<T> type, XmlPath... paths)
+        - -(naming)- -
+        +String name()
+    }
+    
+    Matcher <|- - XmlNodeWithAttribute
+    class XmlNodeWithAttribute
+    {
+        - -(constructors)- -
+        +XmlNodeWithAttribute(String, String)
+    }
+    
+    abstract class XmlPath
+    {
+        - -(constructors)- -
+        #XmlPath(String)
+        - -
+        +String extract(XmlNode)
+        - -(naming)- -
+        +String name()
+    }
+    
+    BaseObjectReader <|- - XmlReader
+    XmlReader - -> XmlNode : "reads"
+    class XmlReader
+    {
+        - -(constructors)- -
+        +XmlReader(Resource)
+        - -
+        +void advance()
+        +XmlNode advanceTo(Matcher<XmlNode>)
+        +XmlNode advanceTo(String name)
+        +XmlNode advanceToButNotBeyond(String searchName, String stopName)
+        +XmlNode advanceToButNotBeyond(Matcher<XmlNode> searchName, Matcher<XmlNode> stopMatcher)
+        +XmlNode current()
+        +XmlNode fastAdvanceTo(String search)
+        +XmlNode fastAdvanceToButNotBeyond(String regularExpression, String stop)
+        +String fastGetCurrentText()
+        +boolean lookingAt(String name)
+        +boolean lookingAt(Matcher<XmlNode>)
+        +int position()
+        - -(collection)- -
+        +Iterable<XmlNode> childrenMatching(Matcher<XmlNode>)
+        +Iterable<XmlNode> childrenMatching(String name)
+        +Iterable<XmlNode> nodesMatching(Matcher<XmlNode>)
+        +Iterable<XmlNode> nodesMatching(String name)
+        +Iterable<XmlNode> siblingsMatching(Matcher<XmlNode>, Matcher<XmlNode> stopAt)
+        +Iterable<XmlNode> siblingsMatching(Matcher<XmlNode>)
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "XML"
+    
+    abstract BaseObjectReader
+    
+    interface Matcher
+    
+    Matcher <|- - OpenTag
+    class OpenTag
+    {
+        - -(constructors)- -
+        +OpenTag(String)
+    }
+    
+    class XmlNode
+    {
+        - -
+        +String attribute(String name)
+        +XmlNode child(String name)
+        +String text()
+        - -(checks)- -
+        +boolean isOpenTag()
+        - -(collection)- -
+        +StringToStringMap attributes()
+        +List<XmlNode> children(Matcher<XmlNode>)
+        +List<XmlNode> children()
+        +List<XmlNode> childrenNamed(String name)
+        - -(conversion)- -
+        +T asObject(Class<T> type, XmlPath... paths)
+        - -(naming)- -
+        +String name()
+    }
+    
+    Matcher <|- - XmlNodeWithAttribute
+    class XmlNodeWithAttribute
+    {
+        - -(constructors)- -
+        +XmlNodeWithAttribute(String, String)
+    }
+    
+    abstract class XmlPath
+    {
+        - -(constructors)- -
+        #XmlPath(String)
+        - -
+        +String extract(XmlNode)
+        - -(naming)- -
+        +String name()
+    }
+    
+    BaseObjectReader <|- - XmlReader
+    XmlReader - -> XmlNode : "reads"
+    class XmlReader
+    {
+        - -(constructors)- -
+        +XmlReader(Resource)
+        - -
+        +void advance()
+        +XmlNode advanceTo(Matcher<XmlNode>)
+        +XmlNode advanceTo(String name)
+        +XmlNode advanceToButNotBeyond(String searchName, String stopName)
+        +XmlNode advanceToButNotBeyond(Matcher<XmlNode> searchName, Matcher<XmlNode> stopMatcher)
+        +XmlNode current()
+        +XmlNode fastAdvanceTo(String search)
+        +XmlNode fastAdvanceToButNotBeyond(String regularExpression, String stop)
+        +String fastGetCurrentText()
+        +boolean lookingAt(String name)
+        +boolean lookingAt(Matcher<XmlNode>)
+        +int position()
+        - -(collection)- -
+        +Iterable<XmlNode> childrenMatching(Matcher<XmlNode>)
+        +Iterable<XmlNode> childrenMatching(String name)
+        +Iterable<XmlNode> nodesMatching(Matcher<XmlNode>)
+        +Iterable<XmlNode> nodesMatching(String name)
+        +Iterable<XmlNode> siblingsMatching(Matcher<XmlNode>, Matcher<XmlNode> stopAt)
+        +Iterable<XmlNode> siblingsMatching(Matcher<XmlNode>)
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

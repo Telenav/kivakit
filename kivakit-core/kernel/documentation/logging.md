@@ -1,4 +1,4 @@
-# kivakit-core-kernel - logging &nbsp; ![](../../../documentation/images/log-40.png)
+# kivakit-core-kernel logging &nbsp; ![](../../../documentation/images/log-40.png)
 
 ![](../documentation/images/horizontal-line.png)
 

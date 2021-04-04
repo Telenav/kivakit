@@ -1,4 +1,4 @@
-# kivakit-core-network-http &nbsp;&nbsp;![](../../../documentation/images/world-40.png)
+# kivakit-core-network http &nbsp;&nbsp;![](../../../documentation/images/world-40.png)
 
 This module provides HTTP and HTTPS resources.
 
@@ -6,14 +6,26 @@ This module provides HTTP and HTTPS resources.
 
 ### Index
 
+[**Dependencies**](#dependencies)  
 [**Summary**](#summary)  
 [**Get**](#get)  
 [**Authentication**](#authentication)  
 [**Encryption**](#encryption)  
-[**Dependencies**](#dependencies)  
 [**Class Diagrams**](#class-diagrams)  
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
+
+### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
+
+[*Dependency Diagram*](documentation/diagrams/dependencies.svg)
+
+#### Maven Dependency  
+
+    <dependency>
+        <groupId>com.telenav.kivakit</groupId>
+        <artifactId>kivakit-core-network-http</artifactId>
+        <version>0.9.0-SNAPSHOT</version>
+    </dependency>
 
 ![](documentation/images/horizontal-line.png)
 
@@ -42,61 +54,38 @@ The *SecureHttpNetworkLocation*, *SecureHttpGetResource* and *SecureHttpPostReso
 
 [//]: # (end-user-text)
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp;  ![](documentation/images/dependencies-40.png)
-
-[*Dependency Diagram*](documentation/diagrams/dependencies.svg)
-
-    <dependency>
-        <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit-core-network-http</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
-    </dependency>
-
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
 
 [*HTTP*](documentation/diagrams/diagram-http.svg)  
-[*Secure HTTP*](documentation/diagrams/diagram-https.svg)
+[*Secure HTTP*](documentation/diagrams/diagram-https.svg)  
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.core.network.http*](documentation/diagrams/com.telenav.kivakit.core.network.http.svg)  
 [*com.telenav.kivakit.core.network.http.project*](documentation/diagrams/com.telenav.kivakit.core.network.http.project.svg)  
-[*com.telenav.kivakit.core.network.http.secure*](documentation/diagrams/com.telenav.kivakit.core.network.http.secure.svg)
+[*com.telenav.kivakit.core.network.http.secure*](documentation/diagrams/com.telenav.kivakit.core.network.http.secure.svg)  
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
 | Class | Documentation Sections |
 |---|---|
-| [*
-BaseHttpResource*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.http/com/telenav/kivakit/core/network/http/BaseHttpResource.html) |  |  
-| [*
-CoreNetworkHttpProject*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.http/com/telenav/kivakit/core/network/http/project/CoreNetworkHttpProject.html) |  |  
-| [*
-HttpAccessConstraints*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpAccessConstraints.html) |  |  
-| [*
-HttpBasicCredentials*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpBasicCredentials.html) |  |  
-| [*
-HttpGetResource*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpGetResource.html) |  |  
-| [*
-HttpNetworkLocation*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpNetworkLocation.html) |  |  
-| [*
-HttpNetworkLocation.Converter*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpNetworkLocation.Converter.html) |  |  
-| [*
-HttpPostResource*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpPostResource.html) |  |  
-| [*
-HttpPutResource*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpPutResource.html) |  |  
-| [*
-HttpStatus*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpStatus.html) |  |  
-| [*
-InvalidCertificateTrustingHttpClient*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/InvalidCertificateTrustingHttpClient.html) |  |  
-| [*
-SecureHttpGetResource*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/SecureHttpGetResource.html) |  |  
-| [*
-SecureHttpNetworkLocation*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/SecureHttpNetworkLocation.html) |  |  
-| [*
-SecureHttpPostResource*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/SecureHttpPostResource.html) |  |  
+| [*BaseHttpResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/BaseHttpResource.html) |  |  
+| [*CoreNetworkHttpProject*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/project/CoreNetworkHttpProject.html) |  |  
+| [*HttpAccessConstraints*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpAccessConstraints.html) |  |  
+| [*HttpBasicCredentials*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpBasicCredentials.html) |  |  
+| [*HttpGetResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpGetResource.html) |  |  
+| [*HttpNetworkLocation*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpNetworkLocation.html) |  |  
+| [*HttpNetworkLocation.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpNetworkLocation.Converter.html) |  |  
+| [*HttpPostResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpPostResource.html) |  |  
+| [*HttpPutResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpPutResource.html) |  |  
+| [*HttpStatus*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpStatus.html) |  |  
+| [*InvalidCertificateTrustingHttpClient*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/InvalidCertificateTrustingHttpClient.html) |  |  
+| [*SecureHttpGetResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/SecureHttpGetResource.html) |  |  
+| [*SecureHttpNetworkLocation*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/SecureHttpNetworkLocation.html) |  |  
+| [*SecureHttpPostResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/SecureHttpPostResource.html) |  |  
 
 [//]: # (start-user-text)
+
 
 
 [//]: # (end-user-text)
@@ -105,7 +94,7 @@ SecureHttpPostResource*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs
 
 ![](documentation/images/horizontal-line.png)
 
-<sub>Copyright 2011-2021 [Telenav](http://telenav.com), Inc. Licensed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by Lexakai on 2021.04.01</sub>    
-<sub>UML diagrams courtesy of PlantUML (http://plantuml.com)</sub>
+<sub>Copyright 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.04</sub>    
+<sub>UML diagrams courtesy of [PlantUML](http://plantuml.com)</sub>
 

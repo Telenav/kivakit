@@ -1,0 +1,50 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.core.collections.primitive.map.multi"
+    
+    interface Sized
+    Sized <|-- IntMultiMap
+    interface IntMultiMap
+    {
+        --(collection)--
+        +IntArray get(long key)
+        +void putAll(long key, IntArray values)
+        +void putAll(long key, List<? extends Quantizable> values)
+    }
+    
+    interface Sized
+    Sized <|-- LongMultiMap
+    interface LongMultiMap
+    {
+        --(collection)--
+        +LongArray get(long key)
+        +void putAll(long key, List<? extends Quantizable> values)
+        +void putAll(long key, LongArray values)
+    }
+    
+    interface PrimitiveMultiMap.MultiMapToString
+    {
+    }
+    
+    PrimitiveMap <|-- PrimitiveMultiMap
+    abstract class PrimitiveMultiMap
+    {
+        --(constructors)--
+        #PrimitiveMultiMap()
+        #PrimitiveMultiMap(String)
+    }
+    
+    interface PrimitiveScalarMultiMap
+    {
+        --(collection)--
+        +PrimitiveList getPrimitiveList(long key)
+        +PrimitiveList getSignedPrimitiveList(long key)
+        +boolean isScalarKeyNull(long key)
+        +void putPrimitiveList(long key, List<? extends Quantizable> values)
+        +void putPrimitiveList(long key, PrimitiveList values)
+    }
+    
+@enduml
+

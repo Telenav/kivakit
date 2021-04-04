@@ -1,0 +1,151 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.core.collections.primitive.list"
+    
+    interface IntList
+    
+    IntList <|-- IntList.Adapter
+    class IntList.Adapter
+    {
+    }
+    
+    interface ByteCollection
+    interface CompressibleCollection
+    interface PrimitiveList
+    ByteCollection <|-- ByteList
+    PrimitiveList <|-- ByteList
+    CompressibleCollection <|-- ByteList
+    interface ByteList
+    {
+        --
+        +byte get(int index)
+        +byte safeGet(int index)
+        +void set(int index, byte value)
+        --(collection)--
+        +byte[] asArray()
+        +void clear(int index)
+        +void cursor(int position)
+        +int cursor()
+        +byte first()
+        +byte last()
+        --(iteration)--
+        +boolean hasNext()
+        +byte next()
+        --(lifecycle)--
+        +void reset()
+        --(primitive)--
+        +char readFlexibleChar()
+        +short readFlexibleShort()
+        +int readInt()
+        +ByteList sublist(int offset, int size)
+        +void writeFlexibleChar(char value)
+        +void writeFlexibleShort(short value)
+        +void writeInt(int value)
+        --(read)--
+        +byte read()
+        +boolean[] readBooleans(int size)
+        +int readUnsigned()
+        --(search)--
+        +int binarySearch(byte target)
+        --(write)--
+        +void write(byte value)
+        +void writeBooleans(boolean[] values)
+    }
+    
+    interface CharCollection
+    interface PrimitiveList
+    CharCollection <|-- CharList
+    PrimitiveList <|-- CharList
+    interface CharList
+    {
+        --
+        +char get(int index)
+        +char safeGet(int index)
+        +void set(int index, char value)
+        --(collection)--
+        +void clear(int index)
+        +char first()
+        +char last()
+        --(search)--
+        +int binarySearch(char target)
+    }
+    
+    interface IntCollection
+    interface PrimitiveList
+    IntCollection <|-- IntList
+    PrimitiveList <|-- IntList
+    interface IntList
+    {
+        --
+        +int get(int index)
+        +int safeGet(int index)
+        +void set(int index, int value)
+        --(collection)--
+        +void clear(int index)
+        +void cursor(int position)
+        +int cursor()
+        +int first()
+        +int last()
+        --(search)--
+        +int binarySearch(int target)
+        --(write)--
+        +void write(int value)
+    }
+    
+    interface LongCollection
+    interface PrimitiveList
+    LongCollection <|-- LongList
+    PrimitiveList <|-- LongList
+    interface LongList
+    {
+        --
+        +long get(int index)
+        +long safeGet(int index)
+        +void set(int index, long value)
+        --(collection)--
+        +void clear(int index)
+        +void cursor(int position)
+        +int cursor()
+        +long first()
+        +long last()
+        --(search)--
+        +int binarySearch(long target)
+    }
+    
+    interface Sized
+    Sized <|-- PrimitiveList
+    interface PrimitiveList
+    {
+        --
+        +long getPrimitive(int index)
+        +long safeGetPrimitive(int index)
+        +void setPrimitive(int index, long value)
+        --(checks)--
+        +boolean isPrimitiveNull(long value)
+        --(collection)--
+        +ObjectList<T> asList(LongMapFactory<T>)
+        +Count capacity()
+    }
+    
+    interface PrimitiveList
+    interface ShortCollection
+    ShortCollection <|-- ShortList
+    PrimitiveList <|-- ShortList
+    interface ShortList
+    {
+        --
+        +short get(int index)
+        +short safeGet(int index)
+        +void set(int index, short value)
+        --(collection)--
+        +void clear(int index)
+        +short first()
+        +short last()
+        --(search)--
+        +int binarySearch(short target)
+    }
+    
+@enduml
+

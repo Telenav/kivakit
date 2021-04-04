@@ -1,0 +1,70 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.core.kernel.language.collections.map.count"
+    
+    class ConcurrentCountMap<T>
+    {
+        --
+        +void mergeIn(ConcurrentCountMap<T> that)
+        +long total()
+        --(collection)--
+        +Count add(T key, long value)
+        +ConcurrentCountMap<T> add(T key, Countable value)
+        +ConcurrentCountMap<T> add(T key, Count value)
+        +boolean contains(T key)
+        +Count count(T key)
+        +ConcurrentCountMap<T> decrement(T key)
+        +List<Map.Entry<T,AtomicLong>> descendingEntries(Count maximum, Comparator<Map.Entry<T,AtomicLong>>)
+        +ConcurrentCountMap<T> increment(T key)
+        +Collection<T> keySet()
+        +ConcurrentCountMap<T> parse(Factory<ConcurrentCountMap<T>> mapFactory, MapFactory<String,T> keyFactory, String text)
+        +ConcurrentCountMap<T> prune(Count minimum)
+        +void remove(T key)
+        +int size()
+        +List<T> sortedByDescendingCount()
+        +List<T> sortedKeys()
+        +List<T> sortedKeys(Comparator<T>)
+        +ConcurrentCountMap<T> top(Count maximum)
+        +ConcurrentCountMap<T> top(Count maximum, Comparator<Map.Entry<T,AtomicLong>>)
+        --(math)--
+        +T minimum()
+    }
+    
+    class CountMap<T>
+    {
+        --(constructors)--
+        +CountMap()
+        +CountMap(Count)
+        +CountMap(CountMap<T>)
+        --
+        +void mergeIn(CountMap<T> that)
+        +long total()
+        --(collection)--
+        +Count add(T key, long value)
+        +CountMap<T> add(T key, Countable value)
+        +List<Map.Entry<T,MutableCount>> ascendingEntries(Count maximum, Comparator<Map.Entry<T,MutableCount>>)
+        +CountMap<T> bottom(Count maximum, Comparator<Map.Entry<T,MutableCount>>)
+        +CountMap<T> bottom(Count maximum)
+        +boolean contains(T key)
+        +Count count(T key)
+        +CountMap<T> decrement(T key)
+        +List<Map.Entry<T,MutableCount>> descendingEntries(Count maximum, Comparator<Map.Entry<T,MutableCount>>)
+        +CountMap<T> increment(T key)
+        +Collection<T> keySet()
+        +CountMap<T> prune(Count minimum)
+        +void remove(T key)
+        +void removeAll(CountMap<T>)
+        +int size()
+        +List<T> sortedByDescendingCount()
+        +List<T> sortedKeys()
+        +List<T> sortedKeys(Comparator<T>)
+        +CountMap<T> top(Count maximum)
+        +CountMap<T> top(Count maximum, Comparator<Map.Entry<T,MutableCount>>)
+        --(math)--
+        +T minimum()
+    }
+    
+@enduml
+

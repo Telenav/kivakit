@@ -30,7 +30,7 @@ import java.util.Map;
  * <p>
  * <b>Wiki Documentation</b>
  * <p>
- * <i>For a detailed discussion of KivaKit logging, see the <a href="https://spaces.telenav.com:8443/x/OyZECw">KivaKit
+ * <i>For a detailed discussion of KivaKit logging, see the <a href="http://tinyurl.com/mhc3ss5s">KivaKit
  * logging documentation</a> on the wiki.</i>
  * <p>
  * <b>Implementations</b>
@@ -43,7 +43,7 @@ import java.util.Map;
  *     <li>FileLog - Logs entries to one or more files</li>
  * </ul>
  * Which log implementation(s) are used in an application can be selected from the command line with the system
- * property KIVAKIT_LOG (see <a href="https://spaces.telenav.com:8443/x/OyZECw">KivaKit logging documentation</a> for details).
+ * property KIVAKIT_LOG (see <a href="http://tinyurl.com/mhc3ss5s">KivaKit logging documentation</a> for details).
  *
  * @author jonathanl (shibo)
  * @see Logger
@@ -51,7 +51,7 @@ import java.util.Map;
  * @see Named
  * @see Flushable
  * @see Closeable
- * @see <a href="https://spaces.telenav.com:8443/x/OyZECw">KivaKit logging documentation</a>
+ * @see <a href="http://tinyurl.com/mhc3ss5s">KivaKit logging documentation</a>
  */
 @UmlClassDiagram(diagram = DiagramLoggingLogs.class)
 @UmlClassDiagram(diagram = DiagramLogging.class)

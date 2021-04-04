@@ -1,0 +1,262 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.core.collections.primitive"
+    
+    interface Sized
+    interface Comparable
+    interface Initializable
+    interface NamedObject
+    interface CompressibleCollection
+    interface KryoSerializable
+    
+    RuntimeException <|-- PrimitiveCollection.AllocationStackTrace
+    class PrimitiveCollection.AllocationStackTrace
+    {
+    }
+    
+    interface ByteIterable
+    interface NamedObject
+    interface Sized
+    ByteIterable <|-- ByteCollection
+    Sized <|-- ByteCollection
+    NamedObject <|-- ByteCollection
+    interface ByteCollection
+    {
+        --(checks)--
+        +boolean isNull(byte value)
+        --(collection)--
+        +boolean add(byte value)
+        +boolean addAll(byte[] that)
+        +void addAll(List<? extends Quantizable> values)
+        +boolean addAll(ByteIterable that)
+        +void clear()
+        +boolean contains(byte value)
+        +boolean containsAll(ByteCollection that)
+        +boolean remove(byte value)
+        --(primitive)--
+        +boolean hasNullByte()
+        +PrimitiveCollection hasNullByte(boolean has)
+        +byte nullByte()
+    }
+    
+    interface CharIterable
+    interface NamedObject
+    interface Sized
+    CharIterable <|-- CharCollection
+    Sized <|-- CharCollection
+    NamedObject <|-- CharCollection
+    interface CharCollection
+    {
+        --(checks)--
+        +boolean isNull(char value)
+        --(collection)--
+        +boolean add(char value)
+        +void addAll(List<? extends Quantizable> values)
+        +boolean addAll(char[] that)
+        +boolean addAll(CharCollection that)
+        +void clear()
+        +boolean contains(char value)
+        +boolean containsAll(CharCollection that)
+        +boolean remove(char value)
+        --(primitive)--
+        +boolean hasNullChar()
+        +PrimitiveCollection hasNullChar(boolean has)
+        +char nullChar()
+    }
+    
+    Comparable <|-- PrimitiveCollection.CompressionRecord
+    class PrimitiveCollection.CompressionRecord
+    {
+    }
+    
+    interface PrimitiveCollection.IndexedToString
+    {
+    }
+    
+    interface IntIterable
+    interface NamedObject
+    interface Sized
+    IntIterable <|-- IntCollection
+    Sized <|-- IntCollection
+    NamedObject <|-- IntCollection
+    interface IntCollection
+    {
+        --(checks)--
+        +boolean isNull(int value)
+        --(collection)--
+        +boolean add(int value)
+        +boolean addAll(int[] that)
+        +void addAll(List<? extends Quantizable> values)
+        +boolean addAll(IntCollection that)
+        +void clear()
+        +boolean contains(int value)
+        +boolean containsAll(IntCollection that)
+        +boolean remove(int value)
+        --(primitive)--
+        +boolean hasNullInt()
+        +PrimitiveCollection hasNullInt(boolean has)
+        +int nullInt()
+    }
+    
+    interface LongIterable
+    interface NamedObject
+    interface Sized
+    LongIterable <|-- LongCollection
+    Sized <|-- LongCollection
+    NamedObject <|-- LongCollection
+    interface LongCollection
+    {
+        --(checks)--
+        +boolean isNull(long value)
+        --(collection)--
+        +boolean add(long value)
+        +boolean addAll(long[] that)
+        +void addAll(List<? extends Quantizable> values)
+        +boolean addAll(LongCollection that)
+        +void clear()
+        +boolean contains(long value)
+        +boolean containsAll(LongCollection that)
+        +boolean remove(long value)
+        --(primitive)--
+        +PrimitiveCollection hasNullLong(boolean has)
+        +boolean hasNullLong()
+        +long nullLong()
+    }
+    
+    NamedObject <|-- PrimitiveCollection
+    Initializable <|-- PrimitiveCollection
+    Sized <|-- PrimitiveCollection
+    CompressibleCollection <|-- PrimitiveCollection
+    KryoSerializable <|-- PrimitiveCollection
+    abstract class PrimitiveCollection
+    {
+        --(constructors)--
+        #PrimitiveCollection()
+        #PrimitiveCollection(String)
+        --
+        +int increasedCapacity(int size)
+        #Method onCompress(Method)
+        --(checks)--
+        +boolean isInitialized()
+        +boolean isNull(byte value)
+        +boolean isNull(char value)
+        +boolean isNull(long value)
+        +boolean isNull(short value)
+        +boolean isNull(int value)
+        #boolean ensureHasRoomFor(int increase)
+        --(collection)--
+        +Count capacity()
+        +void clear()
+        +void copyNullValues(PrimitiveCollection that)
+        +Estimate initialChildCount()
+        +int initialChildCountAsInt()
+        +Estimate initialChildSize()
+        +PrimitiveCollection initialChildSize(Count childSize)
+        +PrimitiveCollection initialChildSize(int childSize)
+        +int initialChildSizeAsInt()
+        +PrimitiveCollection initialSize(Estimate initialSize)
+        +Estimate initialSize()
+        +PrimitiveCollection initialSize(int initialSize)
+        +int initialSizeAsInt()
+        +PrimitiveCollection maximumChildSize(Maximum maximumChildSize)
+        +Maximum maximumChildSize()
+        +PrimitiveCollection maximumChildSize(int maximumChildSize)
+        +int maximumChildSizeAsInt()
+        +PrimitiveCollection maximumSize(Maximum maximumSize)
+        +PrimitiveCollection maximumSize(int maximumSize)
+        +Maximum maximumSize()
+        +int maximumSizeAsInt()
+        +int nullIndex()
+        #void clear(char[] values)
+        #void clear(int[] values)
+        #void clear(long[] values)
+        #void clear(byte[] values)
+        #void clear(short[] values)
+        #void clear(String[] values)
+        #void clear(Object[] values)
+        #void decreaseSize(int count)
+        #void ensureIndexInRange(int index)
+        #int increaseSize(int count)
+        #int incrementSize()
+        #byte[] newByteArray(Object who, String why)
+        #byte[] newByteArray(Object who, String why, Count size)
+        #byte[] newByteArray(Object who, String why, int size)
+        #char[] newCharArray(Object who, String why)
+        #char[] newCharArray(Object who, String why, int size)
+        #char[] newCharArray(Object who, String why, Count size)
+        #int[] newIntArray(Object who, String why)
+        #int[] newIntArray(Object who, String why, Count size)
+        #int[] newIntArray(Object who, String why, int size)
+        #long[] newLongArray(Object who, String why, int size)
+        #long[] newLongArray(Object who, String why, Count size)
+        #long[] newLongArray(Object who, String why)
+        #T[] newObjectArray(Object who, String why, int size)
+        #T[] newObjectArray(Object who, String why, Count size)
+        #T[] newObjectArray(Object who, String why)
+        #short[] newShortArray(Object who, String why)
+        #short[] newShortArray(Object who, String why, Count size)
+        #short[] newShortArray(Object who, String why, int size)
+        #String[] newStringArray(Object who, String why, Count size)
+        #String[] newStringArray(Object who, String why, int size)
+        #String[] newStringArray(Object who, String why)
+        #void size(int size)
+        --(filesystem)--
+        +void copyConfiguration(PrimitiveCollection that)
+        #void copy(PrimitiveCollection that)
+        --(functional)--
+        #T allocated(Object allocator, String why, T allocated, int initialSize, int estimatedChildSize)
+        #T allocated(Object who, String why, T what, int initialSize)
+        --(lifecycle)--
+        #void onInitialize()
+        --(primitive)--
+        +PrimitiveCollection hasNullByte(boolean value)
+        +boolean hasNullByte()
+        +PrimitiveCollection hasNullChar(boolean value)
+        +boolean hasNullChar()
+        +PrimitiveCollection hasNullInt(boolean value)
+        +boolean hasNullInt()
+        +boolean hasNullLong()
+        +PrimitiveCollection hasNullLong(boolean value)
+        +PrimitiveCollection hasNullShort(boolean value)
+        +boolean hasNullShort()
+        +byte nullByte()
+        +PrimitiveCollection nullByte(byte value)
+        +char nullChar()
+        +PrimitiveCollection nullChar(char value)
+        +PrimitiveCollection nullInt(int value)
+        +int nullInt()
+        +PrimitiveCollection nullLong(long value)
+        +long nullLong()
+        +short nullShort()
+        +PrimitiveCollection nullShort(short value)
+    }
+    
+    interface NamedObject
+    interface ShortIterable
+    interface Sized
+    ShortIterable <|-- ShortCollection
+    Sized <|-- ShortCollection
+    NamedObject <|-- ShortCollection
+    interface ShortCollection
+    {
+        --(checks)--
+        +boolean isNull(short value)
+        --(collection)--
+        +boolean add(short value)
+        +void addAll(short[] that)
+        +void addAll(List<? extends Quantizable> values)
+        +boolean addAll(ShortCollection that)
+        +void clear()
+        +boolean contains(short value)
+        +boolean containsAll(ShortCollection that)
+        +boolean remove(short value)
+        --(primitive)--
+        +boolean hasNullShort()
+        +PrimitiveCollection hasNullShort(boolean has)
+        +short nullShort()
+    }
+    
+@enduml
+

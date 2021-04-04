@@ -1,0 +1,56 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.core.resource.resources.packaged"
+    
+    abstract BaseReadableResource
+    
+    interface ResourceFactoryService
+    
+    ResourceFactoryService <|-- PackageResource.Factory
+    class PackageResource.Factory
+    {
+    }
+    
+    class Package
+    {
+        --(constructors)--
+        #Package(PackagePath)
+        --
+        +Package of(Class<?> _packageType, String path)
+        +Package of(PackagePath _package)
+        +Package parent()
+        +PackageResource resource(String name)
+        +Package subPackage(String name)
+        --(collection)--
+        +PropertyMap localizedProperties(Locale)
+        +List<PackageResource> resources()
+        +List<PackageResource> resources(Matcher<PackageResource>)
+        --(filesystem)--
+        +void safeCopyTo(Folder, CopyMode, ProgressReporter)
+        --(path)--
+        +PackagePath path()
+    }
+    
+    BaseReadableResource <|-- PackageResource
+    class PackageResource
+    {
+        --(constructors)--
+        #PackageResource(PackagePath, ModuleResource, FileName)
+        --
+        +PackageResource packageResource(Class<?> type, String path)
+        +PackageResource packageResource(ModuleResource)
+        +PackageResource packageResource(PackagePath _package, FilePath)
+        +PackageResource packageResource(PackagePath _package, String path)
+        +PackageResource packageResource(PackagePath _package, FileName)
+    }
+    
+    interface Packaged
+    {
+        --
+        +Package _package()
+    }
+    
+@enduml
+

@@ -1,4 +1,4 @@
-# kivakit-core-kernel - language.values &nbsp; ![](../../../documentation/images/value-48.png)
+# kivakit-core-kernel language.values &nbsp; ![](../../../documentation/images/value-48.png)
 
 ![](../documentation/images/horizontal-line.png)
 

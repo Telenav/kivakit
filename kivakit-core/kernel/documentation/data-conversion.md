@@ -1,4 +1,4 @@
-## kivakit-core-kernel - data.conversion &nbsp; ![](../../../documentation/images/convert-32.png)
+## kivakit-core-kernel data.conversion &nbsp; ![](../../../documentation/images/convert-32.png)
 ![](../documentation/images/horizontal-line.png)
 
 ### Package &nbsp; ![](../../../documentation/images/box-32.png)

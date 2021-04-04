@@ -1,0 +1,32 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.core.collections.primitive.array"
+    
+    PrimitiveCollection <|-- PrimitiveArray
+    abstract class PrimitiveArray
+    {
+        --(constructors)--
+        #PrimitiveArray()
+        #PrimitiveArray(String)
+    }
+    
+    PrimitiveArray <|-- PrimitiveArrayArray
+    abstract class PrimitiveArrayArray
+    {
+        --(constructors)--
+        #PrimitiveArrayArray()
+        #PrimitiveArrayArray(String)
+    }
+    
+    PrimitiveArray <|-- PrimitiveSplitArray
+    abstract class PrimitiveSplitArray
+    {
+        --(constructors)--
+        #PrimitiveSplitArray()
+        #PrimitiveSplitArray(String)
+    }
+    
+@enduml
+

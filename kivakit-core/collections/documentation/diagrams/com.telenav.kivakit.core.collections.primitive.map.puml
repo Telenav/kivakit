@@ -1,0 +1,103 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.core.collections.primitive.map"
+    
+    interface HashingStrategy
+    
+    HashingStrategy <|-- DefaultHashingStrategy
+    class DefaultHashingStrategy
+    {
+        --(constructors)--
+        #DefaultHashingStrategy()
+        --
+        +DefaultHashingStrategy of(Estimate capacity, Percent maximumOccupancy)
+        +DefaultHashingStrategy of(Estimate capacity)
+        --(math)--
+        +Percent defaultMaximumOccupancy()
+    }
+    
+    interface HashingStrategy
+    {
+        --(collection)--
+        +Count rehashThreshold()
+        --(functional)--
+        +Estimate recommendedSize()
+        +HashingStrategy withCapacity(Estimate size)
+        +HashingStrategy withIncreasedCapacity()
+        --(math)--
+        +Percent maximumOccupancy()
+    }
+    
+    interface PrimitiveMap.MapToString
+    {
+    }
+    
+    PrimitiveCollection <|-- PrimitiveMap
+    abstract class PrimitiveMap
+    {
+        --(constructors)--
+        #PrimitiveMap()
+        #PrimitiveMap(String)
+        --
+        #void compare(PrimitiveMap that)
+        #HashingStrategy hashingStrategy()
+        #int slots()
+        --(checks)--
+        #boolean isTombstone(int key)
+        #boolean isTombstone(Object key)
+        #boolean isTombstone(long key)
+        --(collection)--
+        +boolean contains(long[] values, long value)
+        +boolean contains(T[] values, T value)
+        +boolean contains(int[] values, int value)
+        +boolean isEmpty(long key)
+        +boolean isEmpty(byte key)
+        +boolean isEmpty(int key)
+        +boolean isEmpty(String key)
+        #int hash(long value)
+        #int hash(int value)
+        #PrimitiveMap hashingStrategy(HashingStrategy)
+        #void increaseSize()
+        #long index(long hash)
+        #int index(int index)
+        #int index(long[] values, long value)
+        #int index(int[] values, int value)
+        #int index(Object[] values, Object value)
+        #PrimitiveMap newMap()
+        #IntIterator nonEmptyIndexes(byte[] values)
+        #IntIterator nonEmptyIndexes(long[] values)
+        #IntIterator nonEmptyIndexes(int[] values)
+        #IntIterator nonEmptyIndexes(T[] values)
+        #LongIterator nonEmptyValues(long[] values)
+        #IntIterator nonEmptyValues(int[] values)
+        #ByteIterator nonEmptyValues(byte[] values)
+        #Iterator<T> nonEmptyValues(T[] values)
+        --(filesystem)--
+        #void copy(PrimitiveMap that)
+        #void copyEntries(PrimitiveMap that, ProgressReporter)
+    }
+    
+    interface PrimitiveScalarMap
+    {
+        --
+        +long getScalar(long key)
+        --(checks)--
+        +boolean isScalarValueNull(long value)
+        --(collection)--
+        +boolean isScalarKeyNull(long key)
+        +void putScalar(long key, Quantizable value)
+        +void putScalar(long key, long value)
+    }
+    
+    PrimitiveMap <|-- SplitPrimitiveMap
+    abstract class SplitPrimitiveMap
+    {
+        --(constructors)--
+        #SplitPrimitiveMap()
+        #SplitPrimitiveMap(String)
+    }
+    
+@enduml
+

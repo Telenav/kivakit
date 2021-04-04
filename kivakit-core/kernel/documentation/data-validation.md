@@ -1,4 +1,4 @@
-## kivakit-core-kernel - data.validation &nbsp; ![](../../../documentation/images/checkmark-40.png)
+## kivakit-core-kernel data.validation &nbsp; ![](../../../documentation/images/checkmark-40.png)
 ![](../documentation/images/horizontal-line.png)
 
 ### Package &nbsp; ![](../../../documentation/images/box-32.png)

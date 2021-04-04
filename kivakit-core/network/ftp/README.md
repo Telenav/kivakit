@@ -1,4 +1,4 @@
-# kivakit-core-network-ftp &nbsp;&nbsp;![](../../../documentation/images/convert-32.png)
+# kivakit-core-network ftp &nbsp;&nbsp;![](../../../documentation/images/convert-32.png)
 
 This module provides FTP resources.
 
@@ -7,20 +7,16 @@ This module provides FTP resources.
 ### Index
 
 [**Dependencies**](#dependencies)  
+
 [**Class Diagrams**](#class-diagrams)  
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
 
-![](documentation/images/horizontal-line.png)
-
-[//]: # (start-user-text)
-
-
-[//]: # (end-user-text)
-
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp;  ![](documentation/images/dependencies-40.png)
+### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
 [*Dependency Diagram*](documentation/diagrams/dependencies.svg)
+
+#### Maven Dependency  
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
@@ -28,45 +24,43 @@ This module provides FTP resources.
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+![](documentation/images/horizontal-line.png)
+
+[//]: # (start-user-text)
+
+
+
+[//]: # (end-user-text)
+
+### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
 
 [*FTP*](documentation/diagrams/diagram-ftp.svg)  
-[*Secure FTP*](documentation/diagrams/diagram-secure-ftp.svg)
+[*Secure FTP*](documentation/diagrams/diagram-secure-ftp.svg)  
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.core.network.ftp*](documentation/diagrams/com.telenav.kivakit.core.network.ftp.svg)  
 [*com.telenav.kivakit.core.network.ftp.project*](documentation/diagrams/com.telenav.kivakit.core.network.ftp.project.svg)  
-[*com.telenav.kivakit.core.network.ftp.secure*](documentation/diagrams/com.telenav.kivakit.core.network.ftp.secure.svg)
+[*com.telenav.kivakit.core.network.ftp.secure*](documentation/diagrams/com.telenav.kivakit.core.network.ftp.secure.svg)  
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
 | Class | Documentation Sections |
 |---|---|
-| [*
-CoreNetworkFtpProject*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/project/CoreNetworkFtpProject.html) |  |  
-| [*
-FtpNetworkLocation*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpNetworkLocation.html) |  |  
-| [*
-FtpNetworkLocation.Mode*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpNetworkLocation.Mode.html) |  |  
-| [*
-FtpResource*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpResource.html) |  |  
-| [*
-FtpResource.FtpInput*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpResource.FtpInput.html) |  |  
-| [*
-SecureFtpConnector*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpConnector.html) |  |  
-| [*
-SecureFtpInput*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpInput.html) |  |  
-| [*
-SecureFtpNetworkLocation*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpNetworkLocation.html) |  |  
-| [*
-SecureFtpResource*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpResource.html) |  |  
-| [*
-SecureFtpSettings*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpSettings.html) |  |  
-| [*
-SftpFolderWatcher*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SftpFolderWatcher.html) |  |  
+| [*CoreNetworkFtpProject*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/project/CoreNetworkFtpProject.html) |  |  
+| [*FtpNetworkLocation*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpNetworkLocation.html) |  |  
+| [*FtpNetworkLocation.Mode*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpNetworkLocation.Mode.html) |  |  
+| [*FtpResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpResource.html) |  |  
+| [*FtpResource.FtpInput*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpResource.FtpInput.html) |  |  
+| [*SecureFtpConnector*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpConnector.html) |  |  
+| [*SecureFtpInput*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpInput.html) |  |  
+| [*SecureFtpNetworkLocation*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpNetworkLocation.html) |  |  
+| [*SecureFtpResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpResource.html) |  |  
+| [*SecureFtpSettings*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpSettings.html) |  |  
+| [*SftpFolderWatcher*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SftpFolderWatcher.html) |  |  
 
 [//]: # (start-user-text)
+
 
 
 [//]: # (end-user-text)
@@ -75,7 +69,7 @@ SftpFolderWatcher*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.
 
 ![](documentation/images/horizontal-line.png)
 
-<sub>Copyright 2011-2021 [Telenav](http://telenav.com), Inc. Licensed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by Lexakai on 2021.04.01</sub>    
-<sub>UML diagrams courtesy of PlantUML (http://plantuml.com)</sub>
+<sub>Copyright 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.04</sub>    
+<sub>UML diagrams courtesy of [PlantUML](http://plantuml.com)</sub>
 

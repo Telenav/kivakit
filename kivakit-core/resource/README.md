@@ -1,4 +1,4 @@
-# kivakit-core-resource &nbsp;&nbsp;![](../../documentation/images/water-32.png)
+# kivakit-core resource &nbsp;&nbsp;![](../../documentation/images/water-32.png)
 
 This module contains abstractions for accessing the filesystem and arbitrary resources.
 
@@ -6,6 +6,7 @@ This module contains abstractions for accessing the filesystem and arbitrary res
 
 ### Index
 
+[**Dependencies**](#dependencies)  
 [**Summary**](#summary)  
 [**Readable Resources**](#readable-resources)  
 [**Kinds of Resources**](#kinds-of-resources)  
@@ -13,10 +14,21 @@ This module contains abstractions for accessing the filesystem and arbitrary res
 [**Files**](#files)  
 [**Launching Jar Resources**](#launching-jar-resources)  
 [**Other Resources**](#other-resources)  
-[**Dependencies**](#dependencies)  
 [**Class Diagrams**](#class-diagrams)  
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
+
+### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
+
+[*Dependency Diagram*](documentation/diagrams/dependencies.svg)
+
+#### Maven Dependency  
+
+    <dependency>
+        <groupId>com.telenav.kivakit</groupId>
+        <artifactId>kivakit-core-resource</artifactId>
+        <version>0.9.0-SNAPSHOT</version>
+    </dependency>
 
 ![](documentation/images/horizontal-line.png)
 
@@ -184,17 +196,7 @@ A wide variety of other resources are available and new ones are easy to write. 
 
 [//]: # (end-user-text)
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp;  ![](documentation/images/dependencies-40.png)
-
-[*Dependency Diagram*](documentation/diagrams/dependencies.svg)
-
-    <dependency>
-        <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit-core-resource</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
-    </dependency>
-
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
 
 [*File System - File System Services*](documentation/diagrams/diagram-file-system-service.svg)  
 [*File System - Files*](documentation/diagrams/diagram-file-system-file.svg)  
@@ -205,9 +207,9 @@ A wide variety of other resources are available and new ones are easy to write. 
 [*Resources - Compression*](documentation/diagrams/diagram-resource-compression.svg)  
 [*Resources - Paths*](documentation/diagrams/diagram-resource-path.svg)  
 [*Resources - Services*](documentation/diagrams/diagram-resource-service.svg)  
-[*diagram-jar-launcher*](documentation/diagrams/diagram-jar-launcher.svg)
+[*diagram-jar-launcher*](documentation/diagrams/diagram-jar-launcher.svg)  
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.core.filesystem*](documentation/diagrams/com.telenav.kivakit.core.filesystem.svg)  
 [*com.telenav.kivakit.core.filesystem.loader*](documentation/diagrams/com.telenav.kivakit.core.filesystem.loader.svg)  
@@ -215,194 +217,111 @@ A wide variety of other resources are available and new ones are easy to write. 
 [*com.telenav.kivakit.core.filesystem.spi*](documentation/diagrams/com.telenav.kivakit.core.filesystem.spi.svg)  
 [*com.telenav.kivakit.core.resource*](documentation/diagrams/com.telenav.kivakit.core.resource.svg)  
 [*com.telenav.kivakit.core.resource.compression*](documentation/diagrams/com.telenav.kivakit.core.resource.compression.svg)  
-[*
-com.telenav.kivakit.core.resource.compression.archive*](documentation/diagrams/com.telenav.kivakit.core.resource.compression.archive.svg)  
+[*com.telenav.kivakit.core.resource.compression.archive*](documentation/diagrams/com.telenav.kivakit.core.resource.compression.archive.svg)  
 [*com.telenav.kivakit.core.resource.compression.codecs*](documentation/diagrams/com.telenav.kivakit.core.resource.compression.codecs.svg)  
 [*com.telenav.kivakit.core.resource.path*](documentation/diagrams/com.telenav.kivakit.core.resource.path.svg)  
 [*com.telenav.kivakit.core.resource.project*](documentation/diagrams/com.telenav.kivakit.core.resource.project.svg)  
 [*com.telenav.kivakit.core.resource.reading*](documentation/diagrams/com.telenav.kivakit.core.resource.reading.svg)  
-[*
-com.telenav.kivakit.core.resource.resources.jar.launcher*](documentation/diagrams/com.telenav.kivakit.core.resource.resources.jar.launcher.svg)  
+[*com.telenav.kivakit.core.resource.resources.jar.launcher*](documentation/diagrams/com.telenav.kivakit.core.resource.resources.jar.launcher.svg)  
 [*com.telenav.kivakit.core.resource.resources.other*](documentation/diagrams/com.telenav.kivakit.core.resource.resources.other.svg)  
 [*com.telenav.kivakit.core.resource.resources.packaged*](documentation/diagrams/com.telenav.kivakit.core.resource.resources.packaged.svg)  
 [*com.telenav.kivakit.core.resource.resources.streamed*](documentation/diagrams/com.telenav.kivakit.core.resource.resources.streamed.svg)  
 [*com.telenav.kivakit.core.resource.resources.string*](documentation/diagrams/com.telenav.kivakit.core.resource.resources.string.svg)  
 [*com.telenav.kivakit.core.resource.spi*](documentation/diagrams/com.telenav.kivakit.core.resource.spi.svg)  
 [*com.telenav.kivakit.core.resource.store*](documentation/diagrams/com.telenav.kivakit.core.resource.store.svg)  
-[*com.telenav.kivakit.core.resource.writing*](documentation/diagrams/com.telenav.kivakit.core.resource.writing.svg)
+[*com.telenav.kivakit.core.resource.writing*](documentation/diagrams/com.telenav.kivakit.core.resource.writing.svg)  
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
 | Class | Documentation Sections |
 |---|---|
-| [*
-ArchivedFields*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/ArchivedFields.html) |  |  
-| [*
-BaseObjectReader*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/reading/BaseObjectReader.html) |  |  
-| [*
-BaseReadableResource*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/reading/BaseReadableResource.html) |  |  
-| [*
-BaseWritableResource*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/writing/BaseWritableResource.html) |  |  
-| [*
-BaseWriter*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/writing/BaseWriter.html) |  |  
-| [*
-BinaryObjectStore*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/store/BinaryObjectStore.html) |  |  
-| [*
-BitArrayResource*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/resources/other/BitArrayResource.html) |  |  
-| [*
-Cache*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/Cache.html) |  |  
-| [*
-Codec*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/compression/Codec.html) |  |  
-| [*
-Compressor*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/compression/Compressor.html) |  |  
-| [*
-CopyMode*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/CopyMode.html) |  |  
-| [*
-CoreResourceKryoTypes*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/project/CoreResourceKryoTypes.html) |  |  
-| [*
-CoreResourceProject*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/project/CoreResourceProject.html) |  |  
-| [*
-Decompressor*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/compression/Decompressor.html) |  |  
-| [*
-Disk*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/Disk.html) |  |  
-| [*
-DiskService*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/spi/DiskService.html) |  |  
-| [*
-Extension*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/path/Extension.html) |  |  
-| [*
-FieldArchive*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/FieldArchive.html) |  |  
-| [*
-FieldArchive.ObjectField*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/FieldArchive.ObjectField.html) |  |  
-| [*
-File*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/File.html) |  |  
-| [*
-File.Converter*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/File.Converter.html) |  |  
-| [*
-File.Factory*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/File.Factory.html) |  |  
-| [*
-FileList*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/FileList.html) |  |  
-| [*
-FileList.Converter*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/FileList.Converter.html) |  |  
-| [*
-FileName*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/path/FileName.html) |  |  
-| [*
-FilePath*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/path/FilePath.html) | Parsing |  
+| [*ArchivedFields*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/ArchivedFields.html) |  |  
+| [*BaseObjectReader*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/reading/BaseObjectReader.html) |  |  
+| [*BaseReadableResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/reading/BaseReadableResource.html) |  |  
+| [*BaseWritableResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/writing/BaseWritableResource.html) |  |  
+| [*BaseWriter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/writing/BaseWriter.html) |  |  
+| [*BinaryObjectStore*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/store/BinaryObjectStore.html) |  |  
+| [*BitArrayResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/other/BitArrayResource.html) |  |  
+| [*Cache*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/Cache.html) |  |  
+| [*Codec*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/Codec.html) |  |  
+| [*Compressor*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/Compressor.html) |  |  
+| [*CopyMode*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/CopyMode.html) |  |  
+| [*CoreResourceKryoTypes*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/project/CoreResourceKryoTypes.html) |  |  
+| [*CoreResourceProject*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/project/CoreResourceProject.html) |  |  
+| [*Decompressor*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/Decompressor.html) |  |  
+| [*Disk*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/Disk.html) |  |  
+| [*DiskService*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/spi/DiskService.html) |  |  
+| [*Extension*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/path/Extension.html) |  |  
+| [*FieldArchive*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/FieldArchive.html) |  |  
+| [*FieldArchive.ObjectField*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/FieldArchive.ObjectField.html) |  |  
+| [*File*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/File.html) |  |  
+| [*File.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/File.Converter.html) |  |  
+| [*File.Factory*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/File.Factory.html) |  |  
+| [*FileList*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/FileList.html) |  |  
+| [*FileList.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/FileList.Converter.html) |  |  
+| [*FileName*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/path/FileName.html) |  |  
+| [*FilePath*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/path/FilePath.html) | Parsing |  
 | | Factories |  
-| [*
-FilePath.Converter*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/path/FilePath.Converter.html) |  |  
-| [*
-FileService*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/spi/FileService.html) |  |  
-| [*
-FileSystemObject*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/FileSystemObject.html) |  |  
-| [*
-FileSystemObjectService*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/spi/FileSystemObjectService.html) |  |  
-| [*
-FileSystemService*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/spi/FileSystemService.html) |  |  
-| [*
-FileSystemServiceLoader*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/loader/FileSystemServiceLoader.html) |  |  
-| [*
-Folder*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/Folder.html) |  |  
-| [*
-Folder.Converter*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/Folder.Converter.html) |  |  
-| [*
-Folder.Traversal*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/Folder.Traversal.html) |  |  
-| [*
-Folder.Type*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/Folder.Type.html) |  |  
-| [*
-FolderChangeWatcher*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/FolderChangeWatcher.html) |  |  
-| [*
-FolderList*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/FolderList.html) |  |  
-| [*
-FolderList.Converter*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/FolderList.Converter.html) |  |  
-| [*
-FolderPruner*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/FolderPruner.html) |  |  
-| [*
-FolderService*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/spi/FolderService.html) |  |  
-| [*
-GzipCodec*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/compression/codecs/GzipCodec.html) |  |  
-| [*
-InputResource*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/resources/streamed/InputResource.html) |  |  
-| [*
-JarLauncher*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/resources/jar/launcher/JarLauncher.html) |  |  
-| [*
-JarLauncher.ProcessType*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/resources/jar/launcher/JarLauncher.ProcessType.html) |  |  
-| [*
-JarLauncher.RedirectTo*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/resources/jar/launcher/JarLauncher.RedirectTo.html) |  |  
-| [*
-LineReader*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/reading/LineReader.html) |  |  
-| [*
-LineSource*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/reading/LineSource.html) |  |  
-| [*
-LocalDisk*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/local/LocalDisk.html) |  |  
-| [*
-LocalFile*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/local/LocalFile.html) |  |  
-| [*
-LocalFileSystemService*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/local/LocalFileSystemService.html) |  |  
-| [*
-LocalFolder*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/filesystem/local/LocalFolder.html) |  |  
-| [*
-NullCodec*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/compression/codecs/NullCodec.html) |  |  
-| [*
-NullResource*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/resources/other/NullResource.html) |  |  
-| [*
-OutputResource*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/resources/streamed/OutputResource.html) |  |  
-| [*
-Package*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/resources/packaged/Package.html) |  |  
-| [*
-PackageResource*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/resources/packaged/PackageResource.html) |  |  
-| [*
-PackageResource.Factory*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/resources/packaged/PackageResource.Factory.html) |  |  
-| [*
-Packaged*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/resources/packaged/Packaged.html) |  |  
-| [*
-PropertyMap*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/resources/other/PropertyMap.html) |  |  
-| [*
-ReadableResource*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/ReadableResource.html) |  |  
-| [*
-Resource*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/Resource.html) |  |  
-| [*
-Resource.Converter*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/Resource.Converter.html) |  |  
-| [*
-ResourceFactoryService*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/spi/ResourceFactoryService.html) |  |  
-| [*
-ResourceFactoryServiceRegistry*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/spi/ResourceFactoryServiceRegistry.html) |  |  
-| [*
-ResourceIdentifier*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/ResourceIdentifier.html) |  |  
-| [*
-ResourceList*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/ResourceList.html) |  |  
-| [*
-ResourceList.Converter*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/ResourceList.Converter.html) |  |  
-| [*
-ResourcePath*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/ResourcePath.html) | Parsing |  
+| [*FilePath.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/path/FilePath.Converter.html) |  |  
+| [*FileService*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/spi/FileService.html) |  |  
+| [*FileSystemObject*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/FileSystemObject.html) |  |  
+| [*FileSystemObjectService*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/spi/FileSystemObjectService.html) |  |  
+| [*FileSystemService*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/spi/FileSystemService.html) |  |  
+| [*FileSystemServiceLoader*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/loader/FileSystemServiceLoader.html) |  |  
+| [*Folder*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/Folder.html) |  |  
+| [*Folder.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/Folder.Converter.html) |  |  
+| [*Folder.Traversal*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/Folder.Traversal.html) |  |  
+| [*Folder.Type*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/Folder.Type.html) |  |  
+| [*FolderChangeWatcher*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/FolderChangeWatcher.html) |  |  
+| [*FolderList*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/FolderList.html) |  |  
+| [*FolderList.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/FolderList.Converter.html) |  |  
+| [*FolderPruner*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/FolderPruner.html) |  |  
+| [*FolderService*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/spi/FolderService.html) |  |  
+| [*GzipCodec*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/codecs/GzipCodec.html) |  |  
+| [*InputResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/streamed/InputResource.html) |  |  
+| [*JarLauncher*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/jar/launcher/JarLauncher.html) |  |  
+| [*JarLauncher.ProcessType*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/jar/launcher/JarLauncher.ProcessType.html) |  |  
+| [*JarLauncher.RedirectTo*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/jar/launcher/JarLauncher.RedirectTo.html) |  |  
+| [*KivaKitArchivedField*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/KivaKitArchivedField.html) |  |  
+| [*LineReader*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/reading/LineReader.html) |  |  
+| [*LineSource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/reading/LineSource.html) |  |  
+| [*LocalDisk*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/local/LocalDisk.html) |  |  
+| [*LocalFile*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/local/LocalFile.html) |  |  
+| [*LocalFileSystemService*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/local/LocalFileSystemService.html) |  |  
+| [*LocalFolder*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/local/LocalFolder.html) |  |  
+| [*NullCodec*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/codecs/NullCodec.html) |  |  
+| [*NullResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/other/NullResource.html) |  |  
+| [*OutputResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/streamed/OutputResource.html) |  |  
+| [*Package*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/packaged/Package.html) |  |  
+| [*PackageResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/packaged/PackageResource.html) |  |  
+| [*PackageResource.Factory*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/packaged/PackageResource.Factory.html) |  |  
+| [*Packaged*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/packaged/Packaged.html) |  |  
+| [*PropertyMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/other/PropertyMap.html) |  |  
+| [*ReadableResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/ReadableResource.html) |  |  
+| [*Resource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/Resource.html) |  |  
+| [*Resource.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/Resource.Converter.html) |  |  
+| [*ResourceFactoryService*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/spi/ResourceFactoryService.html) |  |  
+| [*ResourceFactoryServiceRegistry*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/spi/ResourceFactoryServiceRegistry.html) |  |  
+| [*ResourceIdentifier*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/ResourceIdentifier.html) |  |  
+| [*ResourceList*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/ResourceList.html) |  |  
+| [*ResourceList.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/ResourceList.Converter.html) |  |  
+| [*ResourcePath*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/ResourcePath.html) | Parsing |  
 | | Factories |  
-| [*
-ResourcePath.Converter*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/ResourcePath.Converter.html) |  |  
-| [*
-ResourcePathed*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/path/ResourcePathed.html) |  |  
-| [*
-ResourceReader*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/reading/ResourceReader.html) |  |  
-| [*
-ResourceSection*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/resources/other/ResourceSection.html) |  |  
-| [*
-ResourceWriter*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/writing/ResourceWriter.html) |  |  
-| [*
-Resourced*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/Resourced.html) |  |  
-| [*
-StringResource*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/resources/string/StringResource.html) |  |  
-| [*
-KivaArchivedField*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/KivaArchivedField.html) |  |  
-| [*
-WritableResource*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/WritableResource.html) |  |  
-| [*
-ZipArchive*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/ZipArchive.html) |  |  
-| [*
-ZipArchive.Mode*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/ZipArchive.Mode.html) |  |  
-| [*
-ZipCodec*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/compression/codecs/ZipCodec.html) |  |  
-| [*
-ZipEntry*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/ZipEntry.html) |  |  
+| [*ResourcePath.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/ResourcePath.Converter.html) |  |  
+| [*ResourcePathed*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/path/ResourcePathed.html) |  |  
+| [*ResourceReader*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/reading/ResourceReader.html) |  |  
+| [*ResourceSection*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/other/ResourceSection.html) |  |  
+| [*ResourceWriter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/writing/ResourceWriter.html) |  |  
+| [*Resourced*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/Resourced.html) |  |  
+| [*StringResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/string/StringResource.html) |  |  
+| [*WritableResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/WritableResource.html) |  |  
+| [*ZipArchive*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/ZipArchive.html) |  |  
+| [*ZipArchive.Mode*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/ZipArchive.Mode.html) |  |  
+| [*ZipCodec*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/codecs/ZipCodec.html) |  |  
+| [*ZipEntry*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/ZipEntry.html) |  |  
 
 [//]: # (start-user-text)
+
 
 
 [//]: # (end-user-text)
@@ -411,7 +330,7 @@ ZipEntry*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.k
 
 ![](documentation/images/horizontal-line.png)
 
-<sub>Copyright 2011-2021 [Telenav](http://telenav.com), Inc. Licensed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by Lexakai on 2021.04.01</sub>    
-<sub>UML diagrams courtesy of PlantUML (http://plantuml.com)</sub>
+<sub>Copyright 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.04</sub>    
+<sub>UML diagrams courtesy of [PlantUML](http://plantuml.com)</sub>
 

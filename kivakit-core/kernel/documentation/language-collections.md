@@ -1,4 +1,4 @@
-# kivakit-core-kernel - language.collections &nbsp; ![](../../../documentation/images/set-40.png)
+# kivakit-core-kernel language.collections &nbsp; ![](../../../documentation/images/set-40.png)
 
 ![](../documentation/images/horizontal-line.png)
 

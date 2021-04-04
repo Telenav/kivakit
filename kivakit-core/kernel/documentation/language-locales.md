@@ -1,4 +1,4 @@
-# kivakit-core-kernel - language.locales &nbsp; ![](../../../documentation/images/world-40.png)
+# kivakit-core-kernel language.locales &nbsp; ![](../../../documentation/images/world-40.png)
 
 ![](../documentation/images/horizontal-line.png)
 

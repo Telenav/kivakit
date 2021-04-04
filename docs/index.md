@@ -9,7 +9,7 @@ KivaKit is a set of integrated Java mini-frameworks that makes Java development 
 ### Welcome <a name = "welcome"></a>! &nbsp; ![](images/stars-48.png)
 
 KivaKit has been under development for a number of years. Its purpose is to accelerate the
-development of Java software through the use of modular, object-oriented design.
+development of Java software through the use of integrated, modular, object-oriented design.
 
 KivaKit is composed of a few top level repositories, each with a number of sub-projects
 that are Java 11+ modules. These projects address different areas of concern in developing

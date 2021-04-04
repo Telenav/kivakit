@@ -1,0 +1,42 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.core.collections.primitive.array.bits"
+    
+    interface Named
+    
+    PrimitiveArray <|-- BitArray
+    Named <|-- BitArray
+    class BitArray
+    {
+        --(constructors)--
+        +BitArray(String)
+        +BitArray(String, ByteList)
+        --
+        +boolean bit(int index)
+        +void set(int index, boolean value)
+        --(conversion)--
+        +String toBitString()
+        --(primitive)--
+        +ByteList bytes()
+        --(read)--
+        +BitReader reader()
+        --(write)--
+        +BitWriter writer()
+    }
+    
+    class FixedSizeBitArray
+    {
+        --(constructors)--
+        +FixedSizeBitArray(int)
+        --
+        +boolean get(int bitIndex)
+        +void set(int bitIndex, boolean value)
+        +void set(int bitIndex)
+        --(collection)--
+        +void clear(int bitIndex)
+    }
+    
+@enduml
+

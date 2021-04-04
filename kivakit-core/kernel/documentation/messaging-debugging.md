@@ -1,4 +1,4 @@
-# kivakit-core-kernel - debugging &nbsp; ![](../../../documentation/images/bug-40.png)
+# kivakit-core-kernel debugging &nbsp; ![](../../../documentation/images/bug-40.png)
 
 ![](../documentation/images/horizontal-line.png)
 

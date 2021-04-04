@@ -1,0 +1,17 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.web.jetty.project"
+    
+    Project <|-- WebJettyProject
+    class WebJettyProject
+    {
+        --(constructors)--
+        #WebJettyProject()
+        --
+        +WebJettyProject get()
+    }
+    
+@enduml
+

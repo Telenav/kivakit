@@ -1,0 +1,83 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.data.formats.library.xml"
+    
+    abstract BaseObjectReader
+    
+    interface Matcher
+    
+    Matcher <|-- OpenTag
+    class OpenTag
+    {
+        --(constructors)--
+        +OpenTag(String)
+    }
+    
+    class XmlNode
+    {
+        --
+        +String attribute(String name)
+        +XmlNode child(String name)
+        +String text()
+        --(checks)--
+        +boolean isOpenTag()
+        --(collection)--
+        +StringToStringMap attributes()
+        +List<XmlNode> children(Matcher<XmlNode>)
+        +List<XmlNode> children()
+        +List<XmlNode> childrenNamed(String name)
+        --(conversion)--
+        +T asObject(Class<T> type, XmlPath... paths)
+        --(naming)--
+        +String name()
+    }
+    
+    Matcher <|-- XmlNodeWithAttribute
+    class XmlNodeWithAttribute
+    {
+        --(constructors)--
+        +XmlNodeWithAttribute(String, String)
+    }
+    
+    abstract class XmlPath
+    {
+        --(constructors)--
+        #XmlPath(String)
+        --
+        +String extract(XmlNode)
+        --(naming)--
+        +String name()
+    }
+    
+    BaseObjectReader <|-- XmlReader
+    XmlReader --> XmlNode : "reads"
+    class XmlReader
+    {
+        --(constructors)--
+        +XmlReader(Resource)
+        --
+        +void advance()
+        +XmlNode advanceTo(Matcher<XmlNode>)
+        +XmlNode advanceTo(String name)
+        +XmlNode advanceToButNotBeyond(String searchName, String stopName)
+        +XmlNode advanceToButNotBeyond(Matcher<XmlNode> searchName, Matcher<XmlNode> stopMatcher)
+        +XmlNode current()
+        +XmlNode fastAdvanceTo(String search)
+        +XmlNode fastAdvanceToButNotBeyond(String regularExpression, String stop)
+        +String fastGetCurrentText()
+        +boolean lookingAt(String name)
+        +boolean lookingAt(Matcher<XmlNode>)
+        +int position()
+        --(collection)--
+        +Iterable<XmlNode> childrenMatching(Matcher<XmlNode>)
+        +Iterable<XmlNode> childrenMatching(String name)
+        +Iterable<XmlNode> nodesMatching(Matcher<XmlNode>)
+        +Iterable<XmlNode> nodesMatching(String name)
+        +Iterable<XmlNode> siblingsMatching(Matcher<XmlNode>, Matcher<XmlNode> stopAt)
+        +Iterable<XmlNode> siblingsMatching(Matcher<XmlNode>)
+    }
+    
+@enduml
+

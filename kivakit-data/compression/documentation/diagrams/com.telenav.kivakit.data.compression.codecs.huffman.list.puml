@@ -1,0 +1,18 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.data.compression.codecs.huffman.list"
+    
+    interface StringListCodec
+    
+    StringListCodec <|-- HuffmanStringListCodec
+    class HuffmanStringListCodec
+    {
+        --(constructors)--
+        #HuffmanStringListCodec()
+        +HuffmanStringListCodec(StringCodec, CharacterCodec)
+    }
+    
+@enduml
+

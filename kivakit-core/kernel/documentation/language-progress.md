@@ -1,4 +1,4 @@
-# kivakit-core-kernel - language.progress &nbsp; ![](../../../documentation/images/progress-48.png)
+# kivakit-core-kernel language.progress &nbsp; ![](../../../documentation/images/progress-48.png)
 
 ![](../documentation/images/horizontal-line.png)
 

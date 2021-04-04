@@ -1,0 +1,166 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "Primitive Arrays"
+    
+    interface Named
+    interface ByteList
+    interface CharList
+    interface ShortList
+    interface PackedPrimitiveArray
+    interface LongList
+    interface IntList
+    
+    PrimitiveArray <|-- BitArray
+    Named <|-- BitArray
+    class BitArray
+    {
+        --(constructors)--
+        +BitArray(String)
+        +BitArray(String, ByteList)
+        --
+        +boolean bit(int index)
+        +void set(int index, boolean value)
+        --(conversion)--
+        +String toBitString()
+        --(primitive)--
+        +ByteList bytes()
+        --(read)--
+        +BitReader reader()
+        --(write)--
+        +BitWriter writer()
+    }
+    
+    PrimitiveArray <|-- ByteArray
+    ByteList <|-- ByteArray
+    class ByteArray
+    {
+        --(constructors)--
+        #ByteArray()
+        +ByteArray(String)
+        --
+        +int getUnsigned(int index)
+        --(collection)--
+        +boolean add(long value)
+        --(conversion)--
+        +String toBinaryString()
+        +String toHexString()
+    }
+    
+    PrimitiveArray <|-- CharArray
+    CharList <|-- CharArray
+    class CharArray
+    {
+        --(constructors)--
+        #CharArray()
+        +CharArray(String)
+        --
+        +int getUnsigned(int index)
+        --(collection)--
+        +char[] asArray()
+        +void cursor(int cursor)
+        +int cursor()
+        +CharArray subArray(int index, int size)
+    }
+    
+    class FixedSizeBitArray
+    {
+        --(constructors)--
+        +FixedSizeBitArray(int)
+        --
+        +boolean get(int bitIndex)
+        +void set(int bitIndex, boolean value)
+        +void set(int bitIndex)
+        --(collection)--
+        +void clear(int bitIndex)
+    }
+    
+    PrimitiveArray <|-- IntArray
+    IntList <|-- IntArray
+    class IntArray
+    {
+        --(constructors)--
+        #IntArray()
+        +IntArray(String)
+        --(collection)--
+        +int[] asArray()
+        +IntArray subArray(int index, int size)
+    }
+    
+    PrimitiveArray <|-- LongArray
+    LongList <|-- LongArray
+    class LongArray
+    {
+        --(constructors)--
+        #LongArray()
+        +LongArray(String)
+        --
+        +void setBits(int index, long mask, long value)
+        --(collection)--
+        +long[] asArray()
+        +LongArray subArray(int index, int size)
+    }
+    
+    PrimitiveArray <|-- PackedArray
+    LongList <|-- PackedArray
+    PackedPrimitiveArray <|-- PackedArray
+    class PackedArray
+    {
+        --(constructors)--
+        #PackedArray()
+        +PackedArray(String)
+        --
+        +long getSigned(int index)
+        --(primitive)--
+        +void setInt(int index, int value)
+    }
+    
+    interface PackedPrimitiveArray
+    {
+        --(collection)--
+        +BitCount bits()
+        +PackedPrimitiveArray bits(BitCount bits, OverflowHandling)
+        +OverflowHandling overflow()
+    }
+    
+    PrimitiveArray <|-- PackedStringArray
+    class PackedStringArray
+    {
+        --(constructors)--
+        #PackedStringArray()
+        +PackedStringArray(String)
+        --
+        +String get(int identifier)
+        +String safeGet(int identifier)
+        --(math)--
+        +int add(String)
+        +void maximumStringLength(int maximumStringLength)
+    }
+    
+    PrimitiveCollection <|-- PrimitiveArray
+    abstract class PrimitiveArray
+    {
+        --(constructors)--
+        #PrimitiveArray()
+        #PrimitiveArray(String)
+    }
+    
+    PrimitiveArray <|-- ShortArray
+    ShortList <|-- ShortArray
+    class ShortArray
+    {
+        --(constructors)--
+        #ShortArray()
+        +ShortArray(String)
+        --
+        +int getUnsigned(int index)
+        --(collection)--
+        +short[] asArray()
+        +void cursor(int cursor)
+        +int cursor()
+        +ShortArray subArray(int index, int size)
+    }
+    
+@enduml
+

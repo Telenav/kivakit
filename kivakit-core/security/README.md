@@ -1,4 +1,4 @@
-# kivakit-core-security &nbsp;&nbsp;![](../../documentation/images/lock-40.png)
+# kivakit-core security &nbsp;&nbsp;![](../../documentation/images/lock-40.png)
 
 This project contains functionality related to security
 
@@ -6,11 +6,23 @@ This project contains functionality related to security
 
 ### Index
 
-[**Security**](#security)  
 [**Dependencies**](#dependencies)  
+[**Security**](#security)  
 [**Class Diagrams**](#class-diagrams)  
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
+
+### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
+
+[*Dependency Diagram*](documentation/diagrams/dependencies.svg)
+
+#### Maven Dependency  
+
+    <dependency>
+        <groupId>com.telenav.kivakit</groupId>
+        <artifactId>kivakit-core-security</artifactId>
+        <version>0.9.0-SNAPSHOT</version>
+    </dependency>
 
 ![](documentation/images/horizontal-line.png)
 
@@ -23,60 +35,38 @@ producing simple message digests easier.
 
 [//]: # (end-user-text)
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp;  ![](documentation/images/dependencies-40.png)
-
-[*Dependency Diagram*](documentation/diagrams/dependencies.svg)
-
-    <dependency>
-        <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit-core-security</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
-    </dependency>
-
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
 
 [*Message Digests*](documentation/diagrams/diagram-security-digest.svg)  
-[*Security*](documentation/diagrams/diagram-security.svg)
+[*Security*](documentation/diagrams/diagram-security.svg)  
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.core.security.authentication*](documentation/diagrams/com.telenav.kivakit.core.security.authentication.svg)  
-[*
-com.telenav.kivakit.core.security.authentication.converters*](documentation/diagrams/com.telenav.kivakit.core.security.authentication.converters.svg)  
-[*
-com.telenav.kivakit.core.security.authentication.passwords*](documentation/diagrams/com.telenav.kivakit.core.security.authentication.passwords.svg)  
+[*com.telenav.kivakit.core.security.authentication.converters*](documentation/diagrams/com.telenav.kivakit.core.security.authentication.converters.svg)  
+[*com.telenav.kivakit.core.security.authentication.passwords*](documentation/diagrams/com.telenav.kivakit.core.security.authentication.passwords.svg)  
 [*com.telenav.kivakit.core.security.digest*](documentation/diagrams/com.telenav.kivakit.core.security.digest.svg)  
 [*com.telenav.kivakit.core.security.digest.digesters*](documentation/diagrams/com.telenav.kivakit.core.security.digest.digesters.svg)  
-[*com.telenav.kivakit.core.security.project*](documentation/diagrams/com.telenav.kivakit.core.security.project.svg)
+[*com.telenav.kivakit.core.security.project*](documentation/diagrams/com.telenav.kivakit.core.security.project.svg)  
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
 | Class | Documentation Sections |
 |---|---|
-| [*
-BaseDigester*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.security/com/telenav/kivakit/core/security/digest/BaseDigester.html) |  |  
-| [*
-CoreSecurityProject*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.security/com/telenav/kivakit/core/security/project/CoreSecurityProject.html) |  |  
-| [*
-DigestPassword*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.security/com/telenav/kivakit/core/security/authentication/passwords/DigestPassword.html) |  |  
-| [*
-Digester*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.security/com/telenav/kivakit/core/security/digest/Digester.html) |  |  
-| [*
-Md5Digester*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.security/com/telenav/kivakit/core/security/digest/digesters/Md5Digester.html) |  |  
-| [*
-Password*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.security/com/telenav/kivakit/core/security/authentication/Password.html) |  |  
-| [*
-PlainTextPassword*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.security/com/telenav/kivakit/core/security/authentication/passwords/PlainTextPassword.html) |  |  
-| [*
-PlainTextPasswordConverter*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.security/com/telenav/kivakit/core/security/authentication/converters/PlainTextPasswordConverter.html) |  |  
-| [*
-Sha1Digester*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.security/com/telenav/kivakit/core/security/digest/digesters/Sha1Digester.html) |  |  
-| [*
-UserName*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.security/com/telenav/kivakit/core/security/authentication/UserName.html) |  |  
-| [*
-UserName.Converter*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.security/com/telenav/kivakit/core/security/authentication/UserName.Converter.html) |  |  
+| [*BaseDigester*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/digest/BaseDigester.html) |  |  
+| [*CoreSecurityProject*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/project/CoreSecurityProject.html) |  |  
+| [*DigestPassword*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/passwords/DigestPassword.html) |  |  
+| [*Digester*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/digest/Digester.html) |  |  
+| [*Md5Digester*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/digest/digesters/Md5Digester.html) |  |  
+| [*Password*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/Password.html) |  |  
+| [*PlainTextPassword*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/passwords/PlainTextPassword.html) |  |  
+| [*PlainTextPasswordConverter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/converters/PlainTextPasswordConverter.html) |  |  
+| [*Sha1Digester*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/digest/digesters/Sha1Digester.html) |  |  
+| [*UserName*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/UserName.html) |  |  
+| [*UserName.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/UserName.Converter.html) |  |  
 
 [//]: # (start-user-text)
+
 
 
 [//]: # (end-user-text)
@@ -85,7 +75,7 @@ UserName.Converter*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com
 
 ![](documentation/images/horizontal-line.png)
 
-<sub>Copyright 2011-2021 [Telenav](http://telenav.com), Inc. Licensed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by Lexakai on 2021.04.01</sub>    
-<sub>UML diagrams courtesy of PlantUML (http://plantuml.com)</sub>
+<sub>Copyright 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.04</sub>    
+<sub>UML diagrams courtesy of [PlantUML](http://plantuml.com)</sub>
 

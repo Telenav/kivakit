@@ -1,0 +1,16 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.core.configuration.settings"
+    
+    class Settings
+    {
+        --(search)--
+        +T require(Class<T> settingsType)
+        +T require(Class<T> settingsClass, PackagePath defaultSettingsPackage)
+        +T require(Class<T> settingsType, Package defaultSettings)
+    }
+    
+@enduml
+

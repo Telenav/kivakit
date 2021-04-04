@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="622.9167px" preserveAspectRatio="none" style="width:667px;height:622px;background:#333333;" version="1.1" viewBox="0 0 667 622" width="667.7083px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="582.2917" x="35.6771" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="559.375" x="47.1354" y="30.5583">com.telenav.kivakit.core.resource.resources.jar.launcher</text><!--MD5=[762aa3d0df6a9d47bd8e105afbd066b5]
+class BaseRepeater--><rect codeLine="6" fill="#282828" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="215.625" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="215.625" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="215.625" y="76.7578"/><rect codeLine="6" fill="none" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="215.625" y="53.7028"/><ellipse cx="230.2083" cy="69.397" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M230.3223,66.099 L229.4739,69.8283 L231.1768,69.8283 Z M229.2236,64.4511 L231.427,64.4511 L233.8867,73.5636 L232.0862,73.5636 L231.5247,71.3114 L229.1138,71.3114 L228.5645,73.5636 L226.7639,73.5636 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="86.4583" x="246.875" y="74.1211">BaseRepeater</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="216.6667" x2="338.5417" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="216.6667" x2="338.5417" y1="93.4245" y2="93.4245"/><!--MD5=[676bf48a8bd7c68a453d85f3b0de4c41]
+class JarLauncher--><rect codeLine="12" fill="#282828" height="277.7486" id="JarLauncher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="317.7083" x="118.75" y="165.1611"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="317.7083" x="118.75" y="165.1611"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="317.7083" x="118.75" y="188.2161"/><rect codeLine="12" fill="none" height="277.7486" id="JarLauncher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="317.7083" x="118.75" y="165.1611"/><ellipse cx="232.2917" cy="180.8553" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M234.2021,185.2804 Q233.7748,185.5001 233.3049,185.6099 Q232.8349,185.7198 232.3161,185.7198 Q230.4728,185.7198 229.5024,184.5052 Q228.5319,183.2906 228.5319,180.9957 Q228.5319,178.6947 229.5024,177.4801 Q230.4728,176.2655 232.3161,176.2655 Q232.8349,176.2655 233.311,176.3753 Q233.787,176.4852 234.2021,176.7049 L234.2021,178.7069 Q233.7382,178.2796 233.3018,178.0813 Q232.8654,177.8829 232.4015,177.8829 Q231.4128,177.8829 230.9092,178.6672 Q230.4057,179.4515 230.4057,180.9957 Q230.4057,182.5338 230.9092,183.3181 Q231.4128,184.1024 232.4015,184.1024 Q232.8654,184.1024 233.3018,183.904 Q233.7382,183.7056 234.2021,183.2784 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="76.0417" x="255.2083" y="185.5794">JarLauncher</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="119.7917" x2="435.4167" y1="196.5495" y2="196.5495"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="119.7917" x2="435.4167" y1="204.8828" y2="204.8828"/><ellipse cx="130.2083" cy="216.3411" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="223.9583" x="141.6667" y="223.2524">JarLauncher headless(boolean headless)</text><ellipse cx="130.2083" cy="236.086" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="220.8333" x="141.6667" y="242.9972">JarLauncher processType(ProcessType)</text><ellipse cx="130.2083" cy="255.8309" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="196.875" x="141.6667" y="262.7421">JarLauncher redirectTo(RedirectTo)</text><ellipse cx="130.2083" cy="275.5758" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="176.0417" x="141.6667" y="282.487">JarLauncher source(Resourced)</text><ellipse cx="130.2083" cy="319.2322" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="255.2083" x="141.6667" y="326.1434">JarLauncher arguments(StringList arguments)</text><ellipse cx="130.2083" cy="338.9771" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="244.7917" x="141.6667" y="345.8883">JarLauncher arguments(String... arguments)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="119.7917" x2="208.3333" y1="302.0681" y2="302.0681"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="132.2917" x="211.4583" y="305.8777">(command line parsing)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="346.875" x2="435.4167" y1="302.0681" y2="302.0681"/><ellipse cx="130.2083" cy="382.6335" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="75" x="141.6667" y="389.5447">Process run()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="119.7917" x2="247.9167" y1="365.4694" y2="365.4694"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="251.0417" y="369.279">(lifecycle)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="307.2917" x2="435.4167" y1="365.4694" y2="365.4694"/><ellipse cx="130.2083" cy="426.2899" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="285.4167" x="141.6667" y="433.2011">JarLauncher enableDebuggerOnPort(int debugPort)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="119.7917" x2="247.9167" y1="409.1258" y2="409.1258"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="251.0417" y="412.9354">(network)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="307.2917" x2="435.4167" y1="409.1258" y2="409.1258"/><!--MD5=[61ccbccb8098501e848aa4e38eeed072]
+class JarLauncher.ProcessType--><rect codeLine="28" fill="#282828" height="87.5448" id="JarLauncher.ProcessType" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="117.7083" x="7.2917" y="528.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="117.7083" x="7.2917" y="528.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="117.7083" x="7.2917" y="551.7578"/><rect codeLine="28" fill="none" height="87.5448" id="JarLauncher.ProcessType" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="117.7083" x="7.2917" y="528.7028"/><ellipse cx="21.875" cy="544.397" fill="#CF6300" rx="10.4167" ry="10.4167" style="stroke:#EF8300;stroke-width:1.0416666666666667;"/><path d="M24.9308,549.0845 L19.2546,549.0845 L19.2546,539.9719 L24.9308,539.9719 L24.9308,541.5588 L21.0551,541.5588 L21.0551,543.5242 L24.5646,543.5242 L24.5646,545.1111 L21.0551,545.1111 L21.0551,547.4976 L24.9308,547.4976 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="80.2083" x="38.5417" y="549.1211">ProcessType</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="123.9583" y1="560.0911" y2="560.0911"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="34.375" x="16.6667" y="578.4607">CHILD</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="61.4583" x="16.6667" y="598.2056">DETACHED</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="123.9583" y1="607.9142" y2="607.9142"/><!--MD5=[352c37cd3aaaabd3fa294b10d245fb7f]
+class Resourced--><rect fill="#282828" height="48.055" id="Resourced" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="104.1667" x="225.5208" y="548.4945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="104.1667" x="225.5208" y="548.4945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="104.1667" x="225.5208" y="571.5495"/><rect fill="none" height="48.055" id="Resourced" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="104.1667" x="225.5208" y="548.4945"/><ellipse cx="240.1042" cy="564.1886" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M242.0146,568.6137 Q241.5873,568.8334 241.1174,568.9433 Q240.6474,569.0531 240.1286,569.0531 Q238.2853,569.0531 237.3149,567.8385 Q236.3444,566.6239 236.3444,564.329 Q236.3444,562.028 237.3149,560.8134 Q238.2853,559.5988 240.1286,559.5988 Q240.6474,559.5988 241.1235,559.7087 Q241.5995,559.8185 242.0146,560.0382 L242.0146,562.0402 Q241.5507,561.613 241.1143,561.4146 Q240.6779,561.2162 240.214,561.2162 Q239.2253,561.2162 238.7217,562.0005 Q238.2182,562.7848 238.2182,564.329 Q238.2182,565.8671 238.7217,566.6514 Q239.2253,567.4357 240.214,567.4357 Q240.6779,567.4357 241.1143,567.2373 Q241.5507,567.039 242.0146,566.6117 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="66.6667" x="256.7708" y="568.9128">Resourced</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="226.5625" x2="328.6458" y1="579.8828" y2="579.8828"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="226.5625" x2="328.6458" y1="588.2161" y2="588.2161"/><!--MD5=[d2ff29b8ee78bacc6972eb7d376850f6]
+class JarLauncher.RedirectTo--><rect codeLine="34" fill="#282828" height="87.5448" id="JarLauncher.RedirectTo" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="106.25" x="432.8125" y="528.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="106.25" x="432.8125" y="528.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="106.25" x="432.8125" y="551.7578"/><rect codeLine="34" fill="none" height="87.5448" id="JarLauncher.RedirectTo" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="106.25" x="432.8125" y="528.7028"/><ellipse cx="447.3958" cy="544.397" fill="#CF6300" rx="10.4167" ry="10.4167" style="stroke:#EF8300;stroke-width:1.0416666666666667;"/><path d="M450.4517,549.0845 L444.7754,549.0845 L444.7754,539.9719 L450.4517,539.9719 L450.4517,541.5588 L446.5759,541.5588 L446.5759,543.5242 L450.0854,543.5242 L450.0854,545.1111 L446.5759,545.1111 L446.5759,547.4976 L450.4517,547.4976 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="68.75" x="464.0625" y="549.1211">RedirectTo</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="433.8542" x2="538.0208" y1="560.0911" y2="560.0911"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="54.1667" x="442.1875" y="578.4607">CONSOLE</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="21.875" x="442.1875" y="598.2056">FILE</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="433.8542" x2="538.0208" y1="607.9142" y2="607.9142"/><!--MD5=[1d7f64ff381f15535748c20339e54997]
+reverse link BaseRepeater to JarLauncher--><path codeLine="8" d="M277.6042,122.7965 C277.6042,135.3174 277.6042,149.6611 277.6042,164.6611 " fill="none" id="BaseRepeater-backto-JarLauncher" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="270.3125,122.7132,277.6042,101.8799,284.8958,122.7132,270.3125,122.7132" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[fb6f973c3c5fd829d594989e0bf4db90]
+reverse link JarLauncher to JarLauncher.ProcessType--><path codeLine="9" d="M110.0625,454.5153 C105.1979,461.0778 100.6042,467.7653 96.3542,474.5361 C86.1354,490.7965 79.1458,510.7757 74.4792,528.3486 " fill="none" id="JarLauncher-backto-JarLauncher.ProcessType" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="118.4688,443.5674,111.3584,445.9894,110.8593,453.4844,117.9697,451.0624,118.4688,443.5674" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="161.4583" x="100.5208" y="490.7878">launches process of type</text><!--MD5=[27ddc201f2f0d2d092cdc80d550a46c2]
+reverse link JarLauncher to Resourced--><path codeLine="10" d="M274.0833,456.9945 C274.0833,470.6715 274.1979,484.3174 274.4792,497.4528 C274.8438,514.5465 275.6667,533.8382 276.3854,548.432 " fill="none" id="JarLauncher-backto-Resourced" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="274.1146,443.3174,269.9342,449.5582,274.0871,455.8174,278.2675,449.5765,274.1146,443.3174" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="158.3333" x="278.6458" y="490.7878">retrieves jar from one of</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="262.1003" y="466.2497">1</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="6.25" x="265.1899" y="534.4145">*</text><!--MD5=[43e6d1b14fe5e622f347c8859708165c]
+reverse link JarLauncher to JarLauncher.RedirectTo--><path codeLine="11" d="M431.0417,454.5257 C436.0417,461.1299 440.8229,467.8174 445.3125,474.5361 C456.3542,491.0674 465.3542,511.0778 472.0625,528.6195 " fill="none" id="JarLauncher-backto-JarLauncher.RedirectTo" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="422.4271,443.4736,422.9789,450.9649,430.1061,453.3368,429.5543,445.8456,422.4271,443.4736" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="194.7917" x="461.9792" y="490.7878">determines output redirection</text><!--MD5=[1bfde09260985e8d62f4671c440832db]
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.core.resource.resources.jar.launcher"
+    
+    abstract BaseRepeater
+    
+    BaseRepeater <|- - JarLauncher
+    JarLauncher o- - JarLauncher.ProcessType : "launches process of type"
+    JarLauncher "1" o- - "*" Resourced : "retrieves jar from one of"
+    JarLauncher o- - JarLauncher.RedirectTo : "determines output redirection"
+    class JarLauncher
+    {
+        - -
+        +JarLauncher headless(boolean headless)
+        +JarLauncher processType(ProcessType)
+        +JarLauncher redirectTo(RedirectTo)
+        +JarLauncher source(Resourced)
+        - -(command line parsing)- -
+        +JarLauncher arguments(StringList arguments)
+        +JarLauncher arguments(String... arguments)
+        - -(lifecycle)- -
+        +Process run()
+        - -(network)- -
+        +JarLauncher enableDebuggerOnPort(int debugPort)
+    }
+    
+    enum JarLauncher.ProcessType
+    {
+        CHILD
+        DETACHED
+    }
+    
+    enum JarLauncher.RedirectTo
+    {
+        CONSOLE
+        FILE
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.core.resource.resources.jar.launcher"
+    
+    abstract BaseRepeater
+    
+    BaseRepeater <|- - JarLauncher
+    JarLauncher o- - JarLauncher.ProcessType : "launches process of type"
+    JarLauncher "1" o- - "*" Resourced : "retrieves jar from one of"
+    JarLauncher o- - JarLauncher.RedirectTo : "determines output redirection"
+    class JarLauncher
+    {
+        - -
+        +JarLauncher headless(boolean headless)
+        +JarLauncher processType(ProcessType)
+        +JarLauncher redirectTo(RedirectTo)
+        +JarLauncher source(Resourced)
+        - -(command line parsing)- -
+        +JarLauncher arguments(StringList arguments)
+        +JarLauncher arguments(String... arguments)
+        - -(lifecycle)- -
+        +Process run()
+        - -(network)- -
+        +JarLauncher enableDebuggerOnPort(int debugPort)
+    }
+    
+    enum JarLauncher.ProcessType
+    {
+        CHILD
+        DETACHED
+    }
+    
+    enum JarLauncher.RedirectTo
+    {
+        CONSOLE
+        FILE
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

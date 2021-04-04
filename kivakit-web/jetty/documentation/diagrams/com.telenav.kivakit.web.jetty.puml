@@ -1,0 +1,46 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.web.jetty"
+    
+    abstract BaseRepeater
+    
+    interface Named
+    
+    Named <|-- JettyRequestHandler
+    abstract class JettyRequestHandler
+    {
+        --(constructors)--
+        +JettyRequestHandler(String)
+        --(path)--
+        #String path()
+        #void path(String path)
+    }
+    
+    BaseRepeater <|-- JettyServer
+    class JettyServer
+    {
+        --(constructors)--
+        +JettyServer()
+        --
+        +void configureLogging()
+        --(collection)--
+        +JettyServer add(String path, JettyServlet)
+        +JettyServer add(String path, JettyFilter)
+        +JettyServer add(String path, JettyResource)
+        --(lifecycle)--
+        +void start()
+        --(network)--
+        +JettyServer port(int port)
+    }
+    
+    UnitTest <|-- WebUnitTest
+    class WebUnitTest
+    {
+        --(lifecycle)--
+        #boolean startWebServer(int portNumber)
+    }
+    
+@enduml
+

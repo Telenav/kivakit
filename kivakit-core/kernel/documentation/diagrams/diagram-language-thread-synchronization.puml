@@ -1,0 +1,92 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "Language - Thread Synchronization"
+    
+    abstract BaseRepeater
+    
+    CompletionLatch --> WakeState : "waits until"
+    class CompletionLatch
+    {
+        --(constructors)--
+        +CompletionLatch()
+        +CompletionLatch(Count)
+        --(lifecycle)--
+        +void completed()
+        +boolean hasCompleted()
+        +void reset()
+        --(thread)--
+        +WakeState waitForCompletion()
+        +WakeState waitForCompletion(Duration)
+    }
+    
+    ReentrantLock <|-- Lock
+    class Lock
+    {
+        --
+        +void whileLocked(Runnable code)
+    }
+    
+    class Monitor
+    {
+        --(lifecycle)--
+        +void done()
+        --(thread)--
+        +void await()
+    }
+    
+    ReentrantReadWriteLock <|-- ReadWriteLock
+    class ReadWriteLock
+    {
+        --(constructors)--
+        +ReadWriteLock()
+        --(read)--
+        +void read(Runnable code)
+        +T read(Source<T> code)
+        --(write)--
+        +void write(Runnable code)
+        +T write(Source<T> code)
+    }
+    
+    BaseRepeater <|-- StateMachine
+    class StateMachine<State>
+    {
+        --(constructors)--
+        +StateMachine(State)
+        +StateMachine(State, Receiver<State>)
+        --
+        +boolean is(State)
+        +boolean transition(State from, State to)
+        +State transitionTo(State to)
+        --(thread)--
+        +boolean transitionAndWait(State from, State to, State waitFor, Duration maximumWait)
+        +boolean waitFor(State, Duration maximumWait)
+        +boolean waitFor(Predicate<State> desiredState, Duration maximumWait, Runnable beforeWait)
+    }
+    
+    ValueWatcher --> WakeState : "waits until"
+    class ValueWatcher<Value>
+    {
+        --(constructors)--
+        +ValueWatcher(Watchable<Value>)
+        --
+        +void valueChanged()
+        --(thread)--
+        +WakeState waitFor(Predicate<Value>, Duration maximumWaitTime, Runnable beforeWait)
+        +WakeState waitFor(Predicate<Value>)
+        +WakeState waitFor(Predicate<Value>, Duration maximumWaitTime)
+        +WakeState waitForValue(Value desired, Duration maximumWaitTime, Runnable beforeWait)
+        +WakeState waitForValue(Value, Duration maximumWaitTime)
+        +WakeState waitForValue(Value)
+    }
+    
+    enum WakeState
+    {
+        COMPLETED
+        INTERRUPTED
+        TIMED_OUT
+    }
+    
+@enduml
+

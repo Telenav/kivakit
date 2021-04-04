@@ -1,0 +1,53 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.core.kernel.language.threading.locks.legacy"
+    
+    interface BooleanLock
+    
+    interface BooleanLock
+    {
+        --
+        +boolean get()
+        +void set(boolean state)
+        --(thread)--
+        +void waitFor(boolean state)
+        +boolean waitFor(boolean state, Duration maximumWaitTime)
+    }
+    
+    class ConditionLock
+    {
+        --(constructors)--
+        +ConditionLock(BooleanLock)
+        --
+        +void request()
+        +void satisfy()
+        --(checks)--
+        +boolean isRequested()
+        +boolean isSatisfied()
+        --(lifecycle)--
+        +void reset()
+        --(thread)--
+        +void waitFor(boolean condition)
+        +boolean waitFor(boolean condition, Duration maximumWaitTime)
+    }
+    
+    BooleanLock <|-- NotifyAllBooleanLock
+    class NotifyAllBooleanLock
+    {
+        --(constructors)--
+        +NotifyAllBooleanLock()
+        +NotifyAllBooleanLock(boolean)
+    }
+    
+    NotifyAllBooleanLock <|-- NotifyBooleanLock
+    class NotifyBooleanLock
+    {
+        --(constructors)--
+        +NotifyBooleanLock()
+        +NotifyBooleanLock(boolean)
+    }
+    
+@enduml
+

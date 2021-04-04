@@ -26,10 +26,9 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  * A {@link Logger} accepts {@link Message}s via {@link #log(Message)} and writes them to one or more {@link Log}s.
  * Filters can be added to the logger to restrict which messages are logged with {@link #addFilter(Filter)}.
  * <p>
- * <b>Wiki Documentation</b>
+ * <b>Markdown Documentation</b>
  * <p>
- * <i>For a detailed discussion of KivaKit logging, see the <a href="https://spaces.telenav.com:8443/x/OyZECw">KivaKit
- * logging documentation</a> on the wiki.</i>
+ * <i>For a detailed discussion, see the <a href="https://tinyurl.com/mhc3ss5s">KivaKit Logging Documentation</a></i>
  * <p>
  * <b>Messaging</b>
  * <p>
@@ -62,7 +61,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  * system property KIVAKIT_LOG.
  *
  * @author jonathanl (shibo)
- * @see <a href="https://spaces.telenav.com:8443/x/OyZECw">KivaKit logging documentation</a>
+ * @see <a href="https://tinyurl.com/mhc3ss5s">KivaKit Logging Documentation</a>
  * @see LogEntry
  * @see Listener
  * @see Filtered

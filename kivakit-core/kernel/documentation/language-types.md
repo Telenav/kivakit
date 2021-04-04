@@ -1,4 +1,4 @@
-# kivakit-core-kernel - language.types &nbsp; ![](../../../documentation/images/diagram-48.png)
+# kivakit-core-kernel language.types &nbsp; ![](../../../documentation/images/diagram-48.png)
 
 ![](../documentation/images/horizontal-line.png)
 

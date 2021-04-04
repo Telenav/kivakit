@@ -1,4 +1,4 @@
-# kivakit-core-kernel - language.io &nbsp; ![](../../../documentation/images/convert-32.png)
+# kivakit-core-kernel language.io &nbsp; ![](../../../documentation/images/convert-32.png)
 
 ![](../documentation/images/horizontal-line.png)
 

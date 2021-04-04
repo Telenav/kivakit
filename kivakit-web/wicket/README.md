@@ -7,32 +7,36 @@ This project contains support for using Apache Wicket on Jetty.
 ### Index
 
 [**Dependencies**](#dependencies)  
+
 [**Class Diagrams**](#class-diagrams)  
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
+
+### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
+
+[*Dependency Diagram*](documentation/diagrams/dependencies.svg)
+
+#### Maven Dependency  
+
+    <dependency>
+        <groupId>com.telenav.kivakit</groupId>
+        <artifactId>kivakit-web-wicket</artifactId>
+        <version>0.9.0-SNAPSHOT</version>
+    </dependency>
 
 ![](documentation/images/horizontal-line.png)
 
 [//]: # (start-user-text)
 
 
+
 [//]: # (end-user-text)
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp;  ![](documentation/images/dependencies-40.png)
-
-[*Dependency Diagram*](documentation/diagrams/dependencies.svg)
-
-    <dependency>
-       <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit-web-wicket</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
-    </dependency>
-
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
 
 None
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.web.wicket*](documentation/diagrams/com.telenav.kivakit.web.wicket.svg)  
 [*com.telenav.kivakit.web.wicket.behaviors.status*](documentation/diagrams/com.telenav.kivakit.web.wicket.behaviors.status.svg)  
@@ -41,32 +45,24 @@ None
 [*com.telenav.kivakit.web.wicket.components.refresh*](documentation/diagrams/com.telenav.kivakit.web.wicket.components.refresh.svg)  
 [*com.telenav.kivakit.web.wicket.library*](documentation/diagrams/com.telenav.kivakit.web.wicket.library.svg)  
 [*com.telenav.kivakit.web.wicket.project*](documentation/diagrams/com.telenav.kivakit.web.wicket.project.svg)  
-[*com.telenav.kivakit.web.wicket.theme*](documentation/diagrams/com.telenav.kivakit.web.wicket.theme.svg)
+[*com.telenav.kivakit.web.wicket.theme*](documentation/diagrams/com.telenav.kivakit.web.wicket.theme.svg)  
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
 | Class | Documentation Sections |
 |---|---|
-| [*
-Components*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.web.wicket/com/telenav/tdk/web/wicket/library/Components.html) |  |  
-| [*
-FeedbackPanel*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.web.wicket/com/telenav/tdk/web/wicket/components/feedback/FeedbackPanel.html) |  |  
-| [*
-HeaderPanel*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.web.wicket/com/telenav/tdk/web/wicket/components/header/HeaderPanel.html) |  |  
-| [*
-JettyWicket*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.web.wicket/com/telenav/tdk/web/wicket/JettyWicket.html) |  |  
-| [*
-JettyWicketFilterHolder*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.web.wicket/com/telenav/tdk/web/wicket/JettyWicketFilterHolder.html) |  |  
-| [*
-MessageColor*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.web.wicket/com/telenav/tdk/web/wicket/behaviors/status/MessageColor.html) |  |  
-| [*
-TdkTheme*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.web.wicket/com/telenav/tdk/web/wicket/theme/TdkTheme.html) |  |  
-| [*
-UpdatingContainer*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.web.wicket/com/telenav/tdk/web/wicket/components/refresh/UpdatingContainer.html) |  |  
-| [*
-WebWicketProject*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.web.wicket/com/telenav/tdk/web/wicket/project/WebWicketProject.html) |  |  
+| [*Components*](https://telenav.github.io/kivakit/javadoc/kivakit.web.wicket/com/telenav/kivakit/web/wicket/library/Components.html) |  |  
+| [*FeedbackPanel*](https://telenav.github.io/kivakit/javadoc/kivakit.web.wicket/com/telenav/kivakit/web/wicket/components/feedback/FeedbackPanel.html) |  |  
+| [*HeaderPanel*](https://telenav.github.io/kivakit/javadoc/kivakit.web.wicket/com/telenav/kivakit/web/wicket/components/header/HeaderPanel.html) |  |  
+| [*JettyWicket*](https://telenav.github.io/kivakit/javadoc/kivakit.web.wicket/com/telenav/kivakit/web/wicket/JettyWicket.html) |  |  
+| [*JettyWicketFilterHolder*](https://telenav.github.io/kivakit/javadoc/kivakit.web.wicket/com/telenav/kivakit/web/wicket/JettyWicketFilterHolder.html) |  |  
+| [*KivaKitTheme*](https://telenav.github.io/kivakit/javadoc/kivakit.web.wicket/com/telenav/kivakit/web/wicket/theme/KivaKitTheme.html) |  |  
+| [*MessageColor*](https://telenav.github.io/kivakit/javadoc/kivakit.web.wicket/com/telenav/kivakit/web/wicket/behaviors/status/MessageColor.html) |  |  
+| [*UpdatingContainer*](https://telenav.github.io/kivakit/javadoc/kivakit.web.wicket/com/telenav/kivakit/web/wicket/components/refresh/UpdatingContainer.html) |  |  
+| [*WebWicketProject*](https://telenav.github.io/kivakit/javadoc/kivakit.web.wicket/com/telenav/kivakit/web/wicket/project/WebWicketProject.html) |  |  
 
 [//]: # (start-user-text)
+
 
 
 [//]: # (end-user-text)
@@ -75,6 +71,7 @@ WebWicketProject*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telen
 
 ![](documentation/images/horizontal-line.png)
 
-<sub>This documentation was generated by Lexakai on 2021.04.01</sub>    
-<sub>UML diagrams courtesy of PlantUML (http://plantuml.com), distributed unmodified under Apache License, Version 2.0.</sub>
+<sub>Copyright 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.04</sub>    
+<sub>UML diagrams courtesy of [PlantUML](http://plantuml.com)</sub>
 

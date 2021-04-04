@@ -1,0 +1,110 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.data.formats.csv"
+    
+    abstract BaseWriter
+    abstract BaseObjectReader
+    abstract BaseRepeater
+    
+    interface PropertyValueSource
+    interface Repeater
+    
+    Name <|-- CsvColumn
+    class CsvColumn<Type>
+    {
+        --(constructors)--
+        #CsvColumn(String, StringConverter<Type>)
+        --
+        +CsvColumn<String> of(String name)
+        +CsvColumn<T> of(String name, StringConverter<T>)
+        +CsvSchema schema()
+        --(conversion)--
+        +String asString(Type value)
+        +Type asType(String text)
+    }
+    
+    StringList <|-- CsvLine
+    PropertyValueSource <|-- CsvLine
+    Repeater <|-- CsvLine
+    class CsvLine
+    {
+        --(constructors)--
+        +CsvLine(CsvSchema, char)
+        --
+        +T get(CsvColumn<T>)
+        +int lineNumber()
+        +CsvSchema schema()
+        +void set(CsvColumn<T>, T value)
+        +void set(CsvColumn<?>, String value)
+        +String string(CsvColumn<?>)
+        #char delimiter()
+        --(conversion)--
+        +T asObject(Class<T> type)
+    }
+    
+    BaseObjectReader <|-- CsvReader
+    CsvReader --> CsvLine : "reads"
+    CsvReader o-- CsvSchema : "uses"
+    class CsvReader
+    {
+        --(constructors)--
+        +CsvReader(Resource, ProgressReporter, CsvSchema, char)
+        --
+        +void delimiter(char delimiter)
+        +int lineNumber()
+        +void quote(char quote)
+        +CsvSchema schema()
+        #void processLeadingSpaces(LookAheadReader in, StringBuffer)
+        #void skipLine(LookAheadReader in)
+        --(collection)--
+        +Iterable<CsvLine> lines()
+        --(iteration)--
+        #String extractNextColumn(LookAheadReader in)
+        --(read)--
+        +CsvReader skipLines(int numberOfLinesToSkip)
+        #void readColumn(LookAheadReader in, StringBuffer)
+        #void readQuotedColumn(LookAheadReader in, StringBuffer)
+    }
+    
+    BaseRepeater <|-- CsvSchema
+    CsvSchema "1" o-- "*" CsvColumn
+    class CsvSchema
+    {
+        --(constructors)--
+        #CsvSchema(CsvColumn<?>)
+        --
+        +CsvSchema of(CsvColumn<?>... columns)
+        --(collection)--
+        +CsvSchema add(CsvColumn<?>)
+        +void addAll(List<? extends CsvColumn<?>> columns)
+        +CsvSchema addAll(CsvColumn<?>... columns)
+        +boolean contains(CsvColumn<?>)
+        --(naming)--
+        +CsvColumn<?> columnForName(String name)
+    }
+    
+    BaseWriter <|-- CsvWriter
+    CsvWriter --> CsvLine : "writes"
+    CsvWriter o-- CsvSchema : "uses"
+    class CsvWriter
+    {
+        --(constructors)--
+        +CsvWriter(PrintWriter, ProgressReporter, CsvSchema)
+        --
+        +CsvSchema schema()
+        --(write)--
+        +void write(CsvLine)
+        +void writeComment(String comment)
+    }
+    
+    CsvReader <|-- UnquotedCsvReader
+    class UnquotedCsvReader
+    {
+        --(constructors)--
+        +UnquotedCsvReader(Resource, ProgressReporter, CsvSchema, char)
+    }
+    
+@enduml
+

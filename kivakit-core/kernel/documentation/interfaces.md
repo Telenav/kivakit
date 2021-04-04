@@ -1,4 +1,4 @@
-# kivakit-core-kernel - interfaces &nbsp; ![](../../documentation/images/gears-40.png)
+# kivakit-core-kernel interfaces &nbsp; ![](../../documentation/images/gears-40.png)
 
 ![](../documentation/images/horizontal-line.png)
 
@@ -17,7 +17,7 @@
 ### Summary <a name="summary"></a>
 
 KivaKit is an integrated set of frameworks. One of the major ways in which mini-frameworks inside KivaKit  
-are connected together is by way of the set of broadly generic, *small* interfaces in *kivakit-core-kernel - interfaces*.  
+are connected together is by way of the set of broadly generic, *small* interfaces in *kivakit-core-kernel interfaces*.  
 For example, the *interfaces.collection* package contains these interfaces:
 
 * Addable

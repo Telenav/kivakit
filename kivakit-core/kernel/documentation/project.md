@@ -1,4 +1,4 @@
-# kivakit-core-kernel - project &nbsp; ![](../../documentation/images/gears-40.png)
+# kivakit-core-kernel project &nbsp; ![](../../documentation/images/gears-40.png)
 
 ![](../documentation/images/horizontal-line.png)
 

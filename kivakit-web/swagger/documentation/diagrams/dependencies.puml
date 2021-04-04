@@ -1,0 +1,145 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "kivakit-web-swagger"
+    
+    artifact kryo
+    artifact minlog
+    artifact reflectasm
+    artifact jackson_annotations
+    artifact jackson_core
+    artifact jackson_databind
+    artifact jackson_dataformat_yaml
+    artifact jackson_datatype_jsr310
+    artifact jackson_jaxrs_base
+    artifact jackson_jaxrs_json_provider
+    artifact jackson_module_jaxb_annotations
+    artifact kivakit_build_metadata
+    artifact kivakit_core_collections
+    artifact kivakit_core_commandline
+    artifact kivakit_core_kernel
+    artifact kivakit_core_network_core
+    artifact kivakit_core_network_http
+    artifact kivakit_core_resource
+    artifact kivakit_core_security
+    artifact kivakit_core_serialization_core
+    artifact kivakit_core_serialization_kryo
+    artifact kivakit_core_test
+    artifact kivakit_web_jersey
+    artifact kivakit_web_jetty
+    artifact kivakit_web_swagger
+    artifact lexakai_annotations
+    artifact commons_codec
+    artifact commons_logging
+    artifact kryo_serializers
+    artifact classgraph
+    artifact swagger_annotations
+    artifact swagger_core
+    artifact swagger_integration
+    artifact swagger_jaxrs2
+    artifact swagger_models
+    artifact jakarta_activation_api
+    artifact jakarta_annotation_api
+    artifact jakarta_validation_api
+    artifact jakarta_ws_rs_api
+    artifact jakarta_xml_bind_api
+    artifact javax_servlet_api
+    artifact junit
+    artifact commons_lang3
+    artifact httpclient
+    artifact httpcore
+    artifact jetty_http
+    artifact jetty_io
+    artifact jetty_security
+    artifact jetty_server
+    artifact jetty_servlet
+    artifact jetty_util_ajax
+    artifact jetty_util
+    artifact jetty_webapp
+    artifact jetty_xml
+    artifact jakarta_inject
+    artifact osgi_resource_locator
+    artifact jersey_container_servlet_core
+    artifact jersey_container_servlet
+    artifact jersey_client
+    artifact jersey_common
+    artifact jersey_server
+    artifact hamcrest_core
+    artifact javassist
+    artifact annotations
+    artifact objenesis
+    artifact asm
+    artifact slf4j_api
+    artifact swagger_ui
+    artifact snakeyaml
+    httpclient --> commons_codec
+    httpclient --> commons_logging
+    httpclient --> httpcore
+    jackson_databind --> jackson_core
+    jackson_dataformat_yaml --> snakeyaml
+    jackson_jaxrs_json_provider --> jackson_jaxrs_base
+    jackson_jaxrs_json_provider --> jackson_module_jaxb_annotations
+    jakarta_xml_bind_api --> jakarta_activation_api
+    jersey_common --> jakarta_annotation_api
+    jersey_common --> osgi_resource_locator
+    jersey_container_servlet --> jakarta_ws_rs_api
+    jersey_container_servlet --> jersey_common
+    jersey_container_servlet --> jersey_container_servlet_core
+    jersey_container_servlet --> jersey_server
+    jersey_container_servlet_core --> jakarta_inject
+    jersey_server --> jersey_client
+    jetty_http --> jetty_util
+    jetty_server --> javax_servlet_api
+    jetty_server --> jetty_http
+    jetty_server --> jetty_io
+    jetty_servlet --> jetty_security
+    jetty_servlet --> jetty_util_ajax
+    jetty_webapp --> jetty_servlet
+    jetty_webapp --> jetty_xml
+    junit --> hamcrest_core
+    kivakit_core_collections --> kivakit_core_serialization_kryo
+    kivakit_core_collections --> kivakit_core_test
+    kivakit_core_commandline --> kivakit_core_kernel
+    kivakit_core_kernel --> annotations
+    kivakit_core_kernel --> jackson_annotations
+    kivakit_core_kernel --> junit
+    kivakit_core_kernel --> kivakit_build_metadata
+    kivakit_core_kernel --> lexakai_annotations
+    kivakit_core_network_core --> kivakit_core_security
+    kivakit_core_network_http --> httpclient
+    kivakit_core_network_http --> kivakit_core_network_core
+    kivakit_core_resource --> kivakit_core_collections
+    kivakit_core_resource --> kivakit_core_commandline
+    kivakit_core_resource --> kivakit_core_serialization_core
+    kivakit_core_serialization_kryo --> kryo
+    kivakit_core_serialization_kryo --> kryo_serializers
+    kivakit_web_jersey --> jersey_container_servlet
+    kivakit_web_jersey --> kivakit_web_jetty
+    kivakit_web_jetty --> jetty_server
+    kivakit_web_jetty --> jetty_webapp
+    kivakit_web_jetty --> kivakit_core_network_http
+    kivakit_web_swagger --> classgraph
+    kivakit_web_swagger --> kivakit_core_resource
+    kivakit_web_swagger --> kivakit_web_jersey
+    kivakit_web_swagger --> swagger_annotations
+    kivakit_web_swagger --> swagger_core
+    kivakit_web_swagger --> swagger_jaxrs2
+    kivakit_web_swagger --> swagger_models
+    kivakit_web_swagger --> swagger_ui
+    kryo --> minlog
+    kryo --> objenesis
+    kryo --> reflectasm
+    reflectasm --> asm
+    swagger_core --> commons_lang3
+    swagger_core --> jackson_dataformat_yaml
+    swagger_core --> jackson_datatype_jsr310
+    swagger_core --> jakarta_validation_api
+    swagger_core --> jakarta_xml_bind_api
+    swagger_core --> slf4j_api
+    swagger_jaxrs2 --> jackson_databind
+    swagger_jaxrs2 --> jackson_jaxrs_json_provider
+    swagger_jaxrs2 --> javassist
+    swagger_jaxrs2 --> swagger_integration
+    
+@enduml

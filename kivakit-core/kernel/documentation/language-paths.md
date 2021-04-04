@@ -1,4 +1,4 @@
-# kivakit-core-kernel - language.paths &nbsp; ![](../../../documentation/images/footprints-40.png)
+# kivakit-core-kernel language.paths &nbsp; ![](../../../documentation/images/footprints-40.png)
 
 ![](../documentation/images/horizontal-line.png)
 

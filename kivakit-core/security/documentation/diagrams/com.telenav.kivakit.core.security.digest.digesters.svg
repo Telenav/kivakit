@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="254.1667px" preserveAspectRatio="none" style="width:526px;height:254px;background:#333333;" version="1.1" viewBox="0 0 526 254" width="526.0417px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="513.5417" x="2.0833" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="490.625" x="13.5417" y="30.5583">com.telenav.kivakit.core.security.digest.digesters</text><!--MD5=[4e5a037a9fc2c97766f671a04511f4e4]
+class BaseDigester--><rect codeLine="6" fill="#282828" height="48.055" id="BaseDigester" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="122.9167" x="203.3854" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="122.9167" x="203.3854" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="122.9167" x="203.3854" y="76.7578"/><rect codeLine="6" fill="none" height="48.055" id="BaseDigester" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="122.9167" x="203.3854" y="53.7028"/><ellipse cx="217.9688" cy="69.397" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M218.0827,66.099 L217.2343,69.8283 L218.9372,69.8283 Z M216.984,64.4511 L219.1874,64.4511 L221.6471,73.5636 L219.8466,73.5636 L219.2851,71.3114 L216.8742,71.3114 L216.3249,73.5636 L214.5243,73.5636 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="85.4167" x="234.6354" y="74.1211">BaseDigester</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="204.4271" x2="325.2604" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="204.4271" x2="325.2604" y1="93.4245" y2="93.4245"/><!--MD5=[e885683f5f42b92c45e35b1857107f02]
+class Md5Digester--><rect codeLine="9" fill="#282828" height="83.3781" id="Md5Digester" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="120.8333" x="125.2604" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="120.8333" x="125.2604" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="120.8333" x="125.2604" y="187.1745"/><rect codeLine="9" fill="none" height="83.3781" id="Md5Digester" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="120.8333" x="125.2604" y="164.1195"/><ellipse cx="139.8438" cy="179.8136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M141.7542,184.2387 Q141.3269,184.4584 140.8569,184.5683 Q140.387,184.6781 139.8682,184.6781 Q138.0249,184.6781 137.0544,183.4635 Q136.084,182.2489 136.084,179.954 Q136.084,177.653 137.0544,176.4384 Q138.0249,175.2238 139.8682,175.2238 Q140.387,175.2238 140.863,175.3337 Q141.3391,175.4435 141.7542,175.6632 L141.7542,177.6652 Q141.2903,177.238 140.8539,177.0396 Q140.4175,176.8412 139.9536,176.8412 Q138.9648,176.8412 138.4613,177.6255 Q137.9578,178.4098 137.9578,179.954 Q137.9578,181.4921 138.4613,182.2764 Q138.9648,183.0607 139.9536,183.0607 Q140.4175,183.0607 140.8539,182.8623 Q141.2903,182.664 141.7542,182.2367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="83.3333" x="156.5104" y="184.5378">Md5Digester</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="126.3021" x2="245.0521" y1="195.5078" y2="195.5078"/><ellipse cx="136.7188" cy="230.8777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="79.1667" x="148.1771" y="237.7889">Md5Digester()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="126.3021" x2="141.9271" y1="213.7136" y2="213.7136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="145.0521" y="217.5232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="229.4271" x2="245.0521" y1="213.7136" y2="213.7136"/><!--MD5=[bf8b876423d85794f79157712d8b1bfd]
+class Sha1Digester--><rect codeLine="16" fill="#282828" height="83.3781" id="Sha1Digester" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="283.0729" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="283.0729" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="283.0729" y="187.1745"/><rect codeLine="16" fill="none" height="83.3781" id="Sha1Digester" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="283.0729" y="164.1195"/><ellipse cx="297.6563" cy="179.8136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M299.5667,184.2387 Q299.1394,184.4584 298.6694,184.5683 Q298.1995,184.6781 297.6807,184.6781 Q295.8374,184.6781 294.8669,183.4635 Q293.8965,182.2489 293.8965,179.954 Q293.8965,177.653 294.8669,176.4384 Q295.8374,175.2238 297.6807,175.2238 Q298.1995,175.2238 298.6755,175.3337 Q299.1516,175.4435 299.5667,175.6632 L299.5667,177.6652 Q299.1028,177.238 298.6664,177.0396 Q298.23,176.8412 297.7661,176.8412 Q296.7773,176.8412 296.2738,177.6255 Q295.7703,178.4098 295.7703,179.954 Q295.7703,181.4921 296.2738,182.2764 Q296.7773,183.0607 297.7661,183.0607 Q298.23,183.0607 298.6664,182.8623 Q299.1028,182.664 299.5667,182.2367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="86.4583" x="314.3229" y="184.5378">Sha1Digester</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="284.1146" x2="405.9896" y1="195.5078" y2="195.5078"/><ellipse cx="294.5313" cy="230.8777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="82.2917" x="305.9896" y="237.7889">Sha1Digester()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="284.1146" x2="301.3021" y1="213.7136" y2="213.7136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="304.4271" y="217.5232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="388.8021" x2="405.9896" y1="213.7136" y2="213.7136"/><!--MD5=[491eb70e56623a3bd859fe8b870d4652]
+reverse link BaseDigester to Md5Digester--><path codeLine="8" d="M239.0521,119.7653 C230.1563,133.9215 220.1979,149.7757 211.3229,163.9215 " fill="none" id="BaseDigester-backto-Md5Digester" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="233.0625,115.5882,250.3229,101.8174,245.4167,123.3382,233.0625,115.5882" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[baa7fe1e51f65a3b6b01797d4907b7ae]
+reverse link BaseDigester to Sha1Digester--><path codeLine="15" d="M290.9688,119.7653 C299.9896,133.9215 310.0729,149.7757 319.0729,163.9215 " fill="none" id="BaseDigester-backto-Sha1Digester" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="284.5833,123.307,279.5521,101.8174,296.8958,115.484,284.5833,123.307" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[a96aa380d2fce09e62331663f379b045]
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.core.security.digest.digesters"
+    
+    abstract BaseDigester
+    
+    BaseDigester <|- - Md5Digester
+    class Md5Digester
+    {
+        - -(constructors)- -
+        +Md5Digester()
+    }
+    
+    BaseDigester <|- - Sha1Digester
+    class Sha1Digester
+    {
+        - -(constructors)- -
+        +Sha1Digester()
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.core.security.digest.digesters"
+    
+    abstract BaseDigester
+    
+    BaseDigester <|- - Md5Digester
+    class Md5Digester
+    {
+        - -(constructors)- -
+        +Md5Digester()
+    }
+    
+    BaseDigester <|- - Sha1Digester
+    class Sha1Digester
+    {
+        - -(constructors)- -
+        +Sha1Digester()
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

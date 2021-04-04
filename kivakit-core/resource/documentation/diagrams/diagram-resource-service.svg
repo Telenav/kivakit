@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="575px" preserveAspectRatio="none" style="width:630px;height:575px;background:#333333;" version="1.1" viewBox="0 0 630 575" width="630.2083px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="229.1667" x="193.4896" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="206.25" x="204.9479" y="30.5583">Resources - Services</text><!--MD5=[6e8aaf733c8e58e79f2afa59381b249c]
+cluster File--><polygon fill="#333333" points="335.9375,426.0986,371.3542,426.0986,378.6458,453.3203,454.6875,453.3203,454.6875,531.307,335.9375,531.307,335.9375,426.0986" style="stroke:#333333;stroke-width:2.0833333333333335;"/><line style="stroke:#333333;stroke-width:2.0833333333333335;" x1="335.9375" x2="378.6458" y1="453.3203" y2="453.3203"/><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="22.9167" x="343.2292" y="443.3919">File</text><!--MD5=[6a676705fd589dcb0a3ccf3952617827]
+cluster PackageResource--><polygon fill="#333333" points="479.6875,426.0986,602.6042,426.0986,609.8958,453.3203,613.0208,453.3203,613.0208,531.307,479.6875,531.307,479.6875,426.0986" style="stroke:#333333;stroke-width:2.0833333333333335;"/><line style="stroke:#333333;stroke-width:2.0833333333333335;" x1="479.6875" x2="609.8958" y1="453.3203" y2="453.3203"/><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="110.4167" x="486.9792" y="443.3919">PackageResource</text><!--MD5=[5cb7ed4fd74a26f6f51bc455f4877c70]
+class File.Factory--><rect codeLine="9" fill="#282828" height="48.055" id="File.Factory" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="84.375" x="353.125" y="466.7236"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="84.375" x="353.125" y="466.7236"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="84.375" x="353.125" y="489.7786"/><rect codeLine="9" fill="none" height="48.055" id="File.Factory" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="84.375" x="353.125" y="466.7236"/><ellipse cx="367.7083" cy="482.4178" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M369.6187,486.8429 Q369.1915,487.0626 368.7215,487.1724 Q368.2515,487.2823 367.7327,487.2823 Q365.8895,487.2823 364.919,486.0677 Q363.9486,484.8531 363.9486,482.5582 Q363.9486,480.2572 364.919,479.0426 Q365.8895,477.828 367.7327,477.828 Q368.2515,477.828 368.7276,477.9378 Q369.2037,478.0477 369.6187,478.2674 L369.6187,480.2694 Q369.1549,479.8421 368.7185,479.6438 Q368.2821,479.4454 367.8182,479.4454 Q366.8294,479.4454 366.3259,480.2297 Q365.8223,481.014 365.8223,482.5582 Q365.8223,484.0963 366.3259,484.8806 Q366.8294,485.6649 367.8182,485.6649 Q368.2821,485.6649 368.7185,485.4665 Q369.1549,485.2681 369.6187,484.8409 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="46.875" x="384.375" y="487.1419">Factory</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="354.1667" x2="436.4583" y1="498.112" y2="498.112"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="354.1667" x2="436.4583" y1="506.4453" y2="506.4453"/><!--MD5=[4da216c2e3e4567bfcfe26b67187a6f0]
+class PackageResource.Factory--><rect codeLine="14" fill="#282828" height="48.055" id="PackageResource.Factory" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="84.375" x="496.875" y="466.7236"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="84.375" x="496.875" y="466.7236"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="84.375" x="496.875" y="489.7786"/><rect codeLine="14" fill="none" height="48.055" id="PackageResource.Factory" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="84.375" x="496.875" y="466.7236"/><ellipse cx="511.4583" cy="482.4178" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M513.3687,486.8429 Q512.9415,487.0626 512.4715,487.1724 Q512.0015,487.2823 511.4827,487.2823 Q509.6395,487.2823 508.669,486.0677 Q507.6986,484.8531 507.6986,482.5582 Q507.6986,480.2572 508.669,479.0426 Q509.6395,477.828 511.4827,477.828 Q512.0015,477.828 512.4776,477.9378 Q512.9537,478.0477 513.3687,478.2674 L513.3687,480.2694 Q512.9049,479.8421 512.4685,479.6438 Q512.0321,479.4454 511.5682,479.4454 Q510.5794,479.4454 510.0759,480.2297 Q509.5723,481.014 509.5723,482.5582 Q509.5723,484.0963 510.0759,484.8806 Q510.5794,485.6649 511.5682,485.6649 Q512.0321,485.6649 512.4685,485.4665 Q512.9049,485.2681 513.3687,484.8409 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="46.875" x="528.125" y="487.1419">Factory</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="497.9167" x2="580.2083" y1="498.112" y2="498.112"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="497.9167" x2="580.2083" y1="506.4453" y2="506.4453"/><!--MD5=[03086fe9921e5edb23eb379e71f3d4af]
+class ResourceFactoryService--><rect codeLine="20" fill="#282828" height="127.0345" id="ResourceFactoryService" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="271.875" x="170.8333" y="200.5778"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="271.875" x="170.8333" y="200.5778"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="271.875" x="170.8333" y="223.6328"/><rect codeLine="20" fill="none" height="127.0345" id="ResourceFactoryService" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="271.875" x="170.8333" y="200.5778"/><ellipse cx="224.4792" cy="216.272" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M221.3623,213.4338 L221.3623,211.8469 L226.7883,211.8469 L226.7883,213.4338 L224.9756,213.4338 L224.9756,219.3726 L226.7883,219.3726 L226.7883,220.9595 L221.3623,220.9595 L221.3623,219.3726 L223.175,219.3726 L223.175,213.4338 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="150" x="247.3958" y="220.9961">ResourceFactoryService</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="171.875" x2="441.6667" y1="231.9661" y2="231.9661"/><ellipse cx="182.2917" cy="267.336" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="239.5833" x="193.75" y="274.2472">Resource newResource(ResourceIdentifier)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="171.875" x2="279.6875" y1="250.1719" y2="250.1719"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="47.9167" x="282.8125" y="253.9815">(factory)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="333.8542" x2="441.6667" y1="250.1719" y2="250.1719"/><ellipse cx="182.2917" cy="310.9924" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="201.0417" x="193.75" y="317.9036">boolean accepts(ResourceIdentifier)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="171.875" x2="277.6042" y1="293.8283" y2="293.8283"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="52.0833" x="280.7292" y="297.6379">(filtering)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="335.9375" x2="441.6667" y1="293.8283" y2="293.8283"/><!--MD5=[73d65badb5beeaa6d66a0597f08d9664]
+class ResourceIdentifier--><rect codeLine="35" fill="#282828" height="155.1127" id="ResourceIdentifier" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="176.0417" x="7.2917" y="413.0778"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="176.0417" x="7.2917" y="413.0778"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="176.0417" x="7.2917" y="436.1328"/><rect codeLine="35" fill="none" height="155.1127" id="ResourceIdentifier" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="176.0417" x="7.2917" y="413.0778"/><ellipse cx="31.25" cy="428.772" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M33.1604,433.197 Q32.7332,433.4167 32.2632,433.5266 Q31.7932,433.6365 31.2744,433.6365 Q29.4312,433.6365 28.4607,432.4219 Q27.4902,431.2073 27.4902,428.9124 Q27.4902,426.6113 28.4607,425.3967 Q29.4312,424.1821 31.2744,424.1821 Q31.7932,424.1821 32.2693,424.292 Q32.7454,424.4019 33.1604,424.6216 L33.1604,426.6235 Q32.6965,426.1963 32.2601,425.9979 Q31.8237,425.7996 31.3599,425.7996 Q30.3711,425.7996 29.8676,426.5839 Q29.364,427.3682 29.364,428.9124 Q29.364,430.4504 29.8676,431.2347 Q30.3711,432.019 31.3599,432.019 Q31.8237,432.019 32.2601,431.8207 Q32.6965,431.6223 33.1604,431.1951 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="117.7083" x="50" y="433.4961">ResourceIdentifier</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="8.3333" x2="182.2917" y1="444.4661" y2="444.4661"/><ellipse cx="18.75" cy="479.836" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="143.75" x="30.2083" y="486.7472">ResourceIdentifier(String)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="51.5625" y1="462.6719" y2="462.6719"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="54.6875" y="466.4815">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="139.0625" x2="182.2917" y1="462.6719" y2="462.6719"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="182.2917" y1="496.4559" y2="496.4559"/><ellipse cx="18.75" cy="507.9142" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="104.1667" x="30.2083" y="514.8254">Resource resolve()</text><ellipse cx="18.75" cy="551.5706" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="94.7917" x="30.2083" y="558.4819">String identifier()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="67.1875" y1="534.4065" y2="534.4065"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="50" x="70.3125" y="538.2161">(identity)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="123.4375" x2="182.2917" y1="534.4065" y2="534.4065"/><!--MD5=[6b13f1b330d33795af281e5c1dfe1e98]
+class Resource--><rect fill="#282828" height="48.055" id="Resource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="95.8333" x="220.3125" y="466.7236"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="95.8333" x="220.3125" y="466.7236"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="95.8333" x="220.3125" y="489.7786"/><rect fill="none" height="48.055" id="Resource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="95.8333" x="220.3125" y="466.7236"/><ellipse cx="234.8958" cy="482.4178" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M236.8062,486.8429 Q236.379,487.0626 235.909,487.1724 Q235.439,487.2823 234.9202,487.2823 Q233.077,487.2823 232.1065,486.0677 Q231.1361,484.8531 231.1361,482.5582 Q231.1361,480.2572 232.1065,479.0426 Q233.077,477.828 234.9202,477.828 Q235.439,477.828 235.9151,477.9378 Q236.3912,478.0477 236.8062,478.2674 L236.8062,480.2694 Q236.3424,479.8421 235.906,479.6438 Q235.4696,479.4454 235.0057,479.4454 Q234.0169,479.4454 233.5134,480.2297 Q233.0098,481.014 233.0098,482.5582 Q233.0098,484.0963 233.5134,484.8806 Q234.0169,485.6649 235.0057,485.6649 Q235.4696,485.6649 235.906,485.4665 Q236.3424,485.2681 236.8062,484.8409 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="58.3333" x="251.5625" y="487.1419">Resource</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="221.3542" x2="315.1042" y1="498.112" y2="498.112"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="221.3542" x2="315.1042" y1="506.4453" y2="506.4453"/><!--MD5=[b55f003314103b7180ab16317bc7ad15]
+class ResourceFactoryServiceRegistry--><rect codeLine="29" fill="#282828" height="83.3781" id="ResourceFactoryServiceRegistry" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="264.5833" x="174.4792" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="264.5833" x="174.4792" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="264.5833" x="174.4792" y="76.7578"/><rect codeLine="29" fill="none" height="83.3781" id="ResourceFactoryServiceRegistry" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="264.5833" x="174.4792" y="53.7028"/><ellipse cx="199.8438" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M201.7542,73.822 Q201.3269,74.0417 200.8569,74.1516 Q200.387,74.2615 199.8682,74.2615 Q198.0249,74.2615 197.0544,73.0469 Q196.084,71.8323 196.084,69.5374 Q196.084,67.2363 197.0544,66.0217 Q198.0249,64.8071 199.8682,64.8071 Q200.387,64.8071 200.863,64.917 Q201.3391,65.0269 201.7542,65.2466 L201.7542,67.2485 Q201.2903,66.8213 200.8539,66.6229 Q200.4175,66.4246 199.9536,66.4246 Q198.9648,66.4246 198.4613,67.2089 Q197.9578,67.9932 197.9578,69.5374 Q197.9578,71.0754 198.4613,71.8597 Q198.9648,72.644 199.9536,72.644 Q200.4175,72.644 200.8539,72.4457 Q201.2903,72.2473 201.7542,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="203.125" x="218.9063" y="74.1211">ResourceFactoryServiceRegistry</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="175.5208" x2="438.0208" y1="85.0911" y2="85.0911"/><ellipse cx="185.9375" cy="120.461" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="232.2917" x="197.3958" y="127.3722">Resource forIdentifier(ResourceIdentifier)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="175.5208" x2="278.6458" y1="103.2969" y2="103.2969"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="50" x="281.7708" y="107.1065">(identity)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="334.8958" x2="438.0208" y1="103.2969" y2="103.2969"/><!--MD5=[b2cb379391ed60368d96054ecb6f9fd5]
+reverse link ResourceFactoryService to File.Factory--><path codeLine="8" d="M342.7396,347.4215 C344.3333,351.2965 345.8854,355.1403 347.3958,358.9111 C362.2813,396.1715 378.0104,440.0778 387.2292,466.3486 " fill="none" id="ResourceFactoryService-backto-File.Factory" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="335.9167,350.0257,334.5833,327.984,349.3646,344.3799,335.9167,350.0257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[a1b0b04cb45bcd793457f6b63806ff60]
+reverse link ResourceFactoryService to PackageResource.Factory--><path codeLine="13" d="M386.7396,342.4424 C431.8646,386.0465 485.0938,437.484 515.1771,466.557 " fill="none" id="ResourceFactoryService-backto-PackageResource.Factory" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="381.3958,347.4111,371.4792,327.6924,391.5208,336.9215,381.3958,347.4111" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e1f10fb10714170f0779671f75fbe87f]
+link ResourceFactoryService to ResourceIdentifier--><path codeLine="18" d="M247.8646,327.6924 C224.1042,352.9111 196.3958,382.3382 171.1563,409.1299 " fill="none" id="ResourceFactoryService-to-ResourceIdentifier" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="167.4479,413.0674,176.9074,409.0962,171.0175,409.2747,170.839,403.3848,167.4479,413.0674" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="42.7083" x="218.2292" y="375.1628">parses</text><!--MD5=[52d41eaeef490843a7e1a39bcff7cf09]
+link ResourceFactoryService to Resource--><path codeLine="19" d="M294.6146,328.1507 C292.7083,338.4215 290.7917,348.9528 289.0625,358.9111 C282.9583,394.0049 276.6042,434.5153 272.5521,461.0257 " fill="none" id="ResourceFactoryService-to-Resource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="271.7188,466.4632,277.2569,457.8272,272.5074,461.3149,269.0196,456.5654,271.7188,466.4632" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="45.8333" x="293.2292" y="375.1628">creates</text><!--MD5=[760afe5ef28b668f72bfdf56fc6ef003]
+reverse link ResourceFactoryServiceRegistry to ResourceFactoryService--><path codeLine="28" d="M306.7708,151.1195 C306.7708,166.8486 306.7708,184.1299 306.7708,200.3174 " fill="none" id="ResourceFactoryServiceRegistry-backto-ResourceFactoryService" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="306.7708,137.182,302.6042,143.432,306.7708,149.682,310.9375,143.432,306.7708,137.182" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="294.1504" y="160.7234">1</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="6.25" x="296.7122" y="186.5866">*</text><!--MD5=[9e19722a8a6e54be07e6c9e0b9a79c27]
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "Resources - Services"
+    
+    interface ResourceFactoryService
+    
+    ResourceFactoryService <|- - File.Factory
+    class File.Factory
+    {
+    }
+    
+    ResourceFactoryService <|- - PackageResource.Factory
+    class PackageResource.Factory
+    {
+    }
+    
+    ResourceFactoryService - -> ResourceIdentifier : "parses"
+    ResourceFactoryService - -> Resource : "creates"
+    interface ResourceFactoryService
+    {
+        - -(factory)- -
+        +Resource newResource(ResourceIdentifier)
+        - -(filtering)- -
+        +boolean accepts(ResourceIdentifier)
+    }
+    
+    ResourceFactoryServiceRegistry "1" o- - "*" ResourceFactoryService
+    class ResourceFactoryServiceRegistry
+    {
+        - -(identity)- -
+        +Resource forIdentifier(ResourceIdentifier)
+    }
+    
+    class ResourceIdentifier
+    {
+        - -(constructors)- -
+        +ResourceIdentifier(String)
+        - -
+        +Resource resolve()
+        - -(identity)- -
+        +String identifier()
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "Resources - Services"
+    
+    interface ResourceFactoryService
+    
+    ResourceFactoryService <|- - File.Factory
+    class File.Factory
+    {
+    }
+    
+    ResourceFactoryService <|- - PackageResource.Factory
+    class PackageResource.Factory
+    {
+    }
+    
+    ResourceFactoryService - -> ResourceIdentifier : "parses"
+    ResourceFactoryService - -> Resource : "creates"
+    interface ResourceFactoryService
+    {
+        - -(factory)- -
+        +Resource newResource(ResourceIdentifier)
+        - -(filtering)- -
+        +boolean accepts(ResourceIdentifier)
+    }
+    
+    ResourceFactoryServiceRegistry "1" o- - "*" ResourceFactoryService
+    class ResourceFactoryServiceRegistry
+    {
+        - -(identity)- -
+        +Resource forIdentifier(ResourceIdentifier)
+    }
+    
+    class ResourceIdentifier
+    {
+        - -(constructors)- -
+        +ResourceIdentifier(String)
+        - -
+        +Resource resolve()
+        - -(identity)- -
+        +String identifier()
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

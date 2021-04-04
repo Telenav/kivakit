@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="326.0417px" preserveAspectRatio="none" style="width:661px;height:326px;background:#333333;" version="1.1" viewBox="0 0 661 326" width="661.4583px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="413.5417" x="116.6667" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="390.625" x="128.125" y="30.5583">com.telenav.kivakit.web.jetty.resources</text><!--MD5=[4b30e0d197a41d870afaea2a2b763a0c]
+class JettyRequestHandler--><rect fill="#282828" height="48.055" id="JettyRequestHandler" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="169.7917" x="300" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="169.7917" x="300" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="169.7917" x="300" y="76.7578"/><rect fill="none" height="48.055" id="JettyRequestHandler" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="169.7917" x="300" y="53.7028"/><ellipse cx="314.5833" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M316.4937,73.822 Q316.0665,74.0417 315.5965,74.1516 Q315.1265,74.2615 314.6077,74.2615 Q312.7645,74.2615 311.794,73.0469 Q310.8236,71.8323 310.8236,69.5374 Q310.8236,67.2363 311.794,66.0217 Q312.7645,64.8071 314.6077,64.8071 Q315.1265,64.8071 315.6026,64.917 Q316.0787,65.0269 316.4937,65.2466 L316.4937,67.2485 Q316.0299,66.8213 315.5935,66.6229 Q315.1571,66.4246 314.6932,66.4246 Q313.7044,66.4246 313.2009,67.2089 Q312.6973,67.9932 312.6973,69.5374 Q312.6973,71.0754 313.2009,71.8597 Q313.7044,72.644 314.6932,72.644 Q315.1571,72.644 315.5935,72.4457 Q316.0299,72.2473 316.4937,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="132.2917" x="331.25" y="74.1211">JettyRequestHandler</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="301.0417" x2="468.75" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="301.0417" x2="468.75" y1="93.4245" y2="93.4245"/><!--MD5=[ddb3bcfa91536696734483ad26e952d6]
+class JettyFilter--><rect codeLine="7" fill="#282828" height="155.1127" id="JettyFilter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="263.5417" x="7.2917" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="263.5417" x="7.2917" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="263.5417" x="7.2917" y="187.1745"/><rect codeLine="7" fill="none" height="155.1127" id="JettyFilter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="263.5417" x="7.2917" y="164.1195"/><ellipse cx="100" cy="179.8136" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M100.1139,176.5157 L99.2655,180.245 L100.9684,180.245 Z M99.0153,174.8678 L101.2187,174.8678 L103.6784,183.9803 L101.8778,183.9803 L101.3163,181.7281 L98.9054,181.7281 L98.3561,183.9803 L96.5556,183.9803 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="63.5417" x="122.9167" y="184.5378">JettyFilter</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="8.3333" x2="269.7917" y1="195.5078" y2="195.5078"/><ellipse cx="18.75" cy="230.8777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="93.75" x="30.2083" y="237.7889">JettyFilter(String)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="95.3125" y1="213.7136" y2="213.7136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="98.4375" y="217.5232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="182.8125" x2="269.7917" y1="213.7136" y2="213.7136"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="269.7917" y1="247.4976" y2="247.4976"/><ellipse cx="18.75" cy="258.9559" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="231.25" x="30.2083" y="265.8671">EnumSet&lt;DispatcherType&gt; dispatchers()</text><ellipse cx="18.75" cy="302.6123" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="113.5417" x="30.2083" y="309.5235">FilterHolder holder()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="109.8958" y1="285.4482" y2="285.4482"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="52.0833" x="113.0208" y="289.2578">(filtering)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="168.2292" x2="269.7917" y1="285.4482" y2="285.4482"/><!--MD5=[9d830c16315f7e02e4f468093a963216]
+class JettyResource--><rect codeLine="18" fill="#282828" height="111.4563" id="JettyResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="155.2083" x="307.2917" y="185.9945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="155.2083" x="307.2917" y="185.9945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="155.2083" x="307.2917" y="209.0495"/><rect codeLine="18" fill="none" height="111.4563" id="JettyResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="155.2083" x="307.2917" y="185.9945"/><ellipse cx="335" cy="201.6886" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M335.1139,198.3907 L334.2655,202.12 L335.9684,202.12 Z M334.0153,196.7428 L336.2187,196.7428 L338.6784,205.8553 L336.8778,205.8553 L336.3163,203.6031 L333.9054,203.6031 L333.3561,205.8553 L331.5556,205.8553 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="88.5417" x="354.5833" y="206.4128">JettyResource</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="308.3333" x2="461.4583" y1="217.3828" y2="217.3828"/><ellipse cx="318.75" cy="252.7527" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="117.7083" x="330.2083" y="259.6639">JettyResource(String)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="308.3333" x2="341.1458" y1="235.5886" y2="235.5886"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="344.2708" y="239.3982">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="428.6458" x2="461.4583" y1="235.5886" y2="235.5886"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="308.3333" x2="461.4583" y1="269.3726" y2="269.3726"/><ellipse cx="318.75" cy="280.8309" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="122.9167" x="330.2083" y="287.7421">ServletHolder holder()</text><!--MD5=[fc7a99885469d0fa056924bc28556d99]
+class JettyServlet--><rect codeLine="27" fill="#282828" height="111.4563" id="JettyServlet" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="155.2083" x="498.9583" y="185.9945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="155.2083" x="498.9583" y="185.9945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="155.2083" x="498.9583" y="209.0495"/><rect codeLine="27" fill="none" height="111.4563" id="JettyServlet" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="155.2083" x="498.9583" y="185.9945"/><ellipse cx="533.2292" cy="201.6886" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M533.3431,198.3907 L532.4947,202.12 L534.1976,202.12 Z M532.2445,196.7428 L534.4478,196.7428 L536.9076,205.8553 L535.107,205.8553 L534.5455,203.6031 L532.1346,203.6031 L531.5853,205.8553 L529.7847,205.8553 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="73.9583" x="554.2708" y="206.4128">JettyServlet</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="500" x2="653.125" y1="217.3828" y2="217.3828"/><ellipse cx="510.4167" cy="252.7527" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="103.125" x="521.875" y="259.6639">JettyServlet(String)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="500" x2="532.8125" y1="235.5886" y2="235.5886"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="535.9375" y="239.3982">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="620.3125" x2="653.125" y1="235.5886" y2="235.5886"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="500" x2="653.125" y1="269.3726" y2="269.3726"/><ellipse cx="510.4167" cy="280.8309" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="122.9167" x="521.875" y="287.7421">ServletHolder holder()</text><!--MD5=[3508df085fe3ce4fffd1a55d68c42695]
+reverse link JettyRequestHandler to JettyFilter--><path codeLine="6" d="M332.5313,113.2132 C309.8646,128.1403 282.375,146.2549 255.3021,164.0882 " fill="none" id="JettyRequestHandler-backto-JettyFilter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="328.5313,107.109,349.9375,101.734,336.5521,119.2861,328.5313,107.109" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[5d620bd6cfe96bcebdf1fa3491e2156c]
+reverse link JettyRequestHandler to JettyResource--><path codeLine="17" d="M384.8958,123.0049 C384.8958,142.359 384.8958,165.2653 384.8958,185.6924 " fill="none" id="JettyRequestHandler-backto-JettyResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="377.6042,122.7445,384.8958,101.9111,392.1875,122.7445,377.6042,122.7445" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[69dc48de93d62597285c7f92929c61f7]
+reverse link JettyRequestHandler to JettyServlet--><path codeLine="26" d="M428.5313,115.5778 C453.0625,136.307 484.1458,162.5778 511.5,185.6924 " fill="none" id="JettyRequestHandler-backto-JettyServlet" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="423.5625,120.932,412.3542,101.9111,432.9792,109.7861,423.5625,120.932" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[50700a22c93d5a852a9bafdc469e55c5]
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.web.jetty.resources"
+    
+    JettyRequestHandler <|- - JettyFilter
+    abstract class JettyFilter
+    {
+        - -(constructors)- -
+        +JettyFilter(String)
+        - -
+        +EnumSet<DispatcherType> dispatchers()
+        - -(filtering)- -
+        +FilterHolder holder()
+    }
+    
+    JettyRequestHandler <|- - JettyResource
+    abstract class JettyResource
+    {
+        - -(constructors)- -
+        +JettyResource(String)
+        - -
+        +ServletHolder holder()
+    }
+    
+    JettyRequestHandler <|- - JettyServlet
+    abstract class JettyServlet
+    {
+        - -(constructors)- -
+        +JettyServlet(String)
+        - -
+        +ServletHolder holder()
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.web.jetty.resources"
+    
+    JettyRequestHandler <|- - JettyFilter
+    abstract class JettyFilter
+    {
+        - -(constructors)- -
+        +JettyFilter(String)
+        - -
+        +EnumSet<DispatcherType> dispatchers()
+        - -(filtering)- -
+        +FilterHolder holder()
+    }
+    
+    JettyRequestHandler <|- - JettyResource
+    abstract class JettyResource
+    {
+        - -(constructors)- -
+        +JettyResource(String)
+        - -
+        +ServletHolder holder()
+    }
+    
+    JettyRequestHandler <|- - JettyServlet
+    abstract class JettyServlet
+    {
+        - -(constructors)- -
+        +JettyServlet(String)
+        - -
+        +ServletHolder holder()
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

@@ -1,4 +1,4 @@
-# kivakit-core-kernel - messaging &nbsp; ![](../../../documentation/images/envelope-40.png)
+# kivakit-core-kernel messaging &nbsp; ![](../../../documentation/images/envelope-40.png)
 
 ![](../documentation/images/horizontal-line.png)
 

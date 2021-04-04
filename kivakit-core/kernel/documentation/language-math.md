@@ -1,4 +1,4 @@
-# kivakit-core-kernel - language.math &nbsp; ![](../../../documentation/images/math-40.png)
+# kivakit-core-kernel language.math &nbsp; ![](../../../documentation/images/math-40.png)
 
 ![](../documentation/images/horizontal-line.png)
 

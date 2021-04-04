@@ -1,0 +1,42 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.core.kernel.language.threading.conditions"
+    
+    abstract BaseRepeater
+    
+    BaseRepeater <|-- StateMachine
+    class StateMachine<State>
+    {
+        --(constructors)--
+        +StateMachine(State)
+        +StateMachine(State, Receiver<State>)
+        --
+        +boolean is(State)
+        +boolean transition(State from, State to)
+        +State transitionTo(State to)
+        --(thread)--
+        +boolean transitionAndWait(State from, State to, State waitFor, Duration maximumWait)
+        +boolean waitFor(State, Duration maximumWait)
+        +boolean waitFor(Predicate<State> desiredState, Duration maximumWait, Runnable beforeWait)
+    }
+    
+    ValueWatcher --> WakeState : "waits until"
+    class ValueWatcher<Value>
+    {
+        --(constructors)--
+        +ValueWatcher(Watchable<Value>)
+        --
+        +void valueChanged()
+        --(thread)--
+        +WakeState waitFor(Predicate<Value>, Duration maximumWaitTime, Runnable beforeWait)
+        +WakeState waitFor(Predicate<Value>)
+        +WakeState waitFor(Predicate<Value>, Duration maximumWaitTime)
+        +WakeState waitForValue(Value desired, Duration maximumWaitTime, Runnable beforeWait)
+        +WakeState waitForValue(Value, Duration maximumWaitTime)
+        +WakeState waitForValue(Value)
+    }
+    
+@enduml
+

@@ -1,4 +1,4 @@
-# kivakit-data compression &nbsp;&nbsp;![](../../documentation/images/compress-52.png)
+# kivakit-utilities compression &nbsp;&nbsp;![](../../documentation/images/compress-52.png)
 
 This module contains packages for compressing and decompressing data.
 
@@ -6,13 +6,25 @@ This module contains packages for compressing and decompressing data.
 
 ### Index
 
+[**Dependencies**](#dependencies)  
 [**Summary**](#summary)  
 [**Codecs**](#codecs)  
 [**Character**](#character)  
-[**Dependencies**](#dependencies)  
 [**Class Diagrams**](#class-diagrams)  
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
+
+### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
+
+[*Dependency Diagram*](documentation/diagrams/dependencies.svg)
+
+#### Maven Dependency  
+
+    <dependency>
+        <groupId>com.telenav.kivakit</groupId>
+        <artifactId>kivakit-data-compression</artifactId>
+        <version>0.9.0-SNAPSHOT</version>
+    </dependency>
 
 ![](documentation/images/horizontal-line.png)
 
@@ -49,95 +61,55 @@ all three.
 
 [//]: # (end-user-text)
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp;  ![](documentation/images/dependencies-40.png)
-
-[*Dependency Diagram*](documentation/diagrams/dependencies.svg)
-
-    <dependency>
-        <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit-data-compression</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
-    </dependency>
-
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
 
 None
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.data.compression*](documentation/diagrams/com.telenav.kivakit.data.compression.svg)  
 [*com.telenav.kivakit.data.compression.codecs*](documentation/diagrams/com.telenav.kivakit.data.compression.codecs.svg)  
 [*com.telenav.kivakit.data.compression.codecs.huffman*](documentation/diagrams/com.telenav.kivakit.data.compression.codecs.huffman.svg)  
-[*
-com.telenav.kivakit.data.compression.codecs.huffman.character*](documentation/diagrams/com.telenav.kivakit.data.compression.codecs.huffman.character.svg)  
-[*
-com.telenav.kivakit.data.compression.codecs.huffman.list*](documentation/diagrams/com.telenav.kivakit.data.compression.codecs.huffman.list.svg)  
-[*
-com.telenav.kivakit.data.compression.codecs.huffman.string*](documentation/diagrams/com.telenav.kivakit.data.compression.codecs.huffman.string.svg)  
-[*
-com.telenav.kivakit.data.compression.codecs.huffman.tree*](documentation/diagrams/com.telenav.kivakit.data.compression.codecs.huffman.tree.svg)  
-[*com.telenav.kivakit.data.compression.project*](documentation/diagrams/com.telenav.kivakit.data.compression.project.svg)
+[*com.telenav.kivakit.data.compression.codecs.huffman.character*](documentation/diagrams/com.telenav.kivakit.data.compression.codecs.huffman.character.svg)  
+[*com.telenav.kivakit.data.compression.codecs.huffman.list*](documentation/diagrams/com.telenav.kivakit.data.compression.codecs.huffman.list.svg)  
+[*com.telenav.kivakit.data.compression.codecs.huffman.string*](documentation/diagrams/com.telenav.kivakit.data.compression.codecs.huffman.string.svg)  
+[*com.telenav.kivakit.data.compression.codecs.huffman.tree*](documentation/diagrams/com.telenav.kivakit.data.compression.codecs.huffman.tree.svg)  
+[*com.telenav.kivakit.data.compression.project*](documentation/diagrams/com.telenav.kivakit.data.compression.project.svg)  
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
 | Class | Documentation Sections |
 |---|---|
-| [*
-CharacterCodec*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/codecs/CharacterCodec.html) |  |  
-| [*
-CharacterFrequencies*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/codecs/huffman/character/CharacterFrequencies.html) |  |  
-| [*
-Code*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/codecs/huffman/tree/Code.html) |  |  
-| [*
-Codec*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/Codec.html) |  |  
-| [*
-CodedSymbol*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/codecs/huffman/tree/CodedSymbol.html) |  |  
-| [*
-DataCompressionKryoTypes*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/project/DataCompressionKryoTypes.html) |  |  
-| [*
-DataCompressionProject*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/project/DataCompressionProject.html) |  |  
-| [*
-DataCompressionUnitTest*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/project/DataCompressionUnitTest.html) |  |  
-| [*
-FastHuffmanDecoder*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/codecs/huffman/FastHuffmanDecoder.html) |  |  
-| [*
-FastHuffmanDecoder.Table*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/codecs/huffman/FastHuffmanDecoder.Table.html) |  |  
-| [*
-FastHuffmanDecoder.Table.Entry*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/codecs/huffman/FastHuffmanDecoder.Table.Entry.html) |  |  
-| [*
-HuffmanCharacterCodec*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/codecs/huffman/character/HuffmanCharacterCodec.html) |  |  
-| [*
-HuffmanCharacterCodec.Converter*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/codecs/huffman/character/HuffmanCharacterCodec.Converter.html) |  |  
-| [*
-HuffmanCodec*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/codecs/huffman/HuffmanCodec.html) |  |  
-| [*
-HuffmanStringCodec*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/codecs/huffman/string/HuffmanStringCodec.html) |  |  
-| [*
-HuffmanStringCodec.Converter*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/codecs/huffman/string/HuffmanStringCodec.Converter.html) |  |  
-| [*
-HuffmanStringListCodec*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/codecs/huffman/list/HuffmanStringListCodec.html) |  |  
-| [*
-Leaf*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/codecs/huffman/tree/Leaf.html) |  |  
-| [*
-Node*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/codecs/huffman/tree/Node.html) |  |  
-| [*
-StringCodec*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/codecs/StringCodec.html) |  |  
-| [*
-StringFrequencies*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/codecs/huffman/string/StringFrequencies.html) |  |  
-| [*
-StringListCodec*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/codecs/StringListCodec.html) |  |  
-| [*
-SymbolConsumer*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/SymbolConsumer.html) |  |  
-| [*
-SymbolConsumer.Directive*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/SymbolConsumer.Directive.html) |  |  
-| [*
-SymbolProducer*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/SymbolProducer.html) |  |  
-| [*
-Symbols*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/codecs/huffman/tree/Symbols.html) |  |  
-| [*
-Tree*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.utilities.compression/com/telenav/tdk/data/compression/codecs/huffman/tree/Tree.html) |  |  
+| [*CharacterCodec*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/codecs/CharacterCodec.html) |  |  
+| [*CharacterFrequencies*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/codecs/huffman/character/CharacterFrequencies.html) |  |  
+| [*Code*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/codecs/huffman/tree/Code.html) |  |  
+| [*Codec*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/Codec.html) |  |  
+| [*CodedSymbol*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/codecs/huffman/tree/CodedSymbol.html) |  |  
+| [*DataCompressionKryoTypes*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/project/DataCompressionKryoTypes.html) |  |  
+| [*DataCompressionProject*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/project/DataCompressionProject.html) |  |  
+| [*DataCompressionUnitTest*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/project/DataCompressionUnitTest.html) |  |  
+| [*FastHuffmanDecoder*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/codecs/huffman/FastHuffmanDecoder.html) |  |  
+| [*FastHuffmanDecoder.Table*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/codecs/huffman/FastHuffmanDecoder.Table.html) |  |  
+| [*FastHuffmanDecoder.Table.Entry*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/codecs/huffman/FastHuffmanDecoder.Table.Entry.html) |  |  
+| [*HuffmanCharacterCodec*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/codecs/huffman/character/HuffmanCharacterCodec.html) |  |  
+| [*HuffmanCharacterCodec.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/codecs/huffman/character/HuffmanCharacterCodec.Converter.html) |  |  
+| [*HuffmanCodec*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/codecs/huffman/HuffmanCodec.html) |  |  
+| [*HuffmanStringCodec*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/codecs/huffman/string/HuffmanStringCodec.html) |  |  
+| [*HuffmanStringCodec.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/codecs/huffman/string/HuffmanStringCodec.Converter.html) |  |  
+| [*HuffmanStringListCodec*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/codecs/huffman/list/HuffmanStringListCodec.html) |  |  
+| [*Leaf*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/codecs/huffman/tree/Leaf.html) |  |  
+| [*Node*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/codecs/huffman/tree/Node.html) |  |  
+| [*StringCodec*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/codecs/StringCodec.html) |  |  
+| [*StringFrequencies*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/codecs/huffman/string/StringFrequencies.html) |  |  
+| [*StringListCodec*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/codecs/StringListCodec.html) |  |  
+| [*SymbolConsumer*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/SymbolConsumer.html) |  |  
+| [*SymbolConsumer.Directive*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/SymbolConsumer.Directive.html) |  |  
+| [*SymbolProducer*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/SymbolProducer.html) |  |  
+| [*Symbols*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/codecs/huffman/tree/Symbols.html) |  |  
+| [*Tree*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/codecs/huffman/tree/Tree.html) |  |  
 
 [//]: # (start-user-text)
+
 
 
 [//]: # (end-user-text)
@@ -146,6 +118,7 @@ Tree*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.u
 
 ![](documentation/images/horizontal-line.png)
 
-<sub>This documentation was generated by Lexakai on 2021.04.01</sub>    
-<sub>UML diagrams courtesy of PlantUML (http://plantuml.com), distributed unmodified under Apache License, Version 2.0.</sub>
+<sub>Copyright 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.04</sub>    
+<sub>UML diagrams courtesy of [PlantUML](http://plantuml.com)</sub>
 

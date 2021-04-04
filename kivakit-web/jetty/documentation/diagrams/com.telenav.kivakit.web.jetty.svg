@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="453.125px" preserveAspectRatio="none" style="width:801px;height:453px;background:#333333;" version="1.1" viewBox="0 0 801 453" width="801.0417px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="311.4583" x="237.5" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="288.5417" x="248.9583" y="30.5583">com.telenav.kivakit.web.jetty</text><!--MD5=[762aa3d0df6a9d47bd8e105afbd066b5]
+class BaseRepeater--><rect codeLine="6" fill="#282828" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="79.1667" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="79.1667" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="79.1667" y="76.7578"/><rect codeLine="6" fill="none" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="79.1667" y="53.7028"/><ellipse cx="93.75" cy="69.397" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M93.8639,66.099 L93.0155,69.8283 L94.7184,69.8283 Z M92.7653,64.4511 L94.9687,64.4511 L97.4284,73.5636 L95.6278,73.5636 L95.0663,71.3114 L92.6554,71.3114 L92.1061,73.5636 L90.3056,73.5636 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="86.4583" x="110.4167" y="74.1211">BaseRepeater</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="80.2083" x2="202.0833" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="80.2083" x2="202.0833" y1="93.4245" y2="93.4245"/><!--MD5=[7c5c88a606935469d5f89b0b5794816c]
+class Named--><rect codeLine="8" fill="#282828" height="48.055" id="Named" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="82.2917" x="363.5417" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="82.2917" x="363.5417" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="82.2917" x="363.5417" y="76.7578"/><rect codeLine="8" fill="none" height="48.055" id="Named" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="82.2917" x="363.5417" y="53.7028"/><ellipse cx="378.125" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M375.0081,66.5588 L375.0081,64.9719 L380.4342,64.9719 L380.4342,66.5588 L378.6214,66.5588 L378.6214,72.4976 L380.4342,72.4976 L380.4342,74.0845 L375.0081,74.0845 L375.0081,72.4976 L376.8209,72.4976 L376.8209,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="44.7917" x="394.7917" y="74.1211">Named</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="364.5833" x2="444.7917" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="364.5833" x2="444.7917" y1="93.4245" y2="93.4245"/><!--MD5=[4b30e0d197a41d870afaea2a2b763a0c]
+class JettyRequestHandler--><rect codeLine="11" fill="#282828" height="146.7794" id="JettyRequestHandler" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="186.4583" x="311.4583" y="231.8278"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="186.4583" x="311.4583" y="231.8278"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="186.4583" x="311.4583" y="254.8828"/><rect codeLine="11" fill="none" height="146.7794" id="JettyRequestHandler" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="186.4583" x="311.4583" y="231.8278"/><ellipse cx="333.5417" cy="247.522" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M333.6556,244.224 L332.8072,247.9533 L334.5101,247.9533 Z M332.557,242.5761 L334.7603,242.5761 L337.2201,251.6886 L335.4195,251.6886 L334.858,249.4364 L332.4471,249.4364 L331.8978,251.6886 L330.0972,251.6886 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="132.2917" x="351.875" y="252.2461">JettyRequestHandler</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="312.5" x2="496.875" y1="263.2161" y2="263.2161"/><ellipse cx="322.9167" cy="298.586" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="154.1667" x="334.375" y="305.4972">JettyRequestHandler(String)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="312.5" x2="360.9375" y1="281.4219" y2="281.4219"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="364.0625" y="285.2315">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="448.4375" x2="496.875" y1="281.4219" y2="281.4219"/><polygon fill="#FFFF44" points="322.9167,337.0341,327.0833,341.2008,322.9167,345.3674,318.75,341.2008" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="69.7917" x="334.375" y="349.1536">String path()</text><polygon fill="#FFFF44" points="322.9167,356.779,327.0833,360.9456,322.9167,365.1123,318.75,360.9456" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="121.875" x="334.375" y="368.8985">void path(String path)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="312.5" x2="384.8958" y1="325.0783" y2="325.0783"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="33.3333" x="388.0208" y="328.8879">(path)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="424.4792" x2="496.875" y1="325.0783" y2="325.0783"/><!--MD5=[6ce0b5461d7d7fbc1773089753659010]
+class JettyServer--><rect codeLine="21" fill="#282828" height="281.9153" id="JettyServer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="267.7083" x="7.2917" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="267.7083" x="7.2917" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="267.7083" x="7.2917" y="187.1745"/><rect codeLine="21" fill="none" height="281.9153" id="JettyServer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="267.7083" x="7.2917" y="164.1195"/><ellipse cx="98.9583" cy="179.8136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M100.8687,184.2387 Q100.4415,184.4584 99.9715,184.5683 Q99.5015,184.6781 98.9827,184.6781 Q97.1395,184.6781 96.169,183.4635 Q95.1986,182.2489 95.1986,179.954 Q95.1986,177.653 96.169,176.4384 Q97.1395,175.2238 98.9827,175.2238 Q99.5015,175.2238 99.9776,175.3337 Q100.4537,175.4435 100.8687,175.6632 L100.8687,177.6652 Q100.4049,177.238 99.9685,177.0396 Q99.5321,176.8412 99.0682,176.8412 Q98.0794,176.8412 97.5759,177.6255 Q97.0723,178.4098 97.0723,179.954 Q97.0723,181.4921 97.5759,182.2764 Q98.0794,183.0607 99.0682,183.0607 Q99.5321,183.0607 99.9685,182.8623 Q100.4049,182.664 100.8687,182.2367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="69.7917" x="121.875" y="184.5378">JettyServer</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="8.3333" x2="273.9583" y1="195.5078" y2="195.5078"/><ellipse cx="18.75" cy="230.8777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="67.7083" x="30.2083" y="237.7889">JettyServer()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="97.3958" y1="213.7136" y2="213.7136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="100.5208" y="217.5232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="184.8958" x2="273.9583" y1="213.7136" y2="213.7136"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="273.9583" y1="247.4976" y2="247.4976"/><ellipse cx="18.75" cy="258.9559" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="135.4167" x="30.2083" y="265.8671">void configureLogging()</text><ellipse cx="18.75" cy="302.6123" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="220.8333" x="30.2083" y="309.5235">JettyServer add(String path, JettyServlet)</text><ellipse cx="18.75" cy="322.3572" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="211.4583" x="30.2083" y="329.2684">JettyServer add(String path, JettyFilter)</text><ellipse cx="18.75" cy="342.1021" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="235.4167" x="30.2083" y="349.0133">JettyServer add(String path, JettyResource)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="106.7708" y1="285.4482" y2="285.4482"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="109.8958" y="289.2578">(collection)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="175.5208" x2="273.9583" y1="285.4482" y2="285.4482"/><ellipse cx="18.75" cy="385.7585" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="61.4583" x="30.2083" y="392.6697">void start()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="111.4583" y1="368.5944" y2="368.5944"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="114.5833" y="372.404">(lifecycle)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="170.8333" x2="273.9583" y1="368.5944" y2="368.5944"/><ellipse cx="18.75" cy="429.4149" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="136.4583" x="30.2083" y="436.3261">JettyServer port(int port)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="111.4583" y1="412.2508" y2="412.2508"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="114.5833" y="416.0604">(network)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="170.8333" x2="273.9583" y1="412.2508" y2="412.2508"/><!--MD5=[1c1e497a52719d36c77368d67b52be7b]
+class UnitTest--><rect fill="#282828" height="48.055" id="UnitTest" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="92.7083" x="617.7083" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="92.7083" x="617.7083" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="92.7083" x="617.7083" y="76.7578"/><rect fill="none" height="48.055" id="UnitTest" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="92.7083" x="617.7083" y="53.7028"/><ellipse cx="632.2917" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M634.2021,73.822 Q633.7748,74.0417 633.3049,74.1516 Q632.8349,74.2615 632.3161,74.2615 Q630.4728,74.2615 629.5024,73.0469 Q628.5319,71.8323 628.5319,69.5374 Q628.5319,67.2363 629.5024,66.0217 Q630.4728,64.8071 632.3161,64.8071 Q632.8349,64.8071 633.311,64.917 Q633.787,65.0269 634.2021,65.2466 L634.2021,67.2485 Q633.7382,66.8213 633.3018,66.6229 Q632.8654,66.4246 632.4015,66.4246 Q631.4128,66.4246 630.9092,67.2089 Q630.4057,67.9932 630.4057,69.5374 Q630.4057,71.0754 630.9092,71.8597 Q631.4128,72.644 632.4015,72.644 Q632.8654,72.644 633.3018,72.4457 Q633.7382,72.2473 634.2021,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="55.2083" x="648.9583" y="74.1211">UnitTest</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="618.75" x2="709.375" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="618.75" x2="709.375" y1="93.4245" y2="93.4245"/><!--MD5=[67af47df5c483ca532d9e65a00083a27]
+class WebUnitTest--><rect codeLine="38" fill="#282828" height="83.3781" id="WebUnitTest" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="259.375" x="534.375" y="263.5986"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="259.375" x="534.375" y="263.5986"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="259.375" x="534.375" y="286.6536"/><rect codeLine="38" fill="none" height="83.3781" id="WebUnitTest" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="259.375" x="534.375" y="263.5986"/><ellipse cx="615.625" cy="279.2928" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M617.5354,283.7179 Q617.1082,283.9376 616.6382,284.0474 Q616.1682,284.1573 615.6494,284.1573 Q613.8062,284.1573 612.8357,282.9427 Q611.8652,281.7281 611.8652,279.4332 Q611.8652,277.1322 612.8357,275.9176 Q613.8062,274.703 615.6494,274.703 Q616.1682,274.703 616.6443,274.8128 Q617.1204,274.9227 617.5354,275.1424 L617.5354,277.1444 Q617.0715,276.7171 616.6351,276.5188 Q616.1987,276.3204 615.7349,276.3204 Q614.7461,276.3204 614.2426,277.1047 Q613.739,277.889 613.739,279.4332 Q613.739,280.9713 614.2426,281.7556 Q614.7461,282.5399 615.7349,282.5399 Q616.1987,282.5399 616.6351,282.3415 Q617.0715,282.1431 617.5354,281.7159 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="82.2917" x="638.5417" y="284.0169">WebUnitTest</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="535.4167" x2="792.7083" y1="294.987" y2="294.987"/><polygon fill="#FFFF44" points="545.8333,325.1485,550,329.3152,545.8333,333.4819,541.6667,329.3152" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="227.0833" x="557.2917" y="337.2681">boolean startWebServer(int portNumber)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="535.4167" x2="634.375" y1="313.1927" y2="313.1927"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="637.5" y="317.0024">(lifecycle)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="693.75" x2="792.7083" y1="313.1927" y2="313.1927"/><!--MD5=[6301ede6486b804ccdb762d424deb548]
+reverse link Named to JettyRequestHandler--><path codeLine="10" d="M404.6875,123.2132 C404.6875,154.1403 404.6875,196.057 404.6875,231.7549 " fill="none" id="Named-backto-JettyRequestHandler" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="397.3958,122.8174,404.6875,101.984,411.9792,122.8174,397.3958,122.8174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[6bde0af7ae5da9b1d647f607fe136be6]
+reverse link BaseRepeater to JettyServer--><path codeLine="20" d="M141.1458,123.1507 C141.1458,135.4007 141.1458,149.3903 141.1458,164.0361 " fill="none" id="BaseRepeater-backto-JettyServer" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="133.8542,122.8174,141.1458,101.984,148.4375,122.8174,133.8542,122.8174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[1d4e71bfbbf6fe802f8d5cb9f2c776b4]
+reverse link UnitTest to WebUnitTest--><path codeLine="37" d="M664.0625,122.9111 C664.0625,163.6195 664.0625,223.5465 664.0625,263.2028 " fill="none" id="UnitTest-backto-WebUnitTest" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="656.7708,122.8174,664.0625,101.984,671.3542,122.8174,656.7708,122.8174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[d016e6d80d45bf6808ad1d3f41ccfe5a]
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.web.jetty"
+    
+    abstract BaseRepeater
+    
+    interface Named
+    
+    Named <|- - JettyRequestHandler
+    abstract class JettyRequestHandler
+    {
+        - -(constructors)- -
+        +JettyRequestHandler(String)
+        - -(path)- -
+        #String path()
+        #void path(String path)
+    }
+    
+    BaseRepeater <|- - JettyServer
+    class JettyServer
+    {
+        - -(constructors)- -
+        +JettyServer()
+        - -
+        +void configureLogging()
+        - -(collection)- -
+        +JettyServer add(String path, JettyServlet)
+        +JettyServer add(String path, JettyFilter)
+        +JettyServer add(String path, JettyResource)
+        - -(lifecycle)- -
+        +void start()
+        - -(network)- -
+        +JettyServer port(int port)
+    }
+    
+    UnitTest <|- - WebUnitTest
+    class WebUnitTest
+    {
+        - -(lifecycle)- -
+        #boolean startWebServer(int portNumber)
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.web.jetty"
+    
+    abstract BaseRepeater
+    
+    interface Named
+    
+    Named <|- - JettyRequestHandler
+    abstract class JettyRequestHandler
+    {
+        - -(constructors)- -
+        +JettyRequestHandler(String)
+        - -(path)- -
+        #String path()
+        #void path(String path)
+    }
+    
+    BaseRepeater <|- - JettyServer
+    class JettyServer
+    {
+        - -(constructors)- -
+        +JettyServer()
+        - -
+        +void configureLogging()
+        - -(collection)- -
+        +JettyServer add(String path, JettyServlet)
+        +JettyServer add(String path, JettyFilter)
+        +JettyServer add(String path, JettyResource)
+        - -(lifecycle)- -
+        +void start()
+        - -(network)- -
+        +JettyServer port(int port)
+    }
+    
+    UnitTest <|- - WebUnitTest
+    class WebUnitTest
+    {
+        - -(lifecycle)- -
+        #boolean startWebServer(int portNumber)
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

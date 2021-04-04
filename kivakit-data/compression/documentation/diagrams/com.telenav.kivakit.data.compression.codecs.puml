@@ -1,0 +1,29 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.data.compression.codecs"
+    
+    interface StringCodec
+    StringCodec <|-- CharacterCodec
+    interface CharacterCodec
+    {
+    }
+    
+    interface Codec<String>
+    Codec <|-- StringCodec
+    interface StringCodec
+    {
+        --
+        +void train(Iterable<String> strings)
+        +void train(String)
+    }
+    
+    interface StringCodec
+    StringCodec <|-- StringListCodec
+    interface StringListCodec
+    {
+    }
+    
+@enduml
+

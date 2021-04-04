@@ -1,0 +1,17 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.web.wicket.project"
+    
+    Project <|-- WebWicketProject
+    class WebWicketProject
+    {
+        --(constructors)--
+        #WebWicketProject()
+        --
+        +WebWicketProject get()
+    }
+    
+@enduml
+

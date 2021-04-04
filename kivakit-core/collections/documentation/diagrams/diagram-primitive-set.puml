@@ -1,0 +1,45 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "Primitive Sets"
+    
+    interface LongCollection
+    interface LongIterable
+    
+    PrimitiveSet <|-- LongSet
+    LongCollection <|-- LongSet
+    class LongSet
+    {
+        --(constructors)--
+        #LongSet()
+        +LongSet(String)
+        --(primitive)--
+        +LongIterator values()
+    }
+    
+    PrimitiveMap <|-- PrimitiveSet
+    abstract class PrimitiveSet
+    {
+        --(constructors)--
+        #PrimitiveSet()
+        #PrimitiveSet(String)
+        --(collection)--
+        +boolean add(long next)
+        +boolean contains(long next)
+    }
+    
+    PrimitiveSet <|-- SplitLongSet
+    LongIterable <|-- SplitLongSet
+    class SplitLongSet
+    {
+        --(constructors)--
+        #SplitLongSet()
+        +SplitLongSet(String)
+        --(collection)--
+        +boolean remove(long value)
+        +LongIterator values()
+    }
+    
+@enduml
+

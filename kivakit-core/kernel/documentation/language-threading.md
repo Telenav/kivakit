@@ -1,4 +1,4 @@
-# kivakit-core-kernel - language.threading &nbsp; ![](../../../documentation/images/chips-48.png)
+# kivakit-core-kernel language.threading &nbsp; ![](../../../documentation/images/chips-48.png)
 
 ![](../documentation/images/horizontal-line.png)
 

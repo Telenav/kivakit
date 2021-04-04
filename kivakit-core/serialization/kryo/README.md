@@ -1,4 +1,4 @@
-# kivakit-serialization-kryo &nbsp;&nbsp;![](../../../documentation/images/ice-48.png)
+# kivakit-serialization kryo &nbsp;&nbsp;![](../../documentation/images/ice-48.png)
 
 This module provides integration of the Kryo serialization framework with KivaKit serialization.
 
@@ -7,59 +7,58 @@ This module provides integration of the Kryo serialization framework with KivaKi
 ### Index
 
 [**Dependencies**](#dependencies)  
+
 [**Class Diagrams**](#class-diagrams)  
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
+
+### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
+
+[*Dependency Diagram*](documentation/diagrams/dependencies.svg)
+
+#### Maven Dependency  
+
+    <dependency>
+        <groupId>com.telenav.kivakit</groupId>
+        <artifactId>kivakit-core-serialization-kryo</artifactId>
+        <version>0.9.0-SNAPSHOT</version>
+    </dependency>
 
 ![](documentation/images/horizontal-line.png)
 
 [//]: # (start-user-text)
 
 
+
 [//]: # (end-user-text)
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp;  ![](documentation/images/dependencies-40.png)
+### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
 
-[*Dependency Diagram*](documentation/diagrams/dependencies.svg)
+[*diagram-serialization-kryo*](documentation/diagrams/diagram-serialization-kryo.svg)  
 
-    <dependency>
-        <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit-serialization-kryo</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
-    </dependency>
+### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+[*com.telenav.kivakit.core.serialization.kryo*](documentation/diagrams/com.telenav.kivakit.core.serialization.kryo.svg)  
+[*com.telenav.kivakit.core.serialization.kryo.project*](documentation/diagrams/com.telenav.kivakit.core.serialization.kryo.project.svg)  
 
-[*diagram-serialization-kryo*](documentation/diagrams/diagram-serialization-kryo.svg)
-
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp;![](documentation/images/box-40.png)
-
-[*com.telenav.kivakit.serialization.kryo*](documentation/diagrams/com.telenav.kivakit.serialization.kryo.svg)  
-[*com.telenav.kivakit.serialization.kryo.project*](documentation/diagrams/com.telenav.kivakit.serialization.kryo.project.svg)
-
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
 | Class | Documentation Sections |
 |---|---|
-| [*
-CoreKernelKryoTypes*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.serialization.kryo/com/telenav/tdk/serialization/kryo/CoreKernelKryoTypes.html) |  |  
-| [*
-DebugKryo*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.serialization.kryo/com/telenav/tdk/serialization/kryo/DebugKryo.html) |  |  
-| [*
-KryoSerializationSession*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.serialization.kryo/com/telenav/tdk/serialization/kryo/KryoSerializationSession.html) |  |  
-| [*
-KryoSerializer*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.serialization.kryo/com/telenav/tdk/serialization/kryo/KryoSerializer.html) |  |  
-| [*
-KryoTypeEntry*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.serialization.kryo/com/telenav/tdk/serialization/kryo/KryoTypeEntry.html) |  |  
-| [*
-KryoTypes*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.serialization.kryo/com/telenav/tdk/serialization/kryo/KryoTypes.html) | Kryo Serialization Identifiers |  
+| [*CoreKernelKryoTypes*](https://telenav.github.io/kivakit/javadoc/kivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/CoreKernelKryoTypes.html) |  |  
+| [*DebugKryo*](https://telenav.github.io/kivakit/javadoc/kivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/DebugKryo.html) |  |  
+| [*KryoSerializationSession*](https://telenav.github.io/kivakit/javadoc/kivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/KryoSerializationSession.html) |  |  
+| [*KryoSerializer*](https://telenav.github.io/kivakit/javadoc/kivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/KryoSerializer.html) |  |  
+| [*KryoTypeEntry*](https://telenav.github.io/kivakit/javadoc/kivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/KryoTypeEntry.html) |  |  
+| [*KryoTypes*](https://telenav.github.io/kivakit/javadoc/kivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/KryoTypes.html) | Kryo Serialization Identifiers |  
 | | Serialization |  
 | | Backwards Compatibility |  
 | | Important Note |  
-| [*
-SerializationKryoProject*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.serialization.kryo/com/telenav/tdk/serialization/kryo/project/SerializationKryoProject.html) |  |  
+| [*KryoUnitTest*](https://telenav.github.io/kivakit/javadoc/kivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/KryoUnitTest.html) |  |  
+| [*SerializationKryoProject*](https://telenav.github.io/kivakit/javadoc/kivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/project/SerializationKryoProject.html) |  |  
 
 [//]: # (start-user-text)
+
 
 
 [//]: # (end-user-text)
@@ -68,6 +67,7 @@ SerializationKryoProject*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/c
 
 ![](documentation/images/horizontal-line.png)
 
-<sub>This documentation was generated by Lexakai on 2021.04.01</sub>    
-<sub>UML diagrams courtesy of PlantUML (http://plantuml.com), distributed unmodified under Apache License, Version 2.0.</sub>
+<sub>Copyright 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.04</sub>    
+<sub>UML diagrams courtesy of [PlantUML](http://plantuml.com)</sub>
 

@@ -1,0 +1,15 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.web.wicket.components.header"
+    
+    Panel <|-- HeaderPanel
+    class HeaderPanel
+    {
+        --(constructors)--
+        +HeaderPanel(String, Version, String)
+    }
+    
+@enduml
+

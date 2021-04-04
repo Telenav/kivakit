@@ -59,7 +59,7 @@ public class LogServiceLoader
             if (logs.isEmpty())
             {
                 LOGGER.announce(AsciiArt.box("Logging can be configured with KIVAKIT_LOG and KIVAKIT_LOG_LEVEL environment variables.\n"
-                        + "See https://spaces.telenav.com:8443/x/OyZECw for details."));
+                        + "See https://tinyurl.com/mhc3ss5s for details."));
             }
         }
         return logs;

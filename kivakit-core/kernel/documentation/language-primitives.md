@@ -1,4 +1,4 @@
-# kivakit-core-kernel - language.primitives &nbsp; ![](../../../documentation/images/bits-40.png)
+# kivakit-core-kernel language.primitives &nbsp; ![](../../../documentation/images/bits-40.png)
 
 ![](../documentation/images/horizontal-line.png)
 

@@ -1,4 +1,4 @@
-# kivakit-core-kernel - language.vm &nbsp; ![](../../../documentation/images/jvm-56.png)
+# kivakit-core-kernel language.vm &nbsp; ![](../../../documentation/images/jvm-56.png)
 
 ![](../documentation/images/horizontal-line.png)
 

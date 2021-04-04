@@ -1,4 +1,4 @@
-# kivakit-core-network-core &nbsp;&nbsp;![](../../../documentation/images/nucleus-40.png)
+# kivakit-core-network core &nbsp;&nbsp;![](../../../documentation/images/nucleus-40.png)
 
 This module provides classes that enhance the core networking features of the JDK. Other projects in  
 kivakit-core-network extend this base functionality.
@@ -7,14 +7,26 @@ kivakit-core-network extend this base functionality.
 
 ### Index
 
+[**Dependencies**](#dependencies)  
 [**Summary**](#summary)  
 [**Hosts**](#hosts)  
 [**Network Resources**](#network-resources)  
 [**Email Addresses**](#email-addresses)  
-[**Dependencies**](#dependencies)  
 [**Class Diagrams**](#class-diagrams)  
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
+
+### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
+
+[*Dependency Diagram*](documentation/diagrams/dependencies.svg)
+
+#### Maven Dependency  
+
+    <dependency>
+        <groupId>com.telenav.kivakit</groupId>
+        <artifactId>kivakit-core-network-core</artifactId>
+        <version>0.9.0-SNAPSHOT</version>
+    </dependency>
 
 ![](documentation/images/horizontal-line.png)
 
@@ -82,72 +94,44 @@ project [*kivakit-network-core-email*](../email/README.md) makes use of this cla
 
 [//]: # (end-user-text)
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp;  ![](documentation/images/dependencies-40.png)
-
-[*Dependency Diagram*](documentation/diagrams/dependencies.svg)
-
-    <dependency>
-        <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit-core-network-core</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
-    </dependency>
-
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
 
 [*Hosts, Ports and Protocols*](documentation/diagrams/diagram-port.svg)  
-[*Network Locations*](documentation/diagrams/diagram-network-location.svg)
+[*Network Locations*](documentation/diagrams/diagram-network-location.svg)  
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.core.network.core*](documentation/diagrams/com.telenav.kivakit.core.network.core.svg)  
 [*com.telenav.kivakit.core.network.core.cluster*](documentation/diagrams/com.telenav.kivakit.core.network.core.cluster.svg)  
-[*com.telenav.kivakit.core.network.core.project*](documentation/diagrams/com.telenav.kivakit.core.network.core.project.svg)
+[*com.telenav.kivakit.core.network.core.project*](documentation/diagrams/com.telenav.kivakit.core.network.core.project.svg)  
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
 | Class | Documentation Sections |
 |---|---|
-| [*
-BaseNetworkResource*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.core/com/telenav/kivakit/core/network/core/BaseNetworkResource.html) |  |  
-| [*
-ClusterIdentifier*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.core/com/telenav/kivakit/core/network/core/cluster/ClusterIdentifier.html) |  |  
-| [*
-CoreNetworkCoreProject*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.core/com/telenav/kivakit/core/network/core/project/CoreNetworkCoreProject.html) |  |  
-| [*
-EmailAddress*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.core/com/telenav/kivakit/core/network/core/EmailAddress.html) |  |  
-| [*
-Host*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.core/com/telenav/kivakit/core/network/core/Host.html) |  |  
-| [*
-Host.Converter*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.core/com/telenav/kivakit/core/network/core/Host.Converter.html) |  |  
-| [*
-LocalHost*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.core/com/telenav/kivakit/core/network/core/LocalHost.html) |  |  
-| [*
-Loopback*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.core/com/telenav/kivakit/core/network/core/Loopback.html) |  |  
-| [*
-NetworkAccessConstraints*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.core/com/telenav/kivakit/core/network/core/NetworkAccessConstraints.html) |  |  
-| [*
-NetworkLocation*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.core/com/telenav/kivakit/core/network/core/NetworkLocation.html) |  |  
-| [*
-NetworkLocation.Converter*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.core/com/telenav/kivakit/core/network/core/NetworkLocation.Converter.html) |  |  
-| [*
-NetworkPath*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.core/com/telenav/kivakit/core/network/core/NetworkPath.html) | Path Parsing Methods |  
+| [*BaseNetworkResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/BaseNetworkResource.html) |  |  
+| [*ClusterIdentifier*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/cluster/ClusterIdentifier.html) |  |  
+| [*CoreNetworkCoreProject*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/project/CoreNetworkCoreProject.html) |  |  
+| [*EmailAddress*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/EmailAddress.html) |  |  
+| [*Host*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/Host.html) |  |  
+| [*Host.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/Host.Converter.html) |  |  
+| [*LocalHost*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/LocalHost.html) |  |  
+| [*Loopback*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/Loopback.html) |  |  
+| [*NetworkAccessConstraints*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/NetworkAccessConstraints.html) |  |  
+| [*NetworkLocation*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/NetworkLocation.html) |  |  
+| [*NetworkLocation.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/NetworkLocation.Converter.html) |  |  
+| [*NetworkPath*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/NetworkPath.html) | Path Parsing Methods |  
 | | Path Factory Methods |  
-| [*
-NetworkPath.Converter*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.core/com/telenav/kivakit/core/network/core/NetworkPath.Converter.html) |  |  
-| [*
-NetworkResource*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.core/com/telenav/kivakit/core/network/core/NetworkResource.html) |  |  
-| [*
-Port*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.core/com/telenav/kivakit/core/network/core/Port.html) |  |  
-| [*
-Port.Converter*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.core/com/telenav/kivakit/core/network/core/Port.Converter.html) |  |  
-| [*
-Port.ListConverter*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.core/com/telenav/kivakit/core/network/core/Port.ListConverter.html) |  |  
-| [*
-Protocol*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.core/com/telenav/kivakit/core/network/core/Protocol.html) |  |  
-| [*
-QueryParameters*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.kivakit.core.network.core/com/telenav/kivakit/core/network/core/QueryParameters.html) |  |  
+| [*NetworkPath.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/NetworkPath.Converter.html) |  |  
+| [*NetworkResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/NetworkResource.html) |  |  
+| [*Port*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/Port.html) |  |  
+| [*Port.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/Port.Converter.html) |  |  
+| [*Port.ListConverter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/Port.ListConverter.html) |  |  
+| [*Protocol*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/Protocol.html) |  |  
+| [*QueryParameters*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/QueryParameters.html) |  |  
 
 [//]: # (start-user-text)
+
 
 
 [//]: # (end-user-text)
@@ -156,7 +140,7 @@ QueryParameters*](http://telenav-kivakit.mypna.com/0.9.0-SNAPSHOT/apidocs/com.te
 
 ![](documentation/images/horizontal-line.png)
 
-<sub>Copyright 2011-2021 [Telenav](http://telenav.com), Inc. Licensed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by Lexakai on 2021.04.01</sub>    
-<sub>UML diagrams courtesy of PlantUML (http://plantuml.com)</sub>
+<sub>Copyright 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.04</sub>    
+<sub>UML diagrams courtesy of [PlantUML](http://plantuml.com)</sub>
 

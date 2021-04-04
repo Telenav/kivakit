@@ -1,0 +1,48 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.data.formats.library.text"
+    
+    abstract BaseObjectReader
+    
+    interface Named
+    interface PropertyValueSource
+    
+    Named <|-- TextColumn
+    class TextColumn
+    {
+        --(constructors)--
+        +TextColumn(String, int)
+    }
+    
+    StringList <|-- TextLine
+    PropertyValueSource <|-- TextLine
+    class TextLine
+    {
+        --
+        +String get(TextColumn)
+        --(conversion)--
+        +T as(TextColumn, Converter<String,T>)
+        +T asObject(Class<T> type)
+    }
+    
+    BaseObjectReader <|-- TextReader
+    TextReader --> TextLine : "reads"
+    TextReader "1" o-- "*" TextColumn
+    TextReader o-- LineNumberReader
+    TextReader o-- Pattern
+    class TextReader
+    {
+        --(constructors)--
+        +TextReader(Reader, List<TextColumn>, Pattern)
+        --
+        +void skipLines(int numberOfLinesToSkip)
+        --(naming)--
+        +TextColumn columnForName(String name)
+        --(status)--
+        #void onPatternMatchFailure()
+    }
+    
+@enduml
+

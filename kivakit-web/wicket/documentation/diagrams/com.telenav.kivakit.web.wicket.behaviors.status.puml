@@ -1,0 +1,16 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.web.wicket.behaviors.status"
+    
+    AttributeModifier <|-- MessageColor
+    class MessageColor
+    {
+        --(constructors)--
+        +MessageColor(IModel<Message.Status>)
+        +MessageColor(String, IModel<Message.Status>)
+    }
+    
+@enduml
+

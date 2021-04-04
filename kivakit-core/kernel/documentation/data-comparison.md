@@ -1,4 +1,4 @@
-# kivakit-core-kernel - data.comparison &nbsp; ![](../../../documentation/images/bits-40.png)
+# kivakit-core-kernel data.comparison &nbsp; ![](../../../documentation/images/bits-40.png)
 
 ### Package &nbsp; ![](../../../documentation/images/box-32.png)
 

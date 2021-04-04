@@ -1,0 +1,17 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.core.security.authentication.converters"
+    
+    abstract BaseStringConverter
+    
+    BaseStringConverter <|-- PlainTextPasswordConverter
+    class PlainTextPasswordConverter
+    {
+        --(constructors)--
+        +PlainTextPasswordConverter(Listener)
+    }
+    
+@enduml
+

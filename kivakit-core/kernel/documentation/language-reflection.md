@@ -1,4 +1,4 @@
-# kivakit-core-kernel - language.reflection &nbsp; ![](../../../documentation/images/mirror-40.png)
+# kivakit-core-kernel language.reflection &nbsp; ![](../../../documentation/images/mirror-40.png)
 
 ![](../documentation/images/horizontal-line.png)
 
