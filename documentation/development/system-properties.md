@@ -1,7 +1,6 @@
-KivaKit - System Properties
-=======================
+# KivaKit - System Properties   ![](../images/gears-48.png)
 
-### System Properties   ![](../images/gears-48.png)
+### Summary
 
 One or more system properties can be defined in Java by passing switch(es) of the form **\-D<key>=<value>** to the JVM.
 
