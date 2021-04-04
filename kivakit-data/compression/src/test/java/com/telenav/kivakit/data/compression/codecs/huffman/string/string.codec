@@ -1,0 +1,86 @@
+###############################################################
+#  [HuffmanCodec size = 41, bits = 9]:                        #
+#      1. 101100000 -> 'man_made' (4,318)                     #
+#      2. 101100001 -> 'source:maxspeed' (4,643)              #
+#      3. 110000010 -> 'foot' (4,705)                         #
+#      4. 110000011 -> 'type' (5,318)                         #
+#      5. 01111000 -> 'addr:postcode' (6,456)                 #
+#      6. 01111001 -> 'bicycle' (6,649)                       #
+#      7. 01111010 -> 'addr:state' (6,883)                    #
+#      8. 01111011 -> 'barrier' (7,000)                       #
+#      9. 10010100 -> 'addr:housenumber' (7,226)              #
+#      10. 10010101 -> 'addr:street' (7,428)                  #
+#      11. 10011000 -> 'footway' (7,540)                      #
+#      12. 10011001 -> 'name_1' (7,886)                       #
+#      13. 10011010 -> 'amenity' (8,085)                      #
+#      14. 10011011 -> 'tiger:name_direction_prefix' (8,213)  #
+#      15. 10110001 -> 'landuse' (9,050)                      #
+#      16. 11000000 -> 'maxspeed' (9,640)                     #
+#      17. 11000011 -> 'gnis:county_id' (10,909)              #
+#      18. 11000010 -> 'gnis:state_id' (10,909)               #
+#      19. 0111000 -> 'tiger:name_base_1' (11,673)            #
+#      20. 0111001 -> 'lanes' (12,613)                        #
+#      21. 1001000 -> 'gnis:created' (14,161)                 #
+#      22. 1001001 -> 'tiger:name_direction_suffix' (14,343)  #
+#      23. 1001011 -> 'gnis:feature_id' (15,079)              #
+#      24. 1011001 -> 'natural' (18,376)                      #
+#      25. 011101 -> 'oneway' (26,766)                        #
+#      26. 011111 -> 'access' (27,779)                        #
+#      27. 100111 -> 'surface' (32,114)                       #
+#      28. 101101 -> 'source' (39,192)                        #
+#      29. 110001 -> 'service' (44,077)                       #
+#      30. 10000 -> 'power' (55,186)                          #
+#      31. 10001 -> 'tiger:name_type' (55,396)                #
+#      32. 10111 -> 'tiger:name_base' (77,758)                #
+#      33. 11001 -> 'tiger:upload_uuid' (87,456)              #
+#      34. 0000 -> 'tiger:separated' (87,746)                 #
+#      35. 0001 -> 'tiger:tlid' (98,259)                      #
+#      36. 0110 -> 'tiger:source' (98,293)                    #
+#      37. 1010 -> 'name' (127,650)                           #
+#      38. 1101 -> 'tiger:reviewed' (182,242)                 #
+#      39. 001 -> 'tiger:cfcc' (193,074)                      #
+#      40. 010 -> 'tiger:county' (193,334)                    #
+#      41. 111 -> 'highway' (359,509)                         #
+###############################################################
+
+access = 27,779
+addr:housenumber = 7,226
+addr:postcode = 6,456
+addr:state = 6,883
+addr:street = 7,428
+amenity = 8,085
+barrier = 7,000
+bicycle = 6,649
+foot = 4,705
+footway = 7,540
+gnis:county_id = 10,909
+gnis:created = 14,161
+gnis:feature_id = 15,079
+gnis:state_id = 10,909
+highway = 359,509
+landuse = 9,050
+lanes = 12,613
+man_made = 4,318
+maxspeed = 9,640
+name = 127,650
+name_1 = 7,886
+natural = 18,376
+oneway = 26,766
+power = 55,186
+service = 44,077
+source = 39,192
+source:maxspeed = 4,643
+surface = 32,114
+tiger:cfcc = 193,074
+tiger:county = 193,334
+tiger:name_base = 77,758
+tiger:name_base_1 = 11,673
+tiger:name_direction_prefix = 8,213
+tiger:name_direction_suffix = 14,343
+tiger:name_type = 55,396
+tiger:reviewed = 182,242
+tiger:separated = 87,746
+tiger:source = 98,293
+tiger:tlid = 98,259
+tiger:upload_uuid = 87,456
+type = 5,318

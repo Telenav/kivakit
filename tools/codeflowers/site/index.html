@@ -1,0 +1,176 @@
+=<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--                                                                                                                 -->
+<!--  © 2011-2021 Telenav, Inc.                                                                                      -->
+<!--  Licensed under Apache License, Version 2.0                                                                     -->
+<!--                                                                                                                 -->
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<!DOCTYPE html>
+<html>
+<!-- Use the Source, Luke -->
+<head>
+    <title>CodeFlower Source code visualization</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <link href="stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="stylesheets/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Rosario:400,700' rel='stylesheet' type='text/css'>
+    <link href="stylesheets/style.css" rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+circle.node {
+  cursor: pointer;
+  stroke: #000;
+  stroke-width: .5px;
+}
+
+circle.node.directory {
+  stroke: #9ecae1;
+  stroke-width: 2px;
+}
+
+circle.node.collapsed {
+  stroke: #555;
+}
+
+.nodetext {
+  fill: #252929;
+  font-weight: bold;
+  text-shadow: 0 0 0.2em white;
+}
+
+line.link {
+  fill: none;
+  stroke: #9ecae1;
+  stroke-width: 1.5px;
+}
+
+
+
+
+
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="container">
+        <br/>
+        <h2>KivaKit - Code Flowers</h2>
+        <div class="lead">This page visualizes key KivaKit projects in an interactive tree.</div>
+        <p class="lead">Each disc represents a file, with a radius proportional to the number
+            of lines of code.</p>
+        <p class="lead">Try hovering over the nodes to see the line count.</p>
+        <br/>
+        <form class="form-inline">
+            <fieldset>
+                <select id="project" style="width:260px">
+                    <option value='data/com.telenav.kivakit.core-application.json'>com.telenav.kivakit.core-application</option>
+                    <option value='data/com.telenav.kivakit.core-collections.json'>com.telenav.kivakit.core-collections</option>
+                    <option value='data/com.telenav.kivakit.core-commandline.json'>com.telenav.kivakit.core-commandline</option>
+                    <option value='data/com.telenav.kivakit.core-configuration.json'>com.telenav.kivakit.core-configuration</option>
+                    <option value='data/com.telenav.kivakit.core-kernel.json'>com.telenav.kivakit.core-kernel</option>
+                    <option value='data/com.telenav.kivakit.core-network-core.json'>com.telenav.kivakit.core-network-core</option>
+                    <option value='data/com.telenav.kivakit.core-network-email.json'>com.telenav.kivakit.core-network-email</option>
+                    <option value='data/com.telenav.kivakit.core-network-ftp.json'>com.telenav.kivakit.core-network-ftp</option>
+                    <option value='data/com.telenav.kivakit.core-network-http.json'>com.telenav.kivakit.core-network-http</option>
+                    <option value='data/com.telenav.kivakit.core-network-socket.json'>com.telenav.kivakit.core-network-socket</option>
+                    <option value='data/com.telenav.kivakit.core-resource.json'>com.telenav.kivakit.core-resource</option>
+                    <option value='data/com.telenav.kivakit.core-security.json'>com.telenav.kivakit.core-security</option>
+                    <option value='data/com.telenav.kivakit.core-test.json'>com.telenav.kivakit.core-test</option>
+                    <option value='data/kivakit-data-compression.json'>kivakit-data-compression</option>
+                    <option value='data/kivakit-data-formats-csv.json'>kivakit-data-formats-csv</option>
+                    <option value='data/kivakit-data-formats-library.json'>kivakit-data-formats-library</option>
+                    <option value='data/kivakit-data-formats-pbf.json'>kivakit-data-formats-pbf</option>
+                    <option value='data/kivakit-data-formats-text.json'>kivakit-data-formats-text</option>
+                    <option value='data/kivakit-data-formats-xml.json'>kivakit-data-formats-xml</option>
+                    <option value='data/com.telenav.kivakit.filesystems-hdfs-proxy-spi.json'>com.telenav.kivakit.filesystems-hdfs-proxy-spi</option>
+                    <option value='data/com.telenav.kivakit.filesystems-hdfs-proxy.json'>com.telenav.kivakit.filesystems-hdfs-proxy</option>
+                    <option value='data/com.telenav.kivakit.filesystems-hdfs.json'>com.telenav.kivakit.filesystems-hdfs</option>
+                    <option value='data/com.telenav.kivakit.filesystems-s3fs.json'>com.telenav.kivakit.filesystems-s3fs</option>
+                    <option value='data/com.telenav.kivakit.graph-core.json'>com.telenav.kivakit.graph-core</option>
+                    <option value='data/com.telenav.kivakit.graph-geocoding.json'>com.telenav.kivakit.graph-geocoding</option>
+                    <option value='data/com.telenav.kivakit.graph-json.json'>com.telenav.kivakit.graph-json</option>
+                    <option value='data/com.telenav.kivakit.graph-query.json'>com.telenav.kivakit.graph-query</option>
+                    <option value='data/com.telenav.kivakit.graph-traffic.json'>com.telenav.kivakit.graph-traffic</option>
+                    <option value='data/com.telenav.kivakit.graph-world.json'>com.telenav.kivakit.graph-world</option>
+                    <option value='data/com.telenav.kivakit.josm-geojson-plugin.json'>com.telenav.kivakit.josm-geojson-plugin</option>
+                    <option value='data/com.telenav.kivakit.josm-graph-plugin.json'>com.telenav.kivakit.josm-graph-plugin</option>
+                    <option value='data/com.telenav.kivakit.josm-library.json'>com.telenav.kivakit.josm-library</option>
+                    <option value='data/com.telenav.kivakit.logs-client.json'>com.telenav.kivakit.logs-client</option>
+                    <option value='data/com.telenav.kivakit.logs-email.json'>com.telenav.kivakit.logs-email</option>
+                    <option value='data/com.telenav.kivakit.logs-file.json'>com.telenav.kivakit.logs-file</option>
+                    <option value='data/com.telenav.kivakit.logs-server.json'>com.telenav.kivakit.logs-server</option>
+                    <option value='data/com.telenav.kivakit.map-cutter.json'>com.telenav.kivakit.map-cutter</option>
+                    <option value='data/com.telenav.kivakit.map-database.json'>com.telenav.kivakit.map-database</option>
+                    <option value='data/com.telenav.kivakit.map-geography.json'>com.telenav.kivakit.map-geography</option>
+                    <option value='data/com.telenav.kivakit.map-measurements.json'>com.telenav.kivakit.map-measurements</option>
+                    <option value='data/com.telenav.kivakit.map-overpass.json'>com.telenav.kivakit.map-overpass</option>
+                    <option value='data/com.telenav.kivakit.map-region.json'>com.telenav.kivakit.map-region</option>
+                    <option value='data/com.telenav.kivakit.map-road-model.json'>com.telenav.kivakit.map-road-model</option>
+                    <option value='data/com.telenav.kivakit.map-road-name-standardizer.json'>com.telenav.kivakit.map-road-name-standardizer</option>
+                    <option value='data/com.telenav.kivakit.map-ui.json'>com.telenav.kivakit.map-ui</option>
+                    <option value='data/com.telenav.kivakit.map-utilities-geohash.json'>com.telenav.kivakit.map-utilities-geohash</option>
+                    <option value='data/com.telenav.kivakit.map-utilities-geojson.json'>com.telenav.kivakit.map-utilities-geojson</option>
+                    <option value='data/com.telenav.kivakit.map-utilities-grid.json'>com.telenav.kivakit.map-utilities-grid</option>
+                    <option value='data/com.telenav.kivakit.navigation-routing.json'>com.telenav.kivakit.navigation-routing</option>
+                    <option value='data/com.telenav.kivakit.tools-application-launcher.json'>com.telenav.kivakit.tools-application-launcher</option>
+                    <option value='data/com.telenav.kivakit.tools-applications-codec-generator.json'>com.telenav.kivakit.tools-applications-codec-generator</option>
+                    <option value='data/com.telenav.kivakit.tools-applications-graph-analyzer.json'>com.telenav.kivakit.tools-applications-graph-analyzer</option>
+                    <option value='data/com.telenav.kivakit.tools-applications-graph-double-digitized-ways-extractor.json'>com.telenav.kivakit.tools-applications-graph-double-digitized-ways-extractor</option>
+                    <option value='data/com.telenav.kivakit.tools-applications-graph-dumper.json'>com.telenav.kivakit.tools-applications-graph-dumper</option>
+                    <option value='data/com.telenav.kivakit.tools-applications-graph-slicer.json'>com.telenav.kivakit.tools-applications-graph-slicer</option>
+                    <option value='data/com.telenav.kivakit.tools-applications-graph-to-pbf-converter.json'>com.telenav.kivakit.tools-applications-graph-to-pbf-converter</option>
+                    <option value='data/com.telenav.kivakit.tools-applications-graph-verifier.json'>com.telenav.kivakit.tools-applications-graph-verifier</option>
+                    <option value='data/com.telenav.kivakit.tools-applications-lexakai.json'>com.telenav.kivakit.tools-applications-lexakai</option>
+                    <option value='data/com.telenav.kivakit.tools-applications-log-viewer.json'>com.telenav.kivakit.tools-applications-log-viewer</option>
+                    <option value='data/com.telenav.kivakit.tools-applications-pbf-analyzer.json'>com.telenav.kivakit.tools-applications-pbf-analyzer</option>
+                    <option value='data/com.telenav.kivakit.tools-applications-pbf-comparator.json'>com.telenav.kivakit.tools-applications-pbf-comparator</option>
+                    <option value='data/com.telenav.kivakit.tools-applications-pbf-dumper.json'>com.telenav.kivakit.tools-applications-pbf-dumper</option>
+                    <option value='data/com.telenav.kivakit.tools-applications-pbf-filter.json'>com.telenav.kivakit.tools-applications-pbf-filter</option>
+                    <option value='data/com.telenav.kivakit.tools-applications-pbf-metadata.json'>com.telenav.kivakit.tools-applications-pbf-metadata</option>
+                    <option value='data/com.telenav.kivakit.tools-applications-pbf-region-extractor.json'>com.telenav.kivakit.tools-applications-pbf-region-extractor</option>
+                    <option value='data/com.telenav.kivakit.tools-applications-pbf-to-graph-converter.json'>com.telenav.kivakit.tools-applications-pbf-to-graph-converter</option>
+                    <option value='data/com.telenav.kivakit.tools-applications-pbf-world-graph-extractor.json'>com.telenav.kivakit.tools-applications-pbf-world-graph-extractor</option>
+                    <option value='data/com.telenav.kivakit.tools-applications-region-information.json'>com.telenav.kivakit.tools-applications-region-information</option>
+                    <option value='data/com.telenav.kivakit.utilities-database-sql.json'>com.telenav.kivakit.utilities-database-sql</option>
+                    <option value='data/com.telenav.kivakit.utilities-json.json'>com.telenav.kivakit.utilities-json</option>
+                    <option value='data/com.telenav.kivakit.utilities-math.json'>com.telenav.kivakit.utilities-math</option>
+                    <option value='data/com.telenav.kivakit.utilities-time.json'>com.telenav.kivakit.utilities-time</option>
+                    <option value='data/com.telenav.kivakit.web-jersey.json'>com.telenav.kivakit.web-jersey</option>
+                    <option value='data/com.telenav.kivakit.web-jetty.json'>com.telenav.kivakit.web-jetty</option>
+                    <option value='data/com.telenav.kivakit.web-swagger.json'>com.telenav.kivakit.web-swagger</option>
+                    <option value='data/com.telenav.kivakit.web-wicket.json'>com.telenav.kivakit.web-wicket</option>
+                </select>
+            </fieldset>
+        </form>
+        <div id="visualization"></div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+    </div>
+</div>
+<script src="javascripts/d3/d3.js" type="text/javascript"></script>
+<script src="javascripts/d3/d3.geom.js" type="text/javascript"></script>
+<script src="javascripts/d3/d3.layout.js" type="text/javascript"></script>
+<script src="javascripts/CodeFlower.js" type="text/javascript"></script>
+<script src="javascripts/dataConverter.js" type="text/javascript"></script>
+<script type="text/javascript">
+      var currentCodeFlower;
+      var createCodeFlower = function(json) {
+        if (currentCodeFlower) currentCodeFlower.cleanup();
+        currentCodeFlower = new CodeFlower("#visualization", 700, 700).update(json);
+      };
+
+      d3.json('data/kivakit-core-kernel.json', createCodeFlower);
+
+      document.getElementById('project').addEventListener('change', function() {
+        d3.json(this.value, createCodeFlower);
+      });
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+
+#―――― Setup ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-12.0.2.jdk/Contents/Home
+export M2_HOME=$HOME/Developer/apache-maven-3.6.3
+
+if [ -z "$KIVAKIT_WORKSPACE" ]; then
+    export KIVAKIT_WORKSPACE=$HOME/Workspace
+fi
+
+#―――― KIVA ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+
+export KIVAKIT_HOME="$KIVAKIT_WORKSPACE/kivakit"
+export KIVAKIT_VERSION=$(cat $KIVAKIT_HOME/project.properties | grep "project-version" | cut -d'=' -f2 | xargs echo)
+export KIVAKIT_TOOLS="$KIVAKIT_HOME/tools"
+export KIVAKIT_AGENT_JAR="$KIVAKIT_TOOLS/agent/kivakit-agent.jar"
+export KIVAKIT_JAVA_OPTIONS=-Xmx12g
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    launchctl setenv KIVAKIT_HOME $KIVAKIT_HOME
+    launchctl setenv KIVAKIT_WORKSPACE $KIVAKIT_WORKSPACE
+fi
+
+append()
+{
+    export PATH="$PATH:$1"
+}
+
+prepend()
+{
+    export PATH="$1:$PATH"
+}
+
+prepend "$M2_HOME/bin";
+prepend "$JAVA_HOME/bin";
+
+append "$KIVAKIT_TOOLS/building";
+append "$KIVAKIT_TOOLS/developing";
+append "$KIVAKIT_TOOLS/releasing";
+append "$KIVAKIT_TOOLS/codeflowers";
+
+NORMAL='\033[0m'
+ATTENTION='\033[1;32m'
+
+export HISTCONTROL=ignoreboth:erasedups
+
+echo " "
+echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ KivaKit Environment ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
+echo "┋"
+echo -e "┋   KIVAKIT_WORKSPACE: ${ATTENTION}$KIVAKIT_WORKSPACE${NORMAL}"
+echo "┋"
+echo "┋        KIVAKIT_HOME: $KIVAKIT_HOME"
+echo "┋"
+echo "┋     KIVAKIT_VERSION: $KIVAKIT_VERSION"
+echo "┋"
+echo "┋                Java: $JAVA_HOME"
+echo "┋"
+echo "┋               Maven: $M2_HOME"
+echo "┋"
+
+perl -e 'print "┋                Path: " . join("\n┋                      ", split(":", $ENV{"PATH"})) . "\n"'
+
+echo "┋"
+echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
+echo " "
+
+cd $KIVAKIT_HOME
+

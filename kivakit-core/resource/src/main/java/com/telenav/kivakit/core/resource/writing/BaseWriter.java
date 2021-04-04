@@ -1,0 +1,15 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//  © 2011-2021 Telenav, Inc.
+//  Licensed under Apache License, Version 2.0
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.telenav.kivakit.core.resource.writing;
+
+import com.telenav.kivakit.core.kernel.interfaces.io.Closeable;
+import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
+
+public abstract class BaseWriter extends BaseRepeater implements Closeable
+{
+}

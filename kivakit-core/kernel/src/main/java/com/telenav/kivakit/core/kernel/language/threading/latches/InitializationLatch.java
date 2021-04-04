@@ -1,0 +1,57 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//  © 2011-2021 Telenav, Inc.
+//  Licensed under Apache License, Version 2.0
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.telenav.kivakit.core.kernel.language.threading.latches;
+
+import com.telenav.kivakit.core.kernel.language.time.Duration;
+import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageThread;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * A latch that waits for the initialization of something by another thread. The latch is waited on by one thread with
+ * {@link #await(Duration)} and it is signaled by another thread via {@link #ready()}.
+ *
+ * @author jonathanl (shibo)
+ */
+@UmlClassDiagram(diagram = DiagramLanguageThread.class)
+public class InitializationLatch
+{
+    private CountDownLatch countdown = new CountDownLatch(1);
+
+    public boolean await(final Duration duration)
+    {
+        try
+        {
+            return countdown.await(duration.asMilliseconds(), TimeUnit.MILLISECONDS);
+        }
+        catch (final InterruptedException ignored)
+        {
+        }
+        return false;
+    }
+
+    public boolean isReady()
+    {
+        return countdown.getCount() == 0;
+    }
+
+    public void ready()
+    {
+        if (!isReady())
+        {
+            countdown.countDown();
+        }
+    }
+
+    public void reset()
+    {
+        countdown = new CountDownLatch(1);
+    }
+}

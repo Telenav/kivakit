@@ -1,0 +1,143 @@
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--                                                                                                                 -->
+<!--  © 2011-2021 Telenav, Inc.                                                                                      -->
+<!--  Licensed under Apache License, Version 2.0                                                                     -->
+<!--                                                                                                                 -->
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<project xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>com.telenav.kivakit</groupId>
+        <artifactId>kivakit-core</artifactId>
+        <version>0.9.0-SNAPSHOT</version>
+    </parent>
+
+    <name>KivaKit Core - Kernel</name>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>kivakit-core-kernel</artifactId>
+    <packaging>jar</packaging>
+
+    <dependencies>
+
+        <!-- KivaKit -->
+
+        <dependency>
+            <groupId>com.telenav.kivakit</groupId>
+            <artifactId>kivakit-build-metadata</artifactId>
+            <version>0.9.2</version>
+        </dependency>
+
+        <!-- Test -->
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
+
+        <!-- Annotations -->
+
+        <dependency>
+            <groupId>com.telenav.lexakai</groupId>
+            <artifactId>com.telenav.lexakai-annotations</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>20.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <profiles>
+
+        <!-- KivaKit Agent -->
+
+        <profile>
+            <id>tools</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <version>${maven-jar-plugin.version}</version>
+                        <configuration>
+                            <archive>
+                                <manifestEntries>
+                                    <Main-Class>com.telenav.kivakit.core.kernel.language.vm.JavaVirtualMachine</Main-Class>
+                                    <Premain-Class>com.telenav.kivakit.core.kernel.language.vm.JavaVirtualMachine</Premain-Class>
+                                    <Agent-Class>com.telenav.kivakit.core.kernel.language.vm.JavaVirtualMachine</Agent-Class>
+                                </manifestEntries>
+                            </archive>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-shade-plugin</artifactId>
+                        <version>${maven-shade-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>shade</goal>
+                                </goals>
+                                <configuration>
+                                    <minimizeJar>true</minimizeJar>
+                                    <finalName>kivakit-agent</finalName>
+                                    <shadedArtifactAttached>true</shadedArtifactAttached>
+                                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                                    <filters>
+                                        <filter>
+                                            <artifact>*:*</artifact>
+                                            <excludes>
+                                                <exclude>META-INF/MANIFEST.MF</exclude>
+                                                <exclude>META-INF/*.SF</exclude>
+                                                <exclude>META-INF/*.DSA</exclude>
+                                                <exclude>META-INF/*.RSA</exclude>
+                                            </excludes>
+                                        </filter>
+                                        <filter>
+                                            <artifact>*:*</artifact>
+                                            <includes>
+                                                <include>META-INF/MANIFEST.MF</include>
+                                                <include>com/telenav/kivakit/core/kernel/language/vm/JavaVirtualMachine*</include>
+                                                <include>com/telenav/kivakit/core/kernel/time/Duration*</include>
+                                                <include>com/telenav/kivakit/core/kernel/logging/Logger*</include>
+                                                <include>com/telenav/kivakit/core/kernel/logging/LoggerFactory*</include>
+                                                <include>com/telenav/kivakit/core/kernel/messaging/messages/Information*</include>
+                                                <include>com/telenav/kivakit/core/kernel/messaging/messages/Warning*</include>
+                                                <include>com/telenav/kivakit/core/kernel/debug/Debug*</include>
+                                                <include>com/telenav/kivakit/core/kernel/scalars/bytes/Bytes*</include>
+                                                <include>com/telenav/kivakit/core/kernel/scalars/counts/Count*</include>
+                                                <include>com/telenav/kivakit/core/kernel/language/collections/map/VariableMap*</include>
+                                                <include>com/telenav/kivakit/core/kernel/language/object/Classes*</include>
+                                                <include>com/telenav/kivakit/core/kernel/language/object/Objects*</include>
+                                                <include>com/telenav/kivakit/core/kernel/language/thread/KivaThread*</include>
+                                                <include>com/telenav/kivakit/core/kernel/language/reflection/Type*</include>
+                                            </includes>
+                                        </filter>
+                                    </filters>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

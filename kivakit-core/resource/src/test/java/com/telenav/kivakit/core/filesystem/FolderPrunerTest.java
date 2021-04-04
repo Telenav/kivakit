@@ -1,0 +1,93 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//  © 2011-2021 Telenav, Inc.
+//  Licensed under Apache License, Version 2.0
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.telenav.kivakit.core.filesystem;
+
+import com.telenav.kivakit.core.kernel.language.threading.latches.CompletionLatch;
+import com.telenav.kivakit.core.kernel.language.time.Duration;
+import com.telenav.kivakit.core.kernel.language.time.Frequency;
+import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.core.kernel.language.values.level.Percent;
+import com.telenav.kivakit.core.test.UnitTest;
+import org.junit.Test;
+
+public class FolderPrunerTest extends UnitTest
+{
+    @Test
+    public void testCapacity()
+    {
+        final var folder = folder("folder-capacity-test");
+
+        // Save file abc
+        final var file1 = folder.file("abc");
+        file1.writer().save("abc");
+        ensure(file1.exists());
+
+        // Start folder pruner
+        final var removed = new CompletionLatch();
+        final FolderPruner pruner = new FolderPruner(folder)
+        {
+            @Override
+            protected void onFileRemoved(final File file)
+            {
+                removed.completed();
+            }
+        };
+        pruner.pollingFrequency(Frequency.every(Duration.milliseconds(1)));
+        pruner.capacity(Bytes.bytes(4));
+        pruner.minimumAge(Duration.NONE);
+        pruner.minimumUsableDiskSpace(Percent._0);
+        pruner.start();
+
+        ensure(file1.exists());
+
+        // Save file def
+        final var file2 = folder.file("def");
+        file2.writer().save("def");
+
+        // Wait for a file to get removed
+        removed.waitForCompletion();
+
+        // Because of file system time granularity either file could get removed, but not both
+        ensure(file1.exists() || file2.exists());
+        ensureFalse(!file1.exists() && !file2.exists());
+        pruner.stop(Duration.ONE_SECOND);
+    }
+
+    @Test
+    public void testDiskSpace()
+    {
+        if (!isQuickTest())
+        {
+            final var folder = folder("disk-space-test");
+            final var file = folder.file("temp1");
+            file.writer().save("test");
+            final FolderPruner pruner = new FolderPruner(folder)
+            {
+                @Override
+                protected void onFileRemoved(final File file)
+                {
+                }
+            };
+            pruner.pollingFrequency(Frequency.every(Duration.milliseconds(25)));
+            pruner.minimumUsableDiskSpace(new Percent(100));
+            pruner.minimumAge(Duration.NONE);
+            pruner.start();
+            Duration.seconds(0.25).sleep();
+            ensureFalse(file.exists());
+            pruner.stop(Duration.ONE_SECOND);
+        }
+    }
+
+    private Folder folder(final String name)
+    {
+        final var folder = Folder.unitTestOutput(getClass()).folder(name);
+        folder.mkdirs();
+        folder.clear();
+        return folder;
+    }
+}

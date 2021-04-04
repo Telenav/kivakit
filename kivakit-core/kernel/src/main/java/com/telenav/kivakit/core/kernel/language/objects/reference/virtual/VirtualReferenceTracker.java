@@ -1,0 +1,117 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//  © 2011-2021 Telenav, Inc.
+//  Licensed under Apache License, Version 2.0
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.telenav.kivakit.core.kernel.language.objects.reference.virtual;
+
+import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
+import com.telenav.kivakit.core.kernel.interfaces.naming.Named;
+import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageObjectReference;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+import com.telenav.lexakai.annotations.associations.UmlAggregation;
+
+import java.lang.ref.ReferenceQueue;
+import java.util.ArrayList;
+import java.util.LinkedList;
+
+import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensureNotNull;
+
+@UmlClassDiagram(diagram = DiagramLanguageObjectReference.class)
+public class VirtualReferenceTracker<T> extends BaseRepeater
+{
+    /** True to turn on GC debugging */
+    private static final boolean DEBUG_GARBAGE_COLLECTION = false;
+
+    /** The approximate maximum amount of memory to hard reference */
+    private final Bytes maximum;
+
+    /** CheckType of references to keep */
+    @UmlAggregation
+    private final VirtualReferenceType type;
+
+    /** The current memory consumption estimate */
+    private Bytes total = Bytes._0;
+
+    /** List of loaded references */
+    @UmlAggregation(label = "loads, weakens, hardens")
+    private final LinkedList<VirtualReference<T>> loaded = new LinkedList<>();
+
+    /** Reference queue for notifications that soft and weak references have been collected */
+    private final ReferenceQueue<T> queue = new ReferenceQueue<>();
+
+    public VirtualReferenceTracker(final Bytes maximum, final VirtualReferenceType type)
+    {
+        this.maximum = Ensure.ensureNotNull(maximum);
+        this.type = Ensure.ensureNotNull(type);
+
+        trace("Reference tracker keeping hard references to approximately $", maximum);
+
+        // NOTE: This debug feature will cause hard references to stay live even if nothing
+        // references this tracker anymore
+        if (DEBUG_GARBAGE_COLLECTION)
+        {
+            // Show any references that get garbage collected
+            final var thread = new Thread(() ->
+            {
+                while (true)
+                {
+                    try
+                    {
+                        final var unreferenced = queue.remove();
+                        trace("Garbage collected $", ((Named) unreferenced).name());
+                    }
+                    catch (final InterruptedException ignored)
+                    {
+                    }
+                }
+            });
+            thread.setName("ReferenceTracker-Garbage-Collection-Monitor");
+            thread.setDaemon(true);
+            thread.start();
+        }
+    }
+
+    synchronized void onLoaded(final VirtualReference<T> reference)
+    {
+        assert reference != null : "Reference must not be null";
+
+        // Increase memory consumption by the size of the referenced value
+        total = total.add(reference.memorySize());
+
+        // Add the given reference to the end of the list of hardened references
+        loaded.addLast(reference);
+
+        // If we are using too much memory,
+        while (total.isGreaterThan(maximum))
+        {
+            // show debug details (using a copy of the loaded list since we will be modifying it)
+            trace("Total of $ exceeds maximum of $: $", total, maximum, new ArrayList<>(loaded));
+
+            // soften the reference that we loaded the longest ago
+            final var oldest = loaded.removeFirst();
+            trace("Softening $", oldest.name());
+            oldest.soften();
+
+            // and reduce hard-referenced memory estimate
+            total = total.subtract(oldest.memorySize());
+        }
+
+        // Give details of how much is currently being hard-referenced
+        trace("Hard referencing $ of $", total, maximum);
+    }
+
+    ReferenceQueue<T> queue()
+    {
+        return queue;
+    }
+
+    VirtualReferenceType type()
+    {
+        return type;
+    }
+}

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+#///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#
+#  © 2011-2021 Telenav, Inc.
+#  Licensed under Apache License, Version 2.0
+#
+#///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+read -p "Remove KivaKit artifacts from ~\.m2 (y/n)? " -n 1 -r
+echo " "
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo "Removing KivaKit artifacts in ~\.m2"
+    rm -rf ~/.m2/repository/com/telenav/kivakit/*
+fi
+
+bash kivakit-clean.sh

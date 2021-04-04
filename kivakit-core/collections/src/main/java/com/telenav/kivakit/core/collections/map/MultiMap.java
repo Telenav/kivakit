@@ -1,0 +1,121 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//  © 2011-2021 Telenav, Inc.
+//  Licensed under Apache License, Version 2.0
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.telenav.kivakit.core.collections.map;
+
+import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramMap;
+import com.telenav.kivakit.core.kernel.language.collections.list.ObjectList;
+import com.telenav.kivakit.core.kernel.language.collections.map.BaseMap;
+import com.telenav.kivakit.core.kernel.language.values.count.Count;
+import com.telenav.kivakit.core.kernel.language.values.count.Maximum;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * A map from key to an {@link ObjectList} of values.
+ *
+ * @author jonathanl (shibo)
+ */
+@UmlClassDiagram(diagram = DiagramMap.class)
+public class MultiMap<Key, Value> extends BaseMap<Key, ObjectList<Value>>
+{
+    private final Maximum maximumValues;
+
+    public MultiMap()
+    {
+        this(Maximum.MAXIMUM, Maximum.MAXIMUM);
+    }
+
+    public MultiMap(final Maximum maximumKeys, final Maximum maximumValues)
+    {
+        super(maximumKeys);
+        this.maximumValues = maximumValues;
+    }
+
+    /**
+     * In case another implementation wants to control the type of map used underneath
+     */
+    protected MultiMap(final Maximum maximumKeys, final Maximum maximumValues, final Map<Key, ObjectList<Value>> map)
+    {
+        super(maximumKeys, map);
+        this.maximumValues = maximumValues;
+    }
+
+    public void add(final Key key, final Value value)
+    {
+        getOrCreate(key).add(value);
+    }
+
+    public void addAll(final Collection<? extends Key> keys, final Value value)
+    {
+        for (final Key key : keys)
+        {
+            getOrCreate(key).add(value);
+        }
+    }
+
+    public void addAll(final Key key, final Collection<? extends Value> value)
+    {
+        getOrCreate(key).addAll(value);
+    }
+
+    public ObjectList<Value> flatValues()
+    {
+        final var values = new ObjectList<Value>();
+        for (final List<Value> list : values())
+        {
+            values.addAll(list);
+        }
+        return values;
+    }
+
+    public ObjectList<Value> list(final Key key)
+    {
+        return computeIfAbsent(key, ignored -> new ObjectList<>());
+    }
+
+    public Count maximumListSize()
+    {
+        var maximum = 0;
+        for (final List<Value> list : values())
+        {
+            maximum = Math.max(list.size(), maximum);
+        }
+        return Count.count(maximum);
+    }
+
+    public void sort(final Comparator<? super Value> comparator)
+    {
+        for (final var entry : entrySet())
+        {
+            entry.getValue().sort(comparator);
+        }
+    }
+
+    public int totalValues()
+    {
+        var count = 0;
+        for (final List<Value> list : values())
+        {
+            if (list != null)
+            {
+                count += list.size();
+            }
+        }
+        return count;
+    }
+
+    @Override
+    protected ObjectList<Value> onInitialize(final Key key)
+    {
+        return new ObjectList<>(maximumValues);
+    }
+}

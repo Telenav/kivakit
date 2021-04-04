@@ -1,0 +1,128 @@
+package com.telenav.kivakit.core.kernel.language.strings;
+
+import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageString;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * @author jonathanl (shibo)
+ */
+@UmlClassDiagram(diagram = DiagramLanguageString.class)
+public class CaseFormat
+{
+    /**
+     * "WebServer -&gt; "web-server" and "webServer -&gt; "web-server"
+     */
+    public static String camelCaseToHyphenated(final String text)
+    {
+        assert text != null;
+
+        return Strip.leading(text.replaceAll("(?=[A-Z][a-z0-9])", "-"), "-").toLowerCase();
+    }
+
+    /**
+     * "webServer" -&gt; "WebServer"
+     */
+    public static String capitalize(final String text)
+    {
+        if (text.length() >= 1)
+        {
+            return Character.toUpperCase(text.charAt(0)) + text.substring(1);
+        }
+        return text;
+    }
+
+    /**
+     * "webServer" -&gt; "Webserver"
+     */
+    public static String capitalizeOnlyFirstLetter(final String text)
+    {
+        if (text != null && text.length() >= 1)
+        {
+            return Character.toUpperCase(text.charAt(0)) + text.toLowerCase().substring(1);
+        }
+        return text;
+    }
+
+    /**
+     * "WebServer" -&gt; "webServer"
+     */
+    public static String decapitalize(final String text)
+    {
+        if (text.length() >= 1)
+        {
+            return Character.toLowerCase(text.charAt(0)) + text.substring(1);
+        }
+        return text;
+    }
+
+    /**
+     * WebServer -&gt; "web-server"
+     *
+     * @return The simple name of the given type in hyphenated form
+     */
+    public static String hyphenatedName(final Class<?> type)
+    {
+        return camelCaseToHyphenated(type.getSimpleName());
+    }
+
+    /**
+     * "web-server" -&gt; "webServer"
+     */
+    public static String hyphenatedToCamel(final String string)
+    {
+        if (string.contains("-"))
+        {
+            final Matcher matcher = Pattern.compile("-[a-zA-Z]").matcher(string);
+            return matcher.replaceAll(result -> result.group().substring(1).toUpperCase());
+        }
+        return string;
+    }
+
+    /**
+     * @return True if the text starts with an uppercase letter or non-letter, false otherwise
+     */
+    public static boolean isCapitalized(final String text)
+    {
+        if (text != null && !text.isEmpty())
+        {
+            return !Character.isLowerCase(text.charAt(0));
+        }
+        return false;
+    }
+
+    /**
+     * @return True if the given text contains a hyphen
+     */
+    public static boolean isHyphenated(final String text)
+    {
+        return text.contains("-");
+    }
+
+    public static boolean isLowercase(final String text)
+    {
+        return text.equals(text.toLowerCase());
+    }
+
+    /**
+     * "web-server" -&gt; "WEB_SERVER"
+     */
+    public static String lowerHyphenToUpperUnderscore(final String string)
+    {
+        return string.replaceAll("-", "_").toUpperCase();
+    }
+
+    /**
+     * "WEB_SERVER" -&gt; "web-server"
+     */
+    public static String upperUnderscoreToLowerHyphen(final String string)
+    {
+        if (!string.contains("-"))
+        {
+            return string.replaceAll("_", "-").toLowerCase();
+        }
+        return string;
+    }
+}

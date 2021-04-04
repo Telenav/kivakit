@@ -1,0 +1,18 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//  © 2011-2021 Telenav, Inc.
+//  Licensed under Apache License, Version 2.0
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.telenav.kivakit.core.kernel.messaging.filters;
+
+import com.telenav.kivakit.core.kernel.messaging.Message;
+
+public class MessageType extends SubClassesOf<Message>
+{
+    public MessageType(final Class<Message> type)
+    {
+        super(type);
+    }
+}

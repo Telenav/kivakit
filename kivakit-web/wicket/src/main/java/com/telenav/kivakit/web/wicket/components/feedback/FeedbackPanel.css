@@ -1,0 +1,48 @@
+
+:root {
+    --kivakit-feedback-font-size: var(--kivakit-medium-font);
+    --kivakit-feedback-font-weight: var(--kivakit-bold);
+}
+
+.kivakit-feedback-panel {
+	background-color: var(--kivakit-dark-charcoal);
+	border-color: var(--kivakit-gray);
+	border-style: solid;
+	border-width: 1px;
+    border-radius: 8px 8px 8px 8px;
+	width: 600px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.feedbackPanelINFO {
+    color: var(--kivakit-clover);
+    font-size: var(--kivakit-feedback-font-size);
+    font-weight: var(--kivakit-feedback-font-weight);
+}
+
+.feedbackPanelSUCCESS {
+    color: var(--kivakit-clover);
+    font-size: var(--kivakit-feedback-font-size);
+    font-weight: var(--kivakit-feedback-font-weight);
+}
+
+.feedbackPanelWARNING {
+    color: var(--kivakit-tangerine);
+    font-size: var(--kivakit-feedback-font-size);
+    font-weight: var(--kivakit-feedback-font-weight);
+}
+
+.feedbackPanelERROR {
+    color: var(--kivakit-cherry);
+    font-size: var(--kivakit-feedback-font-size);
+    font-weight: var(--kivakit-feedback-font-weight);
+}
+
+.feedbackPanelFATAL {
+    color: var(--kivakit-cherry);
+    font-size: var(--kivakit-feedback-font-size);
+    font-weight: var(--kivakit-feedback-font-weight);
+}

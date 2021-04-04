@@ -1,0 +1,223 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//  © 2011-2021 Telenav, Inc.
+//  Licensed under Apache License, Version 2.0
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+package com.telenav.kivakit.core.resource.reading;
+
+import com.telenav.kivakit.core.kernel.data.conversion.Converter;
+import com.telenav.kivakit.core.kernel.interfaces.string.StringSource;
+import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
+import com.telenav.kivakit.core.kernel.language.io.IO;
+import com.telenav.kivakit.core.kernel.language.io.StringReader;
+import com.telenav.kivakit.core.kernel.language.iteration.Iterables;
+import com.telenav.kivakit.core.kernel.language.iteration.Next;
+import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
+import com.telenav.kivakit.core.resource.Resource;
+import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFile;
+import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResource;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
+
+/**
+ * Resource reader provides a variety of convenient ways of reading a resource, including as bytes ({@link #bytes()}),
+ * as a single string ({@link #string()}), as lines ({@link #linesAsStringList()}), and as objects ({@link
+ * #addObjectsTo(Collection, Converter, ProgressReporter)} and {@link #objects(Converter, ProgressReporter)}).
+ *
+ * @author jonathanl (shibo)
+ */
+@UmlClassDiagram(diagram = DiagramFileSystemFile.class)
+@UmlClassDiagram(diagram = DiagramResource.class)
+@UmlExcludeSuperTypes
+public class ResourceReader implements StringSource
+{
+    private final Resource resource;
+
+    private final Charset charset;
+
+    private String value;
+
+    private final ProgressReporter reporter;
+
+    public ResourceReader(final Resource resource, final ProgressReporter reporter, final Charset charset)
+    {
+        this.reporter = reporter;
+        assert resource != null;
+        this.resource = resource;
+        this.charset = charset;
+    }
+
+    /**
+     * @return The bytes in the resource being read
+     */
+    public byte[] bytes()
+    {
+        final var in = open();
+        try
+        {
+            return IO.readBytes(in);
+        }
+        finally
+        {
+            IO.close(in);
+        }
+    }
+
+    public Iterable<String> lines(final ProgressReporter reporter)
+    {
+        return new LineReader(resource, reporter);
+    }
+
+    public Iterable<String> lines()
+    {
+        return new LineReader(resource, ProgressReporter.NULL);
+    }
+
+    /**
+     * @return The lines in the resource being read
+     */
+    public StringList linesAsStringList()
+    {
+        return linesAsStringList(ProgressReporter.NULL);
+    }
+
+    /**
+     * @return The lines in the resource being read
+     */
+    public StringList linesAsStringList(final ProgressReporter reporter)
+    {
+        final var list = new StringList();
+        list.addAll(lines(reporter));
+        return list;
+    }
+
+    /**
+     * @return The lines in the resource being read as a list of objects created by converting each line to an object
+     * using the given converter.
+     */
+    public <T> List<T> objectList(final Converter<String, T> converter, final ProgressReporter reporter)
+    {
+        return (List<T>) addObjectsTo(new ArrayList<>(), converter, reporter);
+    }
+
+    /**
+     * @return The lines in the resource being read as a set of objects created by converting each line to an object
+     * using the given converter.
+     */
+    public <T> Set<T> objectSet(final Converter<String, T> converter, final ProgressReporter reporter)
+    {
+        return (Set<T>) addObjectsTo(new HashSet<>(), converter, reporter);
+    }
+
+    /**
+     * @return The lines in the resource being read as a {@link Iterable} of objects created by converting each line to
+     * an object using the given converter.
+     */
+    public <T> Iterable<T> objects(final Converter<String, T> converter, final ProgressReporter reporter)
+    {
+        return Iterables.iterable(() -> new Next<>()
+        {
+            private final Iterator<String> lines = lines(reporter).iterator();
+
+            @Override
+            public T onNext()
+            {
+                if (lines.hasNext())
+                {
+                    return converter.convert(lines.next());
+                }
+                return null;
+            }
+        });
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String string()
+    {
+        return string(ProgressReporter.NULL);
+    }
+
+    public String string(final ProgressReporter reporter)
+    {
+        if (value == null)
+        {
+            final var reader = new StringReader(textReader());
+            try
+            {
+                value = reader.readString(reporter);
+            }
+            finally
+            {
+                reader.close();
+            }
+        }
+        return value;
+    }
+
+    public Reader textReader()
+    {
+        final var in = open();
+        if (in != null)
+        {
+            if (charset == null)
+            {
+                return new InputStreamReader(in);
+            }
+            else
+            {
+                return new InputStreamReader(in, charset);
+            }
+        }
+        else
+        {
+            return fail("Couldn't read resource '$'", resource.path());
+        }
+    }
+
+    @Override
+    public String toString()
+    {
+        return resource.toString();
+    }
+
+    /**
+     * Adds objects in the resource being read to the given collection by reading lines and converting each line to an
+     * object using the given converter
+     *
+     * @return The collection that was passed in
+     */
+    private <T> Collection<T> addObjectsTo(final Collection<T> collection, final Converter<String, T> converter,
+                                           final ProgressReporter reporter)
+    {
+        lines(reporter).forEach(line -> collection.add(converter.convert(line)));
+        return collection;
+    }
+
+    private InputStream open()
+    {
+        final var size = resource.bytes();
+        if (size != null)
+        {
+            reporter.steps(size);
+        }
+        return resource.openForReading(reporter);
+    }
+}

@@ -1,0 +1,95 @@
+package com.telenav.kivakit.core.network.core;
+
+import com.telenav.kivakit.core.kernel.language.objects.Lazy;
+import com.telenav.kivakit.core.kernel.language.vm.OperatingSystem;
+import com.telenav.kivakit.core.kernel.logging.LoggerCodeContext;
+import com.telenav.kivakit.core.network.core.project.lexakai.diagrams.DiagramPort;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.UnknownHostException;
+
+import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
+
+/**
+ * @author jonathanl (shibo)
+ */
+@UmlClassDiagram(diagram = DiagramPort.class)
+public class LocalHost extends Host
+{
+    private static final Lazy<LocalHost> singleton = Lazy.of(LocalHost::new);
+
+    static
+    {
+        LoggerCodeContext.hostResolver(LocalHost::hostname);
+    }
+
+    public static LocalHost get()
+    {
+        return singleton.get();
+    }
+
+    public static String hostname()
+    {
+        try
+        {
+            return InetAddress.getLocalHost().getHostName();
+        }
+        catch (final UnknownHostException e)
+        {
+            return fail(e, "Cannot determine local hostname");
+        }
+    }
+
+    protected LocalHost()
+    {
+        super("localhost");
+    }
+
+    /**
+     * @return The first non-loopback, non-virtual, IPV4 InetAddress in the list of network interfaces. This is
+     * necessary on the Mac because Oracle broke InetAddress.getLocalhost() on the Mac (and does not intend to fix it)
+     */
+    @Override
+    public InetAddress onResolveAddress()
+    {
+        if (OperatingSystem.get().isWindows())
+        {
+            try
+            {
+                return InetAddress.getLocalHost();
+            }
+            catch (final UnknownHostException e)
+            {
+                fail(e, "Couldn't find localhost interface");
+            }
+        }
+        try
+        {
+            final var interfaces = NetworkInterface.getNetworkInterfaces();
+            while (interfaces.hasMoreElements())
+            {
+                final var next = interfaces.nextElement();
+                if (!next.isLoopback() && !next.isVirtual() && next.isUp())
+                {
+                    final var addresses = next.getInetAddresses();
+                    while (addresses.hasMoreElements())
+                    {
+                        final var address = addresses.nextElement();
+                        if (address instanceof Inet4Address)
+                        {
+                            return address;
+                        }
+                    }
+                }
+            }
+        }
+        catch (final Exception e)
+        {
+            return fail(e, "Couldn't find localhost interface");
+        }
+        return fail("Couldn't find localhost interface");
+    }
+}
