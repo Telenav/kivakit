@@ -193,7 +193,7 @@
                                         <echo file = "src/main/java/project.properties">
                                             project-name=${project.name}${line.separator}project-version=${project.version}${line.separator}project-group-id=${project.groupId}${line.separator}project-artifact-id=${project.artifactId}${line.separator}
                                         </echo>
-                                        <java jar = "${env.KIVAKIT_HOME}/tools/building/bin/kivakit-build-metadata-${kivakit.base.version}.jar"
+                                        <java jar = "${maven.multiModuleProjectDirectory}/tools/building/bin/kivakit-build-metadata-${kivakit.base.version}.jar"
                                               failonerror = "true"
                                               fork = "true">
                                             <arg value = "src/main/java"/>
@@ -203,13 +203,13 @@
                                 <if>
                                     <equals arg1 = "${project.name}" arg2 = "KivaKit"/>
                                     <then>
-                                        <echo file = "${env.KIVAKIT_HOME}/project.properties">
+                                        <echo file = "${maven.multiModuleProjectDirectory}/project.properties">
                                             project-name=${project.name}${line.separator}project-version=${project.version}${line.separator}project-group-id=${project.groupId}${line.separator}project-artifact-id=${project.artifactId}${line.separator}
                                         </echo>
-                                        <java jar = "${env.KIVAKIT_HOME}/tools/building/bin/kivakit-build-metadata-${kivakit.base.version}.jar"
+                                        <java jar = "${maven.multiModuleProjectDirectory}/tools/building/bin/kivakit-build-metadata-${kivakit.base.version}.jar"
                                               failonerror = "true"
                                               fork = "true">
-                                            <arg value = "${env.KIVAKIT_HOME}"/>
+                                            <arg value = "${maven.multiModuleProjectDirectory}"/>
                                         </java>
                                     </then>
                                 </if>
