@@ -1,4 +1,4 @@
-open module data.formats.library
+open module kivakit.data.formats.library
 {
     requires transitive kivakit.core.resource;
 

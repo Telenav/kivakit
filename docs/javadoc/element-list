@@ -1,5 +1,3 @@
-module:data.formats.library
-com.telenav.kivakit.data.formats.library
 module:kivakit.core.application
 com.telenav.kivakit.core.application
 module:kivakit.core.collections
@@ -200,6 +198,8 @@ com.telenav.kivakit.data.compression.codecs.huffman.tree
 com.telenav.kivakit.data.compression.project
 module:kivakit.data.formats.csv
 com.telenav.kivakit.data.formats.csv
+module:kivakit.data.formats.library
+com.telenav.kivakit.data.formats.library
 module:kivakit.data.formats.text
 com.telenav.kivakit.data.formats.library.text
 module:kivakit.data.formats.xml
