@@ -1,6 +1,6 @@
 ![](docs/images/kivakit-background-500.jpg)
 
-# KivaKit 0.9.0-SNAPSHOT &nbsp;&nbsp;![](documentation/images/gears-40.png)
+# KivaKit 0.9.0-SNAPSHOT &nbsp;&nbsp;![](documentation/images/kivakit-64.png)
 
 KivaKit is a set of integrated Java mini-frameworks.
 
