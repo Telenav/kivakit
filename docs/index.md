@@ -25,6 +25,8 @@ developing Java applications. The resources below will help you to get started.
 
 [Step-by-Step Setup Instructions](https://github.com/Telenav/kivakit/blob/master/documentation/overview/setup.md)
 
+&nbsp;
+
 ### Project Resources <a name = "project-resources"></a> &nbsp; ![](images/water-32.png)
 
 | Resource     |     Description                   |
