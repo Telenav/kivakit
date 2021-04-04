@@ -142,14 +142,14 @@
     <repositories>
 
         <repository>
-            <id>github</id>
+            <id>github-kivakit-build</id>
             <url>https://maven.pkg.github.com/Telenav/kivakit-build</url>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
         </repository>
         <repository>
-            <id>github</id>
+            <id>github-lexakai</id>
             <url>https://maven.pkg.github.com/Telenav/lexakai</url>
             <snapshots>
                 <enabled>true</enabled>
