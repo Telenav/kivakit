@@ -13,9 +13,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
  * A lazy-initializing value whose factory takes a parameter. Given a {@link MapFactory} that creates a value for a
- * parameter, only creates the object when {@link #get(Parameter)} is called. After that the value is cached and {@link
- * #get(Parameter)} will return the same value. {@link #clear()} can be used to clear the value and force it to be
- * re-created in the future.
+ * parameter, only creates the object when {@link #get(Parameter)} is called. After that the value is cached and
+ * {@link #get(Parameter)} will return the same value. {@link #clear()} can be used to clear the value and force
+ * it to be re-created in the future.
  * <p>
  * <b>Example</b>
  * <pre>

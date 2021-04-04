@@ -50,7 +50,7 @@ KivaKit is a set of integrated Java development mini-frameworks.
 
 ### Reference <a name = "reference"></a>&nbsp; ![](documentation/images/books-40.png)
 
-[**Javadoc**](https://telenav.github.io/kivakit/javadoc/kivakit/com/telenav/kivakit//index.html)  
+[**Javadoc**](https://telenav.github.io/kivakit/javadoc/index.html)  
 [**Code Flowers**](https://telenav.github.io/kivakit/codeflowers/site/index.html)  
 [**System Properties**](documentation/development/system-properties.md)
 

@@ -48,7 +48,6 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensu
  *
  * @param <Symbol> The symbol value type to compress and decompress, for example Character or String
  * @author jonathanl (shibo)
- * @see CountMap
  * @see ByteList
  * @see SymbolConsumer
  * @see SymbolProducer

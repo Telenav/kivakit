@@ -37,7 +37,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensu
  * </p>
  *
  * <pre>
- * group("collections", () ->
+ * group("collections", () -&gt;
  * {
  *     register(HashMap.class);    // identifier 1,000,001
  *     register(HashSet.class);    // identifier 1,000,002
@@ -45,7 +45,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensu
  *     register(LinkedList.class); // identifier 1,000,004
  * });
  *
- * group("primitives", () ->
+ * group("primitives", () -&gt;
  * {
  *     register(byte[].class);     // identifier 1,001,001
  *     register(short[].class);    // identifier 1,001,002

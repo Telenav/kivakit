@@ -34,7 +34,6 @@ import java.util.Iterator;
  *
  * @author jonathanl (shibo)
  * @see ByteList
- * @see ByteArray
  * @see SymbolProducer
  * @see SymbolConsumer
  * @see HuffmanCodec

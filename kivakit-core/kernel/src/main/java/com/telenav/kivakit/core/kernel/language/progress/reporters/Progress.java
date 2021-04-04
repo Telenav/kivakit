@@ -41,7 +41,7 @@ import org.jetbrains.annotations.NotNull;
  * <p>
  * <b>Example - Listening to the Progress of an Operation</b>
  * <pre>
- * progress.listener(percent -> System.out.println("$ complete", percent);
+ * progress.listener(percent -&gt; System.out.println("$ complete", percent);
  * </pre>
  * {@link Progress} is not thread-safe. To report progress in a multi-threaded operations, use {@link
  * ConcurrentProgress}.

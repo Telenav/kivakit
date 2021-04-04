@@ -274,9 +274,6 @@ public abstract class BaseList<Element> implements
         return this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public BaseList<Element> appendAll(final Element[] elements)
     {
         addAll(elements);

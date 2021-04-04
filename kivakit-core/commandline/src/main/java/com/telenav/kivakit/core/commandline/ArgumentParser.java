@@ -61,7 +61,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail
  * <b>Example</b>
  * <p>
  * This example provides a builder to create argument parsers for {@link Version} objects. The value specified on the
- * command line will be converted from a string to a {@link Version} object with {@link Version.Converter}. Many classes
+ * command line will be converted from a string to a {@link Version} object with {@link VersionConverter}. Many classes
  * in KivaKit provide string converters, which makes it an easy job to construct argument parsers.
  * <pre>
  * public static SwitchParser.Builder&lt;Version&gt; argumentParser(final String description)

@@ -16,8 +16,6 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensure;
-
 /**
  * Abstraction of an immutable path of elements of a given type with an optional root element.
  * <p>

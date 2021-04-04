@@ -92,9 +92,6 @@ public abstract class BaseStringConverter<Value> extends BaseConverter<String, V
         return allowEmpty;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public final Value onConvert(final String value)
     {
