@@ -42,7 +42,7 @@ of the details.
 
 ### Readable Resources <a name="readable-resources"></a> &nbsp; &nbsp; ![](../../documentation/images/wand-40.png)
 
-Different resource classes are constructed in different ways, but each implements the _Resource_  
+Different resource classes are constructed in different ways, but each implements the *Resource*  
 interface. The most important methods are shown here in a simplified form:
 
     public interface Resource extends ... 
@@ -59,20 +59,20 @@ interface. The most important methods are shown here in a simplified form:
 
 ### Kinds of Resources <a name="kinds-of-resources"></a> &nbsp; &nbsp; ![](../../documentation/images/diagram-48.png)
 
-The class _StringResource_ is about as simple as they come, but it can be read just like it was a  
-_File_ or any other resource:
+The class *StringResource* is about as simple as they come, but it can be read just like it was a  
+*File* or any other resource:
 
     Resource resource = new StringResource("this is a test");
     String [contents = resource.reader().string();
 
-In the same way, a _ZipArchive_ contains _ZipEntry_ resources, so they can be read in a similar  
-way through _reader().string()_.
+In the same way, a *ZipArchive* contains *ZipEntry* resources, so they can be read in a similar  
+way through *reader().string()*.
 
     ZipArchive zip = new ZipArchive(new File("kivakit.zip"));
     ZipEntry entry = zip.entry("test.txt");
     String contents = entry.reader().string();
 
-This method can accept a _ZipEntry_, a _StringResource_, a _File,_ an _HttpGetResource_ or any  
+This method can accept a *ZipEntry*, a *StringResource*, a *File,* an *HttpGetResource* or any  
 other resource and it works the same:
 
     public String contents(Resource resource)
@@ -82,7 +82,7 @@ other resource and it works the same:
 
 ### Writable Resources <a name="writable-resources"></a> &nbsp; &nbsp; ![](../../documentation/images/pencil-32.png)
 
-The _WritableResource_ interface extends the _Resource_ interface to add output capabilities:
+The *WritableResource* interface extends the *Resource* interface to add output capabilities:
 
     public interface WritableResource extends Resource 
     { 
@@ -93,7 +93,7 @@ The _WritableResource_ interface extends the _Resource_ interface to add output 
 
 ### Files <a name="files"></a> &nbsp; &nbsp; ![](../../documentation/images/folder-32.png)
 
-The _File_ object is a _WritableResource_ that adds a number of file-specific methods, including:
+The *File* object is a *WritableResource* that adds a number of file-specific methods, including:
 
     public class File implements WritableResource, FileSystemObject, ... 
     { 
@@ -104,43 +104,43 @@ The _File_ object is a _WritableResource_ that adds a number of file-specific me
     }
 
 Besides being abstracted readable and writable resources, files are also special because they are  
-integrated with KivaKit FileSystem API. This API uses JavaServices to allow _FileSystemService_  
+integrated with KivaKit FileSystem API. This API uses JavaServices to allow *FileSystemService*  
 implementations to be plugged in through a service provider interface (SPI).
 
-When you construct a _File_, the _FileSystemServiceRegistry_ asks each _FileSystemService_ provider  
-it found through the Java _ServiceLoader_ if it can accept the path you used when constructing the  
-object. If a provider accepts the file, it will then be installed into the _File_ object, to provide  
+When you construct a *File*, the *FileSystemServiceRegistry* asks each *FileSystemService* provider  
+it found through the Java *ServiceLoader* if it can accept the path you used when constructing the  
+object. If a provider accepts the file, it will then be installed into the *File* object, to provide  
 all the required filesystem features.
 
-For example, if you construct a _File_ like this:
+For example, if you construct a *File* like this:
 
     File file = new File("/home/jonathanl/kivakit.txt");
 
-The service registry will find that the _LocalFileSystemService_ accepts this path, and you will be  
+The service registry will find that the *LocalFileSystemService* accepts this path, and you will be  
 accessing a local file.
 
-If you construct a _File_ like this:
+If you construct a *File* like this:
 
     File file = new File("hdfs://home/jonathanl/kivakit.txt");
 
-You will be accessing a file on HDFS through the _HdfsFileSystemService_ provider.
+You will be accessing a file on HDFS through the *HdfsFileSystemService* provider.
 
-What makes all this so powerful is that you can accept a _File_ object as a parameter and not be  
-tied to any particular filesystem, and you can accept a _Resource_ as a parameter and have an even  
+What makes all this so powerful is that you can accept a *File* object as a parameter and not be  
+tied to any particular filesystem, and you can accept a *Resource* as a parameter and have an even  
 wider scope of abstraction than that. It makes sense to get the most abstraction that you can. Use  
-_Resource_ if it's sufficient and _File_ if you need file-specific functionality. Using the standard JDK  
-objects like java.io.File will tie the code to a particular resource implementation, making it far  
+*Resource* if it's sufficient and *File* if you need file-specific functionality. Using the standard JDK  
+objects like *java.io.File* will tie the code to a particular resource implementation, making it  
 less flexible.
 
 | File System | Provider |
 |---|---|
-| Local Disk | LocalFileSystemService |
-| HDFS | HdfsFileSystemService |
-| S3 | S3FileSystemService |
+| Local Disk | *LocalFileSystemService* |
+| HDFS | *HdfsFileSystemService* |
+| S3 | *S3FileSystemService* |
 
 ### Launching Jar Resources <a name = "launching-jar-resources"></a>
 
-The *JarLauncher* class can be used to launch executable jar resources from a local or remote  
+The *JarLauncher* class can be used to launch executable JAR resources from a local or remote  
 location. Basic usage looks like this:
 
     var jar = new HttpNetworkLocation(...);
@@ -162,7 +162,7 @@ A wide variety of other resources are available and new ones are easy to write. 
 
 *PackageResource* - Accesses resources in a package, as designated by a class in the package
 
-    PackageResource.packageResource(MyClass.class, new FilePath("images/duke.png"));
+    PackageResource.packageResource(MyClass.class, "images/duke.png");
 
 <br/>
 

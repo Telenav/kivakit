@@ -39,7 +39,7 @@ KivaKit is a set of integrated Java development mini-frameworks.
 | Email | [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
 | Issues | [GitHub Telenav/kivakit/issues](https://github.com/Telenav/kivakit/issues) |
 | Code | [GitHub Telenav/kivakit](https://github.com/Telenav/kivakit) |
-| Checkout | git clone git@github.com:Telenav/kivakit.git |
+| Checkout | `git clone git@github.com:Telenav/kivakit.git` |
 
 <br/>
 

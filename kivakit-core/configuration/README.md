@@ -8,7 +8,6 @@ deployments. It also provides registration and lookup of objects.
 ### Index
 
 [**Dependencies**](#dependencies)  
-
 [**Class Diagrams**](#class-diagrams)  
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
@@ -28,6 +27,12 @@ deployments. It also provides registration and lookup of objects.
 ![](documentation/images/horizontal-line.png)
 
 [//]: # (start-user-text)
+
+### Summary
+
+Details on how to use the *kivakit-core configuration* API are available in the Javadoc for the  
+[*ConfigurationSet*](https://telenav.github.io/kivakit/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/ConfigurationSet.html) and
+[*Deployment*](https://telenav.github.io/kivakit/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/Deployment.html) classes.
 
 
 
