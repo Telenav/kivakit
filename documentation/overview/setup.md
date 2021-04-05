@@ -23,10 +23,8 @@ You will need these products, or compatible products, set up to begin:
 The KivaKit project will look roughly like this when we're done with the setup process:
 
 > * Workspace
-    >
-* kivakit
-  >
-* kivakit-core
+>   * kivakit
+>     * kivakit-core
 
 Notice how the *kivakit* project (**KIVAKIT_HOME**) is checked out in the IDE workspace called  
 *Workspace* (**KIVAKIT_WORKSPACE**).
