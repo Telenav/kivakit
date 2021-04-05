@@ -66,7 +66,7 @@ line.link {
                     <option value='data/kivakit-core-collections.json'>kivakit-core-collections</option>
                     <option value='data/kivakit-core-commandline.json'>kivakit-core-commandline</option>
                     <option value='data/kivakit-core-configuration.json'>kivakit-core-configuration</option>
-                    <option value='data/kivakit-core-kernel.json'>kivakit-core-kernel</option>
+                    <option value='data/kivakit-core-kernel.json' selected='selected'>kivakit-core-kernel</option>
                     <option value='data/kivakit-core-network-core.json'>kivakit-core-network-core</option>
                     <option value='data/kivakit-core-network-email.json'>kivakit-core-network-email</option>
                     <option value='data/kivakit-core-network-ftp.json'>kivakit-core-network-ftp</option>
@@ -116,8 +116,6 @@ line.link {
       document.getElementById('project').addEventListener('change', function() {
         d3.json(this.value, createCodeFlower);
       });
-
-
 
 </script>
 </body>
