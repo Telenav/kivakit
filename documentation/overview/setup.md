@@ -41,8 +41,9 @@ To check out the *kivakit* project:
 
 2. Open a *bash* shell and go to your IDE workspace (the folder *Workspace* above)
 3. Clone the *kivakit* git repository into your workspace
-
-       cd Workspace git clone ssh://git@bitbucket.telenav.com:7999/kivakit/kivakit.git
+   
+       cd Workspace 
+       git clone ssh://git@bitbucket.telenav.com:7999/kivakit/kivakit.git
 
 <br/>
 
