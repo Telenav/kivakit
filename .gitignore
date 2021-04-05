@@ -15,5 +15,3 @@
 **/*.class
 **/*.hprof
 **/dependency-reduced-pom.xml
-**/tools/codeflowers/site/data/
-/tools/applications/bin/*
