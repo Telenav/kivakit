@@ -1,0 +1,18 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.tdk.logs.email"
+    
+    abstract BaseTextLog
+    
+    BaseTextLog <|-- EmailLog
+    EmailLog o-- EmailSender
+    EmailLog "1" o-- "*" EmailAddress : "to"
+    EmailLog o-- EmailAddress : "from"
+    class EmailLog
+    {
+    }
+    
+@enduml
+

@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="353.125px" preserveAspectRatio="none" style="width:304px;height:353px;background:#333333;" version="1.1" viewBox="0 0 304 353" width="304.1667px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="291.6667" x="2.0833" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="268.75" x="13.5417" y="30.5583">com.telenav.tdk.logs.email</text><!--MD5=[505565754f693a0fa517a94d5718b84f]
+class BaseTextLog--><rect codeLine="6" fill="#282828" height="48.055" id="BaseTextLog" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="119.7917" x="108.5938" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="119.7917" x="108.5938" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="119.7917" x="108.5938" y="76.7578"/><rect codeLine="6" fill="none" height="48.055" id="BaseTextLog" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="119.7917" x="108.5938" y="53.7028"/><ellipse cx="123.1771" cy="69.397" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M123.291,66.099 L122.4426,69.8283 L124.1455,69.8283 Z M122.1924,64.4511 L124.3958,64.4511 L126.8555,73.5636 L125.0549,73.5636 L124.4934,71.3114 L122.0825,71.3114 L121.5332,73.5636 L119.7327,73.5636 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="82.2917" x="139.8438" y="74.1211">BaseTextLog</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="109.6354" x2="227.3438" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="109.6354" x2="227.3438" y1="93.4245" y2="93.4245"/><!--MD5=[72030a0d78c07c2cc8b1b661dea82049]
+class EmailLog--><rect codeLine="12" fill="#282828" height="48.055" id="EmailLog" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="96.875" x="120.0521" y="165.1611"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="96.875" x="120.0521" y="165.1611"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="96.875" x="120.0521" y="188.2161"/><rect codeLine="12" fill="none" height="48.055" id="EmailLog" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="96.875" x="120.0521" y="165.1611"/><ellipse cx="134.6354" cy="180.8553" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M136.5458,185.2804 Q136.1186,185.5001 135.6486,185.6099 Q135.1786,185.7198 134.6598,185.7198 Q132.8166,185.7198 131.8461,184.5052 Q130.8757,183.2906 130.8757,180.9957 Q130.8757,178.6947 131.8461,177.4801 Q132.8166,176.2655 134.6598,176.2655 Q135.1786,176.2655 135.6547,176.3753 Q136.1308,176.4852 136.5458,176.7049 L136.5458,178.7069 Q136.0819,178.2796 135.6455,178.0813 Q135.2091,177.8829 134.7453,177.8829 Q133.7565,177.8829 133.253,178.6672 Q132.7494,179.4515 132.7494,180.9957 Q132.7494,182.5338 133.253,183.3181 Q133.7565,184.1024 134.7453,184.1024 Q135.2091,184.1024 135.6455,183.904 Q136.0819,183.7056 136.5458,183.2784 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="59.375" x="151.3021" y="185.5794">EmailLog</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="121.0938" x2="215.8854" y1="196.5495" y2="196.5495"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="121.0938" x2="215.8854" y1="204.8828" y2="204.8828"/><!--MD5=[dbd744789a27dfb7a38205596e031569]
+class EmailSender--><rect fill="#282828" height="48.055" id="EmailSender" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="116.6667" x="15.3646" y="298.4945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="116.6667" x="15.3646" y="298.4945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="116.6667" x="15.3646" y="321.5495"/><rect fill="none" height="48.055" id="EmailSender" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="116.6667" x="15.3646" y="298.4945"/><ellipse cx="29.9479" cy="314.1886" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M31.8583,318.6137 Q31.4311,318.8334 30.9611,318.9433 Q30.4911,319.0531 29.9723,319.0531 Q28.1291,319.0531 27.1586,317.8385 Q26.1882,316.6239 26.1882,314.329 Q26.1882,312.028 27.1586,310.8134 Q28.1291,309.5988 29.9723,309.5988 Q30.4911,309.5988 30.9672,309.7087 Q31.4433,309.8185 31.8583,310.0382 L31.8583,312.0402 Q31.3944,311.613 30.958,311.4146 Q30.5216,311.2162 30.0578,311.2162 Q29.069,311.2162 28.5655,312.0005 Q28.0619,312.7848 28.0619,314.329 Q28.0619,315.8671 28.5655,316.6514 Q29.069,317.4357 30.0578,317.4357 Q30.5216,317.4357 30.958,317.2373 Q31.3944,317.039 31.8583,316.6117 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="79.1667" x="46.6146" y="318.9128">EmailSender</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="16.4063" x2="130.9896" y1="329.8828" y2="329.8828"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="16.4063" x2="130.9896" y1="338.2161" y2="338.2161"/><!--MD5=[6a10e9b103e375a5f698786d329ce000]
+class EmailAddress--><rect fill="#282828" height="48.055" id="EmailAddress" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="126.0417" x="169.0104" y="298.4945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="126.0417" x="169.0104" y="298.4945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="126.0417" x="169.0104" y="321.5495"/><rect fill="none" height="48.055" id="EmailAddress" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="126.0417" x="169.0104" y="298.4945"/><ellipse cx="183.5938" cy="314.1886" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M185.5042,318.6137 Q185.0769,318.8334 184.6069,318.9433 Q184.137,319.0531 183.6182,319.0531 Q181.7749,319.0531 180.8044,317.8385 Q179.834,316.6239 179.834,314.329 Q179.834,312.028 180.8044,310.8134 Q181.7749,309.5988 183.6182,309.5988 Q184.137,309.5988 184.613,309.7087 Q185.0891,309.8185 185.5042,310.0382 L185.5042,312.0402 Q185.0403,311.613 184.6039,311.4146 Q184.1675,311.2162 183.7036,311.2162 Q182.7148,311.2162 182.2113,312.0005 Q181.7078,312.7848 181.7078,314.329 Q181.7078,315.8671 182.2113,316.6514 Q182.7148,317.4357 183.7036,317.4357 Q184.1675,317.4357 184.6039,317.2373 Q185.0403,317.039 185.5042,316.6117 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="88.5417" x="200.2604" y="318.9128">EmailAddress</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="170.0521" x2="294.0104" y1="329.8828" y2="329.8828"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="170.0521" x2="294.0104" y1="338.2161" y2="338.2161"/><!--MD5=[995f975f0cef30c597c09877b15bb350]
+reverse link BaseTextLog to EmailLog--><path codeLine="8" d="M168.4896,122.7965 C168.4896,137.1715 168.4896,152.5778 168.4896,164.807 " fill="none" id="BaseTextLog-backto-EmailLog" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="161.1979,122.4632,168.4896,101.6299,175.7813,122.4632,161.1979,122.4632" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[b5e29602702cc332d2b36d5e3a7458de]
+reverse link EmailLog to EmailSender--><path codeLine="9" d="M143.7083,224.4736 C126.8542,247.807 105.0313,278.0257 90.2604,298.484 " fill="none" id="EmailLog-backto-EmailSender" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="151.7604,213.3278,144.7233,215.955,144.4418,223.4613,151.4789,220.8341,151.7604,213.3278" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[98e55ff0a82284e95f90a41c664bcdee]
+reverse link EmailLog to EmailAddress--><path codeLine="10" d="M160.0833,226.859 C158.7917,240.1403 159.4896,254.9007 165.3646,267.2445 C171.2604,279.6299 181.5313,290.109 192.2708,298.4528 " fill="none" id="EmailLog-backto-EmailAddress" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="162.1146,213.2132,157.0729,218.7815,160.2738,225.5769,165.3154,220.0087,162.1146,213.2132" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="13.5417" x="169.5313" y="260.5794">to</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="147.325" y="236.8351">1</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="6.25" x="171.6808" y="284.4404">*</text><!--MD5=[98e55ff0a82284e95f90a41c664bcdee]
+reverse link EmailLog to EmailAddress--><path codeLine="11" d="M185.7292,225.7653 C196.9271,248.9111 211.2083,278.4007 220.9271,298.484 " fill="none" id="EmailLog-backto-EmailAddress-1" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="179.7083,213.3278,178.6816,220.7689,185.1554,224.5786,186.1821,217.1375,179.7083,213.3278" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="31.25" x="208.0729" y="260.5794">from</text><!--MD5=[b8f1a4af5b24989993b79acc6d49e7a2]
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.tdk.logs.email"
+    
+    abstract BaseTextLog
+    
+    BaseTextLog <|- - EmailLog
+    EmailLog o- - EmailSender
+    EmailLog "1" o- - "*" EmailAddress : "to"
+    EmailLog o- - EmailAddress : "from"
+    class EmailLog
+    {
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.tdk.logs.email"
+    
+    abstract BaseTextLog
+    
+    BaseTextLog <|- - EmailLog
+    EmailLog o- - EmailSender
+    EmailLog "1" o- - "*" EmailAddress : "to"
+    EmailLog o- - EmailAddress : "from"
+    class EmailLog
+    {
+    }
+    
+@enduml
+
+PlantUML version 1.2021.3(Mon Mar 22 09:53:19 MST 2021)
+(APACHE source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

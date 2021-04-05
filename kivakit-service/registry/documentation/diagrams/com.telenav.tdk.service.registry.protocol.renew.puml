@@ -1,0 +1,29 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.tdk.service.registry.protocol.renew"
+    
+    abstract BaseResponse
+    abstract BaseRequest
+    
+    BaseRequest <|-- RenewServiceRequest
+    class RenewServiceRequest
+    {
+        --(constructors)--
+        #RenewServiceRequest()
+        +RenewServiceRequest(Service)
+        --(service)--
+        +Service service()
+    }
+    
+    BaseResponse <|-- RenewServiceResponse
+    class RenewServiceResponse
+    {
+        --(service)--
+        +RenewServiceResponse service(Service)
+        +Service service()
+    }
+    
+@enduml
+

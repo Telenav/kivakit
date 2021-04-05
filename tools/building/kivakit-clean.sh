@@ -19,22 +19,11 @@ remove() {
 }
 
 if [ -d "$HOME/.kivakit/$KIVAKIT_VERSION" ]; then
-    read -p "Remove ALL cached files in ~/.kivakit/$KIVAKIT_VERSION, including logs, configurations, map boundaries, test graphs and world graphs (y/n)? " -n 1 -r
+    read -p "Remove ALL cached files in ~/.kivakit/$KIVAKIT_VERSION (y/n)? " -n 1 -r
     echo " "
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         echo "Removing all files in ~/.kivakit/$KIVAKIT_VERSION"
         rm -rf ~/.kivakit/$KIVAKIT_VERSION
-    fi
-fi
-
-if [ ! -z "$KIVAKIT_USER_GRAPH_FOLDER" ]; then
-    if [ -d "$KIVAKIT_USER_GRAPH_FOLDER" ]; then
-        read -p "Remove graphs from $KIVAKIT_USER_GRAPH_FOLDER (y/n)? " -n 1 -r
-        echo " "
-        if [[ $REPLY =~ ^[Yy]$ ]]; then
-            echo "Removing files matching $KIVAKIT_USER_GRAPH_FOLDER/*.graph"
-            find $KIVAKIT_USER_GRAPH_FOLDER -name \*.graph | xargs rm
-        fi
     fi
 fi
 
@@ -57,7 +46,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     remove '.project'
     remove 'Err.log'
     remove 'Err.log.*'
-    remove 'trafficRoadSectionWarn.log'
     remove '*.hprof'
     remove '*~'
 fi

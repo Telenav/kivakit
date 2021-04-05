@@ -1,0 +1,20 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "service.webapp"
+    
+    WebApplication <|-- ServiceRegistryWebApplication
+    class ServiceRegistryWebApplication
+    {
+    }
+    
+    WebPage <|-- ServiceRegistryWebPage
+    class ServiceRegistryWebPage
+    {
+        --(constructors)--
+        +ServiceRegistryWebPage()
+    }
+    
+@enduml
+

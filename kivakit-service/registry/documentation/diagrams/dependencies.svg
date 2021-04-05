@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="855.2083px" preserveAspectRatio="none" style="width:3016px;height:855px;background:#333333;" version="1.1" viewBox="0 0 3016 855" width="3016.6667px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="344.7917" x="1328.6458" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="321.875" x="1340.1042" y="30.5583">com.telenav.tdk.service-registry</text><!--MD5=[4f079977920bf52107586fb847a1e92c]
+entity kryo--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="63.5417" x="1230.7292" y="590.1611"/><polygon fill="#1B1B1A" points="1276.5625,595.3695,1276.5625,609.9528,1289.0625,609.9528,1289.0625,601.6195,1282.8125,595.3695,1276.5625,595.3695" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1282.8125" x2="1282.8125" y1="595.3695" y2="601.6195"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1289.0625" x2="1282.8125" y1="601.6195" y2="601.6195"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="26.0417" x="1244.2708" y="618.9128">kryo</text><!--MD5=[745ab22dbfa32e29a2660b9e5bc2262a]
+entity minlog--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="77.0833" x="1098.9583" y="697.4528"/><polygon fill="#1B1B1A" points="1158.3333,702.6611,1158.3333,717.2445,1170.8333,717.2445,1170.8333,708.9111,1164.5833,702.6611,1158.3333,702.6611" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1164.5833" x2="1164.5833" y1="702.6611" y2="708.9111"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1170.8333" x2="1164.5833" y1="708.9111" y2="708.9111"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="39.5833" x="1112.5" y="726.2044">minlog</text><!--MD5=[5d0bc62e6e2e5a8467f655d5e580826c]
+entity reflectasm--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="100" x="1212.5" y="697.4528"/><polygon fill="#1B1B1A" points="1294.7917,702.6611,1294.7917,717.2445,1307.2917,717.2445,1307.2917,708.9111,1301.0417,702.6611,1294.7917,702.6611" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1301.0417" x2="1301.0417" y1="702.6611" y2="708.9111"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1307.2917" x2="1301.0417" y1="708.9111" y2="708.9111"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="62.5" x="1226.0417" y="726.2044">reflectasm</text><!--MD5=[07375bd6ced801b2ef86c9d3f68eec61]
+entity jackson_annotations--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="158.3333" x="1672.9167" y="375.5778"/><polygon fill="#1B1B1A" points="1813.5417,380.7861,1813.5417,395.3695,1826.0417,395.3695,1826.0417,387.0361,1819.7917,380.7861,1813.5417,380.7861" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1819.7917" x2="1819.7917" y1="380.7861" y2="387.0361"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1826.0417" x2="1819.7917" y1="387.0361" y2="387.0361"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="120.8333" x="1686.4583" y="404.3294">jackson_annotations</text><!--MD5=[ec684cd484685c44b93fc0a601fe5901]
+entity jackson_core--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="115.625" x="1729.6875" y="482.8695"/><polygon fill="#1B1B1A" points="1827.6042,488.0778,1827.6042,502.6611,1840.1042,502.6611,1840.1042,494.3278,1833.8542,488.0778,1827.6042,488.0778" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1833.8542" x2="1833.8542" y1="488.0778" y2="494.3278"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1840.1042" x2="1833.8542" y1="494.3278" y2="494.3278"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="78.125" x="1743.2292" y="511.6211">jackson_core</text><!--MD5=[63634d7c92fbf7a1475e2be6b28e355d]
+entity jackson_databind--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="143.75" x="1867.7083" y="375.5778"/><polygon fill="#1B1B1A" points="1993.75,380.7861,1993.75,395.3695,2006.25,395.3695,2006.25,387.0361,2000,380.7861,1993.75,380.7861" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2000" x2="2000" y1="380.7861" y2="387.0361"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2006.25" x2="2000" y1="387.0361" y2="387.0361"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="106.25" x="1881.25" y="404.3294">jackson_databind</text><!--MD5=[eb0d90eb6c960bde0cfda455b8b63d8a]
+entity jackson_module_jaxb_annotations--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="242.7083" x="2048.4375" y="375.5778"/><polygon fill="#1B1B1A" points="2273.4375,380.7861,2273.4375,395.3695,2285.9375,395.3695,2285.9375,387.0361,2279.6875,380.7861,2273.4375,380.7861" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2279.6875" x2="2279.6875" y1="380.7861" y2="387.0361"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2285.9375" x2="2279.6875" y1="387.0361" y2="387.0361"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="205.2083" x="2061.9792" y="404.3294">jackson_module_jaxb_annotations</text><!--MD5=[53e810a96c27d4bd25e6a3839aaba16b]
+entity gson--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="65.625" x="1570.3125" y="375.5778"/><polygon fill="#1B1B1A" points="1618.2292,380.7861,1618.2292,395.3695,1630.7292,395.3695,1630.7292,387.0361,1624.4792,380.7861,1618.2292,380.7861" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1624.4792" x2="1624.4792" y1="380.7861" y2="387.0361"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1630.7292" x2="1624.4792" y1="387.0361" y2="387.0361"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="28.125" x="1583.8542" y="404.3294">gson</text><!--MD5=[086052dd4c6c402f45bbdecec656b034]
+entity com_telenav_lexakai_annotations--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="235.4167" x="7.2917" y="482.8695"/><polygon fill="#1B1B1A" points="225,488.0778,225,502.6611,237.5,502.6611,237.5,494.3278,231.25,488.0778,225,488.0778" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="231.25" x2="231.25" y1="488.0778" y2="494.3278"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="237.5" x2="231.25" y1="494.3278" y2="494.3278"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="197.9167" x="20.8333" y="511.6211">com_telenav_lexakai_annotations</text><!--MD5=[c9d3e1f0e77dbe456b3e78865ac7bb44]
+entity com_telenav_tdk_build_metadata--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="237.5" x="279.1667" y="482.8695"/><polygon fill="#1B1B1A" points="498.9583,488.0778,498.9583,502.6611,511.4583,502.6611,511.4583,494.3278,505.2083,488.0778,498.9583,488.0778" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="505.2083" x2="505.2083" y1="488.0778" y2="494.3278"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="511.4583" x2="505.2083" y1="494.3278" y2="494.3278"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="200" x="292.7083" y="511.6211">com_telenav_tdk_build_metadata</text><!--MD5=[e50d7141849377dbba9e296041ac37b5]
+entity com_telenav_tdk_core_application--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="241.6667" x="723.9583" y="160.9945"/><polygon fill="#1B1B1A" points="947.9167,166.2028,947.9167,180.7861,960.4167,180.7861,960.4167,172.4528,954.1667,166.2028,947.9167,166.2028" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="954.1667" x2="954.1667" y1="166.2028" y2="172.4528"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="960.4167" x2="954.1667" y1="172.4528" y2="172.4528"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="204.1667" x="737.5" y="189.7461">com_telenav_tdk_core_application</text><!--MD5=[a1de5a2664edb7fa67d5740e82a42824]
+entity com_telenav_tdk_core_collections--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="237.5" x="1003.125" y="375.5778"/><polygon fill="#1B1B1A" points="1222.9167,380.7861,1222.9167,395.3695,1235.4167,395.3695,1235.4167,387.0361,1229.1667,380.7861,1222.9167,380.7861" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1229.1667" x2="1229.1667" y1="380.7861" y2="387.0361"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1235.4167" x2="1229.1667" y1="387.0361" y2="387.0361"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="200" x="1016.6667" y="404.3294">com_telenav_tdk_core_collections</text><!--MD5=[f7f06b67d9208eb7c7bb86225e874452]
+entity com_telenav_tdk_core_commandline--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="256.25" x="425" y="268.2861"/><polygon fill="#1B1B1A" points="663.5417,273.4945,663.5417,288.0778,676.0417,288.0778,676.0417,279.7445,669.7917,273.4945,663.5417,273.4945" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="669.7917" x2="669.7917" y1="273.4945" y2="279.7445"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="676.0417" x2="669.7917" y1="279.7445" y2="279.7445"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="218.75" x="438.5417" y="297.0378">com_telenav_tdk_core_commandline</text><!--MD5=[97fca25270526894330c55030d95ea6b]
+entity com_telenav_tdk_core_configuration--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="253.125" x="718.2292" y="268.2861"/><polygon fill="#1B1B1A" points="953.6458,273.4945,953.6458,288.0778,966.1458,288.0778,966.1458,279.7445,959.8958,273.4945,953.6458,273.4945" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="959.8958" x2="959.8958" y1="273.4945" y2="279.7445"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="966.1458" x2="959.8958" y1="279.7445" y2="279.7445"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="215.625" x="731.7708" y="297.0378">com_telenav_tdk_core_configuration</text><!--MD5=[40791b2028d59fe67dd4bd56fce0cfd5]
+entity com_telenav_tdk_core_kernel--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="213.5417" x="446.3542" y="375.5778"/><polygon fill="#1B1B1A" points="642.1875,380.7861,642.1875,395.3695,654.6875,395.3695,654.6875,387.0361,648.4375,380.7861,642.1875,380.7861" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="648.4375" x2="648.4375" y1="380.7861" y2="387.0361"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="654.6875" x2="648.4375" y1="387.0361" y2="387.0361"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="176.0417" x="459.8958" y="404.3294">com_telenav_tdk_core_kernel</text><!--MD5=[82cf3f17e5b8f5cf6c4ebf34b5dcc164]
+entity com_telenav_tdk_core_network_core--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="256.25" x="1109.375" y="160.9945"/><polygon fill="#1B1B1A" points="1347.9167,166.2028,1347.9167,180.7861,1360.4167,180.7861,1360.4167,172.4528,1354.1667,166.2028,1347.9167,166.2028" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1354.1667" x2="1354.1667" y1="166.2028" y2="172.4528"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1360.4167" x2="1354.1667" y1="172.4528" y2="172.4528"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="218.75" x="1122.9167" y="189.7461">com_telenav_tdk_core_network_core</text><!--MD5=[0c41c8a93f91d5f219224b0a0b346ce2]
+entity com_telenav_tdk_core_resource--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="228.125" x="1007.8125" y="268.2861"/><polygon fill="#1B1B1A" points="1218.2292,273.4945,1218.2292,288.0778,1230.7292,288.0778,1230.7292,279.7445,1224.4792,273.4945,1218.2292,273.4945" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1224.4792" x2="1224.4792" y1="273.4945" y2="279.7445"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1230.7292" x2="1224.4792" y1="279.7445" y2="279.7445"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="190.625" x="1021.3542" y="297.0378">com_telenav_tdk_core_resource</text><!--MD5=[fd346999428d08f6a62986434f21a85a]
+entity com_telenav_tdk_core_security--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="221.875" x="1272.3958" y="268.2861"/><polygon fill="#1B1B1A" points="1476.5625,273.4945,1476.5625,288.0778,1489.0625,288.0778,1489.0625,279.7445,1482.8125,273.4945,1476.5625,273.4945" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1482.8125" x2="1482.8125" y1="273.4945" y2="279.7445"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1489.0625" x2="1482.8125" y1="279.7445" y2="279.7445"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="184.375" x="1285.9375" y="297.0378">com_telenav_tdk_core_security</text><!--MD5=[d0b7d2be35780d1fbbbf654759cd6173]
+entity com_telenav_tdk_core_test--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="197.9167" x="1284.375" y="375.5778"/><polygon fill="#1B1B1A" points="1464.5833,380.7861,1464.5833,395.3695,1477.0833,395.3695,1477.0833,387.0361,1470.8333,380.7861,1464.5833,380.7861" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1470.8333" x2="1470.8333" y1="380.7861" y2="387.0361"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1477.0833" x2="1470.8333" y1="387.0361" y2="387.0361"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="160.4167" x="1297.9167" y="404.3294">com_telenav_tdk_core_test</text><!--MD5=[6f5d528f6bb36bda722177df069e9d84]
+entity com_telenav_tdk_serialization_core--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="247.9167" x="975" y="482.8695"/><polygon fill="#1B1B1A" points="1205.2083,488.0778,1205.2083,502.6611,1217.7083,502.6611,1217.7083,494.3278,1211.4583,488.0778,1205.2083,488.0778" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1211.4583" x2="1211.4583" y1="488.0778" y2="494.3278"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1217.7083" x2="1211.4583" y1="494.3278" y2="494.3278"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="210.4167" x="988.5417" y="511.6211">com_telenav_tdk_serialization_core</text><!--MD5=[a7e609d023f2ee06f8dcebdab1bb6598]
+entity com_telenav_tdk_serialization_jersey_json--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="289.5833" x="1509.375" y="160.9945"/><polygon fill="#1B1B1A" points="1781.25,166.2028,1781.25,180.7861,1793.75,180.7861,1793.75,172.4528,1787.5,166.2028,1781.25,166.2028" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1787.5" x2="1787.5" y1="166.2028" y2="172.4528"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1793.75" x2="1787.5" y1="172.4528" y2="172.4528"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="252.0833" x="1522.9167" y="189.7461">com_telenav_tdk_serialization_jersey_json</text><!--MD5=[9fbf244f6b07942a103380d5d5b9157d]
+entity com_telenav_tdk_serialization_json--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="246.875" x="1530.7292" y="268.2861"/><polygon fill="#1B1B1A" points="1759.8958,273.4945,1759.8958,288.0778,1772.3958,288.0778,1772.3958,279.7445,1766.1458,273.4945,1759.8958,273.4945" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1766.1458" x2="1766.1458" y1="273.4945" y2="279.7445"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1772.3958" x2="1766.1458" y1="279.7445" y2="279.7445"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="209.375" x="1544.2708" y="297.0378">com_telenav_tdk_serialization_json</text><!--MD5=[b2f71fc7d7e5ea213a16d257194095ed]
+entity com_telenav_tdk_serialization_kryo--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="247.9167" x="1259.375" y="482.8695"/><polygon fill="#1B1B1A" points="1489.5833,488.0778,1489.5833,502.6611,1502.0833,502.6611,1502.0833,494.3278,1495.8333,488.0778,1489.5833,488.0778" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1495.8333" x2="1495.8333" y1="488.0778" y2="494.3278"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1502.0833" x2="1495.8333" y1="494.3278" y2="494.3278"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="210.4167" x="1272.9167" y="511.6211">com_telenav_tdk_serialization_kryo</text><!--MD5=[4a4870c49b090030fac239e47d39fab1]
+entity com_telenav_tdk_service_registry--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="236.4583" x="1119.2708" y="53.7028"/><polygon fill="#1B1B1A" points="1338.0208,58.9111,1338.0208,73.4945,1350.5208,73.4945,1350.5208,65.1611,1344.2708,58.9111,1338.0208,58.9111" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1344.2708" x2="1344.2708" y1="58.9111" y2="65.1611"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1350.5208" x2="1344.2708" y1="65.1611" y2="65.1611"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="198.9583" x="1132.8125" y="82.4544">com_telenav_tdk_service_registry</text><!--MD5=[b9ccc173c089e3d2abf77c8581e74aca]
+entity kryo_serializers--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="131.25" x="1331.25" y="590.1611"/><polygon fill="#1B1B1A" points="1444.7917,595.3695,1444.7917,609.9528,1457.2917,609.9528,1457.2917,601.6195,1451.0417,595.3695,1444.7917,595.3695" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1451.0417" x2="1451.0417" y1="595.3695" y2="601.6195"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1457.2917" x2="1451.0417" y1="601.6195" y2="601.6195"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="93.75" x="1344.7917" y="618.9128">kryo_serializers</text><!--MD5=[23cc7f88cfa1ae4b54fca2963c42906f]
+entity swagger_annotations--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="162.5" x="553.125" y="482.8695"/><polygon fill="#1B1B1A" points="697.9167,488.0778,697.9167,502.6611,710.4167,502.6611,710.4167,494.3278,704.1667,488.0778,697.9167,488.0778" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="704.1667" x2="704.1667" y1="488.0778" y2="494.3278"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="710.4167" x2="704.1667" y1="494.3278" y2="494.3278"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="125" x="566.6667" y="511.6211">swagger_annotations</text><!--MD5=[76295b2d657545520eec6d4c24e790cd]
+entity jakarta_activation_api--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="167.7083" x="1881.7708" y="482.8695"/><polygon fill="#1B1B1A" points="2031.7708,488.0778,2031.7708,502.6611,2044.2708,502.6611,2044.2708,494.3278,2038.0208,488.0778,2031.7708,488.0778" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2038.0208" x2="2038.0208" y1="488.0778" y2="494.3278"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2044.2708" x2="2038.0208" y1="494.3278" y2="494.3278"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="130.2083" x="1895.3125" y="511.6211">jakarta_activation_api</text><!--MD5=[5f86e1cd0ec430c1f04a49f7bc0bb95c]
+entity jakarta_annotation_api--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="173.9583" x="2290.1042" y="482.8695"/><polygon fill="#1B1B1A" points="2446.3542,488.0778,2446.3542,502.6611,2458.8542,502.6611,2458.8542,494.3278,2452.6042,488.0778,2446.3542,488.0778" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2452.6042" x2="2452.6042" y1="488.0778" y2="494.3278"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2458.8542" x2="2452.6042" y1="494.3278" y2="494.3278"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="136.4583" x="2303.6458" y="511.6211">jakarta_annotation_api</text><!--MD5=[7a861e606efef84ebfc88df5d89ecf7e]
+entity jakarta_ws_rs_api--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="144.7917" x="2500.5208" y="482.8695"/><polygon fill="#1B1B1A" points="2627.6042,488.0778,2627.6042,502.6611,2640.1042,502.6611,2640.1042,494.3278,2633.8542,488.0778,2627.6042,488.0778" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2633.8542" x2="2633.8542" y1="488.0778" y2="494.3278"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2640.1042" x2="2633.8542" y1="494.3278" y2="494.3278"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="107.2917" x="2514.0625" y="511.6211">jakarta_ws_rs_api</text><!--MD5=[d224a851402798498c2275c4aecbfd67]
+entity jakarta_xml_bind_api--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="166.6667" x="2086.4583" y="482.8695"/><polygon fill="#1B1B1A" points="2235.4167,488.0778,2235.4167,502.6611,2247.9167,502.6611,2247.9167,494.3278,2241.6667,488.0778,2235.4167,488.0778" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2241.6667" x2="2241.6667" y1="488.0778" y2="494.3278"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2247.9167" x2="2241.6667" y1="494.3278" y2="494.3278"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="129.1667" x="2100" y="511.6211">jakarta_xml_bind_api</text><!--MD5=[ce55b294004802c137560c2930be5b75]
+entity junit--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="63.5417" x="1544.2708" y="482.8695"/><polygon fill="#1B1B1A" points="1590.1042,488.0778,1590.1042,502.6611,1602.6042,502.6611,1602.6042,494.3278,1596.3542,488.0778,1590.1042,488.0778" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1596.3542" x2="1596.3542" y1="488.0778" y2="494.3278"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1602.6042" x2="1596.3542" y1="494.3278" y2="494.3278"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="26.0417" x="1557.8125" y="511.6211">junit</text><!--MD5=[449455e77597bd6e50d530192c98397e]
+entity jakarta_inject--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="118.75" x="2682.2917" y="482.8695"/><polygon fill="#1B1B1A" points="2783.3333,488.0778,2783.3333,502.6611,2795.8333,502.6611,2795.8333,494.3278,2789.5833,488.0778,2783.3333,488.0778" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2789.5833" x2="2789.5833" y1="488.0778" y2="494.3278"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2795.8333" x2="2789.5833" y1="494.3278" y2="494.3278"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="81.25" x="2695.8333" y="511.6211">jakarta_inject</text><!--MD5=[ffcd6adbf62c1e5312ee98d2239a865d]
+entity osgi_resource_locator--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="166.6667" x="2837.5" y="482.8695"/><polygon fill="#1B1B1A" points="2986.4583,488.0778,2986.4583,502.6611,2998.9583,502.6611,2998.9583,494.3278,2992.7083,488.0778,2986.4583,488.0778" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2992.7083" x2="2992.7083" y1="488.0778" y2="494.3278"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2998.9583" x2="2992.7083" y1="494.3278" y2="494.3278"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="129.1667" x="2851.0417" y="511.6211">osgi_resource_locator</text><!--MD5=[7645e41d260315f1d6f24f5c90884ccf]
+entity jersey_common--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="131.25" x="2417.7083" y="375.5778"/><polygon fill="#1B1B1A" points="2531.25,380.7861,2531.25,395.3695,2543.75,395.3695,2543.75,387.0361,2537.5,380.7861,2531.25,380.7861" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2537.5" x2="2537.5" y1="380.7861" y2="387.0361"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2543.75" x2="2537.5" y1="387.0361" y2="387.0361"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="93.75" x="2431.25" y="404.3294">jersey_common</text><!--MD5=[9108c9f36c02d7b53c092d10f6deb669]
+entity jersey_entity_filtering--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="163.5417" x="2585.9375" y="375.5778"/><polygon fill="#1B1B1A" points="2731.7708,380.7861,2731.7708,395.3695,2744.2708,395.3695,2744.2708,387.0361,2738.0208,380.7861,2731.7708,380.7861" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2738.0208" x2="2738.0208" y1="380.7861" y2="387.0361"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2744.2708" x2="2738.0208" y1="387.0361" y2="387.0361"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="126.0417" x="2599.4792" y="404.3294">jersey_entity_filtering</text><!--MD5=[b037ea0143fcc58de1c78bc444d43021]
+entity jersey_media_json_jackson--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="201.0417" x="1954.6875" y="268.2861"/><polygon fill="#1B1B1A" points="2138.0208,273.4945,2138.0208,288.0778,2150.5208,288.0778,2150.5208,279.7445,2144.2708,273.4945,2138.0208,273.4945" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2144.2708" x2="2144.2708" y1="273.4945" y2="279.7445"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2150.5208" x2="2144.2708" y1="279.7445" y2="279.7445"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="163.5417" x="1968.2292" y="297.0378">jersey_media_json_jackson</text><!--MD5=[7f157d37bc1fd6ac970bb67ffdbc66a3]
+entity hamcrest_core--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="125" x="1513.5417" y="590.1611"/><polygon fill="#1B1B1A" points="1620.8333,595.3695,1620.8333,609.9528,1633.3333,609.9528,1633.3333,601.6195,1627.0833,595.3695,1620.8333,595.3695" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1627.0833" x2="1627.0833" y1="595.3695" y2="601.6195"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1633.3333" x2="1627.0833" y1="601.6195" y2="601.6195"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="87.5" x="1527.0833" y="618.9128">hamcrest_core</text><!--MD5=[b728e17b4e4da6aa8cb97e9b2766c5e6]
+entity annotations--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="106.25" x="752.0833" y="482.8695"/><polygon fill="#1B1B1A" points="840.625,488.0778,840.625,502.6611,853.125,502.6611,853.125,494.3278,846.875,488.0778,840.625,488.0778" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="846.875" x2="846.875" y1="488.0778" y2="494.3278"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="853.125" x2="846.875" y1="494.3278" y2="494.3278"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="68.75" x="765.625" y="511.6211">annotations</text><!--MD5=[b3c862d1486667ad9c7edef6529b2202]
+entity objenesis--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="94.7917" x="1349.4792" y="697.4528"/><polygon fill="#1B1B1A" points="1426.5625,702.6611,1426.5625,717.2445,1439.0625,717.2445,1439.0625,708.9111,1432.8125,702.6611,1426.5625,702.6611" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1432.8125" x2="1432.8125" y1="702.6611" y2="708.9111"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1439.0625" x2="1432.8125" y1="708.9111" y2="708.9111"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="57.2917" x="1363.0208" y="726.2044">objenesis</text><!--MD5=[92e2ad58d19962135e7ff93f22958550]
+entity asm--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="62.5" x="1231.25" y="804.7445"/><polygon fill="#1B1B1A" points="1276.0417,809.9528,1276.0417,824.5361,1288.5417,824.5361,1288.5417,816.2028,1282.2917,809.9528,1276.0417,809.9528" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1282.2917" x2="1282.2917" y1="809.9528" y2="816.2028"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1288.5417" x2="1282.2917" y1="816.2028" y2="816.2028"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="25" x="1244.7917" y="833.4961">asm</text><!--MD5=[09ef5c8310891939a1fe7543190c0457]
+link com_telenav_tdk_core_application to com_telenav_tdk_core_commandline--><path d="M785.4167,205.8486 C736.625,223.4528 667.625,248.3382 617.5104,266.4111 " fill="none" id="com_telenav_tdk_core_application-to-com_telenav_tdk_core_commandline" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="612.4167,268.2549,622.6499,268.9843,617.3145,266.4833,619.8155,261.1479,612.4167,268.2549" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[491d1d916c557279529cbc33a08f06a1]
+link com_telenav_tdk_core_application to com_telenav_tdk_core_configuration--><path d="M844.7917,206.234 C844.7917,222.7028 844.7917,245.4007 844.7917,262.9528 " fill="none" id="com_telenav_tdk_core_application-to-com_telenav_tdk_core_configuration" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="844.7917,268.234,848.9583,258.859,844.7917,263.0257,840.625,258.859,844.7917,268.234" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9b4f5edf590576a4a5b77b327cc167cd]
+link com_telenav_tdk_core_commandline to com_telenav_tdk_core_kernel--><path d="M553.125,313.5257 C553.125,329.9945 553.125,352.6924 553.125,370.2445 " fill="none" id="com_telenav_tdk_core_commandline-to-com_telenav_tdk_core_kernel" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="553.125,375.5257,557.2917,366.1507,553.125,370.3174,548.9583,366.1507,553.125,375.5257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[42d431ec3bca6899a65f33d44c1eb1e8]
+link com_telenav_tdk_core_kernel to annotations--><path d="M604.4375,420.432 C646.4375,437.9632 705.7708,462.7236 749.0313,480.7757 " fill="none" id="com_telenav_tdk_core_kernel-to-annotations" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="753.9583,482.8382,746.8956,475.3972,749.1476,480.8424,743.7023,483.0944,753.9583,482.8382" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[c005a7e2df3478a80ff9465f14126548]
+link com_telenav_tdk_core_kernel to com_telenav_lexakai_annotations--><path d="M465.9688,420.432 C393.625,438.2132 291.0208,463.4215 217.2917,481.5465 " fill="none" id="com_telenav_tdk_core_kernel-to-com_telenav_lexakai_annotations" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="212.0313,482.8382,222.1282,484.6558,217.0902,481.5996,220.1464,476.5616,212.0313,482.8382" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[c4c00ab0ec2804a907d0e94c75b3a95a]
+link com_telenav_tdk_core_kernel to com_telenav_tdk_build_metadata--><path d="M521.3438,420.557 C496.0208,437.7236 460.5625,461.7549 434.1458,479.6611 " fill="none" id="com_telenav_tdk_core_kernel-to-com_telenav_tdk_build_metadata" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="429.6563,482.7132,439.7568,480.9157,433.9714,479.7967,435.0904,474.0114,429.6563,482.7132" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[0d3bab717762435e99f000f4996a4471]
+link com_telenav_tdk_core_kernel to swagger_annotations--><path d="M569.9583,420.8174 C582.8958,437.5674 600.8125,460.7653 614.4688,478.4424 " fill="none" id="com_telenav_tdk_core_kernel-to-swagger_annotations" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="617.8438,482.8174,615.4095,472.8511,614.6596,478.6958,608.8149,477.9459,617.8438,482.8174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7c5b4ebfd43c6930b876c38a5d404ef8]
+link com_telenav_tdk_core_network_core to com_telenav_tdk_core_resource--><path d="M1213.8229,205.9736 C1195.2708,222.859 1169.4167,246.3799 1149.8438,264.1924 " fill="none" id="com_telenav_tdk_core_network_core-to-com_telenav_tdk_core_resource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1145.5208,268.1299,1155.2506,264.8767,1149.3639,264.6145,1149.626,258.7278,1145.5208,268.1299" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[6c5a3ef5f884303392f193b4e632e210]
+link com_telenav_tdk_core_network_core to com_telenav_tdk_core_security--><path d="M1267.3646,205.9736 C1291.0521,223.0674 1324.1979,246.9736 1348.9792,264.859 " fill="none" id="com_telenav_tdk_core_network_core-to-com_telenav_tdk_core_security" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1353.5104,268.1299,1348.3476,259.2644,1349.2873,265.0815,1343.4702,266.0213,1353.5104,268.1299" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[fd0ebd91f6e146c69f125716187c5220]
+link com_telenav_tdk_core_resource to com_telenav_tdk_core_collections--><path d="M1121.875,313.5257 C1121.875,329.9945 1121.875,352.6924 1121.875,370.2445 " fill="none" id="com_telenav_tdk_core_resource-to-com_telenav_tdk_core_collections" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1121.875,375.5257,1126.0417,366.1507,1121.875,370.3174,1117.7083,366.1507,1121.875,375.5257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[26daab3f4817dea38388c7f4d4fe5045]
+link com_telenav_tdk_core_security to com_telenav_tdk_core_test--><path d="M1383.3333,313.5257 C1383.3333,329.9945 1383.3333,352.6924 1383.3333,370.2445 " fill="none" id="com_telenav_tdk_core_security-to-com_telenav_tdk_core_test" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1383.3333,375.5257,1387.5,366.1507,1383.3333,370.3174,1379.1667,366.1507,1383.3333,375.5257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[4b10c520e9efc34a0ad84fabb4a302f2]
+link com_telenav_tdk_core_test to com_telenav_tdk_serialization_core--><path d="M1325.4479,420.432 C1277.875,438.0361 1210.5938,462.9215 1161.7396,480.9945 " fill="none" id="com_telenav_tdk_core_test-to-com_telenav_tdk_serialization_core" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1156.7708,482.8382,1167.0085,483.5027,1161.6573,481.0356,1164.1243,475.6843,1156.7708,482.8382" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[2525366fb9b8836aff4aba137159169d]
+link com_telenav_tdk_core_test to com_telenav_tdk_serialization_kryo--><path d="M1383.3333,420.8174 C1383.3333,437.2861 1383.3333,459.984 1383.3333,477.5361 " fill="none" id="com_telenav_tdk_core_test-to-com_telenav_tdk_serialization_kryo" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1383.3333,482.8174,1387.5,473.4424,1383.3333,477.609,1379.1667,473.4424,1383.3333,482.8174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e2b658791bd0bd3972f9a8e4fd2688ef]
+link com_telenav_tdk_core_test to junit--><path d="M1422.7917,420.557 C1456.9063,439.182 1505.8333,465.8903 1539.1667,484.0882 " fill="none" id="com_telenav_tdk_core_test-to-junit" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1543.9688,486.7132,1537.7448,478.5576,1539.3998,484.2129,1533.7444,485.8679,1543.9688,486.7132" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[4d87a02e9f58eec846e6a28a1cb6eaa9]
+link com_telenav_tdk_serialization_jersey_json to com_telenav_tdk_serialization_json--><path d="M1654.1667,206.234 C1654.1667,222.7028 1654.1667,245.4007 1654.1667,262.9528 " fill="none" id="com_telenav_tdk_serialization_jersey_json-to-com_telenav_tdk_serialization_json" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1654.1667,268.234,1658.3333,258.859,1654.1667,263.0257,1650,258.859,1654.1667,268.234" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[4e658a8ae10b2c5b90ad8e63a3cbd922]
+link com_telenav_tdk_serialization_jersey_json to jersey_media_json_jackson--><path d="M1735.8021,205.8486 C1803.4375,223.5882 1899.3125,248.7445 1968.3438,266.8486 " fill="none" id="com_telenav_tdk_serialization_jersey_json-to-jersey_media_json_jackson" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1973.6875,268.2549,1965.6825,261.8384,1968.6508,266.9287,1963.5605,269.897,1973.6875,268.2549" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[6ad58170c30875149daa8e638b85e45b]
+link com_telenav_tdk_serialization_json to gson--><path d="M1643.5938,313.5257 C1635.5313,330.1403 1624.3958,353.0778 1615.8542,370.7028 " fill="none" id="com_telenav_tdk_serialization_json-to-gson" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1613.5104,375.5257,1621.3543,368.9133,1615.786,370.8408,1613.8584,365.2724,1613.5104,375.5257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[47dfe7084503077625f88d3fef24d417]
+link com_telenav_tdk_serialization_kryo to kryo--><path d="M1358.5938,527.8486 C1339.0417,544.8695 1311.7292,568.6507 1291.2188,586.5153 " fill="none" id="com_telenav_tdk_serialization_kryo-to-kryo" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1287.2083,590.0049,1297.014,586.9882,1291.1354,586.5836,1291.54,580.705,1287.2083,590.0049" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[a1e3673957aac7674932a3b577a6d45a]
+link com_telenav_tdk_serialization_kryo to kryo_serializers--><path d="M1386.1354,528.109 C1388.2604,544.5778 1391.1771,567.2757 1393.4375,584.8278 " fill="none" id="com_telenav_tdk_serialization_kryo-to-kryo_serializers" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1394.1146,590.109,1397.041,580.276,1393.4448,584.944,1388.7768,581.3478,1394.1146,590.109" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9c34a146a599ef5069a90b9ce0a539cd]
+link com_telenav_tdk_service_registry to com_telenav_tdk_core_application--><path d="M1157.5521,98.557 C1091.3333,116.2965 997.4479,141.4528 929.8542,159.557 " fill="none" id="com_telenav_tdk_service_registry-to-com_telenav_tdk_core_application" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="924.625,160.9632,934.7565,162.5773,929.658,159.6231,932.6122,154.5246,924.625,160.9632" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[5877dacdad38e238ec518b81f12cfe72]
+link com_telenav_tdk_service_registry to com_telenav_tdk_core_network_core--><path d="M1237.5,98.9424 C1237.5,115.4111 1237.5,138.109 1237.5,155.6611 " fill="none" id="com_telenav_tdk_service_registry-to-com_telenav_tdk_core_network_core" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1237.5,160.9424,1241.6667,151.5674,1237.5,155.734,1233.3333,151.5674,1237.5,160.9424" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[0461a8b7f4dcac9580c9f047a73e3131]
+link com_telenav_tdk_service_registry to com_telenav_tdk_serialization_jersey_json--><path d="M1322.3229,98.557 C1392.7292,116.3382 1492.5938,141.5465 1564.3438,159.6715 " fill="none" id="com_telenav_tdk_service_registry-to-com_telenav_tdk_serialization_jersey_json" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1569.4688,160.9632,1561.4062,154.6192,1564.4203,159.6825,1559.357,162.6967,1569.4688,160.9632" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e0dbc9fd33e3311489577ac448fdc3ff]
+link jackson_databind to jackson_core--><path d="M1908.4375,420.557 C1883.6354,437.7236 1848.8854,461.7549 1823,479.6611 " fill="none" id="jackson_databind-to-jackson_core" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1818.6042,482.7132,1828.6812,480.7881,1822.8821,479.7424,1823.9279,473.9434,1818.6042,482.7132" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[87bfd0392a84eaf77f043caee4377ab0]
+link jackson_module_jaxb_annotations to jakarta_activation_api--><path d="M2127.9792,420.557 C2094.4063,437.859 2047.2604,462.1507 2012.4271,480.109 " fill="none" id="jackson_module_jaxb_annotations-to-jakarta_activation_api" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="2007.375,482.7132,2017.6176,482.1295,2012.0064,480.3305,2013.8053,474.7193,2007.375,482.7132" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[099c6eacbc963949f99c4dbd4ebf15b4]
+link jackson_module_jaxb_annotations to jakarta_xml_bind_api--><path d="M2169.7917,420.8174 C2169.7917,437.2861 2169.7917,459.984 2169.7917,477.5361 " fill="none" id="jackson_module_jaxb_annotations-to-jakarta_xml_bind_api" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="2169.7917,482.8174,2173.9583,473.4424,2169.7917,477.609,2165.625,473.4424,2169.7917,482.8174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[8a5ffbb30f3f16df05830d0a5e745bc0]
+link jersey_common to jakarta_annotation_api--><path d="M2461.3229,420.8174 C2444.25,437.7132 2420.5729,461.1611 2402.6667,478.8903 " fill="none" id="jersey_common-to-jakarta_annotation_api" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="2398.7083,482.8174,2408.3059,479.1926,2402.4134,479.1569,2402.4491,473.2645,2398.7083,482.8174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ec6a9444ade87f22dab33ccf6249c5ff]
+link jersey_common to jakarta_inject--><path d="M2535.9271,420.432 C2578.9688,437.9632 2639.7604,462.7236 2684.1042,480.7757 " fill="none" id="jersey_common-to-jakarta_inject" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="2689.1563,482.8382,2682.0462,475.4423,2684.3329,480.8731,2678.9021,483.1598,2689.1563,482.8382" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[25bce382c8ccc58e1b1c6f5c8ca83ff5]
+link jersey_common to jakarta_ws_rs_api--><path d="M2501.8958,420.8174 C2516.1667,437.5674 2535.9167,460.7653 2550.9688,478.4424 " fill="none" id="jersey_common-to-jakarta_ws_rs_api" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="2554.6875,482.8174,2551.7895,472.976,2551.3139,478.8493,2545.4406,478.3737,2554.6875,482.8174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[8ddaa24f61a06bf216154b00568b0076]
+link jersey_common to osgi_resource_locator--><path d="M2549.1771,415.7757 C2555.4375,417.3382 2561.6875,418.8903 2567.7083,420.3695 C2657.6563,442.432 2760.7083,466.7965 2832.1771,483.557 " fill="none" id="jersey_common-to-osgi_resource_locator" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="2837.2708,484.7445,2829.0953,478.5467,2832.2002,483.5549,2827.192,486.6597,2837.2708,484.7445" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9ebfd12a1eedbfe9f3adafddc64875c6]
+link jersey_media_json_jackson to jackson_annotations--><path d="M1993.5,313.1403 C1942.6875,330.7757 1870.7917,355.734 1818.6875,373.8174 " fill="none" id="jersey_media_json_jackson-to-jackson_annotations" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1813.7083,375.5465,1823.93,376.4237,1818.6312,373.8459,1821.209,368.5471,1813.7083,375.5465" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e6523c6a673c30a38a335860083cc4f3]
+link jersey_media_json_jackson to jackson_databind--><path d="M2031.5313,313.2653 C2012.9792,330.1507 1987.125,353.6715 1967.5521,371.484 " fill="none" id="jersey_media_json_jackson-to-jackson_databind" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1963.2292,375.4215,1972.9589,372.1684,1967.0722,371.9062,1967.3344,366.0195,1963.2292,375.4215" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[725f01f0686cea097fe005f044c98e1a]
+link jersey_media_json_jackson to jackson_module_jaxb_annotations--><path d="M2078.6771,313.2653 C2097.0521,330.1507 2122.6771,353.6715 2142.0729,371.484 " fill="none" id="jersey_media_json_jackson-to-jackson_module_jaxb_annotations" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="2146.3542,375.4215,2142.2688,366.0109,2142.5185,371.8981,2136.6313,372.1479,2146.3542,375.4215" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[99a6e10206490d010fcd154959b4678f]
+link jersey_media_json_jackson to jersey_common--><path d="M2142.3646,313.1403 C2221.9896,332.7132 2338.2813,361.2861 2412.375,379.4945 " fill="none" id="jersey_media_json_jackson-to-jersey_common" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="2417.6354,380.7861,2409.5334,374.4925,2412.5791,379.5369,2407.5347,382.5826,2417.6354,380.7861" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[1bd048f79fb5a4a227318860703c1932]
+link jersey_media_json_jackson to jersey_entity_filtering--><path d="M2156.1042,306.7653 C2259.6458,322.5361 2425.2813,348.734 2567.7083,375.5778 C2571.9688,376.3799 2576.3333,377.2236 2580.7292,378.0986 " fill="none" id="jersey_media_json_jackson-to-jersey_entity_filtering" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="2585.9167,379.1299,2577.5475,373.1962,2580.8106,378.1027,2575.9041,381.3658,2585.9167,379.1299" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[d68e7c4b3ca5f037bcb6997a0b4ed16b]
+link junit to hamcrest_core--><path d="M1576.0417,528.109 C1576.0417,544.5778 1576.0417,567.2757 1576.0417,584.8278 " fill="none" id="junit-to-hamcrest_core" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1576.0417,590.109,1580.2083,580.734,1576.0417,584.9007,1571.875,580.734,1576.0417,590.109" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[8c32f0e7b0abeba01afd276f5a66ee84]
+link kryo to minlog--><path d="M1236.9063,635.1403 C1216.6771,652.1611 1188.4271,675.9424 1167.2083,693.807 " fill="none" id="kryo-to-minlog" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1163.0625,697.2965,1172.9165,694.4415,1167.0453,693.9403,1167.5465,688.0691,1163.0625,697.2965" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e75c16e47fcf6c43b15d3c25536a9ed0]
+link kryo to objenesis--><path d="M1290.0208,635.1403 C1311.8438,652.234 1342.3854,676.1403 1365.2188,694.0257 " fill="none" id="kryo-to-objenesis" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1369.3958,697.2965,1364.5809,688.2374,1365.2942,694.0866,1359.445,694.7999,1369.3958,697.2965" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e061beb27669383d030ce0c5c656b006]
+link kryo to reflectasm--><path d="M1262.5,635.4007 C1262.5,651.8695 1262.5,674.5674 1262.5,692.1195 " fill="none" id="kryo-to-reflectasm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1262.5,697.4007,1266.6667,688.0257,1262.5,692.1924,1258.3333,688.0257,1262.5,697.4007" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[338783537f3f9263e4097f5ff0c514d3]
+link reflectasm to asm--><path d="M1262.5,742.6924 C1262.5,759.1611 1262.5,781.859 1262.5,799.4111 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1262.5,804.6924,1266.6667,795.3174,1262.5,799.484,1258.3333,795.3174,1262.5,804.6924" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ffdb90d00705d72f15cae23dbf60ce8f]
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.tdk.service-registry"
+    
+    artifact kryo
+    artifact minlog
+    artifact reflectasm
+    artifact jackson_annotations
+    artifact jackson_core
+    artifact jackson_databind
+    artifact jackson_module_jaxb_annotations
+    artifact gson
+    artifact com_telenav_lexakai_annotations
+    artifact com_telenav_tdk_build_metadata
+    artifact com_telenav_tdk_core_application
+    artifact com_telenav_tdk_core_collections
+    artifact com_telenav_tdk_core_commandline
+    artifact com_telenav_tdk_core_configuration
+    artifact com_telenav_tdk_core_kernel
+    artifact com_telenav_tdk_core_network_core
+    artifact com_telenav_tdk_core_resource
+    artifact com_telenav_tdk_core_security
+    artifact com_telenav_tdk_core_test
+    artifact com_telenav_tdk_serialization_core
+    artifact com_telenav_tdk_serialization_jersey_json
+    artifact com_telenav_tdk_serialization_json
+    artifact com_telenav_tdk_serialization_kryo
+    artifact com_telenav_tdk_service_registry
+    artifact kryo_serializers
+    artifact swagger_annotations
+    artifact jakarta_activation_api
+    artifact jakarta_annotation_api
+    artifact jakarta_ws_rs_api
+    artifact jakarta_xml_bind_api
+    artifact junit
+    artifact jakarta_inject
+    artifact osgi_resource_locator
+    artifact jersey_common
+    artifact jersey_entity_filtering
+    artifact jersey_media_json_jackson
+    artifact hamcrest_core
+    artifact annotations
+    artifact objenesis
+    artifact asm
+    com_telenav_tdk_core_application - -> com_telenav_tdk_core_commandline
+    com_telenav_tdk_core_application - -> com_telenav_tdk_core_configuration
+    com_telenav_tdk_core_commandline - -> com_telenav_tdk_core_kernel
+    com_telenav_tdk_core_kernel - -> annotations
+    com_telenav_tdk_core_kernel - -> com_telenav_lexakai_annotations
+    com_telenav_tdk_core_kernel - -> com_telenav_tdk_build_metadata
+    com_telenav_tdk_core_kernel - -> swagger_annotations
+    com_telenav_tdk_core_network_core - -> com_telenav_tdk_core_resource
+    com_telenav_tdk_core_network_core - -> com_telenav_tdk_core_security
+    com_telenav_tdk_core_resource - -> com_telenav_tdk_core_collections
+    com_telenav_tdk_core_security - -> com_telenav_tdk_core_test
+    com_telenav_tdk_core_test - -> com_telenav_tdk_serialization_core
+    com_telenav_tdk_core_test - -> com_telenav_tdk_serialization_kryo
+    com_telenav_tdk_core_test - -> junit
+    com_telenav_tdk_serialization_jersey_json - -> com_telenav_tdk_serialization_json
+    com_telenav_tdk_serialization_jersey_json - -> jersey_media_json_jackson
+    com_telenav_tdk_serialization_json - -> gson
+    com_telenav_tdk_serialization_kryo - -> kryo
+    com_telenav_tdk_serialization_kryo - -> kryo_serializers
+    com_telenav_tdk_service_registry - -> com_telenav_tdk_core_application
+    com_telenav_tdk_service_registry - -> com_telenav_tdk_core_network_core
+    com_telenav_tdk_service_registry - -> com_telenav_tdk_serialization_jersey_json
+    jackson_databind - -> jackson_core
+    jackson_module_jaxb_annotations - -> jakarta_activation_api
+    jackson_module_jaxb_annotations - -> jakarta_xml_bind_api
+    jersey_common - -> jakarta_annotation_api
+    jersey_common - -> jakarta_inject
+    jersey_common - -> jakarta_ws_rs_api
+    jersey_common - -> osgi_resource_locator
+    jersey_media_json_jackson - -> jackson_annotations
+    jersey_media_json_jackson - -> jackson_databind
+    jersey_media_json_jackson - -> jackson_module_jaxb_annotations
+    jersey_media_json_jackson - -> jersey_common
+    jersey_media_json_jackson - -> jersey_entity_filtering
+    junit - -> hamcrest_core
+    kryo - -> minlog
+    kryo - -> objenesis
+    kryo - -> reflectasm
+    reflectasm - -> asm
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.tdk.service-registry"
+    
+    artifact kryo
+    artifact minlog
+    artifact reflectasm
+    artifact jackson_annotations
+    artifact jackson_core
+    artifact jackson_databind
+    artifact jackson_module_jaxb_annotations
+    artifact gson
+    artifact com_telenav_lexakai_annotations
+    artifact com_telenav_tdk_build_metadata
+    artifact com_telenav_tdk_core_application
+    artifact com_telenav_tdk_core_collections
+    artifact com_telenav_tdk_core_commandline
+    artifact com_telenav_tdk_core_configuration
+    artifact com_telenav_tdk_core_kernel
+    artifact com_telenav_tdk_core_network_core
+    artifact com_telenav_tdk_core_resource
+    artifact com_telenav_tdk_core_security
+    artifact com_telenav_tdk_core_test
+    artifact com_telenav_tdk_serialization_core
+    artifact com_telenav_tdk_serialization_jersey_json
+    artifact com_telenav_tdk_serialization_json
+    artifact com_telenav_tdk_serialization_kryo
+    artifact com_telenav_tdk_service_registry
+    artifact kryo_serializers
+    artifact swagger_annotations
+    artifact jakarta_activation_api
+    artifact jakarta_annotation_api
+    artifact jakarta_ws_rs_api
+    artifact jakarta_xml_bind_api
+    artifact junit
+    artifact jakarta_inject
+    artifact osgi_resource_locator
+    artifact jersey_common
+    artifact jersey_entity_filtering
+    artifact jersey_media_json_jackson
+    artifact hamcrest_core
+    artifact annotations
+    artifact objenesis
+    artifact asm
+    com_telenav_tdk_core_application - -> com_telenav_tdk_core_commandline
+    com_telenav_tdk_core_application - -> com_telenav_tdk_core_configuration
+    com_telenav_tdk_core_commandline - -> com_telenav_tdk_core_kernel
+    com_telenav_tdk_core_kernel - -> annotations
+    com_telenav_tdk_core_kernel - -> com_telenav_lexakai_annotations
+    com_telenav_tdk_core_kernel - -> com_telenav_tdk_build_metadata
+    com_telenav_tdk_core_kernel - -> swagger_annotations
+    com_telenav_tdk_core_network_core - -> com_telenav_tdk_core_resource
+    com_telenav_tdk_core_network_core - -> com_telenav_tdk_core_security
+    com_telenav_tdk_core_resource - -> com_telenav_tdk_core_collections
+    com_telenav_tdk_core_security - -> com_telenav_tdk_core_test
+    com_telenav_tdk_core_test - -> com_telenav_tdk_serialization_core
+    com_telenav_tdk_core_test - -> com_telenav_tdk_serialization_kryo
+    com_telenav_tdk_core_test - -> junit
+    com_telenav_tdk_serialization_jersey_json - -> com_telenav_tdk_serialization_json
+    com_telenav_tdk_serialization_jersey_json - -> jersey_media_json_jackson
+    com_telenav_tdk_serialization_json - -> gson
+    com_telenav_tdk_serialization_kryo - -> kryo
+    com_telenav_tdk_serialization_kryo - -> kryo_serializers
+    com_telenav_tdk_service_registry - -> com_telenav_tdk_core_application
+    com_telenav_tdk_service_registry - -> com_telenav_tdk_core_network_core
+    com_telenav_tdk_service_registry - -> com_telenav_tdk_serialization_jersey_json
+    jackson_databind - -> jackson_core
+    jackson_module_jaxb_annotations - -> jakarta_activation_api
+    jackson_module_jaxb_annotations - -> jakarta_xml_bind_api
+    jersey_common - -> jakarta_annotation_api
+    jersey_common - -> jakarta_inject
+    jersey_common - -> jakarta_ws_rs_api
+    jersey_common - -> osgi_resource_locator
+    jersey_media_json_jackson - -> jackson_annotations
+    jersey_media_json_jackson - -> jackson_databind
+    jersey_media_json_jackson - -> jackson_module_jaxb_annotations
+    jersey_media_json_jackson - -> jersey_common
+    jersey_media_json_jackson - -> jersey_entity_filtering
+    junit - -> hamcrest_core
+    kryo - -> minlog
+    kryo - -> objenesis
+    kryo - -> reflectasm
+    reflectasm - -> asm
+    
+@enduml
+
+PlantUML version 1.2021.3(Mon Mar 22 09:53:19 MST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

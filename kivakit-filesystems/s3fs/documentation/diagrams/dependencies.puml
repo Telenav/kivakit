@@ -1,0 +1,123 @@
+@startuml
+
+    !include ../lexakai.theme
+
+    title "kivakit-filesystems-s3fs"
+
+    artifact kryo
+    artifact minlog
+    artifact reflectasm
+    artifact jackson_annotations
+    artifact jackson_core
+    artifact jackson_databind
+    artifact com_telenav_lexakai_annotations
+    artifact com_telenav_tdk_build_metadata
+    artifact com_telenav_tdk_core_collections
+    artifact com_telenav_tdk_core_commandline
+    artifact com_telenav_tdk_core_kernel
+    artifact com_telenav_tdk_core_resource
+    artifact com_telenav_tdk_core_test
+    artifact com_telenav_tdk_filesystems_s3fs
+    artifact com_telenav_tdk_serialization_core
+    artifact com_telenav_tdk_serialization_kryo
+    artifact netty_reactive_streams_http
+    artifact netty_reactive_streams
+    artifact commons_codec
+    artifact commons_logging
+    artifact kryo_serializers
+    artifact netty_buffer
+    artifact netty_codec_http2
+    artifact netty_codec_http
+    artifact netty_codec
+    artifact netty_common
+    artifact netty_handler
+    artifact netty_resolver
+    artifact netty_transport_native_epoll
+    artifact netty_transport_native_unix_common
+    artifact netty_transport
+    artifact swagger_annotations
+    artifact junit
+    artifact httpclient
+    artifact httpcore
+    artifact hamcrest_core
+    artifact annotations
+    artifact objenesis
+    artifact asm
+    artifact reactive_streams
+    artifact slf4j_api
+    artifact annotations
+    artifact apache_client
+    artifact arns
+    artifact auth
+    artifact aws_core
+    artifact aws_query_protocol
+    artifact aws_xml_protocol
+    artifact http_client_spi
+    artifact metrics_spi
+    artifact netty_nio_client
+    artifact profiles
+    artifact protocol_core
+    artifact regions
+    artifact s3
+    artifact sdk_core
+    artifact utils
+    artifact eventstream
+    apache_client --> httpclient
+    apache_client --> httpcore
+    auth --> eventstream
+    aws_xml_protocol --> aws_query_protocol
+    com_telenav_tdk_core_collections --> com_telenav_tdk_core_test
+    com_telenav_tdk_core_commandline --> com_telenav_tdk_core_kernel
+    com_telenav_tdk_core_kernel --> annotations
+    com_telenav_tdk_core_kernel --> com_telenav_lexakai_annotations
+    com_telenav_tdk_core_kernel --> com_telenav_tdk_build_metadata
+    com_telenav_tdk_core_kernel --> jackson_annotations
+    com_telenav_tdk_core_kernel --> swagger_annotations
+    com_telenav_tdk_core_resource --> com_telenav_tdk_core_collections
+    com_telenav_tdk_core_resource --> com_telenav_tdk_core_commandline
+    com_telenav_tdk_core_test --> com_telenav_tdk_serialization_core
+    com_telenav_tdk_core_test --> com_telenav_tdk_serialization_kryo
+    com_telenav_tdk_core_test --> junit
+    com_telenav_tdk_filesystems_s3fs --> com_telenav_tdk_core_resource
+    com_telenav_tdk_filesystems_s3fs --> s3
+    com_telenav_tdk_serialization_kryo --> kryo
+    com_telenav_tdk_serialization_kryo --> kryo_serializers
+    httpclient --> commons_codec
+    httpclient --> commons_logging
+    junit --> hamcrest_core
+    kryo --> minlog
+    kryo --> objenesis
+    kryo --> reflectasm
+    netty_nio_client --> netty_buffer
+    netty_nio_client --> netty_codec
+    netty_nio_client --> netty_codec_http
+    netty_nio_client --> netty_codec_http2
+    netty_nio_client --> netty_common
+    netty_nio_client --> netty_handler
+    netty_nio_client --> netty_reactive_streams_http
+    netty_nio_client --> netty_transport
+    netty_nio_client --> netty_transport_native_epoll
+    netty_reactive_streams_http --> netty_reactive_streams
+    netty_transport --> netty_resolver
+    netty_transport_native_epoll --> netty_transport_native_unix_common
+    reflectasm --> asm
+    s3 --> annotations
+    s3 --> apache_client
+    s3 --> arns
+    s3 --> auth
+    s3 --> aws_core
+    s3 --> aws_xml_protocol
+    s3 --> http_client_spi
+    s3 --> metrics_spi
+    s3 --> netty_nio_client
+    s3 --> profiles
+    s3 --> protocol_core
+    s3 --> regions
+    s3 --> sdk_core
+    s3 --> utils
+    sdk_core --> jackson_core
+    sdk_core --> jackson_databind
+    sdk_core --> reactive_streams
+    sdk_core --> slf4j_api
+
+@enduml

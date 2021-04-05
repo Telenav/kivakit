@@ -1,0 +1,17 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.tdk.service.registry.client.project"
+    
+    Project <|-- ServiceClientProject
+    class ServiceClientProject
+    {
+        --(constructors)--
+        #ServiceClientProject()
+        --(service)--
+        +ServiceClientProject get()
+    }
+    
+@enduml
+

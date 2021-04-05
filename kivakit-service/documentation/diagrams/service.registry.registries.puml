@@ -1,0 +1,36 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "service.registry.registries"
+    
+    abstract BaseServiceRegistry
+    abstract BaseRepeater
+    
+    interface ServiceRegistry
+    
+    BaseRepeater <|-- BaseServiceRegistry
+    ServiceRegistry <|-- BaseServiceRegistry
+    -abstract class BaseServiceRegistry
+    {
+        --(constructors)--
+        +BaseServiceRegistry()
+        --(service)--
+        +ServiceRegistry load()
+    }
+    
+    BaseServiceRegistry <|-- LocalServiceRegistry
+    -class LocalServiceRegistry
+    {
+        --(constructors)--
+        #LocalServiceRegistry()
+        +LocalServiceRegistry(int)
+    }
+    
+    BaseServiceRegistry <|-- NetworkServiceRegistry
+    -class NetworkServiceRegistry
+    {
+    }
+    
+@enduml
+

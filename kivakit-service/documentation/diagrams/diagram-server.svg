@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1588.5417px" preserveAspectRatio="none" style="width:1382px;height:1588px;background:#333333;" version="1.1" viewBox="0 0 1382 1588" width="1382.2917px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="372.9167" x="496.3542" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="350" x="507.8125" y="30.5583">Local and Network Registry Servers</text><!--MD5=[fdc537bdacd3d558c33d945e3b565ed7]
+class BaseServiceRegistry--><rect codeLine="13" fill="#282828" height="127.0345" id="BaseServiceRegistry" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="177.0833" x="124.4792" y="1288.0778"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="177.0833" x="124.4792" y="1288.0778"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="177.0833" x="124.4792" y="1311.1328"/><rect codeLine="13" fill="none" height="127.0345" id="BaseServiceRegistry" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="177.0833" x="124.4792" y="1288.0778"/><ellipse cx="139.0625" cy="1303.772" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M139.1764,1300.474 L138.328,1304.2033 L140.0309,1304.2033 Z M138.0778,1298.8261 L140.2812,1298.8261 L142.7409,1307.9386 L140.9403,1307.9386 L140.3788,1305.6864 L137.9679,1305.6864 L137.4186,1307.9386 L135.6181,1307.9386 Z " fill="#000000"/><rect fill="#F24D5C" height="6.25" style="stroke:#C82930;stroke-width:1.0416666666666667;" width="6.25" x="154.6875" y="1300.1261"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="128.125" x="167.1875" y="1308.4961">BaseServiceRegistry</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="125.5208" x2="300.5208" y1="1319.4661" y2="1319.4661"/><ellipse cx="135.9375" cy="1354.836" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="118.75" x="147.3958" y="1361.7472">BaseServiceRegistry()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="125.5208" x2="169.2708" y1="1337.6719" y2="1337.6719"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="172.3958" y="1341.4815">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="256.7708" x2="300.5208" y1="1337.6719" y2="1337.6719"/><ellipse cx="135.9375" cy="1398.4924" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="120.8333" x="147.3958" y="1405.4036">ServiceRegistry load()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="125.5208" x2="185.9375" y1="1381.3283" y2="1381.3283"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="47.9167" x="189.0625" y="1385.1379">(service)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="240.1042" x2="300.5208" y1="1381.3283" y2="1381.3283"/><!--MD5=[762aa3d0df6a9d47bd8e105afbd066b5]
+class BaseRepeater--><rect codeLine="7" fill="#282828" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="190.625" y="282.3486"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="190.625" y="282.3486"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="190.625" y="305.4036"/><rect codeLine="7" fill="none" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="190.625" y="282.3486"/><ellipse cx="205.2083" cy="298.0428" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M205.3223,294.7449 L204.4739,298.4741 L206.1768,298.4741 Z M204.2236,293.0969 L206.427,293.0969 L208.8867,302.2095 L207.0862,302.2095 L206.5247,299.9573 L204.1138,299.9573 L203.5645,302.2095 L201.7639,302.2095 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="86.4583" x="221.875" y="302.7669">BaseRepeater</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="191.6667" x2="313.5417" y1="313.737" y2="313.737"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="191.6667" x2="313.5417" y1="322.0703" y2="322.0703"/><!--MD5=[c17517e84f87e33d8c5ecd7268aea74c]
+class ServiceRegistry--><rect codeLine="39" fill="#282828" height="479.364" id="ServiceRegistry" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="452.0833" x="528.6458" y="745.3695"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="452.0833" x="528.6458" y="745.3695"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="452.0833" x="528.6458" y="768.4245"/><rect codeLine="39" fill="none" height="479.364" id="ServiceRegistry" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="452.0833" x="528.6458" y="745.3695"/><ellipse cx="692.7083" cy="761.0636" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M689.5915,758.2255 L689.5915,756.6386 L695.0175,756.6386 L695.0175,758.2255 L693.2048,758.2255 L693.2048,764.1642 L695.0175,764.1642 L695.0175,765.7511 L689.5915,765.7511 L689.5915,764.1642 L691.4042,764.1642 L691.4042,758.2255 Z " fill="#000000"/><rect fill="#F24D5C" height="6.25" style="stroke:#C82930;stroke-width:1.0416666666666667;" width="6.25" x="714.5833" y="757.4178"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="97.9167" x="727.0833" y="765.7878">ServiceRegistry</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="529.6875" x2="979.6875" y1="776.7578" y2="776.7578"/><ellipse cx="540.1042" cy="812.1277" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="94.7917" x="551.5625" y="819.0389">boolean isLocal()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="529.6875" x2="728.125" y1="794.9636" y2="794.9636"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="731.25" y="798.7732">(checks)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="781.25" x2="979.6875" y1="794.9636" y2="794.9636"/><ellipse cx="540.1042" cy="855.7841" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="222.9167" x="551.5625" y="862.6953">Result&lt;Boolean&gt; addOrUpdate(Service)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="529.6875" x2="720.3125" y1="838.62" y2="838.62"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="723.4375" y="842.4296">(collection)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="789.0625" x2="979.6875" y1="838.62" y2="838.62"/><ellipse cx="540.1042" cy="899.4405" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="187.5" x="551.5625" y="906.3517">Result&lt;Service&gt; register(Service)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="529.6875" x2="728.125" y1="882.2764" y2="882.2764"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="731.25" y="886.086">(lookup)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="781.25" x2="979.6875" y1="882.2764" y2="882.2764"/><ellipse cx="540.1042" cy="943.0969" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="111.4583" x="551.5625" y="950.0081">boolean isNetwork()</text><ellipse cx="540.1042" cy="962.8418" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="60.4167" x="551.5625" y="969.753">Port local()</text><ellipse cx="540.1042" cy="982.5867" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="79.1667" x="551.5625" y="989.4979">Port network()</text><ellipse cx="540.1042" cy="1002.3315" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="84.375" x="551.5625" y="1009.2428">Port port(Host)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="529.6875" x2="725" y1="925.9328" y2="925.9328"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="728.125" y="929.7424">(network)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="784.375" x2="979.6875" y1="925.9328" y2="925.9328"/><ellipse cx="540.1042" cy="1045.988" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="364.5833" x="551.5625" y="1052.8992">Result&lt;Set&lt;ApplicationIdentifier&gt;&gt; discoverApplications(Scope)</text><ellipse cx="540.1042" cy="1065.7328" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="206.25" x="551.5625" y="1072.644">Result&lt;Set&lt;Host&gt;&gt; discoverHosts()</text><ellipse cx="540.1042" cy="1085.4777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="237.5" x="551.5625" y="1092.3889">Result&lt;Service&gt; discoverPortService(Port)</text><ellipse cx="540.1042" cy="1105.2226" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="233.3333" x="551.5625" y="1112.1338">Result&lt;Set&lt;Service&gt;&gt; discoverServices()</text><ellipse cx="540.1042" cy="1124.9674" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="300" x="551.5625" y="1131.8787">Result&lt;Set&lt;Service&gt;&gt; discoverServices(ServiceType)</text><ellipse cx="540.1042" cy="1144.7123" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="346.875" x="551.5625" y="1151.6235">Result&lt;Set&lt;Service&gt;&gt; discoverServices(ApplicationIdentifier)</text><ellipse cx="540.1042" cy="1164.4572" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="419.7917" x="551.5625" y="1171.3684">Result&lt;Set&lt;Service&gt;&gt; discoverServices(ApplicationIdentifier, ServiceType)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="529.6875" x2="728.6458" y1="1028.8239" y2="1028.8239"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="45.8333" x="731.7708" y="1032.6335">(search)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="780.7292" x2="979.6875" y1="1028.8239" y2="1028.8239"/><ellipse cx="540.1042" cy="1208.1136" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="177.0833" x="551.5625" y="1215.0248">Result&lt;Service&gt; renew(Service)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="529.6875" x2="735.4167" y1="1190.9495" y2="1190.9495"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="32.2917" x="738.5417" y="1194.7591">(time)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="773.9583" x2="979.6875" y1="1190.9495" y2="1190.9495"/><!--MD5=[9ab40a7831fcc45f7a44c2a283d819a1]
+class LocalServiceRegistry--><rect codeLine="22" fill="#282828" height="103.123" id="LocalServiceRegistry" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="180.2083" x="9.375" y="1478.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="180.2083" x="9.375" y="1478.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="180.2083" x="9.375" y="1501.7578"/><rect codeLine="22" fill="none" height="103.123" id="LocalServiceRegistry" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="180.2083" x="9.375" y="1478.7028"/><ellipse cx="23.9583" cy="1494.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M25.8687,1498.822 Q25.4415,1499.0417 24.9715,1499.1516 Q24.5015,1499.2615 23.9827,1499.2615 Q22.1395,1499.2615 21.169,1498.0469 Q20.1986,1496.8323 20.1986,1494.5374 Q20.1986,1492.2363 21.169,1491.0217 Q22.1395,1489.8071 23.9827,1489.8071 Q24.5015,1489.8071 24.9776,1489.917 Q25.4537,1490.0269 25.8687,1490.2466 L25.8687,1492.2485 Q25.4049,1491.8213 24.9685,1491.6229 Q24.5321,1491.4246 24.0682,1491.4246 Q23.0794,1491.4246 22.5759,1492.2089 Q22.0723,1492.9932 22.0723,1494.5374 Q22.0723,1496.0754 22.5759,1496.8597 Q23.0794,1497.644 24.0682,1497.644 Q24.5321,1497.644 24.9685,1497.4457 Q25.4049,1497.2473 25.8687,1496.8201 Z " fill="#000000"/><rect fill="#F24D5C" height="6.25" style="stroke:#C82930;stroke-width:1.0416666666666667;" width="6.25" x="39.5833" y="1490.7511"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="131.25" x="52.0833" y="1499.1211">LocalServiceRegistry</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="10.4167" x2="188.5417" y1="1510.0911" y2="1510.0911"/><polygon fill="#FFFF44" points="20.8333,1540.2527,25,1544.4194,20.8333,1548.586,16.6667,1544.4194" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="122.9167" x="32.2917" y="1552.3722">LocalServiceRegistry()</text><ellipse cx="20.8333" cy="1565.2059" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="137.5" x="32.2917" y="1572.1171">LocalServiceRegistry(int)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="55.7292" y1="1528.2969" y2="1528.2969"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="58.8542" y="1532.1065">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="143.2292" x2="188.5417" y1="1528.2969" y2="1528.2969"/><!--MD5=[7b8e7b9bb3af2391523efe72a7062fe0]
+class NetworkServiceRegistry--><rect codeLine="30" fill="#282828" height="48.055" id="NetworkServiceRegistry" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="201.0417" x="226.0417" y="1506.307"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="201.0417" x="226.0417" y="1506.307"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="201.0417" x="226.0417" y="1529.362"/><rect codeLine="30" fill="none" height="48.055" id="NetworkServiceRegistry" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="201.0417" x="226.0417" y="1506.307"/><ellipse cx="240.625" cy="1522.0011" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M242.5354,1526.4262 Q242.1082,1526.6459 241.6382,1526.7558 Q241.1682,1526.8656 240.6494,1526.8656 Q238.8062,1526.8656 237.8357,1525.651 Q236.8652,1524.4364 236.8652,1522.1415 Q236.8652,1519.8405 237.8357,1518.6259 Q238.8062,1517.4113 240.6494,1517.4113 Q241.1682,1517.4113 241.6443,1517.5212 Q242.1204,1517.631 242.5354,1517.8507 L242.5354,1519.8527 Q242.0715,1519.4255 241.6351,1519.2271 Q241.1987,1519.0287 240.7349,1519.0287 Q239.7461,1519.0287 239.2426,1519.813 Q238.739,1520.5973 238.739,1522.1415 Q238.739,1523.6796 239.2426,1524.4639 Q239.7461,1525.2482 240.7349,1525.2482 Q241.1987,1525.2482 241.6351,1525.0498 Q242.0715,1524.8515 242.5354,1524.4242 Z " fill="#000000"/><rect fill="#F24D5C" height="6.25" style="stroke:#C82930;stroke-width:1.0416666666666667;" width="6.25" x="256.25" y="1518.3553"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="152.0833" x="268.75" y="1526.7253">NetworkServiceRegistry</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="227.0833" x2="426.0417" y1="1537.6953" y2="1537.6953"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="227.0833" x2="426.0417" y1="1546.0286" y2="1546.0286"/><!--MD5=[5ec8c00c13391aeaac8c08bdf7a77295]
+class Repeater--><rect codeLine="34" fill="#282828" height="48.055" id="Repeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="93.75" x="1052.6042" y="572.4528"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="93.75" x="1052.6042" y="572.4528"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="93.75" x="1052.6042" y="595.5078"/><rect codeLine="34" fill="none" height="48.055" id="Repeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="93.75" x="1052.6042" y="572.4528"/><ellipse cx="1067.1875" cy="588.147" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M1064.0706,585.3088 L1064.0706,583.7219 L1069.4967,583.7219 L1069.4967,585.3088 L1067.6839,585.3088 L1067.6839,591.2476 L1069.4967,591.2476 L1069.4967,592.8345 L1064.0706,592.8345 L1064.0706,591.2476 L1065.8834,591.2476 L1065.8834,585.3088 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="56.25" x="1083.8542" y="592.8711">Repeater</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1053.6458" x2="1145.3125" y1="603.8411" y2="603.8411"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1053.6458" x2="1145.3125" y1="612.1745" y2="612.1745"/><path d="M1017.7083,978.182 L1017.7083,980.7861 L981.0208,984.9528 L1017.7083,989.1195 L1017.7083,991.6768 A8.3333,8.3333 0 0 0 1026.0417,1000.0102 L1364.5833,1000.0102 A8.3333,8.3333 0 0 0 1372.9167,991.6768 L1372.9167,980.2653 L1362.5,969.8486 L1026.0417,969.8486 A8.3333,8.3333 0 0 0 1017.7083,978.182 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><path d="M1362.5,969.8486 L1362.5,976.0986 A4.1667,4.1667 0 0 0 1366.6667,980.2653 L1372.9167,980.2653 L1362.5,969.8486 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="327.0833" x="1027.0833" y="989.2598">Use ServiceRegistryClient to register and discover services</text><!--MD5=[c60af77fe5573b84a4aa4bce89659574]
+class Server--><rect fill="#282828" height="48.055" id="Server" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="77.0833" x="716.1458" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="77.0833" x="716.1458" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="77.0833" x="716.1458" y="76.7578"/><rect fill="none" height="48.055" id="Server" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="77.0833" x="716.1458" y="53.7028"/><ellipse cx="730.7292" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M732.6396,73.822 Q732.2123,74.0417 731.7424,74.1516 Q731.2724,74.2615 730.7536,74.2615 Q728.9103,74.2615 727.9399,73.0469 Q726.9694,71.8323 726.9694,69.5374 Q726.9694,67.2363 727.9399,66.0217 Q728.9103,64.8071 730.7536,64.8071 Q731.2724,64.8071 731.7485,64.917 Q732.2245,65.0269 732.6396,65.2466 L732.6396,67.2485 Q732.1757,66.8213 731.7393,66.6229 Q731.3029,66.4246 730.839,66.4246 Q729.8503,66.4246 729.3467,67.2089 Q728.8432,67.9932 728.8432,69.5374 Q728.8432,71.0754 729.3467,71.8597 Q729.8503,72.644 730.839,72.644 Q731.3029,72.644 731.7393,72.4457 Q732.1757,72.2473 732.6396,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="39.5833" x="747.3958" y="74.1211">Server</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="717.1875" x2="792.1875" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="717.1875" x2="792.1875" y1="93.4245" y2="93.4245"/><!--MD5=[7cfe79547bc1e5b29fd1ea5cd5cb5813]
+class ServiceRegistryServer--><rect codeLine="72" fill="#282828" height="281.9153" id="ServiceRegistryServer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="200" x="654.6875" y="165.1611"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="200" x="654.6875" y="165.1611"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="200" x="654.6875" y="188.2161"/><rect codeLine="72" fill="none" height="281.9153" id="ServiceRegistryServer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="200" x="654.6875" y="165.1611"/><ellipse cx="680.5208" cy="180.8553" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M682.4312,185.2804 Q682.004,185.5001 681.534,185.6099 Q681.064,185.7198 680.5452,185.7198 Q678.702,185.7198 677.7315,184.5052 Q676.7611,183.2906 676.7611,180.9957 Q676.7611,178.6947 677.7315,177.4801 Q678.702,176.2655 680.5452,176.2655 Q681.064,176.2655 681.5401,176.3753 Q682.0162,176.4852 682.4312,176.7049 L682.4312,178.7069 Q681.9674,178.2796 681.531,178.0813 Q681.0946,177.8829 680.6307,177.8829 Q679.6419,177.8829 679.1384,178.6672 Q678.6348,179.4515 678.6348,180.9957 Q678.6348,182.5338 679.1384,183.3181 Q679.6419,184.1024 680.6307,184.1024 Q681.0946,184.1024 681.531,183.904 Q681.9674,183.7056 682.4312,183.2784 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="137.5" x="699.6875" y="185.5794">ServiceRegistryServer</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="655.7292" x2="853.6458" y1="196.5495" y2="196.5495"/><polygon fill="#FFFF44" points="666.1458,226.711,670.3125,230.8777,666.1458,235.0444,661.9792,230.8777" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="129.1667" x="677.6042" y="238.8306">ServiceRegistryServer()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="655.7292" x2="710.9375" y1="214.7552" y2="214.7552"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="714.0625" y="218.5649">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="798.4375" x2="853.6458" y1="214.7552" y2="214.7552"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="655.7292" x2="853.6458" y1="248.5392" y2="248.5392"/><ellipse cx="666.1458" cy="259.9976" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="167.7083" x="677.6042" y="266.9088">void main(String[] arguments)</text><ellipse cx="666.1458" cy="303.654" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="94.7917" x="677.6042" y="310.5652">boolean isLocal()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="655.7292" x2="728.125" y1="286.4899" y2="286.4899"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="731.25" y="290.2995">(checks)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="781.25" x2="853.6458" y1="286.4899" y2="286.4899"/><ellipse cx="666.1458" cy="347.3104" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="111.4583" x="677.6042" y="354.2216">boolean isNetwork()</text><ellipse cx="666.1458" cy="367.0553" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="50" x="677.6042" y="373.9665">int port()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="655.7292" x2="725" y1="330.1463" y2="330.1463"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="728.125" y="333.9559">(network)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="784.375" x2="853.6458" y1="330.1463" y2="330.1463"/><ellipse cx="666.1458" cy="410.7117" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="150" x="677.6042" y="417.6229">ServiceRegistryServer get()</text><ellipse cx="666.1458" cy="430.4565" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="140.625" x="677.6042" y="437.3678">ServiceRegistry registry()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="655.7292" x2="727.6042" y1="393.5476" y2="393.5476"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="47.9167" x="730.7292" y="397.3572">(service)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="781.7708" x2="853.6458" y1="393.5476" y2="393.5476"/><!--MD5=[ec148f7300996f31693711824818abeb]
+class ServiceRegistryStore--><rect codeLine="90" fill="#282828" height="127.0345" id="ServiceRegistryStore" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="370.8333" x="247.3958" y="532.8695"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="370.8333" x="247.3958" y="532.8695"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="370.8333" x="247.3958" y="555.9245"/><rect codeLine="90" fill="none" height="127.0345" id="ServiceRegistryStore" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="370.8333" x="247.3958" y="532.8695"/><ellipse cx="354.1667" cy="548.5636" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M356.0771,552.9887 Q355.6498,553.2084 355.1799,553.3183 Q354.7099,553.4281 354.1911,553.4281 Q352.3478,553.4281 351.3774,552.2135 Q350.4069,550.9989 350.4069,548.704 Q350.4069,546.403 351.3774,545.1884 Q352.3478,543.9738 354.1911,543.9738 Q354.7099,543.9738 355.186,544.0837 Q355.662,544.1935 356.0771,544.4132 L356.0771,546.4152 Q355.6132,545.988 355.1768,545.7896 Q354.7404,545.5912 354.2765,545.5912 Q353.2878,545.5912 352.7842,546.3755 Q352.2807,547.1598 352.2807,548.704 Q352.2807,550.2421 352.7842,551.0264 Q353.2878,551.8107 354.2765,551.8107 Q354.7404,551.8107 355.1768,551.6123 Q355.6132,551.414 356.0771,550.9867 Z " fill="#000000"/><rect fill="#F24D5C" height="6.25" style="stroke:#C82930;stroke-width:1.0416666666666667;" width="6.25" x="376.0417" y="544.9178"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="131.25" x="388.5417" y="553.2878">ServiceRegistryStore</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="248.4375" x2="617.1875" y1="564.2578" y2="564.2578"/><ellipse cx="258.8542" cy="599.6277" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="338.5417" x="270.3125" y="606.5389">ServiceRegistry load(Class&lt;? extends ServiceRegistry&gt; type)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="248.4375" x2="405.7292" y1="582.4636" y2="582.4636"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="47.9167" x="408.8542" y="586.2732">(service)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="459.8958" x2="617.1875" y1="582.4636" y2="582.4636"/><ellipse cx="258.8542" cy="643.2841" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="145.8333" x="270.3125" y="650.1953">void save(ServiceRegistry)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="248.4375" x2="411.9792" y1="626.12" y2="626.12"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="35.4167" x="415.1042" y="629.9296">(write)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="453.6458" x2="617.1875" y1="626.12" y2="626.12"/><path d="M891.6667,299.5361 L891.6667,302.1403 L854.7292,306.307 L891.6667,310.4736 L891.6667,313.031 A8.3333,8.3333 0 0 0 900,321.3643 L1338.5417,321.3643 A8.3333,8.3333 0 0 0 1346.875,313.031 L1346.875,301.6195 L1336.4583,291.2028 L900,291.2028 A8.3333,8.3333 0 0 0 891.6667,299.5361 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><path d="M1336.4583,291.2028 L1336.4583,297.4528 A4.1667,4.1667 0 0 0 1340.625,301.6195 L1346.875,301.6195 L1336.4583,291.2028 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="427.0833" x="901.0417" y="310.614">For REST API details, refer to Swagger documentation provided by this server</text><!--MD5=[dd855ffa3b4f0a19cb3d6358f72a517e]
+reverse link BaseRepeater to BaseServiceRegistry--><path codeLine="11" d="M246.8229,351.0674 C241.0938,396.432 232.6146,469.4736 228.6458,532.8695 C211.0521,814.1715 211.3438,1150.8695 212.3646,1287.9215 " fill="none" id="BaseRepeater-backto-BaseServiceRegistry" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="239.6042,350.0778,249.4896,330.3382,254.0625,351.9424,239.6042,350.0778" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[912f9de222e3eff479660cfba9ed6d94]
+reverse link ServiceRegistry to BaseServiceRegistry--><path codeLine="12" d="M511.1042,1149.9424 C436.3854,1200.234 358.8646,1252.4111 301.6146,1290.9424 " fill="none" id="ServiceRegistry-backto-BaseServiceRegistry" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="507.1458,1143.8174,528.5,1138.234,515.2917,1155.9111,507.1458,1143.8174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[906ba7efb0e52e8d77933dbedc2bf656]
+reverse link BaseServiceRegistry to LocalServiceRegistry--><path codeLine="21" d="M161.1875,1433.2549 C151.2708,1448.6924 141.1458,1464.432 132.0417,1478.5882 " fill="none" id="BaseServiceRegistry-backto-LocalServiceRegistry" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="155.2708,1428.984,172.6667,1415.4111,167.5313,1436.8695,155.2708,1428.984" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7d96e5f02ee82538a154e985ae58dc4b]
+reverse link BaseServiceRegistry to NetworkServiceRegistry--><path codeLine="29" d="M264.7708,1433.1403 C281.9167,1459.7965 299.6771,1487.4111 311.7292,1506.1611 " fill="none" id="BaseServiceRegistry-backto-NetworkServiceRegistry" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="258.5104,1436.8695,253.375,1415.4111,270.7708,1428.984,258.5104,1436.8695" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[0ae017a9dca10042e06eaa174fb15dc3]
+reverse link Repeater to ServiceRegistry--><path codeLine="35" d="M1064.8542,636.2549 C1040.4792,663.5882 1005.5729,702.7028 967.9167,744.9111 " fill="none" id="Repeater-backto-ServiceRegistry" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1059.6354,631.1611,1078.9479,620.4736,1070.5104,640.8695,1059.6354,631.1611" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[d34d0413b2cd163e6d65266d7dfe9acd]
+reverse link Server to ServiceRegistryServer--><path codeLine="64" d="M754.6875,122.7236 C754.6875,135.3486 754.6875,149.8278 754.6875,164.9945 " fill="none" id="Server-backto-ServiceRegistryServer" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="747.3958,122.5049,754.6875,101.6715,761.9792,122.5049,747.3958,122.5049" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[c2641deb04fad1a1176fd4cdc76acd93]
+link ServiceRegistryServer to ServiceRegistry--><path codeLine="65" d="M729.1875,447.7028 C725.0521,475.8174 721.4271,505.2132 719.2708,532.8695 C714.0313,600.0361 716.2708,672.8174 721.5833,739.9215 " fill="none" id="ServiceRegistryServer-to-ServiceRegistry" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="722,745.1507,725.4036,735.4725,721.5835,739.9591,717.0969,736.139,722,745.1507" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="45.8333" x="723.4375" y="601.2044">creates</text><!--MD5=[c2641deb04fad1a1176fd4cdc76acd93]
+link ServiceRegistryServer to ServiceRegistry--><path codeLine="66" d="M771.1667,447.6299 C773.8438,475.8174 776.2083,505.2549 777.6042,532.8695 C781.0104,600.0257 779.5625,672.8174 776.125,739.9215 " fill="none" id="ServiceRegistryServer-to-ServiceRegistry-1" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="775.8542,745.1507,780.5229,736.0154,776.1365,739.95,772.2018,735.5636,775.8542,745.1507" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="56.25" x="783.8542" y="601.2044">searches</text><!--MD5=[c2641deb04fad1a1176fd4cdc76acd93]
+link ServiceRegistryServer to ServiceRegistry--><path codeLine="67" d="M826,447.609 C837.0208,475.2132 846.6979,504.4528 852.6042,532.8695 C866.5833,600.1611 860.1979,672.984 845.5417,740.0882 " fill="none" id="ServiceRegistryServer-to-ServiceRegistry-2" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="844.375,745.3174,850.4813,737.0733,845.508,740.2338,842.3475,735.2605,844.375,745.3174" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="52.0833" x="865.1042" y="601.2044">updates</text><!--MD5=[9e57db715d09d0af946ad0a541f38063]
+link ServiceRegistryServer to ServiceRegistryStore--><path codeLine="68" d="M654.6042,396.9007 C606.7813,439.7028 550.5417,490.0257 506.6563,529.2861 " fill="none" id="ServiceRegistryServer-to-ServiceRegistryStore" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="502.7188,532.8174,512.4872,529.6823,506.6041,529.3488,506.9376,523.4657,502.7188,532.8174" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="69.7917" x="559.8958" y="494.9544">persists to</text><!--MD5=[a6748be248343535e014be5132c5366d]
+reverse link BaseRepeater to ServiceRegistryStore--><path codeLine="88" d="M278.2604,348.3486 C308.3854,396.4945 358.6771,476.8695 393.6771,532.8174 " fill="none" id="BaseRepeater-backto-ServiceRegistryStore" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="271.9167,351.9632,267.0417,330.432,284.2813,344.2236,271.9167,351.9632" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9cb3f90e368cd02cc0e7168e5263838b]
+link ServiceRegistryStore to ServiceRegistry--><path codeLine="89" d="M484.8854,659.9736 C504.3021,683.2757 527.6875,711.359 552.4792,741.1299 " fill="none" id="ServiceRegistryStore-to-ServiceRegistry" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="555.8229,745.1507,553.0257,735.2802,552.4901,741.1483,546.6219,740.6127,555.8229,745.1507" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="35.4167" x="532.8125" y="707.4544">loads</text><!--MD5=[8ffe0ce7d58cdd56264d15b045cb61e4]
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "Local and Network Registry Servers"
+    
+    abstract BaseServiceRegistry
+    abstract BaseRepeater
+    
+    interface ServiceRegistry
+    
+    BaseRepeater <|- - BaseServiceRegistry
+    ServiceRegistry <|- - BaseServiceRegistry
+    -abstract class BaseServiceRegistry
+    {
+        - -(constructors)- -
+        +BaseServiceRegistry()
+        - -(service)- -
+        +ServiceRegistry load()
+    }
+    
+    BaseServiceRegistry <|- - LocalServiceRegistry
+    -class LocalServiceRegistry
+    {
+        - -(constructors)- -
+        #LocalServiceRegistry()
+        +LocalServiceRegistry(int)
+    }
+    
+    BaseServiceRegistry <|- - NetworkServiceRegistry
+    -class NetworkServiceRegistry
+    {
+    }
+    
+    interface Repeater
+    Repeater <|- - ServiceRegistry
+    note right of ServiceRegistry
+        Use ServiceRegistryClient to register and discover services
+    endnote
+    -interface ServiceRegistry
+    {
+        - -(checks)- -
+        +boolean isLocal()
+        - -(collection)- -
+        +Result<Boolean> addOrUpdate(Service)
+        - -(lookup)- -
+        +Result<Service> register(Service)
+        - -(network)- -
+        +boolean isNetwork()
+        +Port local()
+        +Port network()
+        +Port port(Host)
+        - -(search)- -
+        +Result<Set<ApplicationIdentifier>> discoverApplications(Scope)
+        +Result<Set<Host>> discoverHosts()
+        +Result<Service> discoverPortService(Port)
+        +Result<Set<Service>> discoverServices()
+        +Result<Set<Service>> discoverServices(ServiceType)
+        +Result<Set<Service>> discoverServices(ApplicationIdentifier)
+        +Result<Set<Service>> discoverServices(ApplicationIdentifier, ServiceType)
+        - -(time)- -
+        +Result<Service> renew(Service)
+    }
+    
+    Server <|- - ServiceRegistryServer
+    ServiceRegistryServer - -> ServiceRegistry : "creates"
+    ServiceRegistryServer - -> ServiceRegistry : "searches"
+    ServiceRegistryServer - -> ServiceRegistry : "updates"
+    ServiceRegistryServer - -> ServiceRegistryStore : "persists to"
+    note right of ServiceRegistryServer
+        For REST API details, refer to Swagger documentation provided by this server
+    endnote
+    class ServiceRegistryServer
+    {
+        - -(constructors)- -
+        #ServiceRegistryServer()
+        - -
+        +void main(String[] arguments)
+        - -(checks)- -
+        +boolean isLocal()
+        - -(network)- -
+        +boolean isNetwork()
+        +int port()
+        - -(service)- -
+        +ServiceRegistryServer get()
+        +ServiceRegistry registry()
+    }
+    
+    BaseRepeater <|- - ServiceRegistryStore
+    ServiceRegistryStore - -> ServiceRegistry : "loads"
+    -class ServiceRegistryStore
+    {
+        - -(service)- -
+        +ServiceRegistry load(Class<? extends ServiceRegistry> type)
+        - -(write)- -
+        +void save(ServiceRegistry)
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "Local and Network Registry Servers"
+    
+    abstract BaseServiceRegistry
+    abstract BaseRepeater
+    
+    interface ServiceRegistry
+    
+    BaseRepeater <|- - BaseServiceRegistry
+    ServiceRegistry <|- - BaseServiceRegistry
+    -abstract class BaseServiceRegistry
+    {
+        - -(constructors)- -
+        +BaseServiceRegistry()
+        - -(service)- -
+        +ServiceRegistry load()
+    }
+    
+    BaseServiceRegistry <|- - LocalServiceRegistry
+    -class LocalServiceRegistry
+    {
+        - -(constructors)- -
+        #LocalServiceRegistry()
+        +LocalServiceRegistry(int)
+    }
+    
+    BaseServiceRegistry <|- - NetworkServiceRegistry
+    -class NetworkServiceRegistry
+    {
+    }
+    
+    interface Repeater
+    Repeater <|- - ServiceRegistry
+    note right of ServiceRegistry
+        Use ServiceRegistryClient to register and discover services
+    endnote
+    -interface ServiceRegistry
+    {
+        - -(checks)- -
+        +boolean isLocal()
+        - -(collection)- -
+        +Result<Boolean> addOrUpdate(Service)
+        - -(lookup)- -
+        +Result<Service> register(Service)
+        - -(network)- -
+        +boolean isNetwork()
+        +Port local()
+        +Port network()
+        +Port port(Host)
+        - -(search)- -
+        +Result<Set<ApplicationIdentifier>> discoverApplications(Scope)
+        +Result<Set<Host>> discoverHosts()
+        +Result<Service> discoverPortService(Port)
+        +Result<Set<Service>> discoverServices()
+        +Result<Set<Service>> discoverServices(ServiceType)
+        +Result<Set<Service>> discoverServices(ApplicationIdentifier)
+        +Result<Set<Service>> discoverServices(ApplicationIdentifier, ServiceType)
+        - -(time)- -
+        +Result<Service> renew(Service)
+    }
+    
+    Server <|- - ServiceRegistryServer
+    ServiceRegistryServer - -> ServiceRegistry : "creates"
+    ServiceRegistryServer - -> ServiceRegistry : "searches"
+    ServiceRegistryServer - -> ServiceRegistry : "updates"
+    ServiceRegistryServer - -> ServiceRegistryStore : "persists to"
+    note right of ServiceRegistryServer
+        For REST API details, refer to Swagger documentation provided by this server
+    endnote
+    class ServiceRegistryServer
+    {
+        - -(constructors)- -
+        #ServiceRegistryServer()
+        - -
+        +void main(String[] arguments)
+        - -(checks)- -
+        +boolean isLocal()
+        - -(network)- -
+        +boolean isNetwork()
+        +int port()
+        - -(service)- -
+        +ServiceRegistryServer get()
+        +ServiceRegistry registry()
+    }
+    
+    BaseRepeater <|- - ServiceRegistryStore
+    ServiceRegistryStore - -> ServiceRegistry : "loads"
+    -class ServiceRegistryStore
+    {
+        - -(service)- -
+        +ServiceRegistry load(Class<? extends ServiceRegistry> type)
+        - -(write)- -
+        +void save(ServiceRegistry)
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

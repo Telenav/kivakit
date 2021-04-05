@@ -1,0 +1,22 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.tdk.service.registry.server.webapp.pages.home"
+    
+    ServiceRegistryWebPage <|-- HomePage
+    class HomePage
+    {
+        --(constructors)--
+        +HomePage()
+    }
+    
+    Panel <|-- ServicePanel
+    class ServicePanel
+    {
+        --(constructors)--
+        +ServicePanel(String, WebMarkupContainer, IModel<Service>)
+    }
+    
+@enduml
+

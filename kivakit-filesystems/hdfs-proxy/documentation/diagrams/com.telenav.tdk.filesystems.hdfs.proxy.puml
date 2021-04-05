@@ -1,0 +1,42 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.tdk.filesystems.hdfs.proxy"
+    
+    interface HdfsProxy
+    
+    class HdfsFileSystem
+    {
+        --(filesystem)--
+        +Folder hdfsConfigurationFolder()
+        +HdfsFileSystem of(FilePath)
+    }
+    
+    Server <|-- HdfsProxyServer
+    HdfsProxy <|-- HdfsProxyServer
+    HdfsProxyServer --> HdfsFileSystem : "delegates to"
+    HdfsProxyServer --> HdfsProxyServerSettings : "configures with"
+    class HdfsProxyServer
+    {
+        --(constructors)--
+        +HdfsProxyServer()
+        --
+        +void main(String[] arguments)
+    }
+    
+    class HdfsProxyServerSettings
+    {
+    }
+    
+    class StreamHandle
+    {
+        --(identity)--
+        +Identifier identifier()
+        --(messaging)--
+        +StreamHandle create()
+        +StreamHandle of(long identifier)
+    }
+    
+@enduml
+

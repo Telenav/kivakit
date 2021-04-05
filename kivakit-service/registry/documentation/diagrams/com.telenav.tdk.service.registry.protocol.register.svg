@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="317.7083px" preserveAspectRatio="none" style="width:526px;height:317px;background:#333333;" version="1.1" viewBox="0 0 526 317" width="526.0417px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="510.4167" x="2.0833" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="487.5" x="13.5417" y="30.5583">com.telenav.tdk.service.registry.protocol.register</text><!--MD5=[0ba50eed8dcc5bc836644890e3c89438]
+class BaseResponse--><rect codeLine="6" fill="#282828" height="48.055" id="BaseResponse" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="130.2083" x="76.0417" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="130.2083" x="76.0417" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="130.2083" x="76.0417" y="76.7578"/><rect codeLine="6" fill="none" height="48.055" id="BaseResponse" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="130.2083" x="76.0417" y="53.7028"/><ellipse cx="90.625" cy="69.397" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M90.7389,66.099 L89.8905,69.8283 L91.5934,69.8283 Z M89.6403,64.4511 L91.8437,64.4511 L94.3034,73.5636 L92.5028,73.5636 L91.9413,71.3114 L89.5304,71.3114 L88.9811,73.5636 L87.1806,73.5636 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="92.7083" x="107.2917" y="74.1211">BaseResponse</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="77.0833" x2="205.2083" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="77.0833" x2="205.2083" y1="93.4245" y2="93.4245"/><!--MD5=[11f5e9fe9b4a9573a69e59630d326e1e]
+class BaseRequest--><rect codeLine="7" fill="#282828" height="48.055" id="BaseRequest" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="119.7917" x="354.1667" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="119.7917" x="354.1667" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="119.7917" x="354.1667" y="76.7578"/><rect codeLine="7" fill="none" height="48.055" id="BaseRequest" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="119.7917" x="354.1667" y="53.7028"/><ellipse cx="368.75" cy="69.397" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M368.8639,66.099 L368.0155,69.8283 L369.7184,69.8283 Z M367.7653,64.4511 L369.9687,64.4511 L372.4284,73.5636 L370.6278,73.5636 L370.0663,71.3114 L367.6554,71.3114 L367.1061,73.5636 L365.3056,73.5636 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="82.2917" x="385.4167" y="74.1211">BaseRequest</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="355.2083" x2="472.9167" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="355.2083" x2="472.9167" y1="93.4245" y2="93.4245"/><!--MD5=[560d5bd2c6bdadaeb7a52a15ae206a90]
+class RegisterServiceRequest--><rect codeLine="10" fill="#282828" height="146.7794" id="RegisterServiceRequest" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="210.4167" x="308.8542" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="210.4167" x="308.8542" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="210.4167" x="308.8542" y="187.1745"/><rect codeLine="10" fill="none" height="146.7794" id="RegisterServiceRequest" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="210.4167" x="308.8542" y="164.1195"/><ellipse cx="333.75" cy="179.8136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M335.6604,184.2387 Q335.2332,184.4584 334.7632,184.5683 Q334.2932,184.6781 333.7744,184.6781 Q331.9312,184.6781 330.9607,183.4635 Q329.9902,182.2489 329.9902,179.954 Q329.9902,177.653 330.9607,176.4384 Q331.9312,175.2238 333.7744,175.2238 Q334.2932,175.2238 334.7693,175.3337 Q335.2454,175.4435 335.6604,175.6632 L335.6604,177.6652 Q335.1965,177.238 334.7601,177.0396 Q334.3237,176.8412 333.8599,176.8412 Q332.8711,176.8412 332.3676,177.6255 Q331.864,178.4098 331.864,179.954 Q331.864,181.4921 332.3676,182.2764 Q332.8711,183.0607 333.8599,183.0607 Q334.3237,183.0607 334.7601,182.8623 Q335.1965,182.664 335.6604,182.2367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="150" x="352.7083" y="184.5378">RegisterServiceRequest</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="309.8958" x2="518.2292" y1="195.5078" y2="195.5078"/><polygon fill="#FFFF44" points="320.3125,225.6694,324.4792,229.836,320.3125,234.0027,316.1458,229.836" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="138.5417" x="331.7708" y="237.7889">RegisterServiceRequest()</text><ellipse cx="320.3125" cy="250.6226" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="178.125" x="331.7708" y="257.5338">RegisterServiceRequest(Service)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="309.8958" x2="370.3125" y1="213.7136" y2="213.7136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="373.4375" y="217.5232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="457.8125" x2="518.2292" y1="213.7136" y2="213.7136"/><ellipse cx="320.3125" cy="294.279" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="90.625" x="331.7708" y="301.1902">Service service()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="309.8958" x2="386.9792" y1="277.1149" y2="277.1149"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="47.9167" x="390.1042" y="280.9245">(service)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="441.1458" x2="518.2292" y1="277.1149" y2="277.1149"/><!--MD5=[f3ecbb53ecd350bd2256c56041443b4c]
+class RegisterServiceResponse--><rect codeLine="20" fill="#282828" height="103.123" id="RegisterServiceResponse" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="262.5" x="9.8958" y="185.9945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="262.5" x="9.8958" y="185.9945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="262.5" x="9.8958" y="209.0495"/><rect codeLine="20" fill="none" height="103.123" id="RegisterServiceResponse" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="262.5" x="9.8958" y="185.9945"/><ellipse cx="53.6458" cy="201.6886" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M55.5562,206.1137 Q55.129,206.3334 54.659,206.4433 Q54.189,206.5531 53.6702,206.5531 Q51.827,206.5531 50.8565,205.3385 Q49.8861,204.1239 49.8861,201.829 Q49.8861,199.528 50.8565,198.3134 Q51.827,197.0988 53.6702,197.0988 Q54.189,197.0988 54.6651,197.2087 Q55.1412,197.3185 55.5562,197.5382 L55.5562,199.5402 Q55.0924,199.113 54.656,198.9146 Q54.2196,198.7162 53.7557,198.7162 Q52.7669,198.7162 52.2634,199.5005 Q51.7598,200.2848 51.7598,201.829 Q51.7598,203.3671 52.2634,204.1514 Q52.7669,204.9357 53.7557,204.9357 Q54.2196,204.9357 54.656,204.7373 Q55.0924,204.539 55.5562,204.1117 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="160.4167" x="76.5625" y="206.4128">RegisterServiceResponse</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="10.9375" x2="271.3542" y1="217.3828" y2="217.3828"/><ellipse cx="21.3542" cy="252.7527" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="230.2083" x="32.8125" y="259.6639">RegisterServiceResponse service(Service)</text><ellipse cx="21.3542" cy="272.4976" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="90.625" x="32.8125" y="279.4088">Service service()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.9375" x2="114.0625" y1="235.5886" y2="235.5886"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="47.9167" x="117.1875" y="239.3982">(service)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="168.2292" x2="271.3542" y1="235.5886" y2="235.5886"/><!--MD5=[7d5d1a1e2ad3a456981dfbcae2c19ebe]
+reverse link BaseRequest to RegisterServiceRequest--><path codeLine="9" d="M414.0625,122.6611 C414.0625,135.4736 414.0625,149.8278 414.0625,163.9111 " fill="none" id="BaseRequest-backto-RegisterServiceRequest" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="406.7708,122.484,414.0625,101.6507,421.3542,122.484,406.7708,122.484" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[130f84bbe4f9cb30778b7771c09bbee7]
+reverse link BaseResponse to RegisterServiceResponse--><path codeLine="19" d="M141.1458,122.6299 C141.1458,142.2445 141.1458,165.4736 141.1458,185.8278 " fill="none" id="BaseResponse-backto-RegisterServiceResponse" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="133.8542,122.484,141.1458,101.6507,148.4375,122.484,133.8542,122.484" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[70b676eab48f57e3592dffffa275e65a]
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.tdk.service.registry.protocol.register"
+    
+    abstract BaseResponse
+    abstract BaseRequest
+    
+    BaseRequest <|- - RegisterServiceRequest
+    class RegisterServiceRequest
+    {
+        - -(constructors)- -
+        #RegisterServiceRequest()
+        +RegisterServiceRequest(Service)
+        - -(service)- -
+        +Service service()
+    }
+    
+    BaseResponse <|- - RegisterServiceResponse
+    class RegisterServiceResponse
+    {
+        - -(service)- -
+        +RegisterServiceResponse service(Service)
+        +Service service()
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.tdk.service.registry.protocol.register"
+    
+    abstract BaseResponse
+    abstract BaseRequest
+    
+    BaseRequest <|- - RegisterServiceRequest
+    class RegisterServiceRequest
+    {
+        - -(constructors)- -
+        #RegisterServiceRequest()
+        +RegisterServiceRequest(Service)
+        - -(service)- -
+        +Service service()
+    }
+    
+    BaseResponse <|- - RegisterServiceResponse
+    class RegisterServiceResponse
+    {
+        - -(service)- -
+        +RegisterServiceResponse service(Service)
+        +Service service()
+    }
+    
+@enduml
+
+PlantUML version 1.2021.3(Mon Mar 22 09:53:19 MST 2021)
+(APACHE source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1348.9583px" preserveAspectRatio="none" style="width:1411px;height:1348px;background:#333333;" version="1.1" viewBox="0 0 1411 1348" width="1411.4583px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="103.125" x="647.1354" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="80.2083" x="658.5938" y="30.5583">Services</text><!--MD5=[bece8b4c4229b3549b4a8159d27930ed]
+class Scope--><rect codeLine="8" fill="#282828" height="404.5512" id="Scope" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="280.2083" x="9.375" y="745.3695"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="280.2083" x="9.375" y="745.3695"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="280.2083" x="9.375" y="768.4245"/><rect codeLine="8" fill="none" height="404.5512" id="Scope" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="280.2083" x="9.375" y="745.3695"/><ellipse cx="123.4375" cy="761.0636" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M125.3479,765.4887 Q124.9207,765.7084 124.4507,765.8183 Q123.9807,765.9281 123.4619,765.9281 Q121.6187,765.9281 120.6482,764.7135 Q119.6777,763.4989 119.6777,761.204 Q119.6777,758.903 120.6482,757.6884 Q121.6187,756.4738 123.4619,756.4738 Q123.9807,756.4738 124.4568,756.5837 Q124.9329,756.6935 125.3479,756.9132 L125.3479,758.9152 Q124.884,758.488 124.4476,758.2896 Q124.0112,758.0912 123.5474,758.0912 Q122.5586,758.0912 122.0551,758.8755 Q121.5515,759.6598 121.5515,761.204 Q121.5515,762.7421 122.0551,763.5264 Q122.5586,764.3107 123.5474,764.3107 Q124.0112,764.3107 124.4476,764.1123 Q124.884,763.914 125.3479,763.4867 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="37.5" x="146.3542" y="765.7878">Scope</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="10.4167" x2="288.5417" y1="776.7578" y2="776.7578"/><polygon fill="#FFFF44" points="20.8333,806.9194,25,811.086,20.8333,815.2527,16.6667,811.086" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="41.6667" x="32.2917" y="819.0389">Scope()</text><polygon fill="#FFFF44" points="20.8333,826.6642,25,830.8309,20.8333,834.9976,16.6667,830.8309" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="165.625" x="32.2917" y="838.7838">Scope(Type, ClusterIdentifier)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="105.7292" y1="794.9636" y2="794.9636"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="108.8542" y="798.7732">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="193.2292" x2="288.5417" y1="794.9636" y2="794.9636"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="288.5417" y1="848.4924" y2="848.4924"/><ellipse cx="20.8333" cy="859.9508" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="173.9583" x="32.2917" y="866.862">Scope cluster(ClusterIdentifier)</text><ellipse cx="20.8333" cy="879.6956" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="247.9167" x="32.2917" y="886.6069">Set&lt;Scope&gt; scopes(Result&lt;Set&lt;Service&gt;&gt;)</text><ellipse cx="20.8333" cy="899.4405" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="32.2917" y="906.3517">Type type()</text><ellipse cx="20.8333" cy="943.0969" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="106.25" x="32.2917" y="950.0081">boolean isCluster()</text><ellipse cx="20.8333" cy="962.8418" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="94.7917" x="32.2917" y="969.753">boolean isLocal()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="122.9167" y1="925.9328" y2="925.9328"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="126.0417" y="929.7424">(checks)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="176.0417" x2="288.5417" y1="925.9328" y2="925.9328"/><ellipse cx="20.8333" cy="1006.4982" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="247.9167" x="32.2917" y="1013.4094">List&lt;String&gt; names(Result&lt;Set&lt;Service&gt;&gt;)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="115.1042" y1="989.3341" y2="989.3341"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="118.2292" y="993.1437">(collection)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="183.8542" x2="288.5417" y1="989.3341" y2="989.3341"/><ellipse cx="20.8333" cy="1050.1546" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="140.625" x="32.2917" y="1057.0658">ClusterIdentifier cluster()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="121.3542" y1="1032.9905" y2="1032.9905"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="50" x="124.4792" y="1036.8001">(identity)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="177.6042" x2="288.5417" y1="1032.9905" y2="1032.9905"/><ellipse cx="20.8333" cy="1093.811" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="111.4583" x="32.2917" y="1100.7222">boolean isNetwork()</text><ellipse cx="20.8333" cy="1113.5559" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="95.8333" x="32.2917" y="1120.4671">Scope localhost()</text><ellipse cx="20.8333" cy="1133.3008" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="89.5833" x="32.2917" y="1140.212">Scope network()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="119.7917" y1="1076.6469" y2="1076.6469"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="122.9167" y="1080.4565">(network)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="179.1667" x2="288.5417" y1="1076.6469" y2="1076.6469"/><!--MD5=[eae0c833e2842c279f610df0d2519bb1]
+class Scope.Type--><rect codeLine="94" fill="#282828" height="107.2896" id="Scope.Type" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="88.5417" x="29.1667" y="1234.9528"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="88.5417" x="29.1667" y="1234.9528"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="88.5417" x="29.1667" y="1258.0078"/><rect codeLine="94" fill="none" height="107.2896" id="Scope.Type" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="88.5417" x="29.1667" y="1234.9528"/><ellipse cx="52.6563" cy="1250.647" fill="#CF6300" rx="10.4167" ry="10.4167" style="stroke:#EF8300;stroke-width:1.0416666666666667;"/><path d="M55.7121,1255.3345 L50.0358,1255.3345 L50.0358,1246.2219 L55.7121,1246.2219 L55.7121,1247.8088 L51.8363,1247.8088 L51.8363,1249.7742 L55.3459,1249.7742 L55.3459,1251.3611 L51.8363,1251.3611 L51.8363,1253.7476 L55.7121,1253.7476 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="31.25" x="71.3021" y="1255.3711">Type</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="30.2083" x2="116.6667" y1="1266.3411" y2="1266.3411"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="50" x="38.5417" y="1284.7107">CLUSTER</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="69.7917" x="38.5417" y="1304.4556">LOCALHOST</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="55.2083" x="38.5417" y="1324.2004">NETWORK</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="30.2083" x2="116.6667" y1="1333.9091" y2="1333.9091"/><!--MD5=[ad9d748ce5ac44dee056940b87ffbd13]
+class ClusterIdentifier--><rect fill="#282828" height="48.055" id="ClusterIdentifier" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="143.75" x="154.6875" y="1264.6403"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="143.75" x="154.6875" y="1264.6403"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="143.75" x="154.6875" y="1287.6953"/><rect fill="none" height="48.055" id="ClusterIdentifier" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="143.75" x="154.6875" y="1264.6403"/><ellipse cx="169.2708" cy="1280.3345" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M171.1812,1284.7595 Q170.754,1284.9792 170.284,1285.0891 Q169.814,1285.199 169.2952,1285.199 Q167.452,1285.199 166.4815,1283.9844 Q165.5111,1282.7698 165.5111,1280.4749 Q165.5111,1278.1738 166.4815,1276.9592 Q167.452,1275.7446 169.2952,1275.7446 Q169.814,1275.7446 170.2901,1275.8545 Q170.7662,1275.9644 171.1812,1276.1841 L171.1812,1278.186 Q170.7174,1277.7588 170.281,1277.5604 Q169.8446,1277.3621 169.3807,1277.3621 Q168.3919,1277.3621 167.8884,1278.1464 Q167.3848,1278.9307 167.3848,1280.4749 Q167.3848,1282.0129 167.8884,1282.7972 Q168.3919,1283.5815 169.3807,1283.5815 Q169.8446,1283.5815 170.281,1283.3832 Q170.7174,1283.1848 171.1812,1282.7576 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="106.25" x="185.9375" y="1285.0586">ClusterIdentifier</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="155.7292" x2="297.3958" y1="1296.0286" y2="1296.0286"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="155.7292" x2="297.3958" y1="1304.362" y2="1304.362"/><!--MD5=[dbb8b4f13c7b21394f9d757e58732f45]
+class Service--><rect codeLine="36" fill="#282828" height="606.1666" id="Service" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="258.3333" x="781.7708" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="258.3333" x="781.7708" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="258.3333" x="781.7708" y="76.7578"/><rect codeLine="36" fill="none" height="606.1666" id="Service" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="258.3333" x="781.7708" y="53.7028"/><ellipse cx="881.25" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M883.1604,73.822 Q882.7332,74.0417 882.2632,74.1516 Q881.7932,74.2615 881.2744,74.2615 Q879.4312,74.2615 878.4607,73.0469 Q877.4902,71.8323 877.4902,69.5374 Q877.4902,67.2363 878.4607,66.0217 Q879.4312,64.8071 881.2744,64.8071 Q881.7932,64.8071 882.2693,64.917 Q882.7454,65.0269 883.1604,65.2466 L883.1604,67.2485 Q882.6965,66.8213 882.2601,66.6229 Q881.8237,66.4246 881.3599,66.4246 Q880.3711,66.4246 879.8676,67.2089 Q879.364,67.9932 879.364,69.5374 Q879.364,71.0754 879.8676,71.8597 Q880.3711,72.644 881.3599,72.644 Q881.8237,72.644 882.2601,72.4457 Q882.6965,72.2473 883.1604,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="44.7917" x="904.1667" y="74.1211">Service</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="782.8125" x2="1039.0625" y1="85.0911" y2="85.0911"/><ellipse cx="793.2292" cy="120.461" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="47.9167" x="804.6875" y="127.3722">Service()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="782.8125" x2="867.1875" y1="103.2969" y2="103.2969"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="870.3125" y="107.1065">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="954.6875" x2="1039.0625" y1="103.2969" y2="103.2969"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="782.8125" x2="1039.0625" y1="137.0809" y2="137.0809"/><ellipse cx="793.2292" cy="148.5392" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="103.125" x="804.6875" y="155.4504">String descriptor()</text><ellipse cx="793.2292" cy="168.2841" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="185.4167" x="804.6875" y="175.1953">JavaVirtualMachineHealth health()</text><ellipse cx="793.2292" cy="188.029" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="78.125" x="804.6875" y="194.9402">Scope scope()</text><ellipse cx="793.2292" cy="231.6854" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="101.0417" x="804.6875" y="238.5966">boolean isBound()</text><ellipse cx="793.2292" cy="251.4303" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="159.375" x="804.6875" y="258.3415">boolean isSame(Service that)</text><ellipse cx="793.2292" cy="271.1751" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="91.6667" x="804.6875" y="278.0863">boolean isStale()</text><ellipse cx="793.2292" cy="290.92" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="117.7083" x="804.6875" y="297.8312">boolean isUnbound()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="782.8125" x2="884.375" y1="214.5213" y2="214.5213"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="887.5" y="218.3309">(checks)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="937.5" x2="1039.0625" y1="214.5213" y2="214.5213"/><ellipse cx="793.2292" cy="334.5764" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="186.4583" x="804.6875" y="341.4876">ApplicationIdentifier application()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="782.8125" x2="882.8125" y1="317.4123" y2="317.4123"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="50" x="885.9375" y="321.2219">(identity)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="939.0625" x2="1039.0625" y1="317.4123" y2="317.4123"/><ellipse cx="793.2292" cy="378.2328" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="156.25" x="804.6875" y="385.144">String hostAndApplication()</text><ellipse cx="793.2292" cy="397.9777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="179.1667" x="804.6875" y="404.8889">String hostApplicationAndPort()</text><ellipse cx="793.2292" cy="417.7226" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="58.3333" x="804.6875" y="424.6338">Port port()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="782.8125" x2="881.25" y1="361.0687" y2="361.0687"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="884.375" y="364.8783">(network)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="940.625" x2="1039.0625" y1="361.0687" y2="361.0687"/><ellipse cx="793.2292" cy="461.379" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="226.0417" x="804.6875" y="468.2902">Service application(ApplicationIdentifier)</text><ellipse cx="793.2292" cy="481.1239" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="152.0833" x="804.6875" y="488.0351">ServiceMetadata metadata()</text><ellipse cx="793.2292" cy="500.8687" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="191.6667" x="804.6875" y="507.7799">Service metadata(ServiceMetadata)</text><ellipse cx="793.2292" cy="520.6136" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="97.9167" x="804.6875" y="527.5248">Service port(Port)</text><ellipse cx="793.2292" cy="540.3585" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="200" x="804.6875" y="547.2697">Service renewedAt(Time renewedAt)</text><ellipse cx="793.2292" cy="560.1034" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="117.7083" x="804.6875" y="567.0146">Service scope(Scope)</text><ellipse cx="793.2292" cy="579.8482" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="141.6667" x="804.6875" y="586.7594">Service type(ServiceType)</text><ellipse cx="793.2292" cy="599.5931" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="102.0833" x="804.6875" y="606.5043">ServiceType type()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="782.8125" x2="883.8542" y1="444.2149" y2="444.2149"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="47.9167" x="886.9792" y="448.0245">(service)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="938.0208" x2="1039.0625" y1="444.2149" y2="444.2149"/><ellipse cx="793.2292" cy="643.2495" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="97.9167" x="804.6875" y="650.1607">Time renewedAt()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="782.8125" x2="891.6667" y1="626.0854" y2="626.0854"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="32.2917" x="894.7917" y="629.895">(time)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="930.2083" x2="1039.0625" y1="626.0854" y2="626.0854"/><!--MD5=[652c289fe7a9d0cf99e5eab213ffc423]
+class ApplicationIdentifier--><rect fill="#282828" height="48.055" id="ApplicationIdentifier" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="170.8333" x="326.5625" y="923.4945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="170.8333" x="326.5625" y="923.4945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="170.8333" x="326.5625" y="946.5495"/><rect fill="none" height="48.055" id="ApplicationIdentifier" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="170.8333" x="326.5625" y="923.4945"/><ellipse cx="341.1458" cy="939.1886" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M343.0562,943.6137 Q342.629,943.8334 342.159,943.9433 Q341.689,944.0531 341.1702,944.0531 Q339.327,944.0531 338.3565,942.8385 Q337.3861,941.6239 337.3861,939.329 Q337.3861,937.028 338.3565,935.8134 Q339.327,934.5988 341.1702,934.5988 Q341.689,934.5988 342.1651,934.7087 Q342.6412,934.8185 343.0562,935.0382 L343.0562,937.0402 Q342.5924,936.613 342.156,936.4146 Q341.7196,936.2162 341.2557,936.2162 Q340.2669,936.2162 339.7634,937.0005 Q339.2598,937.7848 339.2598,939.329 Q339.2598,940.8671 339.7634,941.6514 Q340.2669,942.4357 341.2557,942.4357 Q341.7196,942.4357 342.156,942.2373 Q342.5924,942.039 343.0562,941.6117 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="133.3333" x="357.8125" y="943.9128">ApplicationIdentifier</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="327.6042" x2="496.3542" y1="954.8828" y2="954.8828"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="327.6042" x2="496.3542" y1="963.2161" y2="963.2161"/><!--MD5=[c28cce1dce58b6c2cef77d1c28f208f7]
+class ServiceMetadata--><rect codeLine="71" fill="#282828" height="277.7486" id="ServiceMetadata" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="354.1667" x="533.8542" y="808.3903"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="354.1667" x="533.8542" y="808.3903"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="354.1667" x="533.8542" y="831.4453"/><rect codeLine="71" fill="none" height="277.7486" id="ServiceMetadata" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="354.1667" x="533.8542" y="808.3903"/><ellipse cx="651.5625" cy="824.0845" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M653.4729,828.5095 Q653.0457,828.7292 652.5757,828.8391 Q652.1057,828.949 651.5869,828.949 Q649.7437,828.949 648.7732,827.7344 Q647.8027,826.5198 647.8027,824.2249 Q647.8027,821.9238 648.7732,820.7092 Q649.7437,819.4946 651.5869,819.4946 Q652.1057,819.4946 652.5818,819.6045 Q653.0579,819.7144 653.4729,819.9341 L653.4729,821.936 Q653.009,821.5088 652.5726,821.3104 Q652.1362,821.1121 651.6724,821.1121 Q650.6836,821.1121 650.1801,821.8964 Q649.6765,822.6807 649.6765,824.2249 Q649.6765,825.7629 650.1801,826.5472 Q650.6836,827.3315 651.6724,827.3315 Q652.1362,827.3315 652.5726,827.1332 Q653.009,826.9348 653.4729,826.5076 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="104.1667" x="674.4792" y="828.8086">ServiceMetadata</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="534.8958" x2="886.9792" y1="839.7786" y2="839.7786"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="534.8958" x2="886.9792" y1="848.112" y2="848.112"/><ellipse cx="545.3125" cy="859.5703" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="108.3333" x="556.7708" y="866.4815">String description()</text><ellipse cx="545.3125" cy="903.2267" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="114.5833" x="556.7708" y="910.1379">Version tdkVersion()</text><ellipse cx="545.3125" cy="922.9716" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="95.8333" x="556.7708" y="929.8828">Version version()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="534.8958" x2="682.8125" y1="886.0626" y2="886.0626"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="50" x="685.9375" y="889.8722">(identity)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="739.0625" x2="886.9792" y1="886.0626" y2="886.0626"/><ellipse cx="545.3125" cy="966.628" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="321.875" x="556.7708" y="973.5392">ServiceMetadata contactEmail(EmailAddress contactEmail)</text><ellipse cx="545.3125" cy="986.3729" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="264.5833" x="556.7708" y="993.2841">ServiceMetadata description(String description)</text><ellipse cx="545.3125" cy="1006.1178" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="267.7083" x="556.7708" y="1013.029">ServiceMetadata tdkVersion(Version tdkVersion)</text><ellipse cx="545.3125" cy="1025.8626" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="185.4167" x="556.7708" y="1032.7738">ServiceMetadata version(Version)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="534.8958" x2="678.125" y1="949.4639" y2="949.4639"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="59.375" x="681.25" y="953.2735">(metadata)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="743.75" x2="886.9792" y1="949.4639" y2="949.4639"/><ellipse cx="545.3125" cy="1069.519" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="158.3333" x="556.7708" y="1076.4303">EmailAddress contactEmail()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="534.8958" x2="681.25" y1="1052.3549" y2="1052.3549"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="684.375" y="1056.1646">(network)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="740.625" x2="886.9792" y1="1052.3549" y2="1052.3549"/><!--MD5=[cd5d975a9ec97ea64af0f79792a3b3d9]
+class ServiceType--><rect codeLine="87" fill="#282828" height="103.123" id="ServiceType" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="140.625" x="925" y="895.8903"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="140.625" x="925" y="895.8903"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="140.625" x="925" y="918.9453"/><rect codeLine="87" fill="none" height="103.123" id="ServiceType" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="140.625" x="925" y="895.8903"/><ellipse cx="951.7708" cy="911.5845" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M953.6812,916.0095 Q953.254,916.2292 952.784,916.3391 Q952.314,916.449 951.7952,916.449 Q949.952,916.449 948.9815,915.2344 Q948.0111,914.0198 948.0111,911.7249 Q948.0111,909.4238 948.9815,908.2092 Q949.952,906.9946 951.7952,906.9946 Q952.314,906.9946 952.7901,907.1045 Q953.2662,907.2144 953.6812,907.4341 L953.6812,909.436 Q953.2174,909.0088 952.781,908.8104 Q952.3446,908.6121 951.8807,908.6121 Q950.8919,908.6121 950.3884,909.3964 Q949.8848,910.1807 949.8848,911.7249 Q949.8848,913.2629 950.3884,914.0472 Q950.8919,914.8315 951.8807,914.8315 Q952.3446,914.8315 952.781,914.6332 Q953.2174,914.4348 953.6812,914.0076 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="76.0417" x="971.1458" y="916.3086">ServiceType</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="926.0417" x2="1064.5833" y1="927.2786" y2="927.2786"/><polygon fill="#FFFF44" points="936.4583,957.4402,940.625,961.6069,936.4583,965.7735,932.2917,961.6069" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="75" x="947.9167" y="969.5597">ServiceType()</text><ellipse cx="936.4583" cy="982.3934" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="108.3333" x="947.9167" y="989.3046">ServiceType(String)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="926.0417" x2="951.5625" y1="945.4844" y2="945.4844"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="954.6875" y="949.294">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1039.0625" x2="1064.5833" y1="945.4844" y2="945.4844"/><!--MD5=[a0bfe97ac0a38e6e74cc1c7c7b744b71]
+class Port--><rect fill="#282828" height="48.055" id="Port" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="63.5417" x="1102.0833" y="923.4945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="63.5417" x="1102.0833" y="923.4945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="63.5417" x="1102.0833" y="946.5495"/><rect fill="none" height="48.055" id="Port" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="63.5417" x="1102.0833" y="923.4945"/><ellipse cx="1116.6667" cy="939.1886" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1118.5771,943.6137 Q1118.1498,943.8334 1117.6799,943.9433 Q1117.2099,944.0531 1116.6911,944.0531 Q1114.8478,944.0531 1113.8774,942.8385 Q1112.9069,941.6239 1112.9069,939.329 Q1112.9069,937.028 1113.8774,935.8134 Q1114.8478,934.5988 1116.6911,934.5988 Q1117.2099,934.5988 1117.686,934.7087 Q1118.162,934.8185 1118.5771,935.0382 L1118.5771,937.0402 Q1118.1132,936.613 1117.6768,936.4146 Q1117.2404,936.2162 1116.7765,936.2162 Q1115.7878,936.2162 1115.2842,937.0005 Q1114.7807,937.7848 1114.7807,939.329 Q1114.7807,940.8671 1115.2842,941.6514 Q1115.7878,942.4357 1116.7765,942.4357 Q1117.2404,942.4357 1117.6768,942.2373 Q1118.1132,942.039 1118.5771,941.6117 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="26.0417" x="1133.3333" y="943.9128">Port</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1103.125" x2="1164.5833" y1="954.8828" y2="954.8828"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1103.125" x2="1164.5833" y1="963.2161" y2="963.2161"/><!--MD5=[3c9834795ddf90a7735e7bf2288a0d09]
+class JavaVirtualMachineHealth--><rect fill="#282828" height="48.055" id="JavaVirtualMachineHealth" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="202.0833" x="1202.6042" y="923.4945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="202.0833" x="1202.6042" y="923.4945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="202.0833" x="1202.6042" y="946.5495"/><rect fill="none" height="48.055" id="JavaVirtualMachineHealth" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="202.0833" x="1202.6042" y="923.4945"/><ellipse cx="1217.1875" cy="939.1886" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1219.0979,943.6137 Q1218.6707,943.8334 1218.2007,943.9433 Q1217.7307,944.0531 1217.2119,944.0531 Q1215.3687,944.0531 1214.3982,942.8385 Q1213.4277,941.6239 1213.4277,939.329 Q1213.4277,937.028 1214.3982,935.8134 Q1215.3687,934.5988 1217.2119,934.5988 Q1217.7307,934.5988 1218.2068,934.7087 Q1218.6829,934.8185 1219.0979,935.0382 L1219.0979,937.0402 Q1218.634,936.613 1218.1976,936.4146 Q1217.7612,936.2162 1217.2974,936.2162 Q1216.3086,936.2162 1215.8051,937.0005 Q1215.3015,937.7848 1215.3015,939.329 Q1215.3015,940.8671 1215.8051,941.6514 Q1216.3086,942.4357 1217.2974,942.4357 Q1217.7612,942.4357 1218.1976,942.2373 Q1218.634,942.039 1219.0979,941.6117 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="164.5833" x="1233.8542" y="943.9128">JavaVirtualMachineHealth</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1203.6458" x2="1403.6458" y1="954.8828" y2="954.8828"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1203.6458" x2="1403.6458" y1="963.2161" y2="963.2161"/><!--MD5=[1db584ee1b8127ea75535273dec2b4f2]
+class Version--><rect fill="#282828" height="48.055" id="Version" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="86.4583" x="585.4167" y="1264.6403"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="86.4583" x="585.4167" y="1264.6403"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="86.4583" x="585.4167" y="1287.6953"/><rect fill="none" height="48.055" id="Version" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="86.4583" x="585.4167" y="1264.6403"/><ellipse cx="600" cy="1280.3345" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M601.9104,1284.7595 Q601.4832,1284.9792 601.0132,1285.0891 Q600.5432,1285.199 600.0244,1285.199 Q598.1812,1285.199 597.2107,1283.9844 Q596.2402,1282.7698 596.2402,1280.4749 Q596.2402,1278.1738 597.2107,1276.9592 Q598.1812,1275.7446 600.0244,1275.7446 Q600.5432,1275.7446 601.0193,1275.8545 Q601.4954,1275.9644 601.9104,1276.1841 L601.9104,1278.186 Q601.4465,1277.7588 601.0101,1277.5604 Q600.5737,1277.3621 600.1099,1277.3621 Q599.1211,1277.3621 598.6176,1278.1464 Q598.114,1278.9307 598.114,1280.4749 Q598.114,1282.0129 598.6176,1282.7972 Q599.1211,1283.5815 600.1099,1283.5815 Q600.5737,1283.5815 601.0101,1283.3832 Q601.4465,1283.1848 601.9104,1282.7576 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="48.9583" x="616.6667" y="1285.0586">Version</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="586.4583" x2="670.8333" y1="1296.0286" y2="1296.0286"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="586.4583" x2="670.8333" y1="1304.362" y2="1304.362"/><!--MD5=[6a10e9b103e375a5f698786d329ce000]
+class EmailAddress--><rect fill="#282828" height="48.055" id="EmailAddress" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="126.0417" x="771.875" y="1264.6403"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="126.0417" x="771.875" y="1264.6403"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="126.0417" x="771.875" y="1287.6953"/><rect fill="none" height="48.055" id="EmailAddress" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="126.0417" x="771.875" y="1264.6403"/><ellipse cx="786.4583" cy="1280.3345" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M788.3687,1284.7595 Q787.9415,1284.9792 787.4715,1285.0891 Q787.0015,1285.199 786.4827,1285.199 Q784.6395,1285.199 783.669,1283.9844 Q782.6986,1282.7698 782.6986,1280.4749 Q782.6986,1278.1738 783.669,1276.9592 Q784.6395,1275.7446 786.4827,1275.7446 Q787.0015,1275.7446 787.4776,1275.8545 Q787.9537,1275.9644 788.3687,1276.1841 L788.3687,1278.186 Q787.9049,1277.7588 787.4685,1277.5604 Q787.0321,1277.3621 786.5682,1277.3621 Q785.5794,1277.3621 785.0759,1278.1464 Q784.5723,1278.9307 784.5723,1280.4749 Q784.5723,1282.0129 785.0759,1282.7972 Q785.5794,1283.5815 786.5682,1283.5815 Q787.0321,1283.5815 787.4685,1283.3832 Q787.9049,1283.1848 788.3687,1282.7576 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="88.5417" x="803.125" y="1285.0586">EmailAddress</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="772.9167" x2="896.875" y1="1296.0286" y2="1296.0286"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="772.9167" x2="896.875" y1="1304.362" y2="1304.362"/><!--MD5=[cbb8bf35995888f9254d60f3ea948027]
+reverse link Scope to Scope.Type--><path codeLine="6" d="M101.3438,1163.1403 C95.4271,1189.5257 89.8542,1214.3486 85.2813,1234.7653 " fill="none" id="Scope-backto-Scope.Type" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="104.3646,1149.6507,98.932,1154.8383,101.6311,1161.8482,107.0637,1156.6606,104.3646,1149.6507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9ac370b8e4cb0f30254ba90664c43c5a]
+reverse link Scope to ClusterIdentifier--><path codeLine="7" d="M198.2188,1162.8903 C207.625,1204.234 216.1458,1241.7549 221.3438,1264.5882 " fill="none" id="Scope-backto-ClusterIdentifier" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="195.2083,1149.6507,192.5335,1156.6699,197.9839,1161.8387,200.6588,1154.8195,195.2083,1149.6507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[db533f0977009186d40ca37680157d26]
+reverse link Service to ApplicationIdentifier--><path codeLine="30" d="M770.9896,474.432 C689.7188,546.8174 589.0938,644.9528 515.1042,745.3695 C471.5938,804.4215 436.625,884.4736 420.9375,923.3382 " fill="none" id="Service-backto-ApplicationIdentifier" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="781.3125,465.2861,773.8719,466.3161,771.9608,473.5804,779.4014,472.5505,781.3125,465.2861" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[07520cb17ccfcc42a436ca9265d4e067]
+reverse link Service to Scope--><path codeLine="31" d="M769.4583,430.984 C640.9896,501.3278 450.3854,615.8695 307.8125,745.3695 C301.7292,750.9007 295.6979,756.6715 289.7396,762.6403 " fill="none" id="Service-backto-Scope" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="781.6875,424.3174,774.206,423.6464,770.7091,430.2944,778.1906,430.9653,781.6875,424.3174" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="56.25" x="371.3542" y="707.4544">visibility</text><!--MD5=[6eadc820372c53504ad19fd459638842]
+reverse link Service to ServiceMetadata--><path codeLine="32" d="M803.7292,673.3486 C787.6563,720.6507 771.8333,767.2132 757.9271,808.1195 " fill="none" id="Service-backto-ServiceMetadata" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="808.1563,660.3278,802.203,664.9085,804.1416,672.1656,810.0948,667.5849,808.1563,660.3278" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[516fec5e10a507b7ade59714743d3615]
+reverse link Service to ServiceType--><path codeLine="33" d="M956.25,673.9215 C968.625,760.2757 980.6458,844.109 988.0104,895.4736 " fill="none" id="Service-backto-ServiceType" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="954.3021,660.3278,951.0707,667.1088,956.0871,672.6997,959.3186,665.9187,954.3021,660.3278" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="106.25" x="965.1042" y="707.4544">provided service</text><!--MD5=[b33f05a29fabdfc20173d3b06d14196b]
+reverse link Service to Port--><path codeLine="34" d="M1046.0521,598.8695 C1060.1354,629.3903 1073.1771,660.6403 1083.8542,691.2028 C1112.7292,773.8903 1126.5521,877.8174 1131.5625,923.307 " fill="none" id="Service-backto-Port" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="1040.1771,586.307,1039.0478,593.7332,1045.4684,597.6318,1046.5977,590.2056,1040.1771,586.307" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="89.5833" x="1095.3125" y="707.4544">allocated port</text><!--MD5=[0c7e8504e376a0564f41a777798f1311]
+reverse link Service to JavaVirtualMachineHealth--><path codeLine="35" d="M1049.25,498.6299 C1100.1771,555.3382 1155.5729,623.3278 1197.3958,691.2028 C1246.4896,770.8799 1282.4375,877.2549 1296.7813,923.4215 " fill="none" id="Service-backto-JavaVirtualMachineHealth" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="1040.1354,488.5361,1041.2346,495.9668,1048.5164,497.8102,1047.4173,490.3795,1040.1354,488.5361" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="85.4167" x="1211.9792" y="707.4544">health status</text><!--MD5=[4379c7919fb634307f6aa63fb9e48be2]
+reverse link ServiceMetadata to Version--><path codeLine="68" d="M596.7813,1098.7132 C582.0313,1124.8799 569.2083,1152.734 560.9375,1180.7861 C551.5625,1212.5778 576.8021,1244.0153 599.0833,1264.4528 " fill="none" id="ServiceMetadata-backto-Version" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="603.6875,1086.8174,596.9458,1090.1299,597.4105,1097.6271,604.1522,1094.3146,603.6875,1086.8174" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="96.875" x="565.1042" y="1197.0378">service version</text><!--MD5=[4379c7919fb634307f6aa63fb9e48be2]
+reverse link ServiceMetadata to Version--><path codeLine="69" d="M694.5208,1100.3278 C688.6667,1134.7861 680.8125,1170.8799 670.3125,1203.7028 C663.4271,1225.2236 651.7396,1248.0986 642.4896,1264.5049 " fill="none" id="ServiceMetadata-backto-Version-1" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="696.7396,1086.7028,691.618,1092.1976,694.7202,1099.0386,699.8419,1093.5438,696.7396,1086.7028" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="73.9583" x="680.7292" y="1197.0378">tdk version</text><!--MD5=[d6fe3f36741fb36995709ebe75f2e87d]
+reverse link ServiceMetadata to EmailAddress--><path codeLine="70" d="M766.3125,1099.9632 C789.5313,1163.4736 814,1230.4111 826.4896,1264.557 " fill="none" id="ServiceMetadata-backto-EmailAddress" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="761.5313,1086.8903,759.7596,1094.1899,765.8163,1098.6329,767.588,1091.3333,761.5313,1086.8903" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="86.4583" x="806.7708" y="1197.0378">contact email</text><!--MD5=[746336b3f8f0c08fbbdf89421f0ebdfc]
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "Services"
+    
+    Scope o- - Scope.Type
+    Scope o- - ClusterIdentifier
+    class Scope
+    {
+        - -(constructors)- -
+        #Scope()
+        #Scope(Type, ClusterIdentifier)
+        - -
+        +Scope cluster(ClusterIdentifier)
+        +Set<Scope> scopes(Result<Set<Service>>)
+        +Type type()
+        - -(checks)- -
+        +boolean isCluster()
+        +boolean isLocal()
+        - -(collection)- -
+        +List<String> names(Result<Set<Service>>)
+        - -(identity)- -
+        +ClusterIdentifier cluster()
+        - -(network)- -
+        +boolean isNetwork()
+        +Scope localhost()
+        +Scope network()
+    }
+    
+    Service o- - ApplicationIdentifier
+    Service o- - Scope : "visibility"
+    Service o- - ServiceMetadata
+    Service o- - ServiceType : "provided service"
+    Service o- - Port : "allocated port"
+    Service o- - JavaVirtualMachineHealth : "health status"
+    class Service
+    {
+        - -(constructors)- -
+        +Service()
+        - -
+        +String descriptor()
+        +JavaVirtualMachineHealth health()
+        +Scope scope()
+        - -(checks)- -
+        +boolean isBound()
+        +boolean isSame(Service that)
+        +boolean isStale()
+        +boolean isUnbound()
+        - -(identity)- -
+        +ApplicationIdentifier application()
+        - -(network)- -
+        +String hostAndApplication()
+        +String hostApplicationAndPort()
+        +Port port()
+        - -(service)- -
+        +Service application(ApplicationIdentifier)
+        +ServiceMetadata metadata()
+        +Service metadata(ServiceMetadata)
+        +Service port(Port)
+        +Service renewedAt(Time renewedAt)
+        +Service scope(Scope)
+        +Service type(ServiceType)
+        +ServiceType type()
+        - -(time)- -
+        +Time renewedAt()
+    }
+    
+    ServiceMetadata o- - Version : "service version"
+    ServiceMetadata o- - Version : "tdk version"
+    ServiceMetadata o- - EmailAddress : "contact email"
+    class ServiceMetadata
+    {
+        - -
+        +String description()
+        - -(identity)- -
+        +Version tdkVersion()
+        +Version version()
+        - -(metadata)- -
+        +ServiceMetadata contactEmail(EmailAddress contactEmail)
+        +ServiceMetadata description(String description)
+        +ServiceMetadata tdkVersion(Version tdkVersion)
+        +ServiceMetadata version(Version)
+        - -(network)- -
+        +EmailAddress contactEmail()
+    }
+    
+    class ServiceType
+    {
+        - -(constructors)- -
+        #ServiceType()
+        +ServiceType(String)
+    }
+    
+    enum Scope.Type
+    {
+        CLUSTER
+        LOCALHOST
+        NETWORK
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "Services"
+    
+    Scope o- - Scope.Type
+    Scope o- - ClusterIdentifier
+    class Scope
+    {
+        - -(constructors)- -
+        #Scope()
+        #Scope(Type, ClusterIdentifier)
+        - -
+        +Scope cluster(ClusterIdentifier)
+        +Set<Scope> scopes(Result<Set<Service>>)
+        +Type type()
+        - -(checks)- -
+        +boolean isCluster()
+        +boolean isLocal()
+        - -(collection)- -
+        +List<String> names(Result<Set<Service>>)
+        - -(identity)- -
+        +ClusterIdentifier cluster()
+        - -(network)- -
+        +boolean isNetwork()
+        +Scope localhost()
+        +Scope network()
+    }
+    
+    Service o- - ApplicationIdentifier
+    Service o- - Scope : "visibility"
+    Service o- - ServiceMetadata
+    Service o- - ServiceType : "provided service"
+    Service o- - Port : "allocated port"
+    Service o- - JavaVirtualMachineHealth : "health status"
+    class Service
+    {
+        - -(constructors)- -
+        +Service()
+        - -
+        +String descriptor()
+        +JavaVirtualMachineHealth health()
+        +Scope scope()
+        - -(checks)- -
+        +boolean isBound()
+        +boolean isSame(Service that)
+        +boolean isStale()
+        +boolean isUnbound()
+        - -(identity)- -
+        +ApplicationIdentifier application()
+        - -(network)- -
+        +String hostAndApplication()
+        +String hostApplicationAndPort()
+        +Port port()
+        - -(service)- -
+        +Service application(ApplicationIdentifier)
+        +ServiceMetadata metadata()
+        +Service metadata(ServiceMetadata)
+        +Service port(Port)
+        +Service renewedAt(Time renewedAt)
+        +Service scope(Scope)
+        +Service type(ServiceType)
+        +ServiceType type()
+        - -(time)- -
+        +Time renewedAt()
+    }
+    
+    ServiceMetadata o- - Version : "service version"
+    ServiceMetadata o- - Version : "tdk version"
+    ServiceMetadata o- - EmailAddress : "contact email"
+    class ServiceMetadata
+    {
+        - -
+        +String description()
+        - -(identity)- -
+        +Version tdkVersion()
+        +Version version()
+        - -(metadata)- -
+        +ServiceMetadata contactEmail(EmailAddress contactEmail)
+        +ServiceMetadata description(String description)
+        +ServiceMetadata tdkVersion(Version tdkVersion)
+        +ServiceMetadata version(Version)
+        - -(network)- -
+        +EmailAddress contactEmail()
+    }
+    
+    class ServiceType
+    {
+        - -(constructors)- -
+        #ServiceType()
+        +ServiceType(String)
+    }
+    
+    enum Scope.Type
+    {
+        CLUSTER
+        LOCALHOST
+        NETWORK
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

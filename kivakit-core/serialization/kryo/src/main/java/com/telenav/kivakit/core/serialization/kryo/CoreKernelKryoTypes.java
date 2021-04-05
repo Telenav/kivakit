@@ -5,9 +5,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package
-
-        com.telenav.kivakit.core.serialization.kryo;
+package com.telenav.kivakit.core.serialization.kryo;
 
 import com.telenav.kivakit.core.kernel.language.collections.CompressibleCollection;
 import com.telenav.kivakit.core.kernel.language.matching.matchers.All;

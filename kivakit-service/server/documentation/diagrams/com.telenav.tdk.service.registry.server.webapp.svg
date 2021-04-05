@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="254.1667px" preserveAspectRatio="none" style="width:503px;height:254px;background:#333333;" version="1.1" viewBox="0 0 503 254" width="503.125px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="490.625" x="2.0833" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="467.7083" x="13.5417" y="30.5583">com.telenav.tdk.service.registry.server.webapp</text><!--MD5=[5698d5e59d6816aebb6ec6f82004408f]
+class WebApplication--><rect fill="#282828" height="48.055" id="WebApplication" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="138.5417" x="70.8333" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="138.5417" x="70.8333" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="138.5417" x="70.8333" y="76.7578"/><rect fill="none" height="48.055" id="WebApplication" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="138.5417" x="70.8333" y="53.7028"/><ellipse cx="85.4167" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M87.3271,73.822 Q86.8998,74.0417 86.4299,74.1516 Q85.9599,74.2615 85.4411,74.2615 Q83.5978,74.2615 82.6274,73.0469 Q81.6569,71.8323 81.6569,69.5374 Q81.6569,67.2363 82.6274,66.0217 Q83.5978,64.8071 85.4411,64.8071 Q85.9599,64.8071 86.436,64.917 Q86.912,65.0269 87.3271,65.2466 L87.3271,67.2485 Q86.8632,66.8213 86.4268,66.6229 Q85.9904,66.4246 85.5265,66.4246 Q84.5378,66.4246 84.0342,67.2089 Q83.5307,67.9932 83.5307,69.5374 Q83.5307,71.0754 84.0342,71.8597 Q84.5378,72.644 85.5265,72.644 Q85.9904,72.644 86.4268,72.4457 Q86.8632,72.2473 87.3271,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="101.0417" x="102.0833" y="74.1211">WebApplication</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="71.875" x2="208.3333" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="71.875" x2="208.3333" y1="93.4245" y2="93.4245"/><!--MD5=[9eab2c7bfc0a13449157107455fec9af]
+class ServiceRegistryWebApplication--><rect codeLine="7" fill="#282828" height="48.055" id="ServiceRegistryWebApplication" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="236.4583" x="21.875" y="181.8278"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="236.4583" x="21.875" y="181.8278"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="236.4583" x="21.875" y="204.8828"/><rect codeLine="7" fill="none" height="48.055" id="ServiceRegistryWebApplication" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="236.4583" x="21.875" y="181.8278"/><ellipse cx="36.4583" cy="197.522" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M38.3687,201.947 Q37.9415,202.1667 37.4715,202.2766 Q37.0015,202.3865 36.4827,202.3865 Q34.6395,202.3865 33.669,201.1719 Q32.6986,199.9573 32.6986,197.6624 Q32.6986,195.3613 33.669,194.1467 Q34.6395,192.9321 36.4827,192.9321 Q37.0015,192.9321 37.4776,193.042 Q37.9537,193.1519 38.3687,193.3716 L38.3687,195.3735 Q37.9049,194.9463 37.4685,194.7479 Q37.0321,194.5496 36.5682,194.5496 Q35.5794,194.5496 35.0759,195.3339 Q34.5723,196.1182 34.5723,197.6624 Q34.5723,199.2004 35.0759,199.9847 Q35.5794,200.769 36.5682,200.769 Q37.0321,200.769 37.4685,200.5707 Q37.9049,200.3723 38.3687,199.9451 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="198.9583" x="53.125" y="202.2461">ServiceRegistryWebApplication</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="22.9167" x2="257.2917" y1="213.2161" y2="213.2161"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="22.9167" x2="257.2917" y1="221.5495" y2="221.5495"/><!--MD5=[2348928a02e2f2aa159b7171a1143fdb]
+class WebPage--><rect fill="#282828" height="48.055" id="WebPage" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="94.7917" x="343.75" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="94.7917" x="343.75" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="94.7917" x="343.75" y="76.7578"/><rect fill="none" height="48.055" id="WebPage" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="94.7917" x="343.75" y="53.7028"/><ellipse cx="358.3333" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M360.2437,73.822 Q359.8165,74.0417 359.3465,74.1516 Q358.8765,74.2615 358.3577,74.2615 Q356.5145,74.2615 355.544,73.0469 Q354.5736,71.8323 354.5736,69.5374 Q354.5736,67.2363 355.544,66.0217 Q356.5145,64.8071 358.3577,64.8071 Q358.8765,64.8071 359.3526,64.917 Q359.8287,65.0269 360.2437,65.2466 L360.2437,67.2485 Q359.7799,66.8213 359.3435,66.6229 Q358.9071,66.4246 358.4432,66.4246 Q357.4544,66.4246 356.9509,67.2089 Q356.4473,67.9932 356.4473,69.5374 Q356.4473,71.0754 356.9509,71.8597 Q357.4544,72.644 358.4432,72.644 Q358.9071,72.644 359.3435,72.4457 Q359.7799,72.2473 360.2437,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="57.2917" x="375" y="74.1211">WebPage</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="344.7917" x2="437.5" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="344.7917" x2="437.5" y1="93.4245" y2="93.4245"/><!--MD5=[27364c4494c7bbbc1fd7e6814334e10d]
+class ServiceRegistryWebPage--><rect codeLine="12" fill="#282828" height="83.3781" id="ServiceRegistryWebPage" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="192.7083" x="294.7917" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="192.7083" x="294.7917" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="192.7083" x="294.7917" y="187.1745"/><rect codeLine="12" fill="none" height="83.3781" id="ServiceRegistryWebPage" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="192.7083" x="294.7917" y="164.1195"/><ellipse cx="309.375" cy="179.8136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M311.2854,184.2387 Q310.8582,184.4584 310.3882,184.5683 Q309.9182,184.6781 309.3994,184.6781 Q307.5562,184.6781 306.5857,183.4635 Q305.6152,182.2489 305.6152,179.954 Q305.6152,177.653 306.5857,176.4384 Q307.5562,175.2238 309.3994,175.2238 Q309.9182,175.2238 310.3943,175.3337 Q310.8704,175.4435 311.2854,175.6632 L311.2854,177.6652 Q310.8215,177.238 310.3851,177.0396 Q309.9487,176.8412 309.4849,176.8412 Q308.4961,176.8412 307.9926,177.6255 Q307.489,178.4098 307.489,179.954 Q307.489,181.4921 307.9926,182.2764 Q308.4961,183.0607 309.4849,183.0607 Q309.9487,183.0607 310.3851,182.8623 Q310.8215,182.664 311.2854,182.2367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="155.2083" x="326.0417" y="184.5378">ServiceRegistryWebPage</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="295.8333" x2="486.4583" y1="195.5078" y2="195.5078"/><ellipse cx="306.25" cy="230.8777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="142.7083" x="317.7083" y="237.7889">ServiceRegistryWebPage()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="295.8333" x2="347.3958" y1="213.7136" y2="213.7136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="350.5208" y="217.5232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="434.8958" x2="486.4583" y1="213.7136" y2="213.7136"/><!--MD5=[5d77db3f0482e4eb20e33fdb26f7cee4]
+reverse link WebApplication to ServiceRegistryWebApplication--><path codeLine="6" d="M140.1042,122.9528 C140.1042,142.7965 140.1042,165.3799 140.1042,181.7757 " fill="none" id="WebApplication-backto-ServiceRegistryWebApplication" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="132.8125,122.6507,140.1042,101.8174,147.3958,122.6507,132.8125,122.6507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e0e9477f886442794317141aa85ca52c]
+reverse link WebPage to ServiceRegistryWebPage--><path codeLine="11" d="M391.1458,122.682 C391.1458,136.0778 391.1458,150.7445 391.1458,163.9215 " fill="none" id="WebPage-backto-ServiceRegistryWebPage" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="383.8542,122.6507,391.1458,101.8174,398.4375,122.6507,383.8542,122.6507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[70388d10c2a437ee7e90e9930351d587]
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.tdk.service.registry.server.webapp"
+    
+    WebApplication <|- - ServiceRegistryWebApplication
+    class ServiceRegistryWebApplication
+    {
+    }
+    
+    WebPage <|- - ServiceRegistryWebPage
+    class ServiceRegistryWebPage
+    {
+        - -(constructors)- -
+        +ServiceRegistryWebPage()
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.tdk.service.registry.server.webapp"
+    
+    WebApplication <|- - ServiceRegistryWebApplication
+    class ServiceRegistryWebApplication
+    {
+    }
+    
+    WebPage <|- - ServiceRegistryWebPage
+    class ServiceRegistryWebPage
+    {
+        - -(constructors)- -
+        +ServiceRegistryWebPage()
+    }
+    
+@enduml
+
+PlantUML version 1.2021.3(Mon Mar 22 09:53:19 MST 2021)
+(APACHE source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

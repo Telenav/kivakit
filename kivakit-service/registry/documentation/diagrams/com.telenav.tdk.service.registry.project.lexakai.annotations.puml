@@ -1,0 +1,20 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.tdk.service.registry.project.lexakai.annotations"
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|-- DiagramRegistry
+    interface DiagramRegistry
+    {
+    }
+    
+    interface UmlDiagramIdentifier
+    UmlDiagramIdentifier <|-- DiagramRest
+    interface DiagramRest
+    {
+    }
+    
+@enduml
+

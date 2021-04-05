@@ -1,0 +1,35 @@
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--  © 2020 Telenav - All rights reserved.                                                                          -->
+<!--  This software is the confidential and proprietary information of Telenav ("Confidential Information").         -->
+<!--  You shall not disclose such Confidential Information and shall use it only in accordance with the              -->
+<!--  terms of the license agreement you entered into with Telenav.                                                  -->
+<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<project xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>com.telenav.kivakit</groupId>
+        <artifactId>kivakit-filesystems</artifactId>
+        <version>0.9.0-SNAPSHOT</version>
+    </parent>
+
+    <name>KivaKit Filesystems - HDFS Proxy SPI</name>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>kivakit-filesystems-hdfs-proxy-spi</artifactId>
+    <packaging>jar</packaging>
+
+    <dependencies>
+
+        <!-- KivaKit -->
+
+        <dependency>
+            <groupId>com.telenav.kivakit</groupId>
+            <artifactId>kivakit-core-kernel</artifactId>
+            <version>${kivakit.version}</version>
+        </dependency>
+
+    </dependencies>
+
+</project>

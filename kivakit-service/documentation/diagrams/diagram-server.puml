@@ -1,0 +1,100 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "Local and Network Registry Servers"
+    
+    abstract BaseServiceRegistry
+    abstract BaseRepeater
+    
+    interface ServiceRegistry
+    
+    BaseRepeater <|-- BaseServiceRegistry
+    ServiceRegistry <|-- BaseServiceRegistry
+    -abstract class BaseServiceRegistry
+    {
+        --(constructors)--
+        +BaseServiceRegistry()
+        --(service)--
+        +ServiceRegistry load()
+    }
+    
+    BaseServiceRegistry <|-- LocalServiceRegistry
+    -class LocalServiceRegistry
+    {
+        --(constructors)--
+        #LocalServiceRegistry()
+        +LocalServiceRegistry(int)
+    }
+    
+    BaseServiceRegistry <|-- NetworkServiceRegistry
+    -class NetworkServiceRegistry
+    {
+    }
+    
+    interface Repeater
+    Repeater <|-- ServiceRegistry
+    note right of ServiceRegistry
+        Use ServiceRegistryClient to register and discover services
+    endnote
+    -interface ServiceRegistry
+    {
+        --(checks)--
+        +boolean isLocal()
+        --(collection)--
+        +Result<Boolean> addOrUpdate(Service)
+        --(lookup)--
+        +Result<Service> register(Service)
+        --(network)--
+        +boolean isNetwork()
+        +Port local()
+        +Port network()
+        +Port port(Host)
+        --(search)--
+        +Result<Set<ApplicationIdentifier>> discoverApplications(Scope)
+        +Result<Set<Host>> discoverHosts()
+        +Result<Service> discoverPortService(Port)
+        +Result<Set<Service>> discoverServices()
+        +Result<Set<Service>> discoverServices(ServiceType)
+        +Result<Set<Service>> discoverServices(ApplicationIdentifier)
+        +Result<Set<Service>> discoverServices(ApplicationIdentifier, ServiceType)
+        --(time)--
+        +Result<Service> renew(Service)
+    }
+    
+    Server <|-- ServiceRegistryServer
+    ServiceRegistryServer --> ServiceRegistry : "creates"
+    ServiceRegistryServer --> ServiceRegistry : "searches"
+    ServiceRegistryServer --> ServiceRegistry : "updates"
+    ServiceRegistryServer --> ServiceRegistryStore : "persists to"
+    note right of ServiceRegistryServer
+        For REST API details, refer to Swagger documentation provided by this server
+    endnote
+    class ServiceRegistryServer
+    {
+        --(constructors)--
+        #ServiceRegistryServer()
+        --
+        +void main(String[] arguments)
+        --(checks)--
+        +boolean isLocal()
+        --(network)--
+        +boolean isNetwork()
+        +int port()
+        --(service)--
+        +ServiceRegistryServer get()
+        +ServiceRegistry registry()
+    }
+    
+    BaseRepeater <|-- ServiceRegistryStore
+    ServiceRegistryStore --> ServiceRegistry : "loads"
+    -class ServiceRegistryStore
+    {
+        --(service)--
+        +ServiceRegistry load(Class<? extends ServiceRegistry> type)
+        --(write)--
+        +void save(ServiceRegistry)
+    }
+    
+@enduml
+

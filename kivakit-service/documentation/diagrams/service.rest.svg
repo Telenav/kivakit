@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="372.9167px" preserveAspectRatio="none" style="width:1382px;height:372px;background:#333333;" version="1.1" viewBox="0 0 1382 372" width="1382.2917px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="135.4167" x="616.1458" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="112.5" x="627.6042" y="30.5583">service.rest</text><!--MD5=[2f6b322feb96bb2631e1a0e875047f13]
+class GsonFactory--><rect fill="#282828" height="48.055" id="GsonFactory" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="117.7083" x="56.25" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="117.7083" x="56.25" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="117.7083" x="56.25" y="76.7578"/><rect fill="none" height="48.055" id="GsonFactory" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="117.7083" x="56.25" y="53.7028"/><ellipse cx="70.8333" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M72.7437,73.822 Q72.3165,74.0417 71.8465,74.1516 Q71.3765,74.2615 70.8577,74.2615 Q69.0145,74.2615 68.044,73.0469 Q67.0736,71.8323 67.0736,69.5374 Q67.0736,67.2363 68.044,66.0217 Q69.0145,64.8071 70.8577,64.8071 Q71.3765,64.8071 71.8526,64.917 Q72.3287,65.0269 72.7437,65.2466 L72.7437,67.2485 Q72.2799,66.8213 71.8435,66.6229 Q71.4071,66.4246 70.9432,66.4246 Q69.9544,66.4246 69.4509,67.2089 Q68.9473,67.9932 68.9473,69.5374 Q68.9473,71.0754 69.4509,71.8597 Q69.9544,72.644 70.9432,72.644 Q71.4071,72.644 71.8435,72.4457 Q72.2799,72.2473 72.7437,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="80.2083" x="87.5" y="74.1211">GsonFactory</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="57.2917" x2="172.9167" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="57.2917" x2="172.9167" y1="93.4245" y2="93.4245"/><!--MD5=[df6d29c1b827e3420acab0c599d75d2a]
+class ServiceRegistryGsonFactory--><rect codeLine="7" fill="#282828" height="48.055" id="ServiceRegistryGsonFactory" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="215.625" x="7.2917" y="241.2028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="215.625" x="7.2917" y="241.2028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="215.625" x="7.2917" y="264.2578"/><rect codeLine="7" fill="none" height="48.055" id="ServiceRegistryGsonFactory" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="215.625" x="7.2917" y="241.2028"/><ellipse cx="21.875" cy="256.897" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M23.7854,261.322 Q23.3582,261.5417 22.8882,261.6516 Q22.4182,261.7615 21.8994,261.7615 Q20.0562,261.7615 19.0857,260.5469 Q18.1152,259.3323 18.1152,257.0374 Q18.1152,254.7363 19.0857,253.5217 Q20.0562,252.3071 21.8994,252.3071 Q22.4182,252.3071 22.8943,252.417 Q23.3704,252.5269 23.7854,252.7466 L23.7854,254.7485 Q23.3215,254.3213 22.8851,254.1229 Q22.4487,253.9246 21.9849,253.9246 Q20.9961,253.9246 20.4926,254.7089 Q19.989,255.4932 19.989,257.0374 Q19.989,258.5754 20.4926,259.3597 Q20.9961,260.144 21.9849,260.144 Q22.4487,260.144 22.8851,259.9457 Q23.3215,259.7473 23.7854,259.3201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="178.125" x="38.5417" y="261.6211">ServiceRegistryGsonFactory</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="221.875" y1="272.5911" y2="272.5911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="221.875" y1="280.9245" y2="280.9245"/><!--MD5=[6e78f5e404093da70a701b47f6b74a22]
+class JerseyGsonSerializer--><rect fill="#282828" height="48.055" id="JerseyGsonSerializer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="169.7917" x="301.0417" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="169.7917" x="301.0417" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="169.7917" x="301.0417" y="76.7578"/><rect fill="none" height="48.055" id="JerseyGsonSerializer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="169.7917" x="301.0417" y="53.7028"/><ellipse cx="315.625" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M317.5354,73.822 Q317.1082,74.0417 316.6382,74.1516 Q316.1682,74.2615 315.6494,74.2615 Q313.8062,74.2615 312.8357,73.0469 Q311.8652,71.8323 311.8652,69.5374 Q311.8652,67.2363 312.8357,66.0217 Q313.8062,64.8071 315.6494,64.8071 Q316.1682,64.8071 316.6443,64.917 Q317.1204,65.0269 317.5354,65.2466 L317.5354,67.2485 Q317.0715,66.8213 316.6351,66.6229 Q316.1987,66.4246 315.7349,66.4246 Q314.7461,66.4246 314.2426,67.2089 Q313.739,67.9932 313.739,69.5374 Q313.739,71.0754 314.2426,71.8597 Q314.7461,72.644 315.7349,72.644 Q316.1987,72.644 316.6351,72.4457 Q317.0715,72.2473 317.5354,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="132.2917" x="332.2917" y="74.1211">JerseyGsonSerializer</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="302.0833" x2="469.7917" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="302.0833" x2="469.7917" y1="93.4245" y2="93.4245"/><!--MD5=[530d46b23b564e2dfcf5014e098503f1]
+class ServiceRegistryJerseySerializer--><rect codeLine="12" fill="#282828" height="83.3781" id="ServiceRegistryJerseySerializer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="253.125" x="259.375" y="223.4945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="253.125" x="259.375" y="223.4945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="253.125" x="259.375" y="246.5495"/><rect codeLine="12" fill="none" height="83.3781" id="ServiceRegistryJerseySerializer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="253.125" x="259.375" y="223.4945"/><ellipse cx="273.9583" cy="239.1886" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M275.8687,243.6137 Q275.4415,243.8334 274.9715,243.9433 Q274.5015,244.0531 273.9827,244.0531 Q272.1395,244.0531 271.169,242.8385 Q270.1986,241.6239 270.1986,239.329 Q270.1986,237.028 271.169,235.8134 Q272.1395,234.5988 273.9827,234.5988 Q274.5015,234.5988 274.9776,234.7087 Q275.4537,234.8185 275.8687,235.0382 L275.8687,237.0402 Q275.4049,236.613 274.9685,236.4146 Q274.5321,236.2162 274.0682,236.2162 Q273.0794,236.2162 272.5759,237.0005 Q272.0723,237.7848 272.0723,239.329 Q272.0723,240.8671 272.5759,241.6514 Q273.0794,242.4357 274.0682,242.4357 Q274.5321,242.4357 274.9685,242.2373 Q275.4049,242.039 275.8687,241.6117 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="196.875" x="290.625" y="243.9128">ServiceRegistryJerseySerializer</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="16.6667" x="498.9583" y="220.3695"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="503.125" y="236.6211">T</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="260.4167" x2="511.4583" y1="254.8828" y2="254.8828"/><ellipse cx="270.8333" cy="290.2527" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="178.125" x="282.2917" y="297.1639">ServiceRegistryJerseySerializer()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="260.4167" x2="342.1875" y1="273.0886" y2="273.0886"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="345.3125" y="276.8982">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="429.6875" x2="511.4583" y1="273.0886" y2="273.0886"/><!--MD5=[753339a046a13ab3c2c0f9167cfa6f42]
+class JettyJerseyRestApplication--><rect fill="#282828" height="48.055" id="JettyJerseyRestApplication" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="209.375" x="563.5417" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="209.375" x="563.5417" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="209.375" x="563.5417" y="76.7578"/><rect fill="none" height="48.055" id="JettyJerseyRestApplication" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="209.375" x="563.5417" y="53.7028"/><ellipse cx="578.125" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M580.0354,73.822 Q579.6082,74.0417 579.1382,74.1516 Q578.6682,74.2615 578.1494,74.2615 Q576.3062,74.2615 575.3357,73.0469 Q574.3652,71.8323 574.3652,69.5374 Q574.3652,67.2363 575.3357,66.0217 Q576.3062,64.8071 578.1494,64.8071 Q578.6682,64.8071 579.1443,64.917 Q579.6204,65.0269 580.0354,65.2466 L580.0354,67.2485 Q579.5715,66.8213 579.1351,66.6229 Q578.6987,66.4246 578.2349,66.4246 Q577.2461,66.4246 576.7426,67.2089 Q576.239,67.9932 576.239,69.5374 Q576.239,71.0754 576.7426,71.8597 Q577.2461,72.644 578.2349,72.644 Q578.6987,72.644 579.1351,72.4457 Q579.5715,72.2473 580.0354,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="171.875" x="594.7917" y="74.1211">JettyJerseyRestApplication</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="564.5833" x2="771.875" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="564.5833" x2="771.875" y1="93.4245" y2="93.4245"/><!--MD5=[a60552e2bc0b65a6c954e01184b1786b]
+class ServiceRegistryRestApplication--><rect codeLine="19" fill="#282828" height="83.3781" id="ServiceRegistryRestApplication" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="237.5" x="549.4792" y="223.4945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="237.5" x="549.4792" y="223.4945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="237.5" x="549.4792" y="246.5495"/><rect codeLine="19" fill="none" height="83.3781" id="ServiceRegistryRestApplication" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="237.5" x="549.4792" y="223.4945"/><ellipse cx="564.0625" cy="239.1886" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M565.9729,243.6137 Q565.5457,243.8334 565.0757,243.9433 Q564.6057,244.0531 564.0869,244.0531 Q562.2437,244.0531 561.2732,242.8385 Q560.3027,241.6239 560.3027,239.329 Q560.3027,237.028 561.2732,235.8134 Q562.2437,234.5988 564.0869,234.5988 Q564.6057,234.5988 565.0818,234.7087 Q565.5579,234.8185 565.9729,235.0382 L565.9729,237.0402 Q565.509,236.613 565.0726,236.4146 Q564.6362,236.2162 564.1724,236.2162 Q563.1836,236.2162 562.6801,237.0005 Q562.1765,237.7848 562.1765,239.329 Q562.1765,240.8671 562.6801,241.6514 Q563.1836,242.4357 564.1724,242.4357 Q564.6362,242.4357 565.0726,242.2373 Q565.509,242.039 565.9729,241.6117 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="200" x="580.7292" y="243.9128">ServiceRegistryRestApplication</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="550.5208" x2="785.9375" y1="254.8828" y2="254.8828"/><ellipse cx="560.9375" cy="290.2527" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="181.25" x="572.3958" y="297.1639">ServiceRegistryRestApplication()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="550.5208" x2="624.4792" y1="273.0886" y2="273.0886"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="627.6042" y="276.8982">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="711.9792" x2="785.9375" y1="273.0886" y2="273.0886"/><!--MD5=[278863856cf9e4f78c7934ed34b7113f]
+class JettyJerseyRestResource--><rect fill="#282828" height="48.055" id="JettyJerseyRestResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="193.75" x="1002.6042" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="193.75" x="1002.6042" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="193.75" x="1002.6042" y="76.7578"/><rect fill="none" height="48.055" id="JettyJerseyRestResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="193.75" x="1002.6042" y="53.7028"/><ellipse cx="1017.1875" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1019.0979,73.822 Q1018.6707,74.0417 1018.2007,74.1516 Q1017.7307,74.2615 1017.2119,74.2615 Q1015.3687,74.2615 1014.3982,73.0469 Q1013.4277,71.8323 1013.4277,69.5374 Q1013.4277,67.2363 1014.3982,66.0217 Q1015.3687,64.8071 1017.2119,64.8071 Q1017.7307,64.8071 1018.2068,64.917 Q1018.6829,65.0269 1019.0979,65.2466 L1019.0979,67.2485 Q1018.634,66.8213 1018.1976,66.6229 Q1017.7612,66.4246 1017.2974,66.4246 Q1016.3086,66.4246 1015.8051,67.2089 Q1015.3015,67.9932 1015.3015,69.5374 Q1015.3015,71.0754 1015.8051,71.8597 Q1016.3086,72.644 1017.2974,72.644 Q1017.7612,72.644 1018.1976,72.4457 Q1018.634,72.2473 1019.0979,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="156.25" x="1033.8542" y="74.1211">JettyJerseyRestResource</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1003.6458" x2="1195.3125" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1003.6458" x2="1195.3125" y1="93.4245" y2="93.4245"/><!--MD5=[07dc8d5e19f536e80e5b0f2f6ad8716f]
+class ServiceRegistryRestResource--><rect codeLine="26" fill="#282828" height="201.8473" id="ServiceRegistryRestResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="551.0417" x="823.9583" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="551.0417" x="823.9583" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="551.0417" x="823.9583" y="187.1745"/><rect codeLine="26" fill="none" height="201.8473" id="ServiceRegistryRestResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="551.0417" x="823.9583" y="164.1195"/><ellipse cx="1000" cy="179.8136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1001.9104,184.2387 Q1001.4832,184.4584 1001.0132,184.5683 Q1000.5432,184.6781 1000.0244,184.6781 Q998.1812,184.6781 997.2107,183.4635 Q996.2402,182.2489 996.2402,179.954 Q996.2402,177.653 997.2107,176.4384 Q998.1812,175.2238 1000.0244,175.2238 Q1000.5432,175.2238 1001.0193,175.3337 Q1001.4954,175.4435 1001.9104,175.6632 L1001.9104,177.6652 Q1001.4465,177.238 1001.0101,177.0396 Q1000.5737,176.8412 1000.1099,176.8412 Q999.1211,176.8412 998.6176,177.6255 Q998.114,178.4098 998.114,179.954 Q998.114,181.4921 998.6176,182.2764 Q999.1211,183.0607 1000.1099,183.0607 Q1000.5737,183.0607 1001.0101,182.8623 Q1001.4465,182.664 1001.9104,182.2367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="184.375" x="1022.9167" y="184.5378">ServiceRegistryRestResource</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="825" x2="1373.9583" y1="195.5078" y2="195.5078"/><ellipse cx="835.4167" cy="230.8777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="481.25" x="846.875" y="237.7889">DiscoverApplicationsResponse onDiscoverApplications(DiscoverApplicationsRequest)</text><ellipse cx="835.4167" cy="250.6226" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="459.375" x="846.875" y="257.5338">DiscoverPortServiceResponse onDiscoverPortService(DiscoverPortServiceRequest)</text><ellipse cx="835.4167" cy="270.3674" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="409.375" x="846.875" y="277.2786">DiscoverServicesResponse onDiscoverServices(DiscoverServicesRequest)</text><ellipse cx="835.4167" cy="290.1123" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="518.75" x="846.875" y="297.0235">NetworkRegistryUpdateResponse onNetworkRegistryUpdate(NetworkRegistryUpdateRequest)</text><ellipse cx="835.4167" cy="309.8572" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="381.25" x="846.875" y="316.7684">RegisterServiceResponse onRegisterService(RegisterServiceRequest)</text><ellipse cx="835.4167" cy="329.6021" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="350" x="846.875" y="336.5133">RenewServiceResponse onRenewService(RenewServiceRequest)</text><ellipse cx="835.4167" cy="349.3469" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="122.9167" x="846.875" y="356.2581">Response onVersion()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="825" x2="1045.3125" y1="213.7136" y2="213.7136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="102.0833" x="1048.4375" y="217.5232">(extension points)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1153.6458" x2="1373.9583" y1="213.7136" y2="213.7136"/><!--MD5=[a4b6ce87de61a802644dc451eb4a6753]
+reverse link GsonFactory to ServiceRegistryGsonFactory--><path codeLine="6" d="M115.1042,122.7132 C115.1042,159.8382 115.1042,211.5049 115.1042,241.0153 " fill="none" id="GsonFactory-backto-ServiceRegistryGsonFactory" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="107.8125,122.6403,115.1042,101.807,122.3958,122.6403,107.8125,122.6403" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[cb43d9f19d96741cae54308f3b0a9d01]
+reverse link JerseyGsonSerializer to ServiceRegistryJerseySerializer--><path codeLine="11" d="M385.9375,122.9007 C385.9375,153.4111 385.9375,193.6715 385.9375,223.3903 " fill="none" id="JerseyGsonSerializer-backto-ServiceRegistryJerseySerializer" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="378.6458,122.6403,385.9375,101.807,393.2292,122.6403,378.6458,122.6403" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[5e4ccf2cf4f7401cd3792326c6719960]
+reverse link JettyJerseyRestApplication to ServiceRegistryRestApplication--><path codeLine="18" d="M668.2292,122.9007 C668.2292,153.4111 668.2292,193.6715 668.2292,223.3903 " fill="none" id="JettyJerseyRestApplication-backto-ServiceRegistryRestApplication" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="660.9375,122.6403,668.2292,101.807,675.5208,122.6403,660.9375,122.6403" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e54ac4ca7d0e015645e431cb90ff68ec]
+reverse link JettyJerseyRestResource to ServiceRegistryRestResource--><path codeLine="25" d="M1099.4792,122.8903 C1099.4792,135.4215 1099.4792,149.5986 1099.4792,164.0153 " fill="none" id="JettyJerseyRestResource-backto-ServiceRegistryRestResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1092.1875,122.6403,1099.4792,101.807,1106.7708,122.6403,1092.1875,122.6403" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[84746831c10f71422147c33299cc9f9c]
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "service.rest"
+    
+    GsonFactory <|- - ServiceRegistryGsonFactory
+    class ServiceRegistryGsonFactory
+    {
+    }
+    
+    JerseyGsonSerializer <|- - ServiceRegistryJerseySerializer
+    class ServiceRegistryJerseySerializer<T>
+    {
+        - -(constructors)- -
+        +ServiceRegistryJerseySerializer()
+    }
+    
+    JettyJerseyRestApplication <|- - ServiceRegistryRestApplication
+    class ServiceRegistryRestApplication
+    {
+        - -(constructors)- -
+        +ServiceRegistryRestApplication()
+    }
+    
+    JettyJerseyRestResource <|- - ServiceRegistryRestResource
+    class ServiceRegistryRestResource
+    {
+        - -(extension points)- -
+        +DiscoverApplicationsResponse onDiscoverApplications(DiscoverApplicationsRequest)
+        +DiscoverPortServiceResponse onDiscoverPortService(DiscoverPortServiceRequest)
+        +DiscoverServicesResponse onDiscoverServices(DiscoverServicesRequest)
+        +NetworkRegistryUpdateResponse onNetworkRegistryUpdate(NetworkRegistryUpdateRequest)
+        +RegisterServiceResponse onRegisterService(RegisterServiceRequest)
+        +RenewServiceResponse onRenewService(RenewServiceRequest)
+        +Response onVersion()
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "service.rest"
+    
+    GsonFactory <|- - ServiceRegistryGsonFactory
+    class ServiceRegistryGsonFactory
+    {
+    }
+    
+    JerseyGsonSerializer <|- - ServiceRegistryJerseySerializer
+    class ServiceRegistryJerseySerializer<T>
+    {
+        - -(constructors)- -
+        +ServiceRegistryJerseySerializer()
+    }
+    
+    JettyJerseyRestApplication <|- - ServiceRegistryRestApplication
+    class ServiceRegistryRestApplication
+    {
+        - -(constructors)- -
+        +ServiceRegistryRestApplication()
+    }
+    
+    JettyJerseyRestResource <|- - ServiceRegistryRestResource
+    class ServiceRegistryRestResource
+    {
+        - -(extension points)- -
+        +DiscoverApplicationsResponse onDiscoverApplications(DiscoverApplicationsRequest)
+        +DiscoverPortServiceResponse onDiscoverPortService(DiscoverPortServiceRequest)
+        +DiscoverServicesResponse onDiscoverServices(DiscoverServicesRequest)
+        +NetworkRegistryUpdateResponse onNetworkRegistryUpdate(NetworkRegistryUpdateRequest)
+        +RegisterServiceResponse onRegisterService(RegisterServiceRequest)
+        +RenewServiceResponse onRenewService(RenewServiceRequest)
+        +Response onVersion()
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

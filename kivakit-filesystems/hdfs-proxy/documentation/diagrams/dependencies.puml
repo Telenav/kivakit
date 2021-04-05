@@ -1,0 +1,273 @@
+@startuml
+
+    !include ../lexakai.theme
+
+    title "kivakit-filesystems-hdfs-proxy"
+
+    artifact kryo
+    artifact minlog
+    artifact reflectasm
+    artifact jackson_annotations
+    artifact jackson_core
+    artifact jackson_databind
+    artifact woodstox_core
+    artifact jcip_annotations
+    artifact jsr305
+    artifact gson
+    artifact failureaccess
+    artifact guava
+    artifact listenablefuture
+    artifact j2objc_annotations
+    artifact protobuf_java
+    artifact re2j
+    artifact jsch
+    artifact nimbus_jose_jwt
+    artifact okhttp
+    artifact okio
+    artifact jersey_core
+    artifact jersey_json
+    artifact jersey_server
+    artifact jersey_servlet
+    artifact jaxb_impl
+    artifact com_telenav_lexakai_annotations
+    artifact com_telenav_tdk_build_metadata
+    artifact com_telenav_tdk_core_application
+    artifact com_telenav_tdk_core_collections
+    artifact com_telenav_tdk_core_commandline
+    artifact com_telenav_tdk_core_configuration
+    artifact com_telenav_tdk_core_kernel
+    artifact com_telenav_tdk_core_network_core
+    artifact com_telenav_tdk_core_resource
+    artifact com_telenav_tdk_core_security
+    artifact com_telenav_tdk_core_test
+    artifact com_telenav_tdk_filesystems_hdfs_proxy_spi
+    artifact com_telenav_tdk_filesystems_hdfs_proxy
+    artifact com_telenav_tdk_serialization_core
+    artifact com_telenav_tdk_serialization_kryo
+    artifact paranamer
+    artifact commons_beanutils
+    artifact commons_cli
+    artifact commons_codec
+    artifact commons_collections
+    artifact commons_daemon
+    artifact commons_io
+    artifact commons_logging
+    artifact commons_net
+    artifact kryo_serializers
+    artifact dnsjava
+    artifact netty_all
+    artifact netty_buffer
+    artifact netty_codec
+    artifact netty_common
+    artifact netty_handler
+    artifact netty_resolver
+    artifact netty_transport_native_epoll
+    artifact netty_transport_native_unix_common
+    artifact netty_transport
+    artifact netty
+    artifact swagger_annotations
+    artifact activation
+    artifact javax_activation_api
+    artifact jsp_api
+    artifact javax_servlet_api
+    artifact jaxb_api
+    artifact stax_api
+    artifact junit
+    artifact log4j
+    artifact accessors_smart
+    artifact json_smart
+    artifact avro
+    artifact commons_compress
+    artifact commons_configuration2
+    artifact commons_lang3
+    artifact commons_math3
+    artifact commons_text
+    artifact curator_client
+    artifact curator_framework
+    artifact curator_recipes
+    artifact hadoop_shaded_protobuf_3_7
+    artifact hadoop_annotations
+    artifact hadoop_auth
+    artifact hadoop_common
+    artifact hadoop_hdfs_client
+    artifact hadoop_hdfs
+    artifact htrace_core4
+    artifact httpclient
+    artifact httpcore
+    artifact kerb_admin
+    artifact kerb_client
+    artifact kerb_common
+    artifact kerb_core
+    artifact kerb_crypto
+    artifact kerb_identity
+    artifact kerb_server
+    artifact kerb_simplekdc
+    artifact kerb_util
+    artifact kerby_asn1
+    artifact kerby_config
+    artifact kerby_pkix
+    artifact kerby_util
+    artifact kerby_xdr
+    artifact token_provider
+    artifact audience_annotations
+    artifact zookeeper_jute
+    artifact zookeeper
+    artifact checker_qual
+    artifact jackson_core_asl
+    artifact jackson_jaxrs
+    artifact jackson_mapper_asl
+    artifact jackson_xc
+    artifact jettison
+    artifact animal_sniffer_annotations
+    artifact stax2_api
+    artifact jetty_http
+    artifact jetty_io
+    artifact jetty_security
+    artifact jetty_server
+    artifact jetty_servlet
+    artifact jetty_util_ajax
+    artifact jetty_util
+    artifact jetty_webapp
+    artifact jetty_xml
+    artifact leveldbjni_all
+    artifact hamcrest_core
+    artifact annotations
+    artifact objenesis
+    artifact asm
+    artifact slf4j_api
+    artifact slf4j_log4j12
+    artifact snappy_java
+    accessors_smart --> asm
+    avro --> paranamer
+    avro --> snappy_java
+    com_telenav_tdk_core_application --> com_telenav_tdk_core_commandline
+    com_telenav_tdk_core_application --> com_telenav_tdk_core_configuration
+    com_telenav_tdk_core_kernel --> annotations
+    com_telenav_tdk_core_kernel --> com_telenav_lexakai_annotations
+    com_telenav_tdk_core_kernel --> com_telenav_tdk_build_metadata
+    com_telenav_tdk_core_kernel --> jackson_annotations
+    com_telenav_tdk_core_kernel --> swagger_annotations
+    com_telenav_tdk_core_network_core --> com_telenav_tdk_core_resource
+    com_telenav_tdk_core_network_core --> com_telenav_tdk_core_security
+    com_telenav_tdk_core_resource --> com_telenav_tdk_core_collections
+    com_telenav_tdk_core_security --> com_telenav_tdk_core_test
+    com_telenav_tdk_core_test --> com_telenav_tdk_serialization_core
+    com_telenav_tdk_core_test --> com_telenav_tdk_serialization_kryo
+    com_telenav_tdk_core_test --> junit
+    com_telenav_tdk_filesystems_hdfs_proxy --> com_telenav_tdk_core_application
+    com_telenav_tdk_filesystems_hdfs_proxy --> com_telenav_tdk_core_kernel
+    com_telenav_tdk_filesystems_hdfs_proxy --> com_telenav_tdk_core_network_core
+    com_telenav_tdk_filesystems_hdfs_proxy --> com_telenav_tdk_filesystems_hdfs_proxy_spi
+    com_telenav_tdk_filesystems_hdfs_proxy --> hadoop_common
+    com_telenav_tdk_filesystems_hdfs_proxy --> hadoop_hdfs
+    com_telenav_tdk_filesystems_hdfs_proxy --> hadoop_hdfs_client
+    com_telenav_tdk_filesystems_hdfs_proxy --> httpclient
+    com_telenav_tdk_serialization_kryo --> kryo
+    com_telenav_tdk_serialization_kryo --> kryo_serializers
+    guava --> animal_sniffer_annotations
+    guava --> checker_qual
+    guava --> failureaccess
+    guava --> j2objc_annotations
+    guava --> listenablefuture
+    hadoop_auth --> curator_framework
+    hadoop_auth --> json_smart
+    hadoop_auth --> kerb_simplekdc
+    hadoop_auth --> nimbus_jose_jwt
+    hadoop_common --> avro
+    hadoop_common --> commons_beanutils
+    hadoop_common --> commons_collections
+    hadoop_common --> commons_compress
+    hadoop_common --> commons_configuration2
+    hadoop_common --> commons_lang3
+    hadoop_common --> commons_math3
+    hadoop_common --> commons_net
+    hadoop_common --> commons_text
+    hadoop_common --> curator_client
+    hadoop_common --> curator_recipes
+    hadoop_common --> dnsjava
+    hadoop_common --> gson
+    hadoop_common --> hadoop_annotations
+    hadoop_common --> hadoop_auth
+    hadoop_common --> hadoop_shaded_protobuf_3_7
+    hadoop_common --> javax_activation_api
+    hadoop_common --> jersey_json
+    hadoop_common --> jersey_servlet
+    hadoop_common --> jetty_servlet
+    hadoop_common --> jetty_webapp
+    hadoop_common --> jsch
+    hadoop_common --> jsp_api
+    hadoop_common --> jsr305
+    hadoop_common --> kerb_core
+    hadoop_common --> re2j
+    hadoop_common --> slf4j_api
+    hadoop_common --> slf4j_log4j12
+    hadoop_common --> stax2_api
+    hadoop_common --> woodstox_core
+    hadoop_common --> zookeeper
+    hadoop_hdfs --> commons_cli
+    hadoop_hdfs --> commons_daemon
+    hadoop_hdfs --> commons_io
+    hadoop_hdfs --> guava
+    hadoop_hdfs --> htrace_core4
+    hadoop_hdfs --> jackson_databind
+    hadoop_hdfs --> javax_servlet_api
+    hadoop_hdfs --> jersey_core
+    hadoop_hdfs --> jersey_server
+    hadoop_hdfs --> jetty_server
+    hadoop_hdfs --> jetty_util
+    hadoop_hdfs --> jetty_util_ajax
+    hadoop_hdfs --> leveldbjni_all
+    hadoop_hdfs --> log4j
+    hadoop_hdfs --> netty
+    hadoop_hdfs --> netty_all
+    hadoop_hdfs --> protobuf_java
+    hadoop_hdfs_client --> okhttp
+    httpclient --> commons_codec
+    httpclient --> commons_logging
+    httpclient --> httpcore
+    jackson_databind --> jackson_core
+    jaxb_api --> activation
+    jaxb_api --> stax_api
+    jaxb_impl --> jaxb_api
+    jersey_json --> jackson_core_asl
+    jersey_json --> jackson_jaxrs
+    jersey_json --> jackson_mapper_asl
+    jersey_json --> jackson_xc
+    jersey_json --> jaxb_impl
+    jersey_json --> jettison
+    jetty_server --> jetty_http
+    jetty_server --> jetty_io
+    jetty_servlet --> jetty_security
+    jetty_webapp --> jetty_xml
+    json_smart --> accessors_smart
+    junit --> hamcrest_core
+    kerb_admin --> kerb_server
+    kerb_admin --> kerby_xdr
+    kerb_client --> kerb_common
+    kerb_client --> kerb_util
+    kerb_client --> kerby_config
+    kerb_client --> token_provider
+    kerb_common --> kerb_crypto
+    kerb_core --> kerby_pkix
+    kerb_server --> kerb_identity
+    kerb_simplekdc --> kerb_admin
+    kerb_simplekdc --> kerb_client
+    kerby_pkix --> kerby_asn1
+    kerby_pkix --> kerby_util
+    kryo --> minlog
+    kryo --> objenesis
+    kryo --> reflectasm
+    netty_handler --> netty_buffer
+    netty_handler --> netty_codec
+    netty_handler --> netty_common
+    netty_handler --> netty_transport
+    netty_transport --> netty_resolver
+    netty_transport_native_epoll --> netty_transport_native_unix_common
+    nimbus_jose_jwt --> jcip_annotations
+    okhttp --> okio
+    zookeeper --> audience_annotations
+    zookeeper --> netty_handler
+    zookeeper --> netty_transport_native_epoll
+    zookeeper --> zookeeper_jute
+
+@enduml

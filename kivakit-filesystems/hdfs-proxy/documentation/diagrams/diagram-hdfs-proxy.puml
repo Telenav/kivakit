@@ -1,0 +1,33 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "HDFS Proxy"
+    
+    interface HdfsProxy
+    
+    class HdfsFileSystem
+    {
+        --(filesystem)--
+        +Folder hdfsConfigurationFolder()
+        +HdfsFileSystem of(FilePath)
+    }
+    
+    Server <|-- HdfsProxyServer
+    HdfsProxy <|-- HdfsProxyServer
+    HdfsProxyServer --> HdfsFileSystem : "delegates to"
+    HdfsProxyServer --> HdfsProxyServerSettings : "configures with"
+    class HdfsProxyServer
+    {
+        --(constructors)--
+        +HdfsProxyServer()
+        --
+        +void main(String[] arguments)
+    }
+    
+    class HdfsProxyServerSettings
+    {
+    }
+    
+@enduml
+

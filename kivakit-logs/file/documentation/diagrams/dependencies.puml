@@ -1,0 +1,49 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.tdk.logs-file"
+    
+    artifact kryo
+    artifact minlog
+    artifact reflectasm
+    artifact jackson_annotations
+    artifact com_telenav_lexakai_annotations
+    artifact com_telenav_tdk_build_metadata
+    artifact com_telenav_tdk_core_collections
+    artifact com_telenav_tdk_core_commandline
+    artifact com_telenav_tdk_core_kernel
+    artifact com_telenav_tdk_core_resource
+    artifact com_telenav_tdk_core_test
+    artifact com_telenav_tdk_logs_file
+    artifact com_telenav_tdk_serialization_core
+    artifact com_telenav_tdk_serialization_kryo
+    artifact kryo_serializers
+    artifact swagger_annotations
+    artifact junit
+    artifact hamcrest_core
+    artifact annotations
+    artifact objenesis
+    artifact asm
+    com_telenav_tdk_core_collections --> com_telenav_tdk_core_test
+    com_telenav_tdk_core_kernel --> annotations
+    com_telenav_tdk_core_kernel --> com_telenav_lexakai_annotations
+    com_telenav_tdk_core_kernel --> com_telenav_tdk_build_metadata
+    com_telenav_tdk_core_kernel --> jackson_annotations
+    com_telenav_tdk_core_kernel --> swagger_annotations
+    com_telenav_tdk_core_resource --> com_telenav_tdk_core_collections
+    com_telenav_tdk_core_resource --> com_telenav_tdk_core_commandline
+    com_telenav_tdk_core_test --> com_telenav_tdk_serialization_core
+    com_telenav_tdk_core_test --> com_telenav_tdk_serialization_kryo
+    com_telenav_tdk_core_test --> junit
+    com_telenav_tdk_logs_file --> com_telenav_tdk_core_kernel
+    com_telenav_tdk_logs_file --> com_telenav_tdk_core_resource
+    com_telenav_tdk_serialization_kryo --> kryo
+    com_telenav_tdk_serialization_kryo --> kryo_serializers
+    junit --> hamcrest_core
+    kryo --> minlog
+    kryo --> objenesis
+    kryo --> reflectasm
+    reflectasm --> asm
+    
+@enduml
