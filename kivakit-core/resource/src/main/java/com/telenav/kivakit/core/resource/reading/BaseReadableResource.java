@@ -1,7 +1,18 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-//  © 2011-2021 Telenav, Inc.
-//  Licensed under Apache License, Version 2.0
+// © 2011-2021 Telenav, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -19,7 +30,6 @@ import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.resource.CopyMode;
 import com.telenav.kivakit.core.resource.Resource;
-import com.telenav.kivakit.core.resource.ResourceIdentifier;
 import com.telenav.kivakit.core.resource.ResourcePath;
 import com.telenav.kivakit.core.resource.WritableResource;
 import com.telenav.kivakit.core.resource.compression.Codec;
@@ -27,7 +37,6 @@ import com.telenav.kivakit.core.resource.compression.codecs.NullCodec;
 import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFile;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResource;
-import com.telenav.kivakit.core.resource.spi.ResourceFactoryServiceRegistry;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;
@@ -288,11 +297,6 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
     protected void charset(final Charset charset)
     {
         this.charset = charset;
-    }
-
-    protected Resource resourceForIdentifier(final ResourceIdentifier identifier)
-    {
-        return ResourceFactoryServiceRegistry.forIdentifier(identifier);
     }
 
     private File cacheFile()

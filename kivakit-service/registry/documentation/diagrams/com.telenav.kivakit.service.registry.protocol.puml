@@ -1,0 +1,35 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.service.registry.protocol"
+    
+    abstract class BaseRequest
+    {
+        --(identity)--
+        +Version version()
+        --(path)--
+        +String path()
+    }
+    
+    abstract class BaseResponse<T>
+    {
+        --
+        +Result<T> asResult()
+        +void result(Result<T>)
+        #void value(T value)
+        --(collection)--
+        #T value()
+        --(identity)--
+        +Version version()
+        --(messaging)--
+        +Problem problem()
+        +BaseResponse<T> problem(String message, Object... arguments)
+    }
+    
+    class ServiceRegistryProtocol
+    {
+    }
+    
+@enduml
+

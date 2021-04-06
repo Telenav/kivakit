@@ -4,8 +4,8 @@
 
 ### Building KivaKit
 
-KivaKit can be built in [IntelliJ](https://www.jetbrains.com/idea/download/) or from the command line with Maven or the convenient
-scripts below.
+KivaKit can be built in [IntelliJ](https://www.jetbrains.com/idea/download/) or from the command line with Maven or the convenient scripts
+below.
 
 ### Key Build Scripts
 
@@ -50,8 +50,6 @@ Usage: kivakit-build.sh *[build-type] [build-modifiers]*
                debug - turn maven debug mode on
     
          debug-tests - stop in debugger on surefire tests
-    
-                 dmg - build mac dmg installer
     
           no-javadoc - do not build javadoc
     

@@ -11,8 +11,8 @@ cd $KIVAKIT_WORKSPACE
 
 KIVAKIT_VERSION=$(cat $KIVAKIT_HOME/project.properties | grep "project-version" | cut -d'=' -f2 | xargs echo)
 
-read -p "Remove maven repository (y/n)? " -n 1 -r
-echo " "
+read -p "┋ Remove maven repository (y/n)? " -n 1 -r
+echo "┋ "
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     rm -rf ~/.m2
 fi

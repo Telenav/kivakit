@@ -1,0 +1,140 @@
+<project xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>com.telenav.kivakit</groupId>
+        <artifactId>kivakit-filesystems</artifactId>
+        <version>0.9.0-SNAPSHOT</version>
+    </parent>
+
+    <name>KivaKit Filesystems - HDFS Proxy</name>
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>kivakit-filesystems-hdfs-proxy</artifactId>
+    <packaging>jar</packaging>
+
+    <properties>
+        <jar.name>kivakit-hdfs-proxy-${kivakit.version}</jar.name>
+    </properties>
+
+    <dependencies>
+
+        <!-- KivaKit -->
+
+        <dependency>
+            <groupId>com.telenav.kivakit</groupId>
+            <artifactId>kivakit-core-kernel</artifactId>
+            <version>${kivakit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.telenav.kivakit</groupId>
+            <artifactId>kivakit-core-application</artifactId>
+            <version>${kivakit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.telenav.kivakit</groupId>
+            <artifactId>kivakit-core-network-core</artifactId>
+            <version>${kivakit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.telenav.kivakit</groupId>
+            <artifactId>kivakit-filesystems-hdfs-proxy-spi</artifactId>
+            <version>${kivakit.version}</version>
+        </dependency>
+
+        <!-- HTTP Client -->
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.4.1</version>
+        </dependency>
+
+        <!-- Hadoop -->
+
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-hdfs</artifactId>
+            <version>3.3.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.ws.rs</groupId>
+                    <artifactId>jsr311-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-hdfs-client</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-common</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>shade</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-shade-plugin</artifactId>
+                        <version>${maven-shade-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>shade</goal>
+                                </goals>
+                                <configuration>
+                                    <minimizeJar>false</minimizeJar>
+                                    <finalName>${jar.name}</finalName>
+                                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                                    <artifactSet>
+                                        <includes>
+                                            <include>*:*</include>
+                                        </includes>
+                                    </artifactSet>
+                                    <transformers>
+                                        <transformer implementation = "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                            <mainClass>com.telenav.kivakit.filesystems.hdfs.proxy.HdfsProxyServer</mainClass>
+                                        </transformer>
+                                        <transformer implementation = "org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                                    </transformers>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>3.0.0</version>
+                        <executions>
+                            <execution>
+                                <id>install-kivakit-hdfs-proxy</id>
+                                <phase>install</phase>
+                                <configuration>
+                                    <target name = "Install ${jar.name}">
+                                        <echo message = "Installing ${project.basedir}/target/${jar.name}.jar -> ${env.HOME}/.kivakit/${kivakit.version}/temporary/launcher/${jar.name}.jar"/>
+                                        <copy file = "${project.basedir}/target/${jar.name}.jar"
+                                              tofile = "${env.HOME}/.kivakit/${kivakit.version}/temporary/launcher/${jar.name}.jar"
+                                              verbose = "true"/>
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

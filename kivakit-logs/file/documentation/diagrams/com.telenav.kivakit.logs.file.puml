@@ -1,0 +1,43 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.logs.file"
+    
+    abstract BaseTextLog
+    abstract BaseRolloverTextLog
+    
+    BaseTextLog <|-- BaseRolloverTextLog
+    BaseRolloverTextLog o-- BaseRolloverTextLog.Rollover
+    BaseRolloverTextLog o-- Bytes : "maximum size"
+    BaseRolloverTextLog o-- Time : "start time"
+    BaseRolloverTextLog o-- Time : "rollover time"
+    abstract class BaseRolloverTextLog
+    {
+        --(constructors)--
+        #BaseRolloverTextLog()
+        --
+        +void rollover(Rollover)
+        --(collection)--
+        +void maximumLogSize(Bytes maximumSize)
+        --(time)--
+        #Time nextRollover()
+        #Time started()
+        --(write)--
+        #OutputStream newOutputStream()
+    }
+    
+    BaseRolloverTextLog <|-- FileLog
+    class FileLog
+    {
+    }
+    
+    enum BaseRolloverTextLog.Rollover
+    {
+        DAILY
+        HOURLY
+        NONE
+    }
+    
+@enduml
+

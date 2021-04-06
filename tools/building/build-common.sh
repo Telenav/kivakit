@@ -34,8 +34,6 @@ usage() {
     echo " "
     echo "     debug-tests - stop in debugger on surefire tests"
     echo " "
-    echo "             dmg - build mac dmg installer"
-    echo " "
     echo "      no-javadoc - do not build javadoc"
     echo " "
     echo "        no-tests - do not run tests"
@@ -83,7 +81,7 @@ build() {
     "all")
         JAVADOC=true
         BUILD_ARGUMENTS="clean install"
-        BUILD_MODIFIERS="multi-threaded all-clean tests shade tools dmg ${@:3}"
+        BUILD_MODIFIERS="multi-threaded clean-all tests shade tools ${@:3}"
         ;;
 
     "test")
@@ -129,7 +127,7 @@ build() {
             addSwitch "-P tools"
             ;;
 
-        "all-clean")
+        "clean-all")
             PRE_BUILD_SCRIPT="kivakit-clean-all.sh"
             ;;
 
@@ -149,10 +147,6 @@ build() {
 
         "single-threaded")
             THREADS=1
-            ;;
-
-        "dmg")
-            addSwitch "-P dmg -Ddmg=true"
             ;;
 
         "no-javadoc")

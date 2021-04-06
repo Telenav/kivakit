@@ -1,13 +1,26 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-//  © 2011-2021 Telenav, Inc.
-//  Licensed under Apache License, Version 2.0
+// © 2011-2021 Telenav, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.network.core;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
+import com.telenav.kivakit.core.kernel.messaging.Listener;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.regex.Pattern;
@@ -33,6 +46,20 @@ public class EmailAddress
             return new EmailAddress(email);
         }
         return null;
+    }
+
+    public static class Converter extends BaseStringConverter<EmailAddress>
+    {
+        protected Converter(final Listener listener)
+        {
+            super(listener);
+        }
+
+        @Override
+        protected EmailAddress onConvertToObject(final String value)
+        {
+            return parse(value);
+        }
     }
 
     @JsonProperty

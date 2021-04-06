@@ -1,0 +1,61 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "kivakit-logs-email"
+    
+    artifact kryo
+    artifact minlog
+    artifact reflectasm
+    artifact jackson_annotations
+    artifact javax_mail
+    artifact kivakit_build_metadata
+    artifact kivakit_core_collections
+    artifact kivakit_core_commandline
+    artifact kivakit_core_configuration
+    artifact kivakit_core_kernel
+    artifact kivakit_core_network_core
+    artifact kivakit_core_network_email
+    artifact kivakit_core_resource
+    artifact kivakit_core_security
+    artifact kivakit_core_serialization_core
+    artifact kivakit_core_serialization_kryo
+    artifact kivakit_core_test
+    artifact kivakit_logs_email
+    artifact lexakai_annotations
+    artifact kryo_serializers
+    artifact swagger_annotations
+    artifact jakarta_activation_api
+    artifact junit
+    artifact hamcrest_core
+    artifact annotations
+    artifact objenesis
+    artifact asm
+    junit --> hamcrest_core
+    kivakit_core_collections --> kivakit_core_serialization_kryo
+    kivakit_core_commandline --> kivakit_core_kernel
+    kivakit_core_configuration --> kivakit_core_resource
+    kivakit_core_kernel --> annotations
+    kivakit_core_kernel --> jackson_annotations
+    kivakit_core_kernel --> junit
+    kivakit_core_kernel --> kivakit_build_metadata
+    kivakit_core_kernel --> lexakai_annotations
+    kivakit_core_kernel --> swagger_annotations
+    kivakit_core_network_core --> kivakit_core_commandline
+    kivakit_core_network_core --> kivakit_core_security
+    kivakit_core_network_email --> jakarta_activation_api
+    kivakit_core_network_email --> javax_mail
+    kivakit_core_network_email --> kivakit_core_configuration
+    kivakit_core_network_email --> kivakit_core_network_core
+    kivakit_core_resource --> kivakit_core_collections
+    kivakit_core_resource --> kivakit_core_serialization_core
+    kivakit_core_security --> kivakit_core_test
+    kivakit_core_serialization_kryo --> kryo
+    kivakit_core_serialization_kryo --> kryo_serializers
+    kivakit_logs_email --> kivakit_core_network_email
+    kryo --> minlog
+    kryo --> objenesis
+    kryo --> reflectasm
+    reflectasm --> asm
+    
+@enduml

@@ -1,7 +1,18 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-//  © 2011-2021 Telenav, Inc.
-//  Licensed under Apache License, Version 2.0
+// © 2011-2021 Telenav, Inc.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -17,8 +28,13 @@ import com.telenav.kivakit.core.kernel.language.strings.Strip;
 import com.telenav.kivakit.core.kernel.logging.Logger;
 import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.resource.CopyMode;
+import com.telenav.kivakit.core.resource.ResourceFolder;
+import com.telenav.kivakit.core.resource.ResourceFolderIdentifier;
+import com.telenav.kivakit.core.resource.path.FilePath;
+import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceService;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceType;
 import com.telenav.kivakit.core.resource.resources.other.PropertyMap;
+import com.telenav.kivakit.core.resource.spi.ResourceFolderResolver;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.net.URL;
@@ -42,7 +58,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail
  * @see PackageResource
  */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
-public class Package
+public class Package implements ResourceFolder
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
@@ -57,6 +73,25 @@ public class Package
     public static Package of(final Class<?> _packageType, final String path)
     {
         return of(PackagePath.parsePackagePath(_packageType, path));
+    }
+
+    @UmlClassDiagram(diagram = DiagramResourceService.class)
+    public static class Resolver implements ResourceFolderResolver
+    {
+        public static final String SCHEME = "classpath:";
+
+        @Override
+        public boolean accepts(final ResourceFolderIdentifier identifier)
+        {
+            return identifier.identifier().startsWith(SCHEME);
+        }
+
+        @Override
+        public ResourceFolder resolve(final ResourceFolderIdentifier identifier)
+        {
+            final var filepath = FilePath.parseFilePath(Strip.leading(identifier.identifier(), SCHEME));
+            return Package.of(PackagePath.packagePath(filepath));
+        }
     }
 
     /** The path to this package */
@@ -79,9 +114,21 @@ public class Package
     }
 
     @Override
+    public ResourceFolder folder(final String path)
+    {
+        return subPackage(path);
+    }
+
+    @Override
     public int hashCode()
     {
         return Objects.hash(path());
+    }
+
+    @Override
+    public boolean isMaterialized()
+    {
+        return false;
     }
 
     /**
@@ -112,6 +159,7 @@ public class Package
     /**
      * @return The resource in this package with the given name
      */
+    @Override
     public PackageResource resource(final String name)
     {
         for (final var resource : resources())
@@ -127,6 +175,7 @@ public class Package
     /**
      * @return The resources in this package folder
      */
+    @Override
     public List<PackageResource> resources()
     {
         return resources(new All<>());
