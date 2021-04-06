@@ -104,15 +104,15 @@ import java.io.Serializable;
  * <p><i>AwsServer.properties</i></p>
  *
  * <pre>
- * configuration-class=com.telenav.navigation.my.application.ServerConfiguration
+ * class=com.telenav.navigation.my.application.ServerConfiguration
  * port=aws.amazon.com:7001
  * </pre>
  *
  * <p>
- * When KivaKit loads this properties file, it will instantiate the ServerConfiguration class specified by
- * "configuration-class" and configure the resulting object. It does this by using the {@literal @}KivaKitPropertyConverter
- * annotation to convert the value for the "port" key in the properties file into an object which it then passes to the
- * annotated port(Port) method:
+ * When KivaKit loads this properties file, it will instantiate the ServerConfiguration class specified by "class" and
+ * configure the resulting object. It does this by using the {@literal @}KivaKitPropertyConverter annotation to convert
+ * the value for the "port" key in the properties file into an object which it then passes to the annotated port(Port)
+ * method:
  * </p>
  *
  * <p><i>ServerConfiguration</i></p>

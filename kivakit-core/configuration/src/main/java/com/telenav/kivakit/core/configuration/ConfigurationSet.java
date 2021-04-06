@@ -74,15 +74,15 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail
  * <p><i>Server1.properties</i></p>
  *
  * <pre>
- * configuration-class=com.telenav.navigation.my.application.Server$Configuration
+ * class=com.telenav.navigation.my.application.Server$Configuration
  * configuration-instance=SERVER1
  * port=aws.amazon.com:7001
  * </pre>
  *
  * <p>
- * Here, the "configuration-class" key designates a class to instantiate (note that the nested class has to be indicated
- * with '$' rather than '.' here). The object that is created from this class is populated with the property values by
- * using {@link ObjectPopulator}, which automatically converts each property value into an object using the converter
+ * Here, the "class" key designates a class to instantiate (note that the nested class has to be indicated with '$'
+ * rather than '.' here). The object that is created from this class is populated with the property values by using
+ * {@link ObjectPopulator}, which automatically converts each property value into an object using the converter
  * framework. To do this, properties in the configuration object are tagged with {@link KivaKitPropertyConverter}
  * indicating which converter the {@link ObjectPopulator} should use to convert a string value in the properties file to
  * the corresponding object. For example, in this case the property converter for the configuration class above is
@@ -472,10 +472,10 @@ public class ConfigurationSet extends BaseRepeater implements Named, Iterable<Ob
         try
         {
             // then get the configuration class to instantiate,
-            final var configurationClassName = properties.get("configuration-class");
-            ensureNotNull(configurationClassName, "Missing configuration-class property in $", resource);
+            final var configurationClassName = properties.get("class");
+            ensureNotNull(configurationClassName, "Missing class property in $", resource);
             final var configurationClass = Class.forName(configurationClassName);
-            ensureNotNull(configurationClass, "Unable to load configuration-class $ specified in $", configurationClass, resource);
+            ensureNotNull(configurationClass, "Unable to load class $ specified in $", configurationClass, resource);
             trace("Configuration class: $", configurationClass.getSimpleName());
 
             // and the name of which identifier of the class to configure (if any)

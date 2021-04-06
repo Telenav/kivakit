@@ -20,9 +20,18 @@ In the folder *kivakit/setup/intellij* you will find this file:
 Open IntelliJ in *Preferences* under *Editor / Code Style / Java*, click the gear icon and  
 import the settings file.
 
-### 3. Import KivaKit Editor Templates (optional)
+### 3. Import KivaKit Inspections Settings
 
-In the folder *kivakit/setup/eclipse* you will find this file:
+In the folder *kivakit/setup/intellij* you will find this file:
+
+    kivakit-inspections.xml
+
+Open IntelliJ in *Preferences* under *Editor / Inspections*, click the gear icon and  
+import the settings file.
+
+### 4. Import KivaKit Editor Templates (optional)
+
+In the folder *kivakit/setup/intellij* you will find this file:
 
     live-templates.zip
 
@@ -32,5 +41,4 @@ You will find handy templates relevant to KivaKit that you can use with IDE comp
 
 ### Start Coding!  &nbsp;  ![](../images/rocket-40.png)
 
-You are ready to go.
-
+Houston, we have liftoff.
