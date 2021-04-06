@@ -197,6 +197,10 @@ public class File extends BaseWritableResource implements FileSystemObject
         @Override
         public boolean accepts(final ResourceIdentifier identifier)
         {
+            if (identifier.identifier().startsWith("classpath:"))
+            {
+                return false;
+            }
             return FileSystemServiceLoader.fileSystem(FilePath.parseFilePath(identifier.identifier())) != null;
         }
 

@@ -98,7 +98,7 @@ sub update_root_pom {
     my $text = read_file($path);
     $text =~ s!<version>(?<version>.*?)</version>!<version>$new_version</version>!;
     $text =~ s!<kivakit.version>(?<version>.*?)</kivakit.version>!<kivakit.version>$new_version</kivakit.version>!;
-    $text =~ s!<tdk.base.version>(?<version>.*?)</tdk.base.version>!<tdk.base.version>$base_version</tdk.base.version>!;
+    $text =~ s!<kivakit.base.version>(?<version>.*?)</kivakit.base.version>!<kivakit.base.version>$base_version</kivakit.base.version>!;
     write_file($path, $text);
     print "Updated root pom.xml\n";
 }

@@ -20,7 +20,7 @@ import org.junit.experimental.categories.Category;
 @Category({ SlowTests.class })
 public class S3FileTest extends UnitTest
 {
-    final S3File file = new S3File("s3://telenav-tdk/" + apidocs());
+    final S3File file = new S3File("s3://kivakit/" + apidocs());
 
     @Test
     public void testBucketName()
@@ -37,7 +37,7 @@ public class S3FileTest extends UnitTest
     @Test
     public void testInSameBucket()
     {
-        ensure(file.inSameBucket(new S3File("s3://telenav-tdk/" + KivaKit.get().version() + "/another")));
+        ensure(file.inSameBucket(new S3File("s3://kivakit/" + KivaKit.get().version() + "/another")));
     }
 
     @Test
@@ -58,14 +58,13 @@ public class S3FileTest extends UnitTest
     {
         final FolderService folder = file.parent();
         ensure("apidocs".equals(folder.baseName().toString()));
-        ensure(("s3://telenav-tdk/" + KivaKit.get().version() + "/apidocs").equals(folder.path().toString()));
+        ensure(("s3://kivakit/" + KivaKit.get().version() + "/apidocs").equals(folder.path().toString()));
     }
 
     @Test
     public void testPath()
     {
-        final var s3File = new S3File("s3://com-telenav-nav-user-analytics-dev/nav-user-analytics/s3-test.gz");
-        ensure(s3File.path().equals(FilePath.parseFilePath("s3://com-telenav-nav-user-analytics-dev/nav-user-analytics/s3-test.gz")));
+        ensure(new S3File("s3://kivakit/s3-test.gz").path().equals(FilePath.parseFilePath("s3://kivakit/s3-test.gz")));
     }
 
     @Test

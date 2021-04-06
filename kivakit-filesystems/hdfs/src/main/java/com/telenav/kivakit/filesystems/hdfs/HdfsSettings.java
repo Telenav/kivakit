@@ -30,47 +30,51 @@ public class HdfsSettings
     /** Container of HDFS site configuration resources */
     private ResourceFolder configurationFolder;
 
-    public ResourceFolder configurationFolder()
+    @KivaKitPropertyConverter(ResourceFolder.Converter.class)
+    public HdfsSettings configurationFolder(final ResourceFolder configuration)
+    {
+        configurationFolder = configuration;
+        return this;
+    }
+
+    @KivaKitPropertyConverter(EmailAddress.Converter.class)
+    public HdfsSettings contactEmail(final EmailAddress contactEmail)
+    {
+        this.contactEmail = contactEmail;
+        return this;
+    }
+
+    @KivaKitPropertyConverter(Resource.Converter.class)
+    public HdfsSettings proxyJar(final Resource proxyJar)
+    {
+        this.proxyJar = proxyJar;
+        return this;
+    }
+
+    @KivaKitPropertyConverter
+    public HdfsSettings username(final String username)
+    {
+        this.username = username;
+        return this;
+    }
+
+    ResourceFolder configurationFolder()
     {
         return configurationFolder;
     }
 
-    @KivaKitPropertyConverter(ResourceFolder.Converter.class)
-    public void configurationFolder(final ResourceFolder configuration)
-    {
-        configurationFolder = configuration;
-    }
-
-    @KivaKitPropertyConverter(EmailAddress.Converter.class)
-    public void contactEmail(final EmailAddress contactEmail)
-    {
-        this.contactEmail = contactEmail;
-    }
-
-    public EmailAddress contactEmail()
+    EmailAddress contactEmail()
     {
         return contactEmail;
     }
 
-    public Resource proxyJar()
+    Resource proxyJar()
     {
         return proxyJar;
     }
 
-    @KivaKitPropertyConverter(Resource.Converter.class)
-    public void proxyJar(final Resource proxyJar)
-    {
-        this.proxyJar = proxyJar;
-    }
-
-    public String username()
+    String username()
     {
         return username;
-    }
-
-    @KivaKitPropertyConverter
-    public void username(final String username)
-    {
-        this.username = username;
     }
 }

@@ -10,7 +10,6 @@
 read -p "Remove KivaKit artifacts from ~\.m2 (y/n)? " -n 1 -r
 echo " "
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    echo "Removing KivaKit artifacts in ~\.m2"
     rm -rf ~/.m2/repository/com/telenav/kivakit/*
 fi
 

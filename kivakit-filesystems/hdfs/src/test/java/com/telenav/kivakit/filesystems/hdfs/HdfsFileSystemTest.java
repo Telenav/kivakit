@@ -8,6 +8,7 @@
 package com.telenav.kivakit.filesystems.hdfs;
 
 import com.telenav.kivakit.core.filesystem.Folder;
+import com.telenav.kivakit.core.network.core.EmailAddress;
 import com.telenav.kivakit.core.test.UnitTest;
 import com.telenav.kivakit.core.test.annotations.SlowTests;
 import org.junit.Test;
@@ -23,6 +24,16 @@ public class HdfsFileSystemTest extends UnitTest
 
     /** Only run the tests about one in every ten times to speed up the build */
     private static final boolean TEST_OSMTEAM_CLUSTER = true;
+
+    @Override
+    public void testBeforeUnitTest()
+    {
+        final var settings = new HdfsSettings()
+                .configurationFolder(com.telenav.kivakit.core.resource.resources.packaged.Package.of(getClass(), "configurations/test"))
+                .contactEmail(EmailAddress.parse("jonathanl@telenav.com"))
+                .username("automation")
+                .proxyJar();
+    }
 
     @Test
     public void testFolder()
