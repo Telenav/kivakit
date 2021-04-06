@@ -1,0 +1,44 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.service.registry.client"
+    
+    abstract BaseRepeater
+    
+    BaseRepeater <|-- ServiceRegistryClient
+    ServiceRegistryClient --> ApplicationIdentifier : "discovers applications"
+    ServiceRegistryClient --> Provider.Service : "discovers services"
+    ServiceRegistryClient --> Result : "returns"
+    ServiceRegistryClient --> Scope : "searches within"
+    class ServiceRegistryClient
+    {
+        --(constructors)--
+        +ServiceRegistryClient()
+        --(identity)--
+        +Result<Set<ApplicationIdentifier>> discoverApplications(Scope)
+        +Version version()
+        --(network)--
+        +Result<Boolean> sendNetworkRegistryUpdate(Service)
+        --(service)--
+        +Result<Service> discoverPortService(Port)
+        +Result<Set<Service>> discoverServices(Scope, ApplicationIdentifier, ServiceType)
+        +Result<Set<Service>> discoverServices(Scope, ServiceType)
+        +Result<Set<Service>> discoverServices(Scope)
+        +Result<Set<Service>> discoverServices(Scope, ApplicationIdentifier)
+        +Result<Service> register(Scope, ServiceType, ServiceMetadata)
+        +Result<Service> register(Service)
+    }
+    
+    class ServiceRegistryClientSettings
+    {
+        --(network)--
+        +ServiceRegistryClientSettings accessTimeout(Duration timeout)
+        +Duration accessTimeout()
+        +HttpNetworkLocation serverJar()
+        --(service)--
+        +ServiceRegistryClientSettings serverJar(HttpNetworkLocation)
+    }
+    
+@enduml
+

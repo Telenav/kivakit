@@ -9,36 +9,19 @@
         Simplified diagram of top-level project dependencies
     endlegend
 
-    artifact tdk_core
-    artifact tdk_data
-    artifact tdk_filesystems
-    artifact tdk_graph
-    artifact tdk_josm
-    artifact tdk_lexakai_annotations
-    artifact tdk_logs
-    artifact tdk_map
-    artifact tdk_navigation
-    artifact tdk_tools
-    artifact tdk_ui
-    artifact tdk_utilities
-    artifact tdk_web
+    artifact kivakit_core
+    artifact kivakit_data
+    artifact kivakit_filesystems
+    artifact lexakai_annotations
+    artifact kivakit_logs
+    artifact kivakit_web
+    artifact kivakit_service
 
-    tdk_core -up-> tdk_lexakai_annotations
-
-    tdk_data -up-> tdk_core
-    tdk_web -right-> tdk_core
-    tdk_filesystems -left-> tdk_core
-    tdk_ui -left-> tdk_core
-    tdk_logs -right-> tdk_core
-    tdk_map -up-> tdk_core
-    tdk_utilities -up-> tdk_core
-
-    tdk_graph -up-> tdk_map
-    tdk_graph -up-> tdk_data
-    tdk_graph -up-> tdk_utilities
-
-    tdk_josm -up-> tdk_graph
-    tdk_navigation -up-> tdk_graph
-    tdk_tools -up-> tdk_graph
+    kivakit_core -up-> lexakai_annotations
+    kivakit_data -up-> kivakit_core
+    kivakit_web -right-> kivakit_core
+    kivakit_filesystems -left-> kivakit_service
+    kivakit_logs -right-> kivakit_core
+    kivakit_service -up-> kivakit_web
 
 @enduml

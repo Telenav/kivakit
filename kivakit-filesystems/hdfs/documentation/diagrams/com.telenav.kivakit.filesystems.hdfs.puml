@@ -1,0 +1,93 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.filesystems.hdfs"
+    
+    abstract BaseRepeater
+    abstract BaseWritableResource
+    
+    interface FileSystemService
+    interface FileService
+    interface FolderService
+    
+    BaseWritableResource <|-- HdfsFile
+    FileService <|-- HdfsFile
+    HdfsFile --> HdfsProxyClient : "gets proxy from"
+    HdfsFile o-- HdfsProxy
+    -class HdfsFile
+    {
+        --(constructors)--
+        +HdfsFile(FilePath)
+        --(filesystem)--
+        +boolean renameTo(HdfsFile to)
+    }
+    
+    FileSystemService <|-- HdfsFileSystemService
+    HdfsFileSystemService --> DiskService : "not supported"
+    HdfsFileSystemService --> HdfsFile : "provides"
+    HdfsFileSystemService --> HdfsFolder : "provides"
+    -class HdfsFileSystemService
+    {
+        --(filesystem)--
+        +^DiskService diskService(FilePath)
+        +^HdfsFile fileService(FilePath)
+        +^HdfsFolder folderService(FilePath)
+    }
+    
+    FolderService <|-- HdfsFolder
+    HdfsFolder --> HdfsProxyClient : "gets proxy from"
+    HdfsFolder o-- HdfsProxy
+    -class HdfsFolder
+    {
+        --(constructors)--
+        +HdfsFolder(FilePath)
+        --(filesystem)--
+        +List<HdfsFile> nestedFiles()
+        +boolean renameTo(HdfsFolder to)
+        --(naming)--
+        +String name()
+    }
+    
+    BaseRepeater <|-- HdfsProxyClient
+    HdfsProxyClient --> HdfsSettings : "configures with"
+    HdfsProxyClient o-- HdfsProxy
+    HdfsProxyClient o-- Port : "data access"
+    HdfsProxyClient o-- Port : "RMI"
+    -class HdfsProxyClient
+    {
+        --
+        +HdfsProxyClient get()
+        +HdfsProxy proxy()
+        --(filesystem)--
+        +Folder logFolder()
+        --(network)--
+        +Port dataPort()
+        +Port rmiObjectPort()
+    }
+    
+    -class HdfsProxyIO
+    {
+        --(read)--
+        +InputStream in(long handle)
+        --(write)--
+        +OutputStream out(long handle)
+    }
+    
+    -class HdfsSettings
+    {
+        --
+        +Resource proxyJar()
+        +void proxyJar(Resource proxyJar)
+        +void username(String username)
+        +String username()
+        --(filesystem)--
+        +void configurationFolder(ResourceFolder configuration)
+        +ResourceFolder configurationFolder()
+        --(network)--
+        +EmailAddress contactEmail()
+        +void contactEmail(EmailAddress contactEmail)
+    }
+    
+@enduml
+

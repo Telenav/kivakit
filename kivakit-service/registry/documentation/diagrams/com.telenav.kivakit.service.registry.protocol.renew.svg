@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="317.7083px" preserveAspectRatio="none" style="width:539px;height:317px;background:#333333;" version="1.1" viewBox="0 0 539 317" width="539.5833px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="527.0833" x="2.0833" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="504.1667" x="13.5417" y="30.5583">com.telenav.kivakit.service.registry.protocol.renew</text><!--MD5=[0ba50eed8dcc5bc836644890e3c89438]
+class BaseResponse--><rect codeLine="6" fill="#282828" height="48.055" id="BaseResponse" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="130.2083" x="89.5833" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="130.2083" x="89.5833" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="130.2083" x="89.5833" y="76.7578"/><rect codeLine="6" fill="none" height="48.055" id="BaseResponse" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="130.2083" x="89.5833" y="53.7028"/><ellipse cx="104.1667" cy="69.397" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M104.2806,66.099 L103.4322,69.8283 L105.1351,69.8283 Z M103.182,64.4511 L105.3853,64.4511 L107.8451,73.5636 L106.0445,73.5636 L105.483,71.3114 L103.0721,71.3114 L102.5228,73.5636 L100.7222,73.5636 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="92.7083" x="120.8333" y="74.1211">BaseResponse</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="90.625" x2="218.75" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="90.625" x2="218.75" y1="93.4245" y2="93.4245"/><!--MD5=[11f5e9fe9b4a9573a69e59630d326e1e]
+class BaseRequest--><rect codeLine="7" fill="#282828" height="48.055" id="BaseRequest" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="119.7917" x="357.2917" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="119.7917" x="357.2917" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="119.7917" x="357.2917" y="76.7578"/><rect codeLine="7" fill="none" height="48.055" id="BaseRequest" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="119.7917" x="357.2917" y="53.7028"/><ellipse cx="371.875" cy="69.397" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M371.9889,66.099 L371.1405,69.8283 L372.8434,69.8283 Z M370.8903,64.4511 L373.0937,64.4511 L375.5534,73.5636 L373.7528,73.5636 L373.1913,71.3114 L370.7804,71.3114 L370.2311,73.5636 L368.4306,73.5636 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="82.2917" x="388.5417" y="74.1211">BaseRequest</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="358.3333" x2="476.0417" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="358.3333" x2="476.0417" y1="93.4245" y2="93.4245"/><!--MD5=[e0995d8ca08eca5a2794c5896d0aa8ff]
+class RenewServiceRequest--><rect codeLine="10" fill="#282828" height="146.7794" id="RenewServiceRequest" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="200" x="317.1875" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="200" x="317.1875" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="200" x="317.1875" y="187.1745"/><rect codeLine="10" fill="none" height="146.7794" id="RenewServiceRequest" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="200" x="317.1875" y="164.1195"/><ellipse cx="342.5521" cy="179.8136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M344.4625,184.2387 Q344.0352,184.4584 343.5653,184.5683 Q343.0953,184.6781 342.5765,184.6781 Q340.7332,184.6781 339.7628,183.4635 Q338.7923,182.2489 338.7923,179.954 Q338.7923,177.653 339.7628,176.4384 Q340.7332,175.2238 342.5765,175.2238 Q343.0953,175.2238 343.5714,175.3337 Q344.0474,175.4435 344.4625,175.6632 L344.4625,177.6652 Q343.9986,177.238 343.5622,177.0396 Q343.1258,176.8412 342.6619,176.8412 Q341.6732,176.8412 341.1696,177.6255 Q340.6661,178.4098 340.6661,179.954 Q340.6661,181.4921 341.1696,182.2764 Q341.6732,183.0607 342.6619,183.0607 Q343.1258,183.0607 343.5622,182.8623 Q343.9986,182.664 344.4625,182.2367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="138.5417" x="361.6146" y="184.5378">RenewServiceRequest</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="318.2292" x2="516.1458" y1="195.5078" y2="195.5078"/><polygon fill="#FFFF44" points="328.6458,225.6694,332.8125,229.836,328.6458,234.0027,324.4792,229.836" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="128.125" x="340.1042" y="237.7889">RenewServiceRequest()</text><ellipse cx="328.6458" cy="250.6226" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="167.7083" x="340.1042" y="257.5338">RenewServiceRequest(Service)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="318.2292" x2="373.4375" y1="213.7136" y2="213.7136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="376.5625" y="217.5232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="460.9375" x2="516.1458" y1="213.7136" y2="213.7136"/><ellipse cx="328.6458" cy="294.279" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="90.625" x="340.1042" y="301.1902">Service service()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="318.2292" x2="390.1042" y1="277.1149" y2="277.1149"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="47.9167" x="393.2292" y="280.9245">(service)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="444.2708" x2="516.1458" y1="277.1149" y2="277.1149"/><!--MD5=[e24e696a919f94b754d9f1a5019af0a9]
+class RenewServiceResponse--><rect codeLine="20" fill="#282828" height="103.123" id="RenewServiceResponse" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="252.0833" x="28.6458" y="185.9945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="252.0833" x="28.6458" y="185.9945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="252.0833" x="28.6458" y="209.0495"/><rect codeLine="20" fill="none" height="103.123" id="RenewServiceResponse" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="252.0833" x="28.6458" y="185.9945"/><ellipse cx="72.9167" cy="201.6886" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M74.8271,206.1137 Q74.3998,206.3334 73.9299,206.4433 Q73.4599,206.5531 72.9411,206.5531 Q71.0978,206.5531 70.1274,205.3385 Q69.1569,204.1239 69.1569,201.829 Q69.1569,199.528 70.1274,198.3134 Q71.0978,197.0988 72.9411,197.0988 Q73.4599,197.0988 73.936,197.2087 Q74.412,197.3185 74.8271,197.5382 L74.8271,199.5402 Q74.3632,199.113 73.9268,198.9146 Q73.4904,198.7162 73.0265,198.7162 Q72.0378,198.7162 71.5342,199.5005 Q71.0307,200.2848 71.0307,201.829 Q71.0307,203.3671 71.5342,204.1514 Q72.0378,204.9357 73.0265,204.9357 Q73.4904,204.9357 73.9268,204.7373 Q74.3632,204.539 74.8271,204.1117 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="148.9583" x="95.8333" y="206.4128">RenewServiceResponse</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="29.6875" x2="279.6875" y1="217.3828" y2="217.3828"/><ellipse cx="40.1042" cy="252.7527" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="219.7917" x="51.5625" y="259.6639">RenewServiceResponse service(Service)</text><ellipse cx="40.1042" cy="272.4976" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="90.625" x="51.5625" y="279.4088">Service service()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="29.6875" x2="127.6042" y1="235.5886" y2="235.5886"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="47.9167" x="130.7292" y="239.3982">(service)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="181.7708" x2="279.6875" y1="235.5886" y2="235.5886"/><!--MD5=[c4d2852d6a5439852983cf4e31d50dab]
+reverse link BaseRequest to RenewServiceRequest--><path codeLine="9" d="M417.1875,122.6611 C417.1875,135.4736 417.1875,149.8278 417.1875,163.9111 " fill="none" id="BaseRequest-backto-RenewServiceRequest" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="409.8958,122.484,417.1875,101.6507,424.4792,122.484,409.8958,122.484" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[13dedc5c55807490c961b92d6dd723a1]
+reverse link BaseResponse to RenewServiceResponse--><path codeLine="19" d="M154.6875,122.6299 C154.6875,142.2445 154.6875,165.4736 154.6875,185.8278 " fill="none" id="BaseResponse-backto-RenewServiceResponse" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="147.3958,122.484,154.6875,101.6507,161.9792,122.484,147.3958,122.484" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e3818dfcd3bd160e416fcc6a68ff4116]
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.service.registry.protocol.renew"
+    
+    abstract BaseResponse
+    abstract BaseRequest
+    
+    BaseRequest <|- - RenewServiceRequest
+    class RenewServiceRequest
+    {
+        - -(constructors)- -
+        #RenewServiceRequest()
+        +RenewServiceRequest(Service)
+        - -(service)- -
+        +Service service()
+    }
+    
+    BaseResponse <|- - RenewServiceResponse
+    class RenewServiceResponse
+    {
+        - -(service)- -
+        +RenewServiceResponse service(Service)
+        +Service service()
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.service.registry.protocol.renew"
+    
+    abstract BaseResponse
+    abstract BaseRequest
+    
+    BaseRequest <|- - RenewServiceRequest
+    class RenewServiceRequest
+    {
+        - -(constructors)- -
+        #RenewServiceRequest()
+        +RenewServiceRequest(Service)
+        - -(service)- -
+        +Service service()
+    }
+    
+    BaseResponse <|- - RenewServiceResponse
+    class RenewServiceResponse
+    {
+        - -(service)- -
+        +RenewServiceResponse service(Service)
+        +Service service()
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

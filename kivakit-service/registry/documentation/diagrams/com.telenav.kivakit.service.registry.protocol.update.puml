@@ -1,0 +1,28 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.service.registry.protocol.update"
+    
+    abstract BaseResponse
+    abstract BaseRequest
+    
+    BaseRequest <|-- NetworkRegistryUpdateRequest
+    class NetworkRegistryUpdateRequest
+    {
+        --(service)--
+        +NetworkRegistryUpdateRequest service(Service)
+        +Service service()
+    }
+    
+    BaseResponse <|-- NetworkRegistryUpdateResponse
+    class NetworkRegistryUpdateResponse
+    {
+        --
+        +boolean added()
+        --(functional)--
+        +NetworkRegistryUpdateResponse added(boolean added)
+    }
+    
+@enduml
+

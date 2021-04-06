@@ -33,7 +33,7 @@ the branch for publication.
 In order to ensure that the build will work on the build server, it is a good idea to completely  
 clean out your maven repository and cache folders by building the project completely from scratch:
 
-    kivakit-build.sh all sparkling dmg
+    kivakit-build.sh all sparkling
 
 This will remove (after prompting) the following before building:
 
@@ -43,7 +43,7 @@ This will remove (after prompting) the following before building:
 
 #### 2.2 Building the Documentation
 
-The following command will build Javadoc, UML diagrams and update project README.md indexes. 
+The following command will build Javadoc, UML diagrams and update project README.md indexes.
 
     kivakit-build-documentation.sh
 

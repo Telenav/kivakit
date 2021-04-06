@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="543.75px" preserveAspectRatio="none" style="width:693px;height:543px;background:#333333;" version="1.1" viewBox="0 0 693 543" width="693.75px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="138.5417" x="270.5729" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="115.625" x="282.0313" y="30.5583">HDFS Proxy</text><!--MD5=[a43d4aecfac195d0414aef90f85113f2]
+class HdfsProxy--><rect codeLine="6" fill="#282828" height="48.055" id="HdfsProxy" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="103.125" x="162.5" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="103.125" x="162.5" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="103.125" x="162.5" y="76.7578"/><rect codeLine="6" fill="none" height="48.055" id="HdfsProxy" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="103.125" x="162.5" y="53.7028"/><ellipse cx="177.0833" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M173.9665,66.5588 L173.9665,64.9719 L179.3925,64.9719 L179.3925,66.5588 L177.5798,66.5588 L177.5798,72.4976 L179.3925,72.4976 L179.3925,74.0845 L173.9665,74.0845 L173.9665,72.4976 L175.7792,72.4976 L175.7792,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="65.625" x="193.75" y="74.1211">HdfsProxy</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="163.5417" x2="264.5833" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="163.5417" x2="264.5833" y1="93.4245" y2="93.4245"/><!--MD5=[52cb8f0a2ed1a6531bd2eebe2b5c5a5f]
+class HdfsFileSystem--><rect codeLine="8" fill="#282828" height="83.3781" id="HdfsFileSystem" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="182.2917" x="7.2917" y="407.8695"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="182.2917" x="7.2917" y="407.8695"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="182.2917" x="7.2917" y="430.9245"/><rect codeLine="8" fill="none" height="83.3781" id="HdfsFileSystem" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="182.2917" x="7.2917" y="407.8695"/><ellipse cx="42.0313" cy="423.5636" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M43.9417,427.9887 Q43.5144,428.2084 43.0444,428.3183 Q42.5745,428.4281 42.0557,428.4281 Q40.2124,428.4281 39.2419,427.2135 Q38.2715,425.9989 38.2715,423.704 Q38.2715,421.403 39.2419,420.1884 Q40.2124,418.9738 42.0557,418.9738 Q42.5745,418.9738 43.0505,419.0837 Q43.5266,419.1935 43.9417,419.4132 L43.9417,421.4152 Q43.4778,420.988 43.0414,420.7896 Q42.605,420.5912 42.1411,420.5912 Q41.1523,420.5912 40.6488,421.3755 Q40.1453,422.1598 40.1453,423.704 Q40.1453,425.2421 40.6488,426.0264 Q41.1523,426.8107 42.1411,426.8107 Q42.605,426.8107 43.0414,426.6123 Q43.4778,426.414 43.9417,425.9867 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="100" x="63.1771" y="428.2878">HdfsFileSystem</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="8.3333" x2="188.5417" y1="439.2578" y2="439.2578"/><ellipse cx="18.75" cy="474.6277" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="150" x="30.2083" y="481.5389">HdfsFileSystem of(FilePath)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="63.0208" y1="457.4636" y2="457.4636"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="66.1458" y="461.2732">(filesystem)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="133.8542" x2="188.5417" y1="457.4636" y2="457.4636"/><!--MD5=[c60af77fe5573b84a4aa4bce89659574]
+class Server--><rect fill="#282828" height="48.055" id="Server" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="77.0833" x="302.6042" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="77.0833" x="302.6042" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="77.0833" x="302.6042" y="76.7578"/><rect fill="none" height="48.055" id="Server" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="77.0833" x="302.6042" y="53.7028"/><ellipse cx="317.1875" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M319.0979,73.822 Q318.6707,74.0417 318.2007,74.1516 Q317.7307,74.2615 317.2119,74.2615 Q315.3687,74.2615 314.3982,73.0469 Q313.4277,71.8323 313.4277,69.5374 Q313.4277,67.2363 314.3982,66.0217 Q315.3687,64.8071 317.2119,64.8071 Q317.7307,64.8071 318.2068,64.917 Q318.6829,65.0269 319.0979,65.2466 L319.0979,67.2485 Q318.634,66.8213 318.1976,66.6229 Q317.7612,66.4246 317.2974,66.4246 Q316.3086,66.4246 315.8051,67.2089 Q315.3015,67.9932 315.3015,69.5374 Q315.3015,71.0754 315.8051,71.8597 Q316.3086,72.644 317.2974,72.644 Q317.7612,72.644 318.1976,72.4457 Q318.634,72.2473 319.0979,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="39.5833" x="333.8542" y="74.1211">Server</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="303.6458" x2="378.6458" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="303.6458" x2="378.6458" y1="93.4245" y2="93.4245"/><!--MD5=[47e5d63b961104da57488cb09a3695b3]
+class HdfsProxyServer--><rect codeLine="18" fill="#282828" height="111.4563" id="HdfsProxyServer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="200" x="177.6042" y="165.1611"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="200" x="177.6042" y="165.1611"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="200" x="177.6042" y="188.2161"/><rect codeLine="18" fill="none" height="111.4563" id="HdfsProxyServer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="200" x="177.6042" y="165.1611"/><ellipse cx="217.9688" cy="180.8553" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M219.8792,185.2804 Q219.4519,185.5001 218.9819,185.6099 Q218.512,185.7198 217.9932,185.7198 Q216.1499,185.7198 215.1794,184.5052 Q214.209,183.2906 214.209,180.9957 Q214.209,178.6947 215.1794,177.4801 Q216.1499,176.2655 217.9932,176.2655 Q218.512,176.2655 218.988,176.3753 Q219.4641,176.4852 219.8792,176.7049 L219.8792,178.7069 Q219.4153,178.2796 218.9789,178.0813 Q218.5425,177.8829 218.0786,177.8829 Q217.0898,177.8829 216.5863,178.6672 Q216.0828,179.4515 216.0828,180.9957 Q216.0828,182.5338 216.5863,183.3181 Q217.0898,184.1024 218.0786,184.1024 Q218.5425,184.1024 218.9789,183.904 Q219.4153,183.7056 219.8792,183.2784 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="105.2083" x="240.3646" y="185.5794">HdfsProxyServer</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="178.6458" x2="376.5625" y1="196.5495" y2="196.5495"/><ellipse cx="189.0625" cy="231.9194" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="102.0833" x="200.5208" y="238.8306">HdfsProxyServer()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="178.6458" x2="233.8542" y1="214.7552" y2="214.7552"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="236.9792" y="218.5649">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="321.3542" x2="376.5625" y1="214.7552" y2="214.7552"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="178.6458" x2="376.5625" y1="248.5392" y2="248.5392"/><ellipse cx="189.0625" cy="259.9976" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="167.7083" x="200.5208" y="266.9088">void main(String[] arguments)</text><!--MD5=[06ff0d2d645b9b9a0439b67c381a347a]
+class HdfsProxyServerSettings--><rect codeLine="26" fill="#282828" height="174.8576" id="HdfsProxyServerSettings" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="460.4167" x="226.5625" y="362.0361"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="460.4167" x="226.5625" y="362.0361"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="460.4167" x="226.5625" y="385.0911"/><rect codeLine="26" fill="none" height="174.8576" id="HdfsProxyServerSettings" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="460.4167" x="226.5625" y="362.0361"/><ellipse cx="370.3125" cy="377.7303" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M372.2229,382.1554 Q371.7957,382.3751 371.3257,382.4849 Q370.8557,382.5948 370.3369,382.5948 Q368.4937,382.5948 367.5232,381.3802 Q366.5527,380.1656 366.5527,377.8707 Q366.5527,375.5697 367.5232,374.3551 Q368.4937,373.1405 370.3369,373.1405 Q370.8557,373.1405 371.3318,373.2503 Q371.8079,373.3602 372.2229,373.5799 L372.2229,375.5819 Q371.759,375.1546 371.3226,374.9563 Q370.8862,374.7579 370.4224,374.7579 Q369.4336,374.7579 368.9301,375.5422 Q368.4265,376.3265 368.4265,377.8707 Q368.4265,379.4088 368.9301,380.1931 Q369.4336,380.9774 370.4224,380.9774 Q370.8862,380.9774 371.3226,380.779 Q371.759,380.5806 372.2229,380.1534 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="158.3333" x="393.2292" y="382.4544">HdfsProxyServerSettings</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="227.6042" x2="685.9375" y1="393.4245" y2="393.4245"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="227.6042" x2="685.9375" y1="401.7578" y2="401.7578"/><ellipse cx="238.0208" cy="413.2161" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="302.0833" x="249.4792" y="420.1274">HdfsProxyServerSettings user(UserGroupInformation)</text><ellipse cx="238.0208" cy="456.8726" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="210.4167" x="249.4792" y="463.7838">ResourceFolder configurationFolder()</text><ellipse cx="238.0208" cy="476.6174" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="428.125" x="249.4792" y="483.5286">HdfsProxyServerSettings configurationFolder(ResourceFolder configuration)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="227.6042" x2="421.3542" y1="439.7085" y2="439.7085"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="424.4792" y="443.5181">(filesystem)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="492.1875" x2="685.9375" y1="439.7085" y2="439.7085"/><ellipse cx="238.0208" cy="520.2738" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="163.5417" x="249.4792" y="527.1851">UserGroupInformation user()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="227.6042" x2="419.2708" y1="503.1097" y2="503.1097"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="68.75" x="422.3958" y="506.9194">(messaging)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="494.2708" x2="685.9375" y1="503.1097" y2="503.1097"/><!--MD5=[a1e1489de3059097d4e7637bf17c6bba]
+reverse link Server to HdfsProxyServer--><path codeLine="14" d="M322.125,120.9528 C315.9167,134.7445 308.9271,150.2757 302.3542,164.859 " fill="none" id="Server-backto-HdfsProxyServer" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="315.5938,117.7028,330.7917,101.6924,328.8958,123.682,315.5938,117.7028" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[48ee1b74befca095646a062d8a5c04e0]
+reverse link HdfsProxy to HdfsProxyServer--><path codeLine="15" d="M233.0833,120.9528 C239.2917,134.7445 246.2813,150.2757 252.8542,164.859 " fill="none" id="HdfsProxy-backto-HdfsProxyServer" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="226.3125,123.682,224.4167,101.6924,239.6146,117.7028,226.3125,123.682" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[b75e2e426678d196a43527de4bfdac5a]
+link HdfsProxyServer to HdfsFileSystem--><path codeLine="16" d="M234.2292,276.7757 C203.5833,315.5361 162.9896,366.8695 134.1875,403.2861 " fill="none" id="HdfsProxyServer-to-HdfsFileSystem" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="130.7396,407.6507,139.818,402.8722,133.9659,403.562,133.2761,397.71,130.7396,407.6507" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="80.2083" x="214.0625" y="324.1211">delegates to</text><!--MD5=[fa971f00ddf8210f1ff0f8137cb2404c]
+link HdfsProxyServer to HdfsProxyServerSettings--><path codeLine="17" d="M320.9792,276.7757 C340.1458,301.0153 363.1979,330.1715 384.8333,357.5257 " fill="none" id="HdfsProxyServer-to-HdfsProxyServerSettings" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="388.2917,361.9007,385.7552,351.96,385.0653,357.812,379.2133,357.1222,388.2917,361.9007" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="101.0417" x="365.1042" y="324.1211">configures with</text><!--MD5=[e9bf9a192d3115d0df4d8bd746d690e0]
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "HDFS Proxy"
+    
+    interface HdfsProxy
+    
+    class HdfsFileSystem
+    {
+        - -(filesystem)- -
+        +HdfsFileSystem of(FilePath)
+    }
+    
+    Server <|- - HdfsProxyServer
+    HdfsProxy <|- - HdfsProxyServer
+    HdfsProxyServer - -> HdfsFileSystem : "delegates to"
+    HdfsProxyServer - -> HdfsProxyServerSettings : "configures with"
+    class HdfsProxyServer
+    {
+        - -(constructors)- -
+        +HdfsProxyServer()
+        - -
+        +void main(String[] arguments)
+    }
+    
+    class HdfsProxyServerSettings
+    {
+        - -
+        +HdfsProxyServerSettings user(UserGroupInformation)
+        - -(filesystem)- -
+        +ResourceFolder configurationFolder()
+        +HdfsProxyServerSettings configurationFolder(ResourceFolder configuration)
+        - -(messaging)- -
+        +UserGroupInformation user()
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "HDFS Proxy"
+    
+    interface HdfsProxy
+    
+    class HdfsFileSystem
+    {
+        - -(filesystem)- -
+        +HdfsFileSystem of(FilePath)
+    }
+    
+    Server <|- - HdfsProxyServer
+    HdfsProxy <|- - HdfsProxyServer
+    HdfsProxyServer - -> HdfsFileSystem : "delegates to"
+    HdfsProxyServer - -> HdfsProxyServerSettings : "configures with"
+    class HdfsProxyServer
+    {
+        - -(constructors)- -
+        +HdfsProxyServer()
+        - -
+        +void main(String[] arguments)
+    }
+    
+    class HdfsProxyServerSettings
+    {
+        - -
+        +HdfsProxyServerSettings user(UserGroupInformation)
+        - -(filesystem)- -
+        +ResourceFolder configurationFolder()
+        +HdfsProxyServerSettings configurationFolder(ResourceFolder configuration)
+        - -(messaging)- -
+        +UserGroupInformation user()
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

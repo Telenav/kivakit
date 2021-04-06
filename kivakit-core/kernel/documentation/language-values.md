@@ -72,7 +72,7 @@ lambda wants to change a local variable):
 
 The *Version* class represents a [*semantic version*](https://semver.org). Any object may provide a version by   
 implementing *Versioned*, and a version can be associated with an object using *VersionedObject*.  
-The [*kivakit-serialization*](../../../kivakit-serialization/README.md) project uses *VersionedObject*s to help ensure that all objects that  
+The [*kivakit-core-serialization*](../../../kivakit-core/serialization/README.md) project uses *VersionedObject*s to help ensure that all objects that  
 are serialized have associated version information. This can help to ensure backwards  
 compatibility with serialized data.
 

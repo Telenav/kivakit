@@ -53,7 +53,15 @@ line.link {
 <div class="content">
     <div class="container">
         <br/>
-        <h2>KivaKit CodeFlowers</h2>
+        <br/>
+        <br/>
+        <div class="heading">KivaKit CodeFlowers &nbsp; <img class="top" src="../../images/kivakit-64.png"></div>
+        <br/>
+        <br/>
+        <img src="../../images/horizontal-line.png">
+        <br/>
+        <br/>
+
         <div class="lead">This page visualizes key KivaKit projects in an interactive tree.</div>
         <p class="lead">Each disc represents a file, with a radius proportional to the number
             of lines of code.</p>
@@ -66,7 +74,7 @@ line.link {
                     <option value='data/kivakit-core-collections.json'>kivakit-core-collections</option>
                     <option value='data/kivakit-core-commandline.json'>kivakit-core-commandline</option>
                     <option value='data/kivakit-core-configuration.json'>kivakit-core-configuration</option>
-                    <option value='data/kivakit-core-kernel.json' selected='selected'>kivakit-core-kernel</option>
+                    <option selected='selected' value='data/kivakit-core-kernel.json'>kivakit-core-kernel</option>
                     <option value='data/kivakit-core-network-core.json'>kivakit-core-network-core</option>
                     <option value='data/kivakit-core-network-email.json'>kivakit-core-network-email</option>
                     <option value='data/kivakit-core-network-ftp.json'>kivakit-core-network-ftp</option>
@@ -93,7 +101,7 @@ line.link {
         </form>
         <div id="visualization"></div>
         <br/>
-        CodeFlower © 2013 <a href="https://github.com/fzaninotto/CodeFlower">Francois Zaninotto</a>
+        CodeFlower © 2013 <a href="https://github.com/fzaninotto/CodeFlower">Francois Zaninotto</a>. Licensed under <a href="../../../CODEFLOWER-LICENSE">MIT License.</a>
         <br/>
         <br/>
         <br/>
@@ -116,6 +124,9 @@ line.link {
       document.getElementById('project').addEventListener('change', function() {
         d3.json(this.value, createCodeFlower);
       });
+
+
+
 
 </script>
 </body>
