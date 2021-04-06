@@ -50,7 +50,7 @@
     }
     
     BaseRepeater <|-- HdfsProxyClient
-    HdfsProxyClient --> HdfsProxyClientSettings : "configures with"
+    HdfsProxyClient --> HdfsSettings : "configures with"
     HdfsProxyClient o-- HdfsProxy
     HdfsProxyClient o-- Port : "data access"
     HdfsProxyClient o-- Port : "RMI"
@@ -66,16 +66,27 @@
         +Port rmiObjectPort()
     }
     
-    -class HdfsProxyClientSettings
-    {
-    }
-    
     -class HdfsProxyIO
     {
         --(read)--
         +InputStream in(long handle)
         --(write)--
         +OutputStream out(long handle)
+    }
+    
+    -class HdfsSettings
+    {
+        --
+        +Resource proxyJar()
+        +void proxyJar(Resource proxyJar)
+        +void username(String username)
+        +String username()
+        --(filesystem)--
+        +void configurationFolder(ResourceFolder configuration)
+        +ResourceFolder configurationFolder()
+        --(network)--
+        +EmailAddress contactEmail()
+        +void contactEmail(EmailAddress contactEmail)
     }
     
 @enduml

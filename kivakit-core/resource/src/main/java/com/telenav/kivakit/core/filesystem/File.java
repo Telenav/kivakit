@@ -32,7 +32,7 @@ import com.telenav.kivakit.core.resource.path.FileName;
 import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFile;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceService;
-import com.telenav.kivakit.core.resource.spi.ResourceFactoryService;
+import com.telenav.kivakit.core.resource.spi.ResourceResolver;
 import com.telenav.kivakit.core.resource.writing.BaseWritableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -192,7 +192,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     @UmlClassDiagram(diagram = DiagramResourceService.class)
-    public static class Factory implements ResourceFactoryService
+    public static class Resolver implements ResourceResolver
     {
         @Override
         public boolean accepts(final ResourceIdentifier identifier)
@@ -201,7 +201,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         }
 
         @Override
-        public Resource newResource(final ResourceIdentifier identifier)
+        public Resource resolve(final ResourceIdentifier identifier)
         {
             return File.parse(identifier.identifier());
         }

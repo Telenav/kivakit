@@ -43,7 +43,7 @@ public class ResourceList extends ArrayList<Resource>
             final var resources = new ResourceList(extension);
             for (final var path : value.split(","))
             {
-                final var resource = Resource.resource(path);
+                final var resource = Resource.resolve(path);
                 if (resource instanceof File)
                 {
                     final var file = (File) resource;

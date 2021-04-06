@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.resource.path.Extension;
 import com.telenav.kivakit.core.resource.path.ResourcePathed;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFile;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResource;
-import com.telenav.kivakit.core.resource.spi.ResourceFactoryServiceRegistry;
+import com.telenav.kivakit.core.resource.spi.ResourceResolverServiceLoader;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
@@ -33,14 +33,19 @@ public interface Resource extends ResourcePathed, ModificationTimestamped, ByteS
 {
     Logger LOGGER = LoggerFactory.newLogger();
 
-    static Resource resource(final ResourceIdentifier identifier)
+    static ResourceIdentifier identifier(final String identifier)
     {
-        return ResourceFactoryServiceRegistry.forIdentifier(identifier);
+        return new ResourceIdentifier(identifier);
     }
 
-    static Resource resource(final String identifier)
+    static Resource resolve(final ResourceIdentifier identifier)
     {
-        return resource(new ResourceIdentifier(identifier));
+        return ResourceResolverServiceLoader.resolve(identifier);
+    }
+
+    static Resource resolve(final String identifier)
+    {
+        return resolve(new ResourceIdentifier(identifier));
     }
 
     static ArgumentParser.Builder<Resource> resource(final Listener listener, final String description)
@@ -97,7 +102,7 @@ public interface Resource extends ResourcePathed, ModificationTimestamped, ByteS
         @Override
         protected Resource onConvertToObject(final String value)
         {
-            return resource(new ResourceIdentifier(value));
+            return new ResourceIdentifier(value).resolve();
         }
     }
 
@@ -138,6 +143,11 @@ public interface Resource extends ResourcePathed, ModificationTimestamped, ByteS
     default boolean isLocal()
     {
         return !isRemote();
+    }
+
+    default boolean isMaterializable()
+    {
+        return isPackaged() || isRemote();
     }
 
     /**

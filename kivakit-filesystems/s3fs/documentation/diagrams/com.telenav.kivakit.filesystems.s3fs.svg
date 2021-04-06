@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="745.8333px" preserveAspectRatio="none" style="width:1508px;height:745px;background:#333333;" version="1.1" viewBox="0 0 1508 745" width="1508.3333px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="381.25" x="556.5104" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="358.3333" x="567.9688" y="30.5583">com.telenav.kivakit.filesystems.s3fs</text><!--MD5=[8b5151cbe93a9a6942e91a66bba84fb0]
+class BaseWritableResource--><rect codeLine="6" fill="#282828" height="48.055" id="BaseWritableResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="179.1667" x="443.2292" y="95.3695"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="179.1667" x="443.2292" y="95.3695"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="179.1667" x="443.2292" y="118.4245"/><rect codeLine="6" fill="none" height="48.055" id="BaseWritableResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="179.1667" x="443.2292" y="95.3695"/><ellipse cx="457.8125" cy="111.0636" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M457.9264,107.7657 L457.078,111.495 L458.7809,111.495 Z M456.8278,106.1178 L459.0312,106.1178 L461.4909,115.2303 L459.6903,115.2303 L459.1288,112.9781 L456.7179,112.9781 L456.1686,115.2303 L454.3681,115.2303 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="141.6667" x="474.4792" y="115.7878">BaseWritableResource</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="444.2708" x2="621.3542" y1="126.7578" y2="126.7578"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="444.2708" x2="621.3542" y1="135.0911" y2="135.0911"/><!--MD5=[9bc23c05e4b2fc73e019bd17cec96ec4]
+class FileSystemService--><rect codeLine="8" fill="#282828" height="48.055" id="FileSystemService" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="152.0833" x="180.7292" y="95.3695"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="152.0833" x="180.7292" y="95.3695"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="152.0833" x="180.7292" y="118.4245"/><rect codeLine="8" fill="none" height="48.055" id="FileSystemService" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="152.0833" x="180.7292" y="95.3695"/><ellipse cx="195.3125" cy="111.0636" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M192.1956,108.2255 L192.1956,106.6386 L197.6217,106.6386 L197.6217,108.2255 L195.8089,108.2255 L195.8089,114.1642 L197.6217,114.1642 L197.6217,115.7511 L192.1956,115.7511 L192.1956,114.1642 L194.0084,114.1642 L194.0084,108.2255 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="114.5833" x="211.9792" y="115.7878">FileSystemService</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="181.7708" x2="331.7708" y1="126.7578" y2="126.7578"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="181.7708" x2="331.7708" y1="135.0911" y2="135.0911"/><!--MD5=[186cc809c4fefc21e9383dda7a09b230]
+class FileSystemObjectService--><rect codeLine="9" fill="#282828" height="48.055" id="FileSystemObjectService" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="193.75" x="658.8542" y="95.3695"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="193.75" x="658.8542" y="95.3695"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="193.75" x="658.8542" y="118.4245"/><rect codeLine="9" fill="none" height="48.055" id="FileSystemObjectService" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="193.75" x="658.8542" y="95.3695"/><ellipse cx="673.4375" cy="111.0636" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M670.3206,108.2255 L670.3206,106.6386 L675.7467,106.6386 L675.7467,108.2255 L673.9339,108.2255 L673.9339,114.1642 L675.7467,114.1642 L675.7467,115.7511 L670.3206,115.7511 L670.3206,114.1642 L672.1334,114.1642 L672.1334,108.2255 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="156.25" x="690.1042" y="115.7878">FileSystemObjectService</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="659.8958" x2="851.5625" y1="126.7578" y2="126.7578"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="659.8958" x2="851.5625" y1="135.0911" y2="135.0911"/><!--MD5=[3f7923c5962403cc19ad9d36647dd0a5]
+class FileService--><rect codeLine="10" fill="#282828" height="48.055" id="FileService" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="105.2083" x="7.2917" y="331.8278"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="105.2083" x="7.2917" y="331.8278"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="105.2083" x="7.2917" y="354.8828"/><rect codeLine="10" fill="none" height="48.055" id="FileService" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="105.2083" x="7.2917" y="331.8278"/><ellipse cx="21.875" cy="347.522" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M18.7581,344.6838 L18.7581,343.0969 L24.1842,343.0969 L24.1842,344.6838 L22.3714,344.6838 L22.3714,350.6226 L24.1842,350.6226 L24.1842,352.2095 L18.7581,352.2095 L18.7581,350.6226 L20.5709,350.6226 L20.5709,344.6838 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="67.7083" x="38.5417" y="352.2461">FileService</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="111.4583" y1="363.2161" y2="363.2161"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="111.4583" y1="371.5495" y2="371.5495"/><!--MD5=[d3568316a19508714d03e72c4319f868]
+class FolderService--><rect codeLine="11" fill="#282828" height="48.055" id="FolderService" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="122.9167" x="848.4375" y="331.8278"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="122.9167" x="848.4375" y="331.8278"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="122.9167" x="848.4375" y="354.8828"/><rect codeLine="11" fill="none" height="48.055" id="FolderService" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="122.9167" x="848.4375" y="331.8278"/><ellipse cx="863.0208" cy="347.522" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M859.904,344.6838 L859.904,343.0969 L865.33,343.0969 L865.33,344.6838 L863.5173,344.6838 L863.5173,350.6226 L865.33,350.6226 L865.33,352.2095 L859.904,352.2095 L859.904,350.6226 L861.7167,350.6226 L861.7167,344.6838 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="85.4167" x="879.6875" y="352.2461">FolderService</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="849.4792" x2="970.3125" y1="363.2161" y2="363.2161"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="849.4792" x2="970.3125" y1="371.5495" y2="371.5495"/><!--MD5=[dc8af0fb6c54dd585083f766f5607a29]
+class S3FileSystemObject--><rect codeLine="28" fill="#282828" height="214.3473" id="S3FileSystemObject" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="410.4167" x="401.5625" y="248.4945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="410.4167" x="401.5625" y="248.4945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="410.4167" x="401.5625" y="271.5495"/><rect codeLine="28" fill="none" height="214.3473" id="S3FileSystemObject" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="410.4167" x="401.5625" y="248.4945"/><ellipse cx="535.9375" cy="264.1886" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M536.0514,260.8907 L535.203,264.62 L536.9059,264.62 Z M534.9528,259.2428 L537.1562,259.2428 L539.6159,268.3553 L537.8153,268.3553 L537.2538,266.1031 L534.8429,266.1031 L534.2936,268.3553 L532.4931,268.3553 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="127.0833" x="558.8542" y="268.9128">S3FileSystemObject</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="402.6042" x2="810.9375" y1="279.8828" y2="279.8828"/><polygon fill="#FFFF44" points="413.0208,310.0444,417.1875,314.211,413.0208,318.3777,408.8542,314.211" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="378.125" x="424.4792" y="322.1639">ListObjectsRequest listRequest(String bucketName, String keyName)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="402.6042" x2="572.3958" y1="298.0886" y2="298.0886"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="575.5208" y="301.8982">(collection)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="641.1458" x2="810.9375" y1="298.0886" y2="298.0886"/><polygon fill="#FFFF44" points="413.0208,353.7008,417.1875,357.8674,413.0208,362.0341,408.8542,357.8674" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="362.5" x="424.4792" y="365.8203">FilePath path(String scheme, String bucketName, String keyName)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="402.6042" x2="571.3542" y1="341.745" y2="341.745"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="574.4792" y="345.5546">(filesystem)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="642.1875" x2="810.9375" y1="341.745" y2="341.745"/><ellipse cx="413.0208" cy="402.5655" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="160.4167" x="424.4792" y="409.4767">boolean accepts(String path)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="402.6042" x2="577.6042" y1="385.4014" y2="385.4014"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="52.0833" x="580.7292" y="389.211">(filtering)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="635.9375" x2="810.9375" y1="385.4014" y2="385.4014"/><ellipse cx="413.0208" cy="446.2219" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="75" x="424.4792" y="453.1331">String name()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="402.6042" x2="578.6458" y1="429.0578" y2="429.0578"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="50" x="581.7708" y="432.8674">(naming)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="634.8958" x2="810.9375" y1="429.0578" y2="429.0578"/><!--MD5=[8fa488a34f086c195729d4f8f33d253c]
+class S3File--><rect codeLine="15" fill="#282828" height="190.4358" id="S3File" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="202.0833" x="155.7292" y="548.4945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="202.0833" x="155.7292" y="548.4945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="202.0833" x="155.7292" y="571.5495"/><rect codeLine="15" fill="none" height="190.4358" id="S3File" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="202.0833" x="155.7292" y="548.4945"/><ellipse cx="230.2083" cy="564.1886" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M232.1187,568.6137 Q231.6915,568.8334 231.2215,568.9433 Q230.7515,569.0531 230.2327,569.0531 Q228.3895,569.0531 227.419,567.8385 Q226.4486,566.6239 226.4486,564.329 Q226.4486,562.028 227.419,560.8134 Q228.3895,559.5988 230.2327,559.5988 Q230.7515,559.5988 231.2276,559.7087 Q231.7037,559.8185 232.1187,560.0382 L232.1187,562.0402 Q231.6549,561.613 231.2185,561.4146 Q230.7821,561.2162 230.3182,561.2162 Q229.3294,561.2162 228.8259,562.0005 Q228.3223,562.7848 228.3223,564.329 Q228.3223,565.8671 228.8259,566.6514 Q229.3294,567.4357 230.3182,567.4357 Q230.7821,567.4357 231.2185,567.2373 Q231.6549,567.039 232.1187,566.6117 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="38.5417" x="253.125" y="568.9128">S3File</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="156.7708" x2="356.7708" y1="579.8828" y2="579.8828"/><ellipse cx="167.1875" cy="615.2527" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="83.3333" x="178.6458" y="622.1639">S3File(FilePath)</text><ellipse cx="167.1875" cy="634.9976" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="73.9583" x="178.6458" y="641.9088">S3File(String)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="156.7708" x2="213.0208" y1="598.0886" y2="598.0886"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="216.1458" y="601.8982">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="300.5208" x2="356.7708" y1="598.0886" y2="598.0886"/><ellipse cx="167.1875" cy="678.654" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="169.7917" x="178.6458" y="685.5652">boolean renameTo(S3File that)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="156.7708" x2="221.3542" y1="661.4899" y2="661.4899"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="224.4792" y="665.2995">(filesystem)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="292.1875" x2="356.7708" y1="661.4899" y2="661.4899"/><ellipse cx="167.1875" cy="722.3104" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="118.75" x="178.6458" y="729.2216">void write(String line)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="156.7708" x2="235.9375" y1="705.1463" y2="705.1463"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="35.4167" x="239.0625" y="708.9559">(write)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="277.6042" x2="356.7708" y1="705.1463" y2="705.1463"/><!--MD5=[d6d454f97b7234abf01b8feae3c53655]
+class S3FileSystemService--><rect codeLine="43" fill="#282828" height="103.123" id="S3FileSystemService" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="215.625" x="148.9583" y="304.2236"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="215.625" x="148.9583" y="304.2236"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="215.625" x="148.9583" y="327.2786"/><rect codeLine="43" fill="none" height="103.123" id="S3FileSystemService" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="215.625" x="148.9583" y="304.2236"/><ellipse cx="185.1042" cy="319.9178" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M187.0146,324.3429 Q186.5873,324.5626 186.1174,324.6724 Q185.6474,324.7823 185.1286,324.7823 Q183.2853,324.7823 182.3149,323.5677 Q181.3444,322.3531 181.3444,320.0582 Q181.3444,317.7572 182.3149,316.5426 Q183.2853,315.328 185.1286,315.328 Q185.6474,315.328 186.1235,315.4378 Q186.5995,315.5477 187.0146,315.7674 L187.0146,317.7694 Q186.5507,317.3421 186.1143,317.1438 Q185.6779,316.9454 185.214,316.9454 Q184.2253,316.9454 183.7217,317.7297 Q183.2182,318.514 183.2182,320.0582 Q183.2182,321.5963 183.7217,322.3806 Q184.2253,323.1649 185.214,323.1649 Q185.6779,323.1649 186.1143,322.9665 Q186.5507,322.7681 187.0146,322.3409 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="130.2083" x="206.5625" y="324.6419">S3FileSystemService</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="150" x2="363.5417" y1="335.612" y2="335.612"/><ellipse cx="160.4167" cy="370.9819" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="150" x="171.875" y="377.8931">^S3File fileService(FilePath)</text><ellipse cx="160.4167" cy="390.7267" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="183.3333" x="171.875" y="397.6379">^S3Folder folderService(FilePath)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="150" x2="221.3542" y1="353.8177" y2="353.8177"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="224.4792" y="357.6274">(filesystem)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="292.1875" x2="363.5417" y1="353.8177" y2="353.8177"/><!--MD5=[5a27776e636b1cfbd9d4a0aa097bdf86]
+class S3Folder--><rect codeLine="52" fill="#282828" height="186.2691" id="S3Folder" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="218.75" x="497.3958" y="550.5778"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="218.75" x="497.3958" y="550.5778"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="218.75" x="497.3958" y="573.6328"/><rect codeLine="52" fill="none" height="186.2691" id="S3Folder" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="218.75" x="497.3958" y="550.5778"/><ellipse cx="571.3542" cy="566.272" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M573.2646,570.697 Q572.8373,570.9167 572.3674,571.0266 Q571.8974,571.1365 571.3786,571.1365 Q569.5353,571.1365 568.5649,569.9219 Q567.5944,568.7073 567.5944,566.4124 Q567.5944,564.1113 568.5649,562.8967 Q569.5353,561.6821 571.3786,561.6821 Q571.8974,561.6821 572.3735,561.792 Q572.8495,561.9019 573.2646,562.1216 L573.2646,564.1235 Q572.8007,563.6963 572.3643,563.4979 Q571.9279,563.2996 571.464,563.2996 Q570.4753,563.2996 569.9717,564.0839 Q569.4682,564.8682 569.4682,566.4124 Q569.4682,567.9504 569.9717,568.7347 Q570.4753,569.519 571.464,569.519 Q571.9279,569.519 572.3643,569.3207 Q572.8007,569.1223 573.2646,568.6951 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="56.25" x="594.2708" y="570.9961">S3Folder</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="498.4375" x2="715.1042" y1="581.9661" y2="581.9661"/><ellipse cx="508.8542" cy="617.336" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="100" x="520.3125" y="624.2472">S3Folder(FilePath)</text><ellipse cx="508.8542" cy="637.0809" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="90.625" x="520.3125" y="643.9921">S3Folder(String)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="498.4375" x2="563.0208" y1="600.1719" y2="600.1719"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="566.1458" y="603.9815">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="650.5208" x2="715.1042" y1="600.1719" y2="600.1719"/><ellipse cx="508.8542" cy="680.7373" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="101.0417" x="520.3125" y="687.6485">boolean hasFiles()</text><ellipse cx="508.8542" cy="700.4822" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="138.5417" x="520.3125" y="707.3934">boolean hasSubFolders()</text><ellipse cx="508.8542" cy="720.2271" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="186.4583" x="520.3125" y="727.1383">boolean renameTo(S3Folder that)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="498.4375" x2="571.3542" y1="663.5732" y2="663.5732"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="574.4792" y="667.3828">(filesystem)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="642.1875" x2="715.1042" y1="663.5732" y2="663.5732"/><!--MD5=[bb6cb1e0259adcba932d723ffd143015]
+class OutputStream--><rect fill="#282828" height="48.055" id="OutputStream" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="128.125" x="1044.7917" y="95.3695"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="128.125" x="1044.7917" y="95.3695"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="128.125" x="1044.7917" y="118.4245"/><rect fill="none" height="48.055" id="OutputStream" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="128.125" x="1044.7917" y="95.3695"/><ellipse cx="1059.375" cy="111.0636" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1061.2854,115.4887 Q1060.8582,115.7084 1060.3882,115.8183 Q1059.9182,115.9281 1059.3994,115.9281 Q1057.5562,115.9281 1056.5857,114.7135 Q1055.6152,113.4989 1055.6152,111.204 Q1055.6152,108.903 1056.5857,107.6884 Q1057.5562,106.4738 1059.3994,106.4738 Q1059.9182,106.4738 1060.3943,106.5837 Q1060.8704,106.6935 1061.2854,106.9132 L1061.2854,108.9152 Q1060.8215,108.488 1060.3851,108.2896 Q1059.9487,108.0912 1059.4849,108.0912 Q1058.4961,108.0912 1057.9926,108.8755 Q1057.489,109.6598 1057.489,111.204 Q1057.489,112.7421 1057.9926,113.5264 Q1058.4961,114.3107 1059.4849,114.3107 Q1059.9487,114.3107 1060.3851,114.1123 Q1060.8215,113.914 1061.2854,113.4867 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="90.625" x="1076.0417" y="115.7878">OutputStream</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1045.8333" x2="1171.875" y1="126.7578" y2="126.7578"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1045.8333" x2="1171.875" y1="135.0911" y2="135.0911"/><!--MD5=[875d672907d337d0677dc37f46621af3]
+class S3Output--><rect codeLine="64" fill="#282828" height="83.3781" id="S3Output" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="202.0833" x="1007.8125" y="314.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="202.0833" x="1007.8125" y="314.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="202.0833" x="1007.8125" y="337.1745"/><rect codeLine="64" fill="none" height="83.3781" id="S3Output" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="202.0833" x="1007.8125" y="314.1195"/><ellipse cx="1070.8333" cy="329.8136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1072.7437,334.2387 Q1072.3165,334.4584 1071.8465,334.5683 Q1071.3765,334.6781 1070.8577,334.6781 Q1069.0145,334.6781 1068.044,333.4635 Q1067.0736,332.2489 1067.0736,329.954 Q1067.0736,327.653 1068.044,326.4384 Q1069.0145,325.2238 1070.8577,325.2238 Q1071.3765,325.2238 1071.8526,325.3337 Q1072.3287,325.4435 1072.7437,325.6632 L1072.7437,327.6652 Q1072.2799,327.238 1071.8435,327.0396 Q1071.4071,326.8412 1070.9432,326.8412 Q1069.9544,326.8412 1069.4509,327.6255 Q1068.9473,328.4098 1068.9473,329.954 Q1068.9473,331.4921 1069.4509,332.2764 Q1069.9544,333.0607 1070.9432,333.0607 Q1071.4071,333.0607 1071.8435,332.8623 Q1072.2799,332.664 1072.7437,332.2367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="61.4583" x="1093.75" y="334.5378">S3Output</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1008.8542" x2="1208.8542" y1="345.5078" y2="345.5078"/><polygon fill="#FFFF44" points="1019.2708,375.6694,1023.4375,379.836,1019.2708,384.0027,1015.1042,379.836" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="169.7917" x="1030.7292" y="387.7889">S3Output(S3FileSystemObject)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1008.8542" x2="1065.1042" y1="363.7136" y2="363.7136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="1068.2292" y="367.5232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1152.6042" x2="1208.8542" y1="363.7136" y2="363.7136"/><!--MD5=[63c7117ef1ed2801fbf4c4acd9cc0542]
+class S3Settings--><rect codeLine="70" fill="#282828" height="131.2012" id="S3Settings" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="291.6667" x="1209.8958" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="291.6667" x="1209.8958" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="291.6667" x="1209.8958" y="76.7578"/><rect codeLine="70" fill="none" height="131.2012" id="S3Settings" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="291.6667" x="1209.8958" y="53.7028"/><ellipse cx="1314.0625" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1315.9729,73.822 Q1315.5457,74.0417 1315.0757,74.1516 Q1314.6057,74.2615 1314.0869,74.2615 Q1312.2437,74.2615 1311.2732,73.0469 Q1310.3027,71.8323 1310.3027,69.5374 Q1310.3027,67.2363 1311.2732,66.0217 Q1312.2437,64.8071 1314.0869,64.8071 Q1314.6057,64.8071 1315.0818,64.917 Q1315.5579,65.0269 1315.9729,65.2466 L1315.9729,67.2485 Q1315.509,66.8213 1315.0726,66.6229 Q1314.6362,66.4246 1314.1724,66.4246 Q1313.1836,66.4246 1312.6801,67.2089 Q1312.1765,67.9932 1312.1765,69.5374 Q1312.1765,71.0754 1312.6801,71.8597 Q1313.1836,72.644 1314.1724,72.644 Q1314.6362,72.644 1315.0726,72.4457 Q1315.509,72.2473 1315.9729,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="68.75" x="1336.9792" y="74.1211">S3Settings</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1210.9375" x2="1500.5208" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1210.9375" x2="1500.5208" y1="93.4245" y2="93.4245"/><ellipse cx="1221.3542" cy="104.8828" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="187.5" x="1232.8125" y="111.794">AwsBasicCredentials credentials()</text><ellipse cx="1221.3542" cy="148.5392" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="186.4583" x="1232.8125" y="155.4504">void accessKey(String accessKey)</text><ellipse cx="1221.3542" cy="168.2841" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="259.375" x="1232.8125" y="175.1953">void secretAccessKey(String secretAccessKey)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1210.9375" x2="1321.3542" y1="131.3751" y2="131.3751"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="1324.4792" y="135.1847">(collection)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1390.1042" x2="1500.5208" y1="131.3751" y2="131.3751"/><!--MD5=[7bbb52a41c2cc5ef02fc7d2df424942c]
+reverse link S3FileSystemObject to S3File--><path codeLine="13" d="M528.1771,479.8382 C516.9688,493.2653 504.8958,506.0882 492.1875,517.2445 C452.7604,551.8382 402.1458,580.3903 357.9583,601.4736 " fill="none" id="S3FileSystemObject-backto-S3File" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="522.7292,474.9736,541.4063,463.2132,534.1354,484.057,522.7292,474.9736" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f76195f32b4ac449c76c91bc886a0c03]
+reverse link FileService to S3File--><path codeLine="14" d="M86.7604,397.6195 C99.9063,417.4424 116.0313,441.5882 130.7292,463.0778 C149.7708,490.9111 170.7083,520.9736 189.9583,548.4007 " fill="none" id="FileService-backto-S3File" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="80.625,401.5465,75.2188,380.1507,92.7813,393.5049,80.625,401.5465" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[eb60f0960d7c68a6efd508a9c60fbfe5]
+reverse link BaseWritableResource to S3FileSystemObject--><path codeLine="26" d="M546.5417,163.8695 C554.0833,187.7757 563.7917,218.557 573.2083,248.3903 " fill="none" id="BaseWritableResource-backto-S3FileSystemObject" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="539.4896,165.7653,540.1771,143.7028,553.3958,161.3695,539.4896,165.7653" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ceaecc43979cd7ee74eea303bfc84a19]
+reverse link FileSystemObjectService to S3FileSystemObject--><path codeLine="27" d="M729.6979,161.3278 C714.3021,185.557 694.0104,217.484 674.3646,248.3903 " fill="none" id="FileSystemObjectService-backto-S3FileSystemObject" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="723.5729,157.3695,740.9063,143.7028,735.8854,165.1924,723.5729,157.3695" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ee08872f16e59fcf4b7c391052eb9463]
+reverse link FileSystemService to S3FileSystemService--><path codeLine="40" d="M256.7708,164.6611 C256.7708,204.3486 256.7708,262.5361 256.7708,304.0674 " fill="none" id="FileSystemService-backto-S3FileSystemService" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="249.4792,164.5361,256.7708,143.7028,264.0625,164.5361,249.4792,164.5361" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[5a19b0239772cfd9b3cb770ad4f05bb9]
+link S3FileSystemService to S3File--><path codeLine="41" d="M256.7708,407.6195 C256.7708,445.0882 256.7708,497.2965 256.7708,542.9945 " fill="none" id="S3FileSystemService-to-S3File" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="256.7708,548.2445,260.9375,538.8695,256.7708,543.0361,252.6042,538.8695,256.7708,548.2445" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="56.25" x="260.9375" y="510.5794">provides</text><!--MD5=[95a65a5c1304b794dc980f78fc3e0030]
+link S3FileSystemService to S3Folder--><path codeLine="42" d="M316.1458,407.3903 C337.125,425.109 360.9271,445.0778 382.8125,463.0778 C418.4167,492.3695 457.5313,523.9424 492.9688,552.3382 " fill="none" id="S3FileSystemService-to-S3Folder" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="497.2708,555.7861,492.5449,546.6802,493.2009,552.5362,487.345,553.1921,497.2708,555.7861" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="56.25" x="448.4375" y="510.5794">provides</text><!--MD5=[6fdbc68e806466f627f0067f3cf1f25e]
+reverse link S3FileSystemObject to S3Folder--><path codeLine="50" d="M606.7708,484.359 C606.7708,506.5674 606.7708,529.2653 606.7708,550.2965 " fill="none" id="S3FileSystemObject-backto-S3Folder" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="599.4792,484.1299,606.7708,463.2965,614.0625,484.1299,599.4792,484.1299" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[cb6a2d0ce771b8a6dc09aa50fdb135f9]
+reverse link FolderService to S3Folder--><path codeLine="51" d="M882.9479,397.2445 C868.3125,417.9111 849.2396,442.8903 829.6875,463.0778 C795.2708,498.5986 753.9375,533.6611 716.2604,563.2445 " fill="none" id="FolderService-backto-S3Folder" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="876.9688,393.0882,894.8021,380.0882,888.9688,401.3695,876.9688,393.0882" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[41dcc3aed50789739139f712d6e77736]
+reverse link OutputStream to S3Output--><path codeLine="63" d="M1108.8542,164.7757 C1108.8542,207.7132 1108.8542,272.234 1108.8542,313.9215 " fill="none" id="OutputStream-backto-S3Output" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1101.5625,164.5361,1108.8542,143.7028,1116.1458,164.5361,1101.5625,164.5361" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[a6a6cb50ae1b66f9dc221b56da911026]
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.filesystems.s3fs"
+    
+    abstract BaseWritableResource
+    
+    interface FileSystemService
+    interface FileSystemObjectService
+    interface FileService
+    interface FolderService
+    
+    S3FileSystemObject <|- - S3File
+    FileService <|- - S3File
+    class S3File
+    {
+        - -(constructors)- -
+        +S3File(FilePath)
+        +S3File(String)
+        - -(filesystem)- -
+        +boolean renameTo(S3File that)
+        - -(write)- -
+        +void write(String line)
+    }
+    
+    BaseWritableResource <|- - S3FileSystemObject
+    FileSystemObjectService <|- - S3FileSystemObject
+    abstract class S3FileSystemObject
+    {
+        - -(collection)- -
+        #ListObjectsRequest listRequest(String bucketName, String keyName)
+        - -(filesystem)- -
+        #FilePath path(String scheme, String bucketName, String keyName)
+        - -(filtering)- -
+        +boolean accepts(String path)
+        - -(naming)- -
+        +String name()
+    }
+    
+    FileSystemService <|- - S3FileSystemService
+    S3FileSystemService - -> S3File : "provides"
+    S3FileSystemService - -> S3Folder : "provides"
+    class S3FileSystemService
+    {
+        - -(filesystem)- -
+        +^S3File fileService(FilePath)
+        +^S3Folder folderService(FilePath)
+    }
+    
+    S3FileSystemObject <|- - S3Folder
+    FolderService <|- - S3Folder
+    class S3Folder
+    {
+        - -(constructors)- -
+        +S3Folder(FilePath)
+        +S3Folder(String)
+        - -(filesystem)- -
+        +boolean hasFiles()
+        +boolean hasSubFolders()
+        +boolean renameTo(S3Folder that)
+    }
+    
+    OutputStream <|- - S3Output
+    class S3Output
+    {
+        - -(constructors)- -
+        #S3Output(S3FileSystemObject)
+    }
+    
+    class S3Settings
+    {
+        - -
+        +AwsBasicCredentials credentials()
+        - -(collection)- -
+        +void accessKey(String accessKey)
+        +void secretAccessKey(String secretAccessKey)
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.filesystems.s3fs"
+    
+    abstract BaseWritableResource
+    
+    interface FileSystemService
+    interface FileSystemObjectService
+    interface FileService
+    interface FolderService
+    
+    S3FileSystemObject <|- - S3File
+    FileService <|- - S3File
+    class S3File
+    {
+        - -(constructors)- -
+        +S3File(FilePath)
+        +S3File(String)
+        - -(filesystem)- -
+        +boolean renameTo(S3File that)
+        - -(write)- -
+        +void write(String line)
+    }
+    
+    BaseWritableResource <|- - S3FileSystemObject
+    FileSystemObjectService <|- - S3FileSystemObject
+    abstract class S3FileSystemObject
+    {
+        - -(collection)- -
+        #ListObjectsRequest listRequest(String bucketName, String keyName)
+        - -(filesystem)- -
+        #FilePath path(String scheme, String bucketName, String keyName)
+        - -(filtering)- -
+        +boolean accepts(String path)
+        - -(naming)- -
+        +String name()
+    }
+    
+    FileSystemService <|- - S3FileSystemService
+    S3FileSystemService - -> S3File : "provides"
+    S3FileSystemService - -> S3Folder : "provides"
+    class S3FileSystemService
+    {
+        - -(filesystem)- -
+        +^S3File fileService(FilePath)
+        +^S3Folder folderService(FilePath)
+    }
+    
+    S3FileSystemObject <|- - S3Folder
+    FolderService <|- - S3Folder
+    class S3Folder
+    {
+        - -(constructors)- -
+        +S3Folder(FilePath)
+        +S3Folder(String)
+        - -(filesystem)- -
+        +boolean hasFiles()
+        +boolean hasSubFolders()
+        +boolean renameTo(S3Folder that)
+    }
+    
+    OutputStream <|- - S3Output
+    class S3Output
+    {
+        - -(constructors)- -
+        #S3Output(S3FileSystemObject)
+    }
+    
+    class S3Settings
+    {
+        - -
+        +AwsBasicCredentials credentials()
+        - -(collection)- -
+        +void accessKey(String accessKey)
+        +void secretAccessKey(String secretAccessKey)
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

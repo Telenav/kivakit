@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="665.625px" preserveAspectRatio="none" style="width:495px;height:665px;background:#333333;" version="1.1" viewBox="0 0 495 665" width="495.8333px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="483.3333" x="2.0833" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="460.4167" x="13.5417" y="30.5583">com.telenav.kivakit.filesystems.hdfs.proxy.spi</text><!--MD5=[ee1ef716fcbfa243092ed0dbda08d22c]
+class Remote--><rect codeLine="6" fill="#282828" height="48.055" id="Remote" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="86.4583" x="207.8125" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="86.4583" x="207.8125" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="86.4583" x="207.8125" y="76.7578"/><rect codeLine="6" fill="none" height="48.055" id="Remote" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="86.4583" x="207.8125" y="53.7028"/><ellipse cx="222.3958" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M219.279,66.5588 L219.279,64.9719 L224.705,64.9719 L224.705,66.5588 L222.8923,66.5588 L222.8923,72.4976 L224.705,72.4976 L224.705,74.0845 L219.279,74.0845 L219.279,72.4976 L221.0917,72.4976 L221.0917,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="48.9583" x="239.0625" y="74.1211">Remote</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="208.8542" x2="293.2292" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="208.8542" x2="293.2292" y1="93.4245" y2="93.4245"/><!--MD5=[a43d4aecfac195d0414aef90f85113f2]
+class HdfsProxy--><rect codeLine="8" fill="#282828" height="494.9422" id="HdfsProxy" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="332.2917" x="84.8958" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="332.2917" x="84.8958" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="332.2917" x="84.8958" y="187.1745"/><rect codeLine="8" fill="none" height="494.9422" id="HdfsProxy" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="332.2917" x="84.8958" y="164.1195"/><ellipse cx="210.9375" cy="179.8136" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M207.8206,176.9755 L207.8206,175.3886 L213.2467,175.3886 L213.2467,176.9755 L211.4339,176.9755 L211.4339,182.9142 L213.2467,182.9142 L213.2467,184.5011 L207.8206,184.5011 L207.8206,182.9142 L209.6334,182.9142 L209.6334,176.9755 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="65.625" x="233.8542" y="184.5378">HdfsProxy</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="85.9375" x2="416.1458" y1="195.5078" y2="195.5078"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="85.9375" x2="416.1458" y1="203.8411" y2="203.8411"/><ellipse cx="96.3542" cy="215.2995" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="133.3333" x="107.8125" y="222.2107">long length(String path)</text><ellipse cx="96.3542" cy="235.0444" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="189.5833" x="107.8125" y="241.9556">long openForReading(String path)</text><ellipse cx="96.3542" cy="254.7892" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="184.375" x="107.8125" y="261.7004">long openForWriting(String path)</text><ellipse cx="96.3542" cy="274.5341" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="130.2083" x="107.8125" y="281.4453">String root(String path)</text><ellipse cx="96.3542" cy="318.1905" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="171.875" x="107.8125" y="325.1017">boolean isWritable(String path)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="85.9375" x2="224.4792" y1="301.0264" y2="301.0264"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="227.6042" y="304.836">(checks)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="277.6042" x2="416.1458" y1="301.0264" y2="301.0264"/><ellipse cx="96.3542" cy="361.8469" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="169.7917" x="107.8125" y="368.7581">boolean deleteFile(String path)</text><ellipse cx="96.3542" cy="381.5918" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="186.4583" x="107.8125" y="388.503">boolean deleteFolder(String path)</text><ellipse cx="96.3542" cy="401.3367" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="151.0417" x="107.8125" y="408.2479">boolean exists(String path)</text><ellipse cx="96.3542" cy="421.0815" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="167.7083" x="107.8125" y="427.9928">List&lt;String&gt; files(String path)</text><ellipse cx="96.3542" cy="440.8264" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="184.375" x="107.8125" y="447.7376">List&lt;String&gt; folders(String path)</text><ellipse cx="96.3542" cy="460.5713" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="145.8333" x="107.8125" y="467.4825">boolean isFile(String path)</text><ellipse cx="96.3542" cy="480.3162" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="162.5" x="107.8125" y="487.2274">boolean isFolder(String path)</text><ellipse cx="96.3542" cy="500.061" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="156.25" x="107.8125" y="506.9722">boolean mkdirs(String path)</text><ellipse cx="96.3542" cy="519.8059" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="207.2917" x="107.8125" y="526.7171">List&lt;String&gt; nestedFiles(String path)</text><ellipse cx="96.3542" cy="539.5508" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="215.625" x="107.8125" y="546.462">boolean rename(String from, String to)</text><ellipse cx="96.3542" cy="559.2957" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="283.3333" x="107.8125" y="566.2069">String temporaryFile(String path, String baseName)</text><ellipse cx="96.3542" cy="579.0405" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="300" x="107.8125" y="585.9517">String temporaryFolder(String path, String baseName)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="85.9375" x2="215.625" y1="344.6828" y2="344.6828"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="218.75" y="348.4924">(filesystem)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="286.4583" x2="416.1458" y1="344.6828" y2="344.6828"/><ellipse cx="96.3542" cy="622.6969" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="165.625" x="107.8125" y="629.6082">long lastModified(String path)</text><ellipse cx="96.3542" cy="642.4418" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="291.6667" x="107.8125" y="649.353">boolean lastModified(String pathAsString, long time)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="85.9375" x2="231.7708" y1="605.5328" y2="605.5328"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="32.2917" x="234.8958" y="609.3424">(time)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="270.3125" x2="416.1458" y1="605.5328" y2="605.5328"/><!--MD5=[8809c969adf7995777ce7e02edfcd52d]
+reverse link Remote to HdfsProxy--><path codeLine="7" d="M251.0417,122.9424 C251.0417,134.9528 251.0417,148.8486 251.0417,163.9215 " fill="none" id="Remote-backto-HdfsProxy" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="243.75,122.5986,251.0417,101.7653,258.3333,122.5986,243.75,122.5986" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[4023b6c84d8f307e0dee9963fac153a8]
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.filesystems.hdfs.proxy.spi"
+    
+    interface Remote
+    Remote <|- - HdfsProxy
+    interface HdfsProxy
+    {
+        - -
+        +long length(String path)
+        +long openForReading(String path)
+        +long openForWriting(String path)
+        +String root(String path)
+        - -(checks)- -
+        +boolean isWritable(String path)
+        - -(filesystem)- -
+        +boolean deleteFile(String path)
+        +boolean deleteFolder(String path)
+        +boolean exists(String path)
+        +List<String> files(String path)
+        +List<String> folders(String path)
+        +boolean isFile(String path)
+        +boolean isFolder(String path)
+        +boolean mkdirs(String path)
+        +List<String> nestedFiles(String path)
+        +boolean rename(String from, String to)
+        +String temporaryFile(String path, String baseName)
+        +String temporaryFolder(String path, String baseName)
+        - -(time)- -
+        +long lastModified(String path)
+        +boolean lastModified(String pathAsString, long time)
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.filesystems.hdfs.proxy.spi"
+    
+    interface Remote
+    Remote <|- - HdfsProxy
+    interface HdfsProxy
+    {
+        - -
+        +long length(String path)
+        +long openForReading(String path)
+        +long openForWriting(String path)
+        +String root(String path)
+        - -(checks)- -
+        +boolean isWritable(String path)
+        - -(filesystem)- -
+        +boolean deleteFile(String path)
+        +boolean deleteFolder(String path)
+        +boolean exists(String path)
+        +List<String> files(String path)
+        +List<String> folders(String path)
+        +boolean isFile(String path)
+        +boolean isFolder(String path)
+        +boolean mkdirs(String path)
+        +List<String> nestedFiles(String path)
+        +boolean rename(String from, String to)
+        +String temporaryFile(String path, String baseName)
+        +String temporaryFolder(String path, String baseName)
+        - -(time)- -
+        +long lastModified(String path)
+        +boolean lastModified(String pathAsString, long time)
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

@@ -1,66 +1,65 @@
-# KivaKit Tools Applications - Lexakai &nbsp;&nbsp;![](../../documentation/images/server-16.png)
+# kivakit-service server &nbsp;&nbsp;![](../../documentation/images/server-16.png)
 
-This project documentation index was created by Lexakai. To configure, see  
-[project-home-folder]/documentation/lexakai.properties.
+This module provides port registration services to kivakit-service-client
 
 ![](documentation/images/horizontal-line.png)
 
 ### Index
 
 [**Dependencies**](#dependencies)  
+
 [**Class Diagrams**](#class-diagrams)  
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
+
+### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
+
+[*Dependency Diagram*](documentation/diagrams/dependencies.svg)
+
+#### Maven Dependency
+
+    <dependency>
+        <groupId>com.telenav.kivakit</groupId>
+        <artifactId>${project-artifact-id}</artifactId>
+        <version>0.9.0-SNAPSHOT</version>
+    </dependency>
 
 ![](documentation/images/horizontal-line.png)
 
 [//]: # (start-user-text)
 
 
+
 [//]: # (end-user-text)
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp;  ![](documentation/images/dependencies-40.png)
+### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
 
-[*Dependency Diagram*](documentation/diagrams/dependencies.svg)
+[*Service Registry Server*](documentation/diagrams/diagram-server.svg)  
 
-    <dependency>
-        <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit-service-server</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
-    </dependency>
+### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+[*com.telenav.kivakit.service.registry.server*](documentation/diagrams/com.telenav.kivakit.service.registry.server.svg)  
+[*com.telenav.kivakit.service.registry.server.project*](documentation/diagrams/com.telenav.kivakit.service.registry.server.project.svg)  
+[*com.telenav.kivakit.service.registry.server.rest*](documentation/diagrams/com.telenav.kivakit.service.registry.server.rest.svg)  
+[*com.telenav.kivakit.service.registry.server.webapp*](documentation/diagrams/com.telenav.kivakit.service.registry.server.webapp.svg)  
+[*com.telenav.kivakit.service.registry.server.webapp.pages.home*](documentation/diagrams/com.telenav.kivakit.service.registry.server.webapp.pages.home.svg)  
 
-[*Service Registry Server*](documentation/diagrams/diagram-server.svg)
-
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp;![](documentation/images/box-40.png)
-
-[*com.telenav.tdk.service.registry.server*](documentation/diagrams/com.telenav.tdk.service.registry.server.svg)  
-[*com.telenav.tdk.service.registry.server.project*](documentation/diagrams/com.telenav.tdk.service.registry.server.project.svg)  
-[*com.telenav.tdk.service.registry.server.rest*](documentation/diagrams/com.telenav.tdk.service.registry.server.rest.svg)  
-[*com.telenav.tdk.service.registry.server.webapp*](documentation/diagrams/com.telenav.tdk.service.registry.server.webapp.svg)  
-[*
-com.telenav.tdk.service.registry.server.webapp.pages.home*](documentation/diagrams/com.telenav.tdk.service.registry.server.webapp.pages.home.svg)
-
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
 | Class | Documentation Sections |
 |---|---|
-| [*HomePage*]([javadoc base url here]/com/telenav/tdk/service/registry/server/webapp/pages/home/HomePage.html) |  |  
-| [*ServicePanel*]([javadoc base url here]/com/telenav/tdk/service/registry/server/webapp/pages/home/ServicePanel.html) |  |  
-| [*
-ServiceRegistryRestApplication*]([javadoc base url here]/com/telenav/tdk/service/registry/server/rest/ServiceRegistryRestApplication.html) |  |  
-| [*
-ServiceRegistryRestResource*]([javadoc base url here]/com/telenav/tdk/service/registry/server/rest/ServiceRegistryRestResource.html) |  |  
-| [*ServiceRegistryServer*]([javadoc base url here]/com/telenav/tdk/service/registry/server/ServiceRegistryServer.html) |  |  
-| [*
-ServiceRegistryServerSettings*]([javadoc base url here]/com/telenav/tdk/service/registry/server/ServiceRegistryServerSettings.html) |  |  
-| [*
-ServiceRegistryWebApplication*]([javadoc base url here]/com/telenav/tdk/service/registry/server/webapp/ServiceRegistryWebApplication.html) |  |  
-| [*ServiceRegistryWebPage*]([javadoc base url here]/com/telenav/tdk/service/registry/server/webapp/ServiceRegistryWebPage.html) |  |  
-| [*ServiceServerProject*]([javadoc base url here]/com/telenav/tdk/service/registry/server/project/ServiceServerProject.html) |  |  
+| [*HomePage*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/webapp/pages/home/HomePage.html) |  |  
+| [*ServicePanel*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/webapp/pages/home/ServicePanel.html) |  |  
+| [*ServiceRegistryRestApplication*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/rest/ServiceRegistryRestApplication.html) |  |  
+| [*ServiceRegistryRestResource*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/rest/ServiceRegistryRestResource.html) |  |  
+| [*ServiceRegistryServer*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/ServiceRegistryServer.html) |  |  
+| [*ServiceRegistryServerSettings*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/ServiceRegistryServerSettings.html) |  |  
+| [*ServiceRegistryWebApplication*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/webapp/ServiceRegistryWebApplication.html) |  |  
+| [*ServiceRegistryWebPage*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/webapp/ServiceRegistryWebPage.html) |  |  
+| [*ServiceServerProject*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/project/ServiceServerProject.html) |  |  
 
 [//]: # (start-user-text)
+
 
 
 [//]: # (end-user-text)
@@ -69,6 +68,7 @@ ServiceRegistryWebApplication*]([javadoc base url here]/com/telenav/tdk/service/
 
 ![](documentation/images/horizontal-line.png)
 
-<sub>This documentation was generated by Lexakai on 2021.04.01</sub>    
-<sub>UML diagrams courtesy of PlantUML (http://plantuml.com), distributed unmodified under Apache License, Version 2.0.</sub>
+<sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.05. UML diagrams courtesy
+of [PlantUML](http://plantuml.com).</sub>
 

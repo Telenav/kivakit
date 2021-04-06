@@ -14,9 +14,9 @@ import org.junit.Test;
 public class ResourceTest extends UnitTest
 {
     @Test
-    public void testFactory()
+    public void testResolution()
     {
-        final var properties = Resource.resource("classpath:com/telenav/kivakit/core/resource/ResourceTest.properties");
+        final var properties = Resource.resolve("classpath:com/telenav/kivakit/core/resource/ResourceTest.properties");
         ensureEqual("b", PropertyMap.load(properties).get("a"));
     }
 }

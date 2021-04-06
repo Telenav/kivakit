@@ -9,7 +9,6 @@
     class HdfsFileSystem
     {
         --(filesystem)--
-        +Folder hdfsConfigurationFolder()
         +HdfsFileSystem of(FilePath)
     }
     
@@ -27,6 +26,13 @@
     
     class HdfsProxyServerSettings
     {
+        --
+        +HdfsProxyServerSettings user(UserGroupInformation)
+        --(filesystem)--
+        +ResourceFolder configurationFolder()
+        +HdfsProxyServerSettings configurationFolder(ResourceFolder configuration)
+        --(messaging)--
+        +UserGroupInformation user()
     }
     
 @enduml

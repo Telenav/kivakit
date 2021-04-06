@@ -1,5 +1,6 @@
 package com.telenav.kivakit.filesystems.hdfs;
 
+import com.telenav.kivakit.core.configuration.settings.Settings;
 import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.kernel.KivaKit;
 import com.telenav.kivakit.core.kernel.language.objects.Lazy;
@@ -27,18 +28,15 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 import static com.telenav.kivakit.core.resource.resources.jar.launcher.JarLauncher.ProcessType.CHILD;
-import static com.telenav.kivakit.filesystems.hdfs.HdfsProxyClientSettings.CONTACT_EMAIL;
-import static com.telenav.kivakit.filesystems.hdfs.HdfsProxyClientSettings.HDFS_PROXY_JAR;
 
 /**
  * <b>Not public API</b>
- * <p>
  *
  * @author jonathanl (shibo)
  */
 @UmlNotPublicApi
 @UmlClassDiagram(diagram = DiagramHdfs.class)
-@UmlRelation(label = "configures with", referent = HdfsProxyClientSettings.class)
+@UmlRelation(label = "configures with", referent = HdfsSettings.class)
 public class HdfsProxyClient extends BaseRepeater
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
@@ -61,7 +59,7 @@ public class HdfsProxyClient extends BaseRepeater
 
     private HdfsProxyClient()
     {
-        LOGGER.listenTo(this);
+        listenTo(this);
     }
 
     public Port dataPort()
@@ -108,9 +106,13 @@ public class HdfsProxyClient extends BaseRepeater
         // Find a free port for the child proxy server process to use
         final var client = listenTo(new ServiceRegistryClient());
 
+        final var settings = Settings.require(HdfsSettings.class);
+
+        final var materialized = settings.configurationFolder().materialize();
+
         final var metadata = new ServiceMetadata()
                 .version(HdfsProxy.VERSION)
-                .contactEmail(CONTACT_EMAIL);
+                .contactEmail(settings.contactEmail());
 
         final var rmiObjectService = client.register
                 (
@@ -132,14 +134,18 @@ public class HdfsProxyClient extends BaseRepeater
             dataPort = dataService.get().port();
 
             // download the jar (if need be) and launch it as a child process using the ports
-            // allocated for the current tdk application / process.
-            final var local = Folder.kivakitHome().folder("kivakit-filesystems/hdfs-proxy/target").file("kivakit-hdfs-proxy-" + KivaKit.get().version() + ".jar");
+            // allocated for the current application / process.
+            final var local = Folder.kivakitHome()
+                    .folder("kivakit-filesystems/hdfs-proxy/target")
+                    .file("kivakit-hdfs-proxy-" + KivaKit.get().version() + ".jar");
             final var process = listenTo(new JarLauncher())
                     .source(local)
-                    .source(HDFS_PROXY_JAR)
+                    .source(settings.proxyJar())
                     .arguments(
                             "-rmi-object-port=" + rmiObjectPort.number(),
-                            "-data-port=" + dataPort.number())
+                            "-data-port=" + dataPort.number(),
+                            "-configuration-folder=" + materialized,
+                            "-username=" + settings.username())
                     .processType(CHILD)
                     .run();
 

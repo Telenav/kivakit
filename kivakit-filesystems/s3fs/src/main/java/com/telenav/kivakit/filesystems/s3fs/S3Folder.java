@@ -41,13 +41,6 @@ public class S3Folder extends S3FileSystemObject implements FolderService
     // represents its existence
     private static final FileName METADATA = new FileName(".metadata");
 
-    public static void main(final String[] args)
-    {
-        final var folder = Folder.parse(
-                "s3://com-telenav-nav-user-analytics-dev/osm-squared/map-data/map/bay-sf.2017.01.24.pbf_201702151530/dynamic/");
-        folder.ensureExists();
-    }
-
     public S3Folder(final FilePath path)
     {
         super(path, true);

@@ -7,12 +7,16 @@
 
 package com.telenav.kivakit.core.kernel.data.conversion.string;
 
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.data.conversion.Converter;
 import com.telenav.kivakit.core.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
+import com.telenav.kivakit.core.kernel.logging.Logger;
+import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramDataConversion;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import java.util.function.Function;
 
 /**
  * A bi-directional converter between {@link String} values and values of the given type. The {@link Converter}
@@ -26,7 +30,7 @@ import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramDataConve
 @UmlClassDiagram(diagram = DiagramDataConversion.class)
 public interface StringConverter<Value> extends Converter<String, Value>
 {
-    StringConverter<String> IDENTITY = new BaseStringConverter<String>(Listener.none())
+    StringConverter<String> IDENTITY = new BaseStringConverter<>(Listener.none())
     {
         @Override
         protected String onConvertToObject(final String value)
@@ -34,6 +38,25 @@ public interface StringConverter<Value> extends Converter<String, Value>
             return value;
         }
     };
+
+    Logger LOGGER = LoggerFactory.newLogger();
+
+    static <To> BaseStringConverter<To> create(final Function<String, To> converter)
+    {
+        return create(LOGGER, converter);
+    }
+
+    static <To> BaseStringConverter<To> create(final Listener listener, final Function<String, To> converter)
+    {
+        return new BaseStringConverter<>(listener)
+        {
+            @Override
+            protected To onConvertToObject(final String value)
+            {
+                return converter.apply(value);
+            }
+        };
+    }
 
     /**
      * @return The given string list with each string converted to an object using this converter

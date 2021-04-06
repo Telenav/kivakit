@@ -1,0 +1,17 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.filesystems.hdfs.proxy.converters"
+    
+    abstract BaseStringConverter
+    
+    BaseStringConverter <|-- UserGroupInformationConverter
+    class UserGroupInformationConverter
+    {
+        --(constructors)--
+        +UserGroupInformationConverter(Listener)
+    }
+    
+@enduml
+

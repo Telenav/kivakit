@@ -2,7 +2,7 @@
 
     !include ../lexakai.theme
     
-    title "com.telenav.tdk.service-server"
+    title "kivakit-service-server"
     
     artifact kryo
     artifact minlog
@@ -19,29 +19,29 @@
     artifact gson
     artifact wicket_jquery_ui_core
     artifact wicket_jquery_ui
-    artifact com_telenav_lexakai_annotations
-    artifact com_telenav_tdk_build_metadata
-    artifact com_telenav_tdk_core_application
-    artifact com_telenav_tdk_core_collections
-    artifact com_telenav_tdk_core_commandline
-    artifact com_telenav_tdk_core_configuration
-    artifact com_telenav_tdk_core_kernel
-    artifact com_telenav_tdk_core_network_core
-    artifact com_telenav_tdk_core_network_http
-    artifact com_telenav_tdk_core_resource
-    artifact com_telenav_tdk_core_security
-    artifact com_telenav_tdk_core_test
-    artifact com_telenav_tdk_serialization_core
-    artifact com_telenav_tdk_serialization_jersey_json
-    artifact com_telenav_tdk_serialization_json
-    artifact com_telenav_tdk_serialization_kryo
-    artifact com_telenav_tdk_service_client
-    artifact com_telenav_tdk_service_registry
-    artifact com_telenav_tdk_service_server
-    artifact com_telenav_tdk_web_jersey
-    artifact com_telenav_tdk_web_jetty
-    artifact com_telenav_tdk_web_swagger
-    artifact com_telenav_tdk_web_wicket
+    artifact kivakit_build_metadata
+    artifact kivakit_core_application
+    artifact kivakit_core_collections
+    artifact kivakit_core_commandline
+    artifact kivakit_core_configuration
+    artifact kivakit_core_kernel
+    artifact kivakit_core_network_core
+    artifact kivakit_core_network_http
+    artifact kivakit_core_resource
+    artifact kivakit_core_security
+    artifact kivakit_core_serialization_core
+    artifact kivakit_core_serialization_jersey_json
+    artifact kivakit_core_serialization_json
+    artifact kivakit_core_serialization_kryo
+    artifact kivakit_core_test
+    artifact kivakit_service_client
+    artifact kivakit_service_registry
+    artifact kivakit_service_server
+    artifact kivakit_web_jersey
+    artifact kivakit_web_jetty
+    artifact kivakit_web_swagger
+    artifact kivakit_web_wicket
+    artifact lexakai_annotations
     artifact commons_codec
     artifact commons_fileupload
     artifact commons_io
@@ -100,52 +100,6 @@
     artifact slf4j_api
     artifact swagger_ui
     artifact snakeyaml
-    com_telenav_tdk_core_application --> com_telenav_tdk_core_commandline
-    com_telenav_tdk_core_application --> com_telenav_tdk_core_configuration
-    com_telenav_tdk_core_kernel --> annotations
-    com_telenav_tdk_core_kernel --> com_telenav_lexakai_annotations
-    com_telenav_tdk_core_kernel --> com_telenav_tdk_build_metadata
-    com_telenav_tdk_core_network_core --> com_telenav_tdk_core_security
-    com_telenav_tdk_core_network_http --> httpclient
-    com_telenav_tdk_core_resource --> com_telenav_tdk_core_collections
-    com_telenav_tdk_core_security --> com_telenav_tdk_core_test
-    com_telenav_tdk_core_test --> com_telenav_tdk_serialization_core
-    com_telenav_tdk_core_test --> com_telenav_tdk_serialization_kryo
-    com_telenav_tdk_core_test --> junit
-    com_telenav_tdk_serialization_jersey_json --> com_telenav_tdk_serialization_json
-    com_telenav_tdk_serialization_json --> gson
-    com_telenav_tdk_serialization_kryo --> kryo
-    com_telenav_tdk_serialization_kryo --> kryo_serializers
-    com_telenav_tdk_service_client --> com_telenav_tdk_core_network_http
-    com_telenav_tdk_service_client --> jersey_client
-    com_telenav_tdk_service_client --> jersey_hk2
-    com_telenav_tdk_service_client --> jersey_media_json_jackson
-    com_telenav_tdk_service_registry --> com_telenav_tdk_core_application
-    com_telenav_tdk_service_registry --> com_telenav_tdk_core_network_core
-    com_telenav_tdk_service_registry --> com_telenav_tdk_serialization_jersey_json
-    com_telenav_tdk_service_server --> com_telenav_tdk_service_client
-    com_telenav_tdk_service_server --> com_telenav_tdk_service_registry
-    com_telenav_tdk_service_server --> com_telenav_tdk_web_jersey
-    com_telenav_tdk_service_server --> com_telenav_tdk_web_jetty
-    com_telenav_tdk_service_server --> com_telenav_tdk_web_swagger
-    com_telenav_tdk_service_server --> com_telenav_tdk_web_wicket
-    com_telenav_tdk_service_server --> jdk_serializable_functional
-    com_telenav_tdk_service_server --> wicket_extensions
-    com_telenav_tdk_service_server --> wicket_jquery_ui
-    com_telenav_tdk_service_server --> wicket_jquery_ui_core
-    com_telenav_tdk_web_jersey --> jersey_container_servlet
-    com_telenav_tdk_web_jetty --> com_telenav_tdk_core_kernel
-    com_telenav_tdk_web_jetty --> jetty_server
-    com_telenav_tdk_web_jetty --> jetty_webapp
-    com_telenav_tdk_web_swagger --> classgraph
-    com_telenav_tdk_web_swagger --> com_telenav_tdk_core_resource
-    com_telenav_tdk_web_swagger --> swagger_annotations
-    com_telenav_tdk_web_swagger --> swagger_core
-    com_telenav_tdk_web_swagger --> swagger_jaxrs2
-    com_telenav_tdk_web_swagger --> swagger_models
-    com_telenav_tdk_web_swagger --> swagger_ui
-    com_telenav_tdk_web_wicket --> wicket_core
-    com_telenav_tdk_web_wicket --> wicket_util
     hk2_locator --> aopalliance_repackaged
     hk2_locator --> hk2_api
     hk2_locator --> hk2_utils
@@ -178,6 +132,52 @@
     jetty_webapp --> jetty_servlet
     jetty_webapp --> jetty_xml
     junit --> hamcrest_core
+    kivakit_core_application --> kivakit_core_commandline
+    kivakit_core_application --> kivakit_core_configuration
+    kivakit_core_collections --> kivakit_core_serialization_kryo
+    kivakit_core_commandline --> kivakit_core_kernel
+    kivakit_core_kernel --> annotations
+    kivakit_core_kernel --> junit
+    kivakit_core_kernel --> kivakit_build_metadata
+    kivakit_core_kernel --> lexakai_annotations
+    kivakit_core_network_core --> kivakit_core_security
+    kivakit_core_network_http --> httpclient
+    kivakit_core_resource --> kivakit_core_collections
+    kivakit_core_resource --> kivakit_core_serialization_core
+    kivakit_core_security --> kivakit_core_test
+    kivakit_core_serialization_jersey_json --> kivakit_core_serialization_json
+    kivakit_core_serialization_json --> gson
+    kivakit_core_serialization_kryo --> kryo
+    kivakit_core_serialization_kryo --> kryo_serializers
+    kivakit_service_client --> jersey_client
+    kivakit_service_client --> jersey_hk2
+    kivakit_service_client --> jersey_media_json_jackson
+    kivakit_service_client --> kivakit_core_network_http
+    kivakit_service_registry --> kivakit_core_application
+    kivakit_service_registry --> kivakit_core_network_core
+    kivakit_service_registry --> kivakit_core_serialization_jersey_json
+    kivakit_service_server --> jdk_serializable_functional
+    kivakit_service_server --> kivakit_service_client
+    kivakit_service_server --> kivakit_service_registry
+    kivakit_service_server --> kivakit_web_jersey
+    kivakit_service_server --> kivakit_web_jetty
+    kivakit_service_server --> kivakit_web_swagger
+    kivakit_service_server --> kivakit_web_wicket
+    kivakit_service_server --> wicket_extensions
+    kivakit_service_server --> wicket_jquery_ui
+    kivakit_service_server --> wicket_jquery_ui_core
+    kivakit_web_jersey --> jersey_container_servlet
+    kivakit_web_jetty --> jetty_server
+    kivakit_web_jetty --> jetty_webapp
+    kivakit_web_swagger --> classgraph
+    kivakit_web_swagger --> kivakit_core_resource
+    kivakit_web_swagger --> swagger_annotations
+    kivakit_web_swagger --> swagger_core
+    kivakit_web_swagger --> swagger_jaxrs2
+    kivakit_web_swagger --> swagger_models
+    kivakit_web_swagger --> swagger_ui
+    kivakit_web_wicket --> wicket_core
+    kivakit_web_wicket --> wicket_util
     kryo --> minlog
     kryo --> objenesis
     kryo --> reflectasm

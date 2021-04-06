@@ -7,6 +7,7 @@
 
 package com.telenav.kivakit.filesystems.hdfs.proxy;
 
+import com.telenav.kivakit.core.configuration.settings.Settings;
 import com.telenav.kivakit.core.filesystem.File;
 import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.filesystem.spi.FileSystemService;
@@ -16,6 +17,7 @@ import com.telenav.kivakit.core.kernel.language.vm.JavaVirtualMachine;
 import com.telenav.kivakit.core.kernel.logging.Logger;
 import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.kernel.messaging.Debug;
+import com.telenav.kivakit.core.resource.ResourceFolder;
 import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.filesystems.hdfs.proxy.project.lexakai.diagrams.DiagramHdfsProxy;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -28,6 +30,7 @@ import java.security.PrivilegedExceptionAction;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 
 /**
@@ -68,7 +71,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail
  * hdfs-site.xml file wins.
  * <ol>
  *     <li>The folder specified by the system property KIVAKIT_HDFS_CONFIGURATION_FOLDER</li>
- *     <li>~/.tdk/[version]/configuration/filesystem/hdfs</li>
+ *     <li>~/.kivakit/[version]/configuration/filesystem/hdfs</li>
  *     <li>Built-in site configurations in this package under the configuration sub-package.
  * <p>
  *         At present these clusters are built-in and more can easily be added for convenience:
@@ -112,17 +115,6 @@ class HdfsFileSystem
         cluster(root);
     }
 
-    /**
-     * @return Folder containing HDFS site configuration folders
-     */
-    public Folder hdfsConfigurationFolder()
-    {
-        return Folder.kivakitConfigurationFolder()
-                .folder("filesystem")
-                .folder("hdfs")
-                .mkdirs();
-    }
-
     @Override
     public String toString()
     {
@@ -150,7 +142,8 @@ class HdfsFileSystem
         {
             try
             {
-                fileSystem = HdfsProxyServerSettings.HDFS_USER.doAs((PrivilegedExceptionAction<FileSystem>) () ->
+                final var settings = Settings.require(HdfsProxyServerSettings.class);
+                fileSystem = settings.user().doAs((PrivilegedExceptionAction<FileSystem>) () ->
                 {
                     DEBUG.trace("Initializing HDFS at $", root);
                     final var uri = URI.create(root.toString());
@@ -177,42 +170,47 @@ class HdfsFileSystem
 
     private Configuration hdfsConfiguration(final FilePath path)
     {
-        // Get relative path to configuration file
-        final var cluster = cluster(path);
-        final var site = cluster + "/hdfs-site.xml";
-
         // If the user defines KIVAKIT_HDFS_CONFIGURATION_FOLDER,
-        Folder folder = null;
+        ResourceFolder configurationFolder = null;
         final var property = JavaVirtualMachine.property("KIVAKIT_HDFS_CONFIGURATION_FOLDER");
         if (property != null)
         {
             // see if the folder exists or can be created
-            folder = Folder.parse(property).mkdirs();
-            if (!folder.exists())
+            final var folder = Folder.parse(property);
+            if (folder != null)
             {
-                LOGGER.warning("HDFS configuration folder $ does not exist and cannot be created", folder);
+                folder.mkdirs();
+                configurationFolder = folder;
+            }
+            else
+            {
+                fail("HDFS configuration folder $ does not exist", folder);
             }
         }
 
-        // If the user didn't provide an explicit configuration folder
-        if (folder == null)
+        // If the user didn't provide an explicit configuration folder on the command line,
+        if (configurationFolder == null)
         {
-            // then try the KIVAKIT configuration folder
-            folder = hdfsConfigurationFolder();
+            // then try the resource specified in the HdfsProxyServerSettings configuration,
+            final var settings = Settings.require(HdfsProxyServerSettings.class);
+            configurationFolder = settings.configurationFolder();
         }
 
-        // If a configuration file exists,
+        ensureNotNull(configurationFolder, "Cannot initialize HDFS as no HdfsProxyServerSettings was provided");
+
+        // Get resource folder holding site configuration file
+        final var siteConfiguration = configurationFolder
+                .folder(cluster(path))
+                .resource("/hdfs-site.xml");
         final var configuration = new Configuration();
-        final var file = folder.file(site);
-        if (file.exists())
+        if (siteConfiguration.exists())
         {
             // try to load site configuration from file
-            configuration.addResource(file.openForReading());
+            configuration.addResource(siteConfiguration.openForReading());
         }
         else
         {
-            // otherwise try to load built-in configuration from classpath
-            configuration.addResource(getClass().getResourceAsStream("configuration/" + site));
+            fail("Site configuration resource $ does not exist", siteConfiguration);
         }
 
         return configuration;

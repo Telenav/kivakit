@@ -6,7 +6,12 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 import com.telenav.kivakit.core.filesystem.File;
+import com.telenav.kivakit.core.filesystem.Folder;
+import com.telenav.kivakit.core.filesystem.spi.FileSystemService;
+import com.telenav.kivakit.core.resource.resources.packaged.Package;
 import com.telenav.kivakit.core.resource.resources.packaged.PackageResource;
+import com.telenav.kivakit.core.resource.spi.ResourceFolderResolver;
+import com.telenav.kivakit.core.resource.spi.ResourceResolver;
 
 open module kivakit.core.resource
 {
@@ -14,11 +19,12 @@ open module kivakit.core.resource
     requires transitive kivakit.core.serialization.core;
     requires transitive kivakit.core.collections;
 
-    uses com.telenav.kivakit.core.filesystem.spi.FileSystemService;
-    uses com.telenav.kivakit.core.resource.spi.ResourceFactoryService;
+    uses FileSystemService;
+    uses ResourceResolver;
+    uses ResourceFolderResolver;
 
-    provides com.telenav.kivakit.core.resource.spi.ResourceFactoryService
-            with File.Factory, PackageResource.Factory;
+    provides ResourceResolver with File.Resolver, PackageResource.Resolver;
+    provides ResourceFolderResolver with Folder.Resolver, Package.Resolver;
 
     exports com.telenav.kivakit.core.filesystem.spi;
     exports com.telenav.kivakit.core.filesystem;

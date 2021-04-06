@@ -26,7 +26,7 @@
 
         <dependency>
             <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-core-resource</artifactId>
+            <artifactId>kivakit-core-configuration</artifactId>
             <version>${kivakit.version}</version>
         </dependency>
 

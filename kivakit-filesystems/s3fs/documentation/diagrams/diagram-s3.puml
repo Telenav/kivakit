@@ -55,8 +55,6 @@
         --(constructors)--
         +S3Folder(FilePath)
         +S3Folder(String)
-        --
-        +void main(String[] args)
         --(filesystem)--
         +boolean hasFiles()
         +boolean hasSubFolders()

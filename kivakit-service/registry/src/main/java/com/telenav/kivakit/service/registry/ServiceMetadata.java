@@ -21,7 +21,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * <ul>
  *     <li>{@link #description()} - Description of the service</li>
  *     <li>{@link #version()} - The service version</li>
- *     <li>{@link #tdkVersion()} - The KivaKit version that the service is running on</li>
+ *     <li>{@link #kivakitVersion()} - The KivaKit version that the service is running on</li>
  *     <li>{@link #contactEmail()} - An email to contact the service developer</li>
  * </ul>
  *
@@ -44,8 +44,8 @@ public class ServiceMetadata
 
     @JsonProperty
     @Schema(description = "The version of the KivaKit that the service is running, if any")
-    @UmlAggregation(label = "tdk version")
-    private Version tdkVersion;
+    @UmlAggregation(label = "kivakit version")
+    private Version kivakitVersion;
 
     @JsonProperty
     @Schema(description = "An email address to which concerns about the service can be directed",
@@ -76,15 +76,15 @@ public class ServiceMetadata
         return description;
     }
 
-    public ServiceMetadata tdkVersion(final Version version)
+    public ServiceMetadata kivakitVersion(final Version version)
     {
-        tdkVersion = version;
+        kivakitVersion = version;
         return this;
     }
 
-    public Version tdkVersion()
+    public Version kivakitVersion()
     {
-        return tdkVersion;
+        return kivakitVersion;
     }
 
     public Version version()

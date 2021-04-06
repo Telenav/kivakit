@@ -47,12 +47,9 @@ public class Settings
 
     private static final Debug DEBUG = new Debug(LOGGER);
 
-    /**
-     * @return The settings object of the given type
-     */
-    public static <T> T require(final Class<T> settingsType)
+    public static void register(final Object settings)
     {
-        return require(settingsType, PackagePath.packagePath(settingsType));
+        Lookup.global().register(settings);
     }
 
     /**
@@ -62,6 +59,14 @@ public class Settings
     public static <T> T require(final Class<T> settingsType, final Package defaultSettings)
     {
         return require(settingsType, defaultSettings.path());
+    }
+
+    /**
+     * @return The settings object of the given type
+     */
+    public static <T> T require(final Class<T> settingsType)
+    {
+        return require(settingsType, PackagePath.packagePath(settingsType));
     }
 
     /**

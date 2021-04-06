@@ -145,7 +145,7 @@
                                     <target name = "Install ${jar.name}">
                                         <echo message = "Installing jar ${jar.name}.jar"/>
                                         <copy file = "${project.basedir}/target/${jar.name}.jar"
-                                              tofile = "${env.HOME}/.tdk/${kivakit.version}/temporary/launcher/${jar.name}.jar"
+                                              tofile = "${env.HOME}/.kivakit/${kivakit.version}/temporary/launcher/${jar.name}.jar"
                                               verbose = "true"/>
                                         <copy file = "${project.basedir}/target/${jar.name}.jar"
                                               tofile = "${env.KIVAKIT_HOME}/build/docker/kivakit-service-registry/${jar.name}.jar"

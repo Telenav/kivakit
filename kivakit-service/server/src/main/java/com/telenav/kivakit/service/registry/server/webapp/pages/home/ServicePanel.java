@@ -50,7 +50,7 @@ public class ServicePanel extends Panel
         add(new Label("memory-used", health::usedMemory));
         add(new Label("memory-maximum", health::maximumMemory));
         add(new Label("memory-use", () -> (int) health.memoryUse()));
-        add(new Label("kivakit-version", () -> metadata.tdkVersion().toString()));
+        add(new Label("kivakit-version", () -> metadata.kivakitVersion().toString()));
         add(new Label("version", () -> metadata.version().toString()));
         add(new Label("contact-email", metadata::contactEmail));
         add(new Label("critical-alerts", () -> health.count("CriticalAlert")));

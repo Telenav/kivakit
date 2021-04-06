@@ -7,7 +7,7 @@ reverse link Server to ServiceRegistryServer--><path codeLine="6" d="M163.5208,1
 link ServiceRegistryServer to ServiceRegistry--><path codeLine="7" d="M63.5104,395.8695 C42.3021,420.3695 22.875,448.5778 11.4375,478.7028 C7.8229,488.2236 6.25,492.859 11.4375,501.6195 C18.3125,513.2236 28.6458,522.5049 40.0938,529.8695 " fill="none" id="ServiceRegistryServer-to-ServiceRegistry" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="44.6979,532.7028,38.91,524.2321,40.2663,529.9665,34.5319,531.3227,44.6979,532.7028" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="45.8333" x="15.6042" y="494.9544">creates</text><!--MD5=[c2641deb04fad1a1176fd4cdc76acd93]
 link ServiceRegistryServer to ServiceRegistry--><path codeLine="8" d="M113.5521,447.6715 C111.0521,458.0778 108.9063,468.5049 107.2708,478.7028 C104.7083,494.7236 105.2708,512.8382 106.5729,527.484 " fill="none" id="ServiceRegistryServer-to-ServiceRegistry-1" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="107.0833,532.7132,110.3213,522.9784,106.5783,527.5294,102.0273,523.7864,107.0833,532.7132" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="56.25" x="111.4375" y="494.9544">searches</text><!--MD5=[c2641deb04fad1a1176fd4cdc76acd93]
 link ServiceRegistryServer to ServiceRegistry--><path codeLine="9" d="M189.1979,447.4736 C187.8854,466.2445 183.9479,484.807 176.0208,501.6195 C171.0417,512.182 162.875,521.3903 153.9792,529.0674 " fill="none" id="ServiceRegistryServer-to-ServiceRegistry-2" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="149.5521,532.7132,159.4398,529.9775,153.5751,529.4054,154.1473,523.5407,149.5521,532.7132" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="52.0833" x="187.4792" y="494.9544">updates</text><!--MD5=[9e57db715d09d0af946ad0a541f38063]
-link ServiceRegistryServer to ServiceRegistryStore--><path codeLine="10" d="M251.1042,447.5361 C270.4063,478.4424 288.875,508.0049 301.625,528.4007 " fill="none" id="ServiceRegistryServer-to-ServiceRegistryStore" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="304.4167,532.8695,302.972,522.7125,301.6522,528.4553,295.9094,527.1355,304.4167,532.8695" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="69.7917" x="285.3958" y="494.9544">persists to</text><!--MD5=[acf1a91bbf22bd51a4d7125e604b22f5]
+link ServiceRegistryServer to ServiceRegistryStore--><path codeLine="10" d="M251.1042,447.5361 C270.4063,478.4424 288.875,508.0049 301.625,528.4007 " fill="none" id="ServiceRegistryServer-to-ServiceRegistryStore" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="304.4167,532.8695,302.972,522.7125,301.6522,528.4553,295.9094,527.1355,304.4167,532.8695" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="69.7917" x="285.3958" y="494.9544">persists to</text><!--MD5=[2c3425a74175a7b6689570ed7f08d9b5]
 @startuml
 
     !include ../lexakai.theme
@@ -417,10 +417,10 @@ skinparam stack {
     
 @enduml
 
-PlantUML version 1.2021.3(Mon Mar 22 09:53:19 MST 2021)
-(APACHE source distribution)
-Java Runtime: OpenJDK Runtime Environment
-JVM: OpenJDK 64-Bit Server VM
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
 Default Encoding: UTF-8
 Language: en
 Country: US

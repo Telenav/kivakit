@@ -1,0 +1,24 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.service.registry.project"
+    
+    KryoTypes <|-- ServiceRegistryKryoTypes
+    class ServiceRegistryKryoTypes
+    {
+        --(constructors)--
+        +ServiceRegistryKryoTypes()
+    }
+    
+    Project <|-- ServiceRegistryProject
+    class ServiceRegistryProject
+    {
+        --(serialization)--
+        +SerializationSessionFactory sessionFactory()
+        --(service)--
+        +ServiceRegistryProject get()
+    }
+    
+@enduml
+

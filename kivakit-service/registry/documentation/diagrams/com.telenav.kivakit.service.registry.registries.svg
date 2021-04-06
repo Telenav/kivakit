@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="483.3333px" preserveAspectRatio="none" style="width:483px;height:483px;background:#333333;" version="1.1" viewBox="0 0 483 483" width="483.3333px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="470.8333" x="2.0833" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="447.9167" x="13.5417" y="30.5583">com.telenav.kivakit.service.registry.registries</text><!--MD5=[fdc537bdacd3d558c33d945e3b565ed7]
+class BaseServiceRegistry--><rect codeLine="13" fill="#282828" height="146.7794" id="BaseServiceRegistry" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="328.125" x="76.5625" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="328.125" x="76.5625" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="328.125" x="76.5625" y="187.1745"/><rect codeLine="13" fill="none" height="146.7794" id="BaseServiceRegistry" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="328.125" x="76.5625" y="164.1195"/><ellipse cx="163.5417" cy="179.8136" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M163.6556,176.5157 L162.8072,180.245 L164.5101,180.245 Z M162.557,174.8678 L164.7603,174.8678 L167.2201,183.9803 L165.4195,183.9803 L164.858,181.7281 L162.4471,181.7281 L161.8978,183.9803 L160.0972,183.9803 Z " fill="#000000"/><rect fill="#F24D5C" height="6.25" style="stroke:#C82930;stroke-width:1.0416666666666667;" width="6.25" x="185.4167" y="176.1678"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="128.125" x="197.9167" y="184.5378">BaseServiceRegistry</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="77.6042" x2="403.6458" y1="195.5078" y2="195.5078"/><ellipse cx="88.0208" cy="230.8777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="118.75" x="99.4792" y="237.7889">BaseServiceRegistry()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="77.6042" x2="196.875" y1="213.7136" y2="213.7136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="200" y="217.5232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="284.375" x2="403.6458" y1="213.7136" y2="213.7136"/><ellipse cx="88.0208" cy="274.5341" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="120.8333" x="99.4792" y="281.4453">ServiceRegistry load()</text><ellipse cx="88.0208" cy="294.279" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="295.8333" x="99.4792" y="301.1902">BaseServiceRegistry updater(ServiceRegistryUpdater)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="77.6042" x2="213.5417" y1="257.37" y2="257.37"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="47.9167" x="216.6667" y="261.1796">(service)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="267.7083" x2="403.6458" y1="257.37" y2="257.37"/><!--MD5=[762aa3d0df6a9d47bd8e105afbd066b5]
+class BaseRepeater--><rect codeLine="7" fill="#282828" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="95.3125" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="95.3125" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="95.3125" y="76.7578"/><rect codeLine="7" fill="none" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="95.3125" y="53.7028"/><ellipse cx="109.8958" cy="69.397" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M110.0098,66.099 L109.1614,69.8283 L110.8643,69.8283 Z M108.9111,64.4511 L111.1145,64.4511 L113.5742,73.5636 L111.7737,73.5636 L111.2122,71.3114 L108.8013,71.3114 L108.252,73.5636 L106.4514,73.5636 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="86.4583" x="126.5625" y="74.1211">BaseRepeater</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="96.3542" x2="218.2292" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="96.3542" x2="218.2292" y1="93.4245" y2="93.4245"/><!--MD5=[c17517e84f87e33d8c5ecd7268aea74c]
+class ServiceRegistry--><rect codeLine="9" fill="#282828" height="48.055" id="ServiceRegistry" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="135.4167" x="256.25" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="135.4167" x="256.25" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="135.4167" x="256.25" y="76.7578"/><rect codeLine="9" fill="none" height="48.055" id="ServiceRegistry" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="135.4167" x="256.25" y="53.7028"/><ellipse cx="270.8333" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M267.7165,66.5588 L267.7165,64.9719 L273.1425,64.9719 L273.1425,66.5588 L271.3298,66.5588 L271.3298,72.4976 L273.1425,72.4976 L273.1425,74.0845 L267.7165,74.0845 L267.7165,72.4976 L269.5292,72.4976 L269.5292,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="97.9167" x="287.5" y="74.1211">ServiceRegistry</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="257.2917" x2="390.625" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="257.2917" x2="390.625" y1="93.4245" y2="93.4245"/><!--MD5=[9ab40a7831fcc45f7a44c2a283d819a1]
+class LocalServiceRegistry--><rect codeLine="23" fill="#282828" height="103.123" id="LocalServiceRegistry" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="180.2083" x="36.9792" y="373.4945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="180.2083" x="36.9792" y="373.4945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="180.2083" x="36.9792" y="396.5495"/><rect codeLine="23" fill="none" height="103.123" id="LocalServiceRegistry" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="180.2083" x="36.9792" y="373.4945"/><ellipse cx="51.5625" cy="389.1886" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M53.4729,393.6137 Q53.0457,393.8334 52.5757,393.9433 Q52.1057,394.0531 51.5869,394.0531 Q49.7437,394.0531 48.7732,392.8385 Q47.8027,391.6239 47.8027,389.329 Q47.8027,387.028 48.7732,385.8134 Q49.7437,384.5988 51.5869,384.5988 Q52.1057,384.5988 52.5818,384.7087 Q53.0579,384.8185 53.4729,385.0382 L53.4729,387.0402 Q53.009,386.613 52.5726,386.4146 Q52.1362,386.2162 51.6724,386.2162 Q50.6836,386.2162 50.1801,387.0005 Q49.6765,387.7848 49.6765,389.329 Q49.6765,390.8671 50.1801,391.6514 Q50.6836,392.4357 51.6724,392.4357 Q52.1362,392.4357 52.5726,392.2373 Q53.009,392.039 53.4729,391.6117 Z " fill="#000000"/><rect fill="#F24D5C" height="6.25" style="stroke:#C82930;stroke-width:1.0416666666666667;" width="6.25" x="67.1875" y="385.5428"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="131.25" x="79.6875" y="393.9128">LocalServiceRegistry</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="38.0208" x2="216.1458" y1="404.8828" y2="404.8828"/><polygon fill="#FFFF44" points="48.4375,435.0444,52.6042,439.211,48.4375,443.3777,44.2708,439.211" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="122.9167" x="59.8958" y="447.1639">LocalServiceRegistry()</text><ellipse cx="48.4375" cy="459.9976" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="137.5" x="59.8958" y="466.9088">LocalServiceRegistry(int)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="38.0208" x2="83.3333" y1="423.0886" y2="423.0886"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="86.4583" y="426.8982">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="170.8333" x2="216.1458" y1="423.0886" y2="423.0886"/><!--MD5=[7b8e7b9bb3af2391523efe72a7062fe0]
+class NetworkServiceRegistry--><rect codeLine="31" fill="#282828" height="48.055" id="NetworkServiceRegistry" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="201.0417" x="253.6458" y="401.0986"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="201.0417" x="253.6458" y="401.0986"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="201.0417" x="253.6458" y="424.1536"/><rect codeLine="31" fill="none" height="48.055" id="NetworkServiceRegistry" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="201.0417" x="253.6458" y="401.0986"/><ellipse cx="268.2292" cy="416.7928" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M270.1396,421.2179 Q269.7123,421.4376 269.2424,421.5474 Q268.7724,421.6573 268.2536,421.6573 Q266.4103,421.6573 265.4399,420.4427 Q264.4694,419.2281 264.4694,416.9332 Q264.4694,414.6322 265.4399,413.4176 Q266.4103,412.203 268.2536,412.203 Q268.7724,412.203 269.2485,412.3128 Q269.7245,412.4227 270.1396,412.6424 L270.1396,414.6444 Q269.6757,414.2171 269.2393,414.0188 Q268.8029,413.8204 268.339,413.8204 Q267.3503,413.8204 266.8467,414.6047 Q266.3432,415.389 266.3432,416.9332 Q266.3432,418.4713 266.8467,419.2556 Q267.3503,420.0399 268.339,420.0399 Q268.8029,420.0399 269.2393,419.8415 Q269.6757,419.6431 270.1396,419.2159 Z " fill="#000000"/><rect fill="#F24D5C" height="6.25" style="stroke:#C82930;stroke-width:1.0416666666666667;" width="6.25" x="283.8542" y="413.147"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="152.0833" x="296.3542" y="421.5169">NetworkServiceRegistry</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="254.6875" x2="453.6458" y1="432.487" y2="432.487"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="254.6875" x2="453.6458" y1="440.8203" y2="440.8203"/><!--MD5=[dd855ffa3b4f0a19cb3d6358f72a517e]
+reverse link BaseRepeater to BaseServiceRegistry--><path codeLine="11" d="M179.2396,120.2757 C186.3229,133.6715 194.3854,148.9424 202.2813,163.9111 " fill="none" id="BaseRepeater-backto-BaseServiceRegistry" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="172.6875,123.4736,169.4063,101.6507,185.5833,116.6715,172.6875,123.4736" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[912f9de222e3eff479660cfba9ed6d94]
+reverse link ServiceRegistry to BaseServiceRegistry--><path codeLine="12" d="M302.0104,120.2757 C294.9271,133.6715 286.8646,148.9424 278.9688,163.9111 " fill="none" id="ServiceRegistry-backto-BaseServiceRegistry" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="295.6667,116.6715,311.8438,101.6507,308.5625,123.4736,295.6667,116.6715" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[906ba7efb0e52e8d77933dbedc2bf656]
+reverse link BaseServiceRegistry to LocalServiceRegistry--><path codeLine="22" d="M185.3333,328.8903 C175.9688,344.182 166.5521,359.557 158.1042,373.359 " fill="none" id="BaseServiceRegistry-backto-LocalServiceRegistry" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="179.1458,325.0361,196.2396,311.0778,191.5729,332.6611,179.1458,325.0361" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7d96e5f02ee82538a154e985ae58dc4b]
+reverse link BaseServiceRegistry to NetworkServiceRegistry--><path codeLine="30" d="M295.9167,328.8903 C312.2083,355.484 328.6563,382.359 339.9063,400.7236 " fill="none" id="BaseServiceRegistry-backto-NetworkServiceRegistry" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="289.6771,332.6611,285.0104,311.0778,302.1042,325.0361,289.6771,332.6611" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[67edf2d1df690f64e26e188bd4524553]
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.service.registry.registries"
+    
+    abstract BaseServiceRegistry
+    abstract BaseRepeater
+    
+    interface ServiceRegistry
+    
+    BaseRepeater <|- - BaseServiceRegistry
+    ServiceRegistry <|- - BaseServiceRegistry
+    -abstract class BaseServiceRegistry
+    {
+        - -(constructors)- -
+        +BaseServiceRegistry()
+        - -(service)- -
+        +ServiceRegistry load()
+        +BaseServiceRegistry updater(ServiceRegistryUpdater)
+    }
+    
+    BaseServiceRegistry <|- - LocalServiceRegistry
+    -class LocalServiceRegistry
+    {
+        - -(constructors)- -
+        #LocalServiceRegistry()
+        +LocalServiceRegistry(int)
+    }
+    
+    BaseServiceRegistry <|- - NetworkServiceRegistry
+    -class NetworkServiceRegistry
+    {
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.service.registry.registries"
+    
+    abstract BaseServiceRegistry
+    abstract BaseRepeater
+    
+    interface ServiceRegistry
+    
+    BaseRepeater <|- - BaseServiceRegistry
+    ServiceRegistry <|- - BaseServiceRegistry
+    -abstract class BaseServiceRegistry
+    {
+        - -(constructors)- -
+        +BaseServiceRegistry()
+        - -(service)- -
+        +ServiceRegistry load()
+        +BaseServiceRegistry updater(ServiceRegistryUpdater)
+    }
+    
+    BaseServiceRegistry <|- - LocalServiceRegistry
+    -class LocalServiceRegistry
+    {
+        - -(constructors)- -
+        #LocalServiceRegistry()
+        +LocalServiceRegistry(int)
+    }
+    
+    BaseServiceRegistry <|- - NetworkServiceRegistry
+    -class NetworkServiceRegistry
+    {
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

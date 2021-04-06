@@ -1,21 +1,25 @@
 @startuml
 
     !include ../lexakai.theme
-
+    
     title "kivakit-filesystems-hdfs-proxy-spi"
-
+    
     artifact jackson_annotations
-    artifact com_telenav_lexakai_annotations
-    artifact com_telenav_tdk_build_metadata
-    artifact com_telenav_tdk_core_kernel
-    artifact com_telenav_tdk_filesystems_hdfs_proxy_spi
+    artifact kivakit_build_metadata
+    artifact kivakit_core_kernel
+    artifact kivakit_filesystems_hdfs_proxy_spi
+    artifact lexakai_annotations
     artifact swagger_annotations
+    artifact junit
+    artifact hamcrest_core
     artifact annotations
-    com_telenav_tdk_core_kernel --> annotations
-    com_telenav_tdk_core_kernel --> com_telenav_lexakai_annotations
-    com_telenav_tdk_core_kernel --> com_telenav_tdk_build_metadata
-    com_telenav_tdk_core_kernel --> jackson_annotations
-    com_telenav_tdk_core_kernel --> swagger_annotations
-    com_telenav_tdk_filesystems_hdfs_proxy_spi --> com_telenav_tdk_core_kernel
-
+    junit --> hamcrest_core
+    kivakit_core_kernel --> annotations
+    kivakit_core_kernel --> jackson_annotations
+    kivakit_core_kernel --> junit
+    kivakit_core_kernel --> kivakit_build_metadata
+    kivakit_core_kernel --> lexakai_annotations
+    kivakit_core_kernel --> swagger_annotations
+    kivakit_filesystems_hdfs_proxy_spi --> kivakit_core_kernel
+    
 @enduml

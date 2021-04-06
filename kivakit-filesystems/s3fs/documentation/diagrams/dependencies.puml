@@ -1,25 +1,26 @@
 @startuml
 
     !include ../lexakai.theme
-
+    
     title "kivakit-filesystems-s3fs"
-
+    
     artifact kryo
     artifact minlog
     artifact reflectasm
     artifact jackson_annotations
     artifact jackson_core
     artifact jackson_databind
-    artifact com_telenav_lexakai_annotations
-    artifact com_telenav_tdk_build_metadata
-    artifact com_telenav_tdk_core_collections
-    artifact com_telenav_tdk_core_commandline
-    artifact com_telenav_tdk_core_kernel
-    artifact com_telenav_tdk_core_resource
-    artifact com_telenav_tdk_core_test
-    artifact com_telenav_tdk_filesystems_s3fs
-    artifact com_telenav_tdk_serialization_core
-    artifact com_telenav_tdk_serialization_kryo
+    artifact kivakit_build_metadata
+    artifact kivakit_core_collections
+    artifact kivakit_core_commandline
+    artifact kivakit_core_configuration
+    artifact kivakit_core_kernel
+    artifact kivakit_core_resource
+    artifact kivakit_core_serialization_core
+    artifact kivakit_core_serialization_kryo
+    artifact kivakit_core_test
+    artifact kivakit_filesystems_s3fs
+    artifact lexakai_annotations
     artifact netty_reactive_streams_http
     artifact netty_reactive_streams
     artifact commons_codec
@@ -66,25 +67,26 @@
     apache_client --> httpcore
     auth --> eventstream
     aws_xml_protocol --> aws_query_protocol
-    com_telenav_tdk_core_collections --> com_telenav_tdk_core_test
-    com_telenav_tdk_core_commandline --> com_telenav_tdk_core_kernel
-    com_telenav_tdk_core_kernel --> annotations
-    com_telenav_tdk_core_kernel --> com_telenav_lexakai_annotations
-    com_telenav_tdk_core_kernel --> com_telenav_tdk_build_metadata
-    com_telenav_tdk_core_kernel --> jackson_annotations
-    com_telenav_tdk_core_kernel --> swagger_annotations
-    com_telenav_tdk_core_resource --> com_telenav_tdk_core_collections
-    com_telenav_tdk_core_resource --> com_telenav_tdk_core_commandline
-    com_telenav_tdk_core_test --> com_telenav_tdk_serialization_core
-    com_telenav_tdk_core_test --> com_telenav_tdk_serialization_kryo
-    com_telenav_tdk_core_test --> junit
-    com_telenav_tdk_filesystems_s3fs --> com_telenav_tdk_core_resource
-    com_telenav_tdk_filesystems_s3fs --> s3
-    com_telenav_tdk_serialization_kryo --> kryo
-    com_telenav_tdk_serialization_kryo --> kryo_serializers
     httpclient --> commons_codec
     httpclient --> commons_logging
     junit --> hamcrest_core
+    kivakit_core_collections --> kivakit_core_serialization_kryo
+    kivakit_core_collections --> kivakit_core_test
+    kivakit_core_commandline --> kivakit_core_kernel
+    kivakit_core_configuration --> kivakit_core_resource
+    kivakit_core_kernel --> annotations
+    kivakit_core_kernel --> jackson_annotations
+    kivakit_core_kernel --> junit
+    kivakit_core_kernel --> kivakit_build_metadata
+    kivakit_core_kernel --> lexakai_annotations
+    kivakit_core_kernel --> swagger_annotations
+    kivakit_core_resource --> kivakit_core_collections
+    kivakit_core_resource --> kivakit_core_commandline
+    kivakit_core_resource --> kivakit_core_serialization_core
+    kivakit_core_serialization_kryo --> kryo
+    kivakit_core_serialization_kryo --> kryo_serializers
+    kivakit_filesystems_s3fs --> kivakit_core_configuration
+    kivakit_filesystems_s3fs --> s3
     kryo --> minlog
     kryo --> objenesis
     kryo --> reflectasm
@@ -119,5 +121,5 @@
     sdk_core --> jackson_databind
     sdk_core --> reactive_streams
     sdk_core --> slf4j_api
-
+    
 @enduml

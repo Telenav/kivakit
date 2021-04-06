@@ -17,8 +17,6 @@ import com.telenav.kivakit.core.serialization.kryo.KryoTypes;
 import java.util.Set;
 
 /**
- * Project object for tdk.core.collections module.
- *
  * @author jonathanl (shibo)
  */
 public class ServiceRegistryProject extends Project

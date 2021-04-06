@@ -1,4 +1,4 @@
-# kivakit-filesystems-hdfs &nbsp;&nbsp;![](documentation/images/disks-48.png)
+# kivakit-filesystems hdfs &nbsp;&nbsp;![](documentation/images/disks-48.png)
 
 Service provider for HDFS filesystem.
 
@@ -6,12 +6,24 @@ Service provider for HDFS filesystem.
 
 ### Index
 
+[**Dependencies**](#dependencies)  
 [**Summary**](#summary)  
 [**Technical Note**](#technical-note)  
-[**Dependencies**](#dependencies)  
 [**Class Diagrams**](#class-diagrams)  
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
+
+### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
+
+[*Dependency Diagram*](documentation/diagrams/dependencies.svg)
+
+#### Maven Dependency
+
+    <dependency>
+        <groupId>com.telenav.kivakit</groupId>
+        <artifactId>${project-artifact-id}</artifactId>
+        <version>0.9.0-SNAPSHOT</version>
+    </dependency>
 
 ![](documentation/images/horizontal-line.png)
 
@@ -34,45 +46,29 @@ any application.
 
 [//]: # (end-user-text)
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp;  ![](documentation/images/dependencies-40.png)
+### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
 
-[*Dependency Diagram*](documentation/diagrams/dependencies.svg)
+[*HDFS Service Provider*](documentation/diagrams/diagram-hdfs.svg)  
 
-    <dependency>
-        <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit-filesystems-hdfs</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
-    </dependency>
+### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+[*com.telenav.kivakit.filesystems.hdfs*](documentation/diagrams/com.telenav.kivakit.filesystems.hdfs.svg)  
+[*com.telenav.kivakit.filesystems.hdfs.project*](documentation/diagrams/com.telenav.kivakit.filesystems.hdfs.project.svg)  
 
-[*HDFS Service Provider*](documentation/diagrams/diagram-hdfs.svg)
-
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp;![](documentation/images/box-40.png)
-
-[*com.telenav.tdk.filesystems.hdfs*](documentation/diagrams/com.telenav.tdk.filesystems.hdfs.svg)  
-[*com.telenav.tdk.filesystems.hdfs.project*](documentation/diagrams/com.telenav.tdk.filesystems.hdfs.project.svg)
-
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
 | Class | Documentation Sections |
 |---|---|
-| [*
-FileSystemsHdfsProject*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.tdk.filesystems.hdfs/com/telenav/tdk/filesystems/hdfs/project/FileSystemsHdfsProject.html) |  |  
-| [*
-HdfsFile*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.tdk.filesystems.hdfs/com/telenav/tdk/filesystems/hdfs/HdfsFile.html) |  |  
-| [*
-HdfsFileSystemService*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.tdk.filesystems.hdfs/com/telenav/tdk/filesystems/hdfs/HdfsFileSystemService.html) |  |  
-| [*
-HdfsFolder*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.tdk.filesystems.hdfs/com/telenav/tdk/filesystems/hdfs/HdfsFolder.html) |  |  
-| [*
-HdfsProxyClient*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.tdk.filesystems.hdfs/com/telenav/tdk/filesystems/hdfs/HdfsProxyClient.html) |  |  
-| [*
-HdfsProxyClientSettings*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.tdk.filesystems.hdfs/com/telenav/tdk/filesystems/hdfs/HdfsProxyClientSettings.html) |  |  
-| [*
-HdfsProxyIO*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.tdk.filesystems.hdfs/com/telenav/tdk/filesystems/hdfs/HdfsProxyIO.html) |  |  
+| [*FileSystemsHdfsProject*](https://telenav.github.io/kivakit/javadoc/kivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/project/FileSystemsHdfsProject.html) |  |  
+| [*HdfsFile*](https://telenav.github.io/kivakit/javadoc/kivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/HdfsFile.html) |  |  
+| [*HdfsFileSystemService*](https://telenav.github.io/kivakit/javadoc/kivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/HdfsFileSystemService.html) |  |  
+| [*HdfsFolder*](https://telenav.github.io/kivakit/javadoc/kivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/HdfsFolder.html) |  |  
+| [*HdfsProxyClient*](https://telenav.github.io/kivakit/javadoc/kivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/HdfsProxyClient.html) |  |  
+| [*HdfsProxyIO*](https://telenav.github.io/kivakit/javadoc/kivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/HdfsProxyIO.html) |  |  
+| [*HdfsSettings*](https://telenav.github.io/kivakit/javadoc/kivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/HdfsSettings.html) |  |  
 
 [//]: # (start-user-text)
+
 
 
 [//]: # (end-user-text)
@@ -81,6 +77,7 @@ HdfsProxyIO*](http://telenav-tdk.mypna.com/0.9.0-SNAPSHOT/apidocs/com.telenav.td
 
 ![](documentation/images/horizontal-line.png)
 
-<sub>This documentation was generated by Lexakai on 2021.04.01</sub>    
-<sub>UML diagrams courtesy of PlantUML (http://plantuml.com), distributed unmodified under Apache License, Version 2.0.</sub>
+<sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.05. UML diagrams courtesy
+of [PlantUML](http://plantuml.com).</sub>
 

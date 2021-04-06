@@ -8,6 +8,8 @@
 package com.telenav.kivakit.core.network.core;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
+import com.telenav.kivakit.core.kernel.messaging.Listener;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.regex.Pattern;
@@ -33,6 +35,20 @@ public class EmailAddress
             return new EmailAddress(email);
         }
         return null;
+    }
+
+    public static class Converter extends BaseStringConverter<EmailAddress>
+    {
+        protected Converter(final Listener listener)
+        {
+            super(listener);
+        }
+
+        @Override
+        protected EmailAddress onConvertToObject(final String value)
+        {
+            return parse(value);
+        }
     }
 
     @JsonProperty

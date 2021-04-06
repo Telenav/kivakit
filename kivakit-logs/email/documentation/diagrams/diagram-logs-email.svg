@@ -6,7 +6,7 @@ class EmailAddress--><rect fill="#282828" height="48.055" id="EmailAddress" rx="
 reverse link BaseTextLog to EmailLog--><path codeLine="8" d="M160.4167,122.7965 C160.4167,137.1715 160.4167,152.5778 160.4167,164.807 " fill="none" id="BaseTextLog-backto-EmailLog" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="153.125,122.4632,160.4167,101.6299,167.7083,122.4632,153.125,122.4632" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[b5e29602702cc332d2b36d5e3a7458de]
 reverse link EmailLog to EmailSender--><path codeLine="9" d="M135.6354,224.4736 C118.7813,247.807 96.9583,278.0257 82.1875,298.484 " fill="none" id="EmailLog-backto-EmailSender" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="143.6875,213.3278,136.6504,215.955,136.3689,223.4613,143.406,220.8341,143.6875,213.3278" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[98e55ff0a82284e95f90a41c664bcdee]
 reverse link EmailLog to EmailAddress--><path codeLine="10" d="M152.0104,226.859 C150.7188,240.1403 151.4167,254.9007 157.2917,267.2445 C163.1875,279.6299 173.4583,290.109 184.1979,298.4528 " fill="none" id="EmailLog-backto-EmailAddress" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="154.0417,213.2132,149,218.7815,152.2008,225.5769,157.2425,220.0087,154.0417,213.2132" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="13.5417" x="161.4583" y="260.5794">to</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="139.2521" y="236.8351">1</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="6.25" x="163.6079" y="284.4404">*</text><!--MD5=[98e55ff0a82284e95f90a41c664bcdee]
-reverse link EmailLog to EmailAddress--><path codeLine="11" d="M177.6563,225.7653 C188.8542,248.9111 203.1354,278.4007 212.8542,298.484 " fill="none" id="EmailLog-backto-EmailAddress-1" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="171.6354,213.3278,170.6087,220.7689,177.0824,224.5786,178.1092,217.1375,171.6354,213.3278" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="31.25" x="200" y="260.5794">from</text><!--MD5=[d6b930fcd9ac012013aa516d9dbc16a9]
+reverse link EmailLog to EmailAddress--><path codeLine="11" d="M177.6563,225.7653 C188.8542,248.9111 203.1354,278.4007 212.8542,298.484 " fill="none" id="EmailLog-backto-EmailAddress-1" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="171.6354,213.3278,170.6087,220.7689,177.0824,224.5786,178.1092,217.1375,171.6354,213.3278" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="31.25" x="200" y="260.5794">from</text><!--MD5=[3661fbbddfccc3c50ec130a692cdba26]
 @startuml
 
     !include ../lexakai.theme
@@ -388,10 +388,10 @@ skinparam stack {
     
 @enduml
 
-PlantUML version 1.2021.3(Mon Mar 22 09:53:19 MST 2021)
-(APACHE source distribution)
-Java Runtime: OpenJDK Runtime Environment
-JVM: OpenJDK 64-Bit Server VM
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
 Default Encoding: UTF-8
 Language: en
 Country: US

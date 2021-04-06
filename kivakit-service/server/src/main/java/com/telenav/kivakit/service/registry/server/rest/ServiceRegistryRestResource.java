@@ -52,7 +52,7 @@ import javax.ws.rs.core.Response;
         info = @Info(
 
                 title = "KivaKit Service Registry",
-                description = "Registry of KivaKit services. See KivaKit module tdk.service for details.",
+                description = "Registry of KivaKit services. See KivaKit module kivakit.service for details.",
                 version = "8.0.7",
 
                 contact = @Contact(

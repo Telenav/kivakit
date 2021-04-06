@@ -12,6 +12,10 @@ body {
     vertical-align: middle;
 }
 
+a {
+    color: #0096ff;
+}
+
 .heading {
     font-family: Avenir,Open Sans,Arial,Helvetica,sans-serif;
     display: inline-block;

@@ -97,19 +97,19 @@
     }
     
     ServiceMetadata o-- Version : "service version"
-    ServiceMetadata o-- Version : "tdk version"
+    ServiceMetadata o-- Version : "kivakit version"
     ServiceMetadata o-- EmailAddress : "contact email"
     class ServiceMetadata
     {
         --
         +String description()
         --(identity)--
-        +Version tdkVersion()
+        +Version kivakitVersion()
         +Version version()
         --(metadata)--
         +ServiceMetadata contactEmail(EmailAddress contactEmail)
         +ServiceMetadata description(String description)
-        +ServiceMetadata tdkVersion(Version)
+        +ServiceMetadata kivakitVersion(Version)
         +ServiceMetadata version(Version)
         --(network)--
         +EmailAddress contactEmail()
@@ -126,25 +126,23 @@
         +boolean isLocal()
         --(collection)--
         +Result<Boolean> addOrUpdate(Service)
-        --(lookup)--
-        +Result<Service> register(Service)
         --(network)--
+        +Result<Set<Host>> discoverHosts()
         +boolean isNetwork()
         +Port local()
         +Port network()
         +Port port(Host)
         --(search)--
         +Result<Set<ApplicationIdentifier>> discoverApplications(Scope)
-        +Result<Set<Host>> discoverHosts()
+        --(service)--
         +Result<Service> discoverPortService(Port)
         +Result<Set<Service>> discoverServices()
         +Result<Set<Service>> discoverServices(ServiceType)
         +Result<Set<Service>> discoverServices(ApplicationIdentifier)
         +Result<Set<Service>> discoverServices(ApplicationIdentifier, ServiceType)
-        --(service)--
-        +ServiceRegistrySettings settings()
-        --(time)--
+        +Result<Service> register(Service)
         +Result<Service> renew(Service)
+        +ServiceRegistrySettings settings()
     }
     
     BaseRepeater <|-- ServiceRegistryStore

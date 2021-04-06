@@ -7,6 +7,7 @@
 
 package com.telenav.kivakit.filesystems.s3fs;
 
+import com.telenav.kivakit.core.configuration.settings.Settings;
 import com.telenav.kivakit.core.filesystem.spi.FileSystemObjectService;
 import com.telenav.kivakit.core.filesystem.spi.FolderService;
 import com.telenav.kivakit.core.kernel.language.patterns.Pattern;
@@ -22,7 +23,6 @@ import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.core.resource.writing.BaseWritableResource;
 import com.telenav.kivakit.filesystems.s3fs.project.lexakai.diagrams.DiagramS3;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.regions.Region;
@@ -47,7 +47,6 @@ import java.util.Map;
  * @author songg
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramS3.class)
 public abstract class S3FileSystemObject extends BaseWritableResource implements FileSystemObjectService
 {
@@ -285,7 +284,7 @@ public abstract class S3FileSystemObject extends BaseWritableResource implements
     {
         if (client == null)
         {
-            final var credentials = AwsBasicCredentials.create("AKIAI2RA5QRZKGIJ7PRA", "2UqSl1IcP8y7pEGNquqPEQAaPque8JVdXWvD+2W5");
+            final var credentials = Settings.require(S3Settings.class).credentials();
 
             client = S3Client.builder()
                     .credentialsProvider(StaticCredentialsProvider.create(credentials))

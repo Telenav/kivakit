@@ -27,7 +27,7 @@ public class ResourceIdentifier
 
     public Resource resolve()
     {
-        return Resource.resource(this);
+        return Resource.resolve(this);
     }
 
     @Override

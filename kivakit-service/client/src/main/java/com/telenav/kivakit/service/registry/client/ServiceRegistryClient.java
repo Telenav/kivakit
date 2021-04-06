@@ -359,7 +359,7 @@ public class ServiceRegistryClient extends BaseRepeater
             final ServiceMetadata metadata
     )
     {
-        // Get the current tdk application, if any
+        // Get the current kivakit application, if any
         final var application = Application.get();
 
         // and this process' id
@@ -378,7 +378,7 @@ public class ServiceRegistryClient extends BaseRepeater
         {
             metadata.description("Service '" + serviceType + "' for " + name);
         }
-        metadata.tdkVersion(KivaKit.get().version());
+        metadata.kivakitVersion(KivaKit.get().version());
         metadata.version(version());
 
         // and register the service

@@ -2,19 +2,19 @@ package com.telenav.kivakit.filesystems.hdfs.proxy;
 
 import com.telenav.kivakit.core.application.Server;
 import com.telenav.kivakit.core.commandline.SwitchParser;
+import com.telenav.kivakit.core.configuration.settings.Settings;
+import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.kernel.language.io.IO;
 import com.telenav.kivakit.core.kernel.language.threading.KivaKitThread;
 import com.telenav.kivakit.core.kernel.language.threading.locks.Monitor;
 import com.telenav.kivakit.core.kernel.language.time.Duration;
 import com.telenav.kivakit.core.kernel.language.time.Time;
-import com.telenav.kivakit.core.kernel.logging.Logger;
-import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.kernel.messaging.Message;
 import com.telenav.kivakit.core.kernel.project.CoreKernelProject;
 import com.telenav.kivakit.core.resource.path.FileName;
 import com.telenav.kivakit.core.resource.path.FilePath;
+import com.telenav.kivakit.filesystems.hdfs.proxy.converters.UserGroupInformationConverter;
 import com.telenav.kivakit.filesystems.hdfs.proxy.project.lexakai.diagrams.DiagramHdfsProxy;
-import com.telenav.kivakit.filesystems.hdfs.proxy.spi.HdfsProxy;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import org.apache.hadoop.fs.FileStatus;
@@ -24,6 +24,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.fs.RemoteIterator;
 import org.apache.hadoop.fs.permission.FsAction;
 import org.apache.hadoop.fs.permission.FsPermission;
+import org.apache.hadoop.security.UserGroupInformation;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -50,16 +51,27 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail
 @UmlClassDiagram(diagram = DiagramHdfsProxy.class)
 @UmlRelation(label = "configures with", referent = HdfsProxyServerSettings.class)
 @UmlRelation(label = "delegates to", referent = HdfsFileSystem.class)
-public class HdfsProxyServer extends Server implements HdfsProxy
+public class HdfsProxyServer extends Server implements com.telenav.kivakit.filesystems.hdfs.proxy.spi.HdfsProxy
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     private static final Monitor temporaryFileCreationLock = new Monitor();
 
     public static void main(final String[] arguments)
     {
         new HdfsProxyServer().run(arguments);
     }
+
+    private final SwitchParser<Folder> CONFIGURATION_FOLDER = Folder
+            .folderSwitch("configuration-folder", "Folder containing HDFS configuration files")
+            .required()
+            .build();
+
+    private final SwitchParser<UserGroupInformation> USERNAME = SwitchParser
+            .builder(UserGroupInformation.class)
+            .name("username")
+            .description("HDFS remote user name")
+            .converter(new UserGroupInformationConverter(this))
+            .required()
+            .build();
 
     private final SwitchParser<Integer> DATA_PORT = SwitchParser
             .integerSwitch("data-port", "The port to use when responding to data requests")
@@ -415,14 +427,17 @@ public class HdfsProxyServer extends Server implements HdfsProxy
     {
         try
         {
-            LOGGER.announce("Exporting remote HdfsProxyServer object");
+            Settings.register(new HdfsProxyServerSettings()
+                    .configurationFolder(get(CONFIGURATION_FOLDER))
+                    .user(get(USERNAME)));
+            announce("Exporting remote HdfsProxyServer object");
             final var rmiObjectPort = get(RMI_OBJECT_PORT);
-            final HdfsProxy proxy = (HdfsProxy) UnicastRemoteObject.exportObject(this, rmiObjectPort);
-            LOGGER.narrate("Creating RMI registry on port $", HdfsProxy.RMI_REGISTRY_PORT);
-            final Registry registry = LocateRegistry.createRegistry(HdfsProxy.RMI_REGISTRY_PORT);
-            LOGGER.narrate("Binding remote object to RMI registry on port $", rmiObjectPort);
-            registry.bind(HdfsProxy.RMI_REGISTRY_NAME + "-" + rmiObjectPort, proxy);
-            LOGGER.announce("HDFS proxy server is ready");
+            final com.telenav.kivakit.filesystems.hdfs.proxy.spi.HdfsProxy proxy = (com.telenav.kivakit.filesystems.hdfs.proxy.spi.HdfsProxy) UnicastRemoteObject.exportObject(this, rmiObjectPort);
+            narrate("Creating RMI registry on port $", com.telenav.kivakit.filesystems.hdfs.proxy.spi.HdfsProxy.RMI_REGISTRY_PORT);
+            final Registry registry = LocateRegistry.createRegistry(com.telenav.kivakit.filesystems.hdfs.proxy.spi.HdfsProxy.RMI_REGISTRY_PORT);
+            narrate("Binding remote object to RMI registry on port $", rmiObjectPort);
+            registry.bind(com.telenav.kivakit.filesystems.hdfs.proxy.spi.HdfsProxy.RMI_REGISTRY_NAME + "-" + rmiObjectPort, proxy);
+            announce("HDFS proxy server is ready");
             listen();
         }
         catch (final Exception e)
@@ -434,7 +449,11 @@ public class HdfsProxyServer extends Server implements HdfsProxy
     @Override
     protected Set<SwitchParser<?>> switchParsers()
     {
-        return Set.of(DATA_PORT, RMI_OBJECT_PORT);
+        return Set.of(
+                DATA_PORT,
+                RMI_OBJECT_PORT,
+                CONFIGURATION_FOLDER,
+                USERNAME);
     }
 
     private FileSystem fileSystem(final FilePath path)
@@ -494,14 +513,14 @@ public class HdfsProxyServer extends Server implements HdfsProxy
                             break;
 
                         default:
-                            LOGGER.problem("Didn't understand client command: " + command);
+                            problem("Didn't understand client command: " + command);
                             break;
                     }
                 }
             }
             catch (final Exception e)
             {
-                LOGGER.problem(e, "Failure handling request");
+                problem(e, "Failure handling request");
             }
         });
     }
@@ -516,7 +535,7 @@ public class HdfsProxyServer extends Server implements HdfsProxy
     {
         try (final ServerSocket serverSocket = new ServerSocket(get(DATA_PORT)))
         {
-            LOGGER.information("Waiting for requests");
+            information("Waiting for requests");
             while (true)
             {
                 try
@@ -529,13 +548,13 @@ public class HdfsProxyServer extends Server implements HdfsProxy
                 }
                 catch (final Exception e)
                 {
-                    LOGGER.problem(e, "Failure handling request");
+                    problem(e, "Failure handling request");
                 }
             }
         }
         catch (final Exception e)
         {
-            LOGGER.problem(e, "Failure listening for connections");
+            problem(e, "Failure listening for connections");
         }
     }
 
@@ -551,7 +570,7 @@ public class HdfsProxyServer extends Server implements HdfsProxy
     private void throwRemoteException(
             final Exception cause, final String message, final Object... arguments) throws RemoteException
     {
-        LOGGER.problem(cause, message, arguments);
+        problem(cause, message, arguments);
         throw new RemoteException(Message.format(message, arguments), cause);
     }
 }

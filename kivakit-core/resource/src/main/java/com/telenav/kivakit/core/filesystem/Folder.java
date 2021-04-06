@@ -31,10 +31,15 @@ import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.messaging.filters.operators.All;
 import com.telenav.kivakit.core.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.resource.CopyMode;
+import com.telenav.kivakit.core.resource.Resource;
+import com.telenav.kivakit.core.resource.ResourceFolder;
+import com.telenav.kivakit.core.resource.ResourceFolderIdentifier;
 import com.telenav.kivakit.core.resource.path.Extension;
 import com.telenav.kivakit.core.resource.path.FileName;
 import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFolder;
+import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceService;
+import com.telenav.kivakit.core.resource.spi.ResourceFolderResolver;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -66,7 +71,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
-public class Folder implements FileSystemObject, Comparable<Folder>
+public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFolder
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
@@ -172,26 +177,6 @@ public class Folder implements FileSystemObject, Comparable<Folder>
         return new java.io.File(path.join()).isDirectory();
     }
 
-    public static Folder of(final FileName name)
-    {
-        return parse(name.asPath().asString());
-    }
-
-    public static SwitchParser.Builder<Folder> outputFolderSwitch()
-    {
-        return folderSwitch("output", "Output folder");
-    }
-
-    public static Folder parse(final String path)
-    {
-        if (Strings.isEmpty(path))
-        {
-            return null;
-        }
-        final var filePath = FilePath.parseFilePath(path);
-        return filePath == null ? null : new Folder(filePath);
-    }
-
     public static Folder kivakitCacheFolder()
     {
         return Folder.folder(KivaKit.get().cacheFolderPath()).mkdirs();
@@ -217,6 +202,26 @@ public class Folder implements FileSystemObject, Comparable<Folder>
         return kivakitCacheFolder().folder("temporary").mkdirs();
     }
 
+    public static Folder of(final FileName name)
+    {
+        return parse(name.asPath().asString());
+    }
+
+    public static SwitchParser.Builder<Folder> outputFolderSwitch()
+    {
+        return folderSwitch("output", "Output folder");
+    }
+
+    public static Folder parse(final String path)
+    {
+        if (Strings.isEmpty(path))
+        {
+            return null;
+        }
+        final var filePath = FilePath.parseFilePath(path);
+        return filePath == null ? null : new Folder(filePath);
+    }
+
     /**
      * @return unique temporary folder per process
      */
@@ -225,7 +230,10 @@ public class Folder implements FileSystemObject, Comparable<Folder>
         synchronized (temporaryLock)
         {
             final var name = "kivakit-process-" + OperatingSystem.get().processIdentifier();
-            final var temporary = kivakitTemporaryFolder().folder("processes").folder(name).mkdirs();
+            final var temporary = kivakitTemporaryFolder()
+                    .folder("processes")
+                    .folder(name)
+                    .mkdirs();
             temporary.type = type;
             if (type == CLEAN_UP_ON_EXIT)
             {
@@ -263,6 +271,22 @@ public class Folder implements FileSystemObject, Comparable<Folder>
     {
         NORMAL,
         CLEAN_UP_ON_EXIT
+    }
+
+    @UmlClassDiagram(diagram = DiagramResourceService.class)
+    public static class Resolver implements ResourceFolderResolver
+    {
+        @Override
+        public boolean accepts(final ResourceFolderIdentifier identifier)
+        {
+            return Folder.parse(identifier.identifier()) != null;
+        }
+
+        @Override
+        public ResourceFolder resolve(final ResourceFolderIdentifier identifier)
+        {
+            return Folder.parse(identifier.identifier());
+        }
     }
 
     public static class Converter extends BaseStringConverter<Folder>
@@ -615,6 +639,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>
         return new Folder(folder().folder(child));
     }
 
+    @Override
     public Folder folder(final String child)
     {
         if (child.equals("."))
@@ -664,6 +689,12 @@ public class Folder implements FileSystemObject, Comparable<Folder>
     public boolean isLocal()
     {
         return !isRemote();
+    }
+
+    @Override
+    public boolean isMaterialized()
+    {
+        return true;
     }
 
     public boolean isRemote()
@@ -782,6 +813,18 @@ public class Folder implements FileSystemObject, Comparable<Folder>
     public FileSystemObjectService resolve()
     {
         return serviceFolder;
+    }
+
+    @Override
+    public Resource resource(final String name)
+    {
+        return file(name);
+    }
+
+    @Override
+    public List<Resource> resources()
+    {
+        return new ArrayList<>(files());
     }
 
     public Folder root()

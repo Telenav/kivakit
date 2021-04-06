@@ -19,7 +19,6 @@ import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.resource.CopyMode;
 import com.telenav.kivakit.core.resource.Resource;
-import com.telenav.kivakit.core.resource.ResourceIdentifier;
 import com.telenav.kivakit.core.resource.ResourcePath;
 import com.telenav.kivakit.core.resource.WritableResource;
 import com.telenav.kivakit.core.resource.compression.Codec;
@@ -27,7 +26,6 @@ import com.telenav.kivakit.core.resource.compression.codecs.NullCodec;
 import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFile;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResource;
-import com.telenav.kivakit.core.resource.spi.ResourceFactoryServiceRegistry;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;
@@ -288,11 +286,6 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
     protected void charset(final Charset charset)
     {
         this.charset = charset;
-    }
-
-    protected Resource resourceForIdentifier(final ResourceIdentifier identifier)
-    {
-        return ResourceFactoryServiceRegistry.forIdentifier(identifier);
     }
 
     private File cacheFile()

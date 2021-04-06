@@ -1,0 +1,17 @@
+@startuml
+
+    !include ../lexakai.theme
+    
+    title "com.telenav.kivakit.service.registry.server.project"
+    
+    Project <|-- ServiceServerProject
+    class ServiceServerProject
+    {
+        --(constructors)--
+        #ServiceServerProject()
+        --(service)--
+        +ServiceServerProject get()
+    }
+    
+@enduml
+
