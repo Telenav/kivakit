@@ -523,7 +523,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     @UmlExcludeMember
     public File withVariables(final VariableMap<?> variables)
     {
-        return File.parse(variables.expanded(toString()));
+        return File.parse(variables.expand(toString()));
     }
 
     @UmlExcludeMember

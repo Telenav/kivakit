@@ -471,7 +471,7 @@ public class StringPath extends Path<String>
     {
         for (int i = 0; i < elements.size(); i++)
         {
-            elements.set(i, KivaKit.get().properties().expanded(elements.get(i)));
+            elements.set(i, KivaKit.get().properties().expand(elements.get(i)));
         }
         return elements;
     }
