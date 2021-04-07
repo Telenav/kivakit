@@ -21,31 +21,49 @@ developing Java applications. The resources below will help you to get started.
 
 ### Summary <a name = "summary"></a>
 
-KivaKit is a set of integrated Java development mini-frameworks. KivaKit makes it easy to:
+#### What is it?
 
-- **Create command-line applications** that:
-    - Parse command line arguments
-    - Locate objects and settings
-- **Access resources** in a simple and consistent way, including:
+- KivaKit is a set of integrated Java development mini-frameworks for common tasks
+- KivaKit modules are designed to work together, producing reliable and reusable software
+- KivaKit accelerates development and makes code simpler and clearer
+
+#### What can it do?
+
+KivaKit makes it easy to:
+
+- **Broadcast and listen for messages** in a consistent way to:
+    - Connect components in listener chains
+    - Report and log operations
+- **Validate** objects and data
+- **Convert** types with consistent semantics in a reusable way
+- **Register and locate services** by scope:
+    - Dynamically allocate service ports on the local host
+    - Locate services on the local host, in a cluster or on the network
+- **Log messages** to different log implementations, including:
+    - Files
+    - Email
+    - Console
+- **Access resources** in a simple, powerful and consistent way, including:
     - Files and folders
     - HDFS
     - S3
-    - Java packages and module or classpath resources
+    - Java packages
+    - Module and classpath resources
     - HTTP resources
     - Zip file entries
+- **Serialize data** with an extensible abstraction using:
+    - [Kryo](https://github.com/EsotericSoftware/kryo)
+    - More serializers to come
+- **Create command-line applications** that:
+    - Parse command line arguments in a reusable way
+    - Configure components programmatically, or by loading settings   
+      from properties files
 - **Process data**:
     - Read data in CSV format as objects with a schema model
     - Read text files as objects
     - Extract objects from data sources
     - Read XML streams
     - Compress data with an abstract [Huffman](https://en.wikipedia.org/wiki/Huffman_coding) codec
-- **Register and locate services** on the local host and on the network
-- **Broadcast and listen for messages**
-- **Log messages** to different log implementations, including:
-    - Files
-    - Email
-    - Console
-- **Serialize data** with [Kryo](https://github.com/EsotericSoftware/kryo) using an extensible abstraction
 - **Run embedded [Jetty](https://www.eclipse.org/jetty/)** with [Apache Wicket](https://wicket.apache.org),
   [Jersey](https://eclipse-ee4j.github.io/jersey/) and [Swagger](https://swagger.io).
 
