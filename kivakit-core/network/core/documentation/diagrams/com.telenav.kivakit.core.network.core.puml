@@ -26,6 +26,13 @@
         +URL asUrl()
     }
     
+    BaseStringConverter <|-- EmailAddress.Converter
+    class EmailAddress.Converter
+    {
+        --(constructors)--
+        #Converter(Listener)
+    }
+    
     BaseStringConverter <|-- Port.Converter
     class Port.Converter
     {
