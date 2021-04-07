@@ -35,6 +35,15 @@ import java.util.ServiceLoader;
 
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 
+/**
+ * Loads {@link FileSystemService}s with the Java {@link ServiceLoader} and chooses a {@link FileSystemService}
+ * implementation for a given path by calling {@link FileSystemService#accepts(FilePath)} on each service until a match
+ * is found.
+ *
+ * @author jonathanl (shibo)
+ * @see FileSystemService
+ * @see ServiceLoader
+ */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 @UmlNotPublicApi
 public class FileSystemServiceLoader
@@ -45,23 +54,36 @@ public class FileSystemServiceLoader
 
     private static final LocalFileSystemService LOCAL = new LocalFileSystemService();
 
+    /** Loaded filesystem services */
     @UmlAggregation(label = "loads")
     private static List<FileSystemService> services;
 
+    /**
+     * @return The {@link FileSystemService} to use for the given path
+     */
     public static FileSystemService fileSystem(final FilePath path)
     {
         assert path != null;
+
+        // For each loaded filesystem service
         for (final var service : services())
         {
+            // if it accepts the path,
             if (service.accepts(path))
             {
+                // choose that service
                 return service;
             }
         }
+
+        // otherwise, if it's a local path,
         if (LOCAL.accepts(path))
         {
+            // choose the local filesystem service.
             return LOCAL;
         }
+
+        // Couldn't find an applicable server.
         return fail("No file system service understands '$'", path);
     }
 

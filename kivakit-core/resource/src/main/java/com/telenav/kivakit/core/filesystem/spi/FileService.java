@@ -23,9 +23,11 @@ import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSys
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * A virtual file service provider interface.
+ * A service provider interface (SPI) for filesystem files.
  *
  * @author jonathanl (shibo)
+ * @see FileSystemObjectService
+ * @see FileSystemService
  */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 public interface FileService extends FileSystemObjectService, WritableResource

@@ -23,17 +23,38 @@ import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSys
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
+/**
+ * Service provider interface (SPI) for filesystems. FileSystemService is further broken down into SPIs for disk, folder
+ * and file services.
+ *
+ * @author jonathanl (shibo)
+ * @see DiskService
+ * @see FileService
+ * @see FolderService
+ */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 public interface FileSystemService
 {
+    /**
+     * @return Determines if the given path is accepted as a path for by this filesystem service
+     */
     boolean accepts(FilePath path);
 
+    /**
+     * @return The {@link DiskService} for the given path
+     */
     @UmlRelation(label = "provides")
     DiskService diskService(FilePath path);
 
+    /**
+     * @return The {@link FileService} for the given path
+     */
     @UmlRelation(label = "provides")
     FileService fileService(FilePath path);
 
+    /**
+     * @return The {@link FolderService} for the given path
+     */
     @UmlRelation(label = "provides")
     FolderService folderService(FilePath path);
 }

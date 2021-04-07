@@ -19,18 +19,20 @@
 package com.telenav.kivakit.core.filesystem.spi;
 
 import com.telenav.kivakit.core.filesystem.Folder;
+import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.core.resource.path.FileName;
 import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemService;
-import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.List;
 
 /**
- * A virtual folder interface.
+ * A service provider interface (SPI) for filesystem folders.
  *
  * @author jonathanl (shibo)
+ * @see FileSystemObjectService
+ * @see FileSystemService
  */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 public interface FolderService extends FileSystemObjectService
