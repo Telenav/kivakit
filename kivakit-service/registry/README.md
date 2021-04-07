@@ -7,7 +7,7 @@ This project provides shared registry code to kivakit-service-client and kivakit
 ### Index
 
 [**Dependencies**](#dependencies)  
-
+[**Summary**](#summary)  
 [**Class Diagrams**](#class-diagrams)  
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
@@ -28,7 +28,10 @@ This project provides shared registry code to kivakit-service-client and kivakit
 
 [//]: # (start-user-text)
 
+### Summary <a name = "summary"></a>
 
+**This module is not public API**. It is consumed by the [client](../client/README.md) and [server](../server/README.md) modules  
+to provide core registration and discovery functionality.
 
 [//]: # (end-user-text)
 

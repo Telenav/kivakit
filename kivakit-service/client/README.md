@@ -7,7 +7,7 @@ This project provides a client for accessing local and network service registrie
 ### Index
 
 [**Dependencies**](#dependencies)  
-
+[**Summary**](#summary)  
 [**Class Diagrams**](#class-diagrams)  
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
@@ -28,7 +28,12 @@ This project provides a client for accessing local and network service registrie
 
 [//]: # (start-user-text)
 
+### Summary <a name = "summary"></a>
 
+This module provides an easy API to perform registration and discovery tasks  
+with a service registry [server](../server/README.md). See
+[*ServiceRegistryClient*](https://github.com/Telenav/kivakit/blob/master/kivakit-service/client/src/main/java/com/telenav/kivakit/service/registry/client/ServiceRegistryClient.java)
+for a detailed discussion.
 
 [//]: # (end-user-text)
 
