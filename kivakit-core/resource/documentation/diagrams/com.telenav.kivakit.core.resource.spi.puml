@@ -4,21 +4,38 @@
     
     title "com.telenav.kivakit.core.resource.spi"
     
-    ResourceFactoryService --> ResourceIdentifier : "parses"
-    ResourceFactoryService --> Resource : "creates"
-    interface ResourceFactoryService
+    ResourceFolderResolver --> ResourceIdentifier : "parses"
+    ResourceFolderResolver --> ResourceFolder : "creates"
+    interface ResourceFolderResolver
     {
-        --(factory)--
-        +Resource newResource(ResourceIdentifier)
+        --(filesystem)--
+        +ResourceFolder resolve(ResourceFolderIdentifier)
+        --(filtering)--
+        +boolean accepts(ResourceFolderIdentifier)
+    }
+    
+    ResourceFolderResolverServiceLoader "1" o-- "*" ResourceFolderResolver
+    class ResourceFolderResolverServiceLoader
+    {
+        --(filesystem)--
+        +ResourceFolder resolve(ResourceFolderIdentifier)
+    }
+    
+    ResourceResolver --> ResourceFolderIdentifier : "parses"
+    ResourceResolver --> Resource : "creates"
+    interface ResourceResolver
+    {
+        --
+        +Resource resolve(ResourceIdentifier)
         --(filtering)--
         +boolean accepts(ResourceIdentifier)
     }
     
-    ResourceFactoryServiceRegistry "1" o-- "*" ResourceFactoryService
-    class ResourceFactoryServiceRegistry
+    ResourceResolverServiceLoader "1" o-- "*" ResourceResolver
+    class ResourceResolverServiceLoader
     {
-        --(identity)--
-        +Resource forIdentifier(ResourceIdentifier)
+        --
+        +Resource resolve(ResourceIdentifier)
     }
     
 @enduml

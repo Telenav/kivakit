@@ -18,11 +18,17 @@
 
 package com.telenav.kivakit.core.filesystem.spi;
 
-import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemService;
 import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
 import com.telenav.kivakit.core.kernel.language.values.level.Percent;
+import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemService;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * A service provider interface (SPI) for filesystem disks.
+ *
+ * @author jonathanl (shibo)
+ * @see FileSystemService
+ */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 public interface DiskService
 {

@@ -77,16 +77,12 @@
     -class HdfsSettings
     {
         --
-        +Resource proxyJar()
-        +void proxyJar(Resource proxyJar)
-        +void username(String username)
-        +String username()
+        +HdfsSettings proxyJar(Resource proxyJar)
+        +HdfsSettings username(String username)
         --(filesystem)--
-        +void configurationFolder(ResourceFolder configuration)
-        +ResourceFolder configurationFolder()
+        +HdfsSettings configurationFolder(ResourceFolder configuration)
         --(network)--
-        +EmailAddress contactEmail()
-        +void contactEmail(EmailAddress contactEmail)
+        +HdfsSettings contactEmail(EmailAddress contactEmail)
     }
     
 @enduml

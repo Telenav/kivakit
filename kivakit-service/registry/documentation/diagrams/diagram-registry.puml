@@ -126,23 +126,25 @@
         +boolean isLocal()
         --(collection)--
         +Result<Boolean> addOrUpdate(Service)
+        --(lookup)--
+        +Result<Service> register(Service)
         --(network)--
-        +Result<Set<Host>> discoverHosts()
         +boolean isNetwork()
         +Port local()
         +Port network()
         +Port port(Host)
         --(search)--
         +Result<Set<ApplicationIdentifier>> discoverApplications(Scope)
-        --(service)--
+        +Result<Set<Host>> discoverHosts()
         +Result<Service> discoverPortService(Port)
         +Result<Set<Service>> discoverServices()
         +Result<Set<Service>> discoverServices(ServiceType)
         +Result<Set<Service>> discoverServices(ApplicationIdentifier)
         +Result<Set<Service>> discoverServices(ApplicationIdentifier, ServiceType)
-        +Result<Service> register(Service)
-        +Result<Service> renew(Service)
+        --(service)--
         +ServiceRegistrySettings settings()
+        --(time)--
+        +Result<Service> renew(Service)
     }
     
     BaseRepeater <|-- ServiceRegistryStore

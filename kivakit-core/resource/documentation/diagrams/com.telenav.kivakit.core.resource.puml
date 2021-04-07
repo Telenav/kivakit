@@ -20,6 +20,13 @@
         +Converter(Listener)
     }
     
+    BaseStringConverter <|-- ResourceFolder.Converter
+    class ResourceFolder.Converter
+    {
+        --(constructors)--
+        +Converter(Listener)
+    }
+    
     BaseStringConverter <|-- ResourceList.Converter
     class ResourceList.Converter
     {
@@ -70,11 +77,12 @@
         --
         +Codec codec()
         +void dematerialize()
-        +Resource resource(String identifier)
-        +Resource resource(ResourceIdentifier)
+        +Resource resolve(ResourceIdentifier)
+        +Resource resolve(String identifier)
         --(checks)--
         +boolean isEmpty()
         +boolean isLocal()
+        +boolean isMaterializable()
         +boolean isPackaged()
         +boolean isRemote()
         +boolean isSame(Resource that)
@@ -90,6 +98,35 @@
         +void safeCopyTo(File destination, CopyMode, ProgressReporter)
         --(functional)--
         +Resource materialized(ProgressReporter)
+        --(identity)--
+        +ResourceIdentifier identifier(String identifier)
+    }
+    
+    interface ResourceFolder
+    {
+        --
+        +Resource resource(String name)
+        --(checks)--
+        +boolean isMaterialized()
+        --(collection)--
+        +List<? extends Resource> resources()
+        --(filesystem)--
+        +ResourceFolder folder(String path)
+        +ResourceFolderIdentifier identifier(String identifier)
+        +Folder materialize()
+        +Folder materializeTo(Folder)
+        +ResourceFolder resolve(ResourceFolderIdentifier)
+        +ResourceFolder resolve(String identifier)
+    }
+    
+    class ResourceFolderIdentifier
+    {
+        --(constructors)--
+        +ResourceFolderIdentifier(String)
+        --(filesystem)--
+        +ResourceFolder resolve()
+        --(identity)--
+        +String identifier()
     }
     
     class ResourceIdentifier

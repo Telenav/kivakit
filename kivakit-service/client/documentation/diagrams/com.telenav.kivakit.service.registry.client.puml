@@ -16,18 +16,19 @@
         --(constructors)--
         +ServiceRegistryClient()
         --(identity)--
-        +Result<Set<ApplicationIdentifier>> discoverApplications(Scope)
         +Version version()
+        --(lookup)--
+        +Result<Service> register(Scope, ServiceType, ServiceMetadata)
+        +Result<Service> register(Service)
         --(network)--
         +Result<Boolean> sendNetworkRegistryUpdate(Service)
-        --(service)--
+        --(search)--
+        +Result<Set<ApplicationIdentifier>> discoverApplications(Scope)
         +Result<Service> discoverPortService(Port)
         +Result<Set<Service>> discoverServices(Scope, ApplicationIdentifier, ServiceType)
         +Result<Set<Service>> discoverServices(Scope, ServiceType)
         +Result<Set<Service>> discoverServices(Scope)
         +Result<Set<Service>> discoverServices(Scope, ApplicationIdentifier)
-        +Result<Service> register(Scope, ServiceType, ServiceMetadata)
-        +Result<Service> register(Service)
     }
     
     class ServiceRegistryClientSettings

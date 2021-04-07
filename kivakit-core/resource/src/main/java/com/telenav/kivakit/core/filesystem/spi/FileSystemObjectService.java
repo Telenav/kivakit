@@ -33,9 +33,11 @@ import java.nio.file.attribute.PosixFilePermission;
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.unsupported;
 
 /**
- * A virtual file system interface.
+ * A service provider interface (SPI) common to all filesystem objects.
  *
  * @author jonathanl (shibo)
+ * @see FileService
+ * @see FolderService
  */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 @UmlExcludeSuperTypes(ResourcePathed.class)

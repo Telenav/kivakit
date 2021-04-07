@@ -23,8 +23,6 @@
         #void charset(Charset)
         --(filesystem)--
         +void safeCopyTo(Folder destination, CopyMode, ProgressReporter)
-        --(identity)--
-        #Resource resourceForIdentifier(ResourceIdentifier)
     }
     
     BaseReadableResource <|-- BaseWritableResource
@@ -82,11 +80,12 @@
         --
         +Codec codec()
         +void dematerialize()
-        +Resource resource(String identifier)
-        +Resource resource(ResourceIdentifier)
+        +Resource resolve(ResourceIdentifier)
+        +Resource resolve(String identifier)
         --(checks)--
         +boolean isEmpty()
         +boolean isLocal()
+        +boolean isMaterializable()
         +boolean isPackaged()
         +boolean isRemote()
         +boolean isSame(Resource that)
@@ -102,6 +101,8 @@
         +void safeCopyTo(File destination, CopyMode, ProgressReporter)
         --(functional)--
         +Resource materialized(ProgressReporter)
+        --(identity)--
+        +ResourceIdentifier identifier(String identifier)
     }
     
     ArrayList <|-- ResourceList

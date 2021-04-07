@@ -26,6 +26,9 @@
     Converter <|-- StringConverter
     interface StringConverter<Value>
     {
+        --
+        +BaseStringConverter<To> create(Listener, Function<String,To> converter)
+        +BaseStringConverter<To> create(Function<String,To> converter)
         --(collection)--
         +ObjectList<Value> asObjectList(StringList)
         +StringList asStringList(ObjectList<Value>)
