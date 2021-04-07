@@ -15,10 +15,12 @@ import com.telenav.kivakit.core.network.http.HttpNetworkLocation;
 import com.telenav.kivakit.core.test.UnitTest;
 import com.telenav.kivakit.core.test.annotations.SlowTests;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 @Category({ SlowTests.class })
+@Ignore
 public class HdfsFileSystemTest extends UnitTest
 {
     /**

@@ -125,24 +125,18 @@ public class ServiceRegistryServer extends Server
                 ? settings.networkServiceRegistryPort().number()
                 : settings.localServiceRegistryPort();
 
-        // create the Jersey REST application with Swagger OpenAPI and documentation,
+        // create the Jersey REST application,
         final var application = new ServiceRegistryRestApplication();
-        final var jersey = new JettyJersey(application);
-        final var swaggerOpenApi = new JettySwaggerOpenApi(application);
-        final var swaggerWebJar = new JettySwaggerWebJar(application);
 
-        // create the Wicket WebApplication,
-        final var wicket = new JettyWicket(ServiceRegistryWebApplication.class);
-
-        // and start up Jetty.
+        // and start up Jetty with Swagger, Jersey and Wicket.
         listenTo(new JettyServer())
                 .port(port)
-                .add("/*", wicket)
-                .add("/open-api/*", swaggerOpenApi)
+                .add("/*", new JettyWicket(ServiceRegistryWebApplication.class))
+                .add("/open-api/*", new JettySwaggerOpenApi(application))
                 .add("/docs/*", new JettySwaggerIndex(port))
                 .add("/webapp/*", new JettySwaggerStaticResources())
-                .add("/webjar/*", swaggerWebJar)
-                .add("/*", jersey)
+                .add("/webjar/*", new JettySwaggerWebJar(application))
+                .add("/*", new JettyJersey(application))
                 .start();
     }
 

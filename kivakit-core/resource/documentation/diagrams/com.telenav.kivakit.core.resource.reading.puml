@@ -32,8 +32,6 @@
         #void charset(Charset)
         --(filesystem)--
         +void safeCopyTo(Folder destination, CopyMode, ProgressReporter)
-        --(identity)--
-        #Resource resourceForIdentifier(ResourceIdentifier)
     }
     
     Multicaster <|-- LineReader

@@ -6,13 +6,11 @@
     
     abstract BaseReadableResource
     
-    interface ResourceFactoryService
+    interface ResourceFolder
+    interface ResourceResolver
+    interface ResourceFolderResolver
     
-    ResourceFactoryService <|-- PackageResource.Factory
-    class PackageResource.Factory
-    {
-    }
-    
+    ResourceFolder <|-- Package
     class Package
     {
         --(constructors)--
@@ -21,11 +19,9 @@
         +Package of(Class<?> _packageType, String path)
         +Package of(PackagePath _package)
         +Package parent()
-        +PackageResource resource(String name)
         +Package subPackage(String name)
         --(collection)--
         +PropertyMap localizedProperties(Locale)
-        +List<PackageResource> resources()
         +List<PackageResource> resources(Matcher<PackageResource>)
         --(filesystem)--
         +void safeCopyTo(Folder, CopyMode, ProgressReporter)
@@ -50,6 +46,16 @@
     {
         --
         +Package _package()
+    }
+    
+    ResourceFolderResolver <|-- Package.Resolver
+    class Package.Resolver
+    {
+    }
+    
+    ResourceResolver <|-- PackageResource.Resolver
+    class PackageResource.Resolver
+    {
     }
     
 @enduml

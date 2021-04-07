@@ -4,33 +4,54 @@
     
     title "Resources - Services"
     
-    interface ResourceFactoryService
+    interface ResourceResolver
+    interface ResourceFolderResolver
     
-    ResourceFactoryService <|-- File.Factory
-    class File.Factory
+    ResourceResolver <|-- File.Resolver
+    class File.Resolver
     {
     }
     
-    ResourceFactoryService <|-- PackageResource.Factory
-    class PackageResource.Factory
+    ResourceFolderResolver <|-- Folder.Resolver
+    class Folder.Resolver
     {
     }
     
-    ResourceFactoryService --> ResourceIdentifier : "parses"
-    ResourceFactoryService --> Resource : "creates"
-    interface ResourceFactoryService
+    ResourceFolderResolver <|-- Package.Resolver
+    class Package.Resolver
     {
-        --(factory)--
-        +Resource newResource(ResourceIdentifier)
-        --(filtering)--
-        +boolean accepts(ResourceIdentifier)
     }
     
-    ResourceFactoryServiceRegistry "1" o-- "*" ResourceFactoryService
-    class ResourceFactoryServiceRegistry
+    ResourceResolver <|-- PackageResource.Resolver
+    class PackageResource.Resolver
     {
+    }
+    
+    class ResourceFolderIdentifier
+    {
+        --(constructors)--
+        +ResourceFolderIdentifier(String)
+        --(filesystem)--
+        +ResourceFolder resolve()
         --(identity)--
-        +Resource forIdentifier(ResourceIdentifier)
+        +String identifier()
+    }
+    
+    ResourceFolderResolver --> ResourceIdentifier : "parses"
+    ResourceFolderResolver --> ResourceFolder : "creates"
+    interface ResourceFolderResolver
+    {
+        --(filesystem)--
+        +ResourceFolder resolve(ResourceFolderIdentifier)
+        --(filtering)--
+        +boolean accepts(ResourceFolderIdentifier)
+    }
+    
+    ResourceFolderResolverServiceLoader "1" o-- "*" ResourceFolderResolver
+    class ResourceFolderResolverServiceLoader
+    {
+        --(filesystem)--
+        +ResourceFolder resolve(ResourceFolderIdentifier)
     }
     
     class ResourceIdentifier
@@ -41,6 +62,23 @@
         +Resource resolve()
         --(identity)--
         +String identifier()
+    }
+    
+    ResourceResolver --> ResourceFolderIdentifier : "parses"
+    ResourceResolver --> Resource : "creates"
+    interface ResourceResolver
+    {
+        --
+        +Resource resolve(ResourceIdentifier)
+        --(filtering)--
+        +boolean accepts(ResourceIdentifier)
+    }
+    
+    ResourceResolverServiceLoader "1" o-- "*" ResourceResolver
+    class ResourceResolverServiceLoader
+    {
+        --
+        +Resource resolve(ResourceIdentifier)
     }
     
 @enduml

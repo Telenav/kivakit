@@ -26,7 +26,7 @@ This module contains abstractions for accessing the filesystem and arbitrary res
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit-core-resource</artifactId>
+        <artifactId>${project-artifact-id}</artifactId>
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
 
@@ -37,7 +37,7 @@ This module contains abstractions for accessing the filesystem and arbitrary res
 ### Summary <a name = "summary"></a>
 
 This module pulls together everything that can stream together under a single abstraction,  
-providing an easy way to process different kinds of resources without being tied to any  
+providing an easy way to work with different kinds of resources without being tied to any  
 of the details.
 
 ### Readable Resources <a name="readable-resources"></a> &nbsp; &nbsp; ![](../../documentation/images/wand-40.png)
@@ -256,7 +256,7 @@ A wide variety of other resources are available and new ones are easy to write. 
 | [*FieldArchive.ObjectField*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/FieldArchive.ObjectField.html) |  |  
 | [*File*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/File.html) |  |  
 | [*File.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/File.Converter.html) |  |  
-| [*File.Factory*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/File.Factory.html) |  |  
+| [*File.Resolver*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/File.Resolver.html) |  |  
 | [*FileList*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/FileList.html) |  |  
 | [*FileList.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/FileList.Converter.html) |  |  
 | [*FileName*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/path/FileName.html) |  |  
@@ -270,6 +270,7 @@ A wide variety of other resources are available and new ones are easy to write. 
 | [*FileSystemServiceLoader*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/loader/FileSystemServiceLoader.html) |  |  
 | [*Folder*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/Folder.html) |  |  
 | [*Folder.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/Folder.Converter.html) |  |  
+| [*Folder.Resolver*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/Folder.Resolver.html) |  |  
 | [*Folder.Traversal*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/Folder.Traversal.html) |  |  
 | [*Folder.Type*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/Folder.Type.html) |  |  
 | [*FolderChangeWatcher*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/FolderChangeWatcher.html) |  |  
@@ -293,15 +294,19 @@ A wide variety of other resources are available and new ones are easy to write. 
 | [*NullResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/other/NullResource.html) |  |  
 | [*OutputResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/streamed/OutputResource.html) |  |  
 | [*Package*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/packaged/Package.html) |  |  
+| [*Package.Resolver*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/packaged/Package.Resolver.html) |  |  
 | [*PackageResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/packaged/PackageResource.html) |  |  
-| [*PackageResource.Factory*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/packaged/PackageResource.Factory.html) |  |  
+| [*PackageResource.Resolver*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/packaged/PackageResource.Resolver.html) |  |  
 | [*Packaged*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/packaged/Packaged.html) |  |  
 | [*PropertyMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/other/PropertyMap.html) |  |  
 | [*ReadableResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/ReadableResource.html) |  |  
 | [*Resource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/Resource.html) |  |  
 | [*Resource.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/Resource.Converter.html) |  |  
-| [*ResourceFactoryService*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/spi/ResourceFactoryService.html) |  |  
-| [*ResourceFactoryServiceRegistry*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/spi/ResourceFactoryServiceRegistry.html) |  |  
+| [*ResourceFolder*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/ResourceFolder.html) |  |  
+| [*ResourceFolder.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/ResourceFolder.Converter.html) |  |  
+| [*ResourceFolderIdentifier*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/ResourceFolderIdentifier.html) |  |  
+| [*ResourceFolderResolver*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/spi/ResourceFolderResolver.html) |  |  
+| [*ResourceFolderResolverServiceLoader*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/spi/ResourceFolderResolverServiceLoader.html) |  |  
 | [*ResourceIdentifier*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/ResourceIdentifier.html) |  |  
 | [*ResourceList*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/ResourceList.html) |  |  
 | [*ResourceList.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/ResourceList.Converter.html) |  |  
@@ -310,6 +315,8 @@ A wide variety of other resources are available and new ones are easy to write. 
 | [*ResourcePath.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/ResourcePath.Converter.html) |  |  
 | [*ResourcePathed*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/path/ResourcePathed.html) |  |  
 | [*ResourceReader*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/reading/ResourceReader.html) |  |  
+| [*ResourceResolver*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/spi/ResourceResolver.html) |  |  
+| [*ResourceResolverServiceLoader*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/spi/ResourceResolverServiceLoader.html) |  |  
 | [*ResourceSection*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/other/ResourceSection.html) |  |  
 | [*ResourceWriter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/writing/ResourceWriter.html) |  |  
 | [*Resourced*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/Resourced.html) |  |  
@@ -331,6 +338,6 @@ A wide variety of other resources are available and new ones are easy to write. 
 ![](documentation/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.04. UML diagrams courtesy
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.07. UML diagrams courtesy
 of [PlantUML](http://plantuml.com).</sub>
 

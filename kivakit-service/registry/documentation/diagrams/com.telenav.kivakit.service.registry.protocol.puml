@@ -15,11 +15,12 @@
     abstract class BaseResponse<T>
     {
         --
-        +Result<T> asResult()
         +void result(Result<T>)
         #void value(T value)
         --(collection)--
         #T value()
+        --(conversion)--
+        +Result<T> asResult()
         --(identity)--
         +Version version()
         --(messaging)--

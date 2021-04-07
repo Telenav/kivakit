@@ -1,6 +1,4 @@
-![](docs/images/kivakit-background-500.jpg)
-
-# KivaKit 0.9.0-SNAPSHOT &nbsp;&nbsp;![](documentation/images/kivakit-64.png)
+# KivaKit 0.9.0-SNAPSHOT &nbsp;&nbsp;![](documentation/images/gears-40.png)
 
 KivaKit is a set of integrated Java mini-frameworks.
 
@@ -10,23 +8,61 @@ KivaKit is a set of integrated Java mini-frameworks.
 
 ### Welcome <a name = "welcome"></a>! &nbsp; ![](documentation/images/stars-48.png)
 
-*The mission of KivaKit is to accelerate the development of Java software
-through the use of integrated, modular, object-oriented design.*
+*The mission of KivaKit is to accelerate the development of Java software through the use of integrated, modular, object-oriented design.*
 
-KivaKit provides quick and easy solutions to common everyday software problems
-by providing APIs, and sometimes by "wrapping" them in a simplified abstraction.
-It is not KivaKit's goal to provide access to all features of underlying APIs,
-but the most frequently used features are usually available or can be added.
+KivaKit provides quick and easy solutions to common everyday software problems by providing APIs, and sometimes by "wrapping" them in a
+simplified abstraction. It is not KivaKit's goal to provide access to all features of underlying APIs, but the most frequently used features
+are usually available or can be added.
 
-KivaKit is composed of a number of nested sub-projects that are Java 11+ modules.
-These modules address different areas of concern in developing Java applications.
-The resources below will help you to get started.
+KivaKit is composed of a number of nested sub-projects that are Java 11+ modules. These modules address different areas of concern in
+developing Java applications. The resources below will help you to get started.
 
 ![](documentation/images/horizontal-line.png)
 
 ### Summary <a name = "summary"></a>
 
-KivaKit is a set of integrated Java development mini-frameworks.
+#### What is it?
+
+- KivaKit is a set of integrated Java development mini-frameworks for common tasks
+- KivaKit modules are designed to work together, producing reliable and reusable software
+- KivaKit accelerates development and makes code simpler and clearer
+
+#### What can it do?
+
+KivaKit makes it easy to:
+
+- **Broadcast and listen for messages**
+    - Decouple status reporting from status handling
+    - Connect components in listener chains
+    - Report and log conditions
+- **Validate** data
+- **Convert** types with consistent semantics that increase reuse
+- **Register and locate services**
+    - Dynamically allocate service ports on the local host
+    - Locate services on the local host, in a cluster or on the network
+- **Log messages** to different log implementations, including:
+    - Files
+    - Email
+    - Console
+- **Access resources** in a simple, powerful and consistent way, including:
+    - Files and folders
+    - HDFS
+    - S3
+    - Java packages
+    - Module and classpath resources
+    - HTTP resources
+    - Zip file entries
+- **Serialize data** with an extensible abstraction
+- **Create command-line applications**
+    - Parse command line arguments in a reusable way
+    - Configure components programmatically, or by loading settings   
+      from properties files
+- **Process and compress data**
+- **Quickly run embedded [Jetty](https://www.eclipse.org/jetty/)** with [Apache Wicket](https://wicket.apache.org),
+  [Jersey](https://eclipse-ee4j.github.io/jersey/) and [Swagger](https://swagger.io).
+
+Each of these features is designed for simplicity, consistency and integration with other  
+parts of the framework.
 
 ### Project Resources <a name = "project-resources"></a> &nbsp; ![](documentation/images/water-32.png)
 
@@ -52,7 +88,7 @@ KivaKit is a set of integrated Java development mini-frameworks.
 ### Reference <a name = "reference"></a>&nbsp; ![](documentation/images/books-40.png)
 
 [**Javadoc**](https://telenav.github.io/kivakit/javadoc)  
-[**Code Flowers**](https://telenav.github.io/kivakit/codeflowers/site/index.html)  
+[**CodeFlowers**](https://telenav.github.io/kivakit/codeflowers/site/index.html)  
 [**System Properties**](documentation/developing/system-properties.md)
 
 [//]: # (end-user-text)
@@ -61,7 +97,10 @@ KivaKit is a set of integrated Java development mini-frameworks.
 
 [**kivakit-core**](kivakit-core/README.md)  
 [**kivakit-data**](kivakit-data/README.md)  
-[**kivakit-web**](kivakit-web/README.md)
+[**kivakit-filesystems**](kivakit-filesystems/README.md)  
+[**kivakit-logs**](kivakit-logs/README.md)  
+[**kivakit-service**](kivakit-service/README.md)  
+[**kivakit-web**](kivakit-web/README.md)  
 
 [//]: # (start-user-text)
 
@@ -84,5 +123,5 @@ KivaKit is a set of integrated Java development mini-frameworks.
 ![](documentation/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.04. UML diagrams courtesy
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.07. UML diagrams courtesy
 of [PlantUML](http://plantuml.com).</sub>

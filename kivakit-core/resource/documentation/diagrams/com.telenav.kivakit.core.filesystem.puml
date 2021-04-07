@@ -9,8 +9,10 @@
     
     interface FileSystemObject
     interface Comparable
+    interface ResourceFolder
+    interface ResourceResolver
     interface List
-    interface ResourceFactoryService
+    interface ResourceFolderResolver
     
     class Cache
     {
@@ -63,11 +65,6 @@
         +Bytes free()
         +Bytes size()
         +Bytes usable()
-    }
-    
-    ResourceFactoryService <|-- File.Factory
-    class File.Factory
-    {
     }
     
     BaseWritableResource <|-- File
@@ -144,6 +141,7 @@
     
     FileSystemObject <|-- Folder
     Comparable <|-- Folder
+    ResourceFolder <|-- Folder
     Folder --> Disk : "exists on"
     Folder o-- FolderService : "delegates to"
     class Folder
@@ -184,7 +182,6 @@
         +Folder folder(URI)
         +Folder folder(URL)
         +Folder folder(Folder child)
-        +Folder folder(String child)
         +ArgumentParser.Builder<Folder> folderArgument(String description)
         +ArgumentParser.Builder<FolderList> folderArgumentList(String description)
         +SwitchParser.Builder<Folder> folderSwitch(String name, String description)
@@ -279,6 +276,16 @@
         #Duration age(File)
         #Duration minimumAge()
         #Frequency pollingFrequency()
+    }
+    
+    ResourceResolver <|-- File.Resolver
+    class File.Resolver
+    {
+    }
+    
+    ResourceFolderResolver <|-- Folder.Resolver
+    class Folder.Resolver
+    {
     }
     
     enum Folder.Traversal

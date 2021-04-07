@@ -6,6 +6,7 @@
     
     interface FileSystemObject
     interface Comparable
+    interface ResourceFolder
     interface List
     
     class Disk
@@ -29,6 +30,7 @@
     
     FileSystemObject <|-- Folder
     Comparable <|-- Folder
+    ResourceFolder <|-- Folder
     Folder --> Disk : "exists on"
     Folder o-- FolderService : "delegates to"
     class Folder
@@ -69,7 +71,6 @@
         +Folder folder(URI)
         +Folder folder(URL)
         +Folder folder(Folder child)
-        +Folder folder(String child)
         +ArgumentParser.Builder<Folder> folderArgument(String description)
         +ArgumentParser.Builder<FolderList> folderArgumentList(String description)
         +SwitchParser.Builder<Folder> folderSwitch(String name, String description)
