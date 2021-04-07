@@ -7,7 +7,9 @@ This module is an email log service provider.
 ### Index
 
 [**Dependencies**](#dependencies)  
-
+[**Summary**](#summary)  
+[**Including the Provider**](#including-the-provider)  
+[**Log Configuration Parameters**](#log-configuration-parameters)  
 [**Class Diagrams**](#class-diagrams)  
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
@@ -28,7 +30,34 @@ This module is an email log service provider.
 
 [//]: # (start-user-text)
 
+### Summary <a name = "summary"></a>
 
+This module is a log service provider which logs messages by sending emails.  
+A typical use for this is to send emails about high severity messages to one  
+or more email addresses.
+
+### Including the Provider <a name = "including-the-provider"></a>
+
+To include the *EmailLog* service provider, all that is required is to:
+
+1. Include the dependency above in *pom.xml*
+2. Import *kivakit-logs-email* in *module-info.java*
+3. Configure logging from the command line:
+
+       java -DKIVAKIT_LOG="Console,Email level=CriticalAlert subject=Alert \
+           from=jonathanl@telenav.com to=jonathanl@telenav.com \
+           host=smtp.telenav.com username=jonathanl@telenav.com password=shibo"
+
+More details about logging are available at [*kivakit-core-kernel logging*](../../kivakit-core/kernel/documentation/logging.md).
+
+### Log Configuration Parameters <a name = "log-configuration-parameters"></a>
+
+* *subject* - subject of the email
+* *from* - email address
+* *to* - comma separated list of email addresses
+* *host* - SMTP host
+* *username* - username on the host
+* *password* - password to send email
 
 [//]: # (end-user-text)
 

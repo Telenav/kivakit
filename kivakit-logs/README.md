@@ -6,7 +6,15 @@ This project provides log services that satisfy the kivakit-core-kernel logging 
 
 [//]: # (start-user-text)
 
+### Summary <a name = "summary"></a>
 
+To use the [file](file/README.md) or [email](email/README.md) log providers with the KivaKit logging mini-framework,  
+all that is required is to add the appropriate dependency to *pom.xml* and  
+add an *import* statement to module-info.java.
+
+See [kivakit-kernel logging](../kivakit-core/kernel/documentation/logging.md) for details on how to use the logging mini-framework  
+and the [Log](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/logging/Log.html) service
+provider interface (SPI) to implement a new log service.
 
 [//]: # (end-user-text)
 
