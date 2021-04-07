@@ -200,6 +200,11 @@ public class Strings
         return false;
     }
 
+    public static boolean isLowerCase(final String text)
+    {
+        return text.equals(text.toLowerCase());
+    }
+
     /**
      * @return The leading n characters of the given text
      */

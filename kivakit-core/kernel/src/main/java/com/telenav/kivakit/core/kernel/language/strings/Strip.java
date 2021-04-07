@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.kernel.language.strings;
 
+import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -77,6 +78,11 @@ public class Strip
             return text.substring(leading.length());
         }
         return text;
+    }
+
+    public static String packagePrefix(final String type)
+    {
+        return StringList.split(type, '.').filtered(at -> !Strings.isLowerCase(at)).join(".");
     }
 
     public static String quotes(final String text)
