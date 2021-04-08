@@ -34,6 +34,11 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @LexakaiJavadoc(complete = true)
 public class UserName extends Name
 {
+    public static UserName parse(final String name)
+    {
+        return new UserName(name);
+    }
+
     /**
      * Converts {@link UserName} objects to and from strings.
      *
@@ -50,11 +55,11 @@ public class UserName extends Name
         @Override
         protected UserName onConvertToObject(final String value)
         {
-            return new UserName(value);
+            return parse(value);
         }
     }
 
-    public UserName(final String name)
+    protected UserName(final String name)
     {
         super(name);
     }

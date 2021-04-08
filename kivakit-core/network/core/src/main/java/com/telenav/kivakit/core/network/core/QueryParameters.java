@@ -18,33 +18,45 @@
 
 package com.telenav.kivakit.core.network.core;
 
-import com.telenav.kivakit.core.network.core.project.lexakai.diagrams.DiagramNetworkLocation;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.core.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.core.kernel.language.values.count.Maximum;
+import com.telenav.kivakit.core.network.core.project.lexakai.diagrams.DiagramNetworkLocation;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Query parameters, as used in HTTP URLs.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramNetworkLocation.class)
+@LexakaiJavadoc(complete = true)
 public class QueryParameters
 {
+    public static QueryParameters parse(final String string)
+    {
+        return new QueryParameters(string);
+    }
+
     private boolean sorted;
 
     private String string;
 
     private VariableMap<String> map;
 
-    public QueryParameters(final String string)
-    {
-        this.string = string;
-    }
-
     public QueryParameters(final VariableMap<String> map)
     {
         this.map = map;
+    }
+
+    protected QueryParameters(final String string)
+    {
+        this.string = string;
     }
 
     public VariableMap<String> asMap()

@@ -19,9 +19,16 @@
 package com.telenav.kivakit.core.network.http;
 
 import com.telenav.kivakit.core.network.http.project.lexakai.diagrams.DiagramHttp;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * The status of an HTTP request.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramHttp.class)
+@LexakaiJavadoc(complete = true)
 public class HttpStatus
 {
     private final int code;

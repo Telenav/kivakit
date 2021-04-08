@@ -20,10 +20,14 @@ package com.telenav.kivakit.core.network.http.project;
 
 import com.telenav.kivakit.core.kernel.language.objects.Lazy;
 import com.telenav.kivakit.core.kernel.project.Project;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Project class for kivakit-core-network-http
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class CoreNetworkHttpProject extends Project
 {
     private static final Lazy<CoreNetworkHttpProject> singleton = Lazy.of(CoreNetworkHttpProject::new);

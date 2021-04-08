@@ -29,6 +29,7 @@ import com.telenav.kivakit.core.kernel.language.strings.formatting.ObjectFormatt
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.messaging.messages.MessageFormatter;
 import com.telenav.kivakit.core.network.core.project.lexakai.diagrams.DiagramNetworkLocation;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
@@ -40,9 +41,22 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * A network location with a {@link Port}, {@link NetworkPath}, {@link NetworkAccessConstraints} and optional {@link
+ * QueryParameters}.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramNetworkLocation.class)
+@LexakaiJavadoc(complete = true)
 public class NetworkLocation implements AsString, Comparable<NetworkLocation>
 {
+    /**
+     * Converts to and from a {@link NetworkLocation}
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<NetworkLocation>
     {
         public Converter(final Listener listener)

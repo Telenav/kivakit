@@ -18,14 +18,15 @@
 
 package com.telenav.kivakit.core.network.http;
 
-import com.telenav.kivakit.core.network.http.project.lexakai.diagrams.DiagramHttp;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.associations.UmlAggregation;
-import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.kivakit.core.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.core.network.core.BaseNetworkResource;
 import com.telenav.kivakit.core.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.core.network.core.NetworkLocation;
+import com.telenav.kivakit.core.network.http.project.lexakai.diagrams.DiagramHttp;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+import com.telenav.lexakai.annotations.associations.UmlAggregation;
+import com.telenav.lexakai.annotations.associations.UmlRelation;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
@@ -42,10 +43,26 @@ import java.io.InputStream;
 /**
  * A network resource accessible via HTTP.
  *
+ * <p><b>Content</b></p>
+ *
+ * <p>
+ * The content of an HTTP resource can be accessed using any of the methods inherited by all resources. An HTTP resource
+ * also has:
+ * </p>
+ *
+ * <ul>
+ *     <li>{@link #contentType()} - A MIME content type</li>
+ *     <li>{@link #content()} - The resource content as a string</li>
+ *     <li>{@link #encoding()} - A content encoding</li>
+ *     <li>{@link #header(String)} - An optional header</li>
+ *     <li>{@link #status()} - A status code once the resource has been accessed</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("deprecation")
 @UmlClassDiagram(diagram = DiagramHttp.class)
+@LexakaiJavadoc(complete = true)
 public abstract class BaseHttpResource extends BaseNetworkResource
 {
     @UmlAggregation
@@ -80,6 +97,11 @@ public abstract class BaseHttpResource extends BaseNetworkResource
         {
             EntityUtils.consumeQuietly(entityMirror);
         }
+    }
+
+    public String content()
+    {
+        return reader().string();
     }
 
     public String contentType()
@@ -180,11 +202,6 @@ public abstract class BaseHttpResource extends BaseNetworkResource
             throw new IllegalStateException("Can't open input stream", e);
         }
         return null;
-    }
-
-    public String readString()
-    {
-        return reader().string();
     }
 
     public VariableMap<String> responseHeader()

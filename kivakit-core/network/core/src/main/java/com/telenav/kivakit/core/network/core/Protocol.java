@@ -18,16 +18,23 @@
 
 package com.telenav.kivakit.core.network.core;
 
-import com.telenav.kivakit.core.network.core.project.lexakai.diagrams.DiagramPort;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.kivakit.core.kernel.language.collections.map.string.NameMap;
 import com.telenav.kivakit.core.kernel.language.values.name.Name;
+import com.telenav.kivakit.core.network.core.project.lexakai.diagrams.DiagramPort;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * An identifier for a particular named protocol
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramPort.class)
+@LexakaiJavadoc(complete = true)
 public class Protocol extends Name
 {
     private static final NameMap<Protocol> nameToProtocol = new NameMap<>();
@@ -52,16 +59,23 @@ public class Protocol extends Name
 
     public static final Protocol MONGO = new Protocol("mongo", 27017);
 
+    /**
+     * @return The protocol with the given name, or null if name doesn't represent a known protocol
+     */
     public static Protocol forName(final String name)
     {
         return nameToProtocol.get(name);
     }
 
+    /**
+     * @return The protocol for the given port number
+     */
     public static Protocol forPort(final int port)
     {
         return portToProtocol.get(port);
     }
 
+    /** The default port for this protocol */
     private int defaultPort;
 
     public Protocol(final String name, final int defaultPort)
@@ -77,6 +91,9 @@ public class Protocol extends Name
     {
     }
 
+    /**
+     * @return The default port for this protocol
+     */
     public int defaultPort()
     {
         return defaultPort;

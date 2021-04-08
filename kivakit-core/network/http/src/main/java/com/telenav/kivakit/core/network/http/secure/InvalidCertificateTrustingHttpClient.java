@@ -19,6 +19,7 @@
 package com.telenav.kivakit.core.network.http.secure;
 
 import com.telenav.kivakit.core.kernel.messaging.messages.status.Problem;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -29,13 +30,19 @@ import javax.net.ssl.X509TrustManager;
 import java.security.cert.X509Certificate;
 
 /**
+ * <b>Not public API</b>
+ *
+ * <p>
  * Wrapper for a DefaultHttpClient which ignores all certificate errors. This client should be used when connecting to a
  * site which has an invalid certificate.
+ * </p>
  *
  * @author ericg
+ * @author jonathanl
  */
 @SuppressWarnings("deprecation")
-public class InvalidCertificateTrustingHttpClient extends DefaultHttpClient
+@LexakaiJavadoc(complete = true)
+class InvalidCertificateTrustingHttpClient extends DefaultHttpClient
 {
     public InvalidCertificateTrustingHttpClient()
     {

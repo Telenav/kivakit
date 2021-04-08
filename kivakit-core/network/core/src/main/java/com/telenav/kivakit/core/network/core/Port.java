@@ -29,6 +29,7 @@ import com.telenav.kivakit.core.kernel.logging.Logger;
 import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.network.core.project.lexakai.diagrams.DiagramPort;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -45,7 +46,8 @@ import static com.telenav.kivakit.core.network.core.Protocol.HTTP;
 import static com.telenav.kivakit.core.network.core.Protocol.HTTPS;
 
 /**
- * A host, port and protocol.
+ * A host, port and protocol. The port has a number, accessible with {@link #number()}, it exists on a {@link Host} and
+ * it speaks a given {@link #protocol()}.
  *
  * @author jonathanl (shibo)
  */
@@ -55,6 +57,9 @@ public class Port
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
+    /**
+     * @return A port object from the given {@link URI}
+     */
     public static Port from(final URI uri)
     {
         final var host = new Host(uri.getHost());
@@ -64,11 +69,22 @@ public class Port
         return new Port(host, protocol, port);
     }
 
+    /**
+     * Parses a port of the form "[host]:[port-number]". If the port number is omitted, port 80 is assumed.
+     *
+     * @return A port for the given string or null if the string is not a port
+     */
     public static Port parse(final String port)
     {
         return new Converter(LOGGER).convert(port);
     }
 
+    /**
+     * Converts to and from a {@link Port}
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<Port>
     {
         private final Host.Converter hostConverter;
@@ -102,6 +118,12 @@ public class Port
         }
     }
 
+    /**
+     * Converts to and from a list of ports
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class ListConverter extends BaseListConverter<Port>
     {
         public ListConverter(final Listener listener)
@@ -154,11 +176,17 @@ public class Port
     {
     }
 
+    /**
+     * @return The socket address for this port
+     */
     public InetSocketAddress asInetSocketAddress()
     {
         return new InetSocketAddress(host().address(), number());
     }
 
+    /**
+     * @return The URI for this port
+     */
     public URI asUri()
     {
         try
@@ -172,6 +200,9 @@ public class Port
         }
     }
 
+    /**
+     * @return The default protocol for this port based on the port number
+     */
     public Protocol defaultProtocol()
     {
         return Protocol.forPort(port);
@@ -194,12 +225,18 @@ public class Port
         return Hash.many(port, host);
     }
 
+    /**
+     * @return The host that owns this port
+     */
     @KivaKitIncludeProperty
     public Host host()
     {
         return host;
     }
 
+    /**
+     * @return True if this port's port number is not claimed on the local host
+     */
     @JsonIgnore
     public boolean isAvailable()
     {
@@ -215,18 +252,27 @@ public class Port
         }
     }
 
+    /**
+     * @return True if this port speaks HTTP
+     */
     @JsonIgnore
     public boolean isHttp()
     {
         return protocol().equals(HTTP) || protocol().equals(HTTPS);
     }
 
+    /**
+     * @return The port number
+     */
     @KivaKitIncludeProperty
     public int number()
     {
         return port;
     }
 
+    /**
+     * @return A socket input stream for this port
+     */
     public InputStream open()
     {
         try
@@ -240,28 +286,43 @@ public class Port
         return null;
     }
 
+    /**
+     * @return The {@link NetworkPath} at the given path on this host and port
+     */
     public NetworkPath path(final String path)
     {
         return NetworkPath.networkPath(this, path);
     }
 
+    /**
+     * @return The protocol spoken by this port
+     */
     @KivaKitIncludeProperty
     public Protocol protocol()
     {
         return protocol;
     }
 
+    /**
+     * @param protocol The protocol to assign to this port
+     */
     public Port protocol(final Protocol protocol)
     {
         this.protocol = protocol;
         return this;
     }
 
+    /**
+     * @return This port resolved
+     */
     public Port resolve()
     {
         return new Port(host, protocol, port);
     }
 
+    /**
+     * A socket for this port, with an infinite timeout and keep alive
+     */
     public Socket socket()
     {
         try

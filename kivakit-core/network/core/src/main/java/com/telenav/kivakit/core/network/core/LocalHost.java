@@ -22,6 +22,7 @@ import com.telenav.kivakit.core.kernel.language.objects.Lazy;
 import com.telenav.kivakit.core.kernel.language.vm.OperatingSystem;
 import com.telenav.kivakit.core.kernel.logging.LoggerCodeContext;
 import com.telenav.kivakit.core.network.core.project.lexakai.diagrams.DiagramPort;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.net.Inet4Address;
@@ -32,9 +33,12 @@ import java.net.UnknownHostException;
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 
 /**
+ * The local {@link Host}.
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramPort.class)
+@LexakaiJavadoc(complete = true)
 public class LocalHost extends Host
 {
     private static final Lazy<LocalHost> singleton = Lazy.of(LocalHost::new);

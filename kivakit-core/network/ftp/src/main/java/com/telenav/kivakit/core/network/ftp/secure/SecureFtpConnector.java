@@ -24,42 +24,48 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import com.jcraft.jsch.SftpException;
-import com.telenav.kivakit.core.network.ftp.project.lexakai.diagrams.DiagramSecureFtp;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.core.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.core.network.core.NetworkLocation;
-import com.telenav.kivakit.core.network.core.NetworkPath;
+import com.telenav.kivakit.core.network.ftp.project.lexakai.diagrams.DiagramSecureFtp;
 import com.telenav.kivakit.core.resource.WritableResource;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;
 
+/**
+ * <b>Not public API</b>
+ *
+ * <p>
+ * Connects to servers via the SFTP protocol.
+ * </p>
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramSecureFtp.class)
-public class SecureFtpConnector
+@LexakaiJavadoc(complete = true)
+class SecureFtpConnector
 {
-    private final SecureFtpNetworkLocation networkLocation;
-
     private Session session;
 
     private ChannelSftp channel;
 
-    public SecureFtpConnector(final SecureFtpNetworkLocation networkLocation,
-                              final NetworkAccessConstraints constraints)
+    public SecureFtpConnector(final NetworkAccessConstraints constraints)
     {
-        this.networkLocation = networkLocation;
     }
 
-    public void connect()
+    public void connect(final NetworkLocation location)
     {
         if (!isConnected())
         {
             final var jsch = new JSch();
             try
             {
-                session = jsch.getSession(networkLocation.constraints().userName().toString(),
-                        networkLocation.host().address().getHostName(), networkLocation.port().number());
+                session = jsch.getSession(location.constraints().userName().toString(),
+                        location.host().address().getHostName(), location.port().number());
                 session.setConfig("StrictHostKeyChecking", "no");
-                session.setPassword(networkLocation.constraints().password().toString());
+                session.setPassword(location.constraints().password().toString());
                 session.connect();
 
                 channel = (ChannelSftp) session.openChannel("sftp");
@@ -89,30 +95,30 @@ public class SecureFtpConnector
         session = null;
     }
 
-    public InputStream get(final NetworkLocation networkLocation)
+    public InputStream get(final NetworkLocation location)
     {
         // Make sure we are connected.
-        connect();
+        connect(location);
 
         try
         {
-            return channel.get(this.networkLocation.networkPath().join());
+            return channel.get(location.networkPath().join());
         }
         catch (final SftpException e)
         {
-            throw new IllegalStateException("Unable to retrieve file: " + this.networkLocation.networkPath().join(), e);
+            throw new IllegalStateException("Unable to retrieve file: " + location.networkPath().join(), e);
         }
     }
 
     /**
      * Copy directly a file from SFTP to some destination
      */
-    public void get(final NetworkLocation source, final WritableResource destination)
+    public void get(final NetworkLocation location, final WritableResource destination)
     {
         // Make sure we are connected.
-        connect();
+        connect(location);
 
-        final var sourcePath = source.networkPath().join();
+        final var sourcePath = location.networkPath().join();
         try
         {
             channel.get(sourcePath, destination.openForWriting());
@@ -129,18 +135,18 @@ public class SecureFtpConnector
     }
 
     @SuppressWarnings({ "unchecked" })
-    public ObjectList<LsEntry> listFiles(final NetworkPath path)
+    public ObjectList<LsEntry> listFiles(final NetworkLocation location)
     {
         // Make sure we are connected.
-        connect();
+        connect(location);
 
         try
         {
-            return new ObjectList<LsEntry>().appendAll(channel.ls(networkLocation.networkPath().join()));
+            return new ObjectList<LsEntry>().appendAll(channel.ls(location.networkPath().join()));
         }
         catch (final SftpException e)
         {
-            throw new IllegalStateException("Unable to list directory contents: " + networkLocation.networkPath().join(),
+            throw new IllegalStateException("Unable to list directory contents: " + location.networkPath().join(),
                     e);
         }
     }

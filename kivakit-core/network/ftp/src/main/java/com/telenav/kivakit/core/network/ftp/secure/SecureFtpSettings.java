@@ -18,14 +18,21 @@
 
 package com.telenav.kivakit.core.network.ftp.secure;
 
-import com.telenav.kivakit.core.network.ftp.project.lexakai.diagrams.DiagramSecureFtp;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.language.time.Duration;
 import com.telenav.kivakit.core.network.core.Host;
+import com.telenav.kivakit.core.network.ftp.project.lexakai.diagrams.DiagramSecureFtp;
 import com.telenav.kivakit.core.security.authentication.Password;
 import com.telenav.kivakit.core.security.authentication.UserName;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * Setting for performing SFTP operations, including host, username and password and a timeout duration.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramSecureFtp.class)
+@LexakaiJavadoc(complete = true)
 public class SecureFtpSettings
 {
     private Host host;

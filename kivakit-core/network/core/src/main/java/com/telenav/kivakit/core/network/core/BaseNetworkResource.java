@@ -19,14 +19,21 @@
 package com.telenav.kivakit.core.network.core;
 
 import com.telenav.kivakit.core.network.core.project.lexakai.diagrams.DiagramNetworkLocation;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.resource.ResourcePath;
 import com.telenav.kivakit.core.resource.reading.BaseReadableResource;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.net.URI;
 import java.net.URL;
 
+/**
+ * Base class for network resources. All network resources have a URI accessible with {@link #asUri()}.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramNetworkLocation.class)
+@LexakaiJavadoc(complete = true)
 public abstract class BaseNetworkResource extends BaseReadableResource implements NetworkResource
 {
     protected BaseNetworkResource(final BaseReadableResource that)

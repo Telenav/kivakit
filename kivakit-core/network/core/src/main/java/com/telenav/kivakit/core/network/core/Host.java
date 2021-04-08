@@ -34,6 +34,7 @@ import com.telenav.kivakit.core.kernel.logging.Logger;
 import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.network.core.project.lexakai.diagrams.DiagramPort;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -48,13 +49,46 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail
 import static com.telenav.kivakit.core.network.core.Protocol.*;
 
 /**
- * Represents a Host on a network. The host has a network name and a description.
+ * Represents a host on a network, for which {@link Port}s can be retrieved.
+ *
+ * <p><b>Attributes</b></p>
+ *
+ * <p>
+ * A host has a network {@link #name()} and a {@link #description()}. If the port is on the localhost, {@link
+ * #isLocal()} will return true. If the port can be resolved to an address, {@link #isResolvable()} will return true and
+ * {@link #address()} will return the resolved address. The canonical name can be retrieved with {@link
+ * #canonicalName()}.
+ * </p>
+ *
+ * <p><b>Ports</b></p>
+ *
+ * <p>
+ * Ports on the given host can be retrieved with:
+ * </p>
+ *
+ * <ul>
+ *     <li>{@link #port(int)} - The numbered port</li>
+ *     <li>{@link #port(Protocol, int)} - The numbered port with the given protocol</li>
+ *     <li>{@link #ftp()}</li>
+ *     <li>{@link #ftp(int)}</li>
+ *     <li>{@link #hazelcast()}</li>
+ *     <li>{@link #hazelcast(int)}</li>
+ *     <li>{@link #http()}</li>
+ *     <li>{@link #http(int)}</li>
+ *     <li>{@link #https()}</li>
+ *     <li>{@link #https(int)}</li>
+ *     <li>{@link #mongo()}</li>
+ *     <li>{@link #mysql()}</li>
+ *     <li>{@link #sftp()}</li>
+ *     <li>{@link #sftp(int)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
 @Schema(description = "A host on the network",
         example = "worker-67.osmteam.telenav.com")
 @UmlClassDiagram(diagram = DiagramPort.class)
+@LexakaiJavadoc(complete = true)
 public class Host implements Named, AsString, Comparable<Host>
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
@@ -103,6 +137,16 @@ public class Host implements Named, AsString, Comparable<Host>
                 .description(description);
     }
 
+    public static Host parse(final String name)
+    {
+        return new Host(name);
+    }
+
+    public static Host parse(final String name, final String description)
+    {
+        return new Host(name, description);
+    }
+
     public static SwitchParser.Builder<Port> port(final String name, final String description)
     {
         return SwitchParser.builder(Port.class)
@@ -118,6 +162,12 @@ public class Host implements Named, AsString, Comparable<Host>
         return SwitchParser.listSwitch(name, description, new Port.Converter(LOGGER), Port.class, delimiter);
     }
 
+    /**
+     * Converts to and from {@link Host}s
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<Host>
     {
         public Converter(final Listener listener)
@@ -128,7 +178,7 @@ public class Host implements Named, AsString, Comparable<Host>
         @Override
         protected Host onConvertToObject(final String value)
         {
-            return new Host(value);
+            return parse(value);
         }
     }
 
@@ -163,12 +213,12 @@ public class Host implements Named, AsString, Comparable<Host>
         this.description = description;
     }
 
-    public Host(final String name)
+    protected Host(final String name)
     {
         this.name = name;
     }
 
-    public Host(final String name, final String description)
+    protected Host(final String name, final String description)
     {
         this.name = name;
         this.description = description;

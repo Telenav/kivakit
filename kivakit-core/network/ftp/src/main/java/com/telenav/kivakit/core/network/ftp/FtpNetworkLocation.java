@@ -23,16 +23,32 @@ import com.telenav.kivakit.core.network.core.NetworkLocation;
 import com.telenav.kivakit.core.network.core.NetworkPath;
 import com.telenav.kivakit.core.network.core.Protocol;
 import com.telenav.kivakit.core.network.ftp.project.lexakai.diagrams.DiagramFtp;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensure;
 
+/**
+ * An FTP network location that can be accessed in {@link Mode#Passive} or {@link Mode#Active}.
+ *
+ * @author jonathanl (shibo)
+ * @see <a href="https://en.wikipedia.org/wiki/File_Transfer_Protocol">FTP documentation</a>
+ */
 @UmlClassDiagram(diagram = DiagramFtp.class)
+@LexakaiJavadoc(complete = true)
 public class FtpNetworkLocation extends NetworkLocation
 {
+    /**
+     * The FTP access mode, either passive or active. See <a href="https://en.wikipedia.org/wiki/File_Transfer_Protocol">FTP
+     * documentation</a> for details.
+     *
+     * @author jonathanl (shibo)
+     * @see <a href="https://en.wikipedia.org/wiki/File_Transfer_Protocol">FTP documentation</a>
+     */
     @UmlClassDiagram(diagram = DiagramFtp.class)
+    @LexakaiJavadoc(complete = true)
     public enum Mode
     {
         Active,

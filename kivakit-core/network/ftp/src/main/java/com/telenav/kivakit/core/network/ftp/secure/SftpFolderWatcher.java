@@ -19,17 +19,16 @@
 package com.telenav.kivakit.core.network.ftp.secure;
 
 import com.jcraft.jsch.ChannelSftp.LsEntry;
-import com.telenav.kivakit.core.network.ftp.project.lexakai.diagrams.DiagramSecureFtp;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.associations.UmlAggregation;
-import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.kivakit.core.collections.watcher.PeriodicCollectionChangeWatcher;
 import com.telenav.kivakit.core.kernel.language.time.Frequency;
 import com.telenav.kivakit.core.kernel.language.time.Time;
-import com.telenav.kivakit.core.kernel.logging.Logger;
-import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.core.network.core.NetworkPath;
+import com.telenav.kivakit.core.network.ftp.project.lexakai.diagrams.DiagramSecureFtp;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+import com.telenav.lexakai.annotations.associations.UmlAggregation;
+import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -37,22 +36,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Watcher for a SFTP folder
+ * A change watcher for an SFTP folder.
  *
  * @author matthieun
+ * @author jonathanl (shibo)
+ * @see PeriodicCollectionChangeWatcher
  */
 @UmlClassDiagram(diagram = DiagramSecureFtp.class)
 @UmlRelation(label = "connects with", referent = SecureFtpConnector.class)
+@LexakaiJavadoc(complete = true)
 public class SftpFolderWatcher extends PeriodicCollectionChangeWatcher<NetworkPath>
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     private boolean initialized;
 
     @UmlAggregation
     private final SecureFtpSettings credentials;
 
-    private final NetworkPath fullSftpFolderPath;
+    private final SecureFtpNetworkLocation location;
 
     private Map<NetworkPath, Time> lastModifiedCache;
 
@@ -61,17 +61,17 @@ public class SftpFolderWatcher extends PeriodicCollectionChangeWatcher<NetworkPa
      *
      * @param frequency The frequency of the checks
      * @param credentials The SFTP credentials object
-     * @param fullSftpFolderPath The path of the folder to monitor on the SFTP server
+     * @param location The path of the folder to monitor on the SFTP server
      */
-    public SftpFolderWatcher(final Frequency frequency, final SecureFtpSettings credentials,
-                             final NetworkPath fullSftpFolderPath)
+    public SftpFolderWatcher(final Frequency frequency,
+                             final SecureFtpSettings credentials,
+                             final SecureFtpNetworkLocation location)
     {
         super(frequency);
         lastModifiedCache = new HashMap<>();
         this.credentials = credentials;
-        this.fullSftpFolderPath = fullSftpFolderPath;
-        LOGGER.information("Created a Folder Watcher ${debug} with frequency ${debug}.", fullSftpFolderPath.join(),
-                frequency.toString());
+        this.location = location;
+        information("Watching $ $", location, frequency);
     }
 
     /**
@@ -112,7 +112,7 @@ public class SftpFolderWatcher extends PeriodicCollectionChangeWatcher<NetworkPa
     @Override
     protected Collection<NetworkPath> objects()
     {
-        LOGGER.narrate("Checking the SFTP folder ${debug}.", fullSftpFolderPath.join());
+        narrate("Checking the SFTP folder ${debug}.", location);
         final Collection<NetworkPath> result = new ArrayList<>();
 
         /*
@@ -123,17 +123,18 @@ public class SftpFolderWatcher extends PeriodicCollectionChangeWatcher<NetworkPa
         if (initialized)
         {
             lastModifiedCache = new HashMap<>();
-            final var sftp = getSftpConnector();
+            final var sftp = connector();
 
             /*
              * Get all the files from the SFTP server
              */
+            final var path = location.networkPath();
             try
             {
-                final var files = sftp.listFiles(fullSftpFolderPath);
+                final var files = sftp.listFiles(location);
                 for (final var file : files)
                 {
-                    final var filePath = fullSftpFolderPath.withChild(file.getFilename());
+                    final var filePath = path.withChild(file.getFilename());
                     if (!filePath.last().endsWith(".") && !filePath.last().endsWith(".."))
                     {
                         /*
@@ -149,8 +150,7 @@ public class SftpFolderWatcher extends PeriodicCollectionChangeWatcher<NetworkPa
             finally
             {
                 sftp.safeDisconnect();
-                LOGGER.narrate("Found ${debug} objects in the folder ${debug}.", result.size(),
-                        fullSftpFolderPath.join());
+                narrate("Found ${debug} objects in the folder ${debug}.", result.size(), path.join());
             }
         }
         else
@@ -163,14 +163,14 @@ public class SftpFolderWatcher extends PeriodicCollectionChangeWatcher<NetworkPa
     /**
      * @return The SFTP Connector
      */
-    private SecureFtpConnector getSftpConnector()
+    private SecureFtpConnector connector()
     {
         final var constraints = new NetworkAccessConstraints();
         constraints.timeout(credentials.timeout());
-        final var location = new SecureFtpNetworkLocation(fullSftpFolderPath);
+        final var location = this.location;
         location.constraints().userName(credentials.userName());
         location.constraints().password(credentials.password());
-        return new SecureFtpConnector(location, constraints);
+        return new SecureFtpConnector(constraints);
     }
 
     /**

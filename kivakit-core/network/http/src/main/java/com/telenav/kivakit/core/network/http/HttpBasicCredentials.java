@@ -19,11 +19,19 @@
 package com.telenav.kivakit.core.network.http;
 
 import com.telenav.kivakit.core.network.http.project.lexakai.diagrams.DiagramHttp;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.security.authentication.Password;
 import com.telenav.kivakit.core.security.authentication.UserName;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * Credentials for HTTP Basic authentication using clear text username and password. This method of authentication is
+ * not secure. When possible use classes from the *secure* package.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramHttp.class)
+@LexakaiJavadoc(complete = true)
 public class HttpBasicCredentials
 {
     private final Password password;

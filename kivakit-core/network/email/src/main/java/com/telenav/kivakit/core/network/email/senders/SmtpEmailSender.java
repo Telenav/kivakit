@@ -24,7 +24,7 @@ import com.telenav.kivakit.core.network.email.EmailSender;
 import com.telenav.kivakit.core.network.email.project.lexakai.diagrams.DiagramEmail;
 import com.telenav.kivakit.core.security.authentication.Password;
 import com.telenav.kivakit.core.security.authentication.UserName;
-import com.telenav.kivakit.core.security.authentication.converters.PlainTextPasswordConverter;
+import com.telenav.kivakit.core.security.authentication.passwords.PlainTextPassword;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -70,7 +70,7 @@ public class SmtpEmailSender extends EmailSender
             return password;
         }
 
-        @KivaKitPropertyConverter(PlainTextPasswordConverter.class)
+        @KivaKitPropertyConverter(PlainTextPassword.Converter.class)
         public Configuration password(final Password password)
         {
             this.password = password;

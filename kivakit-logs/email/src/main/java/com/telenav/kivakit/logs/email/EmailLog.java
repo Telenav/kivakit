@@ -85,9 +85,9 @@ public class EmailLog extends BaseTextLog
         if (host != null && username != null && password != null)
         {
             final var configuration = new SmtpEmailSender.Configuration();
-            configuration.host(new Host(host));
-            configuration.username(new UserName(username));
-            configuration.password(new PlainTextPassword(password));
+            configuration.host(Host.parse(host));
+            configuration.username(UserName.parse(username));
+            configuration.password(PlainTextPassword.parse(password));
             sender = new SmtpEmailSender(configuration);
         }
     }

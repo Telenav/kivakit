@@ -23,12 +23,19 @@ import com.telenav.kivakit.core.network.core.NetworkLocation;
 import com.telenav.kivakit.core.network.core.NetworkPath;
 import com.telenav.kivakit.core.network.core.Protocol;
 import com.telenav.kivakit.core.network.ftp.project.lexakai.diagrams.DiagramSecureFtp;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensure;
 
+/**
+ * A secure ftp (SFTP) network location.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramSecureFtp.class)
+@LexakaiJavadoc(complete = true)
 public class SecureFtpNetworkLocation extends NetworkLocation
 {
     public SecureFtpNetworkLocation(final NetworkPath path)

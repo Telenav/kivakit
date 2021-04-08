@@ -14,10 +14,10 @@
     class Host
     {
         --(constructors)--
+        #Host(String)
+        #Host(String, String)
         +Host(InetAddress, String)
         +Host(InetAddress, String, String)
-        +Host(String)
-        +Host(String, String)
         --
         +InetAddress address()
         +String description()
@@ -45,8 +45,10 @@
         +Port mysql(int port)
         +Port mysql()
         +SwitchParser.Builder<NetworkPath> networkFilePath(String name, String description)
-        +Port port(Protocol, int number)
+        +Host parse(String name, String description)
+        +Host parse(String name)
         +Port port(int number)
+        +Port port(Protocol, int number)
         +SwitchParser.Builder<Port> port(String name, String description)
         +SwitchParser.Builder<ObjectList<Port>> portList(String name, String description, String delimiter)
         +Port sftp()

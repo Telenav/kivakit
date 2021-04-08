@@ -19,9 +19,10 @@
 package com.telenav.kivakit.core.network.core;
 
 import com.telenav.kivakit.core.network.core.project.lexakai.diagrams.DiagramNetworkLocation;
+import com.telenav.kivakit.core.resource.Resource;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
-import com.telenav.kivakit.core.resource.Resource;
 
 /**
  * Interface to a network resource. The resource has a {@link NetworkLocation}.
@@ -29,6 +30,7 @@ import com.telenav.kivakit.core.resource.Resource;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramNetworkLocation.class)
+@LexakaiJavadoc(complete = true)
 public interface NetworkResource extends Resource
 {
     /**

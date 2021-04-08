@@ -18,14 +18,21 @@
 
 package com.telenav.kivakit.core.network.http.secure;
 
+import com.telenav.kivakit.core.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.core.network.http.HttpGetResource;
 import com.telenav.kivakit.core.network.http.project.lexakai.diagrams.DiagramHttps;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.kivakit.core.network.core.NetworkAccessConstraints;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+/**
+ * A resource accessed by HTTPS GET at the given network location using the given access constraints.
+ *
+ * @author jonathanl (shibo)
+ */
 @SuppressWarnings("deprecation")
 @UmlClassDiagram(diagram = DiagramHttps.class)
+@LexakaiJavadoc(complete = true)
 public class SecureHttpGetResource extends HttpGetResource
 {
     private boolean ignoreInvalidCertificates;
