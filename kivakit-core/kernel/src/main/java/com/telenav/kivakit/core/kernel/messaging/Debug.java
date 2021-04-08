@@ -34,7 +34,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * <b>Note</b>: For a detailed discussion, see <a href="https://tinyurl.com/2xycuvph">KivaKit Debugging Documentation</a>
+ * <b>Note</b>: For a detailed discussion, see <a href="https://tinyurl.com/2xycuvph">KivaKit Debugging
+ * Documentation</a>
  * <p>
  * The {@link Debug} object is used to switch debugging code on and off efficiently and powerfully by way of the Java
  * system property KIVAKIT_DEBUG (see {@link System#getProperties()}). To change the debug enable state of one or more
@@ -249,8 +250,8 @@ public final class Debug implements Transceiver
                 final var debug = property("KIVAKIT_DEBUG");
                 final var log = property("KIVAKIT_LOG");
                 final var title = "KivaKit " + KivaKit.get().version() + " (" + KivaKit.get().build() + ")";
-                LOGGER.information(AsciiArt.textBox(title, "  Logging: https://tinyurl.com/mhc3ss5s\n"
-                                + "Debugging: https://tinyurl.com/2xycuvph\n"
+                LOGGER.information(AsciiArt.textBox(title, "      Logging: https://tinyurl.com/mhc3ss5s\n"
+                                + "    Debugging: https://tinyurl.com/2xycuvph\n"
                                 + "  KIVAKIT_LOG: $\n"
                                 + "KIVAKIT_DEBUG: $",
                         log == null ? "Console" : log,

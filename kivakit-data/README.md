@@ -12,14 +12,18 @@ This project contains projects for compressing data and processing data in commo
 
 ### Projects &nbsp; ![](documentation/images/gears-40.png)
 
-[**compression**](compression/README.md)  
-[**formats**](formats/README.md)  
+[**kivakit-data-compression**](kivakit-data-compression/README.md)  
+[**kivakit-data-formats**](kivakit-data-formats/README.md)  
 
 [//]: # (start-user-text)
 
 
 
 [//]: # (end-user-text)
+
+### Javadoc Coverage
+
+&nbsp;  ![](documentation/images/meter-60-12.png) &nbsp; &nbsp; *kivakit-data-compression*
 
 ![](documentation/images/horizontal-line.png)
 

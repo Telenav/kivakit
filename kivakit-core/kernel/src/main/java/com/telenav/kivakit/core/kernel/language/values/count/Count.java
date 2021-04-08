@@ -18,28 +18,26 @@
 
 package com.telenav.kivakit.core.kernel.language.values.count;
 
+import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.core.kernel.interfaces.code.Loopable;
 import com.telenav.kivakit.core.kernel.interfaces.numeric.Countable;
 import com.telenav.kivakit.core.kernel.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.core.kernel.language.math.Primes;
-import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.core.kernel.language.primitives.Ints;
 import com.telenav.kivakit.core.kernel.language.primitives.Longs;
 import com.telenav.kivakit.core.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.core.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.core.kernel.language.values.level.Percent;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
+import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.function.Consumer;
 
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensure;
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.kernel.language.strings.conversion.StringFormat.PROGRAMMATIC_IDENTIFIER;
 
 /**
@@ -685,7 +683,7 @@ public class Count implements Countable, Comparable<Count>, Quantizable, AsStrin
         {
             return Percent._0;
         }
-        return new Percent(count * 100.0 / total.get());
+        return Percent.of(count * 100.0 / total.get());
     }
 
     public Count plus(final Count count)

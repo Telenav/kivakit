@@ -20,15 +20,13 @@ package com.telenav.kivakit.core.kernel.language.values.count;
 
 import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.core.kernel.interfaces.numeric.Countable;
-import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
 import com.telenav.kivakit.core.kernel.language.values.level.Percent;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.messaging.Message;
+import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.concurrent.atomic.AtomicLong;
-
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensure;
 
 /**
  * A mutable count value useful in lambdas and inner classes. Can be {@link #increment()}ed, {@link #decrement()}ed,
@@ -150,7 +148,7 @@ public class ConcurrentMutableCount implements Countable, Listener
         {
             return Percent._0;
         }
-        return new Percent(asInt() * 100.0 / total.asInt());
+        return Percent.of(asInt() * 100.0 / total.asInt());
     }
 
     public void set(final long count)

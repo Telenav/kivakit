@@ -20,14 +20,19 @@ provider interface (SPI) to implement a new log service.
 
 ### Projects &nbsp; ![](documentation/images/gears-40.png)
 
-[**email**](email/README.md)  
-[**file**](file/README.md)  
+[**kivakit-logs-email**](kivakit-logs-email/README.md)  
+[**kivakit-logs-file**](kivakit-logs-file/README.md)  
 
 [//]: # (start-user-text)
 
 
 
 [//]: # (end-user-text)
+
+### Javadoc Coverage
+
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-logs-email*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-logs-file*
 
 ![](documentation/images/horizontal-line.png)
 

@@ -123,6 +123,12 @@ public class Ints
         return POWERS_OF_10[power];
     }
 
+    public static int quantized(final int value, final int quantum)
+    {
+        final var quanta = (value + quantum / 2) / quantum;
+        return quantum * quanta;
+    }
+
     public static int rounded(final double value)
     {
         return (int) (value + 0.5);

@@ -20,13 +20,11 @@ package com.telenav.kivakit.core.kernel.language.values.count;
 
 import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.core.kernel.interfaces.numeric.Countable;
-import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
 import com.telenav.kivakit.core.kernel.language.values.level.Percent;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.messaging.Message;
+import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensure;
 
 /**
  * A mutable count value useful in lambdas and inner classes. Can be {@link #increment()}ed, {@link #decrement()}ed,
@@ -146,7 +144,7 @@ public class MutableCount implements Countable, Comparable<MutableCount>, Listen
         {
             return Percent._0;
         }
-        return new Percent(asLong() * 100.0 / total.asLong());
+        return Percent.of(asLong() * 100.0 / total.asLong());
     }
 
     public long plus(final long that)

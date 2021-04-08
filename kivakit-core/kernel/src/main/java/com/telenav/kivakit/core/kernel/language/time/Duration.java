@@ -18,20 +18,20 @@
 
 package com.telenav.kivakit.core.kernel.language.time;
 
+import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.core.kernel.data.conversion.string.primitive.FormattedDoubleConverter;
 import com.telenav.kivakit.core.kernel.data.conversion.string.primitive.LongConverter;
 import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.core.kernel.interfaces.code.Callback;
-import com.telenav.kivakit.core.kernel.logging.Logger;
-import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.core.kernel.messaging.messages.status.Information;
-import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageTime;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.core.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.core.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.core.kernel.language.values.level.Percent;
+import com.telenav.kivakit.core.kernel.logging.Logger;
+import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Information;
+import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageTime;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -42,7 +42,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.kernel.language.strings.conversion.StringFormat.PROGRAMMATIC_IDENTIFIER;
 import static com.telenav.kivakit.core.kernel.language.strings.conversion.StringFormat.USER_LABEL_IDENTIFIER;
 import static com.telenav.kivakit.core.kernel.language.strings.conversion.StringFormat.USER_MULTILINE_IDENTIFIER;
@@ -677,7 +676,7 @@ public class Duration implements Comparable<Duration>, AsString
 
     public Percent percentageOf(final Duration that)
     {
-        return new Percent(100.0 * milliseconds / that.milliseconds);
+        return Percent.of(100.0 * milliseconds / that.milliseconds);
     }
 
     public Duration plus(final Duration that)

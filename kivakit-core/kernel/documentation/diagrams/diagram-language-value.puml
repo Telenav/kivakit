@@ -454,11 +454,12 @@
         +T object()
     }
     
+    Comparable <|-- Percent
     class Percent
     {
         --(constructors)--
         #Percent()
-        +Percent(double)
+        #Percent(double)
         --
         +long scale(long value)
         +double scale(double value)
@@ -479,7 +480,7 @@
         +Percent dividedBy(double scaleFactor)
         +Percent inverse()
         +Percent minus(Percent that)
-        +Percent percent(double percent)
+        +Percent of(double percent)
         +Percent plus(Percent that)
         +Percent times(double scaleFactor)
     }

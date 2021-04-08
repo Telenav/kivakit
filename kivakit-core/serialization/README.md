@@ -12,16 +12,23 @@ This project index was created by Lexakai. To configure, see [project-home-folde
 
 ### Projects &nbsp; ![](documentation/images/gears-40.png)
 
-[**core**](core/README.md)  
-[**jersey-json**](jersey-json/README.md)  
-[**json**](json/README.md)  
-[**kryo**](kryo/README.md)  
+[**kivakit-core-serialization-core**](kivakit-core-serialization-core/README.md)  
+[**kivakit-core-serialization-jersey-json**](kivakit-core-serialization-jersey-json/README.md)  
+[**kivakit-core-serialization-json**](kivakit-core-serialization-json/README.md)  
+[**kivakit-core-serialization-kryo**](kivakit-core-serialization-kryo/README.md)  
 
 [//]: # (start-user-text)
 
 
 
 [//]: # (end-user-text)
+
+### Javadoc Coverage
+
+&nbsp;  ![](documentation/images/meter-80-12.png) &nbsp; &nbsp; *kivakit-core-serialization-core*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-core-serialization-jersey-json*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-core-serialization-json*  
+&nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-core-serialization-kryo*
 
 ![](documentation/images/horizontal-line.png)
 

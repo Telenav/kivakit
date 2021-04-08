@@ -32,7 +32,7 @@ public final class DefaultHashingStrategy implements HashingStrategy
 
     public static Percent defaultMaximumOccupancy()
     {
-        return new Percent(70);
+        return Percent.of(70);
     }
 
     public static DefaultHashingStrategy of(final Estimate capacity)

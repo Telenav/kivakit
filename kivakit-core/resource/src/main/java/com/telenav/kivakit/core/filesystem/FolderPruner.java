@@ -18,9 +18,6 @@
 
 package com.telenav.kivakit.core.filesystem;
 
-import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFolder;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.core.kernel.language.matching.matchers.All;
 import com.telenav.kivakit.core.kernel.language.threading.RepeatingThread;
@@ -30,6 +27,9 @@ import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
 import com.telenav.kivakit.core.kernel.language.values.level.Percent;
 import com.telenav.kivakit.core.kernel.logging.Logger;
 import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
+import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFolder;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
 @UmlRelation(label = "prunes old files from", referent = Folder.class)
@@ -44,7 +44,7 @@ public class FolderPruner
     private volatile Matcher<File> matcher = new All<>();
 
     /** The minimum percentage of usable disk space that must be maintained on the folder's disk. */
-    private volatile Percent minimumUsableDiskSpace = new Percent(15);
+    private volatile Percent minimumUsableDiskSpace = Percent.of(15);
 
     /** The minimum age for a file to be pruned */
     private volatile Duration minimumAge = Duration.weeks(2);

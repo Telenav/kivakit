@@ -18,12 +18,13 @@
 
 package com.telenav.kivakit.core.kernel.language.values.level;
 
-import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.core.kernel.language.primitives.Doubles;
 import com.telenav.kivakit.core.kernel.language.strings.Strip;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
+import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -33,7 +34,7 @@ import java.util.Objects;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageValue.class)
-public final class Percent
+public final class Percent implements Comparable<Percent>
 {
     public static final Percent _0 = new Percent(0);
 
@@ -41,7 +42,7 @@ public final class Percent
 
     public static final Percent _100 = new Percent(100);
 
-    public static Percent percent(final double percent)
+    public static Percent of(final double percent)
     {
         return new Percent(percent);
     }
@@ -62,7 +63,7 @@ public final class Percent
 
     private double value;
 
-    public Percent(final double value)
+    protected Percent(final double value)
     {
         this.value = value;
     }
@@ -95,6 +96,12 @@ public final class Percent
     public double asZeroToOne()
     {
         return Doubles.inRange(value / 100.0, 0.0, 1.0);
+    }
+
+    @Override
+    public int compareTo(@NotNull final Percent that)
+    {
+        return Double.compare(value, that.value);
     }
 
     public Percent dividedBy(final double scaleFactor)

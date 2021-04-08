@@ -40,15 +40,21 @@ needs to be set up manually.
 
 ### Projects &nbsp; ![](documentation/images/gears-40.png)
 
-[**client**](client/README.md)  
-[**registry**](registry/README.md)  
-[**server**](server/README.md)  
+[**kivakit-service-client**](kivakit-service-client/README.md)  
+[**kivakit-service-registry**](kivakit-service-registry/README.md)  
+[**kivakit-service-server**](kivakit-service-server/README.md)  
 
 [//]: # (start-user-text)
 
 
 
 [//]: # (end-user-text)
+
+### Javadoc Coverage
+
+&nbsp;  ![](documentation/images/meter-30-12.png) &nbsp; &nbsp; *kivakit-service-client*  
+&nbsp;  ![](documentation/images/meter-20-12.png) &nbsp; &nbsp; *kivakit-service-registry*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-service-server*
 
 ![](documentation/images/horizontal-line.png)
 
