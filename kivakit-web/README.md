@@ -39,16 +39,23 @@ for more details.
 
 ### Projects &nbsp; ![](documentation/images/gears-40.png)
 
-[**jersey**](jersey/README.md)  
-[**jetty**](jetty/README.md)  
-[**swagger**](swagger/README.md)  
-[**wicket**](wicket/README.md)  
+[**kivakit-web-jersey**](kivakit-web-jersey/README.md)  
+[**kivakit-web-jetty**](kivakit-web-jetty/README.md)  
+[**kivakit-web-swagger**](kivakit-web-swagger/README.md)  
+[**kivakit-web-wicket**](kivakit-web-wicket/README.md)  
 
 [//]: # (start-user-text)
 
 
 
 [//]: # (end-user-text)
+
+### Javadoc Coverage
+
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-web-jersey*  
+&nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-web-jetty*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-web-swagger*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-web-wicket*
 
 ![](documentation/images/horizontal-line.png)
 

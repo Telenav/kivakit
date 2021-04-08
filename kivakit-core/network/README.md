@@ -12,17 +12,25 @@ This project contains core networking projects including resources for common pr
 
 ### Projects &nbsp; ![](documentation/images/gears-40.png)
 
-[**core**](core/README.md)  
-[**email**](email/README.md)  
-[**ftp**](ftp/README.md)  
-[**http**](http/README.md)  
-[**socket**](socket/README.md)  
+[**kivakit-core-network-core**](kivakit-core-network-core/README.md)  
+[**kivakit-core-network-email**](kivakit-core-network-email/README.md)  
+[**kivakit-core-network-ftp**](kivakit-core-network-ftp/README.md)  
+[**kivakit-core-network-http**](kivakit-core-network-http/README.md)  
+[**kivakit-core-network-socket**](kivakit-core-network-socket/README.md)  
 
 [//]: # (start-user-text)
 
 
 
 [//]: # (end-user-text)
+
+### Javadoc Coverage
+
+&nbsp;  ![](documentation/images/meter-10-12.png) &nbsp; &nbsp; *kivakit-core-network-core*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-core-network-email*  
+&nbsp;  ![](documentation/images/meter-10-12.png) &nbsp; &nbsp; *kivakit-core-network-ftp*  
+&nbsp;  ![](documentation/images/meter-10-12.png) &nbsp; &nbsp; *kivakit-core-network-http*  
+&nbsp;  ![](documentation/images/meter-50-12.png) &nbsp; &nbsp; *kivakit-core-network-socket*
 
 ![](documentation/images/horizontal-line.png)
 

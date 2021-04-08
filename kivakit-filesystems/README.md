@@ -23,16 +23,23 @@ classes.
 
 ### Projects &nbsp; ![](documentation/images/gears-40.png)
 
-[**hdfs**](hdfs/README.md)  
-[**hdfs-proxy**](hdfs-proxy/README.md)  
-[**hdfs-proxy-spi**](hdfs-proxy-spi/README.md)  
-[**s3fs**](s3fs/README.md)  
+[**kivakit-filesystems-hdfs**](kivakit-filesystems-hdfs/README.md)  
+[**kivakit-filesystems-hdfs-proxy**](kivakit-filesystems-hdfs-proxy/README.md)  
+[**kivakit-filesystems-hdfs-proxy-spi**](kivakit-filesystems-hdfs-proxy-spi/README.md)  
+[**kivakit-filesystems-s3fs**](kivakit-filesystems-s3fs/README.md)  
 
 [//]: # (start-user-text)
 
 
 
 [//]: # (end-user-text)
+
+### Javadoc Coverage
+
+&nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-filesystems-hdfs*  
+&nbsp;  ![](documentation/images/meter-20-12.png) &nbsp; &nbsp; *kivakit-filesystems-hdfs-proxy*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-filesystems-hdfs-proxy-spi*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-filesystems-s3fs*
 
 ![](documentation/images/horizontal-line.png)
 

@@ -85,7 +85,7 @@ public class FolderPrunerTest extends UnitTest
                 }
             };
             pruner.pollingFrequency(Frequency.every(Duration.milliseconds(25)));
-            pruner.minimumUsableDiskSpace(new Percent(100));
+            pruner.minimumUsableDiskSpace(Percent.of(100));
             pruner.minimumAge(Duration.NONE);
             pruner.start();
             Duration.seconds(0.25).sleep();

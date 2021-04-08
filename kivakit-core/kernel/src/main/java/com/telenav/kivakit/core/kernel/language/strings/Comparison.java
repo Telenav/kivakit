@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.core.kernel.language.strings;
 
+import com.telenav.kivakit.core.kernel.language.primitives.Doubles;
 import com.telenav.kivakit.core.kernel.language.values.level.Percent;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageString;
-import com.telenav.kivakit.core.kernel.language.primitives.Doubles;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -61,7 +61,7 @@ public class Comparison
         {
             return Percent._0;
         }
-        return Percent.percent(Doubles.inRange(100.0 * lexicalDistance / a.length(), 0.0, 100.0));
+        return Percent.of(Doubles.inRange(100.0 * lexicalDistance / a.length(), 0.0, 100.0));
     }
 
     /**

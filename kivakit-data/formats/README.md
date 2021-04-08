@@ -12,16 +12,23 @@ This project contains support for processing common data formats, including text
 
 ### Projects &nbsp; ![](documentation/images/gears-40.png)
 
-[**csv**](csv/README.md)  
-[**library**](library/README.md)  
-[**text**](text/README.md)  
-[**xml**](xml/README.md)  
+[**kivakit-data-formats-csv**](kivakit-data-formats-csv/README.md)  
+[**kivakit-data-formats-library**](kivakit-data-formats-library/README.md)  
+[**kivakit-data-formats-text**](kivakit-data-formats-text/README.md)  
+[**kivakit-data-formats-xml**](kivakit-data-formats-xml/README.md)  
 
 [//]: # (start-user-text)
 
 
 
 [//]: # (end-user-text)
+
+### Javadoc Coverage
+
+&nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-data-formats-csv*  
+&nbsp;  ![](documentation/images/meter-50-12.png) &nbsp; &nbsp; *kivakit-data-formats-library*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-data-formats-text*  
+&nbsp;  ![](documentation/images/meter-20-12.png) &nbsp; &nbsp; *kivakit-data-formats-xml*
 
 ![](documentation/images/horizontal-line.png)
 

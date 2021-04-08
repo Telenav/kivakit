@@ -41,6 +41,7 @@
         +int inRange(int value, int min, int max)
         +int low(int value)
         +int powerOfTen(int power)
+        +int quantized(int value, int quantum)
         +int rounded(double value)
         +int signExtend(int value, int bits)
         --(checks)--

@@ -26,9 +26,9 @@ import com.telenav.kivakit.core.kernel.language.time.Rate;
 import com.telenav.kivakit.core.kernel.language.time.Time;
 import com.telenav.kivakit.core.kernel.language.values.count.Count;
 import com.telenav.kivakit.core.kernel.language.values.level.Percent;
+import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.messaging.broadcasters.Multicaster;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageProgress;
-import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
@@ -335,7 +335,7 @@ public class Progress extends Multicaster implements ProgressReporter
     {
         if (steps().isNonZero())
         {
-            return Percent.percent(100.0 * at() / steps().asLong());
+            return Percent.of(100.0 * at() / steps().asLong());
         }
         return null;
     }
@@ -399,7 +399,7 @@ public class Progress extends Multicaster implements ProgressReporter
         {
             builder.append(Count.count(steps));
             builder.append(" (");
-            builder.append(new Percent(100.0 * count.get() / steps).asInt());
+            builder.append(Percent.of(100.0 * count.get() / steps).asInt());
             builder.append("%)");
         }
         else

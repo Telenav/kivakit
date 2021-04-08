@@ -18,16 +18,16 @@
 
 package com.telenav.kivakit.core.kernel.language.values.count;
 
-import com.telenav.kivakit.core.kernel.interfaces.io.ByteSized;
-import com.telenav.kivakit.core.kernel.logging.Logger;
-import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
+import com.telenav.kivakit.core.kernel.interfaces.io.ByteSized;
 import com.telenav.kivakit.core.kernel.language.primitives.Doubles;
 import com.telenav.kivakit.core.kernel.language.strings.Strings;
 import com.telenav.kivakit.core.kernel.language.values.level.Percent;
+import com.telenav.kivakit.core.kernel.logging.Logger;
+import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
+import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.regex.Pattern;
 
@@ -439,7 +439,7 @@ public final class Bytes extends Count implements ByteSized
 
     public Percent percentOf(final Bytes that)
     {
-        return new Percent((double) asBytes() / that.asBytes() * 100.0);
+        return Percent.of((double) asBytes() / that.asBytes() * 100.0);
     }
 
     @Override

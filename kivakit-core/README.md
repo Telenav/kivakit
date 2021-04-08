@@ -12,22 +12,33 @@ This project contains the core functionality of KivaKit, frameworks that are pot
 
 ### Projects &nbsp; ![](documentation/images/gears-40.png)
 
-[**application**](application/README.md)  
-[**collections**](collections/README.md)  
-[**commandline**](commandline/README.md)  
-[**configuration**](configuration/README.md)  
-[**kernel**](kernel/README.md)  
-[**network**](network/README.md)  
-[**resource**](resource/README.md)  
-[**security**](security/README.md)  
-[**serialization**](serialization/README.md)  
-[**test**](test/README.md)  
+[**kivakit-core-application**](kivakit-core-application/README.md)  
+[**kivakit-core-collections**](kivakit-core-collections/README.md)  
+[**kivakit-core-commandline**](kivakit-core-commandline/README.md)  
+[**kivakit-core-configuration**](kivakit-core-configuration/README.md)  
+[**kivakit-core-kernel**](kivakit-core-kernel/README.md)  
+[**kivakit-core-network**](kivakit-core-network/README.md)  
+[**kivakit-core-resource**](kivakit-core-resource/README.md)  
+[**kivakit-core-security**](kivakit-core-security/README.md)  
+[**kivakit-core-serialization**](kivakit-core-serialization/README.md)  
+[**kivakit-core-test**](kivakit-core-test/README.md)  
 
 [//]: # (start-user-text)
 
 
 
 [//]: # (end-user-text)
+
+### Javadoc Coverage
+
+&nbsp;  ![](documentation/images/meter-30-12.png) &nbsp; &nbsp; *kivakit-core-application*  
+&nbsp;  ![](documentation/images/meter-60-12.png) &nbsp; &nbsp; *kivakit-core-collections*  
+&nbsp;  ![](documentation/images/meter-70-12.png) &nbsp; &nbsp; *kivakit-core-commandline*  
+&nbsp;  ![](documentation/images/meter-80-12.png) &nbsp; &nbsp; *kivakit-core-configuration*  
+&nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-core-kernel*  
+&nbsp;  ![](documentation/images/meter-20-12.png) &nbsp; &nbsp; *kivakit-core-resource*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-core-security*  
+&nbsp;  ![](documentation/images/meter-30-12.png) &nbsp; &nbsp; *kivakit-core-test*
 
 ![](documentation/images/horizontal-line.png)
 

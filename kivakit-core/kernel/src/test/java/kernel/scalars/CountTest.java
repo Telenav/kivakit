@@ -38,7 +38,7 @@ public class CountTest
         ensureEqual(Count.count(100), count.plusOne());
         ensureFalse(count.isZero());
         ensure(Count._0.isZero());
-        ensureEqual(new Percent(99), count.percentOf(Count.count(100)));
+        ensureEqual(Percent.of(99), count.percentOf(Count.count(100)));
         ensureEqual(-1, count.compareTo(Count.count(100)));
         ensureEqual(0, count.compareTo(count));
         ensureEqual(1, count.compareTo(Count.count(98)));
