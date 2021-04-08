@@ -21,7 +21,14 @@ package com.telenav.kivakit.core.network.email.converters;
 import com.telenav.kivakit.core.kernel.data.conversion.string.collection.BaseSetConverter;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.network.core.EmailAddress;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
+/**
+ * Converts to and from sets of {@link EmailAddress}es
+ *
+ * @author jonathanl (shibo)
+ */
+@LexakaiJavadoc(complete = true)
 public class EmailAddressSetConverter extends BaseSetConverter<EmailAddress>
 {
     public EmailAddressSetConverter(final Listener listener)

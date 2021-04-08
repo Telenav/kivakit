@@ -25,13 +25,26 @@ import com.telenav.kivakit.core.network.email.project.lexakai.diagrams.DiagramEm
 import com.telenav.kivakit.core.security.authentication.Password;
 import com.telenav.kivakit.core.security.authentication.UserName;
 import com.telenav.kivakit.core.security.authentication.converters.PlainTextPasswordConverter;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Properties;
 
+/**
+ * Sends emails via SMTP using a host, username and password.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramEmail.class)
+@LexakaiJavadoc(complete = true)
 public class SmtpEmailSender extends EmailSender
 {
+    /**
+     * Specifies the host, username and password to send emails via SMTP
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Configuration extends EmailSender.Configuration
     {
         private Host host;

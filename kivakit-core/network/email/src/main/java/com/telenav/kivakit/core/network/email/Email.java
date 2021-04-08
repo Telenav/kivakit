@@ -27,6 +27,7 @@ import com.telenav.kivakit.core.kernel.language.time.Time;
 import com.telenav.kivakit.core.kernel.language.values.count.Count;
 import com.telenav.kivakit.core.network.core.EmailAddress;
 import com.telenav.kivakit.core.network.email.project.lexakai.diagrams.DiagramEmail;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
@@ -43,7 +44,22 @@ import java.util.Set;
 
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.illegalState;
 
+/**
+ * Models an email with:
+ *
+ * <ul>
+ *     <li>A 'from' email address</li>
+ *     <li>One or more 'to' email addresses</li>
+ *     <li>A subject</li>
+ *     <li>A body</li>
+ *     <li>Optional attachments</li>
+ *     <li>Time sent</li>
+ * </ul>
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramEmail.class)
+@LexakaiJavadoc(complete = true)
 public class Email implements Validatable
 {
     @UmlAggregation(label = "to")

@@ -85,13 +85,11 @@ it and enqueueing *Email* objects. No attempt is made to persist the queue of un
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 0.0%.  
+Javadoc coverage for this project is 100.0%.  
   
-&nbsp; &nbsp;  ![](documentation/images/meter-0-12.png)
+&nbsp; &nbsp;  ![](documentation/images/meter-100-12.png)
 
-The following significant classes are undocumented:  
 
-- EmailSender
 
 | Class | Documentation Sections |
 |---|---|

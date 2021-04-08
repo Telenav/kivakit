@@ -18,10 +18,17 @@
 
 package com.telenav.kivakit.core.network.email.converters;
 
-import com.telenav.kivakit.core.network.email.EmailAttachment;
 import com.telenav.kivakit.core.kernel.data.conversion.string.collection.BaseListConverter;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
+import com.telenav.kivakit.core.network.email.EmailAttachment;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
+/**
+ * Converts to and from lists of {@link EmailAttachment} objects
+ *
+ * @author jonathanl (shibo)
+ */
+@LexakaiJavadoc(complete = true)
 public class AttachmentListConverter extends BaseListConverter<EmailAttachment>
 {
     public AttachmentListConverter(final Listener listener)

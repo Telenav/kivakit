@@ -18,20 +18,23 @@
 
 package com.telenav.kivakit.core.network.email;
 
-import com.telenav.kivakit.core.network.email.project.lexakai.diagrams.DiagramEmail;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.interfaces.io.Closeable;
 import com.telenav.kivakit.core.kernel.language.time.Duration;
+import com.telenav.kivakit.core.kernel.language.time.Time;
+import com.telenav.kivakit.core.network.email.project.lexakai.diagrams.DiagramEmail;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 /**
- * A simple email queue with no persistent backing
+ * A simple email queue implemented with {@link ArrayBlockingQueue}, with no persistent backing.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramEmail.class)
+@LexakaiJavadoc(complete = true)
 class EmailQueue implements Closeable
 {
     private volatile boolean closed;
@@ -72,8 +75,9 @@ class EmailQueue implements Closeable
         return false;
     }
 
-    public void sent(final Email ignored)
+    public void sent(final Email email)
     {
+        email.sentAt = Time.now();
     }
 
     public Email take()
