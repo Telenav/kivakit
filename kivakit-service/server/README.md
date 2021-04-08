@@ -46,6 +46,12 @@ This module provides port registration services to kivakit-service-client
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 0.0%.
+
+The following significant classes are undocumented:  
+
+- ServiceRegistryRestResource
+
 | Class | Documentation Sections |
 |---|---|
 | [*HomePage*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/webapp/pages/home/HomePage.html) |  |  

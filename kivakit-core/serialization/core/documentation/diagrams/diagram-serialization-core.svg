@@ -11,10 +11,10 @@ reverse link Named to SerializationSession--><path codeLine="13" d="M333.4583,12
 reverse link Closeable to SerializationSession--><path codeLine="14" d="M101.5833,115.0465 C130.5104,139.057 170.5104,172.2653 211.3854,206.1924 " fill="none" id="Closeable-backto-SerializationSession" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="96.875,120.609,85.5104,101.6924,106.1875,109.3903,96.875,120.609" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ef5226806653dac8edec57e4b7feb8f9]
 reverse link Flushable to SerializationSession--><path codeLine="15" d="M223.6146,119.1507 C232.7188,132.1507 243.4583,147.5049 255.0208,164.0257 " fill="none" id="Flushable-backto-SerializationSession" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="217.5313,123.1715,211.5625,101.932,229.4792,114.8174,217.5313,123.1715" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[6fb52cf691a70a3519928b685a81f856]
 reverse link Versioned to SerializationSession--><path codeLine="16" d="M795.1979,112.2132 C736.8438,146.2757 643.4792,200.7653 560.6563,249.1195 " fill="none" id="Versioned-backto-SerializationSession" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="791.5521,105.9007,813.2188,101.6924,798.9063,118.4945,791.5521,105.9007" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[1e9ac3f44438bb217319fb8040b4ff84]
-reverse link Repeater to SerializationSession--><path codeLine="17" d="M438.4167,122.3695 C435.5938,134.6611 432.3438,148.8486 428.8646,164.0257 " fill="none" id="Repeater-backto-SerializationSession" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="431.3438,120.5986,443.1042,101.932,445.5521,123.859,431.3438,120.5986" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[3a5a71d9658b239c99f13e85b35018cf]
+reverse link Repeater to SerializationSession--><path codeLine="17" d="M438.4167,122.3695 C435.5938,134.6611 432.3438,148.8486 428.8646,164.0257 " fill="none" id="Repeater-backto-SerializationSession" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="431.3438,120.5986,443.1042,101.932,445.5521,123.859,431.3438,120.5986" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7a069008f05398fbbf6e502b66126596]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "Core Serialization"
     

@@ -67,6 +67,12 @@ The *SecureHttpNetworkLocation*, *SecureHttpGetResource* and *SecureHttpPostReso
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 7.1%.
+
+The following significant classes are undocumented:  
+
+- HttpNetworkLocation
+
 | Class | Documentation Sections |
 |---|---|
 | [*BaseHttpResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/BaseHttpResource.html) |  |  

@@ -73,10 +73,10 @@ link kivakit_web_jetty to kivakit_core_network_http--><path d="M1910.3854,92.442
 link kryo to minlog--><path d="M1080.6563,635.1403 C1060.4271,652.1611 1032.1771,675.9424 1010.9583,693.807 " fill="none" id="kryo-to-minlog" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1006.8125,697.2965,1016.6665,694.4415,1010.7953,693.9403,1011.2965,688.0691,1006.8125,697.2965" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e75c16e47fcf6c43b15d3c25536a9ed0]
 link kryo to objenesis--><path d="M1133.7708,635.1403 C1155.5938,652.234 1186.1354,676.1403 1208.9688,694.0257 " fill="none" id="kryo-to-objenesis" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1213.1458,697.2965,1208.3309,688.2374,1209.0442,694.0866,1203.195,694.7999,1213.1458,697.2965" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e061beb27669383d030ce0c5c656b006]
 link kryo to reflectasm--><path d="M1106.25,635.4007 C1106.25,651.8695 1106.25,674.5674 1106.25,692.1195 " fill="none" id="kryo-to-reflectasm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1106.25,697.4007,1110.4167,688.0257,1106.25,692.1924,1102.0833,688.0257,1106.25,697.4007" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[338783537f3f9263e4097f5ff0c514d3]
-link reflectasm to asm--><path d="M1106.25,742.6924 C1106.25,759.1611 1106.25,781.859 1106.25,799.4111 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1106.25,804.6924,1110.4167,795.3174,1106.25,799.484,1102.0833,795.3174,1106.25,804.6924" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[eb4cfff42a029c95e1f89b5edee3b38f]
+link reflectasm to asm--><path d="M1106.25,742.6924 C1106.25,759.1611 1106.25,781.859 1106.25,799.4111 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1106.25,804.6924,1110.4167,795.3174,1106.25,799.484,1102.0833,795.3174,1106.25,804.6924" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[cc58370816c199d019abbe8e02d7e9d1]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "kivakit-web-jetty"
     

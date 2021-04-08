@@ -11,10 +11,10 @@ reverse link BaseStringConverter to LanguageIsoCode.Converter--><path codeLine="
 reverse link Name to LanguageIsoCode--><path codeLine="29" d="M468.8333,227.307 C460.3958,266.6924 447.6667,326.1299 436.8958,376.4215 " fill="none" id="Name-backto-LanguageIsoCode" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="461.7083,225.7549,473.1979,206.9111,475.9688,228.807,461.7083,225.7549" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[04b001753788308962d9673e039e8400]
 reverse link Comparable to LanguageIsoCode--><path codeLine="30" d="M357.4271,227.307 C367.0104,266.6924 381.4583,326.1299 393.6875,376.4215 " fill="none" id="Comparable-backto-LanguageIsoCode" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="350.3021,228.8799,352.4688,206.9111,364.4792,225.432,350.3021,228.8799" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[2ed7ea4cd687ab137fddc392256d10bf]
 reverse link Locale to LanguageIsoCode--><path codeLine="43" d="M566.9583,321.9528 C548.2813,340.4632 529.4792,359.0882 511.8125,376.5986 " fill="none" id="Locale-backto-LanguageIsoCode" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="576.7083,312.2965,569.3347,313.7296,567.8216,321.0872,575.1952,319.6541,576.7083,312.2965" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[3a15fc8eb94e8541887354867c89152b]
-reverse link Locale to CountryIsoCode--><path codeLine="44" d="M715.5417,326.0465 C716.6042,342.4528 717.6771,358.8799 718.6979,374.4736 " fill="none" id="Locale-backto-CountryIsoCode" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="714.6354,312.2965,710.8828,318.8036,715.4459,324.7702,719.1986,318.2632,714.6354,312.2965" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[8861eb8250bb3374f95670ba65cfb2c3]
+reverse link Locale to CountryIsoCode--><path codeLine="44" d="M715.5417,326.0465 C716.6042,342.4528 717.6771,358.8799 718.6979,374.4736 " fill="none" id="Locale-backto-CountryIsoCode" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="714.6354,312.2965,710.8828,318.8036,715.4459,324.7702,719.1986,318.2632,714.6354,312.2965" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[6c81e334ef15dab1a04804e372a5cce8]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.language.locales"
     

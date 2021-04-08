@@ -92,6 +92,16 @@ This module provides collections, iteration support, primitive collections, stac
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 60.8%.
+
+The following significant classes are undocumented:  
+
+- BaseBitWriter  
+- LongToIntMultiMap  
+- LongToLongMultiMap  
+- LongToObjectMap  
+- PrimitiveMap
+
 | Class | Documentation Sections |
 |---|---|
 | [*BaseBitReader*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/bits/io/input/BaseBitReader.html) |  |  

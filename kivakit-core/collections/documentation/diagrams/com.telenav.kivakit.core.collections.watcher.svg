@@ -10,10 +10,10 @@ reverse link BaseRepeater to BaseCollectionChangeWatcher--><path codeLine="13" d
 reverse link CollectionChangeWatcher to BaseCollectionChangeWatcher--><path codeLine="14" d="M489.4896,192.4736 C478.8438,210.734 467.1563,230.7861 455.8333,250.2236 " fill="none" id="CollectionChangeWatcher-backto-BaseCollectionChangeWatcher" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="483.3542,188.5257,500.1458,174.1924,495.9479,195.8695,483.3542,188.5257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[505543cdabd93a90d19651fa16d1392f]
 reverse link BaseCollectionChangeWatcher to PeriodicCollectionChangeWatcher--><path codeLine="43" d="M302.3958,461.6403 C289.0417,477.1403 275.5,492.8486 262.625,507.7757 " fill="none" id="BaseCollectionChangeWatcher-backto-PeriodicCollectionChangeWatcher" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="297.0833,456.6403,316.2083,445.6195,308.125,466.1611,297.0833,456.6403" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[6a6bba9523e1c49c551139ddc68c72e1]
 reverse link Runnable to PeriodicCollectionChangeWatcher--><path codeLine="44" d="M188.0208,393.3382 C188.0208,425.1715 188.0208,469.109 188.0208,507.7965 " fill="none" id="Runnable-backto-PeriodicCollectionChangeWatcher" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="180.7292,392.932,188.0208,372.0986,195.3125,392.932,180.7292,392.932" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[a0742d0ce9d1d9adb3064203075c76fc]
-reverse link Startable to PeriodicCollectionChangeWatcher--><path codeLine="45" d="M77.2813,390.5778 C94.6771,422.5986 119.3438,467.984 140.9896,507.7965 " fill="none" id="Startable-backto-PeriodicCollectionChangeWatcher" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="70.7708,393.8799,67.2292,372.0986,83.5833,386.9111,70.7708,393.8799" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[c8e55698de278cebf7cf14e711f38174]
+reverse link Startable to PeriodicCollectionChangeWatcher--><path codeLine="45" d="M77.2813,390.5778 C94.6771,422.5986 119.3438,467.984 140.9896,507.7965 " fill="none" id="Startable-backto-PeriodicCollectionChangeWatcher" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="70.7708,393.8799,67.2292,372.0986,83.5833,386.9111,70.7708,393.8799" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7b2bfdb852cf4ce5ed67f5c02d0da0a9]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.collections.watcher"
     

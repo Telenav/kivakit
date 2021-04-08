@@ -7,10 +7,10 @@ class ZeroOrMore--><rect codeLine="33" fill="#282828" height="150.946" id="ZeroO
 reverse link Pattern to Closure--><path codeLine="6" d="M359.1771,119.8278 C351.0833,133.609 341.9271,149.1924 333.3125,163.859 " fill="none" id="Pattern-backto-Closure" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="352.9063,116.109,369.7396,101.8382,365.4792,123.4945,352.9063,116.109" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[70e138531275e58afceb65bebcbd1a94]
 reverse link Closure to OneOrMore--><path codeLine="15" d="M256.2604,293.807 C245.3542,311.5674 233.7604,330.4424 223.1042,347.7965 " fill="none" id="Closure-backto-OneOrMore" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="250.1979,289.7549,267.3125,275.8174,262.625,297.3799,250.1979,289.7549" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[23e42bc6277a96d99cc436af724efc92]
 reverse link Pattern to Optional--><path codeLine="25" d="M407.8125,119.859 C418.7292,138.2028 431.5521,159.7653 442.4375,178.0674 " fill="none" id="Pattern-backto-Optional" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="401.4792,123.4736,397.0938,101.8382,414.0104,116.0153,401.4792,123.4736" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[6505cf83d3456533c393ecd355680661]
-reverse link Closure to ZeroOrMore--><path codeLine="32" d="M345.7396,293.6715 C354.6458,308.1715 364.0104,323.4215 372.9479,337.9736 " fill="none" id="Closure-backto-ZeroOrMore" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="339.4583,297.3799,334.7708,275.8174,351.8854,289.7549,339.4583,297.3799" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[357d07d63b8ec2743840dcdbe807ce88]
+reverse link Closure to ZeroOrMore--><path codeLine="32" d="M345.7396,293.6715 C354.6458,308.1715 364.0104,323.4215 372.9479,337.9736 " fill="none" id="Closure-backto-ZeroOrMore" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="339.4583,297.3799,334.7708,275.8174,351.8854,289.7549,339.4583,297.3799" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[8c7e19c3612f50079c1bdd8eb2aa0e61]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.language.patterns.closure"
     

@@ -9,10 +9,10 @@ class ResourceSection--><rect codeLine="48" fill="#282828" height="83.3781" id="
 reverse link BaseWritableResource to BitArrayResource--><path codeLine="9" d="M438.75,121.8695 C422.3125,179.609 393.375,281.2445 377.2708,337.807 " fill="none" id="BaseWritableResource-backto-BitArrayResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="431.7604,119.7861,444.4792,101.7445,445.7917,123.7757,431.7604,119.7861" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9ccf6f1b29adfc037ddc2e002e327a40]
 reverse link BaseWritableResource to NullResource--><path codeLine="16" d="M463.4792,121.8695 C480.125,179.609 509.4167,281.2445 525.7188,337.807 " fill="none" id="BaseWritableResource-backto-NullResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="456.4479,123.7861,457.6875,101.7445,470.4583,119.7445,456.4479,123.7861" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[240b308583738c0632992609ec1f6e90]
 reverse link VariableMap to PropertyMap--><path codeLine="23" d="M814.5833,122.9945 C814.5833,135.0257 814.5833,148.9007 814.5833,163.8382 " fill="none" id="VariableMap-backto-PropertyMap" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="807.2917,122.5778,814.5833,101.7445,821.875,122.5778,807.2917,122.5778" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7acbd6a81c9084c0aa01c5e4ab5d84a9]
-reverse link BaseReadableResource to ResourceSection--><path codeLine="47" d="M131.25,122.6403 C131.25,180.5049 131.25,281.4945 131.25,337.807 " fill="none" id="BaseReadableResource-backto-ResourceSection" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="123.9583,122.5778,131.25,101.7445,138.5417,122.5778,123.9583,122.5778" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[8c906aff1533708fde509fbf1f11abe4]
+reverse link BaseReadableResource to ResourceSection--><path codeLine="47" d="M131.25,122.6403 C131.25,180.5049 131.25,281.4945 131.25,337.807 " fill="none" id="BaseReadableResource-backto-ResourceSection" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="123.9583,122.5778,131.25,101.7445,138.5417,122.5778,123.9583,122.5778" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[91c08bb2fea7c1397dce25ca274c9d1a]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.resource.resources.other"
     

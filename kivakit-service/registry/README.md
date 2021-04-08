@@ -57,6 +57,12 @@ to provide core registration and discovery functionality.
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 23.7%.
+
+The following significant classes are undocumented:  
+
+- ServiceRegistrySettings
+
 | Class | Documentation Sections |
 |---|---|
 | [*ApplicationIdentifierSerializer*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/serialization/serializers/ApplicationIdentifierSerializer.html) |  |  

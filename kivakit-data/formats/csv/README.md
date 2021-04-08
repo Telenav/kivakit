@@ -91,6 +91,10 @@ For example (using the schema defined above):
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 42.9%.
+
+
+
 | Class | Documentation Sections |
 |---|---|
 | [*CsvColumn*](https://telenav.github.io/kivakit/javadoc/kivakit.data.formats.csv/com/telenav/kivakit/data/formats/csv/CsvColumn.html) |  |  

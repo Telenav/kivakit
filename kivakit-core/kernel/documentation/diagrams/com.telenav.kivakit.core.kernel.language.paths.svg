@@ -10,10 +10,10 @@ reverse link StringPath to PackagePath--><path codeLine="10" d="M256.25,1640.577
 reverse link Iterable to Path--><path codeLine="43" d="M382.0521,139.7549 C377.625,156.1611 372.1354,176.4736 365.9688,199.3486 " fill="none" id="Iterable-backto-Path" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="375.0104,137.8382,387.4896,119.6195,389.0938,141.6403,375.0104,137.8382" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[534ca05ea7904b0b6e8367b58c23e1f7]
 reverse link Comparable to Path--><path codeLine="44" d="M256.25,140.609 C256.25,156.859 256.25,176.859 256.25,199.3486 " fill="none" id="Comparable-backto-Path" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="248.9583,140.4528,256.25,119.6195,263.5417,140.4528,248.9583,140.4528" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[302ad7deb6350d639f0bb7329512784d]
 reverse link Sized to Path--><path codeLine="45" d="M137.1979,140.0361 C141.375,156.3903 146.5417,176.5986 152.3542,199.3486 " fill="none" id="Sized-backto-Path" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="130.0729,141.609,131.9792,119.6195,144.1979,138.0049,130.0729,141.609" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[013fe9b2aebef53e5b526671aee2d3c8]
-reverse link Path to StringPath--><path codeLine="89" d="M256.25,1035.2236 C256.25,1049.0465 256.25,1062.7653 256.25,1076.2965 " fill="none" id="Path-backto-StringPath" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="248.9583,1034.984,256.25,1014.1507,263.5417,1034.984,248.9583,1034.984" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[56f9a42999f5d341346ceabcaec2273a]
+reverse link Path to StringPath--><path codeLine="89" d="M256.25,1035.2236 C256.25,1049.0465 256.25,1062.7653 256.25,1076.2965 " fill="none" id="Path-backto-StringPath" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="248.9583,1034.984,256.25,1014.1507,263.5417,1034.984,248.9583,1034.984" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[a3010ca08d4bc9d31099fb7add5a1df7]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.language.paths"
     

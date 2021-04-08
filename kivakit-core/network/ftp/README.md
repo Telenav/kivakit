@@ -45,6 +45,10 @@ This module provides FTP resources.
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 9.1%.
+
+
+
 | Class | Documentation Sections |
 |---|---|
 | [*CoreNetworkFtpProject*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/project/CoreNetworkFtpProject.html) |  |  

@@ -31,7 +31,7 @@ public class VariableMapTest
         final var map = new VariableMap<String>();
         map.add("a", "2");
         map.add("b", "two");
-        ensureEqual("2 = two", map.expanded("${a} = ${b}"));
-        ensureEqual("a 2 = b two", map.expanded("a ${a} = b ${b}"));
+        ensureEqual("2 = two", map.expand("${a} = ${b}"));
+        ensureEqual("a 2 = b two", map.expand("a ${a} = b ${b}"));
     }
 }

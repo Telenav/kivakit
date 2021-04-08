@@ -56,10 +56,10 @@ reverse link ResourceFolderResolver to Folder.Resolver--><path codeLine="285" d=
 link Cache to FileList--><!--MD5=[fd283aa51611286c6a29d693d7b2cc44]
 link FileList to FolderList--><!--MD5=[13bb749aafd26f9af6a019fe490771a0]
 link Cache to Folder.Traversal--><!--MD5=[60d3f6000e6637fa17ac849f1a2fcf4e]
-link Folder.Traversal to Folder.Type--><!--MD5=[fe14e43a07c25c8f75e721986740b534]
+link Folder.Traversal to Folder.Type--><!--MD5=[609696041f4d8377ce66652ac087decb]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.filesystem"
     

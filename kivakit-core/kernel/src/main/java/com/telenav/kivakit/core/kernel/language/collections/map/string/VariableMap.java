@@ -28,7 +28,7 @@ import java.util.HashSet;
 import java.util.Map;
 
 /**
- * A bounded map from string to value which supports variable interpolation into a string via {@link #expanded(String)}.
+ * A bounded map from string to value which supports variable interpolation into a string via {@link #expand(String)}.
  * For example, a {@link VariableMap} of {@link Integer}s might have the entries "x=9" and "y=3" in it. In this case,
  * interpolate("${x} = ${y}") would yield the string "9 = 3". An example use of this class can be found in
  * File.withVariables(final VariableMap&lt;?&gt; variables), which substitutes the name of the file with values from the
@@ -108,7 +108,7 @@ public class VariableMap<Value> extends BaseStringMap<Value>
      * @param text The string to interpolate values into
      * @return The interpolated string
      */
-    public String expanded(final String text)
+    public String expand(final String text)
     {
         if (text.contains("${"))
         {
@@ -161,7 +161,7 @@ public class VariableMap<Value> extends BaseStringMap<Value>
         for (final var key : new HashSet<>(keySet()))
         {
             final var value = get(key);
-            expanded.put(key, expanded(value.toString()));
+            expanded.put(key, expand(value.toString()));
         }
         return expanded;
     }

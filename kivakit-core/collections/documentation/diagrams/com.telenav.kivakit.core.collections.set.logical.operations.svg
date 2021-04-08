@@ -7,10 +7,10 @@ class Without--><rect codeLine="28" fill="#282828" height="83.3781" id="Without"
 reverse link LogicalSet to Intersection--><path codeLine="6" d="M380.25,104.7757 C329.9583,123.1611 261.9271,148.0257 206.3021,168.359 " fill="none" id="LogicalSet-backto-Intersection" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="377.875,97.8799,399.9479,97.5674,382.8854,111.5778,377.875,97.8799" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[76f603ba92a75085bcb8da1db0c049a2]
 reverse link LogicalSet to Subset--><path codeLine="13" d="M417.5938,117.8486 C404.8958,132.484 390.4479,149.1299 377.6146,163.9215 " fill="none" id="LogicalSet-backto-Subset" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="412.3438,112.7757,431.5,101.8174,423.3542,122.3382,412.3438,112.7757" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[b1562cb7a9ac3115693d888d2900038b]
 reverse link LogicalSet to Union--><path codeLine="20" d="M485.5313,117.8486 C498.2292,132.484 512.6771,149.1299 525.5104,163.9215 " fill="none" id="LogicalSet-backto-Union" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="479.7708,122.3382,471.625,101.8174,490.7813,112.7757,479.7708,122.3382" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[1c5b15b55580a82c0cd8a458f88df6da]
-reverse link LogicalSet to Without--><path codeLine="27" d="M522.8125,107.0674 C569.4792,125.6403 630.7917,150.0361 680.4583,169.807 " fill="none" id="LogicalSet-backto-Without" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="519.8021,113.7132,503.1458,99.234,525.1979,100.1611,519.8021,113.7132" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[05effd41d8e82dad144de4fb4d4bc674]
+reverse link LogicalSet to Without--><path codeLine="27" d="M522.8125,107.0674 C569.4792,125.6403 630.7917,150.0361 680.4583,169.807 " fill="none" id="LogicalSet-backto-Without" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="519.8021,113.7132,503.1458,99.234,525.1979,100.1611,519.8021,113.7132" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[779b2d654108f602811bbd09a0d1c487]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.collections.set.logical.operations"
     

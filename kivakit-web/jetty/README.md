@@ -44,6 +44,10 @@ None
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 42.9%.
+
+
+
 | Class | Documentation Sections |
 |---|---|
 | [*JettyFilter*](https://telenav.github.io/kivakit/javadoc/kivakit.web.jetty/com/telenav/kivakit/web/jetty/resources/JettyFilter.html) |  |  

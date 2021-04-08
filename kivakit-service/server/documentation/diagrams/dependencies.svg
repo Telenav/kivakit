@@ -189,10 +189,10 @@ link wicket_core to wicket_request--><path d="M6095.1771,313.2653 C6119.1354,330
 link wicket_extensions to slf4j_api--><path d="M5927.25,202.2757 C5933.3438,203.5465 5939.4271,204.734 5945.3125,205.7861 C6172.1354,246.1611 6235.3229,216.8799 6459.8958,268.2861 C6464.1563,269.2653 6468.5313,270.4215 6472.8958,271.682 " fill="none" id="wicket_extensions-to-slf4j_api" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="6478,273.2132,6470.2085,266.5391,6473.0093,271.7234,6467.8249,274.5242,6478,273.2132" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[fd484b9bbd7d72f648347b8c2c1c0a52]
 link wicket_util to commons_collections4--><path d="M6441.7083,307.4528 C6447.8229,309.359 6454,311.2757 6459.8958,313.0778 C6528.9479,334.182 6607.7188,357.432 6664.6458,374.0778 " fill="none" id="wicket_util-to-commons_collections4" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="6669.7396,375.5674,6661.9063,368.9424,6664.7396,374.109,6659.5729,376.9424,6669.7396,375.5674" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[04bdba72622389e960a9e360895b6314]
 link wicket_util to commons_fileupload--><path d="M6392.1875,313.5257 C6392.1875,329.9945 6392.1875,352.6924 6392.1875,370.2445 " fill="none" id="wicket_util-to-commons_fileupload" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="6392.1875,375.5257,6396.3542,366.1507,6392.1875,370.3174,6388.0208,366.1507,6392.1875,375.5257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[42393529676ae9aeba5f8fc3a130e5ac]
-link wicket_util to commons_io--><path d="M6427.5938,313.2653 C6455.9167,330.5049 6495.6354,354.6611 6525.1042,372.5986 " fill="none" id="wicket_util-to-commons_io" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="6529.7396,375.4215,6523.8979,366.9879,6525.2906,372.7135,6519.565,374.1062,6529.7396,375.4215" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[30653e222de3507f08dc8aa99ced67c1]
+link wicket_util to commons_io--><path d="M6427.5938,313.2653 C6455.9167,330.5049 6495.6354,354.6611 6525.1042,372.5986 " fill="none" id="wicket_util-to-commons_io" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="6529.7396,375.4215,6523.8979,366.9879,6525.2906,372.7135,6519.565,374.1062,6529.7396,375.4215" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e3221f54c8fc501bfa658946ab5db8f7]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "kivakit-service-server"
     

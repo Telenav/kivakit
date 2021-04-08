@@ -24,10 +24,10 @@ reverse link Factory to IdentifierFactory--><path codeLine="38" d="M793.75,162.3
 reverse link Comparable to IntegerIdentifier--><path codeLine="46" d="M372.2917,162.1195 C370.5,183.0882 368.25,209.2653 366.0208,235.3486 " fill="none" id="Comparable-backto-IntegerIdentifier" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="365.0313,161.4424,374.0729,141.307,379.5625,162.682,365.0313,161.4424" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[2dd8e2e297cb8b85798418d2318d557e]
 reverse link Identifiable to IntegerIdentifier--><path codeLine="47" d="M249.4063,159.7861 C261.4271,181.1299 276.7188,208.2861 291.9583,235.3486 " fill="none" id="Identifiable-backto-IntegerIdentifier" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="242.875,163.0361,239,141.307,255.5729,155.8799,242.875,163.0361" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[de3b6ed28dae31e020deea6211c1c216]
 reverse link IntegerIdentifier to SequenceNumber--><path codeLine="69" d="M356.25,486.9111 C356.25,501.1715 356.25,515.1195 356.25,527.9424 " fill="none" id="IntegerIdentifier-backto-SequenceNumber" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="348.9583,486.734,356.25,465.9007,363.5417,486.734,348.9583,486.734" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e6a8f43e196792ef994446beea3d9dcd]
-reverse link Comparable to StringIdentifier--><path codeLine="78" d="M419.0521,155.5778 C444.2604,178.0153 476.3125,207.5465 503.125,235.4736 C509.1563,241.7549 515.2604,248.3382 521.3229,255.0465 " fill="none" id="Comparable-backto-StringIdentifier" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="414.0208,160.8695,403.2188,141.6195,423.6667,149.932,414.0208,160.8695" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[2523d60bbbd67f6fdaefd11ff978866b]
+reverse link Comparable to StringIdentifier--><path codeLine="78" d="M419.0521,155.5778 C444.2604,178.0153 476.3125,207.5465 503.125,235.4736 C509.1563,241.7549 515.2604,248.3382 521.3229,255.0465 " fill="none" id="Comparable-backto-StringIdentifier" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="414.0208,160.8695,403.2188,141.6195,423.6667,149.932,414.0208,160.8695" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[49bb8b15a56963eda0c100d42fb25ad8]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.language.values.identifier"
     

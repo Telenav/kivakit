@@ -14,10 +14,10 @@ reverse link Listener to MessageCounter--><path codeLine="28" d="M945.4271,108.8
 reverse link ObjectList to MessageList--><path codeLine="37" d="M1390.8646,279.6195 C1379.6875,291.859 1366.5521,304.8486 1353.125,315.1611 C1320.6042,340.1299 1283.7708,363.4111 1247.1875,384.1507 " fill="none" id="ObjectList-backto-MessageList" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1385.5521,274.6195,1404.75,263.734,1396.5313,284.2236,1385.5521,274.6195" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[3dc50880c378cf7da1f1d7cb3ba343a6]
 reverse link MessageCounter to MessageList--><path codeLine="38" d="M783.125,312.734 C815.2292,333.1403 850.8021,355.7549 885.1354,377.5778 " fill="none" id="MessageCounter-backto-MessageList" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="778.8333,318.6507,765.1667,301.3174,786.6667,306.3382,778.8333,318.6507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f1f5c9ba402abe92de4184576b83df01]
 reverse link Listener to NullListener--><path codeLine="51" d="M1030.4375,120.6924 C1045.6563,151.0257 1065.6354,190.8486 1078.0313,215.5778 " fill="none" id="Listener-backto-NullListener" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1023.8646,123.8486,1021.0417,101.9528,1036.8958,117.307,1023.8646,123.8486" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f23bb9a0d2534d6a53984a35856262bf]
-reverse link Listener to ThrowingListener--><path codeLine="56" d="M1072.9375,110.2861 C1101.8854,125.4632 1136.1771,144.5882 1165.625,164.1195 C1189.3542,179.8695 1214.5313,200.0882 1232.8229,215.484 " fill="none" id="Listener-backto-ThrowingListener" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1069.5,116.7236,1054.3333,100.682,1076.1875,103.7653,1069.5,116.7236" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[983bf15007210b89044bb4edc2ccafea]
+reverse link Listener to ThrowingListener--><path codeLine="56" d="M1072.9375,110.2861 C1101.8854,125.4632 1136.1771,144.5882 1165.625,164.1195 C1189.3542,179.8695 1214.5313,200.0882 1232.8229,215.484 " fill="none" id="Listener-backto-ThrowingListener" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1069.5,116.7236,1054.3333,100.682,1076.1875,103.7653,1069.5,116.7236" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[a7e89b992c149fdb079e706c6e3da0ab]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.messaging.listeners"
     

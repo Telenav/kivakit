@@ -25,10 +25,10 @@ reverse link LongCollection to LongList--><path codeLine="98" d="M944.1875,315.9
 reverse link PrimitiveList to LongList--><path codeLine="99" d="M738.3125,399.2861 C753.9688,477.8278 774.0729,578.6299 790.0625,658.8174 " fill="none" id="PrimitiveList-backto-LongList" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="731.1458,400.6507,734.2292,378.7965,745.4479,397.807,731.1458,400.6507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7b368d9bbe6af6bc8accf8e485b80aae]
 reverse link Sized to PrimitiveList--><path codeLine="117" d="M713.0208,122.807 C713.0208,135.2965 713.0208,149.4528 713.0208,163.9424 " fill="none" id="Sized-backto-PrimitiveList" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="705.7292,122.6507,713.0208,101.8174,720.3125,122.6507,705.7292,122.6507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f586f52c4fd0e15c49a99da84bba36bf]
 reverse link ShortCollection to ShortList--><path codeLine="133" d="M1122.6458,316.7132 C1111.9063,395.9215 1089.0729,564.2965 1073.5833,678.557 " fill="none" id="ShortCollection-backto-ShortList" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1115.4896,315.234,1125.5104,295.5778,1129.9375,317.2028,1115.4896,315.234" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f62073b66238a7c1fe096533307817ba]
-reverse link PrimitiveList to ShortList--><path codeLine="134" d="M868.2917,381.2549 C897.6875,404.0986 922.7396,425.8799 933.8542,441.2028 C985.0521,511.7653 1016.6146,605.3486 1035.0729,678.5257 " fill="none" id="PrimitiveList-backto-ShortList" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="863.6979,386.9215,851.5729,368.484,872.5521,375.3382,863.6979,386.9215" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[bc5cd97a104eb2176e9b7f8e326e8f64]
+reverse link PrimitiveList to ShortList--><path codeLine="134" d="M868.2917,381.2549 C897.6875,404.0986 922.7396,425.8799 933.8542,441.2028 C985.0521,511.7653 1016.6146,605.3486 1035.0729,678.5257 " fill="none" id="PrimitiveList-backto-ShortList" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="863.6979,386.9215,851.5729,368.484,872.5521,375.3382,863.6979,386.9215" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[3650616e80cbfb7f2f110c3666f626c3]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.collections.primitive.list"
     

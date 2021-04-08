@@ -13,10 +13,10 @@ reverse link Loadable to Lazy--><path codeLine="34" d="M691.2917,251.5465 C695.8
 reverse link Unloadable to Lazy--><path codeLine="35" d="M813.6771,250.4945 C797.3542,303.057 769.2708,393.432 747.6979,462.9007 " fill="none" id="Unloadable-backto-Lazy" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="806.7604,248.182,819.9063,230.4528,820.6875,252.5049,806.7604,248.182" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e6a87f607348331b3e2b2fc147fbbc9f]
 reverse link Iterable to Pair--><path codeLine="75" d="M962.5,251.4632 C962.5,306.7653 962.5,402.807 962.5,472.9632 " fill="none" id="Iterable-backto-Pair" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="955.2083,251.2861,962.5,230.4528,969.7917,251.2861,955.2083,251.2861" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[5b57f55adb167635b86bf3141b23202a]
 link Hash to MappedLazy--><!--MD5=[e7e318c97e09adc86e40fea885a7cac8]
-link Hash to Objects--><!--MD5=[f9aaa213e59aa8f1e691f16e3cc7b154]
+link Hash to Objects--><!--MD5=[0484b87259bcc889af8e99b3f293be0a]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.language.objects"
     

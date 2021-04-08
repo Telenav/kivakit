@@ -233,6 +233,19 @@ A wide variety of other resources are available and new ones are easy to write. 
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 21.3%.
+
+The following significant classes are undocumented:  
+
+- BaseReadableResource  
+- Extension  
+- FileList  
+- FileName  
+- FolderList  
+- LocalFolder  
+- PropertyMap  
+- ResourceList
+
 | Class | Documentation Sections |
 |---|---|
 | [*ArchivedFields*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/ArchivedFields.html) |  |  

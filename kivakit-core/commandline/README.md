@@ -51,6 +51,10 @@ arguments and switches is available in the Javadoc for the [*Application*](https
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 70.6%.
+
+
+
 | Class | Documentation Sections |
 |---|---|
 | [*ApplicationMetadata*](https://telenav.github.io/kivakit/javadoc/kivakit.core.commandline/com/telenav/kivakit/core/commandline/ApplicationMetadata.html) |  |  

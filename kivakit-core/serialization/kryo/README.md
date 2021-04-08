@@ -43,6 +43,10 @@ This module provides integration of the Kryo serialization framework with KivaKi
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 37.5%.
+
+
+
 | Class | Documentation Sections |
 |---|---|
 | [*CoreKernelKryoTypes*](https://telenav.github.io/kivakit/javadoc/kivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/CoreKernelKryoTypes.html) |  |  

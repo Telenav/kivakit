@@ -45,6 +45,10 @@ This module defines common data formats.
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 50.0%.
+
+
+
 | Class | Documentation Sections |
 |---|---|
 | [*DataFormat*](https://telenav.github.io/kivakit/javadoc/kivakit.data.formats.library/com/telenav/kivakit/data/formats/library/DataFormat.html) |  |  

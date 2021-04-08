@@ -229,6 +229,25 @@ The major feature areas are listed here, each having its own documentation:
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 37.6%.
+
+The following significant classes are undocumented:  
+
+- AsciiArt  
+- BaseLog  
+- BaseMap  
+- BaseSet  
+- ColumnarFormatter  
+- ConcurrentCountMap  
+- IO  
+- LanguageIsoCode  
+- LocalTime  
+- Objects  
+- Primes  
+- Property  
+- StackTrace  
+- Strings
+
 | Class | Documentation Sections |
 |---|---|
 | [*Activity*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/messaging/messages/status/Activity.html) |  |  

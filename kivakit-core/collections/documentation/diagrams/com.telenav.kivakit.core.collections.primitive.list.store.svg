@@ -7,10 +7,10 @@ class PackedStringStore--><rect codeLine="37" fill="#282828" height="150.946" id
 reverse link PrimitiveListStore to IntLinkedListStore--><path codeLine="6" d="M313.5417,308.2965 C298.3229,329.5465 281.0208,353.7028 263.9583,377.5257 " fill="none" id="PrimitiveListStore-backto-IntLinkedListStore" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="307.7292,303.9007,325.7917,291.2028,319.5833,312.3903,307.7292,303.9007" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[439f4a22ea250237543f85a4b5bf6a2d]
 reverse link PrimitiveListStore to LongLinkedListStore--><path codeLine="21" d="M410.4167,308.2965 C425.6354,329.5465 442.9375,353.7028 460,377.5257 " fill="none" id="PrimitiveListStore-backto-LongLinkedListStore" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="404.375,312.3903,398.1667,291.2028,416.2292,303.9007,404.375,312.3903" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[679faf84d1bf0fad9c2144a3e0ee22c6]
 reverse link PrimitiveCollection to PackedStringStore--><path codeLine="36" d="M502.8958,119.0986 C512.5208,132.7653 523.5833,148.5049 534.4688,163.9632 " fill="none" id="PrimitiveCollection-backto-PackedStringStore" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="496.8646,123.1924,490.8333,101.9528,508.7917,114.7965,496.8646,123.1924" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[5b01147b9696bc5e513fdf087ac8028b]
-reverse link PrimitiveCollection to PrimitiveListStore--><path codeLine="47" d="M445.9896,119.1924 C431.3021,140.0674 413.25,165.734 397.6458,187.9111 " fill="none" id="PrimitiveCollection-backto-PrimitiveListStore" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="440.1667,114.7965,458.125,101.9528,452.0938,123.1924,440.1667,114.7965" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[edfe3cab23fed2861241027c3d6049f8]
+reverse link PrimitiveCollection to PrimitiveListStore--><path codeLine="47" d="M445.9896,119.1924 C431.3021,140.0674 413.25,165.734 397.6458,187.9111 " fill="none" id="PrimitiveCollection-backto-PrimitiveListStore" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="440.1667,114.7965,458.125,101.9528,452.0938,123.1924,440.1667,114.7965" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[cc4ff2a38b779e93d9f8fe0fbeff507d]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.collections.primitive.list.store"
     

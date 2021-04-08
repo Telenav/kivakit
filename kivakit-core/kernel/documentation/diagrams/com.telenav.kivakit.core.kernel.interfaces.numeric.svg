@@ -13,10 +13,10 @@ reverse link BaseStringConverter to Quantizable.Converter--><path codeLine="8" d
 reverse link Contains to Ranged--><path codeLine="52" d="M1030.7292,143.5674 C1030.7292,184.807 1030.7292,246.9215 1030.7292,293.7653 " fill="none" id="Contains-backto-Ranged" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1023.4375,143.3382,1030.7292,122.5049,1038.0208,143.3382,1023.4375,143.3382" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[28d53f030c0df30af74c19b9a569c0d3]
 reverse link Countable to Sized--><path codeLine="63" d="M842.1875,161.182 C842.1875,205.9215 842.1875,265.7028 842.1875,307.6715 " fill="none" id="Countable-backto-Sized" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="834.8958,161.0986,842.1875,140.2653,849.4792,161.0986,834.8958,161.0986" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[fa36400b07c3523c75dbd5e41c87389b]
 link Maximizable to Minimizable--><!--MD5=[5fdc29f236de5629ccd935f330ff0749]
-link Maximizable to Quantizable--><!--MD5=[47a720b8d47ea18b6a258039a210c1a1]
+link Maximizable to Quantizable--><!--MD5=[c2cb5f545d84620b5f8008dc935288fb]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.interfaces.numeric"
     

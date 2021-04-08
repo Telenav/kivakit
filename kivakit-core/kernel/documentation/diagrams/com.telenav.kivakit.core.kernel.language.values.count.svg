@@ -47,10 +47,10 @@ reverse link Count to Minimum--><path codeLine="277" d="M1621.0938,1636.4111 C16
 reverse link Countable to MutableCount--><path codeLine="292" d="M1797.8125,122.932 C1796.6771,226.8174 1793.7604,492.5882 1791.5729,691.4424 " fill="none" id="Countable-backto-MutableCount" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1790.5313,122.734,1798.0417,101.9736,1805.1042,122.8903,1790.5313,122.734" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[d3cf70b103b61818c1d4e909f917c52d]
 reverse link Comparable to MutableCount--><path codeLine="293" d="M1658.5,122.609 C1675.1979,226.2549 1718.0625,492.3799 1750.125,691.4424 " fill="none" id="Comparable-backto-MutableCount" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1651.2917,123.7028,1655.1771,101.9736,1665.6875,121.3903,1651.2917,123.7028" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[4ee4b2a6fc5b471ea06d1a5cf8584782]
 reverse link Listener to MutableCount--><path codeLine="294" d="M1982.9479,115.4007 C1968.0729,129.1507 1952.9896,145.9007 1943.0938,164.1195 C1854.7604,326.6715 1816.7708,533.3278 1800.5729,691.3486 " fill="none" id="Listener-backto-MutableCount" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1978.2188,109.8486,1998.7396,101.7236,1987.7604,120.8799,1978.2188,109.8486" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[70494a85ad3415d4184bb8cfdbe419e5]
-reverse link Ranged to Range--><path codeLine="321" d="M2380.5938,123.2653 C2380.5938,271.8278 2380.5938,748.9007 2380.5938,891.6299 " fill="none" id="Ranged-backto-Range" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="2373.3021,122.807,2380.5938,101.9736,2387.8854,122.807,2373.3021,122.807" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[64c26337806ada15b1112a67a1225114]
+reverse link Ranged to Range--><path codeLine="321" d="M2380.5938,123.2653 C2380.5938,271.8278 2380.5938,748.9007 2380.5938,891.6299 " fill="none" id="Ranged-backto-Range" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="2373.3021,122.807,2380.5938,101.9736,2387.8854,122.807,2373.3021,122.807" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[0a7c363d03a95aac2a6e44b1a91c7e85]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.language.values.count"
     

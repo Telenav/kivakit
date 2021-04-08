@@ -18,12 +18,12 @@
 
 package com.telenav.kivakit.core.kernel.interfaces.collection;
 
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.core.kernel.language.matching.matchers.All;
 import com.telenav.kivakit.core.kernel.language.objects.Hash;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramExampleBaseList;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramInterfaceCollection;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -294,6 +294,19 @@ public interface Sequence<Element>
      */
     default String join(final String separator)
     {
+        return join(separator, Object::toString);
+    }
+
+    /**
+     * @return The elements in this sequence joined as a string with the given separator or the default value if this
+     * sequence is empty
+     */
+    default String join(final String separator, final String defaultValue)
+    {
+        if (first() == null)
+        {
+            return defaultValue;
+        }
         return join(separator, Object::toString);
     }
 

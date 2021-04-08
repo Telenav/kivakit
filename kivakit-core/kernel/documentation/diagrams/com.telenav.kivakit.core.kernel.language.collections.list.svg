@@ -23,10 +23,10 @@ reverse link CompressibleCollection to BaseList--><path codeLine="24" d="M1185.8
 reverse link RandomAccess to BaseList--><path codeLine="25" d="M636.4583,167.5986 C636.4583,189.3903 636.4583,217.984 636.4583,250.4111 " fill="none" id="RandomAccess-backto-BaseList" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="629.1667,167.5882,636.4583,146.7549,643.75,167.5882,629.1667,167.5882" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9ed372d98e06d0c11c1ff6fcacbb4178]
 reverse link AsString to BaseList--><path codeLine="26" d="M239.3542,163.3382 C283.2083,217.8278 365.4167,319.9945 443.7083,417.2965 " fill="none" id="AsString-backto-BaseList" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="233.3854,167.557,226.0104,146.7549,244.75,158.4111,233.3854,167.557" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[b32fd4e7dc5b6ce3d7c2ac5361f10b89]
 reverse link BaseList to ObjectList--><path codeLine="85" d="M636.4583,1086.3486 C636.4583,1100.5361 636.4583,1114.3382 636.4583,1127.609 " fill="none" id="BaseList-backto-ObjectList" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="629.1667,1086.1507,636.4583,1065.3174,643.75,1086.1507,629.1667,1086.1507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[83ec0d3df30ab922e8c90d60eb499e9b]
-reverse link ObjectList to StringList--><path codeLine="103" d="M636.4583,1454.1924 C636.4583,1467.484 636.4583,1481.182 636.4583,1495.1195 " fill="none" id="ObjectList-backto-StringList" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="629.1667,1453.7653,636.4583,1432.932,643.75,1453.7653,629.1667,1453.7653" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[6939cf6fdbe9ae2fbbbd328846876bcd]
+reverse link ObjectList to StringList--><path codeLine="103" d="M636.4583,1454.1924 C636.4583,1467.484 636.4583,1481.182 636.4583,1495.1195 " fill="none" id="ObjectList-backto-StringList" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="629.1667,1453.7653,636.4583,1432.932,643.75,1453.7653,629.1667,1453.7653" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9c05da1a366a6861577331a310ac44eb]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.language.collections.list"
     

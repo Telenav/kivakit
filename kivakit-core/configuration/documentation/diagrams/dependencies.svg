@@ -39,10 +39,10 @@ link kivakit_core_serialization_kryo to kryo_serializers--><path d="M305.2083,42
 link kryo to minlog--><path d="M145.2396,527.8486 C125.0104,544.8695 96.7604,568.6507 75.5417,586.5153 " fill="none" id="kryo-to-minlog" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="71.3958,590.0049,81.2498,587.1498,75.3786,586.6486,75.8798,580.7774,71.3958,590.0049" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e75c16e47fcf6c43b15d3c25536a9ed0]
 link kryo to objenesis--><path d="M198.3542,527.8486 C220.1771,544.9424 250.7188,568.8486 273.5521,586.734 " fill="none" id="kryo-to-objenesis" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="277.7292,590.0049,272.9143,580.9457,273.6276,586.7949,267.7784,587.5083,277.7292,590.0049" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e061beb27669383d030ce0c5c656b006]
 link kryo to reflectasm--><path d="M170.8333,528.109 C170.8333,544.5778 170.8333,567.2757 170.8333,584.8278 " fill="none" id="kryo-to-reflectasm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="170.8333,590.109,175,580.734,170.8333,584.9007,166.6667,580.734,170.8333,590.109" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[338783537f3f9263e4097f5ff0c514d3]
-link reflectasm to asm--><path d="M170.8333,635.4007 C170.8333,651.8695 170.8333,674.5674 170.8333,692.1195 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="170.8333,697.4007,175,688.0257,170.8333,692.1924,166.6667,688.0257,170.8333,697.4007" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9553077a6931da1f25e966228c38c5df]
+link reflectasm to asm--><path d="M170.8333,635.4007 C170.8333,651.8695 170.8333,674.5674 170.8333,692.1195 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="170.8333,697.4007,175,688.0257,170.8333,692.1924,166.6667,688.0257,170.8333,697.4007" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[8b5a37d47d34211fb88e21fa621bf04b]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "kivakit-core-configuration"
     

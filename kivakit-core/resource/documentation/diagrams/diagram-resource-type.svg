@@ -20,10 +20,10 @@ reverse link ResourceFolder to Package--><path codeLine="39" d="M2220.8333,122.9
 reverse link BaseReadableResource to PackageResource--><path codeLine="58" d="M611.875,119.4632 C585.3958,161.609 543.1146,228.8799 508.2708,284.3278 " fill="none" id="BaseReadableResource-backto-PackageResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="605.7604,115.5049,623.0208,101.7445,618.1042,123.2653,605.7604,115.5049" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[240b308583738c0632992609ec1f6e90]
 reverse link VariableMap to PropertyMap--><path codeLine="71" d="M2635.4167,122.9945 C2635.4167,135.0257 2635.4167,148.9007 2635.4167,163.8382 " fill="none" id="VariableMap-backto-PropertyMap" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="2628.125,122.5778,2635.4167,101.7445,2642.7083,122.5778,2628.125,122.5778" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7acbd6a81c9084c0aa01c5e4ab5d84a9]
 reverse link BaseReadableResource to ResourceSection--><path codeLine="95" d="M663.0625,119.5986 C698.8854,176.9111 763.625,280.4945 799.4375,337.807 " fill="none" id="BaseReadableResource-backto-ResourceSection" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="656.7604,123.2757,651.9063,101.7445,669.125,115.5465,656.7604,123.2757" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[0f559c1caee63c79bb1093a2a7d5d518]
-reverse link BaseReadableResource to StringResource--><path codeLine="102" d="M750.6458,93.4424 C816.7604,105.5257 900.0208,126.932 966.6667,164.1195 C1039.5521,204.7861 1106.2813,274.8799 1147.5833,323.8486 " fill="none" id="BaseReadableResource-backto-StringResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="749.1146,100.5674,729.8333,89.8382,751.6042,86.2028,749.1146,100.5674" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[2084c47380338988cfc44b24f699c8e3]
+reverse link BaseReadableResource to StringResource--><path codeLine="102" d="M750.6458,93.4424 C816.7604,105.5257 900.0208,126.932 966.6667,164.1195 C1039.5521,204.7861 1106.2813,274.8799 1147.5833,323.8486 " fill="none" id="BaseReadableResource-backto-StringResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="749.1146,100.5674,729.8333,89.8382,751.6042,86.2028,749.1146,100.5674" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[0621b778a3e414bb0aa06d2a8cc2f6e9]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "Resources - Built-In Resource Types"
     

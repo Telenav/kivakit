@@ -14,10 +14,10 @@ reverse link BaseMap to BaseIndexedMap--><path codeLine="23" d="M622.0938,573.65
 reverse link Indexable to BaseIndexedMap--><path codeLine="24" d="M533.8542,442.9736 C533.8542,489.5257 533.8542,563.7549 533.8542,619.0257 " fill="none" id="Indexable-backto-BaseIndexedMap" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="526.5625,442.8174,533.8542,421.984,541.1458,442.8174,526.5625,442.8174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[46ecc5bb491c5498fdd3941bb0354405]
 reverse link Map to BaseMap--><path codeLine="34" d="M752.6042,160.3278 C752.6042,182.2132 752.6042,210.1299 752.6042,239.0465 " fill="none" id="Map-backto-BaseMap" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="745.3125,160.0049,752.6042,139.1715,759.8958,160.0049,745.3125,160.0049" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[01437b1fa44352cb91168f7ec6a254ee]
 reverse link BaseMap to ClassMap--><path codeLine="53" d="M754.5104,577.9945 C754.7083,596.0674 754.8958,613.4424 755.0625,628.9424 " fill="none" id="BaseMap-backto-ClassMap" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="747.2188,577.8486,754.2917,556.932,761.8021,577.6924,747.2188,577.8486" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[52dc97ec0a253203f8d7f1df73ec0da3]
-reverse link BaseMap to ObjectMap--><path codeLine="70" d="M894.7708,570.4632 C909.5313,588.2653 923.8646,605.557 936.8646,621.234 " fill="none" id="BaseMap-backto-ObjectMap" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="889.1042,575.057,881.4167,554.3695,900.3333,565.7549,889.1042,575.057" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[1df47def8bcb8984ddfd1a8cbe979efe]
+reverse link BaseMap to ObjectMap--><path codeLine="70" d="M894.7708,570.4632 C909.5313,588.2653 923.8646,605.557 936.8646,621.234 " fill="none" id="BaseMap-backto-ObjectMap" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="889.1042,575.057,881.4167,554.3695,900.3333,565.7549,889.1042,575.057" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[8f77e565609a7854baf2785c010b888d]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.language.collections.map"
     

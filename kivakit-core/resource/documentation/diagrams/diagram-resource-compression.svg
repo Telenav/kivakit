@@ -9,10 +9,10 @@ reverse link Compressor to Codec--><path codeLine="10" d="M206.75,150.7236 C227.
 reverse link Decompressor to Codec--><path codeLine="11" d="M378.6667,150.7236 C358.2292,167.7757 336.7604,185.6924 320.3854,199.359 " fill="none" id="Decompressor-backto-Codec" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="374.0417,145.0778,394.7083,137.3382,383.3854,156.2757,374.0417,145.0778" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[cc84cb78af583ffa280c05e8804daab6]
 reverse link Codec to GzipCodec--><path codeLine="28" d="M246.0417,260.2236 C224.6458,276.5882 199.9063,295.5049 181.0417,309.932 " fill="none" id="Codec-backto-GzipCodec" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="241.6875,254.3695,262.6667,247.5153,250.5417,265.9632,241.6875,254.3695" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[cb5852545e8914b0a5fce6df7a366668]
 reverse link Codec to NullCodec--><path codeLine="33" d="M292.7083,268.4528 C292.7083,282.6715 292.7083,297.8695 292.7083,309.932 " fill="none" id="Codec-backto-NullCodec" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="285.4167,268.3486,292.7083,247.5153,300,268.3486,285.4167,268.3486" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[500b1a5895727ffe363a08015ae5b716]
-reverse link Codec to ZipCodec--><path codeLine="38" d="M338.3125,260.4632 C359.0104,276.7757 382.8646,295.5674 401.0938,309.932 " fill="none" id="Codec-backto-ZipCodec" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="333.7188,266.1299,321.8646,247.5153,342.75,254.6715,333.7188,266.1299" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f096b3cc08aeff68d93b0d9234622306]
+reverse link Codec to ZipCodec--><path codeLine="38" d="M338.3125,260.4632 C359.0104,276.7757 382.8646,295.5674 401.0938,309.932 " fill="none" id="Codec-backto-ZipCodec" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="333.7188,266.1299,321.8646,247.5153,342.75,254.6715,333.7188,266.1299" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[912f00317c060257a31fd776f65ebd3e]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "Resources - Compression"
     

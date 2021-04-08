@@ -20,7 +20,7 @@ HDFS proxy due to large number of conflicts between HDFS and other projects, esp
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit-filesystems-hdfs-proxy</artifactId>
+        <artifactId>${project-artifact-id}</artifactId>
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
 
@@ -44,6 +44,12 @@ HDFS proxy due to large number of conflicts between HDFS and other projects, esp
 [*com.telenav.kivakit.filesystems.hdfs.proxy.converters*](documentation/diagrams/com.telenav.kivakit.filesystems.hdfs.proxy.converters.svg)  
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
+
+Javadoc coverage for this project is 20.0%.
+
+The following significant classes are undocumented:  
+
+- HdfsProxyServer
 
 | Class | Documentation Sections |
 |---|---|

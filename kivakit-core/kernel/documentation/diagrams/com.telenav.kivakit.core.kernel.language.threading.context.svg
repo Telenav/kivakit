@@ -11,10 +11,10 @@ reverse link Sized to StackTrace--><path codeLine="59" d="M1206.5521,269.1924 C1
 link CallStack to CodeContext--><!--MD5=[805b595dfbc1c85ebfc24deacf77803f]
 link CodeContext to CallStack.Matching--><!--MD5=[35ed33f77ffdc3c92eb6924c2ce9494c]
 link CallStack to CallStack.Proximity--><!--MD5=[27399448bd1a112f566e6bab4c644449]
-link CallStack.Proximity to StackTrace--><!--MD5=[cc45dbe9692bf07c11165896d23c6f61]
+link CallStack.Proximity to StackTrace--><!--MD5=[8145ac1055f5eb97700a38cb9841dc32]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.language.threading.context"
     

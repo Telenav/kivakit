@@ -78,7 +78,7 @@ public class PropertyMap extends VariableMap<String>
                 if (matcher.matches())
                 {
                     final var key = matcher.group("key");
-                    final var value = KivaKit.get().properties().expanded(matcher.group("value"));
+                    final var value = KivaKit.get().properties().expand(matcher.group("value"));
                     properties.put(key, value);
                 }
                 else

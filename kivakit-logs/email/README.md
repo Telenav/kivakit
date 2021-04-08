@@ -72,6 +72,10 @@ More details about logging are available at [*kivakit-core-kernel logging*](../.
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 0.0%.
+
+
+
 | Class | Documentation Sections |
 |---|---|
 | [*EmailLog*](https://telenav.github.io/kivakit/javadoc/kivakit.logs.email/com/telenav/kivakit/logs/email/EmailLog.html) |  |  

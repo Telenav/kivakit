@@ -7,10 +7,10 @@ class NetworkServiceRegistry--><rect codeLine="31" fill="#282828" height="48.055
 reverse link BaseRepeater to BaseServiceRegistry--><path codeLine="11" d="M179.2396,120.2757 C186.3229,133.6715 194.3854,148.9424 202.2813,163.9111 " fill="none" id="BaseRepeater-backto-BaseServiceRegistry" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="172.6875,123.4736,169.4063,101.6507,185.5833,116.6715,172.6875,123.4736" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[912f9de222e3eff479660cfba9ed6d94]
 reverse link ServiceRegistry to BaseServiceRegistry--><path codeLine="12" d="M302.0104,120.2757 C294.9271,133.6715 286.8646,148.9424 278.9688,163.9111 " fill="none" id="ServiceRegistry-backto-BaseServiceRegistry" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="295.6667,116.6715,311.8438,101.6507,308.5625,123.4736,295.6667,116.6715" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[906ba7efb0e52e8d77933dbedc2bf656]
 reverse link BaseServiceRegistry to LocalServiceRegistry--><path codeLine="22" d="M185.3333,328.8903 C175.9688,344.182 166.5521,359.557 158.1042,373.359 " fill="none" id="BaseServiceRegistry-backto-LocalServiceRegistry" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="179.1458,325.0361,196.2396,311.0778,191.5729,332.6611,179.1458,325.0361" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7d96e5f02ee82538a154e985ae58dc4b]
-reverse link BaseServiceRegistry to NetworkServiceRegistry--><path codeLine="30" d="M295.9167,328.8903 C312.2083,355.484 328.6563,382.359 339.9063,400.7236 " fill="none" id="BaseServiceRegistry-backto-NetworkServiceRegistry" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="289.6771,332.6611,285.0104,311.0778,302.1042,325.0361,289.6771,332.6611" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[67edf2d1df690f64e26e188bd4524553]
+reverse link BaseServiceRegistry to NetworkServiceRegistry--><path codeLine="30" d="M295.9167,328.8903 C312.2083,355.484 328.6563,382.359 339.9063,400.7236 " fill="none" id="BaseServiceRegistry-backto-NetworkServiceRegistry" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="289.6771,332.6611,285.0104,311.0778,302.1042,325.0361,289.6771,332.6611" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[57619cca926862a2a11b9f670ab8d581]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.service.registry.registries"
     

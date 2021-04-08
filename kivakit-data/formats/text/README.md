@@ -43,6 +43,10 @@ This module provides access to columnar text files (that are not CSV files).
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 0.0%.
+
+
+
 | Class | Documentation Sections |
 |---|---|
 | [*DataFormatsTextProject*](https://telenav.github.io/kivakit/javadoc/kivakit.data.formats.text/com/telenav/kivakit/data/formats/library/text/project/DataFormatsTextProject.html) |  |  

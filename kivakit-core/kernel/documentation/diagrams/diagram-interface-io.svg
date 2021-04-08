@@ -9,10 +9,10 @@ class Writable--><rect codeLine="37" fill="#282828" height="166.5243" id="Writab
 reverse link AutoCloseable to Closeable--><path codeLine="7" d="M525.5208,150.5882 C525.5208,190.3174 525.5208,247.0674 525.5208,278.4736 " fill="none" id="AutoCloseable-backto-Closeable" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="518.2292,150.3174,525.5208,129.484,532.8125,150.307,518.2292,150.3174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[13907f49f7a62cdfb3b826ea1605c46f]
 reverse link ByteSized to Readable--><path codeLine="26" d="M764.0625,150.5778 C764.0625,170.8903 764.0625,195.6507 764.0625,219.2028 " fill="none" id="ByteSized-backto-Readable" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="756.7708,150.3174,764.0625,129.484,771.3542,150.307,756.7708,150.3174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[d944395eeba23655ac650140dabe23bf]
 link Flushable to Openable--><!--MD5=[afb58a0579d01d1fef7f94a3be3db731]
-link Flushable to Writable--><!--MD5=[56d91c268082a2ae54240afa480ee312]
+link Flushable to Writable--><!--MD5=[9dc31650a6915556ae0c7f7417b90912]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "Interfaces - I/O"
     

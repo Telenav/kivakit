@@ -78,6 +78,10 @@ None
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 63.0%.
+
+
+
 | Class | Documentation Sections |
 |---|---|
 | [*CharacterCodec*](https://telenav.github.io/kivakit/javadoc/kivakit.data.compression/com/telenav/kivakit/data/compression/codecs/CharacterCodec.html) |  |  

@@ -1,0 +1,510 @@
+''
+'' Lexakai Theme
+''
+'' Author: Brett Schwarz
+'' Author: Jonathan Locke (shibo)
+
+!$THEME = "telenav"
+
+'' Colors
+!$TELENAV_YELLOW = "#ffde00"
+!$DARK_TELENAV_YELLOW = "#D8Bc00"
+!$DARKER_TELENAV_YELLOW = "#C8Ac00"
+!$TANGERINE_LIGHT = "#ef8300"
+!$TANGERINE = "#df7300"
+!$TANGERINE_DARK = "#cf6300"
+
+'' Monochrome Colors
+!$PLATINUM="#e5e5e5"
+!$GAINSBORO="#dcdcdc"
+!$SILVER="#c0c0c0"
+!$SMOKE = "#bebdb8"
+!$LIGHT_GRAY = "#a0a0a0"
+!$CHARCOAL = "#545454"
+!$IRON = "#48494b"
+!$DARK_CHARCOAL = "#333333"
+!$DARK_GRAY = "#282828"
+!$TELENAV_BLACK = "#1b1b1a"
+
+'' Diagram
+!$DIAGRAM_BACKGROUND = $DARK_CHARCOAL
+!$BORDER = "#404040"
+!$PANEL_BORDER = "#5e5e5e"
+!$PANEL = $DARK_GRAY
+!$TITLE =$SILVER
+!$TITLE_BACKGROUND =$IRON
+!$TITLE_BORDER=$CHARCOAL
+!$DARK = "#484848"
+!$LIGHT = $DARK_TELENAV_YELLOW
+
+'' Arrows
+!$ARROW=$CHARCOAL
+!$ARROW_TEXT_COLOR=$LIGHT_GRAY
+
+'' Types
+!$ENUM = $TANGERINE
+!$ENUM_DARK = $TANGERINE_DARK
+!$ENUM_LIGHT = $TANGERINE_LIGHT
+!$INTERFACE = "#007F00"
+!$INTERFACE_DARK = "#008400"
+!$INTERFACE_LIGHT = "#239c23"
+!$ABSTRACT_CLASS = $DARK_TELENAV_YELLOW
+!$ABSTRACT_CLASS_DARK = $DARKER_TELENAV_YELLOW
+!$ABSTRACT_CLASS_LIGHT = $TELENAV_YELLOW
+!$CLASS = "#0076df"
+!$CLASS_DARK = "#0066cf"
+!$CLASS_LIGHT = "#0086ef"
+!$TYPE_PARAMETER = $ARROW_TEXT_COLOR
+
+'' Notes
+!$NOTE_BACKGROUND = $TELENAV_BLACK
+!$NOTE_BORDER=$PANEL_BORDER
+!$NOTE_TEXT=$LIGHT_GRAY
+
+skinparam backgroundColor $DIAGRAM_BACKGROUND
+
+''
+'' Colors taken from the _default_colors.scss file
+''
+!$PRIMARY = "#303030"
+!$PRIMARY_DARK = "#333333"
+!$PRIMARY_LIGHT = "#333333"
+!$PRIMARY_TEXT = $DARKER_TELENAV_YELLOW
+!$SECONDARY = "#484848"
+!$SECONDARY_DARK = "#3a3a3a"
+!$SECONDARY_LIGHT = "#6d6d6d"
+!$SECONDARY_TEXT = "#fefefe"
+!$SUCCESS = "#00FF00"
+!$SUCCESS_DARK = "#00cc00"
+!$SUCCESS_LIGHT = "#33ff33"
+!$INFO = "#0060a8"
+!$INFO_DARK = "#004d86"
+!$INFO_LIGHT = "#3380b9"
+!$WARNING = "#ff8000"
+!$WARNING_DARK = "#cc6600"
+!$WARNING_LIGHT = "#ff9933"
+!$WARNING_TEXT = "#222222"
+!$DANGER = "#ff2600"
+!$DANGER_DARK = "#cc0000"
+!$DANGER_LIGHT = "#ff3333"
+
+!procedure $success($msg)
+  <font color=$SUCCESS><b>$msg
+!endprocedure
+
+!procedure $failure($msg)
+  <font color=$DANGER><b>$msg
+!endprocedure
+
+!procedure $warning($msg)
+  <font color=$WARNING><b>$msg
+!endprocedure
+
+!procedure $primary_scheme()
+	FontColor $PRIMARY_TEXT
+	BorderColor $PRIMARY_DARK
+	BackgroundColor $PRIMARY_LIGHT-$PRIMARY_DARK
+!endprocedure
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+    ' TitleFontColor $PRIMARY_TEXT
+}
+
+''
+'' Global Default Values
+''
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            $ARROW
+skinparam stereotype {
+    CBackgroundColor $CLASS_DARK
+    CBorderColor $CLASS_LIGHT
+    ABackgroundColor $ABSTRACT_CLASS_DARK
+    ABorderColor $ABSTRACT_CLASS
+    IBackgroundColor $INTERFACE_DARK
+    IBorderColor $INTERFACE_LIGHT
+    EBackgroundColor $ENUM_DARK
+    EBorderColor $ENUM_LIGHT
+    NBackgroundColor $INFO_LIGHT
+    NBorderColor $INFO_DARK
+}
+skinparam title {
+	FontColor	                 $TITLE
+ 	BorderColor                  $TITLE_BORDER
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              $TITLE_BACKGROUND
+}
+
+
+skinparam legend {
+	BackgroundColor $PRIMARY
+	BorderColor $BORDER
+	FontColor $ARROW_TEXT_COLOR
+}
+
+!startsub swimlane
+	skinparam swimlane {
+	BorderColor $PANEL_BORDER
+	BorderThickness 2
+	TitleBackgroundColor  $SECONDARY_LIGHT-$SECONDARY
+	TitleFontColor $PRIMARY
+}
+!endsub
+
+!startsub activity
+skinparam activity {
+	$primary_scheme()
+	BarColor $SUCCESS
+	StartColor $INFO
+	EndColor $INFO
+	''
+	DiamondBackgroundColor $SECONDARY_LIGHT-$SECONDARY_DARK
+  	DiamondBorderColor $SECONDARY_DARK
+  	DiamondFontColor $SECONDARY_TEXT
+}
+!endsub
+
+!startsub participant
+
+skinparam participant {
+	$primary_scheme()
+	ParticipantBorderThickness 2
+}
+!endsub
+
+!startsub actor
+
+skinparam actor {
+	$primary_scheme()
+}
+!endsub
+
+!startsub arrow
+
+skinparam arrow {
+	Thickness 1.5
+	Color $ARROW
+	FontColor $ARROW_TEXT_COLOR
+    FontStyle bold
+    MessageAlignment center
+}
+!endsub
+
+
+!startsub sequence
+
+skinparam sequence {
+	BorderColor $PRIMARY
+	' For some reason sequence title font color does not pick up from global
+	TitleFontColor $PRIMARY
+	BackgroundColor $DIAGRAM_BACKGROUND
+	StartColor $PRIMARY
+	EndColor $PRIMARY
+	''
+	BoxBackgroundColor $DIAGRAM_BACKGROUND
+	BoxBorderColor $DARK
+	BoxFontColor $DARK
+	''
+	LifeLineBorderColor $SECONDARY
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor $SECONDARY_DARK
+	''
+	GroupBorderColor $DARK
+	GroupFontColor $DARK
+	GroupHeaderFontColor $INFO
+	GroupBackgroundColor $SECONDARY
+	GroupHeaderBackgroundColor $DIAGRAM_BACKGROUND
+	''
+	DividerBackgroundColor $DARK
+    DividerBorderColor $DARK
+    DividerBorderThickness 2
+    DividerFontColor $LIGHT
+	''
+	ReferenceBackgroundColor $DIAGRAM_BACKGROUND
+	ReferenceBorderColor $DARK
+	ReferenceFontColor $SECONDARY_TEXT
+	ReferenceHeaderBackgroundColor $SECONDARY
+}
+!endsub
+
+!startsub partition
+
+skinparam partition {
+	BorderColor $PRIMARY
+	FontColor $PRIMARY_LIGHT
+	BackgroundColor $DIAGRAM_BACKGROUND
+}
+!endsub
+
+!startsub collections
+
+skinparam collections {
+	$primary_scheme()
+}
+!endsub
+
+!startsub control
+
+skinparam control {
+	$primary_scheme()
+}
+!endsub
+
+!startsub entity
+
+skinparam entity {
+	$primary_scheme()
+}
+!endsub
+
+!startsub boundary
+
+skinparam boundary {
+	$primary_scheme()
+}
+!endsub
+
+!startsub agent
+
+skinparam agent {
+	BackgroundColor $WARNING
+	BorderColor $WARNING_LIGHT
+	FontColor $DARK
+}
+!endsub
+
+!startsub note
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor $NOTE_BACKGROUND
+	BorderColor $NOTE_BORDER
+	FontSize 11
+	FontColor $NOTE_TEXT
+}
+!endsub
+
+!startsub artifact
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor $PANEL_BORDER
+	BackgroundColor $TELENAV_BLACK
+	FontColor $DARK_TELENAV_YELLOW
+}
+!endsub
+
+!startsub component
+
+skinparam component {
+	$primary_scheme()
+}
+!endsub
+
+!startsub interface
+
+skinparam interface {
+	BackgroundColor  $INTERFACE_DARK
+	BorderColor  $INTERFACE
+	FontColor $DARK
+}
+!endsub
+
+!startsub storage
+
+skinparam storage {
+	BackgroundColor $WARNING
+  	BorderColor $WARNING_DARK
+	FontColor $WARNING_TEXT
+}
+!endsub
+
+!startsub node
+
+skinparam node {
+	BackgroundColor $DIAGRAM_BACKGROUND
+	BorderColor $PRIMARY_LIGHT
+	FontColor $PRIMARY_TEXT
+}
+!endsub
+
+!startsub cloud
+
+skinparam cloud {
+	BackgroundColor $DARK-black
+	BorderColor $DARK
+	FontColor $LIGHT
+}
+!endsub
+
+!startsub database
+
+skinparam database {
+	$primary_scheme()
+	BackgroundColor  $DIAGRAM_BACKGROUND
+}
+!endsub
+
+!startsub class
+
+skinparam class {
+	$primary_scheme()
+	HeaderBackgroundColor $TELENAV_BLACK
+    BackgroundColor $PANEL
+    BorderColor $PANEL_BORDER
+ 	StereotypeFontColor $TYPE_PARAMETER
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor $DARK_TELENAV_YELLOW
+	AttributeFontSize 11
+    FontColor $DARK_TELENAV_YELLOW
+    FontStyle bold
+}
+!endsub
+
+!startsub object
+
+skinparam object {
+	$primary_scheme()
+	StereotypeFontColor $DARK
+	BorderThickness 1
+	AttributeFontColor $SECONDARY_TEXT
+	AttributeFontSize 11
+}
+!endsub
+
+!startsub usecase
+
+skinparam usecase {
+	$primary_scheme()
+	BorderThickness 2
+	StereotypeFontColor $PRIMARY
+}
+!endsub
+
+!startsub rectangle
+
+skinparam rectangle {
+	$primary_scheme()
+	BackgroundColor $DIAGRAM_BACKGROUND
+	BorderThickness 2
+	StereotypeFontColor $PRIMARY
+}
+!endsub
+
+!startsub package
+
+skinparam package {
+	$primary_scheme()
+	BackgroundColor $DIAGRAM_BACKGROUND
+	BorderThickness 2
+}
+!endsub
+
+!startsub folder
+
+skinparam folder {
+	BackgroundColor $SECONDARY_LIGHT
+  	BorderColor $WARNING
+	FontColor $WARNING
+	BorderThickness 2
+}
+!endsub
+
+!startsub frame
+
+skinparam frame {
+	BackgroundColor $SECONDARY_LIGHT
+  	BorderColor $INFO
+	FontColor $INFO
+	BorderThickness 2
+}
+!endsub
+
+!startsub state
+
+skinparam state {
+	$primary_scheme()
+	StartColor $INFO
+	EndColor $INFO
+	AttributeFontColor $SECONDARY_TEXT
+	AttributeFontSize 11
+}
+!endsub
+
+!startsub queue
+
+skinparam queue {
+	$primary_scheme()
+}
+!endsub
+
+!startsub card
+
+skinparam card {
+	BackgroundColor $INFO
+	BorderColor $INFO_DARK
+	FontColor $INFO_TEXT
+}
+!endsub
+
+!startsub file
+
+skinparam file {
+	BackgroundColor $SECONDARY_LIGHT-$SECONDARY
+	BorderColor $INFO
+	FontColor $SECONDARY_TEXT
+}
+!endsub
+
+!startsub stack
+
+skinparam stack {
+	$primary_scheme()
+}
+!endsub
+
+!if %variable_exists("NEWSTYLE")
+<style>
+wbsDiagram {
+    LineColor $PRIMARY
+    BorderThickness 3
+    BackgroundColor $LIGHT
+    FontColor $PRIMARY_TEXT
+    :depth(0) {
+        fontSize 16
+        fontStyle bold
+        fontColor $SECONDARY
+    }
+    :depth(1) {
+        fontSize 14
+        padding 5
+        fontStyle bold
+    }
+    :depth(2) {
+        fontSize 12
+        padding 4
+    }
+    :depth(3) {
+        fontSize 11
+        padding 3
+        fontColor $INFO
+    }
+
+}
+</style>
+!endif

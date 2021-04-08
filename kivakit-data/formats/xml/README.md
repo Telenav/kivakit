@@ -43,6 +43,10 @@ This module provides access to XML data.
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 16.7%.
+
+
+
 | Class | Documentation Sections |
 |---|---|
 | [*DataFormatsXmlProject*](https://telenav.github.io/kivakit/javadoc/kivakit.data.formats.xml/com/telenav/kivakit/data/formats/library/xml/project/DataFormatsXmlProject.html) |  |  

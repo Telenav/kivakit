@@ -14,10 +14,10 @@ reverse link BaseRepeater to Project--><path codeLine="43" d="M404.1875,172.1924
 reverse link Initializable to Project--><path codeLine="44" d="M538.375,172.1924 C532.4479,196.8903 524.5833,229.5882 516.3333,263.9215 " fill="none" id="Initializable-backto-Project" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="531.3854,170.109,543.3438,151.557,545.5625,173.5153,531.3854,170.109" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[eb6821e0be3795c7703dfea57e5c9668]
 link Project to Project--><path codeLine="45" d="M582.0313,414.7965 C603.2396,419.5153 618.2292,432.6611 618.2292,454.2236 C618.2292,473.932 605.6979,486.609 587.3542,492.2445 " fill="none" id="Project-to-Project" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="582.0313,493.6507,592.157,495.3002,587.0689,492.3282,590.0409,487.24,582.0313,493.6507" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="76.0417" x="627.6042" y="459.0169">depends on</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="593.1173" y="405.8145">1</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="6.25" x="593.0473" y="489.9666">*</text><!--MD5=[97089a0cd495f38885f614238caf8a5b]
 link CoreKernelLimits to Release--><!--MD5=[d3e225a4bbc1cda2585b4872c9fb0576]
-link CoreKernelLimits to Project.Visitor--><!--MD5=[826f82c3797480e4420dff1099de80a9]
+link CoreKernelLimits to Project.Visitor--><!--MD5=[6eb8e7a340467adb914de6b731d648f9]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.project"
     

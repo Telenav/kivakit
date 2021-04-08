@@ -58,6 +58,10 @@ None
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 0.0%.
+
+
+
 | Class | Documentation Sections |
 |---|---|
 | [*Components*](https://telenav.github.io/kivakit/javadoc/kivakit.web.wicket/com/telenav/kivakit/web/wicket/library/Components.html) |  |  

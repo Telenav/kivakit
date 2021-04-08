@@ -43,6 +43,10 @@ None
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 0.0%.
+
+
+
 | Class | Documentation Sections |
 |---|---|
 | [*JerseyGsonSerializer*](https://telenav.github.io/kivakit/javadoc/kivakit.core.serialization.jersey.json/com/telenav/kivakit/core/serialization/jersey/json/JerseyGsonSerializer.html) |  |  

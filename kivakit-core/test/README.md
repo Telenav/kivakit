@@ -46,6 +46,10 @@ This module contains functionality for unit testing.
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 25.0%.
+
+
+
 | Class | Documentation Sections |
 |---|---|
 | [*CoreTestProject*](https://telenav.github.io/kivakit/javadoc/kivakit.core.test/com/telenav/kivakit/core/test/project/CoreTestProject.html) |  |  

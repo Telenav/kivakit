@@ -9,10 +9,10 @@ reverse link StringPath to PackagePath--><path codeLine="10" d="M256.25,1605.161
 reverse link Iterable to Path--><path codeLine="37" d="M381.5938,122.182 C378.2292,134.2028 374.2813,148.3174 369.9063,163.9632 " fill="none" id="Iterable-backto-Path" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="374.6667,119.859,387.3021,101.7549,388.7188,123.7861,374.6667,119.859" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[534ca05ea7904b0b6e8367b58c23e1f7]
 reverse link Comparable to Path--><path codeLine="38" d="M256.25,122.6403 C256.25,134.5674 256.25,148.5153 256.25,163.9632 " fill="none" id="Comparable-backto-Path" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="248.9583,122.5882,256.25,101.7549,263.5417,122.5882,248.9583,122.5882" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[302ad7deb6350d639f0bb7329512784d]
 reverse link Sized to Path--><path codeLine="39" d="M137.5521,122.182 C140.7396,134.2028 144.4792,148.3174 148.625,163.9632 " fill="none" id="Sized-backto-Path" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="130.4271,123.7653,132.1458,101.7549,144.5313,120.0257,130.4271,123.7653" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[013fe9b2aebef53e5b526671aee2d3c8]
-reverse link Path to StringPath--><path codeLine="83" d="M256.25,999.807 C256.25,1013.6299 256.25,1027.3486 256.25,1040.8799 " fill="none" id="Path-backto-StringPath" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="248.9583,999.5674,256.25,978.734,263.5417,999.5674,248.9583,999.5674" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[1914a0d547b0aa8649d9917004d93e6f]
+reverse link Path to StringPath--><path codeLine="83" d="M256.25,999.807 C256.25,1013.6299 256.25,1027.3486 256.25,1040.8799 " fill="none" id="Path-backto-StringPath" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="248.9583,999.5674,256.25,978.734,263.5417,999.5674,248.9583,999.5674" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[66d6097f1bc9c8b4ba5907d42bad765a]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "Language - Paths"
     

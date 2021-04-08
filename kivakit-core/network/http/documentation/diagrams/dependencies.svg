@@ -51,10 +51,10 @@ link kivakit_core_serialization_kryo to kryo_serializers--><path d="M1138.5521,4
 link kryo to minlog--><path d="M1083.7813,527.8486 C1063.5521,544.8695 1035.3021,568.6507 1014.0833,586.5153 " fill="none" id="kryo-to-minlog" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1009.9375,590.0049,1019.7915,587.1498,1013.9203,586.6486,1014.4215,580.7774,1009.9375,590.0049" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e75c16e47fcf6c43b15d3c25536a9ed0]
 link kryo to objenesis--><path d="M1136.8958,527.8486 C1158.7188,544.9424 1189.2604,568.8486 1212.0938,586.734 " fill="none" id="kryo-to-objenesis" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1216.2708,590.0049,1211.4559,580.9457,1212.1692,586.7949,1206.32,587.5083,1216.2708,590.0049" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e061beb27669383d030ce0c5c656b006]
 link kryo to reflectasm--><path d="M1109.375,528.109 C1109.375,544.5778 1109.375,567.2757 1109.375,584.8278 " fill="none" id="kryo-to-reflectasm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1109.375,590.109,1113.5417,580.734,1109.375,584.9007,1105.2083,580.734,1109.375,590.109" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[338783537f3f9263e4097f5ff0c514d3]
-link reflectasm to asm--><path d="M1109.375,635.4007 C1109.375,651.8695 1109.375,674.5674 1109.375,692.1195 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1109.375,697.4007,1113.5417,688.0257,1109.375,692.1924,1105.2083,688.0257,1109.375,697.4007" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[b68cbfe5a89318ddb5600e0c0d40f500]
+link reflectasm to asm--><path d="M1109.375,635.4007 C1109.375,651.8695 1109.375,674.5674 1109.375,692.1195 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1109.375,697.4007,1113.5417,688.0257,1109.375,692.1924,1105.2083,688.0257,1109.375,697.4007" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[db6ef760eb12f5b3d1c0afc62c18b93e]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "kivakit-core-network-http"
     

@@ -9,10 +9,10 @@ reverse link Filter to LogEntriesOfType--><path codeLine="8" d="M808.2917,84.452
 reverse link Filter to LogEntriesSubclassing--><path codeLine="17" d="M809.5938,99.7132 C755.5521,120.3695 671.6354,152.432 604.4896,178.0882 " fill="none" id="Filter-backto-LogEntriesSubclassing" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="807.0313,92.8903,829.0938,92.2653,812.2292,106.5153,807.0313,92.8903" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[526b4125ed4d158b702b5a11096abac0]
 reverse link Filter to LogEntriesWithSeverityGreaterThanOrEqualTo--><path codeLine="24" d="M864.5833,122.7965 C864.5833,140.4736 864.5833,160.734 864.5833,178.0674 " fill="none" id="Filter-backto-LogEntriesWithSeverityGreaterThanOrEqualTo" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="857.2917,122.6715,864.5833,101.8382,871.875,122.6715,857.2917,122.6715" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[36d582f1ad220fde89ed7f7cb1637bba]
 reverse link Filter to LogEntriesWithSeverityLessThanOrEqualTo--><path codeLine="31" d="M919.8854,99.7132 C974.2396,120.3695 1058.625,152.432 1126.1563,178.0882 " fill="none" id="Filter-backto-LogEntriesWithSeverityLessThanOrEqualTo" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="917.1563,106.484,900.2708,92.2653,922.3438,92.8486,917.1563,106.484" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9b20f858df75fdf3904de39d848569b6]
-reverse link Filter to LoggersInPackage--><path codeLine="38" d="M921.0833,82.609 C1021.7813,90.6403 1238.2083,112.7653 1413.5417,164.1195 C1426.6354,167.9528 1440.1563,172.859 1453.2396,178.1507 " fill="none" id="Filter-backto-LoggersInPackage" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="920.5,89.8799,900.2813,81.0257,921.6146,75.3382,920.5,89.8799" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e1ce5cc4a652968764b13bff60aa98da]
+reverse link Filter to LoggersInPackage--><path codeLine="38" d="M921.0833,82.609 C1021.7813,90.6403 1238.2083,112.7653 1413.5417,164.1195 C1426.6354,167.9528 1440.1563,172.859 1453.2396,178.1507 " fill="none" id="Filter-backto-LoggersInPackage" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="920.5,89.8799,900.2813,81.0257,921.6146,75.3382,920.5,89.8799" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[93e27456419cecb19147a951542ba05c]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.logging.filters"
     

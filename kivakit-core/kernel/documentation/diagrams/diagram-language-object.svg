@@ -13,10 +13,10 @@ reverse link Unloadable to Lazy--><path codeLine="42" d="M827.4896,251.1924 C821
 reverse link Iterable to Pair--><path codeLine="82" d="M1007.2917,251.4632 C1007.2917,306.7653 1007.2917,402.807 1007.2917,472.9632 " fill="none" id="Iterable-backto-Pair" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1000,251.2861,1007.2917,230.4528,1014.5833,251.2861,1000,251.2861" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f0731b69c95f65ad1b098b8bb59eb9a5]
 link ExpiringReference to Hash--><!--MD5=[c56a53343b86439afc2bee42503002ba]
 link ExpiringReference to MappedLazy--><!--MD5=[bec409bfddc2522898cdb85808a3169b]
-link MappedLazy to Objects--><!--MD5=[f2238a089f7b88eff381d65d22d8385b]
+link MappedLazy to Objects--><!--MD5=[01f8a5cf356327cbaa2b16aee592810a]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "diagram-language-object"
     

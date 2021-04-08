@@ -60,6 +60,10 @@ Javadoc**](#javadoc).
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 25.0%.
+
+
+
 | Class | Documentation Sections |
 |---|---|
 | [*Application*](https://telenav.github.io/kivakit/javadoc/kivakit.core.application/com/telenav/kivakit/core/application/Application.html) | Configuration |  

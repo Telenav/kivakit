@@ -21,10 +21,10 @@ reverse link BaseTextLog to ConsoleLog--><path codeLine="56" d="M388.4583,991.77
 reverse link Filtered to Log--><path codeLine="63" d="M591.8021,121.0257 C585.3646,134.8903 578.1354,150.4632 571.3854,164.9945 " fill="none" id="Filtered-backto-Log" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="585.4063,117.4945,600.7917,101.6611,598.6354,123.6299,585.4063,117.4945" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[c089d3fe95ac84762891501bb10aa84d]
 reverse link Closeable to Log--><path codeLine="64" d="M500.9896,120.5465 C507.5938,134.5257 515.0313,150.2965 521.9688,164.9945 " fill="none" id="Closeable-backto-Log" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="494.3854,123.6195,492.0833,101.6611,507.5729,117.3903,494.3854,123.6195" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[6090fffb2087f3230b60c0ce26b0f73b]
 link Log to LogEntry--><path codeLine="65" d="M546.875,272.5882 C546.875,352.1715 546.875,500.234 546.875,562.2236 " fill="none" id="Log-to-LogEntry" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="546.875,567.5986,551.0417,558.2236,546.875,562.3903,542.7083,558.2236,546.875,567.5986" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="28.125" x="551.0417" y="319.9544">logs</text><!--MD5=[697ce001e27e206b89efeb5524884890]
-reverse link LogEntryFormatter to SimpleFormatter--><path codeLine="80" d="M225.0208,1146.2236 C238.1146,1162.5153 252.0521,1179.8695 262.7813,1193.2236 " fill="none" id="LogEntryFormatter-backto-SimpleFormatter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="219.2188,1150.6507,211.8542,1129.8382,230.5938,1141.5153,219.2188,1150.6507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9dfb792cdf636bacf15ece4f76c52fdb]
+reverse link LogEntryFormatter to SimpleFormatter--><path codeLine="80" d="M225.0208,1146.2236 C238.1146,1162.5153 252.0521,1179.8695 262.7813,1193.2236 " fill="none" id="LogEntryFormatter-backto-SimpleFormatter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="219.2188,1150.6507,211.8542,1129.8382,230.5938,1141.5153,219.2188,1150.6507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[c9e127a2e5213c20627864afc1410beb]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "Logging - Logs"
     

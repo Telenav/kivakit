@@ -7,10 +7,10 @@ class Longs--><rect codeLine="59" fill="#282828" height="317.2384" id="Longs" rx
 link Arrays to Booleans--><!--MD5=[99a15a5dbaa0338b237508ab98ed5e35]
 link Booleans to Doubles--><!--MD5=[68a43fb02592473afe5e572c6b5bdc67]
 link Arrays to Ints--><!--MD5=[7e0e0db6bcbace3276422452a4d312bc]
-link Ints to Longs--><!--MD5=[d5de33877a9c19e4bb40810431a76851]
+link Ints to Longs--><!--MD5=[be922e04b1350c9b45c552c517c98536]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.language.primitives"
     

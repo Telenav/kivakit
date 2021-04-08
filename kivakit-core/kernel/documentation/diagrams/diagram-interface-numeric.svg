@@ -9,10 +9,10 @@ class Sized--><rect codeLine="55" fill="#282828" height="103.123" id="Sized" rx=
 reverse link Contains to Ranged--><path codeLine="43" d="M760.9375,143.5674 C760.9375,184.807 760.9375,246.9215 760.9375,293.7653 " fill="none" id="Contains-backto-Ranged" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="753.6458,143.3382,760.9375,122.5049,768.2292,143.3382,753.6458,143.3382" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[28d53f030c0df30af74c19b9a569c0d3]
 reverse link Countable to Sized--><path codeLine="54" d="M572.3958,161.182 C572.3958,205.9215 572.3958,265.7028 572.3958,307.6715 " fill="none" id="Countable-backto-Sized" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="565.1042,161.0986,572.3958,140.2653,579.6875,161.0986,565.1042,161.0986" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[fa36400b07c3523c75dbd5e41c87389b]
 link Maximizable to Minimizable--><!--MD5=[5fdc29f236de5629ccd935f330ff0749]
-link Maximizable to Quantizable--><!--MD5=[c3e9ae92a8cf329469da5d8a95591626]
+link Maximizable to Quantizable--><!--MD5=[bf802f4b5b56f6ed7d3c0361cf84c55f]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "Interfaces - Numeric"
     

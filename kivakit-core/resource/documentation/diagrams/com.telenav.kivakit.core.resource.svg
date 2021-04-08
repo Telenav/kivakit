@@ -52,10 +52,10 @@ link CopyMode to ResourceFolder--><!--MD5=[c366967f77d61e05ef8ff081446308c8]
 link ResourceFolder to ResourceFolderIdentifier--><!--MD5=[ac739d43d82e2f20bf3aba354d6b08fd]
 link CopyMode to ResourceIdentifier--><!--MD5=[68cb14cfcabbc6bc40a03d0e8226befc]
 link ResourceIdentifier to ResourceList--><!--MD5=[40d0b33e81e81453575f977b816ae519]
-link ResourceList to ResourcePath--><!--MD5=[357a82dd634159f10b17ecc7a4736f9f]
+link ResourceList to ResourcePath--><!--MD5=[7e0f9dfc43bd54f0d67647f7cb45d5ff]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.resource"
     

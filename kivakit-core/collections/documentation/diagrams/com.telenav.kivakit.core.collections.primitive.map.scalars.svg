@@ -39,10 +39,10 @@ link IntToByteMap to IntToIntMap--><!--MD5=[0597aac488cc5ba3bb7a49883ea5f4d7]
 link IntToIntMap to IntToLongMap--><!--MD5=[2b1d8016041f6c66b5d39d4c5466a2c4]
 link IntToByteMap to LongToByteMap--><!--MD5=[e06c6e301a499d0b2df5349c3c9638bc]
 link LongToByteMap to LongToIntMap--><!--MD5=[4b1db799634bf1712ffda341ef738440]
-link LongToIntMap to LongToLongMap--><!--MD5=[48ef994146e44ad273a22fb706e7a5a7]
+link LongToIntMap to LongToLongMap--><!--MD5=[a24701225c0a1c5f7bba6c18d4cc037b]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.collections.primitive.map.scalars"
     
