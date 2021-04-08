@@ -20,9 +20,16 @@ package com.telenav.kivakit.core.security.digest.digesters;
 
 import com.telenav.kivakit.core.security.digest.BaseDigester;
 import com.telenav.kivakit.core.security.project.lexakai.diagrams.DiagramSecurityDigest;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * An SHA-1 message digester.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramSecurityDigest.class)
+@LexakaiJavadoc(complete = true)
 public class Sha1Digester extends BaseDigester
 {
     public Sha1Digester()

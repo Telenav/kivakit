@@ -47,7 +47,7 @@ for more details.
 ### Javadoc Coverage
 
 &nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-web-jersey*  
-&nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-web-jetty*  
+&nbsp;  ![](documentation/images/meter-50-12.png) &nbsp; &nbsp; *kivakit-web-jetty*  
 &nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-web-swagger*  
 &nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-web-wicket*
 

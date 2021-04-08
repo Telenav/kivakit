@@ -77,9 +77,9 @@ None
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 63.0%.  
+Javadoc coverage for this project is 65.4%.  
   
-&nbsp; &nbsp;  ![](documentation/images/meter-60-12.png)
+&nbsp; &nbsp;  ![](documentation/images/meter-70-12.png)
 
 
 

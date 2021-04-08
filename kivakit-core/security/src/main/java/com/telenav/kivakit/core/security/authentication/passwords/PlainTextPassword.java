@@ -18,16 +18,23 @@
 
 package com.telenav.kivakit.core.security.authentication.passwords;
 
-import com.telenav.kivakit.core.security.authentication.Password;
-import com.telenav.kivakit.core.security.project.lexakai.diagrams.DiagramSecurity;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 import com.telenav.kivakit.core.kernel.language.strings.AsciiArt;
 import com.telenav.kivakit.core.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.core.kernel.language.strings.conversion.StringFormat;
+import com.telenav.kivakit.core.security.authentication.Password;
+import com.telenav.kivakit.core.security.project.lexakai.diagrams.DiagramSecurity;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
+/**
+ * A plain text password, which can be tested against a given password using {@link #matches(Password)}.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramSecurity.class)
 @UmlExcludeSuperTypes({ AsString.class })
+@LexakaiJavadoc(complete = true)
 public class PlainTextPassword implements Password, AsString
 {
     private final String password;
@@ -48,11 +55,11 @@ public class PlainTextPassword implements Password, AsString
     }
 
     @Override
-    public boolean matches(final Password object)
+    public boolean matches(final Password uncast)
     {
-        if (object instanceof PlainTextPassword)
+        if (uncast instanceof PlainTextPassword)
         {
-            final var that = (PlainTextPassword) object;
+            final var that = (PlainTextPassword) uncast;
             return password.equals(that.password);
         }
         return false;

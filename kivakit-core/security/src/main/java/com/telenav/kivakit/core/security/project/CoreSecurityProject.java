@@ -20,10 +20,14 @@ package com.telenav.kivakit.core.security.project;
 
 import com.telenav.kivakit.core.kernel.language.objects.Lazy;
 import com.telenav.kivakit.core.kernel.project.Project;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Project subclass for <i>kivakit-core-security</i>.
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class CoreSecurityProject extends Project
 {
     private static final Lazy<CoreSecurityProject> singleton = Lazy.of(CoreSecurityProject::new);

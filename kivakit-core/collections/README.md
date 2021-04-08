@@ -91,7 +91,7 @@ This module provides collections, iteration support, primitive collections, stac
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 60.8%.  
+Javadoc coverage for this project is 61.3%.  
   
 &nbsp; &nbsp;  ![](documentation/images/meter-60-12.png)
 

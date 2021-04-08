@@ -17,6 +17,7 @@
     {
         --
         +byte[] digest(byte[] value)
+        +byte[] digest(String value)
     }
     
 @enduml

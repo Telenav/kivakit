@@ -19,9 +19,17 @@
 package com.telenav.kivakit.core.security.digest;
 
 import com.telenav.kivakit.core.security.project.lexakai.diagrams.DiagramSecurityDigest;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * Interface to message digesters. The {@link #digest(byte[])} and {@link #digest(String)} methods return a byte array
+ * containing the message digest. The length of this array varies depending on the algorithm used.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramSecurityDigest.class)
+@LexakaiJavadoc(complete = true)
 public interface Digester
 {
     /**
@@ -29,4 +37,12 @@ public interface Digester
      * @return The digest
      */
     byte[] digest(final byte[] value);
+
+    /**
+     * @return A message digest of the given string
+     */
+    default byte[] digest(final String value)
+    {
+        return digest(value.getBytes());
+    }
 }
