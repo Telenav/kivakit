@@ -9,10 +9,10 @@ reverse link Filter to All--><path codeLine="8" d="M321.1667,90.1507 C263.4271,1
 reverse link Filter to And--><path codeLine="13" d="M329.3438,114.307 C308.4167,129.7549 283.7708,147.932 262.1042,163.9215 " fill="none" id="Filter-backto-And" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="325.1771,108.3174,346.2708,101.8174,333.8333,120.057,325.1771,108.3174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[8d1e86f35c97feab9d7fe8c7edd63269]
 reverse link Filter to None--><path codeLine="20" d="M377.6042,122.9528 C377.6042,142.7965 377.6042,165.3799 377.6042,181.7757 " fill="none" id="Filter-backto-None" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="370.3125,122.6507,377.6042,101.8174,384.8958,122.6507,370.3125,122.6507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[314dffa307d39f2e6077e4c93513fbbc]
 reverse link Filter to Not--><path codeLine="25" d="M418.5417,115.9424 C435.125,131.0257 454.3125,148.4945 471.2708,163.9215 " fill="none" id="Filter-backto-Not" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="413.5208,121.234,403.0104,101.8174,423.3333,110.4424,413.5208,121.234" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[12c0474a5a2f0b1391241cea5414d603]
-reverse link Filter to Or--><path codeLine="32" d="M432.5521,100.5049 C481.5,119.9215 553.8958,148.6403 610.3021,171.0153 " fill="none" id="Filter-backto-Or" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="429.8021,107.2549,413.125,92.7965,435.1771,93.7028,429.8021,107.2549" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[11c113a667ebb2a5e98b309d338b38fc]
+reverse link Filter to Or--><path codeLine="32" d="M432.5521,100.5049 C481.5,119.9215 553.8958,148.6403 610.3021,171.0153 " fill="none" id="Filter-backto-Or" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="429.8021,107.2549,413.125,92.7965,435.1771,93.7028,429.8021,107.2549" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[5b402ead22a2df6eb197a66741595b1f]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.messaging.filters.operators"
     

@@ -17,10 +17,10 @@ link JavaVirtualMachine.KivaKitExcludeFromSizeOf to JavaVirtualMachine.KivaKitEx
 link JavaVirtualMachine.KivaKitExcludeFromSizeOfDebugTracing to JavaVirtualMachine.KivaKitNonCyclicObjectGraph--><!--MD5=[3df269f7cb98fecd66d7133f3612738d]
 link JavaVirtualMachine.KivaKitExcludeFromSizeOf to KivaKitShutdownHook--><!--MD5=[ae4f5aa4db4efcd49d788a3f2624455e]
 link KivaKitShutdownHook to KivaKitShutdownHook.Order--><!--MD5=[6d60cb3958ccc1bd7a1b348b55a494b9]
-link KivaKitShutdownHook.Order to Processes--><!--MD5=[039335366a9be7d0060b5f86b59114c4]
+link KivaKitShutdownHook.Order to Processes--><!--MD5=[33152348ed0024f67aa524fbbeb8506c]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.language.vm"
     

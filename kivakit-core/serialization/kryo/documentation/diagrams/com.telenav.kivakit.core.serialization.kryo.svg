@@ -19,10 +19,10 @@ reverse link Named to KryoSerializationSession--><path codeLine="26" d="M416.052
 reverse link SerializationSession to KryoSerializationSession--><path codeLine="27" d="M240.8958,139.5153 C229.3021,175.7549 212.2292,229.0986 197.0208,276.609 " fill="none" id="SerializationSession-backto-KryoSerializationSession" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="234.0417,136.984,247.3438,119.3695,247.9375,141.432,234.0417,136.984" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f1ccb28aa063b812ffb9cd31d6ac0de1]
 reverse link Serializer to KryoSerializer--><path codeLine="41" d="M1027.6042,140.5361 C1027.6042,168.2132 1027.6042,205.5778 1027.6042,242.6611 " fill="none" id="Serializer-backto-KryoSerializer" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1020.3125,140.2028,1027.6042,119.3695,1034.8958,140.2028,1020.3125,140.2028" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[4aafbcee41e91f4f44a4c77c4ed2383a]
 reverse link Named to KryoTypes--><path codeLine="64" d="M470.1458,139.9528 C472.9167,156.8695 476.2917,177.484 479.8854,199.4736 " fill="none" id="Named-backto-KryoTypes" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="462.9479,141.109,466.7813,119.3695,477.3333,138.7549,462.9479,141.109" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[92e75e22289d5341ed22aeca402c8228]
-reverse link UnitTest to KryoUnitTest--><path codeLine="85" d="M1348.4375,140.4736 C1348.4375,185.1299 1348.4375,255.0465 1348.4375,308.3382 " fill="none" id="UnitTest-backto-KryoUnitTest" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1341.1458,140.2028,1348.4375,119.3695,1355.7292,140.2028,1341.1458,140.2028" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[c8c7440ddd509cccecd983d1be50727d]
+reverse link UnitTest to KryoUnitTest--><path codeLine="85" d="M1348.4375,140.4736 C1348.4375,185.1299 1348.4375,255.0465 1348.4375,308.3382 " fill="none" id="UnitTest-backto-KryoUnitTest" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1341.1458,140.2028,1348.4375,119.3695,1355.7292,140.2028,1341.1458,140.2028" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e1ac8875141d9c1151a074acf2679ad1]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.serialization.kryo"
     

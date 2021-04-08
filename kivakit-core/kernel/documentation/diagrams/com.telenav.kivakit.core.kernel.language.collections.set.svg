@@ -12,10 +12,10 @@ reverse link NewInstance to BaseSet--><path codeLine="15" d="M508.3125,253.8382 
 reverse link Sized to BaseSet--><path codeLine="16" d="M52.9479,254.7861 C61.4896,287.307 75.9271,332.1195 97.3958,367.2445 C110.5521,388.7653 126.5729,409.8486 143.5313,429.6195 " fill="none" id="Sized-backto-BaseSet" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="45.8542,256.4736,47.9688,234.5049,60.0208,252.9945,45.8542,256.4736" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7c70a51e57f44c5099c4df609d329cc1]
 reverse link Addable to BaseSet--><path codeLine="17" d="M369.8229,254.7236 C355.5833,298.5986 332.875,368.557 313.0729,429.5465 " fill="none" id="Addable-backto-BaseSet" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="362.9792,252.1924,376.3542,234.6195,376.8542,256.6924,362.9792,252.1924" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[0404e121aa0371dd79ef8e097e36a060]
 reverse link AsString to BaseSet--><path codeLine="18" d="M176.0417,254.432 C190.4167,298.2757 213.3958,368.4111 233.4271,429.5465 " fill="none" id="AsString-backto-BaseSet" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="169.1146,256.6924,169.5521,234.6195,182.9688,252.1507,169.1146,256.6924" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9aea602f56e9d572cafe3606de0cefc1]
-reverse link BaseSet to ObjectSet--><path codeLine="33" d="M273.4375,696.8695 C273.4375,711.1715 273.4375,725.0778 273.4375,737.7757 " fill="none" id="BaseSet-backto-ObjectSet" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="266.1458,696.5778,273.4375,675.7445,280.7292,696.5778,266.1458,696.5778" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[dea81ddb10eabb752441fc410a99e25d]
+reverse link BaseSet to ObjectSet--><path codeLine="33" d="M273.4375,696.8695 C273.4375,711.1715 273.4375,725.0778 273.4375,737.7757 " fill="none" id="BaseSet-backto-ObjectSet" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="266.1458,696.5778,273.4375,675.7445,280.7292,696.5778,266.1458,696.5778" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e2b62eaae013a17fae5cb1d5290beb97]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.language.collections.set"
     

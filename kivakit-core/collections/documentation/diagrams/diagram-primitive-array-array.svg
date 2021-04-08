@@ -7,10 +7,10 @@ class PrimitiveArray--><rect fill="#282828" height="48.055" id="PrimitiveArray" 
 reverse link PrimitiveArrayArray to ByteArrayArray--><path codeLine="6" d="M254.5313,282.7549 C235.2708,303.234 213.6146,326.2445 192.7813,348.3903 " fill="none" id="PrimitiveArrayArray-backto-ByteArrayArray" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="249.4896,277.4736,269.0833,267.2965,260.1146,287.4736,249.4896,277.4736" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[b34967acba63f2555e7c165a8ac11b00]
 reverse link PrimitiveArrayArray to IntArrayArray--><path codeLine="21" d="M316.6667,288.307 C316.6667,301.3695 316.6667,315.307 316.6667,329.2757 " fill="none" id="PrimitiveArrayArray-backto-IntArrayArray" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="309.375,288.1299,316.6667,267.2965,323.9583,288.1299,309.375,288.1299" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[2e4216aad81d87651c69a8462622ee2e]
 reverse link PrimitiveArrayArray to LongArrayArray--><path codeLine="36" d="M379.4479,282.4945 C398.6458,302.609 420.1979,325.1924 441.0208,347.0049 " fill="none" id="PrimitiveArrayArray-backto-LongArrayArray" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="374.0521,287.4007,364.9479,267.2965,384.6042,277.3382,374.0521,287.4007" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[73735de8cf8b3e1f9a6522ef0857b372]
-reverse link PrimitiveArray to PrimitiveArrayArray--><path codeLine="51" d="M316.6667,122.8382 C316.6667,135.9945 316.6667,150.5257 316.6667,164.0674 " fill="none" id="PrimitiveArray-backto-PrimitiveArrayArray" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="309.375,122.5986,316.6667,101.7653,323.9583,122.5986,309.375,122.5986" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[97ee37904e072f02b8a91c231fae15af]
+reverse link PrimitiveArray to PrimitiveArrayArray--><path codeLine="51" d="M316.6667,122.8382 C316.6667,135.9945 316.6667,150.5257 316.6667,164.0674 " fill="none" id="PrimitiveArray-backto-PrimitiveArrayArray" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="309.375,122.5986,316.6667,101.7653,323.9583,122.5986,309.375,122.5986" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[bd19419fdabd7cc5b201a993c4ef7863]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "Two-Dimensional Arrays"
     

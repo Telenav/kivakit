@@ -20,7 +20,7 @@ Service provider for AWS S3 filesystems.
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit-filesystems-s3fs</artifactId>
+        <artifactId>${project-artifact-id}</artifactId>
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
 
@@ -54,6 +54,13 @@ service loader mechanism. All that is required to make use of HDFS paths with *F
 [*com.telenav.kivakit.filesystems.s3fs.project*](documentation/diagrams/com.telenav.kivakit.filesystems.s3fs.project.svg)  
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
+
+Javadoc coverage for this project is 0.0%.
+
+The following significant classes are undocumented:  
+
+- S3FileSystemObject  
+- S3Folder
 
 | Class | Documentation Sections |
 |---|---|

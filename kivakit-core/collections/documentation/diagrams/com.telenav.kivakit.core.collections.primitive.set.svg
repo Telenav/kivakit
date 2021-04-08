@@ -10,10 +10,10 @@ reverse link PrimitiveSet to LongSet--><path codeLine="9" d="M226.1667,349.6507 
 reverse link LongCollection to LongSet--><path codeLine="10" d="M92.1979,291.0986 C104.8646,322.4945 122.4167,365.9632 137.2917,402.8174 " fill="none" id="LongCollection-backto-LongSet" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="85.3333,293.5674,84.2917,271.5153,98.8542,288.109,85.3333,293.5674" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[a1b59d04b6ec53054cc55d27a1c11982]
 reverse link PrimitiveMap to PrimitiveSet--><path codeLine="20" d="M273.9583,122.9736 C273.9583,135.5986 273.9583,149.7653 273.9583,163.8799 " fill="none" id="PrimitiveMap-backto-PrimitiveSet" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="266.6667,122.5049,273.9583,101.6715,281.25,122.5049,266.6667,122.5049" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[63555e8fc08fbe7be7a72f511231318f]
 reverse link PrimitiveSet to SplitLongSet--><path codeLine="35" d="M337.3958,348.7028 C346.8021,363.5674 356.4063,378.734 365.5417,393.1715 " fill="none" id="PrimitiveSet-backto-SplitLongSet" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="331.0417,352.2965,326.0625,330.7965,343.3646,344.5049,331.0417,352.2965" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[63942aaf3bac7e96a484df0a986874fe]
-reverse link LongIterable to SplitLongSet--><path codeLine="36" d="M455.5833,292.0986 C449.6771,320.682 441.7813,358.9528 434.7292,393.1403 " fill="none" id="LongIterable-backto-SplitLongSet" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="448.4792,290.4424,459.8333,271.5153,462.7604,293.3903,448.4792,290.4424" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[6bf4631043678770e74d0d77f01a3b59]
+reverse link LongIterable to SplitLongSet--><path codeLine="36" d="M455.5833,292.0986 C449.6771,320.682 441.7813,358.9528 434.7292,393.1403 " fill="none" id="LongIterable-backto-SplitLongSet" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="448.4792,290.4424,459.8333,271.5153,462.7604,293.3903,448.4792,290.4424" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[394cf6a4152cade82c851acb99685be5]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.collections.primitive.set"
     

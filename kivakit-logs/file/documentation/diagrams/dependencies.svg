@@ -39,10 +39,10 @@ link kivakit_logs_file to kivakit_core_resource--><path d="M979.0104,97.6715 C10
 link kryo to minlog--><path d="M1000.4479,527.8486 C980.2188,544.8695 951.9688,568.6507 930.75,586.5153 " fill="none" id="kryo-to-minlog" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="926.6042,590.0049,936.4581,587.1498,930.5869,586.6486,931.0881,580.7774,926.6042,590.0049" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e75c16e47fcf6c43b15d3c25536a9ed0]
 link kryo to objenesis--><path d="M1053.5625,527.8486 C1075.3854,544.9424 1105.9271,568.8486 1128.7604,586.734 " fill="none" id="kryo-to-objenesis" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1132.9375,590.0049,1128.1226,580.9457,1128.8359,586.7949,1122.9867,587.5083,1132.9375,590.0049" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e061beb27669383d030ce0c5c656b006]
 link kryo to reflectasm--><path d="M1026.0417,528.109 C1026.0417,544.5778 1026.0417,567.2757 1026.0417,584.8278 " fill="none" id="kryo-to-reflectasm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1026.0417,590.109,1030.2083,580.734,1026.0417,584.9007,1021.875,580.734,1026.0417,590.109" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[338783537f3f9263e4097f5ff0c514d3]
-link reflectasm to asm--><path d="M1026.0417,635.4007 C1026.0417,651.8695 1026.0417,674.5674 1026.0417,692.1195 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1026.0417,697.4007,1030.2083,688.0257,1026.0417,692.1924,1021.875,688.0257,1026.0417,697.4007" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f223fa02f1e59da74a8f50211b1c074f]
+link reflectasm to asm--><path d="M1026.0417,635.4007 C1026.0417,651.8695 1026.0417,674.5674 1026.0417,692.1195 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1026.0417,697.4007,1030.2083,688.0257,1026.0417,692.1924,1021.875,688.0257,1026.0417,697.4007" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[4caa9186b5f1ea051942247339692cd4]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "kivakit-logs-file"
     

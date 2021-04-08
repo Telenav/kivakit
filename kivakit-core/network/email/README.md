@@ -86,6 +86,12 @@ it and enqueueing *Email* objects. No attempt is made to persist the queue of un
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 0.0%.
+
+The following significant classes are undocumented:  
+
+- EmailSender
+
 | Class | Documentation Sections |
 |---|---|
 | [*AttachmentConverter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/converters/AttachmentConverter.html) |  |  

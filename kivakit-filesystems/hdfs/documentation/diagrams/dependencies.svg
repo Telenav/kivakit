@@ -107,10 +107,10 @@ link kivakit_service_registry to kivakit_core_serialization_jersey_json--><path 
 link kryo to minlog--><path d="M674.9271,742.432 C654.6979,759.4528 626.4479,783.234 605.2292,801.0986 " fill="none" id="kryo-to-minlog" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="601.0833,804.5882,610.9373,801.7332,605.0661,801.232,605.5673,795.3608,601.0833,804.5882" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e75c16e47fcf6c43b15d3c25536a9ed0]
 link kryo to objenesis--><path d="M728.0417,742.432 C749.8646,759.5257 780.4063,783.432 803.2396,801.3174 " fill="none" id="kryo-to-objenesis" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="807.4167,804.5882,802.6018,795.5291,803.3151,801.3783,797.4659,802.0916,807.4167,804.5882" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e061beb27669383d030ce0c5c656b006]
 link kryo to reflectasm--><path d="M700.5208,742.6924 C700.5208,759.1611 700.5208,781.859 700.5208,799.4111 " fill="none" id="kryo-to-reflectasm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="700.5208,804.6924,704.6875,795.3174,700.5208,799.484,696.3542,795.3174,700.5208,804.6924" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[338783537f3f9263e4097f5ff0c514d3]
-link reflectasm to asm--><path d="M700.5208,849.984 C700.5208,866.4528 700.5208,889.1507 700.5208,906.7028 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="700.5208,911.984,704.6875,902.609,700.5208,906.7757,696.3542,902.609,700.5208,911.984" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[3bdfdd5b5ebbe26ae8cc7819aafefb6f]
+link reflectasm to asm--><path d="M700.5208,849.984 C700.5208,866.4528 700.5208,889.1507 700.5208,906.7028 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="700.5208,911.984,704.6875,902.609,700.5208,906.7757,696.3542,902.609,700.5208,911.984" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[97fc28cd688181e064c2fa094ed586fb]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "kivakit-filesystems-hdfs"
     

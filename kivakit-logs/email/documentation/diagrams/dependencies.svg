@@ -51,10 +51,10 @@ link kivakit_logs_email to kivakit_core_network_email--><path d="M736.4583,98.94
 link kryo to minlog--><path d="M145.2396,742.432 C125.0104,759.4528 96.7604,783.234 75.5417,801.0986 " fill="none" id="kryo-to-minlog" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="71.3958,804.5882,81.2498,801.7332,75.3786,801.232,75.8798,795.3608,71.3958,804.5882" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e75c16e47fcf6c43b15d3c25536a9ed0]
 link kryo to objenesis--><path d="M198.3542,742.432 C220.1771,759.5257 250.7188,783.432 273.5521,801.3174 " fill="none" id="kryo-to-objenesis" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="277.7292,804.5882,272.9143,795.5291,273.6276,801.3783,267.7784,802.0916,277.7292,804.5882" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e061beb27669383d030ce0c5c656b006]
 link kryo to reflectasm--><path d="M170.8333,742.6924 C170.8333,759.1611 170.8333,781.859 170.8333,799.4111 " fill="none" id="kryo-to-reflectasm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="170.8333,804.6924,175,795.3174,170.8333,799.484,166.6667,795.3174,170.8333,804.6924" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[338783537f3f9263e4097f5ff0c514d3]
-link reflectasm to asm--><path d="M170.8333,849.984 C170.8333,866.4528 170.8333,889.1507 170.8333,906.7028 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="170.8333,911.984,175,902.609,170.8333,906.7757,166.6667,902.609,170.8333,911.984" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7b3c08027ed68c16f6e552dca30169d6]
+link reflectasm to asm--><path d="M170.8333,849.984 C170.8333,866.4528 170.8333,889.1507 170.8333,906.7028 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="170.8333,911.984,175,902.609,170.8333,906.7757,166.6667,902.609,170.8333,911.984" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[676fada74c2d3063d80e00ed1b2c705b]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "kivakit-logs-email"
     

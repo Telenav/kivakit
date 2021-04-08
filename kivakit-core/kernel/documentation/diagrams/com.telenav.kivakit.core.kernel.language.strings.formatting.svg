@@ -11,10 +11,10 @@ class IndentingStringBuilder.Style--><rect codeLine="66" fill="#282828" height="
 link IndentingStringBuilder to KivaKitFormatProperty--><!--MD5=[0798a7c58e4dce4dd861b515a26a868f]
 link KivaKitFormatProperty to ObjectFormatter--><!--MD5=[3bc63936785b33d975cb27ef8b2d25c9]
 link IndentingStringBuilder to Separators--><!--MD5=[8095f1d69ba1fcf1dde97c2c07d3dfbf]
-link Separators to IndentingStringBuilder.Style--><!--MD5=[d3ccd01dcc2264acd9b236fdd8707145]
+link Separators to IndentingStringBuilder.Style--><!--MD5=[946cbaa8985d549c5ee30456111e15b7]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.language.strings.formatting"
     

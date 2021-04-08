@@ -51,10 +51,10 @@ link Field to KivaKitPropertyConverter--><!--MD5=[13baef925f5b5cdd56786c48551346
 link KivaKitPropertyConverter to KivaKitPropertyOptional--><!--MD5=[9a678a2fc1f8a2b2a460a67ff3a214d0]
 link KivaKitPropertyOptional to Method--><!--MD5=[11496ab7bb443ba54ca59f90fb3f7b68]
 link KivaKitPropertyConverter to ObjectPopulator--><!--MD5=[8ddb750bb8f5e2b449db128ce4b5b355]
-link ObjectPopulator to PropertyValueSource--><!--MD5=[269d1d40c189eb19dc81e6b8b008b11b]
+link ObjectPopulator to PropertyValueSource--><!--MD5=[e30d25121733a567d3ba011c2370e59e]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "Language - Reflection"
     

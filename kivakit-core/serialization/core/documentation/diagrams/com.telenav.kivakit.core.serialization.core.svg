@@ -13,10 +13,10 @@ reverse link Named to SerializationSession--><path codeLine="13" d="M328.2604,41
 reverse link Closeable to SerializationSession--><path codeLine="14" d="M59.2604,419.2965 C63.0833,483.682 76.9063,605.2236 126.5625,694.3278 C148.6146,733.8903 178.9792,771.057 211.1771,804.0153 " fill="none" id="Closeable-backto-SerializationSession" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="51.9688,419.484,58.2604,398.3278,66.5417,418.7861,51.9688,419.484" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ef5226806653dac8edec57e4b7feb8f9]
 reverse link Flushable to SerializationSession--><path codeLine="15" d="M201.2813,418.7028 C210.5625,481.0361 230.9271,598.6195 264.0625,694.3278 C271.1563,714.8278 279.5208,735.8278 288.5,756.5153 " fill="none" id="Flushable-backto-SerializationSession" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="194.0521,419.682,198.3021,398.0257,208.4896,417.609,194.0521,419.682" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[6fb52cf691a70a3519928b685a81f856]
 reverse link Versioned to SerializationSession--><path codeLine="16" d="M948.2292,419.1403 C948.7813,485.6507 940.6146,612.5778 877.6042,694.3278 C799.1563,796.109 667.7708,859.7445 560.5521,897.2549 " fill="none" id="Versioned-backto-SerializationSession" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="940.9479,419.2965,947.75,398.307,955.5208,418.9632,940.9479,419.2965" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[1e9ac3f44438bb217319fb8040b4ff84]
-reverse link Repeater to SerializationSession--><path codeLine="17" d="M443.6146,418.9632 C435.7396,490.5986 419.6875,636.6611 406.5208,756.5465 " fill="none" id="Repeater-backto-SerializationSession" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="436.3854,417.9736,445.9063,398.057,450.8854,419.5674,436.3854,417.9736" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ba467627295c8122391805b1e8c4f8cb]
+reverse link Repeater to SerializationSession--><path codeLine="17" d="M443.6146,418.9632 C435.7396,490.5986 419.6875,636.6611 406.5208,756.5465 " fill="none" id="Repeater-backto-SerializationSession" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="436.3854,417.9736,445.9063,398.057,450.8854,419.5674,436.3854,417.9736" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[26ad6e2ece195c81ff7016fde92fc747]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.serialization.core"
     

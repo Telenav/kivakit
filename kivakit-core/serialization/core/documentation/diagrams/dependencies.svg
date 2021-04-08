@@ -15,10 +15,10 @@ link kivakit_core_kernel to junit--><path d="M641.0938,205.8486 C688.7083,226.05
 link kivakit_core_kernel to kivakit_build_metadata--><path d="M529.5521,205.8486 C479.2708,223.484 408.1042,248.4424 356.5417,266.5257 " fill="none" id="kivakit_core_kernel-to-kivakit_build_metadata" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="351.6146,268.2549,361.8386,269.1044,356.5328,266.5409,359.0963,261.2352,351.6146,268.2549" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[faeafeee9ad3ae3a363b253ef7d19a64]
 link kivakit_core_kernel to lexakai_annotations--><path d="M570.3333,206.234 C554.6042,223.1299 532.7917,246.5778 516.2813,264.307 " fill="none" id="kivakit_core_kernel-to-lexakai_annotations" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="512.6354,268.234,522.0788,264.2247,516.1897,264.427,515.9874,258.5379,512.6354,268.234" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[99fa47cbfc1fc0fa6998fda90ce70c02]
 link kivakit_core_kernel to swagger_annotations--><path d="M610.9167,206.234 C626.6458,223.1299 648.4583,246.5778 664.9688,264.307 " fill="none" id="kivakit_core_kernel-to-swagger_annotations" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="668.6146,268.234,665.2626,258.5379,665.0603,264.427,659.1712,264.2247,668.6146,268.234" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e6c69a7cd1853d87f2f2be87e0b0d5cc]
-link kivakit_core_serialization_core to kivakit_core_kernel--><path d="M590.625,98.9424 C590.625,115.4111 590.625,138.109 590.625,155.6611 " fill="none" id="kivakit_core_serialization_core-to-kivakit_core_kernel" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="590.625,160.9424,594.7917,151.5674,590.625,155.734,586.4583,151.5674,590.625,160.9424" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[58a5554f3a3a507a7dae623950785784]
+link kivakit_core_serialization_core to kivakit_core_kernel--><path d="M590.625,98.9424 C590.625,115.4111 590.625,138.109 590.625,155.6611 " fill="none" id="kivakit_core_serialization_core-to-kivakit_core_kernel" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="590.625,160.9424,594.7917,151.5674,590.625,155.734,586.4583,151.5674,590.625,160.9424" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[bfb6df9bf8e25af6e4d00a35c8ab4470]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "kivakit-core-serialization-core"
     

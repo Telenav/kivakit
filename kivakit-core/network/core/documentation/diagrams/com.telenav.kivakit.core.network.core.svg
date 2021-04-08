@@ -65,10 +65,10 @@ reverse link Port to Host--><path codeLine="219" d="M991.3021,1522.5986 C980.291
 reverse link Port to Protocol--><path codeLine="220" d="M1216.0625,1522.5986 C1277.4167,1663.6715 1348.1563,1826.3278 1389.7292,1921.9215 " fill="none" id="Port-backto-Protocol" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="1232.8125,1553.7028,1231.4104,1561.0823,1237.683,1565.2149,1239.0851,1557.8353,1232.8125,1553.7028" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="45.8333" x="1236.9792" y="1569.9544">speaks</text><!--MD5=[763f75466e3d8beb8e6301e9ebf7657d]
 reverse link Name to Protocol--><path codeLine="250" d="M1609.2396,1296.1403 C1599.3125,1349.8278 1581.2604,1443.2236 1561.9792,1522.4528 C1527.5938,1663.7236 1479.8958,1826.0361 1450.9583,1921.5986 " fill="none" id="Name-backto-Protocol" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1602.1146,1294.5882,1613.0417,1275.4111,1616.4583,1297.2132,1602.1146,1294.5882" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ad26edee9eabb8630a40b8032de5acbf]
 link EmailAddress to NetworkPath--><!--MD5=[6378a19a942fd3e205ffc5173623a086]
-link EmailAddress to Port--><!--MD5=[2f5f8f3afd32cf627103319514d22cfe]
+link EmailAddress to Port--><!--MD5=[f354887aaf8c9f4afd299cfe18c0d88c]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.network.core"
     

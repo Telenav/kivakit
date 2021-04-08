@@ -32,10 +32,10 @@ reverse link PrimitiveCollection to PackedStringStore--><path codeLine="139" d="
 reverse link Sized to PrimitiveList--><path codeLine="151" d="M870.3125,122.807 C870.3125,135.2965 870.3125,149.4528 870.3125,163.9424 " fill="none" id="Sized-backto-PrimitiveList" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="863.0208,122.6507,870.3125,101.8174,877.6042,122.6507,863.0208,122.6507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[5b01147b9696bc5e513fdf087ac8028b]
 reverse link PrimitiveCollection to PrimitiveListStore--><path codeLine="165" d="M1861.6042,120.1611 C1844.5,149.2965 1821.5313,188.4424 1803.3125,219.4632 " fill="none" id="PrimitiveCollection-backto-PrimitiveListStore" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1855.5313,116.0986,1872.3646,101.8174,1868.1146,123.484,1855.5313,116.0986" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f586f52c4fd0e15c49a99da84bba36bf]
 reverse link ShortCollection to ShortList--><path codeLine="175" d="M1285.6771,316.7132 C1285.1979,395.9215 1284.1875,564.2965 1283.5104,678.557 " fill="none" id="ShortCollection-backto-ShortList" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1278.3854,316.359,1285.8021,295.5778,1292.9688,316.4528,1278.3854,316.359" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f62073b66238a7c1fe096533307817ba]
-reverse link PrimitiveList to ShortList--><path codeLine="176" d="M1027.3021,378.109 C1089.5938,408.4632 1120.625,396.484 1160.9375,441.2028 C1220.2917,507.0361 1251,603.2132 1266.7396,678.6507 " fill="none" id="PrimitiveList-backto-ShortList" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1023.8646,384.5361,1008.8646,368.3382,1030.6875,371.6507,1023.8646,384.5361" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[5325ab76df9763e5da6c959336fe47a6]
+reverse link PrimitiveList to ShortList--><path codeLine="176" d="M1027.3021,378.109 C1089.5938,408.4632 1120.625,396.484 1160.9375,441.2028 C1220.2917,507.0361 1251,603.2132 1266.7396,678.6507 " fill="none" id="PrimitiveList-backto-ShortList" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1023.8646,384.5361,1008.8646,368.3382,1030.6875,371.6507,1023.8646,384.5361" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ca0c3c4f7ff1a0399a7d42804c3036df]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "Primitive Lists"
     

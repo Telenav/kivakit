@@ -16,10 +16,10 @@ reverse link Named to KivaKitThread--><path codeLine="17" d="M234.8958,206.484 C
 reverse link KivaKitThread to RepeatingThread--><path codeLine="45" d="M478.3646,825.4111 C478.4583,825.4632 478.5521,825.5257 478.6458,825.5778 C618.9792,909.6299 804.6563,953.859 923.2813,975.1299 " fill="none" id="KivaKitThread-backto-RepeatingThread" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="474.2813,831.4528,460.5938,814.1507,482.0938,819.1403,474.2813,831.4528" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[0ac27749cb5800dc4a21199fcbd04e22]
 reverse link Pausable to RepeatingThread--><path codeLine="46" d="M1040.1042,623.5049 C1040.1042,686.1299 1040.1042,802.4111 1040.1042,887.7132 " fill="none" id="Pausable-backto-RepeatingThread" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1032.8125,623.1507,1040.1042,602.3174,1047.3958,623.1507,1032.8125,623.1507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[b4c9363a52896c41dd9c3338941d3754]
 reverse link Stoppable to RepeatingThread--><path codeLine="47" d="M1164.6771,622.4007 C1151.9271,671.9007 1129.4688,755.2653 1105.7292,825.5778 C1098.8646,845.9111 1090.9375,867.3903 1083.0104,887.9215 " fill="none" id="Stoppable-backto-RepeatingThread" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1157.6146,620.5986,1169.8229,602.2132,1171.7396,624.2028,1157.6146,620.5986" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e154e770a23b48a9b83c238bf988dc48]
-reverse link BaseRepeater to Retry--><path codeLine="60" d="M629.5625,205.4632 C647.1042,272.6924 681.1979,403.307 703.9271,490.3903 " fill="none" id="BaseRepeater-backto-Retry" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="622.4896,207.2445,624.2813,185.2445,636.6042,203.557,622.4896,207.2445" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ca95b2379e6c323faaf84fe01f1c51e6]
+reverse link BaseRepeater to Retry--><path codeLine="60" d="M629.5625,205.4632 C647.1042,272.6924 681.1979,403.307 703.9271,490.3903 " fill="none" id="BaseRepeater-backto-Retry" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="622.4896,207.2445,624.2813,185.2445,636.6042,203.557,622.4896,207.2445" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[175fd129593c2512685786a356c46797]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.language.threading"
     

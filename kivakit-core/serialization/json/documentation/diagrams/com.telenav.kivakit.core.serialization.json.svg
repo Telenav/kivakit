@@ -10,10 +10,10 @@ reverse link Factory to GsonFactory--><path codeLine="9" d="M214.0625,126.0049 C
 reverse link JsonSerializer to GsonSerializer--><path codeLine="22" d="M626.9479,125.1299 C616.3438,155.2965 602.6042,194.3382 594.0313,218.7028 " fill="none" id="JsonSerializer-backto-GsonSerializer" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="620.2188,122.307,634.0104,105.0778,633.9688,127.1507,620.2188,122.307" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[23ea91a58894e2368cf21ca113b60d9d]
 reverse link JsonDeserializer to GsonSerializer--><path codeLine="23" d="M484.6771,121.234 C510.4167,151.859 545.2188,193.2653 566.5938,218.7028 " fill="none" id="JsonDeserializer-backto-GsonSerializer" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="478.9271,125.7132,471.1042,105.0778,490.0833,116.3382,478.9271,125.7132" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[85a0d96d9cdfc7038c2fa1ce3ff1671e]
 reverse link GsonSerializer to PrimitiveGsonSerializer--><path codeLine="28" d="M554.2083,283.4215 C532.2917,310.7757 502.5208,347.9528 476.4167,380.5361 " fill="none" id="GsonSerializer-backto-PrimitiveGsonSerializer" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="548.6354,278.7132,567.3542,267.0153,560.0208,287.8278,548.6354,278.7132" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9714bcca399e0624556e2e2d65bd8680]
-reverse link GsonSerializer to StringConverterGsonSerializer--><path codeLine="38" d="M617.75,283.5257 C647.2813,320.3903 691.0417,375.0153 720.8646,412.2549 " fill="none" id="GsonSerializer-backto-StringConverterGsonSerializer" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="611.8542,287.8278,604.5208,267.0153,623.2396,278.7132,611.8542,287.8278" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[c44bb67ceaf319879509339f9b9ddeb2]
+reverse link GsonSerializer to StringConverterGsonSerializer--><path codeLine="38" d="M617.75,283.5257 C647.2813,320.3903 691.0417,375.0153 720.8646,412.2549 " fill="none" id="GsonSerializer-backto-StringConverterGsonSerializer" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="611.8542,287.8278,604.5208,267.0153,623.2396,278.7132,611.8542,287.8278" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7bfa7190c792b346f35063ab5333fb08]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.serialization.json"
     

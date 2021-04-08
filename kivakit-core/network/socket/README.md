@@ -59,6 +59,10 @@ a connection is made. Usage looks like this:
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 50.0%.
+
+
+
 | Class | Documentation Sections |
 |---|---|
 | [*ConnectionListener*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.socket/com/telenav/kivakit/core/network/socket/server/ConnectionListener.html) |  |  

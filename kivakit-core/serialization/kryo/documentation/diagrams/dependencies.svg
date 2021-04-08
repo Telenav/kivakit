@@ -31,10 +31,10 @@ link kivakit_core_serialization_kryo to kryo_serializers--><path d="M733.6979,98
 link kryo to minlog--><path d="M205.4167,202.0465 C173.5938,219.5049 124.6146,246.3903 89.3125,265.7757 " fill="none" id="kryo-to-minlog" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="84.6458,268.3382,94.8702,267.4929,89.2148,265.8379,90.8697,260.1826,84.6458,268.3382" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e75c16e47fcf6c43b15d3c25536a9ed0]
 link kryo to objenesis--><path d="M251.5313,206.234 C262.2188,222.8486 276.9896,245.7861 288.3229,263.4111 " fill="none" id="kryo-to-objenesis" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="291.4271,268.234,289.8537,258.0962,288.6069,263.8553,282.8478,262.6085,291.4271,268.234" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e061beb27669383d030ce0c5c656b006]
 link kryo to reflectasm--><path d="M223.6875,206.234 C213.1563,222.8486 198.6146,245.7861 187.4583,263.4111 " fill="none" id="kryo-to-reflectasm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="184.3958,268.234,192.9393,262.5542,187.1882,263.8375,185.9049,258.0864,184.3958,268.234" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[338783537f3f9263e4097f5ff0c514d3]
-link reflectasm to asm--><path d="M154.8646,313.5257 C142.5833,330.2757 125.5938,353.4736 112.6354,371.1507 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="109.4375,375.5257,118.3353,370.4188,112.5124,371.3219,111.6092,365.499,109.4375,375.5257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[257cb214b385cc250339742843fb1723]
+link reflectasm to asm--><path d="M154.8646,313.5257 C142.5833,330.2757 125.5938,353.4736 112.6354,371.1507 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="109.4375,375.5257,118.3353,370.4188,112.5124,371.3219,111.6092,365.499,109.4375,375.5257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7ebe6e38adf11b1f9e6fc002d4bc5148]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "kivakit-core-serialization-kryo"
     

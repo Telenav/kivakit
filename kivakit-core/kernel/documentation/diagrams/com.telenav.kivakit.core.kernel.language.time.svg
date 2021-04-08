@@ -36,10 +36,10 @@ link DayOfWeek to Meridiem--><!--MD5=[5d2e7ae0bf6d822f39a7d6a9af99e002]
 link Meridiem to ModificationTimestamped--><!--MD5=[65883a708628d098dbec12c1970f31a6]
 link ModificationTimestamped to Duration.Range--><!--MD5=[0ce1a7efd6790ab84d0f6f6303429dca]
 link Meridiem to RateCalculator--><!--MD5=[7a504c59daee7ecb3ee28fbe597904c3]
-link RateCalculator to TimeZones--><!--MD5=[05a37980b66aea26c771c6280b228da1]
+link RateCalculator to TimeZones--><!--MD5=[990eede74be2988e7ec054633d48b2f7]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.language.time"
     

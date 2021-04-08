@@ -33,10 +33,10 @@ reverse link PackedPrimitiveArray to PackedArray--><path codeLine="106" d="M1827
 reverse link PrimitiveArray to PackedStringArray--><path codeLine="126" d="M1140,444.3695 C1149.7292,476.8382 1161.4792,516.0049 1172.2396,551.9111 " fill="none" id="PrimitiveArray-backto-PackedStringArray" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1132.9167,446.1507,1133.9271,424.0986,1146.8854,441.9632,1132.9167,446.1507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f4def59eaf6cedc0295d4daa7c57d0da]
 reverse link PrimitiveCollection to PrimitiveArray--><path codeLine="140" d="M1118.75,196.4007 C1118.75,232.359 1118.75,283.0882 1118.75,320.682 " fill="none" id="PrimitiveCollection-backto-PrimitiveArray" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1111.4583,196.0257,1118.75,175.1924,1126.0417,196.0257,1111.4583,196.0257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[b46b960c5f10ebe3defb1c2694b466a7]
 reverse link PrimitiveArray to ShortArray--><path codeLine="148" d="M1216.2604,389.9528 C1291.4375,402.484 1398.0417,419.9007 1491.6667,433.9111 C1693.6354,464.1299 1766.5833,400.5049 1946.875,496.4111 C1968.6875,508.0153 1988.8125,524.2861 2006.6979,542.0674 " fill="none" id="PrimitiveArray-backto-ShortArray" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1214.7917,397.0986,1195.4479,386.4736,1217.1979,382.7132,1214.7917,397.0986" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[565e5308e82305b14c3904b766e9572c]
-reverse link ShortList to ShortArray--><path codeLine="149" d="M2091.6667,417.8695 C2091.6667,451.1403 2091.6667,498.2757 2091.6667,542.0153 " fill="none" id="ShortList-backto-ShortArray" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="2084.375,417.6403,2091.6667,396.807,2098.9583,417.6403,2084.375,417.6403" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[78b15d32d44b70531ec081acf1c242a3]
+reverse link ShortList to ShortArray--><path codeLine="149" d="M2091.6667,417.8695 C2091.6667,451.1403 2091.6667,498.2757 2091.6667,542.0153 " fill="none" id="ShortList-backto-ShortArray" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="2084.375,417.6403,2091.6667,396.807,2098.9583,417.6403,2084.375,417.6403" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[8531c90909d3e98a2c0a0db9f114ec7a]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "Primitive Arrays"
     

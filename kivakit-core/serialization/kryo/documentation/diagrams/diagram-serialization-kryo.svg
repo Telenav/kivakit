@@ -11,10 +11,10 @@ reverse link KryoTypes to CoreKernelKryoTypes--><path codeLine="11" d="M544.2708
 reverse link BaseRepeater to KryoSerializationSession--><path codeLine="18" d="M94.7917,119.932 C108.4271,141.9632 125.8958,170.1924 143.0521,197.9111 " fill="none" id="BaseRepeater-backto-KryoSerializationSession" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="88.4479,123.5361,83.6875,101.984,100.8438,115.8695,88.4479,123.5361" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[c4f1b2f20afdaa7d76c6ab97c562c39d]
 reverse link Named to KryoSerializationSession--><path codeLine="19" d="M208.8542,122.984 C208.8542,144.5361 208.8542,171.4632 208.8542,197.9111 " fill="none" id="Named-backto-KryoSerializationSession" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="201.5625,122.8174,208.8542,101.984,216.1458,122.8174,201.5625,122.8174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[b203c5678d5cfd44cf8fd561b95b9af9]
 reverse link SerializationSession to KryoSerializationSession--><path codeLine="20" d="M341.5104,118.932 C325.6354,141.0986 305.1146,169.7757 284.9688,197.9111 " fill="none" id="SerializationSession-backto-KryoSerializationSession" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="335.5833,114.682,353.6458,101.984,347.4479,123.1715,335.5833,114.682" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f1ccb28aa063b812ffb9cd31d6ac0de1]
-reverse link Serializer to KryoSerializer--><path codeLine="34" d="M811.9792,123.1507 C811.9792,135.4007 811.9792,149.3903 811.9792,164.0361 " fill="none" id="Serializer-backto-KryoSerializer" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="804.6875,122.8174,811.9792,101.984,819.2708,122.8174,804.6875,122.8174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[b5cdb2de3147e905210e632f3e55212e]
+reverse link Serializer to KryoSerializer--><path codeLine="34" d="M811.9792,123.1507 C811.9792,135.4007 811.9792,149.3903 811.9792,164.0361 " fill="none" id="Serializer-backto-KryoSerializer" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="804.6875,122.8174,811.9792,101.984,819.2708,122.8174,804.6875,122.8174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ce2778b9fe241390015bd35bf168255c]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "diagram-serialization-kryo"
     

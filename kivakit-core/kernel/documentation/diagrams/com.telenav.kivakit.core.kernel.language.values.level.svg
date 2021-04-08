@@ -18,10 +18,10 @@ reverse link BaseStringConverter to Level.Converter--><path codeLine="37" d="M28
 reverse link Level to Priority--><path codeLine="108" d="M806.5833,623.6924 C786.7396,658.7132 767.4896,692.6507 750.7292,722.2236 " fill="none" id="Level-backto-Priority" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="800.3958,619.8382,817.0104,605.307,813.0833,627.0257,800.3958,619.8382" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[080ca872dc92430f2c74dd82db2037c1]
 reverse link Named to Priority--><path codeLine="109" d="M579.0625,401.7861 C587.9167,461.0986 606.1354,569.7653 632.2917,659.9528 C638.2188,680.3903 645.6667,701.8695 653.3333,722.2445 " fill="none" id="Named-backto-Priority" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="571.8125,402.5986,576.0313,380.932,586.2396,400.5049,571.8125,402.5986" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[0675eacf0583bf3e7851efc38f18ca6a]
 reverse link Comparable to Priority--><path codeLine="110" d="M707.0521,401.7549 C704.9167,474.8382 700.5729,623.234 697.6771,722.3799 " fill="none" id="Comparable-backto-Priority" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="699.7604,401.4424,707.6667,380.8278,714.3438,401.8695,699.7604,401.4424" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[b83fb0db73e68ba5a4f05cfa4a198d4f]
-reverse link Level to Weight--><path codeLine="123" d="M1107.5313,643.4945 C1110.5938,649.0361 1113.6354,654.5257 1116.6667,659.9528 C1136.5729,695.6299 1159.8438,735.182 1178.3542,766.1403 " fill="none" id="Level-backto-Weight" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1101.0521,646.859,1097.4063,625.0882,1113.8333,639.8278,1101.0521,646.859" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[c61bf78a74629d368ebc4f3256dc6f85]
+reverse link Level to Weight--><path codeLine="123" d="M1107.5313,643.4945 C1110.5938,649.0361 1113.6354,654.5257 1116.6667,659.9528 C1136.5729,695.6299 1159.8438,735.182 1178.3542,766.1403 " fill="none" id="Level-backto-Weight" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1101.0521,646.859,1097.4063,625.0882,1113.8333,639.8278,1101.0521,646.859" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[2fe675aff511eb0f71e52c4c747b8723]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.language.values.level"
     

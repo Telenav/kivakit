@@ -17,10 +17,10 @@ reverse link Closeable to BaseObjectReader--><path codeLine="16" d="M209.8958,27
 reverse link BaseRepeater to BaseReadableResource--><path codeLine="21" d="M519.5729,279.1715 C522.2292,328.4945 526.625,410.0674 530.1875,476.2549 " fill="none" id="BaseRepeater-backto-BaseReadableResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="512.2708,279.2445,518.4271,258.0465,526.8333,278.4632,512.2708,279.2445" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[1911a52f93b18ce74cf4fa31834abba7]
 reverse link Resource to BaseReadableResource--><path codeLine="22" d="M648.2708,277.8382 C630.1563,327.0153 599.7917,409.4632 575.1979,476.2549 " fill="none" id="Resource-backto-BaseReadableResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="641.5104,275.0778,655.5521,258.0465,655.1979,280.1195,641.5104,275.0778" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[76169785bb4ca087f4c1a0c7fac35186]
 reverse link Multicaster to LineReader--><path codeLine="36" d="M983.5625,279.0882 C980.625,333.4632 975.5833,427.109 971.8646,496.0882 " fill="none" id="Multicaster-backto-LineReader" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="976.2917,278.4632,984.6979,258.0465,990.8542,279.2445,976.2917,278.4632" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[939a23f9ce607932fbabdcfbe3283e8e]
-reverse link Iterable to LineReader--><path codeLine="37" d="M865.8646,277.9945 C883.8854,332.2028 915.2708,426.6507 938.3438,496.0882 " fill="none" id="Iterable-backto-LineReader" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="858.8854,280.1195,859.2396,258.0465,872.7292,275.5257,858.8854,280.1195" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[a3c903f13a9024f8d19fc750696ff984]
+reverse link Iterable to LineReader--><path codeLine="37" d="M865.8646,277.9945 C883.8854,332.2028 915.2708,426.6507 938.3438,496.0882 " fill="none" id="Iterable-backto-LineReader" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="858.8854,280.1195,859.2396,258.0465,872.7292,275.5257,858.8854,280.1195" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[4a6f55e75d66be19d6100c0bd9e49b1d]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.resource.reading"
     

@@ -48,6 +48,10 @@ for a detailed discussion.
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 33.3%.
+
+
+
 | Class | Documentation Sections |
 |---|---|
 | [*ServiceClientProject*](https://telenav.github.io/kivakit/javadoc/kivakit.service.client/com/telenav/kivakit/service/registry/client/project/ServiceClientProject.html) |  |  

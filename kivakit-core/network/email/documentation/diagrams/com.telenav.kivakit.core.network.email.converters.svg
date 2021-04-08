@@ -12,10 +12,10 @@ reverse link BaseCollectionConverter to AttachmentConverter--><path codeLine="11
 reverse link BaseListConverter to AttachmentListConverter--><path codeLine="18" d="M120.3125,122.682 C120.3125,136.0778 120.3125,150.7445 120.3125,163.9215 " fill="none" id="BaseListConverter-backto-AttachmentListConverter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="113.0208,122.6507,120.3125,101.8174,127.6042,122.6507,113.0208,122.6507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[1d9efc8fdc528879e3543388d3d8c972]
 reverse link BaseCollectionConverter to BodyConverter--><path codeLine="25" d="M519.4063,117.3695 C532.5729,132.1195 547.6146,148.9736 560.9583,163.9215 " fill="none" id="BaseCollectionConverter-backto-BodyConverter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="513.9583,122.2236,505.5313,101.8174,524.8438,112.5049,513.9583,122.2236" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9a6ea135ff0f04aff96eff621022eff6]
 reverse link BaseStringConverter to EmailAddressConverter--><path codeLine="32" d="M1098.4375,122.682 C1098.4375,136.0778 1098.4375,150.7445 1098.4375,163.9215 " fill="none" id="BaseStringConverter-backto-EmailAddressConverter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1091.1458,122.6507,1098.4375,101.8174,1105.7292,122.6507,1091.1458,122.6507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7a3b3c792567e93d67da59f0ea83213f]
-reverse link BaseSetConverter to EmailAddressSetConverter--><path codeLine="39" d="M835.9375,122.682 C835.9375,136.0778 835.9375,150.7445 835.9375,163.9215 " fill="none" id="BaseSetConverter-backto-EmailAddressSetConverter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="828.6458,122.6507,835.9375,101.8174,843.2292,122.6507,828.6458,122.6507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[a465ebea64e6ff096e5581d3405d6a3e]
+reverse link BaseSetConverter to EmailAddressSetConverter--><path codeLine="39" d="M835.9375,122.682 C835.9375,136.0778 835.9375,150.7445 835.9375,163.9215 " fill="none" id="BaseSetConverter-backto-EmailAddressSetConverter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="828.6458,122.6507,835.9375,101.8174,843.2292,122.6507,828.6458,122.6507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[0f490786a506007034859e8bdc9d7b4d]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.network.email.converters"
     

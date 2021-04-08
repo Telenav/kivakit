@@ -10,10 +10,10 @@ reverse link Tree to Leaf--><path codeLine="37" d="M699.6979,683.4007 C684.8021,
 reverse link Tree to Node--><path codeLine="45" d="M786.3333,683.4007 C801.0729,723.1403 816.8125,765.5465 828.6146,797.359 " fill="none" id="Tree-backto-Node" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="779.4896,685.9215,779.0729,663.859,793.1563,680.8486,779.4896,685.9215" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[41c11b38e48604b1bb1ee55857c837cd]
 reverse link Comparable to Tree--><path codeLine="72" d="M743.2292,240.8278 C743.2292,296.7549 743.2292,394.9945 743.2292,468.7445 " fill="none" id="Comparable-backto-Tree" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="735.9375,240.7965,743.2292,219.9632,750.5208,240.7965,735.9375,240.7965" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[134790cfad613ce1385dfc79562d474e]
 link Code to CodedSymbol--><!--MD5=[3bff92ab5c9f6c6af49a3783fbf67ad7]
-link Code to Symbols--><!--MD5=[9dc7902bb1651baab8c1ead58178aaaf]
+link Code to Symbols--><!--MD5=[9d7100dc334c51d666d3e1f639db87b4]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.data.compression.codecs.huffman.tree"
     

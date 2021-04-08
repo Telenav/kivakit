@@ -16,10 +16,10 @@ reverse link BaseIterator to DeduplicatingIterator--><path codeLine="30" d="M534
 reverse link Iterator to EmptyIterator--><path codeLine="37" d="M1944.2396,118.8278 C1921.2813,151.5257 1889.6771,196.557 1870.8021,223.4528 " fill="none" id="Iterator-backto-EmptyIterator" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1938.3438,114.5361,1956.2708,101.6715,1950.2708,122.9111,1938.3438,114.5361" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[13e603b13602e342e84f02e289be7e48]
 reverse link BaseIterable to FilteredIterable--><path codeLine="42" d="M1252.6042,122.6403 C1252.6042,148.3486 1252.6042,180.5778 1252.6042,205.7028 " fill="none" id="BaseIterable-backto-FilteredIterable" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1245.3125,122.5049,1252.6042,101.6715,1259.8958,122.5049,1245.3125,122.5049" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[0d862e822d0a9091639641b884a44513]
 reverse link BaseIterator to FilteredIterator--><path codeLine="49" d="M600.3854,111.0465 C655.0208,138.0257 733.1667,176.6195 792.0521,205.7028 " fill="none" id="BaseIterator-backto-FilteredIterator" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="596.8542,117.432,581.4063,101.6715,603.3125,104.359,596.8542,117.432" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7e0bcce815a29d39556f61b71cb1bb6b]
-reverse link Iterator to SingletonIterator--><path codeLine="56" d="M2000.5208,118.7757 C2018.9688,145.057 2043,179.2965 2061.5313,205.7028 " fill="none" id="Iterator-backto-SingletonIterator" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1994.5208,122.9111,1988.5208,101.6715,2006.4479,114.5361,1994.5208,122.9111" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[940b6ce6197abadf999eadc3e44fa8b0]
+reverse link Iterator to SingletonIterator--><path codeLine="56" d="M2000.5208,118.7757 C2018.9688,145.057 2043,179.2965 2061.5313,205.7028 " fill="none" id="Iterator-backto-SingletonIterator" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1994.5208,122.9111,1988.5208,101.6715,2006.4479,114.5361,1994.5208,122.9111" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[c7113c3331e45799e5cfd7ad541c3a28]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "Iteration and Iterables"
     

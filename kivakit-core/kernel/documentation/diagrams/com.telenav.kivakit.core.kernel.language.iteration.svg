@@ -15,10 +15,10 @@ link BaseIterable to Next--><path codeLine="12" d="M648.5,424.5361 C634.1354,464
 reverse link Iterator to BaseIterator--><path codeLine="19" d="M902.6042,190.0049 C902.6042,220.7445 902.6042,262.6924 902.6042,299.5257 " fill="none" id="Iterator-backto-BaseIterator" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="895.3125,189.7757,902.6042,168.9424,909.8958,189.7757,895.3125,189.7757" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ad568f6ef2b38f943fac91cbaafae4c2]
 reverse link BaseIterable to Matching--><path codeLine="48" d="M684.375,444.4111 C696,477.3486 710.3646,518.057 722.1146,551.3486 " fill="none" id="BaseIterable-backto-Matching" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="677.4167,446.609,677.3646,424.5361,691.1667,441.7549,677.4167,446.609" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9b74c85a1e148f166efd169115dd7181]
 link Iterables to Iterators--><!--MD5=[a775587cb384cb04cc7dca0e29b3730f]
-link Iterables to Streams--><!--MD5=[e39cdcda2ed450617a340975c91e7f31]
+link Iterables to Streams--><!--MD5=[f5721551bdd5b6b6fbdc64c99b742d8f]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.language.iteration"
     

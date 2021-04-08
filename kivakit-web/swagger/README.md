@@ -57,6 +57,10 @@ None
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 0.0%.
+
+
+
 | Class | Documentation Sections |
 |---|---|
 | [*JettySwaggerIndex*](https://telenav.github.io/kivakit/javadoc/kivakit.web.swagger/com/telenav/kivakit/web/swagger/JettySwaggerIndex.html) |  |  

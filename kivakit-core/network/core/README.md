@@ -107,6 +107,14 @@ project [*kivakit-network-core-email*](../email/README.md) makes use of this cla
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 5.0%.
+
+The following significant classes are undocumented:  
+
+- Host  
+- NetworkLocation  
+- Port
+
 | Class | Documentation Sections |
 |---|---|
 | [*BaseNetworkResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/BaseNetworkResource.html) |  |  

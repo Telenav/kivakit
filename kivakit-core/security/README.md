@@ -51,6 +51,10 @@ producing simple message digests easier.
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 0.0%.
+
+
+
 | Class | Documentation Sections |
 |---|---|
 | [*BaseDigester*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/digest/BaseDigester.html) |  |  

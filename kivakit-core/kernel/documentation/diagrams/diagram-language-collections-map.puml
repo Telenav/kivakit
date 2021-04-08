@@ -1,6 +1,6 @@
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "Language - ∑Collections - Maps"
     
@@ -154,7 +154,7 @@
         +VariableMap()
         +VariableMap(Maximum)
         --
-        +String expanded(String text)
+        +String expand(String text)
         --(collection)--
         +VariableMap<Value> add(String name, Value object)
         +VariableMap<Value> addAll(Object, PropertyFilter)

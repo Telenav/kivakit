@@ -18,10 +18,10 @@ reverse link PrimitiveIterator to ShortIterator--><path codeLine="88" d="M888.83
 link ByteIterable to CharIterable--><!--MD5=[fa4247b6b0879c26f6341d69d04f26a1]
 link CharIterable to IntIterable--><!--MD5=[dec5ede56979eb62fff827a59499f543]
 link ByteIterable to LongIterable--><!--MD5=[cb70f1a1161e7526e3cbfcdaf09c87bd]
-link LongIterable to ShortIterable--><!--MD5=[6b28eed58a3f46db962f56d53ad4d20c]
+link LongIterable to ShortIterable--><!--MD5=[4bee9734c34bb9a766286d7a851a0f0e]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.collections.primitive.iteration"
     

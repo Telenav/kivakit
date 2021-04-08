@@ -12,10 +12,10 @@ reverse link SubClassesOf to MessageType--><path codeLine="14" d="M113.5417,268.
 reverse link Filter to SeverityGreaterThan--><path codeLine="21" d="M336.4583,122.682 C336.4583,136.0778 336.4583,150.7445 336.4583,163.9215 " fill="none" id="Filter-backto-SeverityGreaterThan" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="329.1667,122.6507,336.4583,101.8174,343.75,122.6507,329.1667,122.6507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[642570ab37997810e63f0804798ce993]
 reverse link MessageFilter to SeverityGreaterThanOrEqualTo--><path codeLine="28" d="M895.9688,117.3695 C909.1354,132.1195 924.1771,148.9736 937.5208,163.9215 " fill="none" id="MessageFilter-backto-SeverityGreaterThanOrEqualTo" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="890.5208,122.2236,882.0938,101.8174,901.4063,112.5049,890.5208,122.2236" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[3379ec83fc6285813abf42a2ec16dfdb]
 reverse link Filter to SeverityLessThan--><path codeLine="35" d="M390.5313,108.8486 C420.1458,125.3695 457.2604,146.0674 489.4271,163.9945 " fill="none" id="Filter-backto-SeverityLessThan" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="386.9167,115.1924,372.2708,98.6715,394.0208,102.4528,386.9167,115.1924" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ae5d2eb7f9cffc7a1b2c27570734cf3d]
-reverse link Filter to SubClassesOf--><path codeLine="42" d="M282.2813,109.3382 C253.2604,125.7445 217.125,146.1715 185.75,163.9111 " fill="none" id="Filter-backto-SubClassesOf" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="278.9167,102.859,300.6458,98.9528,286.0938,115.557,278.9167,102.859" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[4c2e569db75988ca4e6e8f3ab520e475]
+reverse link Filter to SubClassesOf--><path codeLine="42" d="M282.2813,109.3382 C253.2604,125.7445 217.125,146.1715 185.75,163.9111 " fill="none" id="Filter-backto-SubClassesOf" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="278.9167,102.859,300.6458,98.9528,286.0938,115.557,278.9167,102.859" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[feaf4790d96e72c915ba850ff56b731b]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.messaging.filters"
     

@@ -20,7 +20,7 @@ Service provider interface for HDFS proxy.
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit-filesystems-hdfs-proxy-spi</artifactId>
+        <artifactId>${project-artifact-id}</artifactId>
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
 
@@ -43,6 +43,10 @@ Service provider interface for HDFS proxy.
 [*com.telenav.kivakit.filesystems.hdfs.proxy.spi*](documentation/diagrams/com.telenav.kivakit.filesystems.hdfs.proxy.spi.svg)  
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
+
+Javadoc coverage for this project is 0.0%.
+
+
 
 | Class | Documentation Sections |
 |---|---|

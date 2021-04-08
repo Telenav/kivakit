@@ -7,10 +7,10 @@ class WithNameMatching--><rect codeLine="27" fill="#282828" height="83.3781" id=
 reverse link Matcher to All--><path codeLine="8" d="M193.7188,112.3174 C168.8854,127.1924 140.1667,145.5257 115.625,164.1195 C104.6458,172.4424 93.3021,182.5257 83.7604,191.4945 " fill="none" id="Matcher-backto-All" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="190.1563,105.9528,211.8125,101.6611,197.5625,118.5153,190.1563,105.9528" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[97f44cfedd2650693ddbdacbed774180]
 reverse link Matcher to None--><path codeLine="13" d="M230.4792,120.3174 C217.7604,143.7028 202.3646,172.0049 191.7708,191.4632 " fill="none" id="Matcher-backto-None" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="224.2188,116.5778,240.5833,101.7653,237.0313,123.5465,224.2188,116.5778" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[311b0a7d69805b3ca7d11a33c8aa75c4]
 reverse link Matcher to WithName--><path codeLine="18" d="M276.1354,120.4111 C283.7396,134.2028 292.2917,149.6924 300.2188,164.0674 " fill="none" id="Matcher-backto-WithName" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="269.5313,123.5257,265.8438,101.7653,282.2917,116.484,269.5313,123.5257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ebd883058e01ce0505d4edc659d7d951]
-reverse link Matcher to WithNameMatching--><path codeLine="26" d="M316.1771,110.234 C354.1354,129.2028 402.8438,153.5674 443.6771,173.9736 " fill="none" id="Matcher-backto-WithNameMatching" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="312.7813,116.682,297.4167,100.8486,319.3021,103.6403,312.7813,116.682" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[4c50cd6b8b1a0b12a461a934e6f354cb]
+reverse link Matcher to WithNameMatching--><path codeLine="26" d="M316.1771,110.234 C354.1354,129.2028 402.8438,153.5674 443.6771,173.9736 " fill="none" id="Matcher-backto-WithNameMatching" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="312.7813,116.682,297.4167,100.8486,319.3021,103.6403,312.7813,116.682" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7e897c304095fe645e3461c3a185a019]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.language.matching.matchers"
     

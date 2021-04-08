@@ -95,10 +95,10 @@ link kivakit_web_jetty to kivakit_core_network_http--><path d="M2050.9583,195.74
 link kryo to minlog--><path d="M1080.6563,742.432 C1060.4271,759.4528 1032.1771,783.234 1010.9583,801.0986 " fill="none" id="kryo-to-minlog" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1006.8125,804.5882,1016.6665,801.7332,1010.7953,801.232,1011.2965,795.3608,1006.8125,804.5882" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e75c16e47fcf6c43b15d3c25536a9ed0]
 link kryo to objenesis--><path d="M1133.7708,742.432 C1155.5938,759.5257 1186.1354,783.432 1208.9688,801.3174 " fill="none" id="kryo-to-objenesis" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1213.1458,804.5882,1208.3309,795.5291,1209.0442,801.3783,1203.195,802.0916,1213.1458,804.5882" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e061beb27669383d030ce0c5c656b006]
 link kryo to reflectasm--><path d="M1106.25,742.6924 C1106.25,759.1611 1106.25,781.859 1106.25,799.4111 " fill="none" id="kryo-to-reflectasm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1106.25,804.6924,1110.4167,795.3174,1106.25,799.484,1102.0833,795.3174,1106.25,804.6924" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[338783537f3f9263e4097f5ff0c514d3]
-link reflectasm to asm--><path d="M1106.25,849.984 C1106.25,866.4528 1106.25,889.1507 1106.25,906.7028 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1106.25,911.984,1110.4167,902.609,1106.25,906.7757,1102.0833,902.609,1106.25,911.984" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[adcc20a85e859441018efb2b494f2e1f]
+link reflectasm to asm--><path d="M1106.25,849.984 C1106.25,866.4528 1106.25,889.1507 1106.25,906.7028 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1106.25,911.984,1110.4167,902.609,1106.25,906.7757,1102.0833,902.609,1106.25,911.984" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9faea7d33162b1e3bbc6810f1d9efa4f]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "kivakit-web-jersey"
     

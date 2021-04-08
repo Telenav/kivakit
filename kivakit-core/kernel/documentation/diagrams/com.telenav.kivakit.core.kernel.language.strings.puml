@@ -1,6 +1,6 @@
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.language.strings"
     
@@ -165,6 +165,7 @@
         +boolean isExtendedAscii(String value)
         +boolean isFrench(String text)
         +boolean isJavaIdentifier(String text)
+        +boolean isLowerCase(String text)
         +boolean startsWithIgnoreCase(String text, String prefix)
         --(collection)--
         +boolean containsAnyOf(String text, String characters)
@@ -180,6 +181,7 @@
         --
         +String ending(String text, String ending)
         +String leading(String text, String leading)
+        +String packagePrefix(String type)
         +String quotes(String text)
         +String trailing(String text, String trailer)
     }

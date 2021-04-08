@@ -114,10 +114,10 @@ link s3 to utils--><path d="M2322.9479,184.5986 C2499.6771,185.9111 3523.8542,19
 link sdk_core to jackson_core--><path d="M3744.1875,313.5257 C3730.9167,330.2757 3712.5417,353.4736 3698.5417,371.1507 " fill="none" id="sdk_core-to-jackson_core" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="3695.0833,375.5257,3704.1617,370.7472,3698.3097,371.437,3697.6198,365.585,3695.0833,375.5257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9ef85e7c7d6a9e9b3b7b2d0c13e3a945]
 link sdk_core to jackson_databind--><path d="M3778.7292,313.5257 C3792,330.2757 3810.375,353.4736 3824.375,371.1507 " fill="none" id="sdk_core-to-jackson_databind" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="3827.8333,375.5257,3825.2969,365.585,3824.607,371.437,3818.755,370.7472,3827.8333,375.5257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[15fb5f5b2a216e97cb5fabc4c347a565]
 link sdk_core to reactive_streams--><path d="M3807.3021,310.1715 C3850.9688,327.7445 3916.8854,354.2653 3964.3438,373.359 " fill="none" id="sdk_core-to-reactive_streams" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="3969.4479,375.4215,3962.3183,368.0445,3964.6193,373.4692,3959.1946,375.7703,3969.4479,375.4215" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f2244f9f5d934ae2acba684e5383bfa4]
-link sdk_core to slf4j_api--><path d="M3807.5,307.5882 C3813.6979,309.5361 3820.0104,311.4215 3826.0417,313.0778 C3950.8333,347.3278 3985.7917,340.7132 4110.4167,375.5778 C4114.625,376.7549 4118.9583,378.057 4123.3021,379.4111 " fill="none" id="sdk_core-to-slf4j_api" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="4128.3854,381.0361,4120.7286,374.2079,4123.4254,379.4471,4118.1862,382.144,4128.3854,381.0361" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e2526afeedc63061f6651aa352658ebc]
+link sdk_core to slf4j_api--><path d="M3807.5,307.5882 C3813.6979,309.5361 3820.0104,311.4215 3826.0417,313.0778 C3950.8333,347.3278 3985.7917,340.7132 4110.4167,375.5778 C4114.625,376.7549 4118.9583,378.057 4123.3021,379.4111 " fill="none" id="sdk_core-to-slf4j_api" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="4128.3854,381.0361,4120.7286,374.2079,4123.4254,379.4471,4118.1862,382.144,4128.3854,381.0361" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[6b2bc6fa1655a8d451f04035be4834ef]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "kivakit-filesystems-s3fs"
     

@@ -1,6 +1,6 @@
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.language.collections.map.string"
     
@@ -80,7 +80,7 @@
         +VariableMap()
         +VariableMap(Maximum)
         --
-        +String expanded(String text)
+        +String expand(String text)
         --(collection)--
         +VariableMap<Value> add(String name, Value object)
         +VariableMap<Value> addAll(Object, PropertyFilter)

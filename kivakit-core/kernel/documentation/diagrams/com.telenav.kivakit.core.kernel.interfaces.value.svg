@@ -7,10 +7,10 @@ class Valued--><rect codeLine="31" fill="#282828" height="83.3781" id="Valued" r
 link BooleanValued to Locator--><!--MD5=[fcec0003804cfd3a6198ea86a7ec4ff0]
 link Locator to NewInstance--><!--MD5=[b747ff7521f862b6a92159a56dbd9e10]
 link BooleanValued to Source--><!--MD5=[287a87b9c5f2c0c3bb450e1055186815]
-link Source to Valued--><!--MD5=[2cddf7e559e5c748da0d7e5d4e6b170b]
+link Source to Valued--><!--MD5=[b9051ad5655a9b4beaff506bac4f67ce]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.interfaces.value"
     

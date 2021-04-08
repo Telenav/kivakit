@@ -13,10 +13,10 @@ reverse link StringMap to CaseFoldingStringMap--><path codeLine="15" d="M1597.39
 reverse link BaseMap to LinkedMap--><path codeLine="22" d="M584.6979,189.8382 C540.0521,219.6924 476.5938,265.5674 428.6458,314.1195 C395.0208,348.1715 363.3854,392.8799 342.4688,424.9007 " fill="none" id="BaseMap-backto-LinkedMap" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="580.875,183.6299,602.2917,178.2549,588.8958,195.807,580.875,183.6299" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ef003b76adc78c9f5142efad532c102d]
 reverse link BaseMap to MultiMap--><path codeLine="29" d="M639.0625,199.7445 C639.0625,230.0882 639.0625,272.2236 639.0625,314.0153 " fill="none" id="BaseMap-backto-MultiMap" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="631.7708,199.432,639.0625,178.5986,646.3542,199.432,631.7708,199.432" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[aa820478fccd2ad71aafb0b7372a9fb2]
 reverse link BaseMap to MultiSet--><path codeLine="47" d="M687.3021,190.9736 C730.1771,222.8799 794.4063,271.0882 849.4792,314.1195 C855.4167,318.7549 861.4479,323.4945 867.5208,328.2861 " fill="none" id="BaseMap-backto-MultiSet" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="682.6979,196.6403,670.3229,178.359,691.3958,184.932,682.6979,196.6403" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[8be06f7c21cf3b62bf2d12fa430348ea]
-reverse link BaseMap to TwoWayMap--><path codeLine="77" d="M707.3229,159.6403 C822.9479,169.9632 1060.6979,203.9736 1224.4792,314.1195 C1254.4167,334.2549 1279.8229,364.7132 1299.125,393.0674 " fill="none" id="BaseMap-backto-TwoWayMap" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="706.7083,166.9111,686.5417,157.932,707.9063,152.3799,706.7083,166.9111" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[6909f56c6a9e5ee7cd914d9d2724fdbd]
+reverse link BaseMap to TwoWayMap--><path codeLine="77" d="M707.3229,159.6403 C822.9479,169.9632 1060.6979,203.9736 1224.4792,314.1195 C1254.4167,334.2549 1279.8229,364.7132 1299.125,393.0674 " fill="none" id="BaseMap-backto-TwoWayMap" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="706.7083,166.9111,686.5417,157.932,707.9063,152.3799,706.7083,166.9111" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[83ac099662ef509a6f1c1f3646660339]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.collections.map"
     

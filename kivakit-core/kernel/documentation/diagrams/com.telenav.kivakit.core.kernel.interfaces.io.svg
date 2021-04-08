@@ -9,10 +9,10 @@ class Writable--><rect codeLine="46" fill="#282828" height="166.5243" id="Writab
 reverse link AutoCloseable to Closeable--><path codeLine="16" d="M820.3125,172.4424 C820.3125,217.8486 820.3125,286.7236 820.3125,322.2965 " fill="none" id="AutoCloseable-backto-Closeable" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="813.0208,172.2549,820.3125,151.4215,827.6042,172.2549,813.0208,172.2549" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[13907f49f7a62cdfb3b826ea1605c46f]
 reverse link ByteSized to Readable--><path codeLine="35" d="M581.7708,221.9215 C581.7708,235.6195 581.7708,249.6299 581.7708,263.0674 " fill="none" id="ByteSized-backto-Readable" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="574.4792,221.6403,581.7708,200.807,589.0625,221.6403,574.4792,221.6403" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[d944395eeba23655ac650140dabe23bf]
 link Flushable to Openable--><!--MD5=[afb58a0579d01d1fef7f94a3be3db731]
-link Flushable to Writable--><!--MD5=[286b1c473f0fbf0b79b4841cdd7e8097]
+link Flushable to Writable--><!--MD5=[1ececfd19f7731d270f021c05d36380a]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.interfaces.io"
     

@@ -21,7 +21,7 @@ Service provider for HDFS filesystem.
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit-filesystems-hdfs</artifactId>
+        <artifactId>${project-artifact-id}</artifactId>
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
 
@@ -62,6 +62,12 @@ any application.
 [*com.telenav.kivakit.filesystems.hdfs.project*](documentation/diagrams/com.telenav.kivakit.filesystems.hdfs.project.svg)  
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
+
+Javadoc coverage for this project is 42.9%.
+
+The following significant classes are undocumented:  
+
+- HdfsProxyClient
 
 | Class | Documentation Sections |
 |---|---|

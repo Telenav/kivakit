@@ -27,10 +27,10 @@ reverse link Pattern to Or--><path codeLine="91" d="M1365.9271,876.1924 C1402.36
 reverse link Pattern to Parenthesized--><path codeLine="98" d="M1370.3333,699.4424 C1432.8021,779.8174 1502.0625,872.0986 1561.4583,958.9111 C1588.7604,998.8174 1617.1146,1046.3382 1636.2292,1079.4528 " fill="none" id="Pattern-backto-Parenthesized" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1364.5729,703.9215,1357.5208,683.0049,1376.0729,694.9528,1364.5729,703.9215" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[80ceafdda22b61e7567b03f05590789e]
 reverse link Expression to SimplifiedPattern--><path codeLine="149" d="M344.2188,1182.7757 C367.9792,1241.4736 403.4479,1329.0674 424.0833,1380.0361 " fill="none" id="Expression-backto-SimplifiedPattern" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="337.3958,1185.3695,336.3438,1163.3278,350.9167,1179.9007,337.3958,1185.3695" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e6e23e591eb615ba24d9de36e02e6f58]
 reverse link Pattern to Then--><path codeLine="156" d="M1374.3229,607.1611 C1492.6146,697.3695 1644.75,824.7549 1757.2917,958.9111 C1788.625,996.2653 1815.7813,1045.2757 1832.9063,1079.4632 " fill="none" id="Pattern-backto-Then" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1369.6875,612.807,1357.4896,594.4111,1378.5,601.182,1369.6875,612.807" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[6505cf83d3456533c393ecd355680661]
-reverse link Closure to ZeroOrMore--><path codeLine="163" d="M866.0208,1198.0778 C871.8854,1243.4945 879.3125,1301.0361 885.1563,1346.2653 " fill="none" id="Closure-backto-ZeroOrMore" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="858.7604,1198.7861,863.3229,1177.1924,873.2188,1196.9215,858.7604,1198.7861" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ebf03f181f460e462e8cb214f0377cb5]
+reverse link Closure to ZeroOrMore--><path codeLine="163" d="M866.0208,1198.0778 C871.8854,1243.4945 879.3125,1301.0361 885.1563,1346.2653 " fill="none" id="Closure-backto-ZeroOrMore" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="858.7604,1198.7861,863.3229,1177.1924,873.2188,1196.9215,858.7604,1198.7861" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[3bfb195291b85a487007306858ea0151]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "Language - Pattern Matching"
     

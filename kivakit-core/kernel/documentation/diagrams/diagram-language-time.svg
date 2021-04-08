@@ -38,10 +38,10 @@ link DayOfWeek to Frequency--><!--MD5=[bfd487336916b60223338e25c1c32bab]
 link Frequency to Meridiem--><!--MD5=[fb1cfd05c9e7c86c1e8b503e9680aaf6]
 link DayOfWeek to ModificationTimestamped--><!--MD5=[2937b83f8684eadbd7c87aaa5f729ff6]
 link ModificationTimestamped to TimeFormat--><!--MD5=[4a33f2232644e43c610922ea2c07ec48]
-link TimeFormat to TimeZones--><!--MD5=[dbe7579069516b7d965b3e9d2257b86e]
+link TimeFormat to TimeZones--><!--MD5=[b06b9c3cf8407142795164e1296c0487]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "Language - Time"
     

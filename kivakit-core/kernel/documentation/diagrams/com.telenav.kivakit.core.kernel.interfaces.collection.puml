@@ -1,6 +1,6 @@
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.interfaces.collection"
     
@@ -90,6 +90,7 @@
         --(lifecycle)--
         +String join(char separator)
         +String join(String separator)
+        +String join(String separator, String defaultValue)
         +String join(String separator, Function<Element,String> toString)
         --(matching)--
         +boolean allMatch(Matcher<Element>)

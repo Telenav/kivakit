@@ -11,10 +11,10 @@ reverse link BaseMap to CacheMap--><path codeLine="8" d="M411.6042,184.3695 C352
 reverse link StringMap to CaseFoldingStringMap--><path codeLine="15" d="M1222.3958,199.557 C1222.3958,259.807 1222.3958,366.7653 1222.3958,425.057 " fill="none" id="StringMap-backto-CaseFoldingStringMap" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1215.1042,199.432,1222.3958,178.5986,1229.6875,199.432,1215.1042,199.432" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[4b90d3f4275d16fb42c25701f02ab13d]
 reverse link BaseMap to LinkedMap--><path codeLine="22" d="M456.8438,197.182 C425.75,256.9632 369.0417,365.9945 338.3229,425.057 " fill="none" id="BaseMap-backto-LinkedMap" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="450.4271,193.7132,466.5104,178.5986,463.3646,200.4424,450.4271,193.7132" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ef003b76adc78c9f5142efad532c102d]
 reverse link BaseMap to MultiMap--><path codeLine="29" d="M500.4792,197.5257 C516.2396,228.0153 538.5521,271.1924 560.6875,314.0153 " fill="none" id="BaseMap-backto-MultiMap" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="493.7917,200.4528,490.7083,178.5986,506.75,193.7549,493.7917,200.4528" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[8be06f7c21cf3b62bf2d12fa430348ea]
-reverse link BaseMap to TwoWayMap--><path codeLine="59" d="M546.625,172.9007 C625.4688,195.8174 756.4896,241.6611 849.4792,314.1195 C877.2813,335.7861 901.9688,365.6507 921.3125,393.1507 " fill="none" id="BaseMap-backto-TwoWayMap" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="544.3958,179.8486,526.3229,167.182,548.3542,165.8174,544.3958,179.8486" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[372a3789e854273112740f2b5119acc7]
+reverse link BaseMap to TwoWayMap--><path codeLine="59" d="M546.625,172.9007 C625.4688,195.8174 756.4896,241.6611 849.4792,314.1195 C877.2813,335.7861 901.9688,365.6507 921.3125,393.1507 " fill="none" id="BaseMap-backto-TwoWayMap" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="544.3958,179.8486,526.3229,167.182,548.3542,165.8174,544.3958,179.8486" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[6afbaf405fedfb374f6a7cc677363c93]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "Maps"
     

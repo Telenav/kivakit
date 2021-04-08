@@ -10,10 +10,10 @@ reverse link BaseIterator to CompoundIterator--><path codeLine="10" d="M468.125,
 reverse link BaseIterator to DeduplicatingIterator--><path codeLine="21" d="M534.8958,122.6403 C534.8958,148.3486 534.8958,180.5778 534.8958,205.7028 " fill="none" id="BaseIterator-backto-DeduplicatingIterator" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="527.6042,122.5049,534.8958,101.6715,542.1875,122.5049,527.6042,122.5049" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[a467c28b04b9632abee55c4d4c903ba2]
 reverse link Iterator to EmptyIterator--><path codeLine="28" d="M1266.1146,118.8278 C1243.1563,151.5257 1211.5521,196.557 1192.6771,223.4528 " fill="none" id="Iterator-backto-EmptyIterator" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1260.2188,114.5361,1278.1458,101.6715,1272.1458,122.9111,1260.2188,114.5361" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[0d862e822d0a9091639641b884a44513]
 reverse link BaseIterator to FilteredIterator--><path codeLine="33" d="M600.3854,111.0465 C655.0208,138.0257 733.1667,176.6195 792.0521,205.7028 " fill="none" id="BaseIterator-backto-FilteredIterator" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="596.8542,117.432,581.4063,101.6715,603.3125,104.359,596.8542,117.432" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7e0bcce815a29d39556f61b71cb1bb6b]
-reverse link Iterator to SingletonIterator--><path codeLine="40" d="M1322.3958,118.7757 C1340.8438,145.057 1364.875,179.2965 1383.4063,205.7028 " fill="none" id="Iterator-backto-SingletonIterator" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1316.3958,122.9111,1310.3958,101.6715,1328.3229,114.5361,1316.3958,122.9111" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[08873e0a6b90fd8bf643d927dd2b227b]
+reverse link Iterator to SingletonIterator--><path codeLine="40" d="M1322.3958,118.7757 C1340.8438,145.057 1364.875,179.2965 1383.4063,205.7028 " fill="none" id="Iterator-backto-SingletonIterator" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1316.3958,122.9111,1310.3958,101.6715,1328.3229,114.5361,1316.3958,122.9111" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[d55a0ff6eb0195f155d25eb084f2645d]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.collections.iteration.iterators"
     

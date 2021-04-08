@@ -52,6 +52,10 @@ None
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 0.0%.
+
+
+
 | Class | Documentation Sections |
 |---|---|
 | [*JettyJersey*](https://telenav.github.io/kivakit/javadoc/kivakit.web.jersey/com/telenav/kivakit/web/jersey/JettyJersey.html) |  |  

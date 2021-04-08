@@ -13,10 +13,10 @@ reverse link BaseBitReader to BitInput--><path codeLine="36" d="M595.8333,815.79
 reverse link BaseBitWriter to BitOutput--><path codeLine="43" d="M202.0833,761.984 C202.0833,794.432 202.0833,830.0674 202.0833,856.6507 " fill="none" id="BaseBitWriter-backto-BitOutput" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="194.7917,761.557,202.0833,740.7236,209.375,761.557,194.7917,761.557" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e898c3b174f9e367438c180c0e79b937]
 reverse link AutoCloseable to BitReader--><path codeLine="51" d="M429.9896,118.2757 C440.375,131.5153 452.6875,147.2132 465.8333,163.9736 " fill="none" id="AutoCloseable-backto-BitReader" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="424.25,122.7653,417.125,101.8695,435.7188,113.7653,424.25,122.7653" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[4a014cb056715936787208087eaafa3b]
 reverse link AutoCloseable to BitWriter--><path codeLine="71" d="M367.9063,118.2965 C353.1146,137.1507 334.4271,160.984 314.9688,185.807 " fill="none" id="AutoCloseable-backto-BitWriter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="362.1979,113.7653,380.7917,101.8695,373.6667,122.7653,362.1979,113.7653" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ce25573288b7f4b51bcc63ece3382b2b]
-reverse link BitInput to VariableReadSizeBitInput--><path codeLine="88" d="M595.8333,961.5257 C595.8333,974.7965 595.8333,988.932 595.8333,1002.557 " fill="none" id="BitInput-backto-VariableReadSizeBitInput" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="588.5417,961.0778,595.8333,940.2445,603.125,961.0778,588.5417,961.0778" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[75e8424ce24bcb63de51a7663aaf512e]
+reverse link BitInput to VariableReadSizeBitInput--><path codeLine="88" d="M595.8333,961.5257 C595.8333,974.7965 595.8333,988.932 595.8333,1002.557 " fill="none" id="BitInput-backto-VariableReadSizeBitInput" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="588.5417,961.0778,595.8333,940.2445,603.125,961.0778,588.5417,961.0778" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e0874bc5a6a816be693421f5af328b2b]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "Primitive Bit I/O"
     

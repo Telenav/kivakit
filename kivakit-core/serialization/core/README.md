@@ -43,6 +43,10 @@ This module defines core serialization abstractions.
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 80.0%.
+
+
+
 | Class | Documentation Sections |
 |---|---|
 | [*SerializationCoreProject*](https://telenav.github.io/kivakit/javadoc/kivakit.core.serialization.core/com/telenav/kivakit/core/serialization/core/project/SerializationCoreProject.html) |  |  

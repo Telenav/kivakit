@@ -103,10 +103,10 @@ link kivakit_service_registry to kivakit_core_serialization_jersey_json--><path 
 link kryo to minlog--><path d="M145.2396,635.1403 C125.0104,652.1611 96.7604,675.9424 75.5417,693.807 " fill="none" id="kryo-to-minlog" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="71.3958,697.2965,81.2498,694.4415,75.3786,693.9403,75.8798,688.0691,71.3958,697.2965" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e75c16e47fcf6c43b15d3c25536a9ed0]
 link kryo to objenesis--><path d="M198.3542,635.1403 C220.1771,652.234 250.7188,676.1403 273.5521,694.0257 " fill="none" id="kryo-to-objenesis" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="277.7292,697.2965,272.9143,688.2374,273.6276,694.0866,267.7784,694.7999,277.7292,697.2965" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e061beb27669383d030ce0c5c656b006]
 link kryo to reflectasm--><path d="M170.8333,635.4007 C170.8333,651.8695 170.8333,674.5674 170.8333,692.1195 " fill="none" id="kryo-to-reflectasm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="170.8333,697.4007,175,688.0257,170.8333,692.1924,166.6667,688.0257,170.8333,697.4007" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[338783537f3f9263e4097f5ff0c514d3]
-link reflectasm to asm--><path d="M170.8333,742.6924 C170.8333,759.1611 170.8333,781.859 170.8333,799.4111 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="170.8333,804.6924,175,795.3174,170.8333,799.484,166.6667,795.3174,170.8333,804.6924" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[2b8f25360bb34e4affc361ecededb42c]
+link reflectasm to asm--><path d="M170.8333,742.6924 C170.8333,759.1611 170.8333,781.859 170.8333,799.4111 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="170.8333,804.6924,175,795.3174,170.8333,799.484,166.6667,795.3174,170.8333,804.6924" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[b4eb8446bbbf24fa840aea2acc04e01c]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "kivakit-service-client"
     

@@ -10,10 +10,10 @@ reverse link Operation to Pausable--><path codeLine="25" d="M439.2604,155.7445 C
 reverse link Operation to Startable--><path codeLine="40" d="M493.75,161.2965 C493.75,178.5257 493.75,196.807 493.75,212.484 " fill="none" id="Operation-backto-Startable" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="486.4583,161.1403,493.75,140.307,501.0417,161.1403,486.4583,161.1403" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[43613f1d84feea82f5f4cbe16ed24dbd]
 reverse link Operation to Stoppable--><path codeLine="48" d="M556.5833,154.057 C574.8021,169.859 594.6042,187.0465 612.5313,202.5986 " fill="none" id="Operation-backto-Stoppable" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="551.6979,159.4632,540.7396,140.307,561.25,148.4528,551.6979,159.4632" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[03b03768e1b66c42e56971cc775cc500]
 link Configured to Initializable--><!--MD5=[0234bd15a20f37069827f0d5b09386dc]
-link Configured to Resettable--><!--MD5=[67809576ed10321fbeb0528784925885]
+link Configured to Resettable--><!--MD5=[77b8a13584a5f0aac0b498883ce5e93a]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.interfaces.lifecycle"
     

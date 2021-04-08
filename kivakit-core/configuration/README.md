@@ -51,6 +51,10 @@ Details on how to use the *kivakit-core configuration* API are available in the 
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 75.0%.
+
+
+
 | Class | Documentation Sections |
 |---|---|
 | [*ConfigurationEntry*](https://telenav.github.io/kivakit/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/ConfigurationEntry.html) |  |  

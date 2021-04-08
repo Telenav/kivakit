@@ -33,10 +33,10 @@ link kivakit_core_test to kivakit_core_kernel--><path d="M832.8854,206.234 C841.
 link kryo to minlog--><path d="M206.7188,309.0986 C174.6979,326.5778 125.0729,353.6715 89.4063,373.1403 " fill="none" id="kryo-to-minlog" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="84.6875,375.7236,94.913,374.8923,89.2599,373.2296,90.9226,367.5765,84.6875,375.7236" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e75c16e47fcf6c43b15d3c25536a9ed0]
 link kryo to objenesis--><path d="M252.3542,313.5257 C262.8854,330.1403 277.4271,353.0778 288.5833,370.7028 " fill="none" id="kryo-to-objenesis" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="291.6458,375.5257,290.1368,365.3781,288.8535,371.1292,283.1023,369.8459,291.6458,375.5257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e061beb27669383d030ce0c5c656b006]
 link kryo to reflectasm--><path d="M224.5104,313.5257 C213.8229,330.1403 199.0521,353.0778 187.7188,370.7028 " fill="none" id="kryo-to-reflectasm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="184.6146,375.5257,193.1939,369.9002,187.4348,371.147,186.188,365.3879,184.6146,375.5257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[338783537f3f9263e4097f5ff0c514d3]
-link reflectasm to asm--><path d="M170.8333,420.8174 C170.8333,437.2861 170.8333,459.984 170.8333,477.5361 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="170.8333,482.8174,175,473.4424,170.8333,477.609,166.6667,473.4424,170.8333,482.8174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f81ed0396d641051624e1d831ec6bb4a]
+link reflectasm to asm--><path d="M170.8333,420.8174 C170.8333,437.2861 170.8333,459.984 170.8333,477.5361 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="170.8333,482.8174,175,473.4424,170.8333,477.609,166.6667,473.4424,170.8333,482.8174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[d65b31849ffc40ddba46110d5474151d]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "kivakit-core-collections"
     

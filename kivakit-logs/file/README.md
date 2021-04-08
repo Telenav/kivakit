@@ -66,6 +66,10 @@ More details about logging are available at [*kivakit-core-kernel logging*](../.
 
 ### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
 
+Javadoc coverage for this project is 0.0%.
+
+
+
 | Class | Documentation Sections |
 |---|---|
 | [*BaseRolloverTextLog*](https://telenav.github.io/kivakit/javadoc/kivakit.logs.file/com/telenav/kivakit/logs/file/BaseRolloverTextLog.html) |  |  

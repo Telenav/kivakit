@@ -13,10 +13,10 @@ reverse link BaseResponse to DiscoverApplicationsResponse--><path codeLine="18" 
 reverse link BaseRequest to DiscoverPortServiceRequest--><path codeLine="27" d="M1707.2917,152.7445 C1707.2917,196.9007 1707.2917,264.609 1707.2917,310.859 " fill="none" id="BaseRequest-backto-DiscoverPortServiceRequest" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1700,152.5882,1707.2917,131.7549,1714.5833,152.5882,1700,152.5882" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[89f225cddb3d0a41cf82cc9e893cdb09]
 reverse link BaseResponse to DiscoverPortServiceResponse--><path codeLine="35" d="M692.7083,152.7445 C692.7083,196.9007 692.7083,264.609 692.7083,310.859 " fill="none" id="BaseResponse-backto-DiscoverPortServiceResponse" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="685.4167,152.5882,692.7083,131.7549,700,152.5882,685.4167,152.5882" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e338a839b6d3dd43e9fbd6ab370229b5]
 reverse link BaseRequest to DiscoverServicesRequest--><path codeLine="43" d="M1755.1146,144.0361 C1785.1458,166.4215 1825.9583,196.8486 1867.5417,227.8382 " fill="none" id="BaseRequest-backto-DiscoverServicesRequest" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1750.6771,149.8174,1738.3229,131.5257,1759.3854,138.1299,1750.6771,149.8174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9d01f7383d4effe8a9db501ed283c72e]
-reverse link BaseResponse to DiscoverServicesResponse--><path codeLine="60" d="M743.0208,143.5257 C796.625,180.9528 883.0104,241.2757 951.3333,288.984 " fill="none" id="BaseResponse-backto-DiscoverServicesResponse" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="738.75,149.432,725.8438,131.5257,747.0938,137.4736,738.75,149.432" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e66eff0cfe77203dec5c987fc0d42d0b]
+reverse link BaseResponse to DiscoverServicesResponse--><path codeLine="60" d="M743.0208,143.5257 C796.625,180.9528 883.0104,241.2757 951.3333,288.984 " fill="none" id="BaseResponse-backto-DiscoverServicesResponse" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="738.75,149.432,725.8438,131.5257,747.0938,137.4736,738.75,149.432" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[2db5274eeec16782e75fe1c80853d2b3]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.service.registry.protocol.discover"
     

@@ -7,10 +7,10 @@ class CountryIsoCode--><rect fill="#282828" height="48.055" id="CountryIsoCode" 
 reverse link Name to LanguageIsoCode--><path codeLine="8" d="M194.8958,228.2549 C193.6146,267.1924 191.7083,325.1507 190.0833,374.4111 " fill="none" id="Name-backto-LanguageIsoCode" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="187.6146,227.807,195.5833,207.2236,202.1875,228.2861,187.6146,227.807" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[04b001753788308962d9673e039e8400]
 reverse link Comparable to LanguageIsoCode--><path codeLine="9" d="M83.375,226.6195 C100.0313,265.557 125.2292,324.4528 146.6042,374.4111 " fill="none" id="Comparable-backto-LanguageIsoCode" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="76.5729,229.2445,75.0729,207.2236,89.9792,223.5153,76.5729,229.2445" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[2ed7ea4cd687ab137fddc392256d10bf]
 reverse link Locale to LanguageIsoCode--><path codeLine="22" d="M308.5,323.0361 C293.9688,340.4736 279.3646,357.984 265.5938,374.5049 " fill="none" id="Locale-backto-LanguageIsoCode" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="317.5417,312.1924,310.3387,314.3233,309.5353,321.7918,316.7383,319.6609,317.5417,312.1924" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[3a15fc8eb94e8541887354867c89152b]
-reverse link Locale to CountryIsoCode--><path codeLine="23" d="M429.1563,325.9215 C430.6771,372.3695 432.2083,418.8799 433.0938,445.6924 " fill="none" id="Locale-backto-CountryIsoCode" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="428.6979,312.1924,424.7394,318.5763,429.1098,324.6856,433.0683,318.3017,428.6979,312.1924" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[de12b6bcde73deff2ca3f6f30af7f47c]
+reverse link Locale to CountryIsoCode--><path codeLine="23" d="M429.1563,325.9215 C430.6771,372.3695 432.2083,418.8799 433.0938,445.6924 " fill="none" id="Locale-backto-CountryIsoCode" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="428.6979,312.1924,424.7394,318.5763,429.1098,324.6856,433.0683,318.3017,428.6979,312.1924" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9649a6402a106bd54217922713d98e2b]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "diagram-language-locale"
     

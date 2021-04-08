@@ -11,10 +11,10 @@ reverse link Iterable to BaseIterable--><path codeLine="9" d="M663.0208,189.8695
 link BaseIterable to Next--><path codeLine="10" d="M663.0208,424.5778 C663.0208,459.4528 663.0208,509.682 663.0208,546.0674 " fill="none" id="BaseIterable-to-Next" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="663.0208,551.3278,667.1875,541.9528,663.0208,546.1195,658.8542,541.9528,663.0208,551.3278" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="45.8333" x="667.1875" y="513.7044">creates</text><!--MD5=[ec935016d02445df93a66d9a4770d011]
 reverse link Iterator to BaseIterator--><path codeLine="17" d="M902.6042,190.0049 C902.6042,220.7445 902.6042,262.6924 902.6042,299.5257 " fill="none" id="Iterator-backto-BaseIterator" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="895.3125,189.7757,902.6042,168.9424,909.8958,189.7757,895.3125,189.7757" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9b74c85a1e148f166efd169115dd7181]
 link Iterables to Iterators--><!--MD5=[a775587cb384cb04cc7dca0e29b3730f]
-link Iterables to Streams--><!--MD5=[6acf2c024d71fe5d35f695e0e36efae6]
+link Iterables to Streams--><!--MD5=[3190866a938310a20f6d910320b9c192]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "Language - Iteration"
     

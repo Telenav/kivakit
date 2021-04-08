@@ -13,10 +13,10 @@ reverse link LogEntryFormatter to IsoTimeFormatter--><path codeLine="17" d="M636
 reverse link LogEntryFormatter to SimpleFormatter--><path codeLine="33" d="M691.3438,167.234 C707.5938,191.4215 727.6146,221.234 741.1979,241.4632 " fill="none" id="LogEntryFormatter-backto-SimpleFormatter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="685.1458,171.0778,679.5833,149.7236,697.25,162.9528,685.1458,171.0778" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ca6409159cf331e8fd2e00158d2528fb]
 reverse link LogEntryFormatter to TimeAndMessageFormatter--><path codeLine="38" d="M711.1042,161.9424 C726.9583,172.5674 745.1667,183.4424 763.0208,191.2028 C798.4479,206.609 810.7188,199.932 847.3958,212.0361 C872.8438,220.432 900.375,231.6611 923.2083,241.5986 " fill="none" id="LogEntryFormatter-backto-TimeAndMessageFormatter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="706.6354,167.7132,693.7396,149.7965,714.9896,155.7653,706.6354,167.7132" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7ee901a25de5ddeb369acafd602bfaa7]
 link ColumnarFormatter to ColumnarFormatter.Layout--><!--MD5=[19948d5bfda51540813780348b3f8294]
-link ColumnarFormatter to ColumnarFormatter.LineOutput--><!--MD5=[9fb41771c3cb3b47997938f6c97e8a53]
+link ColumnarFormatter to ColumnarFormatter.LineOutput--><!--MD5=[6c316e765e04bea37971cf90b5b83e3e]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "com.telenav.kivakit.core.kernel.logging.logs.text.formatters"
     

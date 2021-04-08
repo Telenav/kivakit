@@ -17,10 +17,10 @@ reverse link InputStream to LimitedInput--><path codeLine="42" d="M999.3542,335.
 reverse link Reader to LookAheadReader--><path codeLine="49" d="M1479.1667,338.484 C1479.1667,398.4632 1479.1667,508.1611 1479.1667,595.1715 " fill="none" id="Reader-backto-LookAheadReader" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1471.875,338.234,1479.1667,317.4007,1486.4583,338.234,1471.875,338.234" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[d7973e4522926dd8b7f7541dd2beee04]
 reverse link InputStream to ProgressiveInput--><path codeLine="65" d="M1025,338.3903 C1025,418.6299 1025,588.1403 1025,672.9424 " fill="none" id="InputStream-backto-ProgressiveInput" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1017.7083,338.234,1025,317.4007,1032.2917,338.234,1017.7083,338.234" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[b92c4f2ef43fc3de16703e45ee932d0c]
 reverse link OutputStream to ProgressiveOutput--><path codeLine="73" d="M349.5833,338.3903 C363.9896,418.6299 394.4375,588.1403 409.6667,672.9424 " fill="none" id="OutputStream-backto-ProgressiveOutput" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="342.3125,339.1924,345.8125,317.4007,356.6667,336.6195,342.3125,339.1924" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[daa039065f082fa56539a72bec203ed4]
-reverse link InputStream to StringInput--><path codeLine="81" d="M1049.9063,335.5465 C1099.5521,417.682 1210.2917,600.9111 1259.7188,682.7028 " fill="none" id="InputStream-backto-StringInput" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1043.4792,339.0049,1038.9479,317.4007,1055.9583,331.4632,1043.4792,339.0049" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[120934c09d6eefc3ee8e53772419828d]
+reverse link InputStream to StringInput--><path codeLine="81" d="M1049.9063,335.5465 C1099.5521,417.682 1210.2917,600.9111 1259.7188,682.7028 " fill="none" id="InputStream-backto-StringInput" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1043.4792,339.0049,1038.9479,317.4007,1055.9583,331.4632,1043.4792,339.0049" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7df320ce4c76ec66a439d2d5ef65bc63]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "Language - I/O"
     

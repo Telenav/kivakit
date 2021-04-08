@@ -77,10 +77,10 @@ link kivakit_service_registry to kivakit_core_serialization_jersey_json--><path 
 link kryo to minlog--><path d="M870.7604,635.1403 C850.5313,652.1611 822.2813,675.9424 801.0625,693.807 " fill="none" id="kryo-to-minlog" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="796.9167,697.2965,806.7706,694.4415,800.8994,693.9403,801.4006,688.0691,796.9167,697.2965" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e75c16e47fcf6c43b15d3c25536a9ed0]
 link kryo to objenesis--><path d="M923.875,635.1403 C945.6979,652.234 976.2396,676.1403 999.0729,694.0257 " fill="none" id="kryo-to-objenesis" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1003.25,697.2965,998.4351,688.2374,999.1484,694.0866,993.2992,694.7999,1003.25,697.2965" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e061beb27669383d030ce0c5c656b006]
 link kryo to reflectasm--><path d="M896.3542,635.4007 C896.3542,651.8695 896.3542,674.5674 896.3542,692.1195 " fill="none" id="kryo-to-reflectasm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="896.3542,697.4007,900.5208,688.0257,896.3542,692.1924,892.1875,688.0257,896.3542,697.4007" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[338783537f3f9263e4097f5ff0c514d3]
-link reflectasm to asm--><path d="M896.3542,742.6924 C896.3542,759.1611 896.3542,781.859 896.3542,799.4111 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="896.3542,804.6924,900.5208,795.3174,896.3542,799.484,892.1875,795.3174,896.3542,804.6924" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f40007d06fbf35511b4d2c3e251642c9]
+link reflectasm to asm--><path d="M896.3542,742.6924 C896.3542,759.1611 896.3542,781.859 896.3542,799.4111 " fill="none" id="reflectasm-to-asm" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="896.3542,804.6924,900.5208,795.3174,896.3542,799.484,892.1875,795.3174,896.3542,804.6924" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[43efc89ea328c27ce571943f9c3c2c0d]
 @startuml
 
-    !include ../lexakai.theme
+    !include ../lexakai/lexakai.theme
     
     title "kivakit-service-registry"
     
