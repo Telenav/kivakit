@@ -21,7 +21,7 @@ ${project-index}
     <dependency>
         <groupId>${project-group-id}</groupId>
         <artifactId>${project-artifact-id}</artifactId>
-        <version>${project-version}</version>
+        <version><!-- ${project-version} --> <!-- end --></version>
     </dependency>
 ![](documentation/images/horizontal-line.png)
 
