@@ -25,23 +25,23 @@ This project contains the core functionality of KivaKit, frameworks that are pot
 
 ### Javadoc Coverage
 
-&nbsp;  ![](documentation/images/meter-30-12.png) &nbsp; &nbsp; *kivakit-core-application*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-application*  
 &nbsp;  ![](documentation/images/meter-60-12.png) &nbsp; &nbsp; *kivakit-core-collections*  
-&nbsp;  ![](documentation/images/meter-70-12.png) &nbsp; &nbsp; *kivakit-core-commandline*  
-&nbsp;  ![](documentation/images/meter-80-12.png) &nbsp; &nbsp; *kivakit-core-configuration*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-commandline*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-configuration*  
 &nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-core-kernel*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-core*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-email*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-ftp*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-http*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-socket*  
-&nbsp;  ![](documentation/images/meter-20-12.png) &nbsp; &nbsp; *kivakit-core-resource*  
+&nbsp;  ![](documentation/images/meter-30-12.png) &nbsp; &nbsp; *kivakit-core-resource*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-security*  
-&nbsp;  ![](documentation/images/meter-80-12.png) &nbsp; &nbsp; *kivakit-core-serialization-core*  
-&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-core-serialization-jersey-json*  
-&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-core-serialization-json*  
-&nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-core-serialization-kryo*  
-&nbsp;  ![](documentation/images/meter-10-12.png) &nbsp; &nbsp; *kivakit-core-test*
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-serialization-core*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-serialization-jersey-json*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-serialization-json*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-serialization-kryo*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-test*
 
 [//]: # (start-user-text)
 

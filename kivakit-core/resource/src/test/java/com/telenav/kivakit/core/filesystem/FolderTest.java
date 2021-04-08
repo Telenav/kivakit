@@ -18,10 +18,11 @@
 
 package com.telenav.kivakit.core.filesystem;
 
-import com.telenav.kivakit.core.resource.path.FileName;
 import com.telenav.kivakit.core.kernel.language.time.Duration;
+import com.telenav.kivakit.core.resource.path.FileName;
 import com.telenav.kivakit.core.test.UnitTest;
-import org.junit.*;
+import org.junit.Ignore;
+import org.junit.Test;
 
 public class FolderTest extends UnitTest
 {
@@ -47,7 +48,7 @@ public class FolderTest extends UnitTest
         folder.file("a.txt").print("A");
         folder.file("b.txt").print("B");
         ensureEqual(2, folder.files().size());
-        folder.clear();
+        folder.clearAll();
         ensure(folder.isEmpty());
     }
 
@@ -67,7 +68,7 @@ public class FolderTest extends UnitTest
     {
         final var folder = Folder.unitTestOutput(getClass()).folder("clear-test");
         folder.mkdirs();
-        folder.clear();
+        folder.clearAll();
         folder.file("a.txt").print("A");
         Duration.untilNextSecond().sleep();
         folder.file("b.txt").print("B");

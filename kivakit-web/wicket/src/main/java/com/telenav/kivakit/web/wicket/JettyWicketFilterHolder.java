@@ -18,15 +18,23 @@
 
 package com.telenav.kivakit.web.wicket;
 
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import org.apache.wicket.protocol.http.ContextParamWebApplicationFactory;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.protocol.http.WicketFilter;
 import org.eclipse.jetty.servlet.FilterHolder;
 
 /**
+ * <b>Not public API</b>
+ *
+ * <p>
+ * Installs and configures the {@link WicketFilter} required to serve the given {@link WebApplication} class.
+ * </p>
+ *
  * @author jonathanl (shibo)
  */
-public class JettyWicketFilterHolder extends FilterHolder
+@LexakaiJavadoc(complete = true)
+class JettyWicketFilterHolder extends FilterHolder
 {
     public JettyWicketFilterHolder(final Class<? extends WebApplication> applicationClass)
     {

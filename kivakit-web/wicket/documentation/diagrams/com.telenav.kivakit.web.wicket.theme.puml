@@ -6,6 +6,9 @@
     
     class KivaKitTheme
     {
+        --
+        +CssResourceReference kivakitColors()
+        +CssResourceReference kivakitTheme()
     }
     
 @enduml

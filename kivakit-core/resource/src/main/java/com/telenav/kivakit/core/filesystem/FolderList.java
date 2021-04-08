@@ -18,21 +18,36 @@
 
 package com.telenav.kivakit.core.filesystem;
 
-import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFolder;
 import com.telenav.kivakit.core.filesystem.spi.FolderService;
 import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
+import com.telenav.kivakit.core.kernel.messaging.Listener;
+import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFolder;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
-import com.telenav.kivakit.core.kernel.messaging.Listener;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 import java.util.function.UnaryOperator;
 
+/**
+ * A list of folders with additional useful methods, including:
+ *
+ * <ul>
+ *     <li>{@link #asSet()} - This list as a set</li>
+ *     <li>{@link #matching(Matcher)} - The folders in this list that match the given matcher</li>
+ * </ul>
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
+@LexakaiJavadoc(complete = true)
 public class FolderList implements List<Folder>
 {
+    /**
+     * <b>Not public API</b>
+     */
     public static FolderList forVirtual(final List<? extends FolderService> virtualFolders)
     {
         final var folders = new FolderList();

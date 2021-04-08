@@ -31,7 +31,7 @@ classes.
 
 &nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-filesystems-hdfs*  
 &nbsp;  ![](documentation/images/meter-20-12.png) &nbsp; &nbsp; *kivakit-filesystems-hdfs-proxy*  
-&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-filesystems-hdfs-proxy-spi*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-filesystems-hdfs-proxy-spi*  
 &nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-filesystems-s3fs*
 
 [//]: # (start-user-text)

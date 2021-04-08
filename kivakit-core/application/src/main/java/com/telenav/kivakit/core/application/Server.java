@@ -19,8 +19,9 @@
 package com.telenav.kivakit.core.application;
 
 import com.telenav.kivakit.core.application.project.lexakai.diagrams.DiagramApplication;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.project.Project;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
  * Subclass of {@link Application} for use by servers.
@@ -28,6 +29,7 @@ import com.telenav.kivakit.core.kernel.project.Project;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramApplication.class)
+@LexakaiJavadoc(complete = true)
 public abstract class Server extends Application
 {
     protected Server(final Project project)

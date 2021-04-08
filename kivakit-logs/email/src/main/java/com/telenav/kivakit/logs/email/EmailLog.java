@@ -8,7 +8,9 @@
 package com.telenav.kivakit.logs.email;
 
 import com.telenav.kivakit.core.configuration.lookup.Lookup;
+import com.telenav.kivakit.core.kernel.logging.Log;
 import com.telenav.kivakit.core.kernel.logging.LogEntry;
+import com.telenav.kivakit.core.kernel.logging.loggers.LogServiceLogger;
 import com.telenav.kivakit.core.kernel.logging.logs.text.BaseTextLog;
 import com.telenav.kivakit.core.network.core.EmailAddress;
 import com.telenav.kivakit.core.network.core.Host;
@@ -19,6 +21,7 @@ import com.telenav.kivakit.core.network.email.senders.SmtpEmailSender;
 import com.telenav.kivakit.core.security.authentication.UserName;
 import com.telenav.kivakit.core.security.authentication.passwords.PlainTextPassword;
 import com.telenav.kivakit.logs.email.project.lexakai.diagrams.DiagramLogsEmail;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
@@ -29,7 +32,24 @@ import java.util.Set;
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.kernel.messaging.messages.MessageFormatter.Format.WITH_EXCEPTION;
 
+/**
+ * A {@link Log} service provider that sends emails. Configuration occurs via the command line. See {@link
+ * LogServiceLogger} for details. Further details are available in the markdown help. The options available for
+ * configuration with this logger are:
+ *
+ * <ul>
+ *     <li><i>to</i> - The set of email addresses to send to</li>
+ *     <li><i>from</i> - The email address to send from</li>
+ *     <li><i>subject</i> - The subject line</li>
+ *     <li><i>host</i> - The SMTP host</li>
+ *     <li><i>username</i> - The SMTP username</li>
+ *     <li><i>password</i> - The SMTP password</li>
+ * </ul>
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramLogsEmail.class)
+@LexakaiJavadoc(complete = true)
 public class EmailLog extends BaseTextLog
 {
     @UmlAggregation

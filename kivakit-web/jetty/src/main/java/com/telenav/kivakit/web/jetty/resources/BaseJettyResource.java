@@ -16,13 +16,28 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.web.jersey;
+package com.telenav.kivakit.web.jetty.resources;
 
-import org.glassfish.jersey.server.ResourceConfig;
+import com.telenav.kivakit.web.jetty.BaseJettyRequestHandler;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import org.eclipse.jetty.servlet.DefaultServlet;
+import org.eclipse.jetty.servlet.ServletHolder;
 
 /**
+ * Base class for request handlers that serve up file resources.
+ *
  * @author jonathanl (shibo)
  */
-public class JettyJerseyRestApplication extends ResourceConfig
+@LexakaiJavadoc(complete = true)
+public abstract class BaseJettyResource extends BaseJettyRequestHandler
 {
+    public BaseJettyResource(final String name)
+    {
+        super(name);
+    }
+
+    /**
+     * @return The Jetty-specific holder of a static resource servlet, normally {@link DefaultServlet}.
+     */
+    public abstract ServletHolder holder();
 }

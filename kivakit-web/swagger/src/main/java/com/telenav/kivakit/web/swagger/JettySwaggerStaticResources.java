@@ -19,7 +19,8 @@
 package com.telenav.kivakit.web.swagger;
 
 import com.telenav.kivakit.core.kernel.language.types.Classes;
-import com.telenav.kivakit.web.jetty.resources.JettyResource;
+import com.telenav.kivakit.web.jetty.resources.BaseJettyResource;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletHolder;
 
@@ -28,7 +29,8 @@ import org.eclipse.jetty.servlet.ServletHolder;
  *
  * @author jonathanl (shibo)
  */
-public class JettySwaggerStaticResources extends JettyResource
+@LexakaiJavadoc(complete = true)
+public class JettySwaggerStaticResources extends BaseJettyResource
 {
     public JettySwaggerStaticResources()
     {

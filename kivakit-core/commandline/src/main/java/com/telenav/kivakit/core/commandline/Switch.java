@@ -19,18 +19,22 @@
 package com.telenav.kivakit.core.commandline;
 
 import com.telenav.kivakit.core.commandline.project.lexakai.diagrams.DiagramSwitch;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.kivakit.core.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.core.kernel.language.objects.Hash;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 /**
+ * <b>Not public API</b>
+ * <p>
  * Represents a switch argument, with a name and value.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramSwitch.class)
 @UmlRelation(label = "gets value with", referent = SwitchParser.class)
+@LexakaiJavadoc(complete = true)
 public class Switch extends Argument implements Named
 {
     /** The name of this switch argument */

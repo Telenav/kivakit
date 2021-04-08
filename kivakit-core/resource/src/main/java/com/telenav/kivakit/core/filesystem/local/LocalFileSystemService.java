@@ -23,21 +23,28 @@ import com.telenav.kivakit.core.filesystem.spi.DiskService;
 import com.telenav.kivakit.core.filesystem.spi.FileService;
 import com.telenav.kivakit.core.filesystem.spi.FileSystemService;
 import com.telenav.kivakit.core.filesystem.spi.FolderService;
+import com.telenav.kivakit.core.kernel.language.strings.Strings;
 import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemService;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
-import com.telenav.kivakit.core.kernel.language.strings.Strings;
 
 import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 
+/**
+ * Implementation of {@link FileSystemService} provider interface for the local filesystem.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 @UmlRelation(label = "creates", referent = LocalDisk.class)
 @UmlRelation(label = "creates", referent = LocalFile.class)
 @UmlRelation(label = "creates", referent = LocalFolder.class)
 @UmlNotPublicApi
+@LexakaiJavadoc(complete = true)
 public class LocalFileSystemService implements FileSystemService
 {
     @Override

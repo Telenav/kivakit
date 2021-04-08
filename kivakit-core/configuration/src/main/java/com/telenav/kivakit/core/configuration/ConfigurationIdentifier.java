@@ -19,11 +19,12 @@
 package com.telenav.kivakit.core.configuration;
 
 import com.telenav.kivakit.core.configuration.project.lexakai.diagrams.DiagramConfiguration;
+import com.telenav.kivakit.core.kernel.language.objects.Hash;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
-import com.telenav.kivakit.core.kernel.language.objects.Hash;
 
 import java.security.Key;
 
@@ -37,6 +38,7 @@ import java.security.Key;
 @UmlClassDiagram(diagram = DiagramConfiguration.class)
 @UmlNotPublicApi
 @UmlExcludeSuperTypes
+@LexakaiJavadoc(complete = true)
 class ConfigurationIdentifier implements Comparable<Key>
 {
     /** The type of configuration */

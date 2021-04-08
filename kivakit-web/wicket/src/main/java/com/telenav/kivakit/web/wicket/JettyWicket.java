@@ -18,19 +18,27 @@
 
 package com.telenav.kivakit.web.wicket;
 
-import com.telenav.kivakit.web.jetty.resources.JettyFilter;
+import com.telenav.kivakit.web.jetty.resources.BaseJettyFilter;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.eclipse.jetty.servlet.FilterHolder;
 
 import javax.servlet.DispatcherType;
 import java.util.EnumSet;
 
-import static javax.servlet.DispatcherType.*;
+import static javax.servlet.DispatcherType.ASYNC;
+import static javax.servlet.DispatcherType.ERROR;
+import static javax.servlet.DispatcherType.FORWARD;
+import static javax.servlet.DispatcherType.INCLUDE;
+import static javax.servlet.DispatcherType.REQUEST;
 
 /**
+ * A Jetty filter for Apache Wicket applications. The Wicket {@link WebApplication} class is passed to the constructor.
+ *
  * @author jonathanl (shibo)
  */
-public class JettyWicket extends JettyFilter
+@LexakaiJavadoc(complete = true)
+public class JettyWicket extends BaseJettyFilter
 {
     /** Wicket-specific definition of a web application */
     private final Class<? extends WebApplication> applicationClass;

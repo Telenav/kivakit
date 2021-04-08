@@ -16,9 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package
-
-        com.telenav.kivakit.core.serialization.kryo;
+package com.telenav.kivakit.core.serialization.kryo;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Serializer;
@@ -33,6 +31,7 @@ import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.kernel.messaging.Debug;
 import com.telenav.kivakit.core.serialization.core.SerializationSession;
 import com.telenav.kivakit.core.serialization.core.SerializationSessionFactory;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -99,6 +98,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensu
  * @author jonathanl (shibo)
  * @see KryoSerializationSession
  */
+@LexakaiJavadoc(complete = true)
 public class KryoTypes implements Named
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();

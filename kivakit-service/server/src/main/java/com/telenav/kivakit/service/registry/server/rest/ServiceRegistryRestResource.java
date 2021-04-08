@@ -42,7 +42,7 @@ import com.telenav.kivakit.service.registry.protocol.update.NetworkRegistryUpdat
 import com.telenav.kivakit.service.registry.registries.LocalServiceRegistry;
 import com.telenav.kivakit.service.registry.registries.NetworkServiceRegistry;
 import com.telenav.kivakit.service.registry.server.ServiceRegistryServer;
-import com.telenav.kivakit.web.jersey.JettyJerseyRestResource;
+import com.telenav.kivakit.web.jersey.BaseRestResource;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -88,7 +88,7 @@ import javax.ws.rs.core.Response;
 
 )
 @Path("api/v8")
-public class ServiceRegistryRestResource extends JettyJerseyRestResource
+public class ServiceRegistryRestResource extends BaseRestResource
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 

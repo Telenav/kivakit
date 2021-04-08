@@ -19,16 +19,24 @@
 package com.telenav.kivakit.core.test.reporters;
 
 import com.telenav.kivakit.core.kernel.data.validation.BaseValidationReporter;
+import com.telenav.kivakit.core.kernel.data.validation.ValidationReporter;
+import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.core.kernel.messaging.Message;
+import com.telenav.kivakit.core.test.UnitTest;
 import com.telenav.kivakit.core.test.project.lexakai.diagrams.DiagramTest;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.junit.Assert;
 
 import static com.telenav.kivakit.core.kernel.messaging.messages.MessageFormatter.Format.WITHOUT_EXCEPTION;
 
 /**
+ * A {@link ValidationReporter} that causes a JUnit test failure. This validation reporter is installed by {@link
+ * UnitTest} to ensure that validation failures by {@link Ensure} are reported through JUnit.
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 @UmlClassDiagram(diagram = DiagramTest.class)
 public class JUnitValidationReporter extends BaseValidationReporter
 {

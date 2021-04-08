@@ -16,12 +16,18 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package
-
-        com.telenav.kivakit.core.serialization.json;
+package com.telenav.kivakit.core.serialization.json;
 
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonSerializer;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
+/**
+ * A {@link GsonSerializer} is a {@link JsonSerializer} and {@link JsonDeserializer}
+ *
+ * @author jonathanl (shibo)
+ */
+@LexakaiJavadoc(complete = true)
 public interface GsonSerializer<T> extends JsonSerializer<T>, JsonDeserializer<T>
-{}
+{
+}

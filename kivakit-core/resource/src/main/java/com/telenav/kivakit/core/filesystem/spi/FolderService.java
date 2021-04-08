@@ -23,18 +23,39 @@ import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.core.resource.path.FileName;
 import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemService;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.List;
 
 /**
- * A service provider interface (SPI) for filesystem folders.
+ * A service provider interface (SPI) for filesystem folders. In addition to the methods required by {@link
+ * FileSystemObjectService}, this interface requires:
+ *
+ * <ul>
+ *     <li>{@link #clear()} - Remove all files in this folder</li>
+ *     <li>{@link #file(FileName)} - The file with the given name</li>
+ *     <li>{@link #files()} - All files in this folder</li>
+ *     <li>{@link #files(Matcher)} - All files matching the given matcher</li>
+ *     <li>{@link #folder(Folder)} - The given subfolder</li>
+ *     <li>{@link #folder(FileName)} - The given subfolder</li>
+ *     <li>{@link #folders()} - All folders in this folder</li>
+ *     <li>{@link #isEmpty()} - True if the folder is empty</li>
+ *     <li>{@link #isWritable()} - True if the folder can be written to</li>
+ *     <li>{@link #mkdirs()} - Creates this folder and all the parent folders as needed</li>
+ *     <li>{@link #nestedFiles(Matcher)} - All nested files in this folder matching the given matcher</li>
+ *     <li>{@link #nestedFolders(Matcher)} - All nested folders in this folder matching the given matcher</li>
+ *     <li>{@link #renameTo(FolderService)} - Renames this folder to the given folder</li>
+ *     <li>{@link #temporaryFile(FileName)} - A temporary file with the given base name</li>
+ *     <li>{@link #temporaryFolder(FileName)} - A temporary folder with the given base name</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  * @see FileSystemObjectService
  * @see FileSystemService
  */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
+@LexakaiJavadoc(complete = true)
 public interface FolderService extends FileSystemObjectService
 {
     /**

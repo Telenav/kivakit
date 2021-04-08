@@ -19,12 +19,19 @@
 package com.telenav.kivakit.core.filesystem.local;
 
 import com.telenav.kivakit.core.filesystem.spi.DiskService;
-import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemService;
 import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemService;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
+/**
+ * Implementation of {@link DiskService} provider interface for the local filesystem.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
+@LexakaiJavadoc(complete = true)
 @UmlNotPublicApi
 public class LocalDisk implements DiskService
 {

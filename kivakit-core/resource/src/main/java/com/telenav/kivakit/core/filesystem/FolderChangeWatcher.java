@@ -18,18 +18,29 @@
 
 package com.telenav.kivakit.core.filesystem;
 
+import com.telenav.kivakit.core.collections.watcher.CollectionChangeListener;
 import com.telenav.kivakit.core.collections.watcher.PeriodicCollectionChangeWatcher;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.kivakit.core.kernel.language.time.Frequency;
 import com.telenav.kivakit.core.kernel.language.time.Time;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFolder;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Watches for changes to the contents of a {@link Folder}. {@link CollectionChangeListener}s are notified when changes
+ * occur and can be added with {@link #addListener(CollectionChangeListener)} and removed with {@link
+ * #removeListener(CollectionChangeListener)}.
+ *
+ * @author jonathanl (shibo)
+ * @see PeriodicCollectionChangeWatcher
+ */
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
 @UmlRelation(label = "watches", referent = Folder.class)
+@LexakaiJavadoc(complete = true)
 public class FolderChangeWatcher extends PeriodicCollectionChangeWatcher<FileSystemObject>
 {
     private final Folder folder;

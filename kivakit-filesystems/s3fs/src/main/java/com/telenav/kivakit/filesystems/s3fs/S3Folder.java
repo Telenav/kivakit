@@ -228,7 +228,7 @@ public class S3Folder extends S3FileSystemObject implements FolderService
     public S3Folder mkdirs()
     {
         var folder = this;
-        while (folder != null && !folder.equals(rootFolderService()))
+        while (folder != null && !folder.equals(root()))
         {
             mkdir(folder);
             folder = folder.parent();
@@ -294,7 +294,7 @@ public class S3Folder extends S3FileSystemObject implements FolderService
     }
 
     @Override
-    public S3Folder rootFolderService()
+    public S3Folder root()
     {
         final var path = path(scheme(), bucket(), "");
         return new S3Folder(path);

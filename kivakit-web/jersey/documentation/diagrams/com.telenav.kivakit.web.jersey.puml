@@ -4,20 +4,22 @@
     
     title "com.telenav.kivakit.web.jersey"
     
-    JettyServlet <|-- JettyJersey
+    abstract BaseJettyServlet
+    
+    ResourceConfig <|-- BaseRestApplication
+    class BaseRestApplication
+    {
+    }
+    
+    class BaseRestResource
+    {
+    }
+    
+    BaseJettyServlet <|-- JettyJersey
     class JettyJersey
     {
         --(constructors)--
         +JettyJersey(ResourceConfig)
-    }
-    
-    ResourceConfig <|-- JettyJerseyRestApplication
-    class JettyJerseyRestApplication
-    {
-    }
-    
-    class JettyJerseyRestResource
-    {
     }
     
 @enduml

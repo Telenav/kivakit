@@ -19,10 +19,10 @@ This project index was created by Lexakai. To configure, see [project-home-folde
 
 ### Javadoc Coverage
 
-&nbsp;  ![](documentation/images/meter-80-12.png) &nbsp; &nbsp; *kivakit-core-serialization-core*  
-&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-core-serialization-jersey-json*  
-&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-core-serialization-json*  
-&nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-core-serialization-kryo*
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-serialization-core*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-serialization-jersey-json*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-serialization-json*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-serialization-kryo*
 
 [//]: # (start-user-text)
 

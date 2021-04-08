@@ -18,7 +18,8 @@
 
 package com.telenav.kivakit.web.swagger;
 
-import com.telenav.kivakit.web.jetty.resources.JettyServlet;
+import com.telenav.kivakit.web.jetty.resources.BaseJettyServlet;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import io.swagger.v3.jaxrs2.integration.JaxrsOpenApiContextBuilder;
 import io.swagger.v3.jaxrs2.integration.OpenApiServlet;
 import io.swagger.v3.oas.integration.OpenApiConfigurationException;
@@ -29,11 +30,12 @@ import javax.ws.rs.core.Application;
 import java.util.Set;
 
 /**
- * Produces the swagger.json OpenAPI interface description.
+ * Produces the swagger.json OpenAPI interface description for the given application.
  *
  * @author jonathanl (shibo)
  */
-public class JettySwaggerOpenApi extends JettyServlet
+@LexakaiJavadoc(complete = true)
+public class JettySwaggerOpenApi extends BaseJettyServlet
 {
     private final Application application;
 

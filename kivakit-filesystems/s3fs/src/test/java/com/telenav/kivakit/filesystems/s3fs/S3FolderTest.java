@@ -128,7 +128,7 @@ public class S3FolderTest extends UnitTest
         folder.renameTo(that);
         ensure(that.exists());
         ensure(!folder.exists());
-        that.clear();
+        that.clearAll();
         ensure(that.isEmpty());
         that.delete();
         ensure(!that.exists());

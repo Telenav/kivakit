@@ -16,12 +16,11 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package
-
-        com.telenav.kivakit.core.serialization.jersey.json;
+package com.telenav.kivakit.core.serialization.jersey.json;
 
 import com.google.gson.Gson;
 import com.telenav.kivakit.core.serialization.json.GsonFactory;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
@@ -41,11 +40,14 @@ import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 
 /**
+ * Performs serialization compatible with the Jersey REST API via *javax.ws.rs* interfaces.
+ *
  * @author jonathanl (shibo)
  */
 @Provider
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@LexakaiJavadoc(complete = true)
 public class JerseyGsonSerializer<T> implements MessageBodyReader<T>, MessageBodyWriter<T>
 {
     private final Gson gson;

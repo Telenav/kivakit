@@ -25,6 +25,7 @@ import com.telenav.kivakit.core.kernel.language.time.ModificationTimestamped;
 import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.core.resource.path.ResourcePathed;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemService;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
@@ -33,7 +34,17 @@ import java.nio.file.attribute.PosixFilePermission;
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.unsupported;
 
 /**
- * A service provider interface (SPI) common to all filesystem objects.
+ * A service provider interface (SPI) common to all filesystem objects. Implementers must provide:
+ *
+ * <ul>
+ *     <li>{@link #chmod(PosixFilePermission...)} - Changes permissions of the object</li>
+ *     <li>{@link #exists()} - True if the object exists</li>
+ *     <li>{@link #delete()} - Deletes the object</li>
+ *     <li>{@link #isFolder()} - Returns true if the object is a folder</li>
+ *     <li>{@link #parent()} - The parent {@link FolderService} of the object, if any</li>
+ *     <li>{@link #path()} - The path to the object on the filesystem</li>
+ *     <li>{@link #root()} - The root folder</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  * @see FileService
@@ -41,6 +52,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.unsu
  */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 @UmlExcludeSuperTypes(ResourcePathed.class)
+@LexakaiJavadoc(complete = true)
 public interface FileSystemObjectService extends ByteSized, ModificationTimestamped, ResourcePathed
 {
     /**
@@ -124,5 +136,5 @@ public interface FileSystemObjectService extends ByteSized, ModificationTimestam
     /**
      * @return The root folder containing this object
      */
-    FolderService rootFolderService();
+    FolderService root();
 }

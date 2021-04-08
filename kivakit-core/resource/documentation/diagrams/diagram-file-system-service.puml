@@ -53,7 +53,7 @@
         +FolderService parent()
         +FilePath relativePath(FolderService)
         +FileSystemObjectService resolveService()
-        +FolderService rootFolderService()
+        +FolderService root()
     }
     
     FileSystemService --> DiskService : "provides"

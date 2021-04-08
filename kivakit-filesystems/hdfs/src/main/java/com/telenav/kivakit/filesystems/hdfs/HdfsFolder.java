@@ -260,7 +260,7 @@ public class HdfsFolder implements FolderService
     }
 
     @Override
-    public HdfsFolder rootFolderService()
+    public HdfsFolder root()
     {
         return new HdfsFolder(path.root());
     }

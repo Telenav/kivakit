@@ -4,7 +4,9 @@
     
     title "com.telenav.kivakit.web.wicket"
     
-    JettyFilter <|-- JettyWicket
+    abstract BaseJettyFilter
+    
+    BaseJettyFilter <|-- JettyWicket
     class JettyWicket
     {
         --(constructors)--

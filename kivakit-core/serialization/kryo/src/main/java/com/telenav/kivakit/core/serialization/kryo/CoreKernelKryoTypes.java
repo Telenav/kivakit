@@ -43,6 +43,7 @@ import com.telenav.kivakit.core.kernel.messaging.messages.lifecycle.OperationSuc
 import com.telenav.kivakit.core.kernel.messaging.messages.status.*;
 import com.telenav.kivakit.core.kernel.project.Release;
 import com.telenav.kivakit.core.serialization.kryo.project.lexakai.diagrams.DiagramSerializationKryo;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.ZoneId;
@@ -52,8 +53,11 @@ import java.util.HashSet;
 import java.util.LinkedList;
 
 /**
+ * Kryo types to register for kivakit-core-kernel
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 @UmlClassDiagram(diagram = DiagramSerializationKryo.class)
 public class CoreKernelKryoTypes extends KryoTypes
 {

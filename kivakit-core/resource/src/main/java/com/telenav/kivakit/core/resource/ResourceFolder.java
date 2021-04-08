@@ -82,7 +82,7 @@ public interface ResourceFolder
     {
         if (!isMaterialized())
         {
-            folder.mkdirs().clear();
+            folder.mkdirs().clearAll();
             for (final var resource : resources())
             {
                 final var destination = folder.file(resource.fileName());

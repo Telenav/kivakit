@@ -26,7 +26,6 @@ import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.request.resource.CssResourceReference;
 
 public class ServiceRegistryWebPage extends WebPage
 {
@@ -42,10 +41,7 @@ public class ServiceRegistryWebPage extends WebPage
     @Override
     public void renderHead(final IHeaderResponse response)
     {
-        final var colors = new CssResourceReference(KivaKitTheme.class, "KivaKitColors.css");
-        response.render(CssHeaderItem.forReference(colors));
-
-        final var theme = new CssResourceReference(KivaKitTheme.class, "KivaKitTheme.css");
-        response.render(CssHeaderItem.forReference(theme));
+        response.render(CssHeaderItem.forReference(KivaKitTheme.kivakitColors()));
+        response.render(CssHeaderItem.forReference(KivaKitTheme.kivakitTheme()));
     }
 }

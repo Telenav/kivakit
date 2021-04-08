@@ -50,9 +50,9 @@ arguments and switches is available in the Javadoc for the [*Application*](https
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 70.6%.  
+Javadoc coverage for this project is 100.0%.  
   
-&nbsp; &nbsp;  ![](documentation/images/meter-70-12.png)
+&nbsp; &nbsp;  ![](documentation/images/meter-100-12.png)
 
 
 

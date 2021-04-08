@@ -16,9 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package
-
-        com.telenav.kivakit.core.serialization.kryo;
+package com.telenav.kivakit.core.serialization.kryo;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Serializer;
@@ -26,6 +24,7 @@ import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 import com.telenav.kivakit.core.kernel.language.values.version.Version;
 import com.telenav.kivakit.core.serialization.kryo.project.lexakai.diagrams.DiagramSerializationKryo;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Objects;
@@ -40,13 +39,14 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.unsu
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramSerializationKryo.class)
+@LexakaiJavadoc(complete = true)
 public abstract class KryoSerializer<Value> extends Serializer<Value>
 {
-    private static final ThreadLocal<Version> THREAD_LOCAL_VERSION = new ThreadLocal<>();
+    private static final ThreadLocal<Version> threadLocalVersion = new ThreadLocal<>();
 
     public static void version(final Version version)
     {
-        THREAD_LOCAL_VERSION.set(Objects.requireNonNull(version));
+        threadLocalVersion.set(Objects.requireNonNull(version));
     }
 
     /** The type for this serializer */
@@ -113,6 +113,6 @@ public abstract class KryoSerializer<Value> extends Serializer<Value>
      */
     protected Version version()
     {
-        return ensureNotNull(THREAD_LOCAL_VERSION.get());
+        return ensureNotNull(threadLocalVersion.get());
     }
 }

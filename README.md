@@ -70,7 +70,7 @@ parts of the framework.
 |--------------|-----------------------------------|
 | Project Name | KivaKit |
 | Summary | Library code for developing Java applications |
-| Javadoc Coverage |  <!-- ${project-javadoc-average-coverage-meter} -->  ![](documentation/images/meter-40-12.png) <!-- end --> |
+| Javadoc Coverage |  <!-- ${project-javadoc-average-coverage-meter} -->  ![](documentation/images/meter-70-12.png) <!-- end --> |
 | Lead | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
 | Administrator | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
 | Email | [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
@@ -111,41 +111,41 @@ parts of the framework.
 
 ### Javadoc Coverage
 
-&nbsp;  ![](documentation/images/meter-30-12.png) &nbsp; &nbsp; *kivakit-core-application*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-application*  
 &nbsp;  ![](documentation/images/meter-60-12.png) &nbsp; &nbsp; *kivakit-core-collections*  
-&nbsp;  ![](documentation/images/meter-70-12.png) &nbsp; &nbsp; *kivakit-core-commandline*  
-&nbsp;  ![](documentation/images/meter-80-12.png) &nbsp; &nbsp; *kivakit-core-configuration*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-commandline*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-configuration*  
 &nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-core-kernel*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-core*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-email*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-ftp*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-http*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-socket*  
-&nbsp;  ![](documentation/images/meter-20-12.png) &nbsp; &nbsp; *kivakit-core-resource*  
+&nbsp;  ![](documentation/images/meter-30-12.png) &nbsp; &nbsp; *kivakit-core-resource*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-security*  
-&nbsp;  ![](documentation/images/meter-80-12.png) &nbsp; &nbsp; *kivakit-core-serialization-core*  
-&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-core-serialization-jersey-json*  
-&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-core-serialization-json*  
-&nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-core-serialization-kryo*  
-&nbsp;  ![](documentation/images/meter-10-12.png) &nbsp; &nbsp; *kivakit-core-test*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-serialization-core*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-serialization-jersey-json*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-serialization-json*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-serialization-kryo*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-test*  
 &nbsp;  ![](documentation/images/meter-70-12.png) &nbsp; &nbsp; *kivakit-data-compression*  
 &nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-data-formats-csv*  
-&nbsp;  ![](documentation/images/meter-50-12.png) &nbsp; &nbsp; *kivakit-data-formats-library*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-data-formats-library*  
 &nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-data-formats-text*  
 &nbsp;  ![](documentation/images/meter-20-12.png) &nbsp; &nbsp; *kivakit-data-formats-xml*  
 &nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-filesystems-hdfs*  
 &nbsp;  ![](documentation/images/meter-20-12.png) &nbsp; &nbsp; *kivakit-filesystems-hdfs-proxy*  
-&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-filesystems-hdfs-proxy-spi*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-filesystems-hdfs-proxy-spi*  
 &nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-filesystems-s3fs*  
-&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-logs-email*  
+&nbsp;  ![](documentation/images/meter-50-12.png) &nbsp; &nbsp; *kivakit-logs-email*  
 &nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-logs-file*  
 &nbsp;  ![](documentation/images/meter-30-12.png) &nbsp; &nbsp; *kivakit-service-client*  
 &nbsp;  ![](documentation/images/meter-20-12.png) &nbsp; &nbsp; *kivakit-service-registry*  
 &nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-service-server*  
-&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-web-jersey*  
-&nbsp;  ![](documentation/images/meter-50-12.png) &nbsp; &nbsp; *kivakit-web-jetty*  
-&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-web-swagger*  
-&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-web-wicket*
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-web-jersey*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-web-jetty*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-web-swagger*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-web-wicket*
 
 [//]: # (start-user-text)
 

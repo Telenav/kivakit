@@ -16,9 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package
-
-        com.telenav.kivakit.core.serialization.core;
+package com.telenav.kivakit.core.serialization.core;
 
 import com.telenav.kivakit.core.kernel.interfaces.io.Flushable;
 import com.telenav.kivakit.core.kernel.interfaces.naming.Named;

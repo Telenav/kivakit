@@ -30,6 +30,7 @@ import com.telenav.kivakit.core.kernel.language.reflection.Type;
 import com.telenav.kivakit.core.kernel.language.values.version.Version;
 import com.telenav.kivakit.core.kernel.logging.Logger;
 import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -137,7 +138,20 @@ public class ArgumentParser<T>
                 .description(description);
     }
 
+    /**
+     * A fluent builder for argument parsers.
+     *
+     * <ul>
+     *     <li>{@link Type} - The type of the argument</li>
+     *     <li>{@link Quantifier} - The number of times the argument can appear</li>
+     *     <li>Description - The argument description when giving command line help</li>
+     *     <li>{@link Converter} - Converter between argument string value and {@link Type}</li>
+     * </ul>
+     *
+     * @author jonathanl (shibo)
+     */
     @UmlClassDiagram(diagram = DiagramArgument.class)
+    @LexakaiJavadoc(complete = true)
     public static class Builder<T>
     {
         /** The number of times that the argument can appear */

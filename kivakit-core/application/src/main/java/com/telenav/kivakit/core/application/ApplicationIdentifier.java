@@ -20,6 +20,7 @@ package com.telenav.kivakit.core.application;
 
 import com.telenav.kivakit.core.application.project.lexakai.diagrams.DiagramApplication;
 import com.telenav.kivakit.core.kernel.language.values.identifier.StringIdentifier;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -33,6 +34,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
         example = "ServiceRegistryServer")
 @UmlClassDiagram(diagram = DiagramApplication.class)
 @UmlExcludeSuperTypes
+@LexakaiJavadoc(complete = true)
 public class ApplicationIdentifier extends StringIdentifier
 {
     public ApplicationIdentifier(final String identifier)
