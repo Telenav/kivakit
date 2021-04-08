@@ -40,9 +40,9 @@ needs to be set up manually.
 
 ### Projects &nbsp; ![](documentation/images/gears-40.png)
 
-[**kivakit-service-client**](kivakit-service-client/README.md)  
-[**kivakit-service-registry**](kivakit-service-registry/README.md)  
-[**kivakit-service-server**](kivakit-service-server/README.md)  
+[**kivakit-service-client**](client/README.md)  
+[**kivakit-service-registry**](registry/README.md)  
+[**kivakit-service-server**](server/README.md)  
 
 [//]: # (start-user-text)
 

@@ -12,8 +12,8 @@ This project contains projects for compressing data and processing data in commo
 
 ### Projects &nbsp; ![](documentation/images/gears-40.png)
 
-[**kivakit-data-compression**](kivakit-data-compression/README.md)  
-[**kivakit-data-formats**](kivakit-data-formats/README.md)  
+[**kivakit-data-compression**](compression/README.md)  
+[**kivakit-data-formats**](formats/README.md)  
 
 [//]: # (start-user-text)
 

@@ -12,11 +12,11 @@ This project contains core networking projects including resources for common pr
 
 ### Projects &nbsp; ![](documentation/images/gears-40.png)
 
-[**kivakit-core-network-core**](kivakit-core-network-core/README.md)  
-[**kivakit-core-network-email**](kivakit-core-network-email/README.md)  
-[**kivakit-core-network-ftp**](kivakit-core-network-ftp/README.md)  
-[**kivakit-core-network-http**](kivakit-core-network-http/README.md)  
-[**kivakit-core-network-socket**](kivakit-core-network-socket/README.md)  
+[**kivakit-core-network-core**](core/README.md)  
+[**kivakit-core-network-email**](email/README.md)  
+[**kivakit-core-network-ftp**](ftp/README.md)  
+[**kivakit-core-network-http**](http/README.md)  
+[**kivakit-core-network-socket**](socket/README.md)  
 
 [//]: # (start-user-text)
 

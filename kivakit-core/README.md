@@ -12,16 +12,16 @@ This project contains the core functionality of KivaKit, frameworks that are pot
 
 ### Projects &nbsp; ![](documentation/images/gears-40.png)
 
-[**kivakit-core-application**](kivakit-core-application/README.md)  
-[**kivakit-core-collections**](kivakit-core-collections/README.md)  
-[**kivakit-core-commandline**](kivakit-core-commandline/README.md)  
-[**kivakit-core-configuration**](kivakit-core-configuration/README.md)  
-[**kivakit-core-kernel**](kivakit-core-kernel/README.md)  
-[**kivakit-core-network**](kivakit-core-network/README.md)  
-[**kivakit-core-resource**](kivakit-core-resource/README.md)  
-[**kivakit-core-security**](kivakit-core-security/README.md)  
-[**kivakit-core-serialization**](kivakit-core-serialization/README.md)  
-[**kivakit-core-test**](kivakit-core-test/README.md)  
+[**kivakit-core-application**](application/README.md)  
+[**kivakit-core-collections**](collections/README.md)  
+[**kivakit-core-commandline**](commandline/README.md)  
+[**kivakit-core-configuration**](configuration/README.md)  
+[**kivakit-core-kernel**](kernel/README.md)  
+[**kivakit-core-network**](network/README.md)  
+[**kivakit-core-resource**](resource/README.md)  
+[**kivakit-core-security**](security/README.md)  
+[**kivakit-core-serialization**](serialization/README.md)  
+[**kivakit-core-test**](test/README.md)  
 
 [//]: # (start-user-text)
 
