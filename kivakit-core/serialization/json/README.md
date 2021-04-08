@@ -21,7 +21,7 @@ This project contains support for working with JSON.
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId></artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version><!-- ${project-version} --> 0.9.0-SNAPSHOT <!-- end --></version>
     </dependency>
 ![](documentation/images/horizontal-line.png)
 

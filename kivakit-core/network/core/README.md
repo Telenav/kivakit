@@ -25,7 +25,7 @@ kivakit-core-network extend this base functionality.
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId></artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version><!-- ${project-version} --> 0.9.0-SNAPSHOT <!-- end --></version>
     </dependency>
 ![](documentation/images/horizontal-line.png)
 

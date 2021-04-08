@@ -21,7 +21,7 @@ This module provides extensions to the JDK and other packages for everyday Java 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId></artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version><!-- ${project-version} --> 0.9.0-SNAPSHOT <!-- end --></version>
     </dependency>
 ![](documentation/images/horizontal-line.png)
 

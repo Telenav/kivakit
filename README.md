@@ -70,6 +70,7 @@ parts of the framework.
 |--------------|-----------------------------------|
 | Project Name | KivaKit |
 | Summary | Library code for developing Java applications |
+| Javadoc Coverage |  <!-- ${project-javadoc-average-coverage-meter} -->  ![](documentation/images/meter-30-12.png) <!-- end --> |
 | Lead | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
 | Administrator | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
 | Email | [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
@@ -77,7 +78,7 @@ parts of the framework.
 | Code | [GitHub Telenav/kivakit](https://github.com/Telenav/kivakit) |
 | Checkout | `git clone git@github.com:Telenav/kivakit.git` |
 
-<br/>
+<br/> 
 
 ### Quick Start <a name = "quick-start"></a>&nbsp; ![](documentation/images/rocket-40.png)
 
