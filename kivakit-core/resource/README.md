@@ -18,7 +18,7 @@ This module contains abstractions for accessing the filesystem and arbitrary res
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
 
-### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
 [*Dependency Diagram*](documentation/diagrams/dependencies.svg)
 
@@ -29,7 +29,6 @@ This module contains abstractions for accessing the filesystem and arbitrary res
         <artifactId>${project-artifact-id}</artifactId>
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
-
 ![](documentation/images/horizontal-line.png)
 
 [//]: # (start-user-text)
@@ -196,7 +195,7 @@ A wide variety of other resources are available and new ones are easy to write. 
 
 [//]: # (end-user-text)
 
-### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](documentation/images/diagram-48.png)
 
 [*File System - File System Services*](documentation/diagrams/diagram-file-system-service.svg)  
 [*File System - Files*](documentation/diagrams/diagram-file-system-file.svg)  
@@ -209,7 +208,7 @@ A wide variety of other resources are available and new ones are easy to write. 
 [*Resources - Services*](documentation/diagrams/diagram-resource-service.svg)  
 [*diagram-jar-launcher*](documentation/diagrams/diagram-jar-launcher.svg)  
 
-### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.core.filesystem*](documentation/diagrams/com.telenav.kivakit.core.filesystem.svg)  
 [*com.telenav.kivakit.core.filesystem.loader*](documentation/diagrams/com.telenav.kivakit.core.filesystem.loader.svg)  
@@ -231,7 +230,7 @@ A wide variety of other resources are available and new ones are easy to write. 
 [*com.telenav.kivakit.core.resource.store*](documentation/diagrams/com.telenav.kivakit.core.resource.store.svg)  
 [*com.telenav.kivakit.core.resource.writing*](documentation/diagrams/com.telenav.kivakit.core.resource.writing.svg)  
 
-### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
 Javadoc coverage for this project is 21.3%.
 

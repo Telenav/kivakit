@@ -12,7 +12,7 @@ This project facilitates object-oriented parsing of command line arguments and s
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
 
-### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
 [*Dependency Diagram*](documentation/diagrams/dependencies.svg)
 
@@ -23,7 +23,6 @@ This project facilitates object-oriented parsing of command line arguments and s
         <artifactId>${project-artifact-id}</artifactId>
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
-
 ![](documentation/images/horizontal-line.png)
 
 [//]: # (start-user-text)
@@ -36,20 +35,20 @@ arguments and switches is available in the Javadoc for the [*Application*](https
 
 [//]: # (end-user-text)
 
-### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](documentation/images/diagram-48.png)
 
 [*Argument Parsing*](documentation/diagrams/diagram-argument.svg)  
 [*Command Line*](documentation/diagrams/diagram-command-line.svg)  
 [*Command Line Validation*](documentation/diagrams/diagram-validation.svg)  
 [*Switch Parsing*](documentation/diagrams/diagram-switch.svg)  
 
-### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.core.commandline*](documentation/diagrams/com.telenav.kivakit.core.commandline.svg)  
 [*com.telenav.kivakit.core.commandline.parsing*](documentation/diagrams/com.telenav.kivakit.core.commandline.parsing.svg)  
 [*com.telenav.kivakit.core.commandline.project*](documentation/diagrams/com.telenav.kivakit.core.commandline.project.svg)  
 
-### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
 Javadoc coverage for this project is 70.6%.
 

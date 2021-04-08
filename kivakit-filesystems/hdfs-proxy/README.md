@@ -12,7 +12,7 @@ HDFS proxy due to large number of conflicts between HDFS and other projects, esp
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
 
-### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
 [*Dependency Diagram*](documentation/diagrams/dependencies.svg)
 
@@ -23,7 +23,6 @@ HDFS proxy due to large number of conflicts between HDFS and other projects, esp
         <artifactId>${project-artifact-id}</artifactId>
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
-
 ![](documentation/images/horizontal-line.png)
 
 [//]: # (start-user-text)
@@ -34,16 +33,16 @@ HDFS proxy due to large number of conflicts between HDFS and other projects, esp
 
 [//]: # (end-user-text)
 
-### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](documentation/images/diagram-48.png)
 
 [*HDFS Proxy*](documentation/diagrams/diagram-hdfs-proxy.svg)  
 
-### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.filesystems.hdfs.proxy*](documentation/diagrams/com.telenav.kivakit.filesystems.hdfs.proxy.svg)  
 [*com.telenav.kivakit.filesystems.hdfs.proxy.converters*](documentation/diagrams/com.telenav.kivakit.filesystems.hdfs.proxy.converters.svg)  
 
-### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
 Javadoc coverage for this project is 20.0%.
 

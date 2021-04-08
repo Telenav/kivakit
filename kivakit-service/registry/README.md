@@ -12,7 +12,7 @@ This project provides shared registry code to kivakit-service-client and kivakit
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
 
-### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
 [*Dependency Diagram*](documentation/diagrams/dependencies.svg)
 
@@ -23,7 +23,6 @@ This project provides shared registry code to kivakit-service-client and kivakit
         <artifactId>${project-artifact-id}</artifactId>
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
-
 ![](documentation/images/horizontal-line.png)
 
 [//]: # (start-user-text)
@@ -35,12 +34,12 @@ to provide core registration and discovery functionality.
 
 [//]: # (end-user-text)
 
-### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](documentation/images/diagram-48.png)
 
 [*Service Registry*](documentation/diagrams/diagram-registry.svg)  
 [*Service Registry REST Protocol*](documentation/diagrams/diagram-rest.svg)  
 
-### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.service.registry*](documentation/diagrams/com.telenav.kivakit.service.registry.svg)  
 [*com.telenav.kivakit.service.registry.project*](documentation/diagrams/com.telenav.kivakit.service.registry.project.svg)  
@@ -55,7 +54,7 @@ to provide core registration and discovery functionality.
 [*com.telenav.kivakit.service.registry.serialization.serializers*](documentation/diagrams/com.telenav.kivakit.service.registry.serialization.serializers.svg)  
 [*com.telenav.kivakit.service.registry.store*](documentation/diagrams/com.telenav.kivakit.service.registry.store.svg)  
 
-### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
 Javadoc coverage for this project is 23.7%.
 

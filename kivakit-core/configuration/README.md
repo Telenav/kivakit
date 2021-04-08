@@ -13,7 +13,7 @@ deployments. It also provides registration and lookup of objects.
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
 
-### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
 [*Dependency Diagram*](documentation/diagrams/dependencies.svg)
 
@@ -24,7 +24,6 @@ deployments. It also provides registration and lookup of objects.
         <artifactId>${project-artifact-id}</artifactId>
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
-
 ![](documentation/images/horizontal-line.png)
 
 [//]: # (start-user-text)
@@ -37,19 +36,19 @@ Details on how to use the *kivakit-core configuration* API are available in the 
 
 [//]: # (end-user-text)
 
-### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](documentation/images/diagram-48.png)
 
 [*Configuration and Deployment*](documentation/diagrams/diagram-configuration.svg)  
 [*Lookup*](documentation/diagrams/diagram-lookup.svg)  
 
-### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.core.configuration*](documentation/diagrams/com.telenav.kivakit.core.configuration.svg)  
 [*com.telenav.kivakit.core.configuration.lookup*](documentation/diagrams/com.telenav.kivakit.core.configuration.lookup.svg)  
 [*com.telenav.kivakit.core.configuration.project*](documentation/diagrams/com.telenav.kivakit.core.configuration.project.svg)  
 [*com.telenav.kivakit.core.configuration.settings*](documentation/diagrams/com.telenav.kivakit.core.configuration.settings.svg)  
 
-### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
 Javadoc coverage for this project is 75.0%.
 

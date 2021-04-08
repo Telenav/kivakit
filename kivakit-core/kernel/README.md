@@ -12,7 +12,7 @@ This module provides extensions to the JDK and other packages for everyday Java 
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
 
-### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
 [*Dependency Diagram*](documentation/diagrams/dependencies.svg)
 
@@ -23,7 +23,6 @@ This module provides extensions to the JDK and other packages for everyday Java 
         <artifactId>${project-artifact-id}</artifactId>
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
-
 ![](documentation/images/horizontal-line.png)
 
 [//]: # (start-user-text)
@@ -67,7 +66,7 @@ The major feature areas are listed here, each having its own documentation:
 
 [//]: # (end-user-text)
 
-### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](documentation/images/diagram-48.png)
 
 [*Data - Collection and Other Converters*](documentation/diagrams/diagram-data-conversion-other.svg)  
 [*Data - Comparison*](documentation/diagrams/diagram-data-comparison.svg)  
@@ -94,6 +93,7 @@ The major feature areas are listed here, each having its own documentation:
 [*Interfaces - Value*](documentation/diagrams/diagram-interface-value.svg)  
 [*Language - Bit Manipulation*](documentation/diagrams/diagram-language-bits.svg)  
 [*Language - Collections - Lists*](documentation/diagrams/diagram-language-collections-list.svg)  
+[*Language - Collections - Maps*](documentation/diagrams/diagram-language-collections-map.svg)  
 [*Language - Concurrency*](documentation/diagrams/diagram-language-thread.svg)  
 [*Language - I/O*](documentation/diagrams/diagram-language-io.svg)  
 [*Language - Iteration*](documentation/diagrams/diagram-language-iteration.svg)  
@@ -110,7 +110,6 @@ The major feature areas are listed here, each having its own documentation:
 [*Language - Thread Synchronization*](documentation/diagrams/diagram-language-thread-synchronization.svg)  
 [*Language - Time*](documentation/diagrams/diagram-language-time.svg)  
 [*Language - Values*](documentation/diagrams/diagram-language-value.svg)  
-[*Language - Collections - Maps*](documentation/diagrams/diagram-language-collections-map.svg)  
 [*Logging*](documentation/diagrams/diagram-logging.svg)  
 [*Logging - Logs*](documentation/diagrams/diagram-logging-logs.svg)  
 [*Messaging*](documentation/diagrams/diagram-messaging.svg)  
@@ -124,7 +123,7 @@ The major feature areas are listed here, each having its own documentation:
 [*diagram-language-object*](documentation/diagrams/diagram-language-object.svg)  
 [*diagram-language-object-reference*](documentation/diagrams/diagram-language-object-reference.svg)  
 
-### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.core.kernel*](documentation/diagrams/com.telenav.kivakit.core.kernel.svg)  
 [*com.telenav.kivakit.core.kernel.data.comparison*](documentation/diagrams/com.telenav.kivakit.core.kernel.data.comparison.svg)  
@@ -227,7 +226,7 @@ The major feature areas are listed here, each having its own documentation:
 [*com.telenav.kivakit.core.kernel.messaging.repeaters*](documentation/diagrams/com.telenav.kivakit.core.kernel.messaging.repeaters.svg)  
 [*com.telenav.kivakit.core.kernel.project*](documentation/diagrams/com.telenav.kivakit.core.kernel.project.svg)  
 
-### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
 Javadoc coverage for this project is 37.6%.
 
