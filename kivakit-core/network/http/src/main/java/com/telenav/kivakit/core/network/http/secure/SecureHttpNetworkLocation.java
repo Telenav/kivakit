@@ -21,15 +21,22 @@ package com.telenav.kivakit.core.network.http.secure;
 import com.telenav.kivakit.core.network.core.NetworkPath;
 import com.telenav.kivakit.core.network.http.HttpNetworkLocation;
 import com.telenav.kivakit.core.network.http.project.lexakai.diagrams.DiagramHttps;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.network.core.Protocol.HTTPS;
 
+/**
+ * A secure network location using the HTTPS protocol.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramHttps.class)
 @UmlRelation(label = "creates", referent = SecureHttpGetResource.class)
 @UmlRelation(label = "creates", referent = SecureHttpPostResource.class)
+@LexakaiJavadoc(complete = true)
 public class SecureHttpNetworkLocation extends HttpNetworkLocation
 {
     public SecureHttpNetworkLocation(final NetworkPath path)

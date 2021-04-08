@@ -28,6 +28,7 @@ import com.telenav.kivakit.core.network.core.QueryParameters;
 import com.telenav.kivakit.core.network.http.project.lexakai.diagrams.DiagramHttp;
 import com.telenav.kivakit.core.resource.Resource;
 import com.telenav.kivakit.core.resource.Resourced;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import org.apache.http.client.methods.HttpGet;
@@ -42,9 +43,41 @@ import java.net.URISyntaxException;
 
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensure;
 
+/**
+ * An HTTP network location.
+ *
+ * <p><b>Access</b></p>
+ * <p>
+ * <p>
+ * HTTP network locations can be accessed as resources with {@link #resource()}. The can also be accessed with the HTTP
+ * access methods GET, PUT and POST:
+ *
+ * <ul>
+ *     <li>{@link #get()} - A {@link HttpGetResource} with default content type and access constraints</li>
+ *     <li>{@link #get(String)} - A {@link HttpGetResource} with the given content type</li>
+ *     <li>{@link #get(NetworkAccessConstraints)} - A {@link HttpGetResource}  with the given access contraints</li>
+ *     <li>{@link #get(NetworkAccessConstraints, String)} - A {@link HttpGetResource} with the given content type and access constraints</li>
+ *     <li>{@link #post()} - A {@link HttpPostResource} with default content type and access constraints</li>
+ *     <li>{@link #post(String)} - A {@link HttpPostResource} with the given value to post</li>
+ *     <li>{@link #post(String, String)} - A {@link HttpPostResource} with the given content and value to post</li>
+ *     <li>{@link #post(NetworkAccessConstraints)} - A {@link HttpPostResource} with the given constraints</li>
+ *     <li>{@link #post(NetworkAccessConstraints, String, String)} - A {@link HttpPostResource} with the given constrains, content type and value to post</li>
+ *     <li>{@link #put(String, String)} - A {@link HttpPutResource} with the given content type and value to put</li>
+ *     <li>{@link #put(NetworkAccessConstraints, String, String)} - A {@link HttpPutResource} with the given access constraints, content type and value to put</li>
+ * </ul>
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramHttp.class)
+@LexakaiJavadoc(complete = true)
 public class HttpNetworkLocation extends NetworkLocation implements Resourced
 {
+    /**
+     * Converts to and from {@link HttpNetworkLocation}
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<HttpNetworkLocation>
     {
         public Converter(final Listener listener)
@@ -61,7 +94,7 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourced
                 final var uri = new URI(value);
                 final var url = uri.toURL();
                 final var location = new HttpNetworkLocation(NetworkPath.networkPath(uri));
-                location.queryParameters(new QueryParameters(url.getQuery()));
+                location.queryParameters(QueryParameters.parse(url.getQuery()));
                 location.reference(url.getRef());
                 return location;
             }
@@ -88,6 +121,11 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourced
     public HttpNetworkLocation child(final String child)
     {
         return withPath(networkPath().withChild(child));
+    }
+
+    public String content()
+    {
+        return get().content();
     }
 
     public HttpGetResource get()
@@ -198,11 +236,6 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourced
     public HttpPutResource put(final String contentType, final String value)
     {
         return put(NetworkAccessConstraints.DEFAULT, contentType, value);
-    }
-
-    public String readString()
-    {
-        return get().readString();
     }
 
     @Override

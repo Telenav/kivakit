@@ -29,6 +29,7 @@ import com.telenav.kivakit.core.network.core.project.lexakai.diagrams.DiagramNet
 import com.telenav.kivakit.core.resource.path.Extension;
 import com.telenav.kivakit.core.resource.path.FileName;
 import com.telenav.kivakit.core.resource.path.FilePath;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.net.URI;
@@ -65,6 +66,7 @@ import java.util.function.Function;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramNetworkLocation.class)
+@LexakaiJavadoc(complete = true)
 public class NetworkPath extends FilePath
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
@@ -101,6 +103,12 @@ public class NetworkPath extends FilePath
         }
     }
 
+    /**
+     * Converts to and from {@link NetworkPath}s
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<NetworkPath>
     {
         public Converter(final Listener listener)

@@ -18,13 +18,20 @@
 
 package com.telenav.kivakit.core.network.http;
 
-import com.telenav.kivakit.core.network.http.project.lexakai.diagrams.DiagramHttp;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.core.network.core.NetworkLocation;
+import com.telenav.kivakit.core.network.http.project.lexakai.diagrams.DiagramHttp;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.apache.http.client.methods.HttpPost;
 
+/**
+ * A resource accessed by HTTP POST at the given network location using the given access constraints.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramHttp.class)
+@LexakaiJavadoc(complete = true)
 public class HttpPostResource extends BaseHttpResource
 {
     public HttpPostResource(final NetworkLocation networkLocation, final NetworkAccessConstraints constraints)

@@ -106,15 +106,11 @@ project [*kivakit-network-core-email*](../email/README.md) makes use of this cla
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 5.0%.  
+Javadoc coverage for this project is 100.0%.  
   
-&nbsp; &nbsp;  ![](documentation/images/meter-10-12.png)
+&nbsp; &nbsp;  ![](documentation/images/meter-100-12.png)
 
-The following significant classes are undocumented:  
 
-- Host  
-- NetworkLocation  
-- Port
 
 | Class | Documentation Sections |
 |---|---|
@@ -123,7 +119,8 @@ The following significant classes are undocumented:
 | [*CoreNetworkCoreProject*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/project/CoreNetworkCoreProject.html) |  |  
 | [*EmailAddress*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/EmailAddress.html) |  |  
 | [*EmailAddress.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/EmailAddress.Converter.html) |  |  
-| [*Host*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/Host.html) |  |  
+| [*Host*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/Host.html) | Attributes |  
+| | Ports |  
 | [*Host.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/Host.Converter.html) |  |  
 | [*LocalHost*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/LocalHost.html) |  |  
 | [*Loopback*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/Loopback.html) |  |  

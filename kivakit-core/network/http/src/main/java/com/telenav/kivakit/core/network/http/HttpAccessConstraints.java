@@ -18,12 +18,19 @@
 
 package com.telenav.kivakit.core.network.http;
 
+import com.telenav.kivakit.core.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.core.network.http.project.lexakai.diagrams.DiagramHttp;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
-import com.telenav.kivakit.core.network.core.NetworkAccessConstraints;
 
+/**
+ * Network access constraints with {@link HttpBasicCredentials} included.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramHttp.class)
+@LexakaiJavadoc(complete = true)
 public class HttpAccessConstraints extends NetworkAccessConstraints
 {
     @UmlAggregation

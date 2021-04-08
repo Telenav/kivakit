@@ -172,7 +172,6 @@ com.telenav.kivakit.core.resource.store
 com.telenav.kivakit.core.resource.writing
 module:kivakit.core.security
 com.telenav.kivakit.core.security.authentication
-com.telenav.kivakit.core.security.authentication.converters
 com.telenav.kivakit.core.security.authentication.passwords
 com.telenav.kivakit.core.security.digest
 com.telenav.kivakit.core.security.digest.digesters

@@ -20,11 +20,11 @@ This project contains core networking projects including resources for common pr
 
 ### Javadoc Coverage
 
-&nbsp;  ![](documentation/images/meter-10-12.png) &nbsp; &nbsp; *kivakit-core-network-core*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-core*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-email*  
-&nbsp;  ![](documentation/images/meter-10-12.png) &nbsp; &nbsp; *kivakit-core-network-ftp*  
-&nbsp;  ![](documentation/images/meter-10-12.png) &nbsp; &nbsp; *kivakit-core-network-http*  
-&nbsp;  ![](documentation/images/meter-50-12.png) &nbsp; &nbsp; *kivakit-core-network-socket*
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-ftp*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-http*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-socket*
 
 [//]: # (start-user-text)
 

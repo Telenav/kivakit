@@ -9,16 +9,16 @@
     class SecureFtpConnector
     {
         --(constructors)--
-        +SecureFtpConnector(SecureFtpNetworkLocation, NetworkAccessConstraints)
+        +SecureFtpConnector(NetworkAccessConstraints)
         --
-        +void connect()
+        +void connect(NetworkLocation)
         +void disconnect()
-        +void get(NetworkLocation source, WritableResource destination)
+        +void get(NetworkLocation, WritableResource destination)
         +void safeDisconnect()
         --(checks)--
         +boolean isConnected()
         --(filesystem)--
-        +ObjectList<LsEntry> listFiles(NetworkPath)
+        +ObjectList<LsEntry> listFiles(NetworkLocation)
         --(read)--
         +InputStream get(NetworkLocation)
     }
@@ -44,16 +44,16 @@
     }
     
     BaseNetworkResource <|-- SecureFtpResource
-    SecureFtpResource --> SecureFtpInput : "reads"
+    SecureFtpResource --> InputStream : "reads"
     SecureFtpResource o-- NetworkLocation : "accesses"
     class SecureFtpResource
     {
         --(constructors)--
         +SecureFtpResource(NetworkLocation, NetworkAccessConstraints)
         --
-        +void clean()
+        +void disconnect()
         --(extension points)--
-        +^SecureFtpInput onOpenForReading()
+        +^InputStream onOpenForReading()
         --(filesystem)--
         +ObjectList<LsEntry> listFiles()
     }
@@ -81,7 +81,7 @@
     class SftpFolderWatcher
     {
         --(constructors)--
-        +SftpFolderWatcher(Frequency, SecureFtpSettings, NetworkPath)
+        +SftpFolderWatcher(Frequency, SecureFtpSettings, SecureFtpNetworkLocation)
     }
     
 @enduml

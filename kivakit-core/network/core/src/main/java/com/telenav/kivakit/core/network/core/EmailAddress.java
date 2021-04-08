@@ -21,6 +21,7 @@ package com.telenav.kivakit.core.network.core;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.regex.Pattern;
@@ -32,11 +33,15 @@ import java.util.regex.Pattern;
  */
 @Schema(description = "An email address",
         example = "jonathanl@telenav.com")
+@LexakaiJavadoc(complete = true)
 public class EmailAddress
 {
     // See RFC 5322
     private static final Pattern EMAIL_PATTERN = Pattern.compile("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
 
+    /**
+     * @return An email address for the given string, or null if the string is not an email address
+     */
     public static EmailAddress parse(final String email)
     {
         assert email != null;
@@ -48,6 +53,12 @@ public class EmailAddress
         return null;
     }
 
+    /**
+     * Converts to and from an {@link EmailAddress}
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<EmailAddress>
     {
         protected Converter(final Listener listener)

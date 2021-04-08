@@ -19,12 +19,14 @@
 package com.telenav.kivakit.core.network.core.cluster;
 
 import com.telenav.kivakit.core.kernel.language.values.identifier.StringIdentifier;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
- * Identifies a cluster of servers that work together
+ * Identifies a cluster of servers that work together.
  *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class ClusterIdentifier extends StringIdentifier
 {
     public ClusterIdentifier(final String identifier)

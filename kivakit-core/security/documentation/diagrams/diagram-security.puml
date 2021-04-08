@@ -23,14 +23,18 @@
     class PlainTextPassword
     {
         --(constructors)--
-        +PlainTextPassword(String)
+        #PlainTextPassword(String)
+        --(parsing)--
+        +PlainTextPassword parse(String password)
     }
     
     Name <|-- UserName
     class UserName
     {
         --(constructors)--
-        +UserName(String)
+        #UserName(String)
+        --(naming)--
+        +UserName parse(String name)
     }
     
 @enduml

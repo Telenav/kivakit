@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.core.network.email;
 
-import com.telenav.kivakit.core.network.email.senders.SmtpEmailSender;
 import com.telenav.kivakit.core.network.core.EmailAddress;
 import com.telenav.kivakit.core.network.core.Host;
+import com.telenav.kivakit.core.network.email.senders.SmtpEmailSender;
 import com.telenav.kivakit.core.security.authentication.UserName;
 import com.telenav.kivakit.core.security.authentication.passwords.PlainTextPassword;
 import com.telenav.kivakit.core.test.UnitTest;
@@ -48,8 +48,8 @@ public class EmailTest extends UnitTest
 
         final var configuration = new SmtpEmailSender.Configuration()
                 .host(Host.local())
-                .username(new UserName(""))
-                .password(new PlainTextPassword(""));
+                .username(UserName.parse(""))
+                .password(PlainTextPassword.parse(""));
 
         final var sender = new SmtpEmailSender(configuration).sendingOn(false);
         sender.start();

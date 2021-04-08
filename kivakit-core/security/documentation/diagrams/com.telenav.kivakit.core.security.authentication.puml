@@ -23,7 +23,9 @@
     class UserName
     {
         --(constructors)--
-        +UserName(String)
+        #UserName(String)
+        --(naming)--
+        +UserName parse(String name)
     }
     
 @enduml

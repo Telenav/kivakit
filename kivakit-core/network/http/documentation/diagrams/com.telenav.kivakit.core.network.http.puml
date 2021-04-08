@@ -20,6 +20,7 @@
         #BaseHttpResource(NetworkLocation, NetworkAccessConstraints)
         --
         +void consume()
+        +String content()
         +String contentType()
         +String encoding()
         +String header(String header)
@@ -29,8 +30,6 @@
         +HttpStatus status()
         #DefaultHttpClient newClient()
         #HttpUriRequest newRequest()
-        --(read)--
-        +String readString()
     }
     
     BaseStringConverter <|-- HttpNetworkLocation.Converter
@@ -78,6 +77,8 @@
         --(constructors)--
         +HttpNetworkLocation(NetworkLocation)
         +HttpNetworkLocation(NetworkPath)
+        --
+        +String content()
         --(network)--
         +HttpNetworkLocation child(String child)
         +HttpGetResource get(String contentType)
@@ -93,8 +94,6 @@
         +HttpPostResource post(NetworkAccessConstraints, String contentType, String value)
         +HttpPutResource put(String contentType, String value)
         +HttpPutResource put(NetworkAccessConstraints, String contentType, String content)
-        --(read)--
-        +String readString()
     }
     
     BaseHttpResource <|-- HttpPostResource

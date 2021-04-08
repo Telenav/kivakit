@@ -42,7 +42,6 @@ producing simple message digests easier.
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.core.security.authentication*](documentation/diagrams/com.telenav.kivakit.core.security.authentication.svg)  
-[*com.telenav.kivakit.core.security.authentication.converters*](documentation/diagrams/com.telenav.kivakit.core.security.authentication.converters.svg)  
 [*com.telenav.kivakit.core.security.authentication.passwords*](documentation/diagrams/com.telenav.kivakit.core.security.authentication.passwords.svg)  
 [*com.telenav.kivakit.core.security.digest*](documentation/diagrams/com.telenav.kivakit.core.security.digest.svg)  
 [*com.telenav.kivakit.core.security.digest.digesters*](documentation/diagrams/com.telenav.kivakit.core.security.digest.digesters.svg)  
@@ -65,7 +64,7 @@ Javadoc coverage for this project is 100.0%.
 | [*Md5Digester*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/digest/digesters/Md5Digester.html) |  |  
 | [*Password*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/Password.html) |  |  
 | [*PlainTextPassword*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/passwords/PlainTextPassword.html) |  |  
-| [*PlainTextPasswordConverter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/converters/PlainTextPasswordConverter.html) |  |  
+| [*PlainTextPassword.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/passwords/PlainTextPassword.Converter.html) |  |  
 | [*Sha1Digester*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/digest/digesters/Sha1Digester.html) |  |  
 | [*UserName*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/UserName.html) |  |  
 | [*UserName.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/UserName.Converter.html) |  |  

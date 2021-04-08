@@ -70,7 +70,7 @@ parts of the framework.
 |--------------|-----------------------------------|
 | Project Name | KivaKit |
 | Summary | Library code for developing Java applications |
-| Javadoc Coverage |  <!-- ${project-javadoc-average-coverage-meter} -->  ![](documentation/images/meter-30-12.png) <!-- end --> |
+| Javadoc Coverage |  <!-- ${project-javadoc-average-coverage-meter} -->  ![](documentation/images/meter-40-12.png) <!-- end --> |
 | Lead | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
 | Administrator | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
 | Email | [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
@@ -116,11 +116,11 @@ parts of the framework.
 &nbsp;  ![](documentation/images/meter-70-12.png) &nbsp; &nbsp; *kivakit-core-commandline*  
 &nbsp;  ![](documentation/images/meter-80-12.png) &nbsp; &nbsp; *kivakit-core-configuration*  
 &nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-core-kernel*  
-&nbsp;  ![](documentation/images/meter-10-12.png) &nbsp; &nbsp; *kivakit-core-network-core*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-core*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-email*  
-&nbsp;  ![](documentation/images/meter-10-12.png) &nbsp; &nbsp; *kivakit-core-network-ftp*  
-&nbsp;  ![](documentation/images/meter-10-12.png) &nbsp; &nbsp; *kivakit-core-network-http*  
-&nbsp;  ![](documentation/images/meter-50-12.png) &nbsp; &nbsp; *kivakit-core-network-socket*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-ftp*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-http*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-socket*  
 &nbsp;  ![](documentation/images/meter-20-12.png) &nbsp; &nbsp; *kivakit-core-resource*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-security*  
 &nbsp;  ![](documentation/images/meter-80-12.png) &nbsp; &nbsp; *kivakit-core-serialization-core*  

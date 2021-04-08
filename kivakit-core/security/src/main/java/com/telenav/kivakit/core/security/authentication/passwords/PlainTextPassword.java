@@ -18,9 +18,11 @@
 
 package com.telenav.kivakit.core.security.authentication.passwords;
 
+import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.core.kernel.language.strings.AsciiArt;
 import com.telenav.kivakit.core.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.core.kernel.language.strings.conversion.StringFormat;
+import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.security.authentication.Password;
 import com.telenav.kivakit.core.security.project.lexakai.diagrams.DiagramSecurity;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -37,9 +39,34 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 @LexakaiJavadoc(complete = true)
 public class PlainTextPassword implements Password, AsString
 {
+    public static PlainTextPassword parse(final String password)
+    {
+        return new PlainTextPassword(password);
+    }
+
+    /**
+     * Converts passwords to and from {@link Password} objects. {@value}
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
+    public static class Converter extends BaseStringConverter<Password>
+    {
+        public Converter(final Listener listener)
+        {
+            super(listener);
+        }
+
+        @Override
+        protected Password onConvertToObject(final String value)
+        {
+            return parse(value);
+        }
+    }
+
     private final String password;
 
-    public PlainTextPassword(final String password)
+    protected PlainTextPassword(final String password)
     {
         this.password = password;
     }

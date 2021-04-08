@@ -18,19 +18,29 @@
 
 package com.telenav.kivakit.core.network.ftp.secure;
 
-import com.telenav.kivakit.core.network.ftp.project.lexakai.diagrams.DiagramSecureFtp;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.kivakit.core.kernel.language.io.IO;
 import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
 import com.telenav.kivakit.core.network.core.NetworkLocation;
+import com.telenav.kivakit.core.network.ftp.project.lexakai.diagrams.DiagramSecureFtp;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * <b>Not public API</b>
+ * <p>
+ * FTP input stream
+ * </p>
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramSecureFtp.class)
-public class SecureFtpInput extends InputStream
+@LexakaiJavadoc(complete = true)
+class SecureFtpInput extends InputStream
 {
     protected static SecureFtpInput forConnectorAndLocation(final SecureFtpConnector connector,
                                                             final NetworkLocation networkLocation)

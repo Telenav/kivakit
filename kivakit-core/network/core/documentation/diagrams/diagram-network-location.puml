@@ -99,11 +99,13 @@
     class QueryParameters
     {
         --(constructors)--
-        +QueryParameters(String)
+        #QueryParameters(String)
         +QueryParameters(VariableMap<String>)
         --(collection)--
         +VariableMap<String> asMap()
         +boolean isEmpty()
+        --(search)--
+        +QueryParameters parse(String)
     }
     
 @enduml

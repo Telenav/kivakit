@@ -58,9 +58,9 @@ a connection is made. Usage looks like this:
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 50.0%.  
+Javadoc coverage for this project is 100.0%.  
   
-&nbsp; &nbsp;  ![](documentation/images/meter-50-12.png)
+&nbsp; &nbsp;  ![](documentation/images/meter-100-12.png)
 
 
 

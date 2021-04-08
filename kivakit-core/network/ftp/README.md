@@ -44,13 +44,11 @@ This module provides FTP resources.
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 9.1%.  
+Javadoc coverage for this project is 100.0%.  
   
-&nbsp; &nbsp;  ![](documentation/images/meter-10-12.png)
+&nbsp; &nbsp;  ![](documentation/images/meter-100-12.png)
 
-The following significant classes are undocumented:  
 
-- SftpFolderWatcher
 
 | Class | Documentation Sections |
 |---|---|

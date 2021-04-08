@@ -31,7 +31,7 @@ public class HttpNetworkLocationTest extends WebUnitTest
         if (startWebServer(port))
         {
             final HttpNetworkLocation location = new HttpNetworkLocation(Host.loopback().http(port).path("test.txt"));
-            final String text = location.readString();
+            final String text = location.content();
             ensureEqual("This is a test.", text);
         }
     }

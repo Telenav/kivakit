@@ -66,23 +66,20 @@ The *SecureHttpNetworkLocation*, *SecureHttpGetResource* and *SecureHttpPostReso
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 7.1%.  
+Javadoc coverage for this project is 100.0%.  
   
-&nbsp; &nbsp;  ![](documentation/images/meter-10-12.png)
+&nbsp; &nbsp;  ![](documentation/images/meter-100-12.png)
 
-The following significant classes are undocumented:  
 
-- BaseHttpResource  
-- HttpNetworkLocation
 
 | Class | Documentation Sections |
 |---|---|
-| [*BaseHttpResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/BaseHttpResource.html) |  |  
+| [*BaseHttpResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/BaseHttpResource.html) | Content |  
 | [*CoreNetworkHttpProject*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/project/CoreNetworkHttpProject.html) |  |  
 | [*HttpAccessConstraints*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpAccessConstraints.html) |  |  
 | [*HttpBasicCredentials*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpBasicCredentials.html) |  |  
 | [*HttpGetResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpGetResource.html) |  |  
-| [*HttpNetworkLocation*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpNetworkLocation.html) |  |  
+| [*HttpNetworkLocation*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpNetworkLocation.html) | Access |  
 | [*HttpNetworkLocation.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpNetworkLocation.Converter.html) |  |  
 | [*HttpPostResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpPostResource.html) |  |  
 | [*HttpPutResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpPutResource.html) |  |  

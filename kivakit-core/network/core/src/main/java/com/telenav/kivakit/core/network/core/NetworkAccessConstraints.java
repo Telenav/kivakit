@@ -28,9 +28,16 @@ import com.telenav.kivakit.core.kernel.language.time.Duration;
 import com.telenav.kivakit.core.network.core.project.lexakai.diagrams.DiagramNetworkLocation;
 import com.telenav.kivakit.core.security.authentication.Password;
 import com.telenav.kivakit.core.security.authentication.UserName;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
+/**
+ * Access constraints for network requests, including {@link #timeout()} and authentication requirements.
+ *
+ * @author jonathanl (shibo)
+ */
+@LexakaiJavadoc(complete = true)
 @UmlClassDiagram(diagram = DiagramNetworkLocation.class)
 public class NetworkAccessConstraints implements Validatable
 {

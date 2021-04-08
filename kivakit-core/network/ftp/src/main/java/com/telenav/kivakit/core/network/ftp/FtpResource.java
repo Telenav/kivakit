@@ -18,8 +18,6 @@
 
 package com.telenav.kivakit.core.network.ftp;
 
-import com.telenav.kivakit.core.network.ftp.project.lexakai.diagrams.DiagramFtp;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.core.kernel.language.io.IO;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
@@ -32,8 +30,11 @@ import com.telenav.kivakit.core.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.core.network.core.NetworkLocation;
 import com.telenav.kivakit.core.network.core.NetworkPath;
 import com.telenav.kivakit.core.network.core.Protocol;
+import com.telenav.kivakit.core.network.ftp.project.lexakai.diagrams.DiagramFtp;
 import com.telenav.kivakit.core.resource.CopyMode;
 import com.telenav.kivakit.core.resource.WritableResource;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
@@ -53,6 +54,7 @@ import java.util.List;
  * @author ericg
  */
 @UmlClassDiagram(diagram = DiagramFtp.class)
+@LexakaiJavadoc(complete = true)
 public class FtpResource extends BaseNetworkResource
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
@@ -62,6 +64,7 @@ public class FtpResource extends BaseNetworkResource
      *
      * @author ericg
      */
+    @LexakaiJavadoc(complete = true)
     private static class FtpInput extends InputStream
     {
         private final FTPClient client;

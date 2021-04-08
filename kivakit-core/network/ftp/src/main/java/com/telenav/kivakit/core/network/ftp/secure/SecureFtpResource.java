@@ -19,39 +19,48 @@
 package com.telenav.kivakit.core.network.ftp.secure;
 
 import com.jcraft.jsch.ChannelSftp.LsEntry;
-import com.telenav.kivakit.core.network.ftp.project.lexakai.diagrams.DiagramSecureFtp;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.associations.UmlAggregation;
-import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.kivakit.core.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
 import com.telenav.kivakit.core.network.core.BaseNetworkResource;
 import com.telenav.kivakit.core.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.core.network.core.NetworkLocation;
+import com.telenav.kivakit.core.network.ftp.project.lexakai.diagrams.DiagramSecureFtp;
 import com.telenav.kivakit.core.resource.CopyMode;
 import com.telenav.kivakit.core.resource.WritableResource;
 import com.telenav.kivakit.core.resource.compression.codecs.GzipCodec;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+import com.telenav.lexakai.annotations.associations.UmlAggregation;
+import com.telenav.lexakai.annotations.associations.UmlRelation;
 
+import java.io.InputStream;
+
+/**
+ * A resource accessed by SFTP. A list of files can be retrieved with {@link #listFiles()}.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramSecureFtp.class)
+@LexakaiJavadoc(complete = true)
 public class SecureFtpResource extends BaseNetworkResource
 {
     private final SecureFtpConnector connector;
 
     @UmlAggregation(label = "accesses")
-    private final NetworkLocation networkLocation;
+    private final NetworkLocation location;
 
-    public SecureFtpResource(final NetworkLocation networkLocation, final NetworkAccessConstraints constraints)
+    public SecureFtpResource(final NetworkLocation location, final NetworkAccessConstraints constraints)
     {
-        super(networkLocation);
-        if (!(networkLocation instanceof SecureFtpNetworkLocation))
+        super(location);
+        if (!(location instanceof SecureFtpNetworkLocation))
         {
-            throw new IllegalArgumentException("SFTP request must use an sftp network location:  " + networkLocation);
+            throw new IllegalArgumentException("SFTP request must use an sftp network location:  " + location);
         }
-        connector = new SecureFtpConnector((SecureFtpNetworkLocation) networkLocation, constraints);
-        this.networkLocation = networkLocation;
+        connector = new SecureFtpConnector(constraints);
+        this.location = location;
 
-        if (networkLocation.networkPath().fileName().endsWith(".gz"))
+        if (location.networkPath().fileName().endsWith(".gz"))
         {
             codec(new GzipCodec());
         }
@@ -63,11 +72,6 @@ public class SecureFtpResource extends BaseNetworkResource
         return null;
     }
 
-    public void clean()
-    {
-        connector.safeDisconnect();
-    }
-
     /**
      * Copy this resource to the disk
      */
@@ -76,15 +80,20 @@ public class SecureFtpResource extends BaseNetworkResource
     {
         try
         {
-            connector.connect();
+            connector.connect(location);
             reporter.start();
-            connector.get(networkLocation, destination);
+            connector.get(location, destination);
             reporter.end();
         }
         finally
         {
-            clean();
+            disconnect();
         }
+    }
+
+    public void disconnect()
+    {
+        connector.safeDisconnect();
     }
 
     /**
@@ -92,22 +101,22 @@ public class SecureFtpResource extends BaseNetworkResource
      */
     public ObjectList<LsEntry> listFiles()
     {
-        connector.connect();
-        return connector.listFiles(networkLocation.networkPath());
+        connector.connect(location);
+        return connector.listFiles(location);
     }
 
     @Override
     public NetworkLocation location()
     {
-        return networkLocation;
+        return location;
     }
 
     @Override
     @UmlRelation(label = "reads")
-    public SecureFtpInput onOpenForReading()
+    public InputStream onOpenForReading()
     {
-        connector.connect();
-        return SecureFtpInput.forConnectorAndLocation(connector, networkLocation);
+        connector.connect(location);
+        return SecureFtpInput.forConnectorAndLocation(connector, location);
     }
 
     @Override
