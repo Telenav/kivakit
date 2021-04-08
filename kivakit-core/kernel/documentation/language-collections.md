@@ -77,8 +77,8 @@ The *kivakit-core-resources* extends *VariableMap* with *PropertyMap*, adding th
 *Resource*s (including *File*s, *InputStream*s and *PackageResource*s) and write data to *WritableResources*  
 (including *Files* and *OutputStream*s). *PropertyMaps* and *VariableMaps* are used in various parts of the  
 KivaKit to 'interpolate' values into a *String* (through the *VariableMap.expanded(String)* method). A good  
-example of this is the [*
-MessageFormatter*](http://telenav-kivakit.mypna.com/8.0.6-SNAPSHOT/apidocs/com.telenav.kivakit.core.kernel/com/telenav/kivakit/core/kernel/messaging/messages/MessageFormatter.html)
+example of this is the 
+[*MessageFormatter*](http://telenav-kivakit.mypna.com/8.0.6-SNAPSHOT/apidocs/com.telenav.kivakit.core.kernel/com/telenav/kivakit/core/kernel/messaging/messages/MessageFormatter.html)
 class which provides variable expansion for the *messaging*  
 and *logging* frameworks.
 

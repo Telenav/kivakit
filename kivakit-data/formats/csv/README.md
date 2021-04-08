@@ -14,7 +14,7 @@ This module reads and writes CSV data.
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
 
-### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
 [*Dependency Diagram*](documentation/diagrams/dependencies.svg)
 
@@ -25,7 +25,6 @@ This module reads and writes CSV data.
         <artifactId>${project-artifact-id}</artifactId>
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
-
 ![](documentation/images/horizontal-line.png)
 
 [//]: # (start-user-text)
@@ -80,16 +79,16 @@ For example (using the schema defined above):
 
 [//]: # (end-user-text)
 
-### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](documentation/images/diagram-48.png)
 
 [*CSV Data Format*](documentation/diagrams/diagram-csv.svg)  
 
-### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.data.formats.csv*](documentation/diagrams/com.telenav.kivakit.data.formats.csv.svg)  
 [*com.telenav.kivakit.data.formats.project*](documentation/diagrams/com.telenav.kivakit.data.formats.project.svg)  
 
-### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
 Javadoc coverage for this project is 42.9%.
 

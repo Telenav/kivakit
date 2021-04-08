@@ -18,7 +18,7 @@ This module provides collections, iteration support, primitive collections, stac
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
 
-### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
 [*Dependency Diagram*](documentation/diagrams/dependencies.svg)
 
@@ -29,7 +29,6 @@ This module provides collections, iteration support, primitive collections, stac
         <artifactId>${project-artifact-id}</artifactId>
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
-
 ![](documentation/images/horizontal-line.png)
 
 [//]: # (start-user-text)
@@ -38,7 +37,7 @@ This module provides collections, iteration support, primitive collections, stac
 
 [//]: # (end-user-text)
 
-### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](documentation/images/diagram-48.png)
 
 [*Batch Processing*](documentation/diagrams/diagram-batch-processing.svg)  
 [*Collection Watching*](documentation/diagrams/diagram-watcher.svg)  
@@ -56,7 +55,7 @@ This module provides collections, iteration support, primitive collections, stac
 [*Stacks*](documentation/diagrams/diagram-stack.svg)  
 [*Two-Dimensional Arrays*](documentation/diagrams/diagram-primitive-array-array.svg)  
 
-### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.core.collections.batcher*](documentation/diagrams/com.telenav.kivakit.core.collections.batcher.svg)  
 [*com.telenav.kivakit.core.collections.iteration.iterables*](documentation/diagrams/com.telenav.kivakit.core.collections.iteration.iterables.svg)  
@@ -90,7 +89,7 @@ This module provides collections, iteration support, primitive collections, stac
 [*com.telenav.kivakit.core.collections.stack*](documentation/diagrams/com.telenav.kivakit.core.collections.stack.svg)  
 [*com.telenav.kivakit.core.collections.watcher*](documentation/diagrams/com.telenav.kivakit.core.collections.watcher.svg)  
 
-### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
 Javadoc coverage for this project is 60.8%.
 

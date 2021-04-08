@@ -12,7 +12,7 @@ Service provider interface for HDFS proxy.
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
 
-### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
 [*Dependency Diagram*](documentation/diagrams/dependencies.svg)
 
@@ -23,7 +23,6 @@ Service provider interface for HDFS proxy.
         <artifactId>${project-artifact-id}</artifactId>
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
-
 ![](documentation/images/horizontal-line.png)
 
 [//]: # (start-user-text)
@@ -34,15 +33,15 @@ Service provider interface for HDFS proxy.
 
 [//]: # (end-user-text)
 
-### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](documentation/images/diagram-48.png)
 
 [*HDFS Proxy Service Provider Interface (SPI)*](documentation/diagrams/diagram-hdfs-spi.svg)  
 
-### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.filesystems.hdfs.proxy.spi*](documentation/diagrams/com.telenav.kivakit.filesystems.hdfs.proxy.spi.svg)  
 
-### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
 Javadoc coverage for this project is 0.0%.
 

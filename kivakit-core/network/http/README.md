@@ -15,7 +15,7 @@ This module provides HTTP and HTTPS resources.
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
 
-### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
 [*Dependency Diagram*](documentation/diagrams/dependencies.svg)
 
@@ -26,7 +26,6 @@ This module provides HTTP and HTTPS resources.
         <artifactId>${project-artifact-id}</artifactId>
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
-
 ![](documentation/images/horizontal-line.png)
 
 [//]: # (start-user-text)
@@ -54,18 +53,18 @@ The *SecureHttpNetworkLocation*, *SecureHttpGetResource* and *SecureHttpPostReso
 
 [//]: # (end-user-text)
 
-### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](documentation/images/diagram-48.png)
 
 [*HTTP*](documentation/diagrams/diagram-http.svg)  
 [*Secure HTTP*](documentation/diagrams/diagram-https.svg)  
 
-### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.core.network.http*](documentation/diagrams/com.telenav.kivakit.core.network.http.svg)  
 [*com.telenav.kivakit.core.network.http.project*](documentation/diagrams/com.telenav.kivakit.core.network.http.project.svg)  
 [*com.telenav.kivakit.core.network.http.secure*](documentation/diagrams/com.telenav.kivakit.core.network.http.secure.svg)  
 
-### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
 Javadoc coverage for this project is 7.1%.
 

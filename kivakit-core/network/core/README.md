@@ -16,7 +16,7 @@ kivakit-core-network extend this base functionality.
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
 
-### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
 [*Dependency Diagram*](documentation/diagrams/dependencies.svg)
 
@@ -27,7 +27,6 @@ kivakit-core-network extend this base functionality.
         <artifactId>${project-artifact-id}</artifactId>
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
-
 ![](documentation/images/horizontal-line.png)
 
 [//]: # (start-user-text)
@@ -94,18 +93,18 @@ project [*kivakit-network-core-email*](../email/README.md) makes use of this cla
 
 [//]: # (end-user-text)
 
-### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](documentation/images/diagram-48.png)
 
 [*Hosts, Ports and Protocols*](documentation/diagrams/diagram-port.svg)  
 [*Network Locations*](documentation/diagrams/diagram-network-location.svg)  
 
-### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.core.network.core*](documentation/diagrams/com.telenav.kivakit.core.network.core.svg)  
 [*com.telenav.kivakit.core.network.core.cluster*](documentation/diagrams/com.telenav.kivakit.core.network.core.cluster.svg)  
 [*com.telenav.kivakit.core.network.core.project*](documentation/diagrams/com.telenav.kivakit.core.network.core.project.svg)  
 
-### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
 Javadoc coverage for this project is 5.0%.
 

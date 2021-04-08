@@ -2,7 +2,7 @@
 
     !include ../lexakai/lexakai.theme
     
-    title "Language - ∑Collections - Maps"
+    title "Language - Collections - Maps"
     
     abstract BaseStringMap
     abstract BaseMap

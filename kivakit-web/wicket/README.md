@@ -12,7 +12,7 @@ This project contains support for using Apache Wicket on Jetty.
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
 
-### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
 [*Dependency Diagram*](documentation/diagrams/dependencies.svg)
 
@@ -23,7 +23,6 @@ This project contains support for using Apache Wicket on Jetty.
         <artifactId>${project-artifact-id}</artifactId>
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
-
 ![](documentation/images/horizontal-line.png)
 
 [//]: # (start-user-text)
@@ -41,11 +40,11 @@ Other servlets and filters, for example [Swagger](../swagger/README.md) and [Jer
 
 [//]: # (end-user-text)
 
-### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](documentation/images/diagram-48.png)
 
 None
 
-### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.web.wicket*](documentation/diagrams/com.telenav.kivakit.web.wicket.svg)  
 [*com.telenav.kivakit.web.wicket.behaviors.status*](documentation/diagrams/com.telenav.kivakit.web.wicket.behaviors.status.svg)  
@@ -56,7 +55,7 @@ None
 [*com.telenav.kivakit.web.wicket.project*](documentation/diagrams/com.telenav.kivakit.web.wicket.project.svg)  
 [*com.telenav.kivakit.web.wicket.theme*](documentation/diagrams/com.telenav.kivakit.web.wicket.theme.svg)  
 
-### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
 Javadoc coverage for this project is 0.0%.
 

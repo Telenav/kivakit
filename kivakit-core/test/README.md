@@ -12,7 +12,7 @@ This module contains functionality for unit testing.
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
 
-### Dependencies &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
 [*Dependency Diagram*](documentation/diagrams/dependencies.svg)
 
@@ -23,7 +23,6 @@ This module contains functionality for unit testing.
         <artifactId>${project-artifact-id}</artifactId>
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
-
 ![](documentation/images/horizontal-line.png)
 
 [//]: # (start-user-text)
@@ -32,11 +31,11 @@ This module contains functionality for unit testing.
 
 [//]: # (end-user-text)
 
-### Class Diagrams &nbsp; &nbsp;![](documentation/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](documentation/images/diagram-48.png)
 
 [*Testing*](documentation/diagrams/diagram-test.svg)  
 
-### Package Diagrams &nbsp;&nbsp;![](documentation/images/box-40.png)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.core.test*](documentation/diagrams/com.telenav.kivakit.core.test.svg)  
 [*com.telenav.kivakit.core.test.annotations*](documentation/diagrams/com.telenav.kivakit.core.test.annotations.svg)  
@@ -44,7 +43,7 @@ This module contains functionality for unit testing.
 [*com.telenav.kivakit.core.test.random*](documentation/diagrams/com.telenav.kivakit.core.test.random.svg)  
 [*com.telenav.kivakit.core.test.reporters*](documentation/diagrams/com.telenav.kivakit.core.test.reporters.svg)  
 
-### Javadoc &nbsp;&nbsp;![](documentation/images/books-40.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
 Javadoc coverage for this project is 25.0%.
 
