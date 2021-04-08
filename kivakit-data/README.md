@@ -17,7 +17,7 @@ This project contains projects for compressing data and processing data in commo
 
 ### Javadoc Coverage
 
-&nbsp;  ![](documentation/images/meter-60-12.png) &nbsp; &nbsp; *kivakit-data-compression*  
+&nbsp;  ![](documentation/images/meter-70-12.png) &nbsp; &nbsp; *kivakit-data-compression*  
 &nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-data-formats-csv*  
 &nbsp;  ![](documentation/images/meter-50-12.png) &nbsp; &nbsp; *kivakit-data-formats-library*  
 &nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-data-formats-text*  

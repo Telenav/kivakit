@@ -45,9 +45,9 @@ This module contains functionality for unit testing.
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 25.0%.  
+Javadoc coverage for this project is 14.3%.  
   
-&nbsp; &nbsp;  ![](documentation/images/meter-30-12.png)
+&nbsp; &nbsp;  ![](documentation/images/meter-10-12.png)
 
 
 

@@ -42,7 +42,7 @@ This module provides integration of the Kryo serialization framework with KivaKi
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 37.5%.  
+Javadoc coverage for this project is 42.9%.  
   
 &nbsp; &nbsp;  ![](documentation/images/meter-40-12.png)
 

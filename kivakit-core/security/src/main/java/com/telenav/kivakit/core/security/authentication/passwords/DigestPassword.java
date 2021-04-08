@@ -19,11 +19,19 @@
 package com.telenav.kivakit.core.security.authentication.passwords;
 
 import com.telenav.kivakit.core.security.project.lexakai.diagrams.DiagramSecurity;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Base64;
 
+/**
+ * A message-digested password created with the {@link Base64} encoder in *java.util*. This is not at all secure, but
+ * can make it difficult to memorize a password on seeing it briefly.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramSecurity.class)
+@LexakaiJavadoc(complete = true)
 public class DigestPassword extends PlainTextPassword
 {
     public DigestPassword(final String password)

@@ -106,7 +106,7 @@ parts of the framework.
 [**kivakit-filesystems**](kivakit-filesystems/README.md)  
 [**kivakit-logs**](kivakit-logs/README.md)  
 [**kivakit-service**](kivakit-service/README.md)  
-[**kivakit-web**](kivakit-web/README.md)
+[**kivakit-web**](kivakit-web/README.md)  
 
 ### Javadoc Coverage
 
@@ -121,13 +121,13 @@ parts of the framework.
 &nbsp;  ![](documentation/images/meter-10-12.png) &nbsp; &nbsp; *kivakit-core-network-http*  
 &nbsp;  ![](documentation/images/meter-50-12.png) &nbsp; &nbsp; *kivakit-core-network-socket*  
 &nbsp;  ![](documentation/images/meter-20-12.png) &nbsp; &nbsp; *kivakit-core-resource*  
-&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-core-security*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-security*  
 &nbsp;  ![](documentation/images/meter-80-12.png) &nbsp; &nbsp; *kivakit-core-serialization-core*  
 &nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-core-serialization-jersey-json*  
 &nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-core-serialization-json*  
 &nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-core-serialization-kryo*  
-&nbsp;  ![](documentation/images/meter-30-12.png) &nbsp; &nbsp; *kivakit-core-test*  
-&nbsp;  ![](documentation/images/meter-60-12.png) &nbsp; &nbsp; *kivakit-data-compression*  
+&nbsp;  ![](documentation/images/meter-10-12.png) &nbsp; &nbsp; *kivakit-core-test*  
+&nbsp;  ![](documentation/images/meter-70-12.png) &nbsp; &nbsp; *kivakit-data-compression*  
 &nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-data-formats-csv*  
 &nbsp;  ![](documentation/images/meter-50-12.png) &nbsp; &nbsp; *kivakit-data-formats-library*  
 &nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-data-formats-text*  
@@ -142,7 +142,7 @@ parts of the framework.
 &nbsp;  ![](documentation/images/meter-20-12.png) &nbsp; &nbsp; *kivakit-service-registry*  
 &nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-service-server*  
 &nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-web-jersey*  
-&nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-web-jetty*  
+&nbsp;  ![](documentation/images/meter-50-12.png) &nbsp; &nbsp; *kivakit-web-jetty*  
 &nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-web-swagger*  
 &nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-web-wicket*
 

@@ -18,10 +18,18 @@
 
 package com.telenav.kivakit.core.security.authentication;
 
-import com.telenav.kivakit.core.security.project.lexakai.diagrams.DiagramSecurity;
 import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
+import com.telenav.kivakit.core.security.project.lexakai.diagrams.DiagramSecurity;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * A password can be used to match against another password to perform authentication.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramSecurity.class)
+@LexakaiJavadoc(complete = true)
 public interface Password extends Matcher<Password>
-{}
+{
+}

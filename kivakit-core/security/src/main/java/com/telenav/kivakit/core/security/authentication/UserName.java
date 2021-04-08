@@ -18,15 +18,28 @@
 
 package com.telenav.kivakit.core.security.authentication;
 
-import com.telenav.kivakit.core.security.project.lexakai.diagrams.DiagramSecurity;
 import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.core.kernel.language.values.name.Name;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
+import com.telenav.kivakit.core.security.project.lexakai.diagrams.DiagramSecurity;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * A user name for use in authentication.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramSecurity.class)
+@LexakaiJavadoc(complete = true)
 public class UserName extends Name
 {
+    /**
+     * Converts {@link UserName} objects to and from strings.
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<UserName>
     {
         public Converter(final Listener listener)

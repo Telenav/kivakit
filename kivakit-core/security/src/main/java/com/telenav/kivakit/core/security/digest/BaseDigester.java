@@ -19,12 +19,19 @@
 package com.telenav.kivakit.core.security.digest;
 
 import com.telenav.kivakit.core.security.project.lexakai.diagrams.DiagramSecurityDigest;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Base class for message digesters. The method {@link #digest(byte[])} creates the digest.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramSecurityDigest.class)
+@LexakaiJavadoc(complete = true)
 public abstract class BaseDigester implements Digester
 {
     private final String algorithmName;
