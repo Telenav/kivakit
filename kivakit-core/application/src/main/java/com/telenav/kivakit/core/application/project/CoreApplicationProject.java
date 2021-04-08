@@ -20,10 +20,14 @@ package com.telenav.kivakit.core.application.project;
 
 import com.telenav.kivakit.core.kernel.language.objects.Lazy;
 import com.telenav.kivakit.core.kernel.project.Project;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Project class for kivakit-core-application
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class CoreApplicationProject extends Project
 {
     private static final Lazy<CoreApplicationProject> singleton = Lazy.of(CoreApplicationProject::new);

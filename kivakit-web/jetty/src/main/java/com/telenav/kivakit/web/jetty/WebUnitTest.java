@@ -18,44 +18,50 @@
 
 package com.telenav.kivakit.web.jetty;
 
-import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.kernel.messaging.messages.status.Problem;
+import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import org.eclipse.jetty.server.HttpConfiguration;
 import org.eclipse.jetty.server.HttpConnectionFactory;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.webapp.WebAppContext;
 
+/**
+ * Adds a web server to {@link UnitTest} that can be started with {@link #startWebServer(int, FilePath)} where {@link
+ * FilePath} is the folder for WAR resources.
+ *
+ * @author jonathanl (shibo)
+ */
+@LexakaiJavadoc(complete = true)
 public class WebUnitTest extends UnitTest
 {
+    /**
+     * @param portNumber The port number to use
+     * @param war The path to WAR resources
+     */
     @SuppressWarnings("SameParameterValue")
-    protected boolean startWebServer(final int portNumber)
+    protected void startWebServer(final int portNumber, final FilePath war)
     {
-        final var war = Folder.parse("eclipse-build/main/test");
-        if (war != null && war.exists())
+        final HttpConfiguration http = new HttpConfiguration();
+        final Server server = new Server();
+        final ServerConnector connector = new ServerConnector(server, new HttpConnectionFactory(http));
+        connector.setPort(portNumber);
+        server.addConnector(connector);
+
+        final WebAppContext webapp = new WebAppContext();
+        webapp.setContextPath("/");
+        webapp.setWar(war.asString());
+        server.setHandler(webapp);
+
+        try
         {
-            final HttpConfiguration http = new HttpConfiguration();
-            final Server server = new Server();
-            final ServerConnector connector = new ServerConnector(server, new HttpConnectionFactory(http));
-            connector.setPort(portNumber);
-            server.addConnector(connector);
-
-            final WebAppContext webapp = new WebAppContext();
-            webapp.setContextPath("/");
-            webapp.setWar("eclipse-build/main/test");
-            server.setHandler(webapp);
-
-            try
-            {
-                server.start();
-            }
-            catch (final Exception e)
-            {
-                throw new Problem(e, "Couldn't start embedded Jetty web server").asException();
-            }
-            return true;
+            server.start();
         }
-        return false;
+        catch (final Exception e)
+        {
+            throw new Problem(e, "Couldn't start embedded Jetty web server").asException();
+        }
     }
 }

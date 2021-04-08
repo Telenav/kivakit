@@ -20,10 +20,14 @@ package com.telenav.kivakit.data.formats.library.project;
 
 import com.telenav.kivakit.core.kernel.language.objects.Lazy;
 import com.telenav.kivakit.core.kernel.project.Project;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Project class for kivakit-data-formats-library
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class DataFormatsLibraryProject extends Project
 {
     private static final Lazy<DataFormatsLibraryProject> singleton = Lazy.of(DataFormatsLibraryProject::new);

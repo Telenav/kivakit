@@ -18,13 +18,20 @@
 
 package com.telenav.kivakit.core.filesystem;
 
+import com.telenav.kivakit.core.kernel.language.time.ModificationTimestamped;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFile;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFolder;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.kivakit.core.kernel.language.time.ModificationTimestamped;
 
+/**
+ * Base class for all filesystem objects.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
+@LexakaiJavadoc(complete = true)
 public interface FileSystemObject extends ModificationTimestamped
 {
 }

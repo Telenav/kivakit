@@ -227,7 +227,7 @@ public abstract class S3FileSystemObject extends BaseWritableResource implements
     }
 
     @Override
-    public FolderService rootFolderService()
+    public FolderService root()
     {
         return new S3Folder(path(scheme(), bucket(), ""));
     }

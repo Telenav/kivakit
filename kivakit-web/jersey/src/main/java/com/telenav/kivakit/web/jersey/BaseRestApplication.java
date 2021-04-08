@@ -16,25 +16,17 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.web.jetty.resources;
+package com.telenav.kivakit.web.jersey;
 
-import com.telenav.kivakit.web.jetty.JettyRequestHandler;
-import org.eclipse.jetty.servlet.ServletHolder;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import org.glassfish.jersey.server.ResourceConfig;
 
 /**
- * Base class for handling servlet requests.
+ * Base class for Rest applications that clarifies the Jersey API.
  *
  * @author jonathanl (shibo)
  */
-public abstract class JettyServlet extends JettyRequestHandler
+@LexakaiJavadoc(complete = true)
+public class BaseRestApplication extends ResourceConfig
 {
-    public JettyServlet(final String name)
-    {
-        super(name);
-    }
-
-    /**
-     * @return Jetty-specific adaptor for servlets
-     */
-    public abstract ServletHolder holder();
 }

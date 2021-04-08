@@ -19,7 +19,7 @@
 package com.telenav.kivakit.service.registry.server.rest;
 
 import com.telenav.kivakit.service.registry.serialization.ServiceRegistryJerseySerializer;
-import com.telenav.kivakit.web.jersey.JettyJerseyRestApplication;
+import com.telenav.kivakit.web.jersey.BaseRestApplication;
 
 import javax.ws.rs.ApplicationPath;
 
@@ -27,7 +27,7 @@ import javax.ws.rs.ApplicationPath;
  * @author jonathanl (shibo)
  */
 @ApplicationPath("/api")
-public class ServiceRegistryRestApplication extends JettyJerseyRestApplication
+public class ServiceRegistryRestApplication extends BaseRestApplication
 {
     public ServiceRegistryRestApplication()
     {

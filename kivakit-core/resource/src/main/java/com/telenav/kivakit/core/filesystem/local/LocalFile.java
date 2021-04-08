@@ -26,6 +26,7 @@ import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
 import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemService;
 import com.telenav.kivakit.core.resource.writing.BaseWritableResource;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
@@ -42,8 +43,14 @@ import java.util.HashSet;
 
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 
+/**
+ * Implementation of {@link FileService} provider interface for the local filesystem.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 @UmlNotPublicApi
+@LexakaiJavadoc(complete = true)
 public class LocalFile extends BaseWritableResource implements FileService
 {
     public static boolean isFile(final FilePath path)
@@ -122,7 +129,7 @@ public class LocalFile extends BaseWritableResource implements FileService
     @Override
     public DiskService diskService()
     {
-        return rootFolderService().diskService();
+        return root().diskService();
     }
 
     @Override
@@ -237,7 +244,7 @@ public class LocalFile extends BaseWritableResource implements FileService
     }
 
     @Override
-    public FolderService rootFolderService()
+    public FolderService root()
     {
         return new LocalFolder(path().rootElement());
     }

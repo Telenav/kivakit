@@ -16,9 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package
-
-        com.telenav.kivakit.core.serialization.kryo;
+package com.telenav.kivakit.core.serialization.kryo;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Registration;
@@ -32,9 +30,15 @@ import com.telenav.kivakit.core.kernel.messaging.Listener;
 import java.util.function.Supplier;
 
 /**
+ * <b>Not public API</b>
+ *
+ * <p>
+ * Performs Kryo serialization with debug tracing enabled by the environment variable KIVAKIT_SERIALIZATION_TRACE.
+ * </p>
+ *
  * @author jonathanl (shibo)
  */
-public class DebugKryo extends Kryo
+class DebugKryo extends Kryo
 {
     /** True to turn on Kryo tracing */
     private static final boolean TRACE = JavaVirtualMachine.isPropertyTrue("KIVAKIT_SERIALIZATION_TRACE");

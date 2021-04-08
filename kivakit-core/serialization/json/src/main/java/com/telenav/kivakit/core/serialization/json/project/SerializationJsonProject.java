@@ -16,16 +16,18 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package
-
-        com.telenav.kivakit.core.serialization.json.project;
+package com.telenav.kivakit.core.serialization.json.project;
 
 import com.telenav.kivakit.core.kernel.language.objects.Lazy;
 import com.telenav.kivakit.core.kernel.project.Project;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Project class for kivakit-core-serialization-json
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class SerializationJsonProject extends Project
 {
     private static final Lazy<SerializationJsonProject> singleton = Lazy.of(SerializationJsonProject::new);

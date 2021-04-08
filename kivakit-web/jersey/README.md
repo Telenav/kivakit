@@ -51,17 +51,17 @@ None
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 0.0%.  
+Javadoc coverage for this project is 100.0%.  
   
-&nbsp; &nbsp;  ![](documentation/images/meter-0-12.png)
+&nbsp; &nbsp;  ![](documentation/images/meter-100-12.png)
 
 
 
 | Class | Documentation Sections |
 |---|---|
+| [*BaseRestApplication*](https://telenav.github.io/kivakit/javadoc/kivakit.web.jersey/com/telenav/kivakit/web/jersey/BaseRestApplication.html) |  |  
+| [*BaseRestResource*](https://telenav.github.io/kivakit/javadoc/kivakit.web.jersey/com/telenav/kivakit/web/jersey/BaseRestResource.html) |  |  
 | [*JettyJersey*](https://telenav.github.io/kivakit/javadoc/kivakit.web.jersey/com/telenav/kivakit/web/jersey/JettyJersey.html) |  |  
-| [*JettyJerseyRestApplication*](https://telenav.github.io/kivakit/javadoc/kivakit.web.jersey/com/telenav/kivakit/web/jersey/JettyJerseyRestApplication.html) |  |  
-| [*JettyJerseyRestResource*](https://telenav.github.io/kivakit/javadoc/kivakit.web.jersey/com/telenav/kivakit/web/jersey/JettyJerseyRestResource.html) |  |  
 | [*WebJerseyProject*](https://telenav.github.io/kivakit/javadoc/kivakit.web.jersey/com/telenav/kivakit/web/jersey/project/WebJerseyProject.html) |  |  
 
 [//]: # (start-user-text)

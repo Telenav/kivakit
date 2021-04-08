@@ -52,6 +52,7 @@ import com.telenav.kivakit.core.kernel.messaging.messages.status.Quibble;
 import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.kernel.project.Project;
 import com.telenav.kivakit.core.resource.resources.other.PropertyMap;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.UmlNote;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -186,6 +187,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensu
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramApplication.class)
 @UmlNote(text = "See kivakit-core-configuration for details on application configuration")
+@LexakaiJavadoc(complete = true)
 public abstract class Application extends BaseRepeater implements Named, ApplicationMetadata
 {
     /** The one and only application running in this process */

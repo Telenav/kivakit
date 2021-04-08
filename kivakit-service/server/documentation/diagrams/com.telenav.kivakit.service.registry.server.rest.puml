@@ -4,14 +4,17 @@
     
     title "com.telenav.kivakit.service.registry.server.rest"
     
-    JettyJerseyRestApplication <|-- ServiceRegistryRestApplication
+    abstract BaseRestResource
+    abstract BaseRestApplication
+    
+    BaseRestApplication <|-- ServiceRegistryRestApplication
     class ServiceRegistryRestApplication
     {
         --(constructors)--
         +ServiceRegistryRestApplication()
     }
     
-    JettyJerseyRestResource <|-- ServiceRegistryRestResource
+    BaseRestResource <|-- ServiceRegistryRestResource
     class ServiceRegistryRestResource
     {
         --(extension points)--

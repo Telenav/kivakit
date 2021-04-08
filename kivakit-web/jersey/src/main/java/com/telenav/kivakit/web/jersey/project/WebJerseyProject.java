@@ -20,10 +20,14 @@ package com.telenav.kivakit.web.jersey.project;
 
 import com.telenav.kivakit.core.kernel.language.objects.Lazy;
 import com.telenav.kivakit.core.kernel.project.Project;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Project class for kivakit-web-jersey
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class WebJerseyProject extends Project
 {
     private static final Lazy<WebJerseyProject> singleton = Lazy.of(WebJerseyProject::new);

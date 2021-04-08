@@ -26,6 +26,7 @@ import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.kernel.messaging.Debug;
 import com.telenav.kivakit.core.test.UnitTest;
 import com.telenav.kivakit.core.test.project.lexakai.diagrams.DiagramTest;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
@@ -38,12 +39,42 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensu
 
 /**
  * Utility class for tests used to create random values. {@link UnitTest} has a variety of methods for random testing
- * that use this class
+ * that use this class. Projects may subclass this to provide additional random values relevant to the project.
+ *
+ * <p><b>Seeding</b></p>
+ *
+ * <p>
+ * The seed used for random values can be set with {@link #seed(long)}. KivaKit tests will emit a seed value when a test
+ * fails. This value can be fed to {@link #seed(long)} to reproduce the failure.
+ * </p>
+ *
+ * <p><b>Values</b></p>
+ * <p>
+ * Values of the given types can be randomly produced:
+ * </p>
+ *
+ * <ul>
+ *     <li>Characters</li>
+ *     <li>Strings</li>
+ *     <li>Booleans</li>
+ *     <li>Bytes</li>
+ *     <li>Confidence</li>
+ *     <li>Count</li>
+ *     <li>Double</li>
+ *     <li>Identifier</li>
+ *     <li>Ints</li>
+ *     <li>Longs</li>
+ *     <li>Shorts</li>
+ *     <li>Unsigned Doubles</li>
+ *     <li>Unsigned Ints</li>
+ *     <li>Unsigned Longs</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  * @see UnitTest
  */
 @UmlClassDiagram(diagram = DiagramTest.class)
+@LexakaiJavadoc(complete = true)
 public class RandomValueFactory
 {
     private static volatile long seedUniquifier = 8682522807148012L;

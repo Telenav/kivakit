@@ -19,12 +19,14 @@
 package com.telenav.kivakit.core.commandline;
 
 import com.telenav.kivakit.core.kernel.language.values.version.Versioned;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
  * Application metadata used in formulating command line usage help.
  *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public interface ApplicationMetadata extends Versioned
 {
     /**

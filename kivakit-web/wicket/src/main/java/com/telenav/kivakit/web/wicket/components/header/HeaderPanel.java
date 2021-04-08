@@ -20,14 +20,18 @@ package com.telenav.kivakit.web.wicket.components.header;
 
 import com.telenav.kivakit.core.kernel.KivaKit;
 import com.telenav.kivakit.core.kernel.language.values.version.Version;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.request.resource.PackageResourceReference;
 
 /**
+ * A standardized KivaKit header panel with a title, logo and version information.
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class HeaderPanel extends Panel
 {
     /**

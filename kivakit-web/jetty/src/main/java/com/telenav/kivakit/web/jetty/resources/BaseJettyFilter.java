@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.web.jetty.resources;
 
-import com.telenav.kivakit.web.jetty.JettyRequestHandler;
+import com.telenav.kivakit.web.jetty.BaseJettyRequestHandler;
 import org.eclipse.jetty.servlet.FilterHolder;
 
 import javax.servlet.DispatcherType;
@@ -30,9 +30,9 @@ import java.util.EnumSet;
  *
  * @author jonathanl (shibo)
  */
-public abstract class JettyFilter extends JettyRequestHandler
+public abstract class BaseJettyFilter extends BaseJettyRequestHandler
 {
-    public JettyFilter(final String name)
+    public BaseJettyFilter(final String name)
     {
         super(name);
     }

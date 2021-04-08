@@ -19,6 +19,7 @@
 package com.telenav.kivakit.core.test.annotations;
 
 import com.telenav.kivakit.core.test.project.lexakai.diagrams.DiagramTest;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -26,6 +27,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 @UmlClassDiagram(diagram = DiagramTest.class)
 public interface SlowTests
 {

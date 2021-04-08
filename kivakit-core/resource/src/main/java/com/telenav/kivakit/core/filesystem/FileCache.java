@@ -18,16 +18,24 @@
 
 package com.telenav.kivakit.core.filesystem;
 
+import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.resource.CopyMode;
 import com.telenav.kivakit.core.resource.Resource;
 import com.telenav.kivakit.core.resource.path.FileName;
-import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
-public class Cache
+/**
+ * A file cache with the given root. Resources can be copied into the cache with {@link #add(Resource, CopyMode,
+ * ProgressReporter)}. Files can be retrieved with {@link #file(FileName)} or {@link #file(Resource)}.
+ *
+ * @author jonathanl (shibo)
+ */
+@LexakaiJavadoc(complete = true)
+public class FileCache
 {
     private final Folder root;
 
-    public Cache(final Folder root)
+    public FileCache(final Folder root)
     {
         this.root = root;
         if (!this.root.mkdirs().exists())

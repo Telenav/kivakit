@@ -18,9 +18,14 @@
 
 package com.telenav.kivakit.web.jersey;
 
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
 /**
+ * Base class for rest resources.
+ *
  * @author jonathanl (shibo)
  */
-public class JettyJerseyRestResource
+@LexakaiJavadoc(complete = true)
+public class BaseRestResource
 {
 }

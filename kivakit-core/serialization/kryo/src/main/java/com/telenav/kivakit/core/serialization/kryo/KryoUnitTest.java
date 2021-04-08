@@ -26,6 +26,7 @@ import com.telenav.kivakit.core.kernel.language.values.version.VersionedObject;
 import com.telenav.kivakit.core.serialization.core.SerializationSession;
 import com.telenav.kivakit.core.serialization.core.SerializationSessionFactory;
 import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -34,10 +35,13 @@ import java.io.IOException;
 import static com.telenav.kivakit.core.serialization.core.SerializationSession.Type.RESOURCE;
 
 /**
- * Adds Kryo serialization testing to the {@link UnitTest} base class.
+ * Adds Kryo serialization testing to the {@link UnitTest} base class. Serizability of objects can be tested with {@link
+ * #serializationTest(Object)} and serialization sessions can be specialized by {@link #kryoTypes()} and {@link
+ * #sessionFactory()}.
  *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class KryoUnitTest extends UnitTest
 {
     private SerializationSessionFactory factory;

@@ -59,9 +59,9 @@ Javadoc**](#javadoc).
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 25.0%.  
+Javadoc coverage for this project is 100.0%.  
   
-&nbsp; &nbsp;  ![](documentation/images/meter-30-12.png)
+&nbsp; &nbsp;  ![](documentation/images/meter-100-12.png)
 
 
 

@@ -16,18 +16,24 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package
-
-        com.telenav.kivakit.core.serialization.kryo;
+package com.telenav.kivakit.core.serialization.kryo;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Serializer;
 import com.telenav.kivakit.core.kernel.language.objects.Hash;
 import com.telenav.kivakit.core.kernel.messaging.Message;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * <b>Not public API</b>
+ *
+ * <p>
  * Kryo type entries in the entries map
+ * </p>
+ *
+ * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 class KryoTypeEntry
 {
     /** The serialized type */

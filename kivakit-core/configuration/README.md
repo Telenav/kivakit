@@ -50,9 +50,9 @@ Details on how to use the *kivakit-core configuration* API are available in the 
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 75.0%.  
+Javadoc coverage for this project is 100.0%.  
   
-&nbsp; &nbsp;  ![](documentation/images/meter-80-12.png)
+&nbsp; &nbsp;  ![](documentation/images/meter-100-12.png)
 
 
 

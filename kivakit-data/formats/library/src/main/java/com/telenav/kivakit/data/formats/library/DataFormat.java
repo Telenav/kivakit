@@ -20,16 +20,18 @@ package com.telenav.kivakit.data.formats.library;
 
 import com.telenav.kivakit.core.resource.Resource;
 import com.telenav.kivakit.data.formats.library.project.lexakai.diagrams.DiagramDataFormat;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 
 /**
- * The (binary or text) format of an input {@link Resource}.
+ * Identifying values for common data formats.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramDataFormat.class)
+@LexakaiJavadoc(complete = true)
 public enum DataFormat
 {
     Graph, // KivaKit graph file format

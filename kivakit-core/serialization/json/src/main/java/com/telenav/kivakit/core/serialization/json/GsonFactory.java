@@ -16,9 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package
-
-        com.telenav.kivakit.core.serialization.json;
+package com.telenav.kivakit.core.serialization.json;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -27,7 +25,14 @@ import com.telenav.kivakit.core.kernel.interfaces.factory.Factory;
 import com.telenav.kivakit.core.kernel.logging.Logger;
 import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.kernel.messaging.Debug;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
+/**
+ * Factory that produces configured {@link Gson} JSON serializers via {@link #newInstance()}.
+ *
+ * @author jonathanl (shibo)
+ */
+@LexakaiJavadoc(complete = true)
 public abstract class GsonFactory implements Factory<Gson>
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
@@ -53,7 +58,8 @@ public abstract class GsonFactory implements Factory<Gson>
         return builder.create();
     }
 
-    protected <T> void addSerializer(final GsonBuilder builder, final Class<T> type,
+    protected <T> void addSerializer(final GsonBuilder builder,
+                                     final Class<T> type,
                                      final GsonSerializer<T> serializer)
     {
         builder.registerTypeAdapter(type, serializer);
@@ -61,6 +67,9 @@ public abstract class GsonFactory implements Factory<Gson>
 
     protected abstract GsonBuilder addSerializers(GsonBuilder builder);
 
+    /**
+     * @return A GSON serializer for the given string converter
+     */
     protected <T> StringConverterGsonSerializer<T> serializer(final StringConverter<T> converter)
     {
         return new StringConverterGsonSerializer<>(converter);

@@ -43,19 +43,19 @@ None
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 50.0%.  
+Javadoc coverage for this project is 100.0%.  
   
-&nbsp; &nbsp;  ![](documentation/images/meter-50-12.png)
+&nbsp; &nbsp;  ![](documentation/images/meter-100-12.png)
 
 
 
 | Class | Documentation Sections |
 |---|---|
-| [*JettyFilter*](https://telenav.github.io/kivakit/javadoc/kivakit.web.jetty/com/telenav/kivakit/web/jetty/resources/JettyFilter.html) |  |  
-| [*JettyRequestHandler*](https://telenav.github.io/kivakit/javadoc/kivakit.web.jetty/com/telenav/kivakit/web/jetty/JettyRequestHandler.html) |  |  
-| [*JettyResource*](https://telenav.github.io/kivakit/javadoc/kivakit.web.jetty/com/telenav/kivakit/web/jetty/resources/JettyResource.html) |  |  
+| [*BaseJettyFilter*](https://telenav.github.io/kivakit/javadoc/kivakit.web.jetty/com/telenav/kivakit/web/jetty/resources/BaseJettyFilter.html) |  |  
+| [*BaseJettyRequestHandler*](https://telenav.github.io/kivakit/javadoc/kivakit.web.jetty/com/telenav/kivakit/web/jetty/BaseJettyRequestHandler.html) |  |  
+| [*BaseJettyResource*](https://telenav.github.io/kivakit/javadoc/kivakit.web.jetty/com/telenav/kivakit/web/jetty/resources/BaseJettyResource.html) |  |  
+| [*BaseJettyServlet*](https://telenav.github.io/kivakit/javadoc/kivakit.web.jetty/com/telenav/kivakit/web/jetty/resources/BaseJettyServlet.html) |  |  
 | [*JettyServer*](https://telenav.github.io/kivakit/javadoc/kivakit.web.jetty/com/telenav/kivakit/web/jetty/JettyServer.html) | Example: |  
-| [*JettyServlet*](https://telenav.github.io/kivakit/javadoc/kivakit.web.jetty/com/telenav/kivakit/web/jetty/resources/JettyServlet.html) |  |  
 | [*WebJettyProject*](https://telenav.github.io/kivakit/javadoc/kivakit.web.jetty/com/telenav/kivakit/web/jetty/project/WebJettyProject.html) |  |  
 | [*WebUnitTest*](https://telenav.github.io/kivakit/javadoc/kivakit.web.jetty/com/telenav/kivakit/web/jetty/WebUnitTest.html) |  |  
 

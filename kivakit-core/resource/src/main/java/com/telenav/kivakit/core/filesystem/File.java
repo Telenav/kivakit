@@ -466,7 +466,7 @@ public class File extends BaseWritableResource implements FileSystemObject
 
     public Folder root()
     {
-        return new Folder(service.rootFolderService());
+        return new Folder(service.root());
     }
 
     /**

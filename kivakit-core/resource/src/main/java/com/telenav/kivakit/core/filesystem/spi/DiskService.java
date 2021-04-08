@@ -21,15 +21,24 @@ package com.telenav.kivakit.core.filesystem.spi;
 import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
 import com.telenav.kivakit.core.kernel.language.values.level.Percent;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemService;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * A service provider interface (SPI) for filesystem disks.
+ * A service provider interface (SPI) for filesystem disks. Implementers provide:
+ *
+ * <ul>
+ *     <li>{@link #free()} - Number of bytes free on the disk</li>
+ *     <li>{@link #size()} - The total size of the disk</li>
+ *     <li>{@link #usable()} - The number of bytes on the disk that are usable</li>
+ *     <li>{@link #root()} - The root folder of the disk</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  * @see FileSystemService
  */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
+@LexakaiJavadoc(complete = true)
 public interface DiskService
 {
     /**

@@ -19,7 +19,8 @@
 package com.telenav.kivakit.web.swagger;
 
 import com.telenav.kivakit.core.resource.resources.packaged.PackageResource;
-import com.telenav.kivakit.web.jetty.resources.JettyResource;
+import com.telenav.kivakit.web.jetty.resources.BaseJettyResource;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import org.eclipse.jetty.servlet.ServletHolder;
 
 import javax.servlet.http.HttpServlet;
@@ -32,8 +33,15 @@ import java.io.IOException;
  *
  * @author jonathanl (shibo)
  */
-public class JettySwaggerIndex extends JettyResource
+@LexakaiJavadoc(complete = true)
+public class JettySwaggerIndex extends BaseJettyResource
 {
+    /**
+     * Servlet that produces the Swagger index
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     class IndexServlet extends HttpServlet
     {
         @Override
@@ -49,6 +57,9 @@ public class JettySwaggerIndex extends JettyResource
 
     private final int port;
 
+    /**
+     * @param port The port where Swagger is running
+     */
     public JettySwaggerIndex(final int port)
     {
         super("[SwaggerIndex]");

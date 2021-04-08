@@ -32,6 +32,7 @@ import com.telenav.kivakit.core.kernel.messaging.listeners.ConsoleWriter;
 import com.telenav.kivakit.core.test.project.lexakai.diagrams.DiagramTest;
 import com.telenav.kivakit.core.test.random.RandomValueFactory;
 import com.telenav.kivakit.core.test.reporters.JUnitValidationReporter;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import org.junit.Before;
@@ -70,6 +71,12 @@ public abstract class UnitTest extends TestWatcher implements Listener
         Ensure.reporterFactory(messageType -> new JUnitValidationReporter());
     }
 
+    /**
+     * Values that allow or disallow repeats in random sequences
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public enum Repeats
     {
         NO_REPEATS,

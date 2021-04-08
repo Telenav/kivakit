@@ -14,17 +14,6 @@
     interface List
     interface ResourceFolderResolver
     
-    class Cache
-    {
-        --(constructors)--
-        +Cache(Folder)
-        --(filesystem)--
-        +File add(Resource, CopyMode, ProgressReporter)
-        +File file(FileName)
-        +File file(Resource)
-        +Folder folder(String name)
-    }
-    
     BaseStringConverter <|-- FileList.Converter
     class FileList.Converter
     {
@@ -115,6 +104,17 @@
         +File withoutOverwriting()
     }
     
+    class FileCache
+    {
+        --(constructors)--
+        +FileCache(Folder)
+        --(filesystem)--
+        +File add(Resource, CopyMode, ProgressReporter)
+        +File file(FileName)
+        +File file(Resource)
+        +Folder folder(String name)
+    }
+    
     List <|-- FileList
     FileList "1" o-- "*" File
     class FileList
@@ -158,8 +158,8 @@
         +java.io.File asJavaFile()
         +boolean chmod(PosixFilePermission... permissions)
         +void chmodNested(PosixFilePermission... permissions)
-        +Folder clear()
-        +Folder clearAndDelete()
+        +Folder clearAll()
+        +Folder clearAllAndDelete()
         +void copyTo(Folder destination, CopyMode, ProgressReporter)
         +void copyTo(Folder destination, CopyMode, Matcher<File>, ProgressReporter)
         +Folder current()

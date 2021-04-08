@@ -169,7 +169,7 @@ public class HdfsFile extends BaseWritableResource implements FileService
     }
 
     @Override
-    public HdfsFolder rootFolderService()
+    public HdfsFolder root()
     {
         return new HdfsFolder(path.root());
     }

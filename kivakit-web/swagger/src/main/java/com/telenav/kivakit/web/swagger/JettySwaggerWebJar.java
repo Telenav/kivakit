@@ -19,18 +19,21 @@
 package com.telenav.kivakit.web.swagger;
 
 import com.telenav.kivakit.core.kernel.language.types.Classes;
-import com.telenav.kivakit.web.jetty.resources.JettyResource;
+import com.telenav.kivakit.web.jetty.resources.BaseJettyResource;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import org.eclipse.jetty.servlet.DefaultServlet;
 import org.eclipse.jetty.servlet.ServletHolder;
 
 import javax.ws.rs.core.Application;
 
 /**
- * Provides the Swagger JavaScript resources required to show Swagger documentation.
+ * Provides the Swagger JavaScript resources required to show Swagger documentation for the given REST {@link
+ * Application}.
  *
  * @author jonathanl (shibo)
  */
-public class JettySwaggerWebJar extends JettyResource
+@LexakaiJavadoc(complete = true)
+public class JettySwaggerWebJar extends BaseJettyResource
 {
     private final Application application;
 

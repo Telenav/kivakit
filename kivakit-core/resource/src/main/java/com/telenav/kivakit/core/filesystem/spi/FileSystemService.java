@@ -20,12 +20,13 @@ package com.telenav.kivakit.core.filesystem.spi;
 
 import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemService;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 /**
  * Service provider interface (SPI) for filesystems. FileSystemService is further broken down into SPIs for disk, folder
- * and file services.
+ * and file services. All of these interfaces must be implemented to provide a filesystem service.
  *
  * @author jonathanl (shibo)
  * @see DiskService
@@ -33,6 +34,7 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
  * @see FolderService
  */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
+@LexakaiJavadoc(complete = true)
 public interface FileSystemService
 {
     /**

@@ -4,31 +4,33 @@
     
     title "com.telenav.kivakit.web.jetty.resources"
     
-    JettyRequestHandler <|-- JettyFilter
-    abstract class JettyFilter
+    abstract BaseJettyRequestHandler
+    
+    BaseJettyRequestHandler <|-- BaseJettyFilter
+    abstract class BaseJettyFilter
     {
         --(constructors)--
-        +JettyFilter(String)
+        +BaseJettyFilter(String)
         --
         +EnumSet<DispatcherType> dispatchers()
         --(filtering)--
         +FilterHolder holder()
     }
     
-    JettyRequestHandler <|-- JettyResource
-    abstract class JettyResource
+    BaseJettyRequestHandler <|-- BaseJettyResource
+    abstract class BaseJettyResource
     {
         --(constructors)--
-        +JettyResource(String)
+        +BaseJettyResource(String)
         --
         +ServletHolder holder()
     }
     
-    JettyRequestHandler <|-- JettyServlet
-    abstract class JettyServlet
+    BaseJettyRequestHandler <|-- BaseJettyServlet
+    abstract class BaseJettyServlet
     {
         --(constructors)--
-        +JettyServlet(String)
+        +BaseJettyServlet(String)
         --
         +ServletHolder holder()
     }

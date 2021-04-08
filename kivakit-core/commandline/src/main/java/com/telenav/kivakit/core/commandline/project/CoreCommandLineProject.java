@@ -20,10 +20,14 @@ package com.telenav.kivakit.core.commandline.project;
 
 import com.telenav.kivakit.core.kernel.language.objects.Lazy;
 import com.telenav.kivakit.core.kernel.project.Project;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Project class for kivakit-core-commandline
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class CoreCommandLineProject extends Project
 {
     private static final Lazy<CoreCommandLineProject> singleton = Lazy.of(CoreCommandLineProject::new);

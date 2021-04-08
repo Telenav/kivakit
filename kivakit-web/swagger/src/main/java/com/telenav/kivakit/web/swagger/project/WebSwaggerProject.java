@@ -20,10 +20,14 @@ package com.telenav.kivakit.web.swagger.project;
 
 import com.telenav.kivakit.core.kernel.language.objects.Lazy;
 import com.telenav.kivakit.core.kernel.project.Project;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Project class for kivakit-web-swagger
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class WebSwaggerProject extends Project
 {
     private static final Lazy<WebSwaggerProject> singleton = Lazy.of(WebSwaggerProject::new);

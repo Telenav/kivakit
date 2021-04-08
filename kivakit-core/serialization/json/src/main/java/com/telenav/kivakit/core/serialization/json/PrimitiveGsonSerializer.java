@@ -16,17 +16,22 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package
-
-        com.telenav.kivakit.core.serialization.json;
+package com.telenav.kivakit.core.serialization.json;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.lang.reflect.Type;
 
+/**
+ * Serializer base class for primitive types
+ *
+ * @author jonathanl (shibo)
+ */
+@LexakaiJavadoc(complete = true)
 public abstract class PrimitiveGsonSerializer<T, Primitive> implements GsonSerializer<T>
 {
     private final Class<Primitive> type;

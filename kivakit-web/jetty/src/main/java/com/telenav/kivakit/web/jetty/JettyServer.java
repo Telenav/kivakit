@@ -21,9 +21,10 @@ package com.telenav.kivakit.web.jetty;
 import com.telenav.kivakit.core.kernel.language.time.Duration;
 import com.telenav.kivakit.core.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.web.jetty.resources.JettyFilter;
-import com.telenav.kivakit.web.jetty.resources.JettyResource;
-import com.telenav.kivakit.web.jetty.resources.JettyServlet;
+import com.telenav.kivakit.web.jetty.resources.BaseJettyFilter;
+import com.telenav.kivakit.web.jetty.resources.BaseJettyResource;
+import com.telenav.kivakit.web.jetty.resources.BaseJettyServlet;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.session.SessionHandler;
@@ -86,6 +87,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensu
  *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class JettyServer extends BaseRepeater
 {
     public static void configureLogging()
@@ -98,34 +100,34 @@ public class JettyServer extends BaseRepeater
     private int port;
 
     /** The filters to install when Jetty starts */
-    private final List<JettyFilter> filters = new ArrayList<>();
+    private final List<BaseJettyFilter> filters = new ArrayList<>();
 
     /** The servlets to install when Jetty starts */
-    private final List<JettyServlet> servlets = new ArrayList<>();
+    private final List<BaseJettyServlet> servlets = new ArrayList<>();
 
     /** The static resources to install when Jetty starts */
-    private final List<JettyResource> resources = new ArrayList<>();
+    private final List<BaseJettyResource> resources = new ArrayList<>();
 
     public JettyServer()
     {
         configureLogging();
     }
 
-    public JettyServer add(final String path, final JettyFilter filter)
+    public JettyServer add(final String path, final BaseJettyFilter filter)
     {
         filter.path(path);
         filters.add(filter);
         return this;
     }
 
-    public JettyServer add(final String path, final JettyServlet servlet)
+    public JettyServer add(final String path, final BaseJettyServlet servlet)
     {
         servlet.path(path);
         servlets.add(servlet);
         return this;
     }
 
-    public JettyServer add(final String path, final JettyResource resource)
+    public JettyServer add(final String path, final BaseJettyResource resource)
     {
         resource.path(path);
         resources.add(resource);

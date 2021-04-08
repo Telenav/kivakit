@@ -232,19 +232,16 @@ A wide variety of other resources are available and new ones are easy to write. 
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 21.3%.  
+Javadoc coverage for this project is 33.7%.  
   
-&nbsp; &nbsp;  ![](documentation/images/meter-20-12.png)
+&nbsp; &nbsp;  ![](documentation/images/meter-30-12.png)
 
 The following significant classes are undocumented:  
 
 - BaseReadableResource  
 - Extension  
-- FileList  
 - FileName  
-- FolderList  
-- FolderPruner  
-- LocalFolder  
+- Folder  
 - PackageResource  
 - PropertyMap  
 - Resource  
@@ -259,7 +256,6 @@ The following significant classes are undocumented:
 | [*BaseWriter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/writing/BaseWriter.html) |  |  
 | [*BinaryObjectStore*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/store/BinaryObjectStore.html) |  |  
 | [*BitArrayResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/other/BitArrayResource.html) |  |  
-| [*Cache*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/Cache.html) |  |  
 | [*Codec*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/Codec.html) |  |  
 | [*Compressor*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/Compressor.html) |  |  
 | [*CopyMode*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/CopyMode.html) |  |  
@@ -274,6 +270,7 @@ The following significant classes are undocumented:
 | [*File*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/File.html) |  |  
 | [*File.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/File.Converter.html) |  |  
 | [*File.Resolver*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/File.Resolver.html) |  |  
+| [*FileCache*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/FileCache.html) |  |  
 | [*FileList*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/FileList.html) |  |  
 | [*FileList.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/FileList.Converter.html) |  |  
 | [*FileName*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/path/FileName.html) |  |  
@@ -293,7 +290,7 @@ The following significant classes are undocumented:
 | [*FolderChangeWatcher*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/FolderChangeWatcher.html) |  |  
 | [*FolderList*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/FolderList.html) |  |  
 | [*FolderList.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/FolderList.Converter.html) |  |  
-| [*FolderPruner*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/FolderPruner.html) |  |  
+| [*FolderPruner*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/FolderPruner.html) | Expiration Criteria |  
 | [*FolderService*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/spi/FolderService.html) |  |  
 | [*GzipCodec*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/codecs/GzipCodec.html) |  |  
 | [*InputResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/streamed/InputResource.html) |  |  

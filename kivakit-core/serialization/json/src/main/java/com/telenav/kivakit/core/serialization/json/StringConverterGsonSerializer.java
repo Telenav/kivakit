@@ -16,18 +16,24 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package
-
-        com.telenav.kivakit.core.serialization.json;
+package com.telenav.kivakit.core.serialization.json;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.telenav.kivakit.core.kernel.data.conversion.string.StringConverter;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.lang.reflect.Type;
 
+/**
+ * An adapter class that converts a {@link StringConverter} into a {@link GsonSerializer} by using the convert to
+ * serialize and deserialize strings.
+ *
+ * @author jonathanl (shibo)
+ */
+@LexakaiJavadoc(complete = true)
 public class StringConverterGsonSerializer<T> implements GsonSerializer<T>
 {
     private final StringConverter<T> converter;

@@ -20,10 +20,14 @@ package com.telenav.kivakit.core.serialization.jersey.json.project;
 
 import com.telenav.kivakit.core.kernel.language.objects.Lazy;
 import com.telenav.kivakit.core.kernel.project.Project;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Project class for kivakit-core-serialization-jersey-json
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class SerializationJerseyJsonProject extends Project
 {
     private static final Lazy<SerializationJerseyJsonProject> singleton = Lazy.of(SerializationJerseyJsonProject::new);

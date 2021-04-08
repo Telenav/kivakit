@@ -18,17 +18,16 @@
 
 package com.telenav.kivakit.core.filesystem;
 
-import com.telenav.kivakit.core.resource.path.Extension;
-import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFile;
 import com.telenav.kivakit.core.filesystem.spi.FileService;
 import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.core.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
-import com.telenav.kivakit.core.kernel.logging.Logger;
-import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
+import com.telenav.kivakit.core.resource.path.Extension;
+import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFile;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
@@ -36,11 +35,27 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
+/**
+ * A list of files with useful methods added. Additional methods include:
+ *
+ * <ul>
+ *     <li>{@link #asJavaFiles()} - This file list as a list of {@link java.io.File} objects</li>
+ *     <li>{@link #asSet()} - This list as a set</li>
+ *     <li>{@link #first()} - The first file in this list</li>
+ *     <li>{@link #largest()} - The largest file in this list</li>
+ *     <li>{@link #matching(Matcher)} - The files in this list matching the given matcher</li>
+ *     <li>{@link #smallest()} - The smallest file in this list</li>
+ *     <li>{@link #sortedLargestToSmallest()} - This file list sorted</li>
+ *     <li>{@link #sortedLargestToSmallest()} - This file list sorted</li>
+ *     <li>{@link #sortedOldestToNewest()} ()} - This file list sorted</li>
+ * </ul>
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
+@LexakaiJavadoc(complete = true)
 public class FileList implements List<File>
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     /**
      * <b>Not public API</b>
      */
@@ -55,6 +70,12 @@ public class FileList implements List<File>
         return files;
     }
 
+    /**
+     * Converts to and from {@link FileList}s
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<FileList>
     {
         private final Extension extension;

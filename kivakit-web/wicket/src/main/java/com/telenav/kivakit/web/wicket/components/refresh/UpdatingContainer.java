@@ -20,14 +20,18 @@ package com.telenav.kivakit.web.wicket.components.refresh;
 
 import com.telenav.kivakit.core.kernel.language.time.Frequency;
 import com.telenav.kivakit.web.wicket.library.Components;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 
 import java.util.function.Consumer;
 
 /**
+ * A {@link WebMarkupContainer} that refreshes itself at the given {@link Frequency}.
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class UpdatingContainer extends WebMarkupContainer
 {
     public UpdatingContainer(final String id, final Frequency frequency)

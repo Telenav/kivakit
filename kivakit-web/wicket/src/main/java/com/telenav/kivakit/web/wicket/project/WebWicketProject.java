@@ -20,10 +20,14 @@ package com.telenav.kivakit.web.wicket.project;
 
 import com.telenav.kivakit.core.kernel.language.objects.Lazy;
 import com.telenav.kivakit.core.kernel.project.Project;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Project class for kivakit-web-wicket
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class WebWicketProject extends Project
 {
     private static final Lazy<WebWicketProject> singleton = Lazy.of(WebWicketProject::new);

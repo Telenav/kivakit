@@ -19,11 +19,20 @@
 package com.telenav.kivakit.core.test;
 
 import com.telenav.kivakit.core.test.project.lexakai.diagrams.DiagramTest;
+import com.telenav.kivakit.core.test.random.RandomValueFactory;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 
+/**
+ * A JUnit test watcher that prints out any random seed value when a random test fails so that the failure can be
+ * reproduced with {@link RandomValueFactory#seed(long)}.
+ *
+ * @author jonathanl (shibo)
+ */
+@LexakaiJavadoc(complete = true)
 @UmlClassDiagram(diagram = DiagramTest.class)
 public class UnitTestWatcher extends TestWatcher
 {

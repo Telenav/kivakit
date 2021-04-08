@@ -20,16 +20,19 @@ package com.telenav.kivakit.core.filesystem.spi;
 
 import com.telenav.kivakit.core.resource.WritableResource;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemService;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * A service provider interface (SPI) for filesystem files.
+ * A service provider interface (SPI) for filesystem files. Adds {@link #renameTo(FileService)} to the methods required
+ * by {@link FileSystemObjectService}.
  *
  * @author jonathanl (shibo)
  * @see FileSystemObjectService
  * @see FileSystemService
  */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
+@LexakaiJavadoc(complete = true)
 public interface FileService extends FileSystemObjectService, WritableResource
 {
     default java.io.File asJavaFile()

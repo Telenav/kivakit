@@ -16,9 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package
-
-        com.telenav.kivakit.core.serialization.kryo;
+package com.telenav.kivakit.core.serialization.kryo;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Registration;
@@ -35,6 +33,7 @@ import com.telenav.kivakit.core.kernel.language.values.version.VersionedObject;
 import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.serialization.core.SerializationSession;
 import com.telenav.kivakit.core.serialization.kryo.project.lexakai.diagrams.DiagramSerializationKryo;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
@@ -73,6 +72,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail
              label = "registers",
              referent = Serializer.class,
              referentCardinality = "*")
+@LexakaiJavadoc(complete = true)
 public final class KryoSerializationSession extends BaseRepeater implements Named, SerializationSession
 {
     /**

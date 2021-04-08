@@ -98,7 +98,7 @@ public class FolderPrunerTest extends UnitTest
     {
         final var folder = Folder.unitTestOutput(getClass()).folder(name);
         folder.mkdirs();
-        folder.clear();
+        folder.clearAll();
         return folder;
     }
 }

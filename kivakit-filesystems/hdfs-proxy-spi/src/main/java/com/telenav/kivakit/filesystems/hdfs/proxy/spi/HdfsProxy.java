@@ -22,22 +22,30 @@ import com.telenav.kivakit.core.kernel.language.values.version.Version;
 import com.telenav.kivakit.core.kernel.logging.Logger;
 import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.filesystems.hdfs.proxy.spi.project.lexakai.diagrams.DiagramHdfsSpi;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
+/**
+ * RMI interface for the HdfsProxy. See *kivakit-filesystems-hdfs-proxy* and *kivakit-filesystems-hdfs* for a detailed
+ * discussion.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramHdfsSpi.class)
+@LexakaiJavadoc(complete = true)
 public interface HdfsProxy extends Remote
 {
     /** The name of the proxy client's entry in the RMI registry */
     String RMI_REGISTRY_NAME = "kivakit-hdfs-proxy";
 
-    /** The RMI port being used */
+    /** The RMI registry port being used */
     int RMI_REGISTRY_PORT = 1099;
 
-    Version VERSION = Version.parse("8.1");
+    Version VERSION = Version.parse("0.9");
 
     Logger LOGGER = LoggerFactory.newLogger();
 

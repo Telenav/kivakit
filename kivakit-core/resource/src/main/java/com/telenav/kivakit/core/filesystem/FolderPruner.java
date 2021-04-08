@@ -28,11 +28,26 @@ import com.telenav.kivakit.core.kernel.language.values.level.Percent;
 import com.telenav.kivakit.core.kernel.logging.Logger;
 import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFolder;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
+/**
+ * Removes nested files matching {@link #matcher(Matcher)} from the given folder when they meet expiration criteria.
+ *
+ * <p><b>Expiration Criteria</b></p>
+ *
+ * <p>
+ * The minimum age of surviving files can be set with {@link #minimumAge(Duration)}. Files will also be pruned (from
+ * oldest to newest) if disk space falls below {@link #minimumUsableDiskSpace(Percent)} or when the folder's total size
+ * exceeds {@link #capacity(Bytes)}.
+ * </p>
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
 @UmlRelation(label = "prunes old files from", referent = Folder.class)
+@LexakaiJavadoc(complete = true)
 public class FolderPruner
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();

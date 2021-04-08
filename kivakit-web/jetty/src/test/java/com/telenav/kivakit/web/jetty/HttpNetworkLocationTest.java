@@ -20,6 +20,7 @@ package com.telenav.kivakit.web.jetty;
 
 import com.telenav.kivakit.core.network.core.Host;
 import com.telenav.kivakit.core.network.http.HttpNetworkLocation;
+import com.telenav.kivakit.core.resource.path.FilePath;
 import org.junit.Test;
 
 public class HttpNetworkLocationTest extends WebUnitTest
@@ -28,11 +29,9 @@ public class HttpNetworkLocationTest extends WebUnitTest
     public void testReadString()
     {
         final var port = 8910;
-        if (startWebServer(port))
-        {
-            final HttpNetworkLocation location = new HttpNetworkLocation(Host.loopback().http(port).path("test.txt"));
-            final String text = location.content();
-            ensureEqual("This is a test.", text);
-        }
+        startWebServer(port, FilePath.parseFilePath("/"));
+        final HttpNetworkLocation location = new HttpNetworkLocation(Host.loopback().http(port).path("README.md"));
+        final String text = location.content();
+        ensure(!text.isBlank());
     }
 }

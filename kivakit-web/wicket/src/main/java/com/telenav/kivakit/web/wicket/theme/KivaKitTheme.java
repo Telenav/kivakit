@@ -18,9 +18,24 @@
 
 package com.telenav.kivakit.web.wicket.theme;
 
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import org.apache.wicket.request.resource.CssResourceReference;
+
 /**
+ * KivaKit theme class for getting CSS resources.
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class KivaKitTheme
 {
+    public static CssResourceReference kivakitColors()
+    {
+        return new CssResourceReference(KivaKitTheme.class, "KivaKitColors.css");
+    }
+
+    public static CssResourceReference kivakitTheme()
+    {
+        return new CssResourceReference(KivaKitTheme.class, "KivaKitTheme.css");
+    }
 }

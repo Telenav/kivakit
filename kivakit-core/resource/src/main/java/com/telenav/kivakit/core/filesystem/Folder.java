@@ -51,6 +51,7 @@ import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFolder;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceService;
 import com.telenav.kivakit.core.resource.spi.ResourceFolderResolver;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -76,12 +77,13 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensu
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 
 /**
- * Folder abstraction that adds type safety and various helpful methods. Support for various file systems is implemented
- * in kivakit-filesystems.
+ * Folder abstraction that adds type safety and various helpful methods to {@link FileSystemObject}. Support for various
+ * file systems is implemented through the service provider interface (SPI) in kivakit-filesystems.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
+@LexakaiJavadoc(complete = false)
 public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFolder
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
@@ -255,7 +257,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
                 temporaryForProcessInitialized = true;
 
                 // Clear existing folder if it exists
-                temporary.clear();
+                temporary.clearAll();
                 temporary.mkdirs();
             }
             return temporary;
@@ -411,8 +413,11 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         nestedFiles(new All<>()).forEach(file -> file.chmod(permissions));
     }
 
+    /**
+     * Clears all files and folders in this folder
+     */
     @SuppressWarnings("UnusedReturnValue")
-    public synchronized Folder clear()
+    public synchronized Folder clearAll()
     {
         DEBUG.trace("Clearing $", this);
         try
@@ -429,7 +434,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
                 }
                 for (final var folder : folders())
                 {
-                    folder.clear();
+                    folder.clearAll();
                     folder.delete();
                 }
             }
@@ -442,17 +447,17 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
     }
 
     /**
-     * Clears this folder of files, then deletes it
+     * Clears this folder of files and folders, then deletes it
      */
     @SuppressWarnings("UnusedReturnValue")
-    public Folder clearAndDelete()
+    public Folder clearAllAndDelete()
     {
         DEBUG.trace("Clearing and deleting $", this);
         try
         {
             if (exists())
             {
-                clear();
+                clearAll();
                 delete();
             }
         }
@@ -520,6 +525,9 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         return folder().delete();
     }
 
+    /**
+     * @return The {@link Disk} where this folder exists
+     */
     @UmlRelation(label = "exists on")
     public Disk disk()
     {
@@ -558,6 +566,9 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         return false;
     }
 
+    /**
+     * @return True if this folder exists
+     */
     public boolean exists()
     {
         return folder().exists();
@@ -887,7 +898,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
                 {
                     if (exists())
                     {
-                        clearAndDelete();
+                        clearAllAndDelete();
                     }
                 }
             }

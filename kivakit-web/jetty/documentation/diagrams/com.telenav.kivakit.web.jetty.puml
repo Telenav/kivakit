@@ -8,11 +8,11 @@
     
     interface Named
     
-    Named <|-- JettyRequestHandler
-    abstract class JettyRequestHandler
+    Named <|-- BaseJettyRequestHandler
+    abstract class BaseJettyRequestHandler
     {
         --(constructors)--
-        +JettyRequestHandler(String)
+        +BaseJettyRequestHandler(String)
         --(path)--
         #String path()
         #void path(String path)
@@ -26,9 +26,9 @@
         --
         +void configureLogging()
         --(collection)--
-        +JettyServer add(String path, JettyServlet)
-        +JettyServer add(String path, JettyFilter)
-        +JettyServer add(String path, JettyResource)
+        +JettyServer add(String path, BaseJettyServlet)
+        +JettyServer add(String path, BaseJettyResource)
+        +JettyServer add(String path, BaseJettyFilter)
         --(lifecycle)--
         +void start()
         --(network)--
@@ -39,7 +39,7 @@
     class WebUnitTest
     {
         --(lifecycle)--
-        #boolean startWebServer(int portNumber)
+        #void startWebServer(int portNumber, FilePath war)
     }
     
 @enduml
