@@ -19,9 +19,16 @@
 package com.telenav.kivakit.core.network.email;
 
 import com.telenav.kivakit.core.network.email.project.lexakai.diagrams.DiagramEmail;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * The body of an email in HTML.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramEmail.class)
+@LexakaiJavadoc(complete = true)
 public class HtmlEmailBody extends EmailBody
 {
     public static final String MIME_TYPE = "text/html";

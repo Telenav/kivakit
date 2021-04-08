@@ -20,10 +20,14 @@ package com.telenav.kivakit.core.network.email.project;
 
 import com.telenav.kivakit.core.kernel.language.objects.Lazy;
 import com.telenav.kivakit.core.kernel.project.Project;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Project class for kivakit-core-network-email
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class CoreNetworkEmailProject extends Project
 {
     private static final Lazy<CoreNetworkEmailProject> singleton = Lazy.of(CoreNetworkEmailProject::new);

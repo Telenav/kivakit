@@ -22,12 +22,19 @@ import com.telenav.kivakit.core.kernel.language.reflection.property.filters.Kiva
 import com.telenav.kivakit.core.kernel.language.strings.formatting.ObjectFormatter;
 import com.telenav.kivakit.core.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.network.email.project.lexakai.diagrams.DiagramEmail;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeBodyPart;
 
+/**
+ * The body of an email in plain text.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramEmail.class)
+@LexakaiJavadoc(complete = true)
 public class EmailBody
 {
     public static final String MIME_TYPE = "text/plain";

@@ -20,6 +20,7 @@ package com.telenav.kivakit.core.network.email;
 
 import com.telenav.kivakit.core.kernel.language.reflection.property.filters.KivaKitExcludeProperty;
 import com.telenav.kivakit.core.network.email.project.lexakai.diagrams.DiagramEmail;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import javax.activation.DataHandler;
@@ -27,7 +28,13 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.util.ByteArrayDataSource;
 
+/**
+ * An email attachment specified by either a byte array or a filename.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramEmail.class)
+@LexakaiJavadoc(complete = true)
 public class EmailAttachment
 {
     private byte[] data;

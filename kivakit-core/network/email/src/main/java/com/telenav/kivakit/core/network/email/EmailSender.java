@@ -18,10 +18,6 @@
 
 package com.telenav.kivakit.core.network.email;
 
-import com.telenav.kivakit.core.network.email.project.lexakai.diagrams.DiagramEmail;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.associations.UmlAggregation;
-import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.kivakit.core.kernel.interfaces.io.Closeable;
 import com.telenav.kivakit.core.kernel.interfaces.io.Flushable;
 import com.telenav.kivakit.core.kernel.interfaces.lifecycle.Startable;
@@ -35,6 +31,12 @@ import com.telenav.kivakit.core.kernel.language.time.RateCalculator;
 import com.telenav.kivakit.core.kernel.language.types.Classes;
 import com.telenav.kivakit.core.kernel.language.values.count.Maximum;
 import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.network.email.project.lexakai.diagrams.DiagramEmail;
+import com.telenav.kivakit.core.network.email.senders.SmtpEmailSender;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+import com.telenav.lexakai.annotations.associations.UmlAggregation;
+import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -42,12 +44,32 @@ import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
+/**
+ * An email sender. Emails can be added with {@link #enqueue(Email)} and they will be sent as soon as possible. Emails
+ * are not persisted, so if the process terminates, enqueued emails will be lost. The {@link #close()} method will shut
+ * down the queue so that no further emails can be enqueued and then attempt to send any remaining emails before
+ * stopping. For testing purposes {@link #sendingOn(boolean)} can be called with false and emails will be processed but
+ * not actually sent to their destination.
+ * <p>
+ * SMTP is currently the only protocol supported. In the future, IMAP may be added when the need arises.
+ * </p>
+ *
+ * @author jonathanl (shibo)
+ * @see SmtpEmailSender
+ */
 @UmlClassDiagram(diagram = DiagramEmail.class)
 @UmlRelation(label = "sends", referent = Email.class)
 @UmlRelation(label = "configured by", referent = EmailSender.Configuration.class)
+@LexakaiJavadoc(complete = true)
 public abstract class EmailSender extends BaseRepeater implements Startable, Stoppable, Flushable, Closeable
 {
+    /**
+     * Base configuration for all {@link EmailSender}s.
+     *
+     * @author jonathanl (shibo)
+     */
     @UmlClassDiagram(diagram = DiagramEmail.class)
+    @LexakaiJavadoc(complete = true)
     public static class Configuration
     {
         private Rate maximumSendRate;

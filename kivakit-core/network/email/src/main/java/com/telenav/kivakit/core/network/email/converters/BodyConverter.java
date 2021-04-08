@@ -18,13 +18,20 @@
 
 package com.telenav.kivakit.core.network.email.converters;
 
-import com.telenav.kivakit.core.network.email.EmailBody;
-import com.telenav.kivakit.core.network.email.HtmlEmailBody;
 import com.telenav.kivakit.core.kernel.data.conversion.string.collection.BaseCollectionConverter;
 import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.core.kernel.language.values.count.Maximum;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
+import com.telenav.kivakit.core.network.email.EmailBody;
+import com.telenav.kivakit.core.network.email.HtmlEmailBody;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
+/**
+ * Converts to and from {@link EmailBody} models.
+ *
+ * @author jonathanl (shibo)
+ */
+@LexakaiJavadoc(complete = true)
 public class BodyConverter extends BaseCollectionConverter<EmailBody>
 {
     public BodyConverter(final Listener listener)

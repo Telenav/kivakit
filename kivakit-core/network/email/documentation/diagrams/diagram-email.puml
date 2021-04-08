@@ -65,7 +65,7 @@
     {
         --
         +boolean offer(Email, Duration maximumWait)
-        +void sent(Email ignored)
+        +void sent(Email)
         --(checks)--
         +boolean isClosed()
         +boolean isEmpty()
