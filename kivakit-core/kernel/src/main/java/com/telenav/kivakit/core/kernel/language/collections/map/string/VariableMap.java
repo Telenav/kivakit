@@ -101,14 +101,26 @@ public class VariableMap<Value> extends BaseStringMap<Value>
     }
 
     /**
-     * Interpolates the values in this map into the given string. Substitutions occur when the names of variables appear
-     * inside curly braces after a '$', like "${x}". Any such substitution markers that do not correspond to a variable
-     * in the map are left unchanged.
+     * Expands the given text, leaving any ${x} markers for which there is no value in place.
      *
      * @param text The string to interpolate values into
      * @return The interpolated string
      */
     public String expand(final String text)
+    {
+        return expand(text, null);
+    }
+
+    /**
+     * Interpolates the values in this map into the given string. Substitutions occur when the names of variables appear
+     * inside curly braces after a '$', like "${x}". Any such substitution markers that do not correspond to a variable
+     * in the map are substituted with the given default value, or if that value is null, they are left unchanged.
+     *
+     * @param text The string to interpolate values into
+     * @param defaultValue The value to use for missing variables, or null to leave the ${x} marker unexpanded
+     * @return The interpolated string
+     */
+    public String expand(final String text, final String defaultValue)
     {
         if (text.contains("${"))
         {
@@ -138,7 +150,14 @@ public class VariableMap<Value> extends BaseStringMap<Value>
                     }
                     else
                     {
-                        builder.append("${").append(variable).append("}");
+                        if (defaultValue != null)
+                        {
+                            builder.append(defaultValue);
+                        }
+                        else
+                        {
+                            builder.append("${").append(variable).append("}");
+                        }
                     }
                     pos++;
                 }

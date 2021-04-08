@@ -154,6 +154,7 @@
         +VariableMap()
         +VariableMap(Maximum)
         --
+        +String expand(String text, String defaultValue)
         +String expand(String text)
         --(collection)--
         +VariableMap<Value> add(String name, Value object)

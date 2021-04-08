@@ -8,7 +8,7 @@ KivaKit is a set of integrated Java mini-frameworks.
 
 ### Welcome <a name = "welcome"></a>! &nbsp; ![](documentation/images/stars-48.png)
 
-*The mission of KivaKit is to accelerate the development of Java software through the use of integrated, modular, object-oriented design.*
+> *The mission of KivaKit is to accelerate the development of Java software through the use of integrated, modular, object-oriented design.*
 
 KivaKit provides quick and easy solutions to common everyday software problems by providing APIs, and sometimes by "wrapping" them in a
 simplified abstraction. It is not KivaKit's goal to provide access to all features of underlying APIs, but the most frequently used features
@@ -85,6 +85,12 @@ parts of the framework.
 [**Building**](documentation/overview/building.md)  
 [**Developing**](documentation/developing/index.md)
 
+### Downloads <a name = "downloads"></a>&nbsp; ![](documentation/images/down-arrow-32.png)
+
+[**Java 12**](https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html)  
+[**Maven**](https://maven.apache.org/download.cgi)  
+[**IntelliJ**](https://www.jetbrains.com/idea/download/)
+
 ### Reference <a name = "reference"></a>&nbsp; ![](documentation/images/books-40.png)
 
 [**Javadoc**](https://telenav.github.io/kivakit/javadoc)  
@@ -100,17 +106,47 @@ parts of the framework.
 [**kivakit-filesystems**](kivakit-filesystems/README.md)  
 [**kivakit-logs**](kivakit-logs/README.md)  
 [**kivakit-service**](kivakit-service/README.md)  
-[**kivakit-web**](kivakit-web/README.md)  
+[**kivakit-web**](kivakit-web/README.md)
+
+### Javadoc Coverage
+
+&nbsp;  ![](documentation/images/meter-30-12.png) &nbsp; &nbsp; *kivakit-core-application*  
+&nbsp;  ![](documentation/images/meter-60-12.png) &nbsp; &nbsp; *kivakit-core-collections*  
+&nbsp;  ![](documentation/images/meter-70-12.png) &nbsp; &nbsp; *kivakit-core-commandline*  
+&nbsp;  ![](documentation/images/meter-80-12.png) &nbsp; &nbsp; *kivakit-core-configuration*  
+&nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-core-kernel*  
+&nbsp;  ![](documentation/images/meter-10-12.png) &nbsp; &nbsp; *kivakit-core-network-core*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-core-network-email*  
+&nbsp;  ![](documentation/images/meter-10-12.png) &nbsp; &nbsp; *kivakit-core-network-ftp*  
+&nbsp;  ![](documentation/images/meter-10-12.png) &nbsp; &nbsp; *kivakit-core-network-http*  
+&nbsp;  ![](documentation/images/meter-50-12.png) &nbsp; &nbsp; *kivakit-core-network-socket*  
+&nbsp;  ![](documentation/images/meter-20-12.png) &nbsp; &nbsp; *kivakit-core-resource*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-core-security*  
+&nbsp;  ![](documentation/images/meter-80-12.png) &nbsp; &nbsp; *kivakit-core-serialization-core*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-core-serialization-jersey-json*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-core-serialization-json*  
+&nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-core-serialization-kryo*  
+&nbsp;  ![](documentation/images/meter-30-12.png) &nbsp; &nbsp; *kivakit-core-test*  
+&nbsp;  ![](documentation/images/meter-60-12.png) &nbsp; &nbsp; *kivakit-data-compression*  
+&nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-data-formats-csv*  
+&nbsp;  ![](documentation/images/meter-50-12.png) &nbsp; &nbsp; *kivakit-data-formats-library*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-data-formats-text*  
+&nbsp;  ![](documentation/images/meter-20-12.png) &nbsp; &nbsp; *kivakit-data-formats-xml*  
+&nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-filesystems-hdfs*  
+&nbsp;  ![](documentation/images/meter-20-12.png) &nbsp; &nbsp; *kivakit-filesystems-hdfs-proxy*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-filesystems-hdfs-proxy-spi*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-filesystems-s3fs*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-logs-email*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-logs-file*  
+&nbsp;  ![](documentation/images/meter-30-12.png) &nbsp; &nbsp; *kivakit-service-client*  
+&nbsp;  ![](documentation/images/meter-20-12.png) &nbsp; &nbsp; *kivakit-service-registry*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-service-server*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-web-jersey*  
+&nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-web-jetty*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-web-swagger*  
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-web-wicket*
 
 [//]: # (start-user-text)
-
-### Downloads <a name = "downloads"></a>&nbsp; ![](documentation/images/down-arrow-32.png)
-
-[**Java 12**](https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html)  
-[**Maven**](https://maven.apache.org/download.cgi)  
-[**IntelliJ**](https://www.jetbrains.com/idea/download/)
-
-<br/>
 
 ![](documentation/images/horizontal-line.png)
 
@@ -120,12 +156,8 @@ parts of the framework.
 
 [//]: # (end-user-text)
 
-### Javadoc Coverage
-
-
-
 ![](documentation/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.07. UML diagrams courtesy
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.08. UML diagrams courtesy
 of [PlantUML](http://plantuml.com).</sub>
