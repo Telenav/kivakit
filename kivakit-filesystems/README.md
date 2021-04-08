@@ -23,10 +23,10 @@ classes.
 
 ### Projects &nbsp; ![](documentation/images/gears-40.png)
 
-[**kivakit-filesystems-hdfs**](kivakit-filesystems-hdfs/README.md)  
-[**kivakit-filesystems-hdfs-proxy**](kivakit-filesystems-hdfs-proxy/README.md)  
-[**kivakit-filesystems-hdfs-proxy-spi**](kivakit-filesystems-hdfs-proxy-spi/README.md)  
-[**kivakit-filesystems-s3fs**](kivakit-filesystems-s3fs/README.md)  
+[**kivakit-filesystems-hdfs**](hdfs/README.md)  
+[**kivakit-filesystems-hdfs-proxy**](hdfs-proxy/README.md)  
+[**kivakit-filesystems-hdfs-proxy-spi**](hdfs-proxy-spi/README.md)  
+[**kivakit-filesystems-s3fs**](s3fs/README.md)  
 
 [//]: # (start-user-text)
 

@@ -12,10 +12,10 @@ This project contains support for processing common data formats, including text
 
 ### Projects &nbsp; ![](documentation/images/gears-40.png)
 
-[**kivakit-data-formats-csv**](kivakit-data-formats-csv/README.md)  
-[**kivakit-data-formats-library**](kivakit-data-formats-library/README.md)  
-[**kivakit-data-formats-text**](kivakit-data-formats-text/README.md)  
-[**kivakit-data-formats-xml**](kivakit-data-formats-xml/README.md)  
+[**kivakit-data-formats-csv**](csv/README.md)  
+[**kivakit-data-formats-library**](library/README.md)  
+[**kivakit-data-formats-text**](text/README.md)  
+[**kivakit-data-formats-xml**](xml/README.md)  
 
 [//]: # (start-user-text)
 

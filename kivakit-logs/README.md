@@ -20,8 +20,8 @@ provider interface (SPI) to implement a new log service.
 
 ### Projects &nbsp; ![](documentation/images/gears-40.png)
 
-[**kivakit-logs-email**](kivakit-logs-email/README.md)  
-[**kivakit-logs-file**](kivakit-logs-file/README.md)  
+[**kivakit-logs-email**](email/README.md)  
+[**kivakit-logs-file**](file/README.md)  
 
 [//]: # (start-user-text)
 

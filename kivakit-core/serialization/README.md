@@ -12,10 +12,10 @@ This project index was created by Lexakai. To configure, see [project-home-folde
 
 ### Projects &nbsp; ![](documentation/images/gears-40.png)
 
-[**kivakit-core-serialization-core**](kivakit-core-serialization-core/README.md)  
-[**kivakit-core-serialization-jersey-json**](kivakit-core-serialization-jersey-json/README.md)  
-[**kivakit-core-serialization-json**](kivakit-core-serialization-json/README.md)  
-[**kivakit-core-serialization-kryo**](kivakit-core-serialization-kryo/README.md)  
+[**kivakit-core-serialization-core**](core/README.md)  
+[**kivakit-core-serialization-jersey-json**](jersey-json/README.md)  
+[**kivakit-core-serialization-json**](json/README.md)  
+[**kivakit-core-serialization-kryo**](kryo/README.md)  
 
 [//]: # (start-user-text)
 

@@ -39,10 +39,10 @@ for more details.
 
 ### Projects &nbsp; ![](documentation/images/gears-40.png)
 
-[**kivakit-web-jersey**](kivakit-web-jersey/README.md)  
-[**kivakit-web-jetty**](kivakit-web-jetty/README.md)  
-[**kivakit-web-swagger**](kivakit-web-swagger/README.md)  
-[**kivakit-web-wicket**](kivakit-web-wicket/README.md)  
+[**kivakit-web-jersey**](jersey/README.md)  
+[**kivakit-web-jetty**](jetty/README.md)  
+[**kivakit-web-swagger**](swagger/README.md)  
+[**kivakit-web-wicket**](wicket/README.md)  
 
 [//]: # (start-user-text)
 
