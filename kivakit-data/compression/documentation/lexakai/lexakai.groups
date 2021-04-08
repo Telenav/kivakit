@@ -1,0 +1,418 @@
+// Bare words are compared against the words in method names designated by camel-case.
+// Patterns are matched against the entire method signature, with camel-cased names converted to lowercase hyphenated form.
+
+pattern = return-type
+  \w+ ( - \w+ ) * \s+
+
+pattern = anything
+  .*
+
+pattern = something
+  .+
+
+pattern = trailing-words
+   (-\w+)+
+
+pattern = any-trailing-words
+   (-\w+)*
+
+pattern = no-arguments
+  \(  \)
+
+pattern = any-arguments
+  \( .* \)
+
+pattern = some-arguments
+  \( .+ \)
+
+pattern = any-words
+  \w+ ( - \w+ ) *
+
+pattern = word
+  \b # \b
+
+pattern = any-space
+  \s*
+
+pattern = space
+  \s+
+
+group = read
+  input
+  load
+  read
+  reader
+
+group = write
+  output
+  save
+  write
+  writer
+
+group = time
+  accessed
+  renew
+  renewed
+  age
+  day
+  days
+  duration
+  elapsed
+  expire
+  expiration
+  expired
+  frequency
+  hour
+  hours
+  millis
+  millisecond
+  milliseconds
+  nanosecond
+  nanoseconds
+  nanos
+  minute
+  minutes
+  modified
+  month
+  months
+  second
+  seconds
+  time
+  years
+
+group = distance
+  angstrom
+  angstroms
+  centimeter
+  centimeters
+  decimeter
+  decimeters
+  inch
+  inches
+  kilometer
+  kilometers
+  meter
+  meters
+  micron
+  microns
+  mile
+  miles
+  millimeter
+  millimeters
+  nanometer
+  nanometers
+  parsec
+  parsecs
+
+group = angle
+  heading
+  headings
+  angle
+  angles
+  chirality
+  direction
+  vector
+  degree
+  degrees
+  radian
+  radians
+  microdegree
+  microdegrees
+
+group = search
+  find
+  lookup
+  discover
+  search
+  query
+  locate
+  require
+
+group = network
+  url
+  uri
+  host
+  port
+  protocol
+  http
+  https
+  ftp
+  localhost
+  network
+  timeout
+  email
+
+group = command line parsing
+  [anything] [word = (command-line|switch-parser|argument-parser)] [anything]
+  switch
+  switches
+  argument
+  arguments
+
+group = lookup
+  find
+  locate
+  lookup
+  register
+  require
+
+group = metadata
+  metadata
+
+group = extension points
+  [return-type]? [word = on] [any-trailing-words] [any-arguments]
+  fail
+  failure
+  status
+  succeeded
+  success
+
+group = configuration
+  config
+  configuration
+  configurations
+  deployment
+  (?x) [anything] \( [anything] [word = (configuration|configurations|deployment|config)] [anything] \)
+
+group = serialization
+  serialization
+
+group = lifecycle
+  begin
+  completed
+  done
+  end
+  exit
+  finish
+  init
+  initial
+  initialize
+  join
+  interrupt
+  pause
+  reset
+  restart
+  resume
+  run
+  running
+  start
+  stop
+
+group = conversion
+  [return-type]? [word = as] [anything]
+  [return-type]? [word = to] [anything]
+  [any-words] [word = (as|to)] [any-words] [any-arguments]
+  valueOf
+
+group = factory
+  factory
+  new
+
+group = primitive
+  byte
+  bytes
+  char
+  chars
+  character
+  characters
+  double
+  doubles
+  int
+  ints
+  integer
+  integers
+  long
+  longs
+  short
+  shorts
+
+group = parsing
+  parser
+  parse
+  syntax
+
+group = identity
+  identifier
+  id
+  version
+
+group = building
+  build
+  builder
+
+group = path
+  path
+
+group = thread
+  await
+  executor
+  lock
+  notify
+  notifyAll
+  signal
+  sleep
+  stackTrace
+  synchronize
+  synchronized
+  unlock
+  wait
+
+group = service
+  service
+
+group = filesystem
+  file
+  extension
+  filename
+  folder
+  files
+  folders
+  disk
+  rename
+  mkdir
+  mkdirs
+  chmod
+  exists
+  mv
+  cp
+  copy
+  delete
+  rm
+
+group = io
+  close
+  closed
+  flush
+  flushed
+  seek
+
+group = matching
+  match
+  matcher
+
+group = filtering
+  accept
+  accepts
+  exclude
+  excluded
+  filter
+  include
+  included
+
+group = naming
+  name
+  named
+
+group = functional
+  [return-type] [word = (with|without)] - [any-words] [some-arguments]
+  [return-type] [any-words] [^aeiou] ed ( - [any-words] )? [any-arguments]
+
+group = status
+  error
+  fail
+  failure
+  status
+  succeeded
+  success
+
+group = messaging
+  announce
+  broadcast
+  deaf
+  event
+  fire
+  handle
+  handler
+  info
+  information
+  listen
+  listener
+  listeners
+  message
+  messages
+  narrate
+  problem
+  quibble
+  receive
+  send
+  trace
+  transmit
+  warn
+  warning
+
+group = collection
+  add
+  array
+  clear
+  contains
+  containsKey
+  containsValue
+  count
+  cursor
+  empty
+  entrySet
+  first
+  flatValues
+  hash
+  index
+  iterable
+  iterator
+  key
+  keySet
+  keys
+  last
+  list
+  map
+  pop
+  push
+  put
+  remove
+  size
+  sort
+  sorted
+  sublist
+  (?x) [return-type]? [word = value] [any-arguments]
+  values
+  (?x) [return-type]? [word = get] [any-words]? \( [any-words] [word = (index|identifier|id|key)] \)
+  (?x) [return-type]? [word = set] [any-words]? \( [any-words] [word = (index|identifier|id|key)], [any-words] [any-words] \)
+
+group = iteration
+  next
+  hasNext
+  hasMore
+  loop
+
+group = math
+  add
+  decrement
+  decremented
+  divide
+  divides
+  divided
+  increment
+  incremented
+  largest
+  larger
+  maximum
+  minimum
+  minus
+  modulus
+  mod
+  multiplied
+  multiply
+  percent
+  percentage
+  plus
+  round
+  smallest
+  smaller
+  subtract
+  times
+
+group = logical
+  [return-type]? [word = (and|or|not|all|none)] [any-arguments]
+
+group = checks
+  [return-type]? [word = (is|has|can|should|will|cannot|ensure|assert|valid|ends|starts)] - [any-words] [any-arguments]
+
+
