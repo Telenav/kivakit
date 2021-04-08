@@ -1,3 +1,5 @@
+![](documentation/images/kivakit-background-500.jpg)
+
 # ${project-name} &nbsp;&nbsp;![](${project-icon})
 
 ${project-description}
