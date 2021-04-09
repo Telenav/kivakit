@@ -16,4 +16,4 @@ KIVAKIT_VERSION=$(cat $KIVAKIT_HOME/project.properties | grep "project-version" 
 
 # -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=1044
 
-java -jar $KIVAKIT_HOME/tools/applications/bin/kivakit-lexakai-$KIVAKIT_VERSION.jar -project-version=$PROJECT_VERSION -update-readme=true $@
+java -jar $KIVAKIT_HOME/tools/building/bin/lexakai-0.9.3.jar -project-version=$PROJECT_VERSION -update-readme=true $@
