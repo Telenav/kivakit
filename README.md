@@ -1,6 +1,8 @@
 [![](documentation/images/github-32.png)](https://github.com/Telenav/kivakit)
 &nbsp;
 [![](documentation/images/twitter-32.png)](https://twitter.com/openkivakit)
+&nbsp;
+[![](documentation/images/web-32.png)](https://telenav.github.io/kivakit/)
 
 ![](documentation/images/kivakit-background-500.jpg)
 
