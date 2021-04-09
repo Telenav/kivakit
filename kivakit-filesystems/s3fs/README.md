@@ -8,6 +8,7 @@ Service provider for AWS S3 filesystems.
 
 [**Dependencies**](#dependencies)  
 [**Summary**](#summary)  
+[**Example**](#example)  
 [**Class Diagrams**](#class-diagrams)  
 [**Package Diagrams**](#package-diagrams)  
 [**Javadoc**](#javadoc)
@@ -37,9 +38,21 @@ service loader mechanism. All that is required to make use of HDFS paths with *F
 
 1. Include the dependency above in *pom.xml*
 2. Import *kivakit-filesystems-s3fs* in *module-info.java*
-3. Make use of HDFS paths in files and folders, for example:
+3. Provide an instance of *S3Settings* with *Settings.register(settings, bucket)*,  
+   where *bucket* identifies the S3 bucket that is used in paths, such as hdfs://*bucket*/data.txt
+4. Make use of HDFS paths in files and folders, for example:
 
-       var file = File.parse("hdfs://my-cluster/myfile.txt")
+### Example <a name = "example"></a>
+
+For example:
+
+    var settings = new S3Settings();
+
+        [...]
+
+    Settings.register(settings, new InstanceIdentifier("my-bucket"));
+
+    var file = File.parse("hdfs://my-bucket/myfile.txt")
 
 [//]: # (end-user-text)
 
@@ -54,14 +67,11 @@ service loader mechanism. All that is required to make use of HDFS paths with *F
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 0.0%.  
+Javadoc coverage for this project is 100.0%.  
   
-&nbsp; &nbsp;  ![](documentation/images/meter-0-12.png)
+&nbsp; &nbsp;  ![](documentation/images/meter-100-12.png)
 
-The following significant classes are undocumented:  
 
-- S3FileSystemObject  
-- S3Folder
 
 | Class | Documentation Sections |
 |---|---|

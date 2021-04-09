@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.filesystems.hdfs;
 
+import com.telenav.kivakit.core.configuration.settings.Settings;
 import com.telenav.kivakit.core.kernel.language.reflection.populator.KivaKitPropertyConverter;
 import com.telenav.kivakit.core.network.core.EmailAddress;
 import com.telenav.kivakit.core.resource.Resource;
@@ -27,8 +28,16 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
 /**
- * <b>Not public API</b>
- * <p>
+ * Settings that must be provided by the user of {@link HdfsFileSystemService} via {@link Settings#register(Object)}.
+ *
+ * <p><b>Settings</b></p>
+ *
+ * <ul>
+ *     <li>{@link #configurationFolder(ResourceFolder)} - A resource folder containing hdfs-site.xml and related configuration files</li>
+ *     <li>{@link #proxyJar(Resource)} - The location of the *kivakit-filesystem-hdfs-project* executable JAR file to allow it to be launched</li>
+ *     <li>{@link #contactEmail()} - Contact email for RMI registry entry</li>
+ *     <li>{@link #username(String)} - The username to use when accessing HDFS</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */

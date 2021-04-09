@@ -7,6 +7,7 @@
 
 package com.telenav.kivakit.filesystems.s3fs;
 
+import com.telenav.kivakit.core.configuration.InstanceIdentifier;
 import com.telenav.kivakit.core.configuration.settings.Settings;
 import com.telenav.kivakit.core.filesystem.spi.FileSystemObjectService;
 import com.telenav.kivakit.core.filesystem.spi.FolderService;
@@ -22,6 +23,7 @@ import com.telenav.kivakit.core.resource.Resource;
 import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.core.resource.writing.BaseWritableResource;
 import com.telenav.kivakit.filesystems.s3fs.project.lexakai.diagrams.DiagramS3;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.core.sync.RequestBody;
@@ -42,12 +44,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 /**
- * This class represents an AWS S3 (Simple Storage Service) object
+ * Base functionality common to both {@link S3File} and {@link S3Folder}.
  *
- * @author songg
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramS3.class)
+@LexakaiJavadoc(complete = true)
 public abstract class S3FileSystemObject extends BaseWritableResource implements FileSystemObjectService
 {
     protected static final Logger LOGGER = LoggerFactory.newLogger();
@@ -284,7 +286,8 @@ public abstract class S3FileSystemObject extends BaseWritableResource implements
     {
         if (client == null)
         {
-            final var credentials = Settings.require(S3Settings.class).credentials();
+            final var credentials = Settings.require(S3Settings.class,
+                    new InstanceIdentifier(bucket())).credentials();
 
             client = S3Client.builder()
                     .credentialsProvider(StaticCredentialsProvider.create(credentials))

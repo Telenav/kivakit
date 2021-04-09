@@ -22,6 +22,7 @@ import com.telenav.kivakit.core.configuration.ConfigurationFolder;
 import com.telenav.kivakit.core.configuration.ConfigurationPackage;
 import com.telenav.kivakit.core.configuration.ConfigurationSet;
 import com.telenav.kivakit.core.configuration.Deployment;
+import com.telenav.kivakit.core.configuration.InstanceIdentifier;
 import com.telenav.kivakit.core.configuration.lookup.Lookup;
 import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
@@ -76,7 +77,7 @@ public class Settings
      */
     public static <T> T require(final Class<T> settingsType, final Package defaultSettings)
     {
-        return require(settingsType, defaultSettings.path());
+        return require(settingsType, defaultSettings.path(), InstanceIdentifier.SINGLETON);
     }
 
     /**
@@ -84,20 +85,30 @@ public class Settings
      */
     public static <T> T require(final Class<T> settingsType)
     {
-        return require(settingsType, PackagePath.packagePath(settingsType));
+        return require(settingsType, PackagePath.packagePath(settingsType), InstanceIdentifier.SINGLETON);
+    }
+
+    /**
+     * @return The settings object of the given type
+     */
+    public static <T> T require(final Class<T> settingsType, final InstanceIdentifier identifier)
+    {
+        return require(settingsType, PackagePath.packagePath(settingsType), identifier);
     }
 
     /**
      * @return The settings object of the requested type from the global {@link Lookup} or from the package of default
      * settings if it is not found there.
      */
-    public static <T> T require(final Class<T> settingsClass, final PackagePath defaultSettingsPackage)
+    public static <T> T require(final Class<T> settingsClass,
+                                final PackagePath defaultSettingsPackage,
+                                final InstanceIdentifier identifier)
     {
         // Load any settings overrides from KIVAKIT_SETTINGS_FOLDERS
         loadOverrides();
 
         // then look in the global lookup for the settings
-        var settings = Lookup.global().locate(settingsClass);
+        var settings = Lookup.global().locate(settingsClass, identifier);
 
         // and if settings have not been defined
         if (settings == null)

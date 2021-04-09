@@ -20,11 +20,15 @@ package com.telenav.kivakit.filesystems.hdfs.proxy.converters;
 
 import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import org.apache.hadoop.security.UserGroupInformation;
 
 /**
+ * Converts to and from {@link UserGroupInformation} objects
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class UserGroupInformationConverter extends BaseStringConverter<UserGroupInformation>
 {
     public UserGroupInformationConverter(final Listener listener)

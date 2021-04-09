@@ -20,8 +20,7 @@ This project contains projects for compressing data and processing data in commo
 &nbsp;  ![](documentation/images/meter-70-12.png) &nbsp; &nbsp; *kivakit-data-compression*  
 &nbsp;  ![](documentation/images/meter-40-12.png) &nbsp; &nbsp; *kivakit-data-formats-csv*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-data-formats-library*  
-&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-data-formats-text*  
-&nbsp;  ![](documentation/images/meter-20-12.png) &nbsp; &nbsp; *kivakit-data-formats-xml*
+&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-data-formats-text*
 
 [//]: # (start-user-text)
 

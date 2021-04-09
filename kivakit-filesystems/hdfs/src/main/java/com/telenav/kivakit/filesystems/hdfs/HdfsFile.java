@@ -17,6 +17,7 @@ import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.core.resource.writing.BaseWritableResource;
 import com.telenav.kivakit.filesystems.hdfs.project.lexakai.diagrams.DiagramHdfs;
 import com.telenav.kivakit.filesystems.hdfs.proxy.spi.HdfsProxy;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -39,6 +40,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.unsu
 @UmlClassDiagram(diagram = DiagramHdfs.class)
 @UmlRelation(label = "gets proxy from", referent = HdfsProxyClient.class)
 @UmlNotPublicApi
+@LexakaiJavadoc(complete = true)
 public class HdfsFile extends BaseWritableResource implements FileService
 {
     private final FilePath path;

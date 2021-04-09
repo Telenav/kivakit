@@ -20,10 +20,14 @@ package com.telenav.kivakit.logs.file.project;
 
 import com.telenav.kivakit.core.kernel.language.objects.Lazy;
 import com.telenav.kivakit.core.kernel.project.Project;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Project class for kivakit-logs-file
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class LogsFileProject extends Project
 {
     private static final Lazy<LogsFileProject> singleton = Lazy.of(LogsFileProject::new);

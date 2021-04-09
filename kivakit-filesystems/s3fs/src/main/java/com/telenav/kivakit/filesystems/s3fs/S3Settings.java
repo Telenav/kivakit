@@ -19,11 +19,16 @@
 package com.telenav.kivakit.filesystems.s3fs;
 
 import com.telenav.kivakit.core.kernel.language.reflection.populator.KivaKitPropertyConverter;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 
 /**
+ * The settings required to access S3: The access key and secret access key. From this information, {@link
+ * #credentials()} creates an {@link AwsBasicCredentials} object.
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class S3Settings
 {
     private String accessKey;

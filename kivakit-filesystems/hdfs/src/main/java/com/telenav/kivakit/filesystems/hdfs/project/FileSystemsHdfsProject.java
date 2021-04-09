@@ -20,10 +20,14 @@ package com.telenav.kivakit.filesystems.hdfs.project;
 
 import com.telenav.kivakit.core.kernel.language.objects.Lazy;
 import com.telenav.kivakit.core.kernel.project.Project;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Project class for kivakit-filesystems-hdfs
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class FileSystemsHdfsProject extends Project
 {
     private static final Lazy<FileSystemsHdfsProject> singleton = Lazy.of(FileSystemsHdfsProject::new);

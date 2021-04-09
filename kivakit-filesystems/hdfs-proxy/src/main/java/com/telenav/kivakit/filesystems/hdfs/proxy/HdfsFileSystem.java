@@ -7,6 +7,7 @@
 
 package com.telenav.kivakit.filesystems.hdfs.proxy;
 
+import com.telenav.kivakit.core.configuration.InstanceIdentifier;
 import com.telenav.kivakit.core.configuration.settings.Settings;
 import com.telenav.kivakit.core.filesystem.File;
 import com.telenav.kivakit.core.filesystem.Folder;
@@ -20,6 +21,7 @@ import com.telenav.kivakit.core.kernel.messaging.Debug;
 import com.telenav.kivakit.core.resource.ResourceFolder;
 import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.filesystems.hdfs.proxy.project.lexakai.diagrams.DiagramHdfsProxy;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
@@ -35,55 +37,51 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail
 
 /**
  * <b>Not Public API</b>
+ *
+ * <p><b>Loading and Configuration of HDFS FileSystems</b></p>
+ *
  * <p>
- * <b>Loading and Configuration of HDFS FileSystems</b>
- * </p>
- * HDFS filesystem wrapper used by HdfsFileSystemService to implement the KIVAKIT {@link FileSystemService} service
+ * HDFS filesystem wrapper used by HdfsFileSystemService to implement the KivaKit {@link FileSystemService} service
  * provider interface. The {@link #of(FilePath)} method here lazy-loads and configures an HdfsFileSystem object which
  * gives access to the Hadoop {@link FileSystem} interface for the cluster specified in the given HDFS file path. Note
  * that this means that multiple HDFS filesystems can be accessed at the same time and transparently. See
- * FileSystemServiceLoader for details on how the KIVAKIT dynamically loads {@link FileSystemService} implementations.
- * <p>
- * <b>Transparent Access to HDFS Files and Folders</b>
+ * FileSystemServiceLoader for details on how the KivaKit dynamically loads {@link FileSystemService} implementations.
  * </p>
+ *
+ * <p><b>Transparent Access to HDFS Files and Folders</b></p>
+ *
+ * <p>
  * Because HDFS filesystems are loaded based on {@link FilePath} parsing, the end-user only has to include the HDFS
  * module in their project and they can then use HDFS file paths with {@link File} and {@link Folder} as they would use
  * any other path.
- * <p>
- * For example, to access a file on the EU data cluster, this module can be included and the following file object
- * constructed. FileSystemServiceLoader will load the HdfsFileSystemService for the "hdfs" scheme and that service will
- * then configure a Hadoop {@link FileSystem} instance (using this class) for the "cluster1ns" cluster. All of this
- * occurs automatically when a file object is constructed like this:
- * <pre>
- * new File("hdfs://cluster1ns/graph-api/graph-server/repository/Zambia/test.txt");
- * </pre>
- * <p>
- * <b>Configuration of HDFS Clusters</b>
  * </p>
- * HDFS clustered filesystems are configured with an hdfs-site.xml file and optionally a yarn-site.xml file. The KIVAKIT
- * locates these files by searching one or more configuration folders/packages for a sub-folder corresponding to the
- * cluster name specified in the HDFS path. For example:
- * <pre>
- * [...]/configuration/filesystem/hdfs/cluster1ns/hdfs-site.xml
- * [...]/configuration/filesystem/hdfs/navhacluster/hdfs-site.xml
- * </pre>
- * HDFS configuration folders are searched in the following order. The first configuration sub-folder with a valid
- * hdfs-site.xml file wins.
- * <ol>
- *     <li>The folder specified by the system property KIVAKIT_HDFS_CONFIGURATION_FOLDER</li>
- *     <li>~/.kivakit/[version]/configuration/filesystem/hdfs</li>
- *     <li>Built-in site configurations in this package under the configuration sub-package.
+ *
  * <p>
- *         At present these clusters are built-in and more can easily be added for convenience:
- *         </p
- *         <ul>
- *             <li>navhacluster / navteam - US navigation cluster</li>
- *             <li>cluster1ns / osmteam - EU map data cluster</li>
- *         </ul>
- *     </li>
- * </ol>
+ * For example, to access a file on cluster 'my-cluster', this module can be included and the following file object
+ * constructed. FileSystemServiceLoader will load the HdfsFileSystemService for the "hdfs" scheme and that service will
+ * then configure a Hadoop {@link FileSystem} instance (using this class) for the 'my-cluster' cluster. All of this
+ * occurs automatically when a file object is constructed like this:
+ * </p>
+ *
+ * <pre>
+ * new File("hdfs://my-cluster/test.txt");
+ * </pre>
+ *
+ * <p><b>Configuration of HDFS Clusters</b></p>
+ *
+ * <p>
+ * HDFS clustered filesystems are configured with an hdfs-site.xml file and optionally a yarn-site.xml file. KivaKit
+ * locates these files by looking under the configuration folder specified by {@link HdfsProxyServerSettings} in the
+ * folder named for the cluster. For example:
+ * </p>
+ *
+ * <pre>
+ * [...]/configurations/my-cluster/hdfs-site.xml
+ * [...]/configurations/my-other-cluster/hdfs-site.xml
+ * </pre>
  */
 @UmlClassDiagram(diagram = DiagramHdfsProxy.class)
+@LexakaiJavadoc(complete = true)
 class HdfsFileSystem
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
@@ -142,7 +140,8 @@ class HdfsFileSystem
         {
             try
             {
-                final var settings = Settings.require(HdfsProxyServerSettings.class);
+                final var instance = new InstanceIdentifier(root.first());
+                final var settings = Settings.require(HdfsProxyServerSettings.class, instance);
                 fileSystem = settings.user().doAs((PrivilegedExceptionAction<FileSystem>) () ->
                 {
                     DEBUG.trace("Initializing HDFS at $", root);

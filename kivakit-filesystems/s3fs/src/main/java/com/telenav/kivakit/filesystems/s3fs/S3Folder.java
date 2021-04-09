@@ -19,6 +19,7 @@ import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.resource.path.FileName;
 import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.filesystems.s3fs.project.lexakai.diagrams.DiagramS3;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import software.amazon.awssdk.services.s3.model.ListBucketsRequest;
 import software.amazon.awssdk.services.s3.model.ListObjectsRequest;
@@ -30,7 +31,15 @@ import java.util.List;
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.unsupported;
 
+/**
+ * <b>Not public API</b>
+ * <p>
+ * Implementation of {@link FolderService} used to provide {@link S3FileSystemService}.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramS3.class)
+@LexakaiJavadoc(complete = true)
 public class S3Folder extends S3FileSystemObject implements FolderService
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
