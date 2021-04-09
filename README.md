@@ -1,4 +1,6 @@
 [![](documentation/images/twitter-32.png)](https://twitter.com/openkivakit)
+&nbsp;
+[![](documentation/images/web-32.png)](https://telenav.github.io/kivakit/)
 
 ![](documentation/images/kivakit-background-500.jpg)
 
@@ -59,9 +61,7 @@ KivaKit makes it easy to:
 - **Serialize data** with an extensible abstraction
 - **Create applications**
     - Parse command line arguments in a reusable way
-    - Configure components programmatically, or by loading settings   
-      from properties files
-- **Process and compress data**
+    - Configure components programmatically, or by loading settings from properties files
 - **Run embedded [Jetty](https://www.eclipse.org/jetty/)** with [Apache Wicket](https://wicket.apache.org),
   [Jersey](https://eclipse-ee4j.github.io/jersey/) and [Swagger](https://swagger.io).
 
