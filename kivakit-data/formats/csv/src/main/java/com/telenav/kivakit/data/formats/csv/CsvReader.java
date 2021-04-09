@@ -22,7 +22,8 @@ import com.telenav.kivakit.core.kernel.language.io.LookAheadReader;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.resource.Resource;
 import com.telenav.kivakit.core.resource.reading.BaseObjectReader;
-import com.telenav.kivakit.data.formats.project.lexakai.diagrams.DiagramCsv;
+import com.telenav.kivakit.data.formats.csv.project.lexakai.diagrams.DiagramCsv;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -30,13 +31,35 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 /**
  * Parses a stream of CSV information. The rules outlined
  * <a href="http://en.wikipedia.org/wiki/Comma-separated_values">here</a> dictate valid CSV format.
- * In particular this class can handle quoted strings, line breaks within quotes, comments, empty lines, and some of the
- * other standard formatting issues.
+ * In particular, this class can handle quoted strings, line breaks within quotes, comments, empty lines, and some of
+ * the other standard formatting issues.
+ *
+ * <p><b>Processing CSV Lines</b></p>
+ * <p>
+ * A reader instance is constructed with {@link #CsvReader(Resource, CsvSchema, char, ProgressReporter)}. Since the
+ * class is {@link Iterable}, lines can then be retrieved as objects with code similar to:
+ *
+ * <pre>
+ * try (var reader = new CsvReader(resource, schema, ',', ProgressReporter.NULL))
+ * {
+ *     for (var line : reader)
+ *     {
+ *         var employee = line.asObject(Employee.class);
+ *
+ *         [...]
+ *     }
+ * }
+ * </pre>
  *
  * @author jonathanl (shibo)
+ * @see CsvSchema
+ * @see Resource
+ * @see ProgressReporter
+ * @see CsvLine
  */
 @UmlClassDiagram(diagram = DiagramCsv.class)
 @UmlRelation(label = "reads", referent = CsvLine.class)
+@LexakaiJavadoc(complete = true)
 public class CsvReader extends BaseObjectReader<CsvLine>
 {
     /** The separator for CSV (can be changed with setDelimiter) */
@@ -58,8 +81,10 @@ public class CsvReader extends BaseObjectReader<CsvLine>
     /**
      * Constructs a reader for the given input stream and CSV schema
      */
-    public CsvReader(final Resource resource, final ProgressReporter reporter, final CsvSchema schema,
-                     final char delimiter)
+    public CsvReader(final Resource resource,
+                     final CsvSchema schema,
+                     final char delimiter,
+                     final ProgressReporter reporter)
     {
         this.reporter = reporter;
         this.schema = schema;
