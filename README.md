@@ -1,3 +1,7 @@
+[![](documentation/images/github-32.png)](https://github.com/Telenav/kivakit)
+&nbsp;
+[![](documentation/images/twitter-32.png)](https://twitter.com/openkivakit)
+
 ![](documentation/images/kivakit-background-500.jpg)
 
 # KivaKit 0.9.0-SNAPSHOT &nbsp;&nbsp;![](documentation/images/kivakit-64.png)
@@ -76,6 +80,7 @@ parts of the framework.
 | Lead | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
 | Administrator | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
 | Email | [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
+| Twitter | [@OpenKivaKit](https://twitter.com/openkivakit) |
 | Issues | [GitHub Telenav/kivakit/issues](https://github.com/Telenav/kivakit/issues) |
 | Code | [GitHub Telenav/kivakit](https://github.com/Telenav/kivakit) |
 | Checkout | `git clone git@github.com:Telenav/kivakit.git` |

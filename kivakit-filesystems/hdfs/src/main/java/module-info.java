@@ -11,4 +11,5 @@ open module kivakit.filesystems.hdfs
     provides FileSystemService with HdfsFileSystemService;
 
     exports com.telenav.kivakit.filesystems.hdfs;
+    exports com.telenav.kivakit.filesystems.hdfs.project;
 }

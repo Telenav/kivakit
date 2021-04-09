@@ -1,3 +1,7 @@
+[![](documentation/images/github-32.png)](https://github.com/Telenav/kivakit)
+&nbsp;
+[![](documentation/images/twitter-32.png)](https://twitter.com/openkivakit)
+
 ![](documentation/images/kivakit-background-500.jpg)
 
 # ${project-name} &nbsp;&nbsp;![](${project-icon})
