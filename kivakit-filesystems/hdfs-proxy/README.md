@@ -44,17 +44,17 @@ HDFS proxy due to large number of conflicts between HDFS and other projects, esp
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 20.0%.  
+Javadoc coverage for this project is 100.0%.  
   
-&nbsp; &nbsp;  ![](documentation/images/meter-20-12.png)
+&nbsp; &nbsp;  ![](documentation/images/meter-100-12.png)
 
-The following significant classes are undocumented:  
 
-- HdfsProxyServer
 
 | Class | Documentation Sections |
 |---|---|
-| [*HdfsFileSystem*](https://telenav.github.io/kivakit/javadoc/kivakit.filesystems.hdfs.proxy/com/telenav/kivakit/filesystems/hdfs/proxy/HdfsFileSystem.html) |  |  
+| [*HdfsFileSystem*](https://telenav.github.io/kivakit/javadoc/kivakit.filesystems.hdfs.proxy/com/telenav/kivakit/filesystems/hdfs/proxy/HdfsFileSystem.html) | Loading and Configuration of HDFS FileSystems |  
+| | Transparent Access to HDFS Files and Folders |  
+| | Configuration of HDFS Clusters |  
 | [*HdfsProxyServer*](https://telenav.github.io/kivakit/javadoc/kivakit.filesystems.hdfs.proxy/com/telenav/kivakit/filesystems/hdfs/proxy/HdfsProxyServer.html) |  |  
 | [*HdfsProxyServerSettings*](https://telenav.github.io/kivakit/javadoc/kivakit.filesystems.hdfs.proxy/com/telenav/kivakit/filesystems/hdfs/proxy/HdfsProxyServerSettings.html) |  |  
 | [*StreamHandle*](https://telenav.github.io/kivakit/javadoc/kivakit.filesystems.hdfs.proxy/com/telenav/kivakit/filesystems/hdfs/proxy/StreamHandle.html) |  |  

@@ -16,6 +16,7 @@ import com.telenav.kivakit.core.filesystem.spi.FolderService;
 import com.telenav.kivakit.core.resource.Resource;
 import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.filesystems.hdfs.project.lexakai.diagrams.DiagramHdfs;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
@@ -25,7 +26,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.unsu
 /**
  * <b>Not public API</b>
  * <p>
- * Implementation of the {@link FileSystemService} SPI to provide HDFS access through the KIVAKIT resource API. This
+ * Implementation of the {@link FileSystemService} SPI to provide HDFS access through the KivaKit resource API. This
  * service accepts {@link FilePath}s that begin with "hdfs:" and it provides implementations of {@link FileService} and
  * {@link FolderService} which are used by {@link File} and {@link Folder} to provide transparent access to file system
  * services, including HDFS.
@@ -39,6 +40,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.unsu
  */
 @UmlClassDiagram(diagram = DiagramHdfs.class)
 @UmlNotPublicApi
+@LexakaiJavadoc(complete = true)
 public class HdfsFileSystemService implements FileSystemService
 {
     @Override

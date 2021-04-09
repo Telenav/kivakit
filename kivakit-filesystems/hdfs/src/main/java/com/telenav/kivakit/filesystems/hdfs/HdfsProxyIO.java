@@ -19,6 +19,7 @@
 package com.telenav.kivakit.filesystems.hdfs;
 
 import com.telenav.kivakit.filesystems.hdfs.project.lexakai.diagrams.DiagramHdfs;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
@@ -31,11 +32,16 @@ import java.net.Socket;
 /**
  * <b>Not public API</b>
  * <p>
+ * This class performs input and output for streams identified by *long* handles. The stream handle is written to a
+ * socket on the {@link HdfsProxyClient} by {@link #in(long)} and {@link #out(long)}. This allows both the client and
+ * server to associate socket input and output streams with the same handle.
+ * </p>
  *
  * @author jonathanl (shibo)
  */
 @UmlNotPublicApi
 @UmlClassDiagram(diagram = DiagramHdfs.class)
+@LexakaiJavadoc(complete = true)
 public class HdfsProxyIO
 {
     /**

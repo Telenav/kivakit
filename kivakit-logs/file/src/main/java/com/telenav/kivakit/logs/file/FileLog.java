@@ -10,8 +10,11 @@ package com.telenav.kivakit.logs.file;
 import com.telenav.kivakit.core.filesystem.File;
 import com.telenav.kivakit.core.kernel.language.strings.StringTo;
 import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.core.kernel.logging.Log;
+import com.telenav.kivakit.core.kernel.logging.loggers.LogServiceLogger;
 import com.telenav.kivakit.core.resource.path.FileName;
 import com.telenav.kivakit.logs.file.project.lexakai.diagrams.DiagramLogsFile;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.OutputStream;
@@ -19,7 +22,21 @@ import java.util.Map;
 
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 
+/**
+ * A {@link Log} service provider that logs messages to text file(s). Configuration occurs via the command line. See
+ * {@link LogServiceLogger} for details. Further details are available in the markdown help. The options available for
+ * configuration with this logger are:
+ *
+ * <ul>
+ *     <li><i>file</i> - The output file</li>
+ *     <li><i>maximum-size</i> - The maximum size in {@link Bytes}</li>
+ *     <li><i>rollover</i> -Rollover period (none, daily or hourly)</li>
+ * </ul>
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramLogsFile.class)
+@LexakaiJavadoc(complete = true)
 public class FileLog extends BaseRolloverTextLog
 {
     private File file;

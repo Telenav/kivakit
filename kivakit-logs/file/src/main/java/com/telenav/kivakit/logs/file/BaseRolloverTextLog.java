@@ -14,6 +14,7 @@ import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
 import com.telenav.kivakit.core.kernel.logging.LogEntry;
 import com.telenav.kivakit.core.kernel.logging.logs.text.BaseTextLog;
 import com.telenav.kivakit.logs.file.project.lexakai.diagrams.DiagramLogsFile;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
@@ -23,10 +24,21 @@ import java.io.PrintWriter;
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.kernel.messaging.messages.MessageFormatter.Format.WITH_EXCEPTION;
 
+/**
+ * Base class for rollover text logs such as {@link FileLog}. Accepts a {@link #maximumLogSize(Bytes)} and a {@link
+ * #rollover(Rollover)} period and logs messages until either of these limits are reached.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramLogsFile.class)
+@LexakaiJavadoc(complete = true)
 public abstract class BaseRolloverTextLog extends BaseTextLog
 {
+    /**
+     * Rollover period
+     */
     @UmlClassDiagram(diagram = DiagramLogsFile.class)
+    @LexakaiJavadoc(complete = true)
     public enum Rollover
     {
         NONE,

@@ -8,6 +8,7 @@ Service provider for HDFS filesystem.
 
 [**Dependencies**](#dependencies)  
 [**Summary**](#summary)  
+[**Example**](#example)  
 [**Technical Note**](#technical-note)  
 [**Class Diagrams**](#class-diagrams)  
 [**Package Diagrams**](#package-diagrams)  
@@ -38,9 +39,21 @@ with the *File* and *Folder* objects is to:
 
 1. Include the dependency above in *pom.xml*
 2. Import *kivakit-filesystems-hdfs* in *module-info.java*
-3. Make use of HDFS paths with *File*s and *Folders*, for example:
+3. Provide an instance of *HdfsSettings* with *Settings.register(settings, cluster)*,  
+   where *cluster* identifies the HDFS cluster that is used in paths, such as hdfs://*cluster*/data.txt
+4. Make use of HDFS path with *File*s and *Folders*
 
-       var file = File.parse("hdfs://my-cluster/myfile.txt")
+### Example <a name = "example"></a>
+
+For example:
+
+    var settings = new HdfsSettings();
+
+        [...]
+
+    Settings.register(settings, new InstanceIdentifier("my-cluster"));
+
+    var file = File.parse("hdfs://my-cluster/myfile.txt")
 
 ### Technical Note <a name = "technical-note"></a>
 
@@ -62,13 +75,11 @@ any application.
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 42.9%.  
+Javadoc coverage for this project is 100.0%.  
   
-&nbsp; &nbsp;  ![](documentation/images/meter-40-12.png)
+&nbsp; &nbsp;  ![](documentation/images/meter-100-12.png)
 
-The following significant classes are undocumented:  
 
-- HdfsProxyClient
 
 | Class | Documentation Sections |
 |---|---|
@@ -78,7 +89,7 @@ The following significant classes are undocumented:
 | [*HdfsFolder*](https://telenav.github.io/kivakit/javadoc/kivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/HdfsFolder.html) |  |  
 | [*HdfsProxyClient*](https://telenav.github.io/kivakit/javadoc/kivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/HdfsProxyClient.html) |  |  
 | [*HdfsProxyIO*](https://telenav.github.io/kivakit/javadoc/kivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/HdfsProxyIO.html) |  |  
-| [*HdfsSettings*](https://telenav.github.io/kivakit/javadoc/kivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/HdfsSettings.html) |  |  
+| [*HdfsSettings*](https://telenav.github.io/kivakit/javadoc/kivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/HdfsSettings.html) | Settings |  
 
 [//]: # (start-user-text)
 

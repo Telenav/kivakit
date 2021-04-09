@@ -25,8 +25,8 @@ provider interface (SPI) to implement a new log service.
 
 ### Javadoc Coverage
 
-&nbsp;  ![](documentation/images/meter-50-12.png) &nbsp; &nbsp; *kivakit-logs-email*  
-&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-logs-file*
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-logs-email*  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-logs-file*
 
 [//]: # (start-user-text)
 

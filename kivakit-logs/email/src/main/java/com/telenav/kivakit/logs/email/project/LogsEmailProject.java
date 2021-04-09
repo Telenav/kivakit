@@ -20,10 +20,14 @@ package com.telenav.kivakit.logs.email.project;
 
 import com.telenav.kivakit.core.kernel.language.objects.Lazy;
 import com.telenav.kivakit.core.kernel.project.Project;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Project class for kivakit-logs-email
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class LogsEmailProject extends Project
 {
     private static final Lazy<LogsEmailProject> singleton = Lazy.of(LogsEmailProject::new);

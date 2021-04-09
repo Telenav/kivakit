@@ -23,7 +23,6 @@
     <modules>
         <module>library</module>
         <module>text</module>
-        <module>xml</module>
         <module>csv</module>
     </modules>
 

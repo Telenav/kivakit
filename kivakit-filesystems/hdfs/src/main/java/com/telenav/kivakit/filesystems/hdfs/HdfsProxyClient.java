@@ -37,6 +37,7 @@ import com.telenav.kivakit.service.registry.Scope;
 import com.telenav.kivakit.service.registry.ServiceMetadata;
 import com.telenav.kivakit.service.registry.ServiceType;
 import com.telenav.kivakit.service.registry.client.ServiceRegistryClient;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -50,11 +51,22 @@ import static com.telenav.kivakit.core.resource.resources.jar.launcher.JarLaunch
 /**
  * <b>Not public API</b>
  *
+ * <p>
+ * Launches and communicates with *kivakit-filesystems-hdfs-proxy*. The {@link #proxy()} method tries to look up the RMI
+ * {@link HdfsProxy} service provider interface in the RMI registry on the local machine. If the remote interface cannot
+ * be found, then {@link #launchProxy()} is called. This method uses *kivakit-service-client* to allocate a (dynamic)
+ * port for the remote object and a port for the data service that uploads and downloads data to and from HDFS. The
+ * executable proxy JAR file specified by {@link HdfsSettings} is then launched in a *child process* (to avoid
+ * versioning issues). The configuration resource folder is also provided by {@link HdfsSettings} and must be provided
+ * by the user of {@link HdfsFileSystemService}.
+ * </p>
+ *
  * @author jonathanl (shibo)
  */
 @UmlNotPublicApi
 @UmlClassDiagram(diagram = DiagramHdfs.class)
 @UmlRelation(label = "configures with", referent = HdfsSettings.class)
+@LexakaiJavadoc(complete = true)
 public class HdfsProxyClient extends BaseRepeater
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();

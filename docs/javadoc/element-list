@@ -203,8 +203,6 @@ module:kivakit.data.formats.library
 com.telenav.kivakit.data.formats.library
 module:kivakit.data.formats.text
 com.telenav.kivakit.data.formats.library.text
-module:kivakit.data.formats.xml
-com.telenav.kivakit.data.formats.library.xml
 module:kivakit.filesystems.hdfs
 com.telenav.kivakit.filesystems.hdfs
 module:kivakit.filesystems.hdfs.proxy

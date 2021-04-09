@@ -12,6 +12,7 @@ import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.filesystem.Folder.Type;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.resource.path.FilePath;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -23,6 +24,7 @@ import static com.telenav.kivakit.core.resource.CopyMode.OVERWRITE;
  *
  * @author songg
  */
+@LexakaiJavadoc(complete = true)
 public class S3Output extends OutputStream
 {
     // The temporary cache folder for storing materialized files

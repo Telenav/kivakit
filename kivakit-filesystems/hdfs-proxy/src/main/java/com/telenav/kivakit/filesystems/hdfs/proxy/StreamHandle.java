@@ -20,6 +20,7 @@ package com.telenav.kivakit.filesystems.hdfs.proxy;
 
 import com.telenav.kivakit.core.kernel.language.values.identifier.Identifier;
 import com.telenav.kivakit.core.kernel.language.values.identifier.IdentifierFactory;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.util.Objects;
 
@@ -28,6 +29,7 @@ import java.util.Objects;
  *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 class StreamHandle
 {
     private static final IdentifierFactory identifiers = new IdentifierFactory();

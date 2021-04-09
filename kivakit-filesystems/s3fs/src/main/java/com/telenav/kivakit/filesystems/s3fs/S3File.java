@@ -11,6 +11,7 @@ import com.telenav.kivakit.core.filesystem.spi.FileService;
 import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
 import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.filesystems.s3fs.project.lexakai.diagrams.DiagramS3;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.nio.file.attribute.PosixFilePermission;
@@ -18,7 +19,15 @@ import java.nio.file.attribute.PosixFilePermission;
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.unsupported;
 
+/**
+ * <b>Not public API</b>
+ * <p>
+ * Implementation of {@link FileService} used to provide {@link HdfsFileSystemService}.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramS3.class)
+@LexakaiJavadoc(complete = true)
 public class S3File extends S3FileSystemObject implements FileService
 {
     public S3File(final FilePath path)

@@ -64,7 +64,8 @@ import java.util.Set;
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 
 /**
- * NOTE: When the HDFS proxy is updated, follow the instructions documented in HdfsProxyClient.
+ * This server application is compiled into an executable JAR file that is launched by the *kivakit-filesystems-hdfs*
+ * package NOTE: When the HDFS proxy is updated, follow the instructions documented in HdfsProxyClient.
  */
 @UmlClassDiagram(diagram = DiagramHdfsProxy.class)
 @UmlRelation(label = "configures with", referent = HdfsProxyServerSettings.class)
@@ -445,9 +446,11 @@ public class HdfsProxyServer extends Server implements com.telenav.kivakit.files
     {
         try
         {
+            // Register proxy server settings
             Settings.register(new HdfsProxyServerSettings()
                     .configurationFolder(get(CONFIGURATION_FOLDER))
                     .user(get(USERNAME)));
+
             announce("Exporting remote HdfsProxyServer object");
             final var rmiObjectPort = get(RMI_OBJECT_PORT);
             final com.telenav.kivakit.filesystems.hdfs.proxy.spi.HdfsProxy proxy = (com.telenav.kivakit.filesystems.hdfs.proxy.spi.HdfsProxy) UnicastRemoteObject.exportObject(this, rmiObjectPort);
