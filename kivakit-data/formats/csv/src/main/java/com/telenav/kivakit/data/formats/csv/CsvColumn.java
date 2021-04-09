@@ -20,15 +20,24 @@ package com.telenav.kivakit.data.formats.csv;
 
 import com.telenav.kivakit.core.kernel.data.conversion.string.StringConverter;
 import com.telenav.kivakit.core.kernel.language.values.name.Name;
-import com.telenav.kivakit.data.formats.project.lexakai.diagrams.DiagramCsv;
+import com.telenav.kivakit.data.formats.csv.project.lexakai.diagrams.DiagramCsv;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * The name and index of a column in a CSV schema
+ * A typesafe model of a CSV column that belongs to a {@link CsvSchema} and can convert values for the column between
+ * strings and objects.
+ *
+ * <p>
+ * {@link CsvColumn}s are added to a {@link CsvSchema} with {@link CsvSchema#CsvSchema(CsvColumn[])} and then used as a
+ * key to retrieve values from {@link CsvLine}. This model includes the CSV schema that owns it, as well as the name and
+ * index of the column in the data. A {@link StringConverter} converts values for the column to and from objects.
+ * </p>
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCsv.class)
+@LexakaiJavadoc(complete = true)
 public class CsvColumn<Type> extends Name
 {
     public static CsvColumn<String> of(final String name)

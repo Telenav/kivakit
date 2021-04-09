@@ -1,7 +1,7 @@
 import com.telenav.kivakit.core.kernel.logging.Log;
 import com.telenav.kivakit.core.kernel.logging.logs.text.ConsoleLog;
 
-open module  kivakit.core.kernel
+open module kivakit.core.kernel
 {
     // Java
     requires transitive jdk.attach;
@@ -96,6 +96,7 @@ open module  kivakit.core.kernel
     exports com.telenav.kivakit.core.kernel.language.time.conversion.converters;
     exports com.telenav.kivakit.core.kernel.language.time.conversion;
     exports com.telenav.kivakit.core.kernel.language.time;
+    exports com.telenav.kivakit.core.kernel.language.trait;
     exports com.telenav.kivakit.core.kernel.language.types;
     exports com.telenav.kivakit.core.kernel.language.values.count;
     exports com.telenav.kivakit.core.kernel.language.values.identifier;

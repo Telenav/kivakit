@@ -21,7 +21,7 @@ package com.telenav.kivakit.data.formats.csv;
 import com.telenav.kivakit.core.kernel.language.io.LookAheadReader;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.resource.Resource;
-import com.telenav.kivakit.data.formats.project.lexakai.diagrams.DiagramCsv;
+import com.telenav.kivakit.data.formats.csv.project.lexakai.diagrams.DiagramCsv;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -37,10 +37,12 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramCsv.class)
 public class UnquotedCsvReader extends CsvReader
 {
-    public UnquotedCsvReader(final Resource resource, final ProgressReporter reporter, final CsvSchema schema,
-                             final char delimiter)
+    public UnquotedCsvReader(final Resource resource,
+                             final CsvSchema schema,
+                             final char delimiter,
+                             final ProgressReporter reporter)
     {
-        super(resource, reporter, schema, delimiter);
+        super(resource, schema, delimiter, reporter);
     }
 
     /**

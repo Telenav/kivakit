@@ -18,38 +18,51 @@
 
 package com.telenav.kivakit.data.formats.csv;
 
-import com.telenav.kivakit.core.kernel.interfaces.comparison.Filter;
-import com.telenav.kivakit.core.kernel.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.core.kernel.language.reflection.Type;
 import com.telenav.kivakit.core.kernel.language.reflection.populator.ObjectPopulator;
 import com.telenav.kivakit.core.kernel.language.reflection.property.Property;
 import com.telenav.kivakit.core.kernel.language.reflection.property.PropertyValueSource;
 import com.telenav.kivakit.core.kernel.language.strings.Strings;
-import com.telenav.kivakit.core.kernel.language.threading.context.CodeContext;
 import com.telenav.kivakit.core.kernel.language.values.count.Maximum;
-import com.telenav.kivakit.core.kernel.messaging.Listener;
-import com.telenav.kivakit.core.kernel.messaging.Message;
-import com.telenav.kivakit.core.kernel.messaging.Repeater;
-import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.data.formats.project.lexakai.diagrams.DiagramCsv;
+import com.telenav.kivakit.core.kernel.messaging.repeaters.RepeaterTrait;
+import com.telenav.kivakit.data.formats.csv.project.lexakai.diagrams.DiagramCsv;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.core.kernel.language.reflection.property.filters.KivaKitProperties.INCLUDED_PROPERTIES_AND_FIELDS;
-
 /**
- * A line in a CSV (Comma Separated Variable file.
+ * A model of a line in a CSV (Comma Separated Variable) file. {@link CsvLine} objects are produced by {@link CsvReader}
+ * and consumed by {@link CsvWriter}.
+ *
+ * <p><b>Properties</b></p>
+ *
+ * <p>
+ * This model has a line number available with {@link #lineNumber()} and it conforms to a {@link CsvSchema}, available
+ * with {@link #schema()}. Columns are separated in the CSV file with a delimiter character, normally a comma, that is
+ * passed to the constructor {@link #CsvLine(CsvSchema, char)}. Values from the line can be retrieved by column with
+ * {@link #get(CsvColumn)} and they can be provided with {@link #set(CsvColumn, Object)}.
+ * </p>
+ *
+ * <p><b>Converting a Line to an Object</b></p>
+ *
+ * <p>
+ * A {@link CsvLine} can be converted directly to an object with {@link #asObject(Class)}. A new instance of the class
+ * is created and its properties are populated using the {@link CsvSchema} of this line. For details, see {@link
+ * #asObject(Class)} and {@link #valueFor(Property)}.
+ * </p>
  *
  * @author jonathanl (shibo)
+ * @see CsvSchema
+ * @see CsvColumn
+ * @see CsvReader
+ * @see CsvWriter
  */
 @UmlClassDiagram(diagram = DiagramCsv.class)
-public class CsvLine extends StringList implements PropertyValueSource, Repeater
+@LexakaiJavadoc(complete = true)
+public class CsvLine extends StringList implements PropertyValueSource, RepeaterTrait
 {
     /** The schema that this line obeys */
     private final transient CsvSchema schema;
-
-    /** A repeater to notify of conversion problems */
-    private final transient Repeater repeater;
 
     /**
      * The line number of this CSV line in the file or input stream being read. If the object is being written, the
@@ -61,60 +74,34 @@ public class CsvLine extends StringList implements PropertyValueSource, Repeater
     private final char delimiter;
 
     /**
-     * Construct with a given listener and schema
+     * Construct with a given schema and delimiter
      */
     public CsvLine(final CsvSchema schema, final char delimiter)
     {
-        super(Maximum._1_000);
-        repeater = new BaseRepeater(getClass());
+        super(Maximum._10_000);
+
         this.schema = schema;
         this.delimiter = delimiter;
     }
 
-    @Override
-    public void addListener(final Listener listener, final Filter<Transmittable> filter)
-    {
-        repeater.addListener(listener, filter);
-    }
-
-    @Override
-    public void addListener(final Listener listener)
-    {
-        repeater.addListener(listener);
-    }
-
     /**
-     * @return An object of the given type populated by {@link ObjectPopulator}
+     * @return An object of the given type with its properties populated by {@link ObjectPopulator} using {@link
+     * CsvPropertyFilter}. Properties of the object that correspond to {@link CsvColumn}s using KivaKit property naming
+     * are retrieved with {@link PropertyValueSource#valueFor(Property)} (see below) and set on the new object by
+     * reflection. The result is an object corresponding to this line.
      */
     public <T> T asObject(final Class<T> type)
     {
         try
         {
-            return new ObjectPopulator(this, INCLUDED_PROPERTIES_AND_FIELDS, this).populate(Type.forClass(type).newInstance());
+            return new ObjectPopulator(this, new CsvPropertyFilter(schema()), this)
+                    .populate(Type.forClass(type).newInstance());
         }
         catch (final Exception e)
         {
-            problem(e, "Unable to populate ${debug}", type);
+            problem(e, "Unable to create or populate ${debug}", type);
             return null;
         }
-    }
-
-    @Override
-    public void clearListeners()
-    {
-        repeater.clearListeners();
-    }
-
-    @Override
-    public void debugCodeContext(final CodeContext context)
-    {
-        repeater.debugCodeContext(context);
-    }
-
-    @Override
-    public CodeContext debugCodeContext()
-    {
-        return repeater.debugCodeContext();
     }
 
     /**
@@ -126,12 +113,6 @@ public class CsvLine extends StringList implements PropertyValueSource, Repeater
         return text == null ? null : column.asType(text);
     }
 
-    @Override
-    public boolean hasListeners()
-    {
-        return repeater.hasListeners();
-    }
-
     /**
      * @return The line number of this CSV line in the input, or -1 if the line was not read from an input source (if it
      * was constructed to be written)
@@ -139,18 +120,6 @@ public class CsvLine extends StringList implements PropertyValueSource, Repeater
     public int lineNumber()
     {
         return lineNumber;
-    }
-
-    @Override
-    public void onMessage(final Message message)
-    {
-        repeater.onMessage(message);
-    }
-
-    @Override
-    public void removeListener(final Listener listener)
-    {
-        repeater.removeListener(listener);
     }
 
     /**
@@ -185,6 +154,9 @@ public class CsvLine extends StringList implements PropertyValueSource, Repeater
         }
     }
 
+    /**
+     * @return The unconverted string value for the given column
+     */
     public String string(final CsvColumn<?> column)
     {
         final var index = column.index();
@@ -214,22 +186,17 @@ public class CsvLine extends StringList implements PropertyValueSource, Repeater
         return value;
     }
 
-    @Override
-    public void transmit(final Message message)
-    {
-        repeater.transmit(message);
-    }
-
     /**
-     * Value of the column with the given property name
+     * Implementation of {@link PropertyValueSource} used by {@link ObjectPopulator} in {@link #asObject(Class)} to get
+     * the value of the given property using the property name to find the {@link CsvColumn}.
      */
     @Override
-    public String valueFor(final Property property)
+    public Object valueFor(final Property property)
     {
         final var column = schema().columnForName(property.name());
         if (column != null)
         {
-            return string(column);
+            return get(column);
         }
         return null;
     }

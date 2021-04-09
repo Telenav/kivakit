@@ -10,10 +10,10 @@
     interface Iterable
     interface Closeable
     interface Resource
-    interface Repeater
+    interface RepeaterTrait
     
     BaseIterator <|-- BaseObjectReader
-    Repeater <|-- BaseObjectReader
+    RepeaterTrait <|-- BaseObjectReader
     Closeable <|-- BaseObjectReader
     abstract class BaseObjectReader<T>
     {

@@ -21,9 +21,9 @@ package com.telenav.kivakit.core.kernel.language.reflection.populator;
 import com.telenav.kivakit.core.kernel.language.reflection.Type;
 import com.telenav.kivakit.core.kernel.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.core.kernel.language.reflection.property.PropertyValueSource;
+import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageReflection;
-import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -55,22 +55,22 @@ public class ObjectPopulator
      */
     public <T> T populate(final T object)
     {
-        // Go through each property on the object
+        // Go through each property on the object,
         for (final var property : Type.of(object).properties(filter))
         {
-            // Get any value for the given property
+            // get any value for the given property,
             final var value = source.valueFor(property);
 
-            // If the value is non-null,
+            // and if the value is non-null,
             if (value != null)
             {
-                // set the property value
+                // set the property value,
                 final var message = property.set(listener, object, value);
 
                 // and if something went wrong,
                 if (message instanceof Problem)
                 {
-                    // notify any listeners
+                    // notify any listeners.
                     listener.receive(message);
                 }
             }
@@ -79,6 +79,7 @@ public class ObjectPopulator
                 listener.warning("No value found for property: $", property.name());
             }
         }
+
         return object;
     }
 }

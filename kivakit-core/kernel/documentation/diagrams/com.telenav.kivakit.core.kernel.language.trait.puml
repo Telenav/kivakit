@@ -1,0 +1,20 @@
+@startuml
+
+    !include ../lexakai/lexakai.theme
+    
+    title "com.telenav.kivakit.core.kernel.language.trait"
+    
+    interface Trait
+    {
+        --(collection)--
+        +T value(Class<? extends Trait> type, Factory<T>)
+    }
+    
+    class TraitValue
+    {
+        --
+        +T get(Object, Class<? extends Trait> type, Factory<T>)
+    }
+    
+@enduml
+

@@ -9,7 +9,7 @@
     abstract BaseRepeater
     
     interface PropertyValueSource
-    interface Repeater
+    interface RepeaterTrait
     
     Name <|-- CsvColumn
     class CsvColumn<Type>
@@ -27,7 +27,7 @@
     
     StringList <|-- CsvLine
     PropertyValueSource <|-- CsvLine
-    Repeater <|-- CsvLine
+    RepeaterTrait <|-- CsvLine
     class CsvLine
     {
         --(constructors)--
@@ -50,7 +50,7 @@
     class CsvReader
     {
         --(constructors)--
-        +CsvReader(Resource, ProgressReporter, CsvSchema, char)
+        +CsvReader(Resource, CsvSchema, char, ProgressReporter)
         --
         +void delimiter(char delimiter)
         +int lineNumber()
@@ -103,7 +103,7 @@
     class UnquotedCsvReader
     {
         --(constructors)--
-        +UnquotedCsvReader(Resource, ProgressReporter, CsvSchema, char)
+        +UnquotedCsvReader(Resource, CsvSchema, char, ProgressReporter)
     }
     
 @enduml

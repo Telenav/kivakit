@@ -17,5 +17,15 @@
         +BaseRepeater(String, Class<?>)
     }
     
+    interface Repeater
+    interface Trait
+    Trait <|-- RepeaterTrait
+    Repeater <|-- RepeaterTrait
+    interface RepeaterTrait
+    {
+        --
+        +Repeater repeater()
+    }
+    
 @enduml
 

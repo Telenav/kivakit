@@ -112,6 +112,7 @@ com.telenav.kivakit.core.kernel.language.threading.status
 com.telenav.kivakit.core.kernel.language.time
 com.telenav.kivakit.core.kernel.language.time.conversion
 com.telenav.kivakit.core.kernel.language.time.conversion.converters
+com.telenav.kivakit.core.kernel.language.trait
 com.telenav.kivakit.core.kernel.language.types
 com.telenav.kivakit.core.kernel.language.values.count
 com.telenav.kivakit.core.kernel.language.values.identifier
@@ -205,6 +206,7 @@ module:kivakit.data.formats.text
 com.telenav.kivakit.data.formats.library.text
 module:kivakit.filesystems.hdfs
 com.telenav.kivakit.filesystems.hdfs
+com.telenav.kivakit.filesystems.hdfs.project
 module:kivakit.filesystems.hdfs.proxy
 com.telenav.kivakit.filesystems.hdfs.proxy
 com.telenav.kivakit.filesystems.hdfs.proxy.converters

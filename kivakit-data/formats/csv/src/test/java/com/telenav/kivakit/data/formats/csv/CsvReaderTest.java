@@ -39,7 +39,7 @@ public class CsvReaderTest extends UnitTest
         final var schema = new CsvSchema(year, make, model, description, price);
 
         final var resource = PackageResource.packageResource(PackagePath.packagePath(CsvReaderTest.class), "SampleCsv.csv");
-        try (final var myReader = new CsvReader(resource, ProgressReporter.NULL, schema, ','))
+        try (final var myReader = new CsvReader(resource, schema, ',', ProgressReporter.NULL))
         {
             myReader.skipLines(1);
             ensure(myReader.hasNext());

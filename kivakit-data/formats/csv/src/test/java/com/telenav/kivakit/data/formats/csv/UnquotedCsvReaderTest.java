@@ -39,7 +39,7 @@ public class UnquotedCsvReaderTest extends UnitTest
         final var schema = new CsvSchema(year, make, model, description, price);
 
         final var resource = PackageResource.packageResource(PackagePath.packagePath(UnquotedCsvReaderTest.class), "SampleUnquotedCsv.csv");
-        try (final var reader = new UnquotedCsvReader(resource, ProgressReporter.NULL, schema, ';'))
+        try (final var reader = new UnquotedCsvReader(resource, schema, ';', ProgressReporter.NULL))
         {
             reader.skipLines(1);
             ensure(reader.hasNext());
