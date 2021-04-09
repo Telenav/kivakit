@@ -22,7 +22,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.unsu
 /**
  * <b>Not public API</b>
  * <p>
- * Implementation of {@link FileService} used to provide {@link HdfsFileSystemService}.
+ * Implementation of {@link FileService} used to provide {@link S3FileSystemService}.
  *
  * @author jonathanl (shibo)
  */

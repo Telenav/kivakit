@@ -61,9 +61,7 @@ KivaKit makes it easy to:
 - **Serialize data** with an extensible abstraction
 - **Create applications**
     - Parse command line arguments in a reusable way
-    - Configure components programmatically, or by loading settings   
-      from properties files
-- **Process and compress data**
+    - Configure components programmatically, or by loading settings from properties files
 - **Run embedded [Jetty](https://www.eclipse.org/jetty/)** with [Apache Wicket](https://wicket.apache.org),
   [Jersey](https://eclipse-ee4j.github.io/jersey/) and [Swagger](https://swagger.io).
 
@@ -76,13 +74,13 @@ parts of the framework.
 |--------------|-----------------------------------|
 | Project Name | KivaKit |
 | Summary | Library code for developing Java applications |
-| Javadoc Coverage |  <!-- ${project-javadoc-average-coverage-meter} -->  ![](documentation/images/meter-80-12.png) <!-- end --> |
+| Javadoc Coverage |  <!-- ${project-javadoc-average-coverage-meter} -->  ![](documentation/images/meter-90-12.png) <!-- end --> |
 | Lead | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
 | Administrator | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
 | Email | [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
 | Twitter | [@OpenKivaKit](https://twitter.com/openkivakit) |
-| Issues | [GitHub Telenav/kivakit/issues](https://github.com/Telenav/kivakit/issues) |
-| Code | [GitHub Telenav/kivakit](https://github.com/Telenav/kivakit) |
+| Issues | [GitHub Issues](https://github.com/Telenav/kivakit/issues) |
+| Code | [GitHub](https://github.com/Telenav/kivakit) |
 | Checkout | `git clone git@github.com:Telenav/kivakit.git` |
 
 <br/> 
@@ -110,11 +108,10 @@ parts of the framework.
 ### Projects &nbsp; ![](documentation/images/gears-40.png)
 
 [**kivakit-core**](kivakit-core/README.md)  
-[**kivakit-data**](kivakit-data/README.md)  
 [**kivakit-filesystems**](kivakit-filesystems/README.md)  
 [**kivakit-logs**](kivakit-logs/README.md)  
 [**kivakit-service**](kivakit-service/README.md)  
-[**kivakit-web**](kivakit-web/README.md)  
+[**kivakit-web**](kivakit-web/README.md)
 
 ### Javadoc Coverage
 
@@ -135,10 +132,6 @@ parts of the framework.
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-serialization-json*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-serialization-kryo*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-test*  
-&nbsp;  ![](documentation/images/meter-70-12.png) &nbsp; &nbsp; *kivakit-data-compression*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-data-formats-csv*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-data-formats-library*  
-&nbsp;  ![](documentation/images/meter-0-12.png) &nbsp; &nbsp; *kivakit-data-formats-text*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-filesystems-hdfs*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-filesystems-hdfs-proxy*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-filesystems-hdfs-proxy-spi*  

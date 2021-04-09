@@ -38,6 +38,7 @@ append "$KIVAKIT_TOOLS/building";
 append "$KIVAKIT_TOOLS/developing";
 append "$KIVAKIT_TOOLS/releasing";
 append "$KIVAKIT_TOOLS/codeflowers";
+append "$KIVAKIT_WORKSPACE/kivakit-extensions/tools/building";
 
 NORMAL='\033[0m'
 ATTENTION='\033[1;32m'

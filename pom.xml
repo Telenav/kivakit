@@ -19,7 +19,6 @@
     <modules>
 
         <module>kivakit-core</module>
-        <module>kivakit-data</module>
         <module>kivakit-logs</module>
         <module>kivakit-service</module>
         <module>kivakit-filesystems</module>

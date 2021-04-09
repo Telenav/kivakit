@@ -10,4 +10,4 @@
 cd $KIVAKIT_WORKSPACE
 
 # Build .puml files and README.md indexes with Lexakai
-bash kivakit-lexakai.sh $KIVAKIT_WORKSPACE
+bash lexakai.sh $KIVAKIT_HOME
