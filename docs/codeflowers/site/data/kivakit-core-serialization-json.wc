@@ -1,7 +1,7 @@
-      57 com/telenav/kivakit/core/serialization/json/GsonFactory.java
-      16 com/telenav/kivakit/core/serialization/json/GsonSerializer.java
-      46 com/telenav/kivakit/core/serialization/json/PrimitiveGsonSerializer.java
-      41 com/telenav/kivakit/core/serialization/json/StringConverterGsonSerializer.java
-      23 com/telenav/kivakit/core/serialization/json/project/SerializationJsonProject.java
+      77 com/telenav/kivakit/core/serialization/json/GsonFactory.java
+      33 com/telenav/kivakit/core/serialization/json/GsonSerializer.java
+      62 com/telenav/kivakit/core/serialization/json/PrimitiveGsonSerializer.java
+      58 com/telenav/kivakit/core/serialization/json/StringConverterGsonSerializer.java
+      43 com/telenav/kivakit/core/serialization/json/project/SerializationJsonProject.java
        8 module-info.java
-     191 total
+     281 total

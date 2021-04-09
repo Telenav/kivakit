@@ -1,0 +1,10 @@
+     203 com/telenav/kivakit/filesystems/hdfs/HdfsFile.java
+      73 com/telenav/kivakit/filesystems/hdfs/HdfsFileSystemService.java
+     358 com/telenav/kivakit/filesystems/hdfs/HdfsFolder.java
+     242 com/telenav/kivakit/filesystems/hdfs/HdfsProxyClient.java
+      94 com/telenav/kivakit/filesystems/hdfs/HdfsProxyIO.java
+     107 com/telenav/kivakit/filesystems/hdfs/HdfsSettings.java
+      43 com/telenav/kivakit/filesystems/hdfs/project/FileSystemsHdfsProject.java
+      28 com/telenav/kivakit/filesystems/hdfs/project/lexakai/diagrams/DiagramHdfs.java
+      15 module-info.java
+    1163 total

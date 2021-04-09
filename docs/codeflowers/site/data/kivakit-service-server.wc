@@ -1,0 +1,12 @@
+     148 com/telenav/kivakit/service/registry/server/ServiceRegistryServer.java
+      31 com/telenav/kivakit/service/registry/server/ServiceRegistryServerSettings.java
+      48 com/telenav/kivakit/service/registry/server/project/ServiceServerProject.java
+      28 com/telenav/kivakit/service/registry/server/project/lexakai/diagrams/DiagramServer.java
+      37 com/telenav/kivakit/service/registry/server/rest/ServiceRegistryRestApplication.java
+     401 com/telenav/kivakit/service/registry/server/rest/ServiceRegistryRestResource.java
+      63 com/telenav/kivakit/service/registry/server/webapp/ServiceRegistryWebApplication.java
+      47 com/telenav/kivakit/service/registry/server/webapp/ServiceRegistryWebPage.java
+     181 com/telenav/kivakit/service/registry/server/webapp/pages/home/HomePage.java
+      93 com/telenav/kivakit/service/registry/server/webapp/pages/home/ServicePanel.java
+      19 module-info.java
+    1096 total

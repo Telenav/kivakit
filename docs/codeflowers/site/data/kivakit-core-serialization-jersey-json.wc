@@ -1,4 +1,4 @@
-      86 com/telenav/kivakit/core/serialization/jersey/json/JerseyGsonSerializer.java
-      21 com/telenav/kivakit/core/serialization/jersey/json/project/SerializationJerseyJsonProject.java
+     106 com/telenav/kivakit/core/serialization/jersey/json/JerseyGsonSerializer.java
+      43 com/telenav/kivakit/core/serialization/jersey/json/project/SerializationJerseyJsonProject.java
        9 module-info.java
-     116 total
+     158 total

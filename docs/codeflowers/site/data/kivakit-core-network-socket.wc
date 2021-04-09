@@ -1,5 +1,5 @@
-      21 com/telenav/kivakit/core/network/socket/project/CoreNetworkSocket.java
-      10 com/telenav/kivakit/core/network/socket/project/lexakai/diagrams/DiagramSocketServer.java
-     103 com/telenav/kivakit/core/network/socket/server/ConnectionListener.java
+      43 com/telenav/kivakit/core/network/socket/project/CoreNetworkSocket.java
+      28 com/telenav/kivakit/core/network/socket/project/lexakai/diagrams/DiagramSocketServer.java
+     114 com/telenav/kivakit/core/network/socket/server/ConnectionListener.java
        6 module-info.java
-     140 total
+     191 total
