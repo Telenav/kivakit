@@ -5,10 +5,8 @@
     title "com.telenav.kivakit.core.resource.writing"
     
     abstract BaseReadableResource
-    abstract BaseRepeater
     
     interface WritableResource
-    interface Closeable
     
     BaseReadableResource <|-- BaseWritableResource
     WritableResource <|-- BaseWritableResource
@@ -26,12 +24,6 @@
         +boolean delete()
         --(write)--
         +void save(InputStream, ProgressReporter)
-    }
-    
-    BaseRepeater <|-- BaseWriter
-    Closeable <|-- BaseWriter
-    abstract class BaseWriter
-    {
     }
     
     class ResourceWriter

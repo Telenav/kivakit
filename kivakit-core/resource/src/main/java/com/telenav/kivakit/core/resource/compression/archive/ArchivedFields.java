@@ -19,13 +19,17 @@
 package com.telenav.kivakit.core.resource.compression.archive;
 
 import com.telenav.kivakit.core.kernel.language.reflection.property.filters.field.AllFields;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.lang.reflect.Field;
 import java.util.Collections;
 
 /**
  * A filter that matches all fields annotated with {@link KivaKitArchivedField}
+ *
+ * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 class ArchivedFields extends AllFields
 {
     public ArchivedFields()

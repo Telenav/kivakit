@@ -35,6 +35,7 @@ import com.telenav.kivakit.core.resource.path.ResourcePathed;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFile;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResource;
 import com.telenav.kivakit.core.resource.spi.ResourceResolverServiceLoader;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
@@ -103,6 +104,12 @@ public interface Resource extends ResourcePathed, ModificationTimestamped, ByteS
                 .description(description);
     }
 
+    /**
+     * Converts to and from {@link Resource}s by resolving {@link ResourceIdentifier}s.
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     class Converter extends BaseStringConverter<Resource>
     {
         public Converter(final Listener listener)

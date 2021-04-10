@@ -28,13 +28,16 @@ import com.telenav.kivakit.core.kernel.language.strings.Strip;
 import com.telenav.kivakit.core.kernel.logging.Logger;
 import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.resource.CopyMode;
+import com.telenav.kivakit.core.resource.Resource;
 import com.telenav.kivakit.core.resource.ResourceFolder;
 import com.telenav.kivakit.core.resource.ResourceFolderIdentifier;
+import com.telenav.kivakit.core.resource.ResourceIdentifier;
 import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceService;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceType;
 import com.telenav.kivakit.core.resource.resources.other.PropertyMap;
 import com.telenav.kivakit.core.resource.spi.ResourceFolderResolver;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.net.URL;
@@ -75,7 +78,16 @@ public class Package implements ResourceFolder
         return of(PackagePath.parsePackagePath(_packageType, path));
     }
 
+    /**
+     * Resolves package resource identifiers that are of the form "classpath:/a/b/c" into {@link ResourceFolder}s (in
+     * the form of {@link Package}s).
+     *
+     * @author jonathanl (shibo)
+     * @see Resource#resolve(String)
+     * @see Resource#resolve(ResourceIdentifier)
+     */
     @UmlClassDiagram(diagram = DiagramResourceService.class)
+    @LexakaiJavadoc(complete = true)
     public static class Resolver implements ResourceFolderResolver
     {
         public static final String SCHEME = "classpath:";

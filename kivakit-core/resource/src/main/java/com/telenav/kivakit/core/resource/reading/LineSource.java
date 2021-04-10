@@ -18,11 +18,14 @@
 
 package com.telenav.kivakit.core.resource.reading;
 
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
 /**
- * Source of text lines
+ * Source of a {@link LineReader} and of lines of text.
  *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public interface LineSource
 {
     /**

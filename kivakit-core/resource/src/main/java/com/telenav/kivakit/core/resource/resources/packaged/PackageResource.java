@@ -33,6 +33,7 @@ import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourc
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceType;
 import com.telenav.kivakit.core.resource.reading.BaseReadableResource;
 import com.telenav.kivakit.core.resource.spi.ResourceResolver;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.IOException;
@@ -96,6 +97,13 @@ public class PackageResource extends BaseReadableResource
         return new PackageResource(_package, resource, name);
     }
 
+    /**
+     * Resolves {@link ResourceIdentifier}s of the form "classpath:/a/b/resource.txt" into {@link Resource}s by creating
+     * a {@link PackageResource} for the identifier.
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     @UmlClassDiagram(diagram = DiagramResourceService.class)
     public static class Resolver implements ResourceResolver
     {

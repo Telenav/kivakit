@@ -22,16 +22,20 @@ import com.telenav.kivakit.core.kernel.language.io.ProgressiveInput;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramInterfaceIo;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;
 
 /**
- * Interface to something which can be opened for reading.
+ * Interface to something which can be opened for reading. The input stream can be obtained with {@link
+ * #openForReading()} or {@link #openForReading(ProgressReporter)}. The latter method will report progress to the given
+ * reporter as bytes are read from the input.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramInterfaceIo.class)
+@LexakaiJavadoc(complete = true)
 public interface Readable extends ByteSized
 {
     /**

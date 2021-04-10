@@ -23,6 +23,7 @@ import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverte
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.resource.spi.ResourceFolderResolverServiceLoader;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.util.List;
 
@@ -52,6 +53,12 @@ public interface ResourceFolder
         return ResourceFolderResolverServiceLoader.resolve(identifier);
     }
 
+    /**
+     * Converts to and from {@link ResourceFolder}s by resolving strings via {@link ResourceFolderIdentifier}s.
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     class Converter extends BaseStringConverter<ResourceFolder>
     {
         public Converter(final Listener listener)

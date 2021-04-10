@@ -36,6 +36,7 @@ import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.resource.Resource;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceArchive;
 import com.telenav.kivakit.core.serialization.core.SerializationSession;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
@@ -69,14 +70,24 @@ import static com.telenav.kivakit.core.serialization.core.SerializationSession.T
  *     System.out.println(entry);
  * }
  * </pre>
- * <b>Saving</b>
+ *
+ * <p><b>Adding Files</b></p>
+ *
+ * <p>
+ * Files can be added to the archive with {@link #add(List)}. To do this, the zip file must be opened in {@link
+ * Mode#WRITE}.
+ * </p>
+ *
+ * <p><b>Saving</b></p>
+ *
  * <ul>
  *     <li>{@link #save(String, Resource)} - Saves the given resources into the named zip entry</li>
  *     <li>{@link #save(SerializationSession, String, VersionedObject)} - Writes the object to the given entry</li>
  *     <li>{@link #saveEntry(String, Callback)} - Saves to the named entry calling the callback to do the work</li>
  * </ul>
- * <p>
- * <b>Loading</b>
+ *
+ * <p><b>Loading</b></p>
+ *
  * <ul>
  *     <li>{@link #load(SerializationSession, String)} - Loads the object from the named entry using the given serializer </li>
  * </ul>
@@ -91,6 +102,7 @@ import static com.telenav.kivakit.core.serialization.core.SerializationSession.T
 @UmlRelation(label = "stores", referent = ZipEntry.class)
 @UmlRelation(label = "opens for access", referent = ZipArchive.Mode.class)
 @UmlExcludeSuperTypes({ AutoCloseable.class, Iterable.class })
+@LexakaiJavadoc(complete = true)
 public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, ByteSized
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
@@ -141,7 +153,13 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
         return null;
     }
 
+    /**
+     * The access mode for a zip archive. Zip archives can be read or written to, but not both.
+     *
+     * @author jonathanl (shibo)
+     */
     @UmlClassDiagram(diagram = DiagramResourceArchive.class)
+    @LexakaiJavadoc(complete = true)
     public enum Mode
     {
         READ,

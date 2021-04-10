@@ -231,14 +231,13 @@ A wide variety of other resources are available and new ones are easy to write. 
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 60.2%.  
+Javadoc coverage for this project is 83.9%.  
   
-&nbsp; &nbsp;  ![](documentation/images/meter-60-12.png)
+&nbsp; &nbsp;  ![](documentation/images/meter-80-12.png)
 
 The following significant classes are undocumented:  
 
 - BaseReadableResource  
-- Folder  
 - PackageResource  
 - PropertyMap  
 - Resource  
@@ -250,7 +249,6 @@ The following significant classes are undocumented:
 | [*BaseObjectReader*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/reading/BaseObjectReader.html) |  |  
 | [*BaseReadableResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/reading/BaseReadableResource.html) |  |  
 | [*BaseWritableResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/writing/BaseWritableResource.html) |  |  
-| [*BaseWriter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/writing/BaseWriter.html) |  |  
 | [*BitArrayResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/other/BitArrayResource.html) |  |  
 | [*Codec*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/Codec.html) |  |  
 | [*Compressor*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/Compressor.html) |  |  
@@ -349,7 +347,9 @@ The following significant classes are undocumented:
 | [*Resourced*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/Resourced.html) |  |  
 | [*StringResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/string/StringResource.html) |  |  
 | [*WritableResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/WritableResource.html) |  |  
-| [*ZipArchive*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/ZipArchive.html) |  |  
+| [*ZipArchive*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/ZipArchive.html) | Adding Files |  
+| | Loading |  
+| | Saving |  
 | [*ZipArchive.Mode*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/ZipArchive.Mode.html) |  |  
 | [*ZipCodec*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/codecs/ZipCodec.html) |  |  
 | [*ZipEntry*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/ZipEntry.html) |  |  

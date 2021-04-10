@@ -30,6 +30,7 @@ import com.telenav.kivakit.core.resource.path.FileName;
 import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResource;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourcePath;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.List;
@@ -99,6 +100,12 @@ public class ResourcePath extends StringPath
         return new ResourcePath(path.rootElement(), path.elements());
     }
 
+    /**
+     * Converts to and from {@link ResourcePath}s
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<ResourcePath>
     {
         public Converter(final Listener listener)

@@ -36,6 +36,7 @@ import com.telenav.kivakit.core.resource.Resource;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceArchive;
 import com.telenav.kivakit.core.serialization.core.SerializationSession;
 import com.telenav.kivakit.core.serialization.core.SerializationSessionFactory;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -44,9 +45,9 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensu
 
 /**
  * A field archive serializes data into zip file entries in a {@link ZipArchive}. The constructor for this class takes a
- * {@link Resource}, which is used to construct the zip archive, and a {@link SerializationSession}, which is used to
- * save and load fields to and from the archive. {@link FieldArchive} only serializes fields that are explicitly labeled
- * with the {@link KivaKitArchivedField} annotation.
+ * {@link Resource}, which is used to construct the zip archive, and a {@link SerializationSessionFactory}, which is
+ * used to create {@link SerializationSession}s to save and load fields to and from the archive. {@link FieldArchive}
+ * only serializes fields that are explicitly labeled with the {@link KivaKitArchivedField} annotation.
  * <p>
  * When the fields of an object are saved with {@link #saveFieldsOf(NamedObject, Version)}, the object's name via {@link
  * NamedObject#objectName()} is used as a prefix for each field that is saved. For example, if an object named
@@ -86,8 +87,13 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensu
 @UmlClassDiagram(diagram = DiagramResourceArchive.class)
 @UmlRelation(label = "reads annotations", referent = KivaKitArchivedField.class)
 @UmlRelation(label = "reads and writes", referent = NamedObject.class)
+@LexakaiJavadoc(complete = true)
 public class FieldArchive extends BaseRepeater implements Closeable
 {
+    /**
+     * A particular field of an object
+     */
+    @LexakaiJavadoc(complete = true)
     private class ObjectField
     {
         private final Object object;

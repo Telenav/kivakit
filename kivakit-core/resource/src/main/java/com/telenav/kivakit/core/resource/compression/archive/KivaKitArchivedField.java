@@ -19,6 +19,7 @@
 package com.telenav.kivakit.core.resource.compression.archive;
 
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceArchive;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.annotation.ElementType;
@@ -26,10 +27,21 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * Annotation for labeling fields that should be archived.
+ *
+ * @author jonathanl (shibo)
+ * @see FieldArchive
+ * @see ArchivedFields
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.FIELD })
 @UmlClassDiagram(diagram = DiagramResourceArchive.class)
+@LexakaiJavadoc(complete = true)
 public @interface KivaKitArchivedField
 {
+    /**
+     * @return True if this field should be lazy-loaded
+     */
     boolean lazy() default false;
 }

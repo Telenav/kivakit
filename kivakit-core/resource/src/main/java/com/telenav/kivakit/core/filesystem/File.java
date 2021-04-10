@@ -257,6 +257,12 @@ public class File extends BaseWritableResource implements FileSystemObject
         return Folder.kivakitTemporaryFolder().file("temp-" + temporaryFileNumber++ + extension);
     }
 
+    /**
+     * Converts to and from {@link File} objects
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<File>
     {
         public Converter(final Listener listener)
@@ -271,7 +277,13 @@ public class File extends BaseWritableResource implements FileSystemObject
         }
     }
 
+    /**
+     * Resolves {@link ResourceIdentifier}s that are file paths into file {@link Resource}s.
+     *
+     * @author jonathanl (shibo)
+     */
     @UmlClassDiagram(diagram = DiagramResourceService.class)
+    @LexakaiJavadoc(complete = true)
     public static class Resolver implements ResourceResolver
     {
         @Override

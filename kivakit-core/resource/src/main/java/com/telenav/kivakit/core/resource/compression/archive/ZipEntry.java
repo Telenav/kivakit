@@ -24,9 +24,11 @@ import com.telenav.kivakit.core.kernel.language.reflection.property.filters.Kiva
 import com.telenav.kivakit.core.kernel.language.strings.formatting.ObjectFormatter;
 import com.telenav.kivakit.core.kernel.language.time.Time;
 import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.core.resource.WritableResource;
 import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceArchive;
 import com.telenav.kivakit.core.resource.writing.BaseWritableResource;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
@@ -37,8 +39,15 @@ import java.nio.file.Path;
 
 import static java.nio.file.StandardOpenOption.CREATE;
 
+/**
+ * A zip entry in a {@link ZipArchive} that is a {@link WritableResource}.
+ *
+ * @author jonathanl (shibo)
+ * @see ZipArchive
+ */
 @UmlClassDiagram(diagram = DiagramResourceArchive.class)
 @UmlExcludeSuperTypes({ AutoCloseable.class })
+@LexakaiJavadoc(complete = true)
 public class ZipEntry extends BaseWritableResource implements AutoCloseable
 {
     private final Path path;

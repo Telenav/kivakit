@@ -58,6 +58,12 @@ public class FolderList implements List<Folder>
         return folders;
     }
 
+    /**
+     * Converts to and from folder lists separated by commas
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<FolderList>
     {
         public Converter(final Listener listener)

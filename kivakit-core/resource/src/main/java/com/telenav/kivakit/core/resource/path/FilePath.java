@@ -170,6 +170,12 @@ public class FilePath extends ResourcePath
         return fail("Unable to parse file path: " + path);
     }
 
+    /**
+     * Converts to and from {@link FilePath}s
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<FilePath>
     {
         public Converter(final Listener listener)

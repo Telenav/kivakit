@@ -28,6 +28,7 @@ import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.resource.path.Extension;
 import com.telenav.kivakit.core.resource.path.FileName;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResource;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
@@ -38,6 +39,12 @@ import java.util.Collection;
 @UmlRelation(label = "contains", referent = Resource.class)
 public class ResourceList extends ArrayList<Resource>
 {
+    /**
+     * Converts lists of resource identifiers to and from {@link ResourceList}s
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<ResourceList>
     {
         private final Extension extension;

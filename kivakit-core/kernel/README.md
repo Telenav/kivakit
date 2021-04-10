@@ -229,7 +229,7 @@ The major feature areas are listed here, each having its own documentation:
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 38.0%.  
+Javadoc coverage for this project is 38.4%.  
   
 &nbsp; &nbsp;  ![](documentation/images/meter-40-12.png)
 

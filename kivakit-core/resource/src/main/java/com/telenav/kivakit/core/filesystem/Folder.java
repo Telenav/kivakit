@@ -385,7 +385,13 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         CLEAN_UP_ON_EXIT
     }
 
+    /**
+     * Resolves valid folder paths into {@link ResourceFolder}s.
+     *
+     * @author jonathanl (shibo)
+     */
     @UmlClassDiagram(diagram = DiagramResourceService.class)
+    @LexakaiJavadoc(complete = true)
     public static class Resolver implements ResourceFolderResolver
     {
         @Override

@@ -18,20 +18,24 @@
 
 package com.telenav.kivakit.core.kernel.interfaces.io;
 
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.language.io.ProgressiveOutput;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.kernel.language.values.count.Count;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramInterfaceIo;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.OutputStream;
 
 /**
- * Interface to something that can potentially be opened for writing.
+ * Interface to something that can potentially be opened for writing. An output stream can be obtained with {@link
+ * #openForWriting()} or {@link #openForWriting(ProgressReporter)}. The latter method will report progress to the given
+ * reporter as bytes are written to the output.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramInterfaceIo.class)
+@LexakaiJavadoc(complete = true)
 public interface Writable
 {
     /**
