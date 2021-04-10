@@ -35,6 +35,14 @@
 
     <inceptionYear>2011</inceptionYear>
 
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
     <issueManagement>
         <system>GitHub</system>
         <url>https://github.com/Telenav/kivakit/issues</url>
