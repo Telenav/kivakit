@@ -18,16 +18,26 @@
 
 package com.telenav.kivakit.core.filesystem;
 
-import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFolder;
 import com.telenav.kivakit.core.filesystem.spi.DiskService;
 import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
 import com.telenav.kivakit.core.kernel.language.values.level.Percent;
+import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFolder;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
+/**
+ * Represents a logical disk where folders and files are stored. Note that not all filesystems have a disk. For example,
+ * HDFS and S3 are filesystems that are cloud-based and not associated with a single disk or computer. Provides methods
+ * to get the root folder and to determine how large the disk is and how much space is left.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
+@LexakaiJavadoc(complete = true)
 public class Disk
 {
+    /** The disk service provider */
     private final DiskService disk;
 
     @UmlExcludeMember
@@ -36,26 +46,41 @@ public class Disk
         this.disk = disk;
     }
 
+    /**
+     * @return Space free on this disk in {@link Bytes}
+     */
     public Bytes free()
     {
         return disk.free();
     }
 
+    /**
+     * @return The percentage of the disk that is free
+     */
     public Percent percentFree()
     {
         return disk.percentFree();
     }
 
+    /**
+     * @return The percentage of this disk that can be written to, taking into account permissions and other factors
+     */
     public Percent percentUsable()
     {
         return disk.percentUsable();
     }
 
+    /**
+     * @return The root folder of this disk
+     */
     public Folder root()
     {
         return new Folder(disk.root());
     }
 
+    /**
+     * @return The total size of this disk
+     */
     public Bytes size()
     {
         return disk.size();
@@ -67,6 +92,9 @@ public class Disk
         return disk.toString();
     }
 
+    /**
+     * @return The amount of usable free space on this disk, taking into account write permissions and other factors
+     */
     public Bytes usable()
     {
         return disk.usable();

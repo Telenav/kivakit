@@ -19,9 +19,11 @@
 package com.telenav.kivakit.core.resource.resources.streamed;
 
 import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.core.resource.ReadableResource;
 import com.telenav.kivakit.core.resource.ResourcePath;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceType;
 import com.telenav.kivakit.core.resource.reading.BaseReadableResource;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;
@@ -29,13 +31,14 @@ import java.io.InputStream;
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 
 /**
- * A stream resource is a limited wrapper around an input stream that allows one-time reading of an input stream as a
- * Resource. Once the StreamResource has been opened, it cannot be opened a second time. Attempting to do so will result
- * in an {@link IllegalStateException}.
+ * An {@link InputStream} stream wrapper that allows *one-time* reading of an input stream as a {@link
+ * ReadableResource}. Once the StreamResource has been opened, it cannot be opened a second time. Attempting to do so
+ * will result in an {@link IllegalStateException}.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
+@LexakaiJavadoc(complete = true)
 public class InputResource extends BaseReadableResource
 {
     private final InputStream in;

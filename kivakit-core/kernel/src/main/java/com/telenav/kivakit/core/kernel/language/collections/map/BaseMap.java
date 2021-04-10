@@ -19,21 +19,18 @@
 package com.telenav.kivakit.core.kernel.language.collections.map;
 
 import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
+import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.core.kernel.language.objects.Hash;
 import com.telenav.kivakit.core.kernel.language.values.count.Maximum;
 import com.telenav.kivakit.core.kernel.logging.Logger;
 import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageCollectionsMap;
-import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensure;
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 
 /**
  * A base class for bounded maps which wraps a {@link Map} implementation.
@@ -198,6 +195,14 @@ public class BaseMap<Key, Value> implements Map<Key, Value>
         for (final Map.Entry<? extends Key, ? extends Value> entry : map.entrySet())
         {
             put(entry.getKey(), entry.getValue());
+        }
+    }
+
+    public void putIfNotNull(final Key key, final Value value)
+    {
+        if (value != null)
+        {
+            put(key, value);
         }
     }
 

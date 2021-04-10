@@ -20,12 +20,14 @@ package com.telenav.kivakit.core.resource.project;
 
 import com.telenav.kivakit.core.resource.resources.other.PropertyMap;
 import com.telenav.kivakit.core.serialization.kryo.KryoTypes;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
- * Serializer for objects in the kivakit-core-collections module and in dependent projects.
+ * The types to register with Kryo for this project
  *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class CoreResourceKryoTypes extends KryoTypes
 {
     public CoreResourceKryoTypes()

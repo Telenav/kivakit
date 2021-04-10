@@ -21,17 +21,19 @@ package com.telenav.kivakit.core.resource.path;
 import com.telenav.kivakit.core.resource.ResourcePath;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResource;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourcePath;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
-import com.telenav.kivakit.core.resource.project.lexakai.diagrams.*;
 
 /**
- * An object which has a {@link ResourcePath}.
+ * An object which has a {@link ResourcePath}, as returned by {@link #path()}. Convenience methods provide access to the
+ * path's filename and extension(s).
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
+@LexakaiJavadoc(complete = true)
 public interface ResourcePathed
 {
     /**

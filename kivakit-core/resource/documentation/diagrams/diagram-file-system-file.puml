@@ -37,14 +37,13 @@
         #BaseWritableResource(BaseWritableResource)
         #BaseWritableResource(ResourcePath)
         --
-        +void print(String output)
+        +void print(String text)
+        +void println(String text)
         --(filesystem)--
         +void copyFrom(Resource, CopyMode, ProgressReporter)
         +boolean delete()
         --(write)--
-        +ObjectOutputStream objectOutputStream()
         +void save(InputStream, ProgressReporter)
-        +Writer textWriter()
     }
     
     BaseWritableResource <|-- File
@@ -52,11 +51,7 @@
     File o-- FileService : "delegates to"
     class File
     {
-        --
-        +void ensureReadable()
         --(checks)--
-        +boolean isArchive()
-        +boolean isExecutable()
         +boolean isNewerThan(File that)
         +boolean isNonEmpty()
         +boolean isOlderThan(File that)
@@ -65,6 +60,7 @@
         +Folder asFolder()
         +java.io.File asJavaFile()
         +boolean chmod(PosixFilePermission... permissions)
+        +File ensureReadable()
         +File ensureWritable()
         +ArgumentParser.Builder<File> fileArgument(String description)
         +ArgumentParser.Builder<FileList> fileArgumentList(String description, Extension)
@@ -90,7 +86,6 @@
         +File withCharset(Charset)
         +File withCodec(Codec)
         +File withExtension(Extension)
-        +File withFileName(FileName)
         +File withoutExtension()
         +File withoutOverwriting()
     }

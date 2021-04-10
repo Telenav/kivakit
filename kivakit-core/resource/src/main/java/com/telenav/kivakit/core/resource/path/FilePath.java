@@ -30,6 +30,7 @@ import com.telenav.kivakit.core.kernel.language.vm.OperatingSystem;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.resource.ResourcePath;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourcePath;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.net.URI;
@@ -79,6 +80,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
+@LexakaiJavadoc(complete = true)
 public class FilePath extends ResourcePath
 {
     /**

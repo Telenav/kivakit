@@ -18,12 +18,20 @@
 
 package com.telenav.kivakit.core.resource.compression;
 
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceCompression;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.OutputStream;
 
+/**
+ * A compressor applies a compression algorithm to an {@link OutputStream}, yielding another (compressed) {@link
+ * OutputStream}.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramResourceCompression.class)
+@LexakaiJavadoc(complete = true)
 public interface Compressor
 {
     /**

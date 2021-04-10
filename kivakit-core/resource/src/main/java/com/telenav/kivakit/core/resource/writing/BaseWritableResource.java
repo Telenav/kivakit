@@ -18,6 +18,8 @@
 
 package com.telenav.kivakit.core.resource.writing;
 
+import com.telenav.kivakit.core.kernel.language.io.IO;
+import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.resource.CopyMode;
 import com.telenav.kivakit.core.resource.Resource;
 import com.telenav.kivakit.core.resource.ResourcePath;
@@ -25,15 +27,11 @@ import com.telenav.kivakit.core.resource.WritableResource;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFile;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResource;
 import com.telenav.kivakit.core.resource.reading.BaseReadableResource;
-import com.telenav.kivakit.core.kernel.language.io.IO;
-import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.BufferedOutputStream;
 import java.io.InputStream;
-import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.io.Writer;
 
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
@@ -63,31 +61,44 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
         source.copyTo(this, mode, reporter);
     }
 
+    /**
+     * @return True if this resource was deleted
+     */
     public boolean delete()
     {
         return false;
     }
 
     /**
-     *
+     * @return An {@link OutputStream} for this resource, or an exception is thrown
      */
-    public ObjectOutputStream objectOutputStream()
-    {
-        return writer().objectOutputStream();
-    }
-
     @Override
     public OutputStream openForWriting()
     {
         return codec().compressed(new BufferedOutputStream(onOpenForWriting()));
     }
 
-    public void print(final String output)
+    /**
+     * Prints the given text to this resource
+     *
+     * @param text The text to print
+     */
+    public void print(final String text)
     {
         try (final var out = printWriter())
         {
-            out.print(output);
+            out.print(text);
         }
+    }
+
+    /**
+     * Prints the given text to this resource followed by a newline
+     *
+     * @param text The text to print
+     */
+    public void println(final String text)
+    {
+        print(text + "\n");
     }
 
     /**
@@ -98,10 +109,5 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
         final var out = openForWriting(reporter);
         IO.copyAndClose(in, out);
         IO.close(out);
-    }
-
-    public Writer textWriter()
-    {
-        return writer().textWriter();
     }
 }

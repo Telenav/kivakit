@@ -19,12 +19,19 @@
 package com.telenav.kivakit.core.resource.resources.packaged;
 
 import com.telenav.kivakit.core.kernel.language.paths.PackagePath;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * An object having a (KivaKit) {@link Package}.
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public interface Packaged
 {
+    /**
+     * @return The {@link Package} for this object
+     */
     default Package _package()
     {
         return new Package(PackagePath.packagePath(getClass()));

@@ -48,7 +48,7 @@ public class S3Folder extends S3FileSystemObject implements FolderService
 
     // In the S3 world, there no folder physically, so we created a metadata file to
     // represents its existence
-    private static final FileName METADATA = new FileName(".metadata");
+    private static final FileName METADATA = FileName.parse(".metadata");
 
     public S3Folder(final FilePath path)
     {

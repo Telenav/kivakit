@@ -38,7 +38,7 @@ public class S3FolderTest extends UnitTest
     public void testClear()
     {
         final FolderService folder = new S3Folder("s3://com-telenav-nav-user-analytics-dev/folder");
-        final var child = folder.folder(new FileName("child"));
+        final var child = folder.folder(FileName.parse("child"));
         child.mkdirs();
         ensure(child.exists());
         ensureFalse(folder.isEmpty());
@@ -62,7 +62,7 @@ public class S3FolderTest extends UnitTest
     public void testFile()
     {
         final var folder = Folder.parse("s3://com-telenav-nav-user-analytics-dev/nav-user-analytics/folder");
-        final var file = folder.file(new FileName("name1"));
+        final var file = folder.file(FileName.parse("name1"));
         ensure(file.fileName().toString().equals("name1"));
     }
 
@@ -71,7 +71,7 @@ public class S3FolderTest extends UnitTest
     {
         final var path = "s3://com-telenav-nav-user-analytics-dev/nav-user-analytics/folder";
         final var folder = Folder.parse(path);
-        ensure(folder.folder("child").name().equals(new FileName("child")));
+        ensure(folder.folder("child").name().equals(FileName.parse("child")));
     }
 
     @Test
@@ -79,7 +79,7 @@ public class S3FolderTest extends UnitTest
     {
         final var path = "s3://com-telenav-nav-user-analytics-dev/nav-user-analytics/folder";
         final var folder = Folder.parse(path);
-        ensure(folder.name().equals(new FileName("folder")));
+        ensure(folder.name().equals(FileName.parse("folder")));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class S3FolderTest extends UnitTest
         final var path = "s3://com-telenav-nav-user-analytics-dev/nav-user-analytics/folder";
         final var folder = Folder.parse(path);
         ensure(folder.parent().equals(Folder.parse("s3://com-telenav-nav-user-analytics-dev/nav-user-analytics")));
-        ensure(folder.parent().name().equals(new FileName("nav-user-analytics")));
+        ensure(folder.parent().name().equals(FileName.parse("nav-user-analytics")));
     }
 
     @Test
@@ -119,7 +119,7 @@ public class S3FolderTest extends UnitTest
     {
         final var folder = Folder.parse("s3://com-telenav-nav-user-analytics-dev/old-" + FileName.dateTime());
         folder.mkdirs();
-        final var file = folder.file(new FileName("tmp.txt"));
+        final var file = folder.file(FileName.parse("tmp.txt"));
         final var printWriter = file.printWriter();
         printWriter.println("for test");
         printWriter.close();

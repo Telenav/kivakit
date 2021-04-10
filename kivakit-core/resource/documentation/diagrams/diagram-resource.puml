@@ -34,14 +34,13 @@
         #BaseWritableResource(BaseWritableResource)
         #BaseWritableResource(ResourcePath)
         --
-        +void print(String output)
+        +void print(String text)
+        +void println(String text)
         --(filesystem)--
         +void copyFrom(Resource, CopyMode, ProgressReporter)
         +boolean delete()
         --(write)--
-        +ObjectOutputStream objectOutputStream()
         +void save(InputStream, ProgressReporter)
-        +Writer textWriter()
     }
     
     interface Readable

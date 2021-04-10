@@ -99,7 +99,7 @@ public class HdfsProxyClient extends BaseRepeater
 
     public Folder logFolder()
     {
-        return Folder.kivakitTemporaryFolder().folder(new FileName("kivakit-hdfs-proxy")).mkdirs();
+        return Folder.kivakitTemporaryFolder().folder(FileName.parse("kivakit-hdfs-proxy")).mkdirs();
     }
 
     public HdfsProxy proxy()
@@ -169,8 +169,8 @@ public class HdfsProxyClient extends BaseRepeater
                     .folder("kivakit-filesystems/hdfs-proxy/target")
                     .file("kivakit-hdfs-proxy-" + KivaKit.get().version() + ".jar");
             final var process = listenTo(new JarLauncher())
-                    .source(local)
-                    .source(settings.proxyJar())
+                    .addJarSource(local)
+                    .addJarSource(settings.proxyJar())
                     .arguments(
                             "-rmi-object-port=" + rmiObjectPort.number(),
                             "-data-port=" + dataPort.number(),

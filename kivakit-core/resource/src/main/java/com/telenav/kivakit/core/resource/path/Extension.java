@@ -18,64 +18,110 @@
 
 package com.telenav.kivakit.core.resource.path;
 
-import com.telenav.kivakit.core.resource.Resource;
-import com.telenav.kivakit.core.resource.compression.Codec;
 import com.telenav.kivakit.core.filesystem.File;
 import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.core.kernel.interfaces.naming.Named;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.language.values.count.Count;
+import com.telenav.kivakit.core.resource.Resource;
+import com.telenav.kivakit.core.resource.compression.Codec;
 import com.telenav.kivakit.core.resource.compression.codecs.GzipCodec;
 import com.telenav.kivakit.core.resource.compression.codecs.NullCodec;
+import com.telenav.kivakit.core.resource.compression.codecs.ZipCodec;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourcePath;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A {@link FileName} extension, such as ".txt" or ".jar".
+ *
+ * <p>
+ * Common extensions are provided as static constants. An extension can also be constructed with {@link #parse(String)},
+ * with or without a dot prefix:
+ * </p>
+ *
+ * <pre>
+ * Extension.parse(".xyz");
+ * Extension.parse("xyz");
+ * </pre>
+ *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #name()} - The extension as a string</li>
+ *     <li>{@link #codec()} - The codec normally used for files with this extension, or the {@link NullCodec} if the file is not compressed</li>
+ * </ul>
+ *
+ * <p><b>Matching</b></p>
+ *
+ * <ul>
+ *     <li>{@link #fileMatcher()} - A matcher that matches resources with this extension</li>
+ *     <li>{@link #matches(Resource)} - True if the given resource has this extension</li>
+ * </ul>
+ *
+ * <p><b>Checks</b></p>
+ *
+ * <ul>
+ *     <li>{@link #endsWith(Extension)} - True if this (compound) extension ends with the given extension</li>
+ *     <li>{@link #isArchive()} - True if this extensions indicates an archive</li>
+ *     <li>{@link #isExecutable()} - True if this extension is normally executable</li>
+ * </ul>
+ *
+ * <p><b>Functional Methods</b></p>
+ *
+ * <ul>
+ *     <li>{@link #gzipped()} - This extension with ".gz" on the end</li>
+ * </ul>
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
+@LexakaiJavadoc(complete = true)
 public class Extension implements Named
 {
     // Archives
-    public static final Extension GZIP = new Extension(".gz");
+    public static final Extension GZIP = parse(".gz");
 
-    public static final Extension ZIP = new Extension(".zip");
+    public static final Extension ZIP = parse(".zip");
 
-    public static final Extension JAR = new Extension(".jar");
+    public static final Extension JAR = parse(".jar");
 
-    public static final Extension KRYO = new Extension(".kryo");
+    public static final Extension KRYO = parse(".kryo");
 
     // Executable files
-    public static final Extension PYTHON = new Extension(".py");
+    public static final Extension PYTHON = parse(".py");
 
-    public static final Extension SHELL = new Extension(".sh");
+    public static final Extension SHELL = parse(".sh");
 
     // General file formats
-    public static final Extension PROPERTIES = new Extension(".properties");
+    public static final Extension PROPERTIES = parse(".properties");
 
-    public static final Extension TXT = new Extension(".txt");
+    public static final Extension TXT = parse(".txt");
 
-    public static final Extension CSV = new Extension(".csv");
+    public static final Extension CSV = parse(".csv");
 
-    public static final Extension PNG = new Extension(".png");
+    public static final Extension PNG = parse(".png");
 
-    public static final Extension TMP = new Extension(".tmp");
+    public static final Extension TMP = parse(".tmp");
 
     // Map file formats
-    public static final Extension TXD = new Extension(".txd");
+    public static final Extension TXD = parse(".txd");
 
-    public static final Extension GRAPH = new Extension(".graph");
+    public static final Extension GRAPH = parse(".graph");
 
-    public static final Extension PBF = new Extension(".pbf");
+    public static final Extension PBF = parse(".pbf");
 
-    public static final Extension OSM = new Extension(".osm");
+    public static final Extension OSM = parse(".osm");
 
-    public static final Extension OSM_PBF = new Extension(".osm.pbf");
+    public static final Extension OSM_PBF = parse(".osm.pbf");
 
-    public static final Extension POLY = new Extension(".poly");
+    public static final Extension POLY = parse(".poly");
 
-    public static final Extension GEOJSON = new Extension(".geojson");
+    public static final Extension GEOJSON = parse(".geojson");
 
-    public static final Extension OSMPP = new Extension(".osmpp");
+    public static final Extension OSMPP = parse(".osmpp");
 
     // Compressed formats
     public static final Extension TXT_GZIP = TXT.gzipped();
@@ -84,7 +130,7 @@ public class Extension implements Named
 
     public static final Extension GRAPH_GZIP = GRAPH.gzipped();
 
-    public static final Extension JAVA = new Extension(".java");
+    public static final Extension JAVA = parse(".java");
 
     public static List<Extension> archive()
     {
@@ -163,15 +209,27 @@ public class Extension implements Named
         }
     }
 
+    /**
+     * @return The codec normally used for files with this extension, or the {@link NullCodec} if the file is not
+     * compressed
+     */
     public Codec codec()
     {
         if (endsWith(GZIP))
         {
             return new GzipCodec();
         }
+        if (endsWith(ZIP))
+        {
+            return new ZipCodec();
+        }
         return new NullCodec();
     }
 
+    /**
+     * @return True if this extension ends with the given extension. For example the extension ".tar.gz" ends with the
+     * extension ".gz"
+     */
     public boolean endsWith(final Extension extension)
     {
         return this.extension.endsWith(extension.extension);
@@ -186,6 +244,15 @@ public class Extension implements Named
             return extension.equals(that.extension);
         }
         return false;
+    }
+
+    public Matcher<File> fileMatcher()
+    {
+        return file ->
+        {
+            final var extension = file.compoundExtension();
+            return extension != null && extension.endsWith(this);
+        };
     }
 
     public Extension gzipped()
@@ -207,15 +274,6 @@ public class Extension implements Named
     public boolean isExecutable()
     {
         return executable().contains(this);
-    }
-
-    public Matcher<File> matcher()
-    {
-        return file ->
-        {
-            final var extension = file.compoundExtension();
-            return extension != null && extension.endsWith(this);
-        };
     }
 
     /**

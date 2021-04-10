@@ -61,7 +61,7 @@ public interface FileSystemObjectService extends ByteSized, ModificationTimestam
     boolean chmod(PosixFilePermission... permissions);
 
     /**
-     *
+     * Deletes this filesystem object
      */
     boolean delete();
 
@@ -78,6 +78,9 @@ public interface FileSystemObjectService extends ByteSized, ModificationTimestam
      */
     boolean exists();
 
+    /**
+     * @return The service provider for folders
+     */
     default FolderService folderService()
     {
         return FileSystemServiceLoader.fileSystem(path()).folderService(path());

@@ -40,17 +40,17 @@ public class ExtensionTest extends UnitTest
     @Test
     public void testWithoutKnownExtension()
     {
-        ensureEqual(new FileName("a"), new FileName("a.txt").withoutKnownExtensions());
-        ensureEqual(new FileName("a"), new FileName("a.txt.gz").withoutKnownExtensions());
-        ensureEqual(new FileName("a"), new FileName("a.osm.pbf").withoutKnownExtensions());
-        ensureEqual(new FileName("a"), new FileName("a.osm").withoutKnownExtensions());
-        ensureEqual(new FileName("a"), new FileName("a.pbf").withoutKnownExtensions());
-        ensureEqual(new FileName("a.unknown"), new FileName("a.unknown").withoutKnownExtensions());
-        ensureEqual(new FileName("a.b.c"), new FileName("a.b.c.txt").withoutKnownExtensions());
-        ensureEqual(new FileName("a.b.c"), new FileName("a.b.c.txt.gz").withoutKnownExtensions());
-        ensureEqual(new FileName("a.b.c"), new FileName("a.b.c.osm.pbf").withoutKnownExtensions());
-        ensureEqual(new FileName("a.b.c"), new FileName("a.b.c.osm").withoutKnownExtensions());
-        ensureEqual(new FileName("a.b.c"), new FileName("a.b.c.pbf").withoutKnownExtensions());
-        ensureEqual(new FileName("a.b.c.unknown"), new FileName("a.b.c.unknown").withoutKnownExtensions());
+        ensureEqual(FileName.parse("a"), FileName.parse("a.txt").withoutKnownExtensions());
+        ensureEqual(FileName.parse("a"), FileName.parse("a.txt.gz").withoutKnownExtensions());
+        ensureEqual(FileName.parse("a"), FileName.parse("a.osm.pbf").withoutKnownExtensions());
+        ensureEqual(FileName.parse("a"), FileName.parse("a.osm").withoutKnownExtensions());
+        ensureEqual(FileName.parse("a"), FileName.parse("a.pbf").withoutKnownExtensions());
+        ensureEqual(FileName.parse("a.unknown"), FileName.parse("a.unknown").withoutKnownExtensions());
+        ensureEqual(FileName.parse("a.b.c"), FileName.parse("a.b.c.txt").withoutKnownExtensions());
+        ensureEqual(FileName.parse("a.b.c"), FileName.parse("a.b.c.txt.gz").withoutKnownExtensions());
+        ensureEqual(FileName.parse("a.b.c"), FileName.parse("a.b.c.osm.pbf").withoutKnownExtensions());
+        ensureEqual(FileName.parse("a.b.c"), FileName.parse("a.b.c.osm").withoutKnownExtensions());
+        ensureEqual(FileName.parse("a.b.c"), FileName.parse("a.b.c.pbf").withoutKnownExtensions());
+        ensureEqual(FileName.parse("a.b.c.unknown"), FileName.parse("a.b.c.unknown").withoutKnownExtensions());
     }
 }

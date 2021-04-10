@@ -18,14 +18,15 @@
 
 package com.telenav.kivakit.core.resource.resources.other;
 
-import com.telenav.kivakit.core.resource.ResourcePath;
-import com.telenav.kivakit.core.resource.WritableResource;
-import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceType;
-import com.telenav.kivakit.core.resource.writing.BaseWritableResource;
 import com.telenav.kivakit.core.collections.primitive.array.bits.BitArray;
 import com.telenav.kivakit.core.collections.primitive.array.bits.io.BitReader;
 import com.telenav.kivakit.core.collections.primitive.array.bits.io.BitWriter;
 import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.core.resource.ResourcePath;
+import com.telenav.kivakit.core.resource.WritableResource;
+import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceType;
+import com.telenav.kivakit.core.resource.writing.BaseWritableResource;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;
@@ -37,6 +38,7 @@ import java.io.OutputStream;
  * @author matthieun
  */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
+@LexakaiJavadoc(complete = true)
 public class BitArrayResource extends BaseWritableResource
 {
     private final BitArray data;

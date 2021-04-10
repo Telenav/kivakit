@@ -20,15 +20,23 @@ package com.telenav.kivakit.core.resource.resources.string;
 
 import com.telenav.kivakit.core.kernel.language.io.StringInput;
 import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.core.resource.ReadableResource;
 import com.telenav.kivakit.core.resource.ResourcePath;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceType;
 import com.telenav.kivakit.core.resource.reading.BaseReadableResource;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;
 import java.util.function.Function;
 
+/**
+ * A {@link ReadableResource} formed from a string passed to the constructor {@link #StringResource(String)}.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
+@LexakaiJavadoc(complete = true)
 public class StringResource extends BaseReadableResource
 {
     private final String value;

@@ -18,11 +18,17 @@
 
 package com.telenav.kivakit.core.resource;
 
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.unsupported;
 
 /**
+ * The mode for copying resources. Resources can be updated (copied if they don't exist yet), overwritten (copied over
+ * top of any existing resource) or not overwritten (not copied if the resource already exists).
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public enum CopyMode
 {
     /** Overwrite the destination if it exists */

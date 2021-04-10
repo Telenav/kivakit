@@ -19,10 +19,10 @@
 package com.telenav.kivakit.core.configuration;
 
 import com.telenav.kivakit.core.configuration.project.lexakai.diagrams.DiagramConfiguration;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.resource.path.Extension;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -65,7 +65,7 @@ public class ConfigurationFolder extends ConfigurationSet
         final Set<ConfigurationEntry> configurations = new HashSet<>();
 
         // Go through properties files in the folder
-        for (final var file : folder.files().matching(Extension.PROPERTIES.matcher()))
+        for (final var file : folder.files().matching(Extension.PROPERTIES.fileMatcher()))
         {
             // and add a configuration entry for each file
             configurations.add(internalLoadConfiguration(file));

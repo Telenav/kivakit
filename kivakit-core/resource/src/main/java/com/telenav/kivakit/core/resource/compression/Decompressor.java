@@ -18,12 +18,20 @@
 
 package com.telenav.kivakit.core.resource.compression;
 
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceCompression;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;
 
+/**
+ * A decompressor applies a decompression algorithm to an {@link InputStream}, yielding another (decompressed) {@link
+ * InputStream}.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramResourceCompression.class)
+@LexakaiJavadoc(complete = true)
 public interface Decompressor
 {
     /**

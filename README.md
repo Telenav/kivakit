@@ -77,7 +77,7 @@ parts of the framework.
 | Javadoc Coverage |  <!-- ${project-javadoc-average-coverage-meter} -->  ![](documentation/images/meter-90-12.png) <!-- end --> |
 | Lead | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
 | Administrator | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
-| Email | [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
+| Email | [kivakit@telenav.com](mailto:kivakit@telenav.com) |
 | Twitter | [@OpenKivaKit](https://twitter.com/openkivakit) |
 | Issues | [GitHub Issues](https://github.com/Telenav/kivakit/issues) |
 | Code | [GitHub](https://github.com/Telenav/kivakit) |
@@ -111,7 +111,7 @@ parts of the framework.
 [**kivakit-filesystems**](kivakit-filesystems/README.md)  
 [**kivakit-logs**](kivakit-logs/README.md)  
 [**kivakit-service**](kivakit-service/README.md)  
-[**kivakit-web**](kivakit-web/README.md)
+[**kivakit-web**](kivakit-web/README.md)  
 
 ### Javadoc Coverage
 
@@ -125,7 +125,7 @@ parts of the framework.
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-ftp*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-http*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-socket*  
-&nbsp;  ![](documentation/images/meter-30-12.png) &nbsp; &nbsp; *kivakit-core-resource*  
+&nbsp;  ![](documentation/images/meter-60-12.png) &nbsp; &nbsp; *kivakit-core-resource*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-security*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-serialization-core*  
 &nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-serialization-jersey-json*  

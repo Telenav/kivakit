@@ -16,7 +16,8 @@
         +JarLauncher headless(boolean headless)
         +JarLauncher processType(ProcessType)
         +JarLauncher redirectTo(RedirectTo)
-        +JarLauncher source(Resourced)
+        --(collection)--
+        +JarLauncher addJarSource(Resourced)
         --(command line parsing)--
         +JarLauncher arguments(StringList arguments)
         +JarLauncher arguments(String... arguments)

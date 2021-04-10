@@ -47,6 +47,7 @@
         --(collection)--
         +Maximum maximumSize()
         +Value put(Key, Value, Value defaultValue)
+        +void putIfNotNull(Key, Value)
         #boolean checkSize(int increase)
         #Map<Key,Value> map()
         --(extension points)--

@@ -22,7 +22,6 @@ import com.telenav.kivakit.core.commandline.ArgumentParser;
 import com.telenav.kivakit.core.commandline.SwitchParser;
 import com.telenav.kivakit.core.filesystem.loader.FileSystemServiceLoader;
 import com.telenav.kivakit.core.filesystem.spi.FileService;
-import com.telenav.kivakit.core.filesystem.spi.FileSystemObjectService;
 import com.telenav.kivakit.core.filesystem.spi.FolderService;
 import com.telenav.kivakit.core.kernel.KivaKit;
 import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
@@ -30,10 +29,8 @@ import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.kernel.language.strings.Strings;
 import com.telenav.kivakit.core.kernel.language.threading.locks.Monitor;
-import com.telenav.kivakit.core.kernel.language.time.Frequency;
 import com.telenav.kivakit.core.kernel.language.time.Time;
 import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
-import com.telenav.kivakit.core.kernel.language.vm.JavaVirtualMachine;
 import com.telenav.kivakit.core.kernel.language.vm.OperatingSystem;
 import com.telenav.kivakit.core.kernel.logging.Logger;
 import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
@@ -77,13 +74,123 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensu
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 
 /**
- * Folder abstraction that adds type safety and various helpful methods to {@link FileSystemObject}. Support for various
- * file systems is implemented through the service provider interface (SPI) in kivakit-filesystems.
+ * Folder abstraction that extends {@link FileSystemObject} and implements the {@link ResourceFolder} interface for
+ * filesystems. Consumes a {@link FolderService} supplied by a filesystem service provider. Filesystem service providers
+ * can be found in
+ * <i>com.telenav.kivakit.core.filesystem.local</i> (the local filesystem provider) and in the
+ * <i>kivakit-filesystems</i> module.
+ *
+ * <p><b>Factory Methods</b></p>
+ *
+ * <ul>
+ *     <li>{@link #parse(String)} - A folder for the given string</li>
+ *     <li>{@link #folder(URI)} - A folder for the given URI</li>
+ *     <li>{@link #folder(URL)} - A folder for the given URL</li>
+ *     <li>{@link #folder(java.io.File)} - A folder for the given Java file</li>
+ *     <li>{@link #folder(Path)} - A folder for the given NIO path</li>
+ * </ul>
+ *
+ * <p><b>Locations</b></p>
+ *
+ * <ul>
+ *     <li>{@link #current()} - The current working folder</li>
+ *     <li>{@link #desktop()} - The desktop folder</li>
+ *     <li>{@link #userHome()} - The user's home folder</li>
+ *     <li>{@link #kivakitHome()} - The KivaKit home folder</li>
+ *     <li>{@link #kivakitCacheFolder()} - The KivaKit cache folder, normally ~/.kivakit</li>
+ *     <li>{@link #kivakitTemporaryFolder()} - Folder where temporary files can be created</li>
+ *     <li>{@link #kivakitTestFolder(Class)} - Folder for test files for the given class</li>
+ * </ul>
+ *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #name()} - The filename of this folder</li>
+ *     <li>{@link #disk()} - The disk where this folder exists, if any</li>
+ *     <li>{@link #lastModified()} - The last time this folder was modified</li>
+ *     <li>{@link #size()} - The total size of this folder</li>
+ * </ul>
+ *
+ * <p><b>Contents</b></p>
+ *
+ * <ul>
+ *     <li>{@link #files()} - The files in this folder</li>
+ *     <li>{@link #files(Pattern)} - The files in this folder matching the given pattern</li>
+ *     <li>{@link #files(Matcher)} - The matching files in this folder</li>
+ *     <li>{@link #files(Matcher, Traversal)} - The matching files in this folder found with the given {@link Traversal} type</li>
+ *     <li>{@link #folders()} - The folders in this folder</li>
+ *     <li>{@link #folders(Matcher)} - The matching folders in this folder</li>
+ *     <li>{@link #nestedFiles()} - All nested files in this folder</li>
+ *     <li>{@link #nestedFiles(Matcher)} - All matching nested files in this folder</li>
+ *     <li>{@link #nestedFolders(Matcher)} - All matching nested folders under this folder</li>
+ *     <li>{@link #oldest()} - The oldest file in this folder</li>
+ *     <li>{@link #oldest(Matcher)} - The oldest matching file in this folder</li>
+ *     <li>{@link #temporaryFile(FileName)} - A temporary file in this folder with the given name</li>
+ *     <li>{@link #temporaryFolder(FileName)} - A temporary sub-folder with the given name</li>
+ *     <li>{@link #temporaryFile(FileName, Extension)} - A temporary file in this folder with the given name and extension</li>
+ * </ul>
+ *
+ * <p><b>Hierarchy</b></p>
+ *
+ * <ul>
+ *     <li>{@link #absolute()} - This folder with an absolute path</li>
+ *     <li>{@link #path()} - The path to this folder</li>
+ *     <li>{@link #parent()} - The parent folder, or null if there is none</li>
+ *     <li>{@link #relativeTo(Folder)} - This folder with a path relative to the given folder</li>
+ *     <li>{@link #relativePath(Folder)} - The relative of this path with respect to the given folder</li>
+ *     <li>{@link #root()} - The root folder of this folder</li>
+ *     <li>{@link #file(File)} - The given file relative to this folder</li>
+ *     <li>{@link #file(String)} - The file with the given name in this folder</li>
+ *     <li>{@link #file(FileName)} - The file with the given name in this folder</li>
+ *     <li>{@link #file(FilePath)} - The file with the given relative path to this folder</li>
+ *     <li>{@link #folder(Folder)} - The folder relative to this folder</li>
+ *     <li>{@link #folder(String)} - The folder with the given name in this folder</li>
+ *     <li>{@link #folder(FileName)} - The folder in this folder with the given filename </li>
+ *     <li>{@link #Folder(FilePath)} - The folder with the given relative path to this folder</li>
+ * </ul>
+ *
+ * <p><b>Operations</b></p>
+ *
+ * <ul>
+ *     <li>{@link #chmod(PosixFilePermission...)} - Changes the access permissions of this folder</li>
+ *     <li>{@link #chmodNested(PosixFilePermission...)} - Recursively changes the access permissions of this folder</li>
+ *     <li>{@link #clearAll()} - Removes everything in this folder</li>
+ *     <li>{@link #clearAllAndDelete()} - Removes everything in this folder and then deletes it</li>
+ *     <li>{@link #copyTo(Folder, CopyMode, ProgressReporter)} - Copies this folder to the given folder</li>
+ *     <li>{@link #copyTo(Folder, CopyMode, Matcher, ProgressReporter)} - Copies the matching files in this folder to the given folder</li>
+ *     <li>{@link #delete()} - Deletes this folder if it is empty</li>
+ *     <li>{@link #mkdirs()} - Creates this folder and any required parent folders</li>
+ *     <li>{@link #renameTo(Folder)} - Renames this folder to the given folder</li>
+ *     <li>{@link #lastModified(Time)} - Sets the last modified time of this folder</li>
+ *     <li>{@link #scheduleCleanUpOnExit()} - Schedules this folder to be removed when the VM exits</li>
+ * </ul>
+ *
+ * <p><b>Checks</b></p>
+ *
+ * <ul>
+ *     <li>{@link #ensureExists()} - Ensures this folder exists or fails</li>
+ *     <li>{@link #exists()} - True if this folder exists</li>
+ *     <li>{@link #isFolder()} - True if this is a folder and not a file</li>
+ *     <li>{@link #isEmpty()} - True if this folder is empty</li>
+ *     <li>{@link #isRemote()} - True if this folder is on a remote filesystem</li>
+ *     <li>{@link #isLocal()} - True if this folder is on the local filesystem</li>
+ *     <li>{@link #isMaterialized()} - True if this folder exists locally</li>
+ *     <li>{@link #isWritable()} - True if this folder can be written to</li>
+ * </ul>
+ *
+ * <p><b>Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asJavaFile()} - This folder as a {@link java.io.File}</li>
+ *     <li>{@link #asUri()} - This folder as a URI</li>
+ *     <li>{@link #asUrl()} - This folder as a URL</li>
+ *     <li>{@link #absolute()} - This folder with an absolute path</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
-@LexakaiJavadoc(complete = false)
+@LexakaiJavadoc(complete = true)
 public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFolder
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
@@ -179,12 +286,6 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
                 .description(description);
     }
 
-    public static Folder fromSystemProperty(final String key)
-    {
-        final var path = JavaVirtualMachine.property(key);
-        return path == null ? null : parse(path);
-    }
-
     public static boolean isFolder(final FilePath path)
     {
         return new java.io.File(path.join()).isDirectory();
@@ -193,11 +294,6 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
     public static Folder kivakitCacheFolder()
     {
         return Folder.folder(KivaKit.get().cacheFolderPath()).mkdirs();
-    }
-
-    public static Folder kivakitConfigurationFolder()
-    {
-        return kivakitCacheFolder().folder("configuration");
     }
 
     public static Folder kivakitHome()
@@ -215,9 +311,9 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         return kivakitCacheFolder().folder("temporary").mkdirs();
     }
 
-    public static Folder of(final FileName name)
+    public static Folder kivakitTestFolder(final Class<?> type)
     {
-        return parse(name.asPath().asString());
+        return kivakitTemporaryFolder().folder("test").folder(type.getSimpleName()).mkdirs();
     }
 
     public static SwitchParser.Builder<Folder> outputFolderSwitch()
@@ -264,22 +360,25 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         }
     }
 
-    public static Folder unitTestOutput(final Class<?> type)
-    {
-        return kivakitTemporaryFolder().folder("test").folder(type.getSimpleName()).mkdirs();
-    }
-
     public static Folder userHome()
     {
         return Folder.parse(System.getProperty("user.home"));
     }
 
+    /**
+     * Type of traversal to perform
+     */
+    @LexakaiJavadoc(complete = true)
     public enum Traversal
     {
         RECURSE,
         FLAT
     }
 
+    /**
+     * Type of folder
+     */
+    @LexakaiJavadoc(complete = true)
     public enum Type
     {
         NORMAL,
@@ -302,6 +401,12 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         }
     }
 
+    /**
+     * Converts to and from {@link Folder}s
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<Folder>
     {
         private boolean ensureExists;
@@ -331,7 +436,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
     }
 
     @UmlAggregation(label = "delegates to")
-    private transient FolderService serviceFolder;
+    private transient FolderService service;
 
     private Type type = Type.NORMAL;
 
@@ -349,12 +454,12 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
      * <b>Not public API</b>
      */
     @UmlExcludeMember
-    public Folder(final FolderService serviceFolder)
+    public Folder(final FolderService service)
     {
-        ensureNotNull(serviceFolder);
+        ensureNotNull(service);
 
-        this.serviceFolder = serviceFolder;
-        path = serviceFolder.path();
+        this.service = service;
+        path = service.path();
 
         assert path != null;
     }
@@ -680,7 +785,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
     public List<Folder> folders()
     {
         final List<Folder> folders = new ArrayList<>();
-        if (serviceFolder != null)
+        if (service != null)
         {
             for (final FolderService folder : folder().folders())
             {
@@ -817,24 +922,11 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         return new Folder(relativePath(folder));
     }
 
-    @UmlExcludeMember
-    public boolean renameTo(final FolderService that)
-    {
-        DEBUG.trace("Renaming $ to $", this, that);
-        return folder().renameTo(that);
-    }
-
     @SuppressWarnings("UnusedReturnValue")
     public boolean renameTo(final Folder that)
     {
         DEBUG.trace("Renaming $ to $", this, that);
         return folder().renameTo(that.folder());
-    }
-
-    @UmlExcludeMember
-    public FileSystemObjectService resolve()
-    {
-        return serviceFolder;
     }
 
     @Override
@@ -872,7 +964,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
 
         final var start = Time.now();
         LOGGER.information("Safely copying $ to $", this, destination);
-        final var temporary = destination.parent().temporaryFolder(new FileName("temporary-copy"));
+        final var temporary = destination.parent().temporaryFolder(FileName.parse("temporary-copy"));
         for (final var file : nestedFiles(matcher))
         {
             file.copyTo(temporary.file(file.relativeTo(this)), mode, reporter);
@@ -966,22 +1058,17 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         return type;
     }
 
-    public FolderChangeWatcher watch(final Frequency frequency)
+    FolderService service()
     {
-        return LOGGER.listenTo(new FolderChangeWatcher(this, frequency));
-    }
-
-    FolderService virtualFolder()
-    {
-        return serviceFolder;
+        return service;
     }
 
     private FolderService folder()
     {
-        if (serviceFolder == null)
+        if (service == null)
         {
-            serviceFolder = FileSystemServiceLoader.fileSystem(path).folderService(path);
+            service = FileSystemServiceLoader.fileSystem(path).folderService(path);
         }
-        return serviceFolder;
+        return service;
     }
 }

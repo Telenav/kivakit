@@ -18,17 +18,24 @@
 
 package com.telenav.kivakit.core.resource.resources.other;
 
+import com.telenav.kivakit.core.kernel.language.io.IO;
+import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
 import com.telenav.kivakit.core.resource.Resource;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceType;
 import com.telenav.kivakit.core.resource.reading.BaseReadableResource;
-import com.telenav.kivakit.core.kernel.language.io.IO;
-import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.IOException;
 import java.io.InputStream;
 
+/**
+ * A portion of a resource from one offset into the resource to another.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
+@LexakaiJavadoc(complete = true)
 public class ResourceSection extends BaseReadableResource
 {
     private final Resource parent;

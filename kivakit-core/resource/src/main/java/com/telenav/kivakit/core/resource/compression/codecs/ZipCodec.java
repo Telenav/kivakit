@@ -19,13 +19,22 @@
 package com.telenav.kivakit.core.resource.compression.codecs;
 
 import com.telenav.kivakit.core.resource.compression.Codec;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceCompression;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.io.*;
-import java.util.zip.*;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
 
+/**
+ * Codec for zip compression.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramResourceCompression.class)
+@LexakaiJavadoc(complete = true)
 public class ZipCodec implements Codec
 {
     @Override

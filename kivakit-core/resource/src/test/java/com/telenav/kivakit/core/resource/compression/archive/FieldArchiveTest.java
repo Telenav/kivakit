@@ -64,7 +64,7 @@ public class FieldArchiveTest extends KryoUnitTest
     @Test
     public void testSaveAndLoad()
     {
-        final var file = Folder.unitTestOutput(getClass()).file("field-archive-test.zip");
+        final var file = Folder.kivakitTestFolder(getClass()).file("field-archive-test.zip");
 
         final var sessionFactory = sessionFactory();
 

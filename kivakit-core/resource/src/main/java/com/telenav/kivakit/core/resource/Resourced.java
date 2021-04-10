@@ -18,7 +18,18 @@
 
 package com.telenav.kivakit.core.resource;
 
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
+/**
+ * An object which has a {@link Resource}
+ *
+ * @author jonathanl (shibo)
+ */
+@LexakaiJavadoc(complete = true)
 public interface Resourced
 {
+    /**
+     * @return The {@link Resource} associated with this object
+     */
     Resource resource();
 }

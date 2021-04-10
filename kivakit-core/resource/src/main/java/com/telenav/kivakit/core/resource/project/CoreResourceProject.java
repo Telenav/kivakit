@@ -20,10 +20,14 @@ package com.telenav.kivakit.core.resource.project;
 
 import com.telenav.kivakit.core.kernel.language.objects.Lazy;
 import com.telenav.kivakit.core.kernel.project.Project;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * The project class for kivakit-core-resource
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class CoreResourceProject extends Project
 {
     private static final Lazy<CoreResourceProject> singleton = Lazy.of(CoreResourceProject::new);

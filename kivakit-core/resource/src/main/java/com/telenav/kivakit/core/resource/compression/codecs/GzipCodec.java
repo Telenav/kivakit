@@ -18,15 +18,25 @@
 
 package com.telenav.kivakit.core.resource.compression.codecs;
 
-import com.telenav.kivakit.core.resource.compression.Codec;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.messaging.messages.status.Problem;
+import com.telenav.kivakit.core.resource.compression.Codec;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceCompression;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.io.*;
-import java.util.zip.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
+/**
+ * Codec for gzip compression.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramResourceCompression.class)
+@LexakaiJavadoc(complete = true)
 public class GzipCodec implements Codec
 {
     @Override

@@ -26,28 +26,35 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
  * A file cache with the given root. Resources can be copied into the cache with {@link #add(Resource, CopyMode,
- * ProgressReporter)}. Files can be retrieved with {@link #file(FileName)} or {@link #file(Resource)}.
+ * ProgressReporter)}. Files can be retrieved with {@link #file(FileName)}.
  *
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
 public class FileCache
 {
-    private final Folder root;
+    private final Folder cacheFolder;
 
-    public FileCache(final Folder root)
+    /**
+     * @param cacheFolder The cache folder where files should be stored
+     */
+    public FileCache(final Folder cacheFolder)
     {
-        this.root = root;
-        if (!this.root.mkdirs().exists())
+        this.cacheFolder = cacheFolder;
+        if (!this.cacheFolder.mkdirs().exists())
         {
-            throw new IllegalStateException("Unable to create root folder for cache: " + this.root);
+            throw new IllegalStateException("Unable to create root folder for cache: " + this.cacheFolder);
         }
     }
 
-    @SuppressWarnings("UnusedReturnValue")
+    /**
+     * @param resource The resource to add to the cache
+     * @param mode How the resource should be copied
+     * @param reporter The progress reporter to call as the file is being copied into the cache
+     */
     public File add(final Resource resource, final CopyMode mode, final ProgressReporter reporter)
     {
-        final var file = file(resource);
+        final var file = file(resource.fileName());
         if (!file.exists())
         {
             resource.safeCopyTo(file, mode, reporter);
@@ -55,18 +62,19 @@ public class FileCache
         return file;
     }
 
+    /**
+     * @return The given file in this cache
+     */
     public File file(final FileName name)
     {
-        return root.file(name);
+        return cacheFolder.file(name);
     }
 
-    public File file(final Resource resource)
-    {
-        return file(resource.fileName());
-    }
-
+    /**
+     * @return A sub-folder in the cache folder with the given name
+     */
     public Folder folder(final String name)
     {
-        return root.folder(name);
+        return cacheFolder.folder(name);
     }
 }

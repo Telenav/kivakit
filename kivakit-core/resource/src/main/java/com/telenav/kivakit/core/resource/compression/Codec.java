@@ -18,12 +18,19 @@
 
 package com.telenav.kivakit.core.resource.compression;
 
-import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.kivakit.core.resource.compression.codecs.NullCodec;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceCompression;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * A codec is a {@link Compressor} and a {@link Decompressor}.
+ *
+ * @author jonathanl (shibo)
+ * @see Compressor
+ * @see Decompressor
+ */
 @UmlClassDiagram(diagram = DiagramResourceCompression.class)
+@LexakaiJavadoc(complete = true)
 public interface Codec extends Compressor, Decompressor
 {
-    Codec NULL = new NullCodec();
 }

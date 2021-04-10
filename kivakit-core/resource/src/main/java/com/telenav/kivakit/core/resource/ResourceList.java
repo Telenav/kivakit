@@ -60,7 +60,7 @@ public class ResourceList extends ArrayList<Resource>
                     final var file = (File) resource;
                     if (file.isFolder())
                     {
-                        resources.addAll(file.asFolder().nestedFiles(extension.matcher()));
+                        resources.addAll(file.asFolder().nestedFiles(extension.fileMatcher()));
                     }
                     else
                     {

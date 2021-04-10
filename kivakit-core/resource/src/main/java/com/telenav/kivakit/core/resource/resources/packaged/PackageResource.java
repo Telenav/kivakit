@@ -51,7 +51,7 @@ public class PackageResource extends BaseReadableResource
      */
     public static PackageResource packageResource(final ModuleResource resource)
     {
-        final var fileName = new FileName(resource.fileNameAsJavaPath().toString());
+        final var fileName = FileName.parse(resource.fileNameAsJavaPath().toString());
         return new PackageResource(resource.packagePath(), resource, fileName);
     }
 

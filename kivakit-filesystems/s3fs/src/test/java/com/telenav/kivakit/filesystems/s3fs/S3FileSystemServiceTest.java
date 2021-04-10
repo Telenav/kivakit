@@ -24,7 +24,7 @@ public class S3FileSystemServiceTest
             final var folder = new S3Folder("s3://com-telenav-nav-user-analytics-dev/test");
             folder.delete();
 
-            folder.folder(new FileName("2nd")).mkdirs();
+            folder.folder(FileName.parse("2nd")).mkdirs();
 
             final var file2 = new S3File("s3://com-telenav-nav-user-analytics-dev/nav-user-analytics/s3-test.gz");
             final var printWriter = file2.printWriter();

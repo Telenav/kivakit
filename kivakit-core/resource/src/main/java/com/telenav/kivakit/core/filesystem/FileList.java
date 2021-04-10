@@ -95,7 +95,7 @@ public class FileList implements List<File>
                 final var file = File.parse(path);
                 if (file.isFolder())
                 {
-                    files.addAll(file.asFolder().nestedFiles(extension.matcher()));
+                    files.addAll(file.asFolder().nestedFiles(extension.fileMatcher()));
                 }
                 else
                 {

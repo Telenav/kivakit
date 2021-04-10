@@ -22,11 +22,10 @@
         --(filesystem)--
         +List<Extension> archive()
         +List<Extension> executable()
+        +Matcher<File> fileMatcher()
         +Extension gzipped()
         +List<Extension> known()
         +Extension parse(String value)
-        --(matching)--
-        +Matcher<File> matcher()
     }
     
     Named <|-- FileName
@@ -34,17 +33,13 @@
     class FileName
     {
         --(constructors)--
-        +FileName(String)
+        #FileName(String)
         --
         +boolean matches(Pattern)
         --(checks)--
         +boolean endsWith(String suffix)
         +boolean endsWith(Extension)
-        +boolean isArchive()
-        +boolean isExecutable()
         +boolean startsWith(String prefix)
-        --(collection)--
-        +boolean contains(CharSequence name)
         --(filesystem)--
         +FilePath asPath()
         +FileName base()
@@ -58,7 +53,8 @@
         +Extension extension()
         +Matcher<File> fileMatcher()
         +FileName normalized()
-        +FileName prepend(String prefix)
+        +FileName parse(String name)
+        +FileName prefixedWith(String prefix)
         +FileName time(LocalTime, ZoneId)
         +FileName time(LocalTime)
         +FileName toLowerCase()

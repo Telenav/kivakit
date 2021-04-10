@@ -20,9 +20,9 @@ package com.telenav.kivakit.core.resource;
 
 import com.telenav.kivakit.core.filesystem.File;
 import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
+import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.core.kernel.language.paths.Path;
 import com.telenav.kivakit.core.kernel.language.paths.StringPath;
-import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.core.kernel.language.strings.Strip;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.resource.path.Extension;
@@ -157,7 +157,7 @@ public class ResourcePath extends StringPath
     public FileName fileName()
     {
         final var last = last();
-        return last == null ? null : new FileName(last);
+        return last == null ? null : FileName.parse(last);
     }
 
     @Override

@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.core.filesystem;
 
+import com.telenav.kivakit.core.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.core.resource.Resource;
 import com.telenav.kivakit.core.resource.path.Extension;
-import com.telenav.kivakit.core.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.core.test.UnitTest;
 import org.junit.Test;
 
@@ -50,7 +50,7 @@ public class FileTest extends UnitTest
         final var test = File.parse("foo/bar/${garply}/banana.txt");
         final var variables = new VariableMap<String>();
         variables.add("garply", "baz");
-        ensureEqual(File.parse("foo/bar/baz/banana.txt"), test.withVariables(variables));
+        ensureEqual(File.parse("foo/bar/baz/banana.txt"), test.expanded(variables));
     }
 
     @Test

@@ -19,14 +19,22 @@
 package com.telenav.kivakit.core.resource.resources.streamed;
 
 import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.core.resource.WritableResource;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceType;
 import com.telenav.kivakit.core.resource.writing.BaseWritableResource;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 
+/**
+ * An {@link OutputStream} stream wrapper that turns the output stream into a {@link WritableResource}.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
+@LexakaiJavadoc(complete = true)
 public class OutputResource extends BaseWritableResource
 {
     private final OutputStream out;

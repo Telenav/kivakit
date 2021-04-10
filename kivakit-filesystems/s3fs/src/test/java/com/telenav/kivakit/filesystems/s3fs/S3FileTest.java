@@ -25,7 +25,7 @@ public class S3FileTest extends UnitTest
     @Test
     public void testBucketName()
     {
-        ensure(file.fileName().equals(new FileName("index.html")));
+        ensure(file.fileName().equals(FileName.parse("index.html")));
     }
 
     @Test

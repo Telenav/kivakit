@@ -227,20 +227,17 @@ A wide variety of other resources are available and new ones are easy to write. 
 [*com.telenav.kivakit.core.resource.resources.streamed*](documentation/diagrams/com.telenav.kivakit.core.resource.resources.streamed.svg)  
 [*com.telenav.kivakit.core.resource.resources.string*](documentation/diagrams/com.telenav.kivakit.core.resource.resources.string.svg)  
 [*com.telenav.kivakit.core.resource.spi*](documentation/diagrams/com.telenav.kivakit.core.resource.spi.svg)  
-[*com.telenav.kivakit.core.resource.store*](documentation/diagrams/com.telenav.kivakit.core.resource.store.svg)  
 [*com.telenav.kivakit.core.resource.writing*](documentation/diagrams/com.telenav.kivakit.core.resource.writing.svg)  
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 33.7%.  
+Javadoc coverage for this project is 60.2%.  
   
-&nbsp; &nbsp;  ![](documentation/images/meter-30-12.png)
+&nbsp; &nbsp;  ![](documentation/images/meter-60-12.png)
 
 The following significant classes are undocumented:  
 
 - BaseReadableResource  
-- Extension  
-- FileName  
 - Folder  
 - PackageResource  
 - PropertyMap  
@@ -254,7 +251,6 @@ The following significant classes are undocumented:
 | [*BaseReadableResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/reading/BaseReadableResource.html) |  |  
 | [*BaseWritableResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/writing/BaseWritableResource.html) |  |  
 | [*BaseWriter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/writing/BaseWriter.html) |  |  
-| [*BinaryObjectStore*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/store/BinaryObjectStore.html) |  |  
 | [*BitArrayResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/other/BitArrayResource.html) |  |  
 | [*Codec*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/Codec.html) |  |  
 | [*Compressor*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/Compressor.html) |  |  
@@ -264,16 +260,25 @@ The following significant classes are undocumented:
 | [*Decompressor*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/Decompressor.html) |  |  
 | [*Disk*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/Disk.html) |  |  
 | [*DiskService*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/spi/DiskService.html) |  |  
-| [*Extension*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/path/Extension.html) |  |  
+| [*Extension*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/path/Extension.html) | Matching |  
+| | Checks |  
+| | Properties |  
+| | Functional Methods |  
 | [*FieldArchive*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/FieldArchive.html) |  |  
 | [*FieldArchive.ObjectField*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/FieldArchive.ObjectField.html) |  |  
-| [*File*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/File.html) |  |  
+| [*File*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/File.html) | Conversion Methods |  
+| | Path Methods |  
+| | Checks |  
+| | Operations |  
+| | Functional Methods |  
 | [*File.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/File.Converter.html) |  |  
 | [*File.Resolver*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/File.Resolver.html) |  |  
 | [*FileCache*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/FileCache.html) |  |  
 | [*FileList*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/FileList.html) |  |  
 | [*FileList.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/FileList.Converter.html) |  |  
-| [*FileName*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/path/FileName.html) |  |  
+| [*FileName*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/path/FileName.html) | Matching |  
+| | Functional |  
+| | Checks |  
 | [*FilePath*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/path/FilePath.html) | Parsing |  
 | | Factories |  
 | [*FilePath.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/path/FilePath.Converter.html) |  |  
@@ -282,7 +287,14 @@ The following significant classes are undocumented:
 | [*FileSystemObjectService*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/spi/FileSystemObjectService.html) |  |  
 | [*FileSystemService*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/spi/FileSystemService.html) |  |  
 | [*FileSystemServiceLoader*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/loader/FileSystemServiceLoader.html) |  |  
-| [*Folder*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/Folder.html) |  |  
+| [*Folder*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/Folder.html) | Hierarchy |  
+| | Contents |  
+| | Conversions |  
+| | Checks |  
+| | Factory Methods |  
+| | Locations |  
+| | Properties |  
+| | Operations |  
 | [*Folder.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/Folder.Converter.html) |  |  
 | [*Folder.Resolver*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/Folder.Resolver.html) |  |  
 | [*Folder.Traversal*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/Folder.Traversal.html) |  |  
@@ -294,7 +306,8 @@ The following significant classes are undocumented:
 | [*FolderService*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/filesystem/spi/FolderService.html) |  |  
 | [*GzipCodec*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/codecs/GzipCodec.html) |  |  
 | [*InputResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/streamed/InputResource.html) |  |  
-| [*JarLauncher*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/jar/launcher/JarLauncher.html) |  |  
+| [*JarLauncher*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/jar/launcher/JarLauncher.html) | Options |  
+| | Example |  
 | [*JarLauncher.ProcessType*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/jar/launcher/JarLauncher.ProcessType.html) |  |  
 | [*JarLauncher.RedirectTo*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/jar/launcher/JarLauncher.RedirectTo.html) |  |  
 | [*KivaKitArchivedField*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/KivaKitArchivedField.html) |  |  

@@ -53,6 +53,5 @@ open module kivakit.core.resource
     exports com.telenav.kivakit.core.resource.resources.streamed;
     exports com.telenav.kivakit.core.resource.resources.string;
     exports com.telenav.kivakit.core.resource.spi;
-    exports com.telenav.kivakit.core.resource.store;
     exports com.telenav.kivakit.core.resource.writing;
 }

@@ -403,7 +403,7 @@ public class HdfsProxyServer extends Server implements com.telenav.kivakit.files
             FilePath file;
             do
             {
-                file = path.file(new FileName(baseName).withSuffix("-" + sequenceNumber + ".tmp"));
+                file = path.file(FileName.parse(baseName).withSuffix("-" + sequenceNumber + ".tmp"));
                 sequenceNumber++;
             }
             while (exists(file.toString()));
@@ -431,7 +431,7 @@ public class HdfsProxyServer extends Server implements com.telenav.kivakit.files
             FilePath folder;
             do
             {
-                folder = path.withChild(new FileName(baseName).withSuffix("-" + sequenceNumber + ".tmp").name());
+                folder = path.withChild(FileName.parse(baseName).withSuffix("-" + sequenceNumber + ".tmp").name());
                 sequenceNumber++;
             }
             while (exists(pathAsString));

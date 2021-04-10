@@ -231,9 +231,9 @@ public abstract class Project extends BaseRepeater implements Initializable<Proj
             properties.addAll(VariableMap.of(projectProperties));
             properties.put("kivakit-version", Metadata.of(KivaKit.class).projectProperties().get("project-version"));
             properties.put("version", projectProperties.get("project-version"));
-            properties.put("build-name", build().name());
-            properties.put("build-date", build().formattedDate());
-            properties.put("build-number", Integer.toString(build().number()));
+            properties.putIfNotNull("build-name", build().name());
+            properties.putIfNotNull("build-date", build().formattedDate());
+            properties.putIfNotNull("build-number", Integer.toString(build().number()));
             properties.put("date-and-time", LocalTime.now().asDateTimeString());
 
             this.properties = properties.expanded();

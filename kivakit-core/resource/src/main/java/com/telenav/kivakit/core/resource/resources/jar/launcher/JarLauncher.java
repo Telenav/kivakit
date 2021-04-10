@@ -26,11 +26,11 @@ import com.telenav.kivakit.core.kernel.language.threading.KivaKitThread;
 import com.telenav.kivakit.core.kernel.language.vm.OperatingSystem;
 import com.telenav.kivakit.core.kernel.language.vm.Processes;
 import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.resource.Resource;
 import com.telenav.kivakit.core.resource.Resourced;
 import com.telenav.kivakit.core.resource.path.Extension;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramJarLauncher;
 import com.telenav.kivakit.core.resource.resources.other.PropertyMap;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
@@ -44,23 +44,61 @@ import static com.telenav.kivakit.core.resource.resources.jar.launcher.JarLaunch
 import static com.telenav.kivakit.core.resource.resources.jar.launcher.JarLauncher.ProcessType.DETACHED;
 
 /**
- * Launches an executable Java program from a jar {@link Resource}, in a child or detached process. The process type and
- * program arguments are passed as parameters to the constructor. Any number of {@link Resourced} objects can be added
- * with {@link #source(Resourced)}. The method {@link #run()} then launches the application, attempting to use each
- * {@link Resource} that was added with {@link #source(Resourced)} in order.
+ * Launches an executable Java program from some, possibly remote, resource when {@link #run()}  is called.
+ *
+ * <p><b>Options</b></p>
+ *
+ * <ul>
+ *     <li>{@link #addJarSource(Resourced)} - Adds a place where a JAR can be accessed, either locally or remotely</li>
+ *     <li>{@link #arguments(String...)} - Adds the given arguments to be passed to the new process</li>
+ *     <li>{@link #arguments(StringList)} - Adds the given arguments to be passed to the new process</li>
+ *     <li>{@link #enableDebuggerOnPort(int)} - Enables Java debugging on the given port</li>
+ *     <li>{@link #headless(boolean)} - Launches the process in AWT headless mode, with no tray icon (even temporarily)</li>
+ *     <li>{@link #processType(ProcessType)} - Specifies if the process should be a child process or detached</li>
+ *     <li>{@link #redirectTo(RedirectTo)} - Specifies how output should be redirected</li>
+ * </ul>
+ *
+ * <p><b>Example</b></p>
+ * <p>
+ * This example launches the executable JAR for PlantUML from a package resource as a child process with the given
+ * arguments. It then waits for the process to complete.
+ *
+ * <pre>
+ * var process = listenTo(new JarLauncher()
+ *     .processType(CHILD)
+ *     .arguments(arguments))
+ *     .addJarSource(PackageResource.packageResource(getClass(), "plantuml.jar"))
+ *     .redirectTo(CONSOLE)
+ *     .run();
+ *
+ * Processes.waitFor(process);
+ * </pre>
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramJarLauncher.class)
+@LexakaiJavadoc(complete = true)
 public class JarLauncher extends BaseRepeater
 {
+    /**
+     * The type of process to create
+     *
+     * @author jonathanl (shibo)
+     */
     @UmlClassDiagram(diagram = DiagramJarLauncher.class)
+    @LexakaiJavadoc(complete = true)
     public enum ProcessType
     {
         DETACHED,
         CHILD
     }
 
+    /**
+     * The type of redirection for process output
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public enum RedirectTo
     {
         FILE,
@@ -71,7 +109,7 @@ public class JarLauncher extends BaseRepeater
     private ProcessType processType = CHILD;
 
     @UmlAggregation(label = "retrieves jar from one of")
-    private final List<Resourced> sources = new ArrayList<>();
+    private final List<Resourced> jarSources = new ArrayList<>();
 
     private StringList programArguments = new StringList();
 
@@ -82,46 +120,79 @@ public class JarLauncher extends BaseRepeater
 
     private boolean headless = true;
 
-    public JarLauncher arguments(final StringList arguments)
+    /**
+     * Adds the given resourced object to this launcher as a potential place to load the JAR file from
+     */
+    public JarLauncher addJarSource(final Resourced resourced)
     {
-        programArguments = arguments;
+        jarSources.add(resourced);
         return this;
     }
 
+    /**
+     * @param arguments The arguments to pass to the launched Java program
+     */
     public JarLauncher arguments(final String... arguments)
     {
         programArguments = StringList.stringList(Arrays.asList(arguments));
         return this;
     }
 
+    /**
+     * @param arguments The arguments to pass to the launched Java program
+     */
+    public JarLauncher arguments(final StringList arguments)
+    {
+        programArguments = arguments;
+        return this;
+    }
+
+    /**
+     * @param debugPort Enables Java debugging on this given port
+     */
     public JarLauncher enableDebuggerOnPort(final int debugPort)
     {
         this.debugPort = debugPort;
         return this;
     }
 
+    /**
+     * @param headless True if the process should run in AWT headless mode, meaning that AWT is not initialized and
+     * there is no tray icon shown (even temporarily) for the process
+     */
     public JarLauncher headless(final boolean headless)
     {
         this.headless = headless;
         return this;
     }
 
+    /**
+     * @param type The type of process to launch
+     */
     public JarLauncher processType(final ProcessType type)
     {
         processType = type;
         return this;
     }
 
+    /**
+     * @param redirectTo The type of output redirection to perform
+     */
     public JarLauncher redirectTo(final RedirectTo redirectTo)
     {
         this.redirectTo = redirectTo;
         return this;
     }
 
+    /**
+     * Launches the JAR file as specified by the properties of this launcher
+     *
+     * @return The launched process
+     */
     public Process run()
     {
         // Go through each possible jar source,
-        for (final var source : sources)
+        for (final var source : jarSources)
         {
             // get the resource and materialize it to the local host,
             final var resource = source.resource().materialized(ProgressReporter.NULL);
@@ -221,15 +292,6 @@ public class JarLauncher extends BaseRepeater
 
         warning("Unable to launch jar from any provided resource");
         return null;
-    }
-
-    /**
-     * Adds the given resourced object to this launcher
-     */
-    public JarLauncher source(final Resourced resourced)
-    {
-        sources.add(resourced);
-        return this;
     }
 
     private Folder folder()

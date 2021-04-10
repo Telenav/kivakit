@@ -475,8 +475,8 @@ public class ServiceRegistryClient extends BaseRepeater
                 trace("Launching $", jar);
                 listenTo(new JarLauncher())
                         .processType(DETACHED)
-                        .source(local)
-                        .source(jar)
+                        .addJarSource(local)
+                        .addJarSource(jar)
                         .run();
 
                 // and wait until the port is no longer available, which means that the server is ready
