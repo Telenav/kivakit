@@ -66,19 +66,24 @@
         --
         +KivaKitThread daemon(boolean daemon)
         +KivaKitThread highPriority()
+        +boolean is(State)
         +KivaKitThread lowPriority()
         +KivaKitThread repeat(Listener, String name, Frequency every, Runnable code)
         +StateMachine<State> state()
+        +void whileLocked(Runnable code)
         #void onExited()
-        #void onExiting()
+        #void onRan()
         #void onWaiting()
         #Thread thread()
+        #State transition(State to)
+        --(functional)--
+        +Time startedAt()
+        +T whileLocked(Code<T>)
         --(lifecycle)--
         +KivaKitThread initialDelay(Duration initialDelay)
         +KivaKitThread interrupt()
         +void join()
         +KivaKitThread run(Listener, String name, Runnable code)
-        +boolean shouldStop()
         +KivaKitThread startSynchronously()
         #void onRun()
         #void onRunning()
@@ -86,8 +91,6 @@
         --(thread)--
         +void waitFor(State)
         +void waitFor(State, Duration maximumWait)
-        --(time)--
-        +Time startedAt()
     }
     
     class ReentrancyTracker
@@ -107,8 +110,6 @@
         --(constructors)--
         +RepeatingKivaKitThread(Listener, String, Frequency)
         +RepeatingKivaKitThread(Listener, String, Runnable)
-        --(checks)--
-        +boolean isPaused()
         --(lifecycle)--
         +RepeatingKivaKitThread run(Listener, String name, Frequency every, Runnable code)
         +RepeatingKivaKitThread run(Listener, String name, Runnable code)

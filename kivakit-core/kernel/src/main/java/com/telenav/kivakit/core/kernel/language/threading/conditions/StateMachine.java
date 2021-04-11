@@ -18,15 +18,14 @@
 
 package com.telenav.kivakit.core.kernel.language.threading.conditions;
 
+import com.telenav.kivakit.core.kernel.interfaces.code.Code;
 import com.telenav.kivakit.core.kernel.interfaces.messaging.Receiver;
-import com.telenav.kivakit.core.kernel.language.threading.status.WakeState;
 import com.telenav.kivakit.core.kernel.language.time.Duration;
 import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageThreadSynchronization;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * A simple state machine with a single state that can be transitioned from one state to another and which allows a
@@ -82,10 +81,10 @@ import java.util.concurrent.atomic.AtomicReference;
 public class StateMachine<State> extends BaseRepeater
 {
     /** The current state of the receiver */
-    private final AtomicReference<State> state = new AtomicReference<>();
+    private State at;
 
     /** Watches the state */
-    private final StateWatcher<State> waiter = new StateWatcher<>();
+    private final StateWatcher<State> watcher = new StateWatcher<>();
 
     /** Listener to call when state transitions occur */
     private final Receiver<State> receiver;
@@ -97,8 +96,8 @@ public class StateMachine<State> extends BaseRepeater
 
     public StateMachine(final State initial, final Receiver<State> receiver)
     {
+        at = initial;
         this.receiver = receiver;
-        state.set(initial);
     }
 
     /**
@@ -106,106 +105,114 @@ public class StateMachine<State> extends BaseRepeater
      */
     public boolean is(final State state)
     {
-        return Objects.equals(this.state.get(), state);
+        return whileLocked(() -> Objects.equals(at, state));
     }
 
     /**
-     * If the state is equal to the 'from' state, transition to the 'to' state.
+     * If we are in the 'from' state, transition to the 'to' state.
      *
      * @param from The expected state
      * @param to The desired state
-     * @return True if the state transitioned
+     * @return True if a state change occurred
      */
     public boolean transition(final State from, final State to)
     {
-        // Transition to the new state,
-        final var transitioned = state.compareAndSet(from, to);
-
-        // and if we did transition,
-        if (transitioned)
+        return whileLocked(() ->
         {
-            // show the state transition,
-            trace("$ => $", from, to);
+            if (is(from))
+            {
+                transition(to);
+                return true;
+            }
 
-            // and transmit
-            stateChanged(to);
-        }
-
-        return transitioned;
-    }
-
-    /**
-     * Transition and wait forever for the given state
-     *
-     * @see #transitionAndWait(Object, Object, Object, Duration)
-     */
-    public boolean transitionAndWait(final State from, final State to, final State waitFor)
-    {
-        return transitionAndWait(from, to, waitFor, Duration.MAXIMUM);
+            return false;
+        });
     }
 
     /**
      * If the state is equal to the 'from' state, transition to the 'to' state and then wait for the 'waitFor' state. An
      * example use case is to transition from RUNNING to STOPPING and then wait for STOPPED.
      *
-     * @param from The expected state
-     * @param to The desired state
-     * @param waitFor The state to wait for if the transition is successful
-     * @return True if the state transitioned
-     */
-    public boolean transitionAndWait(final State from, final State to, final State waitFor, final Duration maximumWait)
-    {
-        // If we're in the from state, transition to the to state
-        if (state.compareAndSet(from, to))
-        {
-            // show the state transition,
-            trace("$ => $ (wait for $ for up to $)", from, to, waitFor, maximumWait);
-
-            // transmit new state
-            stateChanged(to);
-
-            // and then wait for the desired final value
-            waitFor(waitFor, maximumWait);
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Transitions to the given state
-     *
+     * @param from The expected initial state
      * @param to The state to transition to
-     * @return The previous state
+     * @param waitFor The state to wait for if the transition is successful
+     * @param before Code to run while holding the state machine lock but before attempting to transition to a new
+     * state. This code might be used to interrupt a thread, for example.
+     * @return True if desired state was reached
      */
-    public State transitionTo(final State to)
+    public boolean transition(final State from,
+                              final State to,
+                              final State waitFor,
+                              final Duration maximumWait,
+                              final Runnable before)
     {
-        // Change the state and tell the state watcher that the state has changed,
-        final var from = state.getAndSet(to);
-        waiter.signal(to);
+        return whileLocked(() ->
+        {
+            // If we are already in the desired state,
+            if (is(waitFor))
+            {
+                // then we are already successful.
+                return true;
+            }
 
-        // show the state transition,
-        trace("$ => $", from, to);
+            // Run the user code (perhaps interrupting a thread),
+            before.run();
 
-        // transmit new state,
-        stateChanged(to);
+            // and if we can transition from the 'from' state to the 'to' state,
+            if (transition(from, to))
+            {
+                // then wait for the desired state to arrive.
+                trace("$ => $ (wait for $ for up to $)", from, to, waitFor, maximumWait);
+                waitFor(waitFor, maximumWait);
+                return true;
+            }
 
-        // and then return the previous state.
-        return from;
+            // We were not in the 'from' state.
+            return false;
+        });
     }
 
     /**
-     * Waits until this state machine reaches the given state
+     * Transition and wait forever for the given state
      *
-     * @param state The desired state
-     * @param maximumWait The maximum amount of time to wait
-     * @return True if the state was achieved, false if the operation timed out
+     * @see #transition(Object, Object, Object, Duration, Runnable)
      */
-    public boolean waitFor(final State state, final Duration maximumWait)
+    public synchronized boolean transition(final State from,
+                                           final State to,
+                                           final State waitFor,
+                                           final Runnable before)
     {
-        trace("Waiting for $ for up to $", state, maximumWait);
-        final var wakeState = waiter.waitFor(state, maximumWait);
-        trace("State $ reached", state);
-        return wakeState == WakeState.COMPLETED;
+        return transition(from, to, waitFor, Duration.MAXIMUM, before);
+    }
+
+    /**
+     * Transitions to the given state regardless of the current state
+     *
+     * @return The prior state
+     */
+    public State transition(final State state)
+    {
+        return whileLocked(() ->
+        {
+            // Get the current state,
+            final var prior = at;
+
+            // update the current state,
+            at = state;
+            trace("$ => $", prior, at);
+
+            // signal any waiting threads that there is a new state,
+            watcher.signal(at);
+
+            // and if there is a state receiver,
+            if (receiver != null)
+            {
+                // notify it.
+                receiver.receive(at);
+            }
+
+            return prior;
+        });
     }
 
     /**
@@ -219,12 +226,35 @@ public class StateMachine<State> extends BaseRepeater
         return waitFor(state, Duration.MAXIMUM);
     }
 
-    private void stateChanged(final State state)
+    /**
+     * Waits until this state machine reaches the given state
+     *
+     * @param state The desired state
+     * @param maximumWait The maximum amount of time to wait
+     * @return True if the state was achieved, false if the operation timed out
+     */
+    public boolean waitFor(final State state, final Duration maximumWait)
     {
-        waiter.signal(state);
-        if (receiver != null)
+        return whileLocked(() ->
         {
-            receiver.receive(state);
-        }
+            watcher.waitFor(state, maximumWait);
+            return is(state);
+        });
+    }
+
+    /**
+     * Executes the given code while holding the state watcher's reentrant lock
+     */
+    public void whileLocked(final Runnable code)
+    {
+        watcher.whileLocked(code);
+    }
+
+    /**
+     * Executes the given code while holding the state watcher's reentrant lock
+     */
+    public <T> T whileLocked(final Code<T> code)
+    {
+        return watcher.whileLocked(code);
     }
 }

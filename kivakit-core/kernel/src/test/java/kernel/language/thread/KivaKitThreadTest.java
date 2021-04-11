@@ -81,9 +81,9 @@ public class KivaKitThreadTest
         final KivaKitThread thread = new KivaKitThread("test")
         {
             @Override
-            protected void onExiting()
+            protected void onRan()
             {
-                super.onExiting();
+                super.onRan();
                 ensureEqual(2, at.get());
                 at.set(3);
             }

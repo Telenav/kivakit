@@ -31,13 +31,16 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @LexakaiJavadoc(complete = true)
 public interface Pausable extends Operation
 {
+    /** True if this operation is paused */
+    boolean isPaused();
+
     /**
-     * Pause the activity
+     * Pause this operation
      */
     void pause();
 
     /**
-     * Resume the activity
+     * Resume this operation
      */
     void resume();
 }

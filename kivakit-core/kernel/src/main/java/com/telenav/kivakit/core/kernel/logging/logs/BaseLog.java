@@ -47,6 +47,7 @@ import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.STOP_REQUESTED;
 import static com.telenav.kivakit.core.kernel.language.time.Frequency.CONTINUOUSLY;
 import static com.telenav.kivakit.core.kernel.language.vm.KivaKitShutdownHook.Order.LAST;
 
@@ -245,18 +246,21 @@ public abstract class BaseLog implements Startable, Stoppable, Log
             @Override
             protected void onRun()
             {
-                try
+                if (!is(STOP_REQUESTED))
                 {
-                    final var entry = queue.take();
-                    if (!dispatch(entry))
+                    try
                     {
-                        retry(entry);
+                        final var entry = queue.take();
+                        if (!dispatch(entry))
+                        {
+                            retry(entry);
+                        }
+                        checkForEmptyQueue();
                     }
-                    checkForEmptyQueue();
-                }
-                catch (final InterruptedException ignored)
-                {
-                    checkForEmptyQueue();
+                    catch (final InterruptedException ignored)
+                    {
+                        checkForEmptyQueue();
+                    }
                 }
             }
 

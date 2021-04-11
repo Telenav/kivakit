@@ -58,17 +58,24 @@
         +StateMachine(State, Receiver<State>)
         --
         +boolean is(State)
+        +boolean transition(State from, State to, State waitFor, Duration maximumWait, Runnable before)
+        +boolean transition(State from, State to, State waitFor, Runnable before)
         +boolean transition(State from, State to)
-        +State transitionTo(State to)
+        +State transition(State)
+        +void whileLocked(Runnable code)
+        --(functional)--
+        +T whileLocked(Code<T>)
         --(thread)--
-        +boolean transitionAndWait(State from, State to, State waitFor)
-        +boolean transitionAndWait(State from, State to, State waitFor, Duration maximumWait)
         +boolean waitFor(State)
         +boolean waitFor(State, Duration maximumWait)
     }
     
     class StateWatcher<State>
     {
+        --
+        +void whileLocked(Runnable code)
+        --(functional)--
+        +T whileLocked(Code<T>)
         --(thread)--
         +void signal(State)
         +WakeState waitFor(State desired, Duration maximumWaitTime)

@@ -28,6 +28,7 @@ import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.S
 import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.PAUSE_REQUESTED;
 import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.RESUME_REQUESTED;
 import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.RUNNING;
+import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.STOP_REQUESTED;
 
 /**
  * A thread that repeatedly executes the {@link #onRun()} method implementation at a given {@link Frequency}. The thread
@@ -89,16 +90,17 @@ public class RepeatingKivaKitThread extends KivaKitThread implements Pausable
         return this;
     }
 
+    @Override
     public boolean isPaused()
     {
-        return state().is(PAUSED);
+        return is(PAUSED);
     }
 
     @Override
     public void pause()
     {
         trace("Pause requested");
-        state().transitionAndWait(RUNNING, PAUSE_REQUESTED, PAUSED);
+        state().transition(RUNNING, PAUSE_REQUESTED, PAUSED, this::interrupt);
         trace("Paused");
     }
 
@@ -111,7 +113,7 @@ public class RepeatingKivaKitThread extends KivaKitThread implements Pausable
         }
         else
         {
-            state().transitionAndWait(PAUSED, RESUME_REQUESTED, RUNNING);
+            state().transition(PAUSED, RESUME_REQUESTED, RUNNING, this::interrupt);
         }
     }
 
@@ -129,36 +131,36 @@ public class RepeatingKivaKitThread extends KivaKitThread implements Pausable
         // start running,
         onRunning();
 
+        // and while we are not requested to stop,
         final var cycle = frequency.start();
-
-        while (!shouldStop())
+        while (!is(STOP_REQUESTED))
         {
-            if (state().is(PAUSE_REQUESTED))
+            // if the thread should be paused
+            if (is(PAUSE_REQUESTED))
             {
-                state().waitFor(RESUME_REQUESTED);
+                // wait for it to be resumed,
+                waitFor(RESUME_REQUESTED);
             }
 
-            if (!shouldStop())
+            try
             {
-                try
-                {
-                    // run the user's code
-                    onRun();
-                }
-                catch (final Throwable e)
-                {
-                    problem(e, "${class} threw exception", getClass());
-                }
+                // then run the user's code
+                onRun();
+            }
+            catch (final Throwable e)
+            {
+                problem(e, "${class} threw exception", getClass());
+            }
 
-                if (cycle != null)
-                {
-                    cycle.waitTimeBeforeNextCycle().sleep();
-                }
+            if (cycle != null)
+            {
+                // and pause before the next cycle,
+                cycle.waitTimeBeforeNextCycle().sleep();
             }
         }
 
-        // then notify that we're exiting
-        onExiting();
+        // finally, notify that we're exiting
+        onRan();
 
         // and that we have exited.
         onExited();

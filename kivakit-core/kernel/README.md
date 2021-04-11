@@ -652,7 +652,7 @@ The following significant classes are undocumented:
 | [*Startable*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/interfaces/lifecycle/Startable.html) |  |  
 | [*StateMachine*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/threading/conditions/StateMachine.html) |  |  
 | [*StateWatcher*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/threading/conditions/StateWatcher.html) |  |  
-| [*StateWatcher.WaitingThread*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/threading/conditions/StateWatcher.WaitingThread.html) |  |  
+| [*StateWatcher.Waiter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/threading/conditions/StateWatcher.Waiter.html) |  |  
 | [*Stoppable*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/interfaces/lifecycle/Stoppable.html) |  |  
 | [*Streams*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/iteration/Streams.html) |  |  
 | [*Streams.Processing*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/iteration/Streams.Processing.html) |  |  

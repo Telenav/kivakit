@@ -26,6 +26,8 @@
     Operation <|-- Pausable
     interface Pausable
     {
+        --(checks)--
+        +boolean isPaused()
         --(lifecycle)--
         +void pause()
         +void resume()

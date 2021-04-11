@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.kernel.language.threading.conditions;
 
+import com.telenav.kivakit.core.kernel.interfaces.code.Code;
 import com.telenav.kivakit.core.kernel.language.threading.locks.Lock;
 import com.telenav.kivakit.core.kernel.language.threading.status.WakeState;
 import com.telenav.kivakit.core.kernel.language.time.Duration;
@@ -67,12 +68,12 @@ public class StateWatcher<State>
      * A thread that is waiting for its predicate to be satisfied
      */
     @LexakaiJavadoc(complete = true)
-    private class WaitingThread
+    private class Waiter
     {
         /** The predicate that must be satisfied */
         Predicate<State> predicate;
 
-        /** The condition that is being waited on by the thread */
+        /** The condition variable to wait on and signal */
         Condition condition;
     }
 
@@ -80,17 +81,17 @@ public class StateWatcher<State>
     final Lock lock = new Lock();
 
     /** The clients waiting for a predicate to be satisfied */
-    private final List<WaitingThread> waiters = new ArrayList<>();
+    private final List<Waiter> waiters = new ArrayList<>();
 
     /** The most recently reported state */
     private volatile State current;
 
     /**
-     * Signals any watchers if the state they are waiting for has arrived
+     * Signals any waiters if the state they are waiting for has arrived
      */
     public void signal(final State state)
     {
-        lock.whileLocked(() ->
+        whileLocked(() ->
         {
             // Update the current state,
             current = state;
@@ -101,7 +102,7 @@ public class StateWatcher<State>
                 // and if the reported value satisfies the watcher's predicate,
                 if (watcher.predicate.test(state))
                 {
-                    // signal it to wake up
+                    // signal it to wake up.
                     watcher.condition.signal();
                 }
             }
@@ -127,7 +128,7 @@ public class StateWatcher<State>
     public WakeState waitFor(final Predicate<State> predicate,
                              final Duration maximumWaitTime)
     {
-        return lock.whileLocked(() ->
+        return whileLocked(() ->
         {
             // If the predicate is already satisfied,
             if (predicate.test(current))
@@ -136,12 +137,10 @@ public class StateWatcher<State>
                 return COMPLETED;
             }
 
-            // otherwise, create a waiting thread entry,
-            final var waiter = new WaitingThread();
+            // otherwise, add ourselves as a waiter,
+            final var waiter = new Waiter();
             waiter.predicate = predicate;
             waiter.condition = lock.newCondition();
-
-            // add it to the list of waiters
             waiters.add(waiter);
 
             try
@@ -180,5 +179,21 @@ public class StateWatcher<State>
     public WakeState waitFor(final State desired)
     {
         return waitFor(desired, Duration.MAXIMUM);
+    }
+
+    /**
+     * Executes the given code while holding this object's reentrant lock
+     */
+    public void whileLocked(final Runnable code)
+    {
+        lock.whileLocked(code);
+    }
+
+    /**
+     * Executes the given code while holding this object's reentrant lock
+     */
+    public <T> T whileLocked(final Code<T> code)
+    {
+        return lock.whileLocked(code);
     }
 }
