@@ -18,17 +18,20 @@
 
 package com.telenav.kivakit.core.kernel.language.values.level;
 
-import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
 import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
+import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * Level of certainty in the accuracy of something.
+ * Level of certainty in the accuracy of something. Confidence objects can be constructed with {@link
+ * Confidence#confidence(double)}.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageValue.class)
+@LexakaiJavadoc(complete = true)
 public class Confidence extends Level
 {
     public static final Confidence FULL = new Confidence(1);
@@ -38,6 +41,11 @@ public class Confidence extends Level
     public static final Confidence LOW = new Confidence(.25);
 
     public static final Confidence NO = new Confidence(0);
+
+    public static Confidence confidence(final double value)
+    {
+        return new Confidence(value);
+    }
 
     public static Confidence forByte(final byte level)
     {
@@ -49,6 +57,12 @@ public class Confidence extends Level
         return new Confidence(value / 255.0);
     }
 
+    /**
+     * Converts to and from {@link Confidence} objects.
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<Confidence>
     {
         public Converter(final Listener listener)
@@ -63,7 +77,7 @@ public class Confidence extends Level
         }
     }
 
-    public Confidence(final double value)
+    protected Confidence(final double value)
     {
         super(value);
     }

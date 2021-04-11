@@ -23,6 +23,7 @@ import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.core.kernel.language.reflection.property.filters.KivaKitExcludeProperty;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -46,6 +47,12 @@ public class Level
         return new Level((double) level / Byte.MAX_VALUE);
     }
 
+    /**
+     * Converts to and from a {@link Level}
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<Level>
     {
         private boolean lenient;

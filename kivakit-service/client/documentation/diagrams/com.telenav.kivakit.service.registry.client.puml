@@ -33,12 +33,13 @@
     
     class ServiceRegistryClientSettings
     {
+        --
+        +Resourceful serverJar()
         --(network)--
         +ServiceRegistryClientSettings accessTimeout(Duration timeout)
         +Duration accessTimeout()
-        +HttpNetworkLocation serverJar()
         --(service)--
-        +ServiceRegistryClientSettings serverJar(HttpNetworkLocation)
+        +ServiceRegistryClientSettings serverJar(Resourceful location)
     }
     
 @enduml

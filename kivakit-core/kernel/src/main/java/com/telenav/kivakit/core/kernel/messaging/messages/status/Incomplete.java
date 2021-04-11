@@ -22,6 +22,7 @@ import com.telenav.kivakit.core.kernel.messaging.Message;
 import com.telenav.kivakit.core.kernel.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.kernel.messaging.messages.Severity;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramMessageType;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -30,6 +31,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
+@LexakaiJavadoc(complete = true)
 public class Incomplete extends OperationStatusMessage
 {
     public static final Incomplete INSTANCE = new Incomplete();

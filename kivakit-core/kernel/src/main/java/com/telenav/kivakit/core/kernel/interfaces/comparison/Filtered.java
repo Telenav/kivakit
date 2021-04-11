@@ -18,9 +18,10 @@
 
 package com.telenav.kivakit.core.kernel.interfaces.comparison;
 
+import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramInterfaceComparison;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
-import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramInterfaceComparison;
 
 import java.util.List;
 
@@ -30,6 +31,7 @@ import java.util.List;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramInterfaceComparison.class)
+@LexakaiJavadoc(complete = true)
 public interface Filtered<T>
 {
     /**

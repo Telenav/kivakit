@@ -18,14 +18,16 @@
 
 package com.telenav.kivakit.core.kernel.language.bits;
 
-import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageBits;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.language.values.count.Count;
+import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageBits;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
  * Utility methods for manipulating bits
  */
 @UmlClassDiagram(diagram = DiagramLanguageBits.class)
+@LexakaiJavadoc(complete = true)
 public class Bits
 {
     /**

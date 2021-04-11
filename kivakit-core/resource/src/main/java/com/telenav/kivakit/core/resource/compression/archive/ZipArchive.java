@@ -22,7 +22,7 @@ import com.telenav.kivakit.core.collections.primitive.array.scalars.ByteArray;
 import com.telenav.kivakit.core.filesystem.File;
 import com.telenav.kivakit.core.kernel.KivaKit;
 import com.telenav.kivakit.core.kernel.interfaces.code.Callback;
-import com.telenav.kivakit.core.kernel.interfaces.code.Code;
+import com.telenav.kivakit.core.kernel.interfaces.code.CheckedCode;
 import com.telenav.kivakit.core.kernel.interfaces.io.ByteSized;
 import com.telenav.kivakit.core.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.core.kernel.language.io.IO;
@@ -256,7 +256,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
      */
     public synchronized ZipEntry entry(final String pathname)
     {
-        final var path = Code.of(() -> filesystem.getPath(pathname)).orNull();
+        final var path = CheckedCode.of(() -> filesystem.getPath(pathname)).orNull();
         if (path != null)
         {
             return new ZipEntry(this, path);
@@ -280,7 +280,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
     @Override
     public Iterator<ZipEntry> iterator()
     {
-        final var files = Code.of(() -> Files.walk(filesystem.getPath("/"))).orNull();
+        final var files = CheckedCode.of(() -> Files.walk(filesystem.getPath("/"))).orNull();
         return files == null ? null : files
                 .filter(path -> !Files.isDirectory(path))
                 .map(path -> new ZipEntry(this, path))
@@ -399,19 +399,19 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
             {
                 final var environment = new VariableMap<String>();
                 environment.put("create", "true");
-                return Code.of(() -> FileSystems.newFileSystem(uri, environment)).orNull();
+                return CheckedCode.of(() -> FileSystems.newFileSystem(uri, environment)).orNull();
             }
 
             case READ:
             {
                 if (file.exists())
                 {
-                    final var filesystem = Code.of(() -> FileSystems.getFileSystem(uri)).orNull();
+                    final var filesystem = CheckedCode.of(() -> FileSystems.getFileSystem(uri)).orNull();
                     if (filesystem != null)
                     {
                         return filesystem;
                     }
-                    return Code.of(() -> FileSystems.newFileSystem(uri, new VariableMap<>())).orNull();
+                    return CheckedCode.of(() -> FileSystems.newFileSystem(uri, new VariableMap<>())).orNull();
                 }
                 return null;
             }

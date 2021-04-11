@@ -19,6 +19,7 @@
 package com.telenav.kivakit.core.kernel.interfaces.collection;
 
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramInterfaceCollection;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -28,6 +29,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramInterfaceCollection.class)
+@LexakaiJavadoc(complete = true)
 public interface Contains<T>
 {
     /**

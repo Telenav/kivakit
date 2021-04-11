@@ -32,6 +32,7 @@ import com.telenav.kivakit.service.registry.ServiceRegistry;
 import com.telenav.kivakit.service.registry.ServiceRegistrySettings;
 import com.telenav.kivakit.service.registry.project.ServiceRegistryProject;
 import com.telenav.kivakit.service.registry.project.lexakai.annotations.DiagramRegistry;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
@@ -52,6 +53,7 @@ import static com.telenav.kivakit.core.serialization.core.SerializationSession.T
  */
 @UmlClassDiagram(diagram = DiagramRegistry.class)
 @UmlNotPublicApi
+@LexakaiJavadoc(complete = true)
 public class ServiceRegistryStore extends BaseRepeater
 {
     /**

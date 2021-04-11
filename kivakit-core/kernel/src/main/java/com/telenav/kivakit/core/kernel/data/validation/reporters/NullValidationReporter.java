@@ -21,6 +21,7 @@ package com.telenav.kivakit.core.kernel.data.validation.reporters;
 import com.telenav.kivakit.core.kernel.data.validation.BaseValidationReporter;
 import com.telenav.kivakit.core.kernel.messaging.Message;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramDataValidationReporter;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
@@ -30,6 +31,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramDataValidationReporter.class)
+@LexakaiJavadoc(complete = true)
 public class NullValidationReporter extends BaseValidationReporter
 {
     @Override

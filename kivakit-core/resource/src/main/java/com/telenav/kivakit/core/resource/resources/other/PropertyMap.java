@@ -23,7 +23,6 @@ import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.core.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.core.kernel.language.locales.Locale;
 import com.telenav.kivakit.core.kernel.language.paths.PackagePath;
-import com.telenav.kivakit.core.kernel.language.primitives.Ints;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.kernel.language.reflection.Type;
 import com.telenav.kivakit.core.kernel.language.reflection.populator.ObjectPopulator;
@@ -37,6 +36,7 @@ import com.telenav.kivakit.core.resource.WritableResource;
 import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceType;
 import com.telenav.kivakit.core.resource.resources.packaged.PackageResource;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
@@ -48,47 +48,67 @@ import java.util.regex.Pattern;
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.kernel.language.reflection.property.filters.KivaKitProperties.INCLUDED_PROPERTIES_AND_FIELDS;
 
+/**
+ * A property map is a {@link VariableMap} with strings as both keys and values.
+ *
+ * <p><b>Creating and Loading Property Maps</b></p>
+ *
+ * <p>
+ * A property map can be created or loaded from a {@link Resource} with:
+ * </p>
+ *
+ * <ul>
+ *     <li>{@link #create()} - Creates an empty property map</li>
+ *     <li>{@link #of(VariableMap)} - Creates a property map from the given variable map</li>
+ *     <li>{@link #load(Resource)} - Loads property map from the given resource</li>
+ *     <li>{@link #localized(PackagePath, Locale)} - Loads a property map from the given package with a relative path
+ *      from the given {@link Locale} of the form "locales/[language-name](/[country-name])?.</li>
+ * </ul>
+ *
+ * <p><b>Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #copy()} - A copy of this property map</li>
+ *     <li>{@link #asObject(Listener, Class)} - Creates a new instance of the given class and populates its
+ *     properties with the values in this property map using {@link ObjectPopulator}</li>
+ *     <li>{@link #asInt(String)} - The given value as an int</li>
+ *     <li>{@link #asLong(String)} - The given value as a long</li>
+ *     <li>{@link #asDouble(String)} - The given value as a double</li>
+ *     <li>{@link #asCount(String)} - The given value as a {@link Count}</li>
+ * </ul>
+ *
+ * <p><b>Adding to Property Maps</b></p>
+ *
+ * <p>
+ * In addition to the methods inherited from {@link VariableMap}, property maps add the following methods:
+ * </p>
+ *
+ * <ul>
+ *     <li>{@link #comment(String, String)} - Attaches the given comment to the given key</li>
+ *     <li>{@link #add(Object, PropertyFilter)} - Adds the properties of the given object that match the filter to this map</li>
+ * </ul>
+ *
+ *
+ * <p><b>Saving Property Maps</b></p>
+ *
+ * <ul>
+ *     <li>{@link #save(WritableResource)} - Saves this property map to the given resource</li>
+ *     <li>{@link #save(String, WritableResource)} - Saves this property map to the given resource with the given heading</li>
+ * </ul>
+ *
+ * @author jonathanl (shibo)
+ * @see Locale
+ */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
+@LexakaiJavadoc(complete = true)
 public class PropertyMap extends VariableMap<String>
 {
+    /**
+     * @return An empty property map
+     */
     public static PropertyMap create()
     {
         return new PropertyMap();
-    }
-
-    public static PropertyMap load(final PackagePath _package, final String path)
-    {
-        return load(PackageResource.packageResource(_package, FilePath.parseFilePath(path)));
-    }
-
-    /**
-     * @return Loads the given properties resource, interpolating system variables into each value
-     */
-    public static PropertyMap load(final Resource resource, final ProgressReporter reporter)
-    {
-        final var properties = new PropertyMap();
-        final var linePattern = Pattern.compile("(?<key>[^=]*?)\\s*=\\s*(?<value>[^=]*)");
-        int lineNumber = 1;
-        for (final var line : resource.reader().lines(reporter))
-        {
-            final var trimmed = line.trim();
-            if (!trimmed.isEmpty() && !trimmed.startsWith("#") && !trimmed.startsWith("//"))
-            {
-                final var matcher = linePattern.matcher(line);
-                if (matcher.matches())
-                {
-                    final var key = matcher.group("key");
-                    final var value = KivaKit.get().properties().expand(matcher.group("value"));
-                    properties.put(key, value);
-                }
-                else
-                {
-                    fail("Cannot parse line $:$: $", resource.fileName(), lineNumber, line);
-                }
-            }
-            lineNumber++;
-        }
-        return properties;
     }
 
     public static PropertyMap load(final Resource resource)
@@ -105,7 +125,7 @@ public class PropertyMap extends VariableMap<String>
         return PropertyMap.load(path, locale.path().join("/"));
     }
 
-    public static PropertyMap propertyMap(final VariableMap<String> variables)
+    public static PropertyMap of(final VariableMap<String> variables)
     {
         final var map = create();
         for (final var key : variables.keySet())
@@ -141,9 +161,36 @@ public class PropertyMap extends VariableMap<String>
         }
     }
 
+    /**
+     * @return The value of the given key as a {@link Count}
+     */
+    public Count asCount(final String key)
+    {
+        return Count.parse(get(key));
+    }
+
+    /**
+     * @return The value of the given key as a double, or an exception is thrown if the value is invalid or missing
+     */
+    public double asDouble(final String key)
+    {
+        return Double.parseDouble(key);
+    }
+
+    /**
+     * @return The value of the given key as an integer, or an exception is thrown if the value is invalid or missing
+     */
     public int asInt(final String key)
     {
-        return Ints.parse(get(key), Integer.MIN_VALUE);
+        return Integer.parseInt(get(key));
+    }
+
+    /**
+     * @return The value of the given key as a long, or an exception is thrown if the value is invalid or missing
+     */
+    public long asLong(final String key)
+    {
+        return Long.parseLong(get(key));
     }
 
     public Object asObject(final Listener listener, final Class<?> type)
@@ -161,25 +208,21 @@ public class PropertyMap extends VariableMap<String>
         }
     }
 
-    public VariableMap<String> asVariableMap()
-    {
-        final var map = new VariableMap<String>();
-        for (final var key : keySet())
-        {
-            map.put(key, get(key));
-        }
-        return map;
-    }
-
     public PropertyMap comment(final String key, final String comment)
     {
         comments.put(key, comment);
         return this;
     }
 
-    public Count count(final String key)
+    @Override
+    public PropertyMap copy()
     {
-        return Count.parse(get(key));
+        final var map = new PropertyMap();
+        for (final var key : keySet())
+        {
+            map.put(key, get(key));
+        }
+        return map;
     }
 
     @Override
@@ -213,5 +256,40 @@ public class PropertyMap extends VariableMap<String>
         out.println("");
         out.println(toString());
         out.close();
+    }
+
+    private static PropertyMap load(final PackagePath _package, final String path)
+    {
+        return load(PackageResource.of(_package, FilePath.parseFilePath(path)));
+    }
+
+    /**
+     * @return Loads the given properties resource, interpolating system variables into each value
+     */
+    private static PropertyMap load(final Resource resource, final ProgressReporter reporter)
+    {
+        final var properties = new PropertyMap();
+        final var linePattern = Pattern.compile("(?<key>[^=]*?)\\s*=\\s*(?<value>[^=]*)");
+        int lineNumber = 1;
+        for (final var line : resource.reader().lines(reporter))
+        {
+            final var trimmed = line.trim();
+            if (!trimmed.isEmpty() && !trimmed.startsWith("#") && !trimmed.startsWith("//"))
+            {
+                final var matcher = linePattern.matcher(line);
+                if (matcher.matches())
+                {
+                    final var key = matcher.group("key");
+                    final var value = KivaKit.get().properties().expand(matcher.group("value"));
+                    properties.put(key, value);
+                }
+                else
+                {
+                    fail("Cannot parse line $:$: $", resource.fileName(), lineNumber, line);
+                }
+            }
+            lineNumber++;
+        }
+        return properties;
     }
 }

@@ -64,13 +64,13 @@
     interface ReadableResource
     interface Repeater
     interface ResourcePathed
-    interface Resourced
+    interface Resourceful
     ResourcePathed <|-- Resource
     ModificationTimestamped <|-- Resource
     ByteSized <|-- Resource
     ReadableResource <|-- Resource
     Repeater <|-- Resource
-    Resourced <|-- Resource
+    Resourceful <|-- Resource
     Resource --> Codec : "uses"
     interface Resource
     {
@@ -109,6 +109,7 @@
         --(checks)--
         +boolean isMaterialized()
         --(collection)--
+        +List<? extends Resource> resources(Matcher<? super Resource>)
         +List<? extends Resource> resources()
         --(filesystem)--
         +ResourceFolder folder(String path)
@@ -117,6 +118,7 @@
         +Folder materializeTo(Folder)
         +ResourceFolder resolve(ResourceFolderIdentifier)
         +ResourceFolder resolve(String identifier)
+        +void safeCopyTo(Folder, CopyMode, ProgressReporter)
     }
     
     class ResourceFolderIdentifier
@@ -151,7 +153,6 @@
         +Count count()
         +ResourceList matching(Matcher<Resource>)
         +ResourceList matching(Extension)
-        +ResourceList relativeTo(Folder outputFolder)
         +void sortOldestToNewest()
         +Bytes totalSize()
         --(math)--
@@ -178,7 +179,7 @@
         +FilePath withExtension(Extension)
     }
     
-    interface Resourced
+    interface Resourceful
     {
         --
         +Resource resource()

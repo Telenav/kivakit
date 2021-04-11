@@ -19,6 +19,7 @@
 package com.telenav.kivakit.service.registry.server.webapp;
 
 import com.telenav.kivakit.service.registry.server.webapp.pages.home.HomePage;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import org.apache.wicket.Page;
 import org.apache.wicket.RuntimeConfigurationType;
 import org.apache.wicket.protocol.http.WebApplication;
@@ -26,6 +27,12 @@ import org.apache.wicket.settings.ExceptionSettings;
 
 import static org.apache.wicket.RuntimeConfigurationType.DEVELOPMENT;
 
+/**
+ * Apache Wicket web application that shows information about registered services in a web browser.
+ *
+ * @author jonathanl (shibo)
+ */
+@LexakaiJavadoc(complete = true)
 public class ServiceRegistryWebApplication extends WebApplication
 {
     @Override

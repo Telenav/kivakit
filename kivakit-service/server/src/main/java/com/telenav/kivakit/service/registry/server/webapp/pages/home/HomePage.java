@@ -29,6 +29,7 @@ import com.telenav.kivakit.service.registry.client.ServiceRegistryClient;
 import com.telenav.kivakit.service.registry.server.ServiceRegistryServer;
 import com.telenav.kivakit.service.registry.server.webapp.ServiceRegistryWebPage;
 import com.telenav.kivakit.web.wicket.components.refresh.UpdatingContainer;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -46,6 +47,12 @@ import java.util.Set;
 
 import static com.telenav.kivakit.service.registry.server.ServiceRegistryServerSettings.WICKET_AJAX_REFRESH_FREQUENCY;
 
+/**
+ * Home page for service registry Apache Wicket application.
+ *
+ * @author jonathanl (shibo)
+ */
+@LexakaiJavadoc(complete = true)
 public class HomePage extends ServiceRegistryWebPage
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();

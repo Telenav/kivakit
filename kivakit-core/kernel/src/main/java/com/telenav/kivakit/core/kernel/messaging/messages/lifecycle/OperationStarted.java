@@ -19,8 +19,9 @@
 package com.telenav.kivakit.core.kernel.messaging.messages.lifecycle;
 
 import com.telenav.kivakit.core.kernel.messaging.messages.OperationLifecycleMessage;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramMessageType;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
  * An operation has started
@@ -28,6 +29,7 @@ import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramMessageTy
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
+@LexakaiJavadoc(complete = true)
 public class OperationStarted extends OperationLifecycleMessage
 {
     public static final OperationStarted INSTANCE = new OperationStarted();

@@ -18,17 +18,27 @@
 
 package com.telenav.kivakit.core.kernel.messaging.messages.status;
 
+import com.telenav.kivakit.core.kernel.messaging.messages.MessageFormatter;
 import com.telenav.kivakit.core.kernel.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.kernel.messaging.messages.Severity;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramMessageType;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * An alert with a proposed solution, intended to help IT staff resolve the issue.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
+@LexakaiJavadoc(complete = true)
 public class Alert extends OperationStatusMessage
 {
-    public Alert(final String solution, final String message, final Object... arguments)
+    private String solution = "No solution provided";
+
+    public Alert(final String message, final Object... arguments)
     {
-        super(message + "\nSOLUTION: " + solution);
+        super(message);
         cause(new Throwable());
         arguments(arguments);
     }
@@ -38,9 +48,26 @@ public class Alert extends OperationStatusMessage
     }
 
     @Override
+    public String formatted(final MessageFormatter.Format format)
+    {
+        return super.formatted(format) + "\nProposed Solution: " + solution();
+    }
+
+    @Override
     public Severity severity()
     {
         return Severity.HIGH;
+    }
+
+    public Alert solution(final String solution)
+    {
+        this.solution = solution;
+        return this;
+    }
+
+    public String solution()
+    {
+        return solution;
     }
 
     @Override

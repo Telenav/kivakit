@@ -67,11 +67,11 @@ public class PackageResourceTest
 
     private PackageResource a()
     {
-        return PackageResource.packageResource(_package(), "a.txt");
+        return PackageResource.of(_package(), "a.txt");
     }
 
     private PackageResource b()
     {
-        return PackageResource.packageResource(_package(), "b.txt");
+        return PackageResource.of(_package(), "b.txt");
     }
 }

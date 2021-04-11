@@ -21,6 +21,7 @@ package com.telenav.kivakit.service.registry.server;
 import com.telenav.kivakit.core.application.Server;
 import com.telenav.kivakit.core.commandline.SwitchParser;
 import com.telenav.kivakit.core.kernel.language.objects.Lazy;
+import com.telenav.kivakit.service.registry.Scope;
 import com.telenav.kivakit.service.registry.ServiceRegistry;
 import com.telenav.kivakit.service.registry.project.ServiceRegistryProject;
 import com.telenav.kivakit.service.registry.registries.LocalServiceRegistry;
@@ -36,6 +37,7 @@ import com.telenav.kivakit.web.swagger.JettySwaggerOpenApi;
 import com.telenav.kivakit.web.swagger.JettySwaggerStaticResources;
 import com.telenav.kivakit.web.swagger.JettySwaggerWebJar;
 import com.telenav.kivakit.web.wicket.JettyWicket;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.UmlNote;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -43,6 +45,13 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import java.util.Set;
 
 /**
+ * Service registry server, including Wicket, REST and Swagger resources. Accepts these switches from the command line:
+ *
+ * <ul>
+ *     <li>-scope=[network|localhost] - The scope of this registry, defaults to localhost</li>
+ *     <li>-port=[number] - The port to run this server on</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramServer.class)
@@ -51,6 +60,7 @@ import java.util.Set;
 @UmlRelation(label = "updates", referent = ServiceRegistry.class)
 @UmlRelation(label = "searches", referent = ServiceRegistry.class)
 @UmlNote(text = "For REST API details, refer to Swagger documentation provided by this server")
+@LexakaiJavadoc(complete = true)
 public class ServiceRegistryServer extends Server
 {
     private static final Lazy<ServiceRegistryServer> singleton = Lazy.of(ServiceRegistryServer::new);
@@ -65,9 +75,9 @@ public class ServiceRegistryServer extends Server
         get().run(arguments);
     }
 
-    private final SwitchParser<Boolean> NETWORK = SwitchParser
-            .booleanSwitch("network", "True if this registry server is a server for the whole network")
-            .defaultValue(false)
+    private final SwitchParser<Scope.Type> SCOPE = SwitchParser
+            .enumSwitch("scope", "The scope of operation for this server", Scope.Type.class)
+            .defaultValue(Scope.localhost().type())
             .optional()
             .build();
 
@@ -79,7 +89,7 @@ public class ServiceRegistryServer extends Server
 
     private transient final Lazy<ServiceRegistry> registry = Lazy.of(() ->
     {
-        final var registry = listenTo(get(NETWORK)
+        final var registry = listenTo(get(SCOPE) == Scope.Type.NETWORK
                 ? new NetworkServiceRegistry()
                 : new LocalServiceRegistry(get(PORT)));
 
@@ -101,7 +111,7 @@ public class ServiceRegistryServer extends Server
 
     public boolean isNetwork()
     {
-        return commandLine().get(NETWORK);
+        return scope() == Scope.Type.NETWORK;
     }
 
     public int port()
@@ -112,6 +122,11 @@ public class ServiceRegistryServer extends Server
     public ServiceRegistry registry()
     {
         return registry.get();
+    }
+
+    public Scope.Type scope()
+    {
+        return commandLine().get(SCOPE);
     }
 
     @Override
@@ -143,6 +158,6 @@ public class ServiceRegistryServer extends Server
     @Override
     protected Set<SwitchParser<?>> switchParsers()
     {
-        return Set.of(PORT, NETWORK);
+        return Set.of(PORT, SCOPE);
     }
 }

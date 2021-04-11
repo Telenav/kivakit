@@ -28,17 +28,16 @@
         #PropertyMap()
         --(collection)--
         +void add(Object, PropertyFilter)
-        +VariableMap<String> asVariableMap()
+        +Count asCount(String key)
         +PropertyMap comment(String key, String comment)
-        +Count count(String key)
         +PropertyMap create()
-        +PropertyMap load(Resource, ProgressReporter)
-        +PropertyMap load(PackagePath _package, String path)
         +PropertyMap load(Resource)
         +PropertyMap localized(PackagePath, Locale)
-        +PropertyMap propertyMap(VariableMap<String> variables)
+        +PropertyMap of(VariableMap<String> variables)
         --(conversion)--
+        +double asDouble(String key)
         +int asInt(String key)
+        +long asLong(String key)
         +Object asObject(Listener, Class<?> type)
         --(write)--
         +void save(String heading, WritableResource)

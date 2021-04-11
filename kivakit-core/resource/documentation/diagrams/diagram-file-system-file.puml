@@ -137,13 +137,13 @@
     interface ReadableResource
     interface Repeater
     interface ResourcePathed
-    interface Resourced
+    interface Resourceful
     ResourcePathed <|-- Resource
     ModificationTimestamped <|-- Resource
     ByteSized <|-- Resource
     ReadableResource <|-- Resource
     Repeater <|-- Resource
-    Resourced <|-- Resource
+    Resourceful <|-- Resource
     Resource --> Codec : "uses"
     interface Resource
     {
@@ -203,9 +203,7 @@
         --
         +Charset charset()
         --(write)--
-        +ObjectOutputStream objectOutputStream()
         +PrintWriter printWriter()
-        +void save(Object... objects)
         +void save(String)
         +Writer textWriter()
     }

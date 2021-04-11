@@ -19,8 +19,9 @@
 package com.telenav.kivakit.core.kernel.interfaces.collection;
 
 import com.telenav.kivakit.core.kernel.interfaces.numeric.Quantizable;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramInterfaceCollection;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
  * An object which has an index and is also {@link Quantizable} as are many objects.
@@ -29,6 +30,7 @@ import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramInterface
  * @see Quantizable
  */
 @UmlClassDiagram(diagram = DiagramInterfaceCollection.class)
+@LexakaiJavadoc(complete = true)
 public interface Indexed extends Quantizable
 {
     /**

@@ -942,9 +942,12 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
     }
 
     @Override
-    public List<Resource> resources()
+    public List<File> resources(final Matcher<? super Resource> matcher)
     {
-        return new ArrayList<>(files());
+        return files()
+                .stream()
+                .filter(matcher)
+                .collect(Collectors.toList());
     }
 
     public Folder root()
@@ -979,6 +982,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         LOGGER.information("Safe copy completed in $", start.elapsedSince());
     }
 
+    @Override
     public void safeCopyTo(final Folder destination, final CopyMode mode, final ProgressReporter reporter)
     {
         safeCopyTo(destination, mode, new All<>(), reporter);

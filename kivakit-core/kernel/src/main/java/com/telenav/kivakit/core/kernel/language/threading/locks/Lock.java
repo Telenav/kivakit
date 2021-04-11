@@ -18,17 +18,21 @@
 
 package com.telenav.kivakit.core.kernel.language.threading.locks;
 
+import com.telenav.kivakit.core.kernel.interfaces.code.Code;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageThreadSynchronization;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * A lock subclass that adds convenient features to {@link ReentrantLock}.
+ * A lock subclass that adds convenient features to {@link ReentrantLock}. {@link #whileLocked(Code)} and {@link
+ * #whileLocked(Runnable)} run the given code while the lock is held.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageThreadSynchronization.class)
+@LexakaiJavadoc(complete = true)
 public class Lock extends ReentrantLock
 {
     /**
@@ -40,6 +44,22 @@ public class Lock extends ReentrantLock
         try
         {
             code.run();
+        }
+        finally
+        {
+            unlock();
+        }
+    }
+
+    /**
+     * Runs the provided code inside a lock / unlock pair.
+     */
+    public <T> T whileLocked(final Code<T> code)
+    {
+        lock();
+        try
+        {
+            return code.run();
         }
         finally
         {

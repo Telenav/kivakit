@@ -27,6 +27,7 @@ import com.telenav.kivakit.core.kernel.logging.Logger;
 import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.regex.Pattern;
@@ -169,6 +170,20 @@ public final class Bytes extends Count implements ByteSized
         return gigabytes(terabytes * 1024);
     }
 
+    /**
+     * Converts to and from {@link Bytes}. Valid suffixes are (case-insensitive):
+     *
+     * <ul>
+     *     <li>b - bytes</li>
+     *     <li>k - kilobytes</li>
+     *     <li>m - megabytes</li>
+     *     <li>g - gigabytes</li>
+     *     <li>t - terabytes</li>
+     * </ul>
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<Bytes>
     {
         /** Pattern for string parsing. */

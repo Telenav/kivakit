@@ -19,11 +19,13 @@
 package com.telenav.kivakit.core.kernel.messaging.messages;
 
 import com.telenav.kivakit.core.kernel.interfaces.naming.Named;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.language.values.level.Level;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramMessaging;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Represents the severity of the current state of an operation or a step in an operation.
@@ -31,6 +33,7 @@ import java.util.*;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessaging.class)
+@LexakaiJavadoc(complete = true)
 public final class Severity extends Level implements Named
 {
     private static final Map<String, Severity> severities = new HashMap<>();

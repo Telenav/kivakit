@@ -31,10 +31,14 @@ import com.telenav.kivakit.service.registry.serialization.serializers.Applicatio
 import com.telenav.kivakit.service.registry.serialization.serializers.ProblemSerializer;
 import com.telenav.kivakit.service.registry.serialization.serializers.ServiceTypeSerializer;
 import com.telenav.kivakit.service.registry.serialization.serializers.TimeSerializer;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Factory for GSON serializers
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class ServiceRegistryGsonFactory extends GsonFactory
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();

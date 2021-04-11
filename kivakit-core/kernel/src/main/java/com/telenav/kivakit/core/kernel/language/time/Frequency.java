@@ -18,13 +18,12 @@
 
 package com.telenav.kivakit.core.kernel.language.time;
 
-import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageTime;
 import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
+import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
+import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageTime;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 
 /**
  * A simple frequency domain object. This object is not thread-safe and cannot be shared.
@@ -54,7 +53,7 @@ public class Frequency
 
     public static final Frequency FOUR_TIMES_A_DAY = timesPerDay(4);
 
-    public static final Frequency CONTINUOUS = every(Duration.NONE);
+    public static final Frequency CONTINUOUSLY = every(Duration.NONE);
 
     public static Frequency every(final Duration duration)
     {
@@ -81,6 +80,13 @@ public class Frequency
         return every(Duration.ONE_SECOND.divide(times));
     }
 
+    /**
+     * Converts to and from a frequency, expressed as a duration between cycles.
+     *
+     * @author jonathanl (shibo)
+     * @see Duration
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<Frequency>
     {
         public Converter(final Listener listener)

@@ -6,7 +6,6 @@
     
     abstract BaseStringConverter
     
-    interface Named
     interface Comparable
     
     Level <|-- Confidence
@@ -14,7 +13,9 @@
     {
         --(constructors)--
         #Confidence()
-        +Confidence(double)
+        #Confidence(double)
+        --
+        +Confidence confidence(double value)
         --(primitive)--
         +int asUnsignedByte()
         +Confidence forByte(byte level)
@@ -105,21 +106,6 @@
         +Percent of(double percent)
         +Percent plus(Percent that)
         +Percent times(double scaleFactor)
-    }
-    
-    Level <|-- Priority
-    Named <|-- Priority
-    Comparable <|-- Priority
-    class Priority
-    {
-        --(constructors)--
-        +Priority(double)
-        --
-        +Priority priority(double value)
-        --(collection)--
-        +List<Priority> all()
-        --(math)--
-        +Priority maximum(Priority that)
     }
     
     Level <|-- Weight

@@ -27,6 +27,7 @@ import com.telenav.kivakit.core.kernel.language.reflection.property.filters.Kiva
 import com.telenav.kivakit.core.kernel.messaging.messages.Result;
 import com.telenav.kivakit.core.network.core.cluster.ClusterIdentifier;
 import com.telenav.kivakit.service.registry.project.lexakai.annotations.DiagramRegistry;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
@@ -54,6 +55,7 @@ import static com.telenav.kivakit.service.registry.Scope.Type.NETWORK;
         example = "NETWORK")
 @UmlClassDiagram(diagram = DiagramRegistry.class)
 @UmlExcludeSuperTypes
+@LexakaiJavadoc(complete = true)
 public class Scope implements Named, Comparable<Scope>
 {
     public static Scope cluster(final ClusterIdentifier cluster)
@@ -104,6 +106,7 @@ public class Scope implements Named, Comparable<Scope>
     @Schema(description = "The type of scope",
             example = "CLUSTER")
     @UmlClassDiagram(diagram = DiagramRegistry.class)
+    @LexakaiJavadoc(complete = true)
     public enum Type
     {
         /** Services on the local host */

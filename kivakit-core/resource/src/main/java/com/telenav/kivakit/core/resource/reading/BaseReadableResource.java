@@ -37,14 +37,26 @@ import com.telenav.kivakit.core.resource.compression.codecs.NullCodec;
 import com.telenav.kivakit.core.resource.path.FilePath;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFile;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResource;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * A base implementation of the {@link Resource} interface. Adds the following methods:
+ *
+ * <ul>
+ *     <li>{@link #codec(Codec)} - Applies a {@link Codec} to this resource</li>
+ *     <li>{@link #safeCopyTo(Folder, CopyMode, ProgressReporter)} - Copies this resource to a folder</li>
+ * </ul>
+ * <p>
+ * All other methods are documented in the {@link Resource} superinterface.
+ */
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
+@LexakaiJavadoc(complete = true)
 public abstract class BaseReadableResource extends BaseRepeater implements Resource
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();

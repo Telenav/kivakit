@@ -33,6 +33,19 @@ import java.io.BufferedOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+/**
+ * Extends {@link BaseReadableResource} and provides a base implementation of the {@link WritableResource} interface.
+ * Adds the following methods:
+ *
+ * <ul>
+ *     <li>{@link #copyFrom(Resource, CopyMode, ProgressReporter)} - Copies to this resource from the given resource</li>
+ *     <li>{@link #delete()} - Deletes this resource</li>
+ *     <li>{@link #println(String)} - Prints the given string to this resource</li>
+ *     <li>{@link #save(InputStream, ProgressReporter)} - Copies the given input to this resource</li>
+ * </ul>
+ * <p>
+ * All other methods are documented in the {@link Resource} superinterface.
+ */
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
 public abstract class BaseWritableResource extends BaseReadableResource implements WritableResource

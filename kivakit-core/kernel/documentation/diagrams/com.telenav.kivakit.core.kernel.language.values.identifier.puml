@@ -67,15 +67,6 @@
         +T object()
     }
     
-    IntegerIdentifier <|-- SequenceNumber
-    class SequenceNumber
-    {
-        --(constructors)--
-        +SequenceNumber(int)
-        --(iteration)--
-        +SequenceNumber next()
-    }
-    
     Comparable <|-- StringIdentifier
     class StringIdentifier
     {

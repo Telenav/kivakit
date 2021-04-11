@@ -26,8 +26,8 @@ import com.telenav.kivakit.core.kernel.language.primitives.Booleans;
 import com.telenav.kivakit.core.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.kernel.language.strings.Plural;
 import com.telenav.kivakit.core.kernel.language.strings.formatting.ObjectFormatter;
-import com.telenav.kivakit.core.kernel.language.threading.RepeatingThread;
-import com.telenav.kivakit.core.kernel.language.threading.conditions.ValueWatcher;
+import com.telenav.kivakit.core.kernel.language.threading.RepeatingKivaKitThread;
+import com.telenav.kivakit.core.kernel.language.threading.conditions.StateWatcher;
 import com.telenav.kivakit.core.kernel.language.time.Duration;
 import com.telenav.kivakit.core.kernel.language.types.Classes;
 import com.telenav.kivakit.core.kernel.language.vm.JavaVirtualMachine;
@@ -35,6 +35,7 @@ import com.telenav.kivakit.core.kernel.language.vm.KivaKitShutdownHook;
 import com.telenav.kivakit.core.kernel.logging.Log;
 import com.telenav.kivakit.core.kernel.logging.LogEntry;
 import com.telenav.kivakit.core.kernel.logging.filters.LogEntriesWithSeverityGreaterThanOrEqualTo;
+import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.messaging.listeners.ConsoleWriter;
 import com.telenav.kivakit.core.kernel.messaging.messages.Severity;
 import com.telenav.kivakit.core.kernel.messaging.messages.status.Problem;
@@ -46,6 +47,7 @@ import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static com.telenav.kivakit.core.kernel.language.time.Frequency.CONTINUOUSLY;
 import static com.telenav.kivakit.core.kernel.language.vm.KivaKitShutdownHook.Order.LAST;
 
 /**
@@ -83,12 +85,12 @@ public abstract class BaseLog implements Startable, Stoppable, Log
 
     private final ArrayBlockingQueue<LogEntry> queue = new ArrayBlockingQueue<>(queueSize());
 
-    final ValueWatcher<Boolean> queueEmpty = new ValueWatcher<>(queue::isEmpty);
+    final StateWatcher<Boolean> queueEmpty = new StateWatcher<>();
 
     @KivaKitIncludeProperty
     private final List<Filter<LogEntry>> filters = new ArrayList<>();
 
-    private RepeatingThread thread;
+    private RepeatingKivaKitThread thread;
 
     private volatile boolean closed;
 
@@ -155,7 +157,8 @@ public abstract class BaseLog implements Startable, Stoppable, Log
     @Override
     public void flush(final Duration maximumWaitTime)
     {
-        queueEmpty.waitForValue(true, maximumWaitTime, () -> thread.interrupt());
+        thread.interrupt();
+        queueEmpty.waitFor(true, maximumWaitTime);
     }
 
     @Override
@@ -237,7 +240,7 @@ public abstract class BaseLog implements Startable, Stoppable, Log
     @Override
     public final boolean start()
     {
-        thread = new RepeatingThread(name() + "-Log")
+        thread = new RepeatingKivaKitThread(Listener.none(), name() + "-Log", CONTINUOUSLY)
         {
             @Override
             protected void onRun()
@@ -349,7 +352,7 @@ public abstract class BaseLog implements Startable, Stoppable, Log
     {
         if (queue.isEmpty())
         {
-            queueEmpty.valueChanged();
+            queueEmpty.signal(true);
         }
     }
 

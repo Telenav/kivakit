@@ -66,13 +66,13 @@
     interface ReadableResource
     interface Repeater
     interface ResourcePathed
-    interface Resourced
+    interface Resourceful
     ResourcePathed <|-- Resource
     ModificationTimestamped <|-- Resource
     ByteSized <|-- Resource
     ReadableResource <|-- Resource
     Repeater <|-- Resource
-    Resourced <|-- Resource
+    Resourceful <|-- Resource
     Resource --> Codec : "uses"
     interface Resource
     {
@@ -116,7 +116,6 @@
         +Count count()
         +ResourceList matching(Matcher<Resource>)
         +ResourceList matching(Extension)
-        +ResourceList relativeTo(Folder outputFolder)
         +void sortOldestToNewest()
         +Bytes totalSize()
         --(math)--
@@ -184,9 +183,7 @@
         --
         +Charset charset()
         --(write)--
-        +ObjectOutputStream objectOutputStream()
         +PrintWriter printWriter()
-        +void save(Object... objects)
         +void save(String)
         +Writer textWriter()
     }

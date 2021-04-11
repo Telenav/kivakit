@@ -31,6 +31,7 @@ import com.telenav.kivakit.core.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.core.kernel.language.values.level.Percent;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.Serializable;
@@ -354,6 +355,12 @@ public class Count implements Countable, Comparable<Count>, Quantizable, AsStrin
         return count < 0 ? null : count(count);
     }
 
+    /**
+     * Converts to and from a {@link Count}
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<Count>
     {
         public Converter(final Listener listener)

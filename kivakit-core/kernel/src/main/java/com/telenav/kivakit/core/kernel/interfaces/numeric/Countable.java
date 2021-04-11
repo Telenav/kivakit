@@ -18,10 +18,11 @@
 
 package com.telenav.kivakit.core.kernel.interfaces.numeric;
 
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.language.values.count.Count;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramExampleBaseList;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramInterfaceNumeric;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
  * Interface to something that has a {@link Count} value.
@@ -31,6 +32,7 @@ import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramInterface
  */
 @UmlClassDiagram(diagram = DiagramInterfaceNumeric.class)
 @UmlClassDiagram(diagram = DiagramExampleBaseList.class)
+@LexakaiJavadoc(complete = true)
 public interface Countable
 {
     /**

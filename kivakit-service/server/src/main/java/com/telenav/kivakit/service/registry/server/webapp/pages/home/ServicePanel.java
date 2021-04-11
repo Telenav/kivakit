@@ -20,6 +20,7 @@ package com.telenav.kivakit.service.registry.server.webapp.pages.home;
 
 import com.telenav.kivakit.core.kernel.language.collections.map.count.CountMap;
 import com.telenav.kivakit.service.registry.Service;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.image.Image;
@@ -32,6 +33,13 @@ import static java.lang.Thread.State.RUNNABLE;
 import static java.lang.Thread.State.TIMED_WAITING;
 import static java.lang.Thread.State.WAITING;
 
+/**
+ * An Apache Wicket panel that shows information about a {@link Service}. Used to display lists of services on the
+ * {@link HomePage}.
+ *
+ * @author jonathanl (shibo)
+ */
+@LexakaiJavadoc(complete = true)
 public class ServicePanel extends Panel
 {
     private final IModel<Service> model;

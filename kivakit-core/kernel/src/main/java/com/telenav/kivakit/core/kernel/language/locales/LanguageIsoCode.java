@@ -18,12 +18,13 @@
 
 package com.telenav.kivakit.core.kernel.language.locales;
 
+import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.core.kernel.language.values.name.Name;
-import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageLocale;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
+import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageLocale;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,9 +32,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensure;
-
+/**
+ * ISO-2 and ISO-3 codes for the most common languages in the world. There are, of course, vastly more than just these.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramLanguageLocale.class)
+@LexakaiJavadoc(complete = true)
 public class LanguageIsoCode extends Name implements Comparable<LanguageIsoCode>
 {
     private static final Map<String, LanguageIsoCode> forIso2Code = new HashMap<>();

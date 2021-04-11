@@ -8,7 +8,7 @@
     abstract BaseHttpResource
     abstract BaseStringConverter
     
-    interface Resourced
+    interface Resourceful
     
     BaseNetworkResource <|-- BaseHttpResource
     BaseHttpResource --> HttpStatus : "yields"
@@ -68,7 +68,7 @@
     }
     
     NetworkLocation <|-- HttpNetworkLocation
-    Resourced <|-- HttpNetworkLocation
+    Resourceful <|-- HttpNetworkLocation
     HttpNetworkLocation --> HttpGetResource : "creates"
     HttpNetworkLocation --> HttpPostResource : "creates"
     HttpNetworkLocation --> HttpPutResource : "creates"

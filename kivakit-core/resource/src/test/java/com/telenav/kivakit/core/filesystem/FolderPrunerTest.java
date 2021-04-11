@@ -20,7 +20,6 @@ package com.telenav.kivakit.core.filesystem;
 
 import com.telenav.kivakit.core.kernel.language.threading.latches.CompletionLatch;
 import com.telenav.kivakit.core.kernel.language.time.Duration;
-import com.telenav.kivakit.core.kernel.language.time.Frequency;
 import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
 import com.telenav.kivakit.core.kernel.language.values.level.Percent;
 import com.telenav.kivakit.core.test.UnitTest;
@@ -40,7 +39,7 @@ public class FolderPrunerTest extends UnitTest
 
         // Start folder pruner
         final var removed = new CompletionLatch();
-        final FolderPruner pruner = new FolderPruner(folder)
+        final FolderPruner pruner = new FolderPruner(folder, Duration.milliseconds(1).asFrequency())
         {
             @Override
             protected void onFileRemoved(final File file)
@@ -48,7 +47,6 @@ public class FolderPrunerTest extends UnitTest
                 removed.completed();
             }
         };
-        pruner.pollingFrequency(Frequency.every(Duration.milliseconds(1)));
         pruner.capacity(Bytes.bytes(4));
         pruner.minimumAge(Duration.NONE);
         pruner.minimumUsableDiskSpace(Percent._0);
@@ -77,14 +75,13 @@ public class FolderPrunerTest extends UnitTest
             final var folder = folder("disk-space-test");
             final var file = folder.file("temp1");
             file.writer().save("test");
-            final FolderPruner pruner = new FolderPruner(folder)
+            final FolderPruner pruner = new FolderPruner(folder, Duration.milliseconds(25).asFrequency())
             {
                 @Override
                 protected void onFileRemoved(final File file)
                 {
                 }
             };
-            pruner.pollingFrequency(Frequency.every(Duration.milliseconds(25)));
             pruner.minimumUsableDiskSpace(Percent.of(100));
             pruner.minimumAge(Duration.NONE);
             pruner.start();

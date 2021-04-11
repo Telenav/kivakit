@@ -31,6 +31,7 @@ import com.telenav.kivakit.core.kernel.language.vm.JavaVirtualMachineHealth;
 import com.telenav.kivakit.core.network.core.Host;
 import com.telenav.kivakit.core.network.core.Port;
 import com.telenav.kivakit.service.registry.project.lexakai.annotations.DiagramRegistry;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
@@ -84,6 +85,7 @@ import static com.telenav.kivakit.core.kernel.language.strings.formatting.Object
         + "Each service has metadata describing itself and declares a scope within which it should be visible. ")
 @UmlClassDiagram(diagram = DiagramRegistry.class)
 @UmlExcludeSuperTypes
+@LexakaiJavadoc(complete = true)
 public class Service implements Comparable<Service>, AsString
 {
     public static final Port UNBOUND = Host.local().port(0);

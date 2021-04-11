@@ -23,16 +23,21 @@ import com.telenav.kivakit.core.kernel.language.reflection.property.filters.Kiva
 import com.telenav.kivakit.core.kernel.language.strings.formatting.ObjectFormatter;
 import com.telenav.kivakit.service.registry.project.lexakai.annotations.DiagramRest;
 import com.telenav.kivakit.service.registry.protocol.BaseResponse;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import static com.telenav.kivakit.core.kernel.language.strings.formatting.ObjectFormatter.Format.MULTILINE;
 
 /**
+ * The response to a network registry update request. {@link #added()} returns true if the service was added to the
+ * registry.
+ *
  * @author jonathanl (shibo)
  */
 @Schema
 @UmlClassDiagram(diagram = DiagramRest.class)
+@LexakaiJavadoc(complete = true)
 public class NetworkRegistryUpdateResponse extends BaseResponse<Boolean>
 {
     @JsonProperty

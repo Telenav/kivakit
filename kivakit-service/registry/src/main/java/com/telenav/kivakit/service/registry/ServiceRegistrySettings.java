@@ -27,10 +27,40 @@ import com.telenav.kivakit.core.kernel.language.time.Duration;
 import com.telenav.kivakit.core.kernel.language.time.Frequency;
 import com.telenav.kivakit.core.kernel.language.values.version.Version;
 import com.telenav.kivakit.core.network.core.Port;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Service registry settings. For defaults, see ServiceRegistrySettings.properties below:
+ *
+ * <ul>
+ *     <li>{@link #localServiceRegistryPort(int)}</li>
+ *     <li>{@link #networkServiceRegistryPort(Port)}</li>
+ *     <li>{@link #portReservationExpirationTime(Duration)}</li>
+ *     <li>{@link #restApiPath(String)}</li>
+ *     <li>{@link #serviceLeaseRenewalFrequency(Frequency)}</li>
+ *     <li>{@link #serviceRegistrationExpirationTime(Duration)}</li>
+ *     <li>{@link #serviceRegistryStoreExpirationTime(Duration)}</li>
+ *     <li>{@link #version(Version)}</li>
+ * </ul>
+ *
+ * <p><b>ServiceRegistrySettings.properties</b></p>
+ *
+ * <pre>
+ * class = com.telenav.kivakit.service.registry.ServiceRegistrySettings
+ *
+ * version = 8.0
+ * rest-api-path = api/v8
+ * local-service-registry-port = 23573
+ * network-service-registry-port = kivakit.service.registry:23575
+ * service-lease-renewal-frequency = 30 seconds
+ * service-registration-expiration-time = 2 minutes
+ * service-registry-store-expiration-time = 2 hours
+ * port-reservation-expiration-time = 2 hours
+ * </pre>
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class ServiceRegistrySettings
 {
     /** Path to REST API */

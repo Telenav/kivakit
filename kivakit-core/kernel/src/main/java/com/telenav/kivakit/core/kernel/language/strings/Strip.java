@@ -20,12 +20,16 @@ package com.telenav.kivakit.core.kernel.language.strings;
 
 import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageString;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
+ * Strips leading and ending values, package prefixes and quotes from strings.
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageString.class)
+@LexakaiJavadoc(complete = true)
 public class Strip
 {
     /**

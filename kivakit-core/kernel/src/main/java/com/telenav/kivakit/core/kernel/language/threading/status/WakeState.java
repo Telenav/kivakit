@@ -19,12 +19,16 @@
 package com.telenav.kivakit.core.kernel.language.threading.status;
 
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageThreadSynchronization;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
+ * The reason why a thread completed, either it was interrupted, it timed out or it succeeded.
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageThreadSynchronization.class)
+@LexakaiJavadoc(complete = true)
 public enum WakeState
 {
     /** Waiting was interrupted */

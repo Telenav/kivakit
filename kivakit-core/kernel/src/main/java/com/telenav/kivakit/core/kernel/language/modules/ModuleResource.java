@@ -139,7 +139,7 @@ public class ModuleResource
 
     private Time lastModified;
 
-    public ModuleResource(final PackagePath _package, final URI uri)
+    protected ModuleResource(final PackagePath _package, final URI uri)
     {
         this._package = _package;
         this.uri = uri;

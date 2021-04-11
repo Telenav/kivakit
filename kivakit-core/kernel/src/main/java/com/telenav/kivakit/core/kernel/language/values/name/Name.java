@@ -18,18 +18,23 @@
 
 package com.telenav.kivakit.core.kernel.language.values.name;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.telenav.kivakit.core.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.core.kernel.interfaces.naming.NamedObject;
 import com.telenav.kivakit.core.kernel.language.primitives.Ints;
 import com.telenav.kivakit.core.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.kernel.language.strings.CaseFormat;
-import com.telenav.kivakit.core.kernel.language.strings.Strings;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * A name value. Also, the static method {@link Name#synthetic(Object)} produces a synthetic name for an object.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramLanguageValue.class)
+@LexakaiJavadoc(complete = true)
 public class Name implements Named
 {
     /**
@@ -92,12 +97,6 @@ public class Name implements Named
     public int hashCode()
     {
         return name().hashCode();
-    }
-
-    @JsonIgnore
-    public boolean isFrench()
-    {
-        return Strings.isFrench(name);
     }
 
     public Name lowerCase()

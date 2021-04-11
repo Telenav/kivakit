@@ -18,11 +18,12 @@
 
 package com.telenav.kivakit.core.kernel.language.io;
 
+import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.kernel.logging.Logger;
 import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageIo;
-import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.kernel.messaging.Message;
+import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageIo;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
@@ -287,6 +288,10 @@ public class IO
                 .lines().collect(Collectors.joining("\n")).trim();
     }
 
+    /**
+     * The style to copy in, either buffered or unbuffered
+     */
+    @LexakaiJavadoc(complete = true)
     public enum CopyStyle
     {
         BUFFERED,

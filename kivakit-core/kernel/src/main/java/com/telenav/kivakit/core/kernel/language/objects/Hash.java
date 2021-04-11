@@ -19,6 +19,7 @@
 package com.telenav.kivakit.core.kernel.language.objects;
 
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageObject;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Arrays;
@@ -30,6 +31,7 @@ import java.util.Iterator;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageObject.class)
+@LexakaiJavadoc(complete = true)
 public class Hash
 {
     /**

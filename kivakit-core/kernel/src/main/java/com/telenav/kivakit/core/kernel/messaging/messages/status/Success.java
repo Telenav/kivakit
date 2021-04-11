@@ -20,8 +20,9 @@ package com.telenav.kivakit.core.kernel.messaging.messages.status;
 
 import com.telenav.kivakit.core.kernel.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.core.kernel.messaging.messages.Severity;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramMessageType;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
  * The current step succeeded and does not indicate any problem
@@ -29,6 +30,7 @@ import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramMessageTy
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
+@LexakaiJavadoc(complete = true)
 public class Success extends OperationStatusMessage
 {
     public static final Success INSTANCE = new Success();

@@ -18,8 +18,9 @@
 
 package com.telenav.kivakit.core.kernel.interfaces.lifecycle;
 
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramInterfaceLifeCycle;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
  * Pause and resume an operation.
@@ -27,6 +28,7 @@ import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramInterface
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramInterfaceLifeCycle.class)
+@LexakaiJavadoc(complete = true)
 public interface Pausable extends Operation
 {
     /**

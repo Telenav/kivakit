@@ -20,7 +20,7 @@ package com.telenav.kivakit.core.filesystem;
 
 import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.core.kernel.language.matching.matchers.All;
-import com.telenav.kivakit.core.kernel.language.threading.RepeatingThread;
+import com.telenav.kivakit.core.kernel.language.threading.RepeatingKivaKitThread;
 import com.telenav.kivakit.core.kernel.language.time.Duration;
 import com.telenav.kivakit.core.kernel.language.time.Frequency;
 import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
@@ -52,9 +52,6 @@ public class FolderPruner
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    /** How often to look at files in the folder */
-    private volatile Frequency pollingFrequency = Frequency.EVERY_30_SECONDS;
-
     /** Matcher to restrict files that can be pruned */
     private volatile Matcher<File> matcher = new All<>();
 
@@ -68,14 +65,14 @@ public class FolderPruner
     private volatile Bytes capacity = Bytes.MAXIMUM;
 
     /** The pruner thread */
-    private final RepeatingThread thread;
+    private final RepeatingKivaKitThread thread;
 
     /** True if this pruner is running */
     private volatile boolean running;
 
-    public FolderPruner(final Folder folder)
+    public FolderPruner(final Folder folder, final Frequency frequency)
     {
-        thread = new RepeatingThread(getClass().getSimpleName())
+        thread = new RepeatingKivaKitThread(LOGGER, getClass().getSimpleName(), frequency)
         {
             @Override
             protected void onRun()
@@ -143,14 +140,8 @@ public class FolderPruner
         this.minimumUsableDiskSpace = minimumUsableDiskSpace;
     }
 
-    public void pollingFrequency(final Frequency pollingFrequency)
-    {
-        this.pollingFrequency = pollingFrequency;
-    }
-
     public void start()
     {
-        thread.frequency(pollingFrequency());
         thread.start();
         running = true;
     }
@@ -204,10 +195,5 @@ public class FolderPruner
     protected void onFileRemoved(final File file)
     {
         LOGGER.warning("FolderPruner removing $", file);
-    }
-
-    protected Frequency pollingFrequency()
-    {
-        return pollingFrequency;
     }
 }

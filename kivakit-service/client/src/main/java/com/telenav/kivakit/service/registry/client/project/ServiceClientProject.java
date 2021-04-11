@@ -20,10 +20,14 @@ package com.telenav.kivakit.service.registry.client.project;
 
 import com.telenav.kivakit.core.kernel.language.objects.Lazy;
 import com.telenav.kivakit.core.kernel.project.Project;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Project class for kivakit-service-registry-client
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class ServiceClientProject extends Project
 {
     private static final Lazy<ServiceClientProject> singleton = Lazy.of(ServiceClientProject::new);

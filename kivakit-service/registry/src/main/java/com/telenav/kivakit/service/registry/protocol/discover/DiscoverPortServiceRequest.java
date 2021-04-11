@@ -24,6 +24,7 @@ import com.telenav.kivakit.core.kernel.language.strings.formatting.ObjectFormatt
 import com.telenav.kivakit.core.network.core.Port;
 import com.telenav.kivakit.service.registry.project.lexakai.annotations.DiagramRest;
 import com.telenav.kivakit.service.registry.protocol.BaseRequest;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -38,6 +39,7 @@ import static com.telenav.kivakit.service.registry.protocol.ServiceRegistryProto
  */
 @Schema(description = "A request to determine what service, if any, is running on the given host and port.")
 @UmlClassDiagram(diagram = DiagramRest.class)
+@LexakaiJavadoc(complete = true)
 public class DiscoverPortServiceRequest extends BaseRequest
 {
     @JsonProperty

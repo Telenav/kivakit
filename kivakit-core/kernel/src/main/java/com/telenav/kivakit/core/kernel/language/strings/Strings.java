@@ -19,6 +19,7 @@
 package com.telenav.kivakit.core.kernel.language.strings;
 
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageString;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.regex.Pattern;
@@ -29,11 +30,9 @@ import java.util.regex.Pattern;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageString.class)
+@LexakaiJavadoc(complete = true)
 public class Strings
 {
-    private static final Pattern FRENCH = Pattern.compile("(\\bl')|[çèéêîôœû]",
-            Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
-
     /**
      * @return True if the given text contains any character in the given set of characters
      */
@@ -167,14 +166,6 @@ public class Strings
             }
         }
         return true;
-    }
-
-    /**
-     * @return True if the given text contains French language characters
-     */
-    public static boolean isFrench(final String text)
-    {
-        return FRENCH.matcher(text).find();
     }
 
     /**

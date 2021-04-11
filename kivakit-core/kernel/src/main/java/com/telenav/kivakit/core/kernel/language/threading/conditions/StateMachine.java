@@ -27,7 +27,6 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.Predicate;
 
 /**
  * A simple state machine with a single state that can be transitioned from one state to another and which allows a
@@ -77,7 +76,7 @@ import java.util.function.Predicate;
  * </pre>
  *
  * @author jonathanl (shibo)
- * @see ValueWatcher
+ * @see StateWatcher
  */
 @UmlClassDiagram(diagram = DiagramLanguageThreadSynchronization.class)
 public class StateMachine<State> extends BaseRepeater
@@ -86,7 +85,7 @@ public class StateMachine<State> extends BaseRepeater
     private final AtomicReference<State> state = new AtomicReference<>();
 
     /** Watches the state */
-    private final ValueWatcher<State> watcher = new ValueWatcher<>(state::get);
+    private final StateWatcher<State> waiter = new StateWatcher<>();
 
     /** Listener to call when state transitions occur */
     private final Receiver<State> receiver;
@@ -136,6 +135,16 @@ public class StateMachine<State> extends BaseRepeater
     }
 
     /**
+     * Transition and wait forever for the given state
+     *
+     * @see #transitionAndWait(Object, Object, Object, Duration)
+     */
+    public boolean transitionAndWait(final State from, final State to, final State waitFor)
+    {
+        return transitionAndWait(from, to, waitFor, Duration.MAXIMUM);
+    }
+
+    /**
      * If the state is equal to the 'from' state, transition to the 'to' state and then wait for the 'waitFor' state. An
      * example use case is to transition from RUNNING to STOPPING and then wait for STOPPED.
      *
@@ -172,7 +181,7 @@ public class StateMachine<State> extends BaseRepeater
     {
         // Change the state and tell the state watcher that the state has changed,
         final var from = state.getAndSet(to);
-        watcher.valueChanged();
+        waiter.signal(to);
 
         // show the state transition,
         trace("$ => $", from, to);
@@ -185,22 +194,6 @@ public class StateMachine<State> extends BaseRepeater
     }
 
     /**
-     * Waits until this state machine reaches the given state, running the beforeWait code before waiting
-     *
-     * @param desiredState The desired state
-     * @param maximumWait The maximum amount of time to wait
-     * @param beforeWait Code to run before waiting for the predicate to be satisfied
-     * @return True if the state was achieved, false if the operation timed out
-     */
-    public boolean waitFor(final Predicate<State> desiredState, final Duration maximumWait, final Runnable beforeWait)
-    {
-        trace("Waiting for predicate for up to $", maximumWait);
-        final var wakeState = watcher.waitFor(desiredState, maximumWait, beforeWait);
-        trace("Predicate satisfied");
-        return wakeState == WakeState.COMPLETED;
-    }
-
-    /**
      * Waits until this state machine reaches the given state
      *
      * @param state The desired state
@@ -210,16 +203,28 @@ public class StateMachine<State> extends BaseRepeater
     public boolean waitFor(final State state, final Duration maximumWait)
     {
         trace("Waiting for $ for up to $", state, maximumWait);
-        final var wakeState = watcher.waitForValue(state, maximumWait);
+        final var wakeState = waiter.waitFor(state, maximumWait);
         trace("State $ reached", state);
         return wakeState == WakeState.COMPLETED;
     }
 
-    private void stateChanged(final State at)
+    /**
+     * Waits forever for the given state to be achieved
+     *
+     * @param state The state to wait for
+     * @return True if the state was achieved, false if the operation timed out
+     */
+    public boolean waitFor(final State state)
     {
+        return waitFor(state, Duration.MAXIMUM);
+    }
+
+    private void stateChanged(final State state)
+    {
+        waiter.signal(state);
         if (receiver != null)
         {
-            receiver.receive(at);
+            receiver.receive(state);
         }
     }
 }

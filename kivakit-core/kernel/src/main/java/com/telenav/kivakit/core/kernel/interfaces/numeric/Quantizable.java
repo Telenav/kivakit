@@ -18,16 +18,17 @@
 
 package com.telenav.kivakit.core.kernel.interfaces.numeric;
 
-import com.telenav.kivakit.core.kernel.interfaces.model.Identifiable;
 import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.core.kernel.interfaces.collection.Indexed;
 import com.telenav.kivakit.core.kernel.interfaces.collection.LongKeyed;
 import com.telenav.kivakit.core.kernel.interfaces.factory.MapFactory;
+import com.telenav.kivakit.core.kernel.interfaces.model.Identifiable;
 import com.telenav.kivakit.core.kernel.language.time.Duration;
 import com.telenav.kivakit.core.kernel.language.time.Time;
 import com.telenav.kivakit.core.kernel.language.values.count.Count;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramInterfaceNumeric;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
@@ -115,6 +116,7 @@ public interface Quantizable
      *
      * @param <T> The type to convert to
      */
+    @LexakaiJavadoc(complete = true)
     class Converter<T extends Quantizable> extends BaseStringConverter<T>
     {
         private final MapFactory<Long, T> factory;

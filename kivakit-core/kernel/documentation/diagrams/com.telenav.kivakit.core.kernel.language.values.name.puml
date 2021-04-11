@@ -15,8 +15,6 @@
         --
         +String of(Object)
         +String synthetic(Object)
-        --(checks)--
-        +boolean isFrench()
         --(naming)--
         +Name lowerCase()
     }

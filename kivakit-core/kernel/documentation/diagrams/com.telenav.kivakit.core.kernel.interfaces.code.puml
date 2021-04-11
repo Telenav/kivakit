@@ -11,19 +11,26 @@
         +void onCallback(Value)
     }
     
-    interface Code<Value>
+    interface CheckedCode<Value>
     {
         --
-        +Code<T> of(Code<T>)
-        +Code<T> of(Runnable code)
+        +CheckedCode<T> of(CheckedCode<T>)
         +Value orNull()
-        +void quietly()
         --(lifecycle)--
         +Value run()
         --(logical)--
         +Value or(Value defaultValue, String message, Object... arguments)
         +Value or(Value defaultValue)
-        +Value or(Value defaultValue, Listener, String message, Object... arguments)
+        +Value or(Listener, Value defaultValue, String message, Object... arguments)
+    }
+    
+    interface Code<Value>
+    {
+        --
+        +Code<T> of(Code<T>)
+        +Code<T> of(Runnable code)
+        --(lifecycle)--
+        +Value run()
     }
     
     interface Loopable

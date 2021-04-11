@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.collections.batcher;
 
 import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramBatchProcessing;
-import com.telenav.kivakit.core.kernel.interfaces.code.Code;
+import com.telenav.kivakit.core.kernel.interfaces.code.CheckedCode;
 import com.telenav.kivakit.core.kernel.interfaces.collection.Addable;
 import com.telenav.kivakit.core.kernel.language.threading.Threads;
 import com.telenav.kivakit.core.kernel.language.time.Time;
@@ -52,9 +52,10 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensu
  *
  * <p>
  * A batcher has a set of worker threads that are started with {@link #start(Count)}, passing in the desired number of
- * threads. Worker threads pull batches out of the queue and call {@link Batch#process()} which calls {@link #onBatch(Batch)}
- * to let the subclass process the batch of elements. When the thread(s) that are adding elements to the batcher are done,
- * they must call {@link #stop()}, to shut down the batcher and wait until the processing of all batches is complete.
+ * threads. Worker threads pull batches out of the queue and call {@link Batch#process()} which calls {@link
+ * #onBatch(Batch)} to let the subclass process the batch of elements. When the thread(s) that are adding elements to
+ * the batcher are done, they must call {@link #stop()}, to shut down the batcher and wait until the processing of all
+ * batches is complete.
  * </p>
  *
  * <p><b>Example</b></p>
@@ -304,6 +305,6 @@ public abstract class Batcher<Element> extends BaseRepeater
      */
     private Batch nextBatch()
     {
-        return Code.of(() -> queue.take()).or(new Batch());
+        return CheckedCode.of(() -> queue.take()).or(new Batch());
     }
 }

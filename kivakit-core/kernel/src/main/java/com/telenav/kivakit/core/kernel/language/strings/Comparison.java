@@ -21,12 +21,17 @@ package com.telenav.kivakit.core.kernel.language.strings;
 import com.telenav.kivakit.core.kernel.language.primitives.Doubles;
 import com.telenav.kivakit.core.kernel.language.values.level.Percent;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageString;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
+ * Methods for comparing strings, including by <a href="https://en.wikipedia.org/wiki/Levenshtein_distance">Levenshtein
+ * distance.</a>
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageString.class)
+@LexakaiJavadoc(complete = true)
 public class Comparison
 {
     /**
@@ -54,7 +59,7 @@ public class Comparison
     /**
      * @return The percentage difference between the two strings using the Levenshtein distance algorithm
      */
-    public static Percent difference(final String a, final String b)
+    public static Percent levenshteinDifference(final String a, final String b)
     {
         final var lexicalDistance = levenshteinDistance(a, b);
         if (lexicalDistance == 0)
@@ -128,11 +133,11 @@ public class Comparison
 
     /**
      * @return The similarity of the two strings
-     * @see Comparison#difference(String, String)
+     * @see Comparison#levenshteinDifference(String, String)
      */
-    public static Percent similarity(final String a, final String b)
+    public static Percent levenshteinSimilarity(final String a, final String b)
     {
-        return difference(a, b).inverse();
+        return levenshteinDifference(a, b).inverse();
     }
 
     /**

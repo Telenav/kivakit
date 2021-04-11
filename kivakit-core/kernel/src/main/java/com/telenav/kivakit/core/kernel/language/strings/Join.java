@@ -18,21 +18,25 @@
 
 package com.telenav.kivakit.core.kernel.language.strings;
 
+import com.telenav.kivakit.core.kernel.data.conversion.BaseConverter;
+import com.telenav.kivakit.core.kernel.data.conversion.Converter;
 import com.telenav.kivakit.core.kernel.logging.Logger;
 import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageString;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.kivakit.core.kernel.data.conversion.BaseConverter;
-import com.telenav.kivakit.core.kernel.data.conversion.Converter;
 
 import java.util.Collection;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
+ * Joins collections together with separator characters
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageString.class)
+@LexakaiJavadoc(complete = true)
 public class Join
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();

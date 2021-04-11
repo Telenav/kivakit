@@ -27,7 +27,7 @@ import com.telenav.kivakit.core.network.core.NetworkPath;
 import com.telenav.kivakit.core.network.core.QueryParameters;
 import com.telenav.kivakit.core.network.http.project.lexakai.diagrams.DiagramHttp;
 import com.telenav.kivakit.core.resource.Resource;
-import com.telenav.kivakit.core.resource.Resourced;
+import com.telenav.kivakit.core.resource.Resourceful;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -70,7 +70,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensu
  */
 @UmlClassDiagram(diagram = DiagramHttp.class)
 @LexakaiJavadoc(complete = true)
-public class HttpNetworkLocation extends NetworkLocation implements Resourced
+public class HttpNetworkLocation extends NetworkLocation implements Resourceful
 {
     /**
      * Converts to and from {@link HttpNetworkLocation}

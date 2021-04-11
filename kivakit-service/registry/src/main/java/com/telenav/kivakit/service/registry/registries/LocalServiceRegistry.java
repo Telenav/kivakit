@@ -23,6 +23,7 @@ import com.telenav.kivakit.core.network.core.Host;
 import com.telenav.kivakit.core.network.core.Port;
 import com.telenav.kivakit.service.registry.Service;
 import com.telenav.kivakit.service.registry.project.lexakai.annotations.DiagramRegistry;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 import org.jetbrains.annotations.NotNull;
@@ -37,6 +38,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail
  */
 @UmlClassDiagram(diagram = DiagramRegistry.class)
 @UmlNotPublicApi
+@LexakaiJavadoc(complete = true)
 public class LocalServiceRegistry extends BaseServiceRegistry
 {
     /** The first port to allocate at, normally near the start of the ephemeral range */

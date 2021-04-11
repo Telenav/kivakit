@@ -18,9 +18,14 @@
 
 package com.telenav.kivakit.service.registry.protocol;
 
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
 /**
+ * The names of REST methods in the service registry rest protocol
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class ServiceRegistryProtocol
 {
     public static final String NETWORK_REGISTRY_UPDATE = "network-registry-update";

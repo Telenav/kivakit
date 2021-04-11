@@ -19,14 +19,20 @@
 package com.telenav.kivakit.service.registry.server.rest;
 
 import com.telenav.kivakit.service.registry.serialization.ServiceRegistryJerseySerializer;
+import com.telenav.kivakit.service.registry.server.ServiceRegistryServer;
 import com.telenav.kivakit.web.jersey.BaseRestApplication;
+import com.telenav.kivakit.web.jetty.JettyServer;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import javax.ws.rs.ApplicationPath;
 
 /**
+ * The service registry REST application used with {@link JettyServer} in {@link ServiceRegistryServer}.
+ *
  * @author jonathanl (shibo)
  */
 @ApplicationPath("/api")
+@LexakaiJavadoc(complete = true)
 public class ServiceRegistryRestApplication extends BaseRestApplication
 {
     public ServiceRegistryRestApplication()

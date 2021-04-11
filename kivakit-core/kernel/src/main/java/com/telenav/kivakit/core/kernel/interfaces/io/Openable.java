@@ -18,8 +18,9 @@
 
 package com.telenav.kivakit.core.kernel.interfaces.io;
 
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramInterfaceIo;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
  * An object that can be opened, often an I/O or data storage related object.
@@ -27,6 +28,7 @@ import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramInterface
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramInterfaceIo.class)
+@LexakaiJavadoc(complete = true)
 public interface Openable
 {
     /**

@@ -20,6 +20,8 @@ package com.telenav.kivakit.core.resource;
 
 import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
+import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
+import com.telenav.kivakit.core.kernel.language.matching.matchers.All;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.resource.spi.ResourceFolderResolverServiceLoader;
@@ -105,7 +107,30 @@ public interface ResourceFolder
     Resource resource(String name);
 
     /**
-     * @return The {@link Resource}s in this resource folder
+     * @return The resources in this folder matching the given matcher
      */
-    List<? extends Resource> resources();
+    List<? extends Resource> resources(final Matcher<? super Resource> matcher);
+
+    /**
+     * @return The resources in this folder
+     */
+    default List<? extends Resource> resources()
+    {
+        return resources(new All<>());
+    }
+
+    /**
+     * Copy the resources in this package to the given folder
+     */
+    default void safeCopyTo(final Folder folder, final CopyMode mode, final ProgressReporter reporter)
+    {
+        for (final var at : resources())
+        {
+            final var destination = folder.mkdirs().file(at.fileName());
+            if (mode.canCopy(at, destination))
+            {
+                at.safeCopyTo(destination, mode, reporter);
+            }
+        }
+    }
 }

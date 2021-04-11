@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.resource.resources.packaged;
 
+import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.core.kernel.language.modules.ModuleResource;
 import com.telenav.kivakit.core.kernel.language.modules.Modules;
 import com.telenav.kivakit.core.kernel.language.paths.PackagePath;
@@ -38,19 +39,46 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.module.ModuleReference;
+import java.net.URI;
 
 /**
- * A resource in a package, as specified by {@link PackagePath}.
+ * A readable {@link Resource} in a package, as specified by {@link PackagePath} or {@link ModuleResource} (which has a
+ * {@link ModuleReference} and {@link URI}), and a name. Package resources can be constructed by several factory
+ * methods:
+ *
+ * <ul>
+ *     <li>{@link #of(ModuleResource)}</li>
+ *     <li>{@link #of(Class, String)}</li>
+ *     <li>{@link #of(PackagePath, String)}</li>
+ *     <li>{@link #of(PackagePath, FileName)}</li>
+ *     <li>{@link #of(PackagePath, FilePath)}</li>
+ * </ul>
+ * <p>
+ * They can also be retrieved from a (KivaKit) {@link Package} with these methods:
+ *
+ * <ul>
+ *     <li>{@link Package#resource(String)}</li>
+ *     <li>{@link Package#resources()}</li>
+ *     <li>{@link Package#resources(Matcher)}</li>
+ * </ul>
+ * <p>
+ * Note that {@link PackageResource}s cannot be retrieved from {@link PackagePath}s because package paths
+ * are used in *kivakit-core-kernel*, which cannot depend on *kivakit-core-resource*. The easiest way to
+ * get a resource from a package path is one of the factory methods above.
  *
  * @author jonathanl (shibo)
+ * @see Package
+ * @see BaseReadableResource
  */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
+@LexakaiJavadoc(complete = true)
 public class PackageResource extends BaseReadableResource
 {
     /**
      * @return A package resource for the given module resource
      */
-    public static PackageResource packageResource(final ModuleResource resource)
+    public static PackageResource of(final ModuleResource resource)
     {
         final var fileName = FileName.parse(resource.fileNameAsJavaPath().toString());
         return new PackageResource(resource.packagePath(), resource, fileName);
@@ -59,23 +87,23 @@ public class PackageResource extends BaseReadableResource
     /**
      * @return A package resource for the resource at the given path relative to the given package
      */
-    public static PackageResource packageResource(final PackagePath _package, final String path)
+    public static PackageResource of(final PackagePath _package, final String path)
     {
-        return packageResource(_package, FilePath.parseFilePath(path));
+        return of(_package, FilePath.parseFilePath(path));
     }
 
     /**
      * @return A package resource for the resource at the given path relative to the given class
      */
-    public static PackageResource packageResource(final Class<?> type, final String path)
+    public static PackageResource of(final Class<?> type, final String path)
     {
-        return packageResource(PackagePath.packagePath(type), path);
+        return of(PackagePath.packagePath(type), path);
     }
 
     /**
      * @return A package resource for the resource at the given path relative to the given package
      */
-    public static PackageResource packageResource(final PackagePath _package, final FilePath path)
+    public static PackageResource of(final PackagePath _package, final FilePath path)
     {
         final var resource = Modules.resource(_package.withChild(path));
         if (path.size() == 1)
@@ -91,7 +119,7 @@ public class PackageResource extends BaseReadableResource
     /**
      * @return A package resource for the resource with the given filename in the given package
      */
-    public static PackageResource packageResource(final PackagePath _package, final FileName name)
+    public static PackageResource of(final PackagePath _package, final FileName name)
     {
         final var resource = Modules.resource(_package.withChild(name.name()));
         return new PackageResource(_package, resource, name);
@@ -124,7 +152,7 @@ public class PackageResource extends BaseReadableResource
             {
                 final var _package = PackagePath.packagePath(parent);
                 final var name = filepath.fileName();
-                return packageResource(_package, name);
+                return of(_package, name);
             }
             return null;
         }

@@ -18,11 +18,14 @@
 
 package com.telenav.kivakit.service.registry;
 
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
 /**
  * Sends a service registry update from a local service registry to the network service registry.
  *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public interface ServiceRegistryUpdater
 {
     /**

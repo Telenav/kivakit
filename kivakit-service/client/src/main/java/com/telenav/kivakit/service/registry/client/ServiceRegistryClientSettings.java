@@ -18,20 +18,34 @@
 
 package com.telenav.kivakit.service.registry.client;
 
+import com.telenav.kivakit.core.kernel.KivaKit;
 import com.telenav.kivakit.core.kernel.language.reflection.populator.KivaKitPropertyConverter;
 import com.telenav.kivakit.core.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.kernel.language.strings.formatting.ObjectFormatter;
 import com.telenav.kivakit.core.kernel.language.time.Duration;
+import com.telenav.kivakit.core.network.core.NetworkLocation;
 import com.telenav.kivakit.core.network.http.HttpNetworkLocation;
+import com.telenav.kivakit.core.resource.Resource;
+import com.telenav.kivakit.core.resource.Resourceful;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * {@link ServiceRegistryClient} settings, including an {@link #accessTimeout(Duration)} and the location of the
+ * executable server jar, provided with {@link #serverJar(Resourceful)}. Note that all {@link Resource}s are {@link
+ * Resourceful}, but {@link NetworkLocation} is also resourceful and can be used directly with {@link
+ * #serverJar(Resourceful)} to launch a JAR from a network location. The default settings for {@link
+ * ServiceRegistryClient} will launch the server directly from GitHub with a timeout of one minute. It will thereafter
+ * be cached in the KivaKit cache folder, as provided by {@link KivaKit#cacheFolderPath()}. See the
+ * ServiceRegistryClientSettings.properties file in this package.
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class ServiceRegistryClientSettings
 {
     private Duration accessTimeout;
 
-    private HttpNetworkLocation serverJar;
+    private Resourceful serverJar;
 
     @KivaKitPropertyConverter(Duration.Converter.class)
     public ServiceRegistryClientSettings accessTimeout(final Duration timeout)
@@ -47,14 +61,14 @@ public class ServiceRegistryClientSettings
     }
 
     @KivaKitPropertyConverter(HttpNetworkLocation.Converter.class)
-    public ServiceRegistryClientSettings serverJar(final HttpNetworkLocation location)
+    public ServiceRegistryClientSettings serverJar(final Resourceful location)
     {
         serverJar = location;
         return this;
     }
 
     @KivaKitIncludeProperty
-    public HttpNetworkLocation serverJar()
+    public Resourceful serverJar()
     {
         return serverJar;
     }

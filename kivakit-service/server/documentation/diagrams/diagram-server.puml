@@ -18,6 +18,7 @@
         #ServiceRegistryServer()
         --
         +void main(String[] arguments)
+        +Scope.Type scope()
         --(checks)--
         +boolean isLocal()
         --(network)--

@@ -19,9 +19,16 @@
 package com.telenav.kivakit.core.kernel.language.values.mutable;
 
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * A long value that can be changed. Useful for mutating something other than a field from within a lambda expression.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramLanguageValue.class)
+@LexakaiJavadoc(complete = true)
 public class MutableLong extends MutableValue<Long>
 {
     public MutableLong()

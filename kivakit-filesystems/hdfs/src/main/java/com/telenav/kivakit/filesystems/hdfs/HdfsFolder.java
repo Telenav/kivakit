@@ -10,7 +10,7 @@ package com.telenav.kivakit.filesystems.hdfs;
 import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.filesystem.spi.FileService;
 import com.telenav.kivakit.core.filesystem.spi.FolderService;
-import com.telenav.kivakit.core.kernel.interfaces.code.Code;
+import com.telenav.kivakit.core.kernel.interfaces.code.CheckedCode;
 import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.core.kernel.language.matching.matchers.All;
 import com.telenav.kivakit.core.kernel.language.threading.Retry;
@@ -351,7 +351,7 @@ public class HdfsFolder implements FolderService
         return proxy;
     }
 
-    private <T> Code<T> retry(final Code<T> code)
+    private <T> CheckedCode<T> retry(final CheckedCode<T> code)
     {
         return Retry.retry(code, 16, Duration.seconds(15), () -> proxy = null);
     }

@@ -130,7 +130,9 @@
     {
         --(constructors)--
         #Confidence()
-        +Confidence(double)
+        #Confidence(double)
+        --
+        +Confidence confidence(double value)
         --(primitive)--
         +int asUnsignedByte()
         +Confidence forByte(byte level)
@@ -440,8 +442,6 @@
         --
         +String of(Object)
         +String synthetic(Object)
-        --(checks)--
-        +boolean isFrench()
         --(naming)--
         +Name lowerCase()
     }
@@ -485,35 +485,11 @@
         +Percent times(double scaleFactor)
     }
     
-    Level <|-- Priority
-    Named <|-- Priority
-    Comparable <|-- Priority
-    class Priority
-    {
-        --(constructors)--
-        +Priority(double)
-        --
-        +Priority priority(double value)
-        --(collection)--
-        +List<Priority> all()
-        --(math)--
-        +Priority maximum(Priority that)
-    }
-    
     Ranged <|-- Range
     class Range<T>
     {
         --(constructors)--
         +Range(T, T)
-    }
-    
-    IntegerIdentifier <|-- SequenceNumber
-    class SequenceNumber
-    {
-        --(constructors)--
-        +SequenceNumber(int)
-        --(iteration)--
-        +SequenceNumber next()
     }
     
     Comparable <|-- StringIdentifier

@@ -231,22 +231,15 @@ A wide variety of other resources are available and new ones are easy to write. 
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 83.9%.  
+Javadoc coverage for this project is 100.0%.  
   
-&nbsp; &nbsp;  ![](documentation/images/meter-80-12.png)
+&nbsp; &nbsp;  ![](documentation/images/meter-100-12.png)
 
-The following significant classes are undocumented:  
 
-- BaseReadableResource  
-- PackageResource  
-- PropertyMap  
-- Resource  
-- ResourceList
 
 | Class | Documentation Sections |
 |---|---|
 | [*ArchivedFields*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/ArchivedFields.html) |  |  
-| [*BaseObjectReader*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/reading/BaseObjectReader.html) |  |  
 | [*BaseReadableResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/reading/BaseReadableResource.html) |  |  
 | [*BaseWritableResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/writing/BaseWritableResource.html) |  |  
 | [*BitArrayResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/other/BitArrayResource.html) |  |  
@@ -318,14 +311,21 @@ The following significant classes are undocumented:
 | [*NullCodec*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/codecs/NullCodec.html) |  |  
 | [*NullResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/other/NullResource.html) |  |  
 | [*OutputResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/streamed/OutputResource.html) |  |  
-| [*Package*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/packaged/Package.html) |  |  
+| [*Package*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/packaged/Package.html) | Hierarchy |  
+| | Resources |  
 | [*Package.Resolver*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/packaged/Package.Resolver.html) |  |  
 | [*PackageResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/packaged/PackageResource.html) |  |  
 | [*PackageResource.Resolver*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/packaged/PackageResource.Resolver.html) |  |  
 | [*Packaged*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/packaged/Packaged.html) |  |  
-| [*PropertyMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/other/PropertyMap.html) |  |  
+| [*PropertyMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/other/PropertyMap.html) | Conversions |  
+| | Creating and Loading Property Maps |  
+| | Adding to Property Maps |  
+| | Saving Property Maps |  
 | [*ReadableResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/ReadableResource.html) |  |  
-| [*Resource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/Resource.html) |  |  
+| [*Resource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/Resource.html) | Checks |  
+| | Properties |  
+| | Operations |  
+| | Examples |  
 | [*Resource.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/Resource.Converter.html) |  |  
 | [*ResourceFolder*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/ResourceFolder.html) |  |  
 | [*ResourceFolder.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/ResourceFolder.Converter.html) |  |  
@@ -343,8 +343,9 @@ The following significant classes are undocumented:
 | [*ResourceResolver*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/spi/ResourceResolver.html) |  |  
 | [*ResourceResolverServiceLoader*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/spi/ResourceResolverServiceLoader.html) |  |  
 | [*ResourceSection*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/other/ResourceSection.html) |  |  
-| [*ResourceWriter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/writing/ResourceWriter.html) |  |  
-| [*Resourced*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/Resourced.html) |  |  
+| [*ResourceWriter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/writing/ResourceWriter.html) | Writers |  
+| | Saving |  
+| [*Resourceful*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/Resourceful.html) |  |  
 | [*StringResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/string/StringResource.html) |  |  
 | [*WritableResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/WritableResource.html) |  |  
 | [*ZipArchive*](https://telenav.github.io/kivakit/javadoc/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/ZipArchive.html) | Adding Files |  
@@ -365,6 +366,6 @@ The following significant classes are undocumented:
 ![](documentation/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.09. UML diagrams courtesy
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.10. UML diagrams courtesy
 of [PlantUML](http://plantuml.com).</sub>
 

@@ -16,15 +16,12 @@
         --(constructors)--
         #Package(PackagePath)
         --
+        +Package child(String name)
         +Package of(Class<?> _packageType, String path)
         +Package of(PackagePath _package)
         +Package parent()
-        +Package subPackage(String name)
         --(collection)--
         +PropertyMap localizedProperties(Locale)
-        +List<PackageResource> resources(Matcher<PackageResource>)
-        --(filesystem)--
-        +void safeCopyTo(Folder, CopyMode, ProgressReporter)
         --(path)--
         +PackagePath path()
     }
@@ -35,11 +32,11 @@
         --(constructors)--
         #PackageResource(PackagePath, ModuleResource, FileName)
         --
-        +PackageResource packageResource(Class<?> type, String path)
-        +PackageResource packageResource(ModuleResource)
-        +PackageResource packageResource(PackagePath _package, FilePath)
-        +PackageResource packageResource(PackagePath _package, String path)
-        +PackageResource packageResource(PackagePath _package, FileName)
+        +PackageResource of(Class<?> type, String path)
+        +PackageResource of(ModuleResource)
+        +PackageResource of(PackagePath _package, FilePath)
+        +PackageResource of(PackagePath _package, String path)
+        +PackageResource of(PackagePath _package, FileName)
     }
     
     interface Packaged

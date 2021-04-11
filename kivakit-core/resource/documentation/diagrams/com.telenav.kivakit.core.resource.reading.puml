@@ -4,20 +4,10 @@
     
     title "com.telenav.kivakit.core.resource.reading"
     
-    abstract BaseIterator
     abstract BaseRepeater
     
     interface Iterable
-    interface Closeable
     interface Resource
-    interface RepeaterTrait
-    
-    BaseIterator <|-- BaseObjectReader
-    RepeaterTrait <|-- BaseObjectReader
-    Closeable <|-- BaseObjectReader
-    abstract class BaseObjectReader<T>
-    {
-    }
     
     BaseRepeater <|-- BaseReadableResource
     Resource <|-- BaseReadableResource

@@ -19,12 +19,16 @@
 package com.telenav.kivakit.core.kernel.language.strings;
 
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageString;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
+ * Escapes different kinds of strings for JavaScript, SQL and XML.
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageString.class)
+@LexakaiJavadoc(complete = true)
 public class Escape
 {
     /**

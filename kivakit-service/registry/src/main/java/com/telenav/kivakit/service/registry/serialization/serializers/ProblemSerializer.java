@@ -20,12 +20,16 @@ package com.telenav.kivakit.service.registry.serialization.serializers;
 
 import com.telenav.kivakit.core.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.serialization.json.PrimitiveGsonSerializer;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import static com.telenav.kivakit.core.kernel.messaging.messages.MessageFormatter.Format.WITH_EXCEPTION;
 
 /**
+ * Serializes {@link Problem}s to and from JSON.
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class ProblemSerializer extends PrimitiveGsonSerializer<Problem, String>
 {
     public ProblemSerializer()

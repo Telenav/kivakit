@@ -8,7 +8,7 @@
 package com.telenav.kivakit.filesystems.hdfs;
 
 import com.telenav.kivakit.core.filesystem.spi.FileService;
-import com.telenav.kivakit.core.kernel.interfaces.code.Code;
+import com.telenav.kivakit.core.kernel.interfaces.code.CheckedCode;
 import com.telenav.kivakit.core.kernel.language.threading.Retry;
 import com.telenav.kivakit.core.kernel.language.time.Duration;
 import com.telenav.kivakit.core.kernel.language.time.Time;
@@ -196,7 +196,7 @@ public class HdfsFile extends BaseWritableResource implements FileService
         return proxy;
     }
 
-    private <T> Code<T> retry(final Code<T> code)
+    private <T> CheckedCode<T> retry(final CheckedCode<T> code)
     {
         return Retry.retry(code, 16, Duration.seconds(15), () -> proxy = null);
     }

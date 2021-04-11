@@ -22,7 +22,8 @@ import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageT
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * An object to use instead of {@link Object} when a simple mutex lock is required.
+ * An object to use instead of {@link Object} when a simple mutex lock is required. Adds {@link #await()} which waits to
+ * be notified, but ignores any {@link InterruptedException} and {@link #signal()} which notifies all waiters.
  *
  * @author jonathanl (shibo)
  */
@@ -33,15 +34,21 @@ public class Monitor
     {
         try
         {
-            wait();
+            synchronized (this)
+            {
+                wait();
+            }
         }
         catch (final InterruptedException ignored)
         {
         }
     }
 
-    public void done()
+    public void signal()
     {
-        notifyAll();
+        synchronized (this)
+        {
+            notifyAll();
+        }
     }
 }

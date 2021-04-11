@@ -8,7 +8,7 @@
     
     BaseRepeater <|-- JarLauncher
     JarLauncher o-- JarLauncher.ProcessType : "launches process of type"
-    JarLauncher "1" o-- "*" Resourced : "retrieves jar from one of"
+    JarLauncher "1" o-- "*" Resourceful : "retrieves jar from one of"
     JarLauncher o-- JarLauncher.RedirectTo : "determines output redirection"
     class JarLauncher
     {
@@ -17,7 +17,7 @@
         +JarLauncher processType(ProcessType)
         +JarLauncher redirectTo(RedirectTo)
         --(collection)--
-        +JarLauncher addJarSource(Resourced)
+        +JarLauncher addJarSource(Resourceful resourced)
         --(command line parsing)--
         +JarLauncher arguments(StringList arguments)
         +JarLauncher arguments(String... arguments)

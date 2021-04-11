@@ -28,6 +28,7 @@ import org.junit.Test;
 
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensureEqual;
+import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.EXITED;
 
 public class KivaKitThreadTest
 {
@@ -49,8 +50,7 @@ public class KivaKitThreadTest
         thread.addListener(LOGGER);
         thread.initialDelay(Duration.milliseconds(50));
         thread.startSynchronously();
-        ensure(thread.isRunning());
-        thread.join();
+        thread.waitFor(EXITED);
         ensure(thread.startedAt().elapsedSince().isApproximately(Duration.milliseconds(50), Duration.seconds(0.5)));
         ensure(executed.get().elapsedSince().isApproximately(Duration.NONE, Duration.seconds(0.1)));
     }
@@ -81,17 +81,11 @@ public class KivaKitThreadTest
         final KivaKitThread thread = new KivaKitThread("test")
         {
             @Override
-            protected void onAfter()
+            protected void onExiting()
             {
+                super.onExiting();
                 ensureEqual(2, at.get());
                 at.set(3);
-            }
-
-            @Override
-            protected void onBefore()
-            {
-                ensureEqual(0, at.get());
-                at.set(1);
             }
 
             @Override
@@ -99,6 +93,14 @@ public class KivaKitThreadTest
             {
                 ensureEqual(1, at.get());
                 at.set(2);
+            }
+
+            @Override
+            protected void onRunning()
+            {
+                super.onRunning();
+                ensureEqual(0, at.get());
+                at.set(1);
             }
         };
         thread.addListener(LOGGER);

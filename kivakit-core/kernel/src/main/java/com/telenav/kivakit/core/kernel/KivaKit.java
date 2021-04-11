@@ -23,17 +23,22 @@ import com.telenav.kivakit.core.kernel.language.objects.Lazy;
 import com.telenav.kivakit.core.kernel.language.vm.JavaVirtualMachine;
 import com.telenav.kivakit.core.kernel.project.Project;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramProject;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.nio.file.Path;
 
 /**
- * Information about KivaKit, including the home folder, the cache folder and the framework version.
+ * Information about KivaKit, including the home folder, the cache folder and the framework version. Since {@link
+ * KivaKit} is a {@link Project} it inherits that functionality as well.
  *
  * @author jonathanl (shibo)
+ * @see Project
+ * @see Path
  */
 @SuppressWarnings("UseOfSystemOutOrSystemErr")
 @UmlClassDiagram(diagram = DiagramProject.class)
+@LexakaiJavadoc(complete = true)
 public class KivaKit extends Project
 {
     private static final Lazy<KivaKit> singleton = Lazy.of(KivaKit::new);

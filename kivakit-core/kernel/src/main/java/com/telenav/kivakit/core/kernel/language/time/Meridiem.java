@@ -19,12 +19,16 @@
 package com.telenav.kivakit.core.kernel.language.time;
 
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageTime;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
+ * Anti-meridiem (AM) or post-meridiem (PM) in the English system of keeping time.
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageTime.class)
+@LexakaiJavadoc(complete = true)
 public enum Meridiem
 {
     AM,

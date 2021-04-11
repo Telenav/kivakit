@@ -4,13 +4,13 @@
     
     title "com.telenav.kivakit.service.registry.server.project"
     
-    Project <|-- ServiceServerProject
-    class ServiceServerProject
+    Project <|-- ServiceRegistryServerProject
+    class ServiceRegistryServerProject
     {
         --(constructors)--
-        #ServiceServerProject()
+        #ServiceRegistryServerProject()
         --(service)--
-        +ServiceServerProject get()
+        +ServiceRegistryServerProject get()
     }
     
 @enduml

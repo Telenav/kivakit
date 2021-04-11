@@ -18,12 +18,18 @@
 
 package com.telenav.kivakit.core.kernel.language.values.version;
 
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
 /**
  * An object that has a version
  *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public interface Versioned
 {
+    /**
+     * @return The version
+     */
     Version version();
 }

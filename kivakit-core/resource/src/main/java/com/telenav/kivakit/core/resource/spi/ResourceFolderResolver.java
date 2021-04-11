@@ -18,20 +18,30 @@
 
 package com.telenav.kivakit.core.resource.spi;
 
+import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.resource.ResourceFolder;
 import com.telenav.kivakit.core.resource.ResourceFolderIdentifier;
 import com.telenav.kivakit.core.resource.ResourceIdentifier;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceService;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
+import java.util.ServiceLoader;
+
 /**
- * Service provider interface that creates resource containers
+ * A service provider interface that resolves {@link ResourceFolder}s (including {@link Package}s and {@link Folder}s).
+ * If the {@link #accepts(ResourceFolderIdentifier)} method returns true, then this resolver can resolve the given
+ * {@link ResourceFolderIdentifier} with a call to {@link #resolve(ResourceFolderIdentifier)}. {@link
+ * ResourceFolderResolverServiceLoader} iterates through implementations of this interface provided by Java's {@link
+ * ServiceLoader} class and resolves {@link ResourceFolderIdentifier}s by calling {@link
+ * #accepts(ResourceFolderIdentifier)} to find a resolver that can resolve the identifier.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourceService.class)
 @UmlRelation(label = "parses", referent = ResourceIdentifier.class)
+@LexakaiJavadoc(complete = true)
 public interface ResourceFolderResolver
 {
     /**

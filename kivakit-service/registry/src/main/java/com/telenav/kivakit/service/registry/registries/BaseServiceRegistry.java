@@ -321,10 +321,10 @@ public abstract class BaseServiceRegistry extends BaseRepeater implements Servic
             new KivaKitShutdownHook(FIRST, () -> store.save(this));
 
             // and also every 30 seconds, in case we go down.
-            KivaKitThread.repeat(this, Duration.seconds(30), "ServiceRegistrySaver", () -> store.save(this));
+            KivaKitThread.repeat(this, "ServiceRegistrySaver", Duration.seconds(30).asFrequency(), () -> store.save(this));
 
             // Then start a thread to expire services and ports
-            KivaKitThread.repeat(this, Duration.seconds(30), "ServiceRegistryReaper", () ->
+            KivaKitThread.repeat(this, "ServiceRegistryReaper", Duration.seconds(30).asFrequency(), () ->
                     lock.write(() ->
                     {
                         // Go through each service

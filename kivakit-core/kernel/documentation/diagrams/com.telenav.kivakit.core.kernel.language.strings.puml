@@ -70,8 +70,8 @@
         +int compare(String a, String b)
         +int levenshteinDistance(String source, String target)
         --(math)--
-        +Percent difference(String a, String b)
-        +Percent similarity(String a, String b)
+        +Percent levenshteinDifference(String a, String b)
+        +Percent levenshteinSimilarity(String a, String b)
     }
     
     class Escape
@@ -97,12 +97,6 @@
         +String join(Collection<T> values, String separator, Converter<T,String>)
         +String join(Collection<T> values, String separator)
         +String join(Collection<T> values, Function<T,String> toString, String separator)
-    }
-    
-    class Normalize
-    {
-        --
-        +String normalizeSymbolsAndAccents(String)
     }
     
     class PathStrings
@@ -163,7 +157,6 @@
         +boolean isAscii(String text)
         +boolean isEmpty(String text)
         +boolean isExtendedAscii(String value)
-        +boolean isFrench(String text)
         +boolean isJavaIdentifier(String text)
         +boolean isLowerCase(String text)
         +boolean startsWithIgnoreCase(String text, String prefix)

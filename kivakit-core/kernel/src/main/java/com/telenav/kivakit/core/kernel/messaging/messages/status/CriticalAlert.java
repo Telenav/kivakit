@@ -21,9 +21,17 @@ package com.telenav.kivakit.core.kernel.messaging.messages.status;
 import com.telenav.kivakit.core.kernel.messaging.Message;
 import com.telenav.kivakit.core.kernel.messaging.messages.Severity;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramMessageType;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * A high priority {@link Alert} that needs immediate attention. A proposed solution for IT staff can be added with
+ * {@link #solution(String)}.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
+@LexakaiJavadoc(complete = true)
 public class CriticalAlert extends Alert
 {
     public CriticalAlert(final String solution, final String message, final Object... arguments)
@@ -46,5 +54,12 @@ public class CriticalAlert extends Alert
     public Severity severity()
     {
         return Severity.CRITICAL;
+    }
+
+    @Override
+    public CriticalAlert solution(final String solution)
+    {
+        super.solution(solution);
+        return this;
     }
 }

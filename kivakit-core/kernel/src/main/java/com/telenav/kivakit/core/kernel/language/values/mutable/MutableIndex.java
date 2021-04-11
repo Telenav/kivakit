@@ -21,9 +21,8 @@ package com.telenav.kivakit.core.kernel.language.values.mutable;
 import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.core.kernel.language.values.count.Count;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 
 /**
  * A mutable index value for use in lambdas and anonymous inner classes. Can be {@link #increment()}ed, {@link
@@ -32,6 +31,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageValue.class)
+@LexakaiJavadoc(complete = true)
 public class MutableIndex
 {
     private int index;

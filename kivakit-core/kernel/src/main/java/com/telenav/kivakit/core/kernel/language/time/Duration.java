@@ -31,6 +31,7 @@ import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.messaging.messages.status.Information;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageTime;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.text.SimpleDateFormat;
@@ -295,6 +296,12 @@ public class Duration implements Comparable<Duration>, AsString
         }
     }
 
+    /**
+     * Converts milliseconds to and from {@link Duration}
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class MillisecondsConverter extends BaseStringConverter<Duration>
     {
         private final LongConverter longConverter;
@@ -313,6 +320,12 @@ public class Duration implements Comparable<Duration>, AsString
         }
     }
 
+    /**
+     * Converts seconds to and from {@link Duration}
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class SecondsConverter extends BaseStringConverter<Duration>
     {
         public SecondsConverter(final Listener listener)

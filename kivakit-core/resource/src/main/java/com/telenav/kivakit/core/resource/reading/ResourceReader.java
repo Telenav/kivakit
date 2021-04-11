@@ -29,6 +29,7 @@ import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.resource.Resource;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFile;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResource;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
@@ -46,15 +47,18 @@ import java.util.Set;
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 
 /**
- * Resource reader provides a variety of convenient ways of reading a resource, including as bytes ({@link #bytes()}),
- * as a single string ({@link #string()}), as lines ({@link #linesAsStringList()}), and as objects ({@link
- * #addObjectsTo(Collection, Converter, ProgressReporter)} and {@link #objects(Converter, ProgressReporter)}).
+ * Resource reader provides a variety of convenient ways of reading a resource, including as an array of bytes ({@link
+ * #bytes()}), as a single string ({@link #string()}), as lines ({@link #linesAsStringList()}), and as objects with
+ * ({@link #objectList(Converter, ProgressReporter)}, {@link #objectSet(Converter, ProgressReporter)}, and {@link
+ * #objects(Converter, ProgressReporter)}). To read the resource as text, a {@link java.io.Reader} can be retrieved with
+ * {@link #textReader()}.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlExcludeSuperTypes
+@LexakaiJavadoc(complete = true)
 public class ResourceReader implements StringSource
 {
     private final Resource resource;

@@ -19,12 +19,14 @@
 package com.telenav.kivakit.core.kernel.language.primitives;
 
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageCollectionsList;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
  * Utility methods for working with arrays
  */
 @UmlClassDiagram(diagram = DiagramLanguageCollectionsList.class)
+@LexakaiJavadoc(complete = true)
 public class Arrays
 {
     /**

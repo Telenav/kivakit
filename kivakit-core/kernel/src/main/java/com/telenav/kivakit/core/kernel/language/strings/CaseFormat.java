@@ -19,15 +19,26 @@
 package com.telenav.kivakit.core.kernel.language.strings;
 
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageString;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * Converts between different styles of casing:
+ *
+ * <ul>
+ *     <li>camelCase</li>
+ *     <li>Capitalized</li>
+ *     <li>lower-hyphenated</li>
+ *     <li>UPPER_UNDERSCORE</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageString.class)
+@LexakaiJavadoc(complete = true)
 public class CaseFormat
 {
     /**

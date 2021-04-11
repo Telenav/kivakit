@@ -19,7 +19,6 @@
 package com.telenav.kivakit.core.resource;
 
 import com.telenav.kivakit.core.filesystem.File;
-import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
@@ -35,8 +34,20 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * A list of {@link Resource}s. Adds the methods:
+ *
+ * <ul>
+ *     <li>{@link #largest()} - The largest resource in this list</li>
+ *     <li>{@link #matching(Extension)} - All resources with the given extension</li>
+ *     <li>{@link #matching(Matcher)} - All matching resources</li>
+ *     <li>{@link #smallest()} - The smallest resource in this list</li>
+ *     <li>{@link #totalSize()} - The total size of the resources in this list</li>
+ * </ul>
+ */
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlRelation(label = "contains", referent = Resource.class)
+@LexakaiJavadoc(complete = true)
 public class ResourceList extends ArrayList<Resource>
 {
     /**
@@ -171,16 +182,6 @@ public class ResourceList extends ArrayList<Resource>
             }
         }
         return matches;
-    }
-
-    public ResourceList relativeTo(final Folder outputFolder)
-    {
-        final var resources = new ResourceList();
-        for (final var resource : this)
-        {
-            resources.add(resource.path().asFile().relativeTo(outputFolder));
-        }
-        return resources;
     }
 
     @Override

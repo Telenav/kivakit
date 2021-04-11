@@ -19,12 +19,17 @@
 package com.telenav.kivakit.core.kernel.language.strings;
 
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageString;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
+ * Aligns a string within a given width using a padding character: {@link #center(String, int, char)}, {@link
+ * #left(String, int, char)} or {@link #right(String, int, char)}.
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageString.class)
+@LexakaiJavadoc(complete = true)
 public class Align
 {
     /**

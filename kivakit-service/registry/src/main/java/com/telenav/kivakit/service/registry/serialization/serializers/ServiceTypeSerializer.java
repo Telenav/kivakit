@@ -20,10 +20,14 @@ package com.telenav.kivakit.service.registry.serialization.serializers;
 
 import com.telenav.kivakit.core.serialization.json.PrimitiveGsonSerializer;
 import com.telenav.kivakit.service.registry.ServiceType;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Serializes {@link ServiceType}s to and from JSON.
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class ServiceTypeSerializer extends PrimitiveGsonSerializer<ServiceType, String>
 {
     public ServiceTypeSerializer()

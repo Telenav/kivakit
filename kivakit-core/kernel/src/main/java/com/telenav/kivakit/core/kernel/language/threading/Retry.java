@@ -19,15 +19,15 @@
 package com.telenav.kivakit.core.kernel.language.threading;
 
 import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.core.kernel.interfaces.code.Code;
+import com.telenav.kivakit.core.kernel.interfaces.code.CheckedCode;
+import com.telenav.kivakit.core.kernel.language.reflection.Type;
 import com.telenav.kivakit.core.kernel.language.time.Duration;
+import com.telenav.kivakit.core.kernel.logging.Logger;
+import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
+import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageThread;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.kivakit.core.kernel.language.reflection.Type;
-import com.telenav.kivakit.core.kernel.messaging.Listener;
-
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 
 /**
  * Retry running a {@link Runnable}
@@ -38,14 +38,18 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail
 @UmlClassDiagram(diagram = DiagramLanguageThread.class)
 public class Retry extends BaseRepeater
 {
+    private static final Logger LOGGER = LoggerFactory.newLogger();
+
     public static final int MAXIMUM_NUMBER_RETRIES = 5;
 
-    public static <T> Code<T> retry(final Code<T> code, final int times, final Duration delay,
-                                    final Runnable... beforeRetry)
+    public static <T> CheckedCode<T> retry(final CheckedCode<T> code,
+                                           final int times,
+                                           final Duration delay,
+                                           final Runnable... beforeRetry)
     {
         return () ->
         {
-            final var retry = new Retry(Code.LOGGER, times, delay, Exception.class);
+            final var retry = new Retry(LOGGER, times, delay, Exception.class);
             return retry.run(code, beforeRetry);
         };
     }
@@ -76,8 +80,11 @@ public class Retry extends BaseRepeater
      * @param exceptionMessageExclusion An arbitrary number of Strings. If the exception caught has a message that
      * contains one of the Strings contained in this set, the exception will be thrown and no retry will be made.
      */
-    public Retry(final Listener listener, final int numberOfRetries, final Duration retryWaitDuration,
-                 final Class<? extends Throwable> exceptionType, final String... exceptionMessageExclusion)
+    public Retry(final Listener listener,
+                 final int numberOfRetries,
+                 final Duration retryWaitDuration,
+                 final Class<? extends Throwable> exceptionType,
+                 final String... exceptionMessageExclusion)
     {
         this.numberOfRetries = numberOfRetries;
         retryWaitTime = retryWaitDuration;
@@ -93,7 +100,7 @@ public class Retry extends BaseRepeater
      * @param stepsBeforeRetry This is an optional list of steps executed in case the try fails, and right before each
      * retry
      */
-    public <T> T run(final Code<T> runnable, final Runnable... stepsBeforeRetry)
+    public <T> T run(final CheckedCode<T> runnable, final Runnable... stepsBeforeRetry)
     {
         try
         {
@@ -116,7 +123,7 @@ public class Retry extends BaseRepeater
      * @param stepsBeforeRetry This is an optional list of steps executed in case the try fails, and right before each
      * retry
      */
-    private <T> T runWithRetries(final Code<T> runnable, int numberOfRetries, int totalRetries,
+    private <T> T runWithRetries(final CheckedCode<T> runnable, int numberOfRetries, int totalRetries,
                                  final Runnable... stepsBeforeRetry)
     {
         if (numberOfRetries < 0)

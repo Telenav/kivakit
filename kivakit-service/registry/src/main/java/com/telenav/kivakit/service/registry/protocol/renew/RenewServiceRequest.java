@@ -23,6 +23,7 @@ import com.telenav.kivakit.core.kernel.language.reflection.property.filters.Kiva
 import com.telenav.kivakit.core.kernel.language.strings.formatting.ObjectFormatter;
 import com.telenav.kivakit.service.registry.Service;
 import com.telenav.kivakit.service.registry.protocol.BaseRequest;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import static com.telenav.kivakit.core.kernel.language.strings.formatting.ObjectFormatter.Format.MULTILINE;
@@ -34,6 +35,7 @@ import static com.telenav.kivakit.service.registry.protocol.ServiceRegistryProto
  * @author jonathanl (shibo)
  */
 @Schema
+@LexakaiJavadoc(complete = true)
 public class RenewServiceRequest extends BaseRequest
 {
     /** The service to renew */

@@ -21,7 +21,6 @@ package com.telenav.kivakit.core.resource.resources.packaged;
 import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.core.kernel.language.locales.Locale;
-import com.telenav.kivakit.core.kernel.language.matching.matchers.All;
 import com.telenav.kivakit.core.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.kernel.language.strings.Strip;
@@ -52,15 +51,36 @@ import java.util.zip.ZipInputStream;
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 
 /**
- * An abstraction missing from the JDK for dealing with the content of packages. A package folder is constructed with a
- * {@link PackagePath}, which specifies the location of the package. Resources in the package folder can be obtained
- * with {@link #resources()}.
+ * An abstraction for locating and copying {@link Resource}s in Java packages.
+ *
+ * <p>
+ * A package object can be constructed with {@link #of(PackagePath)} or {@link #of(Class, String)}. It implements the
+ * {@link ResourceFolder} interface because it contains resources, just as {@link Folder} does. This means, of course,
+ * that methods that accept {@link ResourceFolder} can accept either {@link Folder}s or {@link Package}s.
+ * </p>
+ *
+ * <p><b>Hierarchy</b></p>
+ *
+ * <p>
+ * The parent package can be retrieved with {@link #parent()} and the path with {@link #path()}. Sub-packages can be
+ * accessed with {@link #child(String)} or as a resource folder with {@link #folder(String)}.
+ * </p>
+ *
+ * <p><b>Resources</b></p>
+ *
+ * <p>
+ * Resources in a package can be obtained with {@link ResourceFolder#resources()} and {@link
+ * ResourceFolder#resources(Matcher)}. A specific resource can be located with {@link ResourceFolder#resource(String)}.
+ * The resources in a package can be copied to a {@link Folder} with {@link ResourceFolder#safeCopyTo(Folder, CopyMode,
+ * ProgressReporter)}.
+ * </p>
  *
  * @author jonathanl (shibo)
  * @see PackagePath
  * @see PackageResource
  */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
+@LexakaiJavadoc(complete = true)
 public class Package implements ResourceFolder
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
@@ -114,6 +134,14 @@ public class Package implements ResourceFolder
         this._package = _package;
     }
 
+    /**
+     * @return The named sub-package under this one
+     */
+    public Package child(final String name)
+    {
+        return new Package(_package.withChild(name));
+    }
+
     @Override
     public boolean equals(final Object object)
     {
@@ -128,7 +156,7 @@ public class Package implements ResourceFolder
     @Override
     public ResourceFolder folder(final String path)
     {
-        return subPackage(path);
+        return child(path);
     }
 
     @Override
@@ -178,7 +206,7 @@ public class Package implements ResourceFolder
         {
             if (resource.fileName().name().equals(name))
             {
-                return resource;
+                return (PackageResource) resource;
             }
         }
         return fail("Unable to find package resource $ in package $", name, path());
@@ -188,49 +216,18 @@ public class Package implements ResourceFolder
      * @return The resources in this package folder
      */
     @Override
-    public List<PackageResource> resources()
-    {
-        return resources(new All<>());
-    }
-
-    /**
-     * @return The resources in this package folder
-     */
-    public List<PackageResource> resources(final Matcher<PackageResource> matcher)
+    public List<PackageResource> resources(final Matcher<? super Resource> matcher)
     {
         final var resources = _package
                 .resources()
                 .stream()
-                .map(PackageResource::packageResource)
+                .map(PackageResource::of)
                 .filter(matcher)
                 .collect(Collectors.toList());
 
         resources.addAll(jarResources(matcher));
 
         return resources;
-    }
-
-    /**
-     * Copy the resources in this package to the given folder
-     */
-    public void safeCopyTo(final Folder folder, final CopyMode mode, final ProgressReporter reporter)
-    {
-        for (final var at : resources())
-        {
-            final var destination = folder.mkdirs().file(at.fileName());
-            if (mode.canCopy(at, destination))
-            {
-                at.safeCopyTo(destination, mode, reporter);
-            }
-        }
-    }
-
-    /**
-     * @return The named sub-package under this one
-     */
-    public Package subPackage(final String name)
-    {
-        return new Package(_package.withChild(name));
     }
 
     @Override
@@ -244,7 +241,7 @@ public class Package implements ResourceFolder
      *
      * @return Any package resources that can be found in the jar (if any) containing this class
      */
-    private List<PackageResource> jarResources(final Matcher<PackageResource> matcher)
+    private List<PackageResource> jarResources(final Matcher<? super PackageResource> matcher)
     {
         // Get the code source for the package type class,
         final var resources = new ArrayList<PackageResource>();
@@ -289,7 +286,7 @@ public class Package implements ResourceFolder
                             if (!suffix.contains("/"))
                             {
                                 // then the entry is in the package, so add it to the resources list
-                                final var resource = PackageResource.packageResource(_package, name.substring(filepath.length()));
+                                final var resource = PackageResource.of(_package, name.substring(filepath.length()));
                                 if (matcher.matches(resource))
                                 {
                                     resources.add(resource);

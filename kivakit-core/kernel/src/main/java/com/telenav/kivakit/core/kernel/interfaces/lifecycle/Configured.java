@@ -18,11 +18,14 @@
 
 package com.telenav.kivakit.core.kernel.interfaces.lifecycle;
 
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
 /**
  * Interface to an object that is configured by a certain kind of configuration object.
  *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public interface Configured<T>
 {
     /**

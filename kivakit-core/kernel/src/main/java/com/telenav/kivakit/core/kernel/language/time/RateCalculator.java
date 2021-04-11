@@ -18,6 +18,15 @@
 
 package com.telenav.kivakit.core.kernel.language.time;
 
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
+/**
+ * Calculates a {@link Rate} over time as a count is increased by {@link #add(int)} or {@link #increment()}. The rate
+ * can be retrieved with {@link #rate()}. The calculator can be reset with {@link #reset()}.
+ *
+ * @author jonathanl (shibo)
+ */
+@LexakaiJavadoc(complete = true)
 public class RateCalculator
 {
     private double count;
@@ -65,7 +74,7 @@ public class RateCalculator
         return rate;
     }
 
-    private void reset()
+    public void reset()
     {
         lastCount = count;
         lastStart = start;

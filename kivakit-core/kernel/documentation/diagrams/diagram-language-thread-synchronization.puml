@@ -26,14 +26,15 @@
     {
         --
         +void whileLocked(Runnable code)
+        --(functional)--
+        +T whileLocked(Code<T>)
     }
     
     class Monitor
     {
-        --(lifecycle)--
-        +void done()
         --(thread)--
         +void await()
+        +void signal()
     }
     
     ReentrantReadWriteLock <|-- ReadWriteLock
@@ -60,25 +61,20 @@
         +boolean transition(State from, State to)
         +State transitionTo(State to)
         --(thread)--
+        +boolean transitionAndWait(State from, State to, State waitFor)
         +boolean transitionAndWait(State from, State to, State waitFor, Duration maximumWait)
+        +boolean waitFor(State)
         +boolean waitFor(State, Duration maximumWait)
-        +boolean waitFor(Predicate<State> desiredState, Duration maximumWait, Runnable beforeWait)
     }
     
-    ValueWatcher --> WakeState : "waits until"
-    class ValueWatcher<Value>
+    class StateWatcher<State>
     {
-        --(constructors)--
-        +ValueWatcher(Watchable<Value>)
-        --
-        +void valueChanged()
         --(thread)--
-        +WakeState waitFor(Predicate<Value>, Duration maximumWaitTime, Runnable beforeWait)
-        +WakeState waitFor(Predicate<Value>)
-        +WakeState waitFor(Predicate<Value>, Duration maximumWaitTime)
-        +WakeState waitForValue(Value desired, Duration maximumWaitTime, Runnable beforeWait)
-        +WakeState waitForValue(Value, Duration maximumWaitTime)
-        +WakeState waitForValue(Value)
+        +void signal(State)
+        +WakeState waitFor(State desired, Duration maximumWaitTime)
+        +WakeState waitFor(Predicate<State>)
+        +WakeState waitFor(State desired)
+        +WakeState waitFor(Predicate<State>, Duration maximumWaitTime)
     }
     
     enum WakeState

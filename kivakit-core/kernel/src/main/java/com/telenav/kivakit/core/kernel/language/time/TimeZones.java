@@ -19,6 +19,7 @@
 package com.telenav.kivakit.core.kernel.language.time;
 
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageTime;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.ZoneId;
@@ -27,7 +28,13 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+/**
+ * Utility methods to map between {@link ZoneId}s and their display names
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramLanguageTime.class)
+@LexakaiJavadoc(complete = true)
 public class TimeZones
 {
     private static final Map<String, String> shortToLong = new HashMap<>();

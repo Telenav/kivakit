@@ -74,7 +74,7 @@ public class JettySwaggerIndex extends BaseJettyResource
 
     String index()
     {
-        return PackageResource.packageResource(JettySwaggerIndex.class, "webapp/index.html")
+        return PackageResource.of(JettySwaggerIndex.class, "webapp/index.html")
                 .reader()
                 .string()
                 .replaceAll("PORT", Integer.toString(port));

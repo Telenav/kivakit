@@ -47,7 +47,7 @@ public class ConfidenceTest
         ensureEqual(255, Confidence.FULL.asUnsignedByte());
         try
         {
-            new Confidence(2);
+            Confidence.confidence(2);
             fail("Should throw");
         }
         catch (final ValidationFailure ignored)
@@ -55,12 +55,12 @@ public class ConfidenceTest
         }
         try
         {
-            new Confidence(-1);
+            Confidence.confidence(-1);
             fail("Should throw");
         }
         catch (final ValidationFailure ignored)
         {
         }
-        new Confidence(1);
+        Confidence.confidence(1);
     }
 }

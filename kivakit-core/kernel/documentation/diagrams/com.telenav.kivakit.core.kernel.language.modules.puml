@@ -7,7 +7,7 @@
     class ModuleResource
     {
         --(constructors)--
-        +ModuleResource(PackagePath, URI)
+        #ModuleResource(PackagePath, URI)
         --
         +ModuleResource moduleResource(ModuleReference, URI)
         --(collection)--

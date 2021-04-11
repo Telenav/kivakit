@@ -21,19 +21,38 @@ package com.telenav.kivakit.core.resource.writing;
 import com.telenav.kivakit.core.resource.WritableResource;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFile;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResource;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.kivakit.core.kernel.language.io.IO;
 
-import java.io.*;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.nio.charset.Charset;
 
 /**
- * Resource reader provides a variety of convenient ways of reading a resource.
+ * This class provides methods that write to a {@link WritableResource}. An instance of this class can be created with
+ * {@link WritableResource#writer()} or {@link WritableResource#writer(Charset)}. This functionality is provided
+ * separately from {@link WritableResource} so it doesn't clutter up that class and so it can be extended in the
+ * future.
+ *
+ * <p><b>Writers</b></p>
+ *
+ * <p>
+ * A {@link PrintWriter} can be obtained with {@link #printWriter()} and a {@link Writer} for performing text output
+ * with {@link #textWriter()}.
+ * </p>
+ *
+ * <p><b>Saving</b></p>
+ *
+ * <p>
+ * A string can be saved with {@link #save(String)}.
+ * </p>
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
+@LexakaiJavadoc(complete = true)
 public class ResourceWriter
 {
     private final WritableResource resource;
@@ -57,41 +76,9 @@ public class ResourceWriter
         return charset;
     }
 
-    public ObjectOutputStream objectOutputStream()
-    {
-        try
-        {
-            return new ObjectOutputStream(resource.openForWriting());
-        }
-        catch (final IOException e)
-        {
-            throw new IllegalStateException("Unable to open " + this, e);
-        }
-    }
-
     public PrintWriter printWriter()
     {
         return new PrintWriter(textWriter());
-    }
-
-    public void save(final Object... objects)
-    {
-        final var out = objectOutputStream();
-        try
-        {
-            for (final var object : objects)
-            {
-                out.writeObject(object);
-            }
-        }
-        catch (final Exception e)
-        {
-            throw new IllegalStateException("Unable to write object to " + this, e);
-        }
-        finally
-        {
-            IO.close(out);
-        }
     }
 
     public void save(final String string)

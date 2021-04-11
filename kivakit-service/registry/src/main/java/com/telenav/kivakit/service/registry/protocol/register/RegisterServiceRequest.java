@@ -24,6 +24,7 @@ import com.telenav.kivakit.core.kernel.language.strings.formatting.ObjectFormatt
 import com.telenav.kivakit.service.registry.Service;
 import com.telenav.kivakit.service.registry.protocol.BaseRequest;
 import com.telenav.kivakit.service.registry.protocol.ServiceRegistryProtocol;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import static com.telenav.kivakit.core.kernel.language.strings.formatting.ObjectFormatter.Format.MULTILINE;
@@ -34,6 +35,7 @@ import static com.telenav.kivakit.core.kernel.language.strings.formatting.Object
  * @author jonathanl (shibo)
  */
 @Schema
+@LexakaiJavadoc(complete = true)
 public class RegisterServiceRequest extends BaseRequest
 {
     /** The potentially unbound service to register or renew */

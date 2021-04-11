@@ -20,10 +20,15 @@ package com.telenav.kivakit.core.kernel.messaging.listeners;
 
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.messaging.Message;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramMessageListenerType;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * A listener that ignores all messages
+ */
 @UmlClassDiagram(diagram = DiagramMessageListenerType.class)
+@LexakaiJavadoc(complete = true)
 public class NullListener implements Listener
 {
     @Override

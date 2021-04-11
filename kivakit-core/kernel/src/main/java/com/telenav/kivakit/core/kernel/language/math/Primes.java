@@ -19,16 +19,21 @@
 package com.telenav.kivakit.core.kernel.language.math;
 
 import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageMath;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.language.primitives.Ints;
 import com.telenav.kivakit.core.kernel.language.values.count.Count;
+import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageMath;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.LinkedList;
 
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
-
+/**
+ * Prime number allocation sizes and "powers of two" (the next prime above a power of two).
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramLanguageMath.class)
+@LexakaiJavadoc(complete = true)
 public class Primes
 {
     /**

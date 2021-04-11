@@ -20,16 +20,31 @@ package com.telenav.kivakit.core.kernel.logging.logs.text;
 
 import com.telenav.kivakit.core.kernel.language.time.Duration;
 import com.telenav.kivakit.core.kernel.logging.LogEntry;
+import com.telenav.kivakit.core.kernel.logging.loggers.LogServiceLogger;
 import com.telenav.kivakit.core.kernel.messaging.messages.MessageFormatter;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLoggingLogs;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 import java.util.Map;
 
+/**
+ * A text log that logs to the console. The formatter can be specified from the command line as "formatter=columnar" or
+ * "formatter=unformatted". See {@link LogServiceLogger} for details.
+ *
+ * @author jonathanl (shibo)
+ * @see BaseTextLog
+ * @see LogServiceLogger
+ */
 @UmlClassDiagram(diagram = DiagramLoggingLogs.class)
+@LexakaiJavadoc(complete = true)
 public class ConsoleLog extends BaseTextLog
 {
+    /**
+     * The type of formatting to perform on log entries
+     */
+    @LexakaiJavadoc(complete = true)
     public enum Format
     {
         COLUMNAR,

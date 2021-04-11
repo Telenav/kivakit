@@ -18,17 +18,18 @@
 
 package com.telenav.kivakit.core.kernel.logging.logs.text.formatters;
 
-import com.telenav.kivakit.core.kernel.logging.LogEntry;
-import com.telenav.kivakit.core.kernel.logging.logs.text.LogEntryFormatter;
-import com.telenav.kivakit.core.kernel.messaging.messages.MessageFormatter;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.core.kernel.language.strings.AsciiArt;
 import com.telenav.kivakit.core.kernel.language.strings.Strings;
 import com.telenav.kivakit.core.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.core.kernel.language.time.Time;
 import com.telenav.kivakit.core.kernel.language.values.count.Maximum;
+import com.telenav.kivakit.core.kernel.logging.LogEntry;
+import com.telenav.kivakit.core.kernel.logging.logs.text.LogEntryFormatter;
+import com.telenav.kivakit.core.kernel.messaging.messages.MessageFormatter;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLoggingLogs;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +46,10 @@ public class ColumnarFormatter implements LogEntryFormatter
 
     private static final boolean DURATION = true;
 
+    /**
+     * Layout rule to use when lines are too wide for the column they are in
+     */
+    @LexakaiJavadoc(complete = true)
     enum Layout
     {
         WRAP,
@@ -123,6 +128,10 @@ public class ColumnarFormatter implements LogEntryFormatter
         }
     }
 
+    /**
+     * The output for a line as it is populated by column
+     */
+    @LexakaiJavadoc(complete = true)
     private static class LineOutput
     {
         private int maximumRows = 1;

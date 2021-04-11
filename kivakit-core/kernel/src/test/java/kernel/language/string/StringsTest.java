@@ -99,14 +99,6 @@ public class StringsTest
     }
 
     @Test
-    public void testFrench()
-    {
-        ensure(Strings.isFrench("Avenue des Églises"));
-        ensure(Strings.isFrench("Boulevard de l'Ange-Gardien"));
-        ensureFalse(Strings.isFrench("Will's Ave"));
-    }
-
-    @Test
     public void testIndented()
     {
         ensureEqual("  a\n  b", Indent.by(2, "a\nb"));
@@ -155,16 +147,6 @@ public class StringsTest
         ensureEqual(1, AsciiArt.lineCount("a"));
         ensureEqual(2, AsciiArt.lineCount("a\nb"));
         ensureEqual(3, AsciiArt.lineCount("a\nb\nc"));
-    }
-
-    @Test
-    public void testNormalizeSymbolsAndAccents()
-    {
-        ensureEqual("a", Normalize.normalizeSymbolsAndAccents("a"));
-        ensureEqual("oo", Normalize.normalizeSymbolsAndAccents("o\u00B0"));
-        ensureEqual("oss", Normalize.normalizeSymbolsAndAccents("o\u00DF"));
-        ensureEqual("a", Normalize.normalizeSymbolsAndAccents("\u00E1"));
-        ensureEqual("o", Normalize.normalizeSymbolsAndAccents("o"));
     }
 
     @Test

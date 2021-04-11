@@ -43,6 +43,7 @@ import com.telenav.kivakit.service.registry.registries.LocalServiceRegistry;
 import com.telenav.kivakit.service.registry.registries.NetworkServiceRegistry;
 import com.telenav.kivakit.service.registry.server.ServiceRegistryServer;
 import com.telenav.kivakit.web.jersey.BaseRestResource;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -63,6 +64,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
+ * The {@link ServiceRegistryServer} REST resource. provides methods to register, renew and discover services. And to
+ * propagate registration information from local hosts to the network registry. Provides OpenAPI metadata to allow for
+ * automatic documentation via Swagger.
+ *
  * @author jonathanl (shibo)
  */
 @OpenAPIDefinition(
@@ -83,11 +88,10 @@ import javax.ws.rs.core.Response;
                         name = "Copyright 2020 Telenav - All rights reserved.",
                         url = "http://www.telenav.com"
                 )
-
         )
-
 )
 @Path("api/v8")
+@LexakaiJavadoc(complete = true)
 public class ServiceRegistryRestResource extends BaseRestResource
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();

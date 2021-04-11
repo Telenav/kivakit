@@ -22,10 +22,10 @@ import com.telenav.kivakit.core.kernel.interfaces.io.Closeable;
 import com.telenav.kivakit.core.kernel.interfaces.io.Flushable;
 import com.telenav.kivakit.core.kernel.interfaces.lifecycle.Startable;
 import com.telenav.kivakit.core.kernel.interfaces.lifecycle.Stoppable;
-import com.telenav.kivakit.core.kernel.language.threading.RepeatingThread;
-import com.telenav.kivakit.core.kernel.language.threading.locks.legacy.ConditionLock;
-import com.telenav.kivakit.core.kernel.language.threading.locks.legacy.NotifyAllBooleanLock;
+import com.telenav.kivakit.core.kernel.language.threading.RepeatingKivaKitThread;
+import com.telenav.kivakit.core.kernel.language.threading.latches.CompletionLatch;
 import com.telenav.kivakit.core.kernel.language.time.Duration;
+import com.telenav.kivakit.core.kernel.language.time.Frequency;
 import com.telenav.kivakit.core.kernel.language.time.Rate;
 import com.telenav.kivakit.core.kernel.language.time.RateCalculator;
 import com.telenav.kivakit.core.kernel.language.types.Classes;
@@ -87,7 +87,7 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
 
     private volatile boolean closed;
 
-    private final ConditionLock queueEmpty = new ConditionLock(new NotifyAllBooleanLock());
+    private final CompletionLatch queueEmpty = new CompletionLatch();
 
     @UmlAggregation
     private final EmailQueue queue = new EmailQueue();
@@ -104,7 +104,7 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
 
     private final Configuration configuration;
 
-    private final RepeatingThread thread = new RepeatingThread(Classes.simpleName(EmailSender.class))
+    private final RepeatingKivaKitThread thread = new RepeatingKivaKitThread(this, Classes.simpleName(EmailSender.class), Frequency.CONTINUOUSLY)
     {
         @Override
         protected void onRun()
@@ -130,7 +130,7 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
             }
             if (queue().isEmpty())
             {
-                queueEmpty.satisfy();
+                queueEmpty.completed();
             }
         }
 
@@ -181,7 +181,7 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
     public void flush(final Duration maximumWaitTime)
     {
         trace("Flushing queue within ${debug}", maximumWaitTime);
-        queueEmpty.waitFor(true, maximumWaitTime);
+        queueEmpty.waitForCompletion();
         trace("Flushed");
     }
 
@@ -252,7 +252,7 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
     private boolean send(final Email email)
     {
         rate.increment();
-        if (rate.rate().isGreaterThan(configuration.maximumSendRate()))
+        if (rate.rate().isFasterThan(configuration.maximumSendRate()))
         {
             warning("Emails are being sent at a rate greater than ${debug}. Discarding email ${debug}",
                     configuration.maximumSendRate(), email);

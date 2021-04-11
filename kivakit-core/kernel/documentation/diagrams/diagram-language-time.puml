@@ -263,8 +263,8 @@
         --
         +void throttle(Rate maximumRate)
         --(checks)--
-        +boolean isGreaterThan(Rate that)
-        +boolean isLessThan(Rate that)
+        +boolean isFasterThan(Rate that)
+        +boolean isSlowerThan(Rate that)
         --(collection)--
         +double count()
         --(time)--
@@ -303,6 +303,7 @@
         +int asSeconds()
         +Duration elapsedSince()
         +Duration fromNow()
+        +Duration leftUntil(Duration elapsed)
         +LocalTime localTime(String zone)
         +LocalTime localTime(ZoneId)
         +LocalTime localTime()

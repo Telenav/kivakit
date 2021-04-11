@@ -18,13 +18,17 @@
 
 package com.telenav.kivakit.core.kernel.messaging.messages.status;
 
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramMessageType;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
+ * A {@link Problem} message that indicates that some operation is not supported.
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
+@LexakaiJavadoc(complete = true)
 public class Unsupported extends Problem
 {
     public Unsupported(final String message, final Object... arguments)

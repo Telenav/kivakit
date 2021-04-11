@@ -229,8 +229,8 @@
         --
         +void throttle(Rate maximumRate)
         --(checks)--
-        +boolean isGreaterThan(Rate that)
-        +boolean isLessThan(Rate that)
+        +boolean isFasterThan(Rate that)
+        +boolean isSlowerThan(Rate that)
         --(collection)--
         +double count()
         --(time)--
@@ -250,6 +250,8 @@
         +RateCalculator(Duration)
         --
         +Rate rate()
+        --(lifecycle)--
+        +void reset()
         --(math)--
         +void add(int count)
         +void increment()
@@ -287,6 +289,7 @@
         +int asSeconds()
         +Duration elapsedSince()
         +Duration fromNow()
+        +Duration leftUntil(Duration elapsed)
         +LocalTime localTime(String zone)
         +LocalTime localTime(ZoneId)
         +LocalTime localTime()

@@ -20,16 +20,16 @@ package com.telenav.kivakit.core.kernel.language.time;
 
 import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageTime;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
-
 /**
- * Enum for a Joda day of week
+ * Enum for days of the week
  *
  * @author matthieun
  */
 @UmlClassDiagram(diagram = DiagramLanguageTime.class)
+@LexakaiJavadoc(complete = true)
 public enum DayOfWeek
 {
     MONDAY(java.time.DayOfWeek.MONDAY),
@@ -39,29 +39,6 @@ public enum DayOfWeek
     FRIDAY(java.time.DayOfWeek.FRIDAY),
     SATURDAY(java.time.DayOfWeek.SATURDAY),
     SUNDAY(java.time.DayOfWeek.SUNDAY);
-
-    public static DayOfWeek forHistoricalConstant(final int historicalConstant)
-    {
-        switch (historicalConstant)
-        {
-            case 1:
-                return SUNDAY;
-            case 2:
-                return MONDAY;
-            case 3:
-                return TUESDAY;
-            case 4:
-                return WEDNESDAY;
-            case 5:
-                return THURSDAY;
-            case 6:
-                return FRIDAY;
-            case 7:
-                return SATURDAY;
-            default:
-                return Ensure.fail("Historical day of week " + historicalConstant + " is not valid");
-        }
-    }
 
     public static DayOfWeek forIsoConstant(final int isoConstant)
     {
@@ -114,37 +91,6 @@ public enum DayOfWeek
     DayOfWeek(final java.time.DayOfWeek dayOfWeek)
     {
         internalDayOfWeek = dayOfWeek;
-    }
-
-    public int asHistoricalConstant()
-    {
-        switch (this)
-        {
-            case SUNDAY:
-                return 1;
-
-            case MONDAY:
-                return 2;
-
-            case TUESDAY:
-                return 3;
-
-            case WEDNESDAY:
-                return 4;
-
-            case THURSDAY:
-                return 5;
-
-            case FRIDAY:
-                return 6;
-
-            case SATURDAY:
-                return 7;
-
-            default:
-                Ensure.fail("Historical day of week " + this + " is not valid");
-                return -1;
-        }
     }
 
     /**

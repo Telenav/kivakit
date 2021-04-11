@@ -34,9 +34,7 @@
         --
         +Charset charset()
         --(write)--
-        +ObjectOutputStream objectOutputStream()
         +PrintWriter printWriter()
-        +void save(Object... objects)
         +void save(String)
         +Writer textWriter()
     }

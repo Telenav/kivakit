@@ -18,11 +18,13 @@
 
 package com.telenav.kivakit.service.registry.project.lexakai.annotations;
 
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.diagrams.UmlDiagramIdentifier;
 
 /**
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public interface DiagramRest extends UmlDiagramIdentifier
 {
 }

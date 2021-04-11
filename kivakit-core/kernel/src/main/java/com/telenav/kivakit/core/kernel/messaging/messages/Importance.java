@@ -22,15 +22,19 @@ import com.telenav.kivakit.core.kernel.language.values.level.Level;
 import com.telenav.kivakit.core.kernel.messaging.Message;
 import com.telenav.kivakit.core.kernel.messaging.messages.status.*;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramMessaging;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * The (relative) importance of {@link Message}s as a level from zero to one.
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessaging.class)
+@LexakaiJavadoc(complete = true)
 public class Importance extends Level
 {
     private static final Map<Class<? extends Message>, Importance> levels = new HashMap<>();

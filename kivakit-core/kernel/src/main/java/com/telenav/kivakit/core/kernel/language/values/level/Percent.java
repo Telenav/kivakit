@@ -23,17 +23,41 @@ import com.telenav.kivakit.core.kernel.language.primitives.Doubles;
 import com.telenav.kivakit.core.kernel.language.strings.Strip;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
 /**
- * A percentage of any range (not only from 0 to 100%).
+ * A percentage of any range (not only from 0 to 100%). A percent object can be created with {@link #of(double)},
+ * passing in a percentage, like 50 or 90 to get 50% or 90%.
+ *
+ * <p><b>Operations</b></p>
+ *
+ * <ul>
+ *     <li>{@link #dividedBy(double)} - This percentage divided by the given value</li>
+ *     <li>{@link #inverse()} - This percentage's distance from 100%</li>
+ *     <li>{@link #minus(Percent)} - This percentage minus the given percentage</li>
+ *     <li>{@link #plus(Percent)} - This percentage plus the given percentage</li>
+ *     <li>{@link #scale(double)} - The given value scaled by this percentage</li>
+ *     <li>{@link #scale(int)} - The given value scaled by this percentage</li>
+ *     <li>{@link #scale(long)} - The given value scaled by this percentage</li>
+ *     <li>{@link #times(double)} - This percentage times the given percentage</li>
+ * </ul>
+ *
+ * <p><b>Conversions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #asInt()} - This percentage rounded to an int value</li>
+ *     <li>{@link #asUnitValue()} - This percentage as a parametric value (divided by 100.0)</li>
+ *     <li>{@link #asZeroToOne()} - This value as a unit value between 0 and 1, inclusive </li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageValue.class)
+@LexakaiJavadoc(complete = true)
 public final class Percent implements Comparable<Percent>
 {
     public static final Percent _0 = new Percent(0);
@@ -47,6 +71,12 @@ public final class Percent implements Comparable<Percent>
         return new Percent(percent);
     }
 
+    /**
+     * Converts to and from a {@link Percent}. Values can be like "5.2%"
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<Percent>
     {
         public Converter(final Listener listener)
@@ -83,11 +113,11 @@ public final class Percent implements Comparable<Percent>
     }
 
     /**
-     * @return This percentage divided by 100, from 0.0 to the maximum double value.
+     * @return This percentage divided by 100
      */
     public double asUnitValue()
     {
-        return Doubles.inRange(value / 100.0, 0, Double.MAX_VALUE);
+        return value / 100.0;
     }
 
     /**

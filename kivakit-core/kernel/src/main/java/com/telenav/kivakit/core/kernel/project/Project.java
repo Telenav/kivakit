@@ -33,6 +33,7 @@ import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.kernel.messaging.Debug;
 import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramProject;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
@@ -88,6 +89,7 @@ public abstract class Project extends BaseRepeater implements Initializable<Proj
      * Visitor interface for use with {@link #visitDependencies(Visitor)}
      */
     @FunctionalInterface
+    @LexakaiJavadoc(complete = true)
     public interface Visitor
     {
         /**

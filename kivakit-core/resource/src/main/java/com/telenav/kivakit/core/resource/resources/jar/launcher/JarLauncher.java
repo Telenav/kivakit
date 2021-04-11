@@ -26,7 +26,7 @@ import com.telenav.kivakit.core.kernel.language.threading.KivaKitThread;
 import com.telenav.kivakit.core.kernel.language.vm.OperatingSystem;
 import com.telenav.kivakit.core.kernel.language.vm.Processes;
 import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.resource.Resourced;
+import com.telenav.kivakit.core.resource.Resourceful;
 import com.telenav.kivakit.core.resource.path.Extension;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramJarLauncher;
 import com.telenav.kivakit.core.resource.resources.other.PropertyMap;
@@ -49,7 +49,7 @@ import static com.telenav.kivakit.core.resource.resources.jar.launcher.JarLaunch
  * <p><b>Options</b></p>
  *
  * <ul>
- *     <li>{@link #addJarSource(Resourced)} - Adds a place where a JAR can be accessed, either locally or remotely</li>
+ *     <li>{@link #addJarSource(Resourceful)} - Adds a place where a JAR can be accessed, either locally or remotely</li>
  *     <li>{@link #arguments(String...)} - Adds the given arguments to be passed to the new process</li>
  *     <li>{@link #arguments(StringList)} - Adds the given arguments to be passed to the new process</li>
  *     <li>{@link #enableDebuggerOnPort(int)} - Enables Java debugging on the given port</li>
@@ -109,7 +109,7 @@ public class JarLauncher extends BaseRepeater
     private ProcessType processType = CHILD;
 
     @UmlAggregation(label = "retrieves jar from one of")
-    private final List<Resourced> jarSources = new ArrayList<>();
+    private final List<Resourceful> jarSources = new ArrayList<>();
 
     private StringList programArguments = new StringList();
 
@@ -123,7 +123,7 @@ public class JarLauncher extends BaseRepeater
     /**
      * Adds the given resourced object to this launcher as a potential place to load the JAR file from
      */
-    public JarLauncher addJarSource(final Resourced resourced)
+    public JarLauncher addJarSource(final Resourceful resourced)
     {
         jarSources.add(resourced);
         return this;

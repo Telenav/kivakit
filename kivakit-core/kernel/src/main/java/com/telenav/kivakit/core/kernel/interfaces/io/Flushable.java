@@ -18,9 +18,10 @@
 
 package com.telenav.kivakit.core.kernel.interfaces.io;
 
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.language.time.Duration;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramInterfaceIo;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
  * An object that can be flushed, like a queue or output stream.
@@ -28,6 +29,7 @@ import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramInterface
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramInterfaceIo.class)
+@LexakaiJavadoc(complete = true)
 public interface Flushable
 {
     /**

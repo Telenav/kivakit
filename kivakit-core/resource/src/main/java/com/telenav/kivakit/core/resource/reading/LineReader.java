@@ -18,23 +18,29 @@
 
 package com.telenav.kivakit.core.resource.reading;
 
-import com.telenav.kivakit.core.resource.ReadableResource;
-import com.telenav.kivakit.core.kernel.language.io.IO;
 import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.core.kernel.messaging.broadcasters.Multicaster;
+import com.telenav.kivakit.core.kernel.language.io.IO;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
+import com.telenav.kivakit.core.kernel.messaging.broadcasters.Multicaster;
+import com.telenav.kivakit.core.resource.ReadableResource;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.*;
+import java.io.Closeable;
+import java.io.IOException;
+import java.io.LineNumberReader;
+import java.io.UncheckedIOException;
 import java.util.Iterator;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 /**
- * Reads the provided {@link ReadableResource} reporting progress to the given {@link ProgressReporter}.
+ * Reads the provided {@link ReadableResource} as a series of lines, reporting progress to the given {@link
+ * ProgressReporter}.
  *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class LineReader extends Multicaster implements Iterable<String>
 {
     /** The resource to read */

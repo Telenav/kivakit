@@ -18,7 +18,10 @@
     {
         --(constructors)--
         +Alert()
-        +Alert(String, String, Object)
+        +Alert(String, Object)
+        --
+        +String solution()
+        +Alert solution(String solution)
     }
     
     OperationStatusMessage <|-- Announcement

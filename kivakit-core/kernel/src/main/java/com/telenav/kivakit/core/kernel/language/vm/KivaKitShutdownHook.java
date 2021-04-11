@@ -19,6 +19,7 @@
 package com.telenav.kivakit.core.kernel.language.vm;
 
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageJavaVirtualMachine;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
@@ -55,6 +56,11 @@ public class KivaKitShutdownHook
         Runtime.getRuntime().addShutdownHook(shutdown);
     }
 
+    /**
+     * The order that a hook should be run in, either among the set of first hooks, or among the set of last hooks. The
+     * only guarantee is that a hook that is FIRST will run before any hook that is LAST
+     */
+    @LexakaiJavadoc(complete = true)
     public enum Order
     {
         /** The hook should be run before hooks that are marked as LAST */

@@ -24,15 +24,30 @@ import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSys
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResource;
 import com.telenav.kivakit.core.resource.reading.ResourceReader;
 import com.telenav.kivakit.core.resource.resources.string.StringResource;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Interface to an object that is {@link Readable} and can be read with a {@link ResourceReader}. A reader can be
+ * obtained with:
+ *
+ * <ul>
+ *     <li>{@link #reader()}</li>
+ *     <li>{@link #reader(ProgressReporter)}</li>
+ *     <li>{@link #reader(ProgressReporter, Charset)}</li>
+ * </ul>
+ * <p>
+ * The {@link #resource()} method must be defined by the implementer, as well as the method
+ * {@link #copyTo(WritableResource, CopyMode, ProgressReporter)}.
+ */
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlRelation(label = "provides", referent = ResourceReader.class)
+@LexakaiJavadoc(complete = true)
 public interface ReadableResource extends Readable
 {
     default StringResource asStringResource()

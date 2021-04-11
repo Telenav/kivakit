@@ -22,14 +22,16 @@ import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverte
 import com.telenav.kivakit.core.kernel.language.values.version.Version;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramDataConversionOther;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * Converts between {@link Class} objects and fully-qualified class names.
+ * Converts to and from {@link Version} objects
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramDataConversionOther.class)
+@LexakaiJavadoc(complete = true)
 public class VersionConverter extends BaseStringConverter<Version>
 {
     /**

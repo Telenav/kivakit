@@ -33,6 +33,14 @@ import java.util.ServiceLoader;
 
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 
+/**
+ * {@link #resolve(ResourceIdentifier)} iterates through implementations of the {@link ResourceResolver} interface
+ * provided by Java's {@link ServiceLoader} and resolves {@link ResourceIdentifier}s by calling {@link
+ * ResourceResolver#accepts(ResourceIdentifier)} until it reaches a resolver that recognizes the identifier. It then
+ * returns the resolved resource with {@link ResourceResolver#resolve(ResourceIdentifier)}.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramResourceService.class)
 public class ResourceResolverServiceLoader
 {

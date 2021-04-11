@@ -29,6 +29,7 @@ import com.telenav.kivakit.service.registry.project.lexakai.annotations.DiagramR
 import com.telenav.kivakit.service.registry.registries.BaseServiceRegistry;
 import com.telenav.kivakit.service.registry.registries.LocalServiceRegistry;
 import com.telenav.kivakit.service.registry.registries.NetworkServiceRegistry;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.UmlNote;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
@@ -60,6 +61,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.unsu
 @UmlClassDiagram(diagram = DiagramRegistry.class)
 @UmlNote(text = "Use ServiceRegistryClient to register and discover services")
 @UmlNotPublicApi
+@LexakaiJavadoc(complete = true)
 public interface ServiceRegistry extends Repeater
 {
     /**

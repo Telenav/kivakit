@@ -21,10 +21,14 @@ package com.telenav.kivakit.service.registry.project;
 import com.telenav.kivakit.core.serialization.kryo.KryoTypes;
 import com.telenav.kivakit.service.registry.registries.LocalServiceRegistry;
 import com.telenav.kivakit.service.registry.registries.NetworkServiceRegistry;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Kryo serializable types for kivakit-service-registry and dependent projects
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class ServiceRegistryKryoTypes extends KryoTypes
 {
     public ServiceRegistryKryoTypes()

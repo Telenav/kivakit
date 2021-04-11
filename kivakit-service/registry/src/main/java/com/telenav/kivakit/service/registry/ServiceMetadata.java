@@ -23,6 +23,7 @@ import com.telenav.kivakit.core.kernel.language.reflection.property.filters.Kiva
 import com.telenav.kivakit.core.kernel.language.values.version.Version;
 import com.telenav.kivakit.core.network.core.EmailAddress;
 import com.telenav.kivakit.service.registry.project.lexakai.annotations.DiagramRegistry;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -47,6 +48,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
  */
 @Schema(description = "Metadata describing a service")
 @UmlClassDiagram(diagram = DiagramRegistry.class)
+@LexakaiJavadoc(complete = true)
 public class ServiceMetadata
 {
     @JsonProperty

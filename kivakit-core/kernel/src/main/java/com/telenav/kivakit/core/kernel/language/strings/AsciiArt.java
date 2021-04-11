@@ -21,6 +21,7 @@ package com.telenav.kivakit.core.kernel.language.strings;
 import com.telenav.kivakit.core.kernel.language.vm.OperatingSystem;
 import com.telenav.kivakit.core.kernel.messaging.Message;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageString;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
@@ -30,9 +31,19 @@ import java.util.Collection;
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensure;
 
 /**
+ * Provides methods to create "ASCII art", including:
+ *
+ * <ul>
+ *     <li>Banners</li>
+ *     <li>Lines</li>
+ *     <li>Boxes</li>
+ *     <li>Bulleted lists</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageString.class)
+@LexakaiJavadoc(complete = true)
 public class AsciiArt
 {
     private static final boolean isMac = OperatingSystem.get().isMac();

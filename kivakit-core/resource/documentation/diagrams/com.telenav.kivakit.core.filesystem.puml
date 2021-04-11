@@ -204,7 +204,6 @@
         +Folder relativeTo(Folder)
         +boolean renameTo(Folder that)
         +Folder root()
-        +void safeCopyTo(Folder destination, CopyMode, ProgressReporter)
         +void safeCopyTo(Folder destination, CopyMode, Matcher<File>, ProgressReporter)
         +Folder scheduleCleanUpOnExit()
         +File temporaryFile(FileName baseName, Extension)
@@ -243,14 +242,12 @@
     class FolderPruner
     {
         --(constructors)--
-        +FolderPruner(Folder)
+        +FolderPruner(Folder, Frequency)
         --
         +void capacity(Bytes capacity)
         --(collection)--
         #boolean canRemove(File candidate, FileList files)
         --(filesystem)--
-        +void minimumUsableDiskSpace(Percent minimumUsableDiskSpace)
-        #Percent minimumUsableDiskSpace()
         #void onFileRemoved(File)
         --(lifecycle)--
         +boolean isRunning()
@@ -259,14 +256,15 @@
         --(matching)--
         +void matcher(Matcher<File>)
         #Matcher<File> matcher()
+        --(math)--
+        +void minimumAge(Duration minimumAge)
+        +void minimumUsableDiskSpace(Percent minimumUsableDiskSpace)
+        #Duration minimumAge()
+        #Percent minimumUsableDiskSpace()
         --(primitive)--
         #Bytes capacity()
         --(time)--
-        +void minimumAge(Duration minimumAge)
-        +void pollingFrequency(Frequency pollingFrequency)
         #Duration age(File)
-        #Duration minimumAge()
-        #Frequency pollingFrequency()
     }
     
     ResourceResolver <|-- File.Resolver

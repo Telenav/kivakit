@@ -18,10 +18,34 @@
 
 package com.telenav.kivakit.core.kernel.language.time;
 
+import com.telenav.kivakit.core.kernel.language.values.count.Count;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageTime;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * An abstract rate in {@link Count} per {@link Duration}. Rates can be constructed as a count per Duration with {@link
+ * #Rate(double, Duration)} or with static factory methods:
+ *
+ * <ul>
+ *     <li>{@link #perDay(double)}</li>
+ *     <li>{@link #perHour(double)}</li>
+ *     <li>{@link #perMinute(double)}</li>
+ *     <li>{@link #perSecond(double)}</li>
+ * </ul>
+ * <p>
+ * Rates can be compared with {@link #isFasterThan(Rate)} and {@link #isSlowerThan(Rate)}.
+ * </p>
+ *
+ * <p>
+ * The method {@link #throttle(Rate)} will delay (if this rate is greater than the given maximum) long enough to
+ * limit this rate to the maximum rate.
+ * </p>
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramLanguageTime.class)
+@LexakaiJavadoc(complete = true)
 public class Rate implements Comparable<Rate>
 {
     public static final Rate MAXIMUM = new Rate(Integer.MAX_VALUE, Duration.milliseconds(1));
@@ -60,11 +84,11 @@ public class Rate implements Comparable<Rate>
     @Override
     public int compareTo(final Rate that)
     {
-        if (isGreaterThan(that))
+        if (isFasterThan(that))
         {
             return 1;
         }
-        if (isLessThan(that))
+        if (isSlowerThan(that))
         {
             return -1;
         }
@@ -93,12 +117,12 @@ public class Rate implements Comparable<Rate>
         return Double.hashCode(count / duration.asMinutes());
     }
 
-    public boolean isGreaterThan(final Rate that)
+    public boolean isFasterThan(final Rate that)
     {
         return perMinute().count > that.perMinute().count;
     }
 
-    public boolean isLessThan(final Rate that)
+    public boolean isSlowerThan(final Rate that)
     {
         return perMinute().count < that.perMinute().count;
     }
@@ -125,7 +149,7 @@ public class Rate implements Comparable<Rate>
 
     public void throttle(final Rate maximumRate)
     {
-        if (isGreaterThan(maximumRate))
+        if (isFasterThan(maximumRate))
         {
             Duration.seconds(perSecond().count() / maximumRate.perSecond().count() - 1).sleep();
         }

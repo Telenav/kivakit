@@ -152,7 +152,7 @@ public class RandomValueFactory
 
     public Confidence newConfidence()
     {
-        return new Confidence(newDoubleZeroToOne());
+        return Confidence.confidence(newDoubleZeroToOne());
     }
 
     public int newCount(final int minimum, final int maximum)

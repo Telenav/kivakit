@@ -20,6 +20,7 @@ package com.telenav.kivakit.service.registry;
 
 import com.telenav.kivakit.core.kernel.language.values.identifier.StringIdentifier;
 import com.telenav.kivakit.service.registry.project.lexakai.annotations.DiagramRegistry;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -34,6 +35,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
         example = "com-telenav-kivakit-server-log")
 @UmlClassDiagram(diagram = DiagramRegistry.class)
 @UmlExcludeSuperTypes
+@LexakaiJavadoc(complete = true)
 public class ServiceType extends StringIdentifier
 {
     public ServiceType(final String identifier)

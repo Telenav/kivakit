@@ -20,9 +20,8 @@ package com.telenav.kivakit.core.kernel.language.bits;
 
 import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageBits;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
 
 /**
  * A {@link BitDiagram} is a character string that visually depicts one or more bit fields of a primitive value such as
@@ -50,11 +49,13 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageBits.class)
+@LexakaiJavadoc(complete = true)
 public class BitDiagram
 {
     /**
      * The bit field for a given character in a bit diagram
      */
+    @LexakaiJavadoc(complete = true)
     public static class BitField
     {
         /** The mask to access the bit field */

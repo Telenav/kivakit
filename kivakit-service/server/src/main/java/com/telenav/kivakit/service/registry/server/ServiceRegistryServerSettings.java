@@ -20,10 +20,14 @@ package com.telenav.kivakit.service.registry.server;
 
 import com.telenav.kivakit.core.kernel.language.time.Duration;
 import com.telenav.kivakit.core.kernel.language.time.Frequency;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Settings for the {@link ServiceRegistryServer}
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class ServiceRegistryServerSettings
 {
     /** The speed at which the Wicket web application auto-updates service information */

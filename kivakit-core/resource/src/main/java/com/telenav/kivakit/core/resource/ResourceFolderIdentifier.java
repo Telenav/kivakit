@@ -18,10 +18,21 @@
 
 package com.telenav.kivakit.core.resource;
 
+import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResourceService;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * An identifier for a {@link ResourceFolder} implementation, including either a {@link Package} or a {@link Folder}.
+ * The {@link ResourceFolder} can be resolved by searching for an implementation which accepts the identifier, with
+ * {@link #resolve()} or {@link ResourceFolder#resolve(ResourceFolderIdentifier)}.
+ *
+ * @author jonathanl (shibo)
+ * @see ResourceFolder
+ */
 @UmlClassDiagram(diagram = DiagramResourceService.class)
+@LexakaiJavadoc(complete = true)
 public class ResourceFolderIdentifier
 {
     private final String identifier;

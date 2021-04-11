@@ -17,6 +17,9 @@ import com.telenav.kivakit.core.serialization.kryo.KryoTypes;
 import java.util.Set;
 
 /**
+ * The project class for kivakit-service-registry. Includes a {@link SerializationSessionFactory} that can serialize
+ * local and network service registries, retrieved with {@link #sessionFactory()}.
+ *
  * @author jonathanl (shibo)
  */
 public class ServiceRegistryProject extends Project

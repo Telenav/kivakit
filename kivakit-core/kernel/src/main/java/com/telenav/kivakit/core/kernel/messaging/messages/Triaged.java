@@ -18,10 +18,11 @@
 
 package com.telenav.kivakit.core.kernel.messaging.messages;
 
-import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLogging;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramMessaging;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 /**
  * The source of a {@link Severity}
@@ -30,6 +31,7 @@ import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramMessaging
  */
 @UmlClassDiagram(diagram = DiagramLogging.class)
 @UmlClassDiagram(diagram = DiagramMessaging.class)
+@LexakaiJavadoc(complete = true)
 public interface Triaged
 {
     /**

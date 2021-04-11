@@ -18,60 +18,131 @@
 
 package com.telenav.kivakit.core.kernel.language.threading;
 
-import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.core.kernel.interfaces.lifecycle.Startable;
+import com.telenav.kivakit.core.kernel.interfaces.lifecycle.Stoppable;
 import com.telenav.kivakit.core.kernel.interfaces.naming.Named;
-import com.telenav.kivakit.core.kernel.language.threading.locks.legacy.ConditionLock;
-import com.telenav.kivakit.core.kernel.language.threading.locks.legacy.NotifyAllBooleanLock;
+import com.telenav.kivakit.core.kernel.language.threading.conditions.StateMachine;
 import com.telenav.kivakit.core.kernel.language.time.Duration;
+import com.telenav.kivakit.core.kernel.language.time.Frequency;
 import com.telenav.kivakit.core.kernel.language.time.Time;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageThread;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.MustBeInvokedByOverriders;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.CREATED;
+import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.EXITED;
+import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.EXITING;
+import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.RUNNING;
+import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.STOP;
+import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.WAITING;
+
 @SuppressWarnings("UnusedReturnValue")
 @UmlClassDiagram(diagram = DiagramLanguageThread.class)
-public class KivaKitThread extends BaseRepeater implements Startable, Runnable, Named
+public class KivaKitThread extends BaseRepeater implements Startable, Runnable, Stoppable, Named
 {
+    /** Set of all KivaKit thread names */
     private static final Set<String> names = new HashSet<>();
 
-    public static KivaKitThread repeat(final Listener listener, final Duration every, final String name,
+    /**
+     * @return A started thread with the given name that will run the given code at the given frequency.
+     */
+    public static KivaKitThread repeat(final Listener listener,
+                                       final String name,
+                                       final Frequency every,
                                        final Runnable code)
     {
-        return run(listener, name, () -> every.loop(listener, code));
+        return run(listener, name, () -> every.duration().loop(listener, code));
     }
 
-    public static KivaKitThread run(final Listener listener, final String name, final Runnable code)
+    /**
+     * @return A started thread with the given name that has been started
+     */
+    public static KivaKitThread run(final Listener listener,
+                                    final String name,
+                                    final Runnable code)
     {
         final var thread = listener.listenTo(new KivaKitThread(name, code));
         thread.start();
         return thread;
     }
 
-    private final ConditionLock started = new ConditionLock(new NotifyAllBooleanLock());
+    /**
+     * The execution states a thread can be in
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
+    public enum State
+    {
+        /** The thread has been created but is not yet running */
+        CREATED,
 
-    private final ConditionLock running = new ConditionLock(new NotifyAllBooleanLock());
+        /** The thread is waiting to run due to an {@link #waitForInitialDelayPeriod()} */
+        WAITING,
 
+        /** The thread is running */
+        RUNNING,
+
+        /** The {@link RepeatingKivaKitThread} has been requested to pause after its current cycle completes */
+        PAUSE,
+
+        /** The {@link RepeatingKivaKitThread} is paused between repeats */
+        PAUSED,
+
+        /** The thread is paused and should resume running */
+        RESUME,
+
+        /** The thread has been asked to stop */
+        STOP,
+
+        /** The thread is exiting */
+        EXITING,
+
+        /** The thread has stopped and exited */
+        EXITED
+    }
+
+    /** The thread */
     private final Thread thread;
 
+    /** The current state of this thread */
+    private final StateMachine<State> state = new StateMachine<>(CREATED, state -> trace(name() + ": " + state.name()));
+
+    /** Any initial delay before the thread starts running */
     private Duration initialDelay = Duration.NONE;
 
     private boolean initialized;
 
+    /** The time at which this thread was started */
     private Time startedAt;
 
+    /** The code to run, if any. If this value is null, then {@link #onRun()} is used instead */
     private Runnable code;
 
+    /**
+     * Creates a daemon thread with the given name prefixed by "Kiva-" so it is easy to distinguish from other threads.
+     *
+     * @param name The thread name suffix
+     * @param code The code to run
+     */
     public KivaKitThread(final String name, final Runnable code)
     {
         this(name);
         this.code = code;
     }
 
+    /**
+     * Creates a daemon thread with the given name prefixed by "Kiva-" so it is easy to distinguish from other threads.
+     *
+     * @param name The thread name suffix
+     */
     public KivaKitThread(final String name)
     {
         super(name("Kiva-" + name));
@@ -79,36 +150,54 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
         thread.setDaemon(true);
     }
 
+    /**
+     * @param daemon True to make this a daemon thread
+     */
     public KivaKitThread daemon(final boolean daemon)
     {
         thread.setDaemon(daemon);
         return this;
     }
 
+    /**
+     * Makes this thread high priority
+     */
     public KivaKitThread highPriority()
     {
         thread.setPriority(Thread.MAX_PRIORITY);
         return this;
     }
 
+    /**
+     * Sets an initial delay before the thread's user code starts executing
+     */
     public KivaKitThread initialDelay(final Duration initialDelay)
     {
         this.initialDelay = initialDelay;
         return this;
     }
 
+    /**
+     * Interrupts this thread if it is asleep or waiting
+     */
     public KivaKitThread interrupt()
     {
         thread.interrupt();
         return this;
     }
 
+    /**
+     * @return True if this thread is in the {@link State#RUNNING} state
+     */
     @Override
     public boolean isRunning()
     {
-        return running.isSatisfied();
+        return state().is(RUNNING);
     }
 
+    /**
+     * Waits until this thread exits
+     */
     public void join()
     {
         try
@@ -120,115 +209,198 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
         }
     }
 
+    /**
+     * Makes this a low priority thread
+     */
     public KivaKitThread lowPriority()
     {
         thread.setPriority(Thread.MIN_PRIORITY);
         return this;
     }
 
+    /**
+     * @return This thread's name
+     */
     @Override
     public String name()
     {
         return thread.getName();
     }
 
+    /**
+     * <b>Not public API</b>
+     * <p>
+     * Execution entrypoint
+     */
     @Override
     public void run()
     {
-        started();
-        trace("Running");
-        initialDelay();
-        onBefore();
+        // Wait to run,
+        onWaiting();
+
+        // start running,
+        onRunning();
+
         try
         {
-            if (code != null)
-            {
-                code.run();
-            }
-            else
-            {
-                onRun();
-            }
+            // run the user's code
+            onRun();
         }
         catch (final Throwable e)
         {
             problem(e, "${class} threw exception", getClass());
         }
-        onAfter();
-        trace("Exiting");
-        exited();
+
+        // then notify that we're exiting
+        onExiting();
+
+        // and that we have exited.
+        onExited();
     }
 
+    /**
+     * @return True if this thread should stop now
+     */
+    public boolean shouldStop()
+    {
+        return state().is(STOP);
+    }
+
+    /**
+     * Starts this thread if it is not already running
+     */
     @Override
     public boolean start()
     {
-        if (!thread.isAlive())
+        if (!isRunning())
         {
-            trace("Starting thread '${debug}'", thread.getName());
             try
             {
                 thread.start();
             }
-            catch (final IllegalThreadStateException ignored)
+            catch (final IllegalThreadStateException e)
             {
-                // Ignore
+                warning(e, "Thread could not be started");
+                return false;
             }
         }
         return true;
     }
 
+    /**
+     * Starts this thread but doesn't return until it is running
+     */
     public KivaKitThread startSynchronously()
     {
         start();
-        // We don't just want the thread to be started, but to also be running.
-        started.waitFor(true);
-        running.waitFor(true);
-        trace("Started thread '${debug}'", thread.getName());
+        waitFor(RUNNING);
         return this;
     }
 
+    /**
+     * @return The time at which this thread started
+     */
     public Time startedAt()
     {
         return startedAt;
     }
 
-    protected void exited()
+    /**
+     * @return The state that this thread is in
+     */
+    public StateMachine<State> state()
     {
-        running.reset();
+        return state;
     }
 
-    protected void initialDelay()
+    /**
+     * Attempt to stop this thread, waiting for the maximum specified time for it to exit
+     */
+    @Override
+    public void stop(final Duration maximumWait)
+    {
+        state().transitionTo(STOP);
+        waitFor(EXITED, maximumWait);
+    }
+
+    /**
+     * Wait for this thread to achieve the given states
+     */
+    public void waitFor(final State state)
+    {
+        state().waitFor(state);
+    }
+
+    /**
+     * Wait for this thread to achieve the given states
+     */
+    public void waitFor(final State state, final Duration maximumWait)
+    {
+        state().waitFor(state, maximumWait);
+    }
+
+    /**
+     * Called when this thread exits
+     */
+    @MustBeInvokedByOverriders
+    protected void onExited()
+    {
+        state().transitionTo(EXITED);
+    }
+
+    @MustBeInvokedByOverriders
+    protected void onExiting()
+    {
+        state().transitionTo(EXITING);
+    }
+
+    /**
+     * Called if there is no {@link Runnable} code provided to the constructor
+     */
+    protected void onRun()
+    {
+        ensureNotNull(code, "Must either provide code to thread constructor or implement onRun()");
+        code.run();
+    }
+
+    /**
+     * Called when this thread is running
+     */
+    @MustBeInvokedByOverriders
+    protected void onRunning()
+    {
+        startedAt = Time.now();
+        state().transitionTo(RUNNING);
+    }
+
+    /**
+     * Called when this thread is waiting to run
+     */
+    @MustBeInvokedByOverriders
+    protected void onWaiting()
+    {
+        state().transitionTo(WAITING);
+        waitForInitialDelayPeriod();
+    }
+
+    /**
+     * @return The thread object for this KivaKit thread
+     */
+    protected Thread thread()
+    {
+        return thread;
+    }
+
+    /**
+     * Waits for any prescribed initial delay
+     */
+    protected void waitForInitialDelayPeriod()
     {
         if (!initialized)
         {
             initialDelay.sleep();
             initialized = true;
         }
-    }
-
-    protected void onAfter()
-    {
-    }
-
-    protected void onBefore()
-    {
-    }
-
-    protected void onRun()
-    {
-        Ensure.fail("Must either provide closure to constructor or implement onRun()");
-    }
-
-    protected void started()
-    {
-        startedAt = Time.now();
-        started.satisfy();
-        running.satisfy();
-    }
-
-    protected Thread thread()
-    {
-        return thread;
     }
 
     private static String name(String name)

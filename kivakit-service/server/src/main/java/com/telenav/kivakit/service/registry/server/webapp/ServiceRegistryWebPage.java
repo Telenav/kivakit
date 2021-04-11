@@ -21,12 +21,20 @@ package com.telenav.kivakit.service.registry.server.webapp;
 import com.telenav.kivakit.service.registry.server.ServiceRegistryServer;
 import com.telenav.kivakit.web.wicket.components.header.HeaderPanel;
 import com.telenav.kivakit.web.wicket.theme.KivaKitTheme;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import org.apache.wicket.markup.head.CssHeaderItem;
 import org.apache.wicket.markup.head.IHeaderResponse;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 
+/**
+ * Base class for web pages within the {@link ServiceRegistryWebApplication}. Gives a consistent look and feel and
+ * applies a header area to each page subclass.
+ *
+ * @author jonathanl (shibo)
+ */
+@LexakaiJavadoc(complete = true)
 public class ServiceRegistryWebPage extends WebPage
 {
     public ServiceRegistryWebPage()

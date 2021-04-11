@@ -30,48 +30,6 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensu
 public class DayOfWeekTest
 {
     @Test
-    public void asHistoricalConstant1()
-    {
-        ensureEqual(1, DayOfWeek.SUNDAY.asHistoricalConstant());
-    }
-
-    @Test
-    public void asHistoricalConstant2()
-    {
-        ensureEqual(2, DayOfWeek.MONDAY.asHistoricalConstant());
-    }
-
-    @Test
-    public void asHistoricalConstant3()
-    {
-        ensureEqual(3, DayOfWeek.TUESDAY.asHistoricalConstant());
-    }
-
-    @Test
-    public void asHistoricalConstant4()
-    {
-        ensureEqual(4, DayOfWeek.WEDNESDAY.asHistoricalConstant());
-    }
-
-    @Test
-    public void asHistoricalConstant5()
-    {
-        ensureEqual(5, DayOfWeek.THURSDAY.asHistoricalConstant());
-    }
-
-    @Test
-    public void asHistoricalConstant6()
-    {
-        ensureEqual(6, DayOfWeek.FRIDAY.asHistoricalConstant());
-    }
-
-    @Test
-    public void asHistoricalConstant7()
-    {
-        ensureEqual(7, DayOfWeek.SATURDAY.asHistoricalConstant());
-    }
-
-    @Test
     public void asIsoConstant0()
     {
         ensureEqual(0, DayOfWeek.MONDAY.asIsoConstant());
@@ -111,66 +69,6 @@ public class DayOfWeekTest
     public void asIsoConstant6()
     {
         ensureEqual(6, DayOfWeek.SUNDAY.asIsoConstant());
-    }
-
-    @Test(expected = ValidationFailure.class)
-    public void forHistoricalConstant0()
-    {
-        DayOfWeek.forHistoricalConstant(0);
-    }
-
-    @Test
-    public void forHistoricalConstant1()
-    {
-        ensureEqual(DayOfWeek.SUNDAY, DayOfWeek.forHistoricalConstant(1));
-    }
-
-    @Test
-    public void forHistoricalConstant2()
-    {
-        ensureEqual(DayOfWeek.MONDAY, DayOfWeek.forHistoricalConstant(2));
-    }
-
-    @Test
-    public void forHistoricalConstant3()
-    {
-        ensureEqual(DayOfWeek.TUESDAY, DayOfWeek.forHistoricalConstant(3));
-    }
-
-    @Test
-    public void forHistoricalConstant4()
-    {
-        ensureEqual(DayOfWeek.WEDNESDAY, DayOfWeek.forHistoricalConstant(4));
-    }
-
-    @Test
-    public void forHistoricalConstant5()
-    {
-        ensureEqual(DayOfWeek.THURSDAY, DayOfWeek.forHistoricalConstant(5));
-    }
-
-    @Test
-    public void forHistoricalConstant6()
-    {
-        ensureEqual(DayOfWeek.FRIDAY, DayOfWeek.forHistoricalConstant(6));
-    }
-
-    @Test
-    public void forHistoricalConstant7()
-    {
-        ensureEqual(DayOfWeek.SATURDAY, DayOfWeek.forHistoricalConstant(7));
-    }
-
-    @Test(expected = ValidationFailure.class)
-    public void forHistoricalConstant8()
-    {
-        DayOfWeek.forHistoricalConstant(8);
-    }
-
-    @Test(expected = ValidationFailure.class)
-    public void forHistoricalConstantMinus1()
-    {
-        DayOfWeek.forHistoricalConstant(-1);
     }
 
     @Test

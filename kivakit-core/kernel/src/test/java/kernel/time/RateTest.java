@@ -36,7 +36,7 @@ public class RateTest
         ensureEqual(24 * 3600.0, rate.perDay().count());
         ensureEqual(Rate.perMinute(60.0), rate);
         ensure(rate.compareTo(Rate.perSecond(2)) < 0);
-        ensure(rate.isLessThan(Rate.perSecond(2)));
-        ensure(rate.isGreaterThan(Rate.perSecond(0.5)));
+        ensure(rate.isSlowerThan(Rate.perSecond(2)));
+        ensure(rate.isFasterThan(Rate.perSecond(0.5)));
     }
 }

@@ -20,10 +20,14 @@ package com.telenav.kivakit.service.registry.serialization.serializers;
 
 import com.telenav.kivakit.core.kernel.language.time.Time;
 import com.telenav.kivakit.core.serialization.json.PrimitiveGsonSerializer;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Serializes {@link Time} objects to and from JSON as a number of milliseconds since the start of the UNIX epoch.
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class TimeSerializer extends PrimitiveGsonSerializer<Time, Long>
 {
     public TimeSerializer()

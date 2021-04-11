@@ -20,10 +20,14 @@ package com.telenav.kivakit.service.registry.serialization.serializers;
 
 import com.telenav.kivakit.core.application.ApplicationIdentifier;
 import com.telenav.kivakit.core.serialization.json.PrimitiveGsonSerializer;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Serializes {@link ApplicationIdentifier}s to and from JSON
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class ApplicationIdentifierSerializer extends PrimitiveGsonSerializer<ApplicationIdentifier, String>
 {
     public ApplicationIdentifierSerializer()

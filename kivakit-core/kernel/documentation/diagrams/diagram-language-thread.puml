@@ -9,8 +9,8 @@
     interface Startable
     interface Named
     interface Runnable
-    interface Pausable
     interface Stoppable
+    interface Pausable
     
     class CallStack
     {
@@ -56,6 +56,7 @@
     BaseRepeater <|-- KivaKitThread
     Startable <|-- KivaKitThread
     Runnable <|-- KivaKitThread
+    Stoppable <|-- KivaKitThread
     Named <|-- KivaKitThread
     class KivaKitThread
     {
@@ -66,20 +67,25 @@
         +KivaKitThread daemon(boolean daemon)
         +KivaKitThread highPriority()
         +KivaKitThread lowPriority()
-        +KivaKitThread repeat(Listener, Duration every, String name, Runnable code)
-        #void exited()
-        #void onAfter()
-        #void onBefore()
-        #void started()
+        +KivaKitThread repeat(Listener, String name, Frequency every, Runnable code)
+        +StateMachine<State> state()
+        #void onExited()
+        #void onExiting()
+        #void onWaiting()
         #Thread thread()
         --(lifecycle)--
         +KivaKitThread initialDelay(Duration initialDelay)
         +KivaKitThread interrupt()
         +void join()
         +KivaKitThread run(Listener, String name, Runnable code)
+        +boolean shouldStop()
         +KivaKitThread startSynchronously()
-        #void initialDelay()
         #void onRun()
+        #void onRunning()
+        #void waitForInitialDelayPeriod()
+        --(thread)--
+        +void waitFor(State)
+        +void waitFor(State, Duration maximumWait)
         --(time)--
         +Time startedAt()
     }
@@ -94,19 +100,21 @@
         +void exit()
     }
     
-    KivaKitThread <|-- RepeatingThread
-    Pausable <|-- RepeatingThread
-    Stoppable <|-- RepeatingThread
-    abstract class RepeatingThread
+    KivaKitThread <|-- RepeatingKivaKitThread
+    Pausable <|-- RepeatingKivaKitThread
+    class RepeatingKivaKitThread
     {
         --(constructors)--
-        #RepeatingThread(String)
-        #RepeatingThread(String, Frequency)
+        +RepeatingKivaKitThread(Listener, String, Frequency)
+        +RepeatingKivaKitThread(Listener, String, Runnable)
         --(checks)--
         +boolean isPaused()
+        --(lifecycle)--
+        +RepeatingKivaKitThread run(Listener, String name, Frequency every, Runnable code)
+        +RepeatingKivaKitThread run(Listener, String name, Runnable code)
         --(time)--
+        +RepeatingKivaKitThread frequency(Frequency)
         +Frequency frequency()
-        +void frequency(Frequency)
     }
     
     BaseRepeater <|-- Retry
@@ -116,9 +124,9 @@
         +Retry(Listener)
         +Retry(Listener, int, Duration, Class<? extends Throwable>, String)
         --
-        +Code<T> retry(Code<T>, int times, Duration delay, Runnable... beforeRetry)
+        +CheckedCode<T> retry(CheckedCode<T>, int times, Duration delay, Runnable... beforeRetry)
         --(lifecycle)--
-        +T run(Code<T> runnable, Runnable... stepsBeforeRetry)
+        +T run(CheckedCode<T> runnable, Runnable... stepsBeforeRetry)
     }
     
     ThreadSnapshot "1" o-- "*" ThreadStatus

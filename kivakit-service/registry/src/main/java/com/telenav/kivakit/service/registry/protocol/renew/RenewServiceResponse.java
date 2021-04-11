@@ -26,6 +26,7 @@ import com.telenav.kivakit.core.kernel.language.strings.formatting.ObjectFormatt
 import com.telenav.kivakit.service.registry.Service;
 import com.telenav.kivakit.service.registry.project.lexakai.annotations.DiagramRest;
 import com.telenav.kivakit.service.registry.protocol.BaseResponse;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -38,6 +39,7 @@ import static com.telenav.kivakit.core.kernel.language.strings.formatting.Object
  */
 @Schema
 @UmlClassDiagram(diagram = DiagramRest.class)
+@LexakaiJavadoc(complete = true)
 public class RenewServiceResponse extends BaseResponse<Service>
 {
     @JsonProperty

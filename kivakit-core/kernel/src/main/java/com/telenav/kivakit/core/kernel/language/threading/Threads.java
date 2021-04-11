@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.kernel.language.threading;
 
-import com.telenav.kivakit.core.kernel.interfaces.code.Code;
+import com.telenav.kivakit.core.kernel.interfaces.code.CheckedCode;
 import com.telenav.kivakit.core.kernel.language.values.count.Count;
 import com.telenav.kivakit.core.kernel.language.values.mutable.MutableIndex;
 import com.telenav.kivakit.core.kernel.language.vm.JavaVirtualMachine;
@@ -29,7 +29,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 /**
  * Methods for working with threads and {@link ExecutorService}.
@@ -64,7 +65,7 @@ public class Threads
 
     public static void await(final ExecutorService executor)
     {
-        Code.of(() -> executor.awaitTermination(Long.MAX_VALUE, TimeUnit.MILLISECONDS)).orNull();
+        CheckedCode.of(() -> executor.awaitTermination(Long.MAX_VALUE, MILLISECONDS)).orNull();
     }
 
     public static ThreadGroup rootGroup()

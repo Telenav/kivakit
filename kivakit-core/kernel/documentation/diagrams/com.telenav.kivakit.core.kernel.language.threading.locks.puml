@@ -9,14 +9,15 @@
     {
         --
         +void whileLocked(Runnable code)
+        --(functional)--
+        +T whileLocked(Code<T>)
     }
     
     class Monitor
     {
-        --(lifecycle)--
-        +void done()
         --(thread)--
         +void await()
+        +void signal()
     }
     
     ReentrantReadWriteLock <|-- ReadWriteLock

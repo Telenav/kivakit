@@ -18,8 +18,9 @@
 
 package com.telenav.kivakit.core.kernel.interfaces.naming;
 
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramInterfaceNaming;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
  * An object that can be assigned a name.
@@ -27,6 +28,7 @@ import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramInterface
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramInterfaceNaming.class)
+@LexakaiJavadoc(complete = true)
 public interface Nameable
 {
     /**

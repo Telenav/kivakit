@@ -26,6 +26,7 @@ import com.telenav.kivakit.service.registry.Scope;
 import com.telenav.kivakit.service.registry.ServiceType;
 import com.telenav.kivakit.service.registry.project.lexakai.annotations.DiagramRest;
 import com.telenav.kivakit.service.registry.protocol.BaseRequest;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -43,10 +44,15 @@ import static com.telenav.kivakit.service.registry.protocol.ServiceRegistryProto
  */
 @Schema(description = "A request to locate all services matching the given criteria")
 @UmlClassDiagram(diagram = DiagramRest.class)
+@LexakaiJavadoc(complete = true)
 public class DiscoverServicesRequest extends BaseRequest
 {
+    /**
+     * The type of search to perform
+     */
     @Schema(description = "The type of search",
             required = true)
+    @LexakaiJavadoc(complete = true)
     public enum SearchType
     {
         /** All registered services */
