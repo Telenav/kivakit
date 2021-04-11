@@ -37,9 +37,9 @@ public class ObjectSet<T> extends BaseSet<T>
         super(maximumSize, set);
     }
 
-    protected ObjectSet()
+    public ObjectSet()
     {
-        super();
+        this(Maximum.MAXIMUM);
     }
 
     @Override

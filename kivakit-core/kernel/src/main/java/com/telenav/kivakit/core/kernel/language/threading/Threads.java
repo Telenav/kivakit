@@ -23,6 +23,7 @@ import com.telenav.kivakit.core.kernel.language.values.count.Count;
 import com.telenav.kivakit.core.kernel.language.values.mutable.MutableIndex;
 import com.telenav.kivakit.core.kernel.language.vm.JavaVirtualMachine;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageThread;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageThread.class)
+@LexakaiJavadoc(complete = true)
 public class Threads
 {
     public static Iterable<Thread> all()

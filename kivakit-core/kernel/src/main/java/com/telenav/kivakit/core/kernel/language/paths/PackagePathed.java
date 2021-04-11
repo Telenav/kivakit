@@ -18,9 +18,14 @@
 
 package com.telenav.kivakit.core.kernel.language.paths;
 
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
 /**
+ * An object that has a {@link PackagePath}
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public interface PackagePathed
 {
     default PackagePath packagePath()

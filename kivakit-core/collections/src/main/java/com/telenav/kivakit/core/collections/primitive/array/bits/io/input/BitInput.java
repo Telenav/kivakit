@@ -21,6 +21,7 @@ package com.telenav.kivakit.core.collections.primitive.array.bits.io.input;
 import com.telenav.kivakit.core.collections.primitive.array.bits.io.BitReader;
 import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramPrimitiveArrayBitIo;
 import com.telenav.kivakit.core.kernel.language.io.IO;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;
@@ -31,8 +32,11 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.unsu
  * A {@link BitReader} that gets input from an underlying {@link InputStream}.
  *
  * @author jonathanl (shibo)
+ * @see BitReader
+ * @see BaseBitReader
  */
 @UmlClassDiagram(diagram = DiagramPrimitiveArrayBitIo.class)
+@LexakaiJavadoc(complete = true)
 public class BitInput extends BaseBitReader
 {
     /** The input stream to read */

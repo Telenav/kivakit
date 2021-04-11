@@ -334,7 +334,7 @@ public class ServiceRegistryClient extends BaseRepeater
                 {
                     while (true)
                     {
-                        ServiceRegistry.settings().serviceLeaseRenewalFrequency().duration().sleep();
+                        ServiceRegistry.settings().serviceLeaseRenewalFrequency().cycleLength().sleep();
                         trace("Renewing lease on registered service: $", registered);
                         final var health = JavaVirtualMachine.local().health();
                         if (health != null)

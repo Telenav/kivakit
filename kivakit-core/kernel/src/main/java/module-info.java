@@ -61,7 +61,7 @@ open module kivakit.core.kernel
     exports com.telenav.kivakit.core.kernel.language.io;
     exports com.telenav.kivakit.core.kernel.language.iteration;
     exports com.telenav.kivakit.core.kernel.language.locales;
-    exports com.telenav.kivakit.core.kernel.language.matching.matchers;
+    exports com.telenav.kivakit.core.kernel.language.matchers;
     exports com.telenav.kivakit.core.kernel.language.math;
     exports com.telenav.kivakit.core.kernel.language.modules;
     exports com.telenav.kivakit.core.kernel.language.objects.reference.virtual.types;

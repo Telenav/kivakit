@@ -19,9 +19,16 @@
 package com.telenav.kivakit.core.kernel.language.primitives;
 
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguagePrimitive;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * Utility methods for *boolean* values
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramLanguagePrimitive.class)
+@LexakaiJavadoc(complete = true)
 public class Booleans
 {
     public static boolean isFalse(final String string)

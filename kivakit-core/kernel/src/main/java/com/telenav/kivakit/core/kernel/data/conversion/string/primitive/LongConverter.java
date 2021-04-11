@@ -21,15 +21,17 @@ package com.telenav.kivakit.core.kernel.data.conversion.string.primitive;
 import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramDataConversionPrimitive;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 /**
- * Converts between integers and strings
+ * Converts between *long* values and strings
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramDataConversionPrimitive.class)
+@LexakaiJavadoc(complete = true)
 public class LongConverter extends BaseStringConverter<Long>
 {
     /**

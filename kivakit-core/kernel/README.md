@@ -163,7 +163,7 @@ The major feature areas are listed here, each having its own documentation:
 [*com.telenav.kivakit.core.kernel.language.io*](documentation/diagrams/com.telenav.kivakit.core.kernel.language.io.svg)  
 [*com.telenav.kivakit.core.kernel.language.iteration*](documentation/diagrams/com.telenav.kivakit.core.kernel.language.iteration.svg)  
 [*com.telenav.kivakit.core.kernel.language.locales*](documentation/diagrams/com.telenav.kivakit.core.kernel.language.locales.svg)  
-[*com.telenav.kivakit.core.kernel.language.matching.matchers*](documentation/diagrams/com.telenav.kivakit.core.kernel.language.matching.matchers.svg)  
+[*com.telenav.kivakit.core.kernel.language.matchers*](documentation/diagrams/com.telenav.kivakit.core.kernel.language.matchers.svg)  
 [*com.telenav.kivakit.core.kernel.language.math*](documentation/diagrams/com.telenav.kivakit.core.kernel.language.math.svg)  
 [*com.telenav.kivakit.core.kernel.language.modules*](documentation/diagrams/com.telenav.kivakit.core.kernel.language.modules.svg)  
 [*com.telenav.kivakit.core.kernel.language.objects*](documentation/diagrams/com.telenav.kivakit.core.kernel.language.objects.svg)  
@@ -228,19 +228,15 @@ The major feature areas are listed here, each having its own documentation:
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
-Javadoc coverage for this project is 57.1%.  
+Javadoc coverage for this project is 67.6%.  
   
-&nbsp; &nbsp;  ![](documentation/images/meter-60-12.png)
+&nbsp; &nbsp;  ![](documentation/images/meter-70-12.png)
 
 The following significant classes are undocumented:  
 
 - BaseLog  
 - BaseMap  
-- BaseSet  
 - ColumnarFormatter  
-- ConcurrentCountMap  
-- IO  
-- KivaKitThread  
 - Level  
 - LocalTime  
 - Objects  
@@ -254,12 +250,13 @@ The following significant classes are undocumented:
 | [*Addable*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/interfaces/collection/Addable.html) |  |  
 | [*Alert*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/messaging/messages/status/Alert.html) |  |  
 | [*Align*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/strings/Align.html) |  |  
-| [*All*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/matching/matchers/All.html) |  |  
+| [*All*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/messaging/filters/operators/All.html) |  |  
 | [*AllFields*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/reflection/property/filters/field/AllFields.html) |  |  
 | [*AllMessages*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/messaging/filters/AllMessages.html) |  |  
 | [*AllMethods*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/reflection/property/filters/method/AllMethods.html) |  |  
 | [*And*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/messaging/filters/operators/And.html) |  |  
 | [*Announcement*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/messaging/messages/status/Announcement.html) |  |  
+| [*AnythingMatcher*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/matchers/AnythingMatcher.html) |  |  
 | [*Appendable*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/interfaces/collection/Appendable.html) |  |  
 | [*Arrays*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/primitives/Arrays.html) |  |  
 | [*AsIndentedString*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/strings/conversion/AsIndentedString.html) |  |  
@@ -398,7 +395,7 @@ The following significant classes are undocumented:
 | [*FormattedDoubleConverter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/data/conversion/string/primitive/FormattedDoubleConverter.html) |  |  
 | [*FormattedIntegerConverter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/data/conversion/string/primitive/FormattedIntegerConverter.html) |  |  
 | [*FormattedLongConverter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/data/conversion/string/primitive/FormattedLongConverter.html) |  |  
-| [*Frequency*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/time/Frequency.html) |  |  
+| [*Frequency*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/time/Frequency.html) | Note |  
 | [*Frequency.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/time/Frequency.Converter.html) |  |  
 | [*Frequency.Cycle*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/time/Frequency.Cycle.html) |  |  
 | [*Getter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/reflection/access/Getter.html) |  |  
@@ -452,7 +449,11 @@ The following significant classes are undocumented:
 | [*KivaKitPropertyOptional*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/reflection/populator/KivaKitPropertyOptional.html) |  |  
 | [*KivaKitShutdownHook*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/vm/KivaKitShutdownHook.html) |  |  
 | [*KivaKitShutdownHook.Order*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/vm/KivaKitShutdownHook.Order.html) |  |  
-| [*KivaKitThread*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/threading/KivaKitThread.html) |  |  
+| [*KivaKitThread*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/threading/KivaKitThread.html) | Checks |  
+| | Thread Lifecycle States |  
+| | Overrides |  
+| | Properties |  
+| | Operations |  
 | [*KivaKitThread.State*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/threading/KivaKitThread.State.html) |  |  
 | [*LanguageIsoCode*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/locales/LanguageIsoCode.html) |  |  
 | [*LanguageIsoCode.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/locales/LanguageIsoCode.Converter.html) |  |  
@@ -537,6 +538,7 @@ The following significant classes are undocumented:
 | [*MutableValue*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/values/mutable/MutableValue.html) |  |  
 | [*Name*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/values/name/Name.html) |  |  
 | [*NameMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/collections/map/string/NameMap.html) |  |  
+| [*NameMatcher*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/matchers/NameMatcher.html) |  |  
 | [*Nameable*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/interfaces/naming/Nameable.html) |  |  
 | [*Named*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/interfaces/naming/Named.html) |  |  
 | [*NamedField*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/reflection/property/filters/field/NamedField.html) |  |  
@@ -546,10 +548,11 @@ The following significant classes are undocumented:
 | [*Narration*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/messaging/messages/status/Narration.html) |  |  
 | [*NewInstance*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/interfaces/value/NewInstance.html) |  |  
 | [*Next*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/iteration/Next.html) |  |  
-| [*None*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/matching/matchers/None.html) |  |  
+| [*None*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/messaging/filters/operators/None.html) |  |  
 | [*Not*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/messaging/filters/operators/Not.html) |  |  
 | [*NullListener*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/messaging/listeners/NullListener.html) |  |  
 | [*NullLogger*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/logging/loggers/NullLogger.html) |  |  
+| [*NullMatcher*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/matchers/NullMatcher.html) |  |  
 | [*NullValidationReporter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/data/validation/reporters/NullValidationReporter.html) |  |  
 | [*ObjectFormatter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/strings/formatting/ObjectFormatter.html) |  |  
 | [*ObjectFormatter.Format*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/strings/formatting/ObjectFormatter.Format.html) |  |  
@@ -586,6 +589,7 @@ The following significant classes are undocumented:
 | [*PathStrings*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/strings/PathStrings.html) |  |  
 | [*Pattern*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/patterns/Pattern.html) |  |  
 | [*PatternConverter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/data/conversion/string/language/PatternConverter.html) |  |  
+| [*PatternMatcher*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/matchers/PatternMatcher.html) |  |  
 | [*Pausable*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/interfaces/lifecycle/Pausable.html) |  |  
 | [*Percent*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/values/level/Percent.html) | Conversions |  
 | | Operations |  
@@ -718,8 +722,6 @@ The following significant classes are undocumented:
 | [*Watchable*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/interfaces/model/Watchable.html) |  |  
 | [*WeakReferencedValue*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/objects/reference/virtual/types/WeakReferencedValue.html) |  |  
 | [*Weight*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/values/level/Weight.html) |  |  
-| [*WithName*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/matching/matchers/WithName.html) |  |  
-| [*WithNameMatching*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/matching/matchers/WithNameMatching.html) |  |  
 | [*Wrap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/strings/Wrap.html) |  |  
 | [*Writable*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/interfaces/io/Writable.html) |  |  
 | [*ZeroOrMore*](https://telenav.github.io/kivakit/javadoc/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/patterns/closure/ZeroOrMore.html) |  |  
@@ -735,6 +737,6 @@ The following significant classes are undocumented:
 ![](documentation/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.10. UML diagrams courtesy
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.11. UML diagrams courtesy
 of [PlantUML](http://plantuml.com).</sub>
 

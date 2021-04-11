@@ -77,7 +77,7 @@ com.telenav.kivakit.core.kernel.language.collections.set
 com.telenav.kivakit.core.kernel.language.io
 com.telenav.kivakit.core.kernel.language.iteration
 com.telenav.kivakit.core.kernel.language.locales
-com.telenav.kivakit.core.kernel.language.matching.matchers
+com.telenav.kivakit.core.kernel.language.matchers
 com.telenav.kivakit.core.kernel.language.math
 com.telenav.kivakit.core.kernel.language.modules
 com.telenav.kivakit.core.kernel.language.objects
@@ -107,7 +107,6 @@ com.telenav.kivakit.core.kernel.language.threading.conditions
 com.telenav.kivakit.core.kernel.language.threading.context
 com.telenav.kivakit.core.kernel.language.threading.latches
 com.telenav.kivakit.core.kernel.language.threading.locks
-com.telenav.kivakit.core.kernel.language.threading.locks.legacy
 com.telenav.kivakit.core.kernel.language.threading.status
 com.telenav.kivakit.core.kernel.language.time
 com.telenav.kivakit.core.kernel.language.time.conversion
@@ -169,7 +168,6 @@ com.telenav.kivakit.core.resource.resources.packaged
 com.telenav.kivakit.core.resource.resources.streamed
 com.telenav.kivakit.core.resource.resources.string
 com.telenav.kivakit.core.resource.spi
-com.telenav.kivakit.core.resource.store
 com.telenav.kivakit.core.resource.writing
 module:kivakit.core.security
 com.telenav.kivakit.core.security.authentication

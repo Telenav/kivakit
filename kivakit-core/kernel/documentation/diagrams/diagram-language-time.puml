@@ -122,13 +122,14 @@
         --(constructors)--
         #Frequency(Duration)
         --(time)--
-        +Duration duration()
+        +Duration cycleLength()
+        +Frequency cyclesPerDay(int times)
+        +Frequency cyclesPerHour(int times)
+        +Frequency cyclesPerMinute(int times)
+        +Frequency cyclesPerSecond(int times)
         +Frequency every(Duration)
         +Cycle start(Time start)
-        +Frequency timesPerDay(int times)
-        +Frequency timesPerHour(int times)
-        +Frequency timesPerMinute(int times)
-        +Frequency timesPerSecond(int times)
+        +Cycle start()
     }
     
     BaseStringConverter <|-- HumanizedLocalDateTimeConverter

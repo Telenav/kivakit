@@ -20,7 +20,7 @@ package com.telenav.kivakit.core.kernel.language.modules;
 
 import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.core.kernel.language.matching.matchers.All;
+import com.telenav.kivakit.core.kernel.language.matchers.AnythingMatcher;
 import com.telenav.kivakit.core.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.core.kernel.language.paths.StringPath;
 import com.telenav.kivakit.core.kernel.logging.Logger;
@@ -178,7 +178,7 @@ public class Modules
      */
     public synchronized static List<ModuleResource> nestedResources(final PackagePath _package)
     {
-        return nestedResources(_package, new All<>());
+        return nestedResources(_package, new AnythingMatcher<>());
     }
 
     /**

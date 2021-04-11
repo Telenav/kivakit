@@ -26,18 +26,28 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * A simple frequency domain object. This object is not thread-safe and cannot be shared.
+ * A simple frequency domain object. Frequency is modeled as a {@link Duration} per cycle. Static factory methods allow
+ * construction of frequencies in terms of cycles per time unit. The {@link #start()} method begins tracking cycles by
+ * returning a {@link Cycle} object that can be used to determine how long the caller should wait before the next cycle
+ * begins (by calling {@link Cycle#waitTimeBeforeNextCycle()}.
+ *
+ * <p><b>Note</b></p>
+ *
+ * <p>
+ * <i>This object is not thread-safe and cannot be shared.</i>
+ * </p>
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageTime.class)
+@LexakaiJavadoc(complete = true)
 public class Frequency
 {
     public static final Frequency ONCE = every(Duration.MAXIMUM);
 
-    public static final Frequency EVERY_SECOND = timesPerSecond(1);
+    public static final Frequency EVERY_SECOND = cyclesPerSecond(1);
 
-    public static final Frequency EVERY_HALF_SECOND = timesPerSecond(2);
+    public static final Frequency EVERY_HALF_SECOND = cyclesPerSecond(2);
 
     public static final Frequency EVERY_5_SECONDS = every(Duration.seconds(5));
 
@@ -47,37 +57,37 @@ public class Frequency
 
     public static final Frequency EVERY_30_SECONDS = every(Duration.seconds(30));
 
-    public static final Frequency EVERY_MINUTE = timesPerMinute(1);
+    public static final Frequency EVERY_MINUTE = cyclesPerMinute(1);
 
-    public static final Frequency ONCE_A_DAY = timesPerDay(1);
+    public static final Frequency ONCE_A_DAY = cyclesPerDay(1);
 
-    public static final Frequency FOUR_TIMES_A_DAY = timesPerDay(4);
+    public static final Frequency FOUR_TIMES_A_DAY = cyclesPerDay(4);
 
     public static final Frequency CONTINUOUSLY = every(Duration.NONE);
 
-    public static Frequency every(final Duration duration)
-    {
-        return new Frequency(duration);
-    }
-
-    public static Frequency timesPerDay(final int times)
+    public static Frequency cyclesPerDay(final int times)
     {
         return every(Duration.ONE_DAY.divide(times));
     }
 
-    public static Frequency timesPerHour(final int times)
+    public static Frequency cyclesPerHour(final int times)
     {
         return every(Duration.ONE_HOUR.divide(times));
     }
 
-    public static Frequency timesPerMinute(final int times)
+    public static Frequency cyclesPerMinute(final int times)
     {
         return every(Duration.ONE_MINUTE.divide(times));
     }
 
-    public static Frequency timesPerSecond(final int times)
+    public static Frequency cyclesPerSecond(final int times)
     {
         return every(Duration.ONE_SECOND.divide(times));
+    }
+
+    public static Frequency every(final Duration duration)
+    {
+        return new Frequency(duration);
     }
 
     /**
@@ -102,6 +112,10 @@ public class Frequency
         }
     }
 
+    /**
+     * The start time of a cycle
+     */
+    @LexakaiJavadoc(complete = true)
     public class Cycle
     {
         private final Time start;
@@ -113,12 +127,12 @@ public class Frequency
 
         public Time next()
         {
-            return Time.now().add(untilNext());
+            return Time.now().add(waitTimeBeforeNextCycle());
         }
 
-        public Duration untilNext()
+        public Duration waitTimeBeforeNextCycle()
         {
-            if (duration.isNone())
+            if (cycleLength.isNone())
             {
                 return Duration.NONE;
             }
@@ -128,37 +142,52 @@ public class Frequency
             // The elapsed time modulus the duration is how far we are into the
             // current cycle
             final var intoCurrentCycle = Duration
-                    .milliseconds(sinceStart.asMilliseconds() % duration.asMilliseconds());
+                    .milliseconds(sinceStart.asMilliseconds() % cycleLength.asMilliseconds());
 
             // Find out how long is left until the next cycle
-            return duration.subtract(intoCurrentCycle);
+            return cycleLength.subtract(intoCurrentCycle);
         }
     }
 
-    private final Duration duration;
+    private final Duration cycleLength;
 
-    protected Frequency(final Duration duration)
+    protected Frequency(final Duration cycleLength)
     {
-        if (duration == null)
+        if (cycleLength == null)
         {
             Ensure.fail("Duration may not be null");
         }
-        this.duration = duration;
+        this.cycleLength = cycleLength;
     }
 
-    public Duration duration()
+    /**
+     * @return The duration of one cycle
+     */
+    public Duration cycleLength()
     {
-        return duration;
+        return cycleLength;
     }
 
+    /**
+     * @param start The time this frequency object started
+     * @return A {@link Cycle} object which provides the wait time until the next cycle
+     */
     public Cycle start(final Time start)
     {
         return new Cycle(start);
     }
 
+    /**
+     * @return A {@link Cycle} object which provides the wait time until the next cycle
+     */
+    public Cycle start()
+    {
+        return start(Time.now());
+    }
+
     @Override
     public String toString()
     {
-        return "every " + duration;
+        return "every " + cycleLength;
     }
 }

@@ -18,11 +18,14 @@
 
 package com.telenav.kivakit.core.kernel.interfaces.lifecycle;
 
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
 /**
- * Initialize this object
+ * Initializes an object
  *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public interface Initializable<T>
 {
     /**

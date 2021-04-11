@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.serialization.kryo;
 
 import com.telenav.kivakit.core.kernel.language.collections.CompressibleCollection;
-import com.telenav.kivakit.core.kernel.language.matching.matchers.All;
+import com.telenav.kivakit.core.kernel.language.matchers.AnythingMatcher;
 import com.telenav.kivakit.core.kernel.language.threading.context.CodeContext;
 import com.telenav.kivakit.core.kernel.language.threading.context.StackTrace;
 import com.telenav.kivakit.core.kernel.language.threading.status.ThreadStatus;
@@ -114,7 +114,7 @@ public class CoreKernelKryoTypes extends KryoTypes
             register(Thread.State.class);
         });
 
-        group("matching", () -> register(All.class));
+        group("matching", () -> register(AnythingMatcher.class));
 
         group("time", () ->
         {

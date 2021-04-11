@@ -19,6 +19,7 @@
 package com.telenav.kivakit.core.collections.set;
 
 import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramSet;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
@@ -36,6 +37,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.unsu
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramSet.class)
+@LexakaiJavadoc(complete = true)
 public class ConcurrentHashSet<Element> implements Set<Element>, Serializable
 {
     private final ConcurrentHashMap<Element, Element> members;

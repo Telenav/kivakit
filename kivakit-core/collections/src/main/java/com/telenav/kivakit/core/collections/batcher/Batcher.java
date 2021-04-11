@@ -26,6 +26,7 @@ import com.telenav.kivakit.core.kernel.language.time.Time;
 import com.telenav.kivakit.core.kernel.language.values.count.Count;
 import com.telenav.kivakit.core.kernel.language.values.count.Maximum;
 import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
@@ -153,6 +154,7 @@ public abstract class Batcher<Element> extends BaseRepeater
     /**
      * A batch of elements for processing
      */
+    @LexakaiJavadoc(complete = true)
     public class Batch extends ArrayList<Element>
     {
         /**

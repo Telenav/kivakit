@@ -158,7 +158,7 @@ public abstract class BaseLogger implements Logger
             final var time = lastLogTime.get(message.text());
 
             // and if it has never been logged or it was logged long enough ago,
-            if (time == null || time.isOlderThan(frequency.duration()))
+            if (time == null || time.isOlderThan(frequency.cycleLength()))
             {
                 // reset the last log time and let it be logged
                 lastLogTime.put(message.text(), Time.now());

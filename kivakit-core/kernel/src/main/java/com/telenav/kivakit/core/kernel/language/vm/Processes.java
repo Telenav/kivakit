@@ -21,12 +21,19 @@ package com.telenav.kivakit.core.kernel.language.vm;
 import com.telenav.kivakit.core.kernel.language.io.IO;
 import com.telenav.kivakit.core.kernel.language.io.StringReader;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Utility methods that work with Java {@link Process} objects.
+ *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class Processes
 {
+    /**
+     * @return The output of the given process as a string
+     */
     public static String captureOutput(final Process process)
     {
         final var in = process.getInputStream();
@@ -40,13 +47,9 @@ public class Processes
         }
     }
 
-    public static void copyStandardErrorToConsole(final Process process)
-    {
-        final var input = process.getErrorStream();
-        IO.copy(input, System.out, IO.CopyStyle.UNBUFFERED);
-        IO.flush(System.out);
-    }
-
+    /**
+     * Redirects the output of the given process to the console
+     */
     public static void copyStandardOutToConsole(final Process process)
     {
         final var input = process.getInputStream();
@@ -54,6 +57,19 @@ public class Processes
         IO.flush(System.out);
     }
 
+    /**
+     * Redirects the output of the given process to the console
+     */
+    public static void redirectStandardErrorToConsole(final Process process)
+    {
+        final var input = process.getErrorStream();
+        IO.copy(input, System.err, IO.CopyStyle.UNBUFFERED);
+        IO.flush(System.err);
+    }
+
+    /**
+     * Waits for the given process to terminate
+     */
     public static void waitFor(final Process process)
     {
         try

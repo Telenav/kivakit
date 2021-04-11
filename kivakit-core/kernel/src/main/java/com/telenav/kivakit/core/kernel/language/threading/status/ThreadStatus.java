@@ -20,12 +20,16 @@ package com.telenav.kivakit.core.kernel.language.threading.status;
 
 import com.telenav.kivakit.core.kernel.language.time.Duration;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageThread;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
+ * Information about the state of a thread from Java's management API.
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageThread.class)
+@LexakaiJavadoc(complete = true)
 public class ThreadStatus
 {
     Duration cpuTime;
@@ -36,26 +40,41 @@ public class ThreadStatus
 
     Thread.State state;
 
+    /**
+     * @return The CPU time consumed by this thread
+     */
     public Duration cpuTime()
     {
         return cpuTime;
     }
 
+    /**
+     * @return True if this thread is a daemon
+     */
     public boolean isDaemon()
     {
         return isDaemon;
     }
 
+    /**
+     * @return True if this is a KivaKit thread
+     */
     public boolean isKivaKit()
     {
         return name.startsWith("KivaKit-");
     }
 
+    /**
+     * @return The name of this thread
+     */
     public String name()
     {
         return name;
     }
 
+    /**
+     * @return This thread's state according to Java
+     */
     public Thread.State state()
     {
         return state;

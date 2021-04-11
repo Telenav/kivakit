@@ -39,6 +39,7 @@ import static com.telenav.kivakit.core.kernel.language.io.IO.CopyStyle.BUFFERED;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageIo.class)
+@LexakaiJavadoc(complete = true)
 public class IO
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();

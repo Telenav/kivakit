@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.kernel.messaging.listeners;
 
 import com.telenav.kivakit.core.kernel.language.collections.map.BaseMap;
-import com.telenav.kivakit.core.kernel.language.matching.matchers.All;
+import com.telenav.kivakit.core.kernel.language.matchers.AnythingMatcher;
 import com.telenav.kivakit.core.kernel.language.values.count.Count;
 import com.telenav.kivakit.core.kernel.messaging.Message;
 import com.telenav.kivakit.core.kernel.messaging.messages.status.Problem;
@@ -48,7 +48,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail
 @UmlClassDiagram(diagram = DiagramMessageListenerType.class)
 public class MessageChecker extends BaseRepeater
 {
-    private final MessageList messages = new MessageList(new All<>());
+    private final MessageList messages = new MessageList(new AnythingMatcher<>());
 
     private final BaseMap<Class<? extends Message>, Count> expectedCount =
             new BaseMap<>(CoreKernelLimits.MESSAGE_CLASSES);

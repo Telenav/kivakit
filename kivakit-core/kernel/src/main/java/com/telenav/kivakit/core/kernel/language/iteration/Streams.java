@@ -19,6 +19,7 @@
 package com.telenav.kivakit.core.kernel.language.iteration;
 
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageIteration;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.stream.Stream;
@@ -30,6 +31,7 @@ import java.util.stream.StreamSupport;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageIteration.class)
+@LexakaiJavadoc(complete = true)
 public class Streams
 {
     public static <T> Stream<T> parallelStream(final Iterable<T> iterable)
@@ -55,6 +57,9 @@ public class Streams
         }
     }
 
+    /**
+     * Type of processing to apply to a stream
+     */
     public enum Processing
     {
         PARALLEL,

@@ -18,7 +18,7 @@
 
 package kernel.messaging;
 
-import com.telenav.kivakit.core.kernel.language.matching.matchers.All;
+import com.telenav.kivakit.core.kernel.language.matchers.AnythingMatcher;
 import com.telenav.kivakit.core.kernel.language.values.count.Maximum;
 import com.telenav.kivakit.core.kernel.language.values.count.MutableCount;
 import com.telenav.kivakit.core.kernel.messaging.Repeater;
@@ -35,7 +35,7 @@ public class MessageListTest
     @Test
     public void test()
     {
-        final var list = new MessageList(Maximum.maximum(5), new All<>());
+        final var list = new MessageList(Maximum.maximum(5), new AnythingMatcher<>());
         final Repeater repeater = new BaseRepeater(getClass());
         final var count = new MutableCount();
         list.listenTo(repeater);

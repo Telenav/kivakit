@@ -108,8 +108,9 @@
     class Processes
     {
         --(filesystem)--
-        +void copyStandardErrorToConsole(Process)
         +void copyStandardOutToConsole(Process)
+        --(status)--
+        +void redirectStandardErrorToConsole(Process)
         --(thread)--
         +void waitFor(Process)
         --(write)--

@@ -29,7 +29,7 @@ import com.telenav.kivakit.core.kernel.KivaKit;
 import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.core.kernel.data.validation.reporters.NullValidationReporter;
 import com.telenav.kivakit.core.kernel.data.validation.validators.BaseValidator;
-import com.telenav.kivakit.core.kernel.language.matching.matchers.All;
+import com.telenav.kivakit.core.kernel.language.matchers.AnythingMatcher;
 import com.telenav.kivakit.core.kernel.language.strings.AsciiArt;
 import com.telenav.kivakit.core.kernel.language.strings.Wrap;
 import com.telenav.kivakit.core.kernel.language.time.Duration;
@@ -220,7 +220,7 @@ public class CommandLineParser
     {
         Ensure.ensure(new NullValidationReporter(), () ->
         {
-            final var messages = new MessageList(Maximum._100, new All<>());
+            final var messages = new MessageList(Maximum._100, new AnythingMatcher<>());
 
             final var validator = new BaseValidator()
             {

@@ -23,6 +23,32 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Interface for code that writes bits to some destination.
+ *
+ * <p>
+ * Implementers must provide:
+ * </p>
+ *
+ * <ul>
+ *     <li>{@link #cursor()} - The current write position in bits</li>
+ *     <li>{@link #flush()} - Flushes any unwritten data</li>
+ *     <li>{@link #writeBit(boolean)} - Writes the given bit to output</li>
+ *     <li>{@link #onClose()} - Closes the writer, flushing any data</li>
+ * </ul>
+ *
+ * <p>
+ * Default methods provide:
+ * </p>
+ *
+ * <ul>
+ *     <li>{@link #write(long, int)}</li>
+ *     <li>{@link #writeByte(byte)}</li>
+ *     <li>{@link #writeInt(int)}</li>
+ *     <li>{@link #writeString(String)}</li>
+ *     <li>{@link #writeFlexibleInt(int, int, int)}</li>
+ * </ul>
+ */
 @UmlClassDiagram(diagram = DiagramPrimitiveArrayBitIo.class)
 public interface BitWriter extends AutoCloseable
 {
@@ -67,10 +93,22 @@ public interface BitWriter extends AutoCloseable
     }
 
     /**
-     * Writes the given value using the small bit count if it will fit, otherwise writes it using the big bit account.
-     * The data written by this method can be read with {@link BitReader#readFlexibleInt(int, int)}
+     * Writes the given value using the small bit count if it will fit, otherwise the big bit count
      */
-    void writeFlexibleInt(final int smallBitCount, final int bigBitCount, final int value);
+    default void writeFlexibleInt(final int smallBitCount, final int bigBitCount, final int value)
+    {
+        assert smallBitCount < bigBitCount;
+        final var isSmall = value < (1 << smallBitCount);
+        writeBit(isSmall);
+        if (isSmall)
+        {
+            write(value, smallBitCount);
+        }
+        else
+        {
+            write(value, bigBitCount);
+        }
+    }
 
     default void writeInt(final int value)
     {

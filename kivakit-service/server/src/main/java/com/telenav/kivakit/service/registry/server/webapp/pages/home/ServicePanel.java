@@ -84,10 +84,10 @@ public class ServicePanel extends Panel
         add(new Label("problems", () -> health.count("Problem")));
         add(new Label("warnings", () -> health.count("Warning")));
         add(new Label("quibbles", () -> health.count("Quibble")));
-        add(new Label("threads", () -> health.threadSnapshot().threads().size()));
+        add(new Label("threads", () -> health.threadSnapshot().snapshot().size()));
 
         final var states = new CountMap<Thread.State>();
-        health.threadSnapshot().threads().forEach(thread -> states.increment(thread.state()));
+        health.threadSnapshot().snapshot().forEach(thread -> states.increment(thread.state()));
         add(new Label("threads-running", () -> states.count(RUNNABLE)));
         add(new Label("threads-waiting", () -> states.count(BLOCKED)
                 .plus(states.count(WAITING))

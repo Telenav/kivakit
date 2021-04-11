@@ -19,9 +19,16 @@
 package com.telenav.kivakit.core.kernel.language.primitives;
 
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguagePrimitive;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * Utility methods for working with <i>double</i> values
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramLanguagePrimitive.class)
+@LexakaiJavadoc(complete = true)
 public class Doubles
 {
     /** Default invalid value */

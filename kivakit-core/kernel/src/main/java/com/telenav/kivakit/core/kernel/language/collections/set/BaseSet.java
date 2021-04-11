@@ -28,6 +28,7 @@ import com.telenav.kivakit.core.kernel.language.values.count.Count;
 import com.telenav.kivakit.core.kernel.language.values.count.Maximum;
 import com.telenav.kivakit.core.kernel.logging.Logger;
 import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -35,10 +36,12 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * A set with a maximum size
+ * A set with a maximum size. Adds the methods {@link #matching(Matcher)} and {@link #first()} to the usual {@link Set}
+ * operations.
  *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public abstract class BaseSet<Element> implements
         Set<Element>,
         NewInstance<BaseSet<Element>>,

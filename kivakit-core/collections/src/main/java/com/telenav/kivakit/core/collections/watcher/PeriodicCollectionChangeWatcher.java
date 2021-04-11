@@ -20,9 +20,9 @@ package com.telenav.kivakit.core.collections.watcher;
 
 import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramWatcher;
 import com.telenav.kivakit.core.kernel.interfaces.lifecycle.Startable;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.language.time.Frequency;
 import com.telenav.kivakit.core.kernel.language.time.Time;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
 import java.util.Map;
@@ -118,7 +118,7 @@ public abstract class PeriodicCollectionChangeWatcher<T> extends BaseCollectionC
             catch (final Exception ignored)
             {
             }
-            frequency.duration().sleep();
+            frequency.cycleLength().sleep();
         }
     }
 

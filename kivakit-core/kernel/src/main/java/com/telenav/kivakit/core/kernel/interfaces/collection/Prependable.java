@@ -18,9 +18,10 @@
 
 package com.telenav.kivakit.core.kernel.interfaces.collection;
 
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramExampleBaseList;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramInterfaceCollection;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
  * An object, often a collection or related type, to which objects can be prepended.
@@ -30,6 +31,7 @@ import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramInterface
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramInterfaceCollection.class)
 @UmlClassDiagram(diagram = DiagramExampleBaseList.class)
+@LexakaiJavadoc(complete = true)
 public interface Prependable<T>
 {
     /**

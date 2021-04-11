@@ -21,6 +21,7 @@ package com.telenav.kivakit.core.kernel.language.iteration;
 import com.telenav.kivakit.core.kernel.language.objects.Hash;
 import com.telenav.kivakit.core.kernel.language.objects.Objects;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageIteration;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
@@ -32,6 +33,7 @@ import java.util.function.Supplier;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageIteration.class)
+@LexakaiJavadoc(complete = true)
 public class Iterators
 {
     public static <T> Iterator<T> empty()

@@ -19,6 +19,7 @@
 package com.telenav.kivakit.core.collections.iteration.iterators;
 
 import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramIteration;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
@@ -32,6 +33,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.unsu
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramIteration.class)
+@LexakaiJavadoc(complete = true)
 public class SingletonIterator<Element> implements Iterator<Element>
 {
     private final Element element;

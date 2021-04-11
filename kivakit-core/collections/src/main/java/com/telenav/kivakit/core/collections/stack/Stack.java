@@ -19,16 +19,18 @@
 package com.telenav.kivakit.core.collections.stack;
 
 import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramStack;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.core.kernel.language.values.count.Maximum;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * An object list with {@link #push(Object)} and {@link #pop()}
+ * An object list with {@link #push(Object)} and {@link #pop()} methods added.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramStack.class)
+@LexakaiJavadoc(complete = true)
 public class Stack<T> extends ObjectList<T>
 {
     public Stack()

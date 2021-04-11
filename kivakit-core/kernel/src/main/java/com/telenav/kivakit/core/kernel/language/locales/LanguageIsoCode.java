@@ -245,6 +245,12 @@ public class LanguageIsoCode extends Name implements Comparable<LanguageIsoCode>
         return forIso3Code.get(code.toLowerCase());
     }
 
+    /**
+     * Converts to and from a {@link LanguageIsoCode}. Both ISO2 and ISO3 values are supported.
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<LanguageIsoCode>
     {
         public Converter(final Listener listener)

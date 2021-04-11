@@ -23,6 +23,7 @@ import com.telenav.kivakit.core.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.core.kernel.language.collections.map.BaseMap;
 import com.telenav.kivakit.core.kernel.language.values.count.Count;
 import com.telenav.kivakit.core.kernel.language.values.count.Maximum;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
@@ -31,11 +32,15 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * A map from key to an {@link ObjectList} of values.
+ * A map from key to an {@link ObjectList} of values. Values can be added with {@link #add(Object, Object)} and {@link
+ * #addAll(Object, Collection)}. A flat list of all values in the map can be retrieved with {@link #flatValues()}. The
+ * {@link ObjectList} for a key can be retrieved with {@link #get(Object)} or {@link #list(Object)}. If the list for the
+ * given key does not yet exist, {@link #list(Object)} will create a new one.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMap.class)
+@LexakaiJavadoc(complete = true)
 public class MultiMap<Key, Value> extends BaseMap<Key, ObjectList<Value>>
 {
     private final Maximum maximumValues;

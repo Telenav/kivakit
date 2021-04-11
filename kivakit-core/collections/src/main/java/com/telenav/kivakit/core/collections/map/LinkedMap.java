@@ -18,10 +18,11 @@
 
 package com.telenav.kivakit.core.collections.map;
 
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramMap;
 import com.telenav.kivakit.core.kernel.language.collections.map.BaseMap;
 import com.telenav.kivakit.core.kernel.language.values.count.Maximum;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.LinkedHashMap;
 
@@ -31,6 +32,7 @@ import java.util.LinkedHashMap;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMap.class)
+@LexakaiJavadoc(complete = true)
 public class LinkedMap<Key, Value> extends BaseMap<Key, Value>
 {
     public LinkedMap(final Maximum maximumSize)

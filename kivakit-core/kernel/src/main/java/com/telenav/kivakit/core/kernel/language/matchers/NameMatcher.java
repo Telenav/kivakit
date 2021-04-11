@@ -16,29 +16,38 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.core.kernel.language.matching.matchers;
+package com.telenav.kivakit.core.kernel.language.matchers;
 
 import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
+import com.telenav.kivakit.core.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageMatchers;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * A {@link Matcher} that matches all values
+ * A {@link Matcher} that matches objects with the given name
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageMatchers.class)
-public class All<T> implements Matcher<T>
+@LexakaiJavadoc(complete = true)
+public class NameMatcher<T extends Named> implements Matcher<T>
 {
-    @Override
-    public boolean matches(final T value)
+    private final String name;
+
+    public NameMatcher(final Named named)
     {
-        return true;
+        name = named.name();
+    }
+
+    public NameMatcher(final String name)
+    {
+        this.name = name;
     }
 
     @Override
-    public String toString()
+    public boolean matches(final T value)
     {
-        return "*";
+        return value.name().equals(name);
     }
 }

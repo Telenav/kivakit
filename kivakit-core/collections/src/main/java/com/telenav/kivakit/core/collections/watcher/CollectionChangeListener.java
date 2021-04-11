@@ -19,6 +19,7 @@
 package com.telenav.kivakit.core.collections.watcher;
 
 import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramWatcher;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -27,6 +28,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramWatcher.class)
+@LexakaiJavadoc(complete = true)
 public interface CollectionChangeListener<T>
 {
     void onAdded(T value);

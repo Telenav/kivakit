@@ -22,10 +22,10 @@
         --
         +ThreadSnapshot update()
         --(collection)--
-        +List<ThreadStatus> threads()
+        +List<ThreadStatus> snapshot()
         --(time)--
-        +Duration cpuTime()
-        +Time time()
+        +Time capturedAt()
+        +Duration totalCpuTime()
     }
     
     class ThreadStatus

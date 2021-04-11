@@ -18,18 +18,22 @@
 
 package com.telenav.kivakit.core.kernel.language.io;
 
-import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageIo;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.kernel.language.progress.reporters.Progress;
+import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageIo;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.IOException;
 import java.io.OutputStream;
 
 /**
+ * An {@link OutputStream} that reports progress as bytes are written.
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageIo.class)
+@LexakaiJavadoc(complete = true)
 public class ProgressiveOutput extends OutputStream
 {
     private final OutputStream output;

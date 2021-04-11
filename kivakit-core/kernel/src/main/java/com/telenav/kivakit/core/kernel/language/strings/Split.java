@@ -18,15 +18,22 @@
 
 package com.telenav.kivakit.core.kernel.language.strings;
 
-import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageString;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
+import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.core.kernel.language.iteration.Iterables;
 import com.telenav.kivakit.core.kernel.language.iteration.Next;
+import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageString;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
+ * Splits strings into a sequence of values on a delimiter. To convert a string into a {@link StringList} use {@link
+ * StringList#split(String, char)} or {@link StringList#split(String, String)}.
+ *
  * @author jonathanl (shibo)
+ * @see StringList
  */
 @UmlClassDiagram(diagram = DiagramLanguageString.class)
+@LexakaiJavadoc(complete = true)
 public class Split
 {
     /**

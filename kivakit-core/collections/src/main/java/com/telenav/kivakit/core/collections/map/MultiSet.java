@@ -18,7 +18,6 @@
 
 package com.telenav.kivakit.core.collections.map;
 
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramSet;
 import com.telenav.kivakit.core.kernel.language.collections.map.BaseMap;
 import com.telenav.kivakit.core.kernel.language.collections.set.ObjectSet;
@@ -26,19 +25,23 @@ import com.telenav.kivakit.core.kernel.language.iteration.Iterables;
 import com.telenav.kivakit.core.kernel.language.iteration.Next;
 import com.telenav.kivakit.core.kernel.language.values.count.Count;
 import com.telenav.kivakit.core.kernel.language.values.count.Maximum;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
 /**
- * A map from key to a set of values.
+ * A map from key to an {@link ObjectSet} of values. Values can be added with {@link #add(Object, Object)}. A flattened
+ * set of all values in the map can be retrieved with {@link #flatValues()}. The {@link ObjectSet} for a key can be
+ * retrieved with {@link #set(Object)}. If the set for the given key does not yet exist, one is created.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramSet.class)
-public class MultiSet<Key, Value> extends BaseMap<Key, Set<Value>>
+@LexakaiJavadoc(complete = true)
+public class MultiSet<Key, Value> extends BaseMap<Key, ObjectSet<Value>>
 {
     private final Maximum maximumValues;
 
@@ -56,7 +59,7 @@ public class MultiSet<Key, Value> extends BaseMap<Key, Set<Value>>
     /**
      * In case another implementation wants to control the type of map used underneath
      */
-    protected MultiSet(final Maximum maximumKeys, final Maximum maximumValues, final Map<Key, Set<Value>> map)
+    protected MultiSet(final Maximum maximumKeys, final Maximum maximumValues, final Map<Key, ObjectSet<Value>> map)
     {
         super(maximumKeys, map);
         this.maximumValues = maximumValues;
@@ -84,7 +87,7 @@ public class MultiSet<Key, Value> extends BaseMap<Key, Set<Value>>
     {
         return Iterables.iterable(() -> new Next<>()
         {
-            private final Iterator<Set<Value>> sets = values().iterator();
+            private final Iterator<ObjectSet<Value>> sets = values().iterator();
 
             private Iterator<Value> values;
 
@@ -109,7 +112,7 @@ public class MultiSet<Key, Value> extends BaseMap<Key, Set<Value>>
 
     public Set<Value> getOrEmptySet(final Object key)
     {
-        return getOrDefault(key, Collections.emptySet());
+        return getOrDefault(key, new ObjectSet<>());
     }
 
     public Count maximumSetSize()
@@ -134,8 +137,13 @@ public class MultiSet<Key, Value> extends BaseMap<Key, Set<Value>>
         add(key, value);
     }
 
+    public ObjectSet<Value> set(final Key key)
+    {
+        return computeIfAbsent(key, ignored -> new ObjectSet<>());
+    }
+
     @Override
-    protected Set<Value> onInitialize(final Key key)
+    protected ObjectSet<Value> onInitialize(final Key key)
     {
         return new ObjectSet<>(maximumValues);
     }

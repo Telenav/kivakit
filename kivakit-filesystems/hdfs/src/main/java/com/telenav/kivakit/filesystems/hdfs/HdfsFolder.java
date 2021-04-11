@@ -12,7 +12,7 @@ import com.telenav.kivakit.core.filesystem.spi.FileService;
 import com.telenav.kivakit.core.filesystem.spi.FolderService;
 import com.telenav.kivakit.core.kernel.interfaces.code.CheckedCode;
 import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
-import com.telenav.kivakit.core.kernel.language.matching.matchers.All;
+import com.telenav.kivakit.core.kernel.language.matchers.AnythingMatcher;
 import com.telenav.kivakit.core.kernel.language.threading.Retry;
 import com.telenav.kivakit.core.kernel.language.threading.locks.Monitor;
 import com.telenav.kivakit.core.kernel.language.time.Duration;
@@ -112,7 +112,7 @@ public class HdfsFolder implements FolderService
     @Override
     public List<HdfsFile> files()
     {
-        return retry(() -> matching(proxy().files(pathAsString()), new All<>())).or(new ArrayList<>(), "Unable to locate files in $", this);
+        return retry(() -> matching(proxy().files(pathAsString()), new AnythingMatcher<>())).or(new ArrayList<>(), "Unable to locate files in $", this);
     }
 
     @Override
@@ -137,7 +137,7 @@ public class HdfsFolder implements FolderService
     @SuppressWarnings("unchecked")
     public List<HdfsFolder> folders()
     {
-        return (List<HdfsFolder>) folders(new All<>());
+        return (List<HdfsFolder>) folders(new AnythingMatcher<>());
     }
 
     @Override
@@ -212,7 +212,7 @@ public class HdfsFolder implements FolderService
 
     public List<HdfsFile> nestedFiles()
     {
-        return retry(() -> matching(proxy().nestedFiles(pathAsString()), new All<>())).or(new ArrayList<>(), "Unable to locate files in $", this);
+        return retry(() -> matching(proxy().nestedFiles(pathAsString()), new AnythingMatcher<>())).or(new ArrayList<>(), "Unable to locate files in $", this);
     }
 
     @Override

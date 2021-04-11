@@ -22,14 +22,15 @@ import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.KryoSerializable;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
+import com.telenav.kivakit.core.collections.primitive.iteration.IntIterator;
+import com.telenav.kivakit.core.collections.primitive.iteration.LongIterator;
 import com.telenav.kivakit.core.collections.primitive.map.PrimitiveMap;
 import com.telenav.kivakit.core.collections.primitive.map.PrimitiveScalarMap;
 import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramPrimitiveMap;
-import com.telenav.kivakit.core.collections.primitive.iteration.IntIterator;
-import com.telenav.kivakit.core.collections.primitive.iteration.LongIterator;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.kernel.language.values.count.Count;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Arrays;
 
@@ -65,6 +66,7 @@ public final class IntToLongMap extends PrimitiveMap implements PrimitiveScalarM
     /**
      * Interface for visiting map entries with {@link #entries(EntryVisitor)}
      */
+    @LexakaiJavadoc(complete = true)
     public interface EntryVisitor
     {
         void onEntry(long key, long value);

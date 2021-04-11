@@ -83,11 +83,11 @@
         CREATED
         EXITED
         EXITING
-        PAUSE
         PAUSED
-        RESUME
+        PAUSE_REQUESTED
+        RESUME_REQUESTED
         RUNNING
-        STOP
+        STOP_REQUESTED
         WAITING
     }
     

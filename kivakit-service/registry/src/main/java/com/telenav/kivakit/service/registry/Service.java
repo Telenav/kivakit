@@ -227,7 +227,7 @@ public class Service implements Comparable<Service>, AsString
     public boolean isStale()
     {
         return renewedAt().elapsedSince().isGreaterThan(ServiceRegistry.settings()
-                .serviceLeaseRenewalFrequency().duration().times(1.5));
+                .serviceLeaseRenewalFrequency().cycleLength().times(1.5));
     }
 
     @JsonIgnore

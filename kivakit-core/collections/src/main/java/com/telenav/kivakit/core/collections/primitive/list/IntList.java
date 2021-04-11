@@ -19,13 +19,9 @@
 package com.telenav.kivakit.core.collections.primitive.list;
 
 import com.telenav.kivakit.core.collections.primitive.IntCollection;
-import com.telenav.kivakit.core.collections.primitive.PrimitiveCollection;
 import com.telenav.kivakit.core.collections.primitive.iteration.IntIterator;
 import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramPrimitiveList;
-import com.telenav.kivakit.core.kernel.language.values.count.Count;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.unsupported;
 
 /**
  * A int collection supporting indexed operations. The first and last values in the list can be retrieved with {@link
@@ -43,93 +39,6 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.unsu
 @UmlClassDiagram(diagram = DiagramPrimitiveList.class)
 public interface IntList extends IntCollection, PrimitiveList
 {
-    class Adapter implements IntList
-    {
-        @Override
-        public boolean add(final int value)
-        {
-            return unsupported();
-        }
-
-        @Override
-        public Count capacity()
-        {
-            return unsupported();
-        }
-
-        @Override
-        public int cursor()
-        {
-            return unsupported();
-        }
-
-        @Override
-        public void cursor(final int position)
-        {
-            unsupported();
-        }
-
-        @Override
-        public int get(final int index)
-        {
-            return unsupported();
-        }
-
-        @Override
-        public boolean hasNullInt()
-        {
-            return unsupported();
-        }
-
-        @Override
-        public PrimitiveCollection hasNullInt(final boolean has)
-        {
-            return unsupported();
-        }
-
-        @Override
-        public boolean isNull(final int value)
-        {
-            return unsupported();
-        }
-
-        @Override
-        public int nullInt()
-        {
-            return unsupported();
-        }
-
-        @Override
-        public int safeGet(final int index)
-        {
-            return unsupported();
-        }
-
-        @Override
-        public long safeGetPrimitive(final int index)
-        {
-            return unsupported();
-        }
-
-        @Override
-        public void set(final int index, final int value)
-        {
-            unsupported();
-        }
-
-        @Override
-        public void setPrimitive(final int index, final long value)
-        {
-            unsupported();
-        }
-
-        @Override
-        public int size()
-        {
-            return unsupported();
-        }
-    }
-
     /**
      * Binary search adapted from Java Arrays#binarySearch
      *

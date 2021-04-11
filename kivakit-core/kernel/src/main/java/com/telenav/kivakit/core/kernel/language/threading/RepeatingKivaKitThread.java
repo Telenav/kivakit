@@ -20,14 +20,13 @@ package com.telenav.kivakit.core.kernel.language.threading;
 
 import com.telenav.kivakit.core.kernel.interfaces.lifecycle.Pausable;
 import com.telenav.kivakit.core.kernel.language.time.Frequency;
-import com.telenav.kivakit.core.kernel.language.time.Time;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageThread;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.PAUSE;
 import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.PAUSED;
-import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.RESUME;
+import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.PAUSE_REQUESTED;
+import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.RESUME_REQUESTED;
 import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.RUNNING;
 
 /**
@@ -99,7 +98,7 @@ public class RepeatingKivaKitThread extends KivaKitThread implements Pausable
     public void pause()
     {
         trace("Pause requested");
-        state().transitionAndWait(RUNNING, PAUSE, PAUSED);
+        state().transitionAndWait(RUNNING, PAUSE_REQUESTED, PAUSED);
         trace("Paused");
     }
 
@@ -112,7 +111,7 @@ public class RepeatingKivaKitThread extends KivaKitThread implements Pausable
         }
         else
         {
-            state().transitionAndWait(PAUSED, RESUME, RUNNING);
+            state().transitionAndWait(PAUSED, RESUME_REQUESTED, RUNNING);
         }
     }
 
@@ -130,13 +129,13 @@ public class RepeatingKivaKitThread extends KivaKitThread implements Pausable
         // start running,
         onRunning();
 
-        final var cycle = frequency.start(Time.now());
+        final var cycle = frequency.start();
 
         while (!shouldStop())
         {
-            if (state().is(PAUSE))
+            if (state().is(PAUSE_REQUESTED))
             {
-                state().waitFor(RESUME);
+                state().waitFor(RESUME_REQUESTED);
             }
 
             if (!shouldStop())
@@ -153,7 +152,7 @@ public class RepeatingKivaKitThread extends KivaKitThread implements Pausable
 
                 if (cycle != null)
                 {
-                    cycle.untilNext().sleep();
+                    cycle.waitTimeBeforeNextCycle().sleep();
                 }
             }
         }

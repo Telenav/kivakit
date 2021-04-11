@@ -22,6 +22,7 @@ import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverte
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramDataConversionOther;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -30,6 +31,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramDataConversionOther.class)
+@LexakaiJavadoc(complete = true)
 public class ClassConverter extends BaseStringConverter<Class<?>>
 {
     /**

@@ -77,13 +77,13 @@ public class JavaVirtualMachineHealth
     @KivaKitIncludeProperty
     public Duration elapsed()
     {
-        return lastSnapshot == null ? Duration.NONE : snapshot.time().subtract(lastSnapshot.time());
+        return lastSnapshot == null ? Duration.NONE : snapshot.capturedAt().subtract(lastSnapshot.capturedAt());
     }
 
     @KivaKitIncludeProperty
     public Duration elapsedCpuTime()
     {
-        return lastSnapshot == null ? Duration.NONE : snapshot.cpuTime().subtract(lastSnapshot.cpuTime());
+        return lastSnapshot == null ? Duration.NONE : snapshot.totalCpuTime().subtract(lastSnapshot.totalCpuTime());
     }
 
     @KivaKitIncludeProperty

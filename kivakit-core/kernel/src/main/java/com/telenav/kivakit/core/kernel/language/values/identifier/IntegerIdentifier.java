@@ -23,6 +23,7 @@ import com.telenav.kivakit.core.kernel.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.core.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -31,8 +32,15 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageValue.class)
+@LexakaiJavadoc(complete = true)
 public class IntegerIdentifier implements Comparable<IntegerIdentifier>, Identifiable
 {
+    /**
+     * Converts to and from an {@link IntegerIdentifier}
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends Quantizable.Converter<IntegerIdentifier>
     {
         public Converter(final Listener listener)

@@ -18,8 +18,9 @@
 
 package com.telenav.kivakit.core.collections.set;
 
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramSet;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.AbstractSet;
 import java.util.Collection;
@@ -27,9 +28,13 @@ import java.util.IdentityHashMap;
 import java.util.Iterator;
 
 /**
+ * A set of elements stored by identity (as opposed to using the {@link #hashCode()} / {@link #equals(Object)}
+ * contract). Implemented with an {@link IdentityHashMap}.
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramSet.class)
+@LexakaiJavadoc(complete = true)
 public class IdentitySet<Element> extends AbstractSet<Element>
 {
     private final IdentityHashMap<Element, Boolean> map = new IdentityHashMap<>();
@@ -54,7 +59,7 @@ public class IdentitySet<Element> extends AbstractSet<Element>
     }
 
     @Override
-    @SuppressWarnings({ "RedundantCast", "unchecked" })
+    @SuppressWarnings({ "unchecked" })
     public boolean contains(final Object object)
     {
         return map.containsKey((Element) object);

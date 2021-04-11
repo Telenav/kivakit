@@ -21,9 +21,16 @@ package com.telenav.kivakit.core.kernel.language.primitives;
 import com.telenav.kivakit.core.kernel.language.strings.Strip;
 import com.telenav.kivakit.core.kernel.language.values.count.BitCount;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguagePrimitive;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * Utility methods for <i>long</i> values
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramLanguagePrimitive.class)
+@LexakaiJavadoc(complete = true)
 public class Longs
 {
     /** Default invalid value */

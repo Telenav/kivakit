@@ -4,13 +4,6 @@
     
     title "com.telenav.kivakit.core.collections.primitive.list"
     
-    interface IntList
-    
-    IntList <|-- IntList.Adapter
-    class IntList.Adapter
-    {
-    }
-    
     interface ByteCollection
     interface CompressibleCollection
     interface PrimitiveList

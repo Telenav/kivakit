@@ -8,8 +8,8 @@
     
     interface Matcher
     
-    Matcher <|-- All
-    class All<T>
+    Matcher <|-- AnythingMatcher
+    class AnythingMatcher<T>
     {
     }
     
@@ -22,24 +22,24 @@
         #Iterator<T> values()
     }
     
-    Matcher <|-- None
-    class None<T>
+    Matcher <|-- NameMatcher
+    class NameMatcher<T>
+    {
+        --(constructors)--
+        +NameMatcher(Named)
+        +NameMatcher(String)
+    }
+    
+    Matcher <|-- NullMatcher
+    class NullMatcher<T>
     {
     }
     
-    Matcher <|-- WithName
-    class WithName<T>
+    Matcher <|-- PatternMatcher
+    class PatternMatcher<T>
     {
         --(constructors)--
-        +WithName(Named)
-        +WithName(String)
-    }
-    
-    Matcher <|-- WithNameMatching
-    class WithNameMatching<T>
-    {
-        --(constructors)--
-        +WithNameMatching(Pattern)
+        +PatternMatcher(Pattern)
     }
     
 @enduml

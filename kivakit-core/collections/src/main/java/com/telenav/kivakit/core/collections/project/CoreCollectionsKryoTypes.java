@@ -49,14 +49,16 @@ import com.telenav.kivakit.core.collections.primitive.set.LongSet;
 import com.telenav.kivakit.core.collections.primitive.set.SplitLongSet;
 import com.telenav.kivakit.core.kernel.language.collections.list.LinkedObjectList;
 import com.telenav.kivakit.core.serialization.kryo.KryoTypes;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import static com.telenav.kivakit.core.collections.primitive.array.packed.PackedPrimitiveArray.OverflowHandling;
 
 /**
- * Serializer for objects in the kivakit-core-collections module and in dependent projects.
+ * Kryo type registrations for objects in the kivakit-core-collections module
  *
  * @author jonathanl (shibo)
  */
+@LexakaiJavadoc(complete = true)
 public class CoreCollectionsKryoTypes extends KryoTypes
 {
     public CoreCollectionsKryoTypes()

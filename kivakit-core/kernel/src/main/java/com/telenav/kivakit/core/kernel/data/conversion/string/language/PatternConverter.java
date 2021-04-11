@@ -18,19 +18,22 @@
 
 package com.telenav.kivakit.core.kernel.data.conversion.string.language;
 
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramDataConversionOther;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.regex.Pattern;
 
 /**
- * Converts between {@link Class} objects and fully-qualified class names.
+ * Converts to and from a Java regular expression {@link Pattern}
  *
  * @author jonathanl (shibo)
+ * @see Pattern
  */
 @UmlClassDiagram(diagram = DiagramDataConversionOther.class)
+@LexakaiJavadoc(complete = true)
 public class PatternConverter extends BaseStringConverter<Pattern>
 {
     /**

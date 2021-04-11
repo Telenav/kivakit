@@ -20,14 +20,21 @@ package com.telenav.kivakit.core.kernel.language.progress;
 
 import com.telenav.kivakit.core.kernel.language.values.level.Percent;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageProgress;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
+ * A listener interested in the percentage completed of an operation.
+ *
  * @author jonathanl (shibo)
  */
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramLanguageProgress.class)
+@LexakaiJavadoc(complete = true)
 public interface ProgressListener
 {
+    /**
+     * The percentage completion of the operation
+     */
     void at(Percent at);
 }

@@ -4,32 +4,31 @@
     
     title "com.telenav.kivakit.core.kernel.language.collections.map.count"
     
-    class ConcurrentCountMap<T>
+    class ConcurrentCountMap<Key>
     {
         --
-        +void mergeIn(ConcurrentCountMap<T> that)
+        +void mergeIn(ConcurrentCountMap<Key> that)
         +long total()
         --(collection)--
-        +Count add(T key, long value)
-        +ConcurrentCountMap<T> add(T key, Countable value)
-        +ConcurrentCountMap<T> add(T key, Count value)
-        +boolean contains(T key)
-        +Count count(T key)
-        +ConcurrentCountMap<T> decrement(T key)
-        +List<Map.Entry<T,AtomicLong>> descendingEntries(Count maximum, Comparator<Map.Entry<T,AtomicLong>>)
-        +ConcurrentCountMap<T> increment(T key)
-        +Collection<T> keySet()
+        +ConcurrentCountMap<Key> add(Key, Count value)
+        +ConcurrentCountMap<Key> add(Key, Countable value)
+        +Count add(Key, long value)
+        +boolean contains(Key)
+        +Count count(Key)
+        +ConcurrentCountMap<Key> decrement(Key)
+        +List<Map.Entry<Key,AtomicLong>> descendingEntries(Count maximum, Comparator<Map.Entry<Key,AtomicLong>>)
+        +ConcurrentCountMap<Key> increment(Key)
+        +Collection<Key> keySet()
+        +Key minimum()
         +ConcurrentCountMap<T> parse(Factory<ConcurrentCountMap<T>> mapFactory, MapFactory<String,T> keyFactory, String text)
-        +ConcurrentCountMap<T> prune(Count minimum)
-        +void remove(T key)
+        +ConcurrentCountMap<Key> prune(Count minimum)
+        +void remove(Key)
         +int size()
-        +List<T> sortedByDescendingCount()
-        +List<T> sortedKeys()
-        +List<T> sortedKeys(Comparator<T>)
-        +ConcurrentCountMap<T> top(Count maximum)
-        +ConcurrentCountMap<T> top(Count maximum, Comparator<Map.Entry<T,AtomicLong>>)
-        --(math)--
-        +T minimum()
+        +List<Key> sortedByDescendingCount()
+        +List<Key> sortedKeys(Comparator<Key>)
+        +List<Key> sortedKeys()
+        +ConcurrentCountMap<Key> top(Count maximum)
+        +ConcurrentCountMap<Key> top(Count maximum, Comparator<Map.Entry<Key,AtomicLong>>)
     }
     
     class CountMap<T>

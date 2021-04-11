@@ -19,11 +19,18 @@
 package com.telenav.kivakit.core.kernel.language.values.mutable;
 
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.function.Function;
 
+/**
+ * A value that can be retrived with {@link #get()} and mutated with {@link #set(Object)} or {@link #update(Function)}.
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramLanguageValue.class)
+@LexakaiJavadoc(complete = true)
 public class MutableValue<T>
 {
     private T value;

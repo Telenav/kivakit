@@ -262,7 +262,7 @@ public class JarLauncher extends BaseRepeater
                         announcement.asStringList().titledBox("Launching Jar");
                         final var process = builder.start();
                         KivaKitThread.run(this, "RedirectOutputToConsole", () -> Processes.copyStandardOutToConsole(process));
-                        KivaKitThread.run(this, "RedirectErrorToConsole", () -> Processes.copyStandardErrorToConsole(process));
+                        KivaKitThread.run(this, "RedirectErrorToConsole", () -> Processes.redirectStandardErrorToConsole(process));
                         return process;
                     }
 

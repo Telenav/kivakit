@@ -19,14 +19,16 @@
 package com.telenav.kivakit.core.kernel.language.values.level;
 
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * A weight from 0 to 1 for weighting in mathematics.
+ * A weight from 0 to 1 for parametric weighting in mathematics.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageValue.class)
+@LexakaiJavadoc(complete = true)
 public class Weight extends Level
 {
     public static Weight weight(final double value)

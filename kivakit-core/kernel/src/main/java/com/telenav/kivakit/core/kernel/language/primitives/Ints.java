@@ -21,9 +21,16 @@ package com.telenav.kivakit.core.kernel.language.primitives;
 import com.telenav.kivakit.core.kernel.language.strings.Align;
 import com.telenav.kivakit.core.kernel.language.values.count.BitCount;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguagePrimitive;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * Utility methods for <i>int</i> values
+ *
+ * @author jonathanl (shibo)
+ */
 @UmlClassDiagram(diagram = DiagramLanguagePrimitive.class)
+@LexakaiJavadoc(complete = true)
 public class Ints
 {
     private static final int[] POWERS_OF_10 = { 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000,

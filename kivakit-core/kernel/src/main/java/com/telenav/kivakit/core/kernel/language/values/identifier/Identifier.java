@@ -21,14 +21,15 @@ package com.telenav.kivakit.core.kernel.language.values.identifier;
 import com.telenav.kivakit.core.kernel.interfaces.collection.LongKeyed;
 import com.telenav.kivakit.core.kernel.interfaces.model.Identifiable;
 import com.telenav.kivakit.core.kernel.interfaces.numeric.Quantizable;
-import com.telenav.kivakit.core.kernel.language.values.count.BitCount;
-import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.language.primitives.Longs;
+import com.telenav.kivakit.core.kernel.language.values.count.BitCount;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
+import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * Base class for identifiers
+ * Base class for *long* identifiers
  *
  * @author jonathanl (shibo)
  * @see Quantizable
@@ -36,8 +37,15 @@ import com.telenav.kivakit.core.kernel.messaging.Listener;
  * @see Identifiable
  */
 @UmlClassDiagram(diagram = DiagramLanguageValue.class)
+@LexakaiJavadoc(complete = true)
 public class Identifier implements Identifiable, LongKeyed, Comparable<Identifier>
 {
+    /**
+     * Converts to and from {@link Identifier}
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends Quantizable.Converter<Identifier>
     {
         public Converter(final Listener listener)

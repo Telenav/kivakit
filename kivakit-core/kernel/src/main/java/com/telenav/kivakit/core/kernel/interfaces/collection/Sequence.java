@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.kernel.interfaces.collection;
 
 import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
-import com.telenav.kivakit.core.kernel.language.matching.matchers.All;
+import com.telenav.kivakit.core.kernel.language.matchers.AnythingMatcher;
 import com.telenav.kivakit.core.kernel.language.objects.Hash;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramExampleBaseList;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramInterfaceCollection;
@@ -156,7 +156,7 @@ public interface Sequence<Element>
      */
     default @NotNull Iterator<Element> asIterator()
     {
-        return asIterator(new All<>());
+        return asIterator(new AnythingMatcher<>());
     }
 
     /**

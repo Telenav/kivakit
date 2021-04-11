@@ -56,11 +56,12 @@
     class MultiSet<Key, Value>
     {
         --(constructors)--
-        #MultiSet(Maximum, Maximum, Map<Key, Set<Value>>)
+        #MultiSet(Maximum, Maximum, Map<Key, ObjectSet<Value>>)
         +MultiSet()
         +MultiSet(Maximum, Maximum)
         --
         +void replaceValue(Key, Value)
+        +ObjectSet<Value> set(Key)
         --(collection)--
         +void add(Key, Value)
         +int entryCount()

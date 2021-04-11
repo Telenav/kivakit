@@ -21,6 +21,7 @@ package com.telenav.kivakit.core.kernel.language.threading.status;
 import com.telenav.kivakit.core.kernel.language.time.Duration;
 import com.telenav.kivakit.core.kernel.language.time.Time;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageThread;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
@@ -30,21 +31,46 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Captures a snapshot of {@link ThreadStatus} for all running threads via the Java management API.
+ *
  * @author jonathanl (shibo)
+ * @see ThreadStatus
  */
 @UmlClassDiagram(diagram = DiagramLanguageThread.class)
+@LexakaiJavadoc(complete = true)
 public class ThreadSnapshot
 {
+    /** The status of each thread */
     @UmlAggregation
     private List<ThreadStatus> threads;
 
-    private Time time;
+    /** The time at which this snapshot was captured */
+    private Time capturedAt;
 
     public ThreadSnapshot()
     {
     }
 
-    public Duration cpuTime()
+    /**
+     * @return The time at which this snapshot was captured
+     */
+    public Time capturedAt()
+    {
+        return capturedAt;
+    }
+
+    /**
+     * @return The status of all threads captured in the snapshot
+     */
+    public List<ThreadStatus> snapshot()
+    {
+        return threads;
+    }
+
+    /**
+     * @return The total CPU time of all threads
+     */
+    public Duration totalCpuTime()
     {
         var milliseconds = 0L;
         for (final var thread : threads)
@@ -54,16 +80,9 @@ public class ThreadSnapshot
         return Duration.milliseconds(milliseconds);
     }
 
-    public List<ThreadStatus> threads()
-    {
-        return threads;
-    }
-
-    public Time time()
-    {
-        return time;
-    }
-
+    /**
+     * @return Updates this thread snapshot
+     */
     public ThreadSnapshot update()
     {
         final var threads = new ArrayList<ThreadStatus>();
@@ -84,7 +103,7 @@ public class ThreadSnapshot
                 }
             }
         }
-        time = Time.now();
+        capturedAt = Time.now();
         this.threads = threads;
         return this;
     }

@@ -18,19 +18,23 @@
 
 package com.telenav.kivakit.core.kernel.messaging.broadcasters;
 
-import com.telenav.kivakit.core.kernel.interfaces.messaging.Transmittable;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.kivakit.core.kernel.interfaces.comparison.Filter;
+import com.telenav.kivakit.core.kernel.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramMessageRepeater;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
 import java.util.Objects;
 
 /**
+ * A filtered {@link Multicaster} listener
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageRepeater.class)
+@LexakaiJavadoc(complete = true)
 class AudienceMember
 {
     @UmlAggregation

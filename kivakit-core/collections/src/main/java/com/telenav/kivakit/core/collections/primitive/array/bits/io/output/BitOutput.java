@@ -18,8 +18,10 @@
 
 package com.telenav.kivakit.core.collections.primitive.array.bits.io.output;
 
+import com.telenav.kivakit.core.collections.primitive.array.bits.io.BitWriter;
 import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramPrimitiveArrayBitIo;
 import com.telenav.kivakit.core.kernel.language.io.IO;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.IOException;
@@ -28,11 +30,14 @@ import java.io.OutputStream;
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.unsupported;
 
 /**
- * An output stream of bits
+ * A {@link BitWriter} that outputs bytes to an {@link OutputStream}.
  *
  * @author jonathanl (shibo)
+ * @see BaseBitWriter
+ * @see BitWriter
  */
 @UmlClassDiagram(diagram = DiagramPrimitiveArrayBitIo.class)
+@LexakaiJavadoc(complete = true)
 public class BitOutput extends BaseBitWriter
 {
     private final OutputStream out;

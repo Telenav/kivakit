@@ -24,15 +24,16 @@ import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 import com.telenav.kivakit.core.collections.primitive.PrimitiveCollection;
 import com.telenav.kivakit.core.collections.primitive.array.PrimitiveArray;
-import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramPrimitiveArray;
 import com.telenav.kivakit.core.collections.primitive.list.IntList;
+import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramPrimitiveArray;
 import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.language.collections.CompressibleCollection;
 import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.core.kernel.language.strings.formatting.Separators;
 import com.telenav.kivakit.core.kernel.language.values.count.Maximum;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Arrays;
 
@@ -56,6 +57,12 @@ import java.util.Arrays;
 @UmlClassDiagram(diagram = DiagramPrimitiveArray.class)
 public final class IntArray extends PrimitiveArray implements IntList
 {
+    /**
+     * Converts to and from an {@link IntArray}
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<IntArray>
     {
         private final Separators separators;

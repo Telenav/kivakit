@@ -21,6 +21,7 @@ package com.telenav.kivakit.core.kernel.language.values.identifier;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.telenav.kivakit.core.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -30,6 +31,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageValue.class)
+@LexakaiJavadoc(complete = true)
 public class StringIdentifier implements Comparable<StringIdentifier>
 {
     @JsonProperty

@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.kernel.language.threading;
 
+import com.telenav.kivakit.core.kernel.interfaces.lifecycle.Pausable;
 import com.telenav.kivakit.core.kernel.interfaces.lifecycle.Startable;
 import com.telenav.kivakit.core.kernel.interfaces.lifecycle.Stoppable;
 import com.telenav.kivakit.core.kernel.interfaces.naming.Named;
@@ -26,6 +27,7 @@ import com.telenav.kivakit.core.kernel.language.time.Duration;
 import com.telenav.kivakit.core.kernel.language.time.Frequency;
 import com.telenav.kivakit.core.kernel.language.time.Time;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
+import com.telenav.kivakit.core.kernel.messaging.Repeater;
 import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageThread;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -40,11 +42,91 @@ import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.S
 import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.EXITED;
 import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.EXITING;
 import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.RUNNING;
-import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.STOP;
+import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.STOP_REQUESTED;
 import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.State.WAITING;
 
+/**
+ * A thread with methods to start, pause, resume and stop (pause and resume are implemented only in {@link
+ * RepeatingKivaKitThread}). KivaKit threads have a uniform naming convention with each thread name prefixed with
+ * "KivaKit-". {@link KivaKitThread}s are {@link Repeater}s and can broadcast messages to interested {@link Listener}s.
+ *
+ * <p><b>Thread Lifecycle States</b></p>
+ *
+ * <p>
+ * During the lifecycle of a KivaKit thread, it transitions from one {@link State} to another as code executes and
+ * methods are called to control execution. These states are managed with a {@link StateMachine}, which enables state
+ * transitions and allows specific states to be waited on. The method {@link #state()} gives access to the {@link
+ * StateMachine} and the convenience methods {@link #waitFor(State)} or {@link #waitFor(State, Duration)} allow states
+ * to be waited for. In lifecycle-order, thread states are:
+ * </p>
+ *
+ * <ul>
+ *     <li>{@link State#CREATED} - This thread has been created but is not yet waiting</li>
+ *     <li>{@link State#WAITING} - This thread is waiting for the prescribed initial delay before running</li>
+ *     <li>{@link State#RUNNING} - This thead is now running user code</li>
+ *     <li>{@link State#PAUSE_REQUESTED} - This thread has been asked to pause</li>
+ *     <li>{@link State#PAUSED} - This thread is paused</li>
+ *     <li>{@link State#RESUME_REQUESTED} - This thread has been asked to resume</li>
+ *     <li>{@link State#STOP_REQUESTED} - This thread has been requested to stop</li>
+ *     <li>{@link State#EXITING} - This thread is about to exit</li>
+ *     <li>{@link State#EXITED} - This thread has exited</li>
+ * </ul>
+ *
+ * <p><b>Properties</b></p>
+ *
+ * <ul>
+ *     <li>{@link #daemon(boolean)} - Makes this thread a daemon if true, must be set before the thread is started</li>
+ *     <li>{@link #highPriority()} - Makes this thread high priority</li>
+ *     <li>{@link #initialDelay(Duration)} - Sets a delay that should pass before this thread starts to execute user code</li>
+ *     <li>{@link #lowPriority()} - Makes this thread low priority</li>
+ *     <li>{@link #startedAt()} - The time at which this thread transitioned to {@link State#RUNNING}</li>
+ *     <li>{@link #state()} - The current state of the thread as a {@link StateMachine} that can be waited on</li>
+ *     <li>{@link #thread()} - The underlying Java thread object</li>
+ * </ul>
+ *
+ * <p><b>Checks</b></p>
+ *
+ * <ul>
+ *     <li>{@link #isRunning()} - True if this thread is in {@link State#RUNNING}</li>
+ *     <li>{@link #shouldStop()} - True if this thread has been asked to stop. This method should be called periodically in the user
+ *     code being executed by this thread. That code should return if this method returns true to ensure that the
+ *     {@link #stop()} operation is responsive</li>
+ * </ul>
+ *
+ * <p><b>Operations</b></p>
+ *
+ * <ul>
+ *     <li>{@link #start()} - Starts this thread, transitioning it to {@link State#WAITING} and then {@link State#RUNNING}</li>
+ *     <li>{@link #startSynchronously()} - Starts this thread and waits for it to reach {@link State#RUNNING}</li>
+ *     <li>{@link #interrupt()} - Interrupts this thread</li>
+ *     <li>{@link #stop()} - Asks this thread to stop by transitioning to the {@link State#STOP_REQUESTED} state, causing the method
+ *     {@link #shouldStop()} to return true. When user code checks this value, it should return, causing the thread to exit. </li>
+ *     <li>{@link #stop(Duration)} - Asks this thread to stop and waits for up to the given duration for it to reach {@link State#EXITED}</li>
+ *     <li>{@link #waitFor(State)} - Waits for the given {@link State}</li>
+ *     <li>{@link #waitFor(State, Duration)} - Waits for up to the given maximum duration for this thread to reach the given {@link State}</li>
+ * </ul>
+ *
+ * <p><b>Overrides</b></p>
+ *
+ * <ul>
+ *     <li>{@link #onWaiting()} - Called when a thread is started and is in {@link State#WAITING}</li>
+ *     <li>{@link #onRun()} - Overridden to provide user code to execute if {@link #KivaKitThread(String, Runnable)}
+ *     was not called to provide user code</li>
+ *     <li>{@link #onRunning()} - Called when a thread transitions to {@link State#RUNNING}</li>
+ *     <li>{@link #onExiting()} - Called when a thread reaches {@link State#EXITING} and is about to exit</li>
+ *     <li>{@link #onExited()} - Called when a thread has reached {@link State#EXITED}</li>
+ * </ul>
+ *
+ * @author jonathanl (shibo)
+ * @see Startable
+ * @see Runnable
+ * @see Pausable
+ * @see Stoppable
+ * @see Repeater
+ */
 @SuppressWarnings("UnusedReturnValue")
 @UmlClassDiagram(diagram = DiagramLanguageThread.class)
+@LexakaiJavadoc(complete = true)
 public class KivaKitThread extends BaseRepeater implements Startable, Runnable, Stoppable, Named
 {
     /** Set of all KivaKit thread names */
@@ -58,7 +140,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
                                        final Frequency every,
                                        final Runnable code)
     {
-        return run(listener, name, () -> every.duration().loop(listener, code));
+        return run(listener, name, () -> every.cycleLength().loop(listener, code));
     }
 
     /**
@@ -91,16 +173,16 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
         RUNNING,
 
         /** The {@link RepeatingKivaKitThread} has been requested to pause after its current cycle completes */
-        PAUSE,
+        PAUSE_REQUESTED,
 
         /** The {@link RepeatingKivaKitThread} is paused between repeats */
         PAUSED,
 
         /** The thread is paused and should resume running */
-        RESUME,
+        RESUME_REQUESTED,
 
         /** The thread has been asked to stop */
-        STOP,
+        STOP_REQUESTED,
 
         /** The thread is exiting */
         EXITING,
@@ -263,7 +345,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
      */
     public boolean shouldStop()
     {
-        return state().is(STOP);
+        return state().is(STOP_REQUESTED);
     }
 
     /**
@@ -319,7 +401,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
     @Override
     public void stop(final Duration maximumWait)
     {
-        state().transitionTo(STOP);
+        state().transitionTo(STOP_REQUESTED);
         waitFor(EXITED, maximumWait);
     }
 

@@ -18,17 +18,19 @@
 
 package com.telenav.kivakit.core.collections.map;
 
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramMap;
 import com.telenav.kivakit.core.kernel.language.collections.map.BaseMap;
 import com.telenav.kivakit.core.kernel.language.values.count.Maximum;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * A map from key to value and from value to key.
+ * A map from key to value, but also from value to key (with {@link #key(Object)}).
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMap.class)
+@LexakaiJavadoc(complete = true)
 public class TwoWayMap<Key, Value> extends BaseMap<Key, Value>
 {
     /** The reverse map from value to key */

@@ -180,25 +180,6 @@ public abstract class BaseBitWriter implements BitWriter
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void writeFlexibleInt(final int smallBitCount, final int bigBitCount, final int value)
-    {
-        assert smallBitCount < bigBitCount;
-        final var isSmall = value < (1 << smallBitCount);
-        writeBit(isSmall);
-        if (isSmall)
-        {
-            write(value, smallBitCount);
-        }
-        else
-        {
-            write(value, bigBitCount);
-        }
-    }
-
-    /**
      * Flushes unwritten byte
      */
     protected abstract void onFlush(final byte value);

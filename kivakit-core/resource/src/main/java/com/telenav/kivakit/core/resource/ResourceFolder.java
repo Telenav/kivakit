@@ -21,7 +21,7 @@ package com.telenav.kivakit.core.resource;
 import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
-import com.telenav.kivakit.core.kernel.language.matching.matchers.All;
+import com.telenav.kivakit.core.kernel.language.matchers.AnythingMatcher;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.resource.spi.ResourceFolderResolverServiceLoader;
@@ -116,7 +116,7 @@ public interface ResourceFolder
      */
     default List<? extends Resource> resources()
     {
-        return resources(new All<>());
+        return resources(new AnythingMatcher<>());
     }
 
     /**

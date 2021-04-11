@@ -40,7 +40,7 @@ public class Components
     {
         component.setOutputMarkupId(true);
         component.setOutputMarkupPlaceholderTag(true);
-        component.add(new AjaxSelfUpdatingTimerBehavior(frequency.duration().asJavaDuration())
+        component.add(new AjaxSelfUpdatingTimerBehavior(frequency.cycleLength().asJavaDuration())
         {
             @Override
             protected void onPostProcessTarget(final AjaxRequestTarget target)
