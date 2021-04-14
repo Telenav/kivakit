@@ -100,7 +100,7 @@ public class FolderPruner
                                 onFileRemoved(file);
                                 final var length = file.bytes();
                                 file.delete();
-                                size = size.subtract(length);
+                                size = size.minus(length);
                             }
                         }
                     }

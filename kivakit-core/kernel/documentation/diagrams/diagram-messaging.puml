@@ -10,8 +10,8 @@
     class Importance
     {
         --
-        +Importance level(double level)
-        +Importance of(Class<? extends Message> type)
+        +Importance importance(double level)
+        +Importance importance(Class<? extends Message> type)
         --(lookup)--
         +Importance register(Class<? extends Message> low, Class<? extends Message> high)
     }

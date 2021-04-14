@@ -35,6 +35,6 @@ public class FrequencyTest
         final var now = Time.now();
         final Cycle cycle = frequency.start(now);
         ensureWithin(Duration.seconds(10).asSeconds(), cycle.waitTimeBeforeNextCycle().asSeconds(), 1.0);
-        ensureWithin(now.add(Duration.seconds(10)).asSeconds(), cycle.next().asSeconds(), 1.0);
+        ensureWithin(now.plus(Duration.seconds(10)).asSeconds(), cycle.next().asSeconds(), 1.0);
     }
 }

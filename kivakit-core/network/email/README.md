@@ -6,13 +6,13 @@ This module enables easy composition and sending of emails.
 
 ### Index
 
-[**Dependencies**](#dependencies)  
 [**Summary**](#summary)  
 [**Emails**](#emails)  
 [**Sending Emails**](#sending-emails)  
-[**Class Diagrams**](#class-diagrams)  
-[**Package Diagrams**](#package-diagrams)  
-[**Javadoc**](#javadoc)
+
+[**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
+
+![](documentation/images/horizontal-line.png)
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
@@ -23,9 +23,10 @@ This module enables easy composition and sending of emails.
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId></artifactId>
-        <version><!-- ${project-version} --> 0.9.0-SNAPSHOT <!-- end --></version>
+        <version>0.9.0-SNAPSHOTc</version>
     </dependency>
-![](documentation/images/horizontal-line.png)
+
+![](documentation/images/short-horizontal-line.png)
 
 [//]: # (start-user-text)
 
@@ -72,9 +73,13 @@ it and enqueueing *Email* objects. No attempt is made to persist the queue of un
 
 [//]: # (end-user-text)
 
+![](documentation/images/short-horizontal-line.png)
+
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](documentation/images/diagram-48.png)
 
 [*E-Mail Composition and Sending*](documentation/diagrams/diagram-email.svg)  
+
+![](documentation/images/short-horizontal-line.png)
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](documentation/images/box-40.png)
 
@@ -82,6 +87,8 @@ it and enqueueing *Email* objects. No attempt is made to persist the queue of un
 [*com.telenav.kivakit.core.network.email.converters*](documentation/diagrams/com.telenav.kivakit.core.network.email.converters.svg)  
 [*com.telenav.kivakit.core.network.email.project*](documentation/diagrams/com.telenav.kivakit.core.network.email.project.svg)  
 [*com.telenav.kivakit.core.network.email.senders*](documentation/diagrams/com.telenav.kivakit.core.network.email.senders.svg)  
+
+![](documentation/images/short-horizontal-line.png)
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
@@ -93,21 +100,21 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*AttachmentConverter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/converters/AttachmentConverter.html) |  |  
-| [*AttachmentListConverter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/converters/AttachmentListConverter.html) |  |  
-| [*BodyConverter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/converters/BodyConverter.html) |  |  
-| [*CoreNetworkEmailProject*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/project/CoreNetworkEmailProject.html) |  |  
-| [*Email*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/Email.html) |  |  
-| [*EmailAddressConverter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/converters/EmailAddressConverter.html) |  |  
-| [*EmailAddressSetConverter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/converters/EmailAddressSetConverter.html) |  |  
-| [*EmailAttachment*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/EmailAttachment.html) |  |  
-| [*EmailBody*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/EmailBody.html) |  |  
-| [*EmailQueue*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/EmailQueue.html) |  |  
-| [*EmailSender*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/EmailSender.html) |  |  
-| [*EmailSender.Configuration*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/EmailSender.Configuration.html) |  |  
-| [*HtmlEmailBody*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/HtmlEmailBody.html) |  |  
-| [*SmtpEmailSender*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/senders/SmtpEmailSender.html) |  |  
-| [*SmtpEmailSender.Configuration*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/senders/SmtpEmailSender.Configuration.html) |  |  
+| [*AttachmentConverter*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/converters/AttachmentConverter.html) |  |  
+| [*AttachmentListConverter*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/converters/AttachmentListConverter.html) |  |  
+| [*BodyConverter*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/converters/BodyConverter.html) |  |  
+| [*CoreNetworkEmailProject*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/project/CoreNetworkEmailProject.html) |  |  
+| [*Email*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/Email.html) |  |  
+| [*EmailAddressConverter*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/converters/EmailAddressConverter.html) |  |  
+| [*EmailAddressSetConverter*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/converters/EmailAddressSetConverter.html) |  |  
+| [*EmailAttachment*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/EmailAttachment.html) |  |  
+| [*EmailBody*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/EmailBody.html) |  |  
+| [*EmailQueue*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/EmailQueue.html) |  |  
+| [*EmailSender*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/EmailSender.html) |  |  
+| [*EmailSender.Configuration*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/EmailSender.Configuration.html) |  |  
+| [*HtmlEmailBody*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/HtmlEmailBody.html) |  |  
+| [*SmtpEmailSender*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/senders/SmtpEmailSender.html) |  |  
+| [*SmtpEmailSender.Configuration*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/senders/SmtpEmailSender.Configuration.html) |  |  
 
 [//]: # (start-user-text)
 
@@ -120,6 +127,6 @@ Javadoc coverage for this project is 100.0%.
 ![](documentation/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.11. UML diagrams courtesy
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.13. UML diagrams courtesy
 of [PlantUML](http://plantuml.com).</sub>
 

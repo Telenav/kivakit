@@ -99,7 +99,7 @@ public class HdfsProxyClient extends BaseRepeater
 
     public Folder logFolder()
     {
-        return Folder.kivakitTemporaryFolder().folder(FileName.parse("kivakit-hdfs-proxy")).mkdirs();
+        return Folder.kivakitTemporaryFolder().of(FileName.parse("kivakit-hdfs-proxy")).mkdirs();
     }
 
     public HdfsProxy proxy()

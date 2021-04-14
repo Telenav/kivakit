@@ -6,11 +6,11 @@ This module provides FTP resources.
 
 ### Index
 
-[**Dependencies**](#dependencies)  
 
-[**Class Diagrams**](#class-diagrams)  
-[**Package Diagrams**](#package-diagrams)  
-[**Javadoc**](#javadoc)
+
+[**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
+
+![](documentation/images/horizontal-line.png)
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
@@ -21,9 +21,10 @@ This module provides FTP resources.
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId></artifactId>
-        <version><!-- ${project-version} --> 0.9.0-SNAPSHOT <!-- end --></version>
+        <version>0.9.0-SNAPSHOTc</version>
     </dependency>
-![](documentation/images/horizontal-line.png)
+
+![](documentation/images/short-horizontal-line.png)
 
 [//]: # (start-user-text)
 
@@ -31,16 +32,22 @@ This module provides FTP resources.
 
 [//]: # (end-user-text)
 
+![](documentation/images/short-horizontal-line.png)
+
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](documentation/images/diagram-48.png)
 
 [*FTP*](documentation/diagrams/diagram-ftp.svg)  
 [*Secure FTP*](documentation/diagrams/diagram-secure-ftp.svg)  
+
+![](documentation/images/short-horizontal-line.png)
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.core.network.ftp*](documentation/diagrams/com.telenav.kivakit.core.network.ftp.svg)  
 [*com.telenav.kivakit.core.network.ftp.project*](documentation/diagrams/com.telenav.kivakit.core.network.ftp.project.svg)  
 [*com.telenav.kivakit.core.network.ftp.secure*](documentation/diagrams/com.telenav.kivakit.core.network.ftp.secure.svg)  
+
+![](documentation/images/short-horizontal-line.png)
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
@@ -52,17 +59,17 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*CoreNetworkFtpProject*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/project/CoreNetworkFtpProject.html) |  |  
-| [*FtpNetworkLocation*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpNetworkLocation.html) |  |  
-| [*FtpNetworkLocation.Mode*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpNetworkLocation.Mode.html) |  |  
-| [*FtpResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpResource.html) |  |  
-| [*FtpResource.FtpInput*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpResource.FtpInput.html) |  |  
-| [*SecureFtpConnector*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpConnector.html) |  |  
-| [*SecureFtpInput*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpInput.html) |  |  
-| [*SecureFtpNetworkLocation*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpNetworkLocation.html) |  |  
-| [*SecureFtpResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpResource.html) |  |  
-| [*SecureFtpSettings*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpSettings.html) |  |  
-| [*SftpFolderWatcher*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SftpFolderWatcher.html) |  |  
+| [*CoreNetworkFtpProject*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/project/CoreNetworkFtpProject.html) |  |  
+| [*FtpNetworkLocation*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpNetworkLocation.html) |  |  
+| [*FtpNetworkLocation.Mode*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpNetworkLocation.Mode.html) |  |  
+| [*FtpResource*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpResource.html) |  |  
+| [*FtpResource.FtpInput*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpResource.FtpInput.html) |  |  
+| [*SecureFtpConnector*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpConnector.html) |  |  
+| [*SecureFtpInput*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpInput.html) |  |  
+| [*SecureFtpNetworkLocation*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpNetworkLocation.html) |  |  
+| [*SecureFtpResource*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpResource.html) |  |  
+| [*SecureFtpSettings*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpSettings.html) |  |  
+| [*SftpFolderWatcher*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SftpFolderWatcher.html) |  |  
 
 [//]: # (start-user-text)
 
@@ -75,6 +82,6 @@ Javadoc coverage for this project is 100.0%.
 ![](documentation/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.11. UML diagrams courtesy
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.13. UML diagrams courtesy
 of [PlantUML](http://plantuml.com).</sub>
 

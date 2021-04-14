@@ -6,11 +6,11 @@ This module provides port registration services to kivakit-service-client
 
 ### Index
 
-[**Dependencies**](#dependencies)  
 
-[**Class Diagrams**](#class-diagrams)  
-[**Package Diagrams**](#package-diagrams)  
-[**Javadoc**](#javadoc)
+
+[**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
+
+![](documentation/images/horizontal-line.png)
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
@@ -21,9 +21,10 @@ This module provides port registration services to kivakit-service-client
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId></artifactId>
-        <version><!-- ${project-version} --> 0.9.0-SNAPSHOT <!-- end --></version>
+        <version>0.9.0-SNAPSHOTc</version>
     </dependency>
-![](documentation/images/horizontal-line.png)
+
+![](documentation/images/short-horizontal-line.png)
 
 [//]: # (start-user-text)
 
@@ -31,9 +32,13 @@ This module provides port registration services to kivakit-service-client
 
 [//]: # (end-user-text)
 
+![](documentation/images/short-horizontal-line.png)
+
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](documentation/images/diagram-48.png)
 
 [*Service Registry Server*](documentation/diagrams/diagram-server.svg)  
+
+![](documentation/images/short-horizontal-line.png)
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](documentation/images/box-40.png)
 
@@ -42,6 +47,8 @@ This module provides port registration services to kivakit-service-client
 [*com.telenav.kivakit.service.registry.server.rest*](documentation/diagrams/com.telenav.kivakit.service.registry.server.rest.svg)  
 [*com.telenav.kivakit.service.registry.server.webapp*](documentation/diagrams/com.telenav.kivakit.service.registry.server.webapp.svg)  
 [*com.telenav.kivakit.service.registry.server.webapp.pages.home*](documentation/diagrams/com.telenav.kivakit.service.registry.server.webapp.pages.home.svg)  
+
+![](documentation/images/short-horizontal-line.png)
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
@@ -53,15 +60,15 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*HomePage*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/webapp/pages/home/HomePage.html) |  |  
-| [*ServicePanel*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/webapp/pages/home/ServicePanel.html) |  |  
-| [*ServiceRegistryRestApplication*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/rest/ServiceRegistryRestApplication.html) |  |  
-| [*ServiceRegistryRestResource*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/rest/ServiceRegistryRestResource.html) |  |  
-| [*ServiceRegistryServer*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/ServiceRegistryServer.html) |  |  
-| [*ServiceRegistryServerProject*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/project/ServiceRegistryServerProject.html) |  |  
-| [*ServiceRegistryServerSettings*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/ServiceRegistryServerSettings.html) |  |  
-| [*ServiceRegistryWebApplication*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/webapp/ServiceRegistryWebApplication.html) |  |  
-| [*ServiceRegistryWebPage*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/webapp/ServiceRegistryWebPage.html) |  |  
+| [*HomePage*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/server/webapp/pages/home/HomePage.html) |  |  
+| [*ServicePanel*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/server/webapp/pages/home/ServicePanel.html) |  |  
+| [*ServiceRegistryRestApplication*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/server/rest/ServiceRegistryRestApplication.html) |  |  
+| [*ServiceRegistryRestResource*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/server/rest/ServiceRegistryRestResource.html) |  |  
+| [*ServiceRegistryServer*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/server/ServiceRegistryServer.html) |  |  
+| [*ServiceRegistryServerProject*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/server/project/ServiceRegistryServerProject.html) |  |  
+| [*ServiceRegistryServerSettings*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/server/ServiceRegistryServerSettings.html) |  |  
+| [*ServiceRegistryWebApplication*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/server/webapp/ServiceRegistryWebApplication.html) |  |  
+| [*ServiceRegistryWebPage*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/server/webapp/ServiceRegistryWebPage.html) |  |  
 
 [//]: # (start-user-text)
 
@@ -74,6 +81,6 @@ Javadoc coverage for this project is 100.0%.
 ![](documentation/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.11. UML diagrams courtesy
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.13. UML diagrams courtesy
 of [PlantUML](http://plantuml.com).</sub>
 

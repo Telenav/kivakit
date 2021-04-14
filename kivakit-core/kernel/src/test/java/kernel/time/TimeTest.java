@@ -35,7 +35,7 @@ public class TimeTest
     public void testBeforeAfter()
     {
         final var now = Time.now();
-        final var later = now.add(Duration.ONE_SECOND);
+        final var later = now.plus(Duration.ONE_SECOND);
         ensure(now.isBefore(later));
         ensure(now.isAtOrBefore(later));
         ensure(now.isAtOrBefore(now));
@@ -48,7 +48,7 @@ public class TimeTest
     public void testMinimumMaximum()
     {
         final var now = Time.now();
-        final var later = now.add(Duration.ONE_SECOND);
+        final var later = now.plus(Duration.ONE_SECOND);
         ensureEqual(now, now.minimum(later));
         ensureEqual(later, now.maximum(later));
         ensureEqual(now, later.minimum(now));
@@ -67,14 +67,14 @@ public class TimeTest
     public void testStartOfToday()
     {
         final Time startOfToday = Time.now().localTime().startOfDay();
-        ensure(Time.now().subtract(startOfToday).isLessThanOrEqualTo(Duration.ONE_DAY));
+        ensure(Time.now().minus(startOfToday).isLessThanOrEqualTo(Duration.ONE_DAY));
     }
 
     @Test
     public void testSubtract()
     {
         final var now = Time.now();
-        final var later = now.add(Duration.ONE_SECOND);
-        ensureEqual(Duration.ONE_SECOND, later.subtract(now));
+        final var later = now.plus(Duration.ONE_SECOND);
+        ensureEqual(Duration.ONE_SECOND, later.minus(now));
     }
 }

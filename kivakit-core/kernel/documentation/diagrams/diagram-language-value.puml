@@ -31,12 +31,12 @@
         +BitCount bitCount(T[] values)
         +BitCount maximum(BitCount that)
         +BitCount minimum(BitCount that)
+        +BitCount minus(BitCount)
         +BitCount perByte()
         +BitCount perCharacter()
         +BitCount perInteger()
         +BitCount perLong()
         +BitCount perShort()
-        +BitCount subtract(BitCount)
         +BitCount times(BitCount)
         +BitCount toRepresent(long value)
         +long values()
@@ -90,9 +90,9 @@
         +Bytes megabytes(double megabytes)
         +Bytes megabytes(long megabytes)
         +Bytes minimum(Bytes that)
+        +Bytes minus(Bytes that)
         +Bytes parse(Listener, String bytes)
         +Bytes parse(String bytes)
-        +Bytes subtract(Bytes that)
         +Bytes terabytes(long terabytes)
         +Bytes terabytes(double terabytes)
     }
@@ -135,8 +135,8 @@
         +Confidence confidence(double value)
         --(primitive)--
         +int asUnsignedByte()
-        +Confidence forByte(byte level)
-        +Confidence forUnsignedByte(int value)
+        +Confidence confidenceForByte(byte level)
+        +Confidence confidenceForInt(int value)
     }
     
     Countable <|-- Count
@@ -477,7 +477,7 @@
         +double asUnitValue()
         +double asZeroToOne()
         --(math)--
-        +Percent dividedBy(double scaleFactor)
+        +Percent dividedBy(double divisor)
         +Percent inverse()
         +Percent minus(Percent that)
         +Percent of(double percent)

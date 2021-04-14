@@ -31,6 +31,8 @@
         +Count asCount(String key)
         +PropertyMap comment(String key, String comment)
         +PropertyMap create()
+        +PropertyMap load(PackagePath _package, String path)
+        +PropertyMap load(Class<?> _package, String path)
         +PropertyMap load(Resource)
         +PropertyMap localized(PackagePath, Locale)
         +PropertyMap of(VariableMap<String> variables)

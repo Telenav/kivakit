@@ -120,6 +120,16 @@ public class PropertyMap extends VariableMap<String>
         return new PropertyMap();
     }
 
+    public static PropertyMap load(final PackagePath _package, final String path)
+    {
+        return load(PackageResource.of(_package, FilePath.parseFilePath(path)));
+    }
+
+    public static PropertyMap load(final Class<?> _package, final String path)
+    {
+        return load(PackagePath.packagePath(_package), path);
+    }
+
     public static PropertyMap localized(final PackagePath path, final Locale locale)
     {
         return PropertyMap.load(path, locale.path().join("/"));
@@ -256,11 +266,6 @@ public class PropertyMap extends VariableMap<String>
         out.println("");
         out.println(toString());
         out.close();
-    }
-
-    private static PropertyMap load(final PackagePath _package, final String path)
-    {
-        return load(PackageResource.of(_package, FilePath.parseFilePath(path)));
     }
 
     /**

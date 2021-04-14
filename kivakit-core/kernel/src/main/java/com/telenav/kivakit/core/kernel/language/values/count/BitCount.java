@@ -19,11 +19,9 @@
 package com.telenav.kivakit.core.kernel.language.values.count;
 
 import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
 import com.telenav.kivakit.core.kernel.language.values.level.Percent;
+import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageValue;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensure;
 
 /**
  * A number of bits and various associated methods.
@@ -318,10 +316,20 @@ public class BitCount extends Count
         return bitCount(get() - count);
     }
 
+    public BitCount minus(final BitCount count)
+    {
+        if (count.isGreaterThan(this))
+        {
+            throw new IllegalArgumentException(
+                    "Cannot subtract " + count + " from " + this + " or the result will be negative");
+        }
+        return minus(count.get());
+    }
+
     @Override
     public BitCount minusOne()
     {
-        return subtract(_1);
+        return minus(_1);
     }
 
     @Override
@@ -351,16 +359,6 @@ public class BitCount extends Count
             rounded <<= 1;
         }
         return bitCount(rounded);
-    }
-
-    public BitCount subtract(final BitCount count)
-    {
-        if (count.isGreaterThan(this))
-        {
-            throw new IllegalArgumentException(
-                    "Cannot subtract " + count + " from " + this + " or the result will be negative");
-        }
-        return minus(count.get());
     }
 
     public BitCount times(final BitCount count)

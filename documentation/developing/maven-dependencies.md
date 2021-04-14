@@ -7,7 +7,7 @@ be easily cut and pasted into the *pom.xml* file of a project using KivaKit.
 
 ### Maven Repositories
 
-To add KivaKit as a dependency in a project, this repository reference must be added to *pom.xml*:
+To add KivaKit modules as dependencies in a project, this repository reference must be added to *pom.xml*:
 
     <repositories>
         <repository>
@@ -26,7 +26,7 @@ Maven dependencies on KivaKit modules have the following general format:
 - The group identifier is *com.telenav.kivakit* in all cases
 - Artifact identifiers start with *kivakit* and are separated by dashes
 
-For example, this is the dependency for kivakit-core-kernel:
+For example, this is the dependency for *kivakit-core-kernel*:
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
@@ -37,7 +37,7 @@ For example, this is the dependency for kivakit-core-kernel:
 ### Module Names
 
 Module names use the fully qualified group and artifact ids with dots substituted for any hyphens.  
-For example, this module-info.java statement imports the kivakit-core-kernel project:
+For example, this *module-info.java* statement imports the *kivakit-core-kernel* project:
 
     requires com.telenav.kivakit.core.kernel;
 

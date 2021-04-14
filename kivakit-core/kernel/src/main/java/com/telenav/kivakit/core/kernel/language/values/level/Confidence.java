@@ -47,12 +47,12 @@ public class Confidence extends Level
         return new Confidence(value);
     }
 
-    public static Confidence forByte(final byte level)
+    public static Confidence confidenceForByte(final byte level)
     {
         return new Confidence((double) level / Byte.MAX_VALUE);
     }
 
-    public static Confidence forUnsignedByte(final int value)
+    public static Confidence confidenceForInt(final int value)
     {
         return new Confidence(value / 255.0);
     }

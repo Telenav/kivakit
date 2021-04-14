@@ -32,7 +32,17 @@ import com.telenav.kivakit.core.kernel.messaging.messages.OperationStatusMessage
 import com.telenav.kivakit.core.kernel.messaging.messages.Severity;
 import com.telenav.kivakit.core.kernel.messaging.messages.Triaged;
 import com.telenav.kivakit.core.kernel.messaging.messages.lifecycle.OperationHalted;
-import com.telenav.kivakit.core.kernel.messaging.messages.status.*;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Activity;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Alert;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.CriticalAlert;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Failure;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Incomplete;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Information;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Problem;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Quibble;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Success;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Trace;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Warning;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramMessageBroadcaster;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramMessageListener;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramMessaging;
@@ -272,13 +282,13 @@ public interface Message extends Transmittable, Triaged, AsString
     @UmlExcludeMember
     default boolean isMoreImportantThan(final Class<? extends Message> type)
     {
-        return importance().isGreaterThan(Importance.of(type));
+        return importance().isGreaterThan(Importance.importance(type));
     }
 
     @UmlExcludeMember
     default boolean isMoreImportantThanOrEqualTo(final Class<? extends Message> type)
     {
-        return importance().isGreaterThanOrEqualTo(Importance.of(type));
+        return importance().isGreaterThanOrEqualTo(Importance.importance(type));
     }
 
     /**

@@ -28,6 +28,8 @@
         +T ensureNotEqual(T given, T expected)
         +T ensureNotNull(T object, String message, Object... arguments)
         +T ensureNotNull(T object)
+        +T ensureNull(T object, String message, Object... arguments)
+        +T ensureNull(T object)
         --(command line parsing)--
         +T illegalArgument(String message, Object... arguments)
         --(factory)--

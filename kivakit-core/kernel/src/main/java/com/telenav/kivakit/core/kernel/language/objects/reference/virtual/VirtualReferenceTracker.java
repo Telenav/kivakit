@@ -30,8 +30,6 @@ import java.lang.ref.ReferenceQueue;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensureNotNull;
-
 @UmlClassDiagram(diagram = DiagramLanguageObjectReference.class)
 public class VirtualReferenceTracker<T> extends BaseRepeater
 {
@@ -109,7 +107,7 @@ public class VirtualReferenceTracker<T> extends BaseRepeater
             oldest.soften();
 
             // and reduce hard-referenced memory estimate
-            total = total.subtract(oldest.memorySize());
+            total = total.minus(oldest.memorySize());
         }
 
         // Give details of how much is currently being hard-referenced

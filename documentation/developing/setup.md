@@ -1,4 +1,4 @@
-## KivaKit Development Setup &nbsp; &nbsp;  ![](../images/coffee-40.png)
+## KivaKit - Developer Setup &nbsp; &nbsp;  ![](../images/coffee-40.png)
 
 ### Setting Up for Development &nbsp; ![](../images/box-40.png)
 

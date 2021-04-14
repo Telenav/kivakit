@@ -127,7 +127,7 @@ public class Frequency
 
         public Time next()
         {
-            return Time.now().add(waitTimeBeforeNextCycle());
+            return Time.now().plus(waitTimeBeforeNextCycle());
         }
 
         public Duration waitTimeBeforeNextCycle()
@@ -145,7 +145,7 @@ public class Frequency
                     .milliseconds(sinceStart.asMilliseconds() % cycleLength.asMilliseconds());
 
             // Find out how long is left until the next cycle
-            return cycleLength.subtract(intoCurrentCycle);
+            return cycleLength.minus(intoCurrentCycle);
         }
     }
 

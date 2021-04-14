@@ -32,10 +32,10 @@ public class ConfidenceTest
     @Test
     public void test()
     {
-        ensureEqual(Confidence.NO, Confidence.forByte((byte) 0x0));
-        ensureEqual(Confidence.FULL, Confidence.forByte(Byte.MAX_VALUE));
-        ensureEqual(Confidence.NO, Confidence.forUnsignedByte(0));
-        ensureEqual(Confidence.FULL, Confidence.forUnsignedByte(255));
+        ensureEqual(Confidence.NO, Confidence.confidenceForByte((byte) 0x0));
+        ensureEqual(Confidence.FULL, Confidence.confidenceForByte(Byte.MAX_VALUE));
+        ensureEqual(Confidence.NO, Confidence.confidenceForInt(0));
+        ensureEqual(Confidence.FULL, Confidence.confidenceForInt(255));
         ensure(Confidence.MEDIUM.isGreaterThan(Confidence.ZERO));
         ensure(Confidence.FULL.isGreaterThan(Confidence.MEDIUM));
         ensure(Confidence.LOW.isLessThan(Confidence.MEDIUM));

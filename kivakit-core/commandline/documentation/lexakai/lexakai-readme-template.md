@@ -6,11 +6,11 @@ ${project-description}
 
 ### Index
 
-[**Dependencies**](#dependencies)  
 ${project-index}
-[**Class Diagrams**](#class-diagrams)  
-[**Package Diagrams**](#package-diagrams)  
-[**Javadoc**](#javadoc)
+
+[**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
+
+![](documentation/images/horizontal-line.png)
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
@@ -21,9 +21,10 @@ ${project-index}
     <dependency>
         <groupId>${project-group-id}</groupId>
         <artifactId>${project-artifact-id}</artifactId>
-        <version><!-- ${project-version} --> <!-- end --></version>
+        <version>${project-version}c</version>
     </dependency>
-![](documentation/images/horizontal-line.png)
+
+![](documentation/images/short-horizontal-line.png)
 
 [//]: # (start-user-text)
 
@@ -31,13 +32,19 @@ ${user-text-top}
 
 [//]: # (end-user-text)
 
+![](documentation/images/short-horizontal-line.png)
+
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](documentation/images/diagram-48.png)
 
 ${class-diagram-index}
 
+![](documentation/images/short-horizontal-line.png)
+
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](documentation/images/box-40.png)
 
 ${package-diagram-index}
+
+![](documentation/images/short-horizontal-line.png)
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 

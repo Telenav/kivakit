@@ -36,7 +36,14 @@ import com.telenav.kivakit.core.kernel.messaging.messages.lifecycle.OperationFai
 import com.telenav.kivakit.core.kernel.messaging.messages.lifecycle.OperationHalted;
 import com.telenav.kivakit.core.kernel.messaging.messages.lifecycle.OperationStarted;
 import com.telenav.kivakit.core.kernel.messaging.messages.lifecycle.OperationSucceeded;
-import com.telenav.kivakit.core.kernel.messaging.messages.status.*;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Activity;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Alert;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.CriticalAlert;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Information;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Problem;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Quibble;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Trace;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Warning;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramMessageType;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
@@ -213,7 +220,7 @@ public abstract class OperationMessage implements Named, Message
     @Override
     public Importance importance()
     {
-        return Importance.of(getClass());
+        return Importance.importance(getClass());
     }
 
     @Override

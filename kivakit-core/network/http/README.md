@@ -6,14 +6,14 @@ This module provides HTTP and HTTPS resources.
 
 ### Index
 
-[**Dependencies**](#dependencies)  
 [**Summary**](#summary)  
 [**Get**](#get)  
 [**Authentication**](#authentication)  
 [**Encryption**](#encryption)  
-[**Class Diagrams**](#class-diagrams)  
-[**Package Diagrams**](#package-diagrams)  
-[**Javadoc**](#javadoc)
+
+[**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
+
+![](documentation/images/horizontal-line.png)
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
@@ -24,9 +24,10 @@ This module provides HTTP and HTTPS resources.
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId></artifactId>
-        <version><!-- ${project-version} --> 0.9.0-SNAPSHOT <!-- end --></version>
+        <version>0.9.0-SNAPSHOTc</version>
     </dependency>
-![](documentation/images/horizontal-line.png)
+
+![](documentation/images/short-horizontal-line.png)
 
 [//]: # (start-user-text)
 
@@ -53,16 +54,22 @@ The *SecureHttpNetworkLocation*, *SecureHttpGetResource* and *SecureHttpPostReso
 
 [//]: # (end-user-text)
 
+![](documentation/images/short-horizontal-line.png)
+
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](documentation/images/diagram-48.png)
 
 [*HTTP*](documentation/diagrams/diagram-http.svg)  
 [*Secure HTTP*](documentation/diagrams/diagram-https.svg)  
+
+![](documentation/images/short-horizontal-line.png)
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](documentation/images/box-40.png)
 
 [*com.telenav.kivakit.core.network.http*](documentation/diagrams/com.telenav.kivakit.core.network.http.svg)  
 [*com.telenav.kivakit.core.network.http.project*](documentation/diagrams/com.telenav.kivakit.core.network.http.project.svg)  
 [*com.telenav.kivakit.core.network.http.secure*](documentation/diagrams/com.telenav.kivakit.core.network.http.secure.svg)  
+
+![](documentation/images/short-horizontal-line.png)
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
@@ -74,20 +81,20 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*BaseHttpResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/BaseHttpResource.html) | Content |  
-| [*CoreNetworkHttpProject*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/project/CoreNetworkHttpProject.html) |  |  
-| [*HttpAccessConstraints*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpAccessConstraints.html) |  |  
-| [*HttpBasicCredentials*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpBasicCredentials.html) |  |  
-| [*HttpGetResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpGetResource.html) |  |  
-| [*HttpNetworkLocation*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpNetworkLocation.html) | Access |  
-| [*HttpNetworkLocation.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpNetworkLocation.Converter.html) |  |  
-| [*HttpPostResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpPostResource.html) |  |  
-| [*HttpPutResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpPutResource.html) |  |  
-| [*HttpStatus*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpStatus.html) |  |  
-| [*InvalidCertificateTrustingHttpClient*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/InvalidCertificateTrustingHttpClient.html) |  |  
-| [*SecureHttpGetResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/SecureHttpGetResource.html) |  |  
-| [*SecureHttpNetworkLocation*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/SecureHttpNetworkLocation.html) |  |  
-| [*SecureHttpPostResource*](https://telenav.github.io/kivakit/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/SecureHttpPostResource.html) |  |  
+| [*BaseHttpResource*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/BaseHttpResource.html) | Content |  
+| [*CoreNetworkHttpProject*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/project/CoreNetworkHttpProject.html) |  |  
+| [*HttpAccessConstraints*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpAccessConstraints.html) |  |  
+| [*HttpBasicCredentials*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpBasicCredentials.html) |  |  
+| [*HttpGetResource*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpGetResource.html) |  |  
+| [*HttpNetworkLocation*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpNetworkLocation.html) | Access |  
+| [*HttpNetworkLocation.Converter*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpNetworkLocation.Converter.html) |  |  
+| [*HttpPostResource*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpPostResource.html) |  |  
+| [*HttpPutResource*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpPutResource.html) |  |  
+| [*HttpStatus*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpStatus.html) |  |  
+| [*InvalidCertificateTrustingHttpClient*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/InvalidCertificateTrustingHttpClient.html) |  |  
+| [*SecureHttpGetResource*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/SecureHttpGetResource.html) |  |  
+| [*SecureHttpNetworkLocation*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/SecureHttpNetworkLocation.html) |  |  
+| [*SecureHttpPostResource*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/SecureHttpPostResource.html) |  |  
 
 [//]: # (start-user-text)
 
@@ -100,6 +107,6 @@ Javadoc coverage for this project is 100.0%.
 ![](documentation/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.11. UML diagrams courtesy
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.13. UML diagrams courtesy
 of [PlantUML](http://plantuml.com).</sub>
 

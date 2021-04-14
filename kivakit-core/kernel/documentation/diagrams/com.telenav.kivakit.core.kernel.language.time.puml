@@ -98,6 +98,8 @@
         +Duration milliseconds(long milliseconds)
         +Duration milliseconds(double milliseconds)
         +Duration minimum(Duration that)
+        +Duration minus(Duration that)
+        +Duration minus(Duration that, Range)
         +Duration minutes(double minutes)
         +Duration minutes(int minutes)
         +Duration modulus(Duration that)
@@ -109,8 +111,6 @@
         +Duration seconds(double seconds)
         +Duration seconds(int seconds)
         +Duration shorter(Percent percentage)
-        +Duration subtract(Duration that)
-        +Duration subtract(Duration that, Range)
         +Duration times(double multiplier)
         +Duration untilNextSecond()
         +Duration weeks(double scalar)
@@ -285,7 +285,6 @@
         --(conversion)--
         +Instant asInstant()
         --(time)--
-        +Time add(Duration)
         +long asMilliseconds()
         +int asSeconds()
         +Duration elapsedSince()
@@ -297,14 +296,15 @@
         +Time maximum(Time that)
         +Time milliseconds(long milliseconds)
         +Time minimum(Time that)
+        +Time minus(Duration)
+        +Duration minus(Time that)
         +Time nanoseconds(long nanoseconds)
         +Time nearest(Duration unit)
         +Time now()
+        +Time plus(Duration)
         +Time roundDown(Duration unit)
         +Time roundUp(Duration unit)
         +Time seconds(double seconds)
-        +Time subtract(Duration)
-        +Duration subtract(Time that)
         +LocalTime utc()
     }
     

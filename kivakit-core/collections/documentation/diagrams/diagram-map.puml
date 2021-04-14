@@ -17,6 +17,7 @@
     class CaseFoldingStringMap<Element>
     {
         --(constructors)--
+        +CaseFoldingStringMap()
         +CaseFoldingStringMap(Maximum)
     }
     

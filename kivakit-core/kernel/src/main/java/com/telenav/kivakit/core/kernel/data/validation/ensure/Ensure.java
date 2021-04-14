@@ -294,6 +294,17 @@ public class Ensure
         return object;
     }
 
+    public static <T> T ensureNull(final T object)
+    {
+        return ensureNull(object, "Value must be null");
+    }
+
+    public static <T> T ensureNull(final T object, final String message, final Object... arguments)
+    {
+        ensure(object == null, message, arguments);
+        return object;
+    }
+
     public static void ensureWithin(final double expected, final double actual, final double maximumDifference)
     {
         final var difference = Math.abs(expected - actual);

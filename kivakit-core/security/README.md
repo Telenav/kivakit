@@ -6,11 +6,11 @@ This project contains functionality related to security
 
 ### Index
 
-[**Dependencies**](#dependencies)  
 [**Security**](#security)  
-[**Class Diagrams**](#class-diagrams)  
-[**Package Diagrams**](#package-diagrams)  
-[**Javadoc**](#javadoc)
+
+[**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
+
+![](documentation/images/horizontal-line.png)
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
@@ -21,9 +21,10 @@ This project contains functionality related to security
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId></artifactId>
-        <version><!-- ${project-version} --> 0.9.0-SNAPSHOT <!-- end --></version>
+        <version>0.9.0-SNAPSHOTc</version>
     </dependency>
-![](documentation/images/horizontal-line.png)
+
+![](documentation/images/short-horizontal-line.png)
 
 [//]: # (start-user-text)
 
@@ -34,10 +35,14 @@ producing simple message digests easier.
 
 [//]: # (end-user-text)
 
+![](documentation/images/short-horizontal-line.png)
+
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](documentation/images/diagram-48.png)
 
 [*Message Digests*](documentation/diagrams/diagram-security-digest.svg)  
 [*Security*](documentation/diagrams/diagram-security.svg)  
+
+![](documentation/images/short-horizontal-line.png)
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](documentation/images/box-40.png)
 
@@ -46,6 +51,8 @@ producing simple message digests easier.
 [*com.telenav.kivakit.core.security.digest*](documentation/diagrams/com.telenav.kivakit.core.security.digest.svg)  
 [*com.telenav.kivakit.core.security.digest.digesters*](documentation/diagrams/com.telenav.kivakit.core.security.digest.digesters.svg)  
 [*com.telenav.kivakit.core.security.project*](documentation/diagrams/com.telenav.kivakit.core.security.project.svg)  
+
+![](documentation/images/short-horizontal-line.png)
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
@@ -57,17 +64,17 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*BaseDigester*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/digest/BaseDigester.html) |  |  
-| [*CoreSecurityProject*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/project/CoreSecurityProject.html) |  |  
-| [*DigestPassword*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/passwords/DigestPassword.html) |  |  
-| [*Digester*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/digest/Digester.html) |  |  
-| [*Md5Digester*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/digest/digesters/Md5Digester.html) |  |  
-| [*Password*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/Password.html) |  |  
-| [*PlainTextPassword*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/passwords/PlainTextPassword.html) |  |  
-| [*PlainTextPassword.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/passwords/PlainTextPassword.Converter.html) |  |  
-| [*Sha1Digester*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/digest/digesters/Sha1Digester.html) |  |  
-| [*UserName*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/UserName.html) |  |  
-| [*UserName.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/UserName.Converter.html) |  |  
+| [*BaseDigester*](https://telenav.github.io/kivakit-data/javadockivakit.core.security/com/telenav/kivakit/core/security/digest/BaseDigester.html) |  |  
+| [*CoreSecurityProject*](https://telenav.github.io/kivakit-data/javadockivakit.core.security/com/telenav/kivakit/core/security/project/CoreSecurityProject.html) |  |  
+| [*DigestPassword*](https://telenav.github.io/kivakit-data/javadockivakit.core.security/com/telenav/kivakit/core/security/authentication/passwords/DigestPassword.html) |  |  
+| [*Digester*](https://telenav.github.io/kivakit-data/javadockivakit.core.security/com/telenav/kivakit/core/security/digest/Digester.html) |  |  
+| [*Md5Digester*](https://telenav.github.io/kivakit-data/javadockivakit.core.security/com/telenav/kivakit/core/security/digest/digesters/Md5Digester.html) |  |  
+| [*Password*](https://telenav.github.io/kivakit-data/javadockivakit.core.security/com/telenav/kivakit/core/security/authentication/Password.html) |  |  
+| [*PlainTextPassword*](https://telenav.github.io/kivakit-data/javadockivakit.core.security/com/telenav/kivakit/core/security/authentication/passwords/PlainTextPassword.html) |  |  
+| [*PlainTextPassword.Converter*](https://telenav.github.io/kivakit-data/javadockivakit.core.security/com/telenav/kivakit/core/security/authentication/passwords/PlainTextPassword.Converter.html) |  |  
+| [*Sha1Digester*](https://telenav.github.io/kivakit-data/javadockivakit.core.security/com/telenav/kivakit/core/security/digest/digesters/Sha1Digester.html) |  |  
+| [*UserName*](https://telenav.github.io/kivakit-data/javadockivakit.core.security/com/telenav/kivakit/core/security/authentication/UserName.html) |  |  
+| [*UserName.Converter*](https://telenav.github.io/kivakit-data/javadockivakit.core.security/com/telenav/kivakit/core/security/authentication/UserName.Converter.html) |  |  
 
 [//]: # (start-user-text)
 
@@ -80,6 +87,6 @@ Javadoc coverage for this project is 100.0%.
 ![](documentation/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.11. UML diagrams courtesy
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.13. UML diagrams courtesy
 of [PlantUML](http://plantuml.com).</sub>
 

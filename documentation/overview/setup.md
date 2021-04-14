@@ -14,8 +14,6 @@ You will need these products, or compatible products, set up to begin:
 2. Latest [Java 12](https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html)
 3. Latest [Maven](https://maven.apache.org/download.cgi)
 
-<br/>
-
 ![](../images/horizontal-line.png)
 
 ### 1. Checking Out the Project  ![](../images/down-arrow-32.png)
@@ -25,6 +23,8 @@ The KivaKit project will look roughly like this when we're done with the setup p
 > * Workspace
 >   * kivakit
 >     * kivakit-core
+>     * kivakit-filesystems
+>     * [...]
 
 Notice how the *kivakit* project (**KIVAKIT_HOME**) is checked out in the IDE workspace called  
 *Workspace* (**KIVAKIT_WORKSPACE**).
@@ -43,9 +43,7 @@ To check out the *kivakit* project:
 3. Clone the *kivakit* git repository into your workspace
    
        cd Workspace 
-       git clone ssh://git@bitbucket.telenav.com:7999/kivakit/kivakit.git
-
-<br/>
+       git clone git@github.com:Telenav/kivakit.git
 
 ![](../images/horizontal-line.png)
 
@@ -106,8 +104,6 @@ which will install both git, and a bash shell.
 
 5. Start a new shell or execute *source ~/.profile*
 
-<br/>
-
 ![](../images/horizontal-line.png)
 
 ### 3. Finishing the Job  ![](../images/stars-48.png)
@@ -117,15 +113,11 @@ you can complete your set up with one final command:
 
     $KIVAKIT_HOME/setup/setup.sh
 
-<br/>
-
 ![](../images/horizontal-line.png)
 
 ### Done!   ![](../images/rocket-40.png)
 
 Congratulations! You're set up and ready to build or help to develop KivaKit.
-
-<br/>
 
 ![](../images/horizontal-line.png)
 
@@ -135,7 +127,5 @@ Congratulations! You're set up and ready to build or help to develop KivaKit.
 
 [I want to work on KivaKit](../developing/index.md)
 
-
-<br/> 
 
 ![](../images/horizontal-line.png)

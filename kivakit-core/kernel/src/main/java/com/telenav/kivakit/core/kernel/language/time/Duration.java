@@ -199,7 +199,7 @@ public class Duration implements Comparable<Duration>, AsString
     public static Duration untilNextSecond()
     {
         final var now = Time.now();
-        return now.roundUp(ONE_SECOND).subtract(now);
+        return now.roundUp(ONE_SECOND).minus(now);
     }
 
     public static Duration weeks(final double scalar)
@@ -542,11 +542,11 @@ public class Duration implements Comparable<Duration>, AsString
     {
         if (isGreaterThan(that))
         {
-            return subtract(that);
+            return minus(that);
         }
         else
         {
-            return that.subtract(this);
+            return that.minus(this);
         }
     }
 
@@ -677,6 +677,29 @@ public class Duration implements Comparable<Duration>, AsString
         return isLessThan(that) ? this : that;
     }
 
+    /**
+     * @return This duration minus that duration, but never a negative value
+     */
+    public Duration minus(final Duration that)
+    {
+        return minus(that, Range.POSITIVE_ONLY);
+    }
+
+    /**
+     * @return This duration minus that duration, but restricted to the given range
+     */
+    public Duration minus(final Duration that, final Range range)
+    {
+        if (range == Range.POSITIVE_ONLY)
+        {
+            if (that.isGreaterThan(this))
+            {
+                return NONE;
+            }
+        }
+        return new Duration(asMilliseconds() - that.asMilliseconds(), range);
+    }
+
     public Duration modulus(final Duration that)
     {
         return milliseconds(milliseconds % that.milliseconds);
@@ -718,29 +741,6 @@ public class Duration implements Comparable<Duration>, AsString
                 // Ignored
             }
         }
-    }
-
-    /**
-     * @return This duration minus that duration, but never a negative value
-     */
-    public Duration subtract(final Duration that)
-    {
-        return subtract(that, Range.POSITIVE_ONLY);
-    }
-
-    /**
-     * @return This duration minus that duration, but restricted to the given range
-     */
-    public Duration subtract(final Duration that, final Range range)
-    {
-        if (range == Range.POSITIVE_ONLY)
-        {
-            if (that.isGreaterThan(this))
-            {
-                return NONE;
-            }
-        }
-        return new Duration(asMilliseconds() - that.asMilliseconds(), range);
     }
 
     public Duration times(final double multiplier)

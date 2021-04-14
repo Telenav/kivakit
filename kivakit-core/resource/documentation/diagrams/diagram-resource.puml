@@ -116,6 +116,7 @@
         +Count count()
         +ResourceList matching(Matcher<Resource>)
         +ResourceList matching(Extension)
+        +ResourceList relativeTo(Folder)
         +void sortOldestToNewest()
         +Bytes totalSize()
         --(math)--

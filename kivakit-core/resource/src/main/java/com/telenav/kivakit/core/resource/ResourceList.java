@@ -19,6 +19,7 @@
 package com.telenav.kivakit.core.resource;
 
 import com.telenav.kivakit.core.filesystem.File;
+import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
@@ -182,6 +183,16 @@ public class ResourceList extends ArrayList<Resource>
             }
         }
         return matches;
+    }
+
+    public ResourceList relativeTo(final Folder folder)
+    {
+        final var resources = new ResourceList();
+        for (final var resource : this)
+        {
+            resources.add(resource.path().asFile().relativeTo(folder));
+        }
+        return resources;
     }
 
     @Override

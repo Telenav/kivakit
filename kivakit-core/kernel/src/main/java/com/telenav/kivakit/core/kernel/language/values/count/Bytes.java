@@ -440,6 +440,11 @@ public final class Bytes extends Count implements ByteSized
         return (Bytes) super.minus(count);
     }
 
+    public Bytes minus(final Bytes that)
+    {
+        return bytes(asBytes() - that.asBytes());
+    }
+
     @Override
     public Bytes minusOne()
     {
@@ -479,11 +484,6 @@ public final class Bytes extends Count implements ByteSized
     public Bytes roundUpToPowerOfTwo()
     {
         return (Bytes) super.roundUpToPowerOfTwo();
-    }
-
-    public Bytes subtract(final Bytes that)
-    {
-        return bytes(asBytes() - that.asBytes());
     }
 
     @Override

@@ -39,6 +39,11 @@ public class CaseFoldingStringMap<Element> extends StringMap<Element>
         super(maximumSize);
     }
 
+    public CaseFoldingStringMap()
+    {
+        super(Maximum.MAXIMUM);
+    }
+
     @Override
     public Element get(final Object key)
     {

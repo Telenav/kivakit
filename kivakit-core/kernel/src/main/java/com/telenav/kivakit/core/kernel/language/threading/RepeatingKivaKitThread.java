@@ -72,6 +72,12 @@ public class RepeatingKivaKitThread extends KivaKitThread implements Pausable
         listener.listenTo(this);
     }
 
+    public RepeatingKivaKitThread(final Listener listener, final String name)
+    {
+        super(name, null);
+        listener.listenTo(this);
+    }
+
     public RepeatingKivaKitThread(final Listener listener, final String name, final Frequency frequency)
     {
         super(name);
@@ -140,6 +146,7 @@ public class RepeatingKivaKitThread extends KivaKitThread implements Pausable
             {
                 // wait for it to be resumed,
                 waitFor(RESUME_REQUESTED);
+                transition(RUNNING);
             }
 
             try

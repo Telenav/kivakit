@@ -6,11 +6,11 @@ This project provides shared registry code to kivakit-service-client and kivakit
 
 ### Index
 
-[**Dependencies**](#dependencies)  
 [**Summary**](#summary)  
-[**Class Diagrams**](#class-diagrams)  
-[**Package Diagrams**](#package-diagrams)  
-[**Javadoc**](#javadoc)
+
+[**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
+
+![](documentation/images/horizontal-line.png)
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
@@ -21,9 +21,10 @@ This project provides shared registry code to kivakit-service-client and kivakit
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId></artifactId>
-        <version><!-- ${project-version} --> 0.9.0-SNAPSHOT <!-- end --></version>
+        <version>0.9.0-SNAPSHOTc</version>
     </dependency>
-![](documentation/images/horizontal-line.png)
+
+![](documentation/images/short-horizontal-line.png)
 
 [//]: # (start-user-text)
 
@@ -34,10 +35,14 @@ to provide core registration and discovery functionality.
 
 [//]: # (end-user-text)
 
+![](documentation/images/short-horizontal-line.png)
+
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](documentation/images/diagram-48.png)
 
 [*Service Registry*](documentation/diagrams/diagram-registry.svg)  
 [*Service Registry REST Protocol*](documentation/diagrams/diagram-rest.svg)  
+
+![](documentation/images/short-horizontal-line.png)
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](documentation/images/box-40.png)
 
@@ -54,6 +59,8 @@ to provide core registration and discovery functionality.
 [*com.telenav.kivakit.service.registry.serialization.serializers*](documentation/diagrams/com.telenav.kivakit.service.registry.serialization.serializers.svg)  
 [*com.telenav.kivakit.service.registry.store*](documentation/diagrams/com.telenav.kivakit.service.registry.store.svg)  
 
+![](documentation/images/short-horizontal-line.png)
+
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
 Javadoc coverage for this project is 100.0%.  
@@ -64,46 +71,46 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*ApplicationIdentifierSerializer*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/serialization/serializers/ApplicationIdentifierSerializer.html) |  |  
-| [*BaseRequest*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/protocol/BaseRequest.html) |  |  
-| [*BaseResponse*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/protocol/BaseResponse.html) |  |  
-| [*BaseServiceRegistry*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/registries/BaseServiceRegistry.html) |  |  
-| [*DiagramRegistry*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/project/lexakai/annotations/DiagramRegistry.html) |  |  
-| [*DiagramRest*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/project/lexakai/annotations/DiagramRest.html) |  |  
-| [*DiscoverApplicationsRequest*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/protocol/discover/DiscoverApplicationsRequest.html) |  |  
-| [*DiscoverApplicationsResponse*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/protocol/discover/DiscoverApplicationsResponse.html) |  |  
-| [*DiscoverPortServiceRequest*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/protocol/discover/DiscoverPortServiceRequest.html) |  |  
-| [*DiscoverPortServiceResponse*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/protocol/discover/DiscoverPortServiceResponse.html) |  |  
-| [*DiscoverServicesRequest*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/protocol/discover/DiscoverServicesRequest.html) |  |  
-| [*DiscoverServicesRequest.SearchType*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/protocol/discover/DiscoverServicesRequest.SearchType.html) |  |  
-| [*DiscoverServicesResponse*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/protocol/discover/DiscoverServicesResponse.html) |  |  
-| [*LocalServiceRegistry*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/registries/LocalServiceRegistry.html) |  |  
-| [*NetworkRegistryUpdateRequest*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/protocol/update/NetworkRegistryUpdateRequest.html) |  |  
-| [*NetworkRegistryUpdateResponse*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/protocol/update/NetworkRegistryUpdateResponse.html) |  |  
-| [*NetworkServiceRegistry*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/registries/NetworkServiceRegistry.html) |  |  
-| [*ProblemSerializer*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/serialization/serializers/ProblemSerializer.html) |  |  
-| [*RegisterServiceRequest*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/protocol/register/RegisterServiceRequest.html) |  |  
-| [*RegisterServiceResponse*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/protocol/register/RegisterServiceResponse.html) |  |  
-| [*RenewServiceRequest*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/protocol/renew/RenewServiceRequest.html) |  |  
-| [*RenewServiceResponse*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/protocol/renew/RenewServiceResponse.html) |  |  
-| [*Scope*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/Scope.html) |  |  
-| [*Scope.Type*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/Scope.Type.html) |  |  
-| [*Service*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/Service.html) | Service Registration and Expiration |  
+| [*ApplicationIdentifierSerializer*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/serialization/serializers/ApplicationIdentifierSerializer.html) |  |  
+| [*BaseRequest*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/protocol/BaseRequest.html) |  |  
+| [*BaseResponse*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/protocol/BaseResponse.html) |  |  
+| [*BaseServiceRegistry*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/registries/BaseServiceRegistry.html) |  |  
+| [*DiagramRegistry*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/project/lexakai/annotations/DiagramRegistry.html) |  |  
+| [*DiagramRest*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/project/lexakai/annotations/DiagramRest.html) |  |  
+| [*DiscoverApplicationsRequest*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/protocol/discover/DiscoverApplicationsRequest.html) |  |  
+| [*DiscoverApplicationsResponse*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/protocol/discover/DiscoverApplicationsResponse.html) |  |  
+| [*DiscoverPortServiceRequest*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/protocol/discover/DiscoverPortServiceRequest.html) |  |  
+| [*DiscoverPortServiceResponse*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/protocol/discover/DiscoverPortServiceResponse.html) |  |  
+| [*DiscoverServicesRequest*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/protocol/discover/DiscoverServicesRequest.html) |  |  
+| [*DiscoverServicesRequest.SearchType*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/protocol/discover/DiscoverServicesRequest.SearchType.html) |  |  
+| [*DiscoverServicesResponse*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/protocol/discover/DiscoverServicesResponse.html) |  |  
+| [*LocalServiceRegistry*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/registries/LocalServiceRegistry.html) |  |  
+| [*NetworkRegistryUpdateRequest*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/protocol/update/NetworkRegistryUpdateRequest.html) |  |  
+| [*NetworkRegistryUpdateResponse*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/protocol/update/NetworkRegistryUpdateResponse.html) |  |  
+| [*NetworkServiceRegistry*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/registries/NetworkServiceRegistry.html) |  |  
+| [*ProblemSerializer*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/serialization/serializers/ProblemSerializer.html) |  |  
+| [*RegisterServiceRequest*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/protocol/register/RegisterServiceRequest.html) |  |  
+| [*RegisterServiceResponse*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/protocol/register/RegisterServiceResponse.html) |  |  
+| [*RenewServiceRequest*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/protocol/renew/RenewServiceRequest.html) |  |  
+| [*RenewServiceResponse*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/protocol/renew/RenewServiceResponse.html) |  |  
+| [*Scope*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/Scope.html) |  |  
+| [*Scope.Type*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/Scope.Type.html) |  |  
+| [*Service*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/Service.html) | Service Registration and Expiration |  
 | | Service Discovery |  
 | | Service Properties |  
-| [*ServiceMetadata*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/ServiceMetadata.html) | Service Metadata |  
-| [*ServiceRegistry*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/ServiceRegistry.html) |  |  
-| [*ServiceRegistryGsonFactory*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/serialization/ServiceRegistryGsonFactory.html) |  |  
-| [*ServiceRegistryJerseySerializer*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/serialization/ServiceRegistryJerseySerializer.html) |  |  
-| [*ServiceRegistryKryoTypes*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/project/ServiceRegistryKryoTypes.html) |  |  
-| [*ServiceRegistryProject*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/project/ServiceRegistryProject.html) |  |  
-| [*ServiceRegistryProtocol*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/protocol/ServiceRegistryProtocol.html) |  |  
-| [*ServiceRegistrySettings*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/ServiceRegistrySettings.html) | ServiceRegistrySettings.properties |  
-| [*ServiceRegistryStore*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/store/ServiceRegistryStore.html) |  |  
-| [*ServiceRegistryUpdater*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/ServiceRegistryUpdater.html) |  |  
-| [*ServiceType*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/ServiceType.html) |  |  
-| [*ServiceTypeSerializer*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/serialization/serializers/ServiceTypeSerializer.html) |  |  
-| [*TimeSerializer*](https://telenav.github.io/kivakit/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/serialization/serializers/TimeSerializer.html) |  |  
+| [*ServiceMetadata*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/ServiceMetadata.html) | Service Metadata |  
+| [*ServiceRegistry*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/ServiceRegistry.html) |  |  
+| [*ServiceRegistryGsonFactory*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/serialization/ServiceRegistryGsonFactory.html) |  |  
+| [*ServiceRegistryJerseySerializer*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/serialization/ServiceRegistryJerseySerializer.html) |  |  
+| [*ServiceRegistryKryoTypes*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/project/ServiceRegistryKryoTypes.html) |  |  
+| [*ServiceRegistryProject*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/project/ServiceRegistryProject.html) |  |  
+| [*ServiceRegistryProtocol*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/protocol/ServiceRegistryProtocol.html) |  |  
+| [*ServiceRegistrySettings*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/ServiceRegistrySettings.html) | ServiceRegistrySettings.properties |  
+| [*ServiceRegistryStore*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/store/ServiceRegistryStore.html) |  |  
+| [*ServiceRegistryUpdater*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/ServiceRegistryUpdater.html) |  |  
+| [*ServiceType*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/ServiceType.html) |  |  
+| [*ServiceTypeSerializer*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/serialization/serializers/ServiceTypeSerializer.html) |  |  
+| [*TimeSerializer*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/serialization/serializers/TimeSerializer.html) |  |  
 
 [//]: # (start-user-text)
 
@@ -116,6 +123,6 @@ Javadoc coverage for this project is 100.0%.
 ![](documentation/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.11. UML diagrams courtesy
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.13. UML diagrams courtesy
 of [PlantUML](http://plantuml.com).</sub>
 

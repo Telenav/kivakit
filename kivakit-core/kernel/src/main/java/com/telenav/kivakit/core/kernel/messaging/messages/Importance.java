@@ -20,7 +20,19 @@ package com.telenav.kivakit.core.kernel.messaging.messages;
 
 import com.telenav.kivakit.core.kernel.language.values.level.Level;
 import com.telenav.kivakit.core.kernel.messaging.Message;
-import com.telenav.kivakit.core.kernel.messaging.messages.status.*;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Activity;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Alert;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Announcement;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.CriticalAlert;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Failure;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Incomplete;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Information;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Narration;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Problem;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Quibble;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Success;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Trace;
+import com.telenav.kivakit.core.kernel.messaging.messages.status.Warning;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramMessaging;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -44,30 +56,29 @@ public class Importance extends Level
         // Built-in messages in order of increasing importance. Additional messages can register
         // their importance as mid-way between two registered messages with register()
 
-        register
-                (
-                        Trace.class,
-                        Activity.class,
-                        Information.class,
-                        Success.class,
-                        Narration.class,
-                        Announcement.class,
-                        Quibble.class,
-                        Warning.class,
-                        Incomplete.class,
-                        Problem.class,
-                        Failure.class,
-                        Alert.class,
-                        CriticalAlert.class
-                );
+        register(
+                Trace.class,
+                Activity.class,
+                Information.class,
+                Success.class,
+                Narration.class,
+                Announcement.class,
+                Quibble.class,
+                Warning.class,
+                Incomplete.class,
+                Problem.class,
+                Failure.class,
+                Alert.class,
+                CriticalAlert.class
+        );
     }
 
-    public static Importance level(final double level)
+    public static Importance importance(final double level)
     {
         return new Importance(level);
     }
 
-    public static Importance of(final Class<? extends Message> type)
+    public static Importance importance(final Class<? extends Message> type)
     {
         return levels.get(type);
     }
@@ -84,7 +95,7 @@ public class Importance extends Level
         final var lowValue = levels.get(low).asZeroToOne();
         final var highValue = levels.get(high).asZeroToOne();
         final var difference = highValue - lowValue;
-        return level(lowValue + difference / 2.0);
+        return importance(lowValue + difference / 2.0);
     }
 
     private Importance(final double level)
@@ -99,7 +110,7 @@ public class Importance extends Level
         final double increment = 1.0 / (messages.length - 1);
         for (final var message : messages)
         {
-            levels.put(message, level(level));
+            levels.put(message, importance(level));
             level += increment;
             level = Math.min(1.0, level);
         }

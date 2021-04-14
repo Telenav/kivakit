@@ -111,7 +111,7 @@ public abstract class BaseLog implements Startable, Stoppable, Log
             new KivaKitShutdownHook(LAST, () ->
             {
                 // flush asynchronous entries for up to one minute
-                stop(Duration.ONE_MINUTE);
+                flush(Duration.ONE_MINUTE);
             });
         }
     }
@@ -158,8 +158,11 @@ public abstract class BaseLog implements Startable, Stoppable, Log
     @Override
     public void flush(final Duration maximumWaitTime)
     {
-        thread.interrupt();
-        queueEmpty.waitFor(true, maximumWaitTime);
+        if (thread != null)
+        {
+            thread.interrupt();
+            queueEmpty.waitFor(true, maximumWaitTime);
+        }
     }
 
     @Override

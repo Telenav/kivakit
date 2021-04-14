@@ -27,6 +27,8 @@ import com.telenav.kivakit.core.kernel.language.threading.conditions.StateMachin
 import com.telenav.kivakit.core.kernel.language.time.Duration;
 import com.telenav.kivakit.core.kernel.language.time.Frequency;
 import com.telenav.kivakit.core.kernel.language.time.Time;
+import com.telenav.kivakit.core.kernel.logging.Logger;
+import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.messaging.Repeater;
 import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
@@ -130,8 +132,20 @@ import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.S
 @LexakaiJavadoc(complete = true)
 public class KivaKitThread extends BaseRepeater implements Startable, Runnable, Stoppable, Named
 {
+    private static final Logger LOGGER = LoggerFactory.newLogger();
+
     /** Set of all KivaKit thread names */
     private static final Set<String> names = new HashSet<>();
+
+    /**
+     * @return A started thread with the given name that will run the given code at the given frequency.
+     */
+    public static KivaKitThread repeat(final String name,
+                                       final Frequency every,
+                                       final Runnable code)
+    {
+        return repeat(LOGGER, name, every, code);
+    }
 
     /**
      * @return A started thread with the given name that will run the given code at the given frequency.
@@ -142,6 +156,15 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
                                        final Runnable code)
     {
         return run(listener, name, () -> every.cycleLength().loop(listener, code));
+    }
+
+    /**
+     * @return A started thread with the given name that has been started
+     */
+    public static KivaKitThread run(final String name,
+                                    final Runnable code)
+    {
+        return run(LOGGER, name, code);
     }
 
     /**
@@ -405,15 +428,15 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
     @Override
     public void stop(final Duration maximumWait)
     {
-        //
-        // If this thread is in the RUNNING state, then while holding the state machine lock:
-        //
-        // 1. Interrupt this thread
-        // 2. Request that this thread stop
-        // 3. Wait until the thread exits
-        //
-
-        state().transition(RUNNING, STOP_REQUESTED, EXITED, maximumWait, this::interrupt);
+        whileLocked(() ->
+        {
+            if (!is(EXITED))
+            {
+                transition(STOP_REQUESTED);
+                interrupt();
+                waitFor(EXITED, maximumWait);
+            }
+        });
     }
 
     /**

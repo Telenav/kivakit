@@ -18,8 +18,8 @@
         +Confidence confidence(double value)
         --(primitive)--
         +int asUnsignedByte()
-        +Confidence forByte(byte level)
-        +Confidence forUnsignedByte(int value)
+        +Confidence confidenceForByte(byte level)
+        +Confidence confidenceForInt(int value)
     }
     
     BaseStringConverter <|-- Confidence.Converter
@@ -100,7 +100,7 @@
         +double asUnitValue()
         +double asZeroToOne()
         --(math)--
-        +Percent dividedBy(double scaleFactor)
+        +Percent dividedBy(double divisor)
         +Percent inverse()
         +Percent minus(Percent that)
         +Percent of(double percent)

@@ -134,9 +134,9 @@ public final class Percent implements Comparable<Percent>
         return Double.compare(value, that.value);
     }
 
-    public Percent dividedBy(final double scaleFactor)
+    public Percent dividedBy(final double divisor)
     {
-        return new Percent(value / scaleFactor);
+        return new Percent(value / divisor);
     }
 
     @Override

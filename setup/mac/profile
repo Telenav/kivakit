@@ -8,7 +8,7 @@ if [ -z "$KIVAKIT_WORKSPACE" ]; then
     export KIVAKIT_WORKSPACE=$HOME/Workspace
 fi
 
-#―――― KIVA ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+#―――― KivaKit ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
 
 export KIVAKIT_HOME="$KIVAKIT_WORKSPACE/kivakit"
 export KIVAKIT_VERSION=$(cat $KIVAKIT_HOME/project.properties | grep "project-version" | cut -d'=' -f2 | xargs echo)

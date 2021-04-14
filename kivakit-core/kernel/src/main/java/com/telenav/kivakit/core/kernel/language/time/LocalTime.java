@@ -18,17 +18,17 @@
 
 package com.telenav.kivakit.core.kernel.language.time;
 
-import com.telenav.kivakit.core.kernel.logging.Logger;
-import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageTime;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.language.objects.Hash;
 import com.telenav.kivakit.core.kernel.language.time.conversion.BaseFormattedConverter;
 import com.telenav.kivakit.core.kernel.language.time.conversion.converters.HumanizedLocalDateTimeConverter;
 import com.telenav.kivakit.core.kernel.language.time.conversion.converters.LocalDateConverter;
 import com.telenav.kivakit.core.kernel.language.time.conversion.converters.LocalDateTimeConverter;
 import com.telenav.kivakit.core.kernel.language.time.conversion.converters.LocalTimeConverter;
+import com.telenav.kivakit.core.kernel.logging.Logger;
+import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
+import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageTime;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -37,7 +37,14 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 import static com.telenav.kivakit.core.kernel.language.time.conversion.TimeFormat.DATE_TIME;
-import static java.time.temporal.ChronoField.*;
+import static java.time.temporal.ChronoField.AMPM_OF_DAY;
+import static java.time.temporal.ChronoField.DAY_OF_WEEK;
+import static java.time.temporal.ChronoField.DAY_OF_YEAR;
+import static java.time.temporal.ChronoField.EPOCH_DAY;
+import static java.time.temporal.ChronoField.HOUR_OF_AMPM;
+import static java.time.temporal.ChronoField.HOUR_OF_DAY;
+import static java.time.temporal.ChronoField.MINUTE_OF_DAY;
+import static java.time.temporal.ChronoField.MINUTE_OF_HOUR;
 
 /**
  * Snapshot of local time at a specific timezone
@@ -123,12 +130,6 @@ public class LocalTime extends Time
     protected LocalTime(final ZoneId zone, final Time time)
     {
         this(zone, time.asMilliseconds());
-    }
-
-    @Override
-    public LocalTime add(final Duration duration)
-    {
-        return of(timeZone(), super.add(duration));
     }
 
     public String asDateString()
@@ -270,6 +271,19 @@ public class LocalTime extends Time
         return hour > 12 ? hour - 12 : hour;
     }
 
+    @Override
+    public LocalTime minus(final Duration duration)
+    {
+        return of(timeZone(), super.minus(duration));
+    }
+
+    @Override
+    public Duration minus(final Time time)
+    {
+        final var localTime = milliseconds(timeZone(), super.minus(time).asMilliseconds());
+        return Duration.milliseconds(localTime.asMilliseconds());
+    }
+
     /**
      * @return The minute from 0-59
      */
@@ -294,6 +308,12 @@ public class LocalTime extends Time
     public int month()
     {
         return javaLocalDateTime().getMonthValue();
+    }
+
+    @Override
+    public LocalTime plus(final Duration duration)
+    {
+        return of(timeZone(), super.plus(duration));
     }
 
     public int quarter()
@@ -322,25 +342,12 @@ public class LocalTime extends Time
 
     public LocalTime startOfNextHour()
     {
-        return of(timeZone(), Time.now()).startOfHour().add(Duration.ONE_HOUR);
+        return of(timeZone(), Time.now()).startOfHour().plus(Duration.ONE_HOUR);
     }
 
     public LocalTime startOfTomorrow()
     {
-        return startOfDay().add(Duration.ONE_DAY);
-    }
-
-    @Override
-    public LocalTime subtract(final Duration duration)
-    {
-        return of(timeZone(), super.subtract(duration));
-    }
-
-    @Override
-    public Duration subtract(final Time time)
-    {
-        final var localTime = milliseconds(timeZone(), super.subtract(time).asMilliseconds());
-        return Duration.milliseconds(localTime.asMilliseconds());
+        return startOfDay().plus(Duration.ONE_DAY);
     }
 
     public ZoneId timeZone()

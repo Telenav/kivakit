@@ -28,6 +28,7 @@
         +boolean is(State)
         +KivaKitThread lowPriority()
         +KivaKitThread repeat(Listener, String name, Frequency every, Runnable code)
+        +KivaKitThread repeat(String name, Frequency every, Runnable code)
         +StateMachine<State> state()
         +void whileLocked(Runnable code)
         #void onExited()
@@ -43,6 +44,7 @@
         +KivaKitThread interrupt()
         +void join()
         +KivaKitThread run(Listener, String name, Runnable code)
+        +KivaKitThread run(String name, Runnable code)
         +KivaKitThread startSynchronously()
         #void onRun()
         #void onRunning()
@@ -57,6 +59,7 @@
     class RepeatingKivaKitThread
     {
         --(constructors)--
+        +RepeatingKivaKitThread(Listener, String)
         +RepeatingKivaKitThread(Listener, String, Frequency)
         +RepeatingKivaKitThread(Listener, String, Runnable)
         --(lifecycle)--

@@ -167,8 +167,8 @@ public class DurationTest
     @Test
     public void testSubtract()
     {
-        ensureEqual(Duration.seconds(1), Duration.seconds(2).subtract(Duration.seconds(1)));
-        ensureEqual(Duration.NONE, Duration.seconds(2).subtract(Duration.seconds(3)));
+        ensureEqual(Duration.seconds(1), Duration.seconds(2).minus(Duration.seconds(1)));
+        ensureEqual(Duration.NONE, Duration.seconds(2).minus(Duration.seconds(3)));
     }
 
     @Test

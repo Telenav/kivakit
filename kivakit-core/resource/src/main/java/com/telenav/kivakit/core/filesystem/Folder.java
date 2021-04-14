@@ -84,10 +84,10 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail
  *
  * <ul>
  *     <li>{@link #parse(String)} - A folder for the given string</li>
- *     <li>{@link #folder(URI)} - A folder for the given URI</li>
- *     <li>{@link #folder(URL)} - A folder for the given URL</li>
- *     <li>{@link #folder(java.io.File)} - A folder for the given Java file</li>
- *     <li>{@link #folder(Path)} - A folder for the given NIO path</li>
+ *     <li>{@link #of(URI)} - A folder for the given URI</li>
+ *     <li>{@link #of(URL)} - A folder for the given URL</li>
+ *     <li>{@link #of(java.io.File)} - A folder for the given Java file</li>
+ *     <li>{@link #of(Path)} - A folder for the given NIO path</li>
  * </ul>
  *
  * <p><b>Locations</b></p>
@@ -145,7 +145,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail
  *     <li>{@link #file(FilePath)} - The file with the given relative path to this folder</li>
  *     <li>{@link #folder(Folder)} - The folder relative to this folder</li>
  *     <li>{@link #folder(String)} - The folder with the given name in this folder</li>
- *     <li>{@link #folder(FileName)} - The folder in this folder with the given filename </li>
+ *     <li>{@link #of(FileName)} - The folder in this folder with the given filename </li>
  *     <li>{@link #Folder(FilePath)} - The folder with the given relative path to this folder</li>
  * </ul>
  *
@@ -228,34 +228,6 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         return userHome().folder("Desktop");
     }
 
-    public static Folder folder(final Path path)
-    {
-        return parse(path.toString());
-    }
-
-    public static Folder folder(final java.io.File file)
-    {
-        return folder(file.toPath());
-    }
-
-    public static Folder folder(final URI uri)
-    {
-        return folder(new java.io.File(uri));
-    }
-
-    public static Folder folder(final URL url)
-    {
-        try
-        {
-            return folder(url.toURI());
-        }
-        catch (final URISyntaxException e)
-        {
-            LOGGER.problem(e, "Unable to parse URL: $", url);
-            return null;
-        }
-    }
-
     public static ArgumentParser.Builder<Folder> folderArgument(final String description)
     {
         return ArgumentParser.builder(Folder.class)
@@ -293,7 +265,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
 
     public static Folder kivakitCacheFolder()
     {
-        return Folder.folder(KivaKit.get().cacheFolderPath()).mkdirs();
+        return Folder.of(KivaKit.get().cacheFolderPath()).mkdirs();
     }
 
     public static Folder kivakitHome()
@@ -301,7 +273,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         final var home = KivaKit.get().homeFolderPath();
         if (home != null)
         {
-            return Folder.folder(home);
+            return Folder.of(home);
         }
         return fail("Cannot find KivaKit home folder");
     }
@@ -314,6 +286,39 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
     public static Folder kivakitTestFolder(final Class<?> type)
     {
         return kivakitTemporaryFolder().folder("test").folder(type.getSimpleName()).mkdirs();
+    }
+
+    public static Folder of(final FileName filename)
+    {
+        return parse(filename.name());
+    }
+
+    public static Folder of(final Path path)
+    {
+        return parse(path.toString());
+    }
+
+    public static Folder of(final java.io.File file)
+    {
+        return of(file.toPath());
+    }
+
+    public static Folder of(final URI uri)
+    {
+        return of(new java.io.File(uri));
+    }
+
+    public static Folder of(final URL url)
+    {
+        try
+        {
+            return of(url.toURI());
+        }
+        catch (final URISyntaxException e)
+        {
+            LOGGER.problem(e, "Unable to parse URL: $", url);
+            return null;
+        }
     }
 
     public static SwitchParser.Builder<Folder> outputFolderSwitch()
@@ -754,6 +759,17 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         return files(value -> pattern.matcher(value.fileName().name()).matches());
     }
 
+    @Override
+    public Folder folder(final String child)
+    {
+        if (child.equals("."))
+        {
+            return this;
+        }
+        final var childFolder = Folder.parse(child);
+        return childFolder == null ? null : folder(childFolder);
+    }
+
     public Folder folder(final FileName child)
     {
         if (child.name().equals("."))
@@ -770,17 +786,6 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
             return this;
         }
         return new Folder(folder().folder(child));
-    }
-
-    @Override
-    public Folder folder(final String child)
-    {
-        if (child.equals("."))
-        {
-            return this;
-        }
-        final var childFolder = Folder.parse(child);
-        return childFolder == null ? null : folder(childFolder);
     }
 
     public List<Folder> folders(final Matcher<Folder> matcher)

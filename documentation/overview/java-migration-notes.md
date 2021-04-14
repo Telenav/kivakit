@@ -4,8 +4,8 @@
 
 ### Welcome to Java 11+ &nbsp;&nbsp;    ![](../images/coffee-40.png)
 
-Starting with Java 9, the JDK has supported _modules,_ and starting with KivaKit 8, KivaKit has  
-a modular design and runs on Java 11+.
+Starting with Java 9, the JDK has supported _modules_.  
+KivaKit has a modular design and runs on Java 11+.
 
 ### Why Upgrade from Java 8?
 
@@ -52,7 +52,7 @@ Modular Java is more secure and performs better, but it places certain restricti
 
 Under modular Java, reflection is **only permitted** if code declares itself to be an _open_ module.
 
-Since KivaKit uses reflection, most modules in KivaKit are open module s. This allows reflective  
+Since KivaKit uses reflection, most modules in KivaKit are open modules. This allows reflective  
 code like Kryo serialization to access private members and constructors. Even though this works,  
 you will see this warning (which is by design from the developers of Java):
 
@@ -63,7 +63,7 @@ will restrict reflection further, it is nothing to worry about under Java 12.
 
 ### Making Your Application Modular &nbsp; ![](../images/stars-48.png)
 
-For users of KivaKit, it's only _required_ to declare your application to be an open module  if you  
+For users of KivaKit, it's only _required_ to declare your application to be an open module if you  
 want KivaKit to be able to reflect on _your_ code. Even so, it can be useful to make your  
 application modular, because you can specify exactly what parts of KivaKit you want to use.
 

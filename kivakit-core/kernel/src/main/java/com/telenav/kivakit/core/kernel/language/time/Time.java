@@ -106,17 +106,6 @@ public class Time implements Quantizable
     {
     }
 
-    /**
-     * Adds the given <code>Duration</code> to this <code>Time</code> object, moving the time into the future.
-     *
-     * @param duration the <code>Duration</code> to add
-     * @return this <code>Time</code> + <code>Duration</code>
-     */
-    public Time add(final Duration duration)
-    {
-        return milliseconds(milliseconds + duration.asMilliseconds());
-    }
-
     public Instant asInstant()
     {
         return Instant.ofEpochMilli(asMilliseconds());
@@ -154,7 +143,7 @@ public class Time implements Quantizable
         {
             return Duration.NONE;
         }
-        return now.subtract(this);
+        return now.minus(this);
     }
 
     @Override
@@ -180,7 +169,7 @@ public class Time implements Quantizable
         final var now = now();
         if (isAfter(now))
         {
-            return subtract(now);
+            return minus(now);
         }
         return Duration.NONE;
     }
@@ -245,7 +234,7 @@ public class Time implements Quantizable
      */
     public Duration leftUntil(final Duration elapsed)
     {
-        return elapsed.subtract(elapsedSince());
+        return elapsed.minus(elapsedSince());
     }
 
     public LocalTime localTime()
@@ -273,9 +262,42 @@ public class Time implements Quantizable
         return isBefore(that) ? this : that;
     }
 
+    /**
+     * Subtracts the given <code>Duration</code> from this <code>Time</code> object, moving the time into the past.
+     *
+     * @param duration the <code>Duration</code> to subtract
+     * @return this duration of time
+     */
+    public Time minus(final Duration duration)
+    {
+        return milliseconds(milliseconds - duration.asMilliseconds());
+    }
+
+    /**
+     * Subtract time from this and returns the difference as a <code>Duration</code> object.
+     *
+     * @param that the time to subtract
+     * @return the <code>Duration</code> between this and that time
+     */
+    public Duration minus(final Time that)
+    {
+        return Duration.milliseconds(milliseconds - that.milliseconds);
+    }
+
     public Time nearest(final Duration unit)
     {
-        return add(unit.divide(2)).roundDown(unit);
+        return plus(unit.divide(2)).roundDown(unit);
+    }
+
+    /**
+     * Adds the given <code>Duration</code> to this <code>Time</code> object, moving the time into the future.
+     *
+     * @param duration the <code>Duration</code> to add
+     * @return this <code>Time</code> + <code>Duration</code>
+     */
+    public Time plus(final Duration duration)
+    {
+        return milliseconds(milliseconds + duration.asMilliseconds());
     }
 
     @Override
@@ -291,29 +313,7 @@ public class Time implements Quantizable
 
     public Time roundUp(final Duration unit)
     {
-        return roundDown(unit).add(unit);
-    }
-
-    /**
-     * Subtracts the given <code>Duration</code> from this <code>Time</code> object, moving the time into the past.
-     *
-     * @param duration the <code>Duration</code> to subtract
-     * @return this duration of time
-     */
-    public Time subtract(final Duration duration)
-    {
-        return milliseconds(milliseconds - duration.asMilliseconds());
-    }
-
-    /**
-     * Subtract time from this and returns the difference as a <code>Duration</code> object.
-     *
-     * @param that the time to subtract
-     * @return the <code>Duration</code> between this and that time
-     */
-    public Duration subtract(final Time that)
-    {
-        return Duration.milliseconds(milliseconds - that.milliseconds);
+        return roundDown(unit).plus(unit);
     }
 
     @Override

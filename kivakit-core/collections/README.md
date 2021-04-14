@@ -6,7 +6,6 @@ This module provides collections, iteration support, primitive collections, stac
 
 ### Index
 
-[**Dependencies**](#dependencies)  
 [**Batcher**](#batcher)  
 [**Iterables and Iterators**](#iterables-and-iterators)  
 [**Maps**](#maps)  
@@ -14,9 +13,10 @@ This module provides collections, iteration support, primitive collections, stac
 [**Stack**](#stack)  
 [**Collection Watching**](#collection-watching)  
 [**Primitive Collections**](#primitive-collections)  
-[**Class Diagrams**](#class-diagrams)  
-[**Package Diagrams**](#package-diagrams)  
-[**Javadoc**](#javadoc)
+
+[**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
+
+![](documentation/images/horizontal-line.png)
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](documentation/images/dependencies-40.png)
 
@@ -27,15 +27,18 @@ This module provides collections, iteration support, primitive collections, stac
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId></artifactId>
-        <version><!-- ${project-version} --> 0.9.0-SNAPSHOT <!-- end --></version>
+        <version>0.9.0-SNAPSHOTc</version>
     </dependency>
-![](documentation/images/horizontal-line.png)
+
+![](documentation/images/short-horizontal-line.png)
 
 [//]: # (start-user-text)
 
 
 
 [//]: # (end-user-text)
+
+![](documentation/images/short-horizontal-line.png)
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](documentation/images/diagram-48.png)
 
@@ -54,6 +57,8 @@ This module provides collections, iteration support, primitive collections, stac
 [*Split Primitive Arrays*](documentation/diagrams/diagram-primitive-split-array.svg)  
 [*Stacks*](documentation/diagrams/diagram-stack.svg)  
 [*Two-Dimensional Arrays*](documentation/diagrams/diagram-primitive-array-array.svg)  
+
+![](documentation/images/short-horizontal-line.png)
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](documentation/images/box-40.png)
 
@@ -89,6 +94,8 @@ This module provides collections, iteration support, primitive collections, stac
 [*com.telenav.kivakit.core.collections.stack*](documentation/diagrams/com.telenav.kivakit.core.collections.stack.svg)  
 [*com.telenav.kivakit.core.collections.watcher*](documentation/diagrams/com.telenav.kivakit.core.collections.watcher.svg)  
 
+![](documentation/images/short-horizontal-line.png)
+
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](documentation/images/books-40.png)
 
 Javadoc coverage for this project is 80.1%.  
@@ -106,150 +113,150 @@ The following significant classes are undocumented:
 
 | Class | Documentation Sections |
 |---|---|
-| [*BaseBitReader*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/bits/io/input/BaseBitReader.html) |  |  
-| [*BaseBitWriter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/bits/io/output/BaseBitWriter.html) |  |  
-| [*BaseCollectionChangeWatcher*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/watcher/BaseCollectionChangeWatcher.html) |  |  
-| [*Batcher*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/batcher/Batcher.html) | Example |  
+| [*BaseBitReader*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/bits/io/input/BaseBitReader.html) |  |  
+| [*BaseBitWriter*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/bits/io/output/BaseBitWriter.html) |  |  
+| [*BaseCollectionChangeWatcher*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/watcher/BaseCollectionChangeWatcher.html) |  |  
+| [*Batcher*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/batcher/Batcher.html) | Example |  
 | | Adding Elements |  
 | | Processing Elements |  
-| [*Batcher.Batch*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/batcher/Batcher.Batch.html) |  |  
-| [*Batcher.BatchAdder*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/batcher/Batcher.BatchAdder.html) |  |  
-| [*BigSplitPackedArray*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/packed/BigSplitPackedArray.html) |  |  
-| [*BitArray*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/bits/BitArray.html) |  |  
-| [*BitInput*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/bits/io/input/BitInput.html) |  |  
-| [*BitOutput*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/bits/io/output/BitOutput.html) |  |  
-| [*BitReader*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/bits/io/BitReader.html) |  |  
-| [*BitWriter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/bits/io/BitWriter.html) |  |  
-| [*ByteArray*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/ByteArray.html) |  |  
-| [*ByteArrayArray*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/arrays/ByteArrayArray.html) |  |  
-| [*ByteCollection*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/ByteCollection.html) |  |  
-| [*ByteIterable*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/iteration/ByteIterable.html) |  |  
-| [*ByteIterator*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/iteration/ByteIterator.html) |  |  
-| [*ByteList*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/list/ByteList.html) |  |  
-| [*CacheMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/map/CacheMap.html) |  |  
-| [*CaseFoldingStringMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/map/CaseFoldingStringMap.html) |  |  
-| [*CharArray*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/CharArray.html) |  |  
-| [*CharArray.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/CharArray.Converter.html) |  |  
-| [*CharCollection*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/CharCollection.html) |  |  
-| [*CharIterable*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/iteration/CharIterable.html) |  |  
-| [*CharIterator*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/iteration/CharIterator.html) |  |  
-| [*CharList*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/list/CharList.html) |  |  
-| [*CollectionChangeListener*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/watcher/CollectionChangeListener.html) |  |  
-| [*CollectionChangeWatcher*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/watcher/CollectionChangeWatcher.html) |  |  
-| [*CompoundIterator*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/iteration/iterators/CompoundIterator.html) |  |  
-| [*CompoundSet*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/set/CompoundSet.html) |  |  
-| [*ConcurrentHashSet*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/set/ConcurrentHashSet.html) |  |  
-| [*CoreCollectionsKryoTypes*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/project/CoreCollectionsKryoTypes.html) |  |  
-| [*CoreCollectionsProject*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/project/CoreCollectionsProject.html) |  |  
-| [*CoreCollectionsUnitTest*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/project/CoreCollectionsUnitTest.html) |  |  
-| [*DeduplicatingIterable*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/iteration/iterables/DeduplicatingIterable.html) |  |  
-| [*DeduplicatingIterator*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/iteration/iterators/DeduplicatingIterator.html) |  |  
-| [*DefaultHashingStrategy*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/DefaultHashingStrategy.html) |  |  
-| [*EmptyIterator*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/iteration/iterators/EmptyIterator.html) |  |  
-| [*FilteredIterable*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/iteration/iterables/FilteredIterable.html) |  |  
-| [*FilteredIterator*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/iteration/iterators/FilteredIterator.html) |  |  
-| [*FixedSizeBitArray*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/bits/FixedSizeBitArray.html) |  |  
-| [*HashingStrategy*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/HashingStrategy.html) |  |  
-| [*IdentitySet*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/set/IdentitySet.html) |  |  
-| [*IntArray*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/IntArray.html) |  |  
-| [*IntArray.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/IntArray.Converter.html) |  |  
-| [*IntArrayArray*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/arrays/IntArrayArray.html) |  |  
-| [*IntCollection*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/IntCollection.html) |  |  
-| [*IntIterable*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/iteration/IntIterable.html) |  |  
-| [*IntIterator*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/iteration/IntIterator.html) |  |  
-| [*IntLinkedListStore*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/list/store/IntLinkedListStore.html) |  |  
-| [*IntList*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/list/IntList.html) |  |  
-| [*IntMultiMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/IntMultiMap.html) |  |  
-| [*IntToByteFixedMultiMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/fixed/IntToByteFixedMultiMap.html) |  |  
-| [*IntToByteMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/IntToByteMap.html) |  |  
-| [*IntToByteMap.EntryVisitor*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/IntToByteMap.EntryVisitor.html) |  |  
-| [*IntToIntFixedMultiMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/fixed/IntToIntFixedMultiMap.html) |  |  
-| [*IntToIntMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/IntToIntMap.html) |  |  
-| [*IntToIntMap.EntryVisitor*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/IntToIntMap.EntryVisitor.html) |  |  
-| [*IntToLongFixedMultiMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/fixed/IntToLongFixedMultiMap.html) |  |  
-| [*IntToLongMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/IntToLongMap.html) |  |  
-| [*IntToLongMap.EntryVisitor*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/IntToLongMap.EntryVisitor.html) |  |  
-| [*IntToPackedArrayFixedMultiMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/fixed/IntToPackedArrayFixedMultiMap.html) |  |  
-| [*Intersection*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/set/logical/operations/Intersection.html) |  |  
-| [*LinkedMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/map/LinkedMap.html) |  |  
-| [*LogicalSet*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/set/logical/LogicalSet.html) |  |  
-| [*LongArray*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/LongArray.html) |  |  
-| [*LongArray.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/LongArray.Converter.html) |  |  
-| [*LongArrayArray*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/arrays/LongArrayArray.html) |  |  
-| [*LongCollection*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/LongCollection.html) |  |  
-| [*LongIterable*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/iteration/LongIterable.html) |  |  
-| [*LongIterator*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/iteration/LongIterator.html) |  |  
-| [*LongLinkedListStore*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/list/store/LongLinkedListStore.html) |  |  
-| [*LongList*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/list/LongList.html) |  |  
-| [*LongMultiMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/LongMultiMap.html) |  |  
-| [*LongSet*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/set/LongSet.html) |  |  
-| [*LongToByteFixedMultiMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/fixed/LongToByteFixedMultiMap.html) |  |  
-| [*LongToByteMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/LongToByteMap.html) |  |  
-| [*LongToByteMap.EntryVisitor*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/LongToByteMap.EntryVisitor.html) |  |  
-| [*LongToIntFixedMultiMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/fixed/LongToIntFixedMultiMap.html) |  |  
-| [*LongToIntMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/LongToIntMap.html) |  |  
-| [*LongToIntMap.EntryVisitor*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/LongToIntMap.EntryVisitor.html) |  |  
-| [*LongToIntMultiMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/dynamic/LongToIntMultiMap.html) |  |  
-| [*LongToLongFixedMultiMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/fixed/LongToLongFixedMultiMap.html) |  |  
-| [*LongToLongMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/LongToLongMap.html) |  |  
-| [*LongToLongMap.EntryVisitor*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/LongToLongMap.EntryVisitor.html) |  |  
-| [*LongToLongMultiMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/dynamic/LongToLongMultiMap.html) |  |  
-| [*LongToObjectMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/objects/LongToObjectMap.html) |  |  
-| [*MultiMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/map/MultiMap.html) |  |  
-| [*MultiSet*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/map/MultiSet.html) |  |  
-| [*PackedArray*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/packed/PackedArray.html) |  |  
-| [*PackedPrimitiveArray*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/packed/PackedPrimitiveArray.html) |  |  
-| [*PackedPrimitiveArray.OverflowHandling*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/packed/PackedPrimitiveArray.OverflowHandling.html) |  |  
-| [*PackedStringArray*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/strings/PackedStringArray.html) |  |  
-| [*PackedStringArray.Type*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/strings/PackedStringArray.Type.html) |  |  
-| [*PackedStringStore*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/list/store/PackedStringStore.html) |  |  
-| [*PeriodicCollectionChangeWatcher*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/watcher/PeriodicCollectionChangeWatcher.html) |  |  
-| [*PrimitiveArray*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/PrimitiveArray.html) |  |  
-| [*PrimitiveArrayArray*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/PrimitiveArrayArray.html) |  |  
-| [*PrimitiveCollection*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/PrimitiveCollection.html) |  |  
-| [*PrimitiveCollection.AllocationStackTrace*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/PrimitiveCollection.AllocationStackTrace.html) |  |  
-| [*PrimitiveCollection.CompressionRecord*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/PrimitiveCollection.CompressionRecord.html) |  |  
-| [*PrimitiveCollection.IndexedToString*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/PrimitiveCollection.IndexedToString.html) |  |  
-| [*PrimitiveIterator*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/iteration/PrimitiveIterator.html) |  |  
-| [*PrimitiveList*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/list/PrimitiveList.html) |  |  
-| [*PrimitiveListStore*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/list/store/PrimitiveListStore.html) |  |  
-| [*PrimitiveMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/PrimitiveMap.html) |  |  
-| [*PrimitiveMap.MapToString*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/PrimitiveMap.MapToString.html) |  |  
-| [*PrimitiveMultiMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/PrimitiveMultiMap.html) |  |  
-| [*PrimitiveMultiMap.MultiMapToString*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/PrimitiveMultiMap.MultiMapToString.html) |  |  
-| [*PrimitiveScalarMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/PrimitiveScalarMap.html) |  |  
-| [*PrimitiveScalarMultiMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/PrimitiveScalarMultiMap.html) |  |  
-| [*PrimitiveSet*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/set/PrimitiveSet.html) |  |  
-| [*PrimitiveSet.SetToString*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/set/PrimitiveSet.SetToString.html) |  |  
-| [*PrimitiveSplitArray*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/PrimitiveSplitArray.html) |  |  
-| [*ReferenceCountMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/map/ReferenceCountMap.html) |  |  
-| [*SetDifferencer*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/set/SetDifferencer.html) |  |  
-| [*ShortArray*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/ShortArray.html) |  |  
-| [*ShortArray.Converter*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/ShortArray.Converter.html) |  |  
-| [*ShortCollection*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/ShortCollection.html) |  |  
-| [*ShortIterable*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/iteration/ShortIterable.html) |  |  
-| [*ShortIterator*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/iteration/ShortIterator.html) |  |  
-| [*ShortList*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/list/ShortList.html) |  |  
-| [*SingletonIterator*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/iteration/iterators/SingletonIterator.html) |  |  
-| [*SplitByteArray*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/SplitByteArray.html) |  |  
-| [*SplitCharArray*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/SplitCharArray.html) |  |  
-| [*SplitIntArray*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/SplitIntArray.html) |  |  
-| [*SplitIntToIntMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/split/SplitIntToIntMap.html) |  |  
-| [*SplitLongArray*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/SplitLongArray.html) |  |  
-| [*SplitLongSet*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/set/SplitLongSet.html) |  |  
-| [*SplitLongToByteMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/split/SplitLongToByteMap.html) |  |  
-| [*SplitLongToIntMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/split/SplitLongToIntMap.html) |  |  
-| [*SplitLongToLongMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/split/SplitLongToLongMap.html) |  |  
-| [*SplitPackedArray*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/packed/SplitPackedArray.html) |  |  
-| [*SplitPrimitiveMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/SplitPrimitiveMap.html) |  |  
-| [*Stack*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/stack/Stack.html) |  |  
-| [*StringToIntMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/StringToIntMap.html) |  |  
-| [*StringToObjectMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/StringToObjectMap.html) |  |  
-| [*Subset*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/set/logical/operations/Subset.html) |  |  
-| [*TwoWayMap*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/map/TwoWayMap.html) |  |  
-| [*Union*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/set/logical/operations/Union.html) |  |  
-| [*VariableReadSizeBitInput*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/bits/io/input/VariableReadSizeBitInput.html) |  |  
-| [*Without*](https://telenav.github.io/kivakit/javadoc/kivakit.core.collections/com/telenav/kivakit/core/collections/set/logical/operations/Without.html) |  |  
+| [*Batcher.Batch*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/batcher/Batcher.Batch.html) |  |  
+| [*Batcher.BatchAdder*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/batcher/Batcher.BatchAdder.html) |  |  
+| [*BigSplitPackedArray*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/packed/BigSplitPackedArray.html) |  |  
+| [*BitArray*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/bits/BitArray.html) |  |  
+| [*BitInput*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/bits/io/input/BitInput.html) |  |  
+| [*BitOutput*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/bits/io/output/BitOutput.html) |  |  
+| [*BitReader*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/bits/io/BitReader.html) |  |  
+| [*BitWriter*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/bits/io/BitWriter.html) |  |  
+| [*ByteArray*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/ByteArray.html) |  |  
+| [*ByteArrayArray*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/arrays/ByteArrayArray.html) |  |  
+| [*ByteCollection*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/ByteCollection.html) |  |  
+| [*ByteIterable*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/iteration/ByteIterable.html) |  |  
+| [*ByteIterator*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/iteration/ByteIterator.html) |  |  
+| [*ByteList*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/list/ByteList.html) |  |  
+| [*CacheMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/map/CacheMap.html) |  |  
+| [*CaseFoldingStringMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/map/CaseFoldingStringMap.html) |  |  
+| [*CharArray*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/CharArray.html) |  |  
+| [*CharArray.Converter*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/CharArray.Converter.html) |  |  
+| [*CharCollection*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/CharCollection.html) |  |  
+| [*CharIterable*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/iteration/CharIterable.html) |  |  
+| [*CharIterator*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/iteration/CharIterator.html) |  |  
+| [*CharList*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/list/CharList.html) |  |  
+| [*CollectionChangeListener*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/watcher/CollectionChangeListener.html) |  |  
+| [*CollectionChangeWatcher*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/watcher/CollectionChangeWatcher.html) |  |  
+| [*CompoundIterator*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/iteration/iterators/CompoundIterator.html) |  |  
+| [*CompoundSet*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/set/CompoundSet.html) |  |  
+| [*ConcurrentHashSet*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/set/ConcurrentHashSet.html) |  |  
+| [*CoreCollectionsKryoTypes*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/project/CoreCollectionsKryoTypes.html) |  |  
+| [*CoreCollectionsProject*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/project/CoreCollectionsProject.html) |  |  
+| [*CoreCollectionsUnitTest*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/project/CoreCollectionsUnitTest.html) |  |  
+| [*DeduplicatingIterable*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/iteration/iterables/DeduplicatingIterable.html) |  |  
+| [*DeduplicatingIterator*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/iteration/iterators/DeduplicatingIterator.html) |  |  
+| [*DefaultHashingStrategy*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/DefaultHashingStrategy.html) |  |  
+| [*EmptyIterator*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/iteration/iterators/EmptyIterator.html) |  |  
+| [*FilteredIterable*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/iteration/iterables/FilteredIterable.html) |  |  
+| [*FilteredIterator*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/iteration/iterators/FilteredIterator.html) |  |  
+| [*FixedSizeBitArray*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/bits/FixedSizeBitArray.html) |  |  
+| [*HashingStrategy*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/HashingStrategy.html) |  |  
+| [*IdentitySet*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/set/IdentitySet.html) |  |  
+| [*IntArray*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/IntArray.html) |  |  
+| [*IntArray.Converter*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/IntArray.Converter.html) |  |  
+| [*IntArrayArray*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/arrays/IntArrayArray.html) |  |  
+| [*IntCollection*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/IntCollection.html) |  |  
+| [*IntIterable*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/iteration/IntIterable.html) |  |  
+| [*IntIterator*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/iteration/IntIterator.html) |  |  
+| [*IntLinkedListStore*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/list/store/IntLinkedListStore.html) |  |  
+| [*IntList*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/list/IntList.html) |  |  
+| [*IntMultiMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/IntMultiMap.html) |  |  
+| [*IntToByteFixedMultiMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/fixed/IntToByteFixedMultiMap.html) |  |  
+| [*IntToByteMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/IntToByteMap.html) |  |  
+| [*IntToByteMap.EntryVisitor*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/IntToByteMap.EntryVisitor.html) |  |  
+| [*IntToIntFixedMultiMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/fixed/IntToIntFixedMultiMap.html) |  |  
+| [*IntToIntMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/IntToIntMap.html) |  |  
+| [*IntToIntMap.EntryVisitor*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/IntToIntMap.EntryVisitor.html) |  |  
+| [*IntToLongFixedMultiMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/fixed/IntToLongFixedMultiMap.html) |  |  
+| [*IntToLongMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/IntToLongMap.html) |  |  
+| [*IntToLongMap.EntryVisitor*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/IntToLongMap.EntryVisitor.html) |  |  
+| [*IntToPackedArrayFixedMultiMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/fixed/IntToPackedArrayFixedMultiMap.html) |  |  
+| [*Intersection*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/set/logical/operations/Intersection.html) |  |  
+| [*LinkedMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/map/LinkedMap.html) |  |  
+| [*LogicalSet*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/set/logical/LogicalSet.html) |  |  
+| [*LongArray*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/LongArray.html) |  |  
+| [*LongArray.Converter*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/LongArray.Converter.html) |  |  
+| [*LongArrayArray*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/arrays/LongArrayArray.html) |  |  
+| [*LongCollection*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/LongCollection.html) |  |  
+| [*LongIterable*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/iteration/LongIterable.html) |  |  
+| [*LongIterator*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/iteration/LongIterator.html) |  |  
+| [*LongLinkedListStore*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/list/store/LongLinkedListStore.html) |  |  
+| [*LongList*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/list/LongList.html) |  |  
+| [*LongMultiMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/LongMultiMap.html) |  |  
+| [*LongSet*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/set/LongSet.html) |  |  
+| [*LongToByteFixedMultiMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/fixed/LongToByteFixedMultiMap.html) |  |  
+| [*LongToByteMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/LongToByteMap.html) |  |  
+| [*LongToByteMap.EntryVisitor*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/LongToByteMap.EntryVisitor.html) |  |  
+| [*LongToIntFixedMultiMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/fixed/LongToIntFixedMultiMap.html) |  |  
+| [*LongToIntMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/LongToIntMap.html) |  |  
+| [*LongToIntMap.EntryVisitor*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/LongToIntMap.EntryVisitor.html) |  |  
+| [*LongToIntMultiMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/dynamic/LongToIntMultiMap.html) |  |  
+| [*LongToLongFixedMultiMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/fixed/LongToLongFixedMultiMap.html) |  |  
+| [*LongToLongMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/LongToLongMap.html) |  |  
+| [*LongToLongMap.EntryVisitor*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/LongToLongMap.EntryVisitor.html) |  |  
+| [*LongToLongMultiMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/dynamic/LongToLongMultiMap.html) |  |  
+| [*LongToObjectMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/objects/LongToObjectMap.html) |  |  
+| [*MultiMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/map/MultiMap.html) |  |  
+| [*MultiSet*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/map/MultiSet.html) |  |  
+| [*PackedArray*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/packed/PackedArray.html) |  |  
+| [*PackedPrimitiveArray*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/packed/PackedPrimitiveArray.html) |  |  
+| [*PackedPrimitiveArray.OverflowHandling*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/packed/PackedPrimitiveArray.OverflowHandling.html) |  |  
+| [*PackedStringArray*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/strings/PackedStringArray.html) |  |  
+| [*PackedStringArray.Type*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/strings/PackedStringArray.Type.html) |  |  
+| [*PackedStringStore*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/list/store/PackedStringStore.html) |  |  
+| [*PeriodicCollectionChangeWatcher*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/watcher/PeriodicCollectionChangeWatcher.html) |  |  
+| [*PrimitiveArray*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/PrimitiveArray.html) |  |  
+| [*PrimitiveArrayArray*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/PrimitiveArrayArray.html) |  |  
+| [*PrimitiveCollection*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/PrimitiveCollection.html) |  |  
+| [*PrimitiveCollection.AllocationStackTrace*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/PrimitiveCollection.AllocationStackTrace.html) |  |  
+| [*PrimitiveCollection.CompressionRecord*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/PrimitiveCollection.CompressionRecord.html) |  |  
+| [*PrimitiveCollection.IndexedToString*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/PrimitiveCollection.IndexedToString.html) |  |  
+| [*PrimitiveIterator*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/iteration/PrimitiveIterator.html) |  |  
+| [*PrimitiveList*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/list/PrimitiveList.html) |  |  
+| [*PrimitiveListStore*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/list/store/PrimitiveListStore.html) |  |  
+| [*PrimitiveMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/PrimitiveMap.html) |  |  
+| [*PrimitiveMap.MapToString*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/PrimitiveMap.MapToString.html) |  |  
+| [*PrimitiveMultiMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/PrimitiveMultiMap.html) |  |  
+| [*PrimitiveMultiMap.MultiMapToString*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/PrimitiveMultiMap.MultiMapToString.html) |  |  
+| [*PrimitiveScalarMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/PrimitiveScalarMap.html) |  |  
+| [*PrimitiveScalarMultiMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/multi/PrimitiveScalarMultiMap.html) |  |  
+| [*PrimitiveSet*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/set/PrimitiveSet.html) |  |  
+| [*PrimitiveSet.SetToString*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/set/PrimitiveSet.SetToString.html) |  |  
+| [*PrimitiveSplitArray*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/PrimitiveSplitArray.html) |  |  
+| [*ReferenceCountMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/map/ReferenceCountMap.html) |  |  
+| [*SetDifferencer*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/set/SetDifferencer.html) |  |  
+| [*ShortArray*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/ShortArray.html) |  |  
+| [*ShortArray.Converter*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/ShortArray.Converter.html) |  |  
+| [*ShortCollection*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/ShortCollection.html) |  |  
+| [*ShortIterable*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/iteration/ShortIterable.html) |  |  
+| [*ShortIterator*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/iteration/ShortIterator.html) |  |  
+| [*ShortList*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/list/ShortList.html) |  |  
+| [*SingletonIterator*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/iteration/iterators/SingletonIterator.html) |  |  
+| [*SplitByteArray*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/SplitByteArray.html) |  |  
+| [*SplitCharArray*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/SplitCharArray.html) |  |  
+| [*SplitIntArray*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/SplitIntArray.html) |  |  
+| [*SplitIntToIntMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/split/SplitIntToIntMap.html) |  |  
+| [*SplitLongArray*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/scalars/SplitLongArray.html) |  |  
+| [*SplitLongSet*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/set/SplitLongSet.html) |  |  
+| [*SplitLongToByteMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/split/SplitLongToByteMap.html) |  |  
+| [*SplitLongToIntMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/split/SplitLongToIntMap.html) |  |  
+| [*SplitLongToLongMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/split/SplitLongToLongMap.html) |  |  
+| [*SplitPackedArray*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/packed/SplitPackedArray.html) |  |  
+| [*SplitPrimitiveMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/SplitPrimitiveMap.html) |  |  
+| [*Stack*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/stack/Stack.html) |  |  
+| [*StringToIntMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/StringToIntMap.html) |  |  
+| [*StringToObjectMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/map/scalars/StringToObjectMap.html) |  |  
+| [*Subset*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/set/logical/operations/Subset.html) |  |  
+| [*TwoWayMap*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/map/TwoWayMap.html) |  |  
+| [*Union*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/set/logical/operations/Union.html) |  |  
+| [*VariableReadSizeBitInput*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/primitive/array/bits/io/input/VariableReadSizeBitInput.html) |  |  
+| [*Without*](https://telenav.github.io/kivakit-data/javadockivakit.core.collections/com/telenav/kivakit/core/collections/set/logical/operations/Without.html) |  |  
 
 [//]: # (start-user-text)
 
@@ -349,6 +356,6 @@ The *primitive* package contains an extensive set of classes for storing data in
 ![](documentation/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.11. UML diagrams courtesy
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.13. UML diagrams courtesy
 of [PlantUML](http://plantuml.com).</sub>
 
