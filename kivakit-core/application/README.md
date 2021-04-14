@@ -35,7 +35,7 @@ configuration management and object registration and lookup.
 KivaKit applications (desktop and server) are created by extending the Application or Server base classes.  
 These classes provide access to:
 
-> - Project initialization
+>- Project initialization
 >- Messaging and logging
 >- Application configuration and settings
 >- Usage information and help
@@ -44,8 +44,8 @@ These classes provide access to:
 >- Build information
 >- Object registration and lookup
 
-For an example application, see [**How to Create an Application**](#how-to-create-an-application) below, or browse the [**
-Javadoc**](#javadoc).
+For an example application, see [**How to Create an Application**](#how-to-create-an-application) below, or 
+browse the [**Javadoc**](#javadoc).
 
 [//]: # (end-user-text)
 
