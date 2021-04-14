@@ -1,9 +1,3 @@
-[![](documentation/images/twitter-32.png)](https://twitter.com/openkivakit)
-&nbsp;
-[![](documentation/images/web-32.png)](https://telenav.github.io/kivakit/)
-
-![](documentation/images/kivakit-background-500.jpg)
-
 # ${project-name} &nbsp;&nbsp;![](${project-icon})
 
 ${project-description}
@@ -16,11 +10,13 @@ ${user-text-top}
 
 [//]: # (end-user-text)
 
-### Projects &nbsp; ![](documentation/images/gears-40.png)
+### Projects <a name = "projects"></a> &nbsp; ![](documentation/images/gears-40.png)
 
 ${child-projects}
 
-### Javadoc Coverage
+![](documentation/images/short-horizontal-line.png)
+
+### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; ![](documentation/images/bargraph-32.png)
 
 ${project-javadoc-coverage}
 
