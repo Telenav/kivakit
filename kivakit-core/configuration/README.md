@@ -65,25 +65,25 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*ConfigurationEntry*](https://telenav.github.io/kivakit-data/javadockivakit.core.configuration/com/telenav/kivakit/core/configuration/ConfigurationEntry.html) |  |  
-| [*ConfigurationFolder*](https://telenav.github.io/kivakit-data/javadockivakit.core.configuration/com/telenav/kivakit/core/configuration/ConfigurationFolder.html) |  |  
-| [*ConfigurationIdentifier*](https://telenav.github.io/kivakit-data/javadockivakit.core.configuration/com/telenav/kivakit/core/configuration/ConfigurationIdentifier.html) |  |  
-| [*ConfigurationPackage*](https://telenav.github.io/kivakit-data/javadockivakit.core.configuration/com/telenav/kivakit/core/configuration/ConfigurationPackage.html) |  |  
-| [*ConfigurationSet*](https://telenav.github.io/kivakit-data/javadockivakit.core.configuration/com/telenav/kivakit/core/configuration/ConfigurationSet.html) | The Global Configuration Set |  
+| [*ConfigurationEntry*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/ConfigurationEntry.html) |  |  
+| [*ConfigurationFolder*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/ConfigurationFolder.html) |  |  
+| [*ConfigurationIdentifier*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/ConfigurationIdentifier.html) |  |  
+| [*ConfigurationPackage*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/ConfigurationPackage.html) |  |  
+| [*ConfigurationSet*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/ConfigurationSet.html) | The Global Configuration Set |  
 | | Adding and Loading Configuration Objects |  
 | | Loading Configurations as DeploymentSets |  
 | | Locating Configurations with Lookup |  
 | | Locating Configuration Objects at Runtime |  
 | | Properties File Format |  
-| [*CoreConfigurationProject*](https://telenav.github.io/kivakit-data/javadockivakit.core.configuration/com/telenav/kivakit/core/configuration/project/CoreConfigurationProject.html) |  |  
-| [*Deployment*](https://telenav.github.io/kivakit-data/javadockivakit.core.configuration/com/telenav/kivakit/core/configuration/Deployment.html) | Configuring Applications |  
+| [*CoreConfigurationProject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/project/CoreConfigurationProject.html) |  |  
+| [*Deployment*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/Deployment.html) | Configuring Applications |  
 | | Key Methods |  
 | | Example |  
-| [*Deployment.Converter*](https://telenav.github.io/kivakit-data/javadockivakit.core.configuration/com/telenav/kivakit/core/configuration/Deployment.Converter.html) |  |  
-| [*DeploymentSet*](https://telenav.github.io/kivakit-data/javadockivakit.core.configuration/com/telenav/kivakit/core/configuration/DeploymentSet.html) |  |  
-| [*InstanceIdentifier*](https://telenav.github.io/kivakit-data/javadockivakit.core.configuration/com/telenav/kivakit/core/configuration/InstanceIdentifier.html) |  |  
-| [*Lookup*](https://telenav.github.io/kivakit-data/javadockivakit.core.configuration/com/telenav/kivakit/core/configuration/lookup/Lookup.html) | Example |  
-| [*Settings*](https://telenav.github.io/kivakit-data/javadockivakit.core.configuration/com/telenav/kivakit/core/configuration/settings/Settings.html) | Overriding Settings from the Command Line |  
+| [*Deployment.Converter*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/Deployment.Converter.html) |  |  
+| [*DeploymentSet*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/DeploymentSet.html) |  |  
+| [*InstanceIdentifier*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/InstanceIdentifier.html) |  |  
+| [*Lookup*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/lookup/Lookup.html) | Example |  
+| [*Settings*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.configuration/com/telenav/kivakit/core/configuration/settings/Settings.html) | Overriding Settings from the Command Line |  
 | | Finding Settings |  
 
 [//]: # (start-user-text)

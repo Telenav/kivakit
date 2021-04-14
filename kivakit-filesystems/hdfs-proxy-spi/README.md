@@ -58,7 +58,7 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*HdfsProxy*](https://telenav.github.io/kivakit-data/javadockivakit.filesystems.hdfs.proxy.spi/com/telenav/kivakit/filesystems/hdfs/proxy/spi/HdfsProxy.html) |  |  
+| [*HdfsProxy*](https://telenav.github.io/kivakit-data/javadoc/kivakit.filesystems.hdfs.proxy.spi/com/telenav/kivakit/filesystems/hdfs/proxy/spi/HdfsProxy.html) |  |  
 
 [//]: # (start-user-text)
 

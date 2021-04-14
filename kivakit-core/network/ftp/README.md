@@ -59,17 +59,17 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*CoreNetworkFtpProject*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/project/CoreNetworkFtpProject.html) |  |  
-| [*FtpNetworkLocation*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpNetworkLocation.html) |  |  
-| [*FtpNetworkLocation.Mode*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpNetworkLocation.Mode.html) |  |  
-| [*FtpResource*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpResource.html) |  |  
-| [*FtpResource.FtpInput*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpResource.FtpInput.html) |  |  
-| [*SecureFtpConnector*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpConnector.html) |  |  
-| [*SecureFtpInput*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpInput.html) |  |  
-| [*SecureFtpNetworkLocation*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpNetworkLocation.html) |  |  
-| [*SecureFtpResource*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpResource.html) |  |  
-| [*SecureFtpSettings*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpSettings.html) |  |  
-| [*SftpFolderWatcher*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SftpFolderWatcher.html) |  |  
+| [*CoreNetworkFtpProject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/project/CoreNetworkFtpProject.html) |  |  
+| [*FtpNetworkLocation*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpNetworkLocation.html) |  |  
+| [*FtpNetworkLocation.Mode*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpNetworkLocation.Mode.html) |  |  
+| [*FtpResource*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpResource.html) |  |  
+| [*FtpResource.FtpInput*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/FtpResource.FtpInput.html) |  |  
+| [*SecureFtpConnector*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpConnector.html) |  |  
+| [*SecureFtpInput*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpInput.html) |  |  
+| [*SecureFtpNetworkLocation*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpNetworkLocation.html) |  |  
+| [*SecureFtpResource*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpResource.html) |  |  
+| [*SecureFtpSettings*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SecureFtpSettings.html) |  |  
+| [*SftpFolderWatcher*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.ftp/com/telenav/kivakit/core/network/ftp/secure/SftpFolderWatcher.html) |  |  
 
 [//]: # (start-user-text)
 

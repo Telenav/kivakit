@@ -100,21 +100,21 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*AttachmentConverter*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/converters/AttachmentConverter.html) |  |  
-| [*AttachmentListConverter*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/converters/AttachmentListConverter.html) |  |  
-| [*BodyConverter*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/converters/BodyConverter.html) |  |  
-| [*CoreNetworkEmailProject*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/project/CoreNetworkEmailProject.html) |  |  
-| [*Email*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/Email.html) |  |  
-| [*EmailAddressConverter*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/converters/EmailAddressConverter.html) |  |  
-| [*EmailAddressSetConverter*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/converters/EmailAddressSetConverter.html) |  |  
-| [*EmailAttachment*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/EmailAttachment.html) |  |  
-| [*EmailBody*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/EmailBody.html) |  |  
-| [*EmailQueue*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/EmailQueue.html) |  |  
-| [*EmailSender*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/EmailSender.html) |  |  
-| [*EmailSender.Configuration*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/EmailSender.Configuration.html) |  |  
-| [*HtmlEmailBody*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/HtmlEmailBody.html) |  |  
-| [*SmtpEmailSender*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/senders/SmtpEmailSender.html) |  |  
-| [*SmtpEmailSender.Configuration*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.email/com/telenav/kivakit/core/network/email/senders/SmtpEmailSender.Configuration.html) |  |  
+| [*AttachmentConverter*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/converters/AttachmentConverter.html) |  |  
+| [*AttachmentListConverter*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/converters/AttachmentListConverter.html) |  |  
+| [*BodyConverter*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/converters/BodyConverter.html) |  |  
+| [*CoreNetworkEmailProject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/project/CoreNetworkEmailProject.html) |  |  
+| [*Email*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/Email.html) |  |  
+| [*EmailAddressConverter*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/converters/EmailAddressConverter.html) |  |  
+| [*EmailAddressSetConverter*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/converters/EmailAddressSetConverter.html) |  |  
+| [*EmailAttachment*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/EmailAttachment.html) |  |  
+| [*EmailBody*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/EmailBody.html) |  |  
+| [*EmailQueue*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/EmailQueue.html) |  |  
+| [*EmailSender*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/EmailSender.html) |  |  
+| [*EmailSender.Configuration*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/EmailSender.Configuration.html) |  |  
+| [*HtmlEmailBody*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/HtmlEmailBody.html) |  |  
+| [*SmtpEmailSender*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/senders/SmtpEmailSender.html) |  |  
+| [*SmtpEmailSender.Configuration*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.email/com/telenav/kivakit/core/network/email/senders/SmtpEmailSender.Configuration.html) |  |  
 
 [//]: # (start-user-text)
 

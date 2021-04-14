@@ -57,13 +57,13 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*SerializationCoreProject*](https://telenav.github.io/kivakit-data/javadockivakit.core.serialization.core/com/telenav/kivakit/core/serialization/core/project/SerializationCoreProject.html) |  |  
-| [*SerializationSession*](https://telenav.github.io/kivakit-data/javadockivakit.core.serialization.core/com/telenav/kivakit/core/serialization/core/SerializationSession.html) | Creating a Session |  
+| [*SerializationCoreProject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.serialization.core/com/telenav/kivakit/core/serialization/core/project/SerializationCoreProject.html) |  |  
+| [*SerializationSession*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.serialization.core/com/telenav/kivakit/core/serialization/core/SerializationSession.html) | Creating a Session |  
 | | Opening a Session |  
 | | Example |  
-| [*SerializationSession.Type*](https://telenav.github.io/kivakit-data/javadockivakit.core.serialization.core/com/telenav/kivakit/core/serialization/core/SerializationSession.Type.html) |  |  
-| [*SerializationSessionFactory*](https://telenav.github.io/kivakit-data/javadockivakit.core.serialization.core/com/telenav/kivakit/core/serialization/core/SerializationSessionFactory.html) |  |  
-| [*SerializationSessionReadWrite*](https://telenav.github.io/kivakit-data/javadockivakit.core.serialization.core/com/telenav/kivakit/core/serialization/core/SerializationSessionReadWrite.html) |  |  
+| [*SerializationSession.Type*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.serialization.core/com/telenav/kivakit/core/serialization/core/SerializationSession.Type.html) |  |  
+| [*SerializationSessionFactory*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.serialization.core/com/telenav/kivakit/core/serialization/core/SerializationSessionFactory.html) |  |  
+| [*SerializationSessionReadWrite*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.serialization.core/com/telenav/kivakit/core/serialization/core/SerializationSessionReadWrite.html) |  |  
 
 [//]: # (start-user-text)
 

@@ -90,13 +90,13 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*FileSystemsHdfsProject*](https://telenav.github.io/kivakit-data/javadockivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/project/FileSystemsHdfsProject.html) |  |  
-| [*HdfsFile*](https://telenav.github.io/kivakit-data/javadockivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/HdfsFile.html) |  |  
-| [*HdfsFileSystemService*](https://telenav.github.io/kivakit-data/javadockivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/HdfsFileSystemService.html) |  |  
-| [*HdfsFolder*](https://telenav.github.io/kivakit-data/javadockivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/HdfsFolder.html) |  |  
-| [*HdfsProxyClient*](https://telenav.github.io/kivakit-data/javadockivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/HdfsProxyClient.html) |  |  
-| [*HdfsProxyIO*](https://telenav.github.io/kivakit-data/javadockivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/HdfsProxyIO.html) |  |  
-| [*HdfsSettings*](https://telenav.github.io/kivakit-data/javadockivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/HdfsSettings.html) | Settings |  
+| [*FileSystemsHdfsProject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/project/FileSystemsHdfsProject.html) |  |  
+| [*HdfsFile*](https://telenav.github.io/kivakit-data/javadoc/kivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/HdfsFile.html) |  |  
+| [*HdfsFileSystemService*](https://telenav.github.io/kivakit-data/javadoc/kivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/HdfsFileSystemService.html) |  |  
+| [*HdfsFolder*](https://telenav.github.io/kivakit-data/javadoc/kivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/HdfsFolder.html) |  |  
+| [*HdfsProxyClient*](https://telenav.github.io/kivakit-data/javadoc/kivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/HdfsProxyClient.html) |  |  
+| [*HdfsProxyIO*](https://telenav.github.io/kivakit-data/javadoc/kivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/HdfsProxyIO.html) |  |  
+| [*HdfsSettings*](https://telenav.github.io/kivakit-data/javadoc/kivakit.filesystems.hdfs/com/telenav/kivakit/filesystems/hdfs/HdfsSettings.html) | Settings |  
 
 [//]: # (start-user-text)
 

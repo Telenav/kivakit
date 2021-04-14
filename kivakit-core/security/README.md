@@ -64,17 +64,17 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*BaseDigester*](https://telenav.github.io/kivakit-data/javadockivakit.core.security/com/telenav/kivakit/core/security/digest/BaseDigester.html) |  |  
-| [*CoreSecurityProject*](https://telenav.github.io/kivakit-data/javadockivakit.core.security/com/telenav/kivakit/core/security/project/CoreSecurityProject.html) |  |  
-| [*DigestPassword*](https://telenav.github.io/kivakit-data/javadockivakit.core.security/com/telenav/kivakit/core/security/authentication/passwords/DigestPassword.html) |  |  
-| [*Digester*](https://telenav.github.io/kivakit-data/javadockivakit.core.security/com/telenav/kivakit/core/security/digest/Digester.html) |  |  
-| [*Md5Digester*](https://telenav.github.io/kivakit-data/javadockivakit.core.security/com/telenav/kivakit/core/security/digest/digesters/Md5Digester.html) |  |  
-| [*Password*](https://telenav.github.io/kivakit-data/javadockivakit.core.security/com/telenav/kivakit/core/security/authentication/Password.html) |  |  
-| [*PlainTextPassword*](https://telenav.github.io/kivakit-data/javadockivakit.core.security/com/telenav/kivakit/core/security/authentication/passwords/PlainTextPassword.html) |  |  
-| [*PlainTextPassword.Converter*](https://telenav.github.io/kivakit-data/javadockivakit.core.security/com/telenav/kivakit/core/security/authentication/passwords/PlainTextPassword.Converter.html) |  |  
-| [*Sha1Digester*](https://telenav.github.io/kivakit-data/javadockivakit.core.security/com/telenav/kivakit/core/security/digest/digesters/Sha1Digester.html) |  |  
-| [*UserName*](https://telenav.github.io/kivakit-data/javadockivakit.core.security/com/telenav/kivakit/core/security/authentication/UserName.html) |  |  
-| [*UserName.Converter*](https://telenav.github.io/kivakit-data/javadockivakit.core.security/com/telenav/kivakit/core/security/authentication/UserName.Converter.html) |  |  
+| [*BaseDigester*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/digest/BaseDigester.html) |  |  
+| [*CoreSecurityProject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/project/CoreSecurityProject.html) |  |  
+| [*DigestPassword*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/passwords/DigestPassword.html) |  |  
+| [*Digester*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/digest/Digester.html) |  |  
+| [*Md5Digester*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/digest/digesters/Md5Digester.html) |  |  
+| [*Password*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/Password.html) |  |  
+| [*PlainTextPassword*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/passwords/PlainTextPassword.html) |  |  
+| [*PlainTextPassword.Converter*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/passwords/PlainTextPassword.Converter.html) |  |  
+| [*Sha1Digester*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/digest/digesters/Sha1Digester.html) |  |  
+| [*UserName*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/UserName.html) |  |  
+| [*UserName.Converter*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.security/com/telenav/kivakit/core/security/authentication/UserName.Converter.html) |  |  
 
 [//]: # (start-user-text)
 

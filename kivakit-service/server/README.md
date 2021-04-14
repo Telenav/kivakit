@@ -60,15 +60,15 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*HomePage*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/server/webapp/pages/home/HomePage.html) |  |  
-| [*ServicePanel*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/server/webapp/pages/home/ServicePanel.html) |  |  
-| [*ServiceRegistryRestApplication*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/server/rest/ServiceRegistryRestApplication.html) |  |  
-| [*ServiceRegistryRestResource*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/server/rest/ServiceRegistryRestResource.html) |  |  
-| [*ServiceRegistryServer*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/server/ServiceRegistryServer.html) |  |  
-| [*ServiceRegistryServerProject*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/server/project/ServiceRegistryServerProject.html) |  |  
-| [*ServiceRegistryServerSettings*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/server/ServiceRegistryServerSettings.html) |  |  
-| [*ServiceRegistryWebApplication*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/server/webapp/ServiceRegistryWebApplication.html) |  |  
-| [*ServiceRegistryWebPage*](https://telenav.github.io/kivakit-data/javadockivakit.service.registry/com/telenav/kivakit/service/registry/server/webapp/ServiceRegistryWebPage.html) |  |  
+| [*HomePage*](https://telenav.github.io/kivakit-data/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/webapp/pages/home/HomePage.html) |  |  
+| [*ServicePanel*](https://telenav.github.io/kivakit-data/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/webapp/pages/home/ServicePanel.html) |  |  
+| [*ServiceRegistryRestApplication*](https://telenav.github.io/kivakit-data/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/rest/ServiceRegistryRestApplication.html) |  |  
+| [*ServiceRegistryRestResource*](https://telenav.github.io/kivakit-data/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/rest/ServiceRegistryRestResource.html) |  |  
+| [*ServiceRegistryServer*](https://telenav.github.io/kivakit-data/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/ServiceRegistryServer.html) |  |  
+| [*ServiceRegistryServerProject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/project/ServiceRegistryServerProject.html) |  |  
+| [*ServiceRegistryServerSettings*](https://telenav.github.io/kivakit-data/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/ServiceRegistryServerSettings.html) |  |  
+| [*ServiceRegistryWebApplication*](https://telenav.github.io/kivakit-data/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/webapp/ServiceRegistryWebApplication.html) |  |  
+| [*ServiceRegistryWebPage*](https://telenav.github.io/kivakit-data/javadoc/kivakit.service.registry/com/telenav/kivakit/service/registry/server/webapp/ServiceRegistryWebPage.html) |  |  
 
 [//]: # (start-user-text)
 

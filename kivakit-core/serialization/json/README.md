@@ -57,11 +57,11 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*GsonFactory*](https://telenav.github.io/kivakit-data/javadockivakit.core.serialization.json/com/telenav/kivakit/core/serialization/json/GsonFactory.html) |  |  
-| [*GsonSerializer*](https://telenav.github.io/kivakit-data/javadockivakit.core.serialization.json/com/telenav/kivakit/core/serialization/json/GsonSerializer.html) |  |  
-| [*PrimitiveGsonSerializer*](https://telenav.github.io/kivakit-data/javadockivakit.core.serialization.json/com/telenav/kivakit/core/serialization/json/PrimitiveGsonSerializer.html) |  |  
-| [*SerializationJsonProject*](https://telenav.github.io/kivakit-data/javadockivakit.core.serialization.json/com/telenav/kivakit/core/serialization/json/project/SerializationJsonProject.html) |  |  
-| [*StringConverterGsonSerializer*](https://telenav.github.io/kivakit-data/javadockivakit.core.serialization.json/com/telenav/kivakit/core/serialization/json/StringConverterGsonSerializer.html) |  |  
+| [*GsonFactory*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.serialization.json/com/telenav/kivakit/core/serialization/json/GsonFactory.html) |  |  
+| [*GsonSerializer*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.serialization.json/com/telenav/kivakit/core/serialization/json/GsonSerializer.html) |  |  
+| [*PrimitiveGsonSerializer*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.serialization.json/com/telenav/kivakit/core/serialization/json/PrimitiveGsonSerializer.html) |  |  
+| [*SerializationJsonProject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.serialization.json/com/telenav/kivakit/core/serialization/json/project/SerializationJsonProject.html) |  |  
+| [*StringConverterGsonSerializer*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.serialization.json/com/telenav/kivakit/core/serialization/json/StringConverterGsonSerializer.html) |  |  
 
 [//]: # (start-user-text)
 

@@ -62,9 +62,9 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*ServiceClientProject*](https://telenav.github.io/kivakit-data/javadockivakit.service.client/com/telenav/kivakit/service/registry/client/project/ServiceClientProject.html) |  |  
-| [*ServiceRegistryClient*](https://telenav.github.io/kivakit-data/javadockivakit.service.client/com/telenav/kivakit/service/registry/client/ServiceRegistryClient.html) |  |  
-| [*ServiceRegistryClientSettings*](https://telenav.github.io/kivakit-data/javadockivakit.service.client/com/telenav/kivakit/service/registry/client/ServiceRegistryClientSettings.html) |  |  
+| [*ServiceClientProject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.service.client/com/telenav/kivakit/service/registry/client/project/ServiceClientProject.html) |  |  
+| [*ServiceRegistryClient*](https://telenav.github.io/kivakit-data/javadoc/kivakit.service.client/com/telenav/kivakit/service/registry/client/ServiceRegistryClient.html) |  |  
+| [*ServiceRegistryClientSettings*](https://telenav.github.io/kivakit-data/javadoc/kivakit.service.client/com/telenav/kivakit/service/registry/client/ServiceRegistryClientSettings.html) |  |  
 
 [//]: # (start-user-text)
 

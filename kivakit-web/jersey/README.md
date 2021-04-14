@@ -66,10 +66,10 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*BaseRestApplication*](https://telenav.github.io/kivakit-data/javadockivakit.web.jersey/com/telenav/kivakit/web/jersey/BaseRestApplication.html) |  |  
-| [*BaseRestResource*](https://telenav.github.io/kivakit-data/javadockivakit.web.jersey/com/telenav/kivakit/web/jersey/BaseRestResource.html) |  |  
-| [*JettyJersey*](https://telenav.github.io/kivakit-data/javadockivakit.web.jersey/com/telenav/kivakit/web/jersey/JettyJersey.html) |  |  
-| [*WebJerseyProject*](https://telenav.github.io/kivakit-data/javadockivakit.web.jersey/com/telenav/kivakit/web/jersey/project/WebJerseyProject.html) |  |  
+| [*BaseRestApplication*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.jersey/com/telenav/kivakit/web/jersey/BaseRestApplication.html) |  |  
+| [*BaseRestResource*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.jersey/com/telenav/kivakit/web/jersey/BaseRestResource.html) |  |  
+| [*JettyJersey*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.jersey/com/telenav/kivakit/web/jersey/JettyJersey.html) |  |  
+| [*WebJerseyProject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.jersey/com/telenav/kivakit/web/jersey/project/WebJerseyProject.html) |  |  
 
 [//]: # (start-user-text)
 

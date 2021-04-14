@@ -82,13 +82,13 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*FileSystemsS3FsProject*](https://telenav.github.io/kivakit-data/javadockivakit.filesystems.s3/com/telenav/kivakit/filesystems/s3fs/project/FileSystemsS3FsProject.html) |  |  
-| [*S3File*](https://telenav.github.io/kivakit-data/javadockivakit.filesystems.s3/com/telenav/kivakit/filesystems/s3fs/S3File.html) |  |  
-| [*S3FileSystemObject*](https://telenav.github.io/kivakit-data/javadockivakit.filesystems.s3/com/telenav/kivakit/filesystems/s3fs/S3FileSystemObject.html) |  |  
-| [*S3FileSystemService*](https://telenav.github.io/kivakit-data/javadockivakit.filesystems.s3/com/telenav/kivakit/filesystems/s3fs/S3FileSystemService.html) |  |  
-| [*S3Folder*](https://telenav.github.io/kivakit-data/javadockivakit.filesystems.s3/com/telenav/kivakit/filesystems/s3fs/S3Folder.html) |  |  
-| [*S3Output*](https://telenav.github.io/kivakit-data/javadockivakit.filesystems.s3/com/telenav/kivakit/filesystems/s3fs/S3Output.html) |  |  
-| [*S3Settings*](https://telenav.github.io/kivakit-data/javadockivakit.filesystems.s3/com/telenav/kivakit/filesystems/s3fs/S3Settings.html) |  |  
+| [*FileSystemsS3FsProject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.filesystems.s3/com/telenav/kivakit/filesystems/s3fs/project/FileSystemsS3FsProject.html) |  |  
+| [*S3File*](https://telenav.github.io/kivakit-data/javadoc/kivakit.filesystems.s3/com/telenav/kivakit/filesystems/s3fs/S3File.html) |  |  
+| [*S3FileSystemObject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.filesystems.s3/com/telenav/kivakit/filesystems/s3fs/S3FileSystemObject.html) |  |  
+| [*S3FileSystemService*](https://telenav.github.io/kivakit-data/javadoc/kivakit.filesystems.s3/com/telenav/kivakit/filesystems/s3fs/S3FileSystemService.html) |  |  
+| [*S3Folder*](https://telenav.github.io/kivakit-data/javadoc/kivakit.filesystems.s3/com/telenav/kivakit/filesystems/s3fs/S3Folder.html) |  |  
+| [*S3Output*](https://telenav.github.io/kivakit-data/javadoc/kivakit.filesystems.s3/com/telenav/kivakit/filesystems/s3fs/S3Output.html) |  |  
+| [*S3Settings*](https://telenav.github.io/kivakit-data/javadoc/kivakit.filesystems.s3/com/telenav/kivakit/filesystems/s3fs/S3Settings.html) |  |  
 
 [//]: # (start-user-text)
 

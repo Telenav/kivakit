@@ -72,15 +72,15 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*Components*](https://telenav.github.io/kivakit-data/javadockivakit.web.wicket/com/telenav/kivakit/web/wicket/library/Components.html) |  |  
-| [*FeedbackPanel*](https://telenav.github.io/kivakit-data/javadockivakit.web.wicket/com/telenav/kivakit/web/wicket/components/feedback/FeedbackPanel.html) |  |  
-| [*HeaderPanel*](https://telenav.github.io/kivakit-data/javadockivakit.web.wicket/com/telenav/kivakit/web/wicket/components/header/HeaderPanel.html) |  |  
-| [*JettyWicket*](https://telenav.github.io/kivakit-data/javadockivakit.web.wicket/com/telenav/kivakit/web/wicket/JettyWicket.html) |  |  
-| [*JettyWicketFilterHolder*](https://telenav.github.io/kivakit-data/javadockivakit.web.wicket/com/telenav/kivakit/web/wicket/JettyWicketFilterHolder.html) |  |  
-| [*KivaKitTheme*](https://telenav.github.io/kivakit-data/javadockivakit.web.wicket/com/telenav/kivakit/web/wicket/theme/KivaKitTheme.html) |  |  
-| [*MessageColor*](https://telenav.github.io/kivakit-data/javadockivakit.web.wicket/com/telenav/kivakit/web/wicket/behaviors/status/MessageColor.html) |  |  
-| [*UpdatingContainer*](https://telenav.github.io/kivakit-data/javadockivakit.web.wicket/com/telenav/kivakit/web/wicket/components/refresh/UpdatingContainer.html) |  |  
-| [*WebWicketProject*](https://telenav.github.io/kivakit-data/javadockivakit.web.wicket/com/telenav/kivakit/web/wicket/project/WebWicketProject.html) |  |  
+| [*Components*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.wicket/com/telenav/kivakit/web/wicket/library/Components.html) |  |  
+| [*FeedbackPanel*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.wicket/com/telenav/kivakit/web/wicket/components/feedback/FeedbackPanel.html) |  |  
+| [*HeaderPanel*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.wicket/com/telenav/kivakit/web/wicket/components/header/HeaderPanel.html) |  |  
+| [*JettyWicket*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.wicket/com/telenav/kivakit/web/wicket/JettyWicket.html) |  |  
+| [*JettyWicketFilterHolder*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.wicket/com/telenav/kivakit/web/wicket/JettyWicketFilterHolder.html) |  |  
+| [*KivaKitTheme*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.wicket/com/telenav/kivakit/web/wicket/theme/KivaKitTheme.html) |  |  
+| [*MessageColor*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.wicket/com/telenav/kivakit/web/wicket/behaviors/status/MessageColor.html) |  |  
+| [*UpdatingContainer*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.wicket/com/telenav/kivakit/web/wicket/components/refresh/UpdatingContainer.html) |  |  
+| [*WebWicketProject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.wicket/com/telenav/kivakit/web/wicket/project/WebWicketProject.html) |  |  
 
 [//]: # (start-user-text)
 

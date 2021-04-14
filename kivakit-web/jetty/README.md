@@ -58,13 +58,13 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*BaseJettyFilter*](https://telenav.github.io/kivakit-data/javadockivakit.web.jetty/com/telenav/kivakit/web/jetty/resources/BaseJettyFilter.html) |  |  
-| [*BaseJettyRequestHandler*](https://telenav.github.io/kivakit-data/javadockivakit.web.jetty/com/telenav/kivakit/web/jetty/BaseJettyRequestHandler.html) |  |  
-| [*BaseJettyResource*](https://telenav.github.io/kivakit-data/javadockivakit.web.jetty/com/telenav/kivakit/web/jetty/resources/BaseJettyResource.html) |  |  
-| [*BaseJettyServlet*](https://telenav.github.io/kivakit-data/javadockivakit.web.jetty/com/telenav/kivakit/web/jetty/resources/BaseJettyServlet.html) |  |  
-| [*JettyServer*](https://telenav.github.io/kivakit-data/javadockivakit.web.jetty/com/telenav/kivakit/web/jetty/JettyServer.html) | Example: |  
-| [*WebJettyProject*](https://telenav.github.io/kivakit-data/javadockivakit.web.jetty/com/telenav/kivakit/web/jetty/project/WebJettyProject.html) |  |  
-| [*WebUnitTest*](https://telenav.github.io/kivakit-data/javadockivakit.web.jetty/com/telenav/kivakit/web/jetty/WebUnitTest.html) |  |  
+| [*BaseJettyFilter*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.jetty/com/telenav/kivakit/web/jetty/resources/BaseJettyFilter.html) |  |  
+| [*BaseJettyRequestHandler*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.jetty/com/telenav/kivakit/web/jetty/BaseJettyRequestHandler.html) |  |  
+| [*BaseJettyResource*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.jetty/com/telenav/kivakit/web/jetty/resources/BaseJettyResource.html) |  |  
+| [*BaseJettyServlet*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.jetty/com/telenav/kivakit/web/jetty/resources/BaseJettyServlet.html) |  |  
+| [*JettyServer*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.jetty/com/telenav/kivakit/web/jetty/JettyServer.html) | Example: |  
+| [*WebJettyProject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.jetty/com/telenav/kivakit/web/jetty/project/WebJettyProject.html) |  |  
+| [*WebUnitTest*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.jetty/com/telenav/kivakit/web/jetty/WebUnitTest.html) |  |  
 
 [//]: # (start-user-text)
 

@@ -86,8 +86,8 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*EmailLog*](https://telenav.github.io/kivakit-data/javadockivakit.logs.email/com/telenav/kivakit/logs/email/EmailLog.html) |  |  
-| [*LogsEmailProject*](https://telenav.github.io/kivakit-data/javadockivakit.logs.email/com/telenav/kivakit/logs/email/project/LogsEmailProject.html) |  |  
+| [*EmailLog*](https://telenav.github.io/kivakit-data/javadoc/kivakit.logs.email/com/telenav/kivakit/logs/email/EmailLog.html) |  |  
+| [*LogsEmailProject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.logs.email/com/telenav/kivakit/logs/email/project/LogsEmailProject.html) |  |  
 
 [//]: # (start-user-text)
 

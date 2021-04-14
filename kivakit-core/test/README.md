@@ -60,15 +60,15 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*CoreTestProject*](https://telenav.github.io/kivakit-data/javadockivakit.core.test/com/telenav/kivakit/core/test/project/CoreTestProject.html) |  |  
-| [*JUnitValidationReporter*](https://telenav.github.io/kivakit-data/javadockivakit.core.test/com/telenav/kivakit/core/test/reporters/JUnitValidationReporter.html) |  |  
-| [*QuickTests*](https://telenav.github.io/kivakit-data/javadockivakit.core.test/com/telenav/kivakit/core/test/annotations/QuickTests.html) |  |  
-| [*RandomValueFactory*](https://telenav.github.io/kivakit-data/javadockivakit.core.test/com/telenav/kivakit/core/test/random/RandomValueFactory.html) | Values |  
+| [*CoreTestProject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.test/com/telenav/kivakit/core/test/project/CoreTestProject.html) |  |  
+| [*JUnitValidationReporter*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.test/com/telenav/kivakit/core/test/reporters/JUnitValidationReporter.html) |  |  
+| [*QuickTests*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.test/com/telenav/kivakit/core/test/annotations/QuickTests.html) |  |  
+| [*RandomValueFactory*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.test/com/telenav/kivakit/core/test/random/RandomValueFactory.html) | Values |  
 | | Seeding |  
-| [*SlowTests*](https://telenav.github.io/kivakit-data/javadockivakit.core.test/com/telenav/kivakit/core/test/annotations/SlowTests.html) |  |  
-| [*UnitTest*](https://telenav.github.io/kivakit-data/javadockivakit.core.test/com/telenav/kivakit/core/test/UnitTest.html) |  |  
-| [*UnitTest.Repeats*](https://telenav.github.io/kivakit-data/javadockivakit.core.test/com/telenav/kivakit/core/test/UnitTest.Repeats.html) |  |  
-| [*UnitTestWatcher*](https://telenav.github.io/kivakit-data/javadockivakit.core.test/com/telenav/kivakit/core/test/UnitTestWatcher.html) |  |  
+| [*SlowTests*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.test/com/telenav/kivakit/core/test/annotations/SlowTests.html) |  |  
+| [*UnitTest*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.test/com/telenav/kivakit/core/test/UnitTest.html) |  |  
+| [*UnitTest.Repeats*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.test/com/telenav/kivakit/core/test/UnitTest.Repeats.html) |  |  
+| [*UnitTestWatcher*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.test/com/telenav/kivakit/core/test/UnitTestWatcher.html) |  |  
 
 [//]: # (start-user-text)
 

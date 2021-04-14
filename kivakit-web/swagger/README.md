@@ -71,12 +71,12 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*JettySwaggerIndex*](https://telenav.github.io/kivakit-data/javadockivakit.web.swagger/com/telenav/kivakit/web/swagger/JettySwaggerIndex.html) |  |  
-| [*JettySwaggerIndex.IndexServlet*](https://telenav.github.io/kivakit-data/javadockivakit.web.swagger/com/telenav/kivakit/web/swagger/JettySwaggerIndex.IndexServlet.html) |  |  
-| [*JettySwaggerOpenApi*](https://telenav.github.io/kivakit-data/javadockivakit.web.swagger/com/telenav/kivakit/web/swagger/JettySwaggerOpenApi.html) |  |  
-| [*JettySwaggerStaticResources*](https://telenav.github.io/kivakit-data/javadockivakit.web.swagger/com/telenav/kivakit/web/swagger/JettySwaggerStaticResources.html) |  |  
-| [*JettySwaggerWebJar*](https://telenav.github.io/kivakit-data/javadockivakit.web.swagger/com/telenav/kivakit/web/swagger/JettySwaggerWebJar.html) |  |  
-| [*WebSwaggerProject*](https://telenav.github.io/kivakit-data/javadockivakit.web.swagger/com/telenav/kivakit/web/swagger/project/WebSwaggerProject.html) |  |  
+| [*JettySwaggerIndex*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.swagger/com/telenav/kivakit/web/swagger/JettySwaggerIndex.html) |  |  
+| [*JettySwaggerIndex.IndexServlet*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.swagger/com/telenav/kivakit/web/swagger/JettySwaggerIndex.IndexServlet.html) |  |  
+| [*JettySwaggerOpenApi*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.swagger/com/telenav/kivakit/web/swagger/JettySwaggerOpenApi.html) |  |  
+| [*JettySwaggerStaticResources*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.swagger/com/telenav/kivakit/web/swagger/JettySwaggerStaticResources.html) |  |  
+| [*JettySwaggerWebJar*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.swagger/com/telenav/kivakit/web/swagger/JettySwaggerWebJar.html) |  |  
+| [*WebSwaggerProject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.web.swagger/com/telenav/kivakit/web/swagger/project/WebSwaggerProject.html) |  |  
 
 [//]: # (start-user-text)
 

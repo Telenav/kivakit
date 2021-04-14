@@ -80,10 +80,10 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*BaseRolloverTextLog*](https://telenav.github.io/kivakit-data/javadockivakit.logs.file/com/telenav/kivakit/logs/file/BaseRolloverTextLog.html) |  |  
-| [*BaseRolloverTextLog.Rollover*](https://telenav.github.io/kivakit-data/javadockivakit.logs.file/com/telenav/kivakit/logs/file/BaseRolloverTextLog.Rollover.html) |  |  
-| [*FileLog*](https://telenav.github.io/kivakit-data/javadockivakit.logs.file/com/telenav/kivakit/logs/file/FileLog.html) |  |  
-| [*LogsFileProject*](https://telenav.github.io/kivakit-data/javadockivakit.logs.file/com/telenav/kivakit/logs/file/project/LogsFileProject.html) |  |  
+| [*BaseRolloverTextLog*](https://telenav.github.io/kivakit-data/javadoc/kivakit.logs.file/com/telenav/kivakit/logs/file/BaseRolloverTextLog.html) |  |  
+| [*BaseRolloverTextLog.Rollover*](https://telenav.github.io/kivakit-data/javadoc/kivakit.logs.file/com/telenav/kivakit/logs/file/BaseRolloverTextLog.Rollover.html) |  |  
+| [*FileLog*](https://telenav.github.io/kivakit-data/javadoc/kivakit.logs.file/com/telenav/kivakit/logs/file/FileLog.html) |  |  
+| [*LogsFileProject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.logs.file/com/telenav/kivakit/logs/file/project/LogsFileProject.html) |  |  
 
 [//]: # (start-user-text)
 

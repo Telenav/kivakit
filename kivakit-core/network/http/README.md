@@ -81,20 +81,20 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*BaseHttpResource*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/BaseHttpResource.html) | Content |  
-| [*CoreNetworkHttpProject*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/project/CoreNetworkHttpProject.html) |  |  
-| [*HttpAccessConstraints*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpAccessConstraints.html) |  |  
-| [*HttpBasicCredentials*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpBasicCredentials.html) |  |  
-| [*HttpGetResource*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpGetResource.html) |  |  
-| [*HttpNetworkLocation*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpNetworkLocation.html) | Access |  
-| [*HttpNetworkLocation.Converter*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpNetworkLocation.Converter.html) |  |  
-| [*HttpPostResource*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpPostResource.html) |  |  
-| [*HttpPutResource*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpPutResource.html) |  |  
-| [*HttpStatus*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpStatus.html) |  |  
-| [*InvalidCertificateTrustingHttpClient*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/InvalidCertificateTrustingHttpClient.html) |  |  
-| [*SecureHttpGetResource*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/SecureHttpGetResource.html) |  |  
-| [*SecureHttpNetworkLocation*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/SecureHttpNetworkLocation.html) |  |  
-| [*SecureHttpPostResource*](https://telenav.github.io/kivakit-data/javadockivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/SecureHttpPostResource.html) |  |  
+| [*BaseHttpResource*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/BaseHttpResource.html) | Content |  
+| [*CoreNetworkHttpProject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/project/CoreNetworkHttpProject.html) |  |  
+| [*HttpAccessConstraints*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpAccessConstraints.html) |  |  
+| [*HttpBasicCredentials*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpBasicCredentials.html) |  |  
+| [*HttpGetResource*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpGetResource.html) |  |  
+| [*HttpNetworkLocation*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpNetworkLocation.html) | Access |  
+| [*HttpNetworkLocation.Converter*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpNetworkLocation.Converter.html) |  |  
+| [*HttpPostResource*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpPostResource.html) |  |  
+| [*HttpPutResource*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpPutResource.html) |  |  
+| [*HttpStatus*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/HttpStatus.html) |  |  
+| [*InvalidCertificateTrustingHttpClient*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/InvalidCertificateTrustingHttpClient.html) |  |  
+| [*SecureHttpGetResource*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/SecureHttpGetResource.html) |  |  
+| [*SecureHttpNetworkLocation*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/SecureHttpNetworkLocation.html) |  |  
+| [*SecureHttpPostResource*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.http/com/telenav/kivakit/core/network/http/secure/SecureHttpPostResource.html) |  |  
 
 [//]: # (start-user-text)
 

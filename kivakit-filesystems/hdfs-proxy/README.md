@@ -59,13 +59,13 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*HdfsFileSystem*](https://telenav.github.io/kivakit-data/javadockivakit.filesystems.hdfs.proxy/com/telenav/kivakit/filesystems/hdfs/proxy/HdfsFileSystem.html) | Loading and Configuration of HDFS FileSystems |  
+| [*HdfsFileSystem*](https://telenav.github.io/kivakit-data/javadoc/kivakit.filesystems.hdfs.proxy/com/telenav/kivakit/filesystems/hdfs/proxy/HdfsFileSystem.html) | Loading and Configuration of HDFS FileSystems |  
 | | Transparent Access to HDFS Files and Folders |  
 | | Configuration of HDFS Clusters |  
-| [*HdfsProxyServer*](https://telenav.github.io/kivakit-data/javadockivakit.filesystems.hdfs.proxy/com/telenav/kivakit/filesystems/hdfs/proxy/HdfsProxyServer.html) |  |  
-| [*HdfsProxyServerSettings*](https://telenav.github.io/kivakit-data/javadockivakit.filesystems.hdfs.proxy/com/telenav/kivakit/filesystems/hdfs/proxy/HdfsProxyServerSettings.html) |  |  
-| [*StreamHandle*](https://telenav.github.io/kivakit-data/javadockivakit.filesystems.hdfs.proxy/com/telenav/kivakit/filesystems/hdfs/proxy/StreamHandle.html) |  |  
-| [*UserGroupInformationConverter*](https://telenav.github.io/kivakit-data/javadockivakit.filesystems.hdfs.proxy/com/telenav/kivakit/filesystems/hdfs/proxy/converters/UserGroupInformationConverter.html) |  |  
+| [*HdfsProxyServer*](https://telenav.github.io/kivakit-data/javadoc/kivakit.filesystems.hdfs.proxy/com/telenav/kivakit/filesystems/hdfs/proxy/HdfsProxyServer.html) |  |  
+| [*HdfsProxyServerSettings*](https://telenav.github.io/kivakit-data/javadoc/kivakit.filesystems.hdfs.proxy/com/telenav/kivakit/filesystems/hdfs/proxy/HdfsProxyServerSettings.html) |  |  
+| [*StreamHandle*](https://telenav.github.io/kivakit-data/javadoc/kivakit.filesystems.hdfs.proxy/com/telenav/kivakit/filesystems/hdfs/proxy/StreamHandle.html) |  |  
+| [*UserGroupInformationConverter*](https://telenav.github.io/kivakit-data/javadoc/kivakit.filesystems.hdfs.proxy/com/telenav/kivakit/filesystems/hdfs/proxy/converters/UserGroupInformationConverter.html) |  |  
 
 [//]: # (start-user-text)
 

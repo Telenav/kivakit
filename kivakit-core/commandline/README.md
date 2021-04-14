@@ -65,28 +65,28 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*ApplicationMetadata*](https://telenav.github.io/kivakit-data/javadockivakit.core.commandline/com/telenav/kivakit/core/commandline/ApplicationMetadata.html) |  |  
-| [*Argument*](https://telenav.github.io/kivakit-data/javadockivakit.core.commandline/com/telenav/kivakit/core/commandline/Argument.html) |  |  
-| [*ArgumentList*](https://telenav.github.io/kivakit-data/javadockivakit.core.commandline/com/telenav/kivakit/core/commandline/ArgumentList.html) |  |  
-| [*ArgumentParser*](https://telenav.github.io/kivakit-data/javadockivakit.core.commandline/com/telenav/kivakit/core/commandline/ArgumentParser.html) | Parser Builders |  
+| [*ApplicationMetadata*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.commandline/com/telenav/kivakit/core/commandline/ApplicationMetadata.html) |  |  
+| [*Argument*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.commandline/com/telenav/kivakit/core/commandline/Argument.html) |  |  
+| [*ArgumentList*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.commandline/com/telenav/kivakit/core/commandline/ArgumentList.html) |  |  
+| [*ArgumentParser*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.commandline/com/telenav/kivakit/core/commandline/ArgumentParser.html) | Parser Builders |  
 | | Built-In Parsers |  
-| [*ArgumentParser.Builder*](https://telenav.github.io/kivakit-data/javadockivakit.core.commandline/com/telenav/kivakit/core/commandline/ArgumentParser.Builder.html) |  |  
-| [*ArgumentParserList*](https://telenav.github.io/kivakit-data/javadockivakit.core.commandline/com/telenav/kivakit/core/commandline/parsing/ArgumentParserList.html) |  |  
-| [*ArgumentValidator*](https://telenav.github.io/kivakit-data/javadockivakit.core.commandline/com/telenav/kivakit/core/commandline/parsing/ArgumentValidator.html) |  |  
-| [*CommandLine*](https://telenav.github.io/kivakit-data/javadockivakit.core.commandline/com/telenav/kivakit/core/commandline/CommandLine.html) | Retrieving Switches and Arguments |  
+| [*ArgumentParser.Builder*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.commandline/com/telenav/kivakit/core/commandline/ArgumentParser.Builder.html) |  |  
+| [*ArgumentParserList*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.commandline/com/telenav/kivakit/core/commandline/parsing/ArgumentParserList.html) |  |  
+| [*ArgumentValidator*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.commandline/com/telenav/kivakit/core/commandline/parsing/ArgumentValidator.html) |  |  
+| [*CommandLine*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.commandline/com/telenav/kivakit/core/commandline/CommandLine.html) | Retrieving Switches and Arguments |  
 | | Error Handling |  
-| [*CommandLineParser*](https://telenav.github.io/kivakit-data/javadockivakit.core.commandline/com/telenav/kivakit/core/commandline/CommandLineParser.html) | Example |  
+| [*CommandLineParser*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.commandline/com/telenav/kivakit/core/commandline/CommandLineParser.html) | Example |  
 | | Parsing a Command Line |  
 | | Switch Conventions |  
-| [*CoreCommandLineProject*](https://telenav.github.io/kivakit-data/javadockivakit.core.commandline/com/telenav/kivakit/core/commandline/project/CoreCommandLineProject.html) |  |  
-| [*Quantifier*](https://telenav.github.io/kivakit-data/javadockivakit.core.commandline/com/telenav/kivakit/core/commandline/Quantifier.html) |  |  
-| [*Switch*](https://telenav.github.io/kivakit-data/javadockivakit.core.commandline/com/telenav/kivakit/core/commandline/Switch.html) |  |  
-| [*SwitchList*](https://telenav.github.io/kivakit-data/javadockivakit.core.commandline/com/telenav/kivakit/core/commandline/parsing/SwitchList.html) |  |  
-| [*SwitchParser*](https://telenav.github.io/kivakit-data/javadockivakit.core.commandline/com/telenav/kivakit/core/commandline/SwitchParser.html) | Parser Builders |  
+| [*CoreCommandLineProject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.commandline/com/telenav/kivakit/core/commandline/project/CoreCommandLineProject.html) |  |  
+| [*Quantifier*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.commandline/com/telenav/kivakit/core/commandline/Quantifier.html) |  |  
+| [*Switch*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.commandline/com/telenav/kivakit/core/commandline/Switch.html) |  |  
+| [*SwitchList*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.commandline/com/telenav/kivakit/core/commandline/parsing/SwitchList.html) |  |  
+| [*SwitchParser*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.commandline/com/telenav/kivakit/core/commandline/SwitchParser.html) | Parser Builders |  
 | | Built-In Parsers |  
-| [*SwitchParser.Builder*](https://telenav.github.io/kivakit-data/javadockivakit.core.commandline/com/telenav/kivakit/core/commandline/SwitchParser.Builder.html) |  |  
-| [*SwitchParserList*](https://telenav.github.io/kivakit-data/javadockivakit.core.commandline/com/telenav/kivakit/core/commandline/parsing/SwitchParserList.html) |  |  
-| [*SwitchValidator*](https://telenav.github.io/kivakit-data/javadockivakit.core.commandline/com/telenav/kivakit/core/commandline/parsing/SwitchValidator.html) |  |  
+| [*SwitchParser.Builder*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.commandline/com/telenav/kivakit/core/commandline/SwitchParser.Builder.html) |  |  
+| [*SwitchParserList*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.commandline/com/telenav/kivakit/core/commandline/parsing/SwitchParserList.html) |  |  
+| [*SwitchValidator*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.commandline/com/telenav/kivakit/core/commandline/parsing/SwitchValidator.html) |  |  
 
 [//]: # (start-user-text)
 

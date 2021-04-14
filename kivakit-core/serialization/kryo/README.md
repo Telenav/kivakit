@@ -57,17 +57,17 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*CoreKernelKryoTypes*](https://telenav.github.io/kivakit-data/javadockivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/CoreKernelKryoTypes.html) |  |  
-| [*DebugKryo*](https://telenav.github.io/kivakit-data/javadockivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/DebugKryo.html) |  |  
-| [*KryoSerializationSession*](https://telenav.github.io/kivakit-data/javadockivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/KryoSerializationSession.html) |  |  
-| [*KryoSerializer*](https://telenav.github.io/kivakit-data/javadockivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/KryoSerializer.html) |  |  
-| [*KryoTypeEntry*](https://telenav.github.io/kivakit-data/javadockivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/KryoTypeEntry.html) |  |  
-| [*KryoTypes*](https://telenav.github.io/kivakit-data/javadockivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/KryoTypes.html) | Kryo Serialization Identifiers |  
+| [*CoreKernelKryoTypes*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/CoreKernelKryoTypes.html) |  |  
+| [*DebugKryo*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/DebugKryo.html) |  |  
+| [*KryoSerializationSession*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/KryoSerializationSession.html) |  |  
+| [*KryoSerializer*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/KryoSerializer.html) |  |  
+| [*KryoTypeEntry*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/KryoTypeEntry.html) |  |  
+| [*KryoTypes*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/KryoTypes.html) | Kryo Serialization Identifiers |  
 | | Serialization |  
 | | Backwards Compatibility |  
 | | Important Note |  
-| [*KryoUnitTest*](https://telenav.github.io/kivakit-data/javadockivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/KryoUnitTest.html) |  |  
-| [*SerializationKryoProject*](https://telenav.github.io/kivakit-data/javadockivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/project/SerializationKryoProject.html) |  |  
+| [*KryoUnitTest*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/KryoUnitTest.html) |  |  
+| [*SerializationKryoProject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.serialization.kryo/com/telenav/kivakit/core/serialization/kryo/project/SerializationKryoProject.html) |  |  
 
 [//]: # (start-user-text)
 

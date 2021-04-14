@@ -57,8 +57,8 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*JerseyGsonSerializer*](https://telenav.github.io/kivakit-data/javadockivakit.core.serialization.jersey.json/com/telenav/kivakit/core/serialization/jersey/json/JerseyGsonSerializer.html) |  |  
-| [*SerializationJerseyJsonProject*](https://telenav.github.io/kivakit-data/javadockivakit.core.serialization.jersey.json/com/telenav/kivakit/core/serialization/jersey/json/project/SerializationJerseyJsonProject.html) |  |  
+| [*JerseyGsonSerializer*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.serialization.jersey.json/com/telenav/kivakit/core/serialization/jersey/json/JerseyGsonSerializer.html) |  |  
+| [*SerializationJerseyJsonProject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.serialization.jersey.json/com/telenav/kivakit/core/serialization/jersey/json/project/SerializationJerseyJsonProject.html) |  |  
 
 [//]: # (start-user-text)
 

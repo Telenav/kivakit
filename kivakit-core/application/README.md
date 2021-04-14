@@ -74,7 +74,7 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*Application*](https://telenav.github.io/kivakit-data/javadockivakit.core.application/com/telenav/kivakit/core/application/Application.html) | Configuration |  
+| [*Application*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.application/com/telenav/kivakit/core/application/Application.html) | Configuration |  
 | | Command Line Parsing |  
 | | Running |  
 | | Messaging |  
@@ -82,9 +82,9 @@ Javadoc coverage for this project is 100.0%.
 | | Lookup |  
 | | Startup |  
 | | Settings |  
-| [*ApplicationIdentifier*](https://telenav.github.io/kivakit-data/javadockivakit.core.application/com/telenav/kivakit/core/application/ApplicationIdentifier.html) |  |  
-| [*CoreApplicationProject*](https://telenav.github.io/kivakit-data/javadockivakit.core.application/com/telenav/kivakit/core/application/project/CoreApplicationProject.html) |  |  
-| [*Server*](https://telenav.github.io/kivakit-data/javadockivakit.core.application/com/telenav/kivakit/core/application/Server.html) |  |  
+| [*ApplicationIdentifier*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.application/com/telenav/kivakit/core/application/ApplicationIdentifier.html) |  |  
+| [*CoreApplicationProject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.application/com/telenav/kivakit/core/application/project/CoreApplicationProject.html) |  |  
+| [*Server*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.application/com/telenav/kivakit/core/application/Server.html) |  |  
 
 [//]: # (start-user-text)
 
