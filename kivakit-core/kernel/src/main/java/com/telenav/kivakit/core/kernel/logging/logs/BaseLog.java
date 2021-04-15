@@ -60,7 +60,7 @@ import static com.telenav.kivakit.core.kernel.language.vm.KivaKitShutdownHook.Or
 @UmlClassDiagram(diagram = DiagramLoggingLogs.class)
 public abstract class BaseLog implements Startable, Stoppable, Log
 {
-    private static boolean isAsynchronous;
+    private static volatile boolean isAsynchronous;
 
     private static final List<BaseLog> logs = new ArrayList<>();
 
@@ -160,6 +160,7 @@ public abstract class BaseLog implements Startable, Stoppable, Log
     {
         if (thread != null)
         {
+            asynchronous(false);
             thread.interrupt();
             queueEmpty.waitFor(true, maximumWaitTime);
         }

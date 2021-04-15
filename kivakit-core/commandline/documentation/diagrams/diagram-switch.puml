@@ -63,7 +63,7 @@
         +Builder<Maximum> maximumSwitch(String name, String description)
         +Builder<Minimum> minimumSwitch(String name, String description)
         +Builder<Pattern> patternSwitch(String name, String description)
-        +Builder<Percent> percentageSwitch(String name, String description)
+        +Builder<Percent> percentSwitch(String name, String description)
         +Builder<T> quantizableSwitch(String name, String description, Class<T> type, MapFactory<Long,T>)
         +Builder<Set<E>> setSwitch(String name, String description, StringConverter<E> elementConverter, Class<E> elementType, String delimiter)
         +Builder<String> stringSwitch(String name, String description)
