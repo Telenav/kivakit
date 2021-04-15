@@ -250,7 +250,7 @@ public class SwitchParser<T> implements Named, Validatable
                 .description(description);
     }
 
-    public static Builder<Percent> percentageSwitch(final String name, final String description)
+    public static Builder<Percent> percentSwitch(final String name, final String description)
     {
         return builder(Percent.class)
                 .name(name)

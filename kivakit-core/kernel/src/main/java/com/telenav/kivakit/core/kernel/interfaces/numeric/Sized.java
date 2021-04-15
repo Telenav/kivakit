@@ -48,6 +48,11 @@ public interface Sized extends Countable
         return size() == 0;
     }
 
+    default boolean isNonEmpty()
+    {
+        return !isEmpty();
+    }
+
     /**
      * @return The size of the object
      */

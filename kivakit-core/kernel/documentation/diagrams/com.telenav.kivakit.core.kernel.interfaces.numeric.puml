@@ -66,6 +66,7 @@
     {
         --(collection)--
         +boolean isEmpty()
+        +boolean isNonEmpty()
         +int size()
     }
     

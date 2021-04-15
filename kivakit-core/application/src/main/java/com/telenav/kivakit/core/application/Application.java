@@ -223,6 +223,8 @@ public abstract class Application extends BaseRepeater implements Named, Applica
      */
     protected Application(final Project... projects)
     {
+        Lookup.global().register(this);
+
         instance = this;
         if (projects.length == 1)
         {
@@ -502,6 +504,8 @@ public abstract class Application extends BaseRepeater implements Named, Applica
         {
             problem(e, "Application $ failed with exception", name());
         }
+
+        BaseLog.logs().forEach(BaseLog::flush);
 
         for (final var log : BaseLog.logs())
         {

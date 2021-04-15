@@ -1,6 +1,6 @@
 # KivaKit 0.9.0-SNAPSHOT &nbsp;&nbsp;![](documentation/images/kivakit-64.png)
 
-KivaKit is a set of integrated Java mini-frameworks for general-purpose software development.
+KivaKit is a set of integrated Java mini-frameworks.
 
 ![](documentation/images/horizontal-line.png)
 
@@ -69,7 +69,7 @@ KivaKit helps you to:
 |--------------|-----------------------------------|
 | Project Name | KivaKit |
 | Summary | Library code for developing Java applications |
-| Javadoc Coverage |  <!-- ${project-javadoc-average-coverage-meter} -->  ![](documentation/images/meter-100-12.png) <!-- end --> |
+| Javadoc Coverage |  <!-- ${project-javadoc-average-coverage-meter} -->  ![](documentation/images/meter-90-12.png) <!-- end --> |
 | Lead | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
 | Administrator | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
 | Email | [kivakit@telenav.com](mailto:kivakit@telenav.com) |
@@ -118,36 +118,36 @@ KivaKit helps you to:
 
 ### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; ![](documentation/images/bargraph-32.png)
 
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-application*  
-&nbsp;  ![](documentation/images/meter-80-12.png) &nbsp; &nbsp; *kivakit-core-collections*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-commandline*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-configuration*  
-&nbsp;  ![](documentation/images/meter-70-12.png) &nbsp; &nbsp; *kivakit-core-kernel*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-core*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-email*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-ftp*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-http*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-network-socket*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-resource*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-security*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-serialization-core*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-serialization-jersey-json*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-serialization-json*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-serialization-kryo*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-core-test*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-filesystems-hdfs*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-filesystems-hdfs-proxy*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-filesystems-hdfs-proxy-spi*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-filesystems-s3fs*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-logs-email*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-logs-file*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-service-client*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-service-registry*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-service-server*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-web-jersey*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-web-jetty*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-web-swagger*  
-&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; *kivakit-web-wicket*
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; [**kivakit-core-application**](application/README.md)  
+&nbsp;  ![](documentation/images/meter-70-12.png) &nbsp; &nbsp; [**kivakit-core-collections**](collections/README.md)  
+&nbsp;  ![](documentation/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-commandline**](commandline/README.md)  
+&nbsp;  ![](documentation/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-configuration**](configuration/README.md)  
+&nbsp;  ![](documentation/images/meter-70-12.png) &nbsp; &nbsp; [**kivakit-core-kernel**](kernel/README.md)  
+&nbsp;  ![](documentation/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-network-core**](core/README.md)  
+&nbsp;  ![](documentation/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-network-email**](email/README.md)  
+&nbsp;  ![](documentation/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-network-ftp**](ftp/README.md)  
+&nbsp;  ![](documentation/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-network-http**](http/README.md)  
+&nbsp;  ![](documentation/images/meter-80-12.png) &nbsp; &nbsp; [**kivakit-core-network-socket**](socket/README.md)  
+&nbsp;  ![](documentation/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-resource**](resource/README.md)  
+&nbsp;  ![](documentation/images/meter-80-12.png) &nbsp; &nbsp; [**kivakit-core-security**](security/README.md)  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; [**kivakit-core-serialization-core**](core/README.md)  
+&nbsp;  ![](documentation/images/meter-80-12.png) &nbsp; &nbsp; [**kivakit-core-serialization-jersey-json**](jersey-json/README.md)  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; [**kivakit-core-serialization-json**](json/README.md)  
+&nbsp;  ![](documentation/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-serialization-kryo**](kryo/README.md)  
+&nbsp;  ![](documentation/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-test**](test/README.md)  
+&nbsp;  ![](documentation/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-filesystems-hdfs**](hdfs/README.md)  
+&nbsp;  ![](documentation/images/meter-70-12.png) &nbsp; &nbsp; [**kivakit-filesystems-hdfs-proxy**](hdfs-proxy/README.md)  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; [**kivakit-filesystems-hdfs-proxy-spi**](hdfs-proxy-spi/README.md)  
+&nbsp;  ![](documentation/images/meter-80-12.png) &nbsp; &nbsp; [**kivakit-filesystems-s3fs**](s3fs/README.md)  
+&nbsp;  ![](documentation/images/meter-80-12.png) &nbsp; &nbsp; [**kivakit-logs-email**](email/README.md)  
+&nbsp;  ![](documentation/images/meter-80-12.png) &nbsp; &nbsp; [**kivakit-logs-file**](file/README.md)  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; [**kivakit-service-client**](client/README.md)  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; [**kivakit-service-registry**](registry/README.md)  
+&nbsp;  ![](documentation/images/meter-100-12.png) &nbsp; &nbsp; [**kivakit-service-server**](server/README.md)  
+&nbsp;  ![](documentation/images/meter-80-12.png) &nbsp; &nbsp; [**kivakit-web-jersey**](jersey/README.md)  
+&nbsp;  ![](documentation/images/meter-80-12.png) &nbsp; &nbsp; [**kivakit-web-jetty**](jetty/README.md)  
+&nbsp;  ![](documentation/images/meter-70-12.png) &nbsp; &nbsp; [**kivakit-web-swagger**](swagger/README.md)  
+&nbsp;  ![](documentation/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-web-wicket**](wicket/README.md)
 
 [//]: # (start-user-text)
 
@@ -162,5 +162,5 @@ KivaKit helps you to:
 ![](documentation/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.14. UML diagrams courtesy
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.15. UML diagrams courtesy
 of [PlantUML](http://plantuml.com).</sub>
