@@ -1,9 +1,0 @@
-      62 com/telenav/kivakit/web/jetty/BaseJettyRequestHandler.java
-     211 com/telenav/kivakit/web/jetty/JettyServer.java
-      67 com/telenav/kivakit/web/jetty/WebUnitTest.java
-      43 com/telenav/kivakit/web/jetty/project/WebJettyProject.java
-      49 com/telenav/kivakit/web/jetty/resources/BaseJettyFilter.java
-      43 com/telenav/kivakit/web/jetty/resources/BaseJettyResource.java
-      42 com/telenav/kivakit/web/jetty/resources/BaseJettyServlet.java
-      14 module-info.java
-     531 total

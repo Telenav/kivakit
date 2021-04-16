@@ -133,6 +133,12 @@ public class BaseMap<Key, Value> implements Map<Key, Value>
         return map.get(key);
     }
 
+    public Value get(final Object key, final Value defaultValue)
+    {
+        final var value = get(key);
+        return value == null ? defaultValue : value;
+    }
+
     public Value getOrCreate(final Key key)
     {
         var value = map.get(key);

@@ -1,7 +1,0 @@
-     189 com/telenav/kivakit/core/serialization/core/SerializationSession.java
-      50 com/telenav/kivakit/core/serialization/core/SerializationSessionFactory.java
-      93 com/telenav/kivakit/core/serialization/core/SerializationSessionReadWrite.java
-      43 com/telenav/kivakit/core/serialization/core/project/SerializationCoreProject.java
-      28 com/telenav/kivakit/core/serialization/core/project/lexakai/diagrams/DiagramSerializationCore.java
-       6 module-info.java
-     409 total
