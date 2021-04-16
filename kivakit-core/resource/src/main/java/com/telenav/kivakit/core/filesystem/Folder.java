@@ -781,7 +781,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
 
     public Folder folder(final Folder child)
     {
-        if (child.name().name().equals("."))
+        if (child.path().isEmpty() || child.path().asString().equals("."))
         {
             return this;
         }

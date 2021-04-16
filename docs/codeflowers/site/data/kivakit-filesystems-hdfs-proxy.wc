@@ -1,7 +1,0 @@
-     217 com/telenav/kivakit/filesystems/hdfs/proxy/HdfsFileSystem.java
-     597 com/telenav/kivakit/filesystems/hdfs/proxy/HdfsProxyServer.java
-      71 com/telenav/kivakit/filesystems/hdfs/proxy/HdfsProxyServerSettings.java
-      75 com/telenav/kivakit/filesystems/hdfs/proxy/StreamHandle.java
-      44 com/telenav/kivakit/filesystems/hdfs/proxy/converters/UserGroupInformationConverter.java
-      28 com/telenav/kivakit/filesystems/hdfs/proxy/project/lexakai/diagrams/DiagramHdfsProxy.java
-    1032 total
