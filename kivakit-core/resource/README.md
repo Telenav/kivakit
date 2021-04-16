@@ -1,8 +1,8 @@
-# kivakit-core resource &nbsp;&nbsp;![](https://kivakit.org/images/water-32.png)
+# kivakit-core resource &nbsp;&nbsp;![](https://www.kivakit.org/images/water-32.png)
 
 This module contains abstractions for accessing the filesystem and arbitrary resources.
 
-![](https://kivakit.org/images/horizontal-line.png)
+![](https://www.kivakit.org/images/horizontal-line.png)
 
 ### Index
 
@@ -16,9 +16,9 @@ This module contains abstractions for accessing the filesystem and arbitrary res
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
-![](https://kivakit.org/images/horizontal-line.png)
+![](https://www.kivakit.org/images/horizontal-line.png)
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](https://kivakit.org/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/dependencies-40.png)
 
 [*Dependency Diagram*](documentation/diagrams/dependencies.svg)
 
@@ -30,7 +30,7 @@ This module contains abstractions for accessing the filesystem and arbitrary res
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
 
-![](https://kivakit.org/images/short-horizontal-line.png)
+![](https://www.kivakit.org/images/short-horizontal-line.png)
 
 [//]: # (start-user-text)
 
@@ -40,7 +40,7 @@ This module pulls together everything that can stream together under a single ab
 providing an easy way to work with different kinds of resources without being tied to any  
 of the details.
 
-### Readable Resources <a name="readable-resources"></a> &nbsp; &nbsp; ![](https://kivakit.org/images/wand-40.png)
+### Readable Resources <a name="readable-resources"></a> &nbsp; &nbsp; ![](https://www.kivakit.org/images/wand-40.png)
 
 Different resource classes are constructed in different ways, but each implements the *Resource*  
 interface. The most important methods are shown here in a simplified form:
@@ -57,7 +57,7 @@ interface. The most important methods are shown here in a simplified form:
         Bytes size();
     }
 
-### Kinds of Resources <a name="kinds-of-resources"></a> &nbsp; &nbsp; ![](https://kivakit.org/images/diagram-48.png)
+### Kinds of Resources <a name="kinds-of-resources"></a> &nbsp; &nbsp; ![](https://www.kivakit.org/images/diagram-48.png)
 
 The class *StringResource* is about as simple as they come, but it can be read just like it was a  
 *File* or any other resource:
@@ -80,7 +80,7 @@ other resource and it works the same:
         return resource.reader().string(); 
     }
 
-### Writable Resources <a name="writable-resources"></a> &nbsp; &nbsp; ![](https://kivakit.org/images/pencil-32.png)
+### Writable Resources <a name="writable-resources"></a> &nbsp; &nbsp; ![](https://www.kivakit.org/images/pencil-32.png)
 
 The *WritableResource* interface extends the *Resource* interface to add output capabilities:
 
@@ -91,7 +91,7 @@ The *WritableResource* interface extends the *Resource* interface to add output 
         ResourceWriter writer();
     }
 
-### Files <a name="files"></a> &nbsp; &nbsp; ![](https://kivakit.org/images/folder-32.png)
+### Files <a name="files"></a> &nbsp; &nbsp; ![](https://www.kivakit.org/images/folder-32.png)
 
 The *File* object is a *WritableResource* that adds a number of file-specific methods, including:
 
@@ -196,9 +196,9 @@ A wide variety of other resources are available and new ones are easy to write. 
 
 [//]: # (end-user-text)
 
-![](https://kivakit.org/images/short-horizontal-line.png)
+![](https://www.kivakit.org/images/short-horizontal-line.png)
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](https://kivakit.org/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](https://www.kivakit.org/images/diagram-48.png)
 
 [*File System - File System Services*](documentation/diagrams/diagram-file-system-service.svg)  
 [*File System - Files*](documentation/diagrams/diagram-file-system-file.svg)  
@@ -211,9 +211,9 @@ A wide variety of other resources are available and new ones are easy to write. 
 [*Resources - Services*](documentation/diagrams/diagram-resource-service.svg)  
 [*diagram-jar-launcher*](documentation/diagrams/diagram-jar-launcher.svg)  
 
-![](https://kivakit.org/images/short-horizontal-line.png)
+![](https://www.kivakit.org/images/short-horizontal-line.png)
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](https://kivakit.org/images/box-40.png)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/box-40.png)
 
 [*com.telenav.kivakit.core.filesystem*](documentation/diagrams/com.telenav.kivakit.core.filesystem.svg)  
 [*com.telenav.kivakit.core.filesystem.loader*](documentation/diagrams/com.telenav.kivakit.core.filesystem.loader.svg)  
@@ -234,13 +234,13 @@ A wide variety of other resources are available and new ones are easy to write. 
 [*com.telenav.kivakit.core.resource.spi*](documentation/diagrams/com.telenav.kivakit.core.resource.spi.svg)  
 [*com.telenav.kivakit.core.resource.writing*](documentation/diagrams/com.telenav.kivakit.core.resource.writing.svg)  
 
-![](https://kivakit.org/images/short-horizontal-line.png)
+![](https://www.kivakit.org/images/short-horizontal-line.png)
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](https://kivakit.org/images/books-40.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/books-40.png)
 
 Javadoc coverage for this project is 87.8%.  
   
-&nbsp; &nbsp;  ![](https://kivakit.org/images/meter-90-12.png)
+&nbsp; &nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png)
 
 
 
@@ -370,7 +370,7 @@ Javadoc coverage for this project is 87.8%.
 
 <br/>
 
-![](https://kivakit.org/images/horizontal-line.png)
+![](https://www.kivakit.org/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
 <sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.15. UML diagrams courtesy

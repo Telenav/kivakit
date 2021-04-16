@@ -1,8 +1,8 @@
-# kivakit-core &nbsp;&nbsp;![](https://kivakit.org/images/nucleus-40.png)
+# kivakit-core &nbsp;&nbsp;![](https://www.kivakit.org/images/nucleus-40.png)
 
 This project contains the core functionality of KivaKit, frameworks that are potentially needed by any application or server.
 
-![](https://kivakit.org/images/horizontal-line.png)
+![](https://www.kivakit.org/images/horizontal-line.png)
 
 [//]: # (start-user-text)
 
@@ -10,7 +10,7 @@ This project contains the core functionality of KivaKit, frameworks that are pot
 
 [//]: # (end-user-text)
 
-### Projects <a name = "projects"></a> &nbsp; ![](https://kivakit.org/images/gears-40.png)
+### Projects <a name = "projects"></a> &nbsp; ![](https://www.kivakit.org/images/gears-40.png)
 
 [**kivakit-core-application**](application/README.md)  
 [**kivakit-core-collections**](collections/README.md)  
@@ -23,27 +23,27 @@ This project contains the core functionality of KivaKit, frameworks that are pot
 [**kivakit-core-serialization**](serialization/README.md)  
 [**kivakit-core-test**](test/README.md)  
 
-![](https://kivakit.org/images/short-horizontal-line.png)
+![](https://www.kivakit.org/images/short-horizontal-line.png)
 
-### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; ![](https://kivakit.org/images/bargraph-32.png)
+### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; ![](https://www.kivakit.org/images/bargraph-32.png)
 
-&nbsp;  ![](https://kivakit.org/images/meter-100-12.png) &nbsp; &nbsp; [**kivakit-core-application**](application/README.md)  
-&nbsp;  ![](https://kivakit.org/images/meter-70-12.png) &nbsp; &nbsp; [**kivakit-core-collections**](collections/README.md)  
-&nbsp;  ![](https://kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-commandline**](commandline/README.md)  
-&nbsp;  ![](https://kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-configuration**](configuration/README.md)  
-&nbsp;  ![](https://kivakit.org/images/meter-70-12.png) &nbsp; &nbsp; [**kivakit-core-kernel**](kernel/README.md)  
-&nbsp;  ![](https://kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-network-core**](core/README.md)  
-&nbsp;  ![](https://kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-network-email**](email/README.md)  
-&nbsp;  ![](https://kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-network-ftp**](ftp/README.md)  
-&nbsp;  ![](https://kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-network-http**](http/README.md)  
-&nbsp;  ![](https://kivakit.org/images/meter-80-12.png) &nbsp; &nbsp; [**kivakit-core-network-socket**](socket/README.md)  
-&nbsp;  ![](https://kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-resource**](resource/README.md)  
-&nbsp;  ![](https://kivakit.org/images/meter-80-12.png) &nbsp; &nbsp; [**kivakit-core-security**](security/README.md)  
-&nbsp;  ![](https://kivakit.org/images/meter-100-12.png) &nbsp; &nbsp; [**kivakit-core-serialization-core**](core/README.md)  
-&nbsp;  ![](https://kivakit.org/images/meter-80-12.png) &nbsp; &nbsp; [**kivakit-core-serialization-jersey-json**](jersey-json/README.md)  
-&nbsp;  ![](https://kivakit.org/images/meter-100-12.png) &nbsp; &nbsp; [**kivakit-core-serialization-json**](json/README.md)  
-&nbsp;  ![](https://kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-serialization-kryo**](kryo/README.md)  
-&nbsp;  ![](https://kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-test**](test/README.md)
+&nbsp;  ![](https://www.kivakit.org/images/meter-100-12.png) &nbsp; &nbsp; [**kivakit-core-application**](application/README.md)  
+&nbsp;  ![](https://www.kivakit.org/images/meter-70-12.png) &nbsp; &nbsp; [**kivakit-core-collections**](collections/README.md)  
+&nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-commandline**](commandline/README.md)  
+&nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-configuration**](configuration/README.md)  
+&nbsp;  ![](https://www.kivakit.org/images/meter-70-12.png) &nbsp; &nbsp; [**kivakit-core-kernel**](kernel/README.md)  
+&nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-network-core**](core/README.md)  
+&nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-network-email**](email/README.md)  
+&nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-network-ftp**](ftp/README.md)  
+&nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-network-http**](http/README.md)  
+&nbsp;  ![](https://www.kivakit.org/images/meter-80-12.png) &nbsp; &nbsp; [**kivakit-core-network-socket**](socket/README.md)  
+&nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-resource**](resource/README.md)  
+&nbsp;  ![](https://www.kivakit.org/images/meter-80-12.png) &nbsp; &nbsp; [**kivakit-core-security**](security/README.md)  
+&nbsp;  ![](https://www.kivakit.org/images/meter-100-12.png) &nbsp; &nbsp; [**kivakit-core-serialization-core**](core/README.md)  
+&nbsp;  ![](https://www.kivakit.org/images/meter-80-12.png) &nbsp; &nbsp; [**kivakit-core-serialization-jersey-json**](jersey-json/README.md)  
+&nbsp;  ![](https://www.kivakit.org/images/meter-100-12.png) &nbsp; &nbsp; [**kivakit-core-serialization-json**](json/README.md)  
+&nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-serialization-kryo**](kryo/README.md)  
+&nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-test**](test/README.md)
 
 [//]: # (start-user-text)
 
@@ -51,7 +51,7 @@ This project contains the core functionality of KivaKit, frameworks that are pot
 
 [//]: # (end-user-text)
 
-![](https://kivakit.org/images/horizontal-line.png)
+![](https://www.kivakit.org/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
 <sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.15. UML diagrams courtesy

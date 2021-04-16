@@ -1,9 +1,9 @@
-# kivakit-core application &nbsp;&nbsp;![](https://kivakit.org/images/window-40.png)
+# kivakit-core application &nbsp;&nbsp;![](https://www.kivakit.org/images/window-40.png)
 
 This module contains base classes for applications and servers. It provides command line parsing and enables  
 configuration management and object registration and lookup.
 
-![](https://kivakit.org/images/horizontal-line.png)
+![](https://www.kivakit.org/images/horizontal-line.png)
 
 ### Index
 
@@ -12,9 +12,9 @@ configuration management and object registration and lookup.
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
-![](https://kivakit.org/images/horizontal-line.png)
+![](https://www.kivakit.org/images/horizontal-line.png)
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](https://kivakit.org/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/dependencies-40.png)
 
 [*Dependency Diagram*](documentation/diagrams/dependencies.svg)
 
@@ -26,7 +26,7 @@ configuration management and object registration and lookup.
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
 
-![](https://kivakit.org/images/short-horizontal-line.png)
+![](https://www.kivakit.org/images/short-horizontal-line.png)
 
 [//]: # (start-user-text)
 
@@ -49,26 +49,26 @@ browse the [**Javadoc**](#javadoc).
 
 [//]: # (end-user-text)
 
-![](https://kivakit.org/images/short-horizontal-line.png)
+![](https://www.kivakit.org/images/short-horizontal-line.png)
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](https://kivakit.org/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](https://www.kivakit.org/images/diagram-48.png)
 
 [*Applications*](documentation/diagrams/diagram-application.svg)  
 
-![](https://kivakit.org/images/short-horizontal-line.png)
+![](https://www.kivakit.org/images/short-horizontal-line.png)
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](https://kivakit.org/images/box-40.png)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/box-40.png)
 
 [*com.telenav.kivakit.core.application*](documentation/diagrams/com.telenav.kivakit.core.application.svg)  
 [*com.telenav.kivakit.core.application.project*](documentation/diagrams/com.telenav.kivakit.core.application.project.svg)  
 
-![](https://kivakit.org/images/short-horizontal-line.png)
+![](https://www.kivakit.org/images/short-horizontal-line.png)
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](https://kivakit.org/images/books-40.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/books-40.png)
 
 Javadoc coverage for this project is 100.0%.  
   
-&nbsp; &nbsp;  ![](https://kivakit.org/images/meter-100-12.png)
+&nbsp; &nbsp;  ![](https://www.kivakit.org/images/meter-100-12.png)
 
 
 
@@ -94,7 +94,7 @@ Javadoc coverage for this project is 100.0%.
 
 This section shows how to build a basic KivaKit application that counts lines in a text file in three simple steps.
 
-#### 1. Create the Application Class &nbsp; &nbsp; ![](https://kivakit.org/images/wand-40.png)
+#### 1. Create the Application Class &nbsp; &nbsp; ![](https://www.kivakit.org/images/wand-40.png)
 
 KivaKit applications extend _Application_, which provides base services to application subclasses.  
 The application must pass the name of a _Project_ to the _Application_ constructor. This ensures  
@@ -119,7 +119,7 @@ were received from the JVM in _main()._
         [...]
     }
 
-#### 2. Add Command Line Parsers to the Application Class &nbsp; &nbsp; ![](https://kivakit.org/images/command-line-40.png)
+#### 2. Add Command Line Parsers to the Application Class &nbsp; &nbsp; ![](https://www.kivakit.org/images/command-line-40.png)
 
 Here we add two fields, one is an argument parser for the input file, and the other  
 is a switch parser for the *-show-file-size* switch (if this switch is true, we will show  
@@ -162,7 +162,7 @@ and _SwitchParser_ both parse objects from the command line, not strings.
     
         [...]
 
-#### 2. Create the Application Entrypoint &nbsp; &nbsp; ![](https://kivakit.org/images/rocket-40.png)
+#### 2. Create the Application Entrypoint &nbsp; &nbsp; ![](https://www.kivakit.org/images/rocket-40.png)
 
 The method onRun() is called once command line switches are parsed. At this point  
 many convenient methods in the _Application_ base class will work. See _Application.java_  
@@ -195,7 +195,7 @@ useful methods for broadcasting and listening to messages.
 
 <br/>
 
-![](https://kivakit.org/images/horizontal-line.png)
+![](https://www.kivakit.org/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
 <sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.15. UML diagrams courtesy
