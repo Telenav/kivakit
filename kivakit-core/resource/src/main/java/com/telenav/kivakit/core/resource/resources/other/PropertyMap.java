@@ -18,6 +18,8 @@
 
 package com.telenav.kivakit.core.resource.resources.other;
 
+import com.telenav.kivakit.core.filesystem.File;
+import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.kernel.KivaKit;
 import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.core.kernel.language.collections.map.string.VariableMap;
@@ -28,6 +30,7 @@ import com.telenav.kivakit.core.kernel.language.reflection.Type;
 import com.telenav.kivakit.core.kernel.language.reflection.populator.ObjectPopulator;
 import com.telenav.kivakit.core.kernel.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.core.kernel.language.strings.AsciiArt;
+import com.telenav.kivakit.core.kernel.language.strings.Strip;
 import com.telenav.kivakit.core.kernel.language.values.count.Count;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.messaging.messages.status.Problem;
@@ -39,6 +42,7 @@ import com.telenav.kivakit.core.resource.resources.packaged.PackageResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -188,6 +192,22 @@ public class PropertyMap extends VariableMap<String>
     }
 
     /**
+     * @return The given value as a {@link Folder}
+     */
+    public File asFile(final String key)
+    {
+        return File.parse(get(key));
+    }
+
+    /**
+     * @return The given value as a {@link Folder}
+     */
+    public Folder asFolder(final String key)
+    {
+        return Folder.parse(asPath(key));
+    }
+
+    /**
      * @return The value of the given key as an integer, or an exception is thrown if the value is invalid or missing
      */
     public int asInt(final String key)
@@ -218,6 +238,25 @@ public class PropertyMap extends VariableMap<String>
         }
     }
 
+    /**
+     * @return The given key as a path with no trailing slash
+     */
+    public String asPath(final String key)
+    {
+        return Strip.trailing(get(key), "/");
+    }
+
+    /**
+     * @return The given value as a {@link URI}
+     */
+    public URI asUri(final String key)
+    {
+        return URI.create(key);
+    }
+
+    /**
+     * @return Associate a comment with the given key. The comment will be written out when the property map is saved.
+     */
     public PropertyMap comment(final String key, final String comment)
     {
         comments.put(key, comment);

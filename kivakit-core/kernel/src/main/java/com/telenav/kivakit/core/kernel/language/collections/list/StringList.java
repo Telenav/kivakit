@@ -25,11 +25,11 @@ import com.telenav.kivakit.core.kernel.language.strings.AsciiArt;
 import com.telenav.kivakit.core.kernel.language.strings.StringTo;
 import com.telenav.kivakit.core.kernel.language.values.count.Count;
 import com.telenav.kivakit.core.kernel.language.values.count.Maximum;
+import com.telenav.kivakit.core.kernel.messaging.Listener;
+import com.telenav.kivakit.core.kernel.messaging.Message;
 import com.telenav.kivakit.core.kernel.messaging.messages.status.Information;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.kivakit.core.kernel.messaging.Listener;
-import com.telenav.kivakit.core.kernel.messaging.Message;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -82,6 +82,14 @@ import java.util.function.Function;
 @UmlClassDiagram(diagram = DiagramLanguageString.class)
 public class StringList extends ObjectList<String>
 {
+    /**
+     * @return An empty string list
+     */
+    public static StringList create()
+    {
+        return stringList();
+    }
+
     /**
      * @return A string list of the given text repeated the given number of times
      */

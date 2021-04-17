@@ -1,4 +1,4 @@
-# kivakit-core-network core &nbsp;&nbsp;![](https://www.kivakit.org/images/nucleus-40.png)
+# KivaKit Core Network - Core &nbsp;&nbsp;![](https://www.kivakit.org/images/nucleus-40.png)
 
 This module provides classes that enhance the core networking features of the JDK. Other projects in  
 kivakit-core-network extend this base functionality.
@@ -18,7 +18,7 @@ kivakit-core-network extend this base functionality.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/dependencies-40.png)
 
-[*Dependency Diagram*](documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit-core/network/core/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
@@ -34,14 +34,14 @@ kivakit-core-network extend this base functionality.
 
 ### Summary <a name = "summary"></a>
 
-This module provides classes for working with networks, including hosts, ports, protocols,  
+This module provides classes for working with networks, including hosts, ports, protocols,
 network resources and email addresses.
 
 ### Hosts <a name = "hosts"></a>, Ports and Protocols
 
-The *Port* class represents a port *on a particular host*. This helps reduce clutter by not requiring  
-that a *Host* object be passed along with an integer port number (as is often the case in everyday  
-code). It also associates the *Port* with a *Protocol*. By simply passing in a *Port*, all information  
+The *Port* class represents a port *on a particular host*. This helps reduce clutter by not requiring
+that a *Host* object be passed along with an integer port number (as is often the case in everyday
+code). It also associates the *Port* with a *Protocol*. By simply passing in a *Port*, all information
 required to use the port is made available: the host, port number and protocol.
 
 The *Host* class provides a number of methods for constructing common ports. For example:
@@ -52,7 +52,7 @@ The *LocalHost* and *Loopback* (127.0.0.1) hosts can be retrieved with *Host.loc
 
 ### Network Resources <a name = "network-resources"></a>
 
-The *NetworkResource* interface integrates various types of network resources with the [*resource*](../../resource/README.md)  
+The *NetworkResource* interface integrates various types of network resources with the [*resource*](../../resource/README.md)
 mini-framework. This interface looks like this:
 
     public interface NetworkResource extends Resource
@@ -64,12 +64,12 @@ A *NetworkLocation* combines all the properties required to access a network res
 
 * The *Port* (including *Host* and *Protocol*) where the resource is located
 * The *NetworkPath* on the host port where the resource can be requested
-* Any *NetworkConstraints* for accessing the resource, such as authentication, timeout or  
+* Any *NetworkConstraints* for accessing the resource, such as authentication, timeout or
   frequency of access.
 * Any *QueryParameters* attached to the URI/URL of the resource.
 
-To appreciate how powerful all this abstraction can be, consider the problem of retrieving  
-and running a JAR file from an arbitrary web location. The *HttpJarLauncher* achieves this  
+To appreciate how powerful all this abstraction can be, consider the problem of retrieving
+and running a JAR file from an arbitrary web location. The *HttpJarLauncher* achieves this
 with a minimum of code:
 
     HttpNetworkLocation source;
@@ -80,16 +80,16 @@ with a minimum of code:
     jar.parent().mkdirs();
     jar.safeCopyFrom(source.get(), CopyMode.OVERWRITE, progress);
 
-This copies the *Resource* retrieved from the *HttpNetworkLocation* with *get()* (which will be  
-an *HttpGetResource*), to the *File* *jar*. Of course, this could be made even more general with  
+This copies the *Resource* retrieved from the *HttpNetworkLocation* with *get()* (which will be
+an *HttpGetResource*), to the *File* *jar*. Of course, this could be made even more general with
 a little more effort by changing *HttpNetworkLocation* to *NetworkLocation*.
 
-The *BaseNetworkResource* provides a base class from which various network resource types,  
+The *BaseNetworkResource* provides a base class from which various network resource types,
 such as *HttpGetResource*, can descend.
 
 ### Email Addresses <a name = "email-addresses"></a>
 
-The *EmailAddress* class parses and represents email addresses according to RFC-5322. KivaKit  
+The *EmailAddress* class parses and represents email addresses according to RFC-5322. KivaKit
 project [*kivakit-network-core-email*](../email/README.md) makes use of this class in composing and sending emails.
 
 [//]: # (end-user-text)
@@ -98,16 +98,16 @@ project [*kivakit-network-core-email*](../email/README.md) makes use of this cla
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](https://www.kivakit.org/images/diagram-48.png)
 
-[*Hosts, Ports and Protocols*](documentation/diagrams/diagram-port.svg)  
-[*Network Locations*](documentation/diagrams/diagram-network-location.svg)  
+[*Hosts, Ports and Protocols*](https://www.kivakit.org/lexakai/diagrams/diagram-port.svg)
+  [*Network Locations*](https://www.kivakit.org/lexakai/diagrams/diagram-network-location.svg)
 
 ![](https://www.kivakit.org/images/short-horizontal-line.png)
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/box-40.png)
 
-[*com.telenav.kivakit.core.network.core*](documentation/diagrams/com.telenav.kivakit.core.network.core.svg)  
-[*com.telenav.kivakit.core.network.core.cluster*](documentation/diagrams/com.telenav.kivakit.core.network.core.cluster.svg)  
-[*com.telenav.kivakit.core.network.core.project*](documentation/diagrams/com.telenav.kivakit.core.network.core.project.svg)  
+[*com.telenav.kivakit.core.network.core*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.core.network.core.svg)
+  [*com.telenav.kivakit.core.network.core.cluster*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.core.network.core.cluster.svg)
+  [*com.telenav.kivakit.core.network.core.project*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.core.network.core.project.svg)
 
 ![](https://www.kivakit.org/images/short-horizontal-line.png)
 
@@ -121,28 +121,28 @@ Javadoc coverage for this project is 89.3%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*BaseNetworkResource*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/BaseNetworkResource.html) |  |  
-| [*ClusterIdentifier*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/cluster/ClusterIdentifier.html) |  |  
-| [*CoreNetworkCoreProject*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/project/CoreNetworkCoreProject.html) |  |  
-| [*EmailAddress*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/EmailAddress.html) |  |  
-| [*EmailAddress.Converter*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/EmailAddress.Converter.html) |  |  
-| [*Host*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/Host.html) | Attributes |  
+| [*BaseNetworkResource*](null/com/telenav/kivakit/core/network/core/BaseNetworkResource.html) |  |  
+| [*ClusterIdentifier*](null/com/telenav/kivakit/core/network/core/cluster/ClusterIdentifier.html) |  |  
+| [*CoreNetworkCoreProject*](null/com/telenav/kivakit/core/network/core/project/CoreNetworkCoreProject.html) |  |  
+| [*EmailAddress*](null/com/telenav/kivakit/core/network/core/EmailAddress.html) |  |  
+| [*EmailAddress.Converter*](null/com/telenav/kivakit/core/network/core/EmailAddress.Converter.html) |  |  
+| [*Host*](null/com/telenav/kivakit/core/network/core/Host.html) | Attributes |  
 | | Ports |  
-| [*Host.Converter*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/Host.Converter.html) |  |  
-| [*LocalHost*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/LocalHost.html) |  |  
-| [*Loopback*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/Loopback.html) |  |  
-| [*NetworkAccessConstraints*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/NetworkAccessConstraints.html) |  |  
-| [*NetworkLocation*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/NetworkLocation.html) |  |  
-| [*NetworkLocation.Converter*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/NetworkLocation.Converter.html) |  |  
-| [*NetworkPath*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/NetworkPath.html) | Path Parsing Methods |  
+| [*Host.Converter*](null/com/telenav/kivakit/core/network/core/Host.Converter.html) |  |  
+| [*LocalHost*](null/com/telenav/kivakit/core/network/core/LocalHost.html) |  |  
+| [*Loopback*](null/com/telenav/kivakit/core/network/core/Loopback.html) |  |  
+| [*NetworkAccessConstraints*](null/com/telenav/kivakit/core/network/core/NetworkAccessConstraints.html) |  |  
+| [*NetworkLocation*](null/com/telenav/kivakit/core/network/core/NetworkLocation.html) |  |  
+| [*NetworkLocation.Converter*](null/com/telenav/kivakit/core/network/core/NetworkLocation.Converter.html) |  |  
+| [*NetworkPath*](null/com/telenav/kivakit/core/network/core/NetworkPath.html) | Path Parsing Methods |  
 | | Path Factory Methods |  
-| [*NetworkPath.Converter*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/NetworkPath.Converter.html) |  |  
-| [*NetworkResource*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/NetworkResource.html) |  |  
-| [*Port*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/Port.html) |  |  
-| [*Port.Converter*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/Port.Converter.html) |  |  
-| [*Port.ListConverter*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/Port.ListConverter.html) |  |  
-| [*Protocol*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/Protocol.html) |  |  
-| [*QueryParameters*](https://telenav.github.io/kivakit-data/javadoc/kivakit.core.network.core/com/telenav/kivakit/core/network/core/QueryParameters.html) |  |  
+| [*NetworkPath.Converter*](null/com/telenav/kivakit/core/network/core/NetworkPath.Converter.html) |  |  
+| [*NetworkResource*](null/com/telenav/kivakit/core/network/core/NetworkResource.html) |  |  
+| [*Port*](null/com/telenav/kivakit/core/network/core/Port.html) |  |  
+| [*Port.Converter*](null/com/telenav/kivakit/core/network/core/Port.Converter.html) |  |  
+| [*Port.ListConverter*](null/com/telenav/kivakit/core/network/core/Port.ListConverter.html) |  |  
+| [*Protocol*](null/com/telenav/kivakit/core/network/core/Protocol.html) |  |  
+| [*QueryParameters*](null/com/telenav/kivakit/core/network/core/QueryParameters.html) |  |  
 
 [//]: # (start-user-text)
 
@@ -155,6 +155,6 @@ Javadoc coverage for this project is 89.3%.
 ![](https://www.kivakit.org/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.15. UML diagrams courtesy
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.16. UML diagrams courtesy
 of [PlantUML](http://plantuml.com).</sub>
 

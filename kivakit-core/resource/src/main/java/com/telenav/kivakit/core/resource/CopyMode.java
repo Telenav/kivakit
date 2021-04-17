@@ -31,7 +31,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.unsu
 @LexakaiJavadoc(complete = true)
 public enum CopyMode
 {
-    /** Overwrite the destination if it exists */
+    /** Copy to the destination even if it already exists */
     OVERWRITE,
 
     /** Overwrite the destination if the source has a different size or last modification time */

@@ -1,0 +1,27 @@
+
+@startuml
+
+    !include ../../lexakai.theme
+
+    title "KivaKit Project Dependencies"
+
+    legend top
+        Simplified diagram of top-level project dependencies
+    endlegend
+
+    artifact kivakit_core
+    artifact kivakit_data
+    artifact kivakit_filesystems
+    artifact lexakai_annotations
+    artifact kivakit_logs
+    artifact kivakit_web
+    artifact kivakit_service
+
+    kivakit_core -up-> lexakai_annotations
+    kivakit_data -up-> kivakit_core
+    kivakit_web -right-> kivakit_core
+    kivakit_filesystems -left-> kivakit_service
+    kivakit_logs -right-> kivakit_core
+    kivakit_service -up-> kivakit_web
+
+@enduml

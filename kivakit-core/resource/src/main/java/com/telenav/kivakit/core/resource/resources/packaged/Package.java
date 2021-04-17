@@ -154,7 +154,7 @@ public class Package implements ResourceFolder
     }
 
     @Override
-    public ResourceFolder folder(final String path)
+    public Package folder(final String path)
     {
         return child(path);
     }
@@ -202,6 +202,11 @@ public class Package implements ResourceFolder
     @Override
     public PackageResource resource(final String name)
     {
+        if (name.contains("/"))
+        {
+            final var path = FilePath.parseFilePath(name);
+            return folder(path.withoutLast().toString()).resource(path.last());
+        }
         for (final var resource : resources())
         {
             if (resource.fileName().name().equals(name))

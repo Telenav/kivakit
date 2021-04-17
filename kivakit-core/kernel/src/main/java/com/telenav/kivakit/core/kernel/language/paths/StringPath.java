@@ -121,10 +121,20 @@ public class StringPath extends Path<String>
     /**
      * @return A path for the given strings
      */
-    public static StringPath stringPath(final String first, final String... more)
+    public static StringPath stringPath(final String first, final String... rest)
     {
-        final var list = StringList.stringList(first);
-        list.addAll(more);
+        final var list = StringList.stringList();
+        if (!Strings.isEmpty(first))
+        {
+            list.add(first);
+        }
+        for (final var at : rest)
+        {
+            if (!Strings.isEmpty(at))
+            {
+                list.add(at);
+            }
+        }
         return stringPath(list);
     }
 
