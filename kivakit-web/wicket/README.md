@@ -1,4 +1,4 @@
-# KivaKit Web - Wicket &nbsp;&nbsp;![](https://www.kivakit.org/images/wicket-48.png)
+# kivakit-web-wicket &nbsp;&nbsp;![](https://www.kivakit.org/images/wicket-48.png)
 
 This project contains support for using Apache Wicket on Jetty.
 
@@ -14,13 +14,13 @@ This project contains support for using Apache Wicket on Jetty.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/dependencies-40.png)
 
-[*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit-web/wicket/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-web/wicket/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
-        <artifactId></artifactId>
+        <artifactId>kivakit-web-wicket</artifactId>
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
 
@@ -51,14 +51,14 @@ None
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/box-40.png)
 
-[*com.telenav.kivakit.web.wicket*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.web.wicket.svg)
-  [*com.telenav.kivakit.web.wicket.behaviors.status*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.web.wicket.behaviors.status.svg)
-  [*com.telenav.kivakit.web.wicket.components.feedback*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.web.wicket.components.feedback.svg)
-  [*com.telenav.kivakit.web.wicket.components.header*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.web.wicket.components.header.svg)
-  [*com.telenav.kivakit.web.wicket.components.refresh*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.web.wicket.components.refresh.svg)
-  [*com.telenav.kivakit.web.wicket.library*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.web.wicket.library.svg)
-  [*com.telenav.kivakit.web.wicket.project*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.web.wicket.project.svg)
-  [*com.telenav.kivakit.web.wicket.theme*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.web.wicket.theme.svg)
+[*com.telenav.kivakit.web.wicket*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.web.wicket.svg)  
+[*com.telenav.kivakit.web.wicket.behaviors.status*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.web.wicket.behaviors.status.svg)  
+[*com.telenav.kivakit.web.wicket.components.feedback*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.web.wicket.components.feedback.svg)  
+[*com.telenav.kivakit.web.wicket.components.header*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.web.wicket.components.header.svg)  
+[*com.telenav.kivakit.web.wicket.components.refresh*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.web.wicket.components.refresh.svg)  
+[*com.telenav.kivakit.web.wicket.library*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.web.wicket.library.svg)  
+[*com.telenav.kivakit.web.wicket.project*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.web.wicket.project.svg)  
+[*com.telenav.kivakit.web.wicket.theme*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.web.wicket.theme.svg)
 
 ![](https://www.kivakit.org/images/short-horizontal-line.png)
 
@@ -72,15 +72,15 @@ Javadoc coverage for this project is 92.9%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*Components*](null/com/telenav/kivakit/web/wicket/library/Components.html) |  |  
-| [*FeedbackPanel*](null/com/telenav/kivakit/web/wicket/components/feedback/FeedbackPanel.html) |  |  
-| [*HeaderPanel*](null/com/telenav/kivakit/web/wicket/components/header/HeaderPanel.html) |  |  
-| [*JettyWicket*](null/com/telenav/kivakit/web/wicket/JettyWicket.html) |  |  
-| [*JettyWicketFilterHolder*](null/com/telenav/kivakit/web/wicket/JettyWicketFilterHolder.html) |  |  
-| [*KivaKitTheme*](null/com/telenav/kivakit/web/wicket/theme/KivaKitTheme.html) |  |  
-| [*MessageColor*](null/com/telenav/kivakit/web/wicket/behaviors/status/MessageColor.html) |  |  
-| [*UpdatingContainer*](null/com/telenav/kivakit/web/wicket/components/refresh/UpdatingContainer.html) |  |  
-| [*WebWicketProject*](null/com/telenav/kivakit/web/wicket/project/WebWicketProject.html) |  |  
+| [*Components*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/web/wicket/library/Components.html) |  |  
+| [*FeedbackPanel*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/web/wicket/components/feedback/FeedbackPanel.html) |  |  
+| [*HeaderPanel*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/web/wicket/components/header/HeaderPanel.html) |  |  
+| [*JettyWicket*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/web/wicket/JettyWicket.html) |  |  
+| [*JettyWicketFilterHolder*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/web/wicket/JettyWicketFilterHolder.html) |  |  
+| [*KivaKitTheme*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/web/wicket/theme/KivaKitTheme.html) |  |  
+| [*MessageColor*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/web/wicket/behaviors/status/MessageColor.html) |  |  
+| [*UpdatingContainer*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/web/wicket/components/refresh/UpdatingContainer.html) |  |  
+| [*WebWicketProject*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/web/wicket/project/WebWicketProject.html) |  |  
 
 [//]: # (start-user-text)
 
@@ -93,6 +93,6 @@ Javadoc coverage for this project is 92.9%.
 ![](https://www.kivakit.org/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.16. UML diagrams courtesy
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.17. UML diagrams courtesy
 of [PlantUML](http://plantuml.com).</sub>
 

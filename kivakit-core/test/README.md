@@ -1,4 +1,4 @@
-# KivaKit Core - Test &nbsp;&nbsp;![](https://www.kivakit.org/images/gears-40.png)
+# kivakit-core test &nbsp;&nbsp;![](https://www.kivakit.org/images/gears-40.png)
 
 This module contains functionality for unit testing.
 
@@ -14,13 +14,13 @@ This module contains functionality for unit testing.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/dependencies-40.png)
 
-[*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit-core/test/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/test/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
-        <artifactId></artifactId>
+        <artifactId>kivakit-core-test</artifactId>
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
 
@@ -36,17 +36,17 @@ This module contains functionality for unit testing.
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](https://www.kivakit.org/images/diagram-48.png)
 
-[*Testing*](https://www.kivakit.org/lexakai/diagrams/diagram-test.svg)
+[*Testing*](https://www.kivakit.org/lexakai/kivakit/diagrams/diagram-test.svg)
 
 ![](https://www.kivakit.org/images/short-horizontal-line.png)
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/box-40.png)
 
-[*com.telenav.kivakit.core.test*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.core.test.svg)
-  [*com.telenav.kivakit.core.test.annotations*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.core.test.annotations.svg)
-  [*com.telenav.kivakit.core.test.project*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.core.test.project.svg)
-  [*com.telenav.kivakit.core.test.random*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.core.test.random.svg)
-  [*com.telenav.kivakit.core.test.reporters*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.core.test.reporters.svg)
+[*com.telenav.kivakit.core.test*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.core.test.svg)  
+[*com.telenav.kivakit.core.test.annotations*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.core.test.annotations.svg)  
+[*com.telenav.kivakit.core.test.project*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.core.test.project.svg)  
+[*com.telenav.kivakit.core.test.random*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.core.test.random.svg)  
+[*com.telenav.kivakit.core.test.reporters*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.core.test.reporters.svg)
 
 ![](https://www.kivakit.org/images/short-horizontal-line.png)
 
@@ -60,15 +60,15 @@ Javadoc coverage for this project is 85.1%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*CoreTestProject*](null/com/telenav/kivakit/core/test/project/CoreTestProject.html) |  |  
-| [*JUnitValidationReporter*](null/com/telenav/kivakit/core/test/reporters/JUnitValidationReporter.html) |  |  
-| [*QuickTests*](null/com/telenav/kivakit/core/test/annotations/QuickTests.html) |  |  
-| [*RandomValueFactory*](null/com/telenav/kivakit/core/test/random/RandomValueFactory.html) | Values |  
+| [*CoreTestProject*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/test/project/CoreTestProject.html) |  |  
+| [*JUnitValidationReporter*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/test/reporters/JUnitValidationReporter.html) |  |  
+| [*QuickTests*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/test/annotations/QuickTests.html) |  |  
+| [*RandomValueFactory*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/test/random/RandomValueFactory.html) | Values |  
 | | Seeding |  
-| [*SlowTests*](null/com/telenav/kivakit/core/test/annotations/SlowTests.html) |  |  
-| [*UnitTest*](null/com/telenav/kivakit/core/test/UnitTest.html) |  |  
-| [*UnitTest.Repeats*](null/com/telenav/kivakit/core/test/UnitTest.Repeats.html) |  |  
-| [*UnitTestWatcher*](null/com/telenav/kivakit/core/test/UnitTestWatcher.html) |  |  
+| [*SlowTests*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/test/annotations/SlowTests.html) |  |  
+| [*UnitTest*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/test/UnitTest.html) |  |  
+| [*UnitTest.Repeats*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/test/UnitTest.Repeats.html) |  |  
+| [*UnitTestWatcher*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/test/UnitTestWatcher.html) |  |  
 
 [//]: # (start-user-text)
 
@@ -81,6 +81,6 @@ Javadoc coverage for this project is 85.1%.
 ![](https://www.kivakit.org/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.16. UML diagrams courtesy
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.17. UML diagrams courtesy
 of [PlantUML](http://plantuml.com).</sub>
 

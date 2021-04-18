@@ -1,4 +1,4 @@
-# KivaKit Core - Configuration &nbsp;&nbsp;![](https://www.kivakit.org/images/tools-40.png)
+# kivakit-core configuration &nbsp;&nbsp;![](https://www.kivakit.org/images/tools-40.png)
 
 This module manages sets of configuration objects, defined by properties files, which can be used to configure server  
 deployments. It also provides registration and lookup of objects.
@@ -15,13 +15,13 @@ deployments. It also provides registration and lookup of objects.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/dependencies-40.png)
 
-[*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit-core/configuration/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/configuration/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
-        <artifactId></artifactId>
+        <artifactId>kivakit-core-configuration</artifactId>
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
 
@@ -41,17 +41,17 @@ Details on how to use the *kivakit-core configuration* API are available in the 
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](https://www.kivakit.org/images/diagram-48.png)
 
-[*Configuration and Deployment*](https://www.kivakit.org/lexakai/diagrams/diagram-configuration.svg)
-  [*Lookup*](https://www.kivakit.org/lexakai/diagrams/diagram-lookup.svg)
+[*Configuration and Deployment*](https://www.kivakit.org/lexakai/kivakit/diagrams/diagram-configuration.svg)  
+[*Lookup*](https://www.kivakit.org/lexakai/kivakit/diagrams/diagram-lookup.svg)
 
 ![](https://www.kivakit.org/images/short-horizontal-line.png)
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/box-40.png)
 
-[*com.telenav.kivakit.core.configuration*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.core.configuration.svg)
-  [*com.telenav.kivakit.core.configuration.lookup*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.core.configuration.lookup.svg)
-  [*com.telenav.kivakit.core.configuration.project*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.core.configuration.project.svg)
-  [*com.telenav.kivakit.core.configuration.settings*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.core.configuration.settings.svg)
+[*com.telenav.kivakit.core.configuration*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.core.configuration.svg)  
+[*com.telenav.kivakit.core.configuration.lookup*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.core.configuration.lookup.svg)  
+[*com.telenav.kivakit.core.configuration.project*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.core.configuration.project.svg)  
+[*com.telenav.kivakit.core.configuration.settings*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.core.configuration.settings.svg)
 
 ![](https://www.kivakit.org/images/short-horizontal-line.png)
 
@@ -65,25 +65,25 @@ Javadoc coverage for this project is 92.4%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*ConfigurationEntry*](null/com/telenav/kivakit/core/configuration/ConfigurationEntry.html) |  |  
-| [*ConfigurationFolder*](null/com/telenav/kivakit/core/configuration/ConfigurationFolder.html) |  |  
-| [*ConfigurationIdentifier*](null/com/telenav/kivakit/core/configuration/ConfigurationIdentifier.html) |  |  
-| [*ConfigurationPackage*](null/com/telenav/kivakit/core/configuration/ConfigurationPackage.html) |  |  
-| [*ConfigurationSet*](null/com/telenav/kivakit/core/configuration/ConfigurationSet.html) | The Global Configuration Set |  
+| [*ConfigurationEntry*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/configuration/ConfigurationEntry.html) |  |  
+| [*ConfigurationFolder*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/configuration/ConfigurationFolder.html) |  |  
+| [*ConfigurationIdentifier*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/configuration/ConfigurationIdentifier.html) |  |  
+| [*ConfigurationPackage*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/configuration/ConfigurationPackage.html) |  |  
+| [*ConfigurationSet*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/configuration/ConfigurationSet.html) | The Global Configuration Set |  
 | | Adding and Loading Configuration Objects |  
 | | Loading Configurations as DeploymentSets |  
 | | Locating Configurations with Lookup |  
 | | Locating Configuration Objects at Runtime |  
 | | Properties File Format |  
-| [*CoreConfigurationProject*](null/com/telenav/kivakit/core/configuration/project/CoreConfigurationProject.html) |  |  
-| [*Deployment*](null/com/telenav/kivakit/core/configuration/Deployment.html) | Configuring Applications |  
+| [*CoreConfigurationProject*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/configuration/project/CoreConfigurationProject.html) |  |  
+| [*Deployment*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/configuration/Deployment.html) | Configuring Applications |  
 | | Key Methods |  
 | | Example |  
-| [*Deployment.Converter*](null/com/telenav/kivakit/core/configuration/Deployment.Converter.html) |  |  
-| [*DeploymentSet*](null/com/telenav/kivakit/core/configuration/DeploymentSet.html) |  |  
-| [*InstanceIdentifier*](null/com/telenav/kivakit/core/configuration/InstanceIdentifier.html) |  |  
-| [*Lookup*](null/com/telenav/kivakit/core/configuration/lookup/Lookup.html) | Example |  
-| [*Settings*](null/com/telenav/kivakit/core/configuration/settings/Settings.html) | Overriding Settings from the Command Line |  
+| [*Deployment.Converter*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/configuration/Deployment.Converter.html) |  |  
+| [*DeploymentSet*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/configuration/DeploymentSet.html) |  |  
+| [*InstanceIdentifier*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/configuration/InstanceIdentifier.html) |  |  
+| [*Lookup*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/configuration/lookup/Lookup.html) | Example |  
+| [*Settings*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/configuration/settings/Settings.html) | Overriding Settings from the Command Line |  
 | | Finding Settings |  
 
 [//]: # (start-user-text)
@@ -97,6 +97,6 @@ Javadoc coverage for this project is 92.4%.
 ![](https://www.kivakit.org/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.16. UML diagrams courtesy
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.17. UML diagrams courtesy
 of [PlantUML](http://plantuml.com).</sub>
 

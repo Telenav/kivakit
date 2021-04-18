@@ -7,14 +7,9 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-cd $KIVAKIT_WORKSPACE
+source library-functions.sh
+source kivakit-projects.sh
 
-KIVAKIT_VERSION=$(cat $KIVAKIT_HOME/project.properties | grep "project-version" | cut -d'=' -f2 | xargs echo)
-
-read -p "┋ Remove maven repository (y/n)? " -n 1 -r
-echo "┋ "
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    rm -rf ~/.m2
-fi
+remove_maven_repository
 
 bash kivakit-clean.sh

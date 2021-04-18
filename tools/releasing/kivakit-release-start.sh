@@ -7,36 +7,17 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-VERSION=$1
+source library-functions.sh
+source kivakit-projects.sh
 
-if [ -z "$VERSION" ]; then
+ARGUMENT_HELP="[version]"
 
-    echo "Usage: kivakit-release-start.sh [version-number]"
-    exit 0
+version=$1
 
-fi
+require_variable version
 
-# Check out the develop branch
-cd $KIVAKIT_HOME
-git checkout develop
+for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
 
-# then start a new release branch
-git flow release start $VERSION
+    git_flow_release_start $project_home $version
 
-# switch to the release branch
-git checkout release/$VERSION
-
-# and update its version
-bash kivakit-release-version.sh $VERSION
-
-echo " "
-echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Branch Created  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
-echo "┋"
-echo "┋  VERSION: $VERSION"
-echo "┋"
-echo "┋  1. A new release branch 'release/$VERSION' has been created using git flow."
-echo "┋  2. POM files and other version-related information in this branch has been updated to $VERSION."
-echo "┋  3. When the release branch is FULLY READY, run kivakit-release-finish.sh to merge the branch into master."
-echo "┋"
-echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
-echo " "
+done

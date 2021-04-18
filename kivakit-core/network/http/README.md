@@ -1,4 +1,4 @@
-# KivaKit Core Network - HTTP &nbsp;&nbsp;![](https://www.kivakit.org/images/world-40.png)
+# kivakit-core-network http &nbsp;&nbsp;![](https://www.kivakit.org/images/world-40.png)
 
 This module provides HTTP and HTTPS resources.
 
@@ -17,13 +17,13 @@ This module provides HTTP and HTTPS resources.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/dependencies-40.png)
 
-[*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit-core/network/http/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/network/http/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
-        <artifactId></artifactId>
+        <artifactId>kivakit-core-network-http</artifactId>
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
 
@@ -58,16 +58,16 @@ The *SecureHttpNetworkLocation*, *SecureHttpGetResource* and *SecureHttpPostReso
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](https://www.kivakit.org/images/diagram-48.png)
 
-[*HTTP*](https://www.kivakit.org/lexakai/diagrams/diagram-http.svg)
-  [*Secure HTTP*](https://www.kivakit.org/lexakai/diagrams/diagram-https.svg)
+[*HTTP*](https://www.kivakit.org/lexakai/kivakit/diagrams/diagram-http.svg)  
+[*Secure HTTP*](https://www.kivakit.org/lexakai/kivakit/diagrams/diagram-https.svg)
 
 ![](https://www.kivakit.org/images/short-horizontal-line.png)
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/box-40.png)
 
-[*com.telenav.kivakit.core.network.http*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.core.network.http.svg)
-  [*com.telenav.kivakit.core.network.http.project*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.core.network.http.project.svg)
-  [*com.telenav.kivakit.core.network.http.secure*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.core.network.http.secure.svg)
+[*com.telenav.kivakit.core.network.http*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.core.network.http.svg)  
+[*com.telenav.kivakit.core.network.http.project*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.core.network.http.project.svg)  
+[*com.telenav.kivakit.core.network.http.secure*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.core.network.http.secure.svg)
 
 ![](https://www.kivakit.org/images/short-horizontal-line.png)
 
@@ -81,20 +81,20 @@ Javadoc coverage for this project is 90.4%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*BaseHttpResource*](null/com/telenav/kivakit/core/network/http/BaseHttpResource.html) | Content |  
-| [*CoreNetworkHttpProject*](null/com/telenav/kivakit/core/network/http/project/CoreNetworkHttpProject.html) |  |  
-| [*HttpAccessConstraints*](null/com/telenav/kivakit/core/network/http/HttpAccessConstraints.html) |  |  
-| [*HttpBasicCredentials*](null/com/telenav/kivakit/core/network/http/HttpBasicCredentials.html) |  |  
-| [*HttpGetResource*](null/com/telenav/kivakit/core/network/http/HttpGetResource.html) |  |  
-| [*HttpNetworkLocation*](null/com/telenav/kivakit/core/network/http/HttpNetworkLocation.html) | Access |  
-| [*HttpNetworkLocation.Converter*](null/com/telenav/kivakit/core/network/http/HttpNetworkLocation.Converter.html) |  |  
-| [*HttpPostResource*](null/com/telenav/kivakit/core/network/http/HttpPostResource.html) |  |  
-| [*HttpPutResource*](null/com/telenav/kivakit/core/network/http/HttpPutResource.html) |  |  
-| [*HttpStatus*](null/com/telenav/kivakit/core/network/http/HttpStatus.html) |  |  
-| [*InvalidCertificateTrustingHttpClient*](null/com/telenav/kivakit/core/network/http/secure/InvalidCertificateTrustingHttpClient.html) |  |  
-| [*SecureHttpGetResource*](null/com/telenav/kivakit/core/network/http/secure/SecureHttpGetResource.html) |  |  
-| [*SecureHttpNetworkLocation*](null/com/telenav/kivakit/core/network/http/secure/SecureHttpNetworkLocation.html) |  |  
-| [*SecureHttpPostResource*](null/com/telenav/kivakit/core/network/http/secure/SecureHttpPostResource.html) |  |  
+| [*BaseHttpResource*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/network/http/BaseHttpResource.html) | Content |  
+| [*CoreNetworkHttpProject*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/network/http/project/CoreNetworkHttpProject.html) |  |  
+| [*HttpAccessConstraints*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/network/http/HttpAccessConstraints.html) |  |  
+| [*HttpBasicCredentials*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/network/http/HttpBasicCredentials.html) |  |  
+| [*HttpGetResource*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/network/http/HttpGetResource.html) |  |  
+| [*HttpNetworkLocation*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/network/http/HttpNetworkLocation.html) | Access |  
+| [*HttpNetworkLocation.Converter*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/network/http/HttpNetworkLocation.Converter.html) |  |  
+| [*HttpPostResource*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/network/http/HttpPostResource.html) |  |  
+| [*HttpPutResource*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/network/http/HttpPutResource.html) |  |  
+| [*HttpStatus*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/network/http/HttpStatus.html) |  |  
+| [*InvalidCertificateTrustingHttpClient*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/network/http/secure/InvalidCertificateTrustingHttpClient.html) |  |  
+| [*SecureHttpGetResource*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/network/http/secure/SecureHttpGetResource.html) |  |  
+| [*SecureHttpNetworkLocation*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/network/http/secure/SecureHttpNetworkLocation.html) |  |  
+| [*SecureHttpPostResource*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/network/http/secure/SecureHttpPostResource.html) |  |  
 
 [//]: # (start-user-text)
 
@@ -107,6 +107,6 @@ Javadoc coverage for this project is 90.4%.
 ![](https://www.kivakit.org/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.16. UML diagrams courtesy
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.17. UML diagrams courtesy
 of [PlantUML](http://plantuml.com).</sub>
 

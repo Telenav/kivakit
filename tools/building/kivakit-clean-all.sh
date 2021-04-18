@@ -7,10 +7,15 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-read -p "┋ Remove KivaKit artifacts from ~\.m2 (y/n)? " -n 1 -r
-echo " "
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    rm -rf ~/.m2/repository/com/telenav/kivakit/*
-fi
+source library-functions.sh
+source kivakit-projects.sh
+
+source kivakit-projects.sh
+
+for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
+
+    clean_maven_repository $project_home
+
+done
 
 bash kivakit-clean.sh

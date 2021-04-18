@@ -55,37 +55,35 @@ To configure your environment, you will need several environment variables set.
 
 ### MacOS and UNIX    ![](https://www.kivakit.org/images/bluebook-32.png)
 
-On macOS or UNIX, you can use a sample .profile* from KivaKit to configure your shell environment.
+On macOS or UNIX, you can use a sample *.profile* from KivaKit to configure your shell environment.
 
-1. Install the KivaKit *profile* sample from the *kivakit* project as shown here (or merge
-   it into your existing .profile):
+1. Install the KivaKit *profile* sample from the *kivakit* project as shown here (or merge it into your existing .profile):
 
-       cp kivakit/setup/mac/profile $HOME/.profile
+       cp kivakit/setup/profile $HOME/.profile
 
-2. Make sure that the **M2_HOME** and **JAVA_HOME** environment variables defined in the
-   *.profile* point to your Maven and Java installations
+2. Make sure that the **M2_HOME** and **JAVA_HOME** environment variables defined in the *.profile* 
+   point to your Maven and Java installations
 
        export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-12.0.2.jdk/Contents/Home 
        export M2_HOME=$HOME/Developer/apache-maven-3.6.3
 
 3. Change the **KIVAKIT_WORKSPACE** variable to point to your IDE workspace (**Workspace**).
-   _Do not set KIVAKIT_HOME._
 
        export KIVAKIT_WORKSPACE=$HOME/Workspace
 
    > **KIVAKIT_WORKSPACE** must point to your *IDE workspace* **NOT** the *kivakit* project in the workspace
 
-4. Start a new shell or execute *source ~/.profile*
+4. Start a new shell
 
 ### Windows &nbsp;&nbsp; ![](https://www.kivakit.org/images/window-32.png)
 
 On Windows, a UNIX-like environment with *bash* is required. It is recommended to install [Git for Windows](https://gitforwindows.org/),
 which will install both git, and a bash shell.
 
-1. Install KivaKit *.profile* sample from the *kivakit* project exactly as shown here (or merge
-   it into your existing .profile):
+1. Install KivaKit *.profile* sample from the *kivakit* project as shown here 
+   (or merge it into your existing .profile):
 
-       cp kivakit/setup/windows/profile $HOME/.profile
+       cp kivakit/setup/profile $HOME/.profile
 
 2. Make sure that the **M2_HOME** and **JAVA_HOME** environment variables defined in the *.profile*
    point to your Maven and Java installations
@@ -102,7 +100,7 @@ which will install both git, and a bash shell.
 
    > You must set KIVAKIT_WORKSPACE and KIVAKIT_HOME to UNIX-style paths such as /c/Users/jonathanl/Workspace
 
-5. Start a new shell or execute *source ~/.profile*
+5. Start a new shell
 
 ![](https://www.kivakit.org/images/horizontal-line.png)
 

@@ -7,24 +7,20 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-NEW_VERSION="${1%-SNAPSHOT}-SNAPSHOT"
+source library-functions.sh
+source kivakit-projects.sh
 
-if [ -z "$NEW_VERSION" ]; then
+project_home=$1
+version="${2%-SNAPSHOT}-SNAPSHOT"
 
-    echo "Usage: kivakit-snapshot.sh [new-version-number]"
-    exit 0
+ARGUMENT_HELP="[version]"
 
-else
+version=$1
 
-    KIVAKIT_VERSION=$(cat $KIVAKIT_HOME/project.properties | grep "project-version" | cut -d'=' -f2 | xargs echo)
+require_variable version
 
-    echo " "
-    echo "Updating KivaKit version from $KIVAKIT_VERSION to $NEW_VERSION"
+for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
 
-    # Update POM versions
-    update-version.pl $KIVAKIT_HOME $KIVAKIT_VERSION $NEW_VERSION
+    update_version $project_home $version
 
-    echo "Updated"
-    echo " "
-
-fi
+done

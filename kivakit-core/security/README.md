@@ -1,4 +1,4 @@
-# KivaKit Core - Security &nbsp;&nbsp;![](https://www.kivakit.org/images/lock-40.png)
+# kivakit-core security &nbsp;&nbsp;![](https://www.kivakit.org/images/lock-40.png)
 
 This project contains functionality related to security
 
@@ -14,13 +14,13 @@ This project contains functionality related to security
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/dependencies-40.png)
 
-[*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit-core/security/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/security/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
-        <artifactId></artifactId>
+        <artifactId>kivakit-core-security</artifactId>
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
 
@@ -39,18 +39,18 @@ producing simple message digests easier.
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](https://www.kivakit.org/images/diagram-48.png)
 
-[*Message Digests*](https://www.kivakit.org/lexakai/diagrams/diagram-security-digest.svg)
-  [*Security*](https://www.kivakit.org/lexakai/diagrams/diagram-security.svg)
+[*Message Digests*](https://www.kivakit.org/lexakai/kivakit/diagrams/diagram-security-digest.svg)  
+[*Security*](https://www.kivakit.org/lexakai/kivakit/diagrams/diagram-security.svg)
 
 ![](https://www.kivakit.org/images/short-horizontal-line.png)
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/box-40.png)
 
-[*com.telenav.kivakit.core.security.authentication*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.core.security.authentication.svg)
-  [*com.telenav.kivakit.core.security.authentication.passwords*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.core.security.authentication.passwords.svg)
-  [*com.telenav.kivakit.core.security.digest*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.core.security.digest.svg)
-  [*com.telenav.kivakit.core.security.digest.digesters*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.core.security.digest.digesters.svg)
-  [*com.telenav.kivakit.core.security.project*](https://www.kivakit.org/lexakai/diagrams/com.telenav.kivakit.core.security.project.svg)
+[*com.telenav.kivakit.core.security.authentication*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.core.security.authentication.svg)  
+[*com.telenav.kivakit.core.security.authentication.passwords*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.core.security.authentication.passwords.svg)  
+[*com.telenav.kivakit.core.security.digest*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.core.security.digest.svg)  
+[*com.telenav.kivakit.core.security.digest.digesters*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.core.security.digest.digesters.svg)  
+[*com.telenav.kivakit.core.security.project*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.core.security.project.svg)
 
 ![](https://www.kivakit.org/images/short-horizontal-line.png)
 
@@ -64,17 +64,17 @@ Javadoc coverage for this project is 83.3%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*BaseDigester*](null/com/telenav/kivakit/core/security/digest/BaseDigester.html) |  |  
-| [*CoreSecurityProject*](null/com/telenav/kivakit/core/security/project/CoreSecurityProject.html) |  |  
-| [*DigestPassword*](null/com/telenav/kivakit/core/security/authentication/passwords/DigestPassword.html) |  |  
-| [*Digester*](null/com/telenav/kivakit/core/security/digest/Digester.html) |  |  
-| [*Md5Digester*](null/com/telenav/kivakit/core/security/digest/digesters/Md5Digester.html) |  |  
-| [*Password*](null/com/telenav/kivakit/core/security/authentication/Password.html) |  |  
-| [*PlainTextPassword*](null/com/telenav/kivakit/core/security/authentication/passwords/PlainTextPassword.html) |  |  
-| [*PlainTextPassword.Converter*](null/com/telenav/kivakit/core/security/authentication/passwords/PlainTextPassword.Converter.html) |  |  
-| [*Sha1Digester*](null/com/telenav/kivakit/core/security/digest/digesters/Sha1Digester.html) |  |  
-| [*UserName*](null/com/telenav/kivakit/core/security/authentication/UserName.html) |  |  
-| [*UserName.Converter*](null/com/telenav/kivakit/core/security/authentication/UserName.Converter.html) |  |  
+| [*BaseDigester*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/security/digest/BaseDigester.html) |  |  
+| [*CoreSecurityProject*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/security/project/CoreSecurityProject.html) |  |  
+| [*DigestPassword*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/security/authentication/passwords/DigestPassword.html) |  |  
+| [*Digester*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/security/digest/Digester.html) |  |  
+| [*Md5Digester*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/security/digest/digesters/Md5Digester.html) |  |  
+| [*Password*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/security/authentication/Password.html) |  |  
+| [*PlainTextPassword*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/security/authentication/passwords/PlainTextPassword.html) |  |  
+| [*PlainTextPassword.Converter*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/security/authentication/passwords/PlainTextPassword.Converter.html) |  |  
+| [*Sha1Digester*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/security/digest/digesters/Sha1Digester.html) |  |  
+| [*UserName*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/security/authentication/UserName.html) |  |  
+| [*UserName.Converter*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/security/authentication/UserName.Converter.html) |  |  
 
 [//]: # (start-user-text)
 
@@ -87,6 +87,6 @@ Javadoc coverage for this project is 83.3%.
 ![](https://www.kivakit.org/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.16. UML diagrams courtesy
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.17. UML diagrams courtesy
 of [PlantUML](http://plantuml.com).</sub>
 

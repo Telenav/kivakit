@@ -7,7 +7,13 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-cd $KIVAKIT_WORKSPACE
+source library-functions.sh
+source kivakit-projects.sh
 
-# Build .puml files and README.md indexes with Lexakai
-bash lexakai.sh -output-folder=kivakit/kivakit-data/docs/lexakai $KIVAKIT_HOME
+for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
+
+    project_name=$(project_name $project_home)
+
+    lexakai -project-version=$KIVAKIT_VERSION -output-folder=$KIVAKIT_DATA_HOME/docs/lexakai/$project_name $project_home
+
+done

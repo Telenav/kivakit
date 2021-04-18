@@ -7,15 +7,12 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-source build-common.sh
+source library-functions.sh
+source library-build.sh
+source kivakit-projects.sh
 
-if [[ "$1" == "." ]]; then
+for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
 
-    shift
-    build . $@
+    build $project_home $@
 
-else
-
-    build kivakit $@
-
-fi
+done

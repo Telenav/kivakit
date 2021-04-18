@@ -243,7 +243,8 @@ public class PropertyMap extends VariableMap<String>
      */
     public String asPath(final String key)
     {
-        return Strip.trailing(get(key), "/");
+        final var value = get(key);
+        return value == null ? null : Strip.trailing(value, "/");
     }
 
     /**

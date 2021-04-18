@@ -16,6 +16,7 @@ fi
 cd $KIVAKIT_WORKSPACE
 git clone git@github.com:Telenav/kivakit-data.git
 git clone git@github.com:Telenav/kivakit-build.git
+git clone git@github.com:Telenav/kivakit-extensions.git
 
 cd $KIVAKIT_HOME
 git checkout develop

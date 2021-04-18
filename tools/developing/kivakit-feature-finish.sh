@@ -7,13 +7,17 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-if [ -z "$1" ]; then
+source library-functions.sh
+source kivakit-projects.sh
 
-    echo "Usage: kivakit-git-feature-finish.sh [feature-name]"
-    exit 0
+ARGUMENT_HELP="[feature-name]"
 
-else
+feature_name=$1
 
-    git-flow feature finish KivaKit-$1
+require_variable feature-name
 
-fi
+for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
+
+    git_flow_feature_finish $project_home $feature_name
+
+done

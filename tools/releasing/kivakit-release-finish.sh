@@ -7,20 +7,17 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-VERSION=$1
+source library-functions.sh
+source kivakit-projects.sh
 
-cd $KIVAKIT_HOME
-git checkout release/$VERSION
-git flow release finish $VERSION
-git push origin --tags
+ARGUMENT_HELP="[version]"
 
-echo " "
-echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Merged and Published  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
-echo "┋"
-echo "┋  VERSION: $VERSION"
-echo "┋"
-echo "┋  1. The branch 'release/$VERSION' has been merged into master using git flow."
-echo "┋  2. Artifacts from the release will be published shortly by Jenkins"
-echo "┋"
-echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
-echo " "
+version=$1
+
+require_variable version
+
+for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
+
+    git_flow_release_finish $project_home $version
+
+done
