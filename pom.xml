@@ -333,7 +333,8 @@
                         <detectJavaApiLink>false</detectJavaApiLink>
                         <doclint>none</doclint>
                         <nohelp>true</nohelp>
-                        <reportOutputDirectory>${env.KIVAKIT_DATA_HOME}/docs/javadoc/kivakit</reportOutputDirectory>
+                        <reportOutputDirectory>${env.KIVAKIT_DATA_HOME}/docs/javadoc</reportOutputDirectory>
+                        <destDir>kivakit</destDir>
                         <additionalOptions>--show-module-contents all --show-packages all --show-types private</additionalOptions>
                     </configuration>
                     <executions>

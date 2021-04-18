@@ -57,7 +57,6 @@ if [[ "$1" == "help" ]]; then
 
     SCRIPT=$(basename -- "$0")
     usage $SCRIPT
-
 fi
 
 addSwitch() {
@@ -102,8 +101,8 @@ build() {
 
     "javadoc")
         JAVADOC="true"
-        BUILD_ARGUMENTS="clean package"
-        BUILD_MODIFIERS=(multi-threaded no-tests javadoc ${@:3})
+        BUILD_ARGUMENTS="clean compile"
+        BUILD_MODIFIERS=(single-threaded no-tests javadoc ${@:3})
         ;;
 
     *)
