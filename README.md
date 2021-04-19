@@ -82,7 +82,7 @@ KivaKit helps you to:
 | Twitter | [@OpenKivaKit](https://twitter.com/openkivakit) |
 | Issues | [GitHub Issues](https://github.com/Telenav/kivakit/issues) |
 | Code | [GitHub](https://github.com/Telenav/kivakit) |
-| Checkout | `git clone git@github.com:Telenav/kivakit.git` |
+| Checkout | `git clone https://github.com/Telenav/kivakit.git` |
 
 ![](https://www.kivakit.org/images/short-horizontal-line.png)
 
