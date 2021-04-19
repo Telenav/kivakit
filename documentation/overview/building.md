@@ -1,6 +1,6 @@
-# KivaKit - Building   ![](https://www.kivakit.org/images/gears-40.png)
+# KivaKit - Building   <img src="https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/gears-32-2x.png 2x"></img>
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"></img>
 
 ### Building KivaKit
 
@@ -69,4 +69,4 @@ Usage: kivakit-build.sh *[build-type] [build-modifiers]*
 
 <br/> 
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"></img>

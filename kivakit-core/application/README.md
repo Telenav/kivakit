@@ -1,9 +1,9 @@
-# kivakit-core application &nbsp;&nbsp;![](https://www.kivakit.org/images/window-40.png)
+# kivakit-core application &nbsp;&nbsp; <img src="https://www.lexakai.org/images/window-40.png" srcset="https://www.lexakai.org/images/window-40-2x.png 2x"></img>
 
 This module contains base classes for applications and servers. It provides command line parsing and enables  
 configuration management and object registration and lookup.
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
 ### Index
 
@@ -12,9 +12,9 @@ configuration management and object registration and lookup.
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/dependencies-32.png" srcset="https://www.lexakai.org/images/dependencies-32-2x.png 2x"></img>
 
 [*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/application/documentation/diagrams/dependencies.svg)
 
@@ -26,7 +26,8 @@ configuration management and object registration and lookup.
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
 [//]: # (start-user-text)
 
@@ -49,22 +50,22 @@ browse the [**Javadoc**](#javadoc).
 
 [//]: # (end-user-text)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](https://www.kivakit.org/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.lexakai.org/images/diagram-32.png" srcset="https://www.lexakai.org/images/diagram-32-2x.png 2x"></img>
 
 [*Applications*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/application/documentation/diagrams/diagram-application.svg)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/box-40.png)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/box-32.png" srcset="https://www.lexakai.org/images/box-32-2x.png 2x"></img>
 
 [*com.telenav.kivakit.core.application*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/application/documentation/diagrams/com.telenav.kivakit.core.application.svg)  
 [*com.telenav.kivakit.core.application.project*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/application/documentation/diagrams/com.telenav.kivakit.core.application.project.svg)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/books-40.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-32.png" srcset="https://www.lexakai.org/images/books-32-2x.png 2x"></img>
 
 Javadoc coverage for this project is 100.0%.  
   
@@ -94,7 +95,7 @@ Javadoc coverage for this project is 100.0%.
 
 This section shows how to build a basic KivaKit application that counts lines in a text file in three simple steps.
 
-#### 1. Create the Application Class &nbsp; &nbsp; ![](https://www.kivakit.org/images/wand-40.png)
+#### 1. Create the Application Class &nbsp; &nbsp; <img src="https://www.kivakit.org/images/wand-32.png" srcset="https://www.kivakit.org/images/wand-32-2x.png 2x"></img>
 
 KivaKit applications extend _Application_, which provides base services to application subclasses.
 The application must pass the name of a _Project_ to the _Application_ constructor. This ensures
@@ -119,7 +120,7 @@ were received from the JVM in _main()._
         [...]
     }
 
-#### 2. Add Command Line Parsers to the Application Class &nbsp; &nbsp; ![](https://www.kivakit.org/images/command-line-40.png)
+#### 2. Add Command Line Parsers to the Application Class &nbsp; &nbsp; <img src="https://www.kivakit.org/images/command-line-32.png" srcset="https://www.kivakit.org/images/command-line-32-2x.png 2x"></img>
 
 Here we add two fields, one is an argument parser for the input file, and the other
 is a switch parser for the *-show-file-size* switch (if this switch is true, we will show
@@ -162,7 +163,7 @@ and _SwitchParser_ both parse objects from the command line, not strings.
 
         [...]
 
-#### 2. Create the Application Entrypoint &nbsp; &nbsp; ![](https://www.kivakit.org/images/rocket-40.png)
+#### 2. Create the Application Entrypoint &nbsp; &nbsp; <img src="https://www.kivakit.org/images/rocket-32.png" srcset="https://www.kivakit.org/images/rocket-32-2x.png 2x"></img>
 
 The method onRun() is called once command line switches are parsed. At this point
 many convenient methods in the _Application_ base class will work. See _Application.java_
@@ -193,9 +194,7 @@ useful methods for broadcasting and listening to messages.
 
 [//]: # (end-user-text)
 
-<br/>
-
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
 <sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai). UML diagrams courtesy

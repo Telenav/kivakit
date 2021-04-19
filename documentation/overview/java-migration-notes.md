@@ -1,8 +1,8 @@
-## KivaKit - Java Migration Notes &nbsp;  ![](https://www.kivakit.org/images/footprints-40.png)
+## KivaKit - Java Migration Notes &nbsp;  <img src="https://www.kivakit.org/images/footprints-32.png" srcset="https://www.kivakit.org/images/footprints-32-2x.png 2x"></img>
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"></img>
 
-### Welcome to Java 11+ &nbsp;&nbsp;    ![](https://www.kivakit.org/images/coffee-40.png)
+### Welcome to Java 11+ &nbsp;&nbsp;    <img src="https://www.kivakit.org/images/coffee-32.png" srcset="https://www.kivakit.org/images/coffee-32-2x.png 2x"></img>
 
 Starting with Java 9, the JDK has supported _modules_.
 KivaKit has a modular design and runs on Java 11+.
@@ -37,7 +37,7 @@ don't want customers waiting for GC pauses. A picture is worth a thousand words:
 
 ![](https://www.kivakit.org/images/gc.png)
 
-### Advantages of Modules   ![](https://www.kivakit.org/images/stars-32.png)
+### Advantages of Modules   <img src="https://www.kivakit.org/images/stars-32.png" srcset="https://www.kivakit.org/images/stars-32-2x.png 2x"></img>
 
 Modules provide strong encapsulation, which has some advantages:
 
@@ -46,7 +46,7 @@ Modules provide strong encapsulation, which has some advantages:
 * HotSpot can perform more aggressive optimizations on code that isn't public
 * It's easier to use only part of the JDK or KivaKit without dragging in a lot of unneeded dependencies
 
-### Strong Encapsulation   ![](https://www.kivakit.org/images/box-40.png)
+### Strong Encapsulation   <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"></img>
 
 Modular Java is more secure and performs better, but it places certain restrictions of Java 9+ code.
 
@@ -61,7 +61,7 @@ you will see this warning (which is by design from the developers of Java):
 This warning is annoying, but it cannot be turned off by design. Although future versions of Java
 will restrict reflection further, it is nothing to worry about under Java 12.
 
-### Making Your Application Modular &nbsp; ![](https://www.kivakit.org/images/stars-48.png)
+### Making Your Application Modular &nbsp; <img src="https://www.kivakit.org/images/stars-32.png" srcset="https://www.kivakit.org/images/stars-32-2x.png 2x"></img>
 
 For users of KivaKit, it's only _required_ to declare your application to be an open module if you
 want KivaKit to be able to reflect on _your_ code. Even so, it can be useful to make your
@@ -81,4 +81,4 @@ and their transitive dependencies. This can help control your dependency use.
 
 <br/> 
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"></img>

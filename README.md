@@ -1,14 +1,8 @@
-
-[![](https://www.kivakit.org/images/zulip-32.png)](https://kivakit.zulipchat.com)
-&nbsp;
-[![](https://www.kivakit.org/images/twitter-32.png)](https://twitter.com/openkivakit)
-
-
-# KivaKit 0.9.4 &nbsp;&nbsp;![](https://www.kivakit.org/images/kivakit-64.png)
+# KivaKit 0.9.4 &nbsp;&nbsp; <img src="https://www.lexakai.org/images/kivakit-64.png" srcset="https://www.lexakai.org/images/kivakit-64-2x.png 2x"></img>
 
 KivaKit is a set of integrated Java mini-frameworks.
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
 [//]: # (start-user-text)
 
@@ -23,10 +17,10 @@ KivaKit is a set of integrated Java mini-frameworks.
 [**Projects**](#projects)  
 [**Javadoc Coverage**](#javadoc-coverage)  
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"></img>
 
 
-### Welcome <a name = "welcome"></a>! <a name = "welcome"></a> &nbsp; ![](https://www.kivakit.org/images/stars-48.png)
+### Welcome <a name = "welcome"></a>! <a name = "welcome"></a> &nbsp; <img src="https://www.kivakit.org/images/stars-32.png" srcset="https://www.kivakit.org/images/stars-32-2x.png 2x"></img>
 
 > *The mission of KivaKit is to accelerate the development of Java software through the use of integrated, modular, object-oriented design.*
 
@@ -37,7 +31,7 @@ KivaKit is composed of a number of nested sub-projects that are Java 11+ modules
 address different areas of concern in developing Java applications. The resources below will help 
 you to get started.
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"></img>
 
 ### Summary <a name = "summary"></a>
 
@@ -67,9 +61,9 @@ KivaKit helps you to:
 - *Convert* arguments, switches and textual data into objects
 - *Validate, serialize and log* data of all kinds
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"></img>
 
-### Project Resources <a name = "project-resources"></a> &nbsp; ![](https://www.kivakit.org/images/water-32.png)
+### Project Resources <a name = "project-resources"></a> &nbsp; <img src="https://www.kivakit.org/images/water-32.png" srcset="https://www.kivakit.org/images/water-32-2x.png 2x"></img>
 
 | Resource     |     Description                   |
 |--------------|-----------------------------------|
@@ -84,35 +78,35 @@ KivaKit helps you to:
 | Code | [GitHub](https://github.com/Telenav/kivakit) |
 | Checkout | `git clone https://github.com/Telenav/kivakit.git` |
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"></img>
 
-### Quick Start <a name = "quick-start"></a>&nbsp; ![](https://www.kivakit.org/images/rocket-40.png)
+### Quick Start <a name = "quick-start"></a>&nbsp; <img src="https://www.kivakit.org/images/rocket-32.png" srcset="https://www.kivakit.org/images/rocket-32-2x.png 2x"></img>
 
 [**Setup**](documentation/overview/setup.md)  
 [**Building**](documentation/overview/building.md)  
 [**Developing**](documentation/developing/index.md)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"></img>
 
-### Downloads <a name = "downloads"></a>&nbsp; ![](https://www.kivakit.org/images/down-arrow-32.png)
+### Downloads <a name = "downloads"></a>&nbsp; <img src="https://www.kivakit.org/images/down-arrow-32.png" srcset="https://www.kivakit.org/images/down-arrow-32-2x.png 2x"></img>
 
 [**Java 12**](https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html)  
 [**Maven**](https://maven.apache.org/download.cgi)  
 [**IntelliJ**](https://www.jetbrains.com/idea/download/)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"></img>
 
-### Reference <a name = "reference"></a>&nbsp; ![](https://www.kivakit.org/images/books-40.png)
+### Reference <a name = "reference"></a>&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"></img>
 
 [**Javadoc**](https://www.kivakit.org/javadoc)  
 [**CodeFlowers**](https://www.kivakit.org/codeflowers/site/index.html)  
 [**System Properties**](documentation/developing/system-properties.md)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"></img>
 
 [//]: # (end-user-text)
 
-### Projects <a name = "projects"></a> &nbsp; ![](https://www.kivakit.org/images/gears-40.png)
+### Projects <a name = "projects"></a> &nbsp; <img src="https://www.lexakai.org/images/gears-32.png" srcset="https://www.lexakai.org/images/gears-32-2x.png 2x"></img>
 
 [**kivakit-core**](kivakit-core/README.md)  
 [**kivakit-filesystems**](kivakit-filesystems/README.md)  
@@ -120,9 +114,9 @@ KivaKit helps you to:
 [**kivakit-service**](kivakit-service/README.md)  
 [**kivakit-web**](kivakit-web/README.md)  
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; ![](https://www.kivakit.org/images/bargraph-32.png)
+### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; <img src="https://www.lexakai.org/images/bargraph-32.png" srcset="https://www.lexakai.org/images/bargraph-32-2x.png 2x"></img>
 
 &nbsp;  ![](https://www.kivakit.org/images/meter-100-12.png) &nbsp; &nbsp; [**kivakit-core-application**](kivakit-core/application/README.md)  
 &nbsp;  ![](https://www.kivakit.org/images/meter-70-12.png) &nbsp; &nbsp; [**kivakit-core-collections**](kivakit-core/collections/README.md)  
@@ -157,7 +151,7 @@ KivaKit helps you to:
 
 [//]: # (start-user-text)
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"></img>
 
 [**Issues**](https://github.com/Telenav/kivakit/issues) |
 [**Change Log**](change-log.md) |
@@ -165,7 +159,7 @@ KivaKit helps you to:
 
 [//]: # (end-user-text)
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
 <sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai). UML diagrams courtesy

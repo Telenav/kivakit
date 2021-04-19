@@ -1,8 +1,8 @@
-# kivakit-service server &nbsp;&nbsp;![](https://www.kivakit.org/images/server-16.png)
+# kivakit-service server &nbsp;&nbsp; <img src="https://www.lexakai.org/images/server-16.png" srcset="https://www.lexakai.org/images/server-16-2x.png 2x"></img>
 
 This module provides port registration services to kivakit-service-client
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
 ### Index
 
@@ -10,9 +10,9 @@ This module provides port registration services to kivakit-service-client
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/dependencies-32.png" srcset="https://www.lexakai.org/images/dependencies-32-2x.png 2x"></img>
 
 [*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-service/server/documentation/diagrams/dependencies.svg)
 
@@ -24,7 +24,8 @@ This module provides port registration services to kivakit-service-client
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
 [//]: # (start-user-text)
 
@@ -32,15 +33,15 @@ This module provides port registration services to kivakit-service-client
 
 [//]: # (end-user-text)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](https://www.kivakit.org/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.lexakai.org/images/diagram-32.png" srcset="https://www.lexakai.org/images/diagram-32-2x.png 2x"></img>
 
 [*Service Registry Server*](https://www.kivakit.org/lexakai/kivakit/kivakit-service/server/documentation/diagrams/diagram-server.svg)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/box-40.png)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/box-32.png" srcset="https://www.lexakai.org/images/box-32-2x.png 2x"></img>
 
 [*com.telenav.kivakit.service.registry.server*](https://www.kivakit.org/lexakai/kivakit/kivakit-service/server/documentation/diagrams/com.telenav.kivakit.service.registry.server.svg)  
 [*com.telenav.kivakit.service.registry.server.project*](https://www.kivakit.org/lexakai/kivakit/kivakit-service/server/documentation/diagrams/com.telenav.kivakit.service.registry.server.project.svg)  
@@ -48,9 +49,9 @@ This module provides port registration services to kivakit-service-client
 [*com.telenav.kivakit.service.registry.server.webapp*](https://www.kivakit.org/lexakai/kivakit/kivakit-service/server/documentation/diagrams/com.telenav.kivakit.service.registry.server.webapp.svg)  
 [*com.telenav.kivakit.service.registry.server.webapp.pages.home*](https://www.kivakit.org/lexakai/kivakit/kivakit-service/server/documentation/diagrams/com.telenav.kivakit.service.registry.server.webapp.pages.home.svg)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/books-40.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-32.png" srcset="https://www.lexakai.org/images/books-32-2x.png 2x"></img>
 
 Javadoc coverage for this project is 95.5%.  
   
@@ -76,9 +77,7 @@ Javadoc coverage for this project is 95.5%.
 
 [//]: # (end-user-text)
 
-<br/>
-
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
 <sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai). UML diagrams courtesy

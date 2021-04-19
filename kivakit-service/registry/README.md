@@ -1,8 +1,8 @@
-# kivakit-service registry &nbsp;&nbsp;![](https://www.kivakit.org/images/gears-40.png)
+# kivakit-service registry &nbsp;&nbsp; <img src="https://www.lexakai.org/images/gears-40.png" srcset="https://www.lexakai.org/images/gears-40-2x.png 2x"></img>
 
 This project provides shared registry code to kivakit-service-client and kivakit-service-server.
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
 ### Index
 
@@ -10,9 +10,9 @@ This project provides shared registry code to kivakit-service-client and kivakit
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/dependencies-32.png" srcset="https://www.lexakai.org/images/dependencies-32-2x.png 2x"></img>
 
 [*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-service/registry/documentation/diagrams/dependencies.svg)
 
@@ -24,7 +24,8 @@ This project provides shared registry code to kivakit-service-client and kivakit
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
 [//]: # (start-user-text)
 
@@ -35,16 +36,16 @@ to provide core registration and discovery functionality.
 
 [//]: # (end-user-text)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](https://www.kivakit.org/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.lexakai.org/images/diagram-32.png" srcset="https://www.lexakai.org/images/diagram-32-2x.png 2x"></img>
 
 [*Service Registry*](https://www.kivakit.org/lexakai/kivakit/kivakit-service/registry/documentation/diagrams/diagram-registry.svg)  
 [*Service Registry REST Protocol*](https://www.kivakit.org/lexakai/kivakit/kivakit-service/registry/documentation/diagrams/diagram-rest.svg)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/box-40.png)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/box-32.png" srcset="https://www.lexakai.org/images/box-32-2x.png 2x"></img>
 
 [*com.telenav.kivakit.service.registry*](https://www.kivakit.org/lexakai/kivakit/kivakit-service/registry/documentation/diagrams/com.telenav.kivakit.service.registry.svg)  
 [*com.telenav.kivakit.service.registry.project*](https://www.kivakit.org/lexakai/kivakit/kivakit-service/registry/documentation/diagrams/com.telenav.kivakit.service.registry.project.svg)  
@@ -58,9 +59,9 @@ to provide core registration and discovery functionality.
 [*com.telenav.kivakit.service.registry.serialization.serializers*](https://www.kivakit.org/lexakai/kivakit/kivakit-service/registry/documentation/diagrams/com.telenav.kivakit.service.registry.serialization.serializers.svg)  
 [*com.telenav.kivakit.service.registry.store*](https://www.kivakit.org/lexakai/kivakit/kivakit-service/registry/documentation/diagrams/com.telenav.kivakit.service.registry.store.svg)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/books-40.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-32.png" srcset="https://www.lexakai.org/images/books-32-2x.png 2x"></img>
 
 Javadoc coverage for this project is 95.5%.  
   
@@ -115,9 +116,7 @@ Javadoc coverage for this project is 95.5%.
 
 [//]: # (end-user-text)
 
-<br/>
-
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
 <sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai). UML diagrams courtesy

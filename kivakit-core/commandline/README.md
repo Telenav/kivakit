@@ -1,8 +1,8 @@
-# kivakit-core commandline &nbsp;&nbsp;![](https://www.kivakit.org/images/command-line-40.png)
+# kivakit-core commandline &nbsp;&nbsp; <img src="https://www.lexakai.org/images/command-line-40.png" srcset="https://www.lexakai.org/images/command-line-40-2x.png 2x"></img>
 
 This project facilitates object-oriented parsing of command line arguments and switches.
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
 ### Index
 
@@ -10,9 +10,9 @@ This project facilitates object-oriented parsing of command line arguments and s
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/dependencies-32.png" srcset="https://www.lexakai.org/images/dependencies-32-2x.png 2x"></img>
 
 [*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/commandline/documentation/diagrams/dependencies.svg)
 
@@ -24,7 +24,8 @@ This project facilitates object-oriented parsing of command line arguments and s
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
 [//]: # (start-user-text)
 
@@ -36,26 +37,26 @@ arguments and switches is available in the Javadoc for the [*Application*](https
 
 [//]: # (end-user-text)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](https://www.kivakit.org/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.lexakai.org/images/diagram-32.png" srcset="https://www.lexakai.org/images/diagram-32-2x.png 2x"></img>
 
 [*Argument Parsing*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/commandline/documentation/diagrams/diagram-argument.svg)  
 [*Command Line*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/commandline/documentation/diagrams/diagram-command-line.svg)  
 [*Command Line Validation*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/commandline/documentation/diagrams/diagram-validation.svg)  
 [*Switch Parsing*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/commandline/documentation/diagrams/diagram-switch.svg)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/box-40.png)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/box-32.png" srcset="https://www.lexakai.org/images/box-32-2x.png 2x"></img>
 
 [*com.telenav.kivakit.core.commandline*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/commandline/documentation/diagrams/com.telenav.kivakit.core.commandline.svg)  
 [*com.telenav.kivakit.core.commandline.parsing*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/commandline/documentation/diagrams/com.telenav.kivakit.core.commandline.parsing.svg)  
 [*com.telenav.kivakit.core.commandline.project*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/commandline/documentation/diagrams/com.telenav.kivakit.core.commandline.project.svg)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/books-40.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-32.png" srcset="https://www.lexakai.org/images/books-32-2x.png 2x"></img>
 
 Javadoc coverage for this project is 91.4%.  
   
@@ -94,9 +95,7 @@ Javadoc coverage for this project is 91.4%.
 
 [//]: # (end-user-text)
 
-<br/>
-
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
 <sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai). UML diagrams courtesy

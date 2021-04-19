@@ -1,8 +1,8 @@
-# kivakit-core security &nbsp;&nbsp;![](https://www.kivakit.org/images/lock-40.png)
+# kivakit-core security &nbsp;&nbsp; <img src="https://www.lexakai.org/images/lock-40.png" srcset="https://www.lexakai.org/images/lock-40-2x.png 2x"></img>
 
 This project contains functionality related to security
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
 ### Index
 
@@ -10,9 +10,9 @@ This project contains functionality related to security
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/dependencies-32.png" srcset="https://www.lexakai.org/images/dependencies-32-2x.png 2x"></img>
 
 [*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/security/documentation/diagrams/dependencies.svg)
 
@@ -24,7 +24,8 @@ This project contains functionality related to security
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
 [//]: # (start-user-text)
 
@@ -35,16 +36,16 @@ producing simple message digests easier.
 
 [//]: # (end-user-text)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](https://www.kivakit.org/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.lexakai.org/images/diagram-32.png" srcset="https://www.lexakai.org/images/diagram-32-2x.png 2x"></img>
 
 [*Message Digests*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/security/documentation/diagrams/diagram-security-digest.svg)  
 [*Security*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/security/documentation/diagrams/diagram-security.svg)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/box-40.png)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/box-32.png" srcset="https://www.lexakai.org/images/box-32-2x.png 2x"></img>
 
 [*com.telenav.kivakit.core.security.authentication*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/security/documentation/diagrams/com.telenav.kivakit.core.security.authentication.svg)  
 [*com.telenav.kivakit.core.security.authentication.passwords*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/security/documentation/diagrams/com.telenav.kivakit.core.security.authentication.passwords.svg)  
@@ -52,9 +53,9 @@ producing simple message digests easier.
 [*com.telenav.kivakit.core.security.digest.digesters*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/security/documentation/diagrams/com.telenav.kivakit.core.security.digest.digesters.svg)  
 [*com.telenav.kivakit.core.security.project*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/security/documentation/diagrams/com.telenav.kivakit.core.security.project.svg)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/books-40.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-32.png" srcset="https://www.lexakai.org/images/books-32-2x.png 2x"></img>
 
 Javadoc coverage for this project is 83.3%.  
   
@@ -82,9 +83,7 @@ Javadoc coverage for this project is 83.3%.
 
 [//]: # (end-user-text)
 
-<br/>
-
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
 <sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai). UML diagrams courtesy

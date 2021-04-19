@@ -1,8 +1,8 @@
-# kivakit-core kernel &nbsp;&nbsp;![](https://www.kivakit.org/images/nucleus-40.png)
+# kivakit-core kernel &nbsp;&nbsp; <img src="https://www.lexakai.org/images/nucleus-40.png" srcset="https://www.lexakai.org/images/nucleus-40-2x.png 2x"></img>
 
 This module provides extensions to the JDK and other packages for everyday Java development.
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
 ### Index
 
@@ -10,9 +10,9 @@ This module provides extensions to the JDK and other packages for everyday Java 
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/dependencies-32.png" srcset="https://www.lexakai.org/images/dependencies-32-2x.png 2x"></img>
 
 [*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/dependencies.svg)
 
@@ -24,7 +24,8 @@ This module provides extensions to the JDK and other packages for everyday Java 
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
 [//]: # (start-user-text)
 
@@ -63,13 +64,13 @@ The major feature areas are listed here, each having its own documentation:
 [**Messaging - Debugging**](documentation/messaging-debugging.md)
 [**Projects**](documentation/project.md)
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"></img>
 
 [//]: # (end-user-text)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](https://www.kivakit.org/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.lexakai.org/images/diagram-32.png" srcset="https://www.lexakai.org/images/diagram-32-2x.png 2x"></img>
 
 [*Data - Collection and Other Converters*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/diagram-data-conversion-other.svg)  
 [*Data - Comparison*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/diagram-data-comparison.svg)  
@@ -126,9 +127,9 @@ The major feature areas are listed here, each having its own documentation:
 [*diagram-language-object*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/diagram-language-object.svg)  
 [*diagram-language-object-reference*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/diagram-language-object-reference.svg)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/box-40.png)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/box-32.png" srcset="https://www.lexakai.org/images/box-32-2x.png 2x"></img>
 
 [*com.telenav.kivakit.core.kernel*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/com.telenav.kivakit.core.kernel.svg)  
 [*com.telenav.kivakit.core.kernel.data.comparison*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/com.telenav.kivakit.core.kernel.data.comparison.svg)  
@@ -231,9 +232,9 @@ The major feature areas are listed here, each having its own documentation:
 [*com.telenav.kivakit.core.kernel.messaging.repeaters*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/com.telenav.kivakit.core.kernel.messaging.repeaters.svg)  
 [*com.telenav.kivakit.core.kernel.project*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/com.telenav.kivakit.core.kernel.project.svg)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/books-40.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-32.png" srcset="https://www.lexakai.org/images/books-32-2x.png 2x"></img>
 
 Javadoc coverage for this project is 73.1%.  
   
@@ -754,9 +755,7 @@ The following significant classes are undocumented:
 
 [//]: # (end-user-text)
 
-<br/>
-
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
 <sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai). UML diagrams courtesy

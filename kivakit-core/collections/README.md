@@ -1,8 +1,8 @@
-# kivakit-core collections &nbsp;&nbsp;![](https://www.kivakit.org/images/set-40.png)
+# kivakit-core collections &nbsp;&nbsp; <img src="https://www.lexakai.org/images/set-40.png" srcset="https://www.lexakai.org/images/set-40-2x.png 2x"></img>
 
 This module provides collections, iteration support, primitive collections, stacks, collection observation and bit I/O.
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
 ### Index
 
@@ -16,9 +16,9 @@ This module provides collections, iteration support, primitive collections, stac
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/dependencies-40.png)
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/dependencies-32.png" srcset="https://www.lexakai.org/images/dependencies-32-2x.png 2x"></img>
 
 [*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/collections/documentation/diagrams/dependencies.svg)
 
@@ -30,7 +30,8 @@ This module provides collections, iteration support, primitive collections, stac
         <version>0.9.0-SNAPSHOT</version>
     </dependency>
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
 [//]: # (start-user-text)
 
@@ -38,9 +39,9 @@ This module provides collections, iteration support, primitive collections, stac
 
 [//]: # (end-user-text)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](https://www.kivakit.org/images/diagram-48.png)
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.lexakai.org/images/diagram-32.png" srcset="https://www.lexakai.org/images/diagram-32-2x.png 2x"></img>
 
 [*Batch Processing*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/collections/documentation/diagrams/diagram-batch-processing.svg)  
 [*Collection Watching*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/collections/documentation/diagrams/diagram-watcher.svg)  
@@ -58,9 +59,9 @@ This module provides collections, iteration support, primitive collections, stac
 [*Stacks*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/collections/documentation/diagrams/diagram-stack.svg)  
 [*Two-Dimensional Arrays*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/collections/documentation/diagrams/diagram-primitive-array-array.svg)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/box-40.png)
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/box-32.png" srcset="https://www.lexakai.org/images/box-32-2x.png 2x"></img>
 
 [*com.telenav.kivakit.core.collections.batcher*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/collections/documentation/diagrams/com.telenav.kivakit.core.collections.batcher.svg)  
 [*com.telenav.kivakit.core.collections.iteration.iterables*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/collections/documentation/diagrams/com.telenav.kivakit.core.collections.iteration.iterables.svg)  
@@ -94,9 +95,9 @@ This module provides collections, iteration support, primitive collections, stac
 [*com.telenav.kivakit.core.collections.stack*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/collections/documentation/diagrams/com.telenav.kivakit.core.collections.stack.svg)  
 [*com.telenav.kivakit.core.collections.watcher*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/collections/documentation/diagrams/com.telenav.kivakit.core.collections.watcher.svg)
 
-![](https://www.kivakit.org/images/short-horizontal-line.png)
+<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/books-40.png)
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-32.png" srcset="https://www.lexakai.org/images/books-32-2x.png 2x"></img>
 
 Javadoc coverage for this project is 70.4%.  
   
@@ -352,9 +353,7 @@ The *primitive* package contains an extensive set of classes for storing data in
 
 [//]: # (end-user-text)
 
-<br/>
-
-![](https://www.kivakit.org/images/horizontal-line.png)
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
 <sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai). UML diagrams courtesy
