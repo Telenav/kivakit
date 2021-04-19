@@ -1,3 +1,9 @@
+
+[![](https://www.kivakit.org/images/zulip-32.png)](https://kivakit.zulipchat.com)
+&nbsp;
+[![](https://www.kivakit.org/images/twitter-32.png)](https://twitter.com/openkivakit)
+
+
 # KivaKit 0.9.4 &nbsp;&nbsp;![](https://www.kivakit.org/images/kivakit-64.png)
 
 KivaKit is a set of integrated Java mini-frameworks.
