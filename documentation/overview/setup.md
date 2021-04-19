@@ -1,6 +1,6 @@
-# KivaKit - Setup   <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"></img>
+# KivaKit - Setup   <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
-<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"></img>
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
 ## Setting Up KivaKit
 
@@ -14,9 +14,9 @@ You will need these products, or compatible products, set up to begin:
 2. Latest [Java 12](https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html)
 3. Latest [Maven](https://maven.apache.org/download.cgi)
 
-<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"></img>
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
-### 1. Checking Out the Project   <img src="https://www.kivakit.org/images/down-arrow-32.png" srcset="https://www.kivakit.org/images/down-arrow-32-2x.png 2x"></img>
+### 1. Checking Out the Project   <img src="https://www.kivakit.org/images/down-arrow-32.png" srcset="https://www.kivakit.org/images/down-arrow-32-2x.png 2x"/>
 
 The KivaKit project will look roughly like this when we're done with the setup process:
 
@@ -45,15 +45,15 @@ To check out the *kivakit* project:
        cd Workspace 
        git clone git@github.com:Telenav/kivakit.git
 
-<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"></img>
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
-### 2. Setting Up Your Environment   <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"></img>
+### 2. Setting Up Your Environment   <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
 To configure your environment, you will need several environment variables set.
 
 > Without the correct environment variables set, the setup script in Step 3 won't work.
 
-### MacOS and UNIX    <img src="https://www.kivakit.org/images/bluebook-32.png" srcset="https://www.kivakit.org/images/bluebook-32-2x.png 2x"></img>
+### MacOS and UNIX    <img src="https://www.kivakit.org/images/bluebook-32.png" srcset="https://www.kivakit.org/images/bluebook-32-2x.png 2x"/>
 
 On macOS or UNIX, you can use a sample *.profile* from KivaKit to configure your shell environment.
 
@@ -75,7 +75,7 @@ On macOS or UNIX, you can use a sample *.profile* from KivaKit to configure your
 
 4. Start a new shell
 
-### Windows &nbsp;&nbsp; <img src="https://www.kivakit.org/images/window-32.png" srcset="https://www.kivakit.org/images/window-32-2x.png 2x"></img>
+### Windows &nbsp;&nbsp; <img src="https://www.kivakit.org/images/window-32.png" srcset="https://www.kivakit.org/images/window-32-2x.png 2x"/>
 
 On Windows, a UNIX-like environment with *bash* is required. It is recommended to install [Git for Windows](https://gitforwindows.org/),
 which will install both git, and a bash shell.
@@ -102,28 +102,28 @@ which will install both git, and a bash shell.
 
 5. Start a new shell
 
-<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"></img>
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
-### 3. Finishing the Job  <img src="https://www.kivakit.org/images/stars-32.png" srcset="https://www.kivakit.org/images/stars-32-2x.png 2x"></img>
+### 3. Finishing the Job  <img src="https://www.kivakit.org/images/stars-32.png" srcset="https://www.kivakit.org/images/stars-32-2x.png 2x"/>
 
 Once you have cloned the project into your workspace and set up your environment,
 you can complete your set up with one final command:
 
     $KIVAKIT_HOME/setup/setup.sh
 
-<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"></img>
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
-### Done!   <img src="https://www.kivakit.org/images/rocket-32.png" srcset="https://www.kivakit.org/images/rocket-32-2x.png 2x"></img>
+### Done!   <img src="https://www.kivakit.org/images/rocket-32.png" srcset="https://www.kivakit.org/images/rocket-32-2x.png 2x"/>
 
 Congratulations! You're set up and ready to build or help to develop KivaKit.
 
-<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"></img>
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
-### Next Steps &nbsp; &nbsp;  <img src="https://www.kivakit.org/images/footprints-32.png" srcset="https://www.kivakit.org/images/footprints-32-2x.png 2x"></img>
+### Next Steps &nbsp; &nbsp;  <img src="https://www.kivakit.org/images/footprints-32.png" srcset="https://www.kivakit.org/images/footprints-32-2x.png 2x"/>
 
 [I want to build KivaKit](building.md)
 
 [I want to work on KivaKit](../developing/index.md)
 
 
-<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"></img>
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>

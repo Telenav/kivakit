@@ -1,4 +1,4 @@
-# kivakit-web-jetty &nbsp;&nbsp; <img src="https://www.lexakai.org/images/server-16.png" srcset="https://www.lexakai.org/images/server-16-2x.png 2x"></img>
+# kivakit-web-jetty &nbsp;&nbsp; <img src="https://www.lexakai.org/images/server-16.png" srcset="https://www.lexakai.org/images/server-16-2x.png 2x"/>
 
 This project contains support for using the Jetty web server.
 
@@ -12,7 +12,7 @@ This project contains support for using the Jetty web server.
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/dependencies-32.png" srcset="https://www.lexakai.org/images/dependencies-32-2x.png 2x"></img>
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/dependencies-32.png" srcset="https://www.lexakai.org/images/dependencies-32-2x.png 2x"/>
 
 [*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-web/jetty/documentation/diagrams/dependencies.svg)
 
@@ -35,13 +35,13 @@ This project contains support for using the Jetty web server.
 
 <img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.lexakai.org/images/diagram-32.png" srcset="https://www.lexakai.org/images/diagram-32-2x.png 2x"></img>
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.lexakai.org/images/diagram-32.png" srcset="https://www.lexakai.org/images/diagram-32-2x.png 2x"/>
 
 None
 
 <img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/box-32.png" srcset="https://www.lexakai.org/images/box-32-2x.png 2x"></img>
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/box-32.png" srcset="https://www.lexakai.org/images/box-32-2x.png 2x"/>
 
 [*com.telenav.kivakit.web.jetty*](https://www.kivakit.org/lexakai/kivakit/kivakit-web/jetty/documentation/diagrams/com.telenav.kivakit.web.jetty.svg)  
 [*com.telenav.kivakit.web.jetty.project*](https://www.kivakit.org/lexakai/kivakit/kivakit-web/jetty/documentation/diagrams/com.telenav.kivakit.web.jetty.project.svg)  
@@ -49,7 +49,7 @@ None
 
 <img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-32.png" srcset="https://www.lexakai.org/images/books-32-2x.png 2x"></img>
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-32.png" srcset="https://www.lexakai.org/images/books-32-2x.png 2x"/>
 
 Javadoc coverage for this project is 82.1%.  
   

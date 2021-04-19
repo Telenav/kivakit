@@ -1,4 +1,4 @@
-# kivakit-core-serialization jersey-json &nbsp;&nbsp; <img src="https://www.lexakai.org/images/https://www.kivakit.org/images/gears-40.png.png" srcset="https://www.lexakai.org/images/https://www.kivakit.org/images/gears-40.png-2x.png 2x"></img>
+# kivakit-core-serialization jersey-json &nbsp;&nbsp; <img src="https://www.lexakai.org/images/https://www.kivakit.org/images/gears-40.png.png" srcset="https://www.lexakai.org/images/https://www.kivakit.org/images/gears-40.png-2x.png 2x"/>
 
 This module defines JSON serialization for use with Jersey.
 
@@ -12,7 +12,7 @@ This module defines JSON serialization for use with Jersey.
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/dependencies-32.png" srcset="https://www.lexakai.org/images/dependencies-32-2x.png 2x"></img>
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/dependencies-32.png" srcset="https://www.lexakai.org/images/dependencies-32-2x.png 2x"/>
 
 [*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/serialization/jersey-json/documentation/diagrams/dependencies.svg)
 
@@ -35,20 +35,20 @@ This module defines JSON serialization for use with Jersey.
 
 <img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.lexakai.org/images/diagram-32.png" srcset="https://www.lexakai.org/images/diagram-32-2x.png 2x"></img>
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.lexakai.org/images/diagram-32.png" srcset="https://www.lexakai.org/images/diagram-32-2x.png 2x"/>
 
 None
 
 <img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/box-32.png" srcset="https://www.lexakai.org/images/box-32-2x.png 2x"></img>
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/box-32.png" srcset="https://www.lexakai.org/images/box-32-2x.png 2x"/>
 
 [*com.telenav.kivakit.core.serialization.jersey.json*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/serialization/jersey-json/documentation/diagrams/com.telenav.kivakit.core.serialization.jersey.json.svg)  
 [*com.telenav.kivakit.core.serialization.jersey.json.project*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/serialization/jersey-json/documentation/diagrams/com.telenav.kivakit.core.serialization.jersey.json.project.svg)
 
 <img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-32.png" srcset="https://www.lexakai.org/images/books-32-2x.png 2x"></img>
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-32.png" srcset="https://www.lexakai.org/images/books-32-2x.png 2x"/>
 
 Javadoc coverage for this project is 83.3%.  
   

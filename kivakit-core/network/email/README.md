@@ -1,4 +1,4 @@
-# kivakit-core-network email &nbsp;&nbsp; <img src="https://www.lexakai.org/images/envelope-40.png" srcset="https://www.lexakai.org/images/envelope-40-2x.png 2x"></img>
+# kivakit-core-network email &nbsp;&nbsp; <img src="https://www.lexakai.org/images/envelope-40.png" srcset="https://www.lexakai.org/images/envelope-40-2x.png 2x"/>
 
 This module enables easy composition and sending of emails.
 
@@ -14,7 +14,7 @@ This module enables easy composition and sending of emails.
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/dependencies-32.png" srcset="https://www.lexakai.org/images/dependencies-32-2x.png 2x"></img>
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/dependencies-32.png" srcset="https://www.lexakai.org/images/dependencies-32-2x.png 2x"/>
 
 [*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/network/email/documentation/diagrams/dependencies.svg)
 
@@ -76,13 +76,13 @@ it and enqueueing *Email* objects. No attempt is made to persist the queue of un
 
 <img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.lexakai.org/images/diagram-32.png" srcset="https://www.lexakai.org/images/diagram-32-2x.png 2x"></img>
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.lexakai.org/images/diagram-32.png" srcset="https://www.lexakai.org/images/diagram-32-2x.png 2x"/>
 
 [*E-Mail Composition and Sending*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/network/email/documentation/diagrams/diagram-email.svg)
 
 <img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/box-32.png" srcset="https://www.lexakai.org/images/box-32-2x.png 2x"></img>
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/box-32.png" srcset="https://www.lexakai.org/images/box-32-2x.png 2x"/>
 
 [*com.telenav.kivakit.core.network.email*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/network/email/documentation/diagrams/com.telenav.kivakit.core.network.email.svg)  
 [*com.telenav.kivakit.core.network.email.converters*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/network/email/documentation/diagrams/com.telenav.kivakit.core.network.email.converters.svg)  
@@ -91,7 +91,7 @@ it and enqueueing *Email* objects. No attempt is made to persist the queue of un
 
 <img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-32.png" srcset="https://www.lexakai.org/images/books-32-2x.png 2x"></img>
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-32.png" srcset="https://www.lexakai.org/images/books-32-2x.png 2x"/>
 
 Javadoc coverage for this project is 88.3%.  
   

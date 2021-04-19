@@ -1,4 +1,4 @@
-# kivakit-web-swagger &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-40.png" srcset="https://www.lexakai.org/images/books-40-2x.png 2x"></img>
+# kivakit-web-swagger &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-40.png" srcset="https://www.lexakai.org/images/books-40-2x.png 2x"/>
 
 This project contains support for using Swagger with Jersey and Jetty.
 
@@ -12,7 +12,7 @@ This project contains support for using Swagger with Jersey and Jetty.
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/dependencies-32.png" srcset="https://www.lexakai.org/images/dependencies-32-2x.png 2x"></img>
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/dependencies-32.png" srcset="https://www.lexakai.org/images/dependencies-32-2x.png 2x"/>
 
 [*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-web/swagger/documentation/diagrams/dependencies.svg)
 
@@ -49,20 +49,20 @@ Other servlets and filters, for example [Jersey](../jersey/README.md) and [Wicke
 
 <img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.lexakai.org/images/diagram-32.png" srcset="https://www.lexakai.org/images/diagram-32-2x.png 2x"></img>
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.lexakai.org/images/diagram-32.png" srcset="https://www.lexakai.org/images/diagram-32-2x.png 2x"/>
 
 None
 
 <img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/box-32.png" srcset="https://www.lexakai.org/images/box-32-2x.png 2x"></img>
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/box-32.png" srcset="https://www.lexakai.org/images/box-32-2x.png 2x"/>
 
 [*com.telenav.kivakit.web.swagger*](https://www.kivakit.org/lexakai/kivakit/kivakit-web/swagger/documentation/diagrams/com.telenav.kivakit.web.swagger.svg)  
 [*com.telenav.kivakit.web.swagger.project*](https://www.kivakit.org/lexakai/kivakit/kivakit-web/swagger/documentation/diagrams/com.telenav.kivakit.web.swagger.project.svg)
 
 <img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-32.png" srcset="https://www.lexakai.org/images/books-32-2x.png 2x"></img>
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-32.png" srcset="https://www.lexakai.org/images/books-32-2x.png 2x"/>
 
 Javadoc coverage for this project is 70.0%.  
   

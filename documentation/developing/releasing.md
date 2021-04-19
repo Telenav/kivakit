@@ -1,6 +1,6 @@
-## Releasing KivaKit &nbsp; <img src="https://www.kivakit.org/images/rocket-32.png" srcset="https://www.kivakit.org/images/rocket-32-2x.png 2x"></img>
+## Releasing KivaKit &nbsp; <img src="https://www.kivakit.org/images/rocket-32.png" srcset="https://www.kivakit.org/images/rocket-32-2x.png 2x"/>
 
-### Step-by-Step Instructions &nbsp; <img src="https://www.kivakit.org/images/footprints-32.png" srcset="https://www.kivakit.org/images/footprints-32-2x.png 2x"></img>
+### Step-by-Step Instructions &nbsp; <img src="https://www.kivakit.org/images/footprints-32.png" srcset="https://www.kivakit.org/images/footprints-32-2x.png 2x"/>
 
 This section documents how to release a new version of KivaKit, step by step.
 
@@ -9,7 +9,7 @@ as 2.1.7 or 1.0.0-beta.
 
 KivaKit adheres to the standard [Git Flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) branching model.
 
-### 1. Creating the Release Branch <img src="https://www.kivakit.org/images/branch-32.png" srcset="https://www.kivakit.org/images/branch-32-2x.png 2x"></img>
+### 1. Creating the Release Branch <img src="https://www.kivakit.org/images/branch-32.png" srcset="https://www.kivakit.org/images/branch-32-2x.png 2x"/>
 
 Start a new release branch with the following command:
 
@@ -23,7 +23,7 @@ This script does the following:
 
 Restart your terminal window to ensure environment variables are updated.
 
-### 2. Preparing the Release &nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"></img>
+### 2. Preparing the Release &nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
 Once the release branch has been created, several steps need to be performed manually to prepare
 the branch for publication.
@@ -60,7 +60,7 @@ To publish code flowers for the build:
 
 Commit any changes to the release branch.
 
-### 3. Finishing and Publishing the Release Branch &nbsp;  <img src="https://www.kivakit.org/images/stars-32.png" srcset="https://www.kivakit.org/images/stars-32-2x.png 2x"></img>
+### 3. Finishing and Publishing the Release Branch &nbsp;  <img src="https://www.kivakit.org/images/stars-32.png" srcset="https://www.kivakit.org/images/stars-32-2x.png 2x"/>
 
 The release is finished and merged into master with another script that uses git flow:
 

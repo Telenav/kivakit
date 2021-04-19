@@ -1,4 +1,4 @@
-# KivaKit - System Properties   <img src="https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/gears-32-2x.png 2x"></img>
+# KivaKit - System Properties   <img src="https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/gears-32-2x.png 2x"/>
 
 ### Summary
 

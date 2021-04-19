@@ -1,4 +1,4 @@
-# kivakit-core security &nbsp;&nbsp; <img src="https://www.lexakai.org/images/lock-40.png" srcset="https://www.lexakai.org/images/lock-40-2x.png 2x"></img>
+# kivakit-core security &nbsp;&nbsp; <img src="https://www.lexakai.org/images/lock-40.png" srcset="https://www.lexakai.org/images/lock-40-2x.png 2x"/>
 
 This project contains functionality related to security
 
@@ -12,7 +12,7 @@ This project contains functionality related to security
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/dependencies-32.png" srcset="https://www.lexakai.org/images/dependencies-32-2x.png 2x"></img>
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/dependencies-32.png" srcset="https://www.lexakai.org/images/dependencies-32-2x.png 2x"/>
 
 [*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/security/documentation/diagrams/dependencies.svg)
 
@@ -38,14 +38,14 @@ producing simple message digests easier.
 
 <img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.lexakai.org/images/diagram-32.png" srcset="https://www.lexakai.org/images/diagram-32-2x.png 2x"></img>
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.lexakai.org/images/diagram-32.png" srcset="https://www.lexakai.org/images/diagram-32-2x.png 2x"/>
 
 [*Message Digests*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/security/documentation/diagrams/diagram-security-digest.svg)  
 [*Security*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/security/documentation/diagrams/diagram-security.svg)
 
 <img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/box-32.png" srcset="https://www.lexakai.org/images/box-32-2x.png 2x"></img>
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/box-32.png" srcset="https://www.lexakai.org/images/box-32-2x.png 2x"/>
 
 [*com.telenav.kivakit.core.security.authentication*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/security/documentation/diagrams/com.telenav.kivakit.core.security.authentication.svg)  
 [*com.telenav.kivakit.core.security.authentication.passwords*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/security/documentation/diagrams/com.telenav.kivakit.core.security.authentication.passwords.svg)  
@@ -55,7 +55,7 @@ producing simple message digests easier.
 
 <img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-32.png" srcset="https://www.lexakai.org/images/books-32-2x.png 2x"></img>
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-32.png" srcset="https://www.lexakai.org/images/books-32-2x.png 2x"/>
 
 Javadoc coverage for this project is 83.3%.  
   

@@ -1,4 +1,4 @@
-# kivakit-core serialization &nbsp;&nbsp; <img src="https://www.lexakai.org/images/https://www.kivakit.org/images/gears-40.png.png" srcset="https://www.lexakai.org/images/https://www.kivakit.org/images/gears-40.png-2x.png 2x"></img>
+# kivakit-core serialization &nbsp;&nbsp; <img src="https://www.lexakai.org/images/https://www.kivakit.org/images/gears-40.png.png" srcset="https://www.lexakai.org/images/https://www.kivakit.org/images/gears-40.png-2x.png 2x"/>
 
 This module provides an abstraction for serialization.
 
@@ -10,7 +10,7 @@ This module provides an abstraction for serialization.
 
 [//]: # (end-user-text)
 
-### Projects <a name = "projects"></a> &nbsp; <img src="https://www.lexakai.org/images/gears-32.png" srcset="https://www.lexakai.org/images/gears-32-2x.png 2x"></img>
+### Projects <a name = "projects"></a> &nbsp; <img src="https://www.lexakai.org/images/gears-32.png" srcset="https://www.lexakai.org/images/gears-32-2x.png 2x"/>
 
 [**kivakit-core-serialization-core**](core/README.md)  
 [**kivakit-core-serialization-jersey-json**](jersey-json/README.md)  
@@ -19,7 +19,7 @@ This module provides an abstraction for serialization.
 
 <img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; <img src="https://www.lexakai.org/images/bargraph-32.png" srcset="https://www.lexakai.org/images/bargraph-32-2x.png 2x"></img>
+### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; <img src="https://www.lexakai.org/images/bargraph-32.png" srcset="https://www.lexakai.org/images/bargraph-32-2x.png 2x"/>
 
 &nbsp;  ![](https://www.kivakit.org/images/meter-100-12.png) &nbsp; &nbsp; [**kivakit-core-serialization-core**](core/README.md)  
 &nbsp;  ![](https://www.kivakit.org/images/meter-80-12.png) &nbsp; &nbsp; [**kivakit-core-serialization-jersey-json**](jersey-json/README.md)  

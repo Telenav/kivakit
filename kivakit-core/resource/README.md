@@ -1,4 +1,4 @@
-# kivakit-core resource &nbsp;&nbsp; <img src="https://www.lexakai.org/images/water-32.png" srcset="https://www.lexakai.org/images/water-32-2x.png 2x"></img>
+# kivakit-core resource &nbsp;&nbsp; <img src="https://www.lexakai.org/images/water-32.png" srcset="https://www.lexakai.org/images/water-32-2x.png 2x"/>
 
 This module contains abstractions for accessing the filesystem and arbitrary resources.
 
@@ -18,7 +18,7 @@ This module contains abstractions for accessing the filesystem and arbitrary res
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512@2x.png 2x"/>
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/dependencies-32.png" srcset="https://www.lexakai.org/images/dependencies-32-2x.png 2x"></img>
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/dependencies-32.png" srcset="https://www.lexakai.org/images/dependencies-32-2x.png 2x"/>
 
 [*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/resource/documentation/diagrams/dependencies.svg)
 
@@ -41,7 +41,7 @@ This module pulls together everything that can stream together under a single ab
 providing an easy way to work with different kinds of resources without being tied to any
 of the details.
 
-### Readable Resources <a name="readable-resources"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/wand-32.png" srcset="https://www.kivakit.org/images/wand-32-2x.png 2x"></img>
+### Readable Resources <a name="readable-resources"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/wand-32.png" srcset="https://www.kivakit.org/images/wand-32-2x.png 2x"/>
 
 Different resource classes are constructed in different ways, but each implements the *Resource*
 interface. The most important methods are shown here in a simplified form:
@@ -58,7 +58,7 @@ interface. The most important methods are shown here in a simplified form:
         Bytes size();
     }
 
-### Kinds of Resources <a name="kinds-of-resources"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-32.png" srcset="https://www.kivakit.org/images/diagram-32-2x.png 2x"></img>
+### Kinds of Resources <a name="kinds-of-resources"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-32.png" srcset="https://www.kivakit.org/images/diagram-32-2x.png 2x"/>
 
 The class *StringResource* is about as simple as they come, but it can be read just like it was a
 *File* or any other resource:
@@ -81,7 +81,7 @@ other resource and it works the same:
         return resource.reader().string(); 
     }
 
-### Writable Resources <a name="writable-resources"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/pencil-32.png" srcset="https://www.kivakit.org/images/pencil-32-2x.png 2x"></img>
+### Writable Resources <a name="writable-resources"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/pencil-32.png" srcset="https://www.kivakit.org/images/pencil-32-2x.png 2x"/>
 
 The *WritableResource* interface extends the *Resource* interface to add output capabilities:
 
@@ -92,7 +92,7 @@ The *WritableResource* interface extends the *Resource* interface to add output 
         ResourceWriter writer();
     }
 
-### Files <a name="files"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/folder-32.png" srcset="https://www.kivakit.org/images/folder-32-2x.png 2x"></img>
+### Files <a name="files"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/folder-32.png" srcset="https://www.kivakit.org/images/folder-32-2x.png 2x"/>
 
 The *File* object is a *WritableResource* that adds a number of file-specific methods, including:
 
@@ -199,7 +199,7 @@ A wide variety of other resources are available and new ones are easy to write. 
 
 <img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.lexakai.org/images/diagram-32.png" srcset="https://www.lexakai.org/images/diagram-32-2x.png 2x"></img>
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.lexakai.org/images/diagram-32.png" srcset="https://www.lexakai.org/images/diagram-32-2x.png 2x"/>
 
 [*File System - File System Services*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/resource/documentation/diagrams/diagram-file-system-service.svg)  
 [*File System - Files*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/resource/documentation/diagrams/diagram-file-system-file.svg)  
@@ -214,7 +214,7 @@ A wide variety of other resources are available and new ones are easy to write. 
 
 <img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/box-32.png" srcset="https://www.lexakai.org/images/box-32-2x.png 2x"></img>
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/box-32.png" srcset="https://www.lexakai.org/images/box-32-2x.png 2x"/>
 
 [*com.telenav.kivakit.core.filesystem*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/resource/documentation/diagrams/com.telenav.kivakit.core.filesystem.svg)  
 [*com.telenav.kivakit.core.filesystem.loader*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/resource/documentation/diagrams/com.telenav.kivakit.core.filesystem.loader.svg)  
@@ -237,7 +237,7 @@ A wide variety of other resources are available and new ones are easy to write. 
 
 <img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128@2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-32.png" srcset="https://www.lexakai.org/images/books-32-2x.png 2x"></img>
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-32.png" srcset="https://www.lexakai.org/images/books-32-2x.png 2x"/>
 
 Javadoc coverage for this project is 87.9%.  
   
