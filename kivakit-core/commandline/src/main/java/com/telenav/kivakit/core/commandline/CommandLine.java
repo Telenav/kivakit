@@ -109,7 +109,7 @@ public class CommandLine implements AsString, Iterable<Argument>
 
         // Loop through arguments, assigning switches to the switch list and arguments to the
         // argument list
-        for (final var argument : new StringList(CoreKernelLimits.COMMAND_LINE_ARGUMENTS, arguments))
+        for (final var argument : arguments)
         {
             // If the argument starts with a dash, it must be a switch
             if (argument.startsWith("-"))

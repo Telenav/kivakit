@@ -37,6 +37,7 @@ import com.telenav.kivakit.core.kernel.language.collections.set.Sets;
 import com.telenav.kivakit.core.kernel.language.locales.Locale;
 import com.telenav.kivakit.core.kernel.language.strings.Align;
 import com.telenav.kivakit.core.kernel.language.strings.AsciiArt;
+import com.telenav.kivakit.core.kernel.language.strings.Strip;
 import com.telenav.kivakit.core.kernel.language.types.Classes;
 import com.telenav.kivakit.core.kernel.language.values.version.Version;
 import com.telenav.kivakit.core.kernel.language.vm.KivaKitShutdownHook;
@@ -51,6 +52,7 @@ import com.telenav.kivakit.core.kernel.messaging.filters.SeverityGreaterThanOrEq
 import com.telenav.kivakit.core.kernel.messaging.messages.status.Quibble;
 import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.kernel.project.Project;
+import com.telenav.kivakit.core.resource.Resource;
 import com.telenav.kivakit.core.resource.resources.other.PropertyMap;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -482,10 +484,37 @@ public abstract class Application extends BaseRepeater implements Named, Applica
     {
         onRunning();
 
+        // Go through arguments
+        final var argumentList = new StringList();
+        for (final var argument : arguments)
+        {
+            // and if the argument is -switches=[resource]
+            if (argument.startsWith("-switches="))
+            {
+                // then load properties from the resource
+                final var resourceIdentifier = Strip.leading(argument, "-switches=");
+                final var resource = Resource.resolve(resourceIdentifier);
+                final var properties = PropertyMap.load(resource);
+
+                // and add those properties to the argument list
+                for (final var key : properties.keySet())
+                {
+                    final var value = properties.get(key);
+                    argumentList.add(key + "=" + value);
+                }
+            }
+            else
+            {
+                // otherwise, add the argument
+                argumentList.add(argument);
+            }
+        }
+
+        // then parse the command line arguments.
         commandLine = new CommandLineParser(this)
                 .addSwitchParsers(switchParsers())
                 .addArgumentParsers(argumentParsers())
-                .parse(arguments);
+                .parse(argumentList.asStringArray());
 
         onConfigureOutput();
 

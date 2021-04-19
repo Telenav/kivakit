@@ -846,6 +846,11 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         return folder().isWritable();
     }
 
+    public Folder last()
+    {
+        return Folder.parse(path().last());
+    }
+
     @Override
     public Time lastModified()
     {
