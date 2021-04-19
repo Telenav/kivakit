@@ -12,19 +12,19 @@ This module provides an abstraction for serialization.
 
 ### Projects <a name = "projects"></a> &nbsp; ![](https://www.kivakit.org/images/gears-40.png)
 
-[**kivakit-core-serialization-core**](core/README.md)  
-[**kivakit-core-serialization-jersey-json**](jersey-json/README.md)  
-[**kivakit-core-serialization-json**](json/README.md)  
-[**kivakit-core-serialization-kryo**](kryo/README.md)  
+[**kivakit-core-serialization-core**](serialization/core/README.md)  
+[**kivakit-core-serialization-jersey-json**](serialization/jersey-json/README.md)  
+[**kivakit-core-serialization-json**](serialization/json/README.md)  
+[**kivakit-core-serialization-kryo**](serialization/kryo/README.md)  
 
 ![](https://www.kivakit.org/images/short-horizontal-line.png)
 
 ### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; ![](https://www.kivakit.org/images/bargraph-32.png)
 
-&nbsp;  ![](https://www.kivakit.org/images/meter-100-12.png) &nbsp; &nbsp; [**kivakit-core-serialization-core**](core/README.md)  
-&nbsp;  ![](https://www.kivakit.org/images/meter-80-12.png) &nbsp; &nbsp; [**kivakit-core-serialization-jersey-json**](jersey-json/README.md)  
-&nbsp;  ![](https://www.kivakit.org/images/meter-100-12.png) &nbsp; &nbsp; [**kivakit-core-serialization-json**](json/README.md)  
-&nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-serialization-kryo**](kryo/README.md)
+&nbsp;  ![](https://www.kivakit.org/images/meter-100-12.png) &nbsp; &nbsp; [**kivakit-core-serialization-core**](serialization/core/README.md)  
+&nbsp;  ![](https://www.kivakit.org/images/meter-80-12.png) &nbsp; &nbsp; [**kivakit-core-serialization-jersey-json**](serialization/jersey-json/README.md)  
+&nbsp;  ![](https://www.kivakit.org/images/meter-100-12.png) &nbsp; &nbsp; [**kivakit-core-serialization-json**](serialization/json/README.md)  
+&nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-serialization-kryo**](serialization/kryo/README.md)
 
 [//]: # (start-user-text)
 

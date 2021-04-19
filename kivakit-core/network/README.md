@@ -12,21 +12,21 @@ This project contains core networking projects including resources for common pr
 
 ### Projects <a name = "projects"></a> &nbsp; ![](https://www.kivakit.org/images/gears-40.png)
 
-[**kivakit-core-network-core**](core/README.md)  
-[**kivakit-core-network-email**](email/README.md)  
-[**kivakit-core-network-ftp**](ftp/README.md)  
-[**kivakit-core-network-http**](http/README.md)  
-[**kivakit-core-network-socket**](socket/README.md)  
+[**kivakit-core-network-core**](network/core/README.md)  
+[**kivakit-core-network-email**](network/email/README.md)  
+[**kivakit-core-network-ftp**](network/ftp/README.md)  
+[**kivakit-core-network-http**](network/http/README.md)  
+[**kivakit-core-network-socket**](network/socket/README.md)  
 
 ![](https://www.kivakit.org/images/short-horizontal-line.png)
 
 ### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; ![](https://www.kivakit.org/images/bargraph-32.png)
 
-&nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-network-core**](core/README.md)  
-&nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-network-email**](email/README.md)  
-&nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-network-ftp**](ftp/README.md)  
-&nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-network-http**](http/README.md)  
-&nbsp;  ![](https://www.kivakit.org/images/meter-80-12.png) &nbsp; &nbsp; [**kivakit-core-network-socket**](socket/README.md)
+&nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-network-core**](network/core/README.md)  
+&nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-network-email**](network/email/README.md)  
+&nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-network-ftp**](network/ftp/README.md)  
+&nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-core-network-http**](network/http/README.md)  
+&nbsp;  ![](https://www.kivakit.org/images/meter-80-12.png) &nbsp; &nbsp; [**kivakit-core-network-socket**](network/socket/README.md)
 
 [//]: # (start-user-text)
 
