@@ -18,6 +18,11 @@ git clone https://github.com/Telenav/kivakit-data.git
 git clone https://github.com/Telenav/kivakit-build.git
 git clone https://github.com/Telenav/kivakit-extensions.git
 
+cd $KIVAKIT_WORKSPACE
+git clone https://github.com/Telenav/lexakai-annotations.git
+cd lexakai-annotations
+mvn clean install
+
 cd $KIVAKIT_HOME
 git checkout develop
 kivakit-build.sh all clean
