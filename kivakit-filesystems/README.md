@@ -1,4 +1,4 @@
-# kivakit-filesystems &nbsp;&nbsp; <img src="https://www.lexakai.org/images/folder-40.png" srcset="https://www.lexakai.org/images/folder-40-2x.png 2x"/>
+# kivakit-filesystems &nbsp;&nbsp; <img src="https://www.kivakit.org/images/folder-40.png" srcset="https://www.kivakit.org/images/folder-40-2x.png 2x"/>
 
 This project contains filesystem service providers for the service provider interface in *kivakit-core-resource*.
 
@@ -20,16 +20,16 @@ classes.
 
 [//]: # (end-user-text)
 
-### Projects <a name = "projects"></a> &nbsp; <img src="https://www.lexakai.org/images/gears-32.png" srcset="https://www.lexakai.org/images/gears-32-2x.png 2x"/>
+### Projects <a name = "projects"></a> &nbsp; <img src="https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/gears-32-2x.png 2x"/>
 
 [**kivakit-filesystems-hdfs**](hdfs/README.md)  
 [**kivakit-filesystems-hdfs-proxy**](hdfs-proxy/README.md)  
 [**kivakit-filesystems-hdfs-proxy-spi**](hdfs-proxy-spi/README.md)  
 [**kivakit-filesystems-s3fs**](s3fs/README.md)  
 
-<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128-2x.png 2x"/>
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; <img src="https://www.lexakai.org/images/bargraph-32.png" srcset="https://www.lexakai.org/images/bargraph-32-2x.png 2x"/>
+### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; <img src="https://www.kivakit.org/images/bargraph-32.png" srcset="https://www.kivakit.org/images/bargraph-32-2x.png 2x"/>
 
 &nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png) &nbsp; &nbsp; [**kivakit-filesystems-hdfs**](hdfs/README.md)  
 &nbsp;  ![](https://www.kivakit.org/images/meter-70-12.png) &nbsp; &nbsp; [**kivakit-filesystems-hdfs-proxy**](hdfs-proxy/README.md)  

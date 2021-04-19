@@ -1,4 +1,4 @@
-# kivakit-core &nbsp;&nbsp; <img src="https://www.lexakai.org/images/nucleus-40.png" srcset="https://www.lexakai.org/images/nucleus-40-2x.png 2x"/>
+# kivakit-core &nbsp;&nbsp; <img src="https://www.kivakit.org/images/nucleus-40.png" srcset="https://www.kivakit.org/images/nucleus-40-2x.png 2x"/>
 
 This project contains the core functionality of KivaKit, frameworks that are potentially needed by any application or server.
 
@@ -10,7 +10,7 @@ This project contains the core functionality of KivaKit, frameworks that are pot
 
 [//]: # (end-user-text)
 
-### Projects <a name = "projects"></a> &nbsp; <img src="https://www.lexakai.org/images/gears-32.png" srcset="https://www.lexakai.org/images/gears-32-2x.png 2x"/>
+### Projects <a name = "projects"></a> &nbsp; <img src="https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/gears-32-2x.png 2x"/>
 
 [**kivakit-core-application**](application/README.md)  
 [**kivakit-core-collections**](collections/README.md)  
@@ -23,9 +23,9 @@ This project contains the core functionality of KivaKit, frameworks that are pot
 [**kivakit-core-serialization**](serialization/README.md)  
 [**kivakit-core-test**](test/README.md)  
 
-<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128-2x.png 2x"/>
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; <img src="https://www.lexakai.org/images/bargraph-32.png" srcset="https://www.lexakai.org/images/bargraph-32-2x.png 2x"/>
+### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; <img src="https://www.kivakit.org/images/bargraph-32.png" srcset="https://www.kivakit.org/images/bargraph-32-2x.png 2x"/>
 
 &nbsp;  ![](https://www.kivakit.org/images/meter-100-12.png) &nbsp; &nbsp; [**kivakit-core-application**](application/README.md)  
 &nbsp;  ![](https://www.kivakit.org/images/meter-70-12.png) &nbsp; &nbsp; [**kivakit-core-collections**](collections/README.md)  

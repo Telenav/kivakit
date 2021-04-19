@@ -1,4 +1,4 @@
-# KivaKit Core - Resource &nbsp;&nbsp; <img src="https://www.lexakai.org/images/https://www.kivakit.org/images/gears-40.png.png" srcset="https://www.lexakai.org/images/https://www.kivakit.org/images/gears-40.png-2x.png 2x"/>
+# KivaKit Core - Resource &nbsp;&nbsp; <img src="https://www.kivakit.org/images/https://www.kivakit.org/images/gears-40.png" srcset="https://www.kivakit.org/images/https://www.kivakit.org/images/gears-40.png-2x.png 2x"/>
 
 This project index was created by Lexakai. To configure, see [project-home-folder]/documentation/lexakai.properties.
 
@@ -38,15 +38,15 @@ needs to be set up manually.
 
 [//]: # (end-user-text)
 
-### Projects <a name = "projects"></a> &nbsp; <img src="https://www.lexakai.org/images/gears-32.png" srcset="https://www.lexakai.org/images/gears-32-2x.png 2x"/>
+### Projects <a name = "projects"></a> &nbsp; <img src="https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/gears-32-2x.png 2x"/>
 
 [**kivakit-service-client**](client/README.md)  
 [**kivakit-service-registry**](registry/README.md)  
 [**kivakit-service-server**](server/README.md)  
 
-<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128-2x.png 2x"/>
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; <img src="https://www.lexakai.org/images/bargraph-32.png" srcset="https://www.lexakai.org/images/bargraph-32-2x.png 2x"/>
+### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; <img src="https://www.kivakit.org/images/bargraph-32.png" srcset="https://www.kivakit.org/images/bargraph-32-2x.png 2x"/>
 
 &nbsp;  ![](https://www.kivakit.org/images/meter-100-12.png) &nbsp; &nbsp; [**kivakit-service-client**](client/README.md)  
 &nbsp;  ![](https://www.kivakit.org/images/meter-100-12.png) &nbsp; &nbsp; [**kivakit-service-registry**](registry/README.md)  

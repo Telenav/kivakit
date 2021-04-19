@@ -1,4 +1,4 @@
-# kivakit-filesystems hdfs-proxy &nbsp;&nbsp; <img src="https://www.lexakai.org/images/communicate-40.png" srcset="https://www.lexakai.org/images/communicate-40-2x.png 2x"/>
+# kivakit-filesystems hdfs-proxy &nbsp;&nbsp; <img src="https://www.kivakit.org/images/communicate-40.png" srcset="https://www.kivakit.org/images/communicate-40-2x.png 2x"/>
 
 HDFS proxy due to large number of conflicts between HDFS and other projects, especially Spark.
 
@@ -12,7 +12,7 @@ HDFS proxy due to large number of conflicts between HDFS and other projects, esp
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/dependencies-32.png" srcset="https://www.lexakai.org/images/dependencies-32-2x.png 2x"/>
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/dependencies-32.png" srcset="https://www.kivakit.org/images/dependencies-32-2x.png 2x"/>
 
 [*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-filesystems/hdfs-proxy/documentation/diagrams/dependencies.svg)
 
@@ -25,7 +25,7 @@ HDFS proxy due to large number of conflicts between HDFS and other projects, esp
     </dependency>
 
 
-<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128-2x.png 2x"/>
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 [//]: # (start-user-text)
 
@@ -35,22 +35,22 @@ HDFS proxy due to large number of conflicts between HDFS and other projects, esp
 
 [//]: # (end-user-text)
 
-<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128-2x.png 2x"/>
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.lexakai.org/images/diagram-32.png" srcset="https://www.lexakai.org/images/diagram-32-2x.png 2x"/>
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-32.png" srcset="https://www.kivakit.org/images/diagram-32-2x.png 2x"/>
 
 [*HDFS Proxy*](https://www.kivakit.org/lexakai/kivakit/kivakit-filesystems/hdfs-proxy/documentation/diagrams/diagram-hdfs-proxy.svg)
 
-<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128-2x.png 2x"/>
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/box-32.png" srcset="https://www.lexakai.org/images/box-32-2x.png 2x"/>
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
 [*com.telenav.kivakit.filesystems.hdfs.proxy*](https://www.kivakit.org/lexakai/kivakit/kivakit-filesystems/hdfs-proxy/documentation/diagrams/com.telenav.kivakit.filesystems.hdfs.proxy.svg)  
 [*com.telenav.kivakit.filesystems.hdfs.proxy.converters*](https://www.kivakit.org/lexakai/kivakit/kivakit-filesystems/hdfs-proxy/documentation/diagrams/com.telenav.kivakit.filesystems.hdfs.proxy.converters.svg)
 
-<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128-2x.png 2x"/>
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-32.png" srcset="https://www.lexakai.org/images/books-32-2x.png 2x"/>
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
 Javadoc coverage for this project is 68.5%.  
   

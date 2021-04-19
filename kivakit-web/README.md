@@ -1,4 +1,4 @@
-# kivakit-web &nbsp;&nbsp; <img src="https://www.lexakai.org/images/world-40.png" srcset="https://www.lexakai.org/images/world-40-2x.png 2x"/>
+# kivakit-web &nbsp;&nbsp; <img src="https://www.kivakit.org/images/world-40.png" srcset="https://www.kivakit.org/images/world-40-2x.png 2x"/>
 
 This module contains modules that relate to the world-wide web.
 
@@ -37,16 +37,16 @@ for more details.
 
 [//]: # (end-user-text)
 
-### Projects <a name = "projects"></a> &nbsp; <img src="https://www.lexakai.org/images/gears-32.png" srcset="https://www.lexakai.org/images/gears-32-2x.png 2x"/>
+### Projects <a name = "projects"></a> &nbsp; <img src="https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/gears-32-2x.png 2x"/>
 
 [**kivakit-web-jersey**](jersey/README.md)  
 [**kivakit-web-jetty**](jetty/README.md)  
 [**kivakit-web-swagger**](swagger/README.md)  
 [**kivakit-web-wicket**](wicket/README.md)  
 
-<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128-2x.png 2x"/>
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; <img src="https://www.lexakai.org/images/bargraph-32.png" srcset="https://www.lexakai.org/images/bargraph-32-2x.png 2x"/>
+### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; <img src="https://www.kivakit.org/images/bargraph-32.png" srcset="https://www.kivakit.org/images/bargraph-32-2x.png 2x"/>
 
 &nbsp;  ![](https://www.kivakit.org/images/meter-80-12.png) &nbsp; &nbsp; [**kivakit-web-jersey**](jersey/README.md)  
 &nbsp;  ![](https://www.kivakit.org/images/meter-80-12.png) &nbsp; &nbsp; [**kivakit-web-jetty**](jetty/README.md)  

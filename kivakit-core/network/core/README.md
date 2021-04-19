@@ -1,4 +1,4 @@
-# kivakit-core-network core &nbsp;&nbsp; <img src="https://www.lexakai.org/images/nucleus-40.png" srcset="https://www.lexakai.org/images/nucleus-40-2x.png 2x"/>
+# kivakit-core-network core &nbsp;&nbsp; <img src="https://www.kivakit.org/images/nucleus-40.png" srcset="https://www.kivakit.org/images/nucleus-40-2x.png 2x"/>
 
 This module provides classes that enhance the core networking features of the JDK. Other projects in  
 kivakit-core-network extend this base functionality.
@@ -16,7 +16,7 @@ kivakit-core-network extend this base functionality.
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/dependencies-32.png" srcset="https://www.lexakai.org/images/dependencies-32-2x.png 2x"/>
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/dependencies-32.png" srcset="https://www.kivakit.org/images/dependencies-32-2x.png 2x"/>
 
 [*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/network/core/documentation/diagrams/dependencies.svg)
 
@@ -29,7 +29,7 @@ kivakit-core-network extend this base functionality.
     </dependency>
 
 
-<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128-2x.png 2x"/>
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 [//]: # (start-user-text)
 
@@ -95,24 +95,24 @@ project [*kivakit-network-core-email*](../email/README.md) makes use of this cla
 
 [//]: # (end-user-text)
 
-<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128-2x.png 2x"/>
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.lexakai.org/images/diagram-32.png" srcset="https://www.lexakai.org/images/diagram-32-2x.png 2x"/>
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-32.png" srcset="https://www.kivakit.org/images/diagram-32-2x.png 2x"/>
 
 [*Hosts, Ports and Protocols*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/network/core/documentation/diagrams/diagram-port.svg)  
 [*Network Locations*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/network/core/documentation/diagrams/diagram-network-location.svg)
 
-<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128-2x.png 2x"/>
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/box-32.png" srcset="https://www.lexakai.org/images/box-32-2x.png 2x"/>
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
 [*com.telenav.kivakit.core.network.core*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/network/core/documentation/diagrams/com.telenav.kivakit.core.network.core.svg)  
 [*com.telenav.kivakit.core.network.core.cluster*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/network/core/documentation/diagrams/com.telenav.kivakit.core.network.core.cluster.svg)  
 [*com.telenav.kivakit.core.network.core.project*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/network/core/documentation/diagrams/com.telenav.kivakit.core.network.core.project.svg)
 
-<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128-2x.png 2x"/>
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-32.png" srcset="https://www.lexakai.org/images/books-32-2x.png 2x"/>
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
 Javadoc coverage for this project is 89.3%.  
   

@@ -1,4 +1,4 @@
-# kivakit-serialization kryo &nbsp;&nbsp; <img src="https://www.lexakai.org/images/ice-48.png" srcset="https://www.lexakai.org/images/ice-48-2x.png 2x"/>
+# kivakit-serialization kryo &nbsp;&nbsp; <img src="https://www.kivakit.org/images/ice-48.png" srcset="https://www.kivakit.org/images/ice-48-2x.png 2x"/>
 
 This module provides integration of the Kryo serialization framework with KivaKit serialization.
 
@@ -12,7 +12,7 @@ This module provides integration of the Kryo serialization framework with KivaKi
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
-### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/dependencies-32.png" srcset="https://www.lexakai.org/images/dependencies-32-2x.png 2x"/>
+### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/dependencies-32.png" srcset="https://www.kivakit.org/images/dependencies-32-2x.png 2x"/>
 
 [*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/serialization/kryo/documentation/diagrams/dependencies.svg)
 
@@ -25,7 +25,7 @@ This module provides integration of the Kryo serialization framework with KivaKi
     </dependency>
 
 
-<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128-2x.png 2x"/>
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 [//]: # (start-user-text)
 
@@ -33,22 +33,22 @@ This module provides integration of the Kryo serialization framework with KivaKi
 
 [//]: # (end-user-text)
 
-<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128-2x.png 2x"/>
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.lexakai.org/images/diagram-32.png" srcset="https://www.lexakai.org/images/diagram-32-2x.png 2x"/>
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-32.png" srcset="https://www.kivakit.org/images/diagram-32-2x.png 2x"/>
 
 [*diagram-serialization-kryo*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/serialization/kryo/documentation/diagrams/diagram-serialization-kryo.svg)
 
-<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128-2x.png 2x"/>
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/box-32.png" srcset="https://www.lexakai.org/images/box-32-2x.png 2x"/>
+### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
 [*com.telenav.kivakit.core.serialization.kryo*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/serialization/kryo/documentation/diagrams/com.telenav.kivakit.core.serialization.kryo.svg)  
 [*com.telenav.kivakit.core.serialization.kryo.project*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/serialization/kryo/documentation/diagrams/com.telenav.kivakit.core.serialization.kryo.project.svg)
 
-<img src="https://www.kivakit.org/images/short-horizontal-line-128.png" srcset="https://www.kivakit.org/images/short-horizontal-line-128-2x.png 2x"/>
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.lexakai.org/images/books-32.png" srcset="https://www.lexakai.org/images/books-32-2x.png 2x"/>
+### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
 Javadoc coverage for this project is 87.9%.  
   
