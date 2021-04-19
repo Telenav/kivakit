@@ -8,4 +8,6 @@ open module kivakit.logs.file
     provides Log with FileLog;
 
     exports com.telenav.kivakit.logs.file;
+    exports com.telenav.kivakit.logs.file.project;
+    exports com.telenav.kivakit.logs.file.project.lexakai.diagrams;
 }

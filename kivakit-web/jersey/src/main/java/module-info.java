@@ -7,4 +7,5 @@ open module kivakit.web.jersey
     requires transitive jersey.server;
 
     exports com.telenav.kivakit.web.jersey;
+    exports com.telenav.kivakit.web.jersey.project;
 }

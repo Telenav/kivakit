@@ -13,4 +13,6 @@ open module kivakit.filesystems.s3fs
     provides FileSystemService with S3FileSystemService;
 
     exports com.telenav.kivakit.filesystems.s3fs;
+    exports com.telenav.kivakit.filesystems.s3fs.project;
+    exports com.telenav.kivakit.filesystems.s3fs.project.lexakai.diagrams;
 }

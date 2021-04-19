@@ -28,7 +28,7 @@ import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.core.kernel.data.validation.reporters.ValidationFailure;
 import com.telenav.kivakit.core.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.core.kernel.language.strings.PathStrings;
+import com.telenav.kivakit.core.kernel.language.strings.Paths;
 import com.telenav.kivakit.core.kernel.language.strings.Strip;
 import com.telenav.kivakit.core.kernel.language.time.Time;
 import com.telenav.kivakit.core.kernel.language.values.count.Bytes;
@@ -742,7 +742,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         final var extension = extension();
         if (extension != null)
         {
-            final var withoutExtension = PathStrings.withoutOptionalSuffix(path().toString(), '.');
+            final var withoutExtension = Paths.withoutOptionalSuffix(path().toString(), '.');
             return File.parse(withoutExtension);
         }
         return this;

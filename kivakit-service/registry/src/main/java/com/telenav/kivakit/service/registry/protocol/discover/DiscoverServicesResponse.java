@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.kernel.language.collections.set.Sets;
 import com.telenav.kivakit.core.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.kernel.language.strings.formatting.ObjectFormatter;
 import com.telenav.kivakit.service.registry.Service;
-import com.telenav.kivakit.service.registry.project.lexakai.annotations.DiagramRest;
+import com.telenav.kivakit.service.registry.project.lexakai.diagrams.DiagramRest;
 import com.telenav.kivakit.service.registry.protocol.BaseResponse;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

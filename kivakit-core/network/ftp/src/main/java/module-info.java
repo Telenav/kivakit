@@ -9,4 +9,6 @@ open module kivakit.core.network.ftp
 
     exports com.telenav.kivakit.core.network.ftp;
     exports com.telenav.kivakit.core.network.ftp.secure;
+    exports com.telenav.kivakit.core.network.ftp.project;
+    exports com.telenav.kivakit.core.network.ftp.project.lexakai.diagrams;
 }

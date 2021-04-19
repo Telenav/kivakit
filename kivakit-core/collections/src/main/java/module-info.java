@@ -28,6 +28,7 @@ open module kivakit.core.collections
     exports com.telenav.kivakit.core.collections.primitive.map.split;
     exports com.telenav.kivakit.core.collections.primitive.set;
     exports com.telenav.kivakit.core.collections.project;
+    exports com.telenav.kivakit.core.collections.project.lexakai.diagrams;
     exports com.telenav.kivakit.core.collections.set.logical;
     exports com.telenav.kivakit.core.collections.set.logical.operations;
     exports com.telenav.kivakit.core.collections.set;

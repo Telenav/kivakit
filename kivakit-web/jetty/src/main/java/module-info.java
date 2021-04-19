@@ -10,5 +10,6 @@ open module kivakit.web.jetty
     requires transitive org.eclipse.jetty.webapp;
 
     exports com.telenav.kivakit.web.jetty;
+    exports com.telenav.kivakit.web.jetty.project;
     exports com.telenav.kivakit.web.jetty.resources;
 }

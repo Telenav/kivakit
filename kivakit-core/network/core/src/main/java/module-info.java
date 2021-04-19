@@ -7,4 +7,5 @@ open module kivakit.core.network.core
     exports com.telenav.kivakit.core.network.core;
     exports com.telenav.kivakit.core.network.core.cluster;
     exports com.telenav.kivakit.core.network.core.project;
+    exports com.telenav.kivakit.core.network.core.project.lexakai.diagrams;
 }

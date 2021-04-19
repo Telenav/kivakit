@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.telenav.kivakit.core.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.kernel.language.values.version.Version;
 import com.telenav.kivakit.core.network.core.EmailAddress;
-import com.telenav.kivakit.service.registry.project.lexakai.annotations.DiagramRegistry;
+import com.telenav.kivakit.service.registry.project.lexakai.diagrams.DiagramRegistry;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;

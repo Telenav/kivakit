@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.kernel.language.types;
 
 import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.core.kernel.language.strings.PathStrings;
+import com.telenav.kivakit.core.kernel.language.strings.Paths;
 
 import java.io.InputStream;
 import java.net.URI;
@@ -125,17 +125,17 @@ public class Classes
             {
                 return type.getSimpleName();
             }
-            return PathStrings.optionalSuffix(type.getName(), '.').replace('$', '.');
+            return Paths.optionalSuffix(type.getName(), '.').replace('$', '.');
         }
         return "Unknown";
     }
 
     public static String simpleTopLevelClass(final Class<?> type)
     {
-        final var name = PathStrings.optionalSuffix(type.getName(), '.');
+        final var name = Paths.optionalSuffix(type.getName(), '.');
         if (name.contains("$"))
         {
-            return PathStrings.optionalHead(name, '$');
+            return Paths.optionalHead(name, '$');
         }
         return name;
     }

@@ -8,6 +8,7 @@ open module kivakit.service.registry
 
     exports com.telenav.kivakit.service.registry;
     exports com.telenav.kivakit.service.registry.project;
+    exports com.telenav.kivakit.service.registry.project.lexakai.diagrams;
     exports com.telenav.kivakit.service.registry.protocol;
     exports com.telenav.kivakit.service.registry.registries;
     exports com.telenav.kivakit.service.registry.store;

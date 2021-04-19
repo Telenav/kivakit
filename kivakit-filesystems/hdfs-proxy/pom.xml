@@ -76,6 +76,22 @@
 
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-jar-plugin</artifactId>
+              <configuration>
+                <archive>
+                  <manifestEntries>
+                    <Automatic-Module-Name>kivakit.filesystems.hdfs.proxy</Automatic-Module-Name>
+                  </manifestEntries>
+                </archive>
+              </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <profiles>
         <profile>
             <id>shade</id>
@@ -100,12 +116,6 @@
                                             <include>*:*</include>
                                         </includes>
                                     </artifactSet>
-                                    <transformers>
-                                        <transformer implementation = "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                            <mainClass>com.telenav.kivakit.filesystems.hdfs.proxy.HdfsProxyServer</mainClass>
-                                        </transformer>
-                                        <transformer implementation = "org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
-                                    </transformers>
                                 </configuration>
                             </execution>
                         </executions>

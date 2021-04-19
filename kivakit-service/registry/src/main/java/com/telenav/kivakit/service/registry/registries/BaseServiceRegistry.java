@@ -36,7 +36,7 @@ import com.telenav.kivakit.service.registry.ServiceRegistry;
 import com.telenav.kivakit.service.registry.ServiceRegistrySettings;
 import com.telenav.kivakit.service.registry.ServiceRegistryUpdater;
 import com.telenav.kivakit.service.registry.ServiceType;
-import com.telenav.kivakit.service.registry.project.lexakai.annotations.DiagramRegistry;
+import com.telenav.kivakit.service.registry.project.lexakai.diagrams.DiagramRegistry;
 import com.telenav.kivakit.service.registry.store.ServiceRegistryStore;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;

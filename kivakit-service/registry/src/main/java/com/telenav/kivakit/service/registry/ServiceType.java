@@ -19,7 +19,7 @@
 package com.telenav.kivakit.service.registry;
 
 import com.telenav.kivakit.core.kernel.language.values.identifier.StringIdentifier;
-import com.telenav.kivakit.service.registry.project.lexakai.annotations.DiagramRegistry;
+import com.telenav.kivakit.service.registry.project.lexakai.diagrams.DiagramRegistry;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;

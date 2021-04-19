@@ -13,4 +13,5 @@ open module kivakit.web.swagger
     requires transitive java.ws.rs;
 
     exports com.telenav.kivakit.web.swagger;
+    exports com.telenav.kivakit.web.swagger.project;
 }

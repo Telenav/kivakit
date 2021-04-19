@@ -22,7 +22,7 @@ import com.telenav.kivakit.core.kernel.language.time.LocalTime;
 import com.telenav.kivakit.core.kernel.language.time.TimeZones;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageTime;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.kivakit.core.kernel.language.strings.PathStrings;
+import com.telenav.kivakit.core.kernel.language.strings.Paths;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 
 import java.time.Instant;
@@ -63,7 +63,7 @@ public class BaseFormattedLocalTimeConverter extends BaseFormattedConverter
     protected LocalTime onConvertToObject(final String value)
     {
         zone(zone(value));
-        var time = PathStrings.withoutSuffix(value, '_');
+        var time = Paths.withoutSuffix(value, '_');
         if (time == null)
         {
             time = value;
@@ -86,7 +86,7 @@ public class BaseFormattedLocalTimeConverter extends BaseFormattedConverter
         {
             return timeZone;
         }
-        final var zone = TimeZones.forDisplayName(PathStrings.optionalSuffix(value, '_'));
+        final var zone = TimeZones.forDisplayName(Paths.optionalSuffix(value, '_'));
         if (zone != null)
         {
             return zone;

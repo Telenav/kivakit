@@ -16,4 +16,10 @@ open module kivakit.service.server
     requires java.prefs;
 
     requires io.swagger.v3.oas.annotations;
+
+    exports com.telenav.kivakit.service.registry.server.project;
+    exports com.telenav.kivakit.service.registry.server.project.lexakai.diagrams;
+    exports com.telenav.kivakit.service.registry.server.rest;
+    exports com.telenav.kivakit.service.registry.server.webapp.pages.home;
+    exports com.telenav.kivakit.service.registry.server.webapp;
 }

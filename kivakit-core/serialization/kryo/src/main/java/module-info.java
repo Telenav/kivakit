@@ -8,4 +8,6 @@ open module kivakit.core.serialization.kryo
     requires transitive minlog;
 
     exports com.telenav.kivakit.core.serialization.kryo;
+    exports com.telenav.kivakit.core.serialization.kryo.project;
+    exports com.telenav.kivakit.core.serialization.kryo.project.lexakai.diagrams;
 }

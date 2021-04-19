@@ -6,4 +6,6 @@ open module kivakit.core.security
     exports com.telenav.kivakit.core.security.authentication.passwords;
     exports com.telenav.kivakit.core.security.digest.digesters;
     exports com.telenav.kivakit.core.security.digest;
+    exports com.telenav.kivakit.core.security.project;
+    exports com.telenav.kivakit.core.security.project.lexakai.diagrams;
 }

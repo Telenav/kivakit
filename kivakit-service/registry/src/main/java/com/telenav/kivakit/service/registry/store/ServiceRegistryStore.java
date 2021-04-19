@@ -31,7 +31,7 @@ import com.telenav.kivakit.core.resource.path.Extension;
 import com.telenav.kivakit.service.registry.ServiceRegistry;
 import com.telenav.kivakit.service.registry.ServiceRegistrySettings;
 import com.telenav.kivakit.service.registry.project.ServiceRegistryProject;
-import com.telenav.kivakit.service.registry.project.lexakai.annotations.DiagramRegistry;
+import com.telenav.kivakit.service.registry.project.lexakai.diagrams.DiagramRegistry;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;

@@ -8,4 +8,6 @@ open module kivakit.core.network.http
 
     exports com.telenav.kivakit.core.network.http;
     exports com.telenav.kivakit.core.network.http.secure;
+    exports com.telenav.kivakit.core.network.http.project;
+    exports com.telenav.kivakit.core.network.http.project.lexakai.diagrams;
 }

@@ -6,4 +6,5 @@ open module kivakit.core.serialization.jersey.json
     requires transitive java.xml.bind;
 
     exports com.telenav.kivakit.core.serialization.jersey.json;
+    exports com.telenav.kivakit.core.serialization.jersey.json.project;
 }

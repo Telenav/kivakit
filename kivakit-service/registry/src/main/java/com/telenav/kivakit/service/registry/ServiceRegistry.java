@@ -25,7 +25,7 @@ import com.telenav.kivakit.core.kernel.messaging.Repeater;
 import com.telenav.kivakit.core.kernel.messaging.messages.Result;
 import com.telenav.kivakit.core.network.core.Host;
 import com.telenav.kivakit.core.network.core.Port;
-import com.telenav.kivakit.service.registry.project.lexakai.annotations.DiagramRegistry;
+import com.telenav.kivakit.service.registry.project.lexakai.diagrams.DiagramRegistry;
 import com.telenav.kivakit.service.registry.registries.BaseServiceRegistry;
 import com.telenav.kivakit.service.registry.registries.LocalServiceRegistry;
 import com.telenav.kivakit.service.registry.registries.NetworkServiceRegistry;

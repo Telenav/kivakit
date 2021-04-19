@@ -14,7 +14,7 @@ This project facilitates object-oriented parsing of command line arguments and s
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/dependencies-40.png)
 
-[*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/commandline/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/commandline/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
@@ -40,18 +40,18 @@ arguments and switches is available in the Javadoc for the [*Application*](https
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; ![](https://www.kivakit.org/images/diagram-48.png)
 
-[*Argument Parsing*](https://www.kivakit.org/lexakai/kivakit/diagrams/diagram-argument.svg)  
-[*Command Line*](https://www.kivakit.org/lexakai/kivakit/diagrams/diagram-command-line.svg)  
-[*Command Line Validation*](https://www.kivakit.org/lexakai/kivakit/diagrams/diagram-validation.svg)  
-[*Switch Parsing*](https://www.kivakit.org/lexakai/kivakit/diagrams/diagram-switch.svg)
+[*Argument Parsing*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/commandline/documentation/diagrams/diagram-argument.svg)  
+[*Command Line*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/commandline/documentation/diagrams/diagram-command-line.svg)  
+[*Command Line Validation*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/commandline/documentation/diagrams/diagram-validation.svg)  
+[*Switch Parsing*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/commandline/documentation/diagrams/diagram-switch.svg)
 
 ![](https://www.kivakit.org/images/short-horizontal-line.png)
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; ![](https://www.kivakit.org/images/box-40.png)
 
-[*com.telenav.kivakit.core.commandline*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.core.commandline.svg)  
-[*com.telenav.kivakit.core.commandline.parsing*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.core.commandline.parsing.svg)  
-[*com.telenav.kivakit.core.commandline.project*](https://www.kivakit.org/lexakai/kivakit/diagrams/com.telenav.kivakit.core.commandline.project.svg)
+[*com.telenav.kivakit.core.commandline*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/commandline/documentation/diagrams/com.telenav.kivakit.core.commandline.svg)  
+[*com.telenav.kivakit.core.commandline.parsing*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/commandline/documentation/diagrams/com.telenav.kivakit.core.commandline.parsing.svg)  
+[*com.telenav.kivakit.core.commandline.project*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/commandline/documentation/diagrams/com.telenav.kivakit.core.commandline.project.svg)
 
 ![](https://www.kivakit.org/images/short-horizontal-line.png)
 
@@ -65,28 +65,28 @@ Javadoc coverage for this project is 91.4%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*ApplicationMetadata*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/commandline/ApplicationMetadata.html) |  |  
-| [*Argument*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/commandline/Argument.html) |  |  
-| [*ArgumentList*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/commandline/ArgumentList.html) |  |  
-| [*ArgumentParser*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/commandline/ArgumentParser.html) | Parser Builders |  
+| [*ApplicationMetadata*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.commandline/com/telenav/kivakit/core/commandline/ApplicationMetadata.html) |  |  
+| [*Argument*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.commandline/com/telenav/kivakit/core/commandline/Argument.html) |  |  
+| [*ArgumentList*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.commandline/com/telenav/kivakit/core/commandline/ArgumentList.html) |  |  
+| [*ArgumentParser*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.commandline/com/telenav/kivakit/core/commandline/ArgumentParser.html) | Parser Builders |  
 | | Built-In Parsers |  
-| [*ArgumentParser.Builder*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/commandline/ArgumentParser.Builder.html) |  |  
-| [*ArgumentParserList*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/commandline/parsing/ArgumentParserList.html) |  |  
-| [*ArgumentValidator*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/commandline/parsing/ArgumentValidator.html) |  |  
-| [*CommandLine*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/commandline/CommandLine.html) | Retrieving Switches and Arguments |  
+| [*ArgumentParser.Builder*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.commandline/com/telenav/kivakit/core/commandline/ArgumentParser.Builder.html) |  |  
+| [*ArgumentParserList*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.commandline/com/telenav/kivakit/core/commandline/parsing/ArgumentParserList.html) |  |  
+| [*ArgumentValidator*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.commandline/com/telenav/kivakit/core/commandline/parsing/ArgumentValidator.html) |  |  
+| [*CommandLine*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.commandline/com/telenav/kivakit/core/commandline/CommandLine.html) | Retrieving Switches and Arguments |  
 | | Error Handling |  
-| [*CommandLineParser*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/commandline/CommandLineParser.html) | Example |  
+| [*CommandLineParser*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.commandline/com/telenav/kivakit/core/commandline/CommandLineParser.html) | Example |  
 | | Parsing a Command Line |  
 | | Switch Conventions |  
-| [*CoreCommandLineProject*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/commandline/project/CoreCommandLineProject.html) |  |  
-| [*Quantifier*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/commandline/Quantifier.html) |  |  
-| [*Switch*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/commandline/Switch.html) |  |  
-| [*SwitchList*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/commandline/parsing/SwitchList.html) |  |  
-| [*SwitchParser*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/commandline/SwitchParser.html) | Parser Builders |  
+| [*CoreCommandLineProject*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.commandline/com/telenav/kivakit/core/commandline/project/CoreCommandLineProject.html) |  |  
+| [*Quantifier*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.commandline/com/telenav/kivakit/core/commandline/Quantifier.html) |  |  
+| [*Switch*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.commandline/com/telenav/kivakit/core/commandline/Switch.html) |  |  
+| [*SwitchList*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.commandline/com/telenav/kivakit/core/commandline/parsing/SwitchList.html) |  |  
+| [*SwitchParser*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.commandline/com/telenav/kivakit/core/commandline/SwitchParser.html) | Parser Builders |  
 | | Built-In Parsers |  
-| [*SwitchParser.Builder*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/commandline/SwitchParser.Builder.html) |  |  
-| [*SwitchParserList*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/commandline/parsing/SwitchParserList.html) |  |  
-| [*SwitchValidator*](https://www.kivakit.org/javadoc/kivakit/com/telenav/kivakit/core/commandline/parsing/SwitchValidator.html) |  |  
+| [*SwitchParser.Builder*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.commandline/com/telenav/kivakit/core/commandline/SwitchParser.Builder.html) |  |  
+| [*SwitchParserList*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.commandline/com/telenav/kivakit/core/commandline/parsing/SwitchParserList.html) |  |  
+| [*SwitchValidator*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.commandline/com/telenav/kivakit/core/commandline/parsing/SwitchValidator.html) |  |  
 
 [//]: # (start-user-text)
 
@@ -99,6 +99,6 @@ Javadoc coverage for this project is 91.4%.
 ![](https://www.kivakit.org/images/horizontal-line.png)
 
 <sub>Copyright &#169; 2011-2021 [Telenav](http://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.17. UML diagrams courtesy
+<sub>This documentation was generated by [Lexakai](https://github.com/Telenav/lexakai) on 2021.04.18. UML diagrams courtesy
 of [PlantUML](http://plantuml.com).</sub>
 

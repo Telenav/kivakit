@@ -24,7 +24,7 @@ import com.telenav.kivakit.core.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.core.kernel.language.strings.formatting.KivaKitFormatProperty;
 import com.telenav.kivakit.core.kernel.language.strings.formatting.ObjectFormatter;
 import com.telenav.kivakit.service.registry.Service;
-import com.telenav.kivakit.service.registry.project.lexakai.annotations.DiagramRest;
+import com.telenav.kivakit.service.registry.project.lexakai.diagrams.DiagramRest;
 import com.telenav.kivakit.service.registry.protocol.BaseResponse;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

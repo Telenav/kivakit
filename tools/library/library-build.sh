@@ -24,6 +24,8 @@ usage() {
     echo " "
     echo "         javadoc - compile and build javadoc"
     echo " "
+    echo " javadoc-package - package and build javadoc"
+    echo " "
     echo "  Build modifiers:"
     echo " "
     echo "           clean - prompt to remove cached and temporary files"
@@ -102,7 +104,13 @@ build() {
     "javadoc")
         JAVADOC="true"
         BUILD_ARGUMENTS="clean compile"
-        BUILD_MODIFIERS=(single-threaded no-tests javadoc ${@:3})
+        BUILD_MODIFIERS=(multi-threaded no-tests javadoc ${@:3})
+        ;;
+
+    "javadoc-package")
+        JAVADOC="true"
+        BUILD_ARGUMENTS="clean package"
+        BUILD_MODIFIERS=(multi-threaded no-tests javadoc-package ${@:3})
         ;;
 
     *)
@@ -136,6 +144,12 @@ build() {
             ;;
 
         "javadoc")
+            if [ ! -z "$JAVADOC" ]; then
+                BUILD_ARGUMENTS="$BUILD_ARGUMENTS javadoc:aggregate"
+            fi
+            ;;
+
+        "javadoc-package")
             if [ ! -z "$JAVADOC" ]; then
                 BUILD_ARGUMENTS="$BUILD_ARGUMENTS javadoc:aggregate"
             fi

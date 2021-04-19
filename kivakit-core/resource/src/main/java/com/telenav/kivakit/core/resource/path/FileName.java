@@ -21,7 +21,7 @@ package com.telenav.kivakit.core.resource.path;
 import com.telenav.kivakit.core.filesystem.File;
 import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.core.kernel.interfaces.naming.Named;
-import com.telenav.kivakit.core.kernel.language.strings.PathStrings;
+import com.telenav.kivakit.core.kernel.language.strings.Paths;
 import com.telenav.kivakit.core.kernel.language.strings.Strings;
 import com.telenav.kivakit.core.kernel.language.strings.Strip;
 import com.telenav.kivakit.core.kernel.language.time.LocalTime;
@@ -171,7 +171,7 @@ public class FileName implements Named, Comparable<FileName>
     {
         if (name().contains("."))
         {
-            final var before = PathStrings.optionalHead(name(), '.');
+            final var before = Paths.optionalHead(name(), '.');
             if (before != null)
             {
                 return parse(before);
@@ -193,7 +193,7 @@ public class FileName implements Named, Comparable<FileName>
     {
         if (name().contains("."))
         {
-            final var after = PathStrings.tail(name(), '.');
+            final var after = Paths.tail(name(), '.');
             if (after != null)
             {
                 return new Extension(after);
@@ -238,7 +238,7 @@ public class FileName implements Named, Comparable<FileName>
     {
         if (name().contains("."))
         {
-            return new Extension(PathStrings.optionalSuffix(name(), '.'));
+            return new Extension(Paths.optionalSuffix(name(), '.'));
         }
         return null;
     }
@@ -374,7 +374,7 @@ public class FileName implements Named, Comparable<FileName>
         final var extension = extension();
         if (extension != null)
         {
-            return parse(PathStrings.optionalHead(name(), '.'));
+            return parse(Paths.optionalHead(name(), '.'));
         }
         return this;
     }
@@ -387,7 +387,7 @@ public class FileName implements Named, Comparable<FileName>
         final var extension = extension();
         if (extension != null)
         {
-            final var before = PathStrings.optionalHead(name(), '.');
+            final var before = Paths.optionalHead(name(), '.');
             if (before != null)
             {
                 return parse(before);

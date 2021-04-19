@@ -95,7 +95,7 @@ public class StringsTest
     @Test
     public void testFirstPathComponent()
     {
-        ensureEqual("foo", PathStrings.optionalHead("foo/bar/baz", '/'));
+        ensureEqual("foo", Paths.optionalHead("foo/bar/baz", '/'));
     }
 
     @Test
@@ -160,17 +160,17 @@ public class StringsTest
     @Test
     public void testOptionalHead()
     {
-        ensureEqual("abc", PathStrings.optionalHead("abc-x-def", "-x-"));
-        ensureEqual("abc", PathStrings.optionalHead("abc", "x"));
-        ensureEqual("abc", PathStrings.optionalHead("abc", "a"));
+        ensureEqual("abc", Paths.optionalHead("abc-x-def", "-x-"));
+        ensureEqual("abc", Paths.optionalHead("abc", "x"));
+        ensureEqual("abc", Paths.optionalHead("abc", "a"));
     }
 
     @Test
     public void testOptionalSuffix()
     {
-        ensureEqual("baz", PathStrings.optionalSuffix("foo/bar/baz", '/'));
-        ensureEqual("foobaz", PathStrings.optionalSuffix("foobaz", '/'));
-        ensureEqual(null, PathStrings.optionalSuffix(null, '/'));
+        ensureEqual("baz", Paths.optionalSuffix("foo/bar/baz", '/'));
+        ensureEqual("foobaz", Paths.optionalSuffix("foobaz", '/'));
+        ensureEqual(null, Paths.optionalSuffix(null, '/'));
     }
 
     @Test
@@ -229,9 +229,9 @@ public class StringsTest
     @Test
     public void testTail()
     {
-        ensureEqual("def", PathStrings.tail("abc-x-def", "-x-"));
-        ensureEqual(null, PathStrings.tail("abc", "x"));
-        ensureEqual(null, PathStrings.tail("abc", "c"));
+        ensureEqual("def", Paths.tail("abc-x-def", "-x-"));
+        ensureEqual(null, Paths.tail("abc", "x"));
+        ensureEqual(null, Paths.tail("abc", "c"));
     }
 
     @Test
@@ -275,8 +275,8 @@ public class StringsTest
     @Test
     public void testWithoutSuffix()
     {
-        ensureEqual("a.b", PathStrings.withoutSuffix("a.b.c", '.'));
-        ensureEqual(null, PathStrings.withoutSuffix("a.b.c", 'x'));
-        ensureEqual(null, PathStrings.withoutSuffix(null, '.'));
+        ensureEqual("a.b", Paths.withoutSuffix("a.b.c", '.'));
+        ensureEqual(null, Paths.withoutSuffix("a.b.c", 'x'));
+        ensureEqual(null, Paths.withoutSuffix(null, '.'));
     }
 }

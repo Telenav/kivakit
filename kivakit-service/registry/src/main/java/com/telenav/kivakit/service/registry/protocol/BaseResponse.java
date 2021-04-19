@@ -24,7 +24,7 @@ import com.telenav.kivakit.core.kernel.language.values.version.Version;
 import com.telenav.kivakit.core.kernel.messaging.messages.Result;
 import com.telenav.kivakit.core.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.service.registry.ServiceRegistrySettings;
-import com.telenav.kivakit.service.registry.project.lexakai.annotations.DiagramRest;
+import com.telenav.kivakit.service.registry.project.lexakai.diagrams.DiagramRest;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

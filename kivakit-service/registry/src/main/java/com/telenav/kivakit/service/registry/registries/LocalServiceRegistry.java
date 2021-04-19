@@ -22,7 +22,7 @@ import com.telenav.kivakit.core.kernel.messaging.messages.Result;
 import com.telenav.kivakit.core.network.core.Host;
 import com.telenav.kivakit.core.network.core.Port;
 import com.telenav.kivakit.service.registry.Service;
-import com.telenav.kivakit.service.registry.project.lexakai.annotations.DiagramRegistry;
+import com.telenav.kivakit.service.registry.project.lexakai.diagrams.DiagramRegistry;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
