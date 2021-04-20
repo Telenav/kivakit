@@ -37,7 +37,7 @@ Service provider interface for HDFS proxy.
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-32.png" srcset="https://www.kivakit.org/images/diagram-32-2x.png 2x"/>
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-40.png" srcset="https://www.kivakit.org/images/diagram-40-2x.png 2x"/>
 
 [*HDFS Proxy Service Provider Interface (SPI)*](https://www.kivakit.org/lexakai/kivakit/kivakit-filesystems/hdfs-proxy-spi/documentation/diagrams/diagram-hdfs-spi.svg)
 

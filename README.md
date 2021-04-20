@@ -1,6 +1,7 @@
 
-<a href="https://github.com/Telenav/kivakit">
-<img src="https://www.kivakit.org/images/world-32.png" srcset="https://www.kivakit.org/images/github-32-2x.png 2x"/>
+
+<a href="https://www.kivakit.org">
+<img src="https://www.kivakit.org/images/web-32.png" srcset="https://www.kivakit.org/images/web-32-2x.png 2x"/>
 </a>
 &nbsp;
 <a href="https://twitter.com/openkivakit">
@@ -11,7 +12,9 @@
 <img src="https://www.kivakit.org/images/zulip-32.png" srcset="https://www.kivakit.org/images/zulip-32-2x.png 2x"/>
 </a>
 
-# KivaKit 0.9.4 &nbsp;&nbsp; <img src="https://www.kivakit.org/images/kivakit-64.png" srcset="https://www.kivakit.org/images/kivakit-64-2x.png 2x"/>
+![](https://www.kivakit.org/images/kivakit-background-500.jpg)
+
+# KivaKit 0.9.0-SNAPSHOT &nbsp;&nbsp;<img src="https://www.kivakit.org/images/kivakit-64.png" srcset="https://www.kivakit.org/images/kivakit-64-2x.png 2x"/>
 
 KivaKit is a set of integrated Java mini-frameworks.
 

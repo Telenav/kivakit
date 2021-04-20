@@ -97,7 +97,7 @@ project [*kivakit-network-core-email*](../email/README.md) makes use of this cla
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-32.png" srcset="https://www.kivakit.org/images/diagram-32-2x.png 2x"/>
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-40.png" srcset="https://www.kivakit.org/images/diagram-40-2x.png 2x"/>
 
 [*Hosts, Ports and Protocols*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/network/core/documentation/diagrams/diagram-port.svg)  
 [*Network Locations*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/network/core/documentation/diagrams/diagram-network-location.svg)

@@ -58,7 +58,7 @@ interface. The most important methods are shown here in a simplified form:
         Bytes size();
     }
 
-### Kinds of Resources <a name="kinds-of-resources"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-32.png" srcset="https://www.kivakit.org/images/diagram-32-2x.png 2x"/>
+### Kinds of Resources <a name="kinds-of-resources"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-40.png" srcset="https://www.kivakit.org/images/diagram-40-2x.png 2x"/>
 
 The class *StringResource* is about as simple as they come, but it can be read just like it was a
 *File* or any other resource:
@@ -199,7 +199,7 @@ A wide variety of other resources are available and new ones are easy to write. 
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-32.png" srcset="https://www.kivakit.org/images/diagram-32-2x.png 2x"/>
+### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-40.png" srcset="https://www.kivakit.org/images/diagram-40-2x.png 2x"/>
 
 [*File System - File System Services*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/resource/documentation/diagrams/diagram-file-system-service.svg)  
 [*File System - Files*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/resource/documentation/diagrams/diagram-file-system-file.svg)  
