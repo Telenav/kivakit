@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-web &nbsp;&nbsp; <img src="https://www.kivakit.org/images/world-32.png" srcset="https://www.kivakit.org/images/world-32-2x.png"/>
+# kivakit-web &nbsp;&nbsp; <img src="https://www.kivakit.org/images/world-32.png" srcset="https://www.kivakit.org/images/world-32-2x.png 2x"/>
 
 This module contains modules that relate to the world-wide web.
 
@@ -50,6 +50,8 @@ by Wicket *or* Swagger are then handled by Jersey. The final call to *start()* c
 Jetty web server to start running. The *listenTo()* call directs operational messages
 to the listener, in this case, probably a *BaseRepeater*. See [core-kernel messaging](../kivakit-core/kernel/documentation/messaging.md)
 for more details.
+
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 [//]: # (end-user-text)
 

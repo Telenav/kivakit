@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-core-network http &nbsp;&nbsp; <img src="https://www.kivakit.org/images/world-32.png" srcset="https://www.kivakit.org/images/world-32-2x.png"/>
+# kivakit-core-network http &nbsp;&nbsp; <img src="https://www.kivakit.org/images/world-32.png" srcset="https://www.kivakit.org/images/world-32-2x.png 2x"/>
 
 This module provides HTTP and HTTPS resources.
 
@@ -54,6 +54,8 @@ This module supports HTTP get, post and put operations, both over HTTP and HTTPS
 access credentials are supported and *HttpNetworkLocation* provides convenient methods for accessing
 *BaseHttpResource*s.
 
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+
 ### Get <a name = "get"></a>, Post and Put
 
 The most fundamental HTTP operations, GET, POST and PUT are provided by the classes *HttpGetResource*,
@@ -61,9 +63,13 @@ The most fundamental HTTP operations, GET, POST and PUT are provided by the clas
 inherit all resource functionality from the [*kivakit-core-resource*](../../resource/README.md) mini-framework. This makes code accepting
 *Resource* parameters more general.
 
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+
 ### Authentication <a name = "authentication"></a>
 
 The *HttpAccessConstraints* class adds *HttpBasicCredentials* support to its *NetworkAccessConstraints* superclass.
+
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Encryption <a name = "encryption"></a>
 

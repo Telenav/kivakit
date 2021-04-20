@@ -52,6 +52,8 @@ This module is a text file log service provider.
 This module is a log service provider which logs messages to the filesystem.
 It includes log roll-over, based on time or log size.
 
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+
 ### Including the Provider <a name = "including-the-provider"></a>
 
 To include the *EmailLog* service provider, all that is required is to:
@@ -63,6 +65,8 @@ To include the *EmailLog* service provider, all that is required is to:
        java -DKIVAKIT_LOG="Console,File level=Warning file=~/log.txt rollover=daily maximum-size=100M
 
 More details about logging are available at [*kivakit-core-kernel logging*](../../kivakit-core/kernel/documentation/logging.md).
+
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Log Configuration Parameters <a name = "log-configuration-parameters"></a>
 

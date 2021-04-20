@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-web-jetty &nbsp;&nbsp; <img src="https://www.kivakit.org/images/server-16.png" srcset="https://www.kivakit.org/images/server-16-2x.png 2x"/>
+# kivakit-web-jetty &nbsp;&nbsp; <img src="https://www.kivakit.org/images/server-32.png" srcset="https://www.kivakit.org/images/server-32-2x.png 2x"/>
 
 This project contains support for using the Jetty web server.
 
@@ -22,7 +22,7 @@ This project contains support for using the Jetty web server.
 
 ### Index
 
-
+[**Summary**](#summary)
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
@@ -45,7 +45,9 @@ This project contains support for using the Jetty web server.
 
 [//]: # (start-user-text)
 
+### Summary <a name = "summary"></a>
 
+This module makes it easy to configure and start Jetty.
 
 [//]: # (end-user-text)
 

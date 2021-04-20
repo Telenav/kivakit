@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-core commandline &nbsp;&nbsp; <img src="https://www.kivakit.org/images/command-line-32.png" srcset="https://www.kivakit.org/images/command-line-32-2x.png"/>
+# kivakit-core commandline &nbsp;&nbsp; <img src="https://www.kivakit.org/images/command-line-32.png" srcset="https://www.kivakit.org/images/command-line-32-2x.png 2x"/>
 
 This project facilitates object-oriented parsing of command line arguments and switches.
 

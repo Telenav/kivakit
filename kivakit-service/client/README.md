@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-service client &nbsp;&nbsp; <img src="https://www.kivakit.org/images/communicate-32.png" srcset="https://www.kivakit.org/images/communicate-32-2x.png"/>
+# kivakit-service client &nbsp;&nbsp; <img src="https://www.kivakit.org/images/communicate-32.png" srcset="https://www.kivakit.org/images/communicate-32-2x.png 2x"/>
 
 This project provides a client for accessing local and network service registries.
 

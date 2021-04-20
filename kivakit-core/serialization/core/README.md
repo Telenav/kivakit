@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-core-serialization core &nbsp;&nbsp; <img src="https://www.kivakit.org/images/nucleus-32.png" srcset="https://www.kivakit.org/images/nucleus-32-2x.png"/>
+# kivakit-core-serialization core &nbsp;&nbsp; <img src="https://www.kivakit.org/images/nucleus-32.png" srcset="https://www.kivakit.org/images/nucleus-32-2x.png 2x"/>
 
 This module defines core serialization abstractions.
 
@@ -22,7 +22,7 @@ This module defines core serialization abstractions.
 
 ### Index
 
-
+[**Summary**](#summary)
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
@@ -45,7 +45,9 @@ This module defines core serialization abstractions.
 
 [//]: # (start-user-text)
 
+### Summary <a name = "summary"></a>
 
+This package provides serialization abstraction useful to Kryo and other serializers.
 
 [//]: # (end-user-text)
 

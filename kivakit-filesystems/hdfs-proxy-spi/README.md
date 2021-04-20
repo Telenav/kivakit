@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-filesystems hdfs-proxy-spi &nbsp;&nbsp; <img src="https://www.kivakit.org/images/https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/https://www.kivakit.org/images/gears-32.png-2x.png 2x"/>
+# kivakit-filesystems hdfs-proxy-spi &nbsp;&nbsp; <img src="https://www.kivakit.org/images/communicate-32.png" srcset="https://www.kivakit.org/images/communicate-32-2x.png 2x"/>
 
 Service provider interface for HDFS proxy.
 

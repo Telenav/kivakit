@@ -22,6 +22,7 @@ This module provides FTP resources.
 
 ### Index
 
+[**Summary**](#summary)
 
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
@@ -45,7 +46,9 @@ This module provides FTP resources.
 
 [//]: # (start-user-text)
 
+### Summary <a name = "summary"></a>
 
+This module integrates FTP and secure FTP services with the KivaKi resource mini-framework. 
 
 [//]: # (end-user-text)
 

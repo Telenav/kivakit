@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-core-serialization json &nbsp;&nbsp; <img src="https://www.kivakit.org/images/https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/https://www.kivakit.org/images/gears-32.png-2x.png 2x"/>
+# kivakit-core-serialization json &nbsp;&nbsp; <img src="https://www.kivakit.org/images/communicate-32.png" srcset="https://www.kivakit.org/images/communicate-32-2x.png 2x"/>
 
 This project contains support for working with JSON.
 
@@ -22,7 +22,7 @@ This project contains support for working with JSON.
 
 ### Index
 
-
+[**Summary**](#summary)
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
@@ -45,7 +45,9 @@ This project contains support for working with JSON.
 
 [//]: # (start-user-text)
 
+### Summary <a name = "summary"></a>
 
+This module provides JSON serialization.
 
 [//]: # (end-user-text)
 

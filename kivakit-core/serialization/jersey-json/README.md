@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-core-serialization jersey-json &nbsp;&nbsp; <img src="https://www.kivakit.org/images/https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/https://www.kivakit.org/images/gears-32.png-2x.png 2x"/>
+# kivakit-core-serialization jersey-json &nbsp;&nbsp; <img src="https://www.kivakit.org/images/communicate-32.png" srcset="https://www.kivakit.org/images/communicate-32-2x.png 2x"/>
 
 This module defines JSON serialization for use with Jersey.
 
@@ -22,7 +22,7 @@ This module defines JSON serialization for use with Jersey.
 
 ### Index
 
-
+[**Summary**](#summary)
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
@@ -45,7 +45,9 @@ This module defines JSON serialization for use with Jersey.
 
 [//]: # (start-user-text)
 
+### Summary <a name = "summary"></a>
 
+This module provides JSON serialization services to Jersey.
 
 [//]: # (end-user-text)
 

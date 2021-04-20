@@ -57,6 +57,8 @@ This module pulls together everything that can stream together under a single ab
 providing an easy way to work with different kinds of resources without being tied to any
 of the details.
 
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+
 ### Readable Resources <a name="readable-resources"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/wand-32.png" srcset="https://www.kivakit.org/images/wand-32-2x.png 2x"/>
 
 Different resource classes are constructed in different ways, but each implements the *Resource*
@@ -73,6 +75,8 @@ interface. The most important methods are shown here in a simplified form:
         ResourceReader reader();
         Bytes size();
     }
+
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Kinds of Resources <a name="kinds-of-resources"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-40.png" srcset="https://www.kivakit.org/images/diagram-40-2x.png 2x"/>
 
@@ -97,6 +101,8 @@ other resource and it works the same:
         return resource.reader().string(); 
     }
 
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+
 ### Writable Resources <a name="writable-resources"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/pencil-32.png" srcset="https://www.kivakit.org/images/pencil-32-2x.png 2x"/>
 
 The *WritableResource* interface extends the *Resource* interface to add output capabilities:
@@ -107,6 +113,8 @@ The *WritableResource* interface extends the *Resource* interface to add output 
         OutputStream openForWriting();
         ResourceWriter writer();
     }
+
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Files <a name="files"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/folder-32.png" srcset="https://www.kivakit.org/images/folder-32-2x.png 2x"/>
 
@@ -155,6 +163,8 @@ less flexible.
 | HDFS | *HdfsFileSystemService* |
 | S3 | *S3FileSystemService* |
 
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+
 ### Launching Jar Resources <a name = "launching-jar-resources"></a>
 
 The *JarLauncher* class can be used to launch executable JAR resources from a local or remote
@@ -172,6 +182,8 @@ location. Basic usage looks like this:
     Processes.waitFor(process);
 
 Output in this case is redirected to a file in the ~/.kivakit/[kivakit-version]/temporary/launcher folder.
+
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Other Resources <a name="other-resources"></a>
 

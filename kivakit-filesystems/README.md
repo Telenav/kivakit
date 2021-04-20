@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-filesystems &nbsp;&nbsp; <img src="https://www.kivakit.org/images/folder-32.png" srcset="https://www.kivakit.org/images/folder-32-2x.png"/>
+# kivakit-filesystems &nbsp;&nbsp; <img src="https://www.kivakit.org/images/folder-32.png" srcset="https://www.kivakit.org/images/folder-32-2x.png 2x"/>
 
 This project contains filesystem service providers for the service provider interface in *kivakit-core-resource*.
 

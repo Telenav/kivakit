@@ -51,7 +51,94 @@ This module provides collections, iteration support, primitive collections, stac
 
 [//]: # (start-user-text)
 
+### Batcher <a name = "batcher"></a>
 
+The Batcher class combines an ArrayBlockingQueue with an ExecutorService to create a batch-processor which
+aggregates elements in batches and processes them with a set of worker threads. A batcher is created like this, passing in the maximum
+number of batches in the queue and the size of each batch:
+
+    Batcher<Record> batcher = new Batcher<>("RecordBatcher", Maximum._16, Count.16_384)
+    {
+        protected void onBatch(final Batch batch)
+        {
+            for (var record : batch)
+            {
+                [...]
+            }
+        }
+    };
+
+The batcher lifecycle then looks like this:
+
+    batcher.start(Count._8);
+
+        [...]
+
+    batcher.adder().add(record);
+
+        [...]
+
+    batcher.close();
+
+### Iterables and Iterators <a name = "iterables-and-iterators"></a>
+
+Several implementations of the Java *Iterable* and *Iterator* interfaces are available:
+
+- *DeduplicatingIterable* / *DeduplicatingIterator* - Wraps an *Iterable* or *Iterator* an iterates through
+  all elements, keeping a set of elements that have been seen. Elements that have already been seen
+  are skipped.
+- *FilteredIterable* / *FilteredIterator* - Wraps an *Iterable* or *Iterator*, returning only elements that
+  match the given Matcher.
+- *CompoundIterator* - Combines a sequence of iterators into a single iterator
+- *EmptyIterator* - An *Iterator* with no elements
+- *SingletonIterator* - An *Iterator* with a single element
+
+### Maps <a name = "maps"></a>
+
+The available implementations of the *Map* interface in *kivakit-core-collections* extend the abstract base class,
+*BaseMap*, from *kivakit-core-kernel*:
+
+- *CacheMap* - A most-recently-used (MRU) map which caches elements up to a maximum capacity
+- *CaseFoldingStringMap* - A *StringMap* implementation which is case-independent
+- *LinkedMap* - A map that uses LinkedHashMap as its implementation
+- *ReferenceCountMap* - A map that counts the number of references to its key type
+- *TwoWayMap* - A map that can also map from value back to key
+- *MultiMap* - A map from a single key to a list of values
+- *MultiSet* - A map from a single key to a set of values
+
+### Sets <a name = "sets"></a>
+
+The *set* package provides several useful implementations of *BaseSet* as well as a set differencer that
+determines what changes are required to turn one set into another.
+
+- *CompoundSet* - A set of sets that logically combines the sets without creating a new set
+- *ConcurrentHashSet* - A hash set implementation that is thread-safe
+- *IdentitySet* - A set based on reference and not the *hashCode()* / *equals()* contract
+- *LogicalSet* - An operation applied to two sets that logically combines the sets without actually
+  combining the sets. Implementations include *Intersection*, *Subset*, *Union* and *Without*
+- *SetDifferencer* - Determines what changes are required to turn one set into another
+
+### Stack <a name = "stack"></a>
+
+The *Stack* class is a subclass of *ObjectList* which adds push() and pop() methods.
+
+### Collection Watching <a name = "collection-watching"></a>
+
+The *watcher* package contains a *BaseCollectionChangeWatcher* for observing changes to collections of
+objects (for example, a set of *File* objects). This base is extended by *PeriodicCollectionChangeWatcher*
+which observes a given collection at a set *Frequency*. When the collection of objects changes, one or
+more methods in *CollectionChangeListener* is called with information about what changed.
+
+### Primitive Collections <a name = "primitive-collections"></a>
+
+The *primitive* package contains an extensive set of classes for storing data in primitive data structures, including:
+
+- Dynamic primitive arrays (1 and 2 dimensional)
+- Primitive lists, maps, sets and multi-maps
+- Bit arrays and bitwise I/O
+- Bit-packed arrays
+- *Split* versions of many data structures which virtualize several primitive data structures into a single
+  large one. This can be beneficial in keeping object allocation and garbage collection under control.
 
 [//]: # (end-user-text)
 
@@ -278,95 +365,6 @@ The following significant classes are undocumented:
 | [*Without*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.collections/com/telenav/kivakit/core/collections/set/logical/operations/Without.html) |  |  
 
 [//]: # (start-user-text)
-
-### Batcher <a name = "batcher"></a>
-
-The Batcher class combines an ArrayBlockingQueue with an ExecutorService to create a batch-processor which
-aggregates elements in batches and processes them with a set of worker threads. A batcher is created like this, passing in the maximum
-number of batches in the queue and the size of each batch:
-
-    Batcher<Record> batcher = new Batcher<>("RecordBatcher", Maximum._16, Count.16_384)
-    {
-        protected void onBatch(final Batch batch)
-        {
-            for (var record : batch)
-            {
-                [...]
-            }
-        }
-    };
-
-The batcher lifecycle then looks like this:
-
-    batcher.start(Count._8);
-
-        [...]
-
-    batcher.adder().add(record);
-
-        [...]
-
-    batcher.close();
-
-### Iterables and Iterators <a name = "iterables-and-iterators"></a>
-
-Several implementations of the Java *Iterable* and *Iterator* interfaces are available:
-
-- *DeduplicatingIterable* / *DeduplicatingIterator* - Wraps an *Iterable* or *Iterator* an iterates through
-  all elements, keeping a set of elements that have been seen. Elements that have already been seen
-  are skipped.
-- *FilteredIterable* / *FilteredIterator* - Wraps an *Iterable* or *Iterator*, returning only elements that
-  match the given Matcher.
-- *CompoundIterator* - Combines a sequence of iterators into a single iterator
-- *EmptyIterator* - An *Iterator* with no elements
-- *SingletonIterator* - An *Iterator* with a single element
-
-### Maps <a name = "maps"></a>
-
-The available implementations of the *Map* interface in *kivakit-core-collections* extend the abstract base class,
-*BaseMap*, from *kivakit-core-kernel*:
-
-- *CacheMap* - A most-recently-used (MRU) map which caches elements up to a maximum capacity
-- *CaseFoldingStringMap* - A *StringMap* implementation which is case-independent
-- *LinkedMap* - A map that uses LinkedHashMap as its implementation
-- *ReferenceCountMap* - A map that counts the number of references to its key type
-- *TwoWayMap* - A map that can also map from value back to key
-- *MultiMap* - A map from a single key to a list of values
-- *MultiSet* - A map from a single key to a set of values
-
-### Sets <a name = "sets"></a>
-
-The *set* package provides several useful implementations of *BaseSet* as well as a set differencer that
-determines what changes are required to turn one set into another.
-
-- *CompoundSet* - A set of sets that logically combines the sets without creating a new set
-- *ConcurrentHashSet* - A hash set implementation that is thread-safe
-- *IdentitySet* - A set based on reference and not the *hashCode()* / *equals()* contract
-- *LogicalSet* - An operation applied to two sets that logically combines the sets without actually
-  combining the sets. Implementations include *Intersection*, *Subset*, *Union* and *Without*
-- *SetDifferencer* - Determines what changes are required to turn one set into another
-
-### Stack <a name = "stack"></a>
-
-The *Stack* class is a subclass of *ObjectList* which adds push() and pop() methods.
-
-### Collection Watching <a name = "collection-watching"></a>
-
-The *watcher* package contains a *BaseCollectionChangeWatcher* for observing changes to collections of
-objects (for example, a set of *File* objects). This base is extended by *PeriodicCollectionChangeWatcher*
-which observes a given collection at a set *Frequency*. When the collection of objects changes, one or
-more methods in *CollectionChangeListener* is called with information about what changed.
-
-### Primitive Collections <a name = "primitive-collections"></a>
-
-The *primitive* package contains an extensive set of classes for storing data in primitive data structures, including:
-
-- Dynamic primitive arrays (1 and 2 dimensional)
-- Primitive lists, maps, sets and multi-maps
-- Bit arrays and bitwise I/O
-- Bit-packed arrays
-- *Split* versions of many data structures which virtualize several primitive data structures into a single
-  large one. This can be beneficial in keeping object allocation and garbage collection under control.
 
 [//]: # (end-user-text)
 

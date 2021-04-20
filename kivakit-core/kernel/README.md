@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-core kernel &nbsp;&nbsp; <img src="https://www.kivakit.org/images/nucleus-32.png" srcset="https://www.kivakit.org/images/nucleus-32-2x.png"/>
+# kivakit-core kernel &nbsp;&nbsp; <img src="https://www.kivakit.org/images/nucleus-32.png" srcset="https://www.kivakit.org/images/nucleus-32-2x.png 2x"/>
 
 This module provides extensions to the JDK and other packages for everyday Java development.
 
@@ -50,37 +50,35 @@ This module provides extensions to the JDK and other packages for everyday Java 
 KivaKit kernel is consists of several integrated frameworks in a number of different packages.
 The major feature areas are listed here, each having its own documentation:
 
-[**Data - Comparison**](documentation/data-comparison.md)
-[**Data - Conversion**](documentation/data-conversion.md)
-[**Data - Extraction**](documentation/data-extraction.md)
-[**Data - Validation**](documentation/data-validation.md)
-[**Interfaces**](documentation/interfaces.md)
-[**Language - Bits**](documentation/language-bits.md)
-[**Language - Collections**](documentation/language-collections.md)
-[**Language - I/O**](documentation/language-io.md)
-[**Language - Iteration**](documentation/language-iteration.md)
-[**Language - Locale**](documentation/language-locales.md)
-[**Language - Matching**](documentation/language-matching.md)
-[**Language - Math**](documentation/language-math.md)
-[**Language - Modules**](documentation/language-modules.md)
-[**Language - Objects**](documentation/language-objects.md)
-[**Language - Paths**](documentation/language-paths.md)
-[**Language - Patterns**](documentation/language-patterns.md)
-[**Language - Primitives**](documentation/language-primitives.md)
-[**Language - Progress**](documentation/language-progress.md)
-[**Language - Reflection**](documentation/language-reflection.md)
-[**Language - Strings**](documentation/language-strings.md)
-[**Language - Threading**](documentation/language-threading.md)
-[**Language - Time**](documentation/language-time.md)
-[**Language - Types**](documentation/language-types.md)
-[**Language - Values**](documentation/language-values.md)
-[**Language - VM**](documentation/language-vm.md)
-[**Logging**](documentation/logging.md)
-[**Messaging**](documentation/messaging.md)
-[**Messaging - Debugging**](documentation/messaging-debugging.md)
-[**Projects**](documentation/project.md)
-
-<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
+[**Data - Comparison**](documentation/data-comparison.md)    
+[**Data - Conversion**](documentation/data-conversion.md)    
+[**Data - Extraction**](documentation/data-extraction.md)    
+[**Data - Validation**](documentation/data-validation.md)  
+[**Interfaces**](documentation/interfaces.md)  
+[**Language - Bits**](documentation/language-bits.md)  
+[**Language - Collections**](documentation/language-collections.md)  
+[**Language - I/O**](documentation/language-io.md)  
+[**Language - Iteration**](documentation/language-iteration.md)  
+[**Language - Locale**](documentation/language-locales.md)  
+[**Language - Matching**](documentation/language-matching.md)  
+[**Language - Math**](documentation/language-math.md)  
+[**Language - Modules**](documentation/language-modules.md)  
+[**Language - Objects**](documentation/language-objects.md)  
+[**Language - Paths**](documentation/language-paths.md)  
+[**Language - Patterns**](documentation/language-patterns.md)  
+[**Language - Primitives**](documentation/language-primitives.md)  
+[**Language - Progress**](documentation/language-progress.md)  
+[**Language - Reflection**](documentation/language-reflection.md)  
+[**Language - Strings**](documentation/language-strings.md)  
+[**Language - Threading**](documentation/language-threading.md)  
+[**Language - Time**](documentation/language-time.md)  
+[**Language - Types**](documentation/language-types.md)  
+[**Language - Values**](documentation/language-values.md)  
+[**Language - VM**](documentation/language-vm.md)  
+[**Logging**](documentation/logging.md)  
+[**Messaging**](documentation/messaging.md)  
+[**Messaging - Debugging**](documentation/messaging-debugging.md)  
+[**Projects**](documentation/project.md)  
 
 [//]: # (end-user-text)
 

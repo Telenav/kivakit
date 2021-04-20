@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-core &nbsp;&nbsp; <img src="https://www.kivakit.org/images/nucleus-32.png" srcset="https://www.kivakit.org/images/nucleus-32-2x.png"/>
+# kivakit-core &nbsp;&nbsp; <img src="https://www.kivakit.org/images/nucleus-32.png" srcset="https://www.kivakit.org/images/nucleus-32-2x.png 2x"/>
 
 This project contains the core functionality of KivaKit, frameworks that are potentially needed by any application or server.
 

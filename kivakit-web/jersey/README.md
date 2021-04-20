@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-web-jersey &nbsp;&nbsp; <img src="https://www.kivakit.org/images/server-16.png" srcset="https://www.kivakit.org/images/server-16-2x.png 2x"/>
+# kivakit-web-jersey &nbsp;&nbsp; <img src="https://www.kivakit.org/images/server-32.png" srcset="https://www.kivakit.org/images/server-32-2x.png 2x"/>
 
 This project contains support for running Jersey on Jetty.
 

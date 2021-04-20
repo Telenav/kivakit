@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-core security &nbsp;&nbsp; <img src="https://www.kivakit.org/images/lock-32.png" srcset="https://www.kivakit.org/images/lock-32-2x.png"/>
+# kivakit-core security &nbsp;&nbsp; <img src="https://www.kivakit.org/images/lock-32.png" srcset="https://www.kivakit.org/images/lock-32-2x.png 2x"/>
 
 This project contains functionality related to security
 

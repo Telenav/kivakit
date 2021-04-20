@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-core-network socket &nbsp;&nbsp; <img src="https://www.kivakit.org/images/communicate-32.png" srcset="https://www.kivakit.org/images/communicate-32-2x.png"/>
+# kivakit-core-network socket &nbsp;&nbsp; <img src="https://www.kivakit.org/images/communicate-32.png" srcset="https://www.kivakit.org/images/communicate-32-2x.png 2x"/>
 
 This module improves access to TCP/IP sockets.
 
@@ -49,6 +49,8 @@ This module improves access to TCP/IP sockets.
 ### Summary <a name = "summary"></a>
 
 This module provides a simplified API for working with server sockets.
+
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Listening for Connections <a name = "listening-for-connections"></a>
 

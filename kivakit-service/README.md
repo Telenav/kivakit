@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# KivaKit Core - Resource &nbsp;&nbsp; <img src="https://www.kivakit.org/images/https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/https://www.kivakit.org/images/gears-32.png-2x.png 2x"/>
+# KivaKit Core - Resource &nbsp;&nbsp; <img src="https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/gears-32-2x.png 2x"/>
 
 This project index was created by Lexakai. To configure, see [project-home-folder]/documentation/lexakai.properties.
 
@@ -51,6 +51,8 @@ registration and discovery for clients, both locally, and on a cluster or the lo
 network as a whole. The application is launched automatically by the *ServiceRegistryClient*
 if it is not already running. A service registry server for a local area network or cluster
 needs to be set up manually.
+
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 [//]: # (end-user-text)
 

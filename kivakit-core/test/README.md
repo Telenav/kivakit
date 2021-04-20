@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-core test &nbsp;&nbsp; <img src="https://www.kivakit.org/images/https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/https://www.kivakit.org/images/gears-32.png-2x.png 2x"/>
+# kivakit-core test &nbsp;&nbsp; <img src="https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/gears-32-2x.png 2x"/>
 
 This module contains functionality for unit testing.
 
@@ -22,7 +22,7 @@ This module contains functionality for unit testing.
 
 ### Index
 
-
+[**Summary**](#summary)
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
@@ -45,7 +45,9 @@ This module contains functionality for unit testing.
 
 [//]: # (start-user-text)
 
+### Summary <a name = "summary"></a>
 
+This module provides a mini-framework for testing, including random value testing.
 
 [//]: # (end-user-text)
 

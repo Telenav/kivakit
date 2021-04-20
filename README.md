@@ -1,4 +1,3 @@
-
 [//]: # (start-user-text)
 
 <a href="https://www.kivakit.org">

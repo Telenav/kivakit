@@ -53,6 +53,8 @@ This module is a log service provider which logs messages by sending emails.
 A typical use for this is to send emails about high severity messages to one
 or more email addresses.
 
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+
 ### Including the Provider <a name = "including-the-provider"></a>
 
 To include the *EmailLog* service provider, all that is required is to:
@@ -66,6 +68,8 @@ To include the *EmailLog* service provider, all that is required is to:
            host=smtp.telenav.com username=jonathanl@telenav.com password=shibo"
 
 More details about logging are available at [*kivakit-core-kernel logging*](../../kivakit-core/kernel/documentation/logging.md).
+
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Log Configuration Parameters <a name = "log-configuration-parameters"></a>
 
