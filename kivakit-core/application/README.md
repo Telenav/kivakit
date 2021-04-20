@@ -69,7 +69,8 @@ browse the [**Javadoc**](#javadoc).
 
 Javadoc coverage for this project is 100.0%.  
   
-&nbsp; &nbsp;  ![](https://www.kivakit.org/images/meter-100-12.png)
+&nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-100-96.png" srcset="https://www.kivakit.org/images/meter-100-96-2x.png 2x"/>
+
 
 
 

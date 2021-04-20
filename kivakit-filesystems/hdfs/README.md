@@ -1,4 +1,4 @@
-# kivakit-filesystems hdfs &nbsp;&nbsp; <img src="https://www.kivakit.org/images/disks-48.png" srcset="https://www.kivakit.org/images/disks-48-2x.png 2x"/>
+# kivakit-filesystems hdfs &nbsp;&nbsp; <img src="https://www.kivakit.org/images/disks-32.png" srcset="https://www.kivakit.org/images/disks-32-2x.png 2x"/>
 
 Service provider for HDFS filesystem.
 
@@ -85,7 +85,8 @@ any application.
 
 Javadoc coverage for this project is 88.7%.  
   
-&nbsp; &nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png)
+&nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
+
 
 
 

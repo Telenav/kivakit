@@ -60,7 +60,8 @@ arguments and switches is available in the Javadoc for the [*Application*](https
 
 Javadoc coverage for this project is 91.4%.  
   
-&nbsp; &nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png)
+&nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
+
 
 
 

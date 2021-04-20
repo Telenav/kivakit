@@ -1,4 +1,4 @@
-# kivakit-core-serialization json &nbsp;&nbsp; <img src="https://www.kivakit.org/images/https://www.kivakit.org/images/gears-40.png" srcset="https://www.kivakit.org/images/https://www.kivakit.org/images/gears-40.png-2x.png 2x"/>
+# kivakit-core-serialization json &nbsp;&nbsp; <img src="https://www.kivakit.org/images/https://www.kivakit.org/images/gears-40.png.png" srcset="https://www.kivakit.org/images/https://www.kivakit.org/images/gears-40.png-2x.png 2x"/>
 
 This project contains support for working with JSON.
 
@@ -52,7 +52,8 @@ None
 
 Javadoc coverage for this project is 95.8%.  
   
-&nbsp; &nbsp;  ![](https://www.kivakit.org/images/meter-100-12.png)
+&nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-100-96.png" srcset="https://www.kivakit.org/images/meter-100-96-2x.png 2x"/>
+
 
 
 

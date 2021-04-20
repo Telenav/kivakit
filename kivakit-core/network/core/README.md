@@ -116,7 +116,8 @@ project [*kivakit-network-core-email*](../email/README.md) makes use of this cla
 
 Javadoc coverage for this project is 89.3%.  
   
-&nbsp; &nbsp;  ![](https://www.kivakit.org/images/meter-90-12.png)
+&nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
+
 
 
 

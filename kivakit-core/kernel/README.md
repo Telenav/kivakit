@@ -238,7 +238,8 @@ The major feature areas are listed here, each having its own documentation:
 
 Javadoc coverage for this project is 73.1%.  
   
-&nbsp; &nbsp;  ![](https://www.kivakit.org/images/meter-70-12.png)
+&nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-70-96.png" srcset="https://www.kivakit.org/images/meter-70-96-2x.png 2x"/>
+
 
 The following significant classes are undocumented:  
 

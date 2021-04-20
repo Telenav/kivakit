@@ -65,7 +65,8 @@ to provide core registration and discovery functionality.
 
 Javadoc coverage for this project is 95.5%.  
   
-&nbsp; &nbsp;  ![](https://www.kivakit.org/images/meter-100-12.png)
+&nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-100-96.png" srcset="https://www.kivakit.org/images/meter-100-96-2x.png 2x"/>
+
 
 
 

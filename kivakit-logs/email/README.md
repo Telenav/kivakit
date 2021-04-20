@@ -81,7 +81,8 @@ More details about logging are available at [*kivakit-core-kernel logging*](../.
 
 Javadoc coverage for this project is 75.0%.  
   
-&nbsp; &nbsp;  ![](https://www.kivakit.org/images/meter-80-12.png)
+&nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
+
 
 
 

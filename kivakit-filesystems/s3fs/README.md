@@ -1,4 +1,4 @@
-# kivakit-filesystems s3fs &nbsp;&nbsp; <img src="https://www.kivakit.org/images/disks-48.png" srcset="https://www.kivakit.org/images/disks-48-2x.png 2x"/>
+# kivakit-filesystems s3fs &nbsp;&nbsp; <img src="https://www.kivakit.org/images/disks-32.png" srcset="https://www.kivakit.org/images/disks-32-2x.png 2x"/>
 
 Service provider for AWS S3 filesystems.
 
@@ -77,7 +77,8 @@ For example:
 
 Javadoc coverage for this project is 80.0%.  
   
-&nbsp; &nbsp;  ![](https://www.kivakit.org/images/meter-80-12.png)
+&nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
+
 
 
 
