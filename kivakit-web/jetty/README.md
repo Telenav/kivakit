@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-web-jetty &nbsp;&nbsp; <img src="https://www.kivakit.org/images/server-32.png" srcset="https://www.kivakit.org/images/server-32-2x.png 2x"/>
+# kivakit-web-jetty &nbsp;&nbsp; <img src="https://www.kivakit.org/images/server-128.png" srcset="https://www.kivakit.org/images/server-128-2x.png 2x"/>
 
 This project contains support for using the Jetty web server.
 
