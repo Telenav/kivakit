@@ -73,6 +73,7 @@ KivaKit helps you to:
 | Lead | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
 | Administrator | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
 | Email | [kivakit@telenav.com](mailto:kivakit@telenav.com) |
+| Chat | [Zulip](https://kivakit.zulip.com) |
 | Twitter | [@OpenKivaKit](https://twitter.com/openkivakit) |
 | Issues | [GitHub Issues](https://github.com/Telenav/kivakit/issues) |
 | Code | [GitHub](https://github.com/Telenav/kivakit) |
