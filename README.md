@@ -12,6 +12,8 @@
 <img src="https://www.kivakit.org/images/zulip-32.png" srcset="https://www.kivakit.org/images/zulip-32-2x.png 2x"/>
 </a>
 
+<p></p>
+
 ![](https://www.kivakit.org/images/kivakit-background-500.jpg)
 
 # KivaKit 0.9.0-SNAPSHOT &nbsp;&nbsp;<img src="https://www.kivakit.org/images/kivakit-64.png" srcset="https://www.kivakit.org/images/kivakit-64-2x.png 2x"/>
