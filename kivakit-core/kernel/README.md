@@ -78,7 +78,7 @@ The major feature areas are listed here, each having its own documentation:
 [**Logging**](documentation/logging.md)  
 [**Messaging**](documentation/messaging.md)  
 [**Messaging - Debugging**](documentation/messaging-debugging.md)  
-[**Projects**](documentation/project.md)  
+[**Projects**](documentation/project.md)
 
 [//]: # (end-user-text)
 

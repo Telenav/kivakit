@@ -119,7 +119,7 @@ KivaKit helps you to:
 
 ### Reference <a name = "reference"></a>&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-[**Javadoc**](https://www.kivakit.org/javadoc)  
+[**Javadoc**](https://www.kivakit.org/javadoc/kivakit)  
 [**CodeFlowers**](https://www.kivakit.org/codeflowers/site/index.html)  
 [**System Properties**](documentation/developing/system-properties.md)
 

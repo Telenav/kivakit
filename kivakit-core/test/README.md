@@ -22,7 +22,7 @@ This module contains functionality for unit testing.
 
 ### Index
 
-[**Summary**](#summary)
+[**Summary**](#summary)  
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 

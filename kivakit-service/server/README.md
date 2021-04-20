@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-web-jetty &nbsp;&nbsp; <img src="https://www.kivakit.org/images/server-128.png" srcset="https://www.kivakit.org/images/server-128-2x.png 2x"/>
+# kivakit-service server &nbsp;&nbsp; <img src="https://www.kivakit.org/images/server-32.png" srcset="https://www.kivakit.org/images/server-32-2x.png 2x"/>
 
 This module provides port registration services to kivakit-service-client
 

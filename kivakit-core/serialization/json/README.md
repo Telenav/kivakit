@@ -22,7 +22,7 @@ This project contains support for working with JSON.
 
 ### Index
 
-[**Summary**](#summary)
+[**Summary**](#summary)  
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 

@@ -22,7 +22,7 @@ This module provides integration of the Kryo serialization framework with KivaKi
 
 ### Index
 
-[**Summary**](#summary)
+[**Summary**](#summary)  
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
