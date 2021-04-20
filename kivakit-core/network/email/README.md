@@ -1,4 +1,4 @@
-# kivakit-core-network email &nbsp;&nbsp; <img src="https://www.kivakit.org/images/envelope-40.png" srcset="https://www.kivakit.org/images/envelope-40-2x.png 2x"/>
+# kivakit-core-network email &nbsp;&nbsp; <img src="https://www.kivakit.org/images/envelope-32.png" srcset="https://www.kivakit.org/images/envelope-32-2x.png 2x"/>
 
 This module enables easy composition and sending of emails.
 

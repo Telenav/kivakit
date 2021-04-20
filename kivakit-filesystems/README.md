@@ -1,4 +1,4 @@
-# kivakit-filesystems &nbsp;&nbsp; <img src="https://www.kivakit.org/images/folder-40.png" srcset="https://www.kivakit.org/images/folder-40-2x.png 2x"/>
+# kivakit-filesystems &nbsp;&nbsp; <img src="https://www.kivakit.org/images/folder-32.png" srcset="https://www.kivakit.org/images/folder-32-2x.png"/>
 
 This project contains filesystem service providers for the service provider interface in *kivakit-core-resource*.
 

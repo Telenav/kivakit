@@ -1,4 +1,4 @@
-# kivakit-core-network core &nbsp;&nbsp; <img src="https://www.kivakit.org/images/nucleus-40.png" srcset="https://www.kivakit.org/images/nucleus-40-2x.png 2x"/>
+# kivakit-core-network core &nbsp;&nbsp; <img src="https://www.kivakit.org/images/nucleus-32.png" srcset="https://www.kivakit.org/images/nucleus-32-2x.png"/>
 
 This module provides classes that enhance the core networking features of the JDK. Other projects in  
 kivakit-core-network extend this base functionality.

@@ -1,4 +1,4 @@
-# kivakit-core-network http &nbsp;&nbsp; <img src="https://www.kivakit.org/images/world-40.png" srcset="https://www.kivakit.org/images/world-40-2x.png 2x"/>
+# kivakit-core-network http &nbsp;&nbsp; <img src="https://www.kivakit.org/images/world-32.png" srcset="https://www.kivakit.org/images/world-32-2x.png"/>
 
 This module provides HTTP and HTTPS resources.
 

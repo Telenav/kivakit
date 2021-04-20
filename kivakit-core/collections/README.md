@@ -1,4 +1,4 @@
-# kivakit-core collections &nbsp;&nbsp; <img src="https://www.kivakit.org/images/set-40.png" srcset="https://www.kivakit.org/images/set-40-2x.png 2x"/>
+# kivakit-core collections &nbsp;&nbsp; <img src="https://www.kivakit.org/images/set-32.png" srcset="https://www.kivakit.org/images/set-32-2x.png 2x"/>
 
 This module provides collections, iteration support, primitive collections, stacks, collection observation and bit I/O.
 

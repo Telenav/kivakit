@@ -1,4 +1,4 @@
-# kivakit-filesystems hdfs-proxy &nbsp;&nbsp; <img src="https://www.kivakit.org/images/communicate-40.png" srcset="https://www.kivakit.org/images/communicate-40-2x.png 2x"/>
+# kivakit-filesystems hdfs-proxy &nbsp;&nbsp; <img src="https://www.kivakit.org/images/communicate-32.png" srcset="https://www.kivakit.org/images/communicate-32-2x.png"/>
 
 HDFS proxy due to large number of conflicts between HDFS and other projects, especially Spark.
 

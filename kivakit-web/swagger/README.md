@@ -1,4 +1,4 @@
-# kivakit-web-swagger &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-40.png" srcset="https://www.kivakit.org/images/books-40-2x.png 2x"/>
+# kivakit-web-swagger &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
 This project contains support for using Swagger with Jersey and Jetty.
 

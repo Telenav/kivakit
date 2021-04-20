@@ -1,4 +1,4 @@
-# kivakit-core application &nbsp;&nbsp; <img src="https://www.kivakit.org/images/window-40.png" srcset="https://www.kivakit.org/images/window-40-2x.png 2x"/>
+# kivakit-core application &nbsp;&nbsp; <img src="https://www.kivakit.org/images/window-32.png" srcset="https://www.kivakit.org/images/window-32-2x.png 2x"/>
 
 This module contains base classes for applications and servers. It provides command line parsing and enables  
 configuration management and object registration and lookup.

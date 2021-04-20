@@ -1,4 +1,4 @@
-# kivakit-logs file &nbsp;&nbsp; <img src="https://www.kivakit.org/images/log-40.png" srcset="https://www.kivakit.org/images/log-40-2x.png 2x"/>
+# kivakit-logs file &nbsp;&nbsp; <img src="https://www.kivakit.org/images/log-32.png" srcset="https://www.kivakit.org/images/log-32-2x.png 2x"/>
 
 This module is a text file log service provider.
 

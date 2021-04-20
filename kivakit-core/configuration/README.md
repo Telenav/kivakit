@@ -1,4 +1,4 @@
-# kivakit-core configuration &nbsp;&nbsp; <img src="https://www.kivakit.org/images/tools-40.png" srcset="https://www.kivakit.org/images/tools-40-2x.png 2x"/>
+# kivakit-core configuration &nbsp;&nbsp; <img src="https://www.kivakit.org/images/tools-32.png" srcset="https://www.kivakit.org/images/tools-32-2x.png"/>
 
 This module manages sets of configuration objects, defined by properties files, which can be used to configure server  
 deployments. It also provides registration and lookup of objects.

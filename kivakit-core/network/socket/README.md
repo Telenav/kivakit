@@ -1,4 +1,4 @@
-# kivakit-core-network socket &nbsp;&nbsp; <img src="https://www.kivakit.org/images/communicate-40.png" srcset="https://www.kivakit.org/images/communicate-40-2x.png 2x"/>
+# kivakit-core-network socket &nbsp;&nbsp; <img src="https://www.kivakit.org/images/communicate-32.png" srcset="https://www.kivakit.org/images/communicate-32-2x.png"/>
 
 This module improves access to TCP/IP sockets.
 

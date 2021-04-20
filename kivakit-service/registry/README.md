@@ -1,4 +1,4 @@
-# kivakit-service registry &nbsp;&nbsp; <img src="https://www.kivakit.org/images/gears-40.png" srcset="https://www.kivakit.org/images/gears-40-2x.png 2x"/>
+# kivakit-service registry &nbsp;&nbsp; <img src="https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/gears-32-2x.png 2x"/>
 
 This project provides shared registry code to kivakit-service-client and kivakit-service-server.
 

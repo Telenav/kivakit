@@ -1,4 +1,4 @@
-# kivakit-core serialization &nbsp;&nbsp; <img src="https://www.kivakit.org/images/https://www.kivakit.org/images/gears-40.png.png" srcset="https://www.kivakit.org/images/https://www.kivakit.org/images/gears-40.png-2x.png 2x"/>
+# kivakit-core serialization &nbsp;&nbsp; <img src="https://www.kivakit.org/images/https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/https://www.kivakit.org/images/gears-32.png-2x.png 2x"/>
 
 This module provides an abstraction for serialization.
 

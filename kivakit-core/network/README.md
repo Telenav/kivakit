@@ -1,4 +1,4 @@
-# kivakit-core network &nbsp;&nbsp; <img src="https://www.kivakit.org/images/graph-40.png" srcset="https://www.kivakit.org/images/graph-40-2x.png 2x"/>
+# kivakit-core network &nbsp;&nbsp; <img src="https://www.kivakit.org/images/graph-32.png" srcset="https://www.kivakit.org/images/graph-32-2x.png"/>
 
 This project contains core networking projects including resources for common protocols such as HTTP, FTP and email.
 
