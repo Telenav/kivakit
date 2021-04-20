@@ -1,3 +1,19 @@
+[//]: # (start-user-text)
+
+<a href="https://www.kivakit.org">
+<img src="https://www.kivakit.org/images/web-32.png" srcset="https://www.kivakit.org/images/web-32-2x.png 2x"/>
+</a>
+&nbsp;
+<a href="https://twitter.com/openkivakit">
+<img src="https://www.kivakit.org/images/twitter-32.png" srcset="https://www.kivakit.org/images/twitter-32-2x.png 2x"/>
+</a>
+&nbsp;
+<a href="https://kivakit.zulipchat.com">
+<img src="https://www.kivakit.org/images/zulip-32.png" srcset="https://www.kivakit.org/images/zulip-32-2x.png 2x"/>
+</a>
+
+[//]: # (end-user-text)
+
 # kivakit-web-wicket &nbsp;&nbsp; <img src="https://www.kivakit.org/images/wicket-32.png" srcset="https://www.kivakit.org/images/wicket-32-2x.png 2x"/>
 
 This project contains support for using Apache Wicket on Jetty.
