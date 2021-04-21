@@ -51,14 +51,14 @@ Service provider for AWS S3 filesystems.
 This module is a filesystem service provider, giving access to S3 filesystem data under the
 [*kivakit-core-resource*](../../kivakit-core/resource/README.md)
 mini-framework. This service provider will be discovered using the Java
-service loader mechanism. All that is required to make use of HDFS paths with *File* and
+service loader mechanism. All that is required to make use of S3 paths with *File* and
 *Folder* objects is to:
 
 1. Include the dependency above in *pom.xml*
 2. Import *kivakit-filesystems-s3fs* in *module-info.java*
 3. Provide an instance of *S3Settings* with *Settings.register(settings, bucket)*,
-   where *bucket* identifies the S3 bucket that is used in paths, such as hdfs://*bucket*/data.txt
-4. Make use of HDFS paths in files and folders, for example:
+   where *bucket* identifies the S3 bucket that is used in paths, such as s3://*bucket*/data.txt
+4. Make use of S3 paths in files and folders, for example:
 
 ### Example <a name = "example"></a>
 
@@ -70,7 +70,7 @@ For example:
 
     Settings.register(settings, new InstanceIdentifier("my-bucket"));
 
-    var file = File.parse("hdfs://my-bucket/myfile.txt")
+    var file = File.parse("s3://my-bucket/myfile.txt")
 
 [//]: # (end-user-text)
 
