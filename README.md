@@ -42,20 +42,23 @@ KivaKit is a set of integrated Java mini-frameworks.
 
 ### Welcome <a name = "welcome"></a>! <a name = "welcome"></a> &nbsp; <img src="https://www.kivakit.org/images/stars-32.png" srcset="https://www.kivakit.org/images/stars-32-2x.png 2x"/>
 
+“Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.”
+
+&nbsp; &nbsp; &nbsp; &nbsp; — *Antoine de Saint-Exupéry*
+
 > *The mission of KivaKit is to accelerate the development of Java software through the use of integrated, modular, object-oriented design.*
 
-KivaKit provides quick and easy solutions to common everyday software problems by providing 
-"mini-frameworks" that work together to provide new features and to make existing APIs easier to use.
+KivaKit extends the JDK to provide quick and easy solutions to common everyday software problems. It does this 
+by providing new abstractions and APIs, and by simplifying an existing APIs.
 
-KivaKit is composed of a number of nested sub-projects that are Java 11+ modules. These modules 
-address different areas of concern in developing Java applications. The resources below will help 
-you to get started.
+KivaKit is composed of a number of nested sub-projects that are Java 11+ modules. These modules address different 
+areas of concern in developing Java applications. The resources below will help you to get started.
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
 ### Summary <a name = "summary"></a>
 
-KivaKit is designed for use in everyday software development. APIs work together through a set of 
+KivaKit is designed for use in everyday software development. KivaKit APIs work together through a set of 
 common interfaces and components to provide a consistent and powerful development experience.
 Documentation and examples are provided, but much of KivaKit's functionality can also be discovered 
 with class searching and autocomplete, because it was designed to be used in that way.
