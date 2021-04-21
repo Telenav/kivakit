@@ -95,7 +95,7 @@ public interface ResourceFolder
             for (final var resource : resources())
             {
                 final var destination = folder.file(resource.fileName());
-                resource.safeCopyTo(destination, OVERWRITE, ProgressReporter.NULL);
+                resource.safeCopyTo(destination, OVERWRITE);
             }
         }
         return folder;

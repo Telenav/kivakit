@@ -208,19 +208,16 @@
                                             <arg value = "src/main/java"/>
                                         </java>
                                     </then>
-                                </if>
-                                <if>
-                                    <equals arg1 = "${project.name}" arg2 = "KivaKit"/>
-                                    <then>
-                                        <echo file = "${maven.multiModuleProjectDirectory}/project.properties">
+                                    <else>
+                                        <echo file = "${project.basedir}/project.properties">
                                             project-name        = ${project.name}${line.separator}project-version     = ${project.version}${line.separator}project-group-id    = ${project.groupId}${line.separator}project-artifact-id = ${project.artifactId}
                                         </echo>
                                         <java jar = "${env.KIVAKIT_DATA_HOME}/docs/applications/kivakit-build-metadata-${env.KIVAKIT_BUILD_METADATA_VERSION}.jar"
                                               failonerror = "true"
                                               fork = "true">
-                                            <arg value = "${maven.multiModuleProjectDirectory}"/>
+                                            <arg value = "${project.basedir}"/>
                                         </java>
-                                    </then>
+                                    </else>
                                 </if>
                             </target>
                         </configuration>

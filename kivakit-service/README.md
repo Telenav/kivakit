@@ -14,9 +14,9 @@
 
 [//]: # (end-user-text)
 
-# KivaKit Core - Resource &nbsp;&nbsp; <img src="https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/gears-32-2x.png 2x"/>
+# kivakit-service &nbsp;&nbsp; <img src="https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/gears-32-2x.png 2x"/>
 
-This project index was created by Lexakai. To configure, see [project-home-folder]/documentation/lexakai.properties.
+This module contains modules for registering and looking up services.
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 

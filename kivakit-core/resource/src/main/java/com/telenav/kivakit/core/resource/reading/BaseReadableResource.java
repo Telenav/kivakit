@@ -49,7 +49,6 @@ import java.nio.charset.StandardCharsets;
  *
  * <ul>
  *     <li>{@link #codec(Codec)} - Applies a {@link Codec} to this resource</li>
- *     <li>{@link #safeCopyTo(Folder, CopyMode, ProgressReporter)} - Copies this resource to a folder</li>
  * </ul>
  * <p>
  * All other methods are documented in the {@link Resource} superinterface.
@@ -265,39 +264,6 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
     public ResourcePath path()
     {
         return path;
-    }
-
-    /**
-     * Copies this readable resource to the given folder safely
-     *
-     * @param destination The file to copy to
-     */
-    public void safeCopyTo(final Folder destination, final CopyMode mode, final ProgressReporter reporter)
-    {
-        safeCopyTo(destination.file(fileName()), mode, reporter);
-    }
-
-    /**
-     * Copies this readable resource to the given file safely (ensuring that a corrupted copy of the file never exists).
-     * This is done by first copying to a temporary file in the same folder. If the copy operation is successful, the
-     * destination file is then removed and the temporary file is renamed to the destination file's name.
-     *
-     * @param destination The file to copy to
-     */
-    @Override
-    public void safeCopyTo(final File destination, final CopyMode mode, final ProgressReporter reporter)
-    {
-        if (mode.canCopy(this, destination))
-        {
-            trace("Safe copy $ to $", this, destination);
-            final var temporary = destination.parent().temporaryFile(destination.fileName());
-            copyTo(temporary, mode, reporter);
-            if (destination.exists())
-            {
-                destination.delete();
-            }
-            temporary.renameTo(destination);
-        }
     }
 
     @Override

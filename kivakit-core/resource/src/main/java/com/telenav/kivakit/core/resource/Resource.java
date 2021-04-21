@@ -21,6 +21,7 @@ package com.telenav.kivakit.core.resource;
 import com.telenav.kivakit.core.commandline.ArgumentParser;
 import com.telenav.kivakit.core.commandline.SwitchParser;
 import com.telenav.kivakit.core.filesystem.File;
+import com.telenav.kivakit.core.filesystem.Folder;
 import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.core.kernel.interfaces.io.ByteSized;
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
@@ -278,11 +279,48 @@ public interface Resource extends
     }
 
     /**
+     * Copies this readable resource to the given folder safely
+     *
+     * @param destination The file to copy to
+     * @param mode Copying semantics
+     */
+    default void safeCopyTo(final Folder destination, final CopyMode mode)
+    {
+        safeCopyTo(destination.file(fileName()), mode, ProgressReporter.NULL);
+    }
+
+    /**
+     * Copies this readable resource to the given folder safely
+     *
+     * @param destination The file to copy to
+     * @param mode Copying semantics
+     */
+    default void safeCopyTo(final Folder destination, final CopyMode mode, final ProgressReporter reporter)
+    {
+        safeCopyTo(destination.file(fileName()), mode, reporter);
+    }
+
+    /**
      * Copies this resource to the given file safely (ensuring that a corrupted copy of the file never exists). This is
      * done by first copying to a temporary file in the same folder. If the copy operation is successful, the
      * destination file is then removed and the temporary file is renamed to the destination file's name.
      *
      * @param destination The file to copy to
+     * @param mode Copying semantics
+     */
+    default void safeCopyTo(final File destination, final CopyMode mode)
+    {
+        safeCopyTo(destination, mode, ProgressReporter.NULL);
+    }
+
+    /**
+     * Copies this resource to the given file safely (ensuring that a corrupted copy of the file never exists). This is
+     * done by first copying to a temporary file in the same folder. If the copy operation is successful, the
+     * destination file is then removed and the temporary file is renamed to the destination file's name.
+     *
+     * @param destination The file to copy to
+     * @param mode Copying semantics
+     * @param reporter Progress reporter to call as copy proceeds
      */
     default void safeCopyTo(final File destination, final CopyMode mode, final ProgressReporter reporter)
     {
@@ -290,8 +328,7 @@ public interface Resource extends
         if (mode.canCopy(this, destination))
         {
             // then copy to a temporary file
-            final var folder = destination.parent();
-            final var temporary = folder.temporaryFile(destination.fileName());
+            final var temporary = destination.parent().temporaryFile(destination.fileName());
             copyTo(temporary, mode, reporter);
 
             // remove the destination file
