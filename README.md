@@ -42,9 +42,9 @@ KivaKit is a set of integrated Java mini-frameworks.
 
 ### Welcome <a name = "welcome"></a>! <a name = "welcome"></a> &nbsp; <img src="https://www.kivakit.org/images/stars-32.png" srcset="https://www.kivakit.org/images/stars-32-2x.png 2x"/>
 
-Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.
+*Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.*
 
-&nbsp; &nbsp; &nbsp; &nbsp;  *Antoine de Saint-Exupýry*
+&nbsp; &nbsp; &nbsp; &nbsp; &mdash; Antoine de Saint-Exup&eacute;ry
 
 > *The mission of KivaKit is to accelerate the development of Java software through the use of integrated, modular, object-oriented design.*
 
