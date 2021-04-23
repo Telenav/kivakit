@@ -30,11 +30,11 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 @LexakaiJavadoc(complete = true)
 public class WebWicketProject extends Project
 {
-    private static final Lazy<WebWicketProject> singleton = Lazy.of(WebWicketProject::new);
+    private static final Lazy<WebWicketProject> project = Lazy.of(WebWicketProject::new);
 
     public static WebWicketProject get()
     {
-        return singleton.get();
+        return project.get();
     }
 
     protected WebWicketProject()

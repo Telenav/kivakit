@@ -46,7 +46,15 @@ import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
-import static com.telenav.kivakit.core.network.core.Protocol.*;
+import static com.telenav.kivakit.core.network.core.Protocol.FTP;
+import static com.telenav.kivakit.core.network.core.Protocol.HAZELCAST;
+import static com.telenav.kivakit.core.network.core.Protocol.HTTP;
+import static com.telenav.kivakit.core.network.core.Protocol.HTTPS;
+import static com.telenav.kivakit.core.network.core.Protocol.MEMCACHE;
+import static com.telenav.kivakit.core.network.core.Protocol.MONGO;
+import static com.telenav.kivakit.core.network.core.Protocol.MYSQL;
+import static com.telenav.kivakit.core.network.core.Protocol.SFTP;
+import static com.telenav.kivakit.core.network.core.Protocol.UNKNOWN;
 
 /**
  * Represents a host on a network, for which {@link Port}s can be retrieved.
@@ -313,7 +321,7 @@ public class Host implements Named, AsString, Comparable<Host>
 
     public Port https()
     {
-        return http(HTTPS.defaultPort());
+        return https(HTTPS.defaultPort());
     }
 
     public Port https(final int port)

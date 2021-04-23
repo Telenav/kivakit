@@ -33,11 +33,11 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 @LexakaiJavadoc(complete = true)
 public class ServiceRegistryServerProject extends Project
 {
-    private static final Lazy<ServiceRegistryServerProject> singleton = Lazy.of(ServiceRegistryServerProject::new);
+    private static final Lazy<ServiceRegistryServerProject> project = Lazy.of(ServiceRegistryServerProject::new);
 
     public static ServiceRegistryServerProject get()
     {
-        return singleton.get();
+        return project.get();
     }
 
     protected ServiceRegistryServerProject()

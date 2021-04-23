@@ -26,6 +26,7 @@ import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageT
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Objects;
+import java.util.function.Predicate;
 
 /**
  * A simple state machine with a single state that can be transitioned from one state to another and which allows a
@@ -100,12 +101,37 @@ public class StateMachine<State> extends BaseRepeater
         this.receiver = receiver;
     }
 
+    public State at()
+    {
+        return at;
+    }
+
     /**
      * @return True if the current state is the given state
      */
     public boolean is(final State state)
     {
         return whileLocked(() -> Objects.equals(at, state));
+    }
+
+    /**
+     * Toggles between two states by transitioning from one to the other
+     *
+     * @param one The first state
+     * @param two The second state
+     * @return The previous state, or null if toggling is not possible because this state machine isn't in either state
+     */
+    public State toggle(final State one, final State two)
+    {
+        if (is(one))
+        {
+            return transition(two);
+        }
+        if (is(two))
+        {
+            return transition(one);
+        }
+        return null;
     }
 
     /**
@@ -235,11 +261,56 @@ public class StateMachine<State> extends BaseRepeater
      */
     public boolean waitFor(final State state, final Duration maximumWait)
     {
+        return waitFor(ignored -> is(state), maximumWait);
+    }
+
+    /**
+     * Waits until the given predicate is satisfied
+     *
+     * @return True if the state was achieved, false if the operation timed out
+     */
+    public boolean waitFor(final Predicate<State> predicate)
+    {
+        return waitFor(predicate, Duration.MAXIMUM);
+    }
+
+    /**
+     * Waits until the given predicate is satisfied
+     *
+     * @param predicate The desired state
+     * @param maximumWait The maximum amount of time to wait
+     * @return True if the state was achieved, false if the operation timed out
+     */
+    public boolean waitFor(final Predicate<State> predicate, final Duration maximumWait)
+    {
         return whileLocked(() ->
         {
-            watcher.waitFor(state, maximumWait);
-            return is(state);
+            watcher.waitFor(predicate, maximumWait);
+            return predicate.test(at);
         });
+    }
+
+    /**
+     * Waits until this state machine is NOT in the given state
+     *
+     * @param state The state this machine should NOT be in
+     * @return True if the desired state was achieved, false if the operation timed out
+     */
+    public boolean waitForNot(final State state)
+    {
+        return waitForNot(state, Duration.MAXIMUM);
+    }
+
+    /**
+     * Waits until this state machine is NOT in the given state
+     *
+     * @param state The state this machine should NOT be in
+     * @param maximumWait The maximum amount of time to wait
+     * @return True if the desired state was achieved, false if the operation timed out
+     */
+    public boolean waitForNot(final State state, final Duration maximumWait)
+    {
+        return waitFor(ignored -> !is(state), maximumWait);
     }
 
     /**

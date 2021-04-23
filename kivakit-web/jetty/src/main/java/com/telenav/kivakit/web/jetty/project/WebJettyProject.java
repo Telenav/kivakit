@@ -30,11 +30,11 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 @LexakaiJavadoc(complete = true)
 public class WebJettyProject extends Project
 {
-    private static final Lazy<WebJettyProject> singleton = Lazy.of(WebJettyProject::new);
+    private static final Lazy<WebJettyProject> project = Lazy.of(WebJettyProject::new);
 
     public static WebJettyProject get()
     {
-        return singleton.get();
+        return project.get();
     }
 
     protected WebJettyProject()

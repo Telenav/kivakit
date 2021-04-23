@@ -30,11 +30,11 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 @LexakaiJavadoc(complete = true)
 public class WebSwaggerProject extends Project
 {
-    private static final Lazy<WebSwaggerProject> singleton = Lazy.of(WebSwaggerProject::new);
+    private static final Lazy<WebSwaggerProject> project = Lazy.of(WebSwaggerProject::new);
 
     public static WebSwaggerProject get()
     {
-        return singleton.get();
+        return project.get();
     }
 
     protected WebSwaggerProject()

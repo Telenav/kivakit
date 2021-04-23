@@ -296,6 +296,6 @@ public class JarLauncher extends BaseRepeater
 
     private Folder folder()
     {
-        return Folder.kivakitTemporaryFolder().folder("launcher").mkdirs();
+        return Folder.kivakitTemporary().folder("launcher").mkdirs();
     }
 }

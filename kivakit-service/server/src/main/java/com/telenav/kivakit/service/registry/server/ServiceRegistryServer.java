@@ -63,11 +63,11 @@ import java.util.Set;
 @LexakaiJavadoc(complete = true)
 public class ServiceRegistryServer extends Server
 {
-    private static final Lazy<ServiceRegistryServer> singleton = Lazy.of(ServiceRegistryServer::new);
+    private static final Lazy<ServiceRegistryServer> project = Lazy.of(ServiceRegistryServer::new);
 
     public static ServiceRegistryServer get()
     {
-        return singleton.get();
+        return project.get();
     }
 
     public static void main(final String[] arguments)

@@ -21,6 +21,7 @@ package kernel.language.thread;
 import com.telenav.kivakit.core.kernel.language.threading.KivaKitThread;
 import com.telenav.kivakit.core.kernel.language.time.Duration;
 import com.telenav.kivakit.core.kernel.language.time.Time;
+import com.telenav.kivakit.core.kernel.language.values.mutable.ConcurrentMutableValue;
 import com.telenav.kivakit.core.kernel.language.values.mutable.MutableValue;
 import com.telenav.kivakit.core.kernel.logging.Logger;
 import com.telenav.kivakit.core.kernel.logging.LoggerFactory;
@@ -37,22 +38,24 @@ public class KivaKitThreadTest
     @Test
     public void testInitialDelay()
     {
-        final var executed = new MutableValue<Time>();
-        final KivaKitThread thread = new KivaKitThread("test")
+        final var executedAt = new ConcurrentMutableValue<Time>();
+        final KivaKitThread thread = LOGGER.listenTo(new KivaKitThread("Test")
         {
             @Override
             protected void onRun()
             {
-                executed.set(Time.now());
+                LOGGER.information("Running");
+                executedAt.set(Time.now());
+                LOGGER.information("Done");
             }
-        };
+        });
 
         thread.addListener(LOGGER);
         thread.initialDelay(Duration.milliseconds(50));
         thread.startSynchronously();
         thread.waitFor(EXITED);
         ensure(thread.startedAt().elapsedSince().isApproximately(Duration.milliseconds(50), Duration.seconds(0.5)));
-        ensure(executed.get().elapsedSince().isApproximately(Duration.NONE, Duration.seconds(0.1)));
+        ensure(executedAt.get().elapsedSince().isApproximately(Duration.NONE, Duration.seconds(0.1)));
     }
 
     @Test

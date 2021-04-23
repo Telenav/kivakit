@@ -19,10 +19,16 @@
 package com.telenav.kivakit.core.filesystem;
 
 import com.telenav.kivakit.core.kernel.language.progress.ProgressReporter;
+import com.telenav.kivakit.core.kernel.language.time.Duration;
+import com.telenav.kivakit.core.kernel.language.values.level.Percent;
+import com.telenav.kivakit.core.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.resource.CopyMode;
 import com.telenav.kivakit.core.resource.Resource;
 import com.telenav.kivakit.core.resource.path.FileName;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
+import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.kernel.language.time.Frequency.EVERY_30_SECONDS;
 
 /**
  * A file cache with the given root. Resources can be copied into the cache with {@link #add(Resource, CopyMode,
@@ -31,7 +37,7 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
-public class FileCache
+public class FileCache extends BaseRepeater
 {
     private final Folder cacheFolder;
 
@@ -40,21 +46,60 @@ public class FileCache
      */
     public FileCache(final Folder cacheFolder)
     {
-        this.cacheFolder = cacheFolder;
-        if (!this.cacheFolder.mkdirs().exists())
-        {
-            throw new IllegalStateException("Unable to create root folder for cache: " + this.cacheFolder);
-        }
+        this.cacheFolder = cacheFolder.mkdirs();
+
+        ensure(cacheFolder.exists(), "Unable to create root folder for cache: " + cacheFolder);
     }
 
     /**
+     * Adds the given resource to this cache
+     *
+     * @param resource The resource to add to the cache
+     * @param mode How the resource should be copied
+     */
+    public File add(final Resource resource, final CopyMode mode)
+    {
+        return add(resource, mode, ProgressReporter.NULL);
+    }
+
+    /**
+     * Adds the given resource to this cache
+     *
      * @param resource The resource to add to the cache
      * @param mode How the resource should be copied
      * @param reporter The progress reporter to call as the file is being copied into the cache
      */
     public File add(final Resource resource, final CopyMode mode, final ProgressReporter reporter)
     {
-        final var file = file(resource.fileName());
+        return addAs(resource, resource.fileName(), mode, reporter);
+    }
+
+    /**
+     * Adds the given resource as a file in this cache with the given filename
+     *
+     * @param resource The resource to add to the cache
+     * @param filename The name of the file to write to in this cache
+     * @param mode How the resource should be copied
+     */
+    public File addAs(final Resource resource, final FileName filename, final CopyMode mode)
+    {
+        return addAs(resource, filename, mode, ProgressReporter.NULL);
+    }
+
+    /**
+     * Adds the given resource as a file in this cache with the given filename
+     *
+     * @param resource The resource to add to the cache
+     * @param filename The name of the file to write to in this cache
+     * @param mode How the resource should be copied
+     * @param reporter The progress reporter to call as the file is being copied into the cache
+     */
+    public File addAs(final Resource resource,
+                      final FileName filename,
+                      final CopyMode mode,
+                      final ProgressReporter reporter)
+    {
+        final var file = file(filename);
         if (!file.exists())
         {
             resource.safeCopyTo(file, mode, reporter);
@@ -76,5 +121,14 @@ public class FileCache
     public Folder folder(final String name)
     {
         return cacheFolder.folder(name);
+    }
+
+    public void startPruner()
+    {
+        // Start folder pruner
+        final var pruner = new FolderPruner(cacheFolder, EVERY_30_SECONDS);
+        pruner.minimumUsableDiskSpace(Percent.of(10));
+        pruner.minimumAge(Duration.days(30));
+        pruner.start();
     }
 }

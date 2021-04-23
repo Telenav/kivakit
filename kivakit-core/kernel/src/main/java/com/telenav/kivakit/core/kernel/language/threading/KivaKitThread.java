@@ -90,10 +90,8 @@ import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.S
  * <p><b>Checks</b></p>
  *
  * <ul>
+ *     <li>{@link #is(State)} - True if this thread is in the given {@link State}</li>
  *     <li>{@link #isRunning()} - True if this thread is in {@link State#RUNNING}</li>
- *     <li>{@link #stopRequested()} - True if this thread has been asked to stop. This method should be called periodically in the user
- *     code being executed by this thread. That code should return if this method returns true to ensure that the
- *     {@link #stop()} operation is responsive</li>
  * </ul>
  *
  * <p><b>Operations</b></p>
@@ -102,8 +100,8 @@ import static com.telenav.kivakit.core.kernel.language.threading.KivaKitThread.S
  *     <li>{@link #start()} - Starts this thread, transitioning it to {@link State#WAITING} and then {@link State#RUNNING}</li>
  *     <li>{@link #startSynchronously()} - Starts this thread and waits for it to reach {@link State#RUNNING}</li>
  *     <li>{@link #interrupt()} - Interrupts this thread</li>
- *     <li>{@link #stop()} - Asks this thread to stop by transitioning to the {@link State#STOP_REQUESTED} state, causing the method
- *     {@link #stopRequested()} to return true. When user code checks this value, it should return, causing the thread to exit. </li>
+ *     <li>{@link #stop()} - Asks this thread to stop by transitioning to the {@link State#STOP_REQUESTED} state.
+ *         When user code checks this value, it should return, causing the thread to exit. </li>
  *     <li>{@link #stop(Duration)} - Asks this thread to stop and waits for up to the given duration for it to reach {@link State#EXITED}</li>
  *     <li>{@link #waitFor(State)} - Waits for the given {@link State}</li>
  *     <li>{@link #waitFor(State, Duration)} - Waits for up to the given maximum duration for this thread to reach the given {@link State}</li>
@@ -219,7 +217,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
     private final Thread thread;
 
     /** The current state of this thread */
-    private final StateMachine<State> state = new StateMachine<>(CREATED, state -> trace(name() + ": " + state.name()));
+    private final StateMachine<State> state = listenTo(new StateMachine<>(CREATED, state -> trace(name() + ": " + state.name())));
 
     /** Any initial delay before the thread starts running */
     private Duration initialDelay = Duration.NONE;
@@ -384,6 +382,8 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
             {
                 try
                 {
+                    startedAt = Time.now();
+                    trace("Starting");
                     thread.start();
                 }
                 catch (final IllegalThreadStateException e)
@@ -444,6 +444,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
      */
     public void waitFor(final State state)
     {
+        trace("Wait for $", state);
         state().waitFor(state);
     }
 
@@ -452,6 +453,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
      */
     public void waitFor(final State state, final Duration maximumWait)
     {
+        trace("Wait for $", state);
         state().waitFor(state, maximumWait);
     }
 
@@ -501,7 +503,6 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
     @MustBeInvokedByOverriders
     protected void onRunning()
     {
-        startedAt = Time.now();
         transition(RUNNING);
     }
 

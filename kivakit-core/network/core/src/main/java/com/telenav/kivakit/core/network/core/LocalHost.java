@@ -41,7 +41,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail
 @LexakaiJavadoc(complete = true)
 public class LocalHost extends Host
 {
-    private static final Lazy<LocalHost> singleton = Lazy.of(LocalHost::new);
+    private static final Lazy<LocalHost> localhost = Lazy.of(LocalHost::new);
 
     static
     {
@@ -50,7 +50,7 @@ public class LocalHost extends Host
 
     public static LocalHost get()
     {
-        return singleton.get();
+        return localhost.get();
     }
 
     public static String hostname()

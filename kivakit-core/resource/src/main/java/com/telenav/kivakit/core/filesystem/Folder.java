@@ -97,9 +97,9 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail
  *     <li>{@link #desktop()} - The desktop folder</li>
  *     <li>{@link #userHome()} - The user's home folder</li>
  *     <li>{@link #kivakitHome()} - The KivaKit home folder</li>
- *     <li>{@link #kivakitCacheFolder()} - The KivaKit cache folder, normally ~/.kivakit</li>
- *     <li>{@link #kivakitTemporaryFolder()} - Folder where temporary files can be created</li>
- *     <li>{@link #kivakitTestFolder(Class)} - Folder for test files for the given class</li>
+ *     <li>{@link #kivakitCache()} - The KivaKit cache folder, normally ~/.kivakit</li>
+ *     <li>{@link #kivakitTemporary()} - Folder where temporary files can be created</li>
+ *     <li>{@link #kivakitTest(Class)} - Folder for test files for the given class</li>
  * </ul>
  *
  * <p><b>Properties</b></p>
@@ -126,7 +126,7 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail
  *     <li>{@link #oldest()} - The oldest file in this folder</li>
  *     <li>{@link #oldest(Matcher)} - The oldest matching file in this folder</li>
  *     <li>{@link #temporaryFile(FileName)} - A temporary file in this folder with the given name</li>
- *     <li>{@link #temporaryFolder(FileName)} - A temporary sub-folder with the given name</li>
+ *     <li>{@link #temporary(FileName)} - A temporary sub-folder with the given name</li>
  *     <li>{@link #temporaryFile(FileName, Extension)} - A temporary file in this folder with the given name and extension</li>
  * </ul>
  *
@@ -263,7 +263,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         return new java.io.File(path.join()).isDirectory();
     }
 
-    public static Folder kivakitCacheFolder()
+    public static Folder kivakitCache()
     {
         return Folder.of(KivaKit.get().cacheFolderPath()).mkdirs();
     }
@@ -278,14 +278,14 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         return fail("Cannot find KivaKit home folder");
     }
 
-    public static Folder kivakitTemporaryFolder()
+    public static Folder kivakitTemporary()
     {
-        return kivakitCacheFolder().folder("temporary").mkdirs();
+        return kivakitCache().folder("temporary").mkdirs();
     }
 
-    public static Folder kivakitTestFolder(final Class<?> type)
+    public static Folder kivakitTest(final Class<?> type)
     {
-        return kivakitTemporaryFolder().folder("test").folder(type.getSimpleName()).mkdirs();
+        return kivakitTemporary().folder("test").folder(type.getSimpleName()).mkdirs();
     }
 
     public static Folder of(final FileName filename)
@@ -344,7 +344,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         synchronized (temporaryLock)
         {
             final var name = "kivakit-process-" + OperatingSystem.get().processIdentifier();
-            final var temporary = kivakitTemporaryFolder()
+            final var temporary = kivakitTemporary()
                     .folder("processes")
                     .folder(name)
                     .mkdirs();
@@ -983,7 +983,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
 
         final var start = Time.now();
         LOGGER.information("Safely copying $ to $", this, destination);
-        final var temporary = destination.parent().temporaryFolder(FileName.parse("temporary-copy"));
+        final var temporary = destination.parent().temporary(FileName.parse("temporary-copy"));
         for (final var file : nestedFiles(matcher))
         {
             file.copyTo(temporary.file(file.relativeTo(this)), mode, reporter);
@@ -1027,6 +1027,23 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         return folder().bytes();
     }
 
+    public Folder temporary(final FileName baseName)
+    {
+        synchronized (temporaryLock)
+        {
+            var sequenceNumber = 0;
+            Folder folder;
+            do
+            {
+                folder = folder(baseName + "-" + sequenceNumber);
+                sequenceNumber++;
+            }
+            while (folder.exists());
+            folder.mkdirs();
+            return folder;
+        }
+    }
+
     public File temporaryFile(final FileName baseName)
     {
         return temporaryFile(baseName, Extension.TMP);
@@ -1046,23 +1063,6 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
             while (file.exists());
             file.writer().save("");
             return file;
-        }
-    }
-
-    public Folder temporaryFolder(final FileName baseName)
-    {
-        synchronized (temporaryLock)
-        {
-            var sequenceNumber = 0;
-            Folder folder;
-            do
-            {
-                folder = folder(baseName + "-" + sequenceNumber);
-                sequenceNumber++;
-            }
-            while (folder.exists());
-            folder.mkdirs();
-            return folder;
         }
     }
 

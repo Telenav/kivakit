@@ -30,11 +30,11 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 @LexakaiJavadoc(complete = true)
 public class FileSystemsS3FsProject extends Project
 {
-    private static final Lazy<FileSystemsS3FsProject> singleton = Lazy.of(FileSystemsS3FsProject::new);
+    private static final Lazy<FileSystemsS3FsProject> project = Lazy.of(FileSystemsS3FsProject::new);
 
     public static FileSystemsS3FsProject get()
     {
-        return singleton.get();
+        return project.get();
     }
 
     protected FileSystemsS3FsProject()

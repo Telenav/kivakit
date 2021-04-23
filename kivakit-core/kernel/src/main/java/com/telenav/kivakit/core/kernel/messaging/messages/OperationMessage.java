@@ -29,7 +29,6 @@ import com.telenav.kivakit.core.kernel.language.time.Time;
 import com.telenav.kivakit.core.kernel.language.types.Classes;
 import com.telenav.kivakit.core.kernel.logging.Log;
 import com.telenav.kivakit.core.kernel.logging.Logger;
-import com.telenav.kivakit.core.kernel.logging.logs.BaseLog;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.messaging.Message;
 import com.telenav.kivakit.core.kernel.messaging.messages.lifecycle.OperationFailed;
@@ -191,10 +190,9 @@ public abstract class OperationMessage implements Named, Message
         {
             try
             {
-                if (reentrancy.enter() && !BaseLog.isAsynchronous())
+                if (reentrancy.enter())
                 {
-                    formattedMessage = "A message was logged while attempting to format the log message '" + message + "'\n"
-                            + "Formatting this message could result in infinite recursion because KIVAKIT_LOG_SYNCHRONOUS is 'true'";
+                    formattedMessage = "Re-entrant message formatting detected. This could result in infinite recursion: '" + message + "'";
                 }
                 else
                 {

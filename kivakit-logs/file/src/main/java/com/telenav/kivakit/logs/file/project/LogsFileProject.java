@@ -30,11 +30,11 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 @LexakaiJavadoc(complete = true)
 public class LogsFileProject extends Project
 {
-    private static final Lazy<LogsFileProject> singleton = Lazy.of(LogsFileProject::new);
+    private static final Lazy<LogsFileProject> project = Lazy.of(LogsFileProject::new);
 
     public static LogsFileProject get()
     {
-        return singleton.get();
+        return project.get();
     }
 
     protected LogsFileProject()

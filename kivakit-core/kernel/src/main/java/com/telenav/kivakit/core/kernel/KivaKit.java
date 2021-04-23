@@ -41,11 +41,11 @@ import java.nio.file.Path;
 @LexakaiJavadoc(complete = true)
 public class KivaKit extends Project
 {
-    private static final Lazy<KivaKit> singleton = Lazy.of(KivaKit::new);
+    private static final Lazy<KivaKit> kivakit = Lazy.of(KivaKit::new);
 
     public static KivaKit get()
     {
-        return singleton.get();
+        return kivakit.get();
     }
 
     protected KivaKit()

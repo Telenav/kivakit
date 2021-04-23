@@ -254,7 +254,7 @@ public class File extends BaseWritableResource implements FileSystemObject
 
     public static synchronized File temporary(final Extension extension)
     {
-        return Folder.kivakitTemporaryFolder().file("temp-" + temporaryFileNumber++ + extension);
+        return Folder.kivakitTemporary().file("temp-" + temporaryFileNumber++ + extension);
     }
 
     /**

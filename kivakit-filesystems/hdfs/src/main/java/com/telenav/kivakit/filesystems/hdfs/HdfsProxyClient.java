@@ -71,11 +71,11 @@ public class HdfsProxyClient extends BaseRepeater
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    private static final Lazy<HdfsProxyClient> singleton = Lazy.of(() -> LOGGER.listenTo(new HdfsProxyClient()));
+    private static final Lazy<HdfsProxyClient> client = Lazy.of(() -> LOGGER.listenTo(new HdfsProxyClient()));
 
     public static HdfsProxyClient get()
     {
-        return singleton.get();
+        return client.get();
     }
 
     @UmlAggregation
@@ -99,7 +99,7 @@ public class HdfsProxyClient extends BaseRepeater
 
     public Folder logFolder()
     {
-        return Folder.kivakitTemporaryFolder().of(FileName.parse("kivakit-hdfs-proxy")).mkdirs();
+        return Folder.kivakitTemporary().folder(FileName.parse("hdfs-proxy-log")).mkdirs();
     }
 
     public HdfsProxy proxy()

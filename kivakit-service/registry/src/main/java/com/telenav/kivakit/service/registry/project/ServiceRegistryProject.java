@@ -35,14 +35,14 @@ import java.util.Set;
  */
 public class ServiceRegistryProject extends Project
 {
-    private static final Lazy<ServiceRegistryProject> singleton = Lazy.of(ServiceRegistryProject::new);
+    private static final Lazy<ServiceRegistryProject> project = Lazy.of(ServiceRegistryProject::new);
 
     private static final KryoTypes KRYO_TYPES = new ServiceRegistryKryoTypes()
             .mergedWith(new CoreKernelKryoTypes());
 
     public static ServiceRegistryProject get()
     {
-        return singleton.get();
+        return project.get();
     }
 
     private ServiceRegistryProject()

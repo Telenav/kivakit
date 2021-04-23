@@ -30,11 +30,11 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 @LexakaiJavadoc(complete = true)
 public class SerializationKryoProject extends Project
 {
-    private static final Lazy<SerializationKryoProject> singleton = Lazy.of(SerializationKryoProject::new);
+    private static final Lazy<SerializationKryoProject> project = Lazy.of(SerializationKryoProject::new);
 
     public static SerializationKryoProject get()
     {
-        return singleton.get();
+        return project.get();
     }
 
     protected SerializationKryoProject()

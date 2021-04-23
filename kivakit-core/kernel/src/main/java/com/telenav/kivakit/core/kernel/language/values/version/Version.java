@@ -26,8 +26,8 @@ import java.util.regex.Pattern;
 import static java.util.regex.Pattern.CASE_INSENSITIVE;
 
 /**
- * Represents a <a href=https://semver.org><i>semantic version</i></a>, such as "6.3" or "1.2.1" or "6.3-rc".
- * Supports {@link #major()}, {@link #minor()}, {@link #patch()} and {@link #release()} values.
+ * Represents a <a href=https://semver.org><i>semantic version</i></a>, such as "6.3" or "1.2.1" or "6.3-rc". Supports
+ * {@link #major()}, {@link #minor()}, {@link #patch()} and {@link #release()} values.
  *
  * <p><b>Parsing</b></p>
  *
@@ -178,14 +178,14 @@ public class Version
         return false;
     }
 
-    public boolean hasRelease()
-    {
-        return release != null;
-    }
-
     public boolean hasPatch()
     {
         return patch != NO_PATCH;
+    }
+
+    public boolean hasRelease()
+    {
+        return release != null;
     }
 
     @Override
@@ -202,7 +202,7 @@ public class Version
             {
                 if (patch == that.patch)
                 {
-                    return release().isAfter(that.release());
+                    return false;
                 }
                 else
                 {
@@ -255,17 +255,17 @@ public class Version
         return isOlderThan(that) ? this : that;
     }
 
-    public Release release()
-    {
-        return release;
-    }
-
     /**
      * @return The patch number, as in [major].[minor].[patch], or NO_PATCH if there is no patch number
      */
     public int patch()
     {
         return patch;
+    }
+
+    public Release release()
+    {
+        return release;
     }
 
     @Override
@@ -277,18 +277,18 @@ public class Version
     }
 
     /**
-     * @return This version without the {@link Release}
-     */
-    public Version withoutRelease()
-    {
-        return of(major, minor, patch, null);
-    }
-
-    /**
      * @return This version without the patch number
      */
     public Version withoutPatch()
     {
         return of(major, minor, -1, release);
+    }
+
+    /**
+     * @return This version without the {@link Release}
+     */
+    public Version withoutRelease()
+    {
+        return of(major, minor, patch, null);
     }
 }

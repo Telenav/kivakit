@@ -19,6 +19,7 @@
 package com.telenav.kivakit.core.network.http;
 
 import com.telenav.kivakit.core.kernel.data.conversion.string.BaseStringConverter;
+import com.telenav.kivakit.core.kernel.interfaces.model.Initializer;
 import com.telenav.kivakit.core.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.network.core.NetworkAccessConstraints;
@@ -139,16 +140,21 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
         return new HttpGetResource(this, constraints);
     }
 
-    public HttpGetResource get(final NetworkAccessConstraints constraints, final String contentType)
+    public HttpGetResource get(final NetworkAccessConstraints constraints, final Initializer<HttpGet> initializer)
     {
         return new HttpGetResource(this, constraints)
         {
             @Override
             protected void onInitialize(final HttpGet get)
             {
-                get.setHeader("Accept", contentType);
+                initializer.initialize(get);
             }
         };
+    }
+
+    public HttpGetResource get(final NetworkAccessConstraints constraints, final String contentType)
+    {
+        return get(constraints, get -> get.setHeader("Accept", contentType));
     }
 
     public HttpGetResource get(final String contentType)

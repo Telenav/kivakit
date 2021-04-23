@@ -30,11 +30,11 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 @LexakaiJavadoc(complete = true)
 public class FileSystemsHdfsProject extends Project
 {
-    private static final Lazy<FileSystemsHdfsProject> singleton = Lazy.of(FileSystemsHdfsProject::new);
+    private static final Lazy<FileSystemsHdfsProject> project = Lazy.of(FileSystemsHdfsProject::new);
 
     public static FileSystemsHdfsProject get()
     {
-        return singleton.get();
+        return project.get();
     }
 
     protected FileSystemsHdfsProject()

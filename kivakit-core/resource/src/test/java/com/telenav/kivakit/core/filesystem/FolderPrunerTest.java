@@ -93,7 +93,7 @@ public class FolderPrunerTest extends UnitTest
 
     private Folder folder(final String name)
     {
-        final var folder = Folder.kivakitTestFolder(getClass()).folder(name);
+        final var folder = Folder.kivakitTest(getClass()).folder(name);
         folder.mkdirs();
         folder.clearAll();
         return folder;

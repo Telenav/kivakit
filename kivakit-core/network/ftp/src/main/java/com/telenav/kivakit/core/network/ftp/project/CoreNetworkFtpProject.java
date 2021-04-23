@@ -30,11 +30,11 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 @LexakaiJavadoc(complete = true)
 public class CoreNetworkFtpProject extends Project
 {
-    private static final Lazy<CoreNetworkFtpProject> singleton = Lazy.of(CoreNetworkFtpProject::new);
+    private static final Lazy<CoreNetworkFtpProject> project = Lazy.of(CoreNetworkFtpProject::new);
 
     public static CoreNetworkFtpProject get()
     {
-        return singleton.get();
+        return project.get();
     }
 
     protected CoreNetworkFtpProject()

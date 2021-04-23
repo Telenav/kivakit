@@ -30,11 +30,11 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 @LexakaiJavadoc(complete = true)
 public class CoreConfigurationProject extends Project
 {
-    private static final Lazy<CoreConfigurationProject> singleton = Lazy.of(CoreConfigurationProject::new);
+    private static final Lazy<CoreConfigurationProject> project = Lazy.of(CoreConfigurationProject::new);
 
     public static CoreConfigurationProject get()
     {
-        return singleton.get();
+        return project.get();
     }
 
     protected CoreConfigurationProject()

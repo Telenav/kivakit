@@ -135,7 +135,7 @@ public class ServiceRegistryStore extends BaseRepeater
 
     private File file(final Class<? extends ServiceRegistry> type)
     {
-        return Folder.kivakitCacheFolder()
+        return Folder.kivakitCache()
                 .folder("service-registry")
                 .mkdirs()
                 .file(CaseFormat.camelCaseToHyphenated(type.getSimpleName()) + ".kryo");
