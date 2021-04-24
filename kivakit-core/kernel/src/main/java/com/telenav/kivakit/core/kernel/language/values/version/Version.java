@@ -76,7 +76,7 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
 public class Version
 {
     /** Value for no revision */
-    public static int NO_PATCH = -1;
+    public static final int NO_PATCH = -1;
 
     /** Pattern to match versions of the form [major].[minor](.[revision)?(-release)? */
     private static final Pattern PATTERN;

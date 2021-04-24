@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.core.collections.set.logical.operations;
 
-import com.telenav.kivakit.core.collections.set.logical.LogicalSet;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramSet;
+import com.telenav.kivakit.core.collections.set.logical.LogicalSet;
 import com.telenav.kivakit.core.kernel.language.iteration.BaseIterator;
 import com.telenav.kivakit.core.kernel.language.objects.Hash;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
 import java.util.Set;
@@ -94,7 +94,6 @@ public class Union<T> extends LogicalSet<T>
         return larger.isEmpty() && smaller.isEmpty();
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
     public Iterator<T> iterator()
     {

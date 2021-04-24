@@ -19,14 +19,13 @@
 package com.telenav.kivakit.core.kernel.language.strings.formatting;
 
 import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
+import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.core.kernel.language.strings.AsciiArt;
 import com.telenav.kivakit.core.kernel.language.strings.Split;
 import com.telenav.kivakit.core.kernel.language.values.count.Count;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.kivakit.core.kernel.language.collections.list.StringList;
 
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.kernel.language.strings.formatting.IndentingStringBuilder.Style.HTML;
 import static com.telenav.kivakit.core.kernel.language.strings.formatting.IndentingStringBuilder.Style.TEXT;
 

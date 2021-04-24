@@ -45,6 +45,6 @@ public class ObjectSet<T> extends BaseSet<T>
     @Override
     public ObjectSet<T> onNewInstance()
     {
-        return new ObjectSet<T>();
+        return new ObjectSet<>();
     }
 }

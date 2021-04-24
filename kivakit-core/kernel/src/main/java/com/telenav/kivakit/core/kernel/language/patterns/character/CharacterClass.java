@@ -24,8 +24,6 @@ import com.telenav.kivakit.core.kernel.language.patterns.Pattern;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguagePattern;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
-
 @UmlClassDiagram(diagram = DiagramLanguagePattern.class)
 public class CharacterClass extends Pattern
 {
@@ -38,7 +36,7 @@ public class CharacterClass extends Pattern
         {
             if (object instanceof String)
             {
-                builder.append(object.toString());
+                builder.append(object);
             }
             else if (object instanceof CharacterClass)
             {

@@ -20,8 +20,8 @@ package com.telenav.kivakit.core.kernel.messaging.listeners;
 
 import com.telenav.kivakit.core.kernel.messaging.Listener;
 import com.telenav.kivakit.core.kernel.messaging.Message;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramMessageListenerType;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
  * Writes messages to the console. Messages that represent success are written to {@link System#out}, while messages
@@ -52,6 +52,6 @@ public class ConsoleWriter implements Listener
                 System.err.println(message.asString());
                 return;
         }
-        System.out.println(message.toString());
+        System.out.println(message);
     }
 }

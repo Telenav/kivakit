@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.core.collections.set.logical.operations;
 
-import com.telenav.kivakit.core.collections.set.logical.LogicalSet;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramSet;
+import com.telenav.kivakit.core.collections.set.logical.LogicalSet;
 import com.telenav.kivakit.core.kernel.language.iteration.BaseIterator;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
 import java.util.Set;
@@ -74,7 +74,6 @@ public class Without<T> extends LogicalSet<T>
         return true;
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
     public Iterator<T> iterator()
     {

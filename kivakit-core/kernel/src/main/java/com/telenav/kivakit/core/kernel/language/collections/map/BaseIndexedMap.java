@@ -20,11 +20,11 @@ package com.telenav.kivakit.core.kernel.language.collections.map;
 
 import com.telenav.kivakit.core.kernel.interfaces.collection.Indexable;
 import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
+import com.telenav.kivakit.core.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.core.kernel.language.values.count.Maximum;
 import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageCollectionsMap;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
-import com.telenav.kivakit.core.kernel.language.collections.list.ObjectList;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
@@ -76,7 +76,6 @@ public class BaseIndexedMap<Key, Value> extends BaseMap<Key, Value> implements I
         return list.indexOf(value);
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
     public Iterator<Value> iterator()
     {
@@ -117,7 +116,6 @@ public class BaseIndexedMap<Key, Value> extends BaseMap<Key, Value> implements I
         list.sort(comparator);
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
     public Collection<Value> values()
     {

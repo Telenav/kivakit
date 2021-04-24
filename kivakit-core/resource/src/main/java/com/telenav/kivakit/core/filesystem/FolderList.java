@@ -28,7 +28,14 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Set;
 import java.util.function.UnaryOperator;
 
 /**
@@ -282,8 +289,8 @@ public class FolderList implements List<Folder>
 
     @NotNull
     @Override
-    public <T> T[] toArray(@NotNull final T[] a)
+    public <T> T[] toArray(@NotNull final T[] array)
     {
-        return folders.toArray(a);
+        return folders.toArray(array);
     }
 }

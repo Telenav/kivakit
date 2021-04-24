@@ -26,9 +26,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensure;
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
-
 /**
  * Class utility methods
  *

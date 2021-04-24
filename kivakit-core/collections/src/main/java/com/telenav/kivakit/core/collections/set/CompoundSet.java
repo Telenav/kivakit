@@ -118,7 +118,6 @@ public class CompoundSet<Element> implements Set<Element>
         return true;
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
     public Iterator<Element> iterator()
     {

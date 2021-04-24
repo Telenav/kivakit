@@ -125,7 +125,7 @@ public class ObjectFormatter
             final var name = type.simpleName();
             if (format == ObjectFormatter.Format.SINGLE_LINE)
             {
-                return "[" + name + (!strings.isEmpty() ? " " : "") + strings.toString() + "]";
+                return "[" + name + (!strings.isEmpty() ? " " : "") + strings + "]";
             }
             else
             {

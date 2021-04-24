@@ -392,7 +392,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
     private static FileSystem filesystem(final File file, final Mode mode)
     {
         final var fileUri = file.asJavaFile().toURI();
-        final var uri = URI.create("jar:" + fileUri.toString());
+        final var uri = URI.create("jar:" + fileUri);
         switch (mode)
         {
             case WRITE:

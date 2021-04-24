@@ -42,9 +42,6 @@ public class S3FileSystemServiceTest
             printWriter.println("the 3rd test case for s3 outputstream");
             printWriter.close();
 
-            // File file = new File(
-            // "s3://com-telenav-nav-user-analytics-dev/nav-user-analytics/map-matching/fcdtelenav.bay-sf/bay-sf.2017.01.24.pbf_2017-01-25.230133/part-r-00000.gz");
-
             for (final String line : file2.reader().lines(ProgressReporter.NULL))
             {
                 System.out.println(line);

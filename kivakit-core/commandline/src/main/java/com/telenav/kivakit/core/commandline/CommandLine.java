@@ -284,7 +284,6 @@ public class CommandLine implements AsString, Iterable<Argument>
         return get(parser) != null;
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
     public Iterator<Argument> iterator()
     {

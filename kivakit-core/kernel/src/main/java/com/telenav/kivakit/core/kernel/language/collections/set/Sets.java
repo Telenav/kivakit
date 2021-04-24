@@ -29,8 +29,6 @@ import java.util.IdentityHashMap;
 import java.util.Set;
 import java.util.function.Function;
 
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensureNotNull;
-
 /**
  * Set utility methods.
  *

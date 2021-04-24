@@ -169,7 +169,6 @@ public abstract class BaseSet<Element> implements
         return set.isEmpty();
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
     public Iterator<Element> iterator()
     {

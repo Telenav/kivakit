@@ -135,7 +135,7 @@ public class S3FolderTest extends UnitTest
         printWriter.println("for test");
         printWriter.close();
 
-        final var that = folder.parent().of(FileName.dateTime());
+        final var that = folder.parent().folder(FileName.dateTime());
         folder.renameTo(that);
         ensure(that.exists());
         ensure(!folder.exists());

@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.core.kernel.language.objects;
 
-import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageObject;
 import com.telenav.kivakit.core.kernel.language.iteration.BaseIterator;
+import com.telenav.kivakit.core.kernel.project.lexakai.diagrams.DiagramLanguageObject;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
@@ -52,7 +52,6 @@ public class Pair<T> implements Iterable<T>
         return a.equals(b);
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
     public Iterator<T> iterator()
     {

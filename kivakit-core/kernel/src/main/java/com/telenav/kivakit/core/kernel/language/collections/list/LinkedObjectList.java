@@ -34,12 +34,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.fail;
-
 /**
  * A linked list of objects that adds functionality to {@link LinkedList}, including the ability to serialize with Kryo
- * and to {@link #compress(CompressibleCollection.Method)} the collection to reduce consumed space (at which point it is no longer a mutable
- * linked list). Matching elements can be iterated with {@link #matching(Matcher)}.
+ * and to {@link #compress(CompressibleCollection.Method)} the collection to reduce consumed space (at which point it is
+ * no longer a mutable linked list). Matching elements can be iterated with {@link #matching(Matcher)}.
  *
  * @author jonathanl (shibo)
  */
@@ -91,7 +89,6 @@ public class LinkedObjectList<T> extends AbstractSequentialList<T> implements Co
         return array != null;
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
     public ListIterator<T> listIterator(final int index)
     {

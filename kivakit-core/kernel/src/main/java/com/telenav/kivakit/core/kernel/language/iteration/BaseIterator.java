@@ -26,8 +26,6 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.unsupported;
-
 /**
  * An implementation of {@link Iterator} that takes care of the basic logic of an iterator. Subclasses only need to
  * implement {@link #onNext()} by returning the next value or null if there is no next value.

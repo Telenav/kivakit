@@ -104,7 +104,6 @@ public class BaseMap<Key, Value> implements Map<Key, Value>
         return map.containsValue(value);
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
     public Set<java.util.Map.Entry<Key, Value>> entrySet()
     {
@@ -165,7 +164,6 @@ public class BaseMap<Key, Value> implements Map<Key, Value>
         return map.isEmpty();
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
     public Set<Key> keySet()
     {
@@ -235,7 +233,6 @@ public class BaseMap<Key, Value> implements Map<Key, Value>
         return "[" + list.join() + "]";
     }
 
-    @SuppressWarnings("NullableProblems")
     @Override
     public Collection<Value> values()
     {

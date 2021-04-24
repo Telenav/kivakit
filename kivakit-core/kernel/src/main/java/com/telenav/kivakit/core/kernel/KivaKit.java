@@ -36,7 +36,6 @@ import java.nio.file.Path;
  * @see Project
  * @see Path
  */
-@SuppressWarnings("UseOfSystemOutOrSystemErr")
 @UmlClassDiagram(diagram = DiagramProject.class)
 @LexakaiJavadoc(complete = true)
 public class KivaKit extends Project

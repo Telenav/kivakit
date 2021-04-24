@@ -48,10 +48,11 @@ import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensu
  * An HTTP network location.
  *
  * <p><b>Access</b></p>
- * <p>
+ *
  * <p>
  * HTTP network locations can be accessed as resources with {@link #resource()}. The can also be accessed with the HTTP
  * access methods GET, PUT and POST:
+ * </p>
  *
  * <ul>
  *     <li>{@link #get()} - A {@link HttpGetResource} with default content type and access constraints</li>

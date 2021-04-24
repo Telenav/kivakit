@@ -27,8 +27,6 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Map;
 
-import static com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure.ensure;
-
 /**
  * A map to look up {@link Named} objects by their name. Objects can be added to the map with {@link #add(Named)}
  * instead of put() and their name will be used as the map key. To retrieve a value, {@link #get(Name)} or {@link

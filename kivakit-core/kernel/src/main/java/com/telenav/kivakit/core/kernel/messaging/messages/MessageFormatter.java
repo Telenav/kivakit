@@ -264,7 +264,7 @@ public class MessageFormatter
                                 break;
 
                             case "object":
-                                builder.append(new ObjectFormatter(arguments[argumentIndex++]).toString());
+                                builder.append(new ObjectFormatter(arguments[argumentIndex++]));
                                 break;
 
                             case "class":
