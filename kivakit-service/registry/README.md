@@ -37,7 +37,7 @@ This project provides shared registry code to kivakit-service-client and kivakit
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-service-registry</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version>0.9.5-alpha</version>
     </dependency>
 
 

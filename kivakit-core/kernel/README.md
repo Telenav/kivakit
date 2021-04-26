@@ -37,7 +37,7 @@ This module provides extensions to the JDK and other packages for everyday Java 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-core-kernel</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version>0.9.5-alpha</version>
     </dependency>
 
 

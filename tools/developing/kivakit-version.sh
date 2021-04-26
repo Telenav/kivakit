@@ -10,4 +10,4 @@
 source library-functions.sh
 source kivakit-projects.sh
 
-version $KIVAKIT_HOME
+showVersion $KIVAKIT_HOME

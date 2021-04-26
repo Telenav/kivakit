@@ -37,7 +37,7 @@ This project facilitates object-oriented parsing of command line arguments and s
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-core-commandline</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version>0.9.5-alpha</version>
     </dependency>
 
 

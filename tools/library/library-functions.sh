@@ -36,7 +36,7 @@ project_build() {
     fi
 }
 
-version() {
+showVersion() {
 
     project_home=$1
     project_name=$(project_name $project_home)
@@ -214,8 +214,9 @@ git_flow_feature_finish() {
 update_version() {
 
     project_home=$1
-    old_version=$2
-    new_version=$3
+    new_version=$2
+
+    old_version=$(project_version $project_home)
 
     echo " "
     echo "Updating $(project_name $project_home) version from $old_version to $new_version"
