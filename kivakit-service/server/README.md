@@ -37,7 +37,7 @@ This module provides port registration services to kivakit-service-client
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-service-server</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version>0.9.5-alpha</version>
     </dependency>
 
 

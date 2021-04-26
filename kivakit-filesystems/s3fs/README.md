@@ -38,7 +38,7 @@ Service provider for AWS S3 filesystems.
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-filesystems-s3fs</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version>0.9.5-alpha</version>
     </dependency>
 
 

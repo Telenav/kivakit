@@ -41,7 +41,7 @@ kivakit-core-network extend this base functionality.
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-core-network-core</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version>0.9.5-alpha</version>
     </dependency>
 
 

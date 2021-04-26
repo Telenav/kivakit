@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.telenav.kivakit</groupId>
     <artifactId>kivakit</artifactId>
-    <version>0.9.0-SNAPSHOT</version>
+    <version>0.9.5-alpha</version>
     <packaging>pom</packaging>
 
     <name>KivaKit</name>
@@ -64,8 +64,8 @@
 
         <!-- KivaKit Version -->
 
-        <kivakit.version>0.9.0-SNAPSHOT</kivakit.version>
-        <kivakit.base.version>0.9.0</kivakit.base.version>
+        <kivakit.version>0.9.5-alpha</kivakit.version>
+        <kivakit.base.version>0.9.5-alpha</kivakit.base.version>
 
         <!-- Java -->
 

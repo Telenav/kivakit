@@ -20,6 +20,7 @@ package com.telenav.kivakit.filesystems.hdfs;
 
 import com.telenav.kivakit.core.configuration.settings.Settings;
 import com.telenav.kivakit.core.filesystem.Folder;
+import com.telenav.kivakit.core.kernel.KivaKit;
 import com.telenav.kivakit.core.network.core.EmailAddress;
 import com.telenav.kivakit.core.network.core.NetworkPath;
 import com.telenav.kivakit.core.network.http.HttpNetworkLocation;
@@ -49,7 +50,9 @@ public class HdfsFileSystemTest extends UnitTest
                 .configurationFolder(com.telenav.kivakit.core.resource.resources.packaged.Package.of(getClass(), "configurations/test"))
                 .contactEmail(EmailAddress.parse("jonathanl@telenav.com"))
                 .username("automation")
-                .proxyJar(new HttpNetworkLocation(NetworkPath.parseNetworkPath("https://github.com/Telenav/kivakit-binary/raw/develop/applications/kivakit-hdfs-proxy/kivakit-hdfs-proxy-0.9.0-SNAPSHOT.jar")).get());
+                .proxyJar(new HttpNetworkLocation(NetworkPath.parseNetworkPath(
+                        "https://www.kivakit.org/applications/kivakit-hdfs-proxy"
+                                + KivaKit.get().kivakitVersion() + ".jar")).get());
         Settings.register(settings);
     }
 

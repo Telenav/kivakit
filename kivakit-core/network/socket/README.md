@@ -38,7 +38,7 @@ This module improves access to TCP/IP sockets.
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-core-network-socket</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version>0.9.5-alpha</version>
     </dependency>
 
 

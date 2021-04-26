@@ -10,7 +10,7 @@
     <parent>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-service</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version>0.9.5-alpha</version>
     </parent>
 
     <name>KivaKit Service - Server</name>

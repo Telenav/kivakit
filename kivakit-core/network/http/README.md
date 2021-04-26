@@ -40,7 +40,7 @@ This module provides HTTP and HTTPS resources.
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-core-network-http</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version>0.9.5-alpha</version>
     </dependency>
 
 

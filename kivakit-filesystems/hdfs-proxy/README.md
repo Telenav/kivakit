@@ -37,7 +37,7 @@ HDFS proxy due to large number of conflicts between HDFS and other projects, esp
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-filesystems-hdfs-proxy</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version>0.9.5-alpha</version>
     </dependency>
 
 

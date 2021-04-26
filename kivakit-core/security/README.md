@@ -37,7 +37,7 @@ This project contains functionality related to security
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-core-security</artifactId>
-        <version>0.9.0-SNAPSHOT</version>
+        <version>0.9.5-alpha</version>
     </dependency>
 
 
