@@ -236,9 +236,9 @@ A wide variety of other resources are available and new ones are easy to write. 
 [*Resources - Archives*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/resource/documentation/diagrams/diagram-resource-archive.svg)  
 [*Resources - Built-In Resource Types*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/resource/documentation/diagrams/diagram-resource-type.svg)  
 [*Resources - Compression*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/resource/documentation/diagrams/diagram-resource-compression.svg)  
+[*Resources - Jar Launcher*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/resource/documentation/diagrams/diagram-jar-launcher.svg)  
 [*Resources - Paths*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/resource/documentation/diagrams/diagram-resource-path.svg)  
-[*Resources - Services*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/resource/documentation/diagrams/diagram-resource-service.svg)  
-[*diagram-jar-launcher*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/resource/documentation/diagrams/diagram-jar-launcher.svg)
+[*Resources - Services*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/resource/documentation/diagrams/diagram-resource-service.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 

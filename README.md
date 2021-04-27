@@ -18,7 +18,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit 0.9.4 &nbsp;&nbsp; <img src="https://www.kivakit.org/images/kivakit-64.png" srcset="https://www.kivakit.org/images/kivakit-64-2x.png 2x"/>
+# kivakit 0.9.5-alpha &nbsp;&nbsp; <img src="https://www.kivakit.org/images/kivakit-64.png" srcset="https://www.kivakit.org/images/kivakit-64-2x.png 2x"/>
 
 KivaKit is a set of integrated Java mini-frameworks.
 

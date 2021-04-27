@@ -55,7 +55,7 @@ This module is a serialization provider for the *kivakit-core-serialization-core
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-40.png" srcset="https://www.kivakit.org/images/diagram-40-2x.png 2x"/>
 
-[*diagram-serialization-kryo*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/serialization/kryo/documentation/diagrams/diagram-serialization-kryo.svg)
+[*Kryo Serialization*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/serialization/kryo/documentation/diagrams/diagram-serialization-kryo.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 

@@ -117,8 +117,11 @@ The major feature areas are listed here, each having its own documentation:
 [*Language - Iteration*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/diagram-language-iteration.svg)  
 [*Language - Java Modules*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/diagram-language-modules.svg)  
 [*Language - Java Virtual Machine*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/diagram-language-java-virtual-machine.svg)  
+[*Language - Locale*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/diagram-language-locale.svg)  
 [*Language - Matching*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/diagram-language-matchers.svg)  
 [*Language - Math*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/diagram-language-math.svg)  
+[*Language - Object*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/diagram-language-object.svg)  
+[*Language - Object References*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/diagram-language-object-reference.svg)  
 [*Language - Paths*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/diagram-language-path.svg)  
 [*Language - Pattern Matching*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/diagram-language-pattern.svg)  
 [*Language - Primitives*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/diagram-language-primitive.svg)  
@@ -136,10 +139,7 @@ The major feature areas are listed here, each having its own documentation:
 [*Messaging - Listening*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/diagram-message-listener.svg)  
 [*Messaging - Message Types*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/diagram-message-type.svg)  
 [*Messaging - Repeating*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/diagram-message-repeater.svg)  
-[*Projects*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/diagram-project.svg)  
-[*diagram-language-locale*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/diagram-language-locale.svg)  
-[*diagram-language-object*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/diagram-language-object.svg)  
-[*diagram-language-object-reference*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/diagram-language-object-reference.svg)
+[*Projects*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/kernel/documentation/diagrams/diagram-project.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
@@ -250,7 +250,7 @@ The major feature areas are listed here, each having its own documentation:
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 73.1%.  
+Javadoc coverage for this project is 73.2%.  
   
 &nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-70-96.png" srcset="https://www.kivakit.org/images/meter-70-96-2x.png 2x"/>
 
@@ -375,6 +375,7 @@ The following significant classes are undocumented:
 | [*CompressibleCollection.Method*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/collections/CompressibleCollection.Method.html) |  |  
 | [*ConcurrentCountMap*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/collections/map/count/ConcurrentCountMap.html) |  |  
 | [*ConcurrentMutableCount*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/values/count/ConcurrentMutableCount.html) |  |  
+| [*ConcurrentMutableValue*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/values/mutable/ConcurrentMutableValue.html) |  |  
 | [*ConcurrentProgress*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/progress/reporters/ConcurrentProgress.html) |  |  
 | [*Confidence*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/values/level/Confidence.html) |  |  
 | [*Confidence.Converter*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.kernel/com/telenav/kivakit/core/kernel/language/values/level/Confidence.Converter.html) |  |  

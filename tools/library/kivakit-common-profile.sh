@@ -1,7 +1,7 @@
 source $KIVAKIT_WORKSPACE/kivakit/tools/library/library-functions.sh
 
-system_variable LEXAKAI_VERSION 0.9.4
-system_variable KIVAKIT_BUILD_METADATA_VERSION 0.9.5-alpha
+system_variable LEXAKAI_VERSION 0.9.5-alpha-SNAPSHOT
+system_variable KIVAKIT_BUILD_METADATA_VERSION 0.9.5-alpha-SNAPSHOT
 system_variable KIVAKIT_JAVA_OPTIONS "-Xmx12g"
 
 system_variable KIVAKIT_HOME "$KIVAKIT_WORKSPACE/kivakit"
