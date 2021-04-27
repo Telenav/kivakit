@@ -10,14 +10,12 @@
 source library-functions.sh
 source kivakit-projects.sh
 
-help="[version]"
+help="[feature-name]"
 
-version=$1
+feature_name=$1
 
-require_variable version "$help"
+require_variable feature_name "$help"
 
-for project_home in "${KIVAKIT_ALL_HOMES[@]}"; do
-
-    update_version $project_home $version
-
-done
+bash kivakit-feature-finish $1
+bash lexakai-feature-finish $1
+bash mesakit-feature-finish $1
