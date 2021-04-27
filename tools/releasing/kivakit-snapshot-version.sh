@@ -12,9 +12,9 @@ source kivakit-projects.sh
 
 version="${1%-SNAPSHOT}-SNAPSHOT"
 
-ARGUMENT_HELP="[version]"
+help="[version]"
 
-require_variable version
+require_variable version "$help"
 
 for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
 

@@ -204,7 +204,7 @@ git_flow_feature_start() {
     if yes_no "Start 'Feature-$feature_name' branch of $project_home"; then
 
         cd $project_home
-        git-flow feature start Feature-$1
+        git-flow feature start Feature-$feature_name
 
     fi
 }

@@ -10,11 +10,11 @@
 source library-functions.sh
 source kivakit-projects.sh
 
-ARGUMENT_HELP="[version]"
+help="[version]"
 
 version=$1
 
-require_variable version
+require_variable version "$help"
 
 for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
 
