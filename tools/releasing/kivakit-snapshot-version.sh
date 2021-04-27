@@ -10,12 +10,9 @@
 source library-functions.sh
 source kivakit-projects.sh
 
-project_home=$1
-version="${2%-SNAPSHOT}-SNAPSHOT"
+version="${1%-SNAPSHOT}-SNAPSHOT"
 
 ARGUMENT_HELP="[version]"
-
-version=$1
 
 require_variable version
 

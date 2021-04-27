@@ -39,7 +39,7 @@ Service provider for HDFS filesystem.
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-filesystems-hdfs</artifactId>
-        <version>0.9.5-alpha</version>
+        <version>0.9.5-alpha-SNAPSHOT</version>
     </dependency>
 
 

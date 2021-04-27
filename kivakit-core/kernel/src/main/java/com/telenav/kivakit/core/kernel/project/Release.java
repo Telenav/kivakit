@@ -27,25 +27,22 @@ import com.telenav.kivakit.core.kernel.language.values.version.Version;
  */
 public enum Release
 {
-    SNAPSHOT(1),
-    ALPHA(2),
-    BETA(3),
-    RC(4),
-    FINAL(5);
+    ALPHA(1),
+    BETA(2),
+    RC(3),
+    FINAL(4);
 
     public static Release forIdentifier(final int identifier)
     {
         switch (identifier)
         {
             case 1:
-                return SNAPSHOT;
-            case 2:
                 return ALPHA;
-            case 3:
+            case 2:
                 return BETA;
-            case 4:
+            case 3:
                 return RC;
-            case 5:
+            case 4:
                 return FINAL;
             default:
                 throw new IllegalArgumentException();
@@ -63,6 +60,10 @@ public enum Release
                     return type;
                 }
             }
+        }
+        if ("SNAPSHOT".equalsIgnoreCase(value))
+        {
+            return null;
         }
         throw new IllegalArgumentException();
     }

@@ -37,7 +37,7 @@ This module contains functionality for unit testing.
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-core-test</artifactId>
-        <version>0.9.5-alpha</version>
+        <version>0.9.5-alpha-SNAPSHOT</version>
     </dependency>
 
 

@@ -37,7 +37,7 @@ This project provides a client for accessing local and network service registrie
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-service-client</artifactId>
-        <version>0.9.5-alpha</version>
+        <version>0.9.5-alpha-SNAPSHOT</version>
     </dependency>
 
 

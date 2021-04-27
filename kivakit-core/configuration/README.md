@@ -38,7 +38,7 @@ deployments. It also provides registration and lookup of objects.
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-core-configuration</artifactId>
-        <version>0.9.5-alpha</version>
+        <version>0.9.5-alpha-SNAPSHOT</version>
     </dependency>
 
 

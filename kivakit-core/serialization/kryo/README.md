@@ -37,7 +37,7 @@ This module provides integration of the Kryo serialization framework with KivaKi
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-core-serialization-kryo</artifactId>
-        <version>0.9.5-alpha</version>
+        <version>0.9.5-alpha-SNAPSHOT</version>
     </dependency>
 
 

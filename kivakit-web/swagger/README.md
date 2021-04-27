@@ -37,7 +37,7 @@ This project contains support for using Swagger with Jersey and Jetty.
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-web-swagger</artifactId>
-        <version>0.9.5-alpha</version>
+        <version>0.9.5-alpha-SNAPSHOT</version>
     </dependency>
 
 

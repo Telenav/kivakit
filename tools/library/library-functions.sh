@@ -9,9 +9,20 @@ fi
 
 ################ PROJECT ################################################################################################
 
+property_value() {
+
+    file=$1
+    key=$2
+
+    cat $file | grep "$key" | cut -d'=' -f2 | xargs echo
+}
+
 project_version() {
+
     project_home=$1
-    property_value $project_home/project.properties project-version
+    project_properties=$project_home/project.properties
+
+    echo $(property_value $project_properties project-version)
 }
 
 project_name() {
@@ -224,9 +235,6 @@ update_version() {
     # Update POM versions and .md files
     update-version.pl $project_home $old_version $new_version
 
-    # Update project.properties file
-    perl -pi -e "s/$old_version/$new_version/g" $project_home/project.properties
-
     echo "Updated"
     echo " "
 }
@@ -239,14 +247,6 @@ append_path() {
 
 prepend_path() {
     export PATH="$1:$PATH"
-}
-
-property_value() {
-
-    file=$1
-    key=$2
-
-    cat $file | grep "$key" | cut -d'=' -f2 | xargs echo
 }
 
 system_variable() {

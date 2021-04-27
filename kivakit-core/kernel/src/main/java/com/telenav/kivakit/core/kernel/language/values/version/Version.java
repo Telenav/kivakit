@@ -27,7 +27,7 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
 
 /**
  * Represents a <a href=https://semver.org><i>semantic version</i></a>, such as "6.3" or "1.2.1" or "6.3-rc". Supports
- * {@link #major()}, {@link #minor()}, {@link #patch()} and {@link #release()} values.
+ * {@link #major()}, {@link #minor()}, {@link #patch()}, {@link #release()} and snapshot values.
  *
  * <p><b>Parsing</b></p>
  *
@@ -45,6 +45,7 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
  *     <li>{@link #release()} - The release name, or null if there is none</li>
  *     <li>{@link #hasPatch()} - True if this version has a revision value</li>
  *     <li>{@link #hasRelease()} - True if this version has a release name</li>
+ *     <li>{@link #isSnapshot()} - True if this version is a snapshot release</li>
  * </ul>
  *
  * <p><b>Functional</b></p>
@@ -88,7 +89,8 @@ public class Version
                 + "\\."
                 + "(?<minor> \\d+)"
                 + "(\\. (?<patch> \\d+))?"
-                + "(- (?<release> \\w+))?", CASE_INSENSITIVE);
+                + "(- (?<release> \\w+))?"
+                + "(- (?<snapshot> SNAPSHOT))?", CASE_INSENSITIVE);
     }
 
     /**
@@ -104,15 +106,19 @@ public class Version
      */
     public static Version of(final int major, final int minor, final int patch)
     {
-        return of(major, minor, patch, null);
+        return of(major, minor, patch, null, false);
     }
 
     /**
      * @return A version for the given major, minor, patch and release values, as in 8.0.1-Beta
      */
-    public static Version of(final int major, final int minor, final int patch, final Release release)
+    public static Version of(final int major,
+                             final int minor,
+                             final int patch,
+                             final Release release,
+                             final boolean snapshot)
     {
-        return new Version(major, minor, patch, release);
+        return new Version(major, minor, patch, release, snapshot);
     }
 
     /**
@@ -136,9 +142,10 @@ public class Version
             // and the release name or null if there is none
             final var releaseName = matcher.group("release");
             final var release = releaseName == null ? null : Release.parse(releaseName);
+            final var snapshot = "SNAPSHOT".equalsIgnoreCase(matcher.group("snapshot"));
 
             // and finally, construct the version object
-            return of(major, minor, patchNumber, release);
+            return of(major, minor, patchNumber, release, snapshot);
         }
 
         return null;
@@ -152,12 +159,15 @@ public class Version
 
     private Release release;
 
-    protected Version(final int major, final int minor, final int patch, final Release release)
+    private boolean snapshot;
+
+    protected Version(final int major, final int minor, final int patch, final Release release, final boolean snapshot)
     {
         this.minor = (byte) minor;
         this.major = (byte) major;
         this.patch = (byte) patch;
         this.release = release;
+        this.snapshot = snapshot;
     }
 
     protected Version()
@@ -235,6 +245,11 @@ public class Version
         return equals(that) || isOlderThan(that);
     }
 
+    public boolean isSnapshot()
+    {
+        return snapshot;
+    }
+
     public int major()
     {
         return major;
@@ -273,7 +288,8 @@ public class Version
     {
         return major + "." + minor
                 + (patch == NO_PATCH ? "" : "." + patch)
-                + (release == null ? "" : "-" + release.name());
+                + (release == null ? "" : "-" + release.name().toLowerCase())
+                + (snapshot ? "-SNAPSHOT" : "");
     }
 
     /**
@@ -281,7 +297,7 @@ public class Version
      */
     public Version withoutPatch()
     {
-        return of(major, minor, -1, release);
+        return of(major, minor, -1, release, snapshot);
     }
 
     /**
@@ -289,6 +305,14 @@ public class Version
      */
     public Version withoutRelease()
     {
-        return of(major, minor, patch, null);
+        return of(major, minor, patch, null, snapshot);
+    }
+
+    /**
+     * @return This version as a non-snapshot
+     */
+    public Version withoutSnapshot()
+    {
+        return of(major, minor, patch, release, false);
     }
 }

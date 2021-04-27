@@ -43,7 +43,7 @@ This module contains abstractions for accessing the filesystem and arbitrary res
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-core-resource</artifactId>
-        <version>0.9.5-alpha</version>
+        <version>0.9.5-alpha-SNAPSHOT</version>
     </dependency>
 
 
