@@ -14,7 +14,7 @@
 
 <p></p>
 
-<img src="https://www.kivakit.org/images/kivakit-background-512.png" srcset="https://www.kivakit.org/images/kivakit-background-512-2x.png 2x"/>
+<img src="https://www.kivakit.org/images/kivakit-background.png" srcset="https://www.kivakit.org/images/kivakit-background-2x.png 2x"/>
 
 [//]: # (end-user-text)
 
