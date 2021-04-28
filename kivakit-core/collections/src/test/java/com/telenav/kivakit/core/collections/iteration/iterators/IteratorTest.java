@@ -18,18 +18,18 @@
 
 package com.telenav.kivakit.core.collections.iteration.iterators;
 
-import com.telenav.kivakit.core.collections.project.CoreCollectionsUnitTest;
 import com.telenav.kivakit.core.kernel.language.collections.list.BaseList;
 import com.telenav.kivakit.core.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.core.kernel.language.iteration.BaseIterator;
 import com.telenav.kivakit.core.kernel.language.iteration.Iterables;
 import com.telenav.kivakit.core.kernel.language.iteration.Next;
 import com.telenav.kivakit.core.kernel.language.values.count.Maximum;
+import com.telenav.kivakit.core.serialization.kryo.KryoUnitTest;
 import org.junit.Test;
 
 import java.util.Collections;
 
-public class IteratorTest extends CoreCollectionsUnitTest
+public class IteratorTest extends KryoUnitTest
 {
     @Test
     public void abstractIterableTest()

@@ -18,12 +18,12 @@
 
 package com.telenav.kivakit.core.collections.set;
 
-import com.telenav.kivakit.core.collections.project.CoreCollectionsUnitTest;
+import com.telenav.kivakit.core.serialization.kryo.KryoUnitTest;
 import org.junit.Test;
 
 import java.util.*;
 
-public class SetDifferencerTest extends CoreCollectionsUnitTest
+public class SetDifferencerTest extends KryoUnitTest
 {
     private static class Value
     {

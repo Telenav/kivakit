@@ -18,13 +18,13 @@
 
 package com.telenav.kivakit.core.collections.set;
 
-import com.telenav.kivakit.core.collections.project.CoreCollectionsUnitTest;
+import com.telenav.kivakit.core.serialization.kryo.KryoUnitTest;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class SetOperationTest extends CoreCollectionsUnitTest
+public abstract class SetOperationTest extends KryoUnitTest
 {
     protected Set<Integer> set(final Integer... values)
     {
