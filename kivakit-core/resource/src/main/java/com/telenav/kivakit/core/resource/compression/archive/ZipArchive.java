@@ -18,7 +18,6 @@
 
 package com.telenav.kivakit.core.resource.compression.archive;
 
-import com.telenav.kivakit.core.collections.primitive.array.scalars.ByteArray;
 import com.telenav.kivakit.core.filesystem.File;
 import com.telenav.kivakit.core.kernel.KivaKit;
 import com.telenav.kivakit.core.kernel.interfaces.code.Callback;
@@ -209,27 +208,6 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
     {
         IO.close(filesystem);
         filesystem = null;
-    }
-
-    public void dumpStream(final String entryName)
-    {
-        try
-        {
-            final var entry = entry(entryName);
-            if (entry != null)
-            {
-                final var in = entry.openForReading(reporter);
-                final var stream = IO.readBytes(in);
-                final var bytes = new ByteArray("bytes");
-                bytes.initialize();
-                bytes.addAll(stream);
-                IO.println("Zip entry '$'\n$", entryName, bytes.toHexString());
-            }
-        }
-        catch (final Exception e)
-        {
-            fail(e, "Unable to load object '$' from $", entryName, this);
-        }
     }
 
     /**

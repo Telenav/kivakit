@@ -32,6 +32,6 @@ public abstract class CoreCollectionsUnitTest extends KryoUnitTest
     @Override
     protected KryoTypes kryoTypes()
     {
-        return new CoreKernelKryoTypes().mergedWith(new CoreCollectionsKryoTypes());
+        return new CoreKernelKryoTypes();
     }
 }

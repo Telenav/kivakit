@@ -36,7 +36,6 @@ import com.telenav.kivakit.core.resource.path.Extension;
 import com.telenav.kivakit.core.resource.path.ResourcePathed;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramFileSystemFile;
 import com.telenav.kivakit.core.resource.project.lexakai.diagrams.DiagramResource;
-import com.telenav.kivakit.core.resource.resources.other.BitArrayResource;
 import com.telenav.kivakit.core.resource.resources.other.NullResource;
 import com.telenav.kivakit.core.resource.resources.packaged.PackageResource;
 import com.telenav.kivakit.core.resource.resources.string.StringResource;
