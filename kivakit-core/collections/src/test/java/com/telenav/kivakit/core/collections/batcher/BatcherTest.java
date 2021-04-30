@@ -18,13 +18,13 @@
 
 package com.telenav.kivakit.core.collections.batcher;
 
+import com.telenav.kivakit.core.collections.project.CoreCollectionsUnitTest;
 import com.telenav.kivakit.core.kernel.language.values.count.Count;
 import com.telenav.kivakit.core.kernel.language.values.count.Maximum;
-import com.telenav.kivakit.core.serialization.kryo.KryoUnitTest;
 import com.telenav.kivakit.core.test.random.RandomValueFactory;
 import org.junit.Test;
 
-public class BatcherTest extends KryoUnitTest
+public class BatcherTest extends CoreCollectionsUnitTest
 {
     /**
      * Processes batches of integer objects keeping a count of how many have been "processed"

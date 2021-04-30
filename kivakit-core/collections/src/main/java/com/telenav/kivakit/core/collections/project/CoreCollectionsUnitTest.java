@@ -16,13 +16,22 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.core.collections.project.lexakai.diagrams;
+package com.telenav.kivakit.core.collections.project;
 
-import com.telenav.lexakai.annotations.diagrams.UmlDiagramIdentifier;
+import com.telenav.kivakit.core.serialization.kryo.CoreKernelKryoTypes;
+import com.telenav.kivakit.core.serialization.kryo.KryoTypes;
+import com.telenav.kivakit.core.serialization.kryo.KryoUnitTest;
 
 /**
+ * This is the base test class for all unit tests. It provides some methods common to all tests.
+ *
  * @author jonathanl (shibo)
  */
-public class DiagramPrimitiveSet implements UmlDiagramIdentifier
+public abstract class CoreCollectionsUnitTest extends KryoUnitTest
 {
+    @Override
+    protected KryoTypes kryoTypes()
+    {
+        return new CoreKernelKryoTypes();
+    }
 }
