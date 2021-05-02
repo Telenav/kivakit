@@ -241,6 +241,15 @@ public class StateMachine<State> extends BaseRepeater
         });
     }
 
+    public void transitionAndWaitForNot(final State state)
+    {
+        whileLocked(() ->
+        {
+            transition(state);
+            waitForNot(state);
+        });
+    }
+
     /**
      * Waits forever for the given state to be achieved
      *
