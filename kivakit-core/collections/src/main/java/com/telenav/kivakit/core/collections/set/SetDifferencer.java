@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.core.collections.set;
 
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramSet;
 import com.telenav.kivakit.core.kernel.interfaces.comparison.Equality;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Set;
 

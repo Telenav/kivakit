@@ -19,11 +19,11 @@
 package com.telenav.kivakit.core.collections.iteration.iterables;
 
 import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramIteration;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.core.kernel.interfaces.comparison.Filter;
+import com.telenav.kivakit.core.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.core.kernel.language.iteration.BaseIterable;
 import com.telenav.kivakit.core.kernel.language.iteration.Next;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
 

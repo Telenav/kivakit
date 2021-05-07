@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.core.collections.iteration.iterables;
 
+import com.telenav.kivakit.core.collections.iteration.iterators.DeduplicatingIterator;
 import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramIteration;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.kivakit.core.collections.iteration.iterators.DeduplicatingIterator;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;

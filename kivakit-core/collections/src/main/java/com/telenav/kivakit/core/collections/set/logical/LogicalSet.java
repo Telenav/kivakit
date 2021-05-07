@@ -18,13 +18,13 @@
 
 package com.telenav.kivakit.core.collections.set.logical;
 
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramSet;
 import com.telenav.kivakit.core.collections.set.logical.operations.Intersection;
 import com.telenav.kivakit.core.collections.set.logical.operations.Union;
 import com.telenav.kivakit.core.collections.set.logical.operations.Without;
 import com.telenav.kivakit.core.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.core.kernel.language.strings.Join;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
 import java.util.Set;

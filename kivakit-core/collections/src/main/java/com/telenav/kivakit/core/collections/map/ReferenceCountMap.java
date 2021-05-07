@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.core.collections.map;
 
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.core.collections.project.lexakai.diagrams.DiagramMap;
 import com.telenav.kivakit.core.kernel.language.values.count.Count;
 import com.telenav.kivakit.core.kernel.language.values.count.MutableCount;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.HashMap;
 import java.util.Map;
