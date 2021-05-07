@@ -144,7 +144,7 @@ KivaKit helps you to:
 
 &nbsp; <img src="https://www.kivakit.org/images/meter-100-96.png" srcset="https://www.kivakit.org/images/meter-100-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-core-application**](kivakit-core/application/README.md)  
-&nbsp; <img src="https://www.kivakit.org/images/meter-70-96.png" srcset="https://www.kivakit.org/images/meter-70-96-2x.png 2x"/>
+&nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-core-collections**](kivakit-core/collections/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-core-commandline**](kivakit-core/commandline/README.md)  

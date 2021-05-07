@@ -267,7 +267,7 @@ A wide variety of other resources are available and new ones are easy to write. 
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 87.8%.  
+Javadoc coverage for this project is 88.0%.  
   
 &nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
 
@@ -279,7 +279,6 @@ Javadoc coverage for this project is 87.8%.
 | [*ArchivedFields*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/archive/ArchivedFields.html) |  |  
 | [*BaseReadableResource*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.resource/com/telenav/kivakit/core/resource/reading/BaseReadableResource.html) |  |  
 | [*BaseWritableResource*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.resource/com/telenav/kivakit/core/resource/writing/BaseWritableResource.html) |  |  
-| [*BitArrayResource*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.resource/com/telenav/kivakit/core/resource/resources/other/BitArrayResource.html) |  |  
 | [*Codec*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/Codec.html) |  |  
 | [*Compressor*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.resource/com/telenav/kivakit/core/resource/compression/Compressor.html) |  |  
 | [*CopyMode*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.resource/com/telenav/kivakit/core/resource/CopyMode.html) |  |  
