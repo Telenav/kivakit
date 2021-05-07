@@ -16,6 +16,6 @@ feature_name=$1
 
 require_variable feature_name "$help"
 
-bash kivakit-feature-finish $1
-bash lexakai-feature-finish $1
-bash mesakit-feature-finish $1
+bash kivakit-feature-finish.sh $1
+bash lexakai-feature-finish.sh $1
+bash mesakit-feature-finish.sh $1
