@@ -43,7 +43,7 @@ To check out the *kivakit* project:
 3. Clone the *kivakit* git repository into your workspace
 
        cd Workspace 
-       git clone git@github.com:Telenav/kivakit.git
+       git clone https://github.com/Telenav/kivakit.git
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
