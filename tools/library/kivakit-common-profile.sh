@@ -1,5 +1,7 @@
 source $KIVAKIT_WORKSPACE/kivakit/tools/library/library-functions.sh
 
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 system_variable LEXAKAI_VERSION 0.9.5-alpha-SNAPSHOT
 system_variable KIVAKIT_BUILD_METADATA_VERSION 0.9.5-alpha-SNAPSHOT
 system_variable KIVAKIT_JAVA_OPTIONS "-Xmx12g"

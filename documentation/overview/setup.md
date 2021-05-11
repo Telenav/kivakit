@@ -35,10 +35,6 @@ To check out the *kivakit* project:
 
        chsh -s /bin/bash
 
-   If you don't like macOS complaining that you're not using *zsh*, add this line to your *.bash_profile*:
-
-       export BASH_SILENCE_DEPRECATION_WARNING=1
-
 2. Open a *bash* shell and go to your IDE workspace (the folder *Workspace* above)
 3. Clone the *kivakit* git repository into your workspace
 
