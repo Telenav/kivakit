@@ -18,7 +18,7 @@ fi
 #
 
 cd $KIVAKIT_WORKSPACE
-git clone https://github.com/Telenav/kivakit-data.git
+git clone https://github.com/Telenav/kivakit-assets.git
 git clone https://github.com/Telenav/kivakit-build.git
 git clone https://github.com/Telenav/kivakit-extensions.git
 
@@ -29,7 +29,7 @@ git clone https://github.com/Telenav/kivakit-extensions.git
 cd $KIVAKIT_WORKSPACE
 git flow init -d
 git checkout develop
-cd $KIVAKIT_WORKSPACE/kivakit-data
+cd $KIVAKIT_WORKSPACE/kivakit-assets
 git flow init -d
 git checkout develop
 cd $KIVAKIT_WORKSPACE/kivakit-build

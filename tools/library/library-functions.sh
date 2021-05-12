@@ -274,7 +274,7 @@ is_mac() {
 lexakai() {
 
     # -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=1044
-    java -jar $KIVAKIT_DATA_HOME/docs/applications/lexakai-$LEXAKAI_VERSION.jar -overwrite-resources=true -update-readme=true $@
+    java -jar $KIVAKIT_ASSETS_HOME/docs/applications/lexakai-$LEXAKAI_VERSION.jar -overwrite-resources=true -update-readme=true $@
 }
 
 yes_no() {
