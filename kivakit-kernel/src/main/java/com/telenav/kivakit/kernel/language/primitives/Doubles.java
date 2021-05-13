@@ -87,7 +87,11 @@ public class Doubles
         {
             return min;
         }
-        return Math.min(value, max);
+        if (value > max)
+        {
+            return max;
+        }
+        return value;
     }
 
     public static boolean isBetween(final double value, final double min, final double max)

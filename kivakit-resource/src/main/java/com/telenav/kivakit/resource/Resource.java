@@ -63,7 +63,6 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
  *     <li>HttpPostResource</li>
  *     <li>FtpResource</li>
  *     <li>{@link NullResource}</li>
- *     <li>{@link BitArrayResource}</li>
  * </ul>
  *
  * <p><b>Properties</b></p>

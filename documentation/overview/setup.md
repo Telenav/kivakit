@@ -11,6 +11,11 @@ Whether you plan to use KivaKit or help to develop it, this page will help you g
 You will need these products, or compatible products, set up to begin:
 
 1. Latest Git
+2. Latest GitFlow.  To install on macOS, install *Homebrew* and then use that to install git-flow:
+   
+       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+       brew install git-flow
+
 2. Latest [Java 12](https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html)
 3. Latest [Maven](https://maven.apache.org/download.cgi)
 
@@ -35,15 +40,11 @@ To check out the *kivakit* project:
 
        chsh -s /bin/bash
 
-   If you don't like macOS complaining that you're not using *zsh*, add this line to your *.bash_profile*:
-
-       export BASH_SILENCE_DEPRECATION_WARNING=1
-
 2. Open a *bash* shell and go to your IDE workspace (the folder *Workspace* above)
 3. Clone the *kivakit* git repository into your workspace
 
        cd Workspace 
-       git clone git@github.com:Telenav/kivakit.git
+       git clone https://github.com/Telenav/kivakit.git
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 

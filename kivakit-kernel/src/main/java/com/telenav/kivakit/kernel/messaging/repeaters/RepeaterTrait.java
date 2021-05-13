@@ -4,6 +4,7 @@ import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
 import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.language.threading.context.CodeContext;
 import com.telenav.kivakit.kernel.language.trait.Trait;
+import com.telenav.kivakit.kernel.messaging.Broadcaster;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.Repeater;
@@ -44,6 +45,12 @@ public interface RepeaterTrait extends Trait, Repeater
     }
 
     @Override
+    default void handle(final Transmittable message)
+    {
+        repeater().handle(message);
+    }
+
+    @Override
     default boolean hasListeners()
     {
         return repeater().hasListeners();
@@ -53,6 +60,18 @@ public interface RepeaterTrait extends Trait, Repeater
     default void onMessage(final Message message)
     {
         repeater().onMessage(message);
+    }
+
+    @Override
+    default void parentBroadcaster(final Broadcaster parent)
+    {
+        repeater().parentBroadcaster(parent);
+    }
+
+    @Override
+    default Broadcaster parentBroadcaster()
+    {
+        return repeater().parentBroadcaster();
     }
 
     @Override
@@ -66,7 +85,7 @@ public interface RepeaterTrait extends Trait, Repeater
      */
     default Repeater repeater()
     {
-        return value(RepeaterTrait.class, BaseRepeater::new);
+        return traitValue(RepeaterTrait.class, BaseRepeater::new);
     }
 
     @Override

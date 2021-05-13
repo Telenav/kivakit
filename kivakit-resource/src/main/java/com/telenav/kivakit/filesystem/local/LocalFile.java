@@ -179,7 +179,7 @@ public class LocalFile extends BaseWritableResource implements FileService
 
         // If the parent exists and is writable and the file doesn't exist
         // the file is writable because we can create it
-        return parent().exists() && parent().isWritable() && !file.exists();
+        return this.parent().exists() && this.parent().isWritable() && !file.exists();
     }
 
     @Override

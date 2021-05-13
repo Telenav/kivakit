@@ -18,23 +18,24 @@
 
 package com.telenav.kivakit.kernel.messaging.broadcasters;
 
-import com.telenav.kivakit.kernel.messaging.messages.OperationMessage;
-import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.messaging.Broadcaster;
-import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
 import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
+import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.paths.PackagePathed;
 import com.telenav.kivakit.kernel.language.strings.formatting.IndentingStringBuilder;
 import com.telenav.kivakit.kernel.language.threading.context.CodeContext;
 import com.telenav.kivakit.kernel.language.threading.locks.ReadWriteLock;
 import com.telenav.kivakit.kernel.language.values.name.Name;
 import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
+import com.telenav.kivakit.kernel.logging.loggers.ConsoleLogger;
+import com.telenav.kivakit.kernel.messaging.Broadcaster;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
+import com.telenav.kivakit.kernel.messaging.messages.OperationMessage;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageRepeater;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+import com.telenav.lexakai.annotations.associations.UmlAggregation;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,7 +87,7 @@ import static com.telenav.kivakit.kernel.language.strings.formatting.IndentingSt
 @UmlClassDiagram(diagram = DiagramMessageRepeater.class)
 public class Multicaster implements Broadcaster, PackagePathed
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
+    private static final Logger LOGGER = new ConsoleLogger();
 
     /** This multicaster's audience */
     @UmlAggregation
@@ -99,6 +100,8 @@ public class Multicaster implements Broadcaster, PackagePathed
     private final Class<?> debugClassContext;
 
     private transient ReadWriteLock lock;
+
+    private Broadcaster parent;
 
     public Multicaster(final String objectName, final Class<?> debugClassContext)
     {
@@ -131,6 +134,7 @@ public class Multicaster implements Broadcaster, PackagePathed
     protected Multicaster(final Multicaster that)
     {
         objectName = that.objectName;
+        parent = that.parent;
         debugCodeContext = that.debugCodeContext;
         debugClassContext = that.debugClassContext;
         lock = that.lock;
@@ -147,7 +151,15 @@ public class Multicaster implements Broadcaster, PackagePathed
     @Override
     public void addListener(final Listener listener, final Filter<Transmittable> filter)
     {
-        Ensure.ensureNotNull(listener);
+        // If the listener to this multicaster is also a multicaster,
+        if (listener instanceof Broadcaster)
+        {
+            // then we are the parent of that multicaster. This information is used to provide the listener
+            // chain when it doesn't terminate correctly.
+            ((Broadcaster) listener).parentBroadcaster(this);
+        }
+
+        ensureNotNull(listener);
         lock().write(() ->
         {
             final var receiver = new AudienceMember(listener, filter);
@@ -239,6 +251,32 @@ public class Multicaster implements Broadcaster, PackagePathed
         return objectName;
     }
 
+    @Override
+    public Broadcaster parentBroadcaster()
+    {
+        return parent;
+    }
+
+    @Override
+    public void parentBroadcaster(final Broadcaster parent)
+    {
+        this.parent = parent;
+    }
+
+    /**
+     * @return The chain of multicasters that leads to this {@link Multicaster}.
+     */
+    @NotNull
+    public StringList parentChain()
+    {
+        final var chain = new StringList();
+        for (var at = (Broadcaster) this; at.parentBroadcaster() != null; at = at.parentBroadcaster())
+        {
+            chain.append(at.objectName());
+        }
+        return chain.reversed();
+    }
+
     /**
      * Removes the given listener from receiving broadcast messages
      */
@@ -282,8 +320,7 @@ public class Multicaster implements Broadcaster, PackagePathed
             }
             else
             {
-                LOGGER.warning(new Throwable("No listener"), "No listener to $ to hear message: ${debug}", objectName(), message);
-                LOGGER.information("Listeners: $", listenerTree());
+                LOGGER.warning("Broken listener chain: $", parentChain().join(" -> ") + " -> ? ");
             }
         });
     }

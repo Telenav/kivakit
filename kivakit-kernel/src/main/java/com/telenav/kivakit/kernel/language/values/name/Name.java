@@ -67,7 +67,8 @@ public class Name implements Named
 
     public static String synthetic(final Object object)
     {
-        return CaseFormat.camelCaseToHyphenated(object.getClass().getSimpleName()) + "." + Ints.toHex(System.identityHashCode(object));
+        return CaseFormat.camelCaseToHyphenated(object.getClass().getSimpleName())
+                + " (" + Ints.toHex(System.identityHashCode(object)) + ")";
     }
 
     @JsonProperty

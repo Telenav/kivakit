@@ -99,6 +99,16 @@ public interface Broadcaster extends Transceiver, Transmitter<Transmittable>
     }
 
     /**
+     * <b>Not public API</b>
+     */
+    Broadcaster parentBroadcaster();
+
+    /**
+     * <b>Not public API</b>
+     */
+    void parentBroadcaster(Broadcaster parent);
+
+    /**
      * Removes the given listener from this broadcaster
      */
     void removeListener(Listener listener);
