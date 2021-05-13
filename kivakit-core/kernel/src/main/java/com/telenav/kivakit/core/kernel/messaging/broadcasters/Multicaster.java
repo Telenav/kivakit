@@ -156,7 +156,7 @@ public class Multicaster implements Broadcaster, PackagePathed
         {
             // then we are the parent of that multicaster. This information is used to provide the listener
             // chain when it doesn't terminate correctly.
-            ((Broadcaster) listener).parent(this);
+            ((Broadcaster) listener).parentBroadcaster(this);
         }
 
         ensureNotNull(listener);
@@ -252,13 +252,13 @@ public class Multicaster implements Broadcaster, PackagePathed
     }
 
     @Override
-    public Broadcaster parent()
+    public Broadcaster parentBroadcaster()
     {
         return parent;
     }
 
     @Override
-    public void parent(final Broadcaster parent)
+    public void parentBroadcaster(final Broadcaster parent)
     {
         this.parent = parent;
     }
@@ -270,7 +270,7 @@ public class Multicaster implements Broadcaster, PackagePathed
     public StringList parentChain()
     {
         final var chain = new StringList();
-        for (var at = (Broadcaster) this; at.parent() != null; at = at.parent())
+        for (var at = (Broadcaster) this; at.parentBroadcaster() != null; at = at.parentBroadcaster())
         {
             chain.append(at.objectName());
         }

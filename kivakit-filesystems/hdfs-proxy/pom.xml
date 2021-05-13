@@ -129,8 +129,8 @@
                                 <phase>install</phase>
                                 <configuration>
                                     <target name = "Install ${jar.name}">
-                                        <echo message = "Installing ${project.basedir}/target/${jar.name}.jar -> ${env.HOME}/.kivakit/${kivakit.version}/temporary/launcher/${jar.name}.jar"/>
-                                        <copy file = "${project.basedir}/target/${jar.name}.jar"
+                                        <echo message = "Installing ${project.build.directory}/${jar.name}.jar -> ${env.HOME}/.kivakit/${kivakit.version}/temporary/launcher/${jar.name}.jar"/>
+                                        <copy file = "${project.build.directory}/${jar.name}.jar"
                                               tofile = "${env.HOME}/.kivakit/${kivakit.version}/temporary/launcher/${jar.name}.jar"
                                               verbose = "true"/>
                                     </target>

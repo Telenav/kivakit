@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.kernel.project;
 
-import com.telenav.kivakit.build.metadata.Metadata;
+import com.telenav.cactus.build.metadata.Metadata;
 import com.telenav.kivakit.core.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.core.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.core.kernel.language.primitives.Ints;

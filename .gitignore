@@ -1,3 +1,4 @@
+**/target.nosync/
 **/target/
 **/build.properties
 **/.settings/
@@ -15,3 +16,5 @@
 **/*.class
 **/*.hprof
 **/dependency-reduced-pom.xml
+**/venv/
+/venv/**

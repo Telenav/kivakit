@@ -63,15 +63,15 @@ public interface RepeaterTrait extends Trait, Repeater
     }
 
     @Override
-    default void parent(final Broadcaster parent)
+    default void parentBroadcaster(final Broadcaster parent)
     {
-        repeater().parent(parent);
+        repeater().parentBroadcaster(parent);
     }
 
     @Override
-    default Broadcaster parent()
+    default Broadcaster parentBroadcaster()
     {
-        return repeater().parent();
+        return repeater().parentBroadcaster();
     }
 
     @Override

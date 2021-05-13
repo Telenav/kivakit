@@ -9,7 +9,7 @@ open module kivakit.core.kernel
     requires transitive java.management;
 
     // Build
-    requires transitive kivakit.build.metadata;
+    requires transitive cactus.build.metadata;
 
     // Test
     requires transitive junit;

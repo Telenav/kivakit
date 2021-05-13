@@ -101,12 +101,12 @@ public interface Broadcaster extends Transceiver, Transmitter<Transmittable>
     /**
      * <b>Not public API</b>
      */
-    Broadcaster parent();
+    Broadcaster parentBroadcaster();
 
     /**
      * <b>Not public API</b>
      */
-    void parent(Broadcaster parent);
+    void parentBroadcaster(Broadcaster parent);
 
     /**
      * Removes the given listener from this broadcaster

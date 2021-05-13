@@ -113,7 +113,7 @@ public class ServiceRegistryStore extends BaseRepeater
         if (Booleans.isTrue(JavaVirtualMachine.property("KIVAKIT_SAVE_REGISTRY", "true")))
         {
             final var file = file(registry.getClass()).withExtension(Extension.TMP);
-            trace("Saving service registry to $", file.parent());
+            trace("Saving service registry to $", file.parentBroadcaster());
             if (file.delete())
             {
                 try (final var output = file.openForWriting())
