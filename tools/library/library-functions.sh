@@ -249,6 +249,23 @@ prepend_path() {
     export PATH="$1:$PATH"
 }
 
+source_project_profile() {
+
+    project_name=$1
+
+    common_profile="$KIVAKIT_WORKSPACE/${project_name}/tools/library/${project_name}-common-profile.sh"
+
+    if [ -f "$HOME/.${project_name}-profile" ]; then
+
+        source ~/.${project_name}-profile
+
+    elif [ -f "$common_profile" ]; then
+
+        source $common_profile
+
+    fi
+}
+
 system_variable() {
 
     variable=$1
