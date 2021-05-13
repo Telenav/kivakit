@@ -18,6 +18,7 @@ fi
 #
 
 cd $KIVAKIT_WORKSPACE
+git clone https://github.com/Telenav/cactus-build.git
 git clone https://github.com/Telenav/kivakit-assets.git
 git clone https://github.com/Telenav/lexakai-annotations.git
 git clone https://github.com/Telenav/kivakit-extensions.git
@@ -27,6 +28,10 @@ git clone https://github.com/Telenav/kivakit-extensions.git
 #
 
 cd $KIVAKIT_WORKSPACE/kivakit
+git flow init -d
+git checkout develop
+
+cd $KIVAKIT_WORKSPACE/cactus-build
 git flow init -d
 git checkout develop
 
@@ -43,11 +48,12 @@ git flow init -d
 git checkout develop
 
 #
-# Build kivakit-build and lexakai-annotations (required to build all projects)
+# Build cactus-build and lexakai-annotations (required to build all projects)
 #
 
-cd $KIVAKIT_WORKSPACE/kivakit-build
+cd $KIVAKIT_WORKSPACE/cactus-build
 mvn clean install
+
 cd $KIVAKIT_WORKSPACE/lexakai-annotations
 mvn clean install
 
