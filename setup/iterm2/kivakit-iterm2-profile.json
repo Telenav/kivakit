@@ -84,7 +84,7 @@
     "Blue Component" : 1
   },
   "Use Cursor Guide" : false,
-  "Custom Window Title" : "TDK",
+  "Custom Window Title" : "KivaKit",
   "Unlimited Scrollback" : true,
   "Custom Command" : "No",
   "Title Components" : 390,
@@ -300,7 +300,7 @@
     "Red Component" : 0.73333334922790527,
     "Blue Component" : 0
   },
-  "Name" : "TDK",
+  "Name" : "KivaKit",
   "Blinking Cursor" : false,
   "Guid" : "8FB11D06-994D-49F7-992B-5F960C047585",
   "Idle Code" : 0,

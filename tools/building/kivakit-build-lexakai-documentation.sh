@@ -14,6 +14,6 @@ for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
 
     project_name=$(project_name $project_home)
 
-    lexakai -project-version=$KIVAKIT_VERSION -output-folder=$KIVAKIT_DATA_HOME/docs/lexakai/$project_name $project_home
+    lexakai -project-version=$KIVAKIT_VERSION -output-folder=$KIVAKIT_ASSETS_HOME/docs/lexakai/$project_name $project_home
 
 done
