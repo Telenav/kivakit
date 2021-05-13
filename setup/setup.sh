@@ -27,7 +27,7 @@ git clone https://github.com/Telenav/kivakit-extensions.git
 # Initialize git flow for each project
 #
 
-cd $KIVAKIT_WORKSPACE
+cd $KIVAKIT_WORKSPACE/kivakit
 git flow init -d
 git checkout develop
 
