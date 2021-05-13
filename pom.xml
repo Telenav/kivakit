@@ -18,11 +18,16 @@
 
     <modules>
 
-        <module>kivakit-core</module>
-        <module>kivakit-logs</module>
-        <module>kivakit-service</module>
-        <module>kivakit-filesystems</module>
-        <module>kivakit-web</module>
+        <module>kivakit-kernel</module>
+        <module>kivakit-test</module>
+        <module>kivakit-serialization</module>
+        <module>kivakit-collections</module>
+        <module>kivakit-resource</module>
+        <module>kivakit-commandline</module>
+        <module>kivakit-configuration</module>
+        <module>kivakit-security</module>
+        <module>kivakit-network</module>
+        <module>kivakit-application</module>
 
     </modules>
 
@@ -166,7 +171,7 @@
         <profile>
             <id>test-quick</id>
             <properties>
-                <exclude.test.groups>com.telenav.kivakit.core.test.annotations.SlowTests</exclude.test.groups>
+                <exclude.test.groups>com.telenav.kivakit.test.annotations.SlowTests</exclude.test.groups>
                 <testQuick>true</testQuick>
             </properties>
         </profile>
@@ -202,7 +207,7 @@
                                         <echo file = "src/main/java/project.properties">
                                             project-name        = ${project.name}${line.separator}project-version     = ${project.version}${line.separator}project-group-id    = ${project.groupId}${line.separator}project-artifact-id = ${project.artifactId}
                                         </echo>
-                                        <java jar = "${env.KIVAKIT_DATA_HOME}/docs/applications/kivakit-build-metadata-${env.KIVAKIT_BUILD_METADATA_VERSION}.jar"
+                                        <java jar = "${env.KIVAKIT_ASSETS_HOME}/docs/applications/cactus-build-metadata-${env.CACTUS_BUILD_METADATA_VERSION}.jar"
                                               failonerror = "true"
                                               fork = "true">
                                             <arg value = "src/main/java"/>
@@ -212,7 +217,7 @@
                                         <echo file = "${project.basedir}/project.properties">
                                             project-name        = ${project.name}${line.separator}project-version     = ${project.version}${line.separator}project-group-id    = ${project.groupId}${line.separator}project-artifact-id = ${project.artifactId}
                                         </echo>
-                                        <java jar = "${env.KIVAKIT_DATA_HOME}/docs/applications/kivakit-build-metadata-${env.KIVAKIT_BUILD_METADATA_VERSION}.jar"
+                                        <java jar = "${env.KIVAKIT_ASSETS_HOME}/docs/applications/cactus-build-metadata-${env.CACTUS_BUILD_METADATA_VERSION}.jar"
                                               failonerror = "true"
                                               fork = "true">
                                             <arg value = "${project.basedir}"/>
@@ -330,7 +335,7 @@
                         <detectJavaApiLink>false</detectJavaApiLink>
                         <doclint>none</doclint>
                         <nohelp>true</nohelp>
-                        <reportOutputDirectory>${env.KIVAKIT_DATA_HOME}/docs/javadoc</reportOutputDirectory>
+                        <reportOutputDirectory>${env.KIVAKIT_ASSETS_HOME}/docs/javadoc</reportOutputDirectory>
                         <destDir>kivakit</destDir>
                         <additionalOptions>-notimestamp --show-module-contents all --show-packages all --show-types private</additionalOptions>
                     </configuration>
@@ -352,4 +357,3 @@
     </build>
 
 </project>
-
