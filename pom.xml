@@ -179,6 +179,10 @@
 
     <build>
 
+        <directory>target.nosync</directory>
+        <outputDirectory>target.nosync/classes</outputDirectory>
+        <testOutputDirectory>target.nosync/test-classes</testOutputDirectory>
+
         <plugins>
 
             <!-- Create project.properties and build.properties files -->
@@ -202,6 +206,7 @@
                                 </condition>
                                 <taskdef resource = "net/sf/antcontrib/antcontrib.properties" classpathref = "maven.plugin.classpath"/>
                                 <if>
+                                    <!--suppress MavenModelInspection -->
                                     <equals arg1 = "${source.exists}" arg2 = "true"/>
                                     <then>
                                         <echo file = "src/main/java/project.properties">
@@ -357,3 +362,4 @@
     </build>
 
 </project>
+
