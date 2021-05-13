@@ -254,15 +254,16 @@ source_project_profile() {
     project_name=$1
 
     common_profile="$KIVAKIT_WORKSPACE/${project_name}/tools/library/${project_name}-common-profile.sh"
+    project_profile="$HOME/.${project_name}-profile"
 
-    if [ -f "$HOME/.${project_name}-profile" ]; then
+    if test -e "$common_profile"
+    then
+        source "$common_profile"
+    fi
 
-        source ~/.${project_name}-profile
-
-    elif [ -f "$common_profile" ]; then
-
-        source $common_profile
-
+    if test -e "$project_profile"
+    then
+        source "$project_profile"
     fi
 }
 
