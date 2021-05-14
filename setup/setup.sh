@@ -48,16 +48,6 @@ git flow init -d
 git checkout develop
 
 #
-# Build cactus-build and lexakai-annotations (required to build all projects)
-#
-
-cd $KIVAKIT_WORKSPACE/cactus-build
-mvn clean install
-
-cd $KIVAKIT_WORKSPACE/lexakai-annotations
-mvn clean install
-
-#
 # Build
 #
 
