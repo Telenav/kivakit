@@ -18,11 +18,16 @@
 
     <modules>
 
-        <module>kivakit-core</module>
-        <module>kivakit-logs</module>
-        <module>kivakit-service</module>
-        <module>kivakit-filesystems</module>
-        <module>kivakit-web</module>
+        <module>kivakit-kernel</module>
+        <module>kivakit-test</module>
+        <module>kivakit-serialization</module>
+        <module>kivakit-collections</module>
+        <module>kivakit-resource</module>
+        <module>kivakit-commandline</module>
+        <module>kivakit-configuration</module>
+        <module>kivakit-security</module>
+        <module>kivakit-network</module>
+        <module>kivakit-application</module>
 
     </modules>
 
@@ -173,10 +178,6 @@
     </profiles>
 
     <build>
-
-        <directory>target.nosync</directory>
-        <outputDirectory>target.nosync/classes</outputDirectory>
-        <testOutputDirectory>target.nosync/test-classes</testOutputDirectory>
 
         <plugins>
 

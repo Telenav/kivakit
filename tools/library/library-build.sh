@@ -190,7 +190,7 @@ build() {
             ;;
 
         "graphs")
-            POST_BUILD_SCRIPT="kivakit-build-all-graphs.sh"
+            POST_BUILD_SCRIPT="cactus-build-all-graphs.sh"
             ;;
 
         "shade")
