@@ -7,6 +7,10 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+echo " "
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Preparing for Setup ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo " "
+
 if [ -z "$KIVAKIT_WORKSPACE" ]; then
     echo " "
     echo "Please set up your .profile before setting up KivaKit."
@@ -30,6 +34,10 @@ fi
 # Check out required repositories
 #
 
+echo " "
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Cloning Repositories ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo " "
+
 cd $KIVAKIT_WORKSPACE
 git clone https://github.com/Telenav/cactus-build.git
 git clone https://github.com/Telenav/cactus-build-assets.git
@@ -40,6 +48,10 @@ git clone https://github.com/Telenav/kivakit-assets.git
 #
 # Initialize git flow for each project
 #
+
+echo " "
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Initializing Git Flow ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo " "
 
 cd $KIVAKIT_WORKSPACE/cactus-build
 git flow init -d 2>&1 /dev/null
@@ -71,5 +83,14 @@ git flow init -d 2>&1 /dev/null
 # Build
 #
 
+echo " "
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Building Projects ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo " "
+
 cd $KIVAKIT_HOME
 kivakit-build.sh setup
+
+echo " "
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Setup Complete ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo " "
+
