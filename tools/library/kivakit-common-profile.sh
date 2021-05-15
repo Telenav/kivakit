@@ -47,7 +47,7 @@ echo " "
 source_project_profile "mesakit"
 source_project_profile "lexakai"
 
-export KIVAKIT_SETUP_ALLOWED "true"
+date +setup-time=%Y.%m.%d-%I.%M%p > $KIVAKIT_WORKSPACE/kivakit/setup.properties
 
 cd $KIVAKIT_WORKSPACE
 

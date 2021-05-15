@@ -18,7 +18,7 @@ fi
 cd $KIVAKIT_WORKSPACE/kivakit
 git checkout -q develop
 
-if [ -z "$KIVAKIT_SETUP_ALLOWED" ]; then
+if [ -e "$KIVAKIT_WORKSPACE/kivakit/setup.properties" ]; then
     echo " "
     echo "Please restart your shell before continuing KivaKit setup."
     echo "See http://kivakit.org for details."
