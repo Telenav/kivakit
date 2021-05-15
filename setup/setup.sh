@@ -42,7 +42,7 @@ git clone https://github.com/Telenav/kivakit-assets.git
 #
 
 cd $KIVAKIT_WORKSPACE/cactus-build
-git flow init -d 2&>1 /dev/null
+git flow init -d 2>&1 /dev/null
 
 if [ $(git flow config >/dev/null 2>&1) ]; then
     echo " "
@@ -53,19 +53,19 @@ if [ $(git flow config >/dev/null 2>&1) ]; then
 fi
 
 cd $KIVAKIT_WORKSPACE/cactus-build-assets
-git flow init -d 2&>1 /dev/null
+git flow init -d 2>&1 /dev/null
 
 cd $KIVAKIT_WORKSPACE/lexakai-annotations
-git flow init -d 2&>1 /dev/null
+git flow init -d 2>&1 /dev/null
 
 cd $KIVAKIT_WORKSPACE/kivakit
-git flow init -d 2&>1 /dev/null
+git flow init -d 2>&1 /dev/null
 
 cd $KIVAKIT_WORKSPACE/kivakit-assets
-git flow init -d 2&>1 /dev/null
+git flow init -d 2>&1 /dev/null
 
 cd $KIVAKIT_WORKSPACE/kivakit-extensions
-git flow init -d 2&>1 /dev/null
+git flow init -d 2>&1 /dev/null
 
 #
 # Build
