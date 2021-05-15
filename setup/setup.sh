@@ -8,14 +8,10 @@
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 if [ -z "$KIVAKIT_WORKSPACE" ]; then
-    echo "You must set up your environment to continue setting up KivaKit."
+    echo " "
+    echo "Please set up your .profile before setting up KivaKit."
     echo "See http://kivakit.org for details."
-    exit 1
-fi
-
-if [ -z "$CACTUS_HOME" ]; then
-    echo "You must restart your shell before continuing setting up KivaKit."
-    echo "See http://kivakit.org for details."
+    echo " "
     exit 1
 fi
 
@@ -56,6 +52,14 @@ git checkout develop
 #
 # Build
 #
+
+if [ -z "$CACTUS_HOME" ]; then
+    echo " "
+    echo "Please restart your shell before continuing KivaKit setup."
+    echo "See http://kivakit.org for details."
+    echo " "
+    exit 1
+fi
 
 cd $KIVAKIT_HOME
 kivakit-build.sh setup
