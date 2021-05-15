@@ -13,6 +13,12 @@ if [ -z "$KIVAKIT_WORKSPACE" ]; then
     exit 1
 fi
 
+if [ -z "$CACTUS_HOME" ]; then
+    echo "You must restart your shell before continuing setting up KivaKit."
+    echo "See http://kivakit.org for details."
+    exit 1
+fi
+
 #
 # Check out required repositories
 #
