@@ -31,32 +31,43 @@ fi
 #
 
 cd $KIVAKIT_WORKSPACE
-git clone -q https://github.com/Telenav/cactus-build.git
-git clone -q https://github.com/Telenav/kivakit-assets.git
-git clone -q https://github.com/Telenav/lexakai-annotations.git
-git clone -q https://github.com/Telenav/kivakit-extensions.git
+git clone https://github.com/Telenav/cactus-build.git
+git clone https://github.com/Telenav/cactus-build-assets.git
+git clone https://github.com/Telenav/lexakai-annotations.git
+git clone https://github.com/Telenav/kivakit-extensions.git
+git clone https://github.com/Telenav/kivakit-assets.git
 
 #
 # Initialize git flow for each project
 #
 
 cd $KIVAKIT_WORKSPACE/cactus-build
-git flow init -f -d
+git flow init -d > /dev/null
+
+if $(git flow config >/dev/null 2>&1)
+then
+else
+    echo " "
+    echo "Please install git flow before continuing KivaKit setup."
+    echo "See http://kivakit.org for details."
+    echo " "
+    exit 1
+fi
 
 cd $KIVAKIT_WORKSPACE/cactus-build-assets
-git flow init -f -d
+git flow init -d > /dev/null
 
 cd $KIVAKIT_WORKSPACE/lexakai-annotations
-git flow init -f -d
+git flow init -d > /dev/null
 
 cd $KIVAKIT_WORKSPACE/kivakit
-git flow init -f -d
+git flow init -d > /dev/null
 
 cd $KIVAKIT_WORKSPACE/kivakit-assets
-git flow init -f -d
+git flow init -d > /dev/null
 
 cd $KIVAKIT_WORKSPACE/kivakit-extensions
-git flow init -f -d
+git flow init -d > /dev/null
 
 #
 # Build
@@ -64,4 +75,3 @@ git flow init -f -d
 
 cd $KIVAKIT_HOME
 kivakit-build.sh setup
-
