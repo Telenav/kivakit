@@ -86,6 +86,11 @@ build() {
         BUILD_MODIFIERS="multi-threaded clean-all tests shade tools ${@:3}"
         ;;
 
+    "setup")
+        BUILD_ARGUMENTS="clean install"
+        BUILD_MODIFIERS="multi-threaded tests shade tools ${@:3}"
+        ;;
+
     "test")
         BUILD_ARGUMENTS="clean install"
         BUILD_MODIFIERS="single-threaded tests no-javadoc ${@:3}"

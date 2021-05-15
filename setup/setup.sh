@@ -58,4 +58,5 @@ git checkout develop
 #
 
 cd $KIVAKIT_HOME
-kivakit-build.sh all clean
+kivakit-build.sh setup
+
