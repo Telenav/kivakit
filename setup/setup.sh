@@ -44,9 +44,7 @@ git clone https://github.com/Telenav/kivakit-assets.git
 cd $KIVAKIT_WORKSPACE/cactus-build
 git flow init -d > /dev/null
 
-if $(git flow config >/dev/null 2>&1)
-then
-else
+if [ ! $(git flow config >/dev/null 2>&1) ]; then
     echo " "
     echo "Please install git flow before continuing KivaKit setup."
     echo "See http://kivakit.org for details."
