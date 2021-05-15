@@ -1,4 +1,5 @@
 **/target/
+setup.properties
 **/build.properties
 **/.settings/
 **/.classpath
