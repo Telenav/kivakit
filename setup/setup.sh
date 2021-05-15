@@ -18,7 +18,7 @@ fi
 cd $KIVAKIT_WORKSPACE/kivakit
 git checkout -q develop
 
-if [ -z "$CACTUS_HOME" ]; then
+if [ -z "$KIVAKIT_SETUP_ALLOWED" ]; then
     echo " "
     echo "Please restart your shell before continuing KivaKit setup."
     echo "See http://kivakit.org for details."

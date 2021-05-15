@@ -47,6 +47,8 @@ echo " "
 source_project_profile "mesakit"
 source_project_profile "lexakai"
 
+export KIVAKIT_SETUP_ALLOWED "true"
+
 cd $KIVAKIT_WORKSPACE
 
 echo " "
