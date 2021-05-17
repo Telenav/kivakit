@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-core security &nbsp;&nbsp; <img src="https://www.kivakit.org/images/lock-32.png" srcset="https://www.kivakit.org/images/lock-32-2x.png 2x"/>
+# kivakit-security &nbsp;&nbsp; <img src="https://www.kivakit.org/images/lock-32.png" srcset="https://www.kivakit.org/images/lock-32-2x.png 2x"/>
 
 This project contains functionality related to security
 
@@ -30,13 +30,13 @@ This project contains functionality related to security
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/dependencies-32.png" srcset="https://www.kivakit.org/images/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/security/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-security/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit-core-security</artifactId>
+        <artifactId>kivakit-security</artifactId>
         <version>0.9.5-alpha-SNAPSHOT</version>
     </dependency>
 
@@ -56,18 +56,18 @@ producing simple message digests easier.
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-40.png" srcset="https://www.kivakit.org/images/diagram-40-2x.png 2x"/>
 
-[*Message Digests*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/security/documentation/diagrams/diagram-security-digest.svg)  
-[*Security*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/security/documentation/diagrams/diagram-security.svg)
+[*Message Digests*](https://www.kivakit.org/lexakai/kivakit/kivakit-security/documentation/diagrams/diagram-security-digest.svg)  
+[*Security*](https://www.kivakit.org/lexakai/kivakit/kivakit-security/documentation/diagrams/diagram-security.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
-[*com.telenav.kivakit.core.security.authentication*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/security/documentation/diagrams/com.telenav.kivakit.core.security.authentication.svg)  
-[*com.telenav.kivakit.core.security.authentication.passwords*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/security/documentation/diagrams/com.telenav.kivakit.core.security.authentication.passwords.svg)  
-[*com.telenav.kivakit.core.security.digest*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/security/documentation/diagrams/com.telenav.kivakit.core.security.digest.svg)  
-[*com.telenav.kivakit.core.security.digest.digesters*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/security/documentation/diagrams/com.telenav.kivakit.core.security.digest.digesters.svg)  
-[*com.telenav.kivakit.core.security.project*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/security/documentation/diagrams/com.telenav.kivakit.core.security.project.svg)
+[*com.telenav.kivakit.security.authentication*](https://www.kivakit.org/lexakai/kivakit/kivakit-security/documentation/diagrams/com.telenav.kivakit.security.authentication.svg)  
+[*com.telenav.kivakit.security.authentication.passwords*](https://www.kivakit.org/lexakai/kivakit/kivakit-security/documentation/diagrams/com.telenav.kivakit.security.authentication.passwords.svg)  
+[*com.telenav.kivakit.security.digest*](https://www.kivakit.org/lexakai/kivakit/kivakit-security/documentation/diagrams/com.telenav.kivakit.security.digest.svg)  
+[*com.telenav.kivakit.security.digest.digesters*](https://www.kivakit.org/lexakai/kivakit/kivakit-security/documentation/diagrams/com.telenav.kivakit.security.digest.digesters.svg)  
+[*com.telenav.kivakit.security.project*](https://www.kivakit.org/lexakai/kivakit/kivakit-security/documentation/diagrams/com.telenav.kivakit.security.project.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
@@ -82,17 +82,17 @@ Javadoc coverage for this project is 83.3%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*BaseDigester*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.security/com/telenav/kivakit/core/security/digest/BaseDigester.html) |  |  
-| [*CoreSecurityProject*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.security/com/telenav/kivakit/core/security/project/CoreSecurityProject.html) |  |  
-| [*DigestPassword*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.security/com/telenav/kivakit/core/security/authentication/passwords/DigestPassword.html) |  |  
-| [*Digester*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.security/com/telenav/kivakit/core/security/digest/Digester.html) |  |  
-| [*Md5Digester*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.security/com/telenav/kivakit/core/security/digest/digesters/Md5Digester.html) |  |  
-| [*Password*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.security/com/telenav/kivakit/core/security/authentication/Password.html) |  |  
-| [*PlainTextPassword*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.security/com/telenav/kivakit/core/security/authentication/passwords/PlainTextPassword.html) |  |  
-| [*PlainTextPassword.Converter*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.security/com/telenav/kivakit/core/security/authentication/passwords/PlainTextPassword.Converter.html) |  |  
-| [*Sha1Digester*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.security/com/telenav/kivakit/core/security/digest/digesters/Sha1Digester.html) |  |  
-| [*UserName*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.security/com/telenav/kivakit/core/security/authentication/UserName.html) |  |  
-| [*UserName.Converter*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.security/com/telenav/kivakit/core/security/authentication/UserName.Converter.html) |  |  
+| [*BaseDigester*](https://www.kivakit.org/javadoc/kivakit/kivakit.security/com/telenav/kivakit/security/digest/BaseDigester.html) |  |  
+| [*CoreSecurityProject*](https://www.kivakit.org/javadoc/kivakit/kivakit.security/com/telenav/kivakit/security/project/CoreSecurityProject.html) |  |  
+| [*DigestPassword*](https://www.kivakit.org/javadoc/kivakit/kivakit.security/com/telenav/kivakit/security/authentication/passwords/DigestPassword.html) |  |  
+| [*Digester*](https://www.kivakit.org/javadoc/kivakit/kivakit.security/com/telenav/kivakit/security/digest/Digester.html) |  |  
+| [*Md5Digester*](https://www.kivakit.org/javadoc/kivakit/kivakit.security/com/telenav/kivakit/security/digest/digesters/Md5Digester.html) |  |  
+| [*Password*](https://www.kivakit.org/javadoc/kivakit/kivakit.security/com/telenav/kivakit/security/authentication/Password.html) |  |  
+| [*PlainTextPassword*](https://www.kivakit.org/javadoc/kivakit/kivakit.security/com/telenav/kivakit/security/authentication/passwords/PlainTextPassword.html) |  |  
+| [*PlainTextPassword.Converter*](https://www.kivakit.org/javadoc/kivakit/kivakit.security/com/telenav/kivakit/security/authentication/passwords/PlainTextPassword.Converter.html) |  |  
+| [*Sha1Digester*](https://www.kivakit.org/javadoc/kivakit/kivakit.security/com/telenav/kivakit/security/digest/digesters/Sha1Digester.html) |  |  
+| [*UserName*](https://www.kivakit.org/javadoc/kivakit/kivakit.security/com/telenav/kivakit/security/authentication/UserName.html) |  |  
+| [*UserName.Converter*](https://www.kivakit.org/javadoc/kivakit/kivakit.security/com/telenav/kivakit/security/authentication/UserName.Converter.html) |  |  
 
 [//]: # (start-user-text)
 

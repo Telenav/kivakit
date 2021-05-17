@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-core-serialization json &nbsp;&nbsp; <img src="https://www.kivakit.org/images/communicate-32.png" srcset="https://www.kivakit.org/images/communicate-32-2x.png 2x"/>
+# kivakit-serialization json &nbsp;&nbsp; <img src="https://www.kivakit.org/images/communicate-32.png" srcset="https://www.kivakit.org/images/communicate-32-2x.png 2x"/>
 
 This project contains support for working with JSON.
 
@@ -30,13 +30,13 @@ This project contains support for working with JSON.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/dependencies-32.png" srcset="https://www.kivakit.org/images/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/serialization/json/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-serialization/json/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit-core-serialization-json</artifactId>
+        <artifactId>kivakit-serialization-json</artifactId>
         <version>0.9.5-alpha-SNAPSHOT</version>
     </dependency>
 
@@ -61,8 +61,8 @@ None
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
-[*com.telenav.kivakit.core.serialization.json*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/serialization/json/documentation/diagrams/com.telenav.kivakit.core.serialization.json.svg)  
-[*com.telenav.kivakit.core.serialization.json.project*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/serialization/json/documentation/diagrams/com.telenav.kivakit.core.serialization.json.project.svg)
+[*com.telenav.kivakit.serialization.json*](https://www.kivakit.org/lexakai/kivakit/kivakit-serialization/json/documentation/diagrams/com.telenav.kivakit.serialization.json.svg)  
+[*com.telenav.kivakit.serialization.json.project*](https://www.kivakit.org/lexakai/kivakit/kivakit-serialization/json/documentation/diagrams/com.telenav.kivakit.serialization.json.project.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
@@ -77,11 +77,11 @@ Javadoc coverage for this project is 95.8%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*GsonFactory*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.serialization.json/com/telenav/kivakit/core/serialization/json/GsonFactory.html) |  |  
-| [*GsonSerializer*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.serialization.json/com/telenav/kivakit/core/serialization/json/GsonSerializer.html) |  |  
-| [*PrimitiveGsonSerializer*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.serialization.json/com/telenav/kivakit/core/serialization/json/PrimitiveGsonSerializer.html) |  |  
-| [*SerializationJsonProject*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.serialization.json/com/telenav/kivakit/core/serialization/json/project/SerializationJsonProject.html) |  |  
-| [*StringConverterGsonSerializer*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.serialization.json/com/telenav/kivakit/core/serialization/json/StringConverterGsonSerializer.html) |  |  
+| [*GsonFactory*](https://www.kivakit.org/javadoc/kivakit/kivakit.serialization.json/com/telenav/kivakit/serialization/json/GsonFactory.html) |  |  
+| [*GsonSerializer*](https://www.kivakit.org/javadoc/kivakit/kivakit.serialization.json/com/telenav/kivakit/serialization/json/GsonSerializer.html) |  |  
+| [*PrimitiveGsonSerializer*](https://www.kivakit.org/javadoc/kivakit/kivakit.serialization.json/com/telenav/kivakit/serialization/json/PrimitiveGsonSerializer.html) |  |  
+| [*SerializationJsonProject*](https://www.kivakit.org/javadoc/kivakit/kivakit.serialization.json/com/telenav/kivakit/serialization/json/project/SerializationJsonProject.html) |  |  
+| [*StringConverterGsonSerializer*](https://www.kivakit.org/javadoc/kivakit/kivakit.serialization.json/com/telenav/kivakit/serialization/json/StringConverterGsonSerializer.html) |  |  
 
 [//]: # (start-user-text)
 

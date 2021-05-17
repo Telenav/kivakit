@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-core application &nbsp;&nbsp; <img src="https://www.kivakit.org/images/window-32.png" srcset="https://www.kivakit.org/images/window-32-2x.png 2x"/>
+# kivakit-application &nbsp;&nbsp; <img src="https://www.kivakit.org/images/window-32.png" srcset="https://www.kivakit.org/images/window-32-2x.png 2x"/>
 
 This module contains base classes for applications and servers. It provides command line parsing and enables  
 configuration management and object registration and lookup.
@@ -32,13 +32,13 @@ configuration management and object registration and lookup.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/dependencies-32.png" srcset="https://www.kivakit.org/images/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/application/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-application/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit-core-application</artifactId>
+        <artifactId>kivakit-application</artifactId>
         <version>0.9.5-alpha-SNAPSHOT</version>
     </dependency>
 
@@ -70,14 +70,14 @@ browse the [**Javadoc**](#javadoc).
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-40.png" srcset="https://www.kivakit.org/images/diagram-40-2x.png 2x"/>
 
-[*Applications*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/application/documentation/diagrams/diagram-application.svg)
+[*Applications*](https://www.kivakit.org/lexakai/kivakit/kivakit-application/documentation/diagrams/diagram-application.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
-[*com.telenav.kivakit.core.application*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/application/documentation/diagrams/com.telenav.kivakit.core.application.svg)  
-[*com.telenav.kivakit.application.project*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/application/documentation/diagrams/com.telenav.kivakit.core.application.project.svg)
+[*com.telenav.kivakit.application*](https://www.kivakit.org/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.svg)  
+[*com.telenav.kivakit.application.project*](https://www.kivakit.org/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.project.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
@@ -92,7 +92,7 @@ Javadoc coverage for this project is 100.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*Application*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.application/com/telenav/kivakit/core/application/Application.html) | Configuration |  
+| [*Application*](https://www.kivakit.org/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/Application.html) | Configuration |  
 | | Command Line Parsing |  
 | | Running |  
 | | Messaging |  
@@ -100,9 +100,9 @@ Javadoc coverage for this project is 100.0%.
 | | Lookup |  
 | | Startup |  
 | | Settings |  
-| [*ApplicationIdentifier*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.application/com/telenav/kivakit/core/application/ApplicationIdentifier.html) |  |  
-| [*CoreApplicationProject*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.application/com/telenav/kivakit/core/application/project/CoreApplicationProject.html) |  |  
-| [*Server*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.application/com/telenav/kivakit/core/application/Server.html) |  |  
+| [*ApplicationIdentifier*](https://www.kivakit.org/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/ApplicationIdentifier.html) |  |  
+| [*CoreApplicationProject*](https://www.kivakit.org/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/project/CoreApplicationProject.html) |  |  
+| [*Server*](https://www.kivakit.org/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/Server.html) |  |  
 
 [//]: # (start-user-text)
 

@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-core serialization &nbsp;&nbsp; <img src="https://www.kivakit.org/images/communicate-32.png" srcset="https://www.kivakit.org/images/communicate-32-2x.png 2x"/>
+# kivakit-serialization &nbsp;&nbsp; <img src="https://www.kivakit.org/images/communicate-32.png" srcset="https://www.kivakit.org/images/communicate-32-2x.png 2x"/>
 
 This module provides an abstraction for serialization.
 
@@ -28,23 +28,23 @@ This module provides an abstraction for serialization.
 
 ### Projects <a name = "projects"></a> &nbsp; <img src="https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/gears-32-2x.png 2x"/>
 
-[**kivakit-core-serialization-core**](core/README.md)  
-[**kivakit-core-serialization-jersey-json**](jersey-json/README.md)  
-[**kivakit-core-serialization-json**](json/README.md)  
-[**kivakit-core-serialization-kryo**](kryo/README.md)  
+[**kivakit-serialization-core**](core/README.md)  
+[**kivakit-serialization-jersey-json**](jersey-json/README.md)  
+[**kivakit-serialization-json**](json/README.md)  
+[**kivakit-serialization-kryo**](kryo/README.md)  
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; <img src="https://www.kivakit.org/images/bargraph-32.png" srcset="https://www.kivakit.org/images/bargraph-32-2x.png 2x"/>
 
 &nbsp; <img src="https://www.kivakit.org/images/meter-100-96.png" srcset="https://www.kivakit.org/images/meter-100-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-core-serialization-core**](core/README.md)  
+ &nbsp; &nbsp; [**kivakit-serialization-core**](core/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-core-serialization-jersey-json**](jersey-json/README.md)  
+ &nbsp; &nbsp; [**kivakit-serialization-jersey-json**](jersey-json/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-100-96.png" srcset="https://www.kivakit.org/images/meter-100-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-core-serialization-json**](json/README.md)  
+ &nbsp; &nbsp; [**kivakit-serialization-json**](json/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-core-serialization-kryo**](kryo/README.md)
+ &nbsp; &nbsp; [**kivakit-serialization-kryo**](kryo/README.md)
 
 [//]: # (start-user-text)
 
