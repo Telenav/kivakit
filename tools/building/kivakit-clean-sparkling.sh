@@ -12,4 +12,4 @@ source kivakit-projects.sh
 
 remove_maven_repository
 
-bash cactus-clean.sh
+bash kivakit-clean.sh

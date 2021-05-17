@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-core network &nbsp;&nbsp; <img src="https://www.kivakit.org/images/graph-32.png" srcset="https://www.kivakit.org/images/graph-32-2x.png 2x"/>
+# kivakit-network &nbsp;&nbsp; <img src="https://www.kivakit.org/images/graph-32.png" srcset="https://www.kivakit.org/images/graph-32-2x.png 2x"/>
 
 This project contains core networking projects including resources for common protocols such as HTTP, FTP and email.
 
@@ -28,26 +28,26 @@ This project contains core networking projects including resources for common pr
 
 ### Projects <a name = "projects"></a> &nbsp; <img src="https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/gears-32-2x.png 2x"/>
 
-[**kivakit-core-network-core**](core/README.md)  
-[**kivakit-core-network-email**](email/README.md)  
-[**kivakit-core-network-ftp**](ftp/README.md)  
-[**kivakit-core-network-http**](http/README.md)  
-[**kivakit-core-network-socket**](socket/README.md)  
+[**kivakit-network-core**](core/README.md)  
+[**kivakit-network-email**](email/README.md)  
+[**kivakit-network-ftp**](ftp/README.md)  
+[**kivakit-network-http**](http/README.md)  
+[**kivakit-network-socket**](socket/README.md)  
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; <img src="https://www.kivakit.org/images/bargraph-32.png" srcset="https://www.kivakit.org/images/bargraph-32-2x.png 2x"/>
 
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-core-network-core**](core/README.md)  
+ &nbsp; &nbsp; [**kivakit-network-core**](core/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-core-network-email**](email/README.md)  
+ &nbsp; &nbsp; [**kivakit-network-email**](email/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-core-network-ftp**](ftp/README.md)  
+ &nbsp; &nbsp; [**kivakit-network-ftp**](ftp/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-core-network-http**](http/README.md)  
+ &nbsp; &nbsp; [**kivakit-network-http**](http/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-core-network-socket**](socket/README.md)
+ &nbsp; &nbsp; [**kivakit-network-socket**](socket/README.md)
 
 [//]: # (start-user-text)
 

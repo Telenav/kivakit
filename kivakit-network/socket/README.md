@@ -14,7 +14,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit-core-network socket &nbsp;&nbsp; <img src="https://www.kivakit.org/images/communicate-32.png" srcset="https://www.kivakit.org/images/communicate-32-2x.png 2x"/>
+# kivakit-network socket &nbsp;&nbsp; <img src="https://www.kivakit.org/images/communicate-32.png" srcset="https://www.kivakit.org/images/communicate-32-2x.png 2x"/>
 
 This module improves access to TCP/IP sockets.
 
@@ -31,13 +31,13 @@ This module improves access to TCP/IP sockets.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/dependencies-32.png" srcset="https://www.kivakit.org/images/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/network/socket/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/lexakai/kivakit/kivakit-network/socket/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit-core-network-socket</artifactId>
+        <artifactId>kivakit-network-socket</artifactId>
         <version>0.9.5-alpha-SNAPSHOT</version>
     </dependency>
 
@@ -71,14 +71,14 @@ a connection is made. Usage looks like this:
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-40.png" srcset="https://www.kivakit.org/images/diagram-40-2x.png 2x"/>
 
-[*Server Sockets*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/network/socket/documentation/diagrams/diagram-socket-server.svg)
+[*Server Sockets*](https://www.kivakit.org/lexakai/kivakit/kivakit-network/socket/documentation/diagrams/diagram-socket-server.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
-[*com.telenav.kivakit.core.network.socket.project*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/network/socket/documentation/diagrams/com.telenav.kivakit.core.network.socket.project.svg)  
-[*com.telenav.kivakit.core.network.socket.server*](https://www.kivakit.org/lexakai/kivakit/kivakit-core/network/socket/documentation/diagrams/com.telenav.kivakit.core.network.socket.server.svg)
+[*com.telenav.kivakit.network.socket.project*](https://www.kivakit.org/lexakai/kivakit/kivakit-network/socket/documentation/diagrams/com.telenav.kivakit.network.socket.project.svg)  
+[*com.telenav.kivakit.network.socket.server*](https://www.kivakit.org/lexakai/kivakit/kivakit-network/socket/documentation/diagrams/com.telenav.kivakit.network.socket.server.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
@@ -93,8 +93,8 @@ Javadoc coverage for this project is 75.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*ConnectionListener*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.network.socket/com/telenav/kivakit/core/network/socket/server/ConnectionListener.html) |  |  
-| [*CoreNetworkSocket*](https://www.kivakit.org/javadoc/kivakit/kivakit.core.network.socket/com/telenav/kivakit/core/network/socket/project/CoreNetworkSocket.html) |  |  
+| [*ConnectionListener*](https://www.kivakit.org/javadoc/kivakit/kivakit.network.socket/com/telenav/kivakit/network/socket/server/ConnectionListener.html) |  |  
+| [*CoreNetworkSocket*](https://www.kivakit.org/javadoc/kivakit/kivakit.network.socket/com/telenav/kivakit/network/socket/project/CoreNetworkSocket.html) |  |  
 
 [//]: # (start-user-text)
 
