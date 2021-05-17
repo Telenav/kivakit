@@ -18,6 +18,8 @@ usage() {
     echo " "
     echo "             all - all-clean, compile, shade, run tests, build tools and javadoc"
     echo " "
+    echo "         release - all-clean, compile, shade, run tests, attach jars, build tools and javadoc"
+    echo " "
     echo "           tools - compile, shade, run tests, build tools"
     echo " "
     echo "         compile - compile and shade (no tests)"
@@ -31,6 +33,8 @@ usage() {
     echo "           clean - prompt to remove cached and temporary files"
     echo " "
     echo "       all-clean - prompt to remove cached and temporary files and kivakit artifacts from ~/.m2"
+    echo " "
+    echo "     attach-jars - attach source and javadoc jars to maven artifacts"
     echo " "
     echo "           debug - turn maven debug mode on"
     echo " "
@@ -84,6 +88,12 @@ build() {
         JAVADOC=true
         BUILD_ARGUMENTS="clean install"
         BUILD_MODIFIERS="multi-threaded clean-all tests shade tools ${@:3}"
+        ;;
+
+    "release")
+        JAVADOC=true
+        BUILD_ARGUMENTS="clean install"
+        BUILD_MODIFIERS="multi-threaded sparkling tests shade tools attach-jars ${@:3}"
         ;;
 
     "setup")
@@ -160,6 +170,10 @@ build() {
             fi
             ;;
 
+        "attach-jars")
+            BUILD_ARGUMENTS="$BUILD_ARGUMENTS -Pattach-jars source:jar"
+            ;;
+
         "multi-threaded")
             THREADS=12
             ;;
@@ -233,8 +247,8 @@ build() {
 
     if [ -f "$KIVAKIT_HOME/build.properties" ]; then
 
-      KIVAKIT_BUILD_NAME=$(cat $KIVAKIT_HOME/build.properties | grep "build-name" | cut -d'=' -f2 | xargs echo)
-      KIVAKIT_BUILD_DATE=$(cat $KIVAKIT_HOME/build.properties | grep "build-date" | cut -d'=' -f2 | xargs echo)
+        KIVAKIT_BUILD_NAME=$(cat $KIVAKIT_HOME/build.properties | grep "build-name" | cut -d'=' -f2 | xargs echo)
+        KIVAKIT_BUILD_DATE=$(cat $KIVAKIT_HOME/build.properties | grep "build-date" | cut -d'=' -f2 | xargs echo)
 
     fi
 

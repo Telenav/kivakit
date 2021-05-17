@@ -18,4 +18,4 @@ for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
 
 done
 
-bash cactus-clean.sh
+bash kivakit-clean.sh

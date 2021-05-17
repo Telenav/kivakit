@@ -101,6 +101,7 @@
         <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
         <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
         <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
+        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
         <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
         <buildnumber-maven-plugin.version>1.2</buildnumber-maven-plugin.version>
         <maven.build.timestamp.format>yyyy.MM.dd-HH.mma</maven.build.timestamp.format>
@@ -175,6 +176,32 @@
                 <testQuick>true</testQuick>
             </properties>
         </profile>
+
+        <!-- Source JAR -->
+
+        <profile>
+            <id>attach-jars</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-source-plugin</artifactId>
+                            <version>${maven-source-plugin.version}</version>
+                            <executions>
+                                <execution>
+                                    <id>attach-source-jar</id>
+                                    <goals>
+                                        <goal>jar</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+
     </profiles>
 
     <build>
@@ -206,7 +233,8 @@
                                     <equals arg1 = "${source.exists}" arg2 = "true"/>
                                     <then>
                                         <echo file = "src/main/java/project.properties">
-                                            project-name        = ${project.name}${line.separator}project-version     = ${project.version}${line.separator}project-group-id    = ${project.groupId}${line.separator}project-artifact-id = ${project.artifactId}
+                                            project-name = ${project.name}${line.separator}project-version = ${project.version}${line.separator}project-group-id =
+                                            ${project.groupId}${line.separator}project-artifact-id = ${project.artifactId}
                                         </echo>
                                         <java jar = "${env.KIVAKIT_ASSETS_HOME}/docs/applications/cactus-build-metadata-${env.CACTUS_VERSION}.jar"
                                               failonerror = "true"
@@ -216,7 +244,8 @@
                                     </then>
                                     <else>
                                         <echo file = "${project.basedir}/project.properties">
-                                            project-name        = ${project.name}${line.separator}project-version     = ${project.version}${line.separator}project-group-id    = ${project.groupId}${line.separator}project-artifact-id = ${project.artifactId}
+                                            project-name = ${project.name}${line.separator}project-version = ${project.version}${line.separator}project-group-id =
+                                            ${project.groupId}${line.separator}project-artifact-id = ${project.artifactId}
                                         </echo>
                                         <java jar = "${env.KIVAKIT_ASSETS_HOME}/docs/applications/cactus-build-metadata-${env.CACTUS_VERSION}.jar"
                                               failonerror = "true"
@@ -316,8 +345,10 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.0.0-M5</version>
                     <configuration>
+                        <!--suppress MavenModelInspection -->
                         <excludedGroups>${exclude.test.groups}</excludedGroups>
                         <systemPropertyVariables>
+                            <!--suppress MavenModelInspection -->
                             <testQuick>${testQuick}</testQuick>
                         </systemPropertyVariables>
                         <argLine>-Xmx2g</argLine>
@@ -346,6 +377,13 @@
                             <phase>site</phase>
                             <goals>
                                 <goal>aggregate</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>attach-javadoc-jar</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>jar</goal>
                             </goals>
                         </execution>
                     </executions>
