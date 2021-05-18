@@ -256,13 +256,11 @@ source_project_profile() {
     common_profile="$KIVAKIT_WORKSPACE/${project_name}/tools/library/${project_name}-common-profile.sh"
     project_profile="$HOME/.${project_name}-profile"
 
-    if test -e "$common_profile"
-    then
+    if test -e "$common_profile"; then
         source "$common_profile"
     fi
 
-    if test -e "$project_profile"
-    then
+    if test -e "$project_profile"; then
         source "$project_profile"
     fi
 }
@@ -297,15 +295,23 @@ lexakai() {
 
 yes_no() {
 
-    prompt=$1
+    if [ -z "${NO_PROMPT}" ]; then
 
-    read -p "$prompt (y/n)? " -n 1 -r
-    echo " "
+        prompt=$1
 
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        true
+        read -p "$prompt (y/n)? " -n 1 -r
+        echo " "
+
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            true
+        else
+            false
+        fi
+
     else
-        false
+
+        true
+
     fi
 }
 

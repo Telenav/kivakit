@@ -6,7 +6,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// http://www.apache.org/licenses/LICENSE-2.0
+// https://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,12 +18,12 @@
 
 package com.telenav.kivakit.configuration;
 
+import com.telenav.kivakit.configuration.lookup.Lookup;
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfiguration;
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramLookup;
-import com.telenav.kivakit.configuration.lookup.Lookup;
+import com.telenav.kivakit.kernel.language.values.identifier.StringIdentifier;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
-import com.telenav.kivakit.kernel.language.values.identifier.StringIdentifier;
 
 /**
  * An identifier for a particular instance of a class of configuration object stored in a {@link ConfigurationSet}. Also

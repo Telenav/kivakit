@@ -6,7 +6,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// http://www.apache.org/licenses/LICENSE-2.0
+// https://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,7 +21,16 @@ package kernel.language.string;
 import com.telenav.kivakit.kernel.data.validation.reporters.ValidationFailure;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.iteration.Iterables;
-import com.telenav.kivakit.kernel.language.strings.*;
+import com.telenav.kivakit.kernel.language.strings.Align;
+import com.telenav.kivakit.kernel.language.strings.AsciiArt;
+import com.telenav.kivakit.kernel.language.strings.CaseFormat;
+import com.telenav.kivakit.kernel.language.strings.Comparison;
+import com.telenav.kivakit.kernel.language.strings.Escape;
+import com.telenav.kivakit.kernel.language.strings.Indent;
+import com.telenav.kivakit.kernel.language.strings.Paths;
+import com.telenav.kivakit.kernel.language.strings.Split;
+import com.telenav.kivakit.kernel.language.strings.StringTo;
+import com.telenav.kivakit.kernel.language.strings.Strings;
 import org.junit.Test;
 
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;

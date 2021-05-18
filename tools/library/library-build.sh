@@ -16,41 +16,41 @@ usage() {
     echo " "
     echo "       [default] - compile, shade and run quick tests"
     echo " "
-    echo "             all - all-clean, compile, shade, run tests, build tools and javadoc"
-    echo " "
-    echo "         release - all-clean, compile, shade, run tests, attach jars, build tools and javadoc"
-    echo " "
-    echo "           tools - compile, shade, run tests, build tools"
+    echo "             all - clean-all, compile, shade, run tests, build tools and javadoc"
     echo " "
     echo "         compile - compile and shade (no tests)"
     echo " "
+    echo "    deploy-ossrh - clean-all, compile, run tests, attach jars, build javadoc, sign artifacts and deploy to OSSRH"
+    echo " "
+    echo "    deploy-local - clean-all, compile, run tests, attach jars, build javadoc, sign artifacts and deploy to local Maven repository"
+    echo " "
+    echo "           tools - compile, shade, run tests, build tools"
+    echo " "
     echo "         javadoc - compile and build javadoc"
     echo " "
-    echo " javadoc-package - package and build javadoc"
-    echo " "
     echo "  Build modifiers:"
-    echo " "
-    echo "           clean - prompt to remove cached and temporary files"
     echo " "
     echo "       all-clean - prompt to remove cached and temporary files and kivakit artifacts from ~/.m2"
     echo " "
     echo "     attach-jars - attach source and javadoc jars to maven artifacts"
     echo " "
+    echo "           clean - prompt to remove cached and temporary files"
+    echo " "
     echo "           debug - turn maven debug mode on"
     echo " "
     echo "     debug-tests - stop in debugger on surefire tests"
+    echo " "
+    echo "         dry-run - show maven command line but don't build"
     echo " "
     echo "      no-javadoc - do not build javadoc"
     echo " "
     echo "        no-tests - do not run tests"
     echo " "
-    echo " single-threaded - build with only one thread"
-    echo " "
     echo "     quick-tests - run only quick tests"
     echo " "
     echo "           quiet - build with minimal output"
     echo " "
-    echo "            show - show maven command line but don't build"
+    echo " single-threaded - build with only one thread"
     echo " "
     echo "       sparkling - prompt to remove entire .m2 repository and all cached and temporary files"
     echo " "
@@ -90,10 +90,29 @@ build() {
         BUILD_MODIFIERS="multi-threaded clean-all tests shade tools ${@:3}"
         ;;
 
-    "release")
+    "compile")
+        BUILD_ARGUMENTS="clean compile"
+        BUILD_MODIFIERS=(multi-threaded no-tests shade no-javadoc quiet ${@:3})
+        ;;
+
+    "deploy-ossrh")
         JAVADOC=true
+        export NO_PROMPT=true
+        BUILD_ARGUMENTS="clean deploy"
+        BUILD_MODIFIERS="multi-threaded clean-all tests attach-jars sign-artifacts ${@:3}"
+        ;;
+
+    "deploy-local")
+        JAVADOC=true
+        export NO_PROMPT=true
         BUILD_ARGUMENTS="clean install"
-        BUILD_MODIFIERS="multi-threaded sparkling tests shade tools attach-jars ${@:3}"
+        BUILD_MODIFIERS="multi-threaded clean-all tests attach-jars sign-artifacts ${@:3}"
+        ;;
+
+    "javadoc")
+        JAVADOC="true"
+        BUILD_ARGUMENTS="clean compile"
+        BUILD_MODIFIERS=(multi-threaded no-tests javadoc ${@:3})
         ;;
 
     "setup")
@@ -109,23 +128,6 @@ build() {
     "tools")
         BUILD_ARGUMENTS="clean install"
         BUILD_MODIFIERS=(multi-threaded tests shade tools no-javadoc ${@:3})
-        ;;
-
-    "compile")
-        BUILD_ARGUMENTS="clean compile"
-        BUILD_MODIFIERS=(multi-threaded no-tests shade no-javadoc quiet ${@:3})
-        ;;
-
-    "javadoc")
-        JAVADOC="true"
-        BUILD_ARGUMENTS="clean compile"
-        BUILD_MODIFIERS=(multi-threaded no-tests javadoc ${@:3})
-        ;;
-
-    "javadoc-package")
-        JAVADOC="true"
-        BUILD_ARGUMENTS="clean package"
-        BUILD_MODIFIERS=(multi-threaded no-tests javadoc-package ${@:3})
         ;;
 
     *)
@@ -146,8 +148,9 @@ build() {
 
         case "$MODIFIER" in
 
-        "tools")
-            addSwitch "-P tools"
+        "attach-jars")
+            SWITCHES="${SWITCHES//-Dmaven.javadoc.skip=true/}"
+            BUILD_ARGUMENTS="$BUILD_ARGUMENTS -Pattach-jars"
             ;;
 
         "clean-all")
@@ -158,34 +161,6 @@ build() {
             PRE_BUILD_SCRIPT="kivakit-clean.sh"
             ;;
 
-        "javadoc")
-            if [ ! -z "$JAVADOC" ]; then
-                BUILD_ARGUMENTS="$BUILD_ARGUMENTS javadoc:aggregate"
-            fi
-            ;;
-
-        "javadoc-package")
-            if [ ! -z "$JAVADOC" ]; then
-                BUILD_ARGUMENTS="$BUILD_ARGUMENTS javadoc:aggregate"
-            fi
-            ;;
-
-        "attach-jars")
-            BUILD_ARGUMENTS="$BUILD_ARGUMENTS -Pattach-jars source:jar"
-            ;;
-
-        "multi-threaded")
-            THREADS=12
-            ;;
-
-        "single-threaded")
-            THREADS=1
-            ;;
-
-        "no-javadoc")
-            addSwitch "-Dmaven.javadoc.skip=true"
-            ;;
-
         "debug")
             addSwitch "--debug"
             ;;
@@ -194,11 +169,23 @@ build() {
             addSwitch "-Dmaven.surefire.debug"
             ;;
 
+        "javadoc")
+            if [ ! -z "$JAVADOC" ]; then
+                BUILD_ARGUMENTS="$BUILD_ARGUMENTS javadoc:aggregate"
+            fi
+            ;;
+
+        "multi-threaded")
+            THREADS=12
+            ;;
+
+        "no-javadoc")
+            addSwitch "-Dmaven.javadoc.skip=true"
+            ;;
+
         "no-tests")
             addSwitch "-Dmaven.test.skip=true"
             ;;
-
-        "tests") ;;
 
         "quick-tests")
             addSwitch "-P test-quick"
@@ -208,20 +195,30 @@ build() {
             addSwitch "-q -Dsurefire.printSummary=false -DKIVAKIT_LOG_LEVEL=Warning"
             ;;
 
-        "graphs")
-            POST_BUILD_SCRIPT="cactus-build-all-graphs.sh"
-            ;;
-
         "shade")
             addSwitch "-P shade"
             ;;
 
-        "show")
-            SHOW="true"
+        "dry-run")
+            DRY_RUN="true"
+            ;;
+
+        "sign-artifacts")
+            BUILD_ARGUMENTS="$BUILD_ARGUMENTS -P sign-artifacts"
+            ;;
+
+        "single-threaded")
+            THREADS=1
             ;;
 
         "sparkling")
             PRE_BUILD_SCRIPT="kivakit-clean-sparkling.sh"
+            ;;
+
+        "tests") ;;
+
+        "tools")
+            addSwitch "-P tools"
             ;;
 
         *)
@@ -267,7 +264,7 @@ build() {
         echo "┋   Maven Command Line: mvn -DKIVAKIT_DEBUG=\"$KIVAKIT_DEBUG\" $SWITCHES $BUILD_ARGUMENTS"
         echo "┋"
 
-        if [ -z "$SHOW" ]; then
+        if [ -z "$DRY_RUN" ]; then
 
             $PRE_BUILD_SCRIPT
 

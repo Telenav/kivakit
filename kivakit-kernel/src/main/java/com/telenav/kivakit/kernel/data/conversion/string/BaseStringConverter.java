@@ -6,7 +6,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// http://www.apache.org/licenses/LICENSE-2.0
+// https://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.data.conversion.string;
 
+import com.telenav.kivakit.kernel.data.conversion.BaseConverter;
 import com.telenav.kivakit.kernel.data.conversion.Converter;
 import com.telenav.kivakit.kernel.language.strings.Strings;
 import com.telenav.kivakit.kernel.messaging.Listener;
@@ -25,7 +26,6 @@ import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataConversion
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataConversionPrimitive;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
-import com.telenav.kivakit.kernel.data.conversion.BaseConverter;
 
 /**
  * Base class for conversions to and from String objects.

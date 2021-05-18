@@ -14,7 +14,7 @@ echo " "
 if [ -z "$KIVAKIT_WORKSPACE" ]; then
     echo " "
     echo "Please set up your .profile before setting up KivaKit."
-    echo "See http://kivakit.org for details."
+    echo "See https://kivakit.org for details."
     echo " "
     exit 1
 fi
@@ -25,7 +25,7 @@ git checkout -q develop
 if [ ! -e "$KIVAKIT_WORKSPACE/kivakit/setup.properties" ]; then
     echo " "
     echo "Please restart your shell before continuing KivaKit setup."
-    echo "See http://kivakit.org for details."
+    echo "See https://kivakit.org for details."
     echo " "
     exit 1
 fi
@@ -54,30 +54,24 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 echo " "
 
 cd $KIVAKIT_WORKSPACE/cactus-build
-git flow init -d 2>&1 /dev/null
+git flow init -d /dev/null 2>&1
 
 if [ $(git flow config >/dev/null 2>&1) ]; then
     echo " "
     echo "Please install git flow before continuing KivaKit setup."
-    echo "See http://kivakit.org for details."
+    echo "See https://kivakit.org for details."
     echo " "
     exit 1
 fi
 
-cd $KIVAKIT_WORKSPACE/cactus-build-assets
-git flow init -d 2>&1 /dev/null
-
 cd $KIVAKIT_WORKSPACE/lexakai-annotations
-git flow init -d 2>&1 /dev/null
+git flow init -d /dev/null 2>&1
 
 cd $KIVAKIT_WORKSPACE/kivakit
-git flow init -d 2>&1 /dev/null
-
-cd $KIVAKIT_WORKSPACE/kivakit-assets
-git flow init -d 2>&1 /dev/null
+git flow init -d /dev/null 2>&1
 
 cd $KIVAKIT_WORKSPACE/kivakit-extensions
-git flow init -d 2>&1 /dev/null
+git flow init -d /dev/null 2>&1
 
 #
 # Build
@@ -93,4 +87,3 @@ kivakit-build.sh setup
 echo " "
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Setup Complete"
 echo " "
-

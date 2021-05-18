@@ -15,6 +15,87 @@
     <packaging>pom</packaging>
 
     <name>KivaKit</name>
+    <description>KivaKit is a collection of easy-to-use, integrated mini-frameworks for developing Java software.</description>
+    <url>http://www.kivakit.org</url>
+    <inceptionYear>2011</inceptionYear>
+
+    <organization>
+        <name>Telenav</name>
+        <url>https://www.telenav.com</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>jonathanl</id>
+            <name>Jonathan Locke (Luo Shibo)</name>
+            <email>jonathanl@telenav.com</email>
+            <organization>Telenav</organization>
+            <organizationUrl>http://www.telenav.com/</organizationUrl>
+            <roles>
+                <role>lead</role>
+                <role>administrator</role>
+            </roles>
+        </developer>
+        <developer>
+            <id>hfzhu</id>
+            <name>Haifeng Zhu</name>
+            <email>hfzhu@telenav.com</email>
+            <organization>Telenav</organization>
+            <organizationUrl>http://www.telenav.com/</organizationUrl>
+            <roles>
+                <role>developer</role>
+                <role>administrator</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:https://Telenav/kivakit.git</connection>
+        <developerConnection>scm:git:https://Telenav/kivakit.git</developerConnection>
+        <url>https://Telenav/kivakit.git</url>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/Telenav/kivakit/issues</url>
+    </issueManagement>
+
+    <distributionManagement>
+
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+
+    </distributionManagement>
+
+    <repositories>
+
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+
+    </repositories>
 
     <modules>
 
@@ -30,40 +111,6 @@
         <module>kivakit-application</module>
 
     </modules>
-
-    <description>KivaKit is a collection of easy-to-use, integrated mini-frameworks for developing Java software.</description>
-
-    <organization>
-        <name>Telenav</name>
-        <url>https://www.telenav.com</url>
-    </organization>
-
-    <inceptionYear>2011</inceptionYear>
-
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
-    <issueManagement>
-        <system>GitHub</system>
-        <url>https://github.com/Telenav/kivakit/issues</url>
-    </issueManagement>
-
-    <developers>
-        <developer>
-            <id>jonathanl</id>
-            <name>Jonathan Locke (Luo Shibo)</name>
-            <email>jonathanl@telenav.com</email>
-            <roles>
-                <role>lead</role>
-                <role>administrator</role>
-            </roles>
-        </developer>
-    </developers>
 
     <properties>
 
@@ -103,6 +150,8 @@
         <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
         <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
+        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+        <nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
         <buildnumber-maven-plugin.version>1.2</buildnumber-maven-plugin.version>
         <maven.build.timestamp.format>yyyy.MM.dd-HH.mma</maven.build.timestamp.format>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -144,31 +193,10 @@
 
     </properties>
 
-    <distributionManagement>
-
-        <repository>
-            <id>github</id>
-            <name>GitHub KivaKit Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/Telenav/kivakit</url>
-        </repository>
-
-    </distributionManagement>
-
-    <repositories>
-
-        <repository>
-            <id>github-public</id>
-            <url>https://public:&#103;hp_YDUJnCIaQNuPJj5vb9mBsf1ylryVfO4FqFaw@maven.pkg.github.com/Telenav/*</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-
-    </repositories>
-
-    <!-- Profile to Exclude Slow Tests -->
-
     <profiles>
+
+        <!-- Exclude Slow Tests -->
+
         <profile>
             <id>test-quick</id>
             <properties>
@@ -177,29 +205,81 @@
             </properties>
         </profile>
 
-        <!-- Source JAR -->
+        <!-- Attach JARs -->
 
         <profile>
             <id>attach-jars</id>
             <build>
-                <pluginManagement>
-                    <plugins>
-                        <plugin>
-                            <groupId>org.apache.maven.plugins</groupId>
-                            <artifactId>maven-source-plugin</artifactId>
-                            <version>${maven-source-plugin.version}</version>
-                            <executions>
-                                <execution>
-                                    <id>attach-source-jar</id>
-                                    <goals>
-                                        <goal>jar</goal>
-                                    </goals>
-                                </execution>
-                            </executions>
-                        </plugin>
-                    </plugins>
-                </pluginManagement>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>${maven-source-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-source-jar</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${maven-javadoc-plugin.version}</version>
+                        <configuration>
+                            <show>public</show>
+                            <source>12</source>
+                            <detectJavaApiLink>false</detectJavaApiLink>
+                            <doclint>none</doclint>
+                            <nohelp>true</nohelp>
+                            <additionalOptions>-notimestamp --show-module-contents all --show-packages all --show-types private</additionalOptions>
+                            <destDir>target/attached-javadocs</destDir>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>attach-javadoc-jar</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
             </build>
+        </profile>
+
+        <!-- Sign Artifacts -->
+
+        <profile>
+
+            <id>sign-artifacts</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${maven-gpg-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <configuration>
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
+                                </configuration>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+
         </profile>
 
     </profiles>
@@ -233,8 +313,7 @@
                                     <equals arg1 = "${source.exists}" arg2 = "true"/>
                                     <then>
                                         <echo file = "src/main/java/project.properties">
-                                            project-name = ${project.name}${line.separator}project-version = ${project.version}${line.separator}project-group-id =
-                                            ${project.groupId}${line.separator}project-artifact-id = ${project.artifactId}
+                                            project-name = ${project.name}${line.separator}project-version = ${project.version}${line.separator}project-group-id = ${project.groupId}${line.separator}project-artifact-id = ${project.artifactId}
                                         </echo>
                                         <java jar = "${env.KIVAKIT_ASSETS_HOME}/docs/applications/cactus-build-metadata-${env.CACTUS_VERSION}.jar"
                                               failonerror = "true"
@@ -244,8 +323,7 @@
                                     </then>
                                     <else>
                                         <echo file = "${project.basedir}/project.properties">
-                                            project-name = ${project.name}${line.separator}project-version = ${project.version}${line.separator}project-group-id =
-                                            ${project.groupId}${line.separator}project-artifact-id = ${project.artifactId}
+                                            project-name = ${project.name}${line.separator}project-version = ${project.version}${line.separator}project-group-id = ${project.groupId}${line.separator}project-artifact-id = ${project.artifactId}
                                         </echo>
                                         <java jar = "${env.KIVAKIT_ASSETS_HOME}/docs/applications/cactus-build-metadata-${env.CACTUS_VERSION}.jar"
                                               failonerror = "true"
@@ -387,6 +465,20 @@
                             </goals>
                         </execution>
                     </executions>
+                </plugin>
+
+                <!-- Publishing -->
+
+                <plugin>
+                    <groupId>org.sonatype.plugins</groupId>
+                    <artifactId>nexus-staging-maven-plugin</artifactId>
+                    <version>${nexus-staging-maven-plugin.version}</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <serverId>ossrh</serverId>
+                        <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                        <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                    </configuration>
                 </plugin>
 
             </plugins>

@@ -6,7 +6,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// http://www.apache.org/licenses/LICENSE-2.0
+// https://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.threading;
 
+import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.kernel.interfaces.code.Code;
 import com.telenav.kivakit.kernel.interfaces.lifecycle.Pausable;
 import com.telenav.kivakit.kernel.interfaces.lifecycle.Startable;
@@ -33,7 +34,6 @@ import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageThread;
-import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.MustBeInvokedByOverriders;
@@ -41,7 +41,6 @@ import org.jetbrains.annotations.MustBeInvokedByOverriders;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.kernel.language.threading.KivaKitThread.State.CREATED;
 import static com.telenav.kivakit.kernel.language.threading.KivaKitThread.State.EXITED;
 import static com.telenav.kivakit.kernel.language.threading.KivaKitThread.State.RAN;

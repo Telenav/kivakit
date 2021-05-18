@@ -6,7 +6,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// http://www.apache.org/licenses/LICENSE-2.0
+// https://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -20,12 +20,12 @@ package com.telenav.kivakit.kernel.language.paths;
 
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.kernel.interfaces.numeric.Sized;
-import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguagePath;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.kernel.language.iteration.Streams;
 import com.telenav.kivakit.kernel.language.objects.Hash;
 import com.telenav.kivakit.kernel.language.objects.Objects;
+import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguagePath;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;

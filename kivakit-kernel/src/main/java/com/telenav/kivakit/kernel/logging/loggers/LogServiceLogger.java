@@ -6,7 +6,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// http://www.apache.org/licenses/LICENSE-2.0
+// https://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -39,10 +39,10 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 /**
- * A Java Services logger that creates loggers by inspecting the KIVAKIT_LOG and KIVAKIT_LOG_LEVEL environment variables. Log
- * providers specified by comma separated descriptors in the KIVAKIT_LOG variable are loaded by {@link LogServiceLoader} as
- * services. They are then configured and added to the list of logs. Configuration properties are specified as key value
- * pairs.
+ * A Java Services logger that creates loggers by inspecting the KIVAKIT_LOG and KIVAKIT_LOG_LEVEL environment
+ * variables. Log providers specified by comma separated descriptors in the KIVAKIT_LOG variable are loaded by {@link
+ * LogServiceLoader} as services. They are then configured and added to the list of logs. Configuration properties are
+ * specified as key value pairs.
  * <pre>
  * -DKIVAKIT_LOG="console level=warning,file level=information location=log.txt"
  * </pre>
@@ -101,7 +101,7 @@ public class LogServiceLogger extends BaseLogger
                     else
                     {
                         throw new IllegalStateException("KIVAKIT_LOG=" + descriptor + " is invalid. "
-                                + "For details on this system property, see: http://tinyurl.com/zctf9bss");
+                                + "For details on this system property, see: https://tinyurl.com/zctf9bss");
                     }
                 }
 

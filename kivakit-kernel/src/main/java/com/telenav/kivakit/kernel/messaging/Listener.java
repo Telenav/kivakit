@@ -6,7 +6,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// http://www.apache.org/licenses/LICENSE-2.0
+// https://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -69,8 +69,8 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  * the EmployeeLoader and re-transmits them to its own listeners. Clients of the PayrollProcessor can listen to it in
  * turn and they will receive the warning transmitted EmployeeLoader, when it is repeated by the PayrollProcessor. This
  * pattern creates a chain of repeaters that terminates in one or more listeners. The final listener is often, but not
- * always a logger. The base Application class in kivakit-core-application, for example, is a {@link Repeater} which logs
- * the messages it receives by default.
+ * always a logger. The base Application class in kivakit-core-application, for example, is a {@link Repeater} which
+ * logs the messages it receives by default.
  * </p>
  * <p>
  * <b>Repeater Example</b>

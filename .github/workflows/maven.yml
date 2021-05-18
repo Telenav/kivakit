@@ -15,6 +15,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - id: install-secret-key
+        name: Install gpg secret key
+        run: |
+          cat <(echo -e "${{ secrets.OSSRH_GPG_SECRET_KEY }}") | gpg --batch --import
+          gpg --list-secret-keys --keyid-format LONG
       - uses: actions/checkout@v2
       - name: Set up JDK 12
         uses: actions/setup-java@v1

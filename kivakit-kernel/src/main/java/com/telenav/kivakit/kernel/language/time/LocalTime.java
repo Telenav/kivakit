@@ -6,7 +6,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// http://www.apache.org/licenses/LICENSE-2.0
+// https://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -20,6 +20,7 @@ package com.telenav.kivakit.kernel.language.time;
 
 import com.telenav.kivakit.kernel.language.objects.Hash;
 import com.telenav.kivakit.kernel.language.time.conversion.BaseFormattedConverter;
+import com.telenav.kivakit.kernel.language.time.conversion.TimeFormat;
 import com.telenav.kivakit.kernel.language.time.conversion.converters.HumanizedLocalDateTimeConverter;
 import com.telenav.kivakit.kernel.language.time.conversion.converters.LocalDateConverter;
 import com.telenav.kivakit.kernel.language.time.conversion.converters.LocalDateTimeConverter;
@@ -28,7 +29,6 @@ import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageTime;
-import com.telenav.kivakit.kernel.language.time.conversion.TimeFormat;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.LocalDateTime;

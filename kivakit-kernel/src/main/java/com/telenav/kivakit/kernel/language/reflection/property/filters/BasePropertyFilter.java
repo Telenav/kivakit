@@ -6,7 +6,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// http://www.apache.org/licenses/LICENSE-2.0
+// https://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -294,19 +294,6 @@ public class BasePropertyFilter implements PropertyFilter
     }
 
     /**
-     * @return True if the method is a getter in the filter's {@link NamingConvention}
-     */
-    protected boolean isSetter(final Method method)
-    {
-        // If the method takes one parameter and it's not static,
-        if (method.getParameterTypes().length == 1)
-        {
-            return convention == KivaKit || method.getName().startsWith("set");
-        }
-        return false;
-    }
-
-    /**
      * @return True if the method is marked with {@link KivaKitExcludeProperty}
      */
     protected boolean isKivaKitExcluded(final Method method)
@@ -341,5 +328,18 @@ public class BasePropertyFilter implements PropertyFilter
     {
         return method.getAnnotation(KivaKitIncludeProperty.class) != null
                 || method.getAnnotation(KivaKitPropertyConverter.class) != null;
+    }
+
+    /**
+     * @return True if the method is a getter in the filter's {@link NamingConvention}
+     */
+    protected boolean isSetter(final Method method)
+    {
+        // If the method takes one parameter and it's not static,
+        if (method.getParameterTypes().length == 1)
+        {
+            return convention == KivaKit || method.getName().startsWith("set");
+        }
+        return false;
     }
 }

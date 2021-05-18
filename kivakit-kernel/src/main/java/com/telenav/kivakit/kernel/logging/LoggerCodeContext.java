@@ -6,7 +6,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// http://www.apache.org/licenses/LICENSE-2.0
+// https://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,10 +19,10 @@
 package com.telenav.kivakit.kernel.logging;
 
 import com.telenav.kivakit.kernel.language.reflection.Method;
-import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLogging;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.kernel.language.threading.context.CallStack;
 import com.telenav.kivakit.kernel.language.threading.context.CodeContext;
+import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLogging;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.kernel.language.threading.context.CallStack.Matching.EXACT;
 import static com.telenav.kivakit.kernel.language.threading.context.CallStack.Matching.SUBCLASS;

@@ -6,7 +6,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// http://www.apache.org/licenses/LICENSE-2.0
+// https://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.kernel.language.io;
 
+import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageIo;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
 
 import java.io.IOException;
 import java.io.InputStream;

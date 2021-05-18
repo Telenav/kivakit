@@ -6,7 +6,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// http://www.apache.org/licenses/LICENSE-2.0
+// https://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -251,7 +251,7 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return This file path without any scheme and root if it is a URI. For example, "http://telenav.com/a/b.html"
+     * @return This file path without any scheme and root if it is a URI. For example, "https://telenav.com/a/b.html"
      * would have the path "a/b.html"
      */
     public StringPath asStringPath()

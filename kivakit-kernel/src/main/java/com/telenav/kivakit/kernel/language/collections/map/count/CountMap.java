@@ -6,7 +6,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// http://www.apache.org/licenses/LICENSE-2.0
+// https://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,10 +19,10 @@
 package com.telenav.kivakit.kernel.language.collections.map.count;
 
 import com.telenav.kivakit.kernel.interfaces.numeric.Countable;
+import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.language.values.count.MutableCount;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageCollectionsMap;
-import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;

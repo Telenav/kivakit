@@ -6,7 +6,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// http://www.apache.org/licenses/LICENSE-2.0
+// https://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -24,7 +24,7 @@ import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitEx
  * This class defines countries by name and relevant ISO codes. Provides the ISO country code, which can be represented
  * by: a two-letter code (alpha-2) is recommended as the general purpose code. Also provided is a three-letter code
  * (alpha-3) which is more closely related to the country name, and an ISO number. More detail please refer to
- * http://www.iso.org/iso/country_codes.htm.
+ * https://www.iso.org/iso/country_codes.htm.
  *
  * @author Junwei
  * @author jonathanl (shibo)
@@ -565,7 +565,7 @@ public class CountryIsoCode
     /**
      * This class defines the ISO country name, which can be represented by: a two-letter code (alpha-2) which is
      * recommended as the general purpose code and a three-letter code (alpha-3) which is more closely related to the
-     * country name. More detail please refer to http://www.iso.org/iso/country_codes.htm.
+     * country name. More detail please refer to https://www.iso.org/iso/country_codes.htm.
      */
     @Override
     public boolean equals(final Object object)

@@ -6,7 +6,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// http://www.apache.org/licenses/LICENSE-2.0
+// https://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -179,7 +179,7 @@ public class LocalFile extends BaseWritableResource implements FileService
 
         // If the parent exists and is writable and the file doesn't exist
         // the file is writable because we can create it
-        return this.parent().exists() && this.parent().isWritable() && !file.exists();
+        return parent().exists() && parent().isWritable() && !file.exists();
     }
 
     @Override

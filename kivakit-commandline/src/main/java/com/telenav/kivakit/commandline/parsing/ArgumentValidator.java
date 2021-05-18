@@ -6,7 +6,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-// http://www.apache.org/licenses/LICENSE-2.0
+// https://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -20,10 +20,10 @@ package com.telenav.kivakit.commandline.parsing;
 
 import com.telenav.kivakit.commandline.ArgumentList;
 import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramValidation;
+import com.telenav.kivakit.kernel.data.validation.validators.BaseValidator;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
-import com.telenav.kivakit.kernel.data.validation.validators.BaseValidator;
 
 /**
  * <b>Not Public API</b>
