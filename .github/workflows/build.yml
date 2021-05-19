@@ -10,10 +10,11 @@ on:
       - 'features/**'
       - 'releases/**'
   pull_request:
-    - master
-    - develop
-    - 'features/**'
-    - 'releases/**'
+    branches:
+      - master
+      - develop
+      - 'features/**'
+      - 'releases/**'
 
 jobs:
   build:
