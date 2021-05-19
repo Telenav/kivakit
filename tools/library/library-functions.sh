@@ -290,7 +290,12 @@ is_mac() {
 lexakai() {
 
     # -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=1044
-    java -jar $KIVAKIT_ASSETS_HOME/docs/applications/lexakai-$LEXAKAI_VERSION.jar -overwrite-resources=true -update-readme=true $@
+    lexakai_cache="$HOME/.lexakai/${LEXAKAI_VERSION}"
+    lexakai_jar="${lexakai_cache}/lexakai-${LEXAKAI_VERSION}.jar"
+    if [ ! -e $lexakai_jar ]; then
+        wget --timestamping $LEXAKAI_URL --output-document=$lexakai_jar
+    fi
+    java -jar $lexakai_jar -overwrite-resources=true -update-readme=true $@
 }
 
 yes_no() {
