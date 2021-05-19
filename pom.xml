@@ -5,6 +5,7 @@
 <!--                                                                                                                 -->
 <!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
+<!--suppress MavenModelInspection -->
 <project xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
@@ -118,6 +119,13 @@
 
         <kivakit.version>0.9.5-alpha-SNAPSHOT</kivakit.version>
         <kivakit.base.version>0.9.5-alpha</kivakit.base.version>
+        <kivakit.downloads.folder>${user.home}/.kivakit/${kivakit.version}/temporary/tools/downloads/</kivakit.downloads.folder>
+
+        <!-- Cactus Build -->
+
+        <cactus.build.url>https://s01.oss.sonatype.org/service/local/repositories/snapshots/content/com/telenav/cactus/cactus-build-metadata/0.9.5-alpha-SNAPSHOT/cactus-build-metadata-0.9.5-alpha-20210518.164351-1.jar</cactus.build.url>
+        <!--suppress UnresolvedMavenProperty -->
+        <cactus.build.jar>${kivakit.downloads.folder}/cactus-build-metadata.jar</cactus.build.jar>
 
         <!-- Java -->
 
@@ -297,13 +305,19 @@
                                 </condition>
                                 <taskdef resource = "net/sf/antcontrib/antcontrib.properties" classpathref = "maven.plugin.classpath"/>
                                 <if>
-                                    <!--suppress MavenModelInspection -->
+                                    <equals arg1 = "${maven.multiModuleProjectDirectory}" arg2 = "${project.basedir}"/>
+                                    <then>
+                                        <mkdir dir="${kivakit.downloads.folder}"/>
+                                        <get src="${cactus.build.url}" dest="${cactus.build.jar}"/>
+                                    </then>
+                                </if>
+                                <if>
                                     <equals arg1 = "${source.exists}" arg2 = "true"/>
                                     <then>
                                         <echo file = "src/main/java/project.properties">
                                             project-name = ${project.name}${line.separator}project-version = ${project.version}${line.separator}project-group-id = ${project.groupId}${line.separator}project-artifact-id = ${project.artifactId}
                                         </echo>
-                                        <java jar = "${env.KIVAKIT_ASSETS_HOME}/docs/applications/cactus-build-metadata-${env.CACTUS_VERSION}.jar"
+                                        <java jar = "${cactus.build.jar}"
                                               failonerror = "true"
                                               fork = "true">
                                             <arg value = "src/main/java"/>
@@ -313,7 +327,7 @@
                                         <echo file = "${project.basedir}/project.properties">
                                             project-name = ${project.name}${line.separator}project-version = ${project.version}${line.separator}project-group-id = ${project.groupId}${line.separator}project-artifact-id = ${project.artifactId}
                                         </echo>
-                                        <java jar = "${env.KIVAKIT_ASSETS_HOME}/docs/applications/cactus-build-metadata-${env.CACTUS_VERSION}.jar"
+                                        <java jar = "${cactus.build.jar}"
                                               failonerror = "true"
                                               fork = "true">
                                             <arg value = "${project.basedir}"/>
