@@ -122,23 +122,15 @@
         <!-- Java -->
 
         <java.version>12</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jakarta.activation.version>1.2.2</jakarta.activation.version>
         <java-mail.version>1.6.2</java-mail.version>
-
-        <!-- Legacy Road Name Standardizer -->
-
-        <g2.standardizer.version>2.0.0.137005</g2.standardizer.version>
 
         <!-- Protocols -->
 
         <protobuf.version>3.11.4</protobuf.version>
         <gson.version>2.2.4</gson.version>
         <jettison.version>1.1</jettison.version>
-
-        <!-- Mapping -->
-
-        <osmosis.version>0.48.1</osmosis.version>
-        <josm.version>17428</josm.version>
 
         <!-- Maven -->
 
@@ -149,12 +141,11 @@
         <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
         <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-        <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+
+        <!-- Build -->
+
         <nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
-        <buildnumber-maven-plugin.version>1.2</buildnumber-maven-plugin.version>
-        <maven.build.timestamp.format>yyyy.MM.dd-HH.mma</maven.build.timestamp.format>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <moditect-maven-plugin.version>1.0.0.RC1</moditect-maven-plugin.version>
 
         <!-- Serialization -->
@@ -176,15 +167,6 @@
         <log4j.version>1.2.17</log4j.version>
         <slf4j.version>1.7.2</slf4j.version>
         <yourkit.version>8.0.1</yourkit.version>
-
-        <!-- Web -->
-
-        <jetty.version>9.4.36.v20210114</jetty.version>
-        <jersey.version>2.33</jersey.version>
-        <swagger.version>2.1.6</swagger.version>
-        <httpclient.version>4.5.1</httpclient.version>
-        <wicket-jquery.version>8.8.0</wicket-jquery.version>
-        <wicket.version>9.2.0</wicket.version>
 
         <!-- XML -->
 
