@@ -7,21 +7,19 @@
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #
-# GitHub action that publishes signed SNAPSHOT artifacts with Javadoc and source code attachments to the
-# OSSRH snapshot repository (https://s01.oss.sonatype.org/) when code is checked in to the develop branch.
+# GitHub action that publishes signed release artifacts with Javadoc and source code attachments to
+# Maven Central (https://maven.apache.org/repository/) when a new release is created
 #
 
-name: Publish Snapshot
+name: Publish Release
 
 on:
-  workflow_dispatch:
-  push:
-    branches: [ develop ]
-  pull_request:
-    branches: [ develop ]
+  release:
+    types: [created]
 
 jobs:
-  build:
+
+  publish:
 
     runs-on: ubuntu-latest
 
@@ -44,10 +42,11 @@ jobs:
         env:
           OSSRH_GPG_SECRET_KEY: ${{ secrets.OSSRH_GPG_SECRET_KEY }}
 
-      - name: Publish Snapshot to OSSRH
+      - name: Publish to Maven Central
         run: |
-          mvn -P attach-jars -P sign-artifacts -P shade -P tools --no-transfer-progress --batch-mode \
+          mvn -P attach-jars -P sign-artifacts --no-transfer-progress --batch-mode \
             -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} clean deploy
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+
