@@ -168,6 +168,11 @@
         <slf4j.version>1.7.2</slf4j.version>
         <yourkit.version>8.0.1</yourkit.version>
 
+        <!-- Web -->
+
+        <swagger.version>2.1.6</swagger.version>
+        <httpclient.version>4.5.1</httpclient.version>
+
         <!-- XML -->
 
         <jackson.version>2.12.2</jackson.version>
