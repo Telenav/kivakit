@@ -118,7 +118,6 @@
         <!-- KivaKit Version -->
 
         <kivakit.version>0.9.5-alpha-SNAPSHOT</kivakit.version>
-        <kivakit.base.version>0.9.5-alpha</kivakit.base.version>
         <kivakit.downloads.folder>${user.home}/.kivakit/${kivakit.version}/temporary/tools/downloads/</kivakit.downloads.folder>
 
         <!-- Cactus Build -->
