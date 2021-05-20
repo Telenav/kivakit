@@ -3,8 +3,8 @@ open module kivakit.network.http
     requires transitive kivakit.network.core;
     requires transitive kivakit.resource;
 
-    requires transitive httpcore;
-    requires transitive httpclient;
+    requires org.apache.httpcomponents.httpclient;
+    requires org.apache.httpcomponents.httpcore;
 
     exports com.telenav.kivakit.network.http;
     exports com.telenav.kivakit.network.http.secure;

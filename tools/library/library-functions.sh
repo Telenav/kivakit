@@ -181,7 +181,8 @@ git_flow_release_finish() {
 
     cd $project_home
 
-    git checkout release/$version
+    git checkout master
+    git merge release/$version
     git flow release finish $version
     git push origin --tags
 
@@ -290,16 +291,14 @@ is_mac() {
 
 lexakai() {
 
-    lexakai_version=0.9.5-alpha-SNAPSHOT
-    lexakai_url="https://s01.oss.sonatype.org/service/local/repositories/snapshots/content/com/telenav/lexakai/lexakai/0.9.5-alpha-SNAPSHOT/lexakai-0.9.5-alpha-20210519.035416-1.jar"
     lexakai_downloads="$HOME/.lexakai/downloads"
-    lexakai_jar="${lexakai_downloads}/lexakai-${lexakai_version}.jar"
+    lexakai_jar="${lexakai_downloads}/lexakai-${LEXAKAI_DOWNLOAD_VERSION}.jar"
 
     mkdir -p ${lexakai_downloads}
 
     if [ ! -e "$lexakai_jar" ]; then
 
-        wget $KIVAKIT_LEXAKAI_URL --output-document=$lexakai_jar
+        wget $LEXAKAI_URL --output-document=$lexakai_jar
 
     fi
 
