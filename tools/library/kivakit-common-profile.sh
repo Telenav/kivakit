@@ -9,12 +9,6 @@ system_variable KIVAKIT_BUILD "$(project_build $KIVAKIT_HOME)"
 system_variable KIVAKIT_TOOLS "$KIVAKIT_HOME/tools"
 system_variable KIVAKIT_JAVA_OPTIONS "-Xmx12g"
 
-system_variable CACTUS_DOWNLOAD_VERSION 0.9.6-alpha
-system_variable CACTUS_URL "https://repo1.maven.org/maven2/com/telenav/cactus/cactus-build-metadata/${CACTUS_DOWNLOAD_VERSION}/cactus-build-metadata-${CACTUS_DOWNLOAD_VERSION}.jar"
-
-system_variable LEXAKAI_DOWNLOAD_VERSION 0.9.7-alpha
-system_variable LEXAKAI_URL "https://repo1.maven.org/maven2/com/telenav/lexakai/lexakai/${LEXAKAI_DOWNLOAD_VERSION}/lexakai-${LEXAKAI_DOWNLOAD_VERSION}.jar"
-
 prepend_path "$M2_HOME/bin"
 prepend_path "$JAVA_HOME/bin"
 

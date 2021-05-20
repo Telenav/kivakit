@@ -291,19 +291,20 @@ is_mac() {
 
 lexakai() {
 
+    lexakai_download_version=0.9.7-alpha
     lexakai_downloads="$HOME/.lexakai/downloads"
-    lexakai_jar="${lexakai_downloads}/lexakai-${LEXAKAI_DOWNLOAD_VERSION}.jar"
+    lexakai_jar="${lexakai_downloads}/lexakai-${lexakai_download_version}.jar"
+    lexakai_url="https://repo1.maven.org/maven2/com/telenav/lexakai/lexakai/${lexakai_download_version}/lexakai-${lexakai_download_version}.jar"
 
     mkdir -p ${lexakai_downloads}
 
     if [ ! -e "$lexakai_jar" ]; then
 
-        wget $LEXAKAI_URL --output-document=$lexakai_jar
+        wget lexakai_url --output-document=$lexakai_jar
 
     fi
 
     # -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=1044
-    echo "java -jar $lexakai_jar -overwrite-resources=true -update-readme=true $@"
     java -jar $lexakai_jar -overwrite-resources=true -update-readme=true $@
 }
 
