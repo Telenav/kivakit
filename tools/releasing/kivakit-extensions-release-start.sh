@@ -10,10 +10,10 @@
 source library-functions.sh
 source kivakit-projects.sh
 
-version="${1%-SNAPSHOT}-SNAPSHOT"
-
 help="[version]"
+
+version=$1
 
 require_variable version "$help"
 
-update_version $KIVAKIT_HOME $version
+git_flow_release_start $KIVAKIT_EXTENSIONS_HOME $version
