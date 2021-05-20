@@ -16,8 +16,4 @@ help="[version]"
 
 require_variable version "$help"
 
-for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
-
-    update_version $project_home $version
-
-done
+update_version $KIVAKIT_HOME $version
