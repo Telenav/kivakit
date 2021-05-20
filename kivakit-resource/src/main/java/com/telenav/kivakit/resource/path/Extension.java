@@ -30,9 +30,12 @@ import com.telenav.kivakit.resource.compression.codecs.ZipCodec;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourcePath;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
 
 /**
  * A {@link FileName} extension, such as ".txt" or ".jar".
@@ -192,7 +195,8 @@ public class Extension implements Named
         {
             return new Extension(value);
         }
-        return null;
+        fail("Cannot parse $", value);
+        throw new IllegalStateException();
     }
 
     private final String extension;
@@ -246,6 +250,7 @@ public class Extension implements Named
         return false;
     }
 
+    @NotNull
     public Matcher<File> fileMatcher()
     {
         return file ->

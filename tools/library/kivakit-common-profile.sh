@@ -10,7 +10,6 @@ system_variable KIVAKIT_TOOLS "$KIVAKIT_HOME/tools"
 system_variable KIVAKIT_JAVA_OPTIONS "-Xmx12g"
 
 system_variable CACTUS_VERSION 0.9.5-alpha-SNAPSHOT
-system_variable LEXAKAI_VERSION 0.9.5-alpha-SNAPSHOT
 
 prepend_path "$M2_HOME/bin"
 prepend_path "$JAVA_HOME/bin"

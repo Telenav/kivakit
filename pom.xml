@@ -12,28 +12,36 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.telenav.kivakit</groupId>
     <artifactId>kivakit</artifactId>
-    <version>0.9.5-alpha-SNAPSHOT</version>
+    <version>0.9.6-alpha</version>
     <packaging>pom</packaging>
+
+    <!-- Project -->
 
     <name>KivaKit</name>
     <description>KivaKit is a collection of easy-to-use, integrated mini-frameworks for developing Java software.</description>
     <url>http://www.kivakit.org</url>
     <inceptionYear>2011</inceptionYear>
-
     <organization>
         <name>Telenav</name>
         <url>https://www.telenav.com</url>
     </organization>
 
+    <!-- Licensing -->
+
     <licenses>
+
         <license>
             <name>Apache License, Version 2.0</name>
             <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
             <distribution>repo</distribution>
         </license>
+
     </licenses>
 
+    <!-- Contributors -->
+
     <developers>
+
         <developer>
             <id>jonathanl</id>
             <name>Jonathan Locke (Luo Shibo)</name>
@@ -45,8 +53,9 @@
                 <role>administrator</role>
             </roles>
         </developer>
+
         <developer>
-            <id>hfzhu</id>
+            <id>haifeng</id>
             <name>Haifeng Zhu</name>
             <email>hfzhu@telenav.com</email>
             <organization>Telenav</organization>
@@ -56,18 +65,29 @@
                 <role>administrator</role>
             </roles>
         </developer>
+
     </developers>
 
+    <!-- Source Code -->
+
     <scm>
+
         <connection>scm:git:https://Telenav/kivakit.git</connection>
         <developerConnection>scm:git:https://Telenav/kivakit.git</developerConnection>
         <url>https://Telenav/kivakit.git</url>
+
     </scm>
 
+    <!-- Issue Tracking -->
+
     <issueManagement>
+
         <system>GitHub</system>
         <url>https://github.com/Telenav/kivakit/issues</url>
+
     </issueManagement>
+
+    <!-- Publishing -->
 
     <distributionManagement>
 
@@ -82,6 +102,8 @@
         </repository>
 
     </distributionManagement>
+
+    <!-- Snapshots -->
 
     <repositories>
 
@@ -98,6 +120,8 @@
 
     </repositories>
 
+    <!-- Modules -->
+
     <modules>
 
         <module>kivakit-kernel</module>
@@ -113,19 +137,24 @@
 
     </modules>
 
+    <!-- Properties -->
+
     <properties>
 
         <!-- KivaKit Version -->
 
-        <kivakit.version>0.9.5-alpha-SNAPSHOT</kivakit.version>
-        <kivakit.base.version>0.9.5-alpha</kivakit.base.version>
-        <kivakit.downloads.folder>${user.home}/.kivakit/${kivakit.version}/temporary/tools/downloads/</kivakit.downloads.folder>
+        <kivakit.version>0.9.6-alpha</kivakit.version>
+        <kivakit.downloads.folder>${user.home}/.kivakit/${kivakit.version}/downloads/</kivakit.downloads.folder>
 
         <!-- Cactus Build -->
 
         <cactus.build.url>https://s01.oss.sonatype.org/service/local/repositories/snapshots/content/com/telenav/cactus/cactus-build-metadata/0.9.5-alpha-SNAPSHOT/cactus-build-metadata-0.9.5-alpha-20210518.164351-1.jar</cactus.build.url>
         <!--suppress UnresolvedMavenProperty -->
         <cactus.build.jar>${kivakit.downloads.folder}/cactus-build-metadata.jar</cactus.build.jar>
+
+        <!-- Lexakai Documentation -->
+
+        <lexakai.version>0.9.5-alpha-SNAPSHOT</lexakai.version>
 
         <!-- Java -->
 
@@ -143,7 +172,6 @@
         <!-- Maven -->
 
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <maven-compiler-plugin-java.version>12</maven-compiler-plugin-java.version>
         <maven-resources-plugin.version>2.7</maven-resources-plugin.version>
         <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
         <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
@@ -188,6 +216,8 @@
         <xerces.version>2.11.0</xerces.version>
 
     </properties>
+
+    <!-- Profiles -->
 
     <profiles>
 
@@ -282,6 +312,45 @@
 
     <build>
 
+        <!-- Resource Copying -->
+
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/test/java</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </testResource>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </testResource>
+        </testResources>
+
+        <!-- Plugins -->
+
         <plugins>
 
             <!-- Create project.properties and build.properties files -->
@@ -307,8 +376,8 @@
                                 <if>
                                     <equals arg1 = "${maven.multiModuleProjectDirectory}" arg2 = "${project.basedir}"/>
                                     <then>
-                                        <mkdir dir="${kivakit.downloads.folder}"/>
-                                        <get src="${cactus.build.url}" dest="${cactus.build.jar}"/>
+                                        <mkdir dir = "${kivakit.downloads.folder}"/>
+                                        <get src = "${cactus.build.url}" dest = "${cactus.build.jar}"/>
                                     </then>
                                 </if>
                                 <if>
@@ -352,56 +421,19 @@
 
         </plugins>
 
-        <!-- Resource Copying -->
-
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-                <excludes>
-                    <exclude>**/*.java</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-            </resource>
-        </resources>
-        <testResources>
-            <testResource>
-                <directory>src/test/java</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-                <excludes>
-                    <exclude>**/*.java</exclude>
-                </excludes>
-            </testResource>
-            <testResource>
-                <directory>src/test/resources</directory>
-                <includes>
-                    <include>**/*</include>
-                </includes>
-            </testResource>
-        </testResources>
-
         <pluginManagement>
 
             <plugins>
 
-                <!-- Compiler -->
+                <!-- Compiling -->
 
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
                     <configuration>
-                        <source>${maven-compiler-plugin-java.version}</source>
-                        <target>${maven-compiler-plugin-java.version}</target>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
                         <release>${java.version}</release>
                         <compilerArgs>
                             <compilerArgument>-Xlint:unchecked</compilerArgument>
@@ -410,7 +442,7 @@
                     </configuration>
                 </plugin>
 
-                <!-- Maven Build -->
+                <!-- Building -->
 
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -435,7 +467,7 @@
                     </configuration>
                 </plugin>
 
-                <!-- Javadoc -->
+                <!-- Documentation -->
 
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -457,13 +489,6 @@
                             <phase>site</phase>
                             <goals>
                                 <goal>aggregate</goal>
-                            </goals>
-                        </execution>
-                        <execution>
-                            <id>attach-javadoc-jar</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>jar</goal>
                             </goals>
                         </execution>
                     </executions>
