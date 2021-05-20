@@ -18,7 +18,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit 0.9.6-alpha &nbsp;&nbsp; <img src="https://www.kivakit.org/images/kivakit-64.png" srcset="https://www.kivakit.org/images/kivakit-64-2x.png 2x"/>
+# kivakit 0.9.7-alpha &nbsp;&nbsp; <img src="https://www.kivakit.org/images/kivakit-64.png" srcset="https://www.kivakit.org/images/kivakit-64-2x.png 2x"/>
 
 KivaKit is a set of integrated Java mini-frameworks that are potentially needed by any application or server.
 
@@ -35,10 +35,9 @@ KivaKit is a set of integrated Java mini-frameworks that are potentially needed 
 [**Downloads**](#downloads)  
 [**Reference**](#reference)  
 [**Projects**](#projects)  
-[**Javadoc Coverage**](#javadoc-coverage)  
+[**Javadoc Coverage**](#javadoc-coverage)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
-
 
 ### Welcome <a name = "welcome"></a>! <a name = "welcome"></a> &nbsp; <img src="https://www.kivakit.org/images/stars-32.png" srcset="https://www.kivakit.org/images/stars-32-2x.png 2x"/>
 
@@ -48,30 +47,23 @@ KivaKit is a set of integrated Java mini-frameworks that are potentially needed 
 
 > *The mission of KivaKit is to accelerate the development of Java software through the use of integrated, modular, object-oriented design.*
 
-KivaKit extends the JDK to provide quick and easy solutions to common everyday software problems. It does this 
-by providing new abstractions and APIs, and by simplifying an existing APIs.
+KivaKit extends the JDK to provide quick and easy solutions to common everyday software problems. It does this by providing new abstractions and APIs, and by simplifying an existing APIs.
 
-KivaKit is composed of a number of nested sub-projects that are Java 11+ modules. These modules address different 
-areas of concern in developing Java applications. The resources below will help you to get started.
+KivaKit is composed of a number of nested sub-projects that are Java 11+ modules. These modules address different areas of concern in developing Java applications. The resources below will help you to get started.
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
 ### Summary <a name = "summary"></a>
 
-KivaKit is designed for use in everyday software development. KivaKit APIs work together through a set of 
-common interfaces and components to provide a consistent and powerful development experience.
-Documentation and examples are provided, but much of KivaKit's functionality can also be discovered 
-with class searching and autocomplete, because it was designed to be used in that way.
+KivaKit is designed for use in everyday software development. KivaKit APIs work together through a set of common interfaces and components to provide a consistent and powerful development experience. Documentation and examples are provided, but much of KivaKit's functionality can also be discovered with class searching and autocomplete, because it was designed to be used in that way.
 
 #### What is it?
 
-KivaKit is a collection of bite-sized Java development mini-frameworks that play well together. 
-Using one part of KivaKit makes using other parts easier. Work with just the parts you need.
+KivaKit is a collection of bite-sized Java development mini-frameworks that play well together. Using one part of KivaKit makes using other parts easier. Work with just the parts you need.
 
 #### Why use it?
 
-KivaKit accelerates development and makes code simpler, safer and clearer. 
-KivaKit increases modularity and code reuse.
+KivaKit accelerates development and makes code simpler, safer and clearer. KivaKit increases modularity and code reuse.
 
 #### What can it do?
 

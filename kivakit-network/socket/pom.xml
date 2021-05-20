@@ -10,7 +10,7 @@
     <parent>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-network</artifactId>
-        <version>0.9.6-alpha</version>
+        <version>0.9.7-alpha</version>
     </parent>
 
     <name>KivaKit - Network - Socket</name>

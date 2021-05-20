@@ -12,7 +12,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.telenav.kivakit</groupId>
     <artifactId>kivakit</artifactId>
-    <version>0.9.6-alpha</version>
+    <version>0.9.7-alpha</version>
     <packaging>pom</packaging>
 
     <!-- Project -->
@@ -103,9 +103,18 @@
 
     </distributionManagement>
 
-    <!-- Snapshots -->
+    <!-- Repositories -->
 
     <repositories>
+
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>Maven Central</name>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
 
         <repository>
             <id>ossrh</id>
@@ -143,18 +152,17 @@
 
         <!-- KivaKit Version -->
 
-        <kivakit.version>0.9.6-alpha</kivakit.version>
+        <kivakit.version>0.9.7-alpha</kivakit.version>
 
         <!-- Cactus Build -->
 
         <cactus.version>0.9.6-alpha</cactus.version>
         <cactus.downloads.folder>${user.home}/.cactus-build/downloads</cactus.downloads.folder>
-        <cactus.build.url>https://repo1.maven.org/maven2/com/telenav/cactus/cactus-build-metadata/${cactus.version}/cactus-build-metadata-${cactus.version}.jar</cactus.build.url>
-        <cactus.build.jar>${cactus.downloads.folder}/cactus-build-metadata-${cactus.version}.jar</cactus.build.jar>
+        <cactus.jar>${cactus.downloads.folder}/cactus-build-metadata-${env.CACTUS_DOWNLOAD_VERSION}.jar</cactus.jar>
 
         <!-- Lexakai Documentation -->
 
-        <lexakai.version>0.9.5-alpha-SNAPSHOT</lexakai.version>
+        <lexakai.version>0.9.7-alpha</lexakai.version>
 
         <!-- Java -->
 
@@ -208,7 +216,7 @@
 
         <jersey.version>2.33</jersey.version>
         <swagger.version>2.1.6</swagger.version>
-        <httpclient.version>4.5.13</httpclient.version>
+        <httpclient.version>4.5.12</httpclient.version>
 
         <!-- XML -->
 
@@ -226,7 +234,7 @@
         <profile>
             <id>test-quick</id>
             <properties>
-                <exclude.test.groups>com.telenav.kivakit.core.test.annotations.SlowTests</exclude.test.groups>
+                <exclude.test.groups>com.telenav.kivakit.test.annotations.SlowTests</exclude.test.groups>
                 <testQuick>true</testQuick>
             </properties>
         </profile>
@@ -353,7 +361,7 @@
 
         <plugins>
 
-            <!-- Create project.properties and build.properties files -->
+            <!-- Build Metadata -->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -377,7 +385,7 @@
                                     <equals arg1 = "${maven.multiModuleProjectDirectory}" arg2 = "${project.basedir}"/>
                                     <then>
                                         <mkdir dir = "${cactus.downloads.folder}"/>
-                                        <get src = "${cactus.build.url}" dest = "${cactus.build.jar}"/>
+                                        <get src = "${env.CACTUS_URL}" dest = "${cactus.jar}"/>
                                     </then>
                                 </if>
                                 <if>
@@ -386,7 +394,7 @@
                                         <echo file = "src/main/java/project.properties">
                                             project-name = ${project.name}${line.separator}project-version = ${project.version}${line.separator}project-group-id = ${project.groupId}${line.separator}project-artifact-id = ${project.artifactId}
                                         </echo>
-                                        <java jar = "${cactus.build.jar}" failonerror = "true" fork = "true">
+                                        <java jar = "${cactus.jar}" failonerror = "true" fork = "true">
                                             <arg value = "src/main/java"/>
                                         </java>
                                     </then>
@@ -394,7 +402,7 @@
                                         <echo file = "${project.basedir}/project.properties">
                                             project-name = ${project.name}${line.separator}project-version = ${project.version}${line.separator}project-group-id = ${project.groupId}${line.separator}project-artifact-id = ${project.artifactId}
                                         </echo>
-                                        <java jar = "${cactus.build.jar}" failonerror = "true" fork = "true">
+                                        <java jar = "${cactus.jar}" failonerror = "true" fork = "true">
                                             <arg value = "${project.basedir}"/>
                                         </java>
                                     </else>

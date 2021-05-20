@@ -10,7 +10,7 @@
     <parent>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-network</artifactId>
-        <version>0.9.6-alpha</version>
+        <version>0.9.7-alpha</version>
     </parent>
 
     <name>KivaKit - Network - HTTP</name>
@@ -59,7 +59,7 @@
                 <version>${moditect-maven-plugin.version}</version>
                 <executions>
                     <execution>
-                        <id>add-module-infos</id>
+                        <id>add-module-info</id>
                         <phase>package</phase>
                         <goals>
                             <goal>add-module-info</goal>
