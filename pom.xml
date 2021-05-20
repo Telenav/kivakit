@@ -191,7 +191,7 @@
 
         <!-- Testing -->
 
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.2</junit.version>
 
         <!-- Utility -->
 
