@@ -16,8 +16,4 @@ version=$1
 
 require_variable version "$help"
 
-for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
-
-    git_flow_release_start $project_home $version
-
-done
+update_version $KIVAKIT_HOME $version

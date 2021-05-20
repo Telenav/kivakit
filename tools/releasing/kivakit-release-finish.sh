@@ -16,7 +16,7 @@ version=$1
 
 require_variable version "$help"
 
-for project_home in "${KIVAKIT_ALL_HOMES[@]}"; do
+for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
 
     git_flow_release_finish $project_home $version
 

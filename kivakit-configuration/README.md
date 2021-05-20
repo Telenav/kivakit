@@ -38,7 +38,7 @@ deployments. It also provides registration and lookup of objects.
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-configuration</artifactId>
-        <version>0.9.5-alpha-SNAPSHOT</version>
+        <version>0.9.6-alpha</version>
     </dependency>
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
