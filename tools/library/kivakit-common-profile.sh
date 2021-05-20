@@ -11,9 +11,6 @@ system_variable KIVAKIT_JAVA_OPTIONS "-Xmx12g"
 
 system_variable CACTUS_VERSION 0.9.5-alpha-SNAPSHOT
 
-system_variable LEXAKAI_VERSION 0.9.5-alpha-SNAPSHOT
-system_variable LEXAKAI_URL "https://s01.oss.sonatype.org/service/local/repositories/snapshots/content/com/telenav/lexakai/lexakai/0.9.5-alpha-SNAPSHOT/lexakai-0.9.5-alpha-20210519.035416-1.jar"
-
 prepend_path "$M2_HOME/bin"
 prepend_path "$JAVA_HOME/bin"
 

@@ -32,20 +32,16 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.io.IOException;
 import java.lang.module.ModuleReference;
 import java.lang.module.ResolvedModule;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
  * Provides easy access to module resources. The {@link #resource(StringPath)}, {@link #resources(PackagePath)}, {@link
  * #nestedResources(PackagePath)} and {@link #nestedResources(PackagePath, Matcher)} methods find resources and return
- * them as {@link ModuleResource} object(s). The search scope is restricted to {@link URI}s that match the scope
- * "kivakit" by default. This scope can be expanded with {@link #addSearchScope(String)}.
+ * them as {@link ModuleResource} object(s).
  *
  * @author jonathanl (shibo)
  * @see ModuleResource
@@ -57,29 +53,20 @@ public class Modules
 
     private static final Debug DEBUG = new Debug(LOGGER);
 
-    private static final Set<String> scopes = new HashSet<>();
-
-    /** All module references in the boot module layer */
+    /**
+     * All module references in the boot module layer
+     */
     private static List<ModuleReference> references;
 
-    /** Cached list of module resources for each package path */
+    /**
+     * Cached list of module resources for each package path
+     */
     private static final Map<PackagePath, List<ModuleResource>> allResourcesUnder = new HashMap<>();
 
     /**
      * List of all resources within the given search scopes
      */
     private static List<ModuleResource> allResources;
-
-    static
-    {
-        addSearchScope("kivakit");
-        addSearchScope("telenav");
-    }
-
-    public static void addSearchScope(final String prefix)
-    {
-        scopes.add(prefix);
-    }
 
     /**
      * @return A list of all {@link ModuleResource}s under the given package
@@ -119,36 +106,33 @@ public class Modules
                 DEBUG.trace("Looking in $", location);
                 if (location != null && !"jrt".equals(location.getScheme()))
                 {
-                    if (isInScope(location))
+                    try (final var reader = reference.open())
                     {
-                        try (final var reader = reference.open())
+                        reader.list().forEach(path ->
                         {
-                            reader.list().forEach(path ->
+                            try
                             {
-                                try
+                                final var optional = reader.find(path);
+                                if (optional.isPresent())
                                 {
-                                    final var optional = reader.find(path);
-                                    if (optional.isPresent())
+                                    final var uri = optional.get();
+                                    final var resource = ModuleResource.moduleResource(reference, uri);
+                                    if (resource != null)
                                     {
-                                        final var uri = optional.get();
-                                        final var resource = ModuleResource.moduleResource(reference, uri);
-                                        if (resource != null)
-                                        {
-                                            DEBUG.trace("Found resource $.$", resource.packagePath(), resource.fileNameAsJavaPath());
-                                            allResources.add(resource);
-                                        }
+                                        DEBUG.trace("Found resource $.$", resource.packagePath(), resource.fileNameAsJavaPath());
+                                        allResources.add(resource);
                                     }
                                 }
-                                catch (final IOException ignored)
-                                {
-                                    LOGGER.warning("Unable to read resource $ in module $", path, reference);
-                                }
-                            });
-                        }
-                        catch (final IOException e)
-                        {
-                            LOGGER.problem(e, "Unable to read module $", reference);
-                        }
+                            }
+                            catch (final IOException ignored)
+                            {
+                                LOGGER.warning("Unable to read resource $ in module $", path, reference);
+                            }
+                        });
+                    }
+                    catch (final IOException e)
+                    {
+                        LOGGER.problem(e, "Unable to read module $", reference);
                     }
                 }
                 else
@@ -223,18 +207,6 @@ public class Modules
     public static List<ModuleResource> resources(final PackagePath _package)
     {
         return nestedResources(_package, _package::contains);
-    }
-
-    private static boolean isInScope(final URI uri)
-    {
-        for (final var scope : scopes)
-        {
-            if (uri.getPath().contains(scope))
-            {
-                return true;
-            }
-        }
-        return false;
     }
 
     /**
