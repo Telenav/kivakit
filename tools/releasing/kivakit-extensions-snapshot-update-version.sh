@@ -16,4 +16,4 @@ help="[version]"
 
 require_variable version "$help"
 
-update_version $KIVAKIT_HOME $version
+update_version $KIVAKIT_EXTENSIONS_HOME $version

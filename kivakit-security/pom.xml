@@ -10,7 +10,7 @@
     <parent>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit</artifactId>
-        <version>0.9.7-alpha</version>
+        <version>0.9.8-alpha-SNAPSHOT</version>
     </parent>
 
     <name>KivaKit - Security</name>
