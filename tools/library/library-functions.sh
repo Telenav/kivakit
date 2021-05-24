@@ -291,20 +291,29 @@ is_mac() {
 
 lexakai() {
 
-    lexakai_download_version=0.9.8-alpha-SNAPSHOT
+    lexakai_download_version="0.9.8-alpha-SNAPSHOT"
+    lexakai_download_snapshot_version="20210524.201749-4"
+
     lexakai_downloads="$HOME/.lexakai/downloads"
-    lexakai_jar="${lexakai_downloads}/lexakai-${lexakai_download_version}.jar"
+
     if [[ "$lexakai_download_version" == *"SNAPSHOT"* ]]; then
-        lexakai_url="https://s01.oss.sonatype.org/content/repositories/snapshots/com/telenav/lexakai/lexakai/${lexakai_download_version}/lexakai-"${lexakai_download_version%-SNAPSHOT}"-20210524.174418-2.jar"
+
+        lexakai_snapshot_repository="https://s01.oss.sonatype.org/content/repositories/snapshots/com/telenav/lexakai/lexakai"
+        lexakai_url="$lexakai_snapshot_repository/${lexakai_download_version}/lexakai-${lexakai_download_version%-SNAPSHOT}-${lexakai_download_snapshot_version}.jar"
+        lexakai_jar="${lexakai_downloads}/lexakai-${lexakai_download_version}-${lexakai_download_snapshot_version}.jar"
+
     else
+
         lexakai_url="https://repo1.maven.org/maven2/com/telenav/lexakai/lexakai/${lexakai_download_version}/lexakai-${lexakai_download_version}.jar"
+        lexakai_jar="${lexakai_downloads}/lexakai-${lexakai_download_version}.jar"
+
     fi
 
     mkdir -p ${lexakai_downloads}
 
     if [ ! -e "$lexakai_jar" ]; then
 
-        wget lexakai_url --output-document=$lexakai_jar
+        wget $lexakai_url --output-document=$lexakai_jar
 
     fi
 

@@ -111,7 +111,7 @@ build() {
 
     "javadoc")
         JAVADOC="true"
-        BUILD_ARGUMENTS="clean package"
+        BUILD_ARGUMENTS="clean install"
         BUILD_MODIFIERS=(multi-threaded no-tests javadoc ${@:3})
         ;;
 
