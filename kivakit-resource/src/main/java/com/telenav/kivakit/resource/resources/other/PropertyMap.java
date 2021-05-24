@@ -176,6 +176,20 @@ public class PropertyMap extends VariableMap<String>
     }
 
     /**
+     * @return This property map with all values expanded using the values in the given property map
+     */
+    public PropertyMap expandedWith(final VariableMap<String> that)
+    {
+        final var map = new PropertyMap();
+        for (final var key : keySet())
+        {
+            final var value = get(key);
+            map.put(key, that.expand(value));
+        }
+        return map;
+    }
+
+    /**
      * @return The value of the given key as a {@link Count}
      */
     public Count asCount(final String key)

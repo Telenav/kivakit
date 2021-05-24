@@ -3,7 +3,6 @@ open module kivakit.collections
     requires transitive kivakit.serialization.kryo;
     requires transitive kivakit.test;
 
-    exports com.telenav.kivakit.collections.batcher;
     exports com.telenav.kivakit.collections.iteration.iterables;
     exports com.telenav.kivakit.collections.iteration.iterators;
     exports com.telenav.kivakit.collections.map;

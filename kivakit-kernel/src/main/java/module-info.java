@@ -86,6 +86,7 @@ open module kivakit.kernel
     exports com.telenav.kivakit.kernel.language.strings.conversion;
     exports com.telenav.kivakit.kernel.language.strings.formatting;
     exports com.telenav.kivakit.kernel.language.strings;
+    exports com.telenav.kivakit.kernel.language.threading.batcher;
     exports com.telenav.kivakit.kernel.language.threading.conditions;
     exports com.telenav.kivakit.kernel.language.threading.context;
     exports com.telenav.kivakit.kernel.language.threading.latches;

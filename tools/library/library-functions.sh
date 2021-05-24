@@ -291,10 +291,14 @@ is_mac() {
 
 lexakai() {
 
-    lexakai_download_version=0.9.7-alpha
+    lexakai_download_version=0.9.8-alpha-SNAPSHOT
     lexakai_downloads="$HOME/.lexakai/downloads"
     lexakai_jar="${lexakai_downloads}/lexakai-${lexakai_download_version}.jar"
-    lexakai_url="https://repo1.maven.org/maven2/com/telenav/lexakai/lexakai/${lexakai_download_version}/lexakai-${lexakai_download_version}.jar"
+    if [[ "$lexakai_download_version" == *"SNAPSHOT"* ]]; then
+        lexakai_url="https://s01.oss.sonatype.org/content/repositories/snapshots/com/telenav/lexakai/lexakai/${lexakai_download_version}/lexakai-"${lexakai_download_version%-SNAPSHOT}"-20210524.174418-2.jar"
+    else
+        lexakai_url="https://repo1.maven.org/maven2/com/telenav/lexakai/lexakai/${lexakai_download_version}/lexakai-${lexakai_download_version}.jar"
+    fi
 
     mkdir -p ${lexakai_downloads}
 

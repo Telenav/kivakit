@@ -16,9 +16,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.collections.batcher;
+package com.telenav.kivakit.kernel.language.threading.batcher;
 
-import com.telenav.kivakit.collections.project.lexakai.diagrams.DiagramBatchProcessing;
 import com.telenav.kivakit.kernel.interfaces.code.CheckedCode;
 import com.telenav.kivakit.kernel.interfaces.collection.Addable;
 import com.telenav.kivakit.kernel.language.threading.Threads;
@@ -26,6 +25,7 @@ import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.language.values.count.Maximum;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramBatchProcessing;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

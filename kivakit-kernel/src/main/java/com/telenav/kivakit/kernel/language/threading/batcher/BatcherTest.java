@@ -16,15 +16,16 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.collections.batcher;
+package com.telenav.kivakit.kernel.language.threading.batcher;
 
-import com.telenav.kivakit.collections.project.CoreCollectionsUnitTest;
 import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.language.values.count.Maximum;
-import com.telenav.kivakit.test.random.RandomValueFactory;
+import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import org.junit.Test;
 
-public class BatcherTest extends CoreCollectionsUnitTest
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureEqual;
+
+public class BatcherTest extends BaseRepeater
 {
     /**
      * Processes batches of integer objects keeping a count of how many have been "processed"
@@ -63,11 +64,10 @@ public class BatcherTest extends CoreCollectionsUnitTest
     @Test
     public void testRandom()
     {
-        final var random = new RandomValueFactory();
-        for (var i = 0; i < 4; i++)
-        {
-            testBatcher(random.newInt(1, 50) * 10);
-        }
+        testBatcher(47);
+        testBatcher(511);
+        testBatcher(1);
+        testBatcher(1024);
     }
 
     @Test

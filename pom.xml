@@ -164,7 +164,7 @@
 
         <!-- Lexakai Documentation -->
 
-        <lexakai.version>0.9.7-alpha</lexakai.version>
+        <lexakai.version>0.9.8-alpha-SNAPSHOT</lexakai.version>
 
         <!-- Java -->
 
@@ -485,7 +485,7 @@
                         <detectJavaApiLink>false</detectJavaApiLink>
                         <doclint>none</doclint>
                         <nohelp>true</nohelp>
-                        <reportOutputDirectory>${env.KIVAKIT_ASSETS_HOME}/docs/javadoc</reportOutputDirectory>
+                        <reportOutputDirectory>${env.KIVAKIT_ASSETS_HOME}/docs/${env.KIVAKIT_VERSION}/javadoc</reportOutputDirectory>
                         <destDir>kivakit</destDir>
                         <additionalOptions>-notimestamp --show-module-contents all --show-packages all --show-types private</additionalOptions>
                     </configuration>

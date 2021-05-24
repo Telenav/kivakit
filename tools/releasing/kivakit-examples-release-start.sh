@@ -16,4 +16,4 @@ version=$1
 
 require_variable version "$help"
 
-update_version $KIVAKIT_EXTENSIONS_HOME $version
+git_flow_release_start $KIVAKIT_EXAMPLES_HOME $version

@@ -16,7 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.collections.project.lexakai.diagrams;
+package com.telenav.kivakit.kernel.project.lexakai.diagrams;
 
 import com.telenav.lexakai.annotations.diagrams.UmlDiagramIdentifier;
 

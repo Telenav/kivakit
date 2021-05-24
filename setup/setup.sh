@@ -43,6 +43,7 @@ git clone https://github.com/Telenav/cactus-build.git
 git clone https://github.com/Telenav/cactus-build-assets.git
 git clone https://github.com/Telenav/lexakai-annotations.git
 git clone https://github.com/Telenav/kivakit-extensions.git
+git clone https://github.com/Telenav/kivakit-examples.git
 git clone https://github.com/Telenav/kivakit-assets.git
 
 #
@@ -71,6 +72,9 @@ cd $KIVAKIT_WORKSPACE/kivakit
 git flow init -d /dev/null 2>&1
 
 cd $KIVAKIT_WORKSPACE/kivakit-extensions
+git flow init -d /dev/null 2>&1
+
+cd $KIVAKIT_WORKSPACE/kivakit-examples
 git flow init -d /dev/null 2>&1
 
 #
