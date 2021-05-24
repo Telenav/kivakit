@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1282.2917px" preserveAspectRatio="none" style="width:1038px;height:1282px;background:#333333;" version="1.1" viewBox="0 0 1038 1282" width="1038.5417px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="233.3333" x="395.5729" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="210.4167" x="407.0313" y="30.5583">Resources - Archives</text><!--MD5=[762aa3d0df6a9d47bd8e105afbd066b5]
+class BaseRepeater--><rect codeLine="6" fill="#282828" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="136.4583" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="136.4583" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="136.4583" y="76.7578"/><rect codeLine="6" fill="none" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="136.4583" y="53.7028"/><ellipse cx="151.0417" cy="69.397" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M151.1556,66.099 L150.3072,69.8283 L152.0101,69.8283 Z M150.057,64.4511 L152.2603,64.4511 L154.7201,73.5636 L152.9195,73.5636 L152.358,71.3114 L149.9471,71.3114 L149.3978,73.5636 L147.5972,73.5636 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="86.4583" x="167.7083" y="74.1211">BaseRepeater</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="137.5" x2="259.375" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="137.5" x2="259.375" y1="93.4245" y2="93.4245"/><!--MD5=[8b5151cbe93a9a6942e91a66bba84fb0]
+class BaseWritableResource--><rect codeLine="7" fill="#282828" height="48.055" id="BaseWritableResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="179.1667" x="852.6042" y="876.6195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="179.1667" x="852.6042" y="876.6195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="179.1667" x="852.6042" y="899.6745"/><rect codeLine="7" fill="none" height="48.055" id="BaseWritableResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="179.1667" x="852.6042" y="876.6195"/><ellipse cx="867.1875" cy="892.3136" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M867.3014,889.0157 L866.453,892.745 L868.1559,892.745 Z M866.2028,887.3678 L868.4062,887.3678 L870.8659,896.4803 L869.0653,896.4803 L868.5038,894.2281 L866.0929,894.2281 L865.5436,896.4803 L863.7431,896.4803 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="141.6667" x="883.8542" y="897.0378">BaseWritableResource</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="853.6458" x2="1030.7292" y1="908.0078" y2="908.0078"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="853.6458" x2="1030.7292" y1="916.3411" y2="916.3411"/><!--MD5=[84d116d8586097e088223e800c641fac]
+class Closeable--><rect codeLine="9" fill="#282828" height="48.055" id="Closeable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="101.0417" x="296.875" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="101.0417" x="296.875" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="101.0417" x="296.875" y="76.7578"/><rect codeLine="9" fill="none" height="48.055" id="Closeable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="101.0417" x="296.875" y="53.7028"/><ellipse cx="311.4583" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M308.3415,66.5588 L308.3415,64.9719 L313.7675,64.9719 L313.7675,66.5588 L311.9548,66.5588 L311.9548,72.4976 L313.7675,72.4976 L313.7675,74.0845 L308.3415,74.0845 L308.3415,72.4976 L310.1542,72.4976 L310.1542,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="63.5417" x="328.125" y="74.1211">Closeable</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="297.9167" x2="396.875" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="297.9167" x2="396.875" y1="93.4245" y2="93.4245"/><!--MD5=[104b6cdf893074ce3a702d355ed6cb5c]
+class ByteSized--><rect codeLine="10" fill="#282828" height="48.055" id="ByteSized" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="100" x="554.6875" y="365.1611"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="100" x="554.6875" y="365.1611"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="100" x="554.6875" y="388.2161"/><rect codeLine="10" fill="none" height="48.055" id="ByteSized" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="100" x="554.6875" y="365.1611"/><ellipse cx="569.2708" cy="380.8553" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M566.154,378.0172 L566.154,376.4303 L571.58,376.4303 L571.58,378.0172 L569.7673,378.0172 L569.7673,383.9559 L571.58,383.9559 L571.58,385.5428 L566.154,385.5428 L566.154,383.9559 L567.9667,383.9559 L567.9667,378.0172 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="62.5" x="585.9375" y="385.5794">ByteSized</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="555.7292" x2="653.6458" y1="396.5495" y2="396.5495"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="555.7292" x2="653.6458" y1="404.8828" y2="404.8828"/><!--MD5=[301757bf963cbdfcac24cbf9fd45e92d]
+class FieldArchive--><rect codeLine="17" fill="#282828" height="448.2076" id="FieldArchive" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="491.6667" x="26.5625" y="165.1611"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="491.6667" x="26.5625" y="165.1611"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="491.6667" x="26.5625" y="188.2161"/><rect codeLine="17" fill="none" height="448.2076" id="FieldArchive" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="491.6667" x="26.5625" y="165.1611"/><ellipse cx="225.5208" cy="180.8553" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M227.4312,185.2804 Q227.004,185.5001 226.534,185.6099 Q226.064,185.7198 225.5452,185.7198 Q223.702,185.7198 222.7315,184.5052 Q221.7611,183.2906 221.7611,180.9957 Q221.7611,178.6947 222.7315,177.4801 Q223.702,176.2655 225.5452,176.2655 Q226.064,176.2655 226.5401,176.3753 Q227.0162,176.4852 227.4312,176.7049 L227.4312,178.7069 Q226.9674,178.2796 226.531,178.0813 Q226.0946,177.8829 225.6307,177.8829 Q224.6419,177.8829 224.1384,178.6672 Q223.6348,179.4515 223.6348,180.9957 Q223.6348,182.5338 224.1384,183.3181 Q224.6419,184.1024 225.6307,184.1024 Q226.0946,184.1024 226.531,183.904 Q226.9674,183.7056 227.4312,183.2784 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="79.1667" x="248.4375" y="185.5794">FieldArchive</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="27.6042" x2="517.1875" y1="196.5495" y2="196.5495"/><ellipse cx="38.0208" cy="231.9194" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="459.375" x="49.4792" y="238.8306">FieldArchive(File, SerializationSessionFactory, ProgressReporter, ZipArchive.Mode)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="27.6042" x2="228.6458" y1="214.7552" y2="214.7552"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="231.7708" y="218.5649">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="316.1458" x2="517.1875" y1="214.7552" y2="214.7552"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="27.6042" x2="517.1875" y1="248.5392" y2="248.5392"/><ellipse cx="38.0208" cy="259.9976" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="136.4583" x="49.4792" y="266.9088">ZipArchive.Mode mode()</text><ellipse cx="38.0208" cy="279.7424" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="157.2917" x="49.4792" y="286.6536">ProgressReporter reporter()</text><ellipse cx="38.0208" cy="299.4873" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="88.5417" x="49.4792" y="306.3985">ZipArchive zip()</text><ellipse cx="38.0208" cy="343.1437" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="49.4792" y="350.0549">File file()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="27.6042" x2="236.9792" y1="325.9796" y2="325.9796"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="240.1042" y="329.7892">(filesystem)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="307.8125" x2="517.1875" y1="325.9796" y2="325.9796"/><ellipse cx="38.0208" cy="386.8001" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="119.7917" x="49.4792" y="393.7113">void version(Version)</text><ellipse cx="38.0208" cy="406.545" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="95.8333" x="49.4792" y="413.4562">Version version()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="27.6042" x2="244.2708" y1="369.636" y2="369.636"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="50" x="247.3958" y="373.4456">(identity)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="300.5208" x2="517.1875" y1="369.636" y2="369.636"/><ellipse cx="38.0208" cy="450.2014" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="327.0833" x="49.4792" y="457.1126">VersionedObject&lt;T&gt; load(NamedObject, String fieldName)</text><ellipse cx="38.0208" cy="469.9463" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="255.2083" x="49.4792" y="476.8575">T loadFieldOf(NamedObject, String fieldName)</text><ellipse cx="38.0208" cy="489.6912" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="254.1667" x="49.4792" y="496.6024">boolean loadFieldsOf(NamedObject... objects)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="27.6042" x2="252.6042" y1="433.0373" y2="433.0373"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="33.3333" x="255.7292" y="436.8469">(read)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="292.1875" x2="517.1875" y1="433.0373" y2="433.0373"/><ellipse cx="38.0208" cy="533.3476" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="164.5833" x="49.4792" y="540.2588">SerializationSession session()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="27.6042" x2="231.25" y1="516.1835" y2="516.1835"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="76.0417" x="234.375" y="519.9931">(serialization)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="313.5417" x2="517.1875" y1="516.1835" y2="516.1835"/><ellipse cx="38.0208" cy="577.004" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="277.0833" x="49.4792" y="583.9152">void save(String fieldName, VersionedObject&lt;T&gt;)</text><ellipse cx="38.0208" cy="596.7489" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="230.2083" x="49.4792" y="603.6601">void saveFieldsOf(NamedObject, Version)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="27.6042" x2="251.5625" y1="559.8399" y2="559.8399"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="35.4167" x="254.6875" y="563.6495">(write)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="293.2292" x2="517.1875" y1="559.8399" y2="559.8399"/><!--MD5=[ebc3c4695e0dafb055beb8728081dab6]
+class KivaKitArchivedField--><rect codeLine="41" fill="#282828" height="48.055" id="KivaKitArchivedField" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="171.875" x="7.2917" y="876.6195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="171.875" x="7.2917" y="876.6195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="171.875" x="7.2917" y="899.6745"/><rect codeLine="41" fill="none" height="48.055" id="KivaKitArchivedField" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="171.875" x="7.2917" y="876.6195"/><ellipse cx="21.875" cy="892.3136" fill="#3380B9" rx="10.4167" ry="10.4167" style="stroke:#004D86;stroke-width:1.0416666666666667;"/><path d="M23.1262,892.6331 Q23.1262,891.9434 22.8149,891.5527 Q22.5037,891.1621 21.9604,891.1621 Q21.4172,891.1621 21.109,891.5527 Q20.8008,891.9434 20.8008,892.6331 Q20.8008,893.3289 21.109,893.7195 Q21.4172,894.1101 21.9604,894.1101 Q22.5037,894.1101 22.8149,893.7195 Q23.1262,893.3289 23.1262,892.6331 Z M24.2615,895.1355 L23.0652,895.1355 L23.0652,894.635 Q22.8333,894.9585 22.5189,895.108 Q22.2046,895.2576 21.7651,895.2576 Q20.7642,895.2576 20.1508,894.5374 Q19.5374,893.8171 19.5374,892.6331 Q19.5374,891.4551 20.1477,890.7379 Q20.7581,890.0208 21.7651,890.0208 Q22.1985,890.0208 22.5281,890.1703 Q22.8577,890.3198 23.0652,890.6067 L23.0652,890.3564 Q23.0652,889.5264 22.6105,889.0747 Q22.1558,888.623 21.3135,888.623 Q20.0439,888.623 19.2413,889.74 Q18.4387,890.8569 18.4387,892.6453 Q18.4387,894.519 19.3665,895.6268 Q20.2942,896.7346 21.8384,896.7346 Q22.3267,896.7346 22.7844,896.5912 Q23.2422,896.4478 23.6633,896.1609 L24.2249,897.2351 Q23.7305,897.5708 23.1476,897.7386 Q22.5647,897.9065 21.8994,897.9065 Q19.7632,897.9065 18.4937,896.4844 Q17.2241,895.0623 17.2241,892.6453 Q17.2241,890.2832 18.3655,888.8641 Q19.5068,887.4451 21.3867,887.4451 Q22.7173,887.4451 23.4894,888.2477 Q24.2615,889.0503 24.2615,890.4358 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="134.375" x="38.5417" y="897.0378">KivaKitArchivedField</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="178.125" y1="908.0078" y2="908.0078"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="178.125" y1="916.3411" y2="916.3411"/><!--MD5=[5cc06ecdd9480702b567e3f11ad511a4]
+class NamedObject--><rect fill="#282828" height="48.055" id="NamedObject" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="215.625" y="876.6195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="215.625" y="876.6195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="215.625" y="899.6745"/><rect fill="none" height="48.055" id="NamedObject" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="215.625" y="876.6195"/><ellipse cx="230.2083" cy="892.3136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M232.1187,896.7387 Q231.6915,896.9584 231.2215,897.0683 Q230.7515,897.1781 230.2327,897.1781 Q228.3895,897.1781 227.419,895.9635 Q226.4486,894.7489 226.4486,892.454 Q226.4486,890.153 227.419,888.9384 Q228.3895,887.7238 230.2327,887.7238 Q230.7515,887.7238 231.2276,887.8337 Q231.7037,887.9435 232.1187,888.1632 L232.1187,890.1652 Q231.6549,889.738 231.2185,889.5396 Q230.7821,889.3412 230.3182,889.3412 Q229.3294,889.3412 228.8259,890.1255 Q228.3223,890.9098 228.3223,892.454 Q228.3223,893.9921 228.8259,894.7764 Q229.3294,895.5607 230.3182,895.5607 Q230.7821,895.5607 231.2185,895.3623 Q231.6549,895.164 232.1187,894.7367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="86.4583" x="246.875" y="897.0378">NamedObject</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="216.6667" x2="338.5417" y1="908.0078" y2="908.0078"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="216.6667" x2="338.5417" y1="916.3411" y2="916.3411"/><!--MD5=[1c68038b3117b8b1d1ded2f13e138432]
+class ZipArchive--><rect codeLine="52" fill="#282828" height="404.5512" id="ZipArchive" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="431.25" x="384.8958" y="698.4945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="431.25" x="384.8958" y="698.4945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="431.25" x="384.8958" y="721.5495"/><rect codeLine="52" fill="none" height="404.5512" id="ZipArchive" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="431.25" x="384.8958" y="698.4945"/><ellipse cx="558.8542" cy="714.1886" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M560.7646,718.6137 Q560.3373,718.8334 559.8674,718.9433 Q559.3974,719.0531 558.8786,719.0531 Q557.0353,719.0531 556.0649,717.8385 Q555.0944,716.6239 555.0944,714.329 Q555.0944,712.028 556.0649,710.8134 Q557.0353,709.5988 558.8786,709.5988 Q559.3974,709.5988 559.8735,709.7087 Q560.3495,709.8185 560.7646,710.0382 L560.7646,712.0402 Q560.3007,711.613 559.8643,711.4146 Q559.4279,711.2162 558.964,711.2162 Q557.9753,711.2162 557.4717,712.0005 Q556.9682,712.7848 556.9682,714.329 Q556.9682,715.8671 557.4717,716.6514 Q557.9753,717.4357 558.964,717.4357 Q559.4279,717.4357 559.8643,717.2373 Q560.3007,717.039 560.7646,716.6117 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="68.75" x="581.7708" y="718.9128">ZipArchive</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="385.9375" x2="815.1042" y1="729.8828" y2="729.8828"/><ellipse cx="396.3542" cy="765.2527" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="257.2917" x="407.8125" y="772.1639">ZipArchive(FileSystem, ProgressReporter, File)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="385.9375" x2="556.7708" y1="748.0886" y2="748.0886"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="559.8958" y="751.8982">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="644.2708" x2="815.1042" y1="748.0886" y2="748.0886"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="385.9375" x2="815.1042" y1="781.8726" y2="781.8726"/><ellipse cx="396.3542" cy="793.3309" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="179.1667" x="407.8125" y="800.2421">ZipEntry entry(String pathname)</text><ellipse cx="396.3542" cy="813.0758" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="84.375" x="407.8125" y="819.987">boolean is(File)</text><ellipse cx="396.3542" cy="832.8206" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="260.4167" x="407.8125" y="839.7319">ZipArchive open(File, ProgressReporter, Mode)</text><ellipse cx="396.3542" cy="852.5655" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="113.5417" x="407.8125" y="859.4767">Resource resource()</text><ellipse cx="396.3542" cy="896.2219" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="139.5833" x="407.8125" y="903.1331">void add(List&lt;File&gt; files)</text><ellipse cx="396.3542" cy="915.9668" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="221.875" x="407.8125" y="922.878">List&lt;ZipEntry&gt; entries(Pattern compile)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="385.9375" x2="566.1458" y1="879.0578" y2="879.0578"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="569.2708" y="882.8674">(collection)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="634.8958" x2="815.1042" y1="879.0578" y2="879.0578"/><ellipse cx="396.3542" cy="959.6232" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="407.8125" y="966.5344">File file()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="385.9375" x2="565.1042" y1="942.4591" y2="942.4591"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="568.2292" y="946.2687">(filesystem)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="635.9375" x2="815.1042" y1="942.4591" y2="942.4591"/><ellipse cx="396.3542" cy="1003.2796" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="367.7083" x="407.8125" y="1010.1908">VersionedObject&lt;T&gt; load(SerializationSession, String entryName)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="385.9375" x2="580.7292" y1="986.1155" y2="986.1155"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="33.3333" x="583.8542" y="989.9251">(read)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="620.3125" x2="815.1042" y1="986.1155" y2="986.1155"/><ellipse cx="396.3542" cy="1046.936" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="215.625" x="407.8125" y="1053.8472">void save(String entryName, Resource)</text><ellipse cx="396.3542" cy="1066.6809" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="398.9583" x="407.8125" y="1073.5921">void save(SerializationSession, String entryName, VersionedObject&lt;T&gt;)</text><ellipse cx="396.3542" cy="1086.4258" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="382.2917" x="407.8125" y="1093.337">void saveEntry(String entryName, Callback&lt;OutputStream&gt; onWrite)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="385.9375" x2="579.6875" y1="1029.7719" y2="1029.7719"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="35.4167" x="582.8125" y="1033.5815">(write)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="621.3542" x2="815.1042" y1="1029.7719" y2="1029.7719"/><!--MD5=[cc8bafacd8527022a30c237ca2452f87]
+class ZipArchive.Mode--><rect codeLine="43" fill="#282828" height="87.5448" id="ZipArchive.Mode" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="144.7917" x="528.125" y="1188.0778"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="144.7917" x="528.125" y="1188.0778"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="144.7917" x="528.125" y="1211.1328"/><rect codeLine="43" fill="none" height="87.5448" id="ZipArchive.Mode" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="144.7917" x="528.125" y="1188.0778"/><ellipse cx="542.7083" cy="1203.772" fill="#CF6300" rx="10.4167" ry="10.4167" style="stroke:#EF8300;stroke-width:1.0416666666666667;"/><path d="M545.7642,1208.4595 L540.0879,1208.4595 L540.0879,1199.3469 L545.7642,1199.3469 L545.7642,1200.9338 L541.8884,1200.9338 L541.8884,1202.8992 L545.3979,1202.8992 L545.3979,1204.4861 L541.8884,1204.4861 L541.8884,1206.8726 L545.7642,1206.8726 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="107.2917" x="559.375" y="1208.4961">ZipArchive.Mode</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="529.1667" x2="671.875" y1="1219.4661" y2="1219.4661"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="30.2083" x="537.5" y="1237.8357">READ</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="33.3333" x="537.5" y="1257.5806">WRITE</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="529.1667" x2="671.875" y1="1267.2892" y2="1267.2892"/><!--MD5=[e4211ecaf710ddca6087580674df00d8]
+class ZipEntry--><rect codeLine="75" fill="#282828" height="83.3781" id="ZipEntry" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="178.125" x="754.1667" y="1190.1611"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="178.125" x="754.1667" y="1190.1611"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="178.125" x="754.1667" y="1213.2161"/><rect codeLine="75" fill="none" height="83.3781" id="ZipEntry" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="178.125" x="754.1667" y="1190.1611"/><ellipse cx="808.8542" cy="1205.8553" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M810.7646,1210.2804 Q810.3373,1210.5001 809.8674,1210.6099 Q809.3974,1210.7198 808.8786,1210.7198 Q807.0353,1210.7198 806.0649,1209.5052 Q805.0944,1208.2906 805.0944,1205.9957 Q805.0944,1203.6947 806.0649,1202.4801 Q807.0353,1201.2655 808.8786,1201.2655 Q809.3974,1201.2655 809.8735,1201.3753 Q810.3495,1201.4852 810.7646,1201.7049 L810.7646,1203.7069 Q810.3007,1203.2796 809.8643,1203.0813 Q809.4279,1202.8829 808.964,1202.8829 Q807.9753,1202.8829 807.4717,1203.6672 Q806.9682,1204.4515 806.9682,1205.9957 Q806.9682,1207.5338 807.4717,1208.3181 Q807.9753,1209.1024 808.964,1209.1024 Q809.4279,1209.1024 809.8643,1208.904 Q810.3007,1208.7056 810.7646,1208.2784 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="54.1667" x="831.7708" y="1210.5794">ZipEntry</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="755.2083" x2="931.25" y1="1221.5495" y2="1221.5495"/><ellipse cx="765.625" cy="1256.9194" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="145.8333" x="777.0833" y="1263.8306">ZipEntry(ZipArchive, Path)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="755.2083" x2="799.4792" y1="1239.7552" y2="1239.7552"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="802.6042" y="1243.5649">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="886.9792" x2="931.25" y1="1239.7552" y2="1239.7552"/><!--MD5=[cf0990be4f34b7f447159cb1c63f2c6f]
+reverse link BaseRepeater to FieldArchive--><path codeLine="12" d="M208.9063,122.5049 C211.8646,134.8903 215.3125,149.2861 219.0313,164.8278 " fill="none" id="BaseRepeater-backto-FieldArchive" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="201.75,123.9111,204,101.9528,215.9271,120.5257,201.75,123.9111" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[6ee8157ec862c44916192fd0685fdc4c]
+reverse link Closeable to FieldArchive--><path codeLine="13" d="M336.7813,122.5049 C333.7708,134.8903 330.2813,149.2861 326.5208,164.8278 " fill="none" id="Closeable-backto-FieldArchive" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="329.7604,120.484,341.7604,101.9528,343.9375,123.9215,329.7604,120.484" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[3463a0aee1e5a8cb87b2b324939590c1]
+link FieldArchive to KivaKitArchivedField--><path codeLine="14" d="M152.7917,613.1195 C148.6042,623.5674 144.6979,633.9945 141.1458,644.3278 C113.7708,723.9632 100.8333,823.2653 95.8333,871.1299 " fill="none" id="FieldArchive-to-KivaKitArchivedField" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="95.2917,876.432,100.3756,867.521,95.8129,871.2498,92.0841,866.6871,95.2917,876.432" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="117.7083" x="145.3125" y="660.5794">reads annotations</text><!--MD5=[f2eee161e6fe36e368cf6a26c9b8b534]
+link FieldArchive to NamedObject--><path codeLine="15" d="M274.6771,613.2132 C275.7083,713.8695 276.8021,821.2236 277.3125,871.0674 " fill="none" id="FieldArchive-to-NamedObject" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="277.3646,876.2861,281.4238,866.8641,277.3051,871.0781,273.0911,866.9594,277.3646,876.2861" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="107.2917" x="279.6875" y="660.5794">reads and writes</text><!--MD5=[849789c7fad579b782a1f075f52956ab]
+reverse link FieldArchive to ZipArchive--><path codeLine="16" d="M423.5833,624.8695 C439.4167,649.4528 455.4167,674.2757 470.9792,698.432 " fill="none" id="FieldArchive-backto-ZipArchive" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="416.0729,613.2132,415.9562,620.7239,422.8442,623.7204,422.9609,616.2097,416.0729,613.2132" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="57.2917" x="449.4792" y="660.5794">writes to</text><!--MD5=[dd87172b8cd162a6760b5a165e529c0b]
+reverse link ByteSized to ZipArchive--><path codeLine="49" d="M604.3229,434.4111 C603.8438,493.2757 602.9583,601.2028 602.1667,698.2861 " fill="none" id="ByteSized-backto-ZipArchive" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="597.0313,434.1403,604.5,413.3695,611.6146,434.2653,597.0313,434.1403" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[56dad5aca671b9d8780cd8ef48d55be3]
+link ZipArchive to ZipArchive.Mode--><path codeLine="50" d="M600.5208,1103.0465 C600.5208,1132.7028 600.5208,1160.682 600.5208,1182.8382 " fill="none" id="ZipArchive-to-ZipArchive.Mode" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="600.5208,1188.057,604.6875,1178.682,600.5208,1182.8486,596.3542,1178.682,600.5208,1188.057" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="108.3333" x="604.6875" y="1150.1628">opens for access</text><!--MD5=[fb9698ca57760273f5fce454cb3d385a]
+link ZipArchive to ZipEntry--><path codeLine="51" d="M749.0417,1103.0465 C771.8333,1133.9528 793.2708,1163.0361 809.9271,1185.6195 " fill="none" id="ZipArchive-to-ZipEntry" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="813.1875,1190.0465,810.9819,1180.0272,810.0984,1185.8532,804.2725,1184.9697,813.1875,1190.0465" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="40.625" x="788.0208" y="1150.1628">stores</text><!--MD5=[70fa847b022407f17b0defe6ffef12df]
+reverse link BaseWritableResource to ZipEntry--><path codeLine="74" d="M934.875,945.3174 C925.5208,996.8799 907.2813,1084.7132 880.7292,1156.8278 C876.6458,1167.9007 871.3333,1179.4736 866,1190.0882 " fill="none" id="BaseWritableResource-backto-ZipEntry" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="927.7188,943.9424,938.4896,924.682,942.0729,946.4528,927.7188,943.9424" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[3c8fa9fd53006fe04dc401dc110ee110]
+@startuml
+
+    !include lexakai.theme
+    
+    title "Resources - Archives"
+    
+    abstract BaseRepeater
+    abstract BaseWritableResource
+    
+    interface Closeable
+    interface ByteSized
+    
+    BaseRepeater <|- - FieldArchive
+    Closeable <|- - FieldArchive
+    FieldArchive - -> KivaKitArchivedField : "reads annotations"
+    FieldArchive - -> NamedObject : "reads and writes"
+    FieldArchive o- - ZipArchive : "writes to"
+    class FieldArchive
+    {
+        - -(constructors)- -
+        +FieldArchive(File, SerializationSessionFactory, ProgressReporter, ZipArchive.Mode)
+        - -
+        +ZipArchive.Mode mode()
+        +ProgressReporter reporter()
+        +ZipArchive zip()
+        - -(filesystem)- -
+        +File file()
+        - -(identity)- -
+        +void version(Version)
+        +Version version()
+        - -(read)- -
+        +VersionedObject<T> load(NamedObject, String fieldName)
+        +T loadFieldOf(NamedObject, String fieldName)
+        +boolean loadFieldsOf(NamedObject... objects)
+        - -(serialization)- -
+        +SerializationSession session()
+        - -(write)- -
+        +void save(String fieldName, VersionedObject<T>)
+        +void saveFieldsOf(NamedObject, Version)
+    }
+    
+    annotation KivaKitArchivedField
+    
+    enum ZipArchive.Mode
+    {
+        READ
+        WRITE
+    }
+    
+    ByteSized <|- - ZipArchive
+    ZipArchive - -> ZipArchive.Mode : "opens for access"
+    ZipArchive - -> ZipEntry : "stores"
+    class ZipArchive
+    {
+        - -(constructors)- -
+        +ZipArchive(FileSystem, ProgressReporter, File)
+        - -
+        +ZipEntry entry(String pathname)
+        +boolean is(File)
+        +ZipArchive open(File, ProgressReporter, Mode)
+        +Resource resource()
+        - -(collection)- -
+        +void add(List<File> files)
+        +List<ZipEntry> entries(Pattern compile)
+        - -(filesystem)- -
+        +File file()
+        - -(read)- -
+        +VersionedObject<T> load(SerializationSession, String entryName)
+        - -(write)- -
+        +void save(String entryName, Resource)
+        +void save(SerializationSession, String entryName, VersionedObject<T>)
+        +void saveEntry(String entryName, Callback<OutputStream> onWrite)
+    }
+    
+    BaseWritableResource <|- - ZipEntry
+    class ZipEntry
+    {
+        - -(constructors)- -
+        +ZipEntry(ZipArchive, Path)
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "Resources - Archives"
+    
+    abstract BaseRepeater
+    abstract BaseWritableResource
+    
+    interface Closeable
+    interface ByteSized
+    
+    BaseRepeater <|- - FieldArchive
+    Closeable <|- - FieldArchive
+    FieldArchive - -> KivaKitArchivedField : "reads annotations"
+    FieldArchive - -> NamedObject : "reads and writes"
+    FieldArchive o- - ZipArchive : "writes to"
+    class FieldArchive
+    {
+        - -(constructors)- -
+        +FieldArchive(File, SerializationSessionFactory, ProgressReporter, ZipArchive.Mode)
+        - -
+        +ZipArchive.Mode mode()
+        +ProgressReporter reporter()
+        +ZipArchive zip()
+        - -(filesystem)- -
+        +File file()
+        - -(identity)- -
+        +void version(Version)
+        +Version version()
+        - -(read)- -
+        +VersionedObject<T> load(NamedObject, String fieldName)
+        +T loadFieldOf(NamedObject, String fieldName)
+        +boolean loadFieldsOf(NamedObject... objects)
+        - -(serialization)- -
+        +SerializationSession session()
+        - -(write)- -
+        +void save(String fieldName, VersionedObject<T>)
+        +void saveFieldsOf(NamedObject, Version)
+    }
+    
+    annotation KivaKitArchivedField
+    
+    enum ZipArchive.Mode
+    {
+        READ
+        WRITE
+    }
+    
+    ByteSized <|- - ZipArchive
+    ZipArchive - -> ZipArchive.Mode : "opens for access"
+    ZipArchive - -> ZipEntry : "stores"
+    class ZipArchive
+    {
+        - -(constructors)- -
+        +ZipArchive(FileSystem, ProgressReporter, File)
+        - -
+        +ZipEntry entry(String pathname)
+        +boolean is(File)
+        +ZipArchive open(File, ProgressReporter, Mode)
+        +Resource resource()
+        - -(collection)- -
+        +void add(List<File> files)
+        +List<ZipEntry> entries(Pattern compile)
+        - -(filesystem)- -
+        +File file()
+        - -(read)- -
+        +VersionedObject<T> load(SerializationSession, String entryName)
+        - -(write)- -
+        +void save(String entryName, Resource)
+        +void save(SerializationSession, String entryName, VersionedObject<T>)
+        +void saveEntry(String entryName, Callback<OutputStream> onWrite)
+    }
+    
+    BaseWritableResource <|- - ZipEntry
+    class ZipEntry
+    {
+        - -(constructors)- -
+        +ZipEntry(ZipArchive, Path)
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

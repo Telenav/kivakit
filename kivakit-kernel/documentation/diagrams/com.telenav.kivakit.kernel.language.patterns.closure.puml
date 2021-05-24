@@ -1,0 +1,45 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.patterns.closure"
+    
+    Pattern <|-- Closure
+    abstract class Closure
+    {
+        --(constructors)--
+        #Closure(boolean)
+        --
+        #String greed()
+    }
+    
+    Closure <|-- OneOrMore
+    class OneOrMore
+    {
+        --(constructors)--
+        +OneOrMore(Pattern)
+        +OneOrMore(Pattern, boolean)
+        --
+        +OneOrMore nonGreedy()
+    }
+    
+    Pattern <|-- Optional
+    class Optional
+    {
+        --(constructors)--
+        +Optional(Pattern)
+    }
+    
+    Closure <|-- ZeroOrMore
+    class ZeroOrMore
+    {
+        --(constructors)--
+        +ZeroOrMore(Pattern)
+        +ZeroOrMore(Pattern, boolean)
+        --
+        +ZeroOrMore greedy()
+        +ZeroOrMore nonGreedy()
+    }
+    
+@enduml
+

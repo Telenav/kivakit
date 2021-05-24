@@ -1,0 +1,25 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Data - Comparison"
+    
+    interface Sized
+    
+    Sized <|-- Differences
+    Differences o-- StringList
+    class Differences
+    {
+        --
+        +boolean compare(String description, Iterable<T>, Iterable<T>)
+        +boolean compare(String description, T a, T b)
+        --(checks)--
+        +boolean isDifferent()
+        +boolean isIdentical()
+        --(collection)--
+        +void add(String description)
+        +void add(Differences that)
+    }
+    
+@enduml
+

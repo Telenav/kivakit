@@ -1,0 +1,22 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.patterns.logical"
+    
+    Pattern <|-- Or
+    class Or
+    {
+        --(constructors)--
+        +Or(Pattern, Pattern)
+    }
+    
+    Pattern <|-- Then
+    class Then
+    {
+        --(constructors)--
+        +Then(Pattern, Pattern)
+    }
+    
+@enduml
+

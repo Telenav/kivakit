@@ -1,0 +1,25 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.reflection.access.field"
+    
+    interface Getter
+    interface Setter
+    
+    Getter <|-- FieldGetter
+    class FieldGetter
+    {
+        --(constructors)--
+        +FieldGetter(java.lang.reflect.Field)
+    }
+    
+    Setter <|-- FieldSetter
+    class FieldSetter
+    {
+        --(constructors)--
+        +FieldSetter(java.lang.reflect.Field)
+    }
+    
+@enduml
+

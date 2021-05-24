@@ -1,0 +1,20 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.interfaces.loading"
+    
+    interface Loadable
+    {
+        --(read)--
+        +void load()
+    }
+    
+    interface Unloadable
+    {
+        --
+        +void unload()
+    }
+    
+@enduml
+

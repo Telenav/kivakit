@@ -1,0 +1,20 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.reflection.populator"
+    
+    annotation KivaKitPropertyConverter
+    
+    annotation KivaKitPropertyOptional
+    
+    class ObjectPopulator
+    {
+        --(constructors)--
+        +ObjectPopulator(Listener, PropertyFilter, PropertyValueSource)
+        --
+        +T populate(T object)
+    }
+    
+@enduml
+

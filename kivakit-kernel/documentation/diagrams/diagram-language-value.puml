@@ -1,0 +1,528 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Language - Values"
+    
+    interface Countable
+    interface Named
+    interface Comparable
+    interface Serializable
+    interface Listener
+    interface Factory
+    interface Quantizable
+    interface Identifiable
+    interface AsString
+    interface Ranged
+    interface LongKeyed
+    interface Contains
+    interface ByteSized
+    
+    Count <|-- BitCount
+    class BitCount
+    {
+        --(constructors)--
+        #BitCount()
+        #BitCount(long)
+        --
+        +long mask()
+        --(collection)--
+        +BitCount bitCount(long count)
+        +BitCount bitCount(T[] values)
+        +BitCount maximum(BitCount that)
+        +BitCount minimum(BitCount that)
+        +BitCount minus(BitCount)
+        +BitCount perByte()
+        +BitCount perCharacter()
+        +BitCount perInteger()
+        +BitCount perLong()
+        +BitCount perShort()
+        +BitCount times(BitCount)
+        +BitCount toRepresent(long value)
+        +long values()
+        --(math)--
+        +long maximumSigned()
+        +long maximumUnsigned()
+        +long minimumSigned()
+    }
+    
+    interface ByteSized
+    {
+        --(math)--
+        +boolean isLargerThan(ByteSized that)
+        +boolean isSmallerThan(ByteSized that)
+        --(primitive)--
+        +Bytes bytes()
+    }
+    
+    Count <|-- Bytes
+    ByteSized <|-- Bytes
+    class Bytes
+    {
+        --(constructors)--
+        #Bytes()
+        --
+        +void reverse(byte[] array)
+        +void reverse(byte[] array, int fromIndex, int toIndex)
+        --(checks)--
+        +boolean isGreaterThan(Bytes that)
+        +boolean isGreaterThanOrEqualTo(Bytes that)
+        +boolean isLessThan(Bytes that)
+        +boolean isLessThanOrEqualTo(Bytes that)
+        --(conversion)--
+        +double asGigabytes()
+        +double asKilobytes()
+        +double asMegabytes()
+        +double asTerabytes()
+        --(math)--
+        +Percent percentOf(Bytes that)
+        --(primitive)--
+        +Bytes add(Bytes that)
+        +long asBytes()
+        +Bytes bytes(long bytes)
+        +Bytes bytes(Count)
+        +Bytes bytes(double bytes)
+        +Bytes gigabytes(double gigabytes)
+        +Bytes gigabytes(long gigabytes)
+        +Bytes kilobytes(long kilobytes)
+        +Bytes kilobytes(double kilobytes)
+        +Bytes maximum(Bytes that)
+        +Bytes megabytes(double megabytes)
+        +Bytes megabytes(long megabytes)
+        +Bytes minimum(Bytes that)
+        +Bytes minus(Bytes that)
+        +Bytes parse(Listener, String bytes)
+        +Bytes parse(String bytes)
+        +Bytes terabytes(long terabytes)
+        +Bytes terabytes(double terabytes)
+    }
+    
+    Countable <|-- ConcurrentMutableCount
+    Listener <|-- ConcurrentMutableCount
+    class ConcurrentMutableCount
+    {
+        --(constructors)--
+        +ConcurrentMutableCount()
+        +ConcurrentMutableCount(long)
+        --
+        +long get()
+        +void set(long count)
+        --(checks)--
+        +boolean isGreaterThan(ConcurrentMutableCount that)
+        +boolean isLessThan(ConcurrentMutableCount that)
+        +boolean isZero()
+        --(collection)--
+        +void clear()
+        --(conversion)--
+        +Count asCount()
+        +int asInt()
+        +long asLong()
+        --(math)--
+        +long add(long that)
+        +long add(Count that)
+        +long decrement()
+        +long increment()
+        +Percent percentOf(Count total)
+    }
+    
+    class ConcurrentMutableValue<T>
+    {
+        --(constructors)--
+        +ConcurrentMutableValue()
+        +ConcurrentMutableValue(T)
+        --
+        +T get()
+        +void set(T value)
+        +void update(Function<T,T> updater)
+    }
+    
+    Level <|-- Confidence
+    class Confidence
+    {
+        --(constructors)--
+        #Confidence()
+        #Confidence(double)
+        --
+        +Confidence confidence(double value)
+        --(primitive)--
+        +int asUnsignedByte()
+        +Confidence confidenceForByte(byte level)
+        +Confidence confidenceForInt(int value)
+    }
+    
+    Countable <|-- Count
+    Comparable <|-- Count
+    Quantizable <|-- Count
+    AsString <|-- Count
+    Serializable <|-- Count
+    class Count
+    {
+        --(constructors)--
+        #Count()
+        #Count(long)
+        --
+        +long get()
+        --(checks)--
+        +boolean isEvenlyDividedBy(Count that)
+        +boolean isGreaterThan(Count that)
+        +boolean isGreaterThanOrEqualTo(Count that)
+        +boolean isLessThan(Count that)
+        +boolean isLessThanOrEqualTo(Count that)
+        +boolean isMaximum()
+        --(collection)--
+        +BitCount asBitCount()
+        +Count asCount()
+        +BitCount bitsToRepresent()
+        +Count ceiling(int digits)
+        +Count count(Iterable<?>, Count maximum)
+        +Count count(long value)
+        +Count count(T[] values)
+        +Count count(Iterator<?>, Count maximum)
+        +Count count(Collection<?>)
+        +Count count(Iterable<?>)
+        +Count count(Iterator<?>)
+        +Count decremented()
+        +Count dividedBy(Count divisor)
+        +Count dividedBy(long divisor)
+        +Count floor(int digits)
+        +Count incremented()
+        +Count maximum(Count that)
+        +Count minimum(Count that)
+        +Count minus(long count)
+        +Count minus(Count)
+        +Count minusOne()
+        +byte[] newByteArray()
+        +char[] newCharArray()
+        +double[] newDoubleArray()
+        +float[] newFloatArray()
+        +int[] newIntArray()
+        +long[] newLongArray()
+        +T[] newObjectArray()
+        +short[] newShortArray()
+        +String[] newStringArray()
+        +Count nextPrime()
+        +Count parse(String value)
+        +Count percent(Percent percentage)
+        +Count plus(long count)
+        +Count plus(Count)
+        +Count plusOne()
+        +Count roundUpToPowerOfTwo()
+        +Count times(Count)
+        +Count times(long count)
+        +Count times(Percent percentage)
+        +Count times(double multiplier)
+        #Count onNewInstance(long value)
+        --(conversion)--
+        +Estimate asEstimate()
+        +int asInt()
+        +long asLong()
+        +Maximum asMaximum()
+        +Minimum asMinimum()
+        +String toCommaSeparatedString()
+        +String toSimpleString()
+        --(iteration)--
+        +void loop(Loopable code)
+        +void loop(Runnable code)
+        +void loop(int times, Loopable code)
+        --(math)--
+        +boolean dividesEvenlyBy(Count value)
+        +Percent percentOf(Count total)
+        --(primitive)--
+        +void forEachByte(Consumer<Byte>)
+        +void forEachInteger(Consumer<Integer>)
+        +void forEachLong(Consumer<Long>)
+        +void forEachShort(Consumer<Short>)
+    }
+    
+    Count <|-- Estimate
+    AsString <|-- Estimate
+    class Estimate
+    {
+        --(constructors)--
+        #Estimate()
+        #Estimate(long)
+        --
+        +Estimate estimate(Collection<?>)
+        +Estimate estimate(long value)
+        +Estimate estimate(Iterator<?>)
+        +Estimate estimate(T[] values)
+        +Estimate estimate(Iterable<?>)
+        --(collection)--
+        +Estimate add(Estimate that)
+        --(parsing)--
+        +Estimate parse(String value)
+    }
+    
+    Identifiable <|-- Identifier
+    LongKeyed <|-- Identifier
+    Comparable <|-- Identifier
+    class Identifier
+    {
+        --(constructors)--
+        +Identifier(long)
+        --(collection)--
+        +BitCount bitsToRepresent()
+        --(primitive)--
+        +long asLong()
+    }
+    
+    Factory <|-- IdentifierFactory
+    class IdentifierFactory
+    {
+        --(constructors)--
+        +IdentifierFactory()
+        +IdentifierFactory(long)
+    }
+    
+    Comparable <|-- IntegerIdentifier
+    Identifiable <|-- IntegerIdentifier
+    class IntegerIdentifier
+    {
+        --(constructors)--
+        #IntegerIdentifier()
+        +IntegerIdentifier(int)
+        --(checks)--
+        +boolean isGreaterThan(IntegerIdentifier)
+        +boolean isLessThan(IntegerIdentifier)
+        --(primitive)--
+        +int asInteger()
+        +long asLong()
+    }
+    
+    class Level
+    {
+        --(constructors)--
+        #Level()
+        +Level(double)
+        --
+        +int compareTo(Level that)
+        +Level inverse()
+        +Level reciprocal()
+        --(checks)--
+        +boolean isClose(Level that, double margin)
+        +boolean isGreaterThan(Level that)
+        +boolean isGreaterThanOrEqualTo(Level that)
+        +boolean isLessThan(Level that)
+        +boolean isLessThanOrEqualTo(Level that)
+        +boolean isZero()
+        --(conversion)--
+        +byte asByte()
+        +Level asLevel()
+        +double asZeroToOne()
+        --(extension points)--
+        #Level onNewInstance(double value)
+        --(math)--
+        +Percent asPercentage()
+        +Level divide(Level that)
+        +Level minus(Level that)
+        +Level plus(Level that)
+        +Level times(Level that)
+        --(primitive)--
+        +Level levelForByte(byte level)
+    }
+    
+    Contains <|-- LongRange
+    class LongRange
+    {
+        --(constructors)--
+        #LongRange()
+        +LongRange(long, long)
+        --
+        +Long constrainTo(Long value)
+        --(math)--
+        +Long maximum(Long that)
+        +Long maximum()
+        +Long minimum(Long that)
+        +Long minimum()
+    }
+    
+    Count <|-- Maximum
+    class Maximum
+    {
+        --(constructors)--
+        #Maximum()
+        #Maximum(long)
+        --(math)--
+        +Maximum maximum(Collection<?>)
+        +Maximum maximum(long value)
+        +Maximum maximum(Iterator<?>)
+        +Maximum maximum(Iterable<?>)
+        +Maximum maximum(T[] values)
+        +Maximum parse(String value)
+    }
+    
+    Count <|-- Minimum
+    class Minimum
+    {
+        --(constructors)--
+        #Minimum()
+        #Minimum(long)
+        --(math)--
+        +Minimum minimum(long value)
+        +Minimum minimum(Collection<?>)
+        +Minimum minimum(Iterable<?>)
+        +Minimum minimum(T[] values)
+        +Minimum minimum(Iterator<?>)
+        +Minimum parse(String value)
+    }
+    
+    Countable <|-- MutableCount
+    Comparable <|-- MutableCount
+    Listener <|-- MutableCount
+    class MutableCount
+    {
+        --(constructors)--
+        +MutableCount()
+        +MutableCount(long)
+        --
+        +long get()
+        +void set(long count)
+        --(checks)--
+        +boolean isGreaterThan(MutableCount that)
+        +boolean isLessThan(MutableCount that)
+        +boolean isZero()
+        --(collection)--
+        +Count asCount()
+        +void clear()
+        --(math)--
+        +long decrement()
+        +long increment()
+        +long minus(long that)
+        +Percent percentOf(Count total)
+        +long plus(long that)
+        +long plus(Count that)
+        --(primitive)--
+        +long asLong()
+    }
+    
+    class MutableIndex
+    {
+        --(constructors)--
+        +MutableIndex()
+        +MutableIndex(int)
+        --
+        +int get()
+        +void set(int index)
+        --(collection)--
+        +void index(int index)
+        --(math)--
+        +int add(int that)
+        +int decrement()
+        +int increment()
+    }
+    
+    MutableValue <|-- MutableInteger
+    class MutableInteger
+    {
+        --(constructors)--
+        +MutableInteger()
+        +MutableInteger(Integer)
+        --(math)--
+        +void maximum(int value)
+        +void minimum(int value)
+    }
+    
+    MutableValue <|-- MutableLong
+    class MutableLong
+    {
+        --(constructors)--
+        +MutableLong()
+        +MutableLong(Long)
+        --(math)--
+        +void maximum(long value)
+        +void minimum(long value)
+    }
+    
+    class MutableValue<T>
+    {
+        --(constructors)--
+        +MutableValue()
+        +MutableValue(T)
+        --
+        +T get()
+        +void set(T value)
+        +void update(Function<T,T> updater)
+    }
+    
+    Named <|-- Name
+    class Name
+    {
+        --(constructors)--
+        #Name()
+        +Name(String)
+        --
+        +String of(Object)
+        +String synthetic(Object)
+        --(naming)--
+        +Name lowerCase()
+    }
+    
+    class ObjectIdentifier<T>
+    {
+        --(constructors)--
+        +ObjectIdentifier(T)
+        --
+        +T object()
+    }
+    
+    Comparable <|-- Percent
+    class Percent
+    {
+        --(constructors)--
+        #Percent()
+        #Percent(double)
+        --
+        +long scale(long value)
+        +double scale(double value)
+        +int scale(int value)
+        --(checks)--
+        +boolean isGreaterThan(Percent that)
+        +boolean isGreaterThanOrEqualTo(Percent that)
+        +boolean isLessThan(Percent that)
+        +boolean isLessThanOrEqualTo(Percent that)
+        --(collection)--
+        +double value()
+        --(conversion)--
+        +int asInt()
+        +Level asLevel()
+        +double asUnitValue()
+        +double asZeroToOne()
+        --(math)--
+        +Percent dividedBy(double divisor)
+        +Percent inverse()
+        +Percent minus(Percent that)
+        +Percent of(double percent)
+        +Percent plus(Percent that)
+        +Percent times(double scaleFactor)
+    }
+    
+    Ranged <|-- Range
+    class Range<T>
+    {
+        --(constructors)--
+        +Range(T, T)
+    }
+    
+    Comparable <|-- StringIdentifier
+    class StringIdentifier
+    {
+        --(constructors)--
+        #StringIdentifier()
+        +StringIdentifier(String)
+        --(conversion)--
+        +String asString()
+        --(identity)--
+        +String identifier()
+    }
+    
+    Level <|-- Weight
+    class Weight
+    {
+        --(constructors)--
+        #Weight()
+        --
+        +Weight weight(double value)
+    }
+    
+@enduml
+

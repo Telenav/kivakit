@@ -1,0 +1,65 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Iteration and Iterables"
+    
+    abstract BaseIterator
+    abstract BaseIterable
+    
+    interface Iterable
+    interface Iterator
+    
+    BaseIterator <|-- CompoundIterator
+    class CompoundIterator<Element>
+    {
+        --(constructors)--
+        +CompoundIterator()
+        +CompoundIterator(Iterator<Element>, Iterator<Element>)
+        --(collection)--
+        +void add(Iterator<Element>)
+        +void addAll(Collection<Iterator<Element>> iterators)
+    }
+    
+    Iterable <|-- DeduplicatingIterable
+    class DeduplicatingIterable<Element>
+    {
+        --(constructors)--
+        +DeduplicatingIterable(Iterable<Element>)
+    }
+    
+    BaseIterator <|-- DeduplicatingIterator
+    class DeduplicatingIterator<Element>
+    {
+        --(constructors)--
+        +DeduplicatingIterator(Iterator<Element>)
+    }
+    
+    Iterator <|-- EmptyIterator
+    class EmptyIterator<Element>
+    {
+    }
+    
+    BaseIterable <|-- FilteredIterable
+    class FilteredIterable<Element>
+    {
+        --(constructors)--
+        +FilteredIterable(Iterable<Element>, Matcher<Element>)
+    }
+    
+    BaseIterator <|-- FilteredIterator
+    class FilteredIterator<Element>
+    {
+        --(constructors)--
+        +FilteredIterator(Iterator<Element>, Matcher<Element>)
+    }
+    
+    Iterator <|-- SingletonIterator
+    class SingletonIterator<Element>
+    {
+        --(constructors)--
+        +SingletonIterator(Element)
+    }
+    
+@enduml
+

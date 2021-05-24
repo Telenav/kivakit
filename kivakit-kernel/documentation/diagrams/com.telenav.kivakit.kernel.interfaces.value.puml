@@ -1,0 +1,39 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.interfaces.value"
+    
+    interface BooleanValued
+    {
+        --(checks)--
+        +boolean isTrue()
+    }
+    
+    interface Locator<Value>
+    {
+        --(search)--
+        +Value locate()
+    }
+    
+    interface NewInstance<T>
+    {
+        --(factory)--
+        +T newInstance()
+        +T onNewInstance()
+    }
+    
+    interface Source<Value>
+    {
+        --
+        +Value get()
+    }
+    
+    interface Valued<Value>
+    {
+        --(collection)--
+        +Value value()
+    }
+    
+@enduml
+

@@ -1,0 +1,75 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Switch Parsing"
+    
+    interface Named
+    
+    enum Quantifier
+    {
+        ONE_OR_MORE
+        OPTIONAL
+        REQUIRED
+        TWO_OR_MORE
+        ZERO_OR_MORE
+    }
+    
+    Argument <|-- Switch
+    Named <|-- Switch
+    Switch --> SwitchParser : "gets value with"
+    class Switch
+    {
+        --(constructors)--
+        +Switch(String, String)
+        --(command line parsing)--
+        +T get(SwitchParser<T>)
+    }
+    
+    SwitchList "1" o-- "*" Switch
+    -class SwitchList
+    {
+        --(collection)--
+        +void add(Switch _switch)
+        --(command line parsing)--
+        +T get(SwitchParser<T>)
+    }
+    
+    SwitchParser --> SwitchParser.Builder : "creates"
+    SwitchParser --> T : "gets"
+    SwitchParser o-- Quantifier
+    SwitchParser o-- Converter : "converts values with"
+    SwitchParser o-- T : "default value"
+    class SwitchParser<T>
+    {
+        --
+        +T defaultValue()
+        +T get(Switch _switch)
+        +String help()
+        --(checks)--
+        +boolean isRequired()
+        --(command line parsing)--
+        +Builder<Boolean> booleanSwitch(String name, String description)
+        +Builder<T> builder(Class<T> type)
+        +Builder<Bytes> bytesSwitch(String name, String description)
+        +Builder<Count> countSwitch(String name, String description)
+        +Builder<Double> doubleSwitch(String name, String description)
+        +Builder<E> enumSwitch(String name, String description, Class<E> type)
+        +Builder<Integer> integerSwitch(String name, String description)
+        +Builder<ObjectList<E>> listSwitch(String name, String description, StringConverter<E> elementConverter, Class<E> elementType, String delimiter)
+        +Builder<LocalTime> localDateSwitch(String name, String description)
+        +Builder<LocalTime> localDateTimeSwitch(String name, String description)
+        +Builder<Long> longSwitch(String name, String description)
+        +Builder<Maximum> maximumSwitch(String name, String description)
+        +Builder<Minimum> minimumSwitch(String name, String description)
+        +Builder<Pattern> patternSwitch(String name, String description)
+        +Builder<Percent> percentSwitch(String name, String description)
+        +Builder<T> quantizableSwitch(String name, String description, Class<T> type, MapFactory<Long,T>)
+        +Builder<Set<E>> setSwitch(String name, String description, StringConverter<E> elementConverter, Class<E> elementType, String delimiter)
+        +Builder<String> stringSwitch(String name, String description)
+        +SwitchParser<Count> threadCountSwitch(Count maximum)
+        +Builder<Version> versionSwitch(String name, String description)
+    }
+    
+@enduml
+

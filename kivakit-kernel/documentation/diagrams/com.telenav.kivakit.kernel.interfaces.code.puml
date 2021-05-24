@@ -1,0 +1,43 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.interfaces.code"
+    
+    interface Callback<Value>
+    {
+        --
+        +void callback(Value)
+        +void onCallback(Value)
+    }
+    
+    interface CheckedCode<Value>
+    {
+        --
+        +CheckedCode<T> of(CheckedCode<T>)
+        +Value orNull()
+        --(lifecycle)--
+        +Value run()
+        --(logical)--
+        +Value or(Value defaultValue, String message, Object... arguments)
+        +Value or(Value defaultValue)
+        +Value or(Listener, Value defaultValue, String message, Object... arguments)
+    }
+    
+    interface Code<Value>
+    {
+        --
+        +Code<T> of(Code<T>)
+        +Code<T> of(Runnable code)
+        --(lifecycle)--
+        +Value run()
+    }
+    
+    interface Loopable
+    {
+        --
+        +void iteration(int iteration)
+    }
+    
+@enduml
+

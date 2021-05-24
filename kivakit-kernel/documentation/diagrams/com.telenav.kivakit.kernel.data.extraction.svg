@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="551.0417px" preserveAspectRatio="none" style="width:532px;height:551px;background:#333333;" version="1.1" viewBox="0 0 532 551" width="532.2917px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="440.625" x="38.5417" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="417.7083" x="50" y="30.5583">com.telenav.kivakit.kernel.data.extraction</text><!--MD5=[762aa3d0df6a9d47bd8e105afbd066b5]
+class BaseRepeater--><rect codeLine="6" fill="#282828" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="108.3333" y="174.0153"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="108.3333" y="174.0153"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="108.3333" y="197.0703"/><rect codeLine="6" fill="none" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="108.3333" y="174.0153"/><ellipse cx="122.9167" cy="189.7095" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M123.0306,186.4115 L122.1822,190.1408 L123.8851,190.1408 Z M121.932,184.7636 L124.1353,184.7636 L126.5951,193.8761 L124.7945,193.8761 L124.233,191.6239 L121.8221,191.6239 L121.2728,193.8761 L119.4722,193.8761 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="86.4583" x="139.5833" y="194.4336">BaseRepeater</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="109.375" x2="231.25" y1="205.4036" y2="205.4036"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="109.375" x2="231.25" y1="213.737" y2="213.737"/><!--MD5=[20080be7d9e2470b3df5c67a700ed6c2]
+class Extractor--><rect codeLine="28" fill="#282828" height="67.7999" id="Extractor" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="181.25" x="269.2708" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="181.25" x="269.2708" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="181.25" x="269.2708" y="187.1745"/><rect codeLine="28" fill="none" height="67.7999" id="Extractor" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="181.25" x="269.2708" y="164.1195"/><ellipse cx="283.8542" cy="179.8136" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M280.7373,176.9755 L280.7373,175.3886 L286.1633,175.3886 L286.1633,176.9755 L284.3506,176.9755 L284.3506,182.9142 L286.1633,182.9142 L286.1633,184.5011 L280.7373,184.5011 L280.7373,182.9142 L282.55,182.9142 L282.55,176.9755 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="57.2917" x="300.5208" y="184.5378">Extractor</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="84.375" x="369.2708" y="160.9945"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="76.0417" x="373.4375" y="177.2461">Value, From</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="270.3125" x2="449.4792" y1="195.5078" y2="195.5078"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="270.3125" x2="449.4792" y1="203.8411" y2="203.8411"/><ellipse cx="280.7292" cy="215.2995" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="147.9167" x="292.1875" y="222.2107">Value extract(From object)</text><!--MD5=[4fe71d7a58635998d27438f24ec03a3a]
+class BaseExtractor--><rect codeLine="12" fill="#282828" height="249.6704" id="BaseExtractor" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="511.4583" x="9.375" y="294.3278"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="511.4583" x="9.375" y="294.3278"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="511.4583" x="9.375" y="317.3828"/><rect codeLine="12" fill="none" height="249.6704" id="BaseExtractor" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="511.4583" x="9.375" y="294.3278"/><ellipse cx="170.8333" cy="310.022" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M170.9473,306.724 L170.0989,310.4533 L171.8018,310.4533 Z M169.8486,305.0761 L172.052,305.0761 L174.5117,314.1886 L172.7112,314.1886 L172.1497,311.9364 L169.7388,311.9364 L169.1895,314.1886 L167.3889,314.1886 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="87.5" x="193.75" y="314.7461">BaseExtractor</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="84.375" x="439.5833" y="291.2028"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="76.0417" x="443.75" y="307.4544">Value, From</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="10.4167" x2="519.7917" y1="325.7161" y2="325.7161"/><polygon fill="#FFFF44" points="20.8333,355.8777,25,360.0444,20.8333,364.211,16.6667,360.0444" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="130.2083" x="32.2917" y="367.9972">BaseExtractor(Listener)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="221.3542" y1="343.9219" y2="343.9219"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="224.4792" y="347.7315">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="308.8542" x2="519.7917" y1="343.9219" y2="343.9219"/><ellipse cx="20.8333" cy="404.7424" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="232.2917" x="32.2917" y="411.6536">ObjectList&lt;Value&gt; extract(From[] values)</text><ellipse cx="20.8333" cy="424.4873" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="382.2917" x="32.2917" y="431.3985">ObjectList&lt;Value&gt; extractList(Keyed&lt;String,String&gt; map, From key)</text><ellipse cx="20.8333" cy="444.2322" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="479.1667" x="32.2917" y="451.1434">ObjectList&lt;Value&gt; extractList(Keyed&lt;String,String&gt; map, From key, String separator)</text><ellipse cx="20.8333" cy="463.9771" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="344.7917" x="32.2917" y="470.8883">ObjectList&lt;Value&gt; extractList(Map&lt;String,String&gt;, From key)</text><ellipse cx="20.8333" cy="483.7219" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="441.6667" x="32.2917" y="490.6331">ObjectList&lt;Value&gt; extractList(Map&lt;String,String&gt;, From key, String separator)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="230.7292" y1="387.5783" y2="387.5783"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="233.8542" y="391.3879">(collection)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="299.4792" x2="519.7917" y1="387.5783" y2="387.5783"/><ellipse cx="20.8333" cy="527.3783" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="162.5" x="32.2917" y="534.2896">Value onExtract(From object)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="210.9375" y1="510.2142" y2="510.2142"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="102.0833" x="214.0625" y="514.0238">(extension points)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="319.2708" x2="519.7917" y1="510.2142" y2="510.2142"/><!--MD5=[44642bf1951becf690e71f855555764a]
+class Broadcaster--><rect codeLine="26" fill="#282828" height="48.055" id="Broadcaster" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="113.5417" x="303.125" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="113.5417" x="303.125" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="113.5417" x="303.125" y="76.7578"/><rect codeLine="26" fill="none" height="48.055" id="Broadcaster" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="113.5417" x="303.125" y="53.7028"/><ellipse cx="317.7083" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M314.5915,66.5588 L314.5915,64.9719 L320.0175,64.9719 L320.0175,66.5588 L318.2048,66.5588 L318.2048,72.4976 L320.0175,72.4976 L320.0175,74.0845 L314.5915,74.0845 L314.5915,72.4976 L316.4042,72.4976 L316.4042,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="76.0417" x="334.375" y="74.1211">Broadcaster</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="304.1667" x2="415.625" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="304.1667" x2="415.625" y1="93.4245" y2="93.4245"/><!--MD5=[924c6837ffd17d883955584fbc982d53]
+reverse link BaseRepeater to BaseExtractor--><path codeLine="10" d="M188.6354,241.4007 C195.3021,256.8174 203.2188,275.1403 211.3958,294.0465 " fill="none" id="BaseRepeater-backto-BaseExtractor" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="181.8542,244.0882,180.2813,222.0674,195.2396,238.2965,181.8542,244.0882" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[c394774d9d23ce76d8831f6759738c6c]
+reverse link Extractor to BaseExtractor--><path codeLine="11" d="M337.3958,251.0674 C331.7083,264.2132 325.3646,278.9007 318.8438,293.9736 " fill="none" id="Extractor-backto-BaseExtractor" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="330.7396,248.0674,345.7083,231.8382,344.1354,253.859,330.7396,248.0674" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[d7cf2edcf699d779b4301f36cf39da35]
+reverse link Broadcaster to Extractor--><path codeLine="27" d="M359.8958,123.0674 C359.8958,136.6715 359.8958,151.3799 359.8958,164.0674 " fill="none" id="Broadcaster-backto-Extractor" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="352.6042,122.609,359.8958,101.7757,367.1875,122.609,352.6042,122.609" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f2c1dd5598776fa4876fe8104cbe2fbc]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.data.extraction"
+    
+    abstract BaseRepeater
+    
+    interface Extractor
+    
+    BaseRepeater <|- - BaseExtractor
+    Extractor <|- - BaseExtractor
+    abstract class BaseExtractor<Value, From>
+    {
+        - -(constructors)- -
+        #BaseExtractor(Listener)
+        - -(collection)- -
+        +ObjectList<Value> extract(From[] values)
+        +ObjectList<Value> extractList(Keyed<String,String> map, From key)
+        +ObjectList<Value> extractList(Keyed<String,String> map, From key, String separator)
+        +ObjectList<Value> extractList(Map<String,String>, From key)
+        +ObjectList<Value> extractList(Map<String,String>, From key, String separator)
+        - -(extension points)- -
+        +Value onExtract(From object)
+    }
+    
+    interface Broadcaster
+    Broadcaster <|- - Extractor
+    interface Extractor<Value, From>
+    {
+        - -
+        +Value extract(From object)
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.kernel.data.extraction"
+    
+    abstract BaseRepeater
+    
+    interface Extractor
+    
+    BaseRepeater <|- - BaseExtractor
+    Extractor <|- - BaseExtractor
+    abstract class BaseExtractor<Value, From>
+    {
+        - -(constructors)- -
+        #BaseExtractor(Listener)
+        - -(collection)- -
+        +ObjectList<Value> extract(From[] values)
+        +ObjectList<Value> extractList(Keyed<String,String> map, From key)
+        +ObjectList<Value> extractList(Keyed<String,String> map, From key, String separator)
+        +ObjectList<Value> extractList(Map<String,String>, From key)
+        +ObjectList<Value> extractList(Map<String,String>, From key, String separator)
+        - -(extension points)- -
+        +Value onExtract(From object)
+    }
+    
+    interface Broadcaster
+    Broadcaster <|- - Extractor
+    interface Extractor<Value, From>
+    {
+        - -
+        +Value extract(From object)
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

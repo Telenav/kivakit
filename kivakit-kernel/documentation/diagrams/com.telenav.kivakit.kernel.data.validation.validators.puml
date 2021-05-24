@@ -1,0 +1,47 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.data.validation.validators"
+    
+    interface Validator
+    
+    Validator <|-- BaseValidator
+    abstract class BaseValidator
+    {
+        --
+        #void fatal(String message, Object... parameters)
+        #boolean fatalIf(boolean invalid, String message, Object... parameters)
+        #void onValidate()
+        #void validate(Validator)
+        #boolean validationReport()
+        #String validationTarget()
+        --(checks)--
+        +boolean isInvalid()
+        +boolean isValid()
+        #boolean isEmpty(String value)
+        #boolean isEmpty(Collection<?>)
+        #boolean isZero(Count)
+        --(messaging)--
+        #void problem()
+        #void problem(String message, Object... parameters)
+        #boolean problemIf(boolean invalid, String message, Object... parameters)
+        #void quibble(String message, Object... parameters)
+        #void quibble()
+        #boolean quibbleIf(boolean invalid, String message, Object... parameters)
+        #void warning(String message, Object... parameters)
+        #void warningIf(boolean invalid, String message, Object... parameters)
+    }
+    
+    class BaseValidator.Statistics
+    {
+        --(constructors)--
+        +Statistics()
+        +Statistics(Statistics)
+        +Statistics(int, int, int)
+        --(lifecycle)--
+        +void initialize()
+    }
+    
+@enduml
+

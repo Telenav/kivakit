@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="606.25px" preserveAspectRatio="none" style="width:511px;height:606px;background:#333333;" version="1.1" viewBox="0 0 511 606" width="511.4583px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="425" x="35.9375" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="402.0833" x="47.3958" y="30.5583">com.telenav.kivakit.kernel.language.bits</text><!--MD5=[c779d8e48a2334289c5ea04c17dd6ae7]
+class BitDiagram--><rect codeLine="6" fill="#282828" height="111.4563" id="BitDiagram" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="214.5833" x="7.2917" y="205.7861"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="214.5833" x="7.2917" y="205.7861"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="214.5833" x="7.2917" y="228.8411"/><rect codeLine="6" fill="none" height="111.4563" id="BitDiagram" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="214.5833" x="7.2917" y="205.7861"/><ellipse cx="70.8333" cy="221.4803" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M72.7437,225.9054 Q72.3165,226.1251 71.8465,226.2349 Q71.3765,226.3448 70.8577,226.3448 Q69.0145,226.3448 68.044,225.1302 Q67.0736,223.9156 67.0736,221.6207 Q67.0736,219.3197 68.044,218.1051 Q69.0145,216.8905 70.8577,216.8905 Q71.3765,216.8905 71.8526,217.0003 Q72.3287,217.1102 72.7437,217.3299 L72.7437,219.3319 Q72.2799,218.9046 71.8435,218.7063 Q71.4071,218.5079 70.9432,218.5079 Q69.9544,218.5079 69.4509,219.2922 Q68.9473,220.0765 68.9473,221.6207 Q68.9473,223.1588 69.4509,223.9431 Q69.9544,224.7274 70.9432,224.7274 Q71.4071,224.7274 71.8435,224.529 Q72.2799,224.3306 72.7437,223.9034 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="72.9167" x="93.75" y="226.2044">BitDiagram</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="8.3333" x2="220.8333" y1="237.1745" y2="237.1745"/><ellipse cx="18.75" cy="272.5444" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="102.0833" x="30.2083" y="279.4556">BitDiagram(String)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="70.8333" y1="255.3802" y2="255.3802"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="73.9583" y="259.1899">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="158.3333" x2="220.8333" y1="255.3802" y2="255.3802"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="220.8333" y1="289.1642" y2="289.1642"/><ellipse cx="18.75" cy="300.6226" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="182.2917" x="30.2083" y="307.5338">BitField field(char fieldCharacter)</text><!--MD5=[72f99d831d5a4fc9e2809bdda0e56561]
+class BitDiagram.BitField--><rect codeLine="14" fill="#282828" height="415.9627" id="BitDiagram.BitField" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="245.8333" x="258.3333" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="245.8333" x="258.3333" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="245.8333" x="258.3333" y="76.7578"/><rect codeLine="14" fill="none" height="415.9627" id="BitDiagram.BitField" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="245.8333" x="258.3333" y="53.7028"/><ellipse cx="311.4583" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M313.3687,73.822 Q312.9415,74.0417 312.4715,74.1516 Q312.0015,74.2615 311.4827,74.2615 Q309.6395,74.2615 308.669,73.0469 Q307.6986,71.8323 307.6986,69.5374 Q307.6986,67.2363 308.669,66.0217 Q309.6395,64.8071 311.4827,64.8071 Q312.0015,64.8071 312.4776,64.917 Q312.9537,65.0269 313.3687,65.2466 L313.3687,67.2485 Q312.9049,66.8213 312.4685,66.6229 Q312.0321,66.4246 311.5682,66.4246 Q310.5794,66.4246 310.0759,67.2089 Q309.5723,67.9932 309.5723,69.5374 Q309.5723,71.0754 310.0759,71.8597 Q310.5794,72.644 311.5682,72.644 Q312.0321,72.644 312.4685,72.4457 Q312.9049,72.2473 313.3687,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="125" x="334.375" y="74.1211">BitDiagram.BitField</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="259.375" x2="503.125" y1="85.0911" y2="85.0911"/><ellipse cx="269.7917" cy="120.461" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="72.9167" x="281.25" y="127.3722">BitField(char)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="259.375" x2="337.5" y1="103.2969" y2="103.2969"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="340.625" y="107.1065">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="425" x2="503.125" y1="103.2969" y2="103.2969"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="259.375" x2="503.125" y1="137.0809" y2="137.0809"/><ellipse cx="269.7917" cy="148.5392" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="281.25" y="155.4504">int bits()</text><ellipse cx="269.7917" cy="168.2841" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="196.875" x="281.25" y="175.1953">boolean extractBoolean(long value)</text><ellipse cx="269.7917" cy="188.029" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="65.625" x="281.25" y="194.9402">long mask()</text><ellipse cx="269.7917" cy="207.7738" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="152.0833" x="281.25" y="214.6851">int set(int value, int source)</text><ellipse cx="269.7917" cy="227.5187" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="198.9583" x="281.25" y="234.4299">short set(short value, short source)</text><ellipse cx="269.7917" cy="247.2636" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="203.125" x="281.25" y="254.1748">long set(long value, boolean source)</text><ellipse cx="269.7917" cy="267.0085" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="182.2917" x="281.25" y="273.9197">int set(int value, boolean source)</text><ellipse cx="269.7917" cy="286.7533" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="213.5417" x="281.25" y="293.6646">short set(short value, boolean source)</text><ellipse cx="269.7917" cy="306.4982" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="183.3333" x="281.25" y="313.4094">long set(long value, long source)</text><ellipse cx="269.7917" cy="350.1546" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="111.4583" x="281.25" y="357.0658">int maximumValue()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="259.375" x2="359.8958" y1="332.9905" y2="332.9905"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="36.4583" x="363.0208" y="336.8001">(math)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="402.6042" x2="503.125" y1="332.9905" y2="332.9905"/><ellipse cx="269.7917" cy="393.811" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="155.2083" x="281.25" y="400.7222">byte extractByte(long value)</text><ellipse cx="269.7917" cy="413.5559" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="137.5" x="281.25" y="420.4671">int extractInt(long value)</text><ellipse cx="269.7917" cy="433.3008" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="161.4583" x="281.25" y="440.212">long extractLong(long value)</text><ellipse cx="269.7917" cy="453.0457" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="168.75" x="281.25" y="459.9569">short extractShort(long value)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="259.375" x2="349.4792" y1="376.6469" y2="376.6469"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="57.2917" x="352.6042" y="380.4565">(primitive)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="413.0208" x2="503.125" y1="376.6469" y2="376.6469"/><!--MD5=[6d968ddc07e37fa04dbce273f7f2f669]
+class Bits--><rect codeLine="37" fill="#282828" height="67.7999" id="Bits" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="143.75" x="42.7083" y="531.8278"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="143.75" x="42.7083" y="531.8278"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="143.75" x="42.7083" y="554.8828"/><rect codeLine="37" fill="none" height="67.7999" id="Bits" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="143.75" x="42.7083" y="531.8278"/><ellipse cx="94.7917" cy="547.522" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M96.7021,551.947 Q96.2748,552.1667 95.8049,552.2766 Q95.3349,552.3865 94.8161,552.3865 Q92.9728,552.3865 92.0024,551.1719 Q91.0319,549.9573 91.0319,547.6624 Q91.0319,545.3613 92.0024,544.1467 Q92.9728,542.9321 94.8161,542.9321 Q95.3349,542.9321 95.811,543.042 Q96.287,543.1519 96.7021,543.3716 L96.7021,545.3735 Q96.2382,544.9463 95.8018,544.7479 Q95.3654,544.5496 94.9015,544.5496 Q93.9128,544.5496 93.4092,545.3339 Q92.9057,546.1182 92.9057,547.6624 Q92.9057,549.2004 93.4092,549.9847 Q93.9128,550.769 94.9015,550.769 Q95.3654,550.769 95.8018,550.5707 Q96.2382,550.3723 96.7021,549.9451 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="25" x="117.7083" y="552.2461">Bits</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="43.75" x2="185.4167" y1="563.2161" y2="563.2161"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="43.75" x2="185.4167" y1="571.5495" y2="571.5495"/><ellipse cx="54.1667" cy="583.0078" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="111.4583" x="65.625" y="589.919">long oneBits(Count)</text><!--MD5=[de7627db038bf4425d902c36aaa00854]
+link BitDiagram to BitDiagram.BitField--><!--MD5=[77d9830d9e297842010f300d35725499]
+link BitDiagram to Bits--><!--MD5=[533f0fa8c40d3a6dc416e65aca66b995]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.bits"
+    
+    class BitDiagram
+    {
+        - -(constructors)- -
+        +BitDiagram(String)
+        - -
+        +BitField field(char fieldCharacter)
+    }
+    
+    class BitDiagram.BitField
+    {
+        - -(constructors)- -
+        +BitField(char)
+        - -
+        +int bits()
+        +boolean extractBoolean(long value)
+        +long mask()
+        +int set(int value, int source)
+        +short set(short value, short source)
+        +long set(long value, boolean source)
+        +int set(int value, boolean source)
+        +short set(short value, boolean source)
+        +long set(long value, long source)
+        - -(math)- -
+        +int maximumValue()
+        - -(primitive)- -
+        +byte extractByte(long value)
+        +int extractInt(long value)
+        +long extractLong(long value)
+        +short extractShort(long value)
+    }
+    
+    class Bits
+    {
+        - -
+        +long oneBits(Count)
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.kernel.language.bits"
+    
+    class BitDiagram
+    {
+        - -(constructors)- -
+        +BitDiagram(String)
+        - -
+        +BitField field(char fieldCharacter)
+    }
+    
+    class BitDiagram.BitField
+    {
+        - -(constructors)- -
+        +BitField(char)
+        - -
+        +int bits()
+        +boolean extractBoolean(long value)
+        +long mask()
+        +int set(int value, int source)
+        +short set(short value, short source)
+        +long set(long value, boolean source)
+        +int set(int value, boolean source)
+        +short set(short value, boolean source)
+        +long set(long value, long source)
+        - -(math)- -
+        +int maximumValue()
+        - -(primitive)- -
+        +byte extractByte(long value)
+        +int extractInt(long value)
+        +long extractLong(long value)
+        +short extractShort(long value)
+    }
+    
+    class Bits
+    {
+        - -
+        +long oneBits(Count)
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

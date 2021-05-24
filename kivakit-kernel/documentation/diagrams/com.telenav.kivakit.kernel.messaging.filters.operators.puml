@@ -1,0 +1,41 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.messaging.filters.operators"
+    
+    interface Filter
+    
+    Filter <|-- All
+    class All<T>
+    {
+    }
+    
+    Filter <|-- And
+    class And<T>
+    {
+        --(constructors)--
+        +And(Filter<T>, Filter<T>)
+    }
+    
+    Filter <|-- None
+    class None<T>
+    {
+    }
+    
+    Filter <|-- Not
+    class Not<T>
+    {
+        --(constructors)--
+        +Not(Filter<T>)
+    }
+    
+    Filter <|-- Or
+    class Or<T>
+    {
+        --(constructors)--
+        +Or(Filter<T>, Filter<T>)
+    }
+    
+@enduml
+

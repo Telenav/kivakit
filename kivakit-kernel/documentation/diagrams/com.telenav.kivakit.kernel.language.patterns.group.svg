@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="491.6667px" preserveAspectRatio="none" style="width:547px;height:491px;background:#333333;" version="1.1" viewBox="0 0 547 491" width="547.9167px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="535.4167" x="2.0833" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="512.5" x="13.5417" y="30.5583">com.telenav.kivakit.kernel.language.patterns.group</text><!--MD5=[41314a0efc36828092cff9ebad2fcafd]
+class Group--><rect codeLine="14" fill="#282828" height="174.8576" id="Group" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="243.75" x="153.125" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="243.75" x="153.125" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="243.75" x="153.125" y="187.1745"/><rect codeLine="14" fill="none" height="174.8576" id="Group" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="243.75" x="153.125" y="164.1195"/><ellipse cx="238.5417" cy="179.8136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M240.4521,184.2387 Q240.0248,184.4584 239.5549,184.5683 Q239.0849,184.6781 238.5661,184.6781 Q236.7228,184.6781 235.7524,183.4635 Q234.7819,182.2489 234.7819,179.954 Q234.7819,177.653 235.7524,176.4384 Q236.7228,175.2238 238.5661,175.2238 Q239.0849,175.2238 239.561,175.3337 Q240.037,175.4435 240.4521,175.6632 L240.4521,177.6652 Q239.9882,177.238 239.5518,177.0396 Q239.1154,176.8412 238.6515,176.8412 Q237.6628,176.8412 237.1592,177.6255 Q236.6557,178.4098 236.6557,179.954 Q236.6557,181.4921 237.1592,182.2764 Q237.6628,183.0607 238.6515,183.0607 Q239.1154,183.0607 239.5518,182.8623 Q239.9882,182.664 240.4521,182.2367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="39.5833" x="261.4583" y="184.5378">Group</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="16.6667" x="383.3333" y="160.9945"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="387.5" y="177.2461">T</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="154.1667" x2="395.8333" y1="195.5078" y2="195.5078"/><ellipse cx="164.5833" cy="230.8777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="211.4583" x="176.0417" y="237.7889">Group(Pattern, Converter&lt;String, T&gt;)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="154.1667" x2="231.25" y1="213.7136" y2="213.7136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="234.375" y="217.5232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="318.75" x2="395.8333" y1="213.7136" y2="213.7136"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="154.1667" x2="395.8333" y1="247.4976" y2="247.4976"/><ellipse cx="164.5833" cy="258.9559" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="166.6667" x="176.0417" y="265.8671">T get(Matcher, T defaultValue)</text><ellipse cx="164.5833" cy="278.7008" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="176.0417" y="285.612">T get(Matcher)</text><ellipse cx="164.5833" cy="322.3572" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="100" x="176.0417" y="329.2684">Group&lt;T&gt; copy()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="154.1667" x2="239.5833" y1="305.1931" y2="305.1931"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="242.7083" y="309.0027">(filesystem)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="310.4167" x2="395.8333" y1="305.1931" y2="305.1931"/><!--MD5=[7bda1cf8d9548c7d230ce1d39283ddc0]
+class EnumGroup--><rect codeLine="7" fill="#282828" height="83.3781" id="EnumGroup" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="214.5833" x="167.7083" y="401.6195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="214.5833" x="167.7083" y="401.6195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="214.5833" x="167.7083" y="424.6745"/><rect codeLine="7" fill="none" height="83.3781" id="EnumGroup" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="214.5833" x="167.7083" y="401.6195"/><ellipse cx="220.3125" cy="417.3136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M222.2229,421.7387 Q221.7957,421.9584 221.3257,422.0683 Q220.8557,422.1781 220.3369,422.1781 Q218.4937,422.1781 217.5232,420.9635 Q216.5527,419.7489 216.5527,417.454 Q216.5527,415.153 217.5232,413.9384 Q218.4937,412.7238 220.3369,412.7238 Q220.8557,412.7238 221.3318,412.8337 Q221.8079,412.9435 222.2229,413.1632 L222.2229,415.1652 Q221.759,414.738 221.3226,414.5396 Q220.8862,414.3412 220.4224,414.3412 Q219.4336,414.3412 218.9301,415.1255 Q218.4265,415.9098 218.4265,417.454 Q218.4265,418.9921 218.9301,419.7764 Q219.4336,420.5607 220.4224,420.5607 Q220.8862,420.5607 221.3226,420.3623 Q221.759,420.164 222.2229,419.7367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="76.0417" x="243.2292" y="422.0378">EnumGroup</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="16.6667" x="368.75" y="398.4945"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="372.9167" y="414.7461">T</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="168.75" x2="381.25" y1="433.0078" y2="433.0078"/><ellipse cx="179.1667" cy="468.3777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="182.2917" x="190.625" y="475.2889">EnumGroup(Class&lt;T&gt;, Listener)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="168.75" x2="231.25" y1="451.2136" y2="451.2136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="234.375" y="455.0232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="318.75" x2="381.25" y1="451.2136" y2="451.2136"/><!--MD5=[e57988045781fc9269750b4152037d27]
+class Pattern--><rect fill="#282828" height="48.055" id="Pattern" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="83.3333" x="233.3333" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="83.3333" x="233.3333" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="83.3333" x="233.3333" y="76.7578"/><rect fill="none" height="48.055" id="Pattern" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="83.3333" x="233.3333" y="53.7028"/><ellipse cx="247.9167" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M249.8271,73.822 Q249.3998,74.0417 248.9299,74.1516 Q248.4599,74.2615 247.9411,74.2615 Q246.0978,74.2615 245.1274,73.0469 Q244.1569,71.8323 244.1569,69.5374 Q244.1569,67.2363 245.1274,66.0217 Q246.0978,64.8071 247.9411,64.8071 Q248.4599,64.8071 248.936,64.917 Q249.412,65.0269 249.8271,65.2466 L249.8271,67.2485 Q249.3632,66.8213 248.9268,66.6229 Q248.4904,66.4246 248.0265,66.4246 Q247.0378,66.4246 246.5342,67.2089 Q246.0307,67.9932 246.0307,69.5374 Q246.0307,71.0754 246.5342,71.8597 Q247.0378,72.644 248.0265,72.644 Q248.4904,72.644 248.9268,72.4457 Q249.3632,72.2473 249.8271,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="45.8333" x="264.5833" y="74.1211">Pattern</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="234.375" x2="315.625" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="234.375" x2="315.625" y1="93.4245" y2="93.4245"/><!--MD5=[6180cf851191b4888eb3b7e04a6da662]
+reverse link Group to EnumGroup--><path codeLine="6" d="M275,359.9945 C275,374.6611 275,388.932 275,401.3382 " fill="none" id="Group-backto-EnumGroup" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="267.7083,359.9632,275,339.1299,282.2917,359.9632,267.7083,359.9632" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[44c7591351f9d329ffefb4e8627eef8f]
+reverse link Pattern to Group--><path codeLine="13" d="M275,123.0257 C275,135.5465 275,149.6299 275,163.734 " fill="none" id="Pattern-backto-Group" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="267.7083,122.7132,275,101.8799,282.2917,122.7132,267.7083,122.7132" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[70f0c7f626f20dc5645a632ff713175a]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.patterns.group"
+    
+    Group <|- - EnumGroup
+    class EnumGroup<T>
+    {
+        - -(constructors)- -
+        +EnumGroup(Class<T>, Listener)
+    }
+    
+    Pattern <|- - Group
+    class Group<T>
+    {
+        - -(constructors)- -
+        +Group(Pattern, Converter<String, T>)
+        - -
+        +T get(Matcher, T defaultValue)
+        +T get(Matcher)
+        - -(filesystem)- -
+        +Group<T> copy()
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.kernel.language.patterns.group"
+    
+    Group <|- - EnumGroup
+    class EnumGroup<T>
+    {
+        - -(constructors)- -
+        +EnumGroup(Class<T>, Listener)
+    }
+    
+    Pattern <|- - Group
+    class Group<T>
+    {
+        - -(constructors)- -
+        +Group(Pattern, Converter<String, T>)
+        - -
+        +T get(Matcher, T defaultValue)
+        +T get(Matcher)
+        - -(filesystem)- -
+        +Group<T> copy()
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

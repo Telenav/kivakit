@@ -1,0 +1,58 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Data - State Validation"
+    
+    Ensure --> ValidationProblem : "reports"
+    class Ensure
+    {
+        --
+        +T ensure(Supplier<Boolean> valid, String message, Object... arguments)
+        +T ensure(boolean condition, Throwable, String message, Object... arguments)
+        +T ensure(ValidationReporter, Runnable code)
+        +T ensure(boolean condition, String message, Object... arguments)
+        +boolean ensure(boolean condition)
+        +void ensureWithin(double expected, double actual, double maximumDifference)
+        +T illegalState(Throwable, String message, Object... arguments)
+        +T illegalState(String message, Object... arguments)
+        +T report(Class<? extends Message> type, Throwable, String text, Object... arguments)
+        +T report(Class<? extends Message> type, String text, Object... arguments)
+        +ValidationReporter reporter(Class<? extends Message> type)
+        +void reporter(Class<? extends Message> type, ValidationReporter)
+        #void ensureBetween(double actual, double low, double high)
+        --(checks)--
+        +T ensureEqual(T given, T expected, String message, Object... arguments)
+        +T ensureEqual(T given, T expected)
+        +boolean ensureFalse(boolean condition)
+        +T ensureNotEqual(T given, T expected)
+        +T ensureNotNull(T object, String message, Object... arguments)
+        +T ensureNotNull(T object)
+        +T ensureNull(T object, String message, Object... arguments)
+        +T ensureNull(T object)
+        --(command line parsing)--
+        +T illegalArgument(String message, Object... arguments)
+        --(factory)--
+        +void reporterFactory(MapFactory<Class<? extends Message>,ValidationReporter>)
+        --(functional)--
+        +T unsupported()
+        +T unsupported(String message, Object... arguments)
+        --(io)--
+        #void ensureClose(Number expected, Number actual, int numberOfDecimalsToMatch)
+        --(status)--
+        +T fail(Throwable, String message, Object... arguments)
+        +T fail()
+        +T fail(String message, Object... arguments)
+    }
+    
+    Problem <|-- ValidationProblem
+    class ValidationProblem
+    {
+        --(constructors)--
+        +ValidationProblem()
+        +ValidationProblem(String, Object)
+        +ValidationProblem(Throwable, String, Object)
+    }
+    
+@enduml
+

@@ -1,0 +1,40 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.logging.logs"
+    
+    interface Startable
+    interface Log
+    interface Stoppable
+    
+    Startable <|-- BaseLog
+    Stoppable <|-- BaseLog
+    Log <|-- BaseLog
+    abstract class BaseLog
+    {
+        --(constructors)--
+        #BaseLog()
+        --
+        +void asynchronous(boolean asynchronous)
+        #void onLog(LogEntry)
+        #int retries()
+        --(checks)--
+        +boolean isAsynchronous()
+        --(collection)--
+        +void addFilter(Filter<LogEntry>)
+        +void clear()
+        +List<BaseLog> logs()
+        +CountMap<String> messageCounts()
+        #int queueSize()
+        --(filtering)--
+        #boolean accept(LogEntry)
+        --(io)--
+        +void closeOutput()
+        +boolean isClosed()
+        --(status)--
+        #void onLogFailure(LogEntry)
+    }
+    
+@enduml
+

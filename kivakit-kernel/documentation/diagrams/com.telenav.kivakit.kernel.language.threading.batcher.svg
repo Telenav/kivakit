@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="511.4583px" preserveAspectRatio="none" style="width:754px;height:511px;background:#333333;" version="1.1" viewBox="0 0 754 511" width="754.1667px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="564.5833" x="87.5" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="541.6667" x="98.9583" y="30.5583">com.telenav.kivakit.kernel.language.threading.batcher</text><!--MD5=[a5548e21786f7e80caab10882b0add56]
+cluster Batcher--><polygon fill="#333333" points="444.7917,188.5986,505.2083,188.5986,512.5,215.8203,736.4583,215.8203,736.4583,310.4736,444.7917,310.4736,444.7917,188.5986" style="stroke:#333333;stroke-width:2.0833333333333335;"/><line style="stroke:#333333;stroke-width:2.0833333333333335;" x1="444.7917" x2="512.5" y1="215.8203" y2="215.8203"/><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="47.9167" x="452.0833" y="205.8919">Batcher</text><!--MD5=[ed0c9d13bc9396a9a38cb4f6ccdf18fa]
+class Batcher.Batch--><rect codeLine="11" fill="#282828" height="48.055" id="Batcher.Batch" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="72.9167" x="638.5417" y="237.557"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="72.9167" x="638.5417" y="237.557"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="72.9167" x="638.5417" y="260.612"/><rect codeLine="11" fill="none" height="48.055" id="Batcher.Batch" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="72.9167" x="638.5417" y="237.557"/><ellipse cx="653.125" cy="253.2511" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M655.0354,257.6762 Q654.6082,257.8959 654.1382,258.0058 Q653.6682,258.1156 653.1494,258.1156 Q651.3062,258.1156 650.3357,256.901 Q649.3652,255.6864 649.3652,253.3915 Q649.3652,251.0905 650.3357,249.8759 Q651.3062,248.6613 653.1494,248.6613 Q653.6682,248.6613 654.1443,248.7712 Q654.6204,248.881 655.0354,249.1007 L655.0354,251.1027 Q654.5715,250.6755 654.1351,250.4771 Q653.6987,250.2787 653.2349,250.2787 Q652.2461,250.2787 651.7426,251.063 Q651.239,251.8473 651.239,253.3915 Q651.239,254.9296 651.7426,255.7139 Q652.2461,256.4982 653.2349,256.4982 Q653.6987,256.4982 654.1351,256.2998 Q654.5715,256.1015 655.0354,255.6742 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="35.4167" x="669.7917" y="257.9753">Batch</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="639.5833" x2="710.4167" y1="268.9453" y2="268.9453"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="639.5833" x2="710.4167" y1="277.2786" y2="277.2786"/><!--MD5=[7d1515b7b28d8bb888ffab022788fc34]
+class Batcher.BatchAdder--><rect codeLine="16" fill="#282828" height="48.055" id="Batcher.BatchAdder" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="111.4583" x="490.1042" y="237.557"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="111.4583" x="490.1042" y="237.557"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="111.4583" x="490.1042" y="260.612"/><rect codeLine="16" fill="none" height="48.055" id="Batcher.BatchAdder" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="111.4583" x="490.1042" y="237.557"/><ellipse cx="504.6875" cy="253.2511" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M506.5979,257.6762 Q506.1707,257.8959 505.7007,258.0058 Q505.2307,258.1156 504.7119,258.1156 Q502.8687,258.1156 501.8982,256.901 Q500.9277,255.6864 500.9277,253.3915 Q500.9277,251.0905 501.8982,249.8759 Q502.8687,248.6613 504.7119,248.6613 Q505.2307,248.6613 505.7068,248.7712 Q506.1829,248.881 506.5979,249.1007 L506.5979,251.1027 Q506.134,250.6755 505.6976,250.4771 Q505.2612,250.2787 504.7974,250.2787 Q503.8086,250.2787 503.3051,251.063 Q502.8015,251.8473 502.8015,253.3915 Q502.8015,254.9296 503.3051,255.7139 Q503.8086,256.4982 504.7974,256.4982 Q505.2612,256.4982 505.6976,256.2998 Q506.134,256.1015 506.5979,255.6742 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="73.9583" x="521.3542" y="257.9753">BatchAdder</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="491.1458" x2="600.5208" y1="268.9453" y2="268.9453"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="491.1458" x2="600.5208" y1="277.2786" y2="277.2786"/><!--MD5=[762aa3d0df6a9d47bd8e105afbd066b5]
+class BaseRepeater--><rect codeLine="6" fill="#282828" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="167.1875" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="167.1875" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="167.1875" y="76.7578"/><rect codeLine="6" fill="none" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="167.1875" y="53.7028"/><ellipse cx="181.7708" cy="69.397" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M181.8848,66.099 L181.0364,69.8283 L182.7393,69.8283 Z M180.7861,64.4511 L182.9895,64.4511 L185.4492,73.5636 L183.6487,73.5636 L183.0872,71.3114 L180.6763,71.3114 L180.127,73.5636 L178.3264,73.5636 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="86.4583" x="198.4375" y="74.1211">BaseRepeater</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="168.2292" x2="290.1042" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="168.2292" x2="290.1042" y1="93.4245" y2="93.4245"/><!--MD5=[93b6c7fd318afcbb262a6b60625b068e]
+class Addable--><rect codeLine="8" fill="#282828" height="48.055" id="Addable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="90.625" x="499.4792" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="90.625" x="499.4792" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="90.625" x="499.4792" y="76.7578"/><rect codeLine="8" fill="none" height="48.055" id="Addable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="90.625" x="499.4792" y="53.7028"/><ellipse cx="514.0625" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M510.9456,66.5588 L510.9456,64.9719 L516.3717,64.9719 L516.3717,66.5588 L514.5589,66.5588 L514.5589,72.4976 L516.3717,72.4976 L516.3717,74.0845 L510.9456,74.0845 L510.9456,72.4976 L512.7584,72.4976 L512.7584,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="53.125" x="530.7292" y="74.1211">Addable</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="500.5208" x2="589.0625" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="500.5208" x2="589.0625" y1="93.4245" y2="93.4245"/><!--MD5=[ab8871ed637f40707b866ba6597734bc]
+class ArrayList--><rect fill="#282828" height="48.055" id="ArrayList" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="95.8333" x="627.0833" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="95.8333" x="627.0833" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="95.8333" x="627.0833" y="76.7578"/><rect fill="none" height="48.055" id="ArrayList" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="95.8333" x="627.0833" y="53.7028"/><ellipse cx="641.6667" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M643.5771,73.822 Q643.1498,74.0417 642.6799,74.1516 Q642.2099,74.2615 641.6911,74.2615 Q639.8478,74.2615 638.8774,73.0469 Q637.9069,71.8323 637.9069,69.5374 Q637.9069,67.2363 638.8774,66.0217 Q639.8478,64.8071 641.6911,64.8071 Q642.2099,64.8071 642.686,64.917 Q643.162,65.0269 643.5771,65.2466 L643.5771,67.2485 Q643.1132,66.8213 642.6768,66.6229 Q642.2404,66.4246 641.7765,66.4246 Q640.7878,66.4246 640.2842,67.2089 Q639.7807,67.9932 639.7807,69.5374 Q639.7807,71.0754 640.2842,71.8597 Q640.7878,72.644 641.7765,72.644 Q642.2404,72.644 642.6768,72.4457 Q643.1132,72.2473 643.5771,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="58.3333" x="658.3333" y="74.1211">ArrayList</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="628.125" x2="721.875" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="628.125" x2="721.875" y1="93.4245" y2="93.4245"/><!--MD5=[8e449857f8c774f75def2d9bd1c3f50d]
+class Batcher--><rect codeLine="21" fill="#282828" height="194.6025" id="Batcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="216.6667" x="9.375" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="216.6667" x="9.375" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="216.6667" x="9.375" y="187.1745"/><rect codeLine="21" fill="none" height="194.6025" id="Batcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="216.6667" x="9.375" y="164.1195"/><ellipse cx="55.2083" cy="179.8136" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M55.3223,176.5157 L54.4739,180.245 L56.1768,180.245 Z M54.2236,174.8678 L56.427,174.8678 L58.8867,183.9803 L57.0862,183.9803 L56.5247,181.7281 L54.1138,181.7281 L53.5645,183.9803 L51.7639,183.9803 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="47.9167" x="78.125" y="184.5378">Batcher</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="60.4167" x="168.75" y="160.9945"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="52.0833" x="172.9167" y="177.2461">Element</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="10.4167" x2="225" y1="195.5078" y2="195.5078"/><polygon fill="#FFFF44" points="20.8333,225.6694,25,229.836,20.8333,234.0027,16.6667,229.836" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="184.375" x="32.2917" y="237.7889">Batcher(String, Maximum, Count)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="73.9583" y1="213.7136" y2="213.7136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="77.0833" y="217.5232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="161.4583" x2="225" y1="213.7136" y2="213.7136"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="225" y1="247.4976" y2="247.4976"/><ellipse cx="20.8333" cy="258.9559" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="108.3333" x="32.2917" y="265.8671">BatchAdder adder()</text><polygon fill="#FFFF44" points="20.8333,273.4924,25,277.6591,20.8333,281.8258,16.6667,277.6591" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="110.4167" x="32.2917" y="285.612">void onBatch(Batch)</text><ellipse cx="20.8333" cy="322.3572" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="143.75" x="32.2917" y="329.2684">void start(Count workers)</text><ellipse cx="20.8333" cy="342.1021" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="60.4167" x="32.2917" y="349.0133">void stop()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="88.0208" y1="305.1931" y2="305.1931"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="91.1458" y="309.0027">(lifecycle)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="147.3958" x2="225" y1="305.1931" y2="305.1931"/><!--MD5=[a2510f12837c4423ac4257d82fd7112c]
+class BatcherTest--><rect codeLine="34" fill="#282828" height="155.1127" id="BatcherTest" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="153.125" x="263.0208" y="183.9111"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="153.125" x="263.0208" y="183.9111"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="153.125" x="263.0208" y="206.9661"/><rect codeLine="34" fill="none" height="155.1127" id="BatcherTest" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="153.125" x="263.0208" y="183.9111"/><ellipse cx="295.4167" cy="199.6053" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M297.3271,204.0304 Q296.8998,204.2501 296.4299,204.3599 Q295.9599,204.4698 295.4411,204.4698 Q293.5978,204.4698 292.6274,203.2552 Q291.6569,202.0406 291.6569,199.7457 Q291.6569,197.4447 292.6274,196.2301 Q293.5978,195.0155 295.4411,195.0155 Q295.9599,195.0155 296.436,195.1253 Q296.912,195.2352 297.3271,195.4549 L297.3271,197.4569 Q296.8632,197.0296 296.4268,196.8313 Q295.9904,196.6329 295.5265,196.6329 Q294.5378,196.6329 294.0342,197.4172 Q293.5307,198.2015 293.5307,199.7457 Q293.5307,201.2838 294.0342,202.0681 Q294.5378,202.8524 295.5265,202.8524 Q295.9904,202.8524 296.4268,202.654 Q296.8632,202.4556 297.3271,202.0284 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="76.0417" x="316.0417" y="204.3294">BatcherTest</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="264.0625" x2="415.1042" y1="215.2995" y2="215.2995"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="264.0625" x2="415.1042" y1="223.6328" y2="223.6328"/><ellipse cx="274.4792" cy="235.0911" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="102.0833" x="285.9375" y="242.0024">void testRandom()</text><ellipse cx="274.4792" cy="278.7476" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="120.8333" x="285.9375" y="285.6588">void testEmptyFlush()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="264.0625" x2="305.2083" y1="261.5835" y2="261.5835"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="308.3333" y="265.3931">(collection)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="373.9583" x2="415.1042" y1="261.5835" y2="261.5835"/><ellipse cx="274.4792" cy="322.404" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="285.9375" y="329.3152">void testStop()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="264.0625" x2="309.8958" y1="305.2399" y2="305.2399"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="313.0208" y="309.0495">(lifecycle)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="369.2708" x2="415.1042" y1="305.2399" y2="305.2399"/><!--MD5=[e60090805037ab97eff08e41ccfb1e9d]
+class BatcherTest.TestBatcher--><rect codeLine="45" fill="#282828" height="83.3781" id="BatcherTest.TestBatcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="113.5417" x="60.9375" y="421.4111"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="113.5417" x="60.9375" y="421.4111"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="113.5417" x="60.9375" y="444.4661"/><rect codeLine="45" fill="none" height="83.3781" id="BatcherTest.TestBatcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="113.5417" x="60.9375" y="421.4111"/><ellipse cx="75.5208" cy="437.1053" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M77.4312,441.5304 Q77.004,441.7501 76.534,441.8599 Q76.064,441.9698 75.5452,441.9698 Q73.702,441.9698 72.7315,440.7552 Q71.7611,439.5406 71.7611,437.2457 Q71.7611,434.9447 72.7315,433.7301 Q73.702,432.5155 75.5452,432.5155 Q76.064,432.5155 76.5401,432.6253 Q77.0162,432.7352 77.4312,432.9549 L77.4312,434.9569 Q76.9674,434.5296 76.531,434.3313 Q76.0946,434.1329 75.6307,434.1329 Q74.6419,434.1329 74.1384,434.9172 Q73.6348,435.7015 73.6348,437.2457 Q73.6348,438.7838 74.1384,439.5681 Q74.6419,440.3524 75.6307,440.3524 Q76.0946,440.3524 76.531,440.154 Q76.9674,439.9556 77.4312,439.5284 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="76.0417" x="92.1875" y="441.8294">TestBatcher</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="61.9792" x2="173.4375" y1="452.7995" y2="452.7995"/><ellipse cx="72.3958" cy="488.1694" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="73.9583" x="83.8542" y="495.0806">TestBatcher()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="61.9792" x2="73.9583" y1="471.0052" y2="471.0052"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="77.0833" y="474.8149">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="161.4583" x2="173.4375" y1="471.0052" y2="471.0052"/><!--MD5=[10b39b1464d0243bea69957d3fcebbfc]
+reverse link ArrayList to Batcher.Batch--><path codeLine="10" d="M675,122.6507 C675,158.7861 675,208.5674 675,237.3486 " fill="none" id="ArrayList-backto-Batcher.Batch" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="667.7083,122.557,675,101.7236,682.2917,122.557,667.7083,122.557" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ed11c02aed1d2296bfc20f33252555a2]
+reverse link Addable to Batcher.BatchAdder--><path codeLine="15" d="M545.0417,122.6507 C545.25,158.7861 545.5313,208.5674 545.6979,237.3486 " fill="none" id="Addable-backto-Batcher.BatchAdder" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="537.75,122.5986,544.9271,101.7236,552.3333,122.5153,537.75,122.5986" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[c3c21a9c5d6602483b53cab15af90af1]
+reverse link BaseRepeater to Batcher--><path codeLine="20" d="M204.125,119.5465 C195.9479,132.8695 186.5,148.2861 176.9063,163.932 " fill="none" id="BaseRepeater-backto-Batcher" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="197.9479,115.6715,215.0521,101.7236,210.375,123.2965,197.9479,115.6715" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[2429f51ed0751f2c683ccfdc59777f76]
+reverse link BaseRepeater to BatcherTest--><path codeLine="33" d="M254.0833,119.7132 C265.5833,138.6507 279.625,161.7653 292.9792,183.7445 " fill="none" id="BaseRepeater-backto-BatcherTest" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="247.7396,123.3174,243.1458,101.7236,260.1979,115.7445,247.7396,123.3174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[1d7538447ee647e68f17d514629ad63a]
+reverse link Batcher to BatcherTest.TestBatcher--><path codeLine="44" d="M117.7083,380.0361 C117.7083,394.7028 117.7083,408.8382 117.7083,421.1195 " fill="none" id="Batcher-backto-BatcherTest.TestBatcher" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="110.4167,379.9111,117.7083,359.0778,125,379.9111,110.4167,379.9111" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[a86e2de8176557ae78e043c085213ee9]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.threading.batcher"
+    
+    abstract BaseRepeater
+    
+    interface Addable
+    
+    ArrayList <|- - Batcher.Batch
+    class Batcher.Batch
+    {
+    }
+    
+    Addable <|- - Batcher.BatchAdder
+    class Batcher.BatchAdder
+    {
+    }
+    
+    BaseRepeater <|- - Batcher
+    abstract class Batcher<Element>
+    {
+        - -(constructors)- -
+        #Batcher(String, Maximum, Count)
+        - -
+        +BatchAdder adder()
+        #void onBatch(Batch)
+        - -(lifecycle)- -
+        +void start(Count workers)
+        +void stop()
+    }
+    
+    BaseRepeater <|- - BatcherTest
+    class BatcherTest
+    {
+        - -
+        +void testRandom()
+        - -(collection)- -
+        +void testEmptyFlush()
+        - -(lifecycle)- -
+        +void testStop()
+    }
+    
+    Batcher <|- - BatcherTest.TestBatcher
+    class BatcherTest.TestBatcher
+    {
+        - -(constructors)- -
+        +TestBatcher()
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.kernel.language.threading.batcher"
+    
+    abstract BaseRepeater
+    
+    interface Addable
+    
+    ArrayList <|- - Batcher.Batch
+    class Batcher.Batch
+    {
+    }
+    
+    Addable <|- - Batcher.BatchAdder
+    class Batcher.BatchAdder
+    {
+    }
+    
+    BaseRepeater <|- - Batcher
+    abstract class Batcher<Element>
+    {
+        - -(constructors)- -
+        #Batcher(String, Maximum, Count)
+        - -
+        +BatchAdder adder()
+        #void onBatch(Batch)
+        - -(lifecycle)- -
+        +void start(Count workers)
+        +void stop()
+    }
+    
+    BaseRepeater <|- - BatcherTest
+    class BatcherTest
+    {
+        - -
+        +void testRandom()
+        - -(collection)- -
+        +void testEmptyFlush()
+        - -(lifecycle)- -
+        +void testStop()
+    }
+    
+    Batcher <|- - BatcherTest.TestBatcher
+    class BatcherTest.TestBatcher
+    {
+        - -(constructors)- -
+        +TestBatcher()
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

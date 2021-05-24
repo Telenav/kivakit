@@ -1,0 +1,19 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.serialization.jersey.json"
+    
+    interface MessageBodyReader
+    interface MessageBodyWriter
+    
+    MessageBodyReader <|-- JerseyGsonSerializer
+    MessageBodyWriter <|-- JerseyGsonSerializer
+    class JerseyGsonSerializer<T>
+    {
+        --(constructors)--
+        +JerseyGsonSerializer(GsonFactory)
+    }
+    
+@enduml
+

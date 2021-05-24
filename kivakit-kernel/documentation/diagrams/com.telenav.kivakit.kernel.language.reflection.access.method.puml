@@ -1,0 +1,25 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.reflection.access.method"
+    
+    interface Getter
+    interface Setter
+    
+    Getter <|-- MethodGetter
+    class MethodGetter
+    {
+        --(constructors)--
+        +MethodGetter(Method)
+    }
+    
+    Setter <|-- MethodSetter
+    class MethodSetter
+    {
+        --(constructors)--
+        +MethodSetter(Method)
+    }
+    
+@enduml
+

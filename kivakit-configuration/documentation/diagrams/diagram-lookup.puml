@@ -1,0 +1,29 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Lookup"
+    
+    class InstanceIdentifier
+    {
+        --(constructors)--
+        +InstanceIdentifier(Class<?>)
+        +InstanceIdentifier(Enum<?>)
+        +InstanceIdentifier(String)
+    }
+    
+    Lookup --> InstanceIdentifier : "locates instances with"
+    class Lookup
+    {
+        --(lookup)--
+        +Lookup global()
+        +T locate(Class<T> type)
+        +T locate(Class<T> type, Enum<?> instance)
+        +T locate(Class<T> type, InstanceIdentifier)
+        +void register(Object singleton)
+        +void register(Object, Enum<?> instance)
+        +void register(Object, InstanceIdentifier)
+    }
+    
+@enduml
+

@@ -1,0 +1,43 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "kivakit-collections"
+    
+    artifact kryo
+    artifact minlog
+    artifact reflectasm
+    artifact jackson_annotations
+    artifact cactus_build_metadata
+    artifact kivakit_collections
+    artifact kivakit_kernel
+    artifact kivakit_serialization_core
+    artifact kivakit_serialization_kryo
+    artifact kivakit_test
+    artifact lexakai_annotations
+    artifact kryo_serializers
+    artifact swagger_annotations
+    artifact junit
+    artifact hamcrest_core
+    artifact annotations
+    artifact objenesis
+    artifact asm
+    junit --> hamcrest_core
+    kivakit_collections --> kivakit_serialization_kryo
+    kivakit_collections --> kivakit_test
+    kivakit_kernel --> annotations
+    kivakit_kernel --> cactus_build_metadata
+    kivakit_kernel --> jackson_annotations
+    kivakit_kernel --> junit
+    kivakit_kernel --> lexakai_annotations
+    kivakit_kernel --> swagger_annotations
+    kivakit_serialization_kryo --> kivakit_serialization_core
+    kivakit_serialization_kryo --> kryo
+    kivakit_serialization_kryo --> kryo_serializers
+    kivakit_test --> kivakit_kernel
+    kryo --> minlog
+    kryo --> objenesis
+    kryo --> reflectasm
+    reflectasm --> asm
+    
+@enduml

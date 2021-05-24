@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="533.3333px" preserveAspectRatio="none" style="width:2141px;height:533px;background:#333333;" version="1.1" viewBox="0 0 2141 533" width="2141.6667px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="348.9583" x="889.0625" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="326.0417" x="900.5208" y="30.5583">kivakit-serialization-jersey-json</text><!--MD5=[07375bd6ced801b2ef86c9d3f68eec61]
+entity jackson_annotations--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="158.3333" x="706.25" y="268.2861"/><polygon fill="#1B1B1A" points="846.875,273.4945,846.875,288.0778,859.375,288.0778,859.375,279.7445,853.125,273.4945,846.875,273.4945" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="853.125" x2="853.125" y1="273.4945" y2="279.7445"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="859.375" x2="853.125" y1="279.7445" y2="279.7445"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="120.8333" x="719.7917" y="297.0378">jackson_annotations</text><!--MD5=[ec684cd484685c44b93fc0a601fe5901]
+entity jackson_core--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="115.625" x="854.6875" y="375.5778"/><polygon fill="#1B1B1A" points="952.6042,380.7861,952.6042,395.3695,965.1042,395.3695,965.1042,387.0361,958.8542,380.7861,952.6042,380.7861" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="958.8542" x2="958.8542" y1="380.7861" y2="387.0361"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="965.1042" x2="958.8542" y1="387.0361" y2="387.0361"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="78.125" x="868.2292" y="404.3294">jackson_core</text><!--MD5=[63634d7c92fbf7a1475e2be6b28e355d]
+entity jackson_databind--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="143.75" x="901.0417" y="268.2861"/><polygon fill="#1B1B1A" points="1027.0833,273.4945,1027.0833,288.0778,1039.5833,288.0778,1039.5833,279.7445,1033.3333,273.4945,1027.0833,273.4945" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1033.3333" x2="1033.3333" y1="273.4945" y2="279.7445"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1039.5833" x2="1033.3333" y1="279.7445" y2="279.7445"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="106.25" x="914.5833" y="297.0378">jackson_databind</text><!--MD5=[eb0d90eb6c960bde0cfda455b8b63d8a]
+entity jackson_module_jaxb_annotations--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="242.7083" x="1081.7708" y="268.2861"/><polygon fill="#1B1B1A" points="1306.7708,273.4945,1306.7708,288.0778,1319.2708,288.0778,1319.2708,279.7445,1313.0208,273.4945,1306.7708,273.4945" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1313.0208" x2="1313.0208" y1="273.4945" y2="279.7445"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1319.2708" x2="1313.0208" y1="279.7445" y2="279.7445"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="205.2083" x="1095.3125" y="297.0378">jackson_module_jaxb_annotations</text><!--MD5=[53e810a96c27d4bd25e6a3839aaba16b]
+entity gson--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="65.625" x="419.2708" y="268.2861"/><polygon fill="#1B1B1A" points="467.1875,273.4945,467.1875,288.0778,479.6875,288.0778,479.6875,279.7445,473.4375,273.4945,467.1875,273.4945" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="473.4375" x2="473.4375" y1="273.4945" y2="279.7445"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="479.6875" x2="473.4375" y1="279.7445" y2="279.7445"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="28.125" x="432.8125" y="297.0378">gson</text><!--MD5=[4aa4ddcf3dc6d6219283db0a9fd05165]
+entity cactus_build_metadata--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="175" x="7.2917" y="375.5778"/><polygon fill="#1B1B1A" points="164.5833,380.7861,164.5833,395.3695,177.0833,395.3695,177.0833,387.0361,170.8333,380.7861,164.5833,380.7861" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="170.8333" x2="170.8333" y1="380.7861" y2="387.0361"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="177.0833" x2="170.8333" y1="387.0361" y2="387.0361"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="137.5" x="20.8333" y="404.3294">cactus_build_metadata</text><!--MD5=[17eeaa61da6b3f8cb25de5876b62ec23]
+entity kivakit_kernel--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="119.7917" x="521.3542" y="268.2861"/><polygon fill="#1B1B1A" points="623.4375,273.4945,623.4375,288.0778,635.9375,288.0778,635.9375,279.7445,629.6875,273.4945,623.4375,273.4945" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="629.6875" x2="629.6875" y1="273.4945" y2="279.7445"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="635.9375" x2="629.6875" y1="279.7445" y2="279.7445"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="82.2917" x="534.8958" y="297.0378">kivakit_kernel</text><!--MD5=[4a5176c5bca98ad4b78419e773ee3002]
+entity kivakit_serialization_jersey_json--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="228.125" x="648.4375" y="53.7028"/><polygon fill="#1B1B1A" points="858.8542,58.9111,858.8542,73.4945,871.3542,73.4945,871.3542,65.1611,865.1042,58.9111,858.8542,58.9111" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="865.1042" x2="865.1042" y1="58.9111" y2="65.1611"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="871.3542" x2="865.1042" y1="65.1611" y2="65.1611"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="190.625" x="661.9792" y="82.4544">kivakit_serialization_jersey_json</text><!--MD5=[71ec73b64d97786e160c020912518960]
+entity kivakit_serialization_json--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="185.4167" x="488.5417" y="160.9945"/><polygon fill="#1B1B1A" points="656.25,166.2028,656.25,180.7861,668.75,180.7861,668.75,172.4528,662.5,166.2028,656.25,166.2028" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="662.5" x2="662.5" y1="166.2028" y2="172.4528"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="668.75" x2="662.5" y1="172.4528" y2="172.4528"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="147.9167" x="502.0833" y="189.7461">kivakit_serialization_json</text><!--MD5=[7b0fec798d1f32628676dfdf75f1f662]
+entity lexakai_annotations--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="155.2083" x="219.2708" y="375.5778"/><polygon fill="#1B1B1A" points="356.7708,380.7861,356.7708,395.3695,369.2708,395.3695,369.2708,387.0361,363.0208,380.7861,356.7708,380.7861" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="363.0208" x2="363.0208" y1="380.7861" y2="387.0361"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="369.2708" x2="363.0208" y1="387.0361" y2="387.0361"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="117.7083" x="232.8125" y="404.3294">lexakai_annotations</text><!--MD5=[23cc7f88cfa1ae4b54fca2963c42906f]
+entity swagger_annotations--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="162.5" x="411.4583" y="375.5778"/><polygon fill="#1B1B1A" points="556.25,380.7861,556.25,395.3695,568.75,395.3695,568.75,387.0361,562.5,380.7861,556.25,380.7861" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="562.5" x2="562.5" y1="380.7861" y2="387.0361"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="568.75" x2="562.5" y1="387.0361" y2="387.0361"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="125" x="425" y="404.3294">swagger_annotations</text><!--MD5=[76295b2d657545520eec6d4c24e790cd]
+entity jakarta_activation_api--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="167.7083" x="1006.7708" y="375.5778"/><polygon fill="#1B1B1A" points="1156.7708,380.7861,1156.7708,395.3695,1169.2708,395.3695,1169.2708,387.0361,1163.0208,380.7861,1156.7708,380.7861" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1163.0208" x2="1163.0208" y1="380.7861" y2="387.0361"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1169.2708" x2="1163.0208" y1="387.0361" y2="387.0361"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="130.2083" x="1020.3125" y="404.3294">jakarta_activation_api</text><!--MD5=[5f86e1cd0ec430c1f04a49f7bc0bb95c]
+entity jakarta_annotation_api--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="173.9583" x="1415.1042" y="375.5778"/><polygon fill="#1B1B1A" points="1571.3542,380.7861,1571.3542,395.3695,1583.8542,395.3695,1583.8542,387.0361,1577.6042,380.7861,1571.3542,380.7861" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1577.6042" x2="1577.6042" y1="380.7861" y2="387.0361"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1583.8542" x2="1577.6042" y1="387.0361" y2="387.0361"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="136.4583" x="1428.6458" y="404.3294">jakarta_annotation_api</text><!--MD5=[7a861e606efef84ebfc88df5d89ecf7e]
+entity jakarta_ws_rs_api--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="144.7917" x="1625.5208" y="375.5778"/><polygon fill="#1B1B1A" points="1752.6042,380.7861,1752.6042,395.3695,1765.1042,395.3695,1765.1042,387.0361,1758.8542,380.7861,1752.6042,380.7861" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1758.8542" x2="1758.8542" y1="380.7861" y2="387.0361"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1765.1042" x2="1758.8542" y1="387.0361" y2="387.0361"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="107.2917" x="1639.0625" y="404.3294">jakarta_ws_rs_api</text><!--MD5=[d224a851402798498c2275c4aecbfd67]
+entity jakarta_xml_bind_api--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="166.6667" x="1211.4583" y="375.5778"/><polygon fill="#1B1B1A" points="1360.4167,380.7861,1360.4167,395.3695,1372.9167,395.3695,1372.9167,387.0361,1366.6667,380.7861,1360.4167,380.7861" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1366.6667" x2="1366.6667" y1="380.7861" y2="387.0361"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1372.9167" x2="1366.6667" y1="387.0361" y2="387.0361"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="129.1667" x="1225" y="404.3294">jakarta_xml_bind_api</text><!--MD5=[ce55b294004802c137560c2930be5b75]
+entity junit--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="63.5417" x="610.9375" y="375.5778"/><polygon fill="#1B1B1A" points="656.7708,380.7861,656.7708,395.3695,669.2708,395.3695,669.2708,387.0361,663.0208,380.7861,656.7708,380.7861" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="663.0208" x2="663.0208" y1="380.7861" y2="387.0361"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="669.2708" x2="663.0208" y1="387.0361" y2="387.0361"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="26.0417" x="624.4792" y="404.3294">junit</text><!--MD5=[449455e77597bd6e50d530192c98397e]
+entity jakarta_inject--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="118.75" x="1807.2917" y="375.5778"/><polygon fill="#1B1B1A" points="1908.3333,380.7861,1908.3333,395.3695,1920.8333,395.3695,1920.8333,387.0361,1914.5833,380.7861,1908.3333,380.7861" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1914.5833" x2="1914.5833" y1="380.7861" y2="387.0361"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1920.8333" x2="1914.5833" y1="387.0361" y2="387.0361"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="81.25" x="1820.8333" y="404.3294">jakarta_inject</text><!--MD5=[ffcd6adbf62c1e5312ee98d2239a865d]
+entity osgi_resource_locator--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="166.6667" x="1962.5" y="375.5778"/><polygon fill="#1B1B1A" points="2111.4583,380.7861,2111.4583,395.3695,2123.9583,395.3695,2123.9583,387.0361,2117.7083,380.7861,2111.4583,380.7861" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2117.7083" x2="2117.7083" y1="380.7861" y2="387.0361"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="2123.9583" x2="2117.7083" y1="387.0361" y2="387.0361"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="129.1667" x="1976.0417" y="404.3294">osgi_resource_locator</text><!--MD5=[7645e41d260315f1d6f24f5c90884ccf]
+entity jersey_common--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="131.25" x="1534.375" y="268.2861"/><polygon fill="#1B1B1A" points="1647.9167,273.4945,1647.9167,288.0778,1660.4167,288.0778,1660.4167,279.7445,1654.1667,273.4945,1647.9167,273.4945" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1654.1667" x2="1654.1667" y1="273.4945" y2="279.7445"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1660.4167" x2="1654.1667" y1="279.7445" y2="279.7445"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="93.75" x="1547.9167" y="297.0378">jersey_common</text><!--MD5=[9108c9f36c02d7b53c092d10f6deb669]
+entity jersey_entity_filtering--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="163.5417" x="1702.6042" y="268.2861"/><polygon fill="#1B1B1A" points="1848.4375,273.4945,1848.4375,288.0778,1860.9375,288.0778,1860.9375,279.7445,1854.6875,273.4945,1848.4375,273.4945" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1854.6875" x2="1854.6875" y1="273.4945" y2="279.7445"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1860.9375" x2="1854.6875" y1="279.7445" y2="279.7445"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="126.0417" x="1716.1458" y="297.0378">jersey_entity_filtering</text><!--MD5=[b037ea0143fcc58de1c78bc444d43021]
+entity jersey_media_json_jackson--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="201.0417" x="986.9792" y="160.9945"/><polygon fill="#1B1B1A" points="1170.3125,166.2028,1170.3125,180.7861,1182.8125,180.7861,1182.8125,172.4528,1176.5625,166.2028,1170.3125,166.2028" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1176.5625" x2="1176.5625" y1="166.2028" y2="172.4528"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1182.8125" x2="1176.5625" y1="172.4528" y2="172.4528"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="163.5417" x="1000.5208" y="189.7461">jersey_media_json_jackson</text><!--MD5=[7f157d37bc1fd6ac970bb67ffdbc66a3]
+entity hamcrest_core--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="125" x="580.2083" y="482.8695"/><polygon fill="#1B1B1A" points="687.5,488.0778,687.5,502.6611,700,502.6611,700,494.3278,693.75,488.0778,687.5,488.0778" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="693.75" x2="693.75" y1="488.0778" y2="494.3278"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="700" x2="693.75" y1="494.3278" y2="494.3278"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="87.5" x="593.75" y="511.6211">hamcrest_core</text><!--MD5=[b728e17b4e4da6aa8cb97e9b2766c5e6]
+entity annotations--><rect fill="#1B1B1A" height="44.93" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.5625;" width="106.25" x="711.4583" y="375.5778"/><polygon fill="#1B1B1A" points="800,380.7861,800,395.3695,812.5,395.3695,812.5,387.0361,806.25,380.7861,800,380.7861" style="stroke:#5E5E5E;stroke-width:1.5625;"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="806.25" x2="806.25" y1="380.7861" y2="387.0361"/><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="812.5" x2="806.25" y1="387.0361" y2="387.0361"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" lengthAdjust="spacing" textLength="68.75" x="725" y="404.3294">annotations</text><!--MD5=[e0dbc9fd33e3311489577ac448fdc3ff]
+link jackson_databind to jackson_core--><path d="M960.3958,313.5257 C950.8542,330.1403 937.6771,353.0778 927.5625,370.7028 " fill="none" id="jackson_databind-to-jackson_core" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="924.7917,375.5257,933.0736,369.4708,927.3853,371.0091,925.847,365.3209,924.7917,375.5257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[87bfd0392a84eaf77f043caee4377ab0]
+link jackson_module_jaxb_annotations to jakarta_activation_api--><path d="M1180.0833,313.2653 C1162.0417,330.1507 1136.8854,353.6715 1117.8438,371.484 " fill="none" id="jackson_module_jaxb_annotations-to-jakarta_activation_api" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1113.6354,375.4215,1123.3316,372.0695,1117.4425,371.8673,1117.6448,365.9782,1113.6354,375.4215" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[099c6eacbc963949f99c4dbd4ebf15b4]
+link jackson_module_jaxb_annotations to jakarta_xml_bind_api--><path d="M1222.1146,313.5257 C1236.7188,330.2757 1256.9271,353.4736 1272.3333,371.1507 " fill="none" id="jackson_module_jaxb_annotations-to-jakarta_xml_bind_api" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1276.1354,375.5257,1273.1399,365.7135,1272.7226,371.5913,1266.8449,371.174,1276.1354,375.5257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[8a5ffbb30f3f16df05830d0a5e745bc0]
+link jersey_common to jakarta_annotation_api--><path d="M1579.7083,313.5257 C1563.9792,330.4215 1542.1667,353.8695 1525.6563,371.5986 " fill="none" id="jersey_common-to-jakarta_annotation_api" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1522.0104,375.5257,1531.4538,371.5164,1525.5647,371.7186,1525.3624,365.8295,1522.0104,375.5257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ec6a9444ade87f22dab33ccf6249c5ff]
+link jersey_common to jakarta_inject--><path d="M1654.2813,313.1403 C1698.8021,330.7028 1761.7292,355.5257 1807.5208,373.5986 " fill="none" id="jersey_common-to-jakarta_inject" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1812.4583,375.5465,1805.2623,368.2343,1807.6123,373.638,1802.2086,375.9879,1812.4583,375.5465" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[25bce382c8ccc58e1b1c6f5c8ca83ff5]
+link jersey_common to jakarta_ws_rs_api--><path d="M1620.2917,313.5257 C1636.0208,330.4215 1657.8333,353.8695 1674.3438,371.5986 " fill="none" id="jersey_common-to-jakarta_ws_rs_api" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1677.9896,375.5257,1674.6376,365.8295,1674.4353,371.7186,1668.5462,371.5164,1677.9896,375.5257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[8ddaa24f61a06bf216154b00568b0076]
+link jersey_common to osgi_resource_locator--><path d="M1665.8333,308.5153 C1672.0938,310.0778 1678.3542,311.6195 1684.375,313.0778 C1777.3021,335.6195 1883.9896,360.2132 1957.2396,376.9007 " fill="none" id="jersey_common-to-osgi_resource_locator" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1962.4583,378.0882,1954.2485,371.936,1957.3811,376.9269,1952.3903,380.0595,1962.4583,378.0882" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9ebfd12a1eedbfe9f3adafddc64875c6]
+link jersey_media_json_jackson to jackson_annotations--><path d="M1026,205.8486 C975.3646,223.484 903.7188,248.4424 851.7917,266.5257 " fill="none" id="jersey_media_json_jackson-to-jackson_annotations" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="846.8229,268.2549,857.0461,269.114,851.7428,266.5456,854.3112,261.2422,846.8229,268.2549" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e6523c6a673c30a38a335860083cc4f3]
+link jersey_media_json_jackson to jackson_databind--><path d="M1064.0313,205.9736 C1045.6563,222.859 1020.0313,246.3799 1000.6354,264.1924 " fill="none" id="jersey_media_json_jackson-to-jackson_databind" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="996.3542,268.1299,1006.0771,264.8562,1000.1898,264.6064,1000.4396,258.7192,996.3542,268.1299" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[725f01f0686cea097fe005f044c98e1a]
+link jersey_media_json_jackson to jackson_module_jaxb_annotations--><path d="M1111.1771,205.9736 C1129.7292,222.859 1155.5833,246.3799 1175.1563,264.1924 " fill="none" id="jersey_media_json_jackson-to-jackson_module_jaxb_annotations" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1179.4792,268.1299,1175.374,258.7278,1175.6361,264.6145,1169.7494,264.8767,1179.4792,268.1299" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[99a6e10206490d010fcd154959b4678f]
+link jersey_media_json_jackson to jersey_common--><path d="M1188.1458,205.0882 C1288.6042,225.7132 1440.4271,256.8799 1528.9479,275.057 " fill="none" id="jersey_media_json_jackson-to-jersey_common" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1534.1667,276.1299,1525.8176,270.168,1529.0641,275.0855,1524.1466,278.332,1534.1667,276.1299" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[1bd048f79fb5a4a227318860703c1932]
+link jersey_media_json_jackson to jersey_entity_filtering--><path d="M1188.1667,196.3695 C1307.0938,210.9736 1510.75,237.5882 1684.375,268.2861 C1688.4896,269.0153 1692.6979,269.7861 1696.9479,270.5986 " fill="none" id="jersey_media_json_jackson-to-jersey_entity_filtering" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1702.3333,271.6299,1693.9114,265.7714,1697.2183,270.6485,1692.3412,273.9554,1702.3333,271.6299" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[d68e7c4b3ca5f037bcb6997a0b4ed16b]
+link junit to hamcrest_core--><path d="M642.7083,420.8174 C642.7083,437.2861 642.7083,459.984 642.7083,477.5361 " fill="none" id="junit-to-hamcrest_core" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="642.7083,482.8174,646.875,473.4424,642.7083,477.609,638.5417,473.4424,642.7083,482.8174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[a2f7c49e80f0067c62cb523636c9f00e]
+link kivakit_kernel to annotations--><path d="M618.7917,313.2653 C648.9479,330.5674 691.2708,354.859 722.5625,372.8174 " fill="none" id="kivakit_kernel-to-annotations" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="727.0938,375.4215,721.0388,367.1397,722.5772,372.8279,716.8889,374.3662,727.0938,375.4215" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[4bb5cdf1dd69a57413676b3f513d3923]
+link kivakit_kernel to cactus_build_metadata--><path d="M521.2083,308.557 C515.1146,310.1403 509.0104,311.6715 503.125,313.0778 C472.8125,320.3278 298.3958,355.7861 187.5417,378.2132 " fill="none" id="kivakit_kernel-to-cactus_build_metadata" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="182.3125,379.2757,192.3313,381.4836,187.4156,378.2343,190.665,373.3186,182.3125,379.2757" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[1866acf2ddf7045e9492d220d182168e]
+link kivakit_kernel to junit--><path d="M593.9792,313.5257 C603.6875,330.1403 617.0938,353.0778 627.3854,370.7028 " fill="none" id="kivakit_kernel-to-junit" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="630.1979,375.5257,629.0774,365.3279,627.5754,371.0258,621.8775,369.5238,630.1979,375.5257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[049e1cbc60d7a94f708d5cd284874347]
+link kivakit_kernel to lexakai_annotations--><path d="M523.3646,313.1403 C475.7917,330.7445 408.5104,355.6299 359.6563,373.7028 " fill="none" id="kivakit_kernel-to-lexakai_annotations" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="354.6875,375.5465,364.9252,376.211,359.5739,373.7439,362.041,368.3927,354.6875,375.5465" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ceaa58f2fdab01bf1e0ddaf38b77f8a7]
+link kivakit_kernel to swagger_annotations--><path d="M562.9063,313.5257 C548.8021,330.2757 529.2813,353.4736 514.4063,371.1507 " fill="none" id="kivakit_kernel-to-swagger_annotations" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="510.7292,375.5257,519.9582,371.0449,514.0868,371.5441,513.5876,365.6727,510.7292,375.5257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[1125d93f39b2b79bd9726219087d07b0]
+link kivakit_serialization_jersey_json to jersey_media_json_jackson--><path d="M828.6563,98.557 C883.25,116.2236 960.5417,141.2445 1016.4271,159.3382 " fill="none" id="kivakit_serialization_jersey_json-to-jersey_media_json_jackson" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="1021.4375,160.9632,1013.8052,154.1076,1016.4832,159.3564,1011.2343,162.0344,1021.4375,160.9632" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[0485cdd44cf3e557ee2d458d642fd7f6]
+link kivakit_serialization_jersey_json to kivakit_serialization_json--><path d="M725.3854,98.682 C695.6979,115.9215 654.0729,140.0778 623.1771,158.0153 " fill="none" id="kivakit_serialization_jersey_json-to-kivakit_serialization_json" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="618.3125,160.8382,628.512,159.7324,622.8162,158.2222,624.3263,152.5265,618.3125,160.8382" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[d2bf964ad93828bbd6db58c445a24c18]
+link kivakit_serialization_json to gson--><path d="M554.8021,205.9736 C533.9063,222.9945 504.7083,246.7757 482.7813,264.6403 " fill="none" id="kivakit_serialization_json-to-gson" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="478.5,268.1299,488.3987,265.434,482.5363,264.8383,483.1321,258.9759,478.5,268.1299" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[d6be358be99364ddd503ac711c3c257d]
+link kivakit_serialization_json to kivakit_kernel--><path d="M581.25,206.234 C581.25,222.7028 581.25,245.4007 581.25,262.9528 " fill="none" id="kivakit_serialization_json-to-kivakit_kernel" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="581.25,268.234,585.4167,258.859,581.25,263.0257,577.0833,258.859,581.25,268.234" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[17e8740e13dadf7ec537a65714495118]
+@startuml
+
+    !include lexakai.theme
+    
+    title "kivakit-serialization-jersey-json"
+    
+    artifact jackson_annotations
+    artifact jackson_core
+    artifact jackson_databind
+    artifact jackson_module_jaxb_annotations
+    artifact gson
+    artifact cactus_build_metadata
+    artifact kivakit_kernel
+    artifact kivakit_serialization_jersey_json
+    artifact kivakit_serialization_json
+    artifact lexakai_annotations
+    artifact swagger_annotations
+    artifact jakarta_activation_api
+    artifact jakarta_annotation_api
+    artifact jakarta_ws_rs_api
+    artifact jakarta_xml_bind_api
+    artifact junit
+    artifact jakarta_inject
+    artifact osgi_resource_locator
+    artifact jersey_common
+    artifact jersey_entity_filtering
+    artifact jersey_media_json_jackson
+    artifact hamcrest_core
+    artifact annotations
+    jackson_databind - -> jackson_core
+    jackson_module_jaxb_annotations - -> jakarta_activation_api
+    jackson_module_jaxb_annotations - -> jakarta_xml_bind_api
+    jersey_common - -> jakarta_annotation_api
+    jersey_common - -> jakarta_inject
+    jersey_common - -> jakarta_ws_rs_api
+    jersey_common - -> osgi_resource_locator
+    jersey_media_json_jackson - -> jackson_annotations
+    jersey_media_json_jackson - -> jackson_databind
+    jersey_media_json_jackson - -> jackson_module_jaxb_annotations
+    jersey_media_json_jackson - -> jersey_common
+    jersey_media_json_jackson - -> jersey_entity_filtering
+    junit - -> hamcrest_core
+    kivakit_kernel - -> annotations
+    kivakit_kernel - -> cactus_build_metadata
+    kivakit_kernel - -> junit
+    kivakit_kernel - -> lexakai_annotations
+    kivakit_kernel - -> swagger_annotations
+    kivakit_serialization_jersey_json - -> jersey_media_json_jackson
+    kivakit_serialization_jersey_json - -> kivakit_serialization_json
+    kivakit_serialization_json - -> gson
+    kivakit_serialization_json - -> kivakit_kernel
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "kivakit-serialization-jersey-json"
+    
+    artifact jackson_annotations
+    artifact jackson_core
+    artifact jackson_databind
+    artifact jackson_module_jaxb_annotations
+    artifact gson
+    artifact cactus_build_metadata
+    artifact kivakit_kernel
+    artifact kivakit_serialization_jersey_json
+    artifact kivakit_serialization_json
+    artifact lexakai_annotations
+    artifact swagger_annotations
+    artifact jakarta_activation_api
+    artifact jakarta_annotation_api
+    artifact jakarta_ws_rs_api
+    artifact jakarta_xml_bind_api
+    artifact junit
+    artifact jakarta_inject
+    artifact osgi_resource_locator
+    artifact jersey_common
+    artifact jersey_entity_filtering
+    artifact jersey_media_json_jackson
+    artifact hamcrest_core
+    artifact annotations
+    jackson_databind - -> jackson_core
+    jackson_module_jaxb_annotations - -> jakarta_activation_api
+    jackson_module_jaxb_annotations - -> jakarta_xml_bind_api
+    jersey_common - -> jakarta_annotation_api
+    jersey_common - -> jakarta_inject
+    jersey_common - -> jakarta_ws_rs_api
+    jersey_common - -> osgi_resource_locator
+    jersey_media_json_jackson - -> jackson_annotations
+    jersey_media_json_jackson - -> jackson_databind
+    jersey_media_json_jackson - -> jackson_module_jaxb_annotations
+    jersey_media_json_jackson - -> jersey_common
+    jersey_media_json_jackson - -> jersey_entity_filtering
+    junit - -> hamcrest_core
+    kivakit_kernel - -> annotations
+    kivakit_kernel - -> cactus_build_metadata
+    kivakit_kernel - -> junit
+    kivakit_kernel - -> lexakai_annotations
+    kivakit_kernel - -> swagger_annotations
+    kivakit_serialization_jersey_json - -> jersey_media_json_jackson
+    kivakit_serialization_jersey_json - -> kivakit_serialization_json
+    kivakit_serialization_json - -> gson
+    kivakit_serialization_json - -> kivakit_kernel
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

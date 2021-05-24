@@ -1,0 +1,29 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.network.email.senders"
+    
+    EmailSender.Configuration <|-- SmtpEmailSender.Configuration
+    class SmtpEmailSender.Configuration
+    {
+        --
+        +Password password()
+        --(naming)--
+        +UserName username()
+        --(network)--
+        +Host host()
+        +Configuration host(Host)
+        +Configuration password(Password)
+        +Configuration username(UserName)
+    }
+    
+    EmailSender <|-- SmtpEmailSender
+    class SmtpEmailSender
+    {
+        --(constructors)--
+        +SmtpEmailSender(Configuration)
+    }
+    
+@enduml
+

@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="863.5417px" preserveAspectRatio="none" style="width:485px;height:863px;background:#333333;" version="1.1" viewBox="0 0 485 863" width="485.4167px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="438.5417" x="16.4063" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="415.625" x="27.8646" y="30.5583">com.telenav.kivakit.kernel.data.validation</text><!--MD5=[1516272af21821f5a454fab1931ec200]
+class ValidationReporter--><rect codeLine="39" fill="#282828" height="67.7999" id="ValidationReporter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="158.3333" x="22.3958" y="677.6611"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="158.3333" x="22.3958" y="677.6611"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="158.3333" x="22.3958" y="700.7161"/><rect codeLine="39" fill="none" height="67.7999" id="ValidationReporter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="158.3333" x="22.3958" y="677.6611"/><ellipse cx="36.9792" cy="693.3553" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M33.8623,690.5172 L33.8623,688.9303 L39.2883,688.9303 L39.2883,690.5172 L37.4756,690.5172 L37.4756,696.4559 L39.2883,696.4559 L39.2883,698.0428 L33.8623,698.0428 L33.8623,696.4559 L35.675,696.4559 L35.675,690.5172 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="120.8333" x="53.6458" y="698.0794">ValidationReporter</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="23.4375" x2="179.6875" y1="709.0495" y2="709.0495"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="23.4375" x2="179.6875" y1="717.3828" y2="717.3828"/><ellipse cx="33.8542" cy="728.8411" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="118.75" x="45.3125" y="735.7524">void report(Message)</text><!--MD5=[06011b40d278cc113c27cffb36175aec]
+class BaseValidationReporter--><rect codeLine="9" fill="#282828" height="48.055" id="BaseValidationReporter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="188.5417" x="7.2917" y="808.9111"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="188.5417" x="7.2917" y="808.9111"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="188.5417" x="7.2917" y="831.9661"/><rect codeLine="9" fill="none" height="48.055" id="BaseValidationReporter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="188.5417" x="7.2917" y="808.9111"/><ellipse cx="21.875" cy="824.6053" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M21.9889,821.3074 L21.1405,825.0366 L22.8434,825.0366 Z M20.8903,819.6594 L23.0937,819.6594 L25.5534,828.772 L23.7528,828.772 L23.1913,826.5198 L20.7804,826.5198 L20.2311,828.772 L18.4306,828.772 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="151.0417" x="38.5417" y="829.3294">BaseValidationReporter</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="194.7917" y1="840.2995" y2="840.2995"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="194.7917" y1="848.6328" y2="848.6328"/><!--MD5=[7aca7191f476af6561cf4f43a12cda50]
+class Validatable--><rect codeLine="15" fill="#282828" height="150.946" id="Validatable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="225" x="27.6042" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="225" x="27.6042" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="225" x="27.6042" y="76.7578"/><rect codeLine="15" fill="none" height="150.946" id="Validatable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="225" x="27.6042" y="53.7028"/><ellipse cx="96.875" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M93.7581,66.5588 L93.7581,64.9719 L99.1842,64.9719 L99.1842,66.5588 L97.3714,66.5588 L97.3714,72.4976 L99.1842,72.4976 L99.1842,74.0845 L93.7581,74.0845 L93.7581,72.4976 L95.5709,72.4976 L95.5709,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="71.875" x="119.7917" y="74.1211">Validatable</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="28.6458" x2="251.5625" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="28.6458" x2="251.5625" y1="93.4245" y2="93.4245"/><ellipse cx="39.0625" cy="104.8828" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="192.7083" x="50.5208" y="111.794">Validator validator(Validation type)</text><ellipse cx="39.0625" cy="124.6277" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="110.4167" x="50.5208" y="131.5389">Validator validator()</text><ellipse cx="39.0625" cy="168.2841" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="92.7083" x="50.5208" y="175.1953">boolean isValid()</text><ellipse cx="39.0625" cy="188.029" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="137.5" x="50.5208" y="194.9402">boolean isValid(Listener)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="28.6458" x2="113.5417" y1="151.12" y2="151.12"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="116.6667" y="154.9296">(checks)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="166.6667" x2="251.5625" y1="151.12" y2="151.12"/><!--MD5=[ced94f7cdcbb8a57022a623199f6da4c]
+class Validation--><rect codeLine="26" fill="#282828" height="190.4358" id="Validation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="252.0833" x="226.5625" y="290.1611"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="252.0833" x="226.5625" y="290.1611"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="252.0833" x="226.5625" y="313.2161"/><rect codeLine="26" fill="none" height="190.4358" id="Validation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="252.0833" x="226.5625" y="290.1611"/><ellipse cx="312.5" cy="305.8553" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M314.4104,310.2804 Q313.9832,310.5001 313.5132,310.6099 Q313.0432,310.7198 312.5244,310.7198 Q310.6812,310.7198 309.7107,309.5052 Q308.7402,308.2906 308.7402,305.9957 Q308.7402,303.6947 309.7107,302.4801 Q310.6812,301.2655 312.5244,301.2655 Q313.0432,301.2655 313.5193,301.3753 Q313.9954,301.4852 314.4104,301.7049 L314.4104,303.7069 Q313.9465,303.2796 313.5101,303.0813 Q313.0737,302.8829 312.6099,302.8829 Q311.6211,302.8829 311.1176,303.6672 Q310.614,304.4515 310.614,305.9957 Q310.614,307.5338 311.1176,308.3181 Q311.6211,309.1024 312.6099,309.1024 Q313.0737,309.1024 313.5101,308.904 Q313.9465,308.7056 314.4104,308.2784 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="65.625" x="335.4167" y="310.5794">Validation</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="227.6042" x2="477.6042" y1="321.5495" y2="321.5495"/><ellipse cx="238.0208" cy="356.9194" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="96.875" x="249.4792" y="363.8306">Validation(String)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="227.6042" x2="308.8542" y1="339.7552" y2="339.7552"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="311.9792" y="343.5649">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="396.3542" x2="477.6042" y1="339.7552" y2="339.7552"/><ellipse cx="238.0208" cy="400.5758" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="219.7917" x="249.4792" y="407.487">boolean shouldValidate(Class&lt;?&gt; type)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="227.6042" x2="326.0417" y1="383.4117" y2="383.4117"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="329.1667" y="387.2213">(checks)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="379.1667" x2="477.6042" y1="383.4117" y2="383.4117"/><ellipse cx="238.0208" cy="444.2322" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="191.6667" x="249.4792" y="451.1434">Validation exclude(Class&lt;?&gt; type)</text><ellipse cx="238.0208" cy="463.9771" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="188.5417" x="249.4792" y="470.8883">Validation include(Class&lt;?&gt; type)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="227.6042" x2="323.4375" y1="427.0681" y2="427.0681"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="52.0833" x="326.5625" y="430.8777">(filtering)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="381.7708" x2="477.6042" y1="427.0681" y2="427.0681"/><!--MD5=[ca2d93c45117619035e2f39704bd7f41]
+class Validator--><rect codeLine="46" fill="#282828" height="87.5448" id="Validator" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="176.0417" x="13.5417" y="341.7236"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="176.0417" x="13.5417" y="341.7236"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="176.0417" x="13.5417" y="364.7786"/><rect codeLine="46" fill="none" height="87.5448" id="Validator" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="176.0417" x="13.5417" y="341.7236"/><ellipse cx="65.1042" cy="357.4178" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M61.9873,354.5797 L61.9873,352.9928 L67.4133,352.9928 L67.4133,354.5797 L65.6006,354.5797 L65.6006,360.5184 L67.4133,360.5184 L67.4133,362.1053 L61.9873,362.1053 L61.9873,360.5184 L63.8,360.5184 L63.8,354.5797 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="58.3333" x="88.0208" y="362.1419">Validator</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="14.5833" x2="188.5417" y1="373.112" y2="373.112"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="14.5833" x2="188.5417" y1="381.4453" y2="381.4453"/><ellipse cx="25" cy="392.9036" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="143.75" x="36.4583" y="399.8149">boolean validate(Listener)</text><ellipse cx="25" cy="412.6485" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="98.9583" x="36.4583" y="419.5597">boolean validate()</text><!--MD5=[53f6a92bd21ca2f2960392a061f3a1c6]
+class Name--><rect fill="#282828" height="48.055" id="Name" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="73.9583" x="315.625" y="105.2653"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="73.9583" x="315.625" y="105.2653"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="73.9583" x="315.625" y="128.3203"/><rect fill="none" height="48.055" id="Name" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="73.9583" x="315.625" y="105.2653"/><ellipse cx="330.2083" cy="120.9595" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M332.1187,125.3845 Q331.6915,125.6042 331.2215,125.7141 Q330.7515,125.824 330.2327,125.824 Q328.3895,125.824 327.419,124.6094 Q326.4486,123.3948 326.4486,121.0999 Q326.4486,118.7988 327.419,117.5842 Q328.3895,116.3696 330.2327,116.3696 Q330.7515,116.3696 331.2276,116.4795 Q331.7037,116.5894 332.1187,116.8091 L332.1187,118.811 Q331.6549,118.3838 331.2185,118.1854 Q330.7821,117.9871 330.3182,117.9871 Q329.3294,117.9871 328.8259,118.7714 Q328.3223,119.5557 328.3223,121.0999 Q328.3223,122.6379 328.8259,123.4222 Q329.3294,124.2065 330.3182,124.2065 Q330.7821,124.2065 331.2185,124.0082 Q331.6549,123.8098 332.1187,123.3826 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="36.4583" x="346.875" y="125.6836">Name</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="316.6667" x2="388.5417" y1="136.6536" y2="136.6536"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="316.6667" x2="388.5417" y1="144.987" y2="144.987"/><!--MD5=[085076096658226fe7d3ac7a26d9b629]
+class Listener--><rect codeLine="37" fill="#282828" height="48.055" id="Listener" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="89.5833" x="56.7708" y="566.2028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="89.5833" x="56.7708" y="566.2028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="89.5833" x="56.7708" y="589.2578"/><rect codeLine="37" fill="none" height="48.055" id="Listener" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="89.5833" x="56.7708" y="566.2028"/><ellipse cx="71.3542" cy="581.897" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M68.2373,579.0588 L68.2373,577.4719 L73.6633,577.4719 L73.6633,579.0588 L71.8506,579.0588 L71.8506,584.9976 L73.6633,584.9976 L73.6633,586.5845 L68.2373,586.5845 L68.2373,584.9976 L70.05,584.9976 L70.05,579.0588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="52.0833" x="88.0208" y="586.6211">Listener</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="57.8125" x2="145.3125" y1="597.5911" y2="597.5911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="57.8125" x2="145.3125" y1="605.9245" y2="605.9245"/><!--MD5=[3fdea4af1d34da91b603effb9db425b6]
+reverse link ValidationReporter to BaseValidationReporter--><path codeLine="8" d="M101.5625,766.5049 C101.5625,781.3903 101.5625,796.7549 101.5625,808.8486 " fill="none" id="ValidationReporter-backto-BaseValidationReporter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="94.2708,766.2965,101.5625,745.4632,108.8542,766.2965,94.2708,766.2965" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7292451643da9ba87fb44f24428353d8]
+link Validatable to Validation--><path codeLine="13" d="M193.4896,204.7965 C206.9688,222.807 221.6771,241.7965 235.9375,258.9111 C243.4375,267.9111 251.3854,277.109 259.4792,286.2445 " fill="none" id="Validatable-to-Validation" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="262.9479,290.1507,259.8523,280.3697,259.4951,286.2514,253.6134,285.8942,262.9479,290.1507" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="100" x="240.1042" y="252.2461">how to validate</text><!--MD5=[380b4cf3b671cd3d33754c63337b199b]
+link Validatable to Validator--><path codeLine="14" d="M114.7813,204.7861 C112,215.1715 109.5625,225.7757 107.8125,235.9945 C102.1458,269.1403 100.6354,307.0361 100.5104,336.234 " fill="none" id="Validatable-to-Validator" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="100.5,341.5778,104.6667,332.2028,100.5,336.3695,96.3333,332.2028,100.5,341.5778" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="56.25" x="111.9792" y="252.2461">provides</text><!--MD5=[07d3c523fe3ac78b77a7f7aa9dac96f5]
+reverse link Name to Validation--><path codeLine="25" d="M352.6042,174.4736 C352.6042,206.2861 352.6042,250.3903 352.6042,289.9632 " fill="none" id="Name-backto-Validation" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="345.3125,174.0986,352.6042,153.2653,359.8958,174.0986,345.3125,174.0986" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[02ee3d31c6ee38b4aae28b61a33687f8]
+reverse link Listener to ValidationReporter--><path codeLine="38" d="M101.5625,635.3486 C101.5625,649.3486 101.5625,664.5674 101.5625,677.6299 " fill="none" id="Listener-backto-ValidationReporter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="94.2708,635.0361,101.5625,614.2028,108.8542,635.0361,94.2708,635.0361" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[d0c9d07c0ac17b1db423a05956f2e27f]
+link Validator to Listener--><path codeLine="45" d="M101.5625,429.484 C101.5625,469.0674 101.5625,526.6715 101.5625,560.7757 " fill="none" id="Validator-to-Listener" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="101.5625,566.0465,105.7292,556.6715,101.5625,560.8382,97.3958,556.6715,101.5625,566.0465" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="64.5833" x="105.7292" y="528.2878">reports to</text><!--MD5=[833beda7678ec9eb24ca8a9fec4164da]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.data.validation"
+    
+    interface ValidationReporter
+    
+    ValidationReporter <|- - BaseValidationReporter
+    abstract class BaseValidationReporter
+    {
+    }
+    
+    Validatable - -> Validation : "how to validate"
+    Validatable - -> Validator : "provides"
+    interface Validatable
+    {
+        - -
+        +Validator validator(Validation type)
+        +Validator validator()
+        - -(checks)- -
+        +boolean isValid()
+        +boolean isValid(Listener)
+    }
+    
+    Name <|- - Validation
+    class Validation
+    {
+        - -(constructors)- -
+        +Validation(String)
+        - -(checks)- -
+        +boolean shouldValidate(Class<?> type)
+        - -(filtering)- -
+        +Validation exclude(Class<?> type)
+        +Validation include(Class<?> type)
+    }
+    
+    interface Listener
+    Listener <|- - ValidationReporter
+    interface ValidationReporter
+    {
+        - -
+        +void report(Message)
+    }
+    
+    Validator - -> Listener : "reports to"
+    interface Validator
+    {
+        - -
+        +boolean validate(Listener)
+        +boolean validate()
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.kernel.data.validation"
+    
+    interface ValidationReporter
+    
+    ValidationReporter <|- - BaseValidationReporter
+    abstract class BaseValidationReporter
+    {
+    }
+    
+    Validatable - -> Validation : "how to validate"
+    Validatable - -> Validator : "provides"
+    interface Validatable
+    {
+        - -
+        +Validator validator(Validation type)
+        +Validator validator()
+        - -(checks)- -
+        +boolean isValid()
+        +boolean isValid(Listener)
+    }
+    
+    Name <|- - Validation
+    class Validation
+    {
+        - -(constructors)- -
+        +Validation(String)
+        - -(checks)- -
+        +boolean shouldValidate(Class<?> type)
+        - -(filtering)- -
+        +Validation exclude(Class<?> type)
+        +Validation include(Class<?> type)
+    }
+    
+    interface Listener
+    Listener <|- - ValidationReporter
+    interface ValidationReporter
+    {
+        - -
+        +void report(Message)
+    }
+    
+    Validator - -> Listener : "reports to"
+    interface Validator
+    {
+        - -
+        +boolean validate(Listener)
+        +boolean validate()
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

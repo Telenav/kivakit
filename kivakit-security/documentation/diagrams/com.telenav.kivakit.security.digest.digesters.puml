@@ -1,0 +1,24 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.security.digest.digesters"
+    
+    abstract BaseDigester
+    
+    BaseDigester <|-- Md5Digester
+    class Md5Digester
+    {
+        --(constructors)--
+        +Md5Digester()
+    }
+    
+    BaseDigester <|-- Sha1Digester
+    class Sha1Digester
+    {
+        --(constructors)--
+        +Sha1Digester()
+    }
+    
+@enduml
+

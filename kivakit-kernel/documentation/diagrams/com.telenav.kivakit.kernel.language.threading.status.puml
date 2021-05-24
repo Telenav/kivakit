@@ -1,0 +1,52 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.threading.status"
+    
+    class ReentrancyTracker
+    {
+        --
+        +boolean enter()
+        --(checks)--
+        +boolean hasReentered()
+        --(lifecycle)--
+        +void exit()
+    }
+    
+    ThreadSnapshot "1" o-- "*" ThreadStatus
+    class ThreadSnapshot
+    {
+        --(constructors)--
+        +ThreadSnapshot()
+        --
+        +ThreadSnapshot update()
+        --(collection)--
+        +List<ThreadStatus> snapshot()
+        --(time)--
+        +Time capturedAt()
+        +Duration totalCpuTime()
+    }
+    
+    class ThreadStatus
+    {
+        --
+        +Thread.State state()
+        --(checks)--
+        +boolean isDaemon()
+        +boolean isKivaKit()
+        --(naming)--
+        +String name()
+        --(time)--
+        +Duration cpuTime()
+    }
+    
+    enum WakeState
+    {
+        COMPLETED
+        INTERRUPTED
+        TIMED_OUT
+    }
+    
+@enduml
+

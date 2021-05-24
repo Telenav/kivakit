@@ -1,0 +1,112 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.threading"
+    
+    abstract BaseRepeater
+    
+    interface Startable
+    interface Named
+    interface Runnable
+    interface Stoppable
+    interface Pausable
+    
+    BaseRepeater <|-- KivaKitThread
+    Startable <|-- KivaKitThread
+    Runnable <|-- KivaKitThread
+    Stoppable <|-- KivaKitThread
+    Named <|-- KivaKitThread
+    class KivaKitThread
+    {
+        --(constructors)--
+        +KivaKitThread(String)
+        +KivaKitThread(String, Runnable)
+        --
+        +KivaKitThread daemon(boolean daemon)
+        +KivaKitThread highPriority()
+        +boolean is(State)
+        +KivaKitThread lowPriority()
+        +KivaKitThread repeat(Listener, String name, Frequency every, Runnable code)
+        +KivaKitThread repeat(String name, Frequency every, Runnable code)
+        +StateMachine<State> state()
+        +void whileLocked(Runnable code)
+        #void onExited()
+        #void onRan()
+        #void onWaiting()
+        #Thread thread()
+        #State transition(State to)
+        --(functional)--
+        +Time startedAt()
+        +T whileLocked(Code<T>)
+        --(lifecycle)--
+        +KivaKitThread initialDelay(Duration initialDelay)
+        +KivaKitThread interrupt()
+        +void join()
+        +KivaKitThread run(Listener, String name, Runnable code)
+        +KivaKitThread run(String name, Runnable code)
+        +KivaKitThread startSynchronously()
+        #void onRun()
+        #void onRunning()
+        #void waitForInitialDelayPeriod()
+        --(thread)--
+        +void waitFor(State)
+        +void waitFor(State, Duration maximumWait)
+    }
+    
+    KivaKitThread <|-- RepeatingKivaKitThread
+    Pausable <|-- RepeatingKivaKitThread
+    class RepeatingKivaKitThread
+    {
+        --(constructors)--
+        +RepeatingKivaKitThread(Listener, String)
+        +RepeatingKivaKitThread(Listener, String, Frequency)
+        +RepeatingKivaKitThread(Listener, String, Runnable)
+        --(lifecycle)--
+        +RepeatingKivaKitThread run(Listener, String name, Frequency every, Runnable code)
+        +RepeatingKivaKitThread run(Listener, String name, Runnable code)
+        --(time)--
+        +RepeatingKivaKitThread frequency(Frequency)
+        +Frequency frequency()
+    }
+    
+    BaseRepeater <|-- Retry
+    class Retry
+    {
+        --(constructors)--
+        +Retry(Listener)
+        +Retry(Listener, int, Duration, Class<? extends Throwable>, String)
+        --
+        +CheckedCode<T> retry(CheckedCode<T>, int times, Duration delay, Runnable... beforeRetry)
+        --(lifecycle)--
+        +T run(CheckedCode<T> runnable, Runnable... stepsBeforeRetry)
+    }
+    
+    enum KivaKitThread.State
+    {
+        CREATED
+        EXITED
+        PAUSED
+        PAUSE_REQUESTED
+        RAN
+        RESUME_REQUESTED
+        RUNNING
+        STOP_REQUESTED
+        WAITING
+    }
+    
+    class Threads
+    {
+        --
+        +ThreadGroup rootGroup()
+        --(collection)--
+        +Iterable<Thread> all()
+        --(thread)--
+        +void await(ExecutorService)
+        +void shutdownAndAwait(ExecutorService)
+        +ExecutorService threadPool(String name)
+        +ExecutorService threadPool(String name, Count threads)
+    }
+    
+@enduml
+

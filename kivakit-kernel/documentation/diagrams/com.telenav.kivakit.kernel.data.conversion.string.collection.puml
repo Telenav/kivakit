@@ -1,0 +1,39 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.data.conversion.string.collection"
+    
+    abstract BaseCollectionConverter
+    abstract BaseStringConverter
+    
+    BaseStringConverter <|-- BaseCollectionConverter
+    abstract class BaseCollectionConverter<T>
+    {
+        --(constructors)--
+        #BaseCollectionConverter(Listener, String)
+        --
+        +String delimiter()
+        --(extension points)--
+        #T onConvertToObject(StringList)
+        #StringList onConvertToStringList(T value)
+    }
+    
+    BaseCollectionConverter <|-- BaseListConverter
+    abstract class BaseListConverter<T>
+    {
+        --(constructors)--
+        +BaseListConverter(Listener, StringConverter<T>, String)
+    }
+    
+    BaseCollectionConverter <|-- BaseSetConverter
+    abstract class BaseSetConverter<T>
+    {
+        --(constructors)--
+        +BaseSetConverter(Listener, StringConverter<T>, String)
+        --(collection)--
+        #void sort(StringList)
+    }
+    
+@enduml
+

@@ -1,0 +1,176 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Language - Pattern Matching"
+    
+    Expression <|-- Character
+    class Character
+    {
+        --(constructors)--
+        +Character(char)
+    }
+    
+    Pattern <|-- CharacterClass
+    class CharacterClass
+    {
+        --(constructors)--
+        +CharacterClass(Object)
+        +CharacterClass(String)
+        --(primitive)--
+        +CharacterClass inverted()
+        +CharacterClass with(Character)
+        +CharacterClass with(LiteralCharacter)
+        +CharacterClass withAlphabetic()
+        +CharacterClass withAlphanumeric()
+        +CharacterClass withCharacter(char)
+        +CharacterClass withLowerCaseAlphabetic()
+        +CharacterClass withNumeric()
+        +CharacterClass withRange(char first, char last)
+        +CharacterClass withUpperCaseAlphabetic()
+    }
+    
+    Pattern <|-- Closure
+    abstract class Closure
+    {
+        --(constructors)--
+        #Closure(boolean)
+        --
+        #String greed()
+    }
+    
+    Group <|-- EnumGroup
+    class EnumGroup<T>
+    {
+        --(constructors)--
+        +EnumGroup(Class<T>, Listener)
+    }
+    
+    Pattern <|-- Expression
+    class Expression
+    {
+        --(constructors)--
+        +Expression(String)
+    }
+    
+    Pattern <|-- Group
+    class Group<T>
+    {
+        --(constructors)--
+        +Group(Pattern, Converter<String, T>)
+        --
+        +T get(Matcher, T defaultValue)
+        +T get(Matcher)
+        --(filesystem)--
+        +Group<T> copy()
+    }
+    
+    Expression <|-- LiteralCharacter
+    class LiteralCharacter
+    {
+        --(constructors)--
+        +LiteralCharacter(char)
+    }
+    
+    Closure <|-- OneOrMore
+    class OneOrMore
+    {
+        --(constructors)--
+        +OneOrMore(Pattern)
+        +OneOrMore(Pattern, boolean)
+        --
+        +OneOrMore nonGreedy()
+    }
+    
+    Pattern <|-- Optional
+    class Optional
+    {
+        --(constructors)--
+        +Optional(Pattern)
+    }
+    
+    Pattern <|-- Or
+    class Or
+    {
+        --(constructors)--
+        +Or(Pattern, Pattern)
+    }
+    
+    Pattern <|-- Parenthesized
+    class Parenthesized
+    {
+        --(constructors)--
+        +Parenthesized(Pattern)
+    }
+    
+    abstract class Pattern
+    {
+        --
+        +Expression anyOf(T[] options)
+        +int bind(int group)
+        +Group<Boolean> booleanGroup(Listener)
+        +Pattern caseInsensitive()
+        +Expression constant(String expression)
+        +Expression expression(String expression)
+        +Group<Float> floatGroup(Listener)
+        +Group<T> group(Converter<String,T>)
+        +Group<String> group(Listener)
+        +boolean lookingAt(String input)
+        +boolean matches(CharSequence input)
+        +boolean matchesIgnoreCase(CharSequence input)
+        +Pattern oneOrMore()
+        +Pattern optional()
+        +Pattern then(String that)
+        +Pattern then(Pattern that)
+        +Pattern withOptionalWhiteSpace()
+        +ZeroOrMore zeroOrMore()
+        --(conversion)--
+        +String toExpression()
+        --(functional)--
+        +Pattern parenthesized()
+        --(logical)--
+        +Pattern or(String that)
+        +Pattern or(Pattern that)
+        --(matching)--
+        +String afterMatch(String input)
+        +Matcher matcher(CharSequence input)
+        +Matcher matcher(CharSequence input, int flags)
+        +Matcher matcherCaseInsensitive(CharSequence input)
+        --(primitive)--
+        +CharacterClass anyOf(String characters)
+        +Character character(char character)
+        +CharacterClass characterClass(Object... objects)
+        +Group<Integer> integerGroup(Listener)
+        +LiteralCharacter literal(char character)
+        +CharacterClass range(char first, char last)
+        --(search)--
+        +boolean find(String input)
+    }
+    
+    Expression <|-- SimplifiedPattern
+    class SimplifiedPattern
+    {
+        --(constructors)--
+        +SimplifiedPattern(String)
+    }
+    
+    Pattern <|-- Then
+    class Then
+    {
+        --(constructors)--
+        +Then(Pattern, Pattern)
+    }
+    
+    Closure <|-- ZeroOrMore
+    class ZeroOrMore
+    {
+        --(constructors)--
+        +ZeroOrMore(Pattern)
+        +ZeroOrMore(Pattern, boolean)
+        --
+        +ZeroOrMore greedy()
+        +ZeroOrMore nonGreedy()
+    }
+    
+@enduml
+

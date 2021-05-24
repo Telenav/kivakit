@@ -1,0 +1,28 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.resource.compression"
+    
+    interface Compressor
+    interface Decompressor
+    Compressor <|-- Codec
+    Decompressor <|-- Codec
+    interface Codec
+    {
+    }
+    
+    interface Compressor
+    {
+        --(write)--
+        +OutputStream compressed(OutputStream)
+    }
+    
+    interface Decompressor
+    {
+        --(functional)--
+        +InputStream decompressed(InputStream)
+    }
+    
+@enduml
+

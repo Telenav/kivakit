@@ -1,0 +1,89 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.serialization.core"
+    
+    interface Closeable
+    interface Flushable
+    interface Named
+    interface Repeater
+    interface SerializationSessionReadWrite
+    interface Versioned
+    SerializationSessionReadWrite <|-- SerializationSession
+    Named <|-- SerializationSession
+    Closeable <|-- SerializationSession
+    Flushable <|-- SerializationSession
+    Versioned <|-- SerializationSession
+    Repeater <|-- SerializationSession
+    interface SerializationSession
+    {
+        --(checks)--
+        +boolean isActive()
+        +boolean isReading()
+        +boolean isWriting()
+        --(identity)--
+        +Version open(Type, Version, InputStream, OutputStream)
+        +Version open(Type, Version, Socket, ProgressReporter)
+        +Version open(Type, Version, OutputStream)
+        +Version open(Type, Version, InputStream)
+        --(io)--
+        +void onClose()
+        --(read)--
+        +VersionedObject<T> read()
+        --(write)--
+        +void write(VersionedObject<T>)
+        +void writeAndFlush(VersionedObject<T>)
+    }
+    
+    class SerializationSessionFactory
+    {
+        --(constructors)--
+        +SerializationSessionFactory(Factory<SerializationSession>)
+        --(serialization)--
+        +SerializationSession session(Listener)
+    }
+    
+    interface SerializationSessionReadWrite
+    {
+        --(read)--
+        +boolean readBoolean()
+        +byte readByte()
+        +char readChar()
+        +double readDouble()
+        +float readFloat()
+        +int readInt()
+        +ObjectList<Element> readList(Class<Element> type)
+        +ObjectList<Element> readList()
+        +long readLong()
+        +ObjectMap<Key,Value> readMap()
+        +Type readObject(Class<Type>)
+        +short readShort()
+        +String readString()
+        +Version readVersion()
+        --(write)--
+        +void writeBoolean(boolean value)
+        +void writeByte(byte value)
+        +void writeChar(char value)
+        +void writeDouble(double value)
+        +void writeFloat(float value)
+        +void writeInt(int value)
+        +void writeList(List<Element>)
+        +void writeList(List<Element>, Class<Element> type)
+        +void writeLong(long value)
+        +void writeMap(Map<Key,Value>)
+        +void writeObject(Object)
+        +void writeShort(short value)
+        +void writeString(String value)
+        +void writeVersion(Version)
+    }
+    
+    enum SerializationSession.Type
+    {
+        CLIENT
+        RESOURCE
+        SERVER
+    }
+    
+@enduml
+

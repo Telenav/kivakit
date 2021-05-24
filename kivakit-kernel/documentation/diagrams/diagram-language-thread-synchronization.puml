@@ -1,0 +1,102 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Language - Thread Synchronization"
+    
+    abstract BaseRepeater
+    
+    CompletionLatch --> WakeState : "waits until"
+    class CompletionLatch
+    {
+        --(constructors)--
+        +CompletionLatch()
+        +CompletionLatch(Count)
+        --(lifecycle)--
+        +void completed()
+        +boolean hasCompleted()
+        +void reset()
+        --(thread)--
+        +WakeState waitForCompletion()
+        +WakeState waitForCompletion(Duration)
+    }
+    
+    ReentrantLock <|-- Lock
+    class Lock
+    {
+        --
+        +void whileLocked(Runnable code)
+        --(functional)--
+        +T whileLocked(Code<T>)
+    }
+    
+    class Monitor
+    {
+        --(thread)--
+        +void await()
+        +void signal()
+    }
+    
+    ReentrantReadWriteLock <|-- ReadWriteLock
+    class ReadWriteLock
+    {
+        --(constructors)--
+        +ReadWriteLock()
+        --(read)--
+        +void read(Runnable code)
+        +T read(Source<T> code)
+        --(write)--
+        +void write(Runnable code)
+        +T write(Source<T> code)
+    }
+    
+    BaseRepeater <|-- StateMachine
+    class StateMachine<State>
+    {
+        --(constructors)--
+        +StateMachine(State)
+        +StateMachine(State, Receiver<State>)
+        --
+        +State at()
+        +boolean is(State)
+        +State toggle(State one, State two)
+        +boolean transition(State from, State to, State waitFor, Duration maximumWait, Runnable before)
+        +boolean transition(State from, State to, State waitFor, Runnable before)
+        +boolean transition(State from, State to)
+        +State transition(State)
+        +void whileLocked(Runnable code)
+        --(functional)--
+        +T whileLocked(Code<T>)
+        --(thread)--
+        +void transitionAndWaitForNot(State)
+        +boolean waitFor(State)
+        +boolean waitFor(State, Duration maximumWait)
+        +boolean waitFor(Predicate<State>)
+        +boolean waitFor(Predicate<State>, Duration maximumWait)
+        +boolean waitForNot(State)
+        +boolean waitForNot(State, Duration maximumWait)
+    }
+    
+    class StateWatcher<State>
+    {
+        --
+        +void whileLocked(Runnable code)
+        --(functional)--
+        +T whileLocked(Code<T>)
+        --(thread)--
+        +void signal(State)
+        +WakeState waitFor(State desired, Duration maximumWaitTime)
+        +WakeState waitFor(Predicate<State>)
+        +WakeState waitFor(State desired)
+        +WakeState waitFor(Predicate<State>, Duration maximumWaitTime)
+    }
+    
+    enum WakeState
+    {
+        COMPLETED
+        INTERRUPTED
+        TIMED_OUT
+    }
+    
+@enduml
+

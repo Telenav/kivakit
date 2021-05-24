@@ -1,0 +1,96 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Language - Object"
+    
+    interface Loadable
+    interface Iterable
+    interface Unloadable
+    
+    abstract class ExpiringReference<T>
+    {
+        --(constructors)--
+        #ExpiringReference(Duration)
+        --
+        +T get()
+        --(checks)--
+        +boolean isNull()
+        --(factory)--
+        #void newObject()
+        #T onNewObject()
+    }
+    
+    class Hash
+    {
+        --
+        +int code(byte[] a)
+        +int code(Object)
+        +int code(long[] a, int start, int end)
+        +int code(int[] a, int start, int end)
+        +int code(long[] a)
+        +int code(int[] a)
+        +int code(byte[] a, int start, int end)
+        +int code(Iterator<Object> objects)
+        +int code(long value)
+        +int code(char[], int start, int end)
+        +int knuth(long value)
+        +int knuth(int value)
+        +int many(Object... objects)
+    }
+    
+    Loadable <|-- Lazy
+    Unloadable <|-- Lazy
+    class Lazy<Value>
+    {
+        --(constructors)--
+        #Lazy(Factory<Value>)
+        --
+        +Value get()
+        +boolean has()
+        +Lazy<Type> of(Factory<Type>)
+        --(collection)--
+        +void clear()
+    }
+    
+    class MappedLazy<Parameter, Value>
+    {
+        --(constructors)--
+        +MappedLazy(MapFactory<Parameter, Value>)
+        --
+        +Value get(Parameter)
+        +boolean has()
+        --(collection)--
+        +void clear()
+    }
+    
+    class Objects
+    {
+        --
+        +boolean equal(Object a, Object)
+        +boolean equalIgnoringCase(String a, String b)
+        +boolean equalPairs(Object... objects)
+        +String identityOf(Object)
+        --(checks)--
+        +boolean isAnyNull(Object... objects)
+        +boolean isPrimitiveWrapper(Object)
+        --(primitive)--
+        +Bytes primitiveSize(Object)
+        --(write)--
+        +Output apply(Input value, Function<Input,Output>)
+    }
+    
+    Iterable <|-- Pair
+    class Pair<T>
+    {
+        --(constructors)--
+        +Pair(T, T)
+        --
+        +T a()
+        +T b()
+        --(checks)--
+        +boolean isIdentity()
+    }
+    
+@enduml
+

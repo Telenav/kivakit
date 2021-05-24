@@ -1,0 +1,33 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.data.conversion"
+    
+    abstract BaseRepeater
+    
+    interface Converter
+    
+    BaseRepeater <|-- BaseConverter
+    Converter <|-- BaseConverter
+    abstract class BaseConverter<From, To>
+    {
+        --(constructors)--
+        #BaseConverter(Listener)
+        --
+        +BaseConverter<From,To> allowNull(boolean allowNull)
+        +boolean allowsNull()
+        --(extension points)--
+        #To onConvert(From value)
+    }
+    
+    interface Repeater
+    Repeater <|-- Converter
+    interface Converter<From, To>
+    {
+        --(conversion)--
+        +To convert(From)
+    }
+    
+@enduml
+

@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1082.2917px" preserveAspectRatio="none" style="width:1391px;height:1082px;background:#333333;" version="1.1" viewBox="0 0 1391 1082" width="1391.6667px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="131.25" x="622.9167" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="108.3333" x="634.375" y="30.5583">Secure FTP</text><!--MD5=[0d8f06937a3bcd729f0372312b29db1d]
+class BaseNetworkResource--><rect codeLine="6" fill="#282828" height="48.055" id="BaseNetworkResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="180.2083" x="240.1042" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="180.2083" x="240.1042" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="180.2083" x="240.1042" y="76.7578"/><rect codeLine="6" fill="none" height="48.055" id="BaseNetworkResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="180.2083" x="240.1042" y="53.7028"/><ellipse cx="254.6875" cy="69.397" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M254.8014,66.099 L253.953,69.8283 L255.6559,69.8283 Z M253.7028,64.4511 L255.9062,64.4511 L258.3659,73.5636 L256.5653,73.5636 L256.0038,71.3114 L253.5929,71.3114 L253.0436,73.5636 L251.2431,73.5636 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="142.7083" x="271.3542" y="74.1211">BaseNetworkResource</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="241.1458" x2="419.2708" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="241.1458" x2="419.2708" y1="93.4245" y2="93.4245"/><!--MD5=[098de34c4906e14ce6943a9a2498870b]
+class SecureFtpConnector--><rect codeLine="8" fill="#282828" height="301.6602" id="SecureFtpConnector" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="347.9167" x="563.5417" y="773.4945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="347.9167" x="563.5417" y="773.4945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="347.9167" x="563.5417" y="796.5495"/><rect codeLine="8" fill="none" height="301.6602" id="SecureFtpConnector" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="347.9167" x="563.5417" y="773.4945"/><ellipse cx="665.625" cy="789.1886" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M667.5354,793.6137 Q667.1082,793.8334 666.6382,793.9433 Q666.1682,794.0531 665.6494,794.0531 Q663.8062,794.0531 662.8357,792.8385 Q661.8652,791.6239 661.8652,789.329 Q661.8652,787.028 662.8357,785.8134 Q663.8062,784.5988 665.6494,784.5988 Q666.1682,784.5988 666.6443,784.7087 Q667.1204,784.8185 667.5354,785.0382 L667.5354,787.0402 Q667.0715,786.613 666.6351,786.4146 Q666.1987,786.2162 665.7349,786.2162 Q664.7461,786.2162 664.2426,787.0005 Q663.739,787.7848 663.739,789.329 Q663.739,790.8671 664.2426,791.6514 Q664.7461,792.4357 665.7349,792.4357 Q666.1987,792.4357 666.6351,792.2373 Q667.0715,792.039 667.5354,791.6117 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="129.1667" x="688.5417" y="793.9128">SecureFtpConnector</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="564.5833" x2="910.4167" y1="804.8828" y2="804.8828"/><ellipse cx="575" cy="840.2527" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="273.9583" x="586.4583" y="847.1639">SecureFtpConnector(NetworkAccessConstraints)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="564.5833" x2="693.75" y1="823.0886" y2="823.0886"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="696.875" y="826.8982">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="781.25" x2="910.4167" y1="823.0886" y2="823.0886"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="564.5833" x2="910.4167" y1="856.8726" y2="856.8726"/><ellipse cx="575" cy="868.3309" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="173.9583" x="586.4583" y="875.2421">void connect(NetworkLocation)</text><ellipse cx="575" cy="888.0758" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="96.875" x="586.4583" y="894.987">void disconnect()</text><ellipse cx="575" cy="907.8206" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="315.625" x="586.4583" y="914.7319">void get(NetworkLocation, WritableResource destination)</text><ellipse cx="575" cy="927.5655" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="120.8333" x="586.4583" y="934.4767">void safeDisconnect()</text><ellipse cx="575" cy="971.2219" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="126.0417" x="586.4583" y="978.1331">boolean isConnected()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="564.5833" x2="710.9375" y1="954.0578" y2="954.0578"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="714.0625" y="957.8674">(checks)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="764.0625" x2="910.4167" y1="954.0578" y2="954.0578"/><ellipse cx="575" cy="1014.8783" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="263.5417" x="586.4583" y="1021.7896">ObjectList&lt;LsEntry&gt; listFiles(NetworkLocation)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="564.5833" x2="702.0833" y1="997.7142" y2="997.7142"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="705.2083" y="1001.5238">(filesystem)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="772.9167" x2="910.4167" y1="997.7142" y2="997.7142"/><ellipse cx="575" cy="1058.5347" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="190.625" x="586.4583" y="1065.446">InputStream get(NetworkLocation)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="564.5833" x2="717.7083" y1="1041.3706" y2="1041.3706"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="33.3333" x="720.8333" y="1045.1803">(read)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="757.2917" x2="910.4167" y1="1041.3706" y2="1041.3706"/><!--MD5=[8d231b6496bd9f747b54b1fd17522193]
+class InputStream--><rect fill="#282828" height="48.055" id="InputStream" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="116.6667" x="488.5417" y="449.5361"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="116.6667" x="488.5417" y="449.5361"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="116.6667" x="488.5417" y="472.5911"/><rect fill="none" height="48.055" id="InputStream" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="116.6667" x="488.5417" y="449.5361"/><ellipse cx="503.125" cy="465.2303" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M505.0354,469.6554 Q504.6082,469.8751 504.1382,469.9849 Q503.6682,470.0948 503.1494,470.0948 Q501.3062,470.0948 500.3357,468.8802 Q499.3652,467.6656 499.3652,465.3707 Q499.3652,463.0697 500.3357,461.8551 Q501.3062,460.6405 503.1494,460.6405 Q503.6682,460.6405 504.1443,460.7503 Q504.6204,460.8602 505.0354,461.0799 L505.0354,463.0819 Q504.5715,462.6546 504.1351,462.4563 Q503.6987,462.2579 503.2349,462.2579 Q502.2461,462.2579 501.7426,463.0422 Q501.239,463.8265 501.239,465.3707 Q501.239,466.9088 501.7426,467.6931 Q502.2461,468.4774 503.2349,468.4774 Q503.6987,468.4774 504.1351,468.279 Q504.5715,468.0806 505.0354,467.6534 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="79.1667" x="519.7917" y="469.9544">InputStream</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="489.5833" x2="604.1667" y1="480.9245" y2="480.9245"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="489.5833" x2="604.1667" y1="489.2578" y2="489.2578"/><!--MD5=[5996a7417b29adfc85a56321cf2e0f8e]
+class SecureFtpInput--><rect codeLine="27" fill="#282828" height="127.0345" id="SecureFtpInput" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="489.5833" x="395.8333" y="560.9945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="489.5833" x="395.8333" y="560.9945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="489.5833" x="395.8333" y="584.0495"/><rect codeLine="27" fill="none" height="127.0345" id="SecureFtpInput" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="489.5833" x="395.8333" y="560.9945"/><ellipse cx="584.8958" cy="576.6886" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M586.8062,581.1137 Q586.379,581.3334 585.909,581.4433 Q585.439,581.5531 584.9202,581.5531 Q583.077,581.5531 582.1065,580.3385 Q581.1361,579.1239 581.1361,576.829 Q581.1361,574.528 582.1065,573.3134 Q583.077,572.0988 584.9202,572.0988 Q585.439,572.0988 585.9151,572.2087 Q586.3912,572.3185 586.8062,572.5382 L586.8062,574.5402 Q586.3424,574.113 585.906,573.9146 Q585.4696,573.7162 585.0057,573.7162 Q584.0169,573.7162 583.5134,574.5005 Q583.0098,575.2848 583.0098,576.829 Q583.0098,578.3671 583.5134,579.1514 Q584.0169,579.9357 585.0057,579.9357 Q585.4696,579.9357 585.906,579.7373 Q586.3424,579.539 586.8062,579.1117 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="96.875" x="607.8125" y="581.4128">SecureFtpInput</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="396.875" x2="884.375" y1="592.3828" y2="592.3828"/><polygon fill="#FFFF44" points="407.2917,622.5444,411.4583,626.711,407.2917,630.8777,403.125,626.711" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="457.2917" x="418.75" y="634.6639">SecureFtpInput forConnectorAndLocation(SecureFtpConnector, NetworkLocation)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="396.875" x2="610.9375" y1="610.5886" y2="610.5886"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="614.0625" y="614.3982">(network)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="670.3125" x2="884.375" y1="610.5886" y2="610.5886"/><ellipse cx="407.2917" cy="671.4091" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="113.5417" x="418.75" y="678.3203">Bytes getBufferSize()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="396.875" x2="608.8542" y1="654.245" y2="654.245"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="57.2917" x="611.9792" y="658.0546">(primitive)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="672.3958" x2="884.375" y1="654.245" y2="654.245"/><!--MD5=[66a462850cecc63a355ae0a9dda88528]
+class NetworkLocation--><rect fill="#282828" height="48.055" id="NetworkLocation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="146.875" x="109.8958" y="449.5361"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="146.875" x="109.8958" y="449.5361"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="146.875" x="109.8958" y="472.5911"/><rect fill="none" height="48.055" id="NetworkLocation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="146.875" x="109.8958" y="449.5361"/><ellipse cx="124.4792" cy="465.2303" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M126.3896,469.6554 Q125.9623,469.8751 125.4924,469.9849 Q125.0224,470.0948 124.5036,470.0948 Q122.6603,470.0948 121.6899,468.8802 Q120.7194,467.6656 120.7194,465.3707 Q120.7194,463.0697 121.6899,461.8551 Q122.6603,460.6405 124.5036,460.6405 Q125.0224,460.6405 125.4985,460.7503 Q125.9745,460.8602 126.3896,461.0799 L126.3896,463.0819 Q125.9257,462.6546 125.4893,462.4563 Q125.0529,462.2579 124.589,462.2579 Q123.6003,462.2579 123.0967,463.0422 Q122.5932,463.8265 122.5932,465.3707 Q122.5932,466.9088 123.0967,467.6931 Q123.6003,468.4774 124.589,468.4774 Q125.0529,468.4774 125.4893,468.279 Q125.9257,468.0806 126.3896,467.6534 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="109.375" x="141.1458" y="469.9544">NetworkLocation</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="110.9375" x2="255.7292" y1="480.9245" y2="480.9245"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="110.9375" x2="255.7292" y1="489.2578" y2="489.2578"/><!--MD5=[509546d2a422a9abc33b15fac89cc85d]
+class SecureFtpNetworkLocation--><rect codeLine="37" fill="#282828" height="127.0345" id="SecureFtpNetworkLocation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="352.0833" x="7.2917" y="560.9945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="352.0833" x="7.2917" y="560.9945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="352.0833" x="7.2917" y="584.0495"/><rect codeLine="37" fill="none" height="127.0345" id="SecureFtpNetworkLocation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="352.0833" x="7.2917" y="560.9945"/><ellipse cx="90.1042" cy="576.6886" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M92.0146,581.1137 Q91.5873,581.3334 91.1174,581.4433 Q90.6474,581.5531 90.1286,581.5531 Q88.2853,581.5531 87.3149,580.3385 Q86.3444,579.1239 86.3444,576.829 Q86.3444,574.528 87.3149,573.3134 Q88.2853,572.0988 90.1286,572.0988 Q90.6474,572.0988 91.1235,572.2087 Q91.5995,572.3185 92.0146,572.5382 L92.0146,574.5402 Q91.5507,574.113 91.1143,573.9146 Q90.6779,573.7162 90.214,573.7162 Q89.2253,573.7162 88.7217,574.5005 Q88.2182,575.2848 88.2182,576.829 Q88.2182,578.3671 88.7217,579.1514 Q89.2253,579.9357 90.214,579.9357 Q90.6779,579.9357 91.1143,579.7373 Q91.5507,579.539 92.0146,579.1117 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="171.875" x="113.0208" y="581.4128">SecureFtpNetworkLocation</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="8.3333" x2="358.3333" y1="592.3828" y2="592.3828"/><ellipse cx="18.75" cy="627.7527" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="227.0833" x="30.2083" y="634.6639">SecureFtpNetworkLocation(NetworkPath)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="139.5833" y1="610.5886" y2="610.5886"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="142.7083" y="614.3982">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="227.0833" x2="358.3333" y1="610.5886" y2="610.5886"/><ellipse cx="18.75" cy="671.4091" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="319.7917" x="30.2083" y="678.3203">SecureFtpResource resource(NetworkAccessConstraints)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="153.6458" y1="654.245" y2="654.245"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="156.7708" y="658.0546">(network)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="213.0208" x2="358.3333" y1="654.245" y2="654.245"/><!--MD5=[2611eaea7b8edb73fd5e52cd49d42d8e]
+class SecureFtpResource--><rect codeLine="48" fill="#282828" height="198.7691" id="SecureFtpResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="398.9583" x="130.7292" y="165.1611"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="398.9583" x="130.7292" y="165.1611"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="398.9583" x="130.7292" y="188.2161"/><rect codeLine="48" fill="none" height="198.7691" id="SecureFtpResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="398.9583" x="130.7292" y="165.1611"/><ellipse cx="262.5" cy="180.8553" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M264.4104,185.2804 Q263.9832,185.5001 263.5132,185.6099 Q263.0432,185.7198 262.5244,185.7198 Q260.6812,185.7198 259.7107,184.5052 Q258.7402,183.2906 258.7402,180.9957 Q258.7402,178.6947 259.7107,177.4801 Q260.6812,176.2655 262.5244,176.2655 Q263.0432,176.2655 263.5193,176.3753 Q263.9954,176.4852 264.4104,176.7049 L264.4104,178.7069 Q263.9465,178.2796 263.5101,178.0813 Q263.0737,177.8829 262.6099,177.8829 Q261.6211,177.8829 261.1176,178.6672 Q260.614,179.4515 260.614,180.9957 Q260.614,182.5338 261.1176,183.3181 Q261.6211,184.1024 262.6099,184.1024 Q263.0737,184.1024 263.5101,183.904 Q263.9465,183.7056 264.4104,183.2784 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="120.8333" x="285.4167" y="185.5794">SecureFtpResource</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="131.7708" x2="528.6458" y1="196.5495" y2="196.5495"/><ellipse cx="142.1875" cy="231.9194" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="366.6667" x="153.6458" y="238.8306">SecureFtpResource(NetworkLocation, NetworkAccessConstraints)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="131.7708" x2="286.4583" y1="214.7552" y2="214.7552"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="289.5833" y="218.5649">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="373.9583" x2="528.6458" y1="214.7552" y2="214.7552"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="131.7708" x2="528.6458" y1="248.5392" y2="248.5392"/><ellipse cx="142.1875" cy="259.9976" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="96.875" x="153.6458" y="266.9088">void disconnect()</text><ellipse cx="142.1875" cy="303.654" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="194.7917" x="153.6458" y="310.5652">^InputStream onOpenForReading()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="131.7708" x2="276.0417" y1="286.4899" y2="286.4899"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="102.0833" x="279.1667" y="290.2995">(extension points)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="384.375" x2="528.6458" y1="286.4899" y2="286.4899"/><ellipse cx="142.1875" cy="347.3104" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="169.7917" x="153.6458" y="354.2216">ObjectList&lt;LsEntry&gt; listFiles()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="131.7708" x2="294.7917" y1="330.1463" y2="330.1463"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="297.9167" y="333.9559">(filesystem)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="365.625" x2="528.6458" y1="330.1463" y2="330.1463"/><!--MD5=[2711aede8d56de875af8ad1df72ed5c9]
+class SecureFtpSettings--><rect codeLine="60" fill="#282828" height="297.4935" id="SecureFtpSettings" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="344.7917" x="980.7292" y="775.5778"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="344.7917" x="980.7292" y="775.5778"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="344.7917" x="980.7292" y="798.6328"/><rect codeLine="60" fill="none" height="297.4935" id="SecureFtpSettings" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="344.7917" x="980.7292" y="775.5778"/><ellipse cx="1088.0208" cy="791.272" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1089.9312,795.697 Q1089.504,795.9167 1089.034,796.0266 Q1088.564,796.1365 1088.0452,796.1365 Q1086.202,796.1365 1085.2315,794.9219 Q1084.2611,793.7073 1084.2611,791.4124 Q1084.2611,789.1113 1085.2315,787.8967 Q1086.202,786.6821 1088.0452,786.6821 Q1088.564,786.6821 1089.0401,786.792 Q1089.5162,786.9019 1089.9312,787.1216 L1089.9312,789.1235 Q1089.4674,788.6963 1089.031,788.4979 Q1088.5946,788.2996 1088.1307,788.2996 Q1087.1419,788.2996 1086.6384,789.0839 Q1086.1348,789.8682 1086.1348,791.4124 Q1086.1348,792.9504 1086.6384,793.7347 Q1087.1419,794.519 1088.1307,794.519 Q1088.5946,794.519 1089.031,794.3207 Q1089.4674,794.1223 1089.9312,793.6951 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="115.625" x="1110.9375" y="795.9961">SecureFtpSettings</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="981.7708" x2="1324.4792" y1="806.9661" y2="806.9661"/><ellipse cx="992.1875" cy="842.336" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="312.5" x="1003.6458" y="849.2472">SecureFtpSettings(Host, UserName, Password, Duration)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="981.7708" x2="1109.375" y1="825.1719" y2="825.1719"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="1112.5" y="828.9815">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1196.875" x2="1324.4792" y1="825.1719" y2="825.1719"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="981.7708" x2="1324.4792" y1="858.9559" y2="858.9559"/><ellipse cx="992.1875" cy="870.4142" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="142.7083" x="1003.6458" y="877.3254">void password(Password)</text><ellipse cx="992.1875" cy="890.1591" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="118.75" x="1003.6458" y="897.0703">Password password()</text><ellipse cx="992.1875" cy="909.904" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="147.9167" x="1003.6458" y="916.8152">void username(UserName)</text><ellipse cx="992.1875" cy="953.5604" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="125" x="1003.6458" y="960.4716">UserName userName()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="981.7708" x2="1125" y1="936.3963" y2="936.3963"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="50" x="1128.125" y="940.2059">(naming)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1181.25" x2="1324.4792" y1="936.3963" y2="936.3963"/><ellipse cx="992.1875" cy="997.2168" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="1003.6458" y="1004.128">Host host()</text><ellipse cx="992.1875" cy="1016.9617" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="86.4583" x="1003.6458" y="1023.8729">void host(Host)</text><ellipse cx="992.1875" cy="1036.7065" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="103.125" x="1003.6458" y="1043.6178">Duration timeout()</text><ellipse cx="992.1875" cy="1056.4514" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="172.9167" x="1003.6458" y="1063.3626">void timeout(Duration timeout)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="981.7708" x2="1123.4375" y1="980.0527" y2="980.0527"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="1126.5625" y="983.8623">(network)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1182.8125" x2="1324.4792" y1="980.0527" y2="980.0527"/><!--MD5=[a2fd1484b0cd9a73f879b6d5857fe542]
+class PeriodicCollectionChangeWatcher--><rect fill="#282828" height="48.055" id="PeriodicCollectionChangeWatcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="254.1667" x="1026.0417" y="449.5361"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="254.1667" x="1026.0417" y="449.5361"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="254.1667" x="1026.0417" y="472.5911"/><rect fill="none" height="48.055" id="PeriodicCollectionChangeWatcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="254.1667" x="1026.0417" y="449.5361"/><ellipse cx="1040.625" cy="465.2303" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1042.5354,469.6554 Q1042.1082,469.8751 1041.6382,469.9849 Q1041.1682,470.0948 1040.6494,470.0948 Q1038.8062,470.0948 1037.8357,468.8802 Q1036.8652,467.6656 1036.8652,465.3707 Q1036.8652,463.0697 1037.8357,461.8551 Q1038.8062,460.6405 1040.6494,460.6405 Q1041.1682,460.6405 1041.6443,460.7503 Q1042.1204,460.8602 1042.5354,461.0799 L1042.5354,463.0819 Q1042.0715,462.6546 1041.6351,462.4563 Q1041.1987,462.2579 1040.7349,462.2579 Q1039.7461,462.2579 1039.2426,463.0422 Q1038.739,463.8265 1038.739,465.3707 Q1038.739,466.9088 1039.2426,467.6931 Q1039.7461,468.4774 1040.7349,468.4774 Q1041.1987,468.4774 1041.6351,468.279 Q1042.0715,468.0806 1042.5354,467.6534 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="216.6667" x="1057.2917" y="469.9544">PeriodicCollectionChangeWatcher</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1027.0833" x2="1279.1667" y1="480.9245" y2="480.9245"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1027.0833" x2="1279.1667" y1="489.2578" y2="489.2578"/><!--MD5=[036f03828bca6bb4597a452292d17d55]
+class SftpFolderWatcher--><rect codeLine="80" fill="#282828" height="83.3781" id="SftpFolderWatcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="462.5" x="921.875" y="582.8695"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="462.5" x="921.875" y="582.8695"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="462.5" x="921.875" y="605.9245"/><rect codeLine="80" fill="none" height="83.3781" id="SftpFolderWatcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="462.5" x="921.875" y="582.8695"/><ellipse cx="1086.9792" cy="598.5636" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1088.8896,602.9887 Q1088.4623,603.2084 1087.9924,603.3183 Q1087.5224,603.4281 1087.0036,603.4281 Q1085.1603,603.4281 1084.1899,602.2135 Q1083.2194,600.9989 1083.2194,598.704 Q1083.2194,596.403 1084.1899,595.1884 Q1085.1603,593.9738 1087.0036,593.9738 Q1087.5224,593.9738 1087.9985,594.0837 Q1088.4745,594.1935 1088.8896,594.4132 L1088.8896,596.4152 Q1088.4257,595.988 1087.9893,595.7896 Q1087.5529,595.5912 1087.089,595.5912 Q1086.1003,595.5912 1085.5967,596.3755 Q1085.0932,597.1598 1085.0932,598.704 Q1085.0932,600.2421 1085.5967,601.0264 Q1086.1003,601.8107 1087.089,601.8107 Q1087.5529,601.8107 1087.9893,601.6123 Q1088.4257,601.414 1088.8896,600.9867 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="117.7083" x="1109.8958" y="603.2878">SftpFolderWatcher</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="922.9167" x2="1383.3333" y1="614.2578" y2="614.2578"/><ellipse cx="933.3333" cy="649.6277" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="430.2083" x="944.7917" y="656.5389">SftpFolderWatcher(Frequency, SecureFtpSettings, SecureFtpNetworkLocation)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="922.9167" x2="1109.375" y1="632.4636" y2="632.4636"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="1112.5" y="636.2732">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1196.875" x2="1383.3333" y1="632.4636" y2="632.4636"/><!--MD5=[9ad3edb9b2de650d9f3bb87264a27167]
+reverse link InputStream to SecureFtpInput--><path codeLine="25" d="M572.4583,515.1924 C581.3438,529.2965 591.5208,545.4632 601.25,560.932 " fill="none" id="InputStream-backto-SecureFtpInput" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="566.2396,519.0049,561.3229,497.484,578.5833,511.234,566.2396,519.0049" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[2994a9e27bb785b297e8814e497b0375]
+reverse link SecureFtpInput to SecureFtpConnector--><path codeLine="26" d="M665.2813,701.3903 C672.4583,723.4632 680.5625,748.3903 688.6771,773.359 " fill="none" id="SecureFtpInput-backto-SecureFtpConnector" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="661.0521,688.3903,659.0178,695.6212,664.9101,700.28,666.9443,693.0492,661.0521,688.3903" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="89.5833" x="682.2917" y="735.5794">connects with</text><!--MD5=[84129e41eca7f0fe6ce71ef6ce33ca22]
+reverse link NetworkLocation to SecureFtpNetworkLocation--><path codeLine="35" d="M183.3333,518.5986 C183.3333,531.8695 183.3333,546.6924 183.3333,560.932 " fill="none" id="NetworkLocation-backto-SecureFtpNetworkLocation" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="176.0417,518.3174,183.3333,497.484,190.625,518.3174,176.0417,518.3174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[3d9cbb03841005e3e3579b1d7c3e6233]
+link SecureFtpNetworkLocation to SecureFtpResource--><path codeLine="36" d="M233.5625,560.7236 C247.9792,541.109 263.0208,518.9632 275,497.4528 C293.4896,464.2549 297.2188,454.932 307.2917,418.2861 C311.5313,402.8486 315.0417,386.307 317.9271,370.0153 " fill="none" id="SecureFtpNetworkLocation-to-SecureFtpResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="318.8854,364.5049,313.1981,373.0434,318.0075,369.6387,321.4121,374.4481,318.8854,364.5049" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="45.8333" x="302.0833" y="478.2878">creates</text><!--MD5=[c80a4b0a6d418c7ea2f361d808173de0]
+reverse link BaseNetworkResource to SecureFtpResource--><path codeLine="45" d="M330.2083,122.7028 C330.2083,135.5778 330.2083,150.2028 330.2083,165.0361 " fill="none" id="BaseNetworkResource-backto-SecureFtpResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="322.9167,122.5778,330.2083,101.7445,337.5,122.5778,322.9167,122.5778" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[929250a7b2b334e5d282ed640ddf7cb9]
+link SecureFtpResource to InputStream--><path codeLine="46" d="M433.4688,364.2236 C464.8646,394.182 496.8333,424.6924 518.7917,445.6507 " fill="none" id="SecureFtpResource-to-InputStream" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="522.7708,449.4424,518.8762,439.9512,519.0071,445.8423,513.116,445.9732,522.7708,449.4424" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="35.4167" x="493.75" y="411.6211">reads</text><!--MD5=[0131d4969ab515daddde1bb9a70ab7a1]
+reverse link SecureFtpResource to NetworkLocation--><path codeLine="47" d="M252.2604,375.4215 C232.3125,403.4945 212.8125,430.9528 199.6771,449.4424 " fill="none" id="SecureFtpResource-backto-NetworkLocation" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="260.2083,364.2236,253.1905,366.902,252.9637,374.4101,259.9815,371.7318,260.2083,364.2236" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="56.25" x="239.5833" y="411.6211">accesses</text><!--MD5=[bb8fb1604beeccf67a222ee1061a23eb]
+reverse link PeriodicCollectionChangeWatcher to SftpFolderWatcher--><path codeLine="77" d="M1153.125,518.484 C1153.125,538.8382 1153.125,562.8695 1153.125,582.807 " fill="none" id="PeriodicCollectionChangeWatcher-backto-SftpFolderWatcher" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1145.8333,518.3174,1153.125,497.484,1160.4167,518.3174,1145.8333,518.3174" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[19e2e4e70549922465a5552e37c45441]
+link SftpFolderWatcher to SecureFtpConnector--><path codeLine="78" d="M1096.2083,666.3799 C1049.5417,699.8278 980.8542,749.057 916.0417,795.5153 " fill="none" id="SftpFolderWatcher-to-SecureFtpConnector" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="911.7813,798.5674,921.8263,796.4821,916.0114,795.5288,916.9646,789.7139,911.7813,798.5674" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="89.5833" x="1022.9167" y="735.5794">connects with</text><!--MD5=[41677b1bdcd6712435fb523ebaa03319]
+reverse link SftpFolderWatcher to SecureFtpSettings--><path codeLine="79" d="M1153.125,680.2549 C1153.125,707.3382 1153.125,741.484 1153.125,775.557 " fill="none" id="SftpFolderWatcher-backto-SecureFtpSettings" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="1153.125,666.3799,1148.9583,672.6299,1153.125,678.8799,1157.2917,672.6299,1153.125,666.3799" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ac7216610d8b4cca649d8ec3b5c67b8c]
+@startuml
+
+    !include lexakai.theme
+    
+    title "Secure FTP"
+    
+    abstract BaseNetworkResource
+    
+    class SecureFtpConnector
+    {
+        - -(constructors)- -
+        +SecureFtpConnector(NetworkAccessConstraints)
+        - -
+        +void connect(NetworkLocation)
+        +void disconnect()
+        +void get(NetworkLocation, WritableResource destination)
+        +void safeDisconnect()
+        - -(checks)- -
+        +boolean isConnected()
+        - -(filesystem)- -
+        +ObjectList<LsEntry> listFiles(NetworkLocation)
+        - -(read)- -
+        +InputStream get(NetworkLocation)
+    }
+    
+    InputStream <|- - SecureFtpInput
+    SecureFtpInput o- - SecureFtpConnector : "connects with"
+    class SecureFtpInput
+    {
+        - -(network)- -
+        #SecureFtpInput forConnectorAndLocation(SecureFtpConnector, NetworkLocation)
+        - -(primitive)- -
+        +Bytes getBufferSize()
+    }
+    
+    NetworkLocation <|- - SecureFtpNetworkLocation
+    SecureFtpNetworkLocation - -> SecureFtpResource : "creates"
+    class SecureFtpNetworkLocation
+    {
+        - -(constructors)- -
+        +SecureFtpNetworkLocation(NetworkPath)
+        - -(network)- -
+        +SecureFtpResource resource(NetworkAccessConstraints)
+    }
+    
+    BaseNetworkResource <|- - SecureFtpResource
+    SecureFtpResource - -> InputStream : "reads"
+    SecureFtpResource o- - NetworkLocation : "accesses"
+    class SecureFtpResource
+    {
+        - -(constructors)- -
+        +SecureFtpResource(NetworkLocation, NetworkAccessConstraints)
+        - -
+        +void disconnect()
+        - -(extension points)- -
+        +^InputStream onOpenForReading()
+        - -(filesystem)- -
+        +ObjectList<LsEntry> listFiles()
+    }
+    
+    class SecureFtpSettings
+    {
+        - -(constructors)- -
+        +SecureFtpSettings(Host, UserName, Password, Duration)
+        - -
+        +void password(Password)
+        +Password password()
+        +void username(UserName)
+        - -(naming)- -
+        +UserName userName()
+        - -(network)- -
+        +Host host()
+        +void host(Host)
+        +Duration timeout()
+        +void timeout(Duration timeout)
+    }
+    
+    PeriodicCollectionChangeWatcher <|- - SftpFolderWatcher
+    SftpFolderWatcher - -> SecureFtpConnector : "connects with"
+    SftpFolderWatcher o- - SecureFtpSettings
+    class SftpFolderWatcher
+    {
+        - -(constructors)- -
+        +SftpFolderWatcher(Frequency, SecureFtpSettings, SecureFtpNetworkLocation)
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "Secure FTP"
+    
+    abstract BaseNetworkResource
+    
+    class SecureFtpConnector
+    {
+        - -(constructors)- -
+        +SecureFtpConnector(NetworkAccessConstraints)
+        - -
+        +void connect(NetworkLocation)
+        +void disconnect()
+        +void get(NetworkLocation, WritableResource destination)
+        +void safeDisconnect()
+        - -(checks)- -
+        +boolean isConnected()
+        - -(filesystem)- -
+        +ObjectList<LsEntry> listFiles(NetworkLocation)
+        - -(read)- -
+        +InputStream get(NetworkLocation)
+    }
+    
+    InputStream <|- - SecureFtpInput
+    SecureFtpInput o- - SecureFtpConnector : "connects with"
+    class SecureFtpInput
+    {
+        - -(network)- -
+        #SecureFtpInput forConnectorAndLocation(SecureFtpConnector, NetworkLocation)
+        - -(primitive)- -
+        +Bytes getBufferSize()
+    }
+    
+    NetworkLocation <|- - SecureFtpNetworkLocation
+    SecureFtpNetworkLocation - -> SecureFtpResource : "creates"
+    class SecureFtpNetworkLocation
+    {
+        - -(constructors)- -
+        +SecureFtpNetworkLocation(NetworkPath)
+        - -(network)- -
+        +SecureFtpResource resource(NetworkAccessConstraints)
+    }
+    
+    BaseNetworkResource <|- - SecureFtpResource
+    SecureFtpResource - -> InputStream : "reads"
+    SecureFtpResource o- - NetworkLocation : "accesses"
+    class SecureFtpResource
+    {
+        - -(constructors)- -
+        +SecureFtpResource(NetworkLocation, NetworkAccessConstraints)
+        - -
+        +void disconnect()
+        - -(extension points)- -
+        +^InputStream onOpenForReading()
+        - -(filesystem)- -
+        +ObjectList<LsEntry> listFiles()
+    }
+    
+    class SecureFtpSettings
+    {
+        - -(constructors)- -
+        +SecureFtpSettings(Host, UserName, Password, Duration)
+        - -
+        +void password(Password)
+        +Password password()
+        +void username(UserName)
+        - -(naming)- -
+        +UserName userName()
+        - -(network)- -
+        +Host host()
+        +void host(Host)
+        +Duration timeout()
+        +void timeout(Duration timeout)
+    }
+    
+    PeriodicCollectionChangeWatcher <|- - SftpFolderWatcher
+    SftpFolderWatcher - -> SecureFtpConnector : "connects with"
+    SftpFolderWatcher o- - SecureFtpSettings
+    class SftpFolderWatcher
+    {
+        - -(constructors)- -
+        +SftpFolderWatcher(Frequency, SecureFtpSettings, SecureFtpNetworkLocation)
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

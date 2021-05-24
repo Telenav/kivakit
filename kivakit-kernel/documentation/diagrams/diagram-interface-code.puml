@@ -1,0 +1,21 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Interfaces - Code"
+    
+    interface Callback<Value>
+    {
+        --
+        +void callback(Value)
+        +void onCallback(Value)
+    }
+    
+    interface Loopable
+    {
+        --
+        +void iteration(int iteration)
+    }
+    
+@enduml
+

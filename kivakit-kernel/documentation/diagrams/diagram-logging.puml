@@ -1,0 +1,174 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Logging"
+    
+    abstract BaseLogger
+    
+    interface Triaged
+    interface Logger
+    
+    Logger <|-- BaseLogger
+    abstract class BaseLogger
+    {
+        --(constructors)--
+        #BaseLogger()
+        #BaseLogger(LoggerCodeContext)
+        --(filtering)--
+        #boolean accept(LogEntry)
+    }
+    
+    BaseLogger <|-- ConsoleLogger
+    class ConsoleLogger
+    {
+    }
+    
+    interface Receiver
+    interface Transceiver
+    Transceiver <|-- Listener
+    Receiver <|-- Listener
+    interface Listener
+    {
+        --(messaging)--
+        +T listenTo(T broadcaster, MessageFilter)
+        +T listenTo(T broadcaster)
+        +Listener none()
+        +void onMessage(Message)
+    }
+    
+    interface Closeable
+    interface Filtered
+    Filtered <|-- Log
+    Closeable <|-- Log
+    Log --> LogEntry : "logs"
+    interface Log
+    {
+        --
+        +void configure(Map<String,String> properties)
+        +void level(Severity)
+        +void log(LogEntry)
+    }
+    
+    Triaged <|-- LogEntry
+    LogEntry o-- CodeContext
+    LogEntry o-- StackTrace
+    class LogEntry
+    {
+        --
+        +CodeContext context()
+        +String format(LogEntryFormatter, MessageFormatter.Format)
+        +int sequenceNumber()
+        --(checks)--
+        +boolean isSevere()
+        --(messaging)--
+        +String formattedMessage()
+        +String formattedMessage(MessageFormatter.Format)
+        +Message message()
+        +String messageType()
+        +StackTrace stackTrace()
+        --(naming)--
+        +String threadName()
+        --(time)--
+        +Time created()
+    }
+    
+    LogServiceLoader "1" o-- "*" Log : "loads"
+    class LogServiceLoader
+    {
+        --
+        +Log log(String name)
+        --(collection)--
+        +List<Log> logs()
+    }
+    
+    BaseLogger <|-- LogServiceLogger
+    LogServiceLogger --> Log : "configures"
+    LogServiceLogger --> LogServiceLoader : "loads log services with"
+    LogServiceLogger "1" o-- "*" Log : "logs to"
+    class LogServiceLogger
+    {
+    }
+    
+    interface Filtered
+    interface Listener
+    Listener <|-- Logger
+    Filtered <|-- Logger
+    interface Logger
+    {
+        --
+        +LoggerCodeContext codeContext()
+        +void log(Message)
+        --(collection)--
+        +void addFilter(Filter<LogEntry>)
+    }
+    
+    CodeContext <|-- LoggerCodeContext
+    class LoggerCodeContext
+    {
+        --(constructors)--
+        +LoggerCodeContext()
+        +LoggerCodeContext(Method)
+        +LoggerCodeContext(String)
+    }
+    
+    LoggerFactory --> Logger : "creates"
+    class LoggerFactory
+    {
+        --(factory)--
+        +void factory(Factory<Logger>)
+        +Logger newLogger()
+    }
+    
+    Logger <|-- NullLogger
+    class NullLogger
+    {
+    }
+    
+    Transceiver --> Debug : "delegates to"
+    note right of Transceiver
+        Functionality common to transmitters and receivers
+    endnote
+    interface Transceiver
+    {
+        --
+        +Debug debug()
+        +void halt(Throwable cause, String text, Object... arguments)
+        +void halt(String text, Object... arguments)
+        +void ifDebug(Runnable code)
+        --(checks)--
+        +boolean isDebugOn()
+        +boolean isOn()
+        --(messaging)--
+        +void announce(String text, Object... arguments)
+        +void information(String text, Object... arguments)
+        +void narrate(String text, Object... arguments)
+        +void problem(Throwable cause, String text, Object... arguments)
+        +void problem(Frequency maximumFrequency, String text, Object... arguments)
+        +void problem(String text, Object... arguments)
+        +void problem(Frequency maximumFrequency, Throwable cause, String text, Object... arguments)
+        +void quibble(Frequency maximumFrequency, Throwable cause, String text, Object... arguments)
+        +void quibble(Throwable cause, String text, Object... arguments)
+        +void quibble(String text, Object... arguments)
+        +void quibble(Frequency maximumFrequency, String text, Object... arguments)
+        +void throwProblem(Throwable cause, String text, Object... arguments)
+        +void throwProblem(String text, Object... arguments)
+        +void trace(String text, Object... arguments)
+        +void trace(Throwable cause, String text, Object... arguments)
+        +void trace(Frequency maximumFrequency, Throwable cause, String text, Object... arguments)
+        +void trace(Frequency maximumFrequency, String text, Object... arguments)
+        +void warning(String text, Object... arguments)
+        +void warning(Frequency maximumFrequency, Throwable cause, String text, Object... arguments)
+        +void warning(Throwable cause, String text, Object... arguments)
+        +void warning(Frequency maximumFrequency, String text, Object... arguments)
+    }
+    
+    Triaged --> Severity : "has"
+    interface Triaged
+    {
+        --
+        +Severity severity()
+    }
+    
+@enduml
+

@@ -1,0 +1,60 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.interfaces.lifecycle"
+    
+    interface Configured<T>
+    {
+        --(configuration)--
+        +void configure(T configuration)
+    }
+    
+    interface Initializable<T>
+    {
+        --(lifecycle)--
+        +T initialize()
+    }
+    
+    interface Operation
+    {
+        --(lifecycle)--
+        +boolean isRunning()
+    }
+    
+    interface Operation
+    Operation <|-- Pausable
+    interface Pausable
+    {
+        --(checks)--
+        +boolean isPaused()
+        --(lifecycle)--
+        +void pause()
+        +void resume()
+    }
+    
+    interface Resettable
+    {
+        --(lifecycle)--
+        +void reset()
+    }
+    
+    interface Operation
+    Operation <|-- Startable
+    interface Startable
+    {
+        --(lifecycle)--
+        +boolean start()
+    }
+    
+    interface Operation
+    Operation <|-- Stoppable
+    interface Stoppable
+    {
+        --(lifecycle)--
+        +void stop(Duration wait)
+        +void stop()
+    }
+    
+@enduml
+

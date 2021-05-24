@@ -1,0 +1,73 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.collections.set"
+    
+    abstract AbstractSet
+    
+    interface Serializable
+    interface Set
+    
+    Set <|-- CompoundSet
+    class CompoundSet<Element>
+    {
+        --(constructors)--
+        +CompoundSet()
+        +CompoundSet(Set<Element>, Set<Element>)
+        --(collection)--
+        +void add(Set<Element>)
+        +Iterable<Element> matching(Matcher<Element>)
+    }
+    
+    Set <|-- ConcurrentHashSet
+    Serializable <|-- ConcurrentHashSet
+    class ConcurrentHashSet<Element>
+    {
+        --(constructors)--
+        +ConcurrentHashSet()
+        +ConcurrentHashSet(int, float)
+        --
+        +Element get(Element prototype)
+        +Element take(Element prototype)
+        --(collection)--
+        +boolean containsAdd(Element object)
+    }
+    
+    AbstractSet <|-- IdentitySet
+    class IdentitySet<Element>
+    {
+    }
+    
+    abstract class SetDifferencer<Element>
+    {
+        --(constructors)--
+        #SetDifferencer(Equality<Element>)
+        --
+        +void compare(Set<Element> beforeSet, Set<Element> afterSet)
+        #void onAdded(Element value)
+        #void onNotChanged(Element oldValue, Element newValue)
+        #void onRemoved(Element value)
+        #void onUpdated(Element value)
+    }
+    
+    CoreCollectionsUnitTest <|-- SetDifferencerTest
+    class SetDifferencerTest
+    {
+        --
+        +void test()
+    }
+    
+    CoreCollectionsUnitTest <|-- SetOperationTest
+    abstract class SetOperationTest
+    {
+        --(primitive)--
+        #Set<Integer> set(Integer... values)
+    }
+    
+    class SetDifferencerTest.Value
+    {
+    }
+    
+@enduml
+

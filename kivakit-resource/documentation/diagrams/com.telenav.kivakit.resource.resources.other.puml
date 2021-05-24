@@ -1,0 +1,55 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.resource.resources.other"
+    
+    abstract BaseReadableResource
+    abstract BaseWritableResource
+    
+    BaseWritableResource <|-- NullResource
+    class NullResource
+    {
+        --(constructors)--
+        +NullResource()
+    }
+    
+    VariableMap <|-- PropertyMap
+    class PropertyMap
+    {
+        --(constructors)--
+        #PropertyMap()
+        --(collection)--
+        +void add(Object, PropertyFilter)
+        +Count asCount(String key)
+        +PropertyMap comment(String key, String comment)
+        +PropertyMap create()
+        +PropertyMap expandedWith(VariableMap<String> that)
+        +PropertyMap load(PackagePath _package, String path)
+        +PropertyMap load(Class<?> _package, String path)
+        +PropertyMap load(Resource)
+        +PropertyMap localized(PackagePath, Locale)
+        +PropertyMap of(VariableMap<String> variables)
+        --(conversion)--
+        +double asDouble(String key)
+        +File asFile(String key)
+        +Folder asFolder(String key)
+        +int asInt(String key)
+        +long asLong(String key)
+        +Object asObject(Listener, Class<?> type)
+        +String asPath(String key)
+        +URI asUri(String key)
+        --(write)--
+        +void save(String heading, WritableResource)
+        +void save(WritableResource)
+    }
+    
+    BaseReadableResource <|-- ResourceSection
+    class ResourceSection
+    {
+        --(constructors)--
+        +ResourceSection(Resource, long, long)
+    }
+    
+@enduml
+

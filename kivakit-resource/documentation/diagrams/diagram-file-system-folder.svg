@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="2689.5833px" preserveAspectRatio="none" style="width:1697px;height:2689px;background:#333333;" version="1.1" viewBox="0 0 1697 2689" width="1697.9167px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="234.375" x="724.4792" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="211.4583" x="735.9375" y="30.5583">File System - Folders</text><!--MD5=[2508c3dbc3ca5a45db97b2e3dc7edc10]
+class FileSystemObject--><rect codeLine="26" fill="#282828" height="48.055" id="FileSystemObject" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="148.9583" x="1512.5" y="408.9111"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="148.9583" x="1512.5" y="408.9111"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="148.9583" x="1512.5" y="431.9661"/><rect codeLine="26" fill="none" height="48.055" id="FileSystemObject" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="148.9583" x="1512.5" y="408.9111"/><ellipse cx="1527.0833" cy="424.6053" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M1523.9665,421.7672 L1523.9665,420.1803 L1529.3925,420.1803 L1529.3925,421.7672 L1527.5798,421.7672 L1527.5798,427.7059 L1529.3925,427.7059 L1529.3925,429.2928 L1523.9665,429.2928 L1523.9665,427.7059 L1525.7792,427.7059 L1525.7792,421.7672 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="111.4583" x="1543.75" y="429.3294">FileSystemObject</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1513.5417" x2="1660.4167" y1="440.2995" y2="440.2995"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1513.5417" x2="1660.4167" y1="448.6328" y2="448.6328"/><!--MD5=[7a4729d26b999f6a4650b01106c103c5]
+class Comparable--><rect codeLine="7" fill="#282828" height="48.055" id="Comparable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="115.625" x="7.2917" y="408.9111"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="115.625" x="7.2917" y="408.9111"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="115.625" x="7.2917" y="431.9661"/><rect codeLine="7" fill="none" height="48.055" id="Comparable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="115.625" x="7.2917" y="408.9111"/><ellipse cx="21.875" cy="424.6053" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M18.7581,421.7672 L18.7581,420.1803 L24.1842,420.1803 L24.1842,421.7672 L22.3714,421.7672 L22.3714,427.7059 L24.1842,427.7059 L24.1842,429.2928 L18.7581,429.2928 L18.7581,427.7059 L20.5709,427.7059 L20.5709,421.7672 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="78.125" x="38.5417" y="429.3294">Comparable</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="121.875" y1="440.2995" y2="440.2995"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="121.875" y1="448.6328" y2="448.6328"/><!--MD5=[119b8721f931f556e6a06e28498d939f]
+class ResourceFolder--><rect codeLine="8" fill="#282828" height="48.055" id="ResourceFolder" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="136.4583" x="159.375" y="408.9111"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="136.4583" x="159.375" y="408.9111"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="136.4583" x="159.375" y="431.9661"/><rect codeLine="8" fill="none" height="48.055" id="ResourceFolder" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="136.4583" x="159.375" y="408.9111"/><ellipse cx="173.9583" cy="424.6053" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M170.8415,421.7672 L170.8415,420.1803 L176.2675,420.1803 L176.2675,421.7672 L174.4548,421.7672 L174.4548,427.7059 L176.2675,427.7059 L176.2675,429.2928 L170.8415,429.2928 L170.8415,427.7059 L172.6542,427.7059 L172.6542,421.7672 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="98.9583" x="190.625" y="429.3294">ResourceFolder</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="160.4167" x2="294.7917" y1="440.2995" y2="440.2995"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="160.4167" x2="294.7917" y1="448.6328" y2="448.6328"/><!--MD5=[3d4177ac58b4411586d067f34e84928f]
+class List--><rect codeLine="9" fill="#282828" height="48.055" id="List" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="61.4583" x="803.125" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="61.4583" x="803.125" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="61.4583" x="803.125" y="76.7578"/><rect codeLine="9" fill="none" height="48.055" id="List" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="61.4583" x="803.125" y="53.7028"/><ellipse cx="817.7083" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M814.5915,66.5588 L814.5915,64.9719 L820.0175,64.9719 L820.0175,66.5588 L818.2048,66.5588 L818.2048,72.4976 L820.0175,72.4976 L820.0175,74.0845 L814.5915,74.0845 L814.5915,72.4976 L816.4042,72.4976 L816.4042,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="23.9583" x="834.375" y="74.1211">List</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="804.1667" x2="863.5417" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="804.1667" x2="863.5417" y1="93.4245" y2="93.4245"/><!--MD5=[070063abfe7a0abdf9165b4cfe9676cf]
+class Disk--><rect codeLine="11" fill="#282828" height="229.9255" id="Disk" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="165.625" x="460.4167" y="2452.6611"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="165.625" x="460.4167" y="2452.6611"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="165.625" x="460.4167" y="2475.7161"/><rect codeLine="11" fill="none" height="229.9255" id="Disk" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="165.625" x="460.4167" y="2452.6611"/><ellipse cx="520.8333" cy="2468.3553" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M522.7437,2472.7804 Q522.3165,2473.0001 521.8465,2473.1099 Q521.3765,2473.2198 520.8577,2473.2198 Q519.0145,2473.2198 518.044,2472.0052 Q517.0736,2470.7906 517.0736,2468.4957 Q517.0736,2466.1947 518.044,2464.9801 Q519.0145,2463.7655 520.8577,2463.7655 Q521.3765,2463.7655 521.8526,2463.8753 Q522.3287,2463.9852 522.7437,2464.2049 L522.7437,2466.2069 Q522.2799,2465.7796 521.8435,2465.5813 Q521.4071,2465.3829 520.9432,2465.3829 Q519.9544,2465.3829 519.4509,2466.1672 Q518.9473,2466.9515 518.9473,2468.4957 Q518.9473,2470.0338 519.4509,2470.8181 Q519.9544,2471.6024 520.9432,2471.6024 Q521.4071,2471.6024 521.8435,2471.404 Q522.2799,2471.2056 522.7437,2470.7784 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="30.2083" x="543.75" y="2473.0794">Disk</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="461.4583" x2="625" y1="2484.0495" y2="2484.0495"/><ellipse cx="471.875" cy="2519.4194" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="70.8333" x="483.3333" y="2526.3306">Folder root()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="461.4583" x2="507.8125" y1="2502.2552" y2="2502.2552"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="510.9375" y="2506.0649">(filesystem)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="578.6458" x2="625" y1="2502.2552" y2="2502.2552"/><ellipse cx="471.875" cy="2563.0758" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="119.7917" x="483.3333" y="2569.987">Percent percentFree()</text><ellipse cx="471.875" cy="2582.8206" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="133.3333" x="483.3333" y="2589.7319">Percent percentUsable()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="461.4583" x2="521.875" y1="2545.9117" y2="2545.9117"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="36.4583" x="525" y="2549.7213">(math)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="564.5833" x2="625" y1="2545.9117" y2="2545.9117"/><ellipse cx="471.875" cy="2626.4771" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="483.3333" y="2633.3883">Bytes free()</text><ellipse cx="471.875" cy="2646.2219" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="483.3333" y="2653.1331">Bytes size()</text><ellipse cx="471.875" cy="2665.9668" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="77.0833" x="483.3333" y="2672.878">Bytes usable()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="461.4583" x2="511.4583" y1="2609.3129" y2="2609.3129"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="57.2917" x="514.5833" y="2613.1226">(primitive)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="575" x2="625" y1="2609.3129" y2="2609.3129"/><!--MD5=[e311511635269f87be1c489360f40e04]
+class ModificationTimestamped--><rect codeLine="24" fill="#282828" height="48.055" id="ModificationTimestamped" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="207.2917" x="1483.3333" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="207.2917" x="1483.3333" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="207.2917" x="1483.3333" y="76.7578"/><rect codeLine="24" fill="none" height="48.055" id="ModificationTimestamped" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="207.2917" x="1483.3333" y="53.7028"/><ellipse cx="1497.9167" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M1494.7998,66.5588 L1494.7998,64.9719 L1500.2258,64.9719 L1500.2258,66.5588 L1498.4131,66.5588 L1498.4131,72.4976 L1500.2258,72.4976 L1500.2258,74.0845 L1494.7998,74.0845 L1494.7998,72.4976 L1496.6125,72.4976 L1496.6125,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="169.7917" x="1514.5833" y="74.1211">ModificationTimestamped</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1484.375" x2="1689.5833" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1484.375" x2="1689.5833" y1="93.4245" y2="93.4245"/><!--MD5=[d1dcc9c41ef051a777528f9336a950e3]
+class Folder--><rect codeLine="35" fill="#282828" height="1580.9102" id="Folder" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="494.7917" x="386.4583" y="785.9945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="494.7917" x="386.4583" y="785.9945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="494.7917" x="386.4583" y="809.0495"/><rect codeLine="35" fill="none" height="1580.9102" id="Folder" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="494.7917" x="386.4583" y="785.9945"/><ellipse cx="606.25" cy="801.6886" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M608.1604,806.1137 Q607.7332,806.3334 607.2632,806.4433 Q606.7932,806.5531 606.2744,806.5531 Q604.4312,806.5531 603.4607,805.3385 Q602.4902,804.1239 602.4902,801.829 Q602.4902,799.528 603.4607,798.3134 Q604.4312,797.0988 606.2744,797.0988 Q606.7932,797.0988 607.2693,797.2087 Q607.7454,797.3185 608.1604,797.5382 L608.1604,799.5402 Q607.6965,799.113 607.2601,798.9146 Q606.8237,798.7162 606.3599,798.7162 Q605.3711,798.7162 604.8676,799.5005 Q604.364,800.2848 604.364,801.829 Q604.364,803.3671 604.8676,804.1514 Q605.3711,804.9357 606.3599,804.9357 Q606.8237,804.9357 607.2601,804.7373 Q607.6965,804.539 608.1604,804.1117 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="40.625" x="629.1667" y="806.4128">Folder</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="387.5" x2="880.2083" y1="817.3828" y2="817.3828"/><ellipse cx="397.9167" cy="852.7527" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="86.4583" x="409.375" y="859.6639">Folder(FilePath)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="387.5" x2="590.1042" y1="835.5886" y2="835.5886"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="593.2292" y="839.3982">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="677.6042" x2="880.2083" y1="835.5886" y2="835.5886"/><ellipse cx="397.9167" cy="896.4091" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="100" x="409.375" y="903.3203">boolean isEmpty()</text><ellipse cx="397.9167" cy="916.154" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="94.7917" x="409.375" y="923.0652">boolean isLocal()</text><ellipse cx="397.9167" cy="935.8988" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="107.2917" x="409.375" y="942.8101">boolean isRemote()</text><ellipse cx="397.9167" cy="955.6437" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="110.4167" x="409.375" y="962.5549">boolean isWritable()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="387.5" x2="607.2917" y1="879.245" y2="879.245"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="610.4167" y="883.0546">(checks)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="660.4167" x2="880.2083" y1="879.245" y2="879.245"/><ellipse cx="397.9167" cy="999.3001" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="94.7917" x="409.375" y="1006.2113">Folder absolute()</text><ellipse cx="397.9167" cy="1019.045" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="121.875" x="409.375" y="1025.9562">java.io.File asJavaFile()</text><ellipse cx="397.9167" cy="1038.7899" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="286.4583" x="409.375" y="1045.7011">boolean chmod(PosixFilePermission... permissions)</text><ellipse cx="397.9167" cy="1058.5347" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="304.1667" x="409.375" y="1065.446">void chmodNested(PosixFilePermission... permissions)</text><ellipse cx="397.9167" cy="1078.2796" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="88.5417" x="409.375" y="1085.1908">Folder clearAll()</text><ellipse cx="397.9167" cy="1098.0245" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="145.8333" x="409.375" y="1104.9357">Folder clearAllAndDelete()</text><ellipse cx="397.9167" cy="1117.7694" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="348.9583" x="409.375" y="1124.6806">void copyTo(Folder destination, CopyMode, ProgressReporter)</text><ellipse cx="397.9167" cy="1137.5142" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="437.5" x="409.375" y="1144.4255">void copyTo(Folder destination, CopyMode, Matcher&lt;File&gt;, ProgressReporter)</text><ellipse cx="397.9167" cy="1157.2591" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="88.5417" x="409.375" y="1164.1703">Folder current()</text><ellipse cx="397.9167" cy="1177.004" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="89.5833" x="409.375" y="1183.9152">boolean delete()</text><ellipse cx="397.9167" cy="1196.7489" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="91.6667" x="409.375" y="1203.6601">Folder desktop()</text><ellipse cx="397.9167" cy="1216.4937" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="58.3333" x="409.375" y="1223.4049">Disk disk()</text><ellipse cx="397.9167" cy="1236.2386" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="118.75" x="409.375" y="1243.1498">Folder ensureExists()</text><ellipse cx="397.9167" cy="1255.9835" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="89.5833" x="409.375" y="1262.8947">boolean exists()</text><ellipse cx="397.9167" cy="1275.7284" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="65.625" x="409.375" y="1282.6396">File file(File)</text><ellipse cx="397.9167" cy="1295.4732" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="96.875" x="409.375" y="1302.3844">File file(FileName)</text><ellipse cx="397.9167" cy="1315.2181" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="119.7917" x="409.375" y="1322.1293">File file(FilePath child)</text><ellipse cx="397.9167" cy="1334.963" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="108.3333" x="409.375" y="1341.8742">File file(String path)</text><ellipse cx="397.9167" cy="1354.7078" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="112.5" x="409.375" y="1361.6191">FileList files(Pattern)</text><ellipse cx="397.9167" cy="1374.4527" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="259.375" x="409.375" y="1381.3639">FileList files(Matcher&lt;File&gt;, Traversal recurse)</text><ellipse cx="397.9167" cy="1394.1976" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="72.9167" x="409.375" y="1401.1088">FileList files()</text><ellipse cx="397.9167" cy="1413.9425" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="155.2083" x="409.375" y="1420.8537">FileList files(Matcher&lt;File&gt;)</text><ellipse cx="397.9167" cy="1433.6873" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="160.4167" x="409.375" y="1440.5986">Folder folder(FileName child)</text><ellipse cx="397.9167" cy="1453.4322" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="145.8333" x="409.375" y="1460.3434">Folder folder(Folder child)</text><ellipse cx="397.9167" cy="1473.1771" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="388.5417" x="409.375" y="1480.0883">ArgumentParser.Builder&lt;Folder&gt; folderArgument(String description)</text><ellipse cx="397.9167" cy="1492.922" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="428.125" x="409.375" y="1499.8332">ArgumentParser.Builder&lt;FolderList&gt; folderArgumentList(String description)</text><ellipse cx="397.9167" cy="1512.6668" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="419.7917" x="409.375" y="1519.578">SwitchParser.Builder&lt;Folder&gt; folderSwitch(String name, String description)</text><ellipse cx="397.9167" cy="1532.4117" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="459.375" x="409.375" y="1539.3229">SwitchParser.Builder&lt;FolderList&gt; folderSwitchList(String name, String description)</text><ellipse cx="397.9167" cy="1552.1566" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="223.9583" x="409.375" y="1559.0678">List&lt;Folder&gt; folders(Matcher&lt;Folder&gt;)</text><ellipse cx="397.9167" cy="1571.9014" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="125" x="409.375" y="1578.8127">List&lt;Folder&gt; folders()</text><ellipse cx="397.9167" cy="1591.6463" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="101.0417" x="409.375" y="1598.5575">boolean isFolder()</text><ellipse cx="397.9167" cy="1611.3912" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="143.75" x="409.375" y="1618.3024">boolean isFolder(FilePath)</text><ellipse cx="397.9167" cy="1631.1361" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="116.6667" x="409.375" y="1638.0473">Folder kivakitCache()</text><ellipse cx="397.9167" cy="1650.8809" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="114.5833" x="409.375" y="1657.7922">Folder kivakitHome()</text><ellipse cx="397.9167" cy="1670.6258" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="143.75" x="409.375" y="1677.537">Folder kivakitTemporary()</text><ellipse cx="397.9167" cy="1690.3707" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="187.5" x="409.375" y="1697.2819">Folder kivakitTest(Class&lt;?&gt; type)</text><ellipse cx="397.9167" cy="1710.1156" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="66.6667" x="409.375" y="1717.0268">Folder last()</text><ellipse cx="397.9167" cy="1729.8604" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="85.4167" x="409.375" y="1736.7716">Folder mkdirs()</text><ellipse cx="397.9167" cy="1749.6053" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="91.6667" x="409.375" y="1756.5165">FileName name()</text><ellipse cx="397.9167" cy="1769.3502" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="194.7917" x="409.375" y="1776.2614">FileList nestedFiles(Matcher&lt;File&gt;)</text><ellipse cx="397.9167" cy="1789.0951" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="112.5" x="409.375" y="1796.0063">FileList nestedFiles()</text><ellipse cx="397.9167" cy="1808.8399" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="244.7917" x="409.375" y="1815.7511">FolderList nestedFolders(Matcher&lt;Folder&gt;)</text><ellipse cx="397.9167" cy="1828.5848" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="80.2083" x="409.375" y="1835.496">Folder of(URL)</text><ellipse cx="397.9167" cy="1848.3297" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="108.3333" x="409.375" y="1855.2409">Folder of(FileName)</text><ellipse cx="397.9167" cy="1868.0745" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="115.625" x="409.375" y="1874.9858">Folder of(java.io.File)</text><ellipse cx="397.9167" cy="1887.8194" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="82.2917" x="409.375" y="1894.7306">Folder of(Path)</text><ellipse cx="397.9167" cy="1907.5643" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="77.0833" x="409.375" y="1914.4755">Folder of(URI)</text><ellipse cx="397.9167" cy="1927.3092" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="409.375" y="1934.2204">File oldest()</text><ellipse cx="397.9167" cy="1947.054" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="146.875" x="409.375" y="1953.9653">File oldest(Matcher&lt;File&gt;)</text><ellipse cx="397.9167" cy="1966.7989" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="286.4583" x="409.375" y="1973.7101">SwitchParser.Builder&lt;Folder&gt; outputFolderSwitch()</text><ellipse cx="397.9167" cy="1986.5438" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="83.3333" x="409.375" y="1993.455">Folder parent()</text><ellipse cx="397.9167" cy="2006.2887" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="139.5833" x="409.375" y="2013.1999">Folder parse(String path)</text><ellipse cx="397.9167" cy="2026.0335" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="79.1667" x="409.375" y="2032.9447">FilePath path()</text><ellipse cx="397.9167" cy="2045.7784" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="154.1667" x="409.375" y="2052.6896">FilePath relativePath(Folder)</text><ellipse cx="397.9167" cy="2065.5233" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="137.5" x="409.375" y="2072.4345">Folder relativeTo(Folder)</text><ellipse cx="397.9167" cy="2085.2681" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="172.9167" x="409.375" y="2092.1794">boolean renameTo(Folder that)</text><ellipse cx="397.9167" cy="2105.013" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="70.8333" x="409.375" y="2111.9242">Folder root()</text><ellipse cx="397.9167" cy="2124.7579" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="462.5" x="409.375" y="2131.6691">void safeCopyTo(Folder destination, CopyMode, Matcher&lt;File&gt;, ProgressReporter)</text><ellipse cx="397.9167" cy="2144.5028" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="181.25" x="409.375" y="2151.414">Folder scheduleCleanUpOnExit()</text><ellipse cx="397.9167" cy="2164.2476" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="215.625" x="409.375" y="2171.1589">Folder temporary(FileName baseName)</text><ellipse cx="397.9167" cy="2183.9925" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="279.1667" x="409.375" y="2190.9037">File temporaryFile(FileName baseName, Extension)</text><ellipse cx="397.9167" cy="2203.7374" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="217.7083" x="409.375" y="2210.6486">File temporaryFile(FileName baseName)</text><ellipse cx="397.9167" cy="2223.4823" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="194.7917" x="409.375" y="2230.3935">Folder temporaryForProcess(Type)</text><ellipse cx="397.9167" cy="2243.2271" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="104.1667" x="409.375" y="2250.1383">Folder userHome()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="387.5" x2="598.4375" y1="982.136" y2="982.136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="601.5625" y="985.9456">(filesystem)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="669.2708" x2="880.2083" y1="982.136" y2="982.136"/><ellipse cx="397.9167" cy="2286.8835" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="59.375" x="409.375" y="2293.7948">URI asUri()</text><ellipse cx="397.9167" cy="2306.6284" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="409.375" y="2313.5396">URL asUrl()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="387.5" x2="604.1667" y1="2269.7194" y2="2269.7194"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="607.2917" y="2273.5291">(network)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="663.5417" x2="880.2083" y1="2269.7194" y2="2269.7194"/><ellipse cx="397.9167" cy="2350.2848" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="409.375" y="2357.196">Bytes size()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="387.5" x2="602.0833" y1="2333.1207" y2="2333.1207"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="57.2917" x="605.2083" y="2336.9303">(primitive)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="665.625" x2="880.2083" y1="2333.1207" y2="2333.1207"/><!--MD5=[d3568316a19508714d03e72c4319f868]
+class FolderService--><rect fill="#282828" height="48.055" id="FolderService" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="122.9167" x="663.0208" y="2543.807"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="122.9167" x="663.0208" y="2543.807"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="122.9167" x="663.0208" y="2566.862"/><rect fill="none" height="48.055" id="FolderService" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="122.9167" x="663.0208" y="2543.807"/><ellipse cx="677.6042" cy="2559.5011" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M679.5146,2563.9262 Q679.0873,2564.1459 678.6174,2564.2558 Q678.1474,2564.3656 677.6286,2564.3656 Q675.7853,2564.3656 674.8149,2563.151 Q673.8444,2561.9364 673.8444,2559.6415 Q673.8444,2557.3405 674.8149,2556.1259 Q675.7853,2554.9113 677.6286,2554.9113 Q678.1474,2554.9113 678.6235,2555.0212 Q679.0995,2555.131 679.5146,2555.3507 L679.5146,2557.3527 Q679.0507,2556.9255 678.6143,2556.7271 Q678.1779,2556.5287 677.714,2556.5287 Q676.7253,2556.5287 676.2217,2557.313 Q675.7182,2558.0973 675.7182,2559.6415 Q675.7182,2561.1796 676.2217,2561.9639 Q676.7253,2562.7482 677.714,2562.7482 Q678.1779,2562.7482 678.6143,2562.5498 Q679.0507,2562.3515 679.5146,2561.9242 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="85.4167" x="694.2708" y="2564.2253">FolderService</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="664.0625" x2="784.8958" y1="2575.1953" y2="2575.1953"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="664.0625" x2="784.8958" y1="2583.5286" y2="2583.5286"/><!--MD5=[a2fd1484b0cd9a73f879b6d5857fe542]
+class PeriodicCollectionChangeWatcher--><rect fill="#282828" height="48.055" id="PeriodicCollectionChangeWatcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="254.1667" x="336.9792" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="254.1667" x="336.9792" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="254.1667" x="336.9792" y="76.7578"/><rect fill="none" height="48.055" id="PeriodicCollectionChangeWatcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="254.1667" x="336.9792" y="53.7028"/><ellipse cx="351.5625" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M353.4729,73.822 Q353.0457,74.0417 352.5757,74.1516 Q352.1057,74.2615 351.5869,74.2615 Q349.7437,74.2615 348.7732,73.0469 Q347.8027,71.8323 347.8027,69.5374 Q347.8027,67.2363 348.7732,66.0217 Q349.7437,64.8071 351.5869,64.8071 Q352.1057,64.8071 352.5818,64.917 Q353.0579,65.0269 353.4729,65.2466 L353.4729,67.2485 Q353.009,66.8213 352.5726,66.6229 Q352.1362,66.4246 351.6724,66.4246 Q350.6836,66.4246 350.1801,67.2089 Q349.6765,67.9932 349.6765,69.5374 Q349.6765,71.0754 350.1801,71.8597 Q350.6836,72.644 351.6724,72.644 Q352.1362,72.644 352.5726,72.4457 Q353.009,72.2473 353.4729,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="216.6667" x="368.2292" y="74.1211">PeriodicCollectionChangeWatcher</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="338.0208" x2="590.1042" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="338.0208" x2="590.1042" y1="93.4245" y2="93.4245"/><!--MD5=[b733396d9e83192b9f965ace15d1d03e]
+class FolderChangeWatcher--><rect codeLine="118" fill="#282828" height="83.3781" id="FolderChangeWatcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="263.5417" x="332.2917" y="391.2028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="263.5417" x="332.2917" y="391.2028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="263.5417" x="332.2917" y="414.2578"/><rect codeLine="118" fill="none" height="83.3781" id="FolderChangeWatcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="263.5417" x="332.2917" y="391.2028"/><ellipse cx="386.4583" cy="406.897" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M388.3687,411.322 Q387.9415,411.5417 387.4715,411.6516 Q387.0015,411.7615 386.4827,411.7615 Q384.6395,411.7615 383.669,410.5469 Q382.6986,409.3323 382.6986,407.0374 Q382.6986,404.7363 383.669,403.5217 Q384.6395,402.3071 386.4827,402.3071 Q387.0015,402.3071 387.4776,402.417 Q387.9537,402.5269 388.3687,402.7466 L388.3687,404.7485 Q387.9049,404.3213 387.4685,404.1229 Q387.0321,403.9246 386.5682,403.9246 Q385.5794,403.9246 385.0759,404.7089 Q384.5723,405.4932 384.5723,407.0374 Q384.5723,408.5754 385.0759,409.3597 Q385.5794,410.144 386.5682,410.144 Q387.0321,410.144 387.4685,409.9457 Q387.9049,409.7473 388.3687,409.3201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="140.625" x="409.375" y="411.6211">FolderChangeWatcher</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="333.3333" x2="594.7917" y1="422.5911" y2="422.5911"/><ellipse cx="343.75" cy="457.961" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="231.25" x="355.2083" y="464.8722">FolderChangeWatcher(Folder, Frequency)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="333.3333" x2="420.3125" y1="440.7969" y2="440.7969"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="423.4375" y="444.6065">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="507.8125" x2="594.7917" y1="440.7969" y2="440.7969"/><!--MD5=[e19789d15dcf2dbce630a7d6f06afc93]
+class FolderList--><rect codeLine="126" fill="#282828" height="166.5243" id="FolderList" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="402.0833" x="632.8125" y="349.5361"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="402.0833" x="632.8125" y="349.5361"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="402.0833" x="632.8125" y="372.5911"/><rect codeLine="126" fill="none" height="166.5243" id="FolderList" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="402.0833" x="632.8125" y="349.5361"/><ellipse cx="794.2708" cy="365.2303" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M796.1812,369.6554 Q795.754,369.8751 795.284,369.9849 Q794.814,370.0948 794.2952,370.0948 Q792.452,370.0948 791.4815,368.8802 Q790.5111,367.6656 790.5111,365.3707 Q790.5111,363.0697 791.4815,361.8551 Q792.452,360.6405 794.2952,360.6405 Q794.814,360.6405 795.2901,360.7503 Q795.7662,360.8602 796.1812,361.0799 L796.1812,363.0819 Q795.7174,362.6546 795.281,362.4563 Q794.8446,362.2579 794.3807,362.2579 Q793.3919,362.2579 792.8884,363.0422 Q792.3848,363.8265 792.3848,365.3707 Q792.3848,366.9088 792.8884,367.6931 Q793.3919,368.4774 794.3807,368.4774 Q794.8446,368.4774 795.281,368.279 Q795.7174,368.0806 796.1812,367.6534 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="64.5833" x="817.1875" y="369.9544">FolderList</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="633.8542" x2="1033.8542" y1="380.9245" y2="380.9245"/><ellipse cx="644.2708" cy="416.2944" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="63.5417" x="655.7292" y="423.2056">FolderList()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="633.8542" x2="790.1042" y1="399.1302" y2="399.1302"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="793.2292" y="402.9399">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="877.6042" x2="1033.8542" y1="399.1302" y2="399.1302"/><ellipse cx="644.2708" cy="459.9508" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="111.4583" x="655.7292" y="466.862">Set&lt;Folder&gt; asSet()</text><ellipse cx="644.2708" cy="479.6956" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="369.7917" x="655.7292" y="486.6069">FolderList forVirtual(List&lt;? extends FolderService&gt; virtualFolders)</text><ellipse cx="644.2708" cy="499.4405" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="217.7083" x="655.7292" y="506.3517">FolderList matching(Matcher&lt;Folder&gt;)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="633.8542" x2="798.4375" y1="442.7867" y2="442.7867"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="801.5625" y="446.5963">(filesystem)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="869.2708" x2="1033.8542" y1="442.7867" y2="442.7867"/><!--MD5=[25e1098fc6d4c28c0d27826d89e610e5]
+class FolderPruner--><rect codeLine="137" fill="#282828" height="535.5204" id="FolderPruner" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="404.1667" x="1071.3542" y="165.1611"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="404.1667" x="1071.3542" y="165.1611"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="404.1667" x="1071.3542" y="188.2161"/><rect codeLine="137" fill="none" height="535.5204" id="FolderPruner" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="404.1667" x="1071.3542" y="165.1611"/><ellipse cx="1225" cy="180.8553" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1226.9104,185.2804 Q1226.4832,185.5001 1226.0132,185.6099 Q1225.5432,185.7198 1225.0244,185.7198 Q1223.1812,185.7198 1222.2107,184.5052 Q1221.2402,183.2906 1221.2402,180.9957 Q1221.2402,178.6947 1222.2107,177.4801 Q1223.1812,176.2655 1225.0244,176.2655 Q1225.5432,176.2655 1226.0193,176.3753 Q1226.4954,176.4852 1226.9104,176.7049 L1226.9104,178.7069 Q1226.4465,178.2796 1226.0101,178.0813 Q1225.5737,177.8829 1225.1099,177.8829 Q1224.1211,177.8829 1223.6176,178.6672 Q1223.114,179.4515 1223.114,180.9957 Q1223.114,182.5338 1223.6176,183.3181 Q1224.1211,184.1024 1225.1099,184.1024 Q1225.5737,184.1024 1226.0101,183.904 Q1226.4465,183.7056 1226.9104,183.2784 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="82.2917" x="1247.9167" y="185.5794">FolderPruner</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1072.3958" x2="1474.4792" y1="196.5495" y2="196.5495"/><ellipse cx="1082.8125" cy="231.9194" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="181.25" x="1094.2708" y="238.8306">FolderPruner(Folder, Frequency)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1072.3958" x2="1229.6875" y1="214.7552" y2="214.7552"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="1232.8125" y="218.5649">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1317.1875" x2="1474.4792" y1="214.7552" y2="214.7552"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1072.3958" x2="1474.4792" y1="248.5392" y2="248.5392"/><ellipse cx="1082.8125" cy="259.9976" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="159.375" x="1094.2708" y="266.9088">void capacity(Bytes capacity)</text><polygon fill="#FFFF44" points="1082.8125,298.4456,1086.9792,302.6123,1082.8125,306.779,1078.6458,302.6123" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="266.6667" x="1094.2708" y="310.5652">boolean canRemove(File candidate, FileList files)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1072.3958" x2="1239.0625" y1="286.4899" y2="286.4899"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="1242.1875" y="290.2995">(collection)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1307.8125" x2="1474.4792" y1="286.4899" y2="286.4899"/><polygon fill="#FFFF44" points="1082.8125,342.1021,1086.9792,346.2687,1082.8125,350.4354,1078.6458,346.2687" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="138.5417" x="1094.2708" y="354.2216">void onFileRemoved(File)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1072.3958" x2="1238.0208" y1="330.1463" y2="330.1463"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="1241.1458" y="333.9559">(filesystem)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1308.8542" x2="1474.4792" y1="330.1463" y2="330.1463"/><ellipse cx="1082.8125" cy="390.9668" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="112.5" x="1094.2708" y="397.878">boolean isRunning()</text><ellipse cx="1082.8125" cy="410.7117" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="61.4583" x="1094.2708" y="417.6229">void start()</text><ellipse cx="1082.8125" cy="430.4565" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="217.7083" x="1094.2708" y="437.3678">void stop(Duration maximumWaitTime)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1072.3958" x2="1243.75" y1="373.8027" y2="373.8027"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="1246.875" y="377.6123">(lifecycle)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1303.125" x2="1474.4792" y1="373.8027" y2="373.8027"/><ellipse cx="1082.8125" cy="474.113" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="163.5417" x="1094.2708" y="481.0242">void matcher(Matcher&lt;File&gt;)</text><polygon fill="#FFFF44" points="1082.8125,488.6495,1086.9792,492.8162,1082.8125,496.9828,1078.6458,492.8162" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="139.5833" x="1094.2708" y="500.769">Matcher&lt;File&gt; matcher()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1072.3958" x2="1240.1042" y1="456.9489" y2="456.9489"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="60.4167" x="1243.2292" y="460.7585">(matching)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1306.7708" x2="1474.4792" y1="456.9489" y2="456.9489"/><ellipse cx="1082.8125" cy="537.5142" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="235.4167" x="1094.2708" y="544.4255">void minimumAge(Duration minimumAge)</text><ellipse cx="1082.8125" cy="557.2591" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="371.875" x="1094.2708" y="564.1703">void minimumUsableDiskSpace(Percent minimumUsableDiskSpace)</text><polygon fill="#FFFF44" points="1082.8125,571.7957,1086.9792,575.9623,1082.8125,580.129,1078.6458,575.9623" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="134.375" x="1094.2708" y="583.9152">Duration minimumAge()</text><polygon fill="#FFFF44" points="1082.8125,591.5405,1086.9792,595.7072,1082.8125,599.8739,1078.6458,595.7072" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="198.9583" x="1094.2708" y="603.6601">Percent minimumUsableDiskSpace()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1072.3958" x2="1252.0833" y1="520.3501" y2="520.3501"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="36.4583" x="1255.2083" y="524.1597">(math)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1294.7917" x2="1474.4792" y1="520.3501" y2="520.3501"/><polygon fill="#FFFF44" points="1082.8125,635.1969,1086.9792,639.3636,1082.8125,643.5303,1078.6458,639.3636" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="86.4583" x="1094.2708" y="647.3165">Bytes capacity()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1072.3958" x2="1241.6667" y1="623.2412" y2="623.2412"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="57.2917" x="1244.7917" y="627.0508">(primitive)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1305.2083" x2="1474.4792" y1="623.2412" y2="623.2412"/><polygon fill="#FFFF44" points="1082.8125,678.8534,1086.9792,683.02,1082.8125,687.1867,1078.6458,683.02" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="98.9583" x="1094.2708" y="690.9729">Duration age(File)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1072.3958" x2="1254.1667" y1="666.8976" y2="666.8976"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="32.2917" x="1257.2917" y="670.7072">(time)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1292.7083" x2="1474.4792" y1="666.8976" y2="666.8976"/><!--MD5=[310e532de62fea235b30a960e10753af]
+reverse link ModificationTimestamped to FileSystemObject--><path codeLine="25" d="M1586.9792,123.1924 C1586.9792,198.9945 1586.9792,350.6195 1586.9792,408.5778 " fill="none" id="ModificationTimestamped-backto-FileSystemObject" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1579.6875,122.7028,1586.9792,101.8695,1594.2708,122.7028,1579.6875,122.7028" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e47e3072575e769b52054cfd125fecde]
+reverse link FileSystemObject to Folder--><path codeLine="30" d="M1577.8125,477.7549 C1564.9479,532.8278 1537.9479,628.807 1493.2292,700.5778 C1328.5521,964.8695 1071.5521,1212.7653 881.4688,1376.734 " fill="none" id="FileSystemObject-backto-Folder" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1570.75,475.9111,1582.4063,457.1715,1584.9896,479.0882,1570.75,475.9111" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[b29fb37395db8c53cdca1d52ef95f9f3]
+reverse link Comparable to Folder--><path codeLine="31" d="M74.1875,477.4007 C86.1458,531.0778 109.4271,624.5778 141.1458,700.5778 C209.25,863.7861 300.7396,1035.0361 386.3854,1182.3278 " fill="none" id="Comparable-backto-Folder" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="67.0521,478.9007,69.7604,456.9945,81.3021,475.8174,67.0521,478.9007" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[2e5000f6910a0992b53eaaf10316db9b]
+reverse link ResourceFolder to Folder--><path codeLine="32" d="M241.0104,476.9111 C257.6042,529.7549 287,622.0674 314.0625,700.5778 C337.125,767.4736 361.6458,837.057 386.4479,906.4632 " fill="none" id="ResourceFolder-backto-Folder" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="233.9896,478.8903,234.7188,456.8382,247.9063,474.5361,233.9896,478.8903" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[be1bfb2b546d199fafb1c9f8e25658f1]
+link Folder to Disk--><path codeLine="33" d="M561.4896,2367.4632 C558.8438,2396.3695 556.3854,2423.1403 554.1875,2447.0882 " fill="none" id="Folder-to-Disk" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="553.6979,2452.4736,558.7032,2443.5182,554.1735,2447.2871,550.4047,2442.7573,553.6979,2452.4736" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="59.375" x="563.0208" y="2414.7461">exists on</text><!--MD5=[d65ba0883e1bd4b8094122c8d30f08d9]
+reverse link Folder to FolderService--><path codeLine="34" d="M707.5,2381.4007 C714.25,2455.0778 719.5938,2513.4632 722.375,2543.807 " fill="none" id="Folder-backto-FolderService" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="706.2188,2367.4632,702.6396,2374.0673,707.3591,2379.9111,710.9382,2373.307,706.2188,2367.4632" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="80.2083" x="714.0625" y="2414.7461">delegates to</text><!--MD5=[28f62f79be5f3d0a3249fb894daaab19]
+reverse link PeriodicCollectionChangeWatcher to FolderChangeWatcher--><path codeLine="116" d="M464.0625,123.0674 C464.0625,192.0986 464.0625,324.234 464.0625,391.0257 " fill="none" id="PeriodicCollectionChangeWatcher-backto-FolderChangeWatcher" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="456.7708,122.7028,464.0625,101.8695,471.3542,122.7028,456.7708,122.7028" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[56c74eca324dc15414767c9ccec5f28a]
+link FolderChangeWatcher to Folder--><path codeLine="117" d="M470.1042,474.5465 C478.7188,532.484 495.7188,646.7861 515.625,780.6299 " fill="none" id="FolderChangeWatcher-to-Folder" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="516.3958,785.807,519.1271,775.918,515.624,780.6561,510.8858,777.153,516.3958,785.807" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="52.0833" x="514.0625" y="748.0794">watches</text><!--MD5=[e5a05db314b0d8e8ae1e75e44d652741]
+reverse link List to FolderList--><path codeLine="124" d="M833.8542,122.984 C833.8542,179.557 833.8542,278.5986 833.8542,349.2757 " fill="none" id="List-backto-FolderList" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="826.5625,122.7028,833.8542,101.8695,841.1458,122.7028,826.5625,122.7028" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[0eab663593aaf37391420fb7072fa266]
+reverse link FolderList to Folder--><path codeLine="125" d="M817.0104,530.0882 C805.8229,593.9111 789.9688,684.4007 772.2188,785.7445 " fill="none" id="FolderList-backto-Folder" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="819.3854,516.4736,814.2026,521.9107,817.228,528.786,822.4108,523.349,819.3854,516.4736" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="806.125" y="539.4813">1</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="6.25" x="764.2888" y="771.3596">*</text><!--MD5=[2f9ff104885b4b4ee828f01910f2291f]
+link FolderPruner to Folder--><path codeLine="136" d="M1123.8854,700.859 C1052.4896,828.307 965.1146,984.2757 884.0104,1129.0465 " fill="none" id="FolderPruner-to-Folder" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="881.375,1133.7549,889.5856,1127.6036,883.9157,1129.2083,882.3111,1123.5384,881.375,1133.7549" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="137.5" x="1106.7708" y="748.0794">prunes old files from</text><!--MD5=[af2076d06c150c680d7890935411c2e0]
+@startuml
+
+    !include lexakai.theme
+    
+    title "File System - Folders"
+    
+    interface FileSystemObject
+    interface Comparable
+    interface ResourceFolder
+    interface List
+    
+    class Disk
+    {
+        - -(filesystem)- -
+        +Folder root()
+        - -(math)- -
+        +Percent percentFree()
+        +Percent percentUsable()
+        - -(primitive)- -
+        +Bytes free()
+        +Bytes size()
+        +Bytes usable()
+    }
+    
+    interface ModificationTimestamped
+    ModificationTimestamped <|- - FileSystemObject
+    interface FileSystemObject
+    {
+    }
+    
+    FileSystemObject <|- - Folder
+    Comparable <|- - Folder
+    ResourceFolder <|- - Folder
+    Folder - -> Disk : "exists on"
+    Folder o- - FolderService : "delegates to"
+    class Folder
+    {
+        - -(constructors)- -
+        +Folder(FilePath)
+        - -(checks)- -
+        +boolean isEmpty()
+        +boolean isLocal()
+        +boolean isRemote()
+        +boolean isWritable()
+        - -(filesystem)- -
+        +Folder absolute()
+        +java.io.File asJavaFile()
+        +boolean chmod(PosixFilePermission... permissions)
+        +void chmodNested(PosixFilePermission... permissions)
+        +Folder clearAll()
+        +Folder clearAllAndDelete()
+        +void copyTo(Folder destination, CopyMode, ProgressReporter)
+        +void copyTo(Folder destination, CopyMode, Matcher<File>, ProgressReporter)
+        +Folder current()
+        +boolean delete()
+        +Folder desktop()
+        +Disk disk()
+        +Folder ensureExists()
+        +boolean exists()
+        +File file(File)
+        +File file(FileName)
+        +File file(FilePath child)
+        +File file(String path)
+        +FileList files(Pattern)
+        +FileList files(Matcher<File>, Traversal recurse)
+        +FileList files()
+        +FileList files(Matcher<File>)
+        +Folder folder(FileName child)
+        +Folder folder(Folder child)
+        +ArgumentParser.Builder<Folder> folderArgument(String description)
+        +ArgumentParser.Builder<FolderList> folderArgumentList(String description)
+        +SwitchParser.Builder<Folder> folderSwitch(String name, String description)
+        +SwitchParser.Builder<FolderList> folderSwitchList(String name, String description)
+        +List<Folder> folders(Matcher<Folder>)
+        +List<Folder> folders()
+        +boolean isFolder()
+        +boolean isFolder(FilePath)
+        +Folder kivakitCache()
+        +Folder kivakitHome()
+        +Folder kivakitTemporary()
+        +Folder kivakitTest(Class<?> type)
+        +Folder last()
+        +Folder mkdirs()
+        +FileName name()
+        +FileList nestedFiles(Matcher<File>)
+        +FileList nestedFiles()
+        +FolderList nestedFolders(Matcher<Folder>)
+        +Folder of(URL)
+        +Folder of(FileName)
+        +Folder of(java.io.File)
+        +Folder of(Path)
+        +Folder of(URI)
+        +File oldest()
+        +File oldest(Matcher<File>)
+        +SwitchParser.Builder<Folder> outputFolderSwitch()
+        +Folder parent()
+        +Folder parse(String path)
+        +FilePath path()
+        +FilePath relativePath(Folder)
+        +Folder relativeTo(Folder)
+        +boolean renameTo(Folder that)
+        +Folder root()
+        +void safeCopyTo(Folder destination, CopyMode, Matcher<File>, ProgressReporter)
+        +Folder scheduleCleanUpOnExit()
+        +Folder temporary(FileName baseName)
+        +File temporaryFile(FileName baseName, Extension)
+        +File temporaryFile(FileName baseName)
+        +Folder temporaryForProcess(Type)
+        +Folder userHome()
+        - -(network)- -
+        +URI asUri()
+        +URL asUrl()
+        - -(primitive)- -
+        +Bytes size()
+    }
+    
+    PeriodicCollectionChangeWatcher <|- - FolderChangeWatcher
+    FolderChangeWatcher - -> Folder : "watches"
+    class FolderChangeWatcher
+    {
+        - -(constructors)- -
+        +FolderChangeWatcher(Folder, Frequency)
+    }
+    
+    List <|- - FolderList
+    FolderList "1" o- - "*" Folder
+    class FolderList
+    {
+        - -(constructors)- -
+        +FolderList()
+        - -(filesystem)- -
+        +Set<Folder> asSet()
+        +FolderList forVirtual(List<? extends FolderService> virtualFolders)
+        +FolderList matching(Matcher<Folder>)
+    }
+    
+    FolderPruner - -> Folder : "prunes old files from"
+    class FolderPruner
+    {
+        - -(constructors)- -
+        +FolderPruner(Folder, Frequency)
+        - -
+        +void capacity(Bytes capacity)
+        - -(collection)- -
+        #boolean canRemove(File candidate, FileList files)
+        - -(filesystem)- -
+        #void onFileRemoved(File)
+        - -(lifecycle)- -
+        +boolean isRunning()
+        +void start()
+        +void stop(Duration maximumWaitTime)
+        - -(matching)- -
+        +void matcher(Matcher<File>)
+        #Matcher<File> matcher()
+        - -(math)- -
+        +void minimumAge(Duration minimumAge)
+        +void minimumUsableDiskSpace(Percent minimumUsableDiskSpace)
+        #Duration minimumAge()
+        #Percent minimumUsableDiskSpace()
+        - -(primitive)- -
+        #Bytes capacity()
+        - -(time)- -
+        #Duration age(File)
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "File System - Folders"
+    
+    interface FileSystemObject
+    interface Comparable
+    interface ResourceFolder
+    interface List
+    
+    class Disk
+    {
+        - -(filesystem)- -
+        +Folder root()
+        - -(math)- -
+        +Percent percentFree()
+        +Percent percentUsable()
+        - -(primitive)- -
+        +Bytes free()
+        +Bytes size()
+        +Bytes usable()
+    }
+    
+    interface ModificationTimestamped
+    ModificationTimestamped <|- - FileSystemObject
+    interface FileSystemObject
+    {
+    }
+    
+    FileSystemObject <|- - Folder
+    Comparable <|- - Folder
+    ResourceFolder <|- - Folder
+    Folder - -> Disk : "exists on"
+    Folder o- - FolderService : "delegates to"
+    class Folder
+    {
+        - -(constructors)- -
+        +Folder(FilePath)
+        - -(checks)- -
+        +boolean isEmpty()
+        +boolean isLocal()
+        +boolean isRemote()
+        +boolean isWritable()
+        - -(filesystem)- -
+        +Folder absolute()
+        +java.io.File asJavaFile()
+        +boolean chmod(PosixFilePermission... permissions)
+        +void chmodNested(PosixFilePermission... permissions)
+        +Folder clearAll()
+        +Folder clearAllAndDelete()
+        +void copyTo(Folder destination, CopyMode, ProgressReporter)
+        +void copyTo(Folder destination, CopyMode, Matcher<File>, ProgressReporter)
+        +Folder current()
+        +boolean delete()
+        +Folder desktop()
+        +Disk disk()
+        +Folder ensureExists()
+        +boolean exists()
+        +File file(File)
+        +File file(FileName)
+        +File file(FilePath child)
+        +File file(String path)
+        +FileList files(Pattern)
+        +FileList files(Matcher<File>, Traversal recurse)
+        +FileList files()
+        +FileList files(Matcher<File>)
+        +Folder folder(FileName child)
+        +Folder folder(Folder child)
+        +ArgumentParser.Builder<Folder> folderArgument(String description)
+        +ArgumentParser.Builder<FolderList> folderArgumentList(String description)
+        +SwitchParser.Builder<Folder> folderSwitch(String name, String description)
+        +SwitchParser.Builder<FolderList> folderSwitchList(String name, String description)
+        +List<Folder> folders(Matcher<Folder>)
+        +List<Folder> folders()
+        +boolean isFolder()
+        +boolean isFolder(FilePath)
+        +Folder kivakitCache()
+        +Folder kivakitHome()
+        +Folder kivakitTemporary()
+        +Folder kivakitTest(Class<?> type)
+        +Folder last()
+        +Folder mkdirs()
+        +FileName name()
+        +FileList nestedFiles(Matcher<File>)
+        +FileList nestedFiles()
+        +FolderList nestedFolders(Matcher<Folder>)
+        +Folder of(URL)
+        +Folder of(FileName)
+        +Folder of(java.io.File)
+        +Folder of(Path)
+        +Folder of(URI)
+        +File oldest()
+        +File oldest(Matcher<File>)
+        +SwitchParser.Builder<Folder> outputFolderSwitch()
+        +Folder parent()
+        +Folder parse(String path)
+        +FilePath path()
+        +FilePath relativePath(Folder)
+        +Folder relativeTo(Folder)
+        +boolean renameTo(Folder that)
+        +Folder root()
+        +void safeCopyTo(Folder destination, CopyMode, Matcher<File>, ProgressReporter)
+        +Folder scheduleCleanUpOnExit()
+        +Folder temporary(FileName baseName)
+        +File temporaryFile(FileName baseName, Extension)
+        +File temporaryFile(FileName baseName)
+        +Folder temporaryForProcess(Type)
+        +Folder userHome()
+        - -(network)- -
+        +URI asUri()
+        +URL asUrl()
+        - -(primitive)- -
+        +Bytes size()
+    }
+    
+    PeriodicCollectionChangeWatcher <|- - FolderChangeWatcher
+    FolderChangeWatcher - -> Folder : "watches"
+    class FolderChangeWatcher
+    {
+        - -(constructors)- -
+        +FolderChangeWatcher(Folder, Frequency)
+    }
+    
+    List <|- - FolderList
+    FolderList "1" o- - "*" Folder
+    class FolderList
+    {
+        - -(constructors)- -
+        +FolderList()
+        - -(filesystem)- -
+        +Set<Folder> asSet()
+        +FolderList forVirtual(List<? extends FolderService> virtualFolders)
+        +FolderList matching(Matcher<Folder>)
+    }
+    
+    FolderPruner - -> Folder : "prunes old files from"
+    class FolderPruner
+    {
+        - -(constructors)- -
+        +FolderPruner(Folder, Frequency)
+        - -
+        +void capacity(Bytes capacity)
+        - -(collection)- -
+        #boolean canRemove(File candidate, FileList files)
+        - -(filesystem)- -
+        #void onFileRemoved(File)
+        - -(lifecycle)- -
+        +boolean isRunning()
+        +void start()
+        +void stop(Duration maximumWaitTime)
+        - -(matching)- -
+        +void matcher(Matcher<File>)
+        #Matcher<File> matcher()
+        - -(math)- -
+        +void minimumAge(Duration minimumAge)
+        +void minimumUsableDiskSpace(Percent minimumUsableDiskSpace)
+        #Duration minimumAge()
+        #Percent minimumUsableDiskSpace()
+        - -(primitive)- -
+        #Bytes capacity()
+        - -(time)- -
+        #Duration age(File)
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

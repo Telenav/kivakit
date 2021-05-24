@@ -1,0 +1,55 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.data.validation"
+    
+    interface ValidationReporter
+    
+    ValidationReporter <|-- BaseValidationReporter
+    abstract class BaseValidationReporter
+    {
+    }
+    
+    Validatable --> Validation : "how to validate"
+    Validatable --> Validator : "provides"
+    interface Validatable
+    {
+        --
+        +Validator validator(Validation type)
+        +Validator validator()
+        --(checks)--
+        +boolean isValid()
+        +boolean isValid(Listener)
+    }
+    
+    Name <|-- Validation
+    class Validation
+    {
+        --(constructors)--
+        +Validation(String)
+        --(checks)--
+        +boolean shouldValidate(Class<?> type)
+        --(filtering)--
+        +Validation exclude(Class<?> type)
+        +Validation include(Class<?> type)
+    }
+    
+    interface Listener
+    Listener <|-- ValidationReporter
+    interface ValidationReporter
+    {
+        --
+        +void report(Message)
+    }
+    
+    Validator --> Listener : "reports to"
+    interface Validator
+    {
+        --
+        +boolean validate(Listener)
+        +boolean validate()
+    }
+    
+@enduml
+

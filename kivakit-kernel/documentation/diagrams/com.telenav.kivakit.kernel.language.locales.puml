@@ -1,0 +1,62 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.locales"
+    
+    abstract BaseStringConverter
+    
+    interface Comparable
+    
+    BaseStringConverter <|-- LanguageIsoCode.Converter
+    class LanguageIsoCode.Converter
+    {
+        --(constructors)--
+        +Converter(Listener)
+    }
+    
+    class CountryIsoCode
+    {
+        --(constructors)--
+        +CountryIsoCode(String, String, String, int)
+        --
+        +String alpha2Code()
+        +String alpha3Code()
+        +int numericCountryCode()
+        --(naming)--
+        +String name()
+    }
+    
+    Name <|-- LanguageIsoCode
+    Comparable <|-- LanguageIsoCode
+    class LanguageIsoCode
+    {
+        --
+        +LanguageIsoCode forIso2Code(String code)
+        +LanguageIsoCode forIso3Code(String code)
+        +String iso2Code()
+        +String iso3Code()
+        +Locale world()
+        --(collection)--
+        +List<LanguageIsoCode> all()
+    }
+    
+    Locale o-- LanguageIsoCode
+    Locale o-- CountryIsoCode
+    class Locale
+    {
+        --(constructors)--
+        +Locale(LanguageIsoCode)
+        +Locale(LanguageIsoCode, CountryIsoCode)
+        --
+        +java.util.Locale asJavaLocale()
+        +CountryIsoCode country()
+        +LanguageIsoCode language()
+        --(checks)--
+        +boolean isWorld()
+        --(path)--
+        +StringPath path()
+    }
+    
+@enduml
+

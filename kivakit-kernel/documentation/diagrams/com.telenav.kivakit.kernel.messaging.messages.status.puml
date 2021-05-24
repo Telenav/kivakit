@@ -1,0 +1,132 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.messaging.messages.status"
+    
+    OperationStatusMessage <|-- Activity
+    class Activity
+    {
+        --(constructors)--
+        +Activity()
+        +Activity(String, Object)
+        +Activity(Throwable, String, Object)
+    }
+    
+    OperationStatusMessage <|-- Alert
+    class Alert
+    {
+        --(constructors)--
+        +Alert()
+        +Alert(String, Object)
+        --
+        +String solution()
+        +Alert solution(String solution)
+    }
+    
+    OperationStatusMessage <|-- Announcement
+    class Announcement
+    {
+        --(constructors)--
+        +Announcement()
+        +Announcement(String, Object)
+    }
+    
+    Alert <|-- CriticalAlert
+    class CriticalAlert
+    {
+        --(constructors)--
+        +CriticalAlert()
+        +CriticalAlert(String, String, Object)
+        +CriticalAlert(String, Throwable, String, Object)
+    }
+    
+    OperationStatusMessage <|-- Failure
+    class Failure
+    {
+        --(constructors)--
+        +Failure()
+        +Failure(String, Object)
+        +Failure(Throwable, String, Object)
+    }
+    
+    OperationStatusMessage <|-- Incomplete
+    class Incomplete
+    {
+        --(constructors)--
+        +Incomplete()
+        +Incomplete(String, Object)
+        +Incomplete(Throwable, String, Object)
+    }
+    
+    OperationStatusMessage <|-- Information
+    class Information
+    {
+        --(constructors)--
+        +Information()
+        +Information(String, Object)
+    }
+    
+    OperationStatusMessage <|-- Narration
+    class Narration
+    {
+        --(constructors)--
+        +Narration()
+        +Narration(String, Object)
+    }
+    
+    OperationStatusMessage <|-- Problem
+    class Problem
+    {
+        --(constructors)--
+        +Problem()
+        +Problem(String, Object)
+        +Problem(Throwable, String, Object)
+    }
+    
+    OperationStatusMessage <|-- Quibble
+    class Quibble
+    {
+        --(constructors)--
+        +Quibble()
+        +Quibble(String, Object)
+        +Quibble(Throwable, String, Object)
+    }
+    
+    OperationStatusMessage <|-- Success
+    class Success
+    {
+        --(constructors)--
+        +Success()
+        +Success(String, Object)
+    }
+    
+    OperationStatusMessage <|-- Trace
+    class Trace
+    {
+        --(constructors)--
+        +Trace()
+        +Trace(String, Object)
+        +Trace(Throwable, String, Object)
+    }
+    
+    Problem <|-- Unsupported
+    class Unsupported
+    {
+        --(constructors)--
+        +Unsupported()
+        +Unsupported(String, Object)
+        +Unsupported(Throwable, String, Object)
+    }
+    
+    OperationStatusMessage <|-- Warning
+    class Warning
+    {
+        --(constructors)--
+        +Warning()
+        +Warning(String, Object)
+        +Warning(Throwable, String, Object)
+    }
+    
+@enduml
+

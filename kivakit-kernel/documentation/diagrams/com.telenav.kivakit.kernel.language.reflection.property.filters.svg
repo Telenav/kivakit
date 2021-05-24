@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="665.625px" preserveAspectRatio="none" style="width:939px;height:665px;background:#333333;" version="1.1" viewBox="0 0 939 665" width="939.5833px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="636.4583" x="144.2708" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="613.5417" x="155.7292" y="30.5583">com.telenav.kivakit.kernel.language.reflection.property.filters</text><!--MD5=[5fa773f4ce774d1dba6099ed7ff2a21f]
+class BasePropertyFilter--><rect codeLine="13" fill="#282828" height="265.2486" id="BasePropertyFilter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="331.25" x="258.3333" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="331.25" x="258.3333" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="331.25" x="258.3333" y="187.1745"/><rect codeLine="13" fill="none" height="265.2486" id="BasePropertyFilter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="331.25" x="258.3333" y="164.1195"/><ellipse cx="357.8125" cy="179.8136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M359.7229,184.2387 Q359.2957,184.4584 358.8257,184.5683 Q358.3557,184.6781 357.8369,184.6781 Q355.9937,184.6781 355.0232,183.4635 Q354.0527,182.2489 354.0527,179.954 Q354.0527,177.653 355.0232,176.4384 Q355.9937,175.2238 357.8369,175.2238 Q358.3557,175.2238 358.8318,175.3337 Q359.3079,175.4435 359.7229,175.6632 L359.7229,177.6652 Q359.259,177.238 358.8226,177.0396 Q358.3862,176.8412 357.9224,176.8412 Q356.9336,176.8412 356.4301,177.6255 Q355.9265,178.4098 355.9265,179.954 Q355.9265,181.4921 356.4301,182.2764 Q356.9336,183.0607 357.9224,183.0607 Q358.3862,183.0607 358.8226,182.8623 Q359.259,182.664 359.7229,182.2367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="117.7083" x="380.7292" y="184.5378">BasePropertyFilter</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="259.375" x2="588.5417" y1="195.5078" y2="195.5078"/><ellipse cx="269.7917" cy="230.8777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="298.9583" x="281.25" y="237.7889">BasePropertyFilter(NamingConvention, Set&lt;Include&gt;)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="259.375" x2="380.2083" y1="213.7136" y2="213.7136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="383.3333" y="217.5232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="467.7083" x2="588.5417" y1="213.7136" y2="213.7136"/><polygon fill="#FFFF44" points="269.7917,269.3258,273.9583,273.4924,269.7917,277.6591,265.625,273.4924" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="141.6667" x="281.25" y="281.4453">boolean isGetter(Method)</text><polygon fill="#FFFF44" points="269.7917,289.0706,273.9583,293.2373,269.7917,297.404,265.625,293.2373" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="139.5833" x="281.25" y="301.1902">boolean isIncluded(Field)</text><polygon fill="#FFFF44" points="269.7917,308.8155,273.9583,312.9822,269.7917,317.1488,265.625,312.9822" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="155.2083" x="281.25" y="320.9351">boolean isIncluded(Method)</text><polygon fill="#FFFF44" points="269.7917,328.5604,273.9583,332.7271,269.7917,336.8937,265.625,332.7271" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="195.8333" x="281.25" y="340.6799">boolean isKivaKitExcluded(Method)</text><polygon fill="#FFFF44" points="269.7917,348.3053,273.9583,352.4719,269.7917,356.6386,265.625,352.4719" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="180.2083" x="281.25" y="360.4248">boolean isKivaKitExcluded(Field)</text><polygon fill="#FFFF44" points="269.7917,368.0501,273.9583,372.2168,269.7917,376.3835,265.625,372.2168" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="177.0833" x="281.25" y="380.1697">boolean isKivaKitIncluded(Field)</text><polygon fill="#FFFF44" points="269.7917,387.795,273.9583,391.9617,269.7917,396.1283,265.625,391.9617" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="192.7083" x="281.25" y="399.9146">boolean isKivaKitIncluded(Method)</text><polygon fill="#FFFF44" points="269.7917,407.5399,273.9583,411.7065,269.7917,415.8732,265.625,411.7065" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="139.5833" x="281.25" y="419.6594">boolean isSetter(Method)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="259.375" x2="397.3958" y1="257.37" y2="257.37"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="400.5208" y="261.1796">(checks)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="450.5208" x2="588.5417" y1="257.37" y2="257.37"/><!--MD5=[9db0f40cc880ec052ddfc590f2cda8a8]
+class PropertyFilter--><rect codeLine="8" fill="#282828" height="48.055" id="PropertyFilter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="125" x="361.4583" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="125" x="361.4583" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="125" x="361.4583" y="76.7578"/><rect codeLine="8" fill="none" height="48.055" id="PropertyFilter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="125" x="361.4583" y="53.7028"/><ellipse cx="376.0417" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M372.9248,66.5588 L372.9248,64.9719 L378.3508,64.9719 L378.3508,66.5588 L376.5381,66.5588 L376.5381,72.4976 L378.3508,72.4976 L378.3508,74.0845 L372.9248,74.0845 L372.9248,72.4976 L374.7375,72.4976 L374.7375,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="87.5" x="392.7083" y="74.1211">PropertyFilter</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="362.5" x2="485.4167" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="362.5" x2="485.4167" y1="93.4245" y2="93.4245"/><!--MD5=[7f50f7bd1b809fead7bcbcda95007fb7]
+class BasePropertyFilter.NamingConvention--><rect codeLine="56" fill="#282828" height="87.5448" id="BasePropertyFilter.NamingConvention" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="162.5" x="7.2917" y="531.8278"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="162.5" x="7.2917" y="531.8278"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="162.5" x="7.2917" y="554.8828"/><rect codeLine="56" fill="none" height="87.5448" id="BasePropertyFilter.NamingConvention" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="162.5" x="7.2917" y="531.8278"/><ellipse cx="21.875" cy="547.522" fill="#CF6300" rx="10.4167" ry="10.4167" style="stroke:#EF8300;stroke-width:1.0416666666666667;"/><path d="M24.9308,552.2095 L19.2546,552.2095 L19.2546,543.0969 L24.9308,543.0969 L24.9308,544.6838 L21.0551,544.6838 L21.0551,546.6492 L24.5646,546.6492 L24.5646,548.2361 L21.0551,548.2361 L21.0551,550.6226 L24.9308,550.6226 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="125" x="38.5417" y="552.2461">NamingConvention</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="168.75" y1="563.2161" y2="563.2161"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="35.4167" x="16.6667" y="581.5857">BEANS</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="37.5" x="16.6667" y="601.3306">KivaKit</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="168.75" y1="611.0392" y2="611.0392"/><!--MD5=[e4fe997bd4b3128eb325787453e48769]
+class BasePropertyFilter.Include--><rect codeLine="35" fill="#282828" height="166.5243" id="BasePropertyFilter.Include" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="197.9167" x="206.25" y="492.2445"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="197.9167" x="206.25" y="492.2445"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="197.9167" x="206.25" y="515.2995"/><rect codeLine="35" fill="none" height="166.5243" id="BasePropertyFilter.Include" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="197.9167" x="206.25" y="492.2445"/><ellipse cx="274.4792" cy="507.9386" fill="#CF6300" rx="10.4167" ry="10.4167" style="stroke:#EF8300;stroke-width:1.0416666666666667;"/><path d="M277.535,512.6261 L271.8587,512.6261 L271.8587,503.5136 L277.535,503.5136 L277.535,505.1005 L273.6593,505.1005 L273.6593,507.0658 L277.1688,507.0658 L277.1688,508.6528 L273.6593,508.6528 L273.6593,511.0392 L277.535,511.0392 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="46.875" x="297.3958" y="512.6628">Include</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="207.2917" x2="403.125" y1="523.6328" y2="523.6328"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="150" x="215.625" y="542.0024">KIVAKIT_INCLUDED_FIELDS</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="179.1667" x="215.625" y="561.7472">KIVAKIT_INCLUDED_PROPERTIES</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="142.7083" x="215.625" y="581.4921">NON_PUBLIC_PROPERTIES</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="137.5" x="215.625" y="601.237">NON_TRANSIENT_FIELDS</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="110.4167" x="215.625" y="620.9819">PUBLIC_PROPERTIES</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="105.2083" x="215.625" y="640.7267">TRANSIENT_FIELDS</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="207.2917" x2="403.125" y1="650.4354" y2="650.4354"/><!--MD5=[583636f1f19f217d761a9a7fc22fb592]
+class BeansProperties--><rect codeLine="29" fill="#282828" height="83.3781" id="BeansProperties" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="206.25" x="440.625" y="533.9111"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="206.25" x="440.625" y="533.9111"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="206.25" x="440.625" y="556.9661"/><rect codeLine="29" fill="none" height="83.3781" id="BeansProperties" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="206.25" x="440.625" y="533.9111"/><ellipse cx="484.375" cy="549.6053" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M486.2854,554.0304 Q485.8582,554.2501 485.3882,554.3599 Q484.9182,554.4698 484.3994,554.4698 Q482.5562,554.4698 481.5857,553.2552 Q480.6152,552.0406 480.6152,549.7457 Q480.6152,547.4447 481.5857,546.2301 Q482.5562,545.0155 484.3994,545.0155 Q484.9182,545.0155 485.3943,545.1253 Q485.8704,545.2352 486.2854,545.4549 L486.2854,547.4569 Q485.8215,547.0296 485.3851,546.8313 Q484.9487,546.6329 484.4849,546.6329 Q483.4961,546.6329 482.9926,547.4172 Q482.489,548.2015 482.489,549.7457 Q482.489,551.2838 482.9926,552.0681 Q483.4961,552.8524 484.4849,552.8524 Q484.9487,552.8524 485.3851,552.654 Q485.8215,552.4556 486.2854,552.0284 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="104.1667" x="507.2917" y="554.3294">BeansProperties</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="441.6667" x2="645.8333" y1="565.2995" y2="565.2995"/><ellipse cx="452.0833" cy="600.6694" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="173.9583" x="463.5417" y="607.5806">BeansProperties(Set&lt;Include&gt;)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="441.6667" x2="500" y1="583.5052" y2="583.5052"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="503.125" y="587.3149">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="587.5" x2="645.8333" y1="583.5052" y2="583.5052"/><!--MD5=[b67558de006e2a8136e6bb1ec86882e5]
+class KivaKitExcludeProperty--><rect codeLine="45" fill="#282828" height="48.055" id="KivaKitExcludeProperty" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="187.5" x="522.9167" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="187.5" x="522.9167" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="187.5" x="522.9167" y="76.7578"/><rect codeLine="45" fill="none" height="48.055" id="KivaKitExcludeProperty" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="187.5" x="522.9167" y="53.7028"/><ellipse cx="537.5" cy="69.397" fill="#3380B9" rx="10.4167" ry="10.4167" style="stroke:#004D86;stroke-width:1.0416666666666667;"/><path d="M538.7512,69.7164 Q538.7512,69.0267 538.4399,68.6361 Q538.1287,68.2454 537.5854,68.2454 Q537.0422,68.2454 536.734,68.6361 Q536.4258,69.0267 536.4258,69.7164 Q536.4258,70.4122 536.734,70.8028 Q537.0422,71.1934 537.5854,71.1934 Q538.1287,71.1934 538.4399,70.8028 Q538.7512,70.4122 538.7512,69.7164 Z M539.8865,72.2188 L538.6902,72.2188 L538.6902,71.7183 Q538.4583,72.0418 538.1439,72.1914 Q537.8296,72.3409 537.3901,72.3409 Q536.3892,72.3409 535.7758,71.6207 Q535.1624,70.9005 535.1624,69.7164 Q535.1624,68.5384 535.7727,67.8212 Q536.3831,67.1041 537.3901,67.1041 Q537.8235,67.1041 538.1531,67.2536 Q538.4827,67.4032 538.6902,67.69 L538.6902,67.4398 Q538.6902,66.6097 538.2355,66.158 Q537.7808,65.7064 536.9385,65.7064 Q535.6689,65.7064 534.8663,66.8233 Q534.0637,67.9403 534.0637,69.7286 Q534.0637,71.6024 534.9915,72.7102 Q535.9192,73.818 537.4634,73.818 Q537.9517,73.818 538.4094,73.6745 Q538.8672,73.5311 539.2883,73.2442 L539.8499,74.3184 Q539.3555,74.6541 538.7726,74.822 Q538.1897,74.9898 537.5244,74.9898 Q535.3882,74.9898 534.1187,73.5677 Q532.8491,72.1456 532.8491,69.7286 Q532.8491,67.3665 533.9905,65.9475 Q535.1318,64.5284 537.0117,64.5284 Q538.3423,64.5284 539.1144,65.331 Q539.8865,66.1336 539.8865,67.5191 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="150" x="554.1667" y="74.1211">KivaKitExcludeProperty</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="523.9583" x2="709.375" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="523.9583" x2="709.375" y1="93.4245" y2="93.4245"/><!--MD5=[2ca7756cc77d582a34bc5f2b4f99eb9e]
+class KivaKitIncludeProperty--><rect codeLine="47" fill="#282828" height="48.055" id="KivaKitIncludeProperty" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="185.4167" x="746.875" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="185.4167" x="746.875" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="185.4167" x="746.875" y="76.7578"/><rect codeLine="47" fill="none" height="48.055" id="KivaKitIncludeProperty" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="185.4167" x="746.875" y="53.7028"/><ellipse cx="761.4583" cy="69.397" fill="#3380B9" rx="10.4167" ry="10.4167" style="stroke:#004D86;stroke-width:1.0416666666666667;"/><path d="M762.7096,69.7164 Q762.7096,69.0267 762.3983,68.6361 Q762.087,68.2454 761.5438,68.2454 Q761.0006,68.2454 760.6923,68.6361 Q760.3841,69.0267 760.3841,69.7164 Q760.3841,70.4122 760.6923,70.8028 Q761.0006,71.1934 761.5438,71.1934 Q762.087,71.1934 762.3983,70.8028 Q762.7096,70.4122 762.7096,69.7164 Z M763.8448,72.2188 L762.6485,72.2188 L762.6485,71.7183 Q762.4166,72.0418 762.1023,72.1914 Q761.7879,72.3409 761.3485,72.3409 Q760.3475,72.3409 759.7341,71.6207 Q759.1207,70.9005 759.1207,69.7164 Q759.1207,68.5384 759.731,67.8212 Q760.3414,67.1041 761.3485,67.1041 Q761.7818,67.1041 762.1114,67.2536 Q762.441,67.4032 762.6485,67.69 L762.6485,67.4398 Q762.6485,66.6097 762.1938,66.158 Q761.7391,65.7064 760.8968,65.7064 Q759.6273,65.7064 758.8247,66.8233 Q758.0221,67.9403 758.0221,69.7286 Q758.0221,71.6024 758.9498,72.7102 Q759.8775,73.818 761.4217,73.818 Q761.91,73.818 762.3678,73.6745 Q762.8255,73.5311 763.2467,73.2442 L763.8082,74.3184 Q763.3138,74.6541 762.7309,74.822 Q762.148,74.9898 761.4827,74.9898 Q759.3465,74.9898 758.077,73.5677 Q756.8075,72.1456 756.8075,69.7286 Q756.8075,67.3665 757.9488,65.9475 Q759.0902,64.5284 760.9701,64.5284 Q762.3006,64.5284 763.0727,65.331 Q763.8448,66.1336 763.8448,67.5191 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="147.9167" x="778.125" y="74.1211">KivaKitIncludeProperty</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="747.9167" x2="931.25" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="747.9167" x2="931.25" y1="93.4245" y2="93.4245"/><!--MD5=[8f000df61e05c5971cc02a50d0631ba7]
+class KivaKitProperties--><rect codeLine="50" fill="#282828" height="83.3781" id="KivaKitProperties" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="211.4583" x="683.8542" y="533.9111"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="211.4583" x="683.8542" y="533.9111"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="211.4583" x="683.8542" y="556.9661"/><rect codeLine="50" fill="none" height="83.3781" id="KivaKitProperties" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="211.4583" x="683.8542" y="533.9111"/><ellipse cx="726.0938" cy="549.6053" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M728.0042,554.0304 Q727.5769,554.2501 727.1069,554.3599 Q726.637,554.4698 726.1182,554.4698 Q724.2749,554.4698 723.3044,553.2552 Q722.334,552.0406 722.334,549.7457 Q722.334,547.4447 723.3044,546.2301 Q724.2749,545.0155 726.1182,545.0155 Q726.637,545.0155 727.113,545.1253 Q727.5891,545.2352 728.0042,545.4549 L728.0042,547.4569 Q727.5403,547.0296 727.1039,546.8313 Q726.6675,546.6329 726.2036,546.6329 Q725.2148,546.6329 724.7113,547.4172 Q724.2078,548.2015 724.2078,549.7457 Q724.2078,551.2838 724.7113,552.0681 Q725.2148,552.8524 726.2036,552.8524 Q726.6675,552.8524 727.1039,552.654 Q727.5403,552.4556 728.0042,552.0284 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="112.5" x="748.9063" y="554.3294">KivaKitProperties</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="684.8958" x2="894.2708" y1="565.2995" y2="565.2995"/><ellipse cx="695.3125" cy="600.6694" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="179.1667" x="706.7708" y="607.5806">KivaKitProperties(Set&lt;Include&gt;)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="684.8958" x2="745.8333" y1="583.5052" y2="583.5052"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="748.9583" y="587.3149">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="833.3333" x2="894.2708" y1="583.5052" y2="583.5052"/><!--MD5=[d145ca57ce02206b39fbbf5436e85cfd]
+reverse link PropertyFilter to BasePropertyFilter--><path codeLine="10" d="M423.9583,123.0882 C423.9583,135.3174 423.9583,149.2445 423.9583,163.7653 " fill="none" id="PropertyFilter-backto-BasePropertyFilter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="416.6667,122.7757,423.9583,101.9424,431.25,122.7757,416.6667,122.7757" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[56c7d0a642d3071b5afe6021d31d1df4]
+reverse link BasePropertyFilter to BasePropertyFilter.NamingConvention--><path codeLine="11" d="M252.5417,438.609 C230.6354,456.6403 208.5313,474.859 187.5,492.2445 C172,505.057 155.1667,519.0361 139.8542,531.7653 " fill="none" id="BasePropertyFilter-backto-BasePropertyFilter.NamingConvention" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="263.2708,429.7757,255.7969,430.5265,253.6154,437.7144,261.0893,436.9635,263.2708,429.7757" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f5916c754682b15d0f1db938024cbed6]
+reverse link BasePropertyFilter to BasePropertyFilter.Include--><path codeLine="12" d="M362.0104,442.2549 C354.6458,459.3903 347.3438,476.3903 340.5521,492.2236 " fill="none" id="BasePropertyFilter-backto-BasePropertyFilter.Include" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="367.3646,429.7757,361.0699,433.8745,362.4323,441.2615,368.727,437.1627,367.3646,429.7757" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="352.4125" y="452.8343">1</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="6.25" x="333.7682" y="478.2613">*</text><!--MD5=[663fc89d355d916211c46f7437fe75ec]
+reverse link BasePropertyFilter to BeansProperties--><path codeLine="28" d="M489.5,449.2861 C503.0313,480.5361 516.1771,510.8799 526.1354,533.8799 " fill="none" id="BasePropertyFilter-backto-BeansProperties" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="482.6354,451.7861,481.0521,429.7757,496.0208,445.9945,482.6354,451.7861" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9ad0669ae086f3f89cd8f35eb0de4512]
+reverse link BasePropertyFilter to KivaKitProperties--><path codeLine="49" d="M606.375,435.9528 C653.7188,471.7653 701.0938,507.5986 735.8021,533.859 " fill="none" id="BasePropertyFilter-backto-KivaKitProperties" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="601.875,441.6924,589.6563,423.307,610.6667,430.057,601.875,441.6924" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[d7d7ad84df210ce35b4cf37b386674eb]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.reflection.property.filters"
+    
+    abstract BasePropertyFilter
+    
+    interface PropertyFilter
+    
+    PropertyFilter <|- - BasePropertyFilter
+    BasePropertyFilter o- - BasePropertyFilter.NamingConvention
+    BasePropertyFilter "1" o- - "*" BasePropertyFilter.Include
+    class BasePropertyFilter
+    {
+        - -(constructors)- -
+        +BasePropertyFilter(NamingConvention, Set<Include>)
+        - -(checks)- -
+        #boolean isGetter(Method)
+        #boolean isIncluded(Field)
+        #boolean isIncluded(Method)
+        #boolean isKivaKitExcluded(Method)
+        #boolean isKivaKitExcluded(Field)
+        #boolean isKivaKitIncluded(Field)
+        #boolean isKivaKitIncluded(Method)
+        #boolean isSetter(Method)
+    }
+    
+    BasePropertyFilter <|- - BeansProperties
+    class BeansProperties
+    {
+        - -(constructors)- -
+        +BeansProperties(Set<Include>)
+    }
+    
+    enum BasePropertyFilter.Include
+    {
+        KIVAKIT_INCLUDED_FIELDS
+        KIVAKIT_INCLUDED_PROPERTIES
+        NON_PUBLIC_PROPERTIES
+        NON_TRANSIENT_FIELDS
+        PUBLIC_PROPERTIES
+        TRANSIENT_FIELDS
+    }
+    
+    annotation KivaKitExcludeProperty
+    
+    annotation KivaKitIncludeProperty
+    
+    BasePropertyFilter <|- - KivaKitProperties
+    class KivaKitProperties
+    {
+        - -(constructors)- -
+        +KivaKitProperties(Set<Include>)
+    }
+    
+    enum BasePropertyFilter.NamingConvention
+    {
+        BEANS
+        KivaKit
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.kernel.language.reflection.property.filters"
+    
+    abstract BasePropertyFilter
+    
+    interface PropertyFilter
+    
+    PropertyFilter <|- - BasePropertyFilter
+    BasePropertyFilter o- - BasePropertyFilter.NamingConvention
+    BasePropertyFilter "1" o- - "*" BasePropertyFilter.Include
+    class BasePropertyFilter
+    {
+        - -(constructors)- -
+        +BasePropertyFilter(NamingConvention, Set<Include>)
+        - -(checks)- -
+        #boolean isGetter(Method)
+        #boolean isIncluded(Field)
+        #boolean isIncluded(Method)
+        #boolean isKivaKitExcluded(Method)
+        #boolean isKivaKitExcluded(Field)
+        #boolean isKivaKitIncluded(Field)
+        #boolean isKivaKitIncluded(Method)
+        #boolean isSetter(Method)
+    }
+    
+    BasePropertyFilter <|- - BeansProperties
+    class BeansProperties
+    {
+        - -(constructors)- -
+        +BeansProperties(Set<Include>)
+    }
+    
+    enum BasePropertyFilter.Include
+    {
+        KIVAKIT_INCLUDED_FIELDS
+        KIVAKIT_INCLUDED_PROPERTIES
+        NON_PUBLIC_PROPERTIES
+        NON_TRANSIENT_FIELDS
+        PUBLIC_PROPERTIES
+        TRANSIENT_FIELDS
+    }
+    
+    annotation KivaKitExcludeProperty
+    
+    annotation KivaKitIncludeProperty
+    
+    BasePropertyFilter <|- - KivaKitProperties
+    class KivaKitProperties
+    {
+        - -(constructors)- -
+        +KivaKitProperties(Set<Include>)
+    }
+    
+    enum BasePropertyFilter.NamingConvention
+    {
+        BEANS
+        KivaKit
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

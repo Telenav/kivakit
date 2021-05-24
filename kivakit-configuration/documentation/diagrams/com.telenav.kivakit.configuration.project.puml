@@ -1,0 +1,17 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.configuration.project"
+    
+    Project <|-- CoreConfigurationProject
+    class CoreConfigurationProject
+    {
+        --(constructors)--
+        #CoreConfigurationProject()
+        --(configuration)--
+        +CoreConfigurationProject get()
+    }
+    
+@enduml
+

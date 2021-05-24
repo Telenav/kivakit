@@ -1,0 +1,74 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.interfaces.numeric"
+    
+    abstract BaseStringConverter
+    
+    BaseStringConverter <|-- Quantizable.Converter
+    class Quantizable.Converter<T>
+    {
+        --(constructors)--
+        +Converter(Listener, MapFactory<Long, T>)
+    }
+    
+    interface Countable
+    {
+        --(collection)--
+        +Count count()
+    }
+    
+    interface Maximizable<Value>
+    {
+        --(math)--
+        +Value maximum(Value)
+    }
+    
+    interface Minimizable<Value>
+    {
+        --(math)--
+        +Value minimum(Value)
+    }
+    
+    interface Quantizable
+    {
+        --
+        +Quantizable quantizable(Long value)
+        +Quantizable quantizable(Integer value)
+        +long quantum()
+        --(checks)--
+        +boolean isGreaterThan(Quantizable that)
+        +boolean isGreaterThanOrEqualTo(Quantizable that)
+        +boolean isLessThan(Quantizable that)
+        +boolean isLessThanOrEqualTo(Quantizable that)
+        +boolean isNonZero()
+        +boolean isZero()
+        --(primitive)--
+        +int[] toIntArray(Collection<? extends Quantizable> values)
+        +long[] toLongArray(Collection<? extends Quantizable> values)
+    }
+    
+    interface Contains
+    Contains <|-- Ranged
+    interface Ranged<Value>
+    {
+        --
+        +Value constrainTo(Value)
+        --(math)--
+        +Value maximum()
+        +Value minimum()
+    }
+    
+    interface Countable
+    Countable <|-- Sized
+    interface Sized
+    {
+        --(collection)--
+        +boolean isEmpty()
+        +boolean isNonEmpty()
+        +int size()
+    }
+    
+@enduml
+

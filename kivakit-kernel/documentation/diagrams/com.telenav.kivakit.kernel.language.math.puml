@@ -1,0 +1,17 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.math"
+    
+    class Primes
+    {
+        --
+        +void main(String[] args)
+        +int powerOfTwoGreaterThan(int value)
+        --(collection)--
+        +long allocationSize(long size)
+    }
+    
+@enduml
+

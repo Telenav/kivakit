@@ -1,0 +1,94 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Messaging - Repeating"
+    
+    interface PackagePathed
+    interface Repeater
+    interface Broadcaster
+    
+    AudienceMember o-- Listener
+    AudienceMember o-- Filter
+    class AudienceMember
+    {
+        --(messaging)--
+        +Listener listener()
+        +void receive(Transmittable message)
+    }
+    
+    Multicaster <|-- BaseRepeater
+    Repeater <|-- BaseRepeater
+    class BaseRepeater
+    {
+        --(constructors)--
+        #BaseRepeater()
+        #BaseRepeater(String)
+        +BaseRepeater(Class<?>)
+        +BaseRepeater(String, Class<?>)
+    }
+    
+    interface Transceiver
+    interface Transmitter
+    Transceiver <|-- Broadcaster
+    Transmitter <|-- Broadcaster
+    Broadcaster "1" --> "*" Listener : "transmits"
+    interface Broadcaster
+    {
+        --
+        +void parentBroadcaster(Broadcaster parent)
+        +Broadcaster parentBroadcaster()
+        +void silence()
+        --(messaging)--
+        +void addListener(Listener)
+        +void addListener(Listener, Filter<Transmittable>)
+        +void clearListeners()
+        +boolean hasListeners()
+        +void onTransmit(Transmittable message)
+        +void removeListener(Listener)
+        +void transmit(Message)
+        +void transmitAll(Iterable<Transmittable> messages)
+    }
+    
+    interface Receiver
+    interface Transceiver
+    Transceiver <|-- Listener
+    Receiver <|-- Listener
+    interface Listener
+    {
+        --(messaging)--
+        +T listenTo(T broadcaster, MessageFilter)
+        +T listenTo(T broadcaster)
+        +Listener none()
+        +void onMessage(Message)
+    }
+    
+    Broadcaster <|-- Multicaster
+    PackagePathed <|-- Multicaster
+    Multicaster "1" o-- "*" AudienceMember
+    class Multicaster
+    {
+        --(constructors)--
+        #Multicaster()
+        #Multicaster(Multicaster)
+        #Multicaster(String)
+        +Multicaster(Class<?>)
+        +Multicaster(String, Class<?>)
+        --(collection)--
+        +StringList parentChain()
+        --(messaging)--
+        +boolean isDeaf()
+        +String listenerTree()
+        +List<Listener> listeners()
+    }
+    
+    interface Broadcaster
+    interface Listener
+    Listener <|-- Repeater
+    Broadcaster <|-- Repeater
+    interface Repeater
+    {
+    }
+    
+@enduml
+

@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="634.375px" preserveAspectRatio="none" style="width:568px;height:634px;background:#333333;" version="1.1" viewBox="0 0 568 634" width="568.75px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="545.8333" x="4.1667" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="522.9167" x="15.625" y="30.5583">com.telenav.kivakit.kernel.language.time.conversion</text><!--MD5=[bb50239aca0cd1002957e5ea5166e9b4]
+class BaseFormattedConverter--><rect codeLine="10" fill="#282828" height="155.1127" id="BaseFormattedConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="455.2083" x="9.375" y="263.0778"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="455.2083" x="9.375" y="263.0778"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="455.2083" x="9.375" y="286.1328"/><rect codeLine="10" fill="none" height="155.1127" id="BaseFormattedConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="455.2083" x="9.375" y="263.0778"/><ellipse cx="149.4792" cy="278.772" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M151.3896,283.197 Q150.9623,283.4167 150.4924,283.5266 Q150.0224,283.6365 149.5036,283.6365 Q147.6603,283.6365 146.6899,282.4219 Q145.7194,281.2073 145.7194,278.9124 Q145.7194,276.6113 146.6899,275.3967 Q147.6603,274.1821 149.5036,274.1821 Q150.0224,274.1821 150.4985,274.292 Q150.9745,274.4019 151.3896,274.6216 L151.3896,276.6235 Q150.9257,276.1963 150.4893,275.9979 Q150.0529,275.7996 149.589,275.7996 Q148.6003,275.7996 148.0967,276.5839 Q147.5932,277.3682 147.5932,278.9124 Q147.5932,280.4504 148.0967,281.2347 Q148.6003,282.019 149.589,282.019 Q150.0529,282.019 150.4893,281.8207 Q150.9257,281.6223 151.3896,281.1951 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="160.4167" x="172.3958" y="283.4961">BaseFormattedConverter</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="10.4167" x2="463.5417" y1="294.4661" y2="294.4661"/><ellipse cx="20.8333" cy="329.836" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="422.9167" x="32.2917" y="336.7472">BaseFormattedConverter(Listener, ZoneId, DateTimeFormatter, TimeFormat)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="193.2292" y1="312.6719" y2="312.6719"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="196.3542" y="316.4815">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="280.7292" x2="463.5417" y1="312.6719" y2="312.6719"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="463.5417" y1="346.4559" y2="346.4559"/><polygon fill="#FFFF44" points="20.8333,352.7059,25,356.8726,20.8333,361.0392,16.6667,356.8726" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="101.0417" x="32.2917" y="364.8254">void zone(ZoneId)</text><ellipse cx="20.8333" cy="401.5706" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="171.875" x="32.2917" y="408.4819">DateTimeFormatter formatter()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="217.7083" y1="384.4065" y2="384.4065"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="32.2917" x="220.8333" y="388.2161">(time)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="256.25" x2="463.5417" y1="384.4065" y2="384.4065"/><!--MD5=[9aa687ed59f428548907e723dba1087a]
+class BaseStringConverter--><rect codeLine="7" fill="#282828" height="48.055" id="BaseStringConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="169.7917" x="152.0833" y="103.182"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="169.7917" x="152.0833" y="103.182"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="169.7917" x="152.0833" y="126.237"/><rect codeLine="7" fill="none" height="48.055" id="BaseStringConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="169.7917" x="152.0833" y="103.182"/><ellipse cx="166.6667" cy="118.8761" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M166.7806,115.5782 L165.9322,119.3075 L167.6351,119.3075 Z M165.682,113.9303 L167.8853,113.9303 L170.3451,123.0428 L168.5445,123.0428 L167.983,120.7906 L165.5721,120.7906 L165.0228,123.0428 L163.2222,123.0428 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="132.2917" x="183.3333" y="123.6003">BaseStringConverter</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="153.125" x2="320.8333" y1="134.5703" y2="134.5703"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="153.125" x2="320.8333" y1="142.9036" y2="142.9036"/><!--MD5=[12010cea93f1b91faade7a3dc642c76d]
+class BaseFormattedLocalTimeConverter--><rect codeLine="21" fill="#282828" height="146.7794" id="BaseFormattedLocalTimeConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="397.9167" x="38.0208" y="480.7861"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="397.9167" x="38.0208" y="480.7861"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="397.9167" x="38.0208" y="503.8411"/><rect codeLine="21" fill="none" height="146.7794" id="BaseFormattedLocalTimeConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="397.9167" x="38.0208" y="480.7861"/><ellipse cx="116.6667" cy="496.4803" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M118.5771,500.9054 Q118.1498,501.1251 117.6799,501.2349 Q117.2099,501.3448 116.6911,501.3448 Q114.8478,501.3448 113.8774,500.1302 Q112.9069,498.9156 112.9069,496.6207 Q112.9069,494.3197 113.8774,493.1051 Q114.8478,491.8905 116.6911,491.8905 Q117.2099,491.8905 117.686,492.0003 Q118.162,492.1102 118.5771,492.3299 L118.5771,494.3319 Q118.1132,493.9046 117.6768,493.7063 Q117.2404,493.5079 116.7765,493.5079 Q115.7878,493.5079 115.2842,494.2922 Q114.7807,495.0765 114.7807,496.6207 Q114.7807,498.1588 115.2842,498.9431 Q115.7878,499.7274 116.7765,499.7274 Q117.2404,499.7274 117.6768,499.529 Q118.1132,499.3306 118.5771,498.9034 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="226.0417" x="139.5833" y="501.2044">BaseFormattedLocalTimeConverter</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="39.0625" x2="434.8958" y1="512.1745" y2="512.1745"/><ellipse cx="49.4792" cy="547.5444" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="320.8333" x="60.9375" y="554.4556">BaseFormattedLocalTimeConverter(Listener, TimeFormat)</text><ellipse cx="49.4792" cy="567.2892" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="365.625" x="60.9375" y="574.2004">BaseFormattedLocalTimeConverter(Listener, TimeFormat, ZoneId)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="39.0625" x2="193.2292" y1="530.3802" y2="530.3802"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="196.3542" y="534.1899">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="280.7292" x2="434.8958" y1="530.3802" y2="530.3802"/><polygon fill="#FFFF44" points="49.4792,605.7373,53.6458,609.904,49.4792,614.0706,45.3125,609.904" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="132.2917" x="60.9375" y="617.8569">boolean addTimeZone()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="39.0625" x2="217.7083" y1="593.7815" y2="593.7815"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="32.2917" x="220.8333" y="597.5911">(time)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="256.25" x2="434.8958" y1="593.7815" y2="593.7815"/><!--MD5=[cbf04aad3405b680ed578e290aa985a5]
+class TimeFormat--><rect codeLine="30" fill="#282828" height="146.7794" id="TimeFormat" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="203.125" x="358.3333" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="203.125" x="358.3333" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="203.125" x="358.3333" y="76.7578"/><rect codeLine="30" fill="none" height="146.7794" id="TimeFormat" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="203.125" x="358.3333" y="53.7028"/><ellipse cx="413.5417" cy="69.397" fill="#CF6300" rx="10.4167" ry="10.4167" style="stroke:#EF8300;stroke-width:1.0416666666666667;"/><path d="M416.5975,74.0845 L410.9212,74.0845 L410.9212,64.9719 L416.5975,64.9719 L416.5975,66.5588 L412.7218,66.5588 L412.7218,68.5242 L416.2313,68.5242 L416.2313,70.1111 L412.7218,70.1111 L412.7218,72.4976 L416.5975,72.4976 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="78.125" x="436.4583" y="74.1211">TimeFormat</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="359.375" x2="560.4167" y1="85.0911" y2="85.0911"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="30.2083" x="367.7083" y="103.4607">DATE</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="367.7083" y="123.2056">DATE_TIME</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="184.375" x="367.7083" y="142.9504">DATE_TIME_WITH_MILLISECONDS</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="156.25" x="367.7083" y="162.6953">DATE_TIME_WITH_SECONDS</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="26.0417" x="367.7083" y="182.4402">TIME</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="359.375" x2="560.4167" y1="192.1488" y2="192.1488"/><!--MD5=[43d7700f304f2d2fabdaab9754032658]
+reverse link BaseStringConverter to BaseFormattedConverter--><path codeLine="9" d="M236.9792,172.3174 C236.9792,198.4424 236.9792,232.2653 236.9792,262.6611 " fill="none" id="BaseStringConverter-backto-BaseFormattedConverter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="229.6875,172.0465,236.9792,151.2132,244.2708,172.0465,229.6875,172.0465" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[5087e3e71b22e718666f1a186e6094f9]
+reverse link BaseFormattedConverter to BaseFormattedLocalTimeConverter--><path codeLine="20" d="M236.9792,439.2549 C236.9792,453.1924 236.9792,467.3278 236.9792,480.682 " fill="none" id="BaseFormattedConverter-backto-BaseFormattedLocalTimeConverter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="229.6875,439.1924,236.9792,418.359,244.2708,439.1924,229.6875,439.1924" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[8a928dd3a666ab240d1c72816f381baf]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.time.conversion"
+    
+    abstract BaseFormattedConverter
+    abstract BaseStringConverter
+    
+    BaseStringConverter <|- - BaseFormattedConverter
+    class BaseFormattedConverter
+    {
+        - -(constructors)- -
+        +BaseFormattedConverter(Listener, ZoneId, DateTimeFormatter, TimeFormat)
+        - -
+        #void zone(ZoneId)
+        - -(time)- -
+        +DateTimeFormatter formatter()
+    }
+    
+    BaseFormattedConverter <|- - BaseFormattedLocalTimeConverter
+    class BaseFormattedLocalTimeConverter
+    {
+        - -(constructors)- -
+        +BaseFormattedLocalTimeConverter(Listener, TimeFormat)
+        +BaseFormattedLocalTimeConverter(Listener, TimeFormat, ZoneId)
+        - -(time)- -
+        #boolean addTimeZone()
+    }
+    
+    enum TimeFormat
+    {
+        DATE
+        DATE_TIME
+        DATE_TIME_WITH_MILLISECONDS
+        DATE_TIME_WITH_SECONDS
+        TIME
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.kernel.language.time.conversion"
+    
+    abstract BaseFormattedConverter
+    abstract BaseStringConverter
+    
+    BaseStringConverter <|- - BaseFormattedConverter
+    class BaseFormattedConverter
+    {
+        - -(constructors)- -
+        +BaseFormattedConverter(Listener, ZoneId, DateTimeFormatter, TimeFormat)
+        - -
+        #void zone(ZoneId)
+        - -(time)- -
+        +DateTimeFormatter formatter()
+    }
+    
+    BaseFormattedConverter <|- - BaseFormattedLocalTimeConverter
+    class BaseFormattedLocalTimeConverter
+    {
+        - -(constructors)- -
+        +BaseFormattedLocalTimeConverter(Listener, TimeFormat)
+        +BaseFormattedLocalTimeConverter(Listener, TimeFormat, ZoneId)
+        - -(time)- -
+        #boolean addTimeZone()
+    }
+    
+    enum TimeFormat
+    {
+        DATE
+        DATE_TIME
+        DATE_TIME_WITH_MILLISECONDS
+        DATE_TIME_WITH_SECONDS
+        TIME
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

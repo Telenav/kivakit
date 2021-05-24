@@ -1,0 +1,14 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.interfaces.function"
+    
+    interface BooleanFunction<Value>
+    {
+        --(checks)--
+        +boolean isTrue(Value)
+    }
+    
+@enduml
+

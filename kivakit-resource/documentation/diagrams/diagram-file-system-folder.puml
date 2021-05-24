@@ -1,0 +1,167 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "File System - Folders"
+    
+    interface FileSystemObject
+    interface Comparable
+    interface ResourceFolder
+    interface List
+    
+    class Disk
+    {
+        --(filesystem)--
+        +Folder root()
+        --(math)--
+        +Percent percentFree()
+        +Percent percentUsable()
+        --(primitive)--
+        +Bytes free()
+        +Bytes size()
+        +Bytes usable()
+    }
+    
+    interface ModificationTimestamped
+    ModificationTimestamped <|-- FileSystemObject
+    interface FileSystemObject
+    {
+    }
+    
+    FileSystemObject <|-- Folder
+    Comparable <|-- Folder
+    ResourceFolder <|-- Folder
+    Folder --> Disk : "exists on"
+    Folder o-- FolderService : "delegates to"
+    class Folder
+    {
+        --(constructors)--
+        +Folder(FilePath)
+        --(checks)--
+        +boolean isEmpty()
+        +boolean isLocal()
+        +boolean isRemote()
+        +boolean isWritable()
+        --(filesystem)--
+        +Folder absolute()
+        +java.io.File asJavaFile()
+        +boolean chmod(PosixFilePermission... permissions)
+        +void chmodNested(PosixFilePermission... permissions)
+        +Folder clearAll()
+        +Folder clearAllAndDelete()
+        +void copyTo(Folder destination, CopyMode, ProgressReporter)
+        +void copyTo(Folder destination, CopyMode, Matcher<File>, ProgressReporter)
+        +Folder current()
+        +boolean delete()
+        +Folder desktop()
+        +Disk disk()
+        +Folder ensureExists()
+        +boolean exists()
+        +File file(File)
+        +File file(FileName)
+        +File file(FilePath child)
+        +File file(String path)
+        +FileList files(Pattern)
+        +FileList files(Matcher<File>, Traversal recurse)
+        +FileList files()
+        +FileList files(Matcher<File>)
+        +Folder folder(FileName child)
+        +Folder folder(Folder child)
+        +ArgumentParser.Builder<Folder> folderArgument(String description)
+        +ArgumentParser.Builder<FolderList> folderArgumentList(String description)
+        +SwitchParser.Builder<Folder> folderSwitch(String name, String description)
+        +SwitchParser.Builder<FolderList> folderSwitchList(String name, String description)
+        +List<Folder> folders(Matcher<Folder>)
+        +List<Folder> folders()
+        +boolean isFolder()
+        +boolean isFolder(FilePath)
+        +Folder kivakitCache()
+        +Folder kivakitHome()
+        +Folder kivakitTemporary()
+        +Folder kivakitTest(Class<?> type)
+        +Folder last()
+        +Folder mkdirs()
+        +FileName name()
+        +FileList nestedFiles(Matcher<File>)
+        +FileList nestedFiles()
+        +FolderList nestedFolders(Matcher<Folder>)
+        +Folder of(URL)
+        +Folder of(FileName)
+        +Folder of(java.io.File)
+        +Folder of(Path)
+        +Folder of(URI)
+        +File oldest()
+        +File oldest(Matcher<File>)
+        +SwitchParser.Builder<Folder> outputFolderSwitch()
+        +Folder parent()
+        +Folder parse(String path)
+        +FilePath path()
+        +FilePath relativePath(Folder)
+        +Folder relativeTo(Folder)
+        +boolean renameTo(Folder that)
+        +Folder root()
+        +void safeCopyTo(Folder destination, CopyMode, Matcher<File>, ProgressReporter)
+        +Folder scheduleCleanUpOnExit()
+        +Folder temporary(FileName baseName)
+        +File temporaryFile(FileName baseName, Extension)
+        +File temporaryFile(FileName baseName)
+        +Folder temporaryForProcess(Type)
+        +Folder userHome()
+        --(network)--
+        +URI asUri()
+        +URL asUrl()
+        --(primitive)--
+        +Bytes size()
+    }
+    
+    PeriodicCollectionChangeWatcher <|-- FolderChangeWatcher
+    FolderChangeWatcher --> Folder : "watches"
+    class FolderChangeWatcher
+    {
+        --(constructors)--
+        +FolderChangeWatcher(Folder, Frequency)
+    }
+    
+    List <|-- FolderList
+    FolderList "1" o-- "*" Folder
+    class FolderList
+    {
+        --(constructors)--
+        +FolderList()
+        --(filesystem)--
+        +Set<Folder> asSet()
+        +FolderList forVirtual(List<? extends FolderService> virtualFolders)
+        +FolderList matching(Matcher<Folder>)
+    }
+    
+    FolderPruner --> Folder : "prunes old files from"
+    class FolderPruner
+    {
+        --(constructors)--
+        +FolderPruner(Folder, Frequency)
+        --
+        +void capacity(Bytes capacity)
+        --(collection)--
+        #boolean canRemove(File candidate, FileList files)
+        --(filesystem)--
+        #void onFileRemoved(File)
+        --(lifecycle)--
+        +boolean isRunning()
+        +void start()
+        +void stop(Duration maximumWaitTime)
+        --(matching)--
+        +void matcher(Matcher<File>)
+        #Matcher<File> matcher()
+        --(math)--
+        +void minimumAge(Duration minimumAge)
+        +void minimumUsableDiskSpace(Percent minimumUsableDiskSpace)
+        #Duration minimumAge()
+        #Percent minimumUsableDiskSpace()
+        --(primitive)--
+        #Bytes capacity()
+        --(time)--
+        #Duration age(File)
+    }
+    
+@enduml
+

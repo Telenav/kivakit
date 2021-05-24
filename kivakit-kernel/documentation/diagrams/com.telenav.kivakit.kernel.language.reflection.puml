@@ -1,0 +1,70 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.reflection"
+    
+    interface Named
+    
+    class Field
+    {
+        --(constructors)--
+        +Field(Object, java.lang.reflect.Field)
+        --
+        +boolean accessible(java.lang.reflect.Field)
+        --(checks)--
+        +boolean isPrimitive()
+        --(collection)--
+        +Object value()
+    }
+    
+    class Method
+    {
+        --
+        +Method of(StackTraceElement frame)
+        +Class<?> type()
+        --(naming)--
+        +String methodName()
+    }
+    
+    Named <|-- Type
+    class Type<T>
+    {
+        --
+        +Constructor<T> constructor(Class<?>... types)
+        +boolean declaresToString()
+        +Property field(String name)
+        +Type<T> forClass(Class<T> type)
+        +Property method(String name)
+        +Type<T> of(Object)
+        +Type<?> superClass()
+        +Class<T> type()
+        --(checks)--
+        +boolean isDescendantOf(Class<?> that)
+        +boolean isInside(PackagePath)
+        +boolean isSystem()
+        --(collection)--
+        +List<java.lang.reflect.Field> allFields()
+        +List<java.lang.reflect.Field> fields(Filter<java.lang.reflect.Field>)
+        +boolean isArray()
+        +ObjectList<Property> properties(PropertyFilter)
+        +List<Field> reachableFields(Object root, Filter<java.lang.reflect.Field>)
+        +List<Object> reachableObjects(Object root, Filter<java.lang.reflect.Field>)
+        +List<Object> reachableObjects(Object root)
+        +List<Object> reachableObjectsImplementing(Object root, Class<?> _interface)
+        +VariableMap<Object> variables(Object, PropertyFilter, Object nullValue)
+        +VariableMap<Object> variables(Object, PropertyFilter)
+        --(factory)--
+        +T newInstance(Object parameter)
+        +T newInstance()
+        --(naming)--
+        +Type<T> forName(String className)
+        +String fullyQualifiedName()
+        +String simpleName()
+        +String simpleNameWithoutAnonymousNestedClassNumber()
+        --(path)--
+        +PackagePath packagePath()
+    }
+    
+@enduml
+

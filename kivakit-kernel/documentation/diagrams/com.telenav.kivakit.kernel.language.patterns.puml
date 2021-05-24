@@ -1,0 +1,73 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.patterns"
+    
+    Pattern <|-- Expression
+    class Expression
+    {
+        --(constructors)--
+        +Expression(String)
+    }
+    
+    Pattern <|-- Parenthesized
+    class Parenthesized
+    {
+        --(constructors)--
+        +Parenthesized(Pattern)
+    }
+    
+    abstract class Pattern
+    {
+        --
+        +Expression anyOf(T[] options)
+        +int bind(int group)
+        +Group<Boolean> booleanGroup(Listener)
+        +Pattern caseInsensitive()
+        +Expression constant(String expression)
+        +Expression expression(String expression)
+        +Group<Float> floatGroup(Listener)
+        +Group<T> group(Converter<String,T>)
+        +Group<String> group(Listener)
+        +boolean lookingAt(String input)
+        +boolean matches(CharSequence input)
+        +boolean matchesIgnoreCase(CharSequence input)
+        +Pattern oneOrMore()
+        +Pattern optional()
+        +Pattern then(String that)
+        +Pattern then(Pattern that)
+        +Pattern withOptionalWhiteSpace()
+        +ZeroOrMore zeroOrMore()
+        --(conversion)--
+        +String toExpression()
+        --(functional)--
+        +Pattern parenthesized()
+        --(logical)--
+        +Pattern or(String that)
+        +Pattern or(Pattern that)
+        --(matching)--
+        +String afterMatch(String input)
+        +Matcher matcher(CharSequence input)
+        +Matcher matcher(CharSequence input, int flags)
+        +Matcher matcherCaseInsensitive(CharSequence input)
+        --(primitive)--
+        +CharacterClass anyOf(String characters)
+        +Character character(char character)
+        +CharacterClass characterClass(Object... objects)
+        +Group<Integer> integerGroup(Listener)
+        +LiteralCharacter literal(char character)
+        +CharacterClass range(char first, char last)
+        --(search)--
+        +boolean find(String input)
+    }
+    
+    Expression <|-- SimplifiedPattern
+    class SimplifiedPattern
+    {
+        --(constructors)--
+        +SimplifiedPattern(String)
+    }
+    
+@enduml
+

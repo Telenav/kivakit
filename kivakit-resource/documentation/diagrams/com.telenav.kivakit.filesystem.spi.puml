@@ -1,0 +1,90 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.filesystem.spi"
+    
+    interface DiskService
+    {
+        --(filesystem)--
+        +FolderService root()
+        --(math)--
+        +Percent percentFree()
+        +Percent percentUsable()
+        --(primitive)--
+        +Bytes free()
+        +Bytes size()
+        +Bytes usable()
+    }
+    
+    interface FileSystemObjectService
+    interface WritableResource
+    FileSystemObjectService <|-- FileService
+    WritableResource <|-- FileService
+    interface FileService
+    {
+        --(filesystem)--
+        +java.io.File asJavaFile()
+        +boolean renameTo(FileService that)
+    }
+    
+    interface ByteSized
+    interface ModificationTimestamped
+    ByteSized <|-- FileSystemObjectService
+    ModificationTimestamped <|-- FileSystemObjectService
+    interface FileSystemObjectService
+    {
+        --(filesystem)--
+        +boolean chmod(PosixFilePermission... permissions)
+        +boolean delete()
+        +DiskService diskService()
+        +boolean exists()
+        +FolderService folderService()
+        +boolean isFile()
+        +boolean isFolder()
+        +boolean isOnSameFileSystem(FileSystemObjectService that)
+        +FolderService parent()
+        +FilePath relativePath(FolderService)
+        +FileSystemObjectService resolveService()
+        +FolderService root()
+    }
+    
+    FileSystemService --> DiskService : "provides"
+    FileSystemService --> FileService : "provides"
+    FileSystemService --> FolderService : "provides"
+    interface FileSystemService
+    {
+        --(filesystem)--
+        +DiskService diskService(FilePath)
+        +FileService fileService(FilePath)
+        +FolderService folderService(FilePath)
+        --(filtering)--
+        +boolean accepts(FilePath)
+    }
+    
+    interface FileSystemObjectService
+    FileSystemObjectService <|-- FolderService
+    interface FolderService
+    {
+        --(checks)--
+        +boolean isEmpty()
+        +boolean isWritable()
+        --(filesystem)--
+        +FolderService clear()
+        +FileService file(FileName)
+        +List<? extends FileService> files(Matcher<FilePath>)
+        +List<? extends FileService> files()
+        +FolderService folder(Folder)
+        +FolderService folder(FileName folder)
+        +List<? extends FolderService> folders(Matcher<FilePath>)
+        +Iterable<? extends FolderService> folders()
+        +FolderService mkdirs()
+        +List<? extends FileService> nestedFiles(Matcher<FilePath>)
+        +List<? extends FolderService> nestedFolders(Matcher<FilePath>)
+        +boolean renameTo(FolderService that)
+        +FileService temporaryFile(FileName baseName)
+        +FolderService temporaryFolder(FileName baseName)
+    }
+    
+@enduml
+

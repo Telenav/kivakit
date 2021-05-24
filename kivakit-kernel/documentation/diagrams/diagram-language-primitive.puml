@@ -1,0 +1,72 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Language - Primitives"
+    
+    class Booleans
+    {
+        --(checks)--
+        +boolean isFalse(String)
+        +boolean isTrue(String)
+    }
+    
+    class Doubles
+    {
+        --
+        +String format(double value, int decimals)
+        +String format(double value)
+        +double inRange(double value, double min, double max)
+        +int rounded(double value)
+        --(checks)--
+        +boolean isBetween(double value, double min, double max)
+        --(parsing)--
+        +double fastParse(String value, double denominator)
+    }
+    
+    class Ints
+    {
+        --
+        +int digits(int value)
+        +int forHighLow(int high, int low)
+        +int high(int value)
+        +int inRange(int value, int min, int max)
+        +int low(int value)
+        +int powerOfTen(int power)
+        +int quantized(int value, int quantum)
+        +int rounded(double value)
+        +int signExtend(int value, int bits)
+        --(checks)--
+        +boolean isBetween(int value, int low, int high)
+        +boolean isPrime(long)
+        --(collection)--
+        +BitCount bitsToRepresent(int value)
+        --(conversion)--
+        +String toHex(int value)
+        +String toHex(int value, int minimumLength)
+        --(parsing)--
+        +int parse(String)
+        +int parse(String, int invalidValue)
+        +int parseNaturalNumber(String)
+    }
+    
+    class Longs
+    {
+        --
+        +long forHighLow(int high, int low)
+        +int high(long value)
+        +long inRange(long value, long min, long max)
+        +int low(long value)
+        --(collection)--
+        +BitCount bitsToRepresent(long value)
+        --(parsing)--
+        +long parse(String, long invalid)
+        +long parse(String)
+        +long parseHex(String text)
+        +long parseNaturalNumber(String)
+        --(search)--
+        +boolean searchWords(long value, int bits, int searchFor)
+    }
+    
+@enduml
+

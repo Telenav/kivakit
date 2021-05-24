@@ -1,0 +1,37 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Resources - Jar Launcher"
+    
+    abstract BaseRepeater
+    
+    BaseRepeater <|-- JarLauncher
+    JarLauncher o-- JarLauncher.ProcessType : "launches process of type"
+    JarLauncher "1" o-- "*" Resourceful : "retrieves jar from one of"
+    JarLauncher o-- JarLauncher.RedirectTo : "determines output redirection"
+    class JarLauncher
+    {
+        --
+        +JarLauncher headless(boolean headless)
+        +JarLauncher processType(ProcessType)
+        +JarLauncher redirectTo(RedirectTo)
+        --(collection)--
+        +JarLauncher addJarSource(Resourceful resourced)
+        --(command line parsing)--
+        +JarLauncher arguments(StringList arguments)
+        +JarLauncher arguments(String... arguments)
+        --(lifecycle)--
+        +Process run()
+        --(network)--
+        +JarLauncher enableDebuggerOnPort(int debugPort)
+    }
+    
+    enum JarLauncher.ProcessType
+    {
+        CHILD
+        DETACHED
+    }
+    
+@enduml
+

@@ -1,0 +1,77 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.threading.context"
+    
+    interface Sized
+    
+    class CallStack
+    {
+        --
+        +Method callerOf(Proximity, Matching, Class<?> calleeType, Matching ignoreMatching, Class<?>... ignores)
+        +Method callerOf(Proximity, Matching, Class<?> calleeType)
+        --(collection)--
+        +List<Method> stack()
+        +List<Method> stack(Thread)
+    }
+    
+    class CodeContext
+    {
+        --(constructors)--
+        #CodeContext()
+        +CodeContext(Class<?>)
+        +CodeContext(Method)
+        +CodeContext(String)
+        --
+        +Class<?> type()
+        --(naming)--
+        +String fullTypeName()
+        +String typeName()
+        --(network)--
+        +String host()
+        +void hostResolver(Source<String> resolver)
+        --(path)--
+        +PackagePath packagePath()
+    }
+    
+    class StackTrace.Frame
+    {
+        --(constructors)--
+        #Frame()
+        +Frame(StackTraceElement)
+        --
+        +String full()
+        +String simplified()
+    }
+    
+    enum CallStack.Matching
+    {
+        EXACT
+        SUBCLASS
+    }
+    
+    enum CallStack.Proximity
+    {
+        DISTANT
+        IMMEDIATE
+    }
+    
+    Sized <|-- StackTrace
+    class StackTrace
+    {
+        --(constructors)--
+        +StackTrace()
+        +StackTrace(String, StackTraceElement[])
+        +StackTrace(Throwable)
+        --
+        +String top()
+        --(conversion)--
+        +String toHtmlString()
+        --(thread)--
+        +Map<Thread,StackTrace> allThreads()
+        +StackTrace cause()
+    }
+    
+@enduml
+

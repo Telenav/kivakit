@@ -1,0 +1,173 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Testing"
+    
+    abstract BaseValidationReporter
+    
+    interface Listener
+    
+    BaseValidationReporter <|-- JUnitValidationReporter
+    class JUnitValidationReporter
+    {
+    }
+    
+    interface QuickTests
+    {
+    }
+    
+    class RandomValueFactory
+    {
+        --(constructors)--
+        +RandomValueFactory()
+        +RandomValueFactory(long)
+        --
+        +long seed()
+        +void seed(long seed)
+        --(factory)--
+        +char newAsciiChar()
+        +String newAsciiString()
+        +String newAsciiString(int minLength, int maxLength)
+        +boolean newBoolean()
+        +byte newByte()
+        +byte newByte(byte minimum, byte maximum)
+        +byte newByte(byte minimum, byte maximum, Predicate<Byte> filter)
+        +char newChar()
+        +Confidence newConfidence()
+        +int newCount(int minimum, int maximum)
+        +double newDouble(double minimum, double maximum)
+        +double newDouble()
+        +double newDoubleZeroToOne()
+        +T newFrom(Collection<T> values)
+        +T newFrom(T[] values)
+        +Identifier newIdentifier(long maximum)
+        +int newIndex(int maximum)
+        +int newInt(int minimum, int maximum, Predicate<Integer> filter)
+        +int newInt()
+        +int newInt(int minimum, int maximum)
+        +long newLong(long minimum, long maximum)
+        +long newLong(long minimum, long maximum, Predicate<Long> filter)
+        +long newLong()
+        +short newShort(short minimum, short maximum)
+        +short newShort()
+        +short newShort(short minimum, short maximum, Predicate<Short> filter)
+        +String newString()
+        +String newString(int minLength, int maxLength)
+        +double newUnsignedDouble(double maximum)
+        +double newUnsignedDouble()
+        +int newUnsignedInt()
+        +long newUnsignedLong()
+    }
+    
+    interface SlowTests
+    {
+    }
+    
+    TestWatcher <|-- UnitTest
+    Listener <|-- UnitTest
+    UnitTest --> JUnitValidationReporter : "reports validation failures with"
+    UnitTest --> RandomValueFactory : "uses"
+    abstract class UnitTest
+    {
+        --
+        +void testBeforeUnitTest()
+        +void testSetup()
+        #boolean ensure(boolean condition)
+        #void ensure(boolean condition, String message, Object... arguments)
+        #void ensureBetween(double actual, double low, double high)
+        #void ensureEqual(T given, T expected)
+        #void ensureEqual(T given, T expected, String message, Object... arguments)
+        #void ensureFalse(boolean condition)
+        #void ensureFalse(boolean condition, String message, Object... arguments)
+        #void ensureNotEqual(T a, T b)
+        #void ensureNull(Object)
+        #void ensureThrows(Runnable code)
+        #void ensureWithin(double expected, double actual, double maximumDifference)
+        #void ensureZero(Number value)
+        #void iterateIndexes(Consumer<Integer>)
+        #void iterations(Count iterations)
+        #void iterations(int iterations)
+        #String randomAsciiString(int minimum, int maximum)
+        #String randomAsciiString()
+        #void randomIndexes(Repeats, Count, Consumer<Integer>)
+        #void randomIndexes(Repeats, Consumer<Integer>)
+        #void randomIndexes(Repeats, Count, int maximum, Consumer<Integer>)
+        --(checks)--
+        +boolean isRandomTest()
+        #boolean ensureClose(Duration given, Duration expected)
+        #T ensureNotNull(T object)
+        #boolean isQuickTest()
+        #boolean isWindows()
+        --(collection)--
+        #void ensureEqualArray(T[] a, T[] b)
+        #void ensureEqualArray(byte[] a, byte[])
+        #int index()
+        #Count iterations()
+        #int randomIndex()
+        #void resetIndex()
+        --(factory)--
+        #T newRandomValueFactory(Source<T> factory)
+        #RandomValueFactory randomValueFactory()
+        --(io)--
+        #void ensureClose(Number expected, Number actual, int numberOfDecimalsToMatch)
+        --(iteration)--
+        #void loop(Loopable code)
+        #void loop(int times, Runnable code)
+        #void loop(int minimum, int maximum, Loopable code)
+        #void loop(int minimum, int maximum, Runnable code)
+        #void loop(Runnable code)
+        #void loop(int times, Loopable code)
+        #int nextIndex()
+        --(primitive)--
+        #void iterateBytes(Consumer<Byte>)
+        #void iterateIntegers(Consumer<Integer>)
+        #void iterateLongs(Consumer<Long>)
+        #void iterateShorts(Consumer<Short>)
+        #char randomAsciiChar()
+        #List<Byte> randomByteList(Repeats, byte minimum, byte maximum)
+        #List<Byte> randomByteList(Repeats)
+        #void randomBytes(Repeats, Count, byte minimum, byte maximum, Predicate<Byte> filter, Consumer<Byte>)
+        #void randomBytes(Repeats, Count, Consumer<Byte>)
+        #void randomBytes(Repeats, Consumer<Byte>)
+        #void randomBytes(Repeats, byte minimum, byte maximum, Predicate<Byte> filter, Consumer<Byte>)
+        #void randomBytes(Repeats, Predicate<Byte> filter, Consumer<Byte>)
+        #int randomInt(int minimum, int maximum, Predicate<Integer> filter)
+        #int randomInt(int minimum, int maximum)
+        #int randomInt()
+        #List<Integer> randomIntList(Repeats, int minimum, int maximum)
+        #List<Integer> randomIntList(Repeats)
+        #List<Integer> randomIntList(Repeats, Count, int minimum, int maximum)
+        #void randomInts(Repeats, int minimum, int maximum, Predicate<Integer> filter, Consumer<Integer>)
+        #void randomInts(Repeats, Consumer<Integer>)
+        #void randomInts(Repeats, Count, Consumer<Integer>)
+        #void randomInts(Repeats, Count, int minimum, int maximum, Predicate<Integer> filter, Consumer<Integer>)
+        #void randomInts(Repeats, Predicate<Integer> filter, Consumer<Integer>)
+        #List<Long> randomLongList(Repeats)
+        #List<Long> randomLongList(Repeats, long minimum, long maximum)
+        #void randomLongs(Repeats, Count, Consumer<Long>)
+        #void randomLongs(Repeats, long minimum, long maximum, Predicate<Long> filter, Consumer<Long>)
+        #void randomLongs(Repeats, Consumer<Long>)
+        #void randomLongs(Repeats, Count, long minimum, long maximum, Predicate<Long> filter, Consumer<Long>)
+        #void randomLongs(Repeats, Predicate<Long> filter, Consumer<Long>)
+        #List<Short> randomShortList(Repeats)
+        #List<Short> randomShortList(Repeats, short minimum, short maximum)
+        #void randomShorts(Repeats, Consumer<Short>)
+        #void randomShorts(Repeats, Count, Consumer<Short>)
+        #void randomShorts(Repeats, Count, short minimum, short maximum, Predicate<Short> filter, Consumer<Short>)
+        #void randomShorts(Repeats, Predicate<Short> filter, Consumer<Short>)
+        #void randomShorts(Repeats, short minimum, short maximum, Predicate<Short> filter, Consumer<Short>)
+        --(status)--
+        #void fail(String message, Object... arguments)
+    }
+    
+    TestWatcher <|-- UnitTestWatcher
+    UnitTestWatcher o-- UnitTest : "watches for failures in"
+    class UnitTestWatcher
+    {
+        --(constructors)--
+        +UnitTestWatcher(UnitTest)
+    }
+    
+@enduml
+

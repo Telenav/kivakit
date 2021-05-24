@@ -1,0 +1,36 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.interfaces.model"
+    
+    interface Quantizable
+    Quantizable <|-- Identifiable
+    interface Identifiable
+    {
+        --(identity)--
+        +long identifier()
+    }
+    
+    interface Initializer<Model>
+    {
+        --
+        +Initializer<T> nullInitializer()
+        --(lifecycle)--
+        +void initialize(Model value)
+    }
+    
+    interface ModelListener<Model>
+    {
+        --
+        +void modelChanged(Model)
+    }
+    
+    interface Watchable<Value>
+    {
+        --
+        +Value observe()
+    }
+    
+@enduml
+

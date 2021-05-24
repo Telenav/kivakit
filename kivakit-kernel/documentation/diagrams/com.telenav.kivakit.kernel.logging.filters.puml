@@ -1,0 +1,47 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.logging.filters"
+    
+    interface Filter
+    
+    Filter <|-- LogEntriesOfType
+    class LogEntriesOfType
+    {
+        --(constructors)--
+        +LogEntriesOfType(Class<? extends Message>)
+        --
+        +void fromClass(Class<?> within)
+    }
+    
+    Filter <|-- LogEntriesSubclassing
+    class LogEntriesSubclassing
+    {
+        --(constructors)--
+        +LogEntriesSubclassing(Class<? extends Message>)
+    }
+    
+    Filter <|-- LogEntriesWithSeverityGreaterThanOrEqualTo
+    class LogEntriesWithSeverityGreaterThanOrEqualTo
+    {
+        --(constructors)--
+        +LogEntriesWithSeverityGreaterThanOrEqualTo(Severity)
+    }
+    
+    Filter <|-- LogEntriesWithSeverityLessThanOrEqualTo
+    class LogEntriesWithSeverityLessThanOrEqualTo
+    {
+        --(constructors)--
+        +LogEntriesWithSeverityLessThanOrEqualTo(Severity)
+    }
+    
+    Filter <|-- LoggersInPackage
+    class LoggersInPackage
+    {
+        --(constructors)--
+        +LoggersInPackage(PackagePath)
+    }
+    
+@enduml
+

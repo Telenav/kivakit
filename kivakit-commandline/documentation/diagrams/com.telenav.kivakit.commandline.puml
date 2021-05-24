@@ -1,0 +1,188 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.commandline"
+    
+    interface Named
+    interface Iterable
+    
+    interface Versioned
+    Versioned <|-- ApplicationMetadata
+    interface ApplicationMetadata
+    {
+        --
+        +String description()
+    }
+    
+    Argument --> ArgumentParser : "gets value with"
+    class Argument
+    {
+        --(constructors)--
+        +Argument(String)
+        --(collection)--
+        +String value()
+        --(command line parsing)--
+        +T get(ArgumentParser<T>)
+    }
+    
+    ArgumentList "1" o-- "*" Argument
+    class ArgumentList
+    {
+        --(collection)--
+        +void add(Argument)
+        --(command line parsing)--
+        +Argument first()
+        +Argument get(int index)
+    }
+    
+    ArgumentParser --> ArgumentParser.Builder : "creates"
+    ArgumentParser o-- Quantifier
+    ArgumentParser o-- Converter : "converts values with"
+    class ArgumentParser<T>
+    {
+        --
+        +String description()
+        +String help()
+        +Quantifier quantifier()
+        --(checks)--
+        +boolean isAllowedMultipleTimes()
+        +boolean isOptional()
+        +boolean isRequired()
+        --(command line parsing)--
+        +Builder<Boolean> booleanArgument(String description)
+        +Builder<T> builder(Class<T> type)
+        +Builder<Integer> integerArgument(String description)
+        +Builder<Long> longArgument(String description)
+        +Builder<String> stringArgument(String description)
+        +Builder<Version> versionArgument(String description)
+    }
+    
+    ArgumentParser.Builder --> ArgumentParser : "creates"
+    class ArgumentParser.Builder<T>
+    {
+        --(command line parsing)--
+        +ArgumentParser<T> build()
+        +Builder<T> converter(Converter<String,T>)
+        +Builder<T> description(String description)
+        +Builder<T> oneOrMore()
+        +Builder<T> optional()
+        +Builder<T> required()
+        +Builder<T> twoOrMore()
+        +Builder<T> type(Class<T> type)
+        +Builder<T> zeroOrMore()
+    }
+    
+    SwitchParser.Builder --> SwitchParser : "creates"
+    class SwitchParser.Builder<T>
+    {
+        --(command line parsing)--
+        +SwitchParser<T> build()
+        +Builder<T> converter(Converter<String,T>)
+        +Builder<T> defaultValue(T defaultValue)
+        +Builder<T> description(String description)
+        +Builder<T> name(String name)
+        +Builder<T> optional()
+        +Builder<T> required()
+        +Builder<T> type(Class<T> type)
+        +Builder<T> validValues(Set<T> validValues)
+    }
+    
+    Iterable <|-- CommandLine
+    CommandLine --> T : "gets argument values"
+    CommandLine --> T : "gets switch values"
+    CommandLine o-- ArgumentList
+    CommandLine o-- SwitchList
+    CommandLine --> CommandLineParser : "parses with"
+    note top of CommandLine
+        See Application for easy access to switches and arguments
+    endnote
+    class CommandLine
+    {
+        --(constructors)--
+        +CommandLine(CommandLineParser, String[])
+        --(command line parsing)--
+        +T argument(int index, ArgumentParser<T>)
+        +T argument(ArgumentParser<T>)
+        +List<T> arguments(ArgumentParser<T>)
+        +ArgumentList arguments()
+        +T get(SwitchParser<T>, T defaultValue)
+        +T get(SwitchParser<T>)
+        +boolean has(SwitchParser<T>)
+        --(lifecycle)--
+        +void exit(String error, Object... arguments)
+    }
+    
+    CommandLineParser --> ArgumentList : "validates"
+    CommandLineParser --> CommandLine : "creates"
+    CommandLineParser o-- ArgumentParserList
+    class CommandLineParser
+    {
+        --(constructors)--
+        +CommandLineParser(ApplicationMetadata)
+        --(command line parsing)--
+        +CommandLineParser add(ArgumentParser<T>)
+        +CommandLineParser add(SwitchParser<T>)
+        +CommandLine parse(String[] arguments)
+        --(lifecycle)--
+        #void exit(String message, Object... arguments)
+    }
+    
+    enum Quantifier
+    {
+        ONE_OR_MORE
+        OPTIONAL
+        REQUIRED
+        TWO_OR_MORE
+        ZERO_OR_MORE
+    }
+    
+    Argument <|-- Switch
+    Named <|-- Switch
+    Switch --> SwitchParser : "gets value with"
+    class Switch
+    {
+        --(constructors)--
+        +Switch(String, String)
+        --(command line parsing)--
+        +T get(SwitchParser<T>)
+    }
+    
+    SwitchParser --> SwitchParser.Builder : "creates"
+    SwitchParser --> T : "gets"
+    SwitchParser o-- Quantifier
+    SwitchParser o-- Converter : "converts values with"
+    SwitchParser o-- T : "default value"
+    class SwitchParser<T>
+    {
+        --
+        +T defaultValue()
+        +T get(Switch _switch)
+        +String help()
+        --(checks)--
+        +boolean isRequired()
+        --(command line parsing)--
+        +Builder<Boolean> booleanSwitch(String name, String description)
+        +Builder<T> builder(Class<T> type)
+        +Builder<Bytes> bytesSwitch(String name, String description)
+        +Builder<Count> countSwitch(String name, String description)
+        +Builder<Double> doubleSwitch(String name, String description)
+        +Builder<E> enumSwitch(String name, String description, Class<E> type)
+        +Builder<Integer> integerSwitch(String name, String description)
+        +Builder<ObjectList<E>> listSwitch(String name, String description, StringConverter<E> elementConverter, Class<E> elementType, String delimiter)
+        +Builder<LocalTime> localDateSwitch(String name, String description)
+        +Builder<LocalTime> localDateTimeSwitch(String name, String description)
+        +Builder<Long> longSwitch(String name, String description)
+        +Builder<Maximum> maximumSwitch(String name, String description)
+        +Builder<Minimum> minimumSwitch(String name, String description)
+        +Builder<Pattern> patternSwitch(String name, String description)
+        +Builder<Percent> percentSwitch(String name, String description)
+        +Builder<T> quantizableSwitch(String name, String description, Class<T> type, MapFactory<Long,T>)
+        +Builder<Set<E>> setSwitch(String name, String description, StringConverter<E> elementConverter, Class<E> elementType, String delimiter)
+        +Builder<String> stringSwitch(String name, String description)
+        +SwitchParser<Count> threadCountSwitch(Count maximum)
+        +Builder<Version> versionSwitch(String name, String description)
+    }
+    
+@enduml
+

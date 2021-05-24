@@ -1,0 +1,53 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Kryo Serialization"
+    
+    abstract BaseRepeater
+    
+    interface Named
+    interface SerializationSession
+    
+    KryoTypes <|-- CoreKernelKryoTypes
+    class CoreKernelKryoTypes
+    {
+        --(constructors)--
+        +CoreKernelKryoTypes()
+    }
+    
+    BaseRepeater <|-- KryoSerializationSession
+    Named <|-- KryoSerializationSession
+    SerializationSession <|-- KryoSerializationSession
+    class KryoSerializationSession
+    {
+        --(constructors)--
+        +KryoSerializationSession(KryoTypes)
+        --
+        +KryoTypes kryoTypes()
+        +Serializer<? extends T> serializer(Class<T> type)
+        +void trackReferences()
+        --(read)--
+        +Registration readClass()
+        +T readClassAndObject()
+    }
+    
+    Serializer <|-- KryoSerializer
+    abstract class KryoSerializer<Value>
+    {
+        --(constructors)--
+        #KryoSerializer(Class<Value>)
+        --
+        +Class<?> type()
+        --(extension points)--
+        #Value onRead(KryoSerializationSession)
+        --(identity)--
+        +void version(Version)
+        #void unsupportedVersion()
+        #Version version()
+        --(write)--
+        #void onWrite(KryoSerializationSession, Value)
+    }
+    
+@enduml
+

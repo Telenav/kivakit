@@ -1,0 +1,59 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.collections.iteration.iterators"
+    
+    abstract BaseIterator
+    
+    interface Iterator
+    
+    BaseIterator <|-- CompoundIterator
+    class CompoundIterator<Element>
+    {
+        --(constructors)--
+        +CompoundIterator()
+        +CompoundIterator(Iterator<Element>, Iterator<Element>)
+        --(collection)--
+        +void add(Iterator<Element>)
+        +void addAll(Collection<Iterator<Element>> iterators)
+    }
+    
+    BaseIterator <|-- DeduplicatingIterator
+    class DeduplicatingIterator<Element>
+    {
+        --(constructors)--
+        +DeduplicatingIterator(Iterator<Element>)
+    }
+    
+    Iterator <|-- EmptyIterator
+    class EmptyIterator<Element>
+    {
+    }
+    
+    BaseIterator <|-- FilteredIterator
+    class FilteredIterator<Element>
+    {
+        --(constructors)--
+        +FilteredIterator(Iterator<Element>, Matcher<Element>)
+    }
+    
+    CoreCollectionsUnitTest <|-- IteratorTest
+    class IteratorTest
+    {
+        --(collection)--
+        +void abstractIterableTest()
+        +void abstractIteratorTest()
+        +void compoundIteratorTest()
+        +void deduplicatedIteratorTest()
+    }
+    
+    Iterator <|-- SingletonIterator
+    class SingletonIterator<Element>
+    {
+        --(constructors)--
+        +SingletonIterator(Element)
+    }
+    
+@enduml
+

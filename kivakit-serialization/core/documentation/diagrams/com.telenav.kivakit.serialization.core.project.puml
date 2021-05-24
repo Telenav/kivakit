@@ -1,0 +1,17 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.serialization.core.project"
+    
+    Project <|-- SerializationCoreProject
+    class SerializationCoreProject
+    {
+        --(constructors)--
+        #SerializationCoreProject()
+        --(serialization)--
+        +SerializationCoreProject get()
+    }
+    
+@enduml
+

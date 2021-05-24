@@ -1,0 +1,28 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.objects.reference.virtual.types"
+    
+    class HardReferencedValue<T>
+    {
+        --(constructors)--
+        +HardReferencedValue(T)
+    }
+    
+    SoftReference <|-- SoftReferencedValue
+    class SoftReferencedValue<T>
+    {
+        --(constructors)--
+        +SoftReferencedValue(String, T, ReferenceQueue<T>)
+    }
+    
+    WeakReference <|-- WeakReferencedValue
+    class WeakReferencedValue<T>
+    {
+        --(constructors)--
+        +WeakReferencedValue(String, T, ReferenceQueue<T>)
+    }
+    
+@enduml
+

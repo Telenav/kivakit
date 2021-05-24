@@ -1,0 +1,169 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.messaging"
+    
+    interface Transceiver
+    
+    interface Transceiver
+    interface Transmitter
+    Transceiver <|-- Broadcaster
+    Transmitter <|-- Broadcaster
+    Broadcaster "1" --> "*" Listener : "transmits"
+    interface Broadcaster
+    {
+        --
+        +void parentBroadcaster(Broadcaster parent)
+        +Broadcaster parentBroadcaster()
+        +void silence()
+        --(messaging)--
+        +void addListener(Listener)
+        +void addListener(Listener, Filter<Transmittable>)
+        +void clearListeners()
+        +boolean hasListeners()
+        +void onTransmit(Transmittable message)
+        +void removeListener(Listener)
+        +void transmit(Message)
+        +void transmitAll(Iterable<Transmittable> messages)
+    }
+    
+    Transceiver <|-- Debug
+    class Debug
+    {
+        --(constructors)--
+        +Debug(Transceiver)
+        --
+        +void debugOff()
+        +void debugOn()
+        +Debug of(Class<?> type, Transceiver)
+        +void println(Object)
+        +void unregister(Class<?> type)
+        --(messaging)--
+        +Listener listener()
+    }
+    
+    interface Receiver
+    interface Transceiver
+    Transceiver <|-- Listener
+    Receiver <|-- Listener
+    interface Listener
+    {
+        --(messaging)--
+        +T listenTo(T broadcaster, MessageFilter)
+        +T listenTo(T broadcaster)
+        +Listener none()
+        +void onMessage(Message)
+    }
+    
+    interface Transmittable
+    interface Triaged
+    Transmittable <|-- Message
+    Triaged <|-- Message
+    Message --> Importance : "message importance"
+    Message --> Message.OperationStatus : "operation status"
+    Message --> Severity : "message severity"
+    Message --> Message.Status : "message status"
+    interface Message
+    {
+        --
+        +Throwable cause()
+        +CodeContext context()
+        +String description()
+        +String escape(String text)
+        +String format(String message, Object... arguments)
+        +String formatted(MessageFormatter.Format)
+        +Importance importance()
+        +void println(String message, Object... arguments)
+        +String text()
+        +^Severity severity()
+        --(command line parsing)--
+        +Object[] arguments()
+        --(conversion)--
+        +RuntimeException asException()
+        --(messaging)--
+        +OperationStatus operationStatus()
+        +StackTrace stackTrace()
+        +Status status()
+        --(time)--
+        +Time created()
+        +Frequency maximumFrequency()
+    }
+    
+    interface Filter
+    Filter <|-- MessageFilter
+    interface MessageFilter
+    {
+        --(filtering)--
+        +boolean accepts(Message)
+    }
+    
+    enum Message.OperationStatus
+    {
+        FAILED
+        HALTED
+        NOT_APPLICABLE
+        RUNNING
+        STARTED
+        SUCCEEDED
+    }
+    
+    interface Broadcaster
+    interface Listener
+    Listener <|-- Repeater
+    Broadcaster <|-- Repeater
+    interface Repeater
+    {
+    }
+    
+    enum Message.Status
+    {
+        COMPLETED
+        FAILED
+        NOT_APPLICABLE
+        PROBLEM
+        RESULT_COMPROMISED
+        RESULT_INCOMPLETE
+        SUCCEEDED
+    }
+    
+    Transceiver --> Debug : "delegates to"
+    note right of Transceiver
+        Functionality common to transmitters and receivers
+    endnote
+    interface Transceiver
+    {
+        --
+        +Debug debug()
+        +void halt(Throwable cause, String text, Object... arguments)
+        +void halt(String text, Object... arguments)
+        +void ifDebug(Runnable code)
+        --(checks)--
+        +boolean isDebugOn()
+        +boolean isOn()
+        --(messaging)--
+        +void announce(String text, Object... arguments)
+        +void information(String text, Object... arguments)
+        +void narrate(String text, Object... arguments)
+        +void problem(Throwable cause, String text, Object... arguments)
+        +void problem(Frequency maximumFrequency, String text, Object... arguments)
+        +void problem(String text, Object... arguments)
+        +void problem(Frequency maximumFrequency, Throwable cause, String text, Object... arguments)
+        +void quibble(Frequency maximumFrequency, Throwable cause, String text, Object... arguments)
+        +void quibble(Throwable cause, String text, Object... arguments)
+        +void quibble(String text, Object... arguments)
+        +void quibble(Frequency maximumFrequency, String text, Object... arguments)
+        +void throwProblem(Throwable cause, String text, Object... arguments)
+        +void throwProblem(String text, Object... arguments)
+        +void trace(String text, Object... arguments)
+        +void trace(Throwable cause, String text, Object... arguments)
+        +void trace(Frequency maximumFrequency, Throwable cause, String text, Object... arguments)
+        +void trace(Frequency maximumFrequency, String text, Object... arguments)
+        +void warning(String text, Object... arguments)
+        +void warning(Frequency maximumFrequency, Throwable cause, String text, Object... arguments)
+        +void warning(Throwable cause, String text, Object... arguments)
+        +void warning(Frequency maximumFrequency, String text, Object... arguments)
+    }
+    
+@enduml
+

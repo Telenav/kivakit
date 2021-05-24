@@ -1,0 +1,15 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.collections.set.logical"
+    
+    interface Set
+    
+    Set <|-- LogicalSet
+    abstract class LogicalSet<Element>
+    {
+    }
+    
+@enduml
+

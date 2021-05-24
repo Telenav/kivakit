@@ -1,0 +1,78 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Applications"
+    
+    abstract BaseRepeater
+    
+    interface Named
+    interface ApplicationMetadata
+    
+    BaseRepeater <|-- Application
+    Named <|-- Application
+    ApplicationMetadata <|-- Application
+    Application --> CommandLine : "parses arguments into"
+    Application --> ApplicationIdentifier : "identified by"
+    Application o-- Project : "initializes and uses"
+    Application o-- CommandLine
+    note right of Application
+        See kivakit-core-configuration for details on application configuration
+    endnote
+    abstract class Application
+    {
+        --(constructors)--
+        #Application(Project)
+        --
+        +Application get()
+        +Project project()
+        +T settings(Class<T> type)
+        --(collection)--
+        +PropertyMap localizedProperties(Locale)
+        +VariableMap<String> properties()
+        --(command line parsing)--
+        +T argument(int index, ArgumentParser<T>)
+        +T argument(ArgumentParser<T>)
+        +ArgumentList arguments()
+        +CommandLine commandLine()
+        +String commandLineDescription(String title)
+        +T get(SwitchParser<T>, T defaultValue)
+        +T get(SwitchParser<T>)
+        +boolean has(SwitchParser<T>)
+        #List<ArgumentParser<?>> argumentParsers()
+        #Set<SwitchParser<?>> switchParsers()
+        --(configuration)--
+        +void addConfiguration(Object configuration)
+        +void addConfiguration(Object configuration, InstanceIdentifier)
+        +void addDeployment(Deployment)
+        +T configuration(Class<T> type, InstanceIdentifier)
+        +T configuration(Class<T> type)
+        +T requireConfiguration(Class<T> type)
+        +T requireConfiguration(Class<T> type, InstanceIdentifier)
+        --(identity)--
+        +ApplicationIdentifier identifier()
+        --(lifecycle)--
+        +void exit(String message, Object... arguments)
+        +void run(String[] arguments)
+        #void onRun()
+        --(lookup)--
+        +T locate(Class<T> type)
+        +void register(Object)
+    }
+    
+    class ApplicationIdentifier
+    {
+        --(constructors)--
+        #ApplicationIdentifier()
+        +ApplicationIdentifier(String)
+    }
+    
+    Application <|-- Server
+    abstract class Server
+    {
+        --(constructors)--
+        #Server(Project)
+    }
+    
+@enduml
+

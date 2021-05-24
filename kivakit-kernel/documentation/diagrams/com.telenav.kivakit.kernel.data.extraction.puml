@@ -1,0 +1,36 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.data.extraction"
+    
+    abstract BaseRepeater
+    
+    interface Extractor
+    
+    BaseRepeater <|-- BaseExtractor
+    Extractor <|-- BaseExtractor
+    abstract class BaseExtractor<Value, From>
+    {
+        --(constructors)--
+        #BaseExtractor(Listener)
+        --(collection)--
+        +ObjectList<Value> extract(From[] values)
+        +ObjectList<Value> extractList(Keyed<String,String> map, From key)
+        +ObjectList<Value> extractList(Keyed<String,String> map, From key, String separator)
+        +ObjectList<Value> extractList(Map<String,String>, From key)
+        +ObjectList<Value> extractList(Map<String,String>, From key, String separator)
+        --(extension points)--
+        +Value onExtract(From object)
+    }
+    
+    interface Broadcaster
+    Broadcaster <|-- Extractor
+    interface Extractor<Value, From>
+    {
+        --
+        +Value extract(From object)
+    }
+    
+@enduml
+

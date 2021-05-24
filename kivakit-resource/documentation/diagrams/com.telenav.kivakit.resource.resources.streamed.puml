@@ -1,0 +1,25 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.resource.resources.streamed"
+    
+    abstract BaseReadableResource
+    abstract BaseWritableResource
+    
+    BaseReadableResource <|-- InputResource
+    class InputResource
+    {
+        --(constructors)--
+        +InputResource(InputStream)
+    }
+    
+    BaseWritableResource <|-- OutputResource
+    class OutputResource
+    {
+        --(constructors)--
+        +OutputResource(OutputStream)
+    }
+    
+@enduml
+

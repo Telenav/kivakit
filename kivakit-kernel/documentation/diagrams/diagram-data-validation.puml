@@ -1,0 +1,115 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Data - Validation"
+    
+    interface MessageCounter
+    interface ValidationReporter
+    interface Validator
+    
+    ValidationReporter <|-- BaseValidationReporter
+    abstract class BaseValidationReporter
+    {
+    }
+    
+    Validator <|-- BaseValidator
+    abstract class BaseValidator
+    {
+        --
+        #void fatal(String message, Object... parameters)
+        #boolean fatalIf(boolean invalid, String message, Object... parameters)
+        #void onValidate()
+        #void validate(Validator)
+        #boolean validationReport()
+        #String validationTarget()
+        --(checks)--
+        +boolean isInvalid()
+        +boolean isValid()
+        #boolean isEmpty(String value)
+        #boolean isEmpty(Collection<?>)
+        #boolean isZero(Count)
+        --(messaging)--
+        #void problem()
+        #void problem(String message, Object... parameters)
+        #boolean problemIf(boolean invalid, String message, Object... parameters)
+        #void quibble(String message, Object... parameters)
+        #void quibble()
+        #boolean quibbleIf(boolean invalid, String message, Object... parameters)
+        #void warning(String message, Object... parameters)
+        #void warningIf(boolean invalid, String message, Object... parameters)
+    }
+    
+    interface Listener
+    Listener <|-- MessageCounter
+    interface MessageCounter
+    {
+        --(collection)--
+        +Count count(Message.Status type)
+        +Count count(Class<? extends Message> type)
+        +Count countWorseThanOrEqualTo(Message.Status)
+    }
+    
+    ObjectList <|-- MessageList
+    MessageCounter <|-- MessageList
+    class MessageList
+    {
+        --(constructors)--
+        +MessageList(Matcher<Message>)
+        +MessageList(Maximum, Matcher<Message>)
+        --(collection)--
+        +StringList formatted()
+        +ObjectList<Message> messages(Class<? extends Message> type)
+        +StringList statistics(Message.Status... statuses)
+        +StringList statisticsByType(Class<? extends Message>... types)
+    }
+    
+    Validatable --> Validation : "how to validate"
+    Validatable --> Validator : "provides"
+    interface Validatable
+    {
+        --
+        +Validator validator(Validation type)
+        +Validator validator()
+        --(checks)--
+        +boolean isValid()
+        +boolean isValid(Listener)
+    }
+    
+    Name <|-- Validation
+    class Validation
+    {
+        --(constructors)--
+        +Validation(String)
+        --(checks)--
+        +boolean shouldValidate(Class<?> type)
+        --(filtering)--
+        +Validation exclude(Class<?> type)
+        +Validation include(Class<?> type)
+    }
+    
+    MessageList <|-- ValidationIssues
+    class ValidationIssues
+    {
+        --(constructors)--
+        +ValidationIssues()
+    }
+    
+    interface Listener
+    Listener <|-- ValidationReporter
+    interface ValidationReporter
+    {
+        --
+        +void report(Message)
+    }
+    
+    Validator --> Listener : "reports to"
+    interface Validator
+    {
+        --
+        +boolean validate(Listener)
+        +boolean validate()
+    }
+    
+@enduml
+

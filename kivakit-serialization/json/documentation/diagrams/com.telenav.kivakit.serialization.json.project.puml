@@ -1,0 +1,17 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.serialization.json.project"
+    
+    Project <|-- SerializationJsonProject
+    class SerializationJsonProject
+    {
+        --(constructors)--
+        #SerializationJsonProject()
+        --(serialization)--
+        +SerializationJsonProject get()
+    }
+    
+@enduml
+

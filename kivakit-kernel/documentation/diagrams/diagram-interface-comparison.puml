@@ -1,0 +1,56 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Interfaces - Comparison"
+    
+    interface Matcher
+    
+    interface Equality<Value>
+    {
+        --(checks)--
+        +boolean isEqual(Value, Value b)
+    }
+    
+    interface Matcher
+    Matcher <|-- Filter
+    interface Filter<T>
+    {
+        --(filtering)--
+        +boolean accepts(T value)
+        +Filter<T> all()
+        +Filter<T> and(Filter<T> b)
+        +Filter<T> exclude(Filter<T> b)
+        +Filter<T> include(Filter<T> b)
+        +Filter<T> none()
+        +Filter<T> not()
+        +Filter<T> or(Filter<T> b)
+    }
+    
+    Filtered "1" --> "*" Filter : "has"
+    interface Filtered<T>
+    {
+        --(collection)--
+        +List<Filter<T>> filters()
+    }
+    
+    interface Predicate<Value>
+    Predicate <|-- Matcher
+    interface Matcher<Value>
+    {
+        --
+        +boolean matches(Value)
+    }
+    
+    Matcher <|-- MatcherSet
+    class MatcherSet<T>
+    {
+        --(matching)--
+        +MatcherSet<T> add(Matcher<T>)
+        +Matcher<T> allMatch()
+        +Matcher<T> anyMatches()
+        +Matcher<T> noneMatches()
+    }
+    
+@enduml
+

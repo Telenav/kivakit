@@ -1,0 +1,24 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.security.digest"
+    
+    interface Digester
+    
+    Digester <|-- BaseDigester
+    abstract class BaseDigester
+    {
+        --(constructors)--
+        #BaseDigester(String)
+    }
+    
+    interface Digester
+    {
+        --
+        +byte[] digest(byte[] value)
+        +byte[] digest(String value)
+    }
+    
+@enduml
+

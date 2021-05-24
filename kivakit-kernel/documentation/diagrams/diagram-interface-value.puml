@@ -1,0 +1,32 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Interfaces - Value"
+    
+    interface BooleanValued
+    {
+        --(checks)--
+        +boolean isTrue()
+    }
+    
+    interface Locator<Value>
+    {
+        --(search)--
+        +Value locate()
+    }
+    
+    interface Source<Value>
+    {
+        --
+        +Value get()
+    }
+    
+    interface Valued<Value>
+    {
+        --(collection)--
+        +Value value()
+    }
+    
+@enduml
+

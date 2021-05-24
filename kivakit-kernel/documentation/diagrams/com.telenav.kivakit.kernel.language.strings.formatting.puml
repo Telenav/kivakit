@@ -1,0 +1,74 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.strings.formatting"
+    
+    enum ObjectFormatter.Format
+    {
+        MULTILINE
+        SINGLE_LINE
+    }
+    
+    class IndentingStringBuilder.Indentation
+    {
+        --(constructors)--
+        #Indentation(int)
+        --(building)--
+        +Indentation of(int spaces)
+        --(primitive)--
+        +int asInt()
+    }
+    
+    class IndentingStringBuilder
+    {
+        --(constructors)--
+        +IndentingStringBuilder(Style, Indentation)
+        --
+        +void appendLine(String value)
+        +void appendLines(String value)
+        +int indentationLevel()
+        +void level(int level)
+        +void unindent()
+        --(building)--
+        +IndentingStringBuilder defaultTextIndenter()
+        +IndentingStringBuilder indent()
+        --(checks)--
+        +boolean isIndented()
+        --(collection)--
+        +boolean containsLine(String line)
+        +Count lines()
+        +void removeLastLine()
+    }
+    
+    annotation KivaKitFormatProperty
+    
+    class ObjectFormatter
+    {
+        --(constructors)--
+        +ObjectFormatter(Object)
+        +ObjectFormatter(Object, PackagePath)
+        --(filtering)--
+        +ObjectFormatter filter(PropertyFilter)
+    }
+    
+    class Separators
+    {
+        --(constructors)--
+        +Separators()
+        +Separators(String, String, int)
+        +Separators(String)
+        --
+        +String child(int relativeLevel)
+        +Separators child()
+        +String current()
+    }
+    
+    enum IndentingStringBuilder.Style
+    {
+        HTML
+        TEXT
+    }
+    
+@enduml
+

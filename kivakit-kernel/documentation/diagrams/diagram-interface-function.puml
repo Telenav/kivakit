@@ -1,0 +1,14 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Interfaces - Functional"
+    
+    interface BooleanFunction<Value>
+    {
+        --(checks)--
+        +boolean isTrue(Value)
+    }
+    
+@enduml
+

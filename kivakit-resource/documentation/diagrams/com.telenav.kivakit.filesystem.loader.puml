@@ -1,0 +1,15 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.filesystem.loader"
+    
+    FileSystemServiceLoader "1" o-- "*" FileSystemService : "loads"
+    -class FileSystemServiceLoader
+    {
+        --(filesystem)--
+        +FileSystemService fileSystem(FilePath)
+    }
+    
+@enduml
+

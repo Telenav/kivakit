@@ -1,0 +1,68 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.values.mutable"
+    
+    class ConcurrentMutableValue<T>
+    {
+        --(constructors)--
+        +ConcurrentMutableValue()
+        +ConcurrentMutableValue(T)
+        --
+        +T get()
+        +void set(T value)
+        +void update(Function<T,T> updater)
+    }
+    
+    class MutableIndex
+    {
+        --(constructors)--
+        +MutableIndex()
+        +MutableIndex(int)
+        --
+        +int get()
+        +void set(int index)
+        --(collection)--
+        +void index(int index)
+        --(math)--
+        +int add(int that)
+        +int decrement()
+        +int increment()
+    }
+    
+    MutableValue <|-- MutableInteger
+    class MutableInteger
+    {
+        --(constructors)--
+        +MutableInteger()
+        +MutableInteger(Integer)
+        --(math)--
+        +void maximum(int value)
+        +void minimum(int value)
+    }
+    
+    MutableValue <|-- MutableLong
+    class MutableLong
+    {
+        --(constructors)--
+        +MutableLong()
+        +MutableLong(Long)
+        --(math)--
+        +void maximum(long value)
+        +void minimum(long value)
+    }
+    
+    class MutableValue<T>
+    {
+        --(constructors)--
+        +MutableValue()
+        +MutableValue(T)
+        --
+        +T get()
+        +void set(T value)
+        +void update(Function<T,T> updater)
+    }
+    
+@enduml
+

@@ -1,0 +1,87 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Logging - Logs"
+    
+    abstract BaseTextLog
+    abstract BaseLog
+    
+    interface Startable
+    interface Log
+    interface Stoppable
+    interface LogEntryFormatter
+    
+    Startable <|-- BaseLog
+    Stoppable <|-- BaseLog
+    Log <|-- BaseLog
+    abstract class BaseLog
+    {
+        --(constructors)--
+        #BaseLog()
+        --
+        +void asynchronous(boolean asynchronous)
+        #void onLog(LogEntry)
+        #int retries()
+        --(checks)--
+        +boolean isAsynchronous()
+        --(collection)--
+        +void addFilter(Filter<LogEntry>)
+        +void clear()
+        +List<BaseLog> logs()
+        +CountMap<String> messageCounts()
+        #int queueSize()
+        --(filtering)--
+        #boolean accept(LogEntry)
+        --(io)--
+        +void closeOutput()
+        +boolean isClosed()
+        --(status)--
+        #void onLogFailure(LogEntry)
+    }
+    
+    BaseLog <|-- BaseTextLog
+    BaseTextLog --> LogEntryFormatter : "formats entries with"
+    abstract class BaseTextLog
+    {
+        --
+        +void formatter(LogEntryFormatter)
+        #String format(LogEntry, MessageFormatter.Format)
+    }
+    
+    LogEntryFormatter <|-- ColumnarFormatter
+    class ColumnarFormatter
+    {
+    }
+    
+    BaseTextLog <|-- ConsoleLog
+    class ConsoleLog
+    {
+    }
+    
+    interface Closeable
+    interface Filtered
+    Filtered <|-- Log
+    Closeable <|-- Log
+    Log --> LogEntry : "logs"
+    interface Log
+    {
+        --
+        +void configure(Map<String,String> properties)
+        +void level(Severity)
+        +void log(LogEntry)
+    }
+    
+    interface LogEntryFormatter
+    {
+        --
+        +String format(LogEntry, MessageFormatter.Format)
+    }
+    
+    LogEntryFormatter <|-- SimpleFormatter
+    class SimpleFormatter
+    {
+    }
+    
+@enduml
+

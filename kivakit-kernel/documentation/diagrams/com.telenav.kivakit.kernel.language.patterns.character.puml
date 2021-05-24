@@ -1,0 +1,41 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.patterns.character"
+    
+    Expression <|-- Character
+    class Character
+    {
+        --(constructors)--
+        +Character(char)
+    }
+    
+    Pattern <|-- CharacterClass
+    class CharacterClass
+    {
+        --(constructors)--
+        +CharacterClass(Object)
+        +CharacterClass(String)
+        --(primitive)--
+        +CharacterClass inverted()
+        +CharacterClass with(Character)
+        +CharacterClass with(LiteralCharacter)
+        +CharacterClass withAlphabetic()
+        +CharacterClass withAlphanumeric()
+        +CharacterClass withCharacter(char)
+        +CharacterClass withLowerCaseAlphabetic()
+        +CharacterClass withNumeric()
+        +CharacterClass withRange(char first, char last)
+        +CharacterClass withUpperCaseAlphabetic()
+    }
+    
+    Expression <|-- LiteralCharacter
+    class LiteralCharacter
+    {
+        --(constructors)--
+        +LiteralCharacter(char)
+    }
+    
+@enduml
+

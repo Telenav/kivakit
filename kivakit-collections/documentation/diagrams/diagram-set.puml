@@ -1,0 +1,108 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Sets"
+    
+    abstract AbstractSet
+    abstract BaseMap
+    
+    interface Serializable
+    interface Set
+    
+    Set <|-- CompoundSet
+    class CompoundSet<Element>
+    {
+        --(constructors)--
+        +CompoundSet()
+        +CompoundSet(Set<Element>, Set<Element>)
+        --(collection)--
+        +void add(Set<Element>)
+        +Iterable<Element> matching(Matcher<Element>)
+    }
+    
+    Set <|-- ConcurrentHashSet
+    Serializable <|-- ConcurrentHashSet
+    class ConcurrentHashSet<Element>
+    {
+        --(constructors)--
+        +ConcurrentHashSet()
+        +ConcurrentHashSet(int, float)
+        --
+        +Element get(Element prototype)
+        +Element take(Element prototype)
+        --(collection)--
+        +boolean containsAdd(Element object)
+    }
+    
+    AbstractSet <|-- IdentitySet
+    class IdentitySet<Element>
+    {
+    }
+    
+    LogicalSet <|-- Intersection
+    class Intersection<T>
+    {
+        --(constructors)--
+        +Intersection(Set<T>, Set<T>)
+    }
+    
+    Set <|-- LogicalSet
+    abstract class LogicalSet<Element>
+    {
+    }
+    
+    BaseMap <|-- MultiSet
+    class MultiSet<Key, Value>
+    {
+        --(constructors)--
+        #MultiSet(Maximum, Maximum, Map<Key, ObjectSet<Value>>)
+        +MultiSet()
+        +MultiSet(Maximum, Maximum)
+        --
+        +void replaceValue(Key, Value)
+        +ObjectSet<Value> set(Key)
+        --(collection)--
+        +void add(Key, Value)
+        +int entryCount()
+        +Iterable<Value> flatValues()
+        +Set<Value> getOrEmptySet(Object key)
+        +Count maximumSetSize()
+        +void removeFromSet(Key, Value)
+    }
+    
+    abstract class SetDifferencer<Element>
+    {
+        --(constructors)--
+        #SetDifferencer(Equality<Element>)
+        --
+        +void compare(Set<Element> beforeSet, Set<Element> afterSet)
+        #void onAdded(Element value)
+        #void onNotChanged(Element oldValue, Element newValue)
+        #void onRemoved(Element value)
+        #void onUpdated(Element value)
+    }
+    
+    LogicalSet <|-- Subset
+    class Subset<T>
+    {
+        --(constructors)--
+        +Subset(Set<T>, Matcher<T>)
+    }
+    
+    LogicalSet <|-- Union
+    class Union<T>
+    {
+        --(constructors)--
+        +Union(Set<T>, Set<T>)
+    }
+    
+    LogicalSet <|-- Without
+    class Without<T>
+    {
+        --(constructors)--
+        +Without(Set<T>, Set<T>)
+    }
+    
+@enduml
+

@@ -1,0 +1,20 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.resource.resources.string"
+    
+    abstract BaseReadableResource
+    
+    BaseReadableResource <|-- StringResource
+    class StringResource
+    {
+        --(constructors)--
+        +StringResource(ResourcePath, String)
+        +StringResource(String)
+        --
+        +StringResource transform(Function<String,String> transformation)
+    }
+    
+@enduml
+

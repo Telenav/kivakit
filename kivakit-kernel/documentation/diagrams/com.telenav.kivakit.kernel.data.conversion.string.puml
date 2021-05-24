@@ -1,0 +1,38 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.data.conversion.string"
+    
+    abstract BaseConverter
+    
+    interface StringConverter
+    
+    BaseConverter <|-- BaseStringConverter
+    StringConverter <|-- BaseStringConverter
+    abstract class BaseStringConverter<Value>
+    {
+        --
+        +Converter<String,Value> toObjectConverter()
+        --(collection)--
+        +BaseStringConverter<Value> allowEmpty(boolean allowEmpty)
+        +boolean allowsEmpty()
+        --(extension points)--
+        #Value onConvertToObject(String value)
+        #String onConvertToString(Value)
+    }
+    
+    interface Converter<String,Value>
+    Converter <|-- StringConverter
+    interface StringConverter<Value>
+    {
+        --
+        +BaseStringConverter<To> create(Listener, Function<String,To> converter)
+        +BaseStringConverter<To> create(Function<String,To> converter)
+        --(collection)--
+        +ObjectList<Value> asObjectList(StringList)
+        +StringList asStringList(ObjectList<Value>)
+    }
+    
+@enduml
+

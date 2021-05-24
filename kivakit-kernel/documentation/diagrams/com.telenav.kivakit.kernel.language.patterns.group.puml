@@ -1,0 +1,27 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.patterns.group"
+    
+    Group <|-- EnumGroup
+    class EnumGroup<T>
+    {
+        --(constructors)--
+        +EnumGroup(Class<T>, Listener)
+    }
+    
+    Pattern <|-- Group
+    class Group<T>
+    {
+        --(constructors)--
+        +Group(Pattern, Converter<String, T>)
+        --
+        +T get(Matcher, T defaultValue)
+        +T get(Matcher)
+        --(filesystem)--
+        +Group<T> copy()
+    }
+    
+@enduml
+

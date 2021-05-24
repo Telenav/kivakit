@@ -1,0 +1,64 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.reflection.property.filters"
+    
+    abstract BasePropertyFilter
+    
+    interface PropertyFilter
+    
+    PropertyFilter <|-- BasePropertyFilter
+    BasePropertyFilter o-- BasePropertyFilter.NamingConvention
+    BasePropertyFilter "1" o-- "*" BasePropertyFilter.Include
+    class BasePropertyFilter
+    {
+        --(constructors)--
+        +BasePropertyFilter(NamingConvention, Set<Include>)
+        --(checks)--
+        #boolean isGetter(Method)
+        #boolean isIncluded(Field)
+        #boolean isIncluded(Method)
+        #boolean isKivaKitExcluded(Method)
+        #boolean isKivaKitExcluded(Field)
+        #boolean isKivaKitIncluded(Field)
+        #boolean isKivaKitIncluded(Method)
+        #boolean isSetter(Method)
+    }
+    
+    BasePropertyFilter <|-- BeansProperties
+    class BeansProperties
+    {
+        --(constructors)--
+        +BeansProperties(Set<Include>)
+    }
+    
+    enum BasePropertyFilter.Include
+    {
+        KIVAKIT_INCLUDED_FIELDS
+        KIVAKIT_INCLUDED_PROPERTIES
+        NON_PUBLIC_PROPERTIES
+        NON_TRANSIENT_FIELDS
+        PUBLIC_PROPERTIES
+        TRANSIENT_FIELDS
+    }
+    
+    annotation KivaKitExcludeProperty
+    
+    annotation KivaKitIncludeProperty
+    
+    BasePropertyFilter <|-- KivaKitProperties
+    class KivaKitProperties
+    {
+        --(constructors)--
+        +KivaKitProperties(Set<Include>)
+    }
+    
+    enum BasePropertyFilter.NamingConvention
+    {
+        BEANS
+        KivaKit
+    }
+    
+@enduml
+

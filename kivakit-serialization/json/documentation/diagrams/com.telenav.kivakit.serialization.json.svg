@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="534.375px" preserveAspectRatio="none" style="width:928px;height:534px;background:#333333;" version="1.1" viewBox="0 0 928 534" width="928.125px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="391.6667" x="260.9375" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="368.75" x="272.3958" y="30.5583">com.telenav.kivakit.serialization.json</text><!--MD5=[dcda66dabdb739ec36f1175150e3c9d5]
+class Factory--><rect codeLine="6" fill="#282828" height="48.055" id="Factory" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="84.375" x="171.875" y="56.8278"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="84.375" x="171.875" y="56.8278"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="84.375" x="171.875" y="79.8828"/><rect codeLine="6" fill="none" height="48.055" id="Factory" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="84.375" x="171.875" y="56.8278"/><ellipse cx="186.4583" cy="72.522" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M183.3415,69.6838 L183.3415,68.0969 L188.7675,68.0969 L188.7675,69.6838 L186.9548,69.6838 L186.9548,75.6226 L188.7675,75.6226 L188.7675,77.2095 L183.3415,77.2095 L183.3415,75.6226 L185.1542,75.6226 L185.1542,69.6838 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="46.875" x="203.125" y="77.2461">Factory</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="172.9167" x2="255.2083" y1="88.2161" y2="88.2161"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="172.9167" x2="255.2083" y1="96.5495" y2="96.5495"/><!--MD5=[bf1d930a0a1a598005068bb24aa7fae7]
+class GsonSerializer--><rect codeLine="24" fill="#282828" height="48.055" id="GsonSerializer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="148.9583" x="511.4583" y="218.807"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="148.9583" x="511.4583" y="218.807"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="148.9583" x="511.4583" y="241.862"/><rect codeLine="24" fill="none" height="48.055" id="GsonSerializer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="148.9583" x="511.4583" y="218.807"/><ellipse cx="526.0417" cy="234.5011" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M522.9248,231.663 L522.9248,230.0761 L528.3508,230.0761 L528.3508,231.663 L526.5381,231.663 L526.5381,237.6017 L528.3508,237.6017 L528.3508,239.1886 L522.9248,239.1886 L522.9248,237.6017 L524.7375,237.6017 L524.7375,231.663 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="92.7083" x="542.7083" y="239.2253">GsonSerializer</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="16.6667" x="646.875" y="215.682"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="651.0417" y="231.9336">T</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="512.5" x2="659.375" y1="250.1953" y2="250.1953"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="512.5" x2="659.375" y1="258.5286" y2="258.5286"/><!--MD5=[2f6b322feb96bb2631e1a0e875047f13]
+class GsonFactory--><rect codeLine="10" fill="#282828" height="150.946" id="GsonFactory" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="409.375" x="9.375" y="167.2445"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="409.375" x="9.375" y="167.2445"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="409.375" x="9.375" y="190.2995"/><rect codeLine="10" fill="none" height="150.946" id="GsonFactory" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="409.375" x="9.375" y="167.2445"/><ellipse cx="166.6667" cy="182.9386" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M166.7806,179.6407 L165.9322,183.37 L167.6351,183.37 Z M165.682,177.9928 L167.8853,177.9928 L170.3451,187.1053 L168.5445,187.1053 L167.983,184.8531 L165.5721,184.8531 L165.0228,187.1053 L163.2222,187.1053 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="80.2083" x="189.5833" y="187.6628">GsonFactory</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="10.4167" x2="417.7083" y1="198.6328" y2="198.6328"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="417.7083" y1="206.9661" y2="206.9661"/><ellipse cx="20.8333" cy="218.4245" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="193.75" x="32.2917" y="225.3357">void prettyPrinting(boolean pretty)</text><polygon fill="#FFFF44" points="20.8333,232.961,25,237.1277,20.8333,241.2944,16.6667,237.1277" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="373.9583" x="32.2917" y="245.0806">StringConverterGsonSerializer&lt;T&gt; serializer(StringConverter&lt;T&gt;)</text><polygon fill="#FFFF44" points="20.8333,276.6174,25,280.7841,20.8333,284.9508,16.6667,280.7841" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="377.0833" x="32.2917" y="288.737">void addSerializer(GsonBuilder, Class&lt;T&gt; type, GsonSerializer&lt;T&gt;)</text><polygon fill="#FFFF44" points="20.8333,296.3623,25,300.529,20.8333,304.6956,16.6667,300.529" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="225" x="32.2917" y="308.4819">GsonBuilder addSerializers(GsonBuilder)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="179.6875" y1="264.6617" y2="264.6617"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="182.8125" y="268.4713">(collection)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="248.4375" x2="417.7083" y1="264.6617" y2="264.6617"/><!--MD5=[c04c9295e01f428445c71975bdd8b5e9]
+class JsonDeserializer--><rect codeLine="20" fill="#282828" height="48.055" id="JsonDeserializer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="162.5" x="370.3125" y="56.8278"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="162.5" x="370.3125" y="56.8278"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="162.5" x="370.3125" y="79.8828"/><rect codeLine="20" fill="none" height="48.055" id="JsonDeserializer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="162.5" x="370.3125" y="56.8278"/><ellipse cx="384.8958" cy="72.522" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M381.779,69.6838 L381.779,68.0969 L387.205,68.0969 L387.205,69.6838 L385.3923,69.6838 L385.3923,75.6226 L387.205,75.6226 L387.205,77.2095 L381.779,77.2095 L381.779,75.6226 L383.5917,75.6226 L383.5917,69.6838 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="106.25" x="401.5625" y="77.2461">JsonDeserializer</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="16.6667" x="519.2708" y="53.7028"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="523.4375" y="69.9544">T</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="371.3542" x2="531.7708" y1="88.2161" y2="88.2161"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="371.3542" x2="531.7708" y1="96.5495" y2="96.5495"/><!--MD5=[0469281133f5120cce6c8ecdd1573efa]
+class JsonSerializer--><rect codeLine="21" fill="#282828" height="48.055" id="JsonSerializer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="144.7917" x="569.7917" y="56.8278"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="144.7917" x="569.7917" y="56.8278"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="144.7917" x="569.7917" y="79.8828"/><rect codeLine="21" fill="none" height="48.055" id="JsonSerializer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="144.7917" x="569.7917" y="56.8278"/><ellipse cx="584.375" cy="72.522" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M581.2581,69.6838 L581.2581,68.0969 L586.6842,68.0969 L586.6842,69.6838 L584.8714,69.6838 L584.8714,75.6226 L586.6842,75.6226 L586.6842,77.2095 L581.2581,77.2095 L581.2581,75.6226 L583.0709,75.6226 L583.0709,69.6838 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="88.5417" x="601.0417" y="77.2461">JsonSerializer</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="16.6667" x="701.0417" y="53.7028"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="705.2083" y="69.9544">T</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="570.8333" x2="713.5417" y1="88.2161" y2="88.2161"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="570.8333" x2="713.5417" y1="96.5495" y2="96.5495"/><!--MD5=[3a02e24aed122bd624ab5f4d81125687]
+class PrimitiveGsonSerializer--><rect codeLine="29" fill="#282828" height="146.7794" id="PrimitiveGsonSerializer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="270.8333" x="282.8125" y="380.7861"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="270.8333" x="282.8125" y="380.7861"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="270.8333" x="282.8125" y="403.8411"/><rect codeLine="29" fill="none" height="146.7794" id="PrimitiveGsonSerializer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="270.8333" x="282.8125" y="380.7861"/><ellipse cx="297.3958" cy="396.4803" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M297.5098,393.1824 L296.6614,396.9116 L298.3643,396.9116 Z M296.4111,391.5344 L298.6145,391.5344 L301.0742,400.647 L299.2737,400.647 L298.7122,398.3948 L296.3013,398.3948 L295.752,400.647 L293.9514,400.647 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="150" x="314.0625" y="401.2044">PrimitiveGsonSerializer</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="81.25" x="475.5208" y="377.6611"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="72.9167" x="479.6875" y="393.9128">T, Primitive</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="283.8542" x2="552.6042" y1="412.1745" y2="412.1745"/><polygon fill="#FFFF44" points="294.2708,442.336,298.4375,446.5027,294.2708,450.6694,290.1042,446.5027" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="233.3333" x="305.7292" y="454.4556">PrimitiveGsonSerializer(Class&lt;Primitive&gt;)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="283.8542" x2="374.4792" y1="430.3802" y2="430.3802"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="377.6042" y="434.1899">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="461.9792" x2="552.6042" y1="430.3802" y2="430.3802"/><polygon fill="#FFFF44" points="294.2708,485.9924,298.4375,490.1591,294.2708,494.3258,290.1042,490.1591" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="151.0417" x="305.7292" y="498.112">T toObject(Primitive scalar)</text><polygon fill="#FFFF44" points="294.2708,505.7373,298.4375,509.904,294.2708,514.0706,290.1042,509.904" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="163.5417" x="305.7292" y="517.8569">Primitive toPrimitive(T object)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="283.8542" x2="379.6875" y1="474.0367" y2="474.0367"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="70.8333" x="382.8125" y="477.8463">(conversion)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="456.7708" x2="552.6042" y1="474.0367" y2="474.0367"/><!--MD5=[2c5472d55dc10e6cb3690bf84f88b1d6]
+class StringConverterGsonSerializer--><rect codeLine="39" fill="#282828" height="83.3781" id="StringConverterGsonSerializer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="326.0417" x="590.625" y="412.557"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="326.0417" x="590.625" y="412.557"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="326.0417" x="590.625" y="435.612"/><rect codeLine="39" fill="none" height="83.3781" id="StringConverterGsonSerializer" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="326.0417" x="590.625" y="412.557"/><ellipse cx="639.5833" cy="428.2511" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M641.4937,432.6762 Q641.0665,432.8959 640.5965,433.0058 Q640.1265,433.1156 639.6077,433.1156 Q637.7645,433.1156 636.794,431.901 Q635.8236,430.6864 635.8236,428.3915 Q635.8236,426.0905 636.794,424.8759 Q637.7645,423.6613 639.6077,423.6613 Q640.1265,423.6613 640.6026,423.7712 Q641.0787,423.881 641.4937,424.1007 L641.4937,426.1027 Q641.0299,425.6755 640.5935,425.4771 Q640.1571,425.2787 639.6932,425.2787 Q638.7044,425.2787 638.2009,426.063 Q637.6973,426.8473 637.6973,428.3915 Q637.6973,429.9296 638.2009,430.7139 Q638.7044,431.4982 639.6932,431.4982 Q640.1571,431.4982 640.5935,431.2998 Q641.0299,431.1015 641.4937,430.6742 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="194.7917" x="662.5" y="432.9753">StringConverterGsonSerializer</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="16.6667" x="903.125" y="409.432"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="907.2917" y="425.6836">T</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="591.6667" x2="915.625" y1="443.9453" y2="443.9453"/><ellipse cx="602.0833" cy="479.3152" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="293.75" x="613.5417" y="486.2264">StringConverterGsonSerializer(StringConverter&lt;T&gt;)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="591.6667" x2="709.8958" y1="462.1511" y2="462.1511"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="713.0208" y="465.9607">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="797.3958" x2="915.625" y1="462.1511" y2="462.1511"/><!--MD5=[2c3665b7359fba428b125acb2190fb8e]
+reverse link Factory to GsonFactory--><path codeLine="9" d="M214.0625,126.0049 C214.0625,138.7549 214.0625,153.0361 214.0625,167.0882 " fill="none" id="Factory-backto-GsonFactory" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="206.7708,125.9111,214.0625,105.0778,221.3542,125.9111,206.7708,125.9111" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e6fa6a8128e3ddb1225009fa3215770a]
+reverse link JsonSerializer to GsonSerializer--><path codeLine="22" d="M626.9479,125.1299 C616.3438,155.2965 602.6042,194.3382 594.0313,218.7028 " fill="none" id="JsonSerializer-backto-GsonSerializer" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="620.2188,122.307,634.0104,105.0778,633.9688,127.1507,620.2188,122.307" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[23ea91a58894e2368cf21ca113b60d9d]
+reverse link JsonDeserializer to GsonSerializer--><path codeLine="23" d="M484.6771,121.234 C510.4167,151.859 545.2188,193.2653 566.5938,218.7028 " fill="none" id="JsonDeserializer-backto-GsonSerializer" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="478.9271,125.7132,471.1042,105.0778,490.0833,116.3382,478.9271,125.7132" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[85a0d96d9cdfc7038c2fa1ce3ff1671e]
+reverse link GsonSerializer to PrimitiveGsonSerializer--><path codeLine="28" d="M554.2083,283.4215 C532.2917,310.7757 502.5208,347.9528 476.4167,380.5361 " fill="none" id="GsonSerializer-backto-PrimitiveGsonSerializer" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="548.6354,278.7132,567.3542,267.0153,560.0208,287.8278,548.6354,278.7132" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[9714bcca399e0624556e2e2d65bd8680]
+reverse link GsonSerializer to StringConverterGsonSerializer--><path codeLine="38" d="M617.75,283.5257 C647.2813,320.3903 691.0417,375.0153 720.8646,412.2549 " fill="none" id="GsonSerializer-backto-StringConverterGsonSerializer" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="611.8542,287.8278,604.5208,267.0153,623.2396,278.7132,611.8542,287.8278" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[3de53ba9a133db1d57e9cca2473e6d7a]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.serialization.json"
+    
+    interface Factory
+    interface GsonSerializer
+    
+    Factory <|- - GsonFactory
+    abstract class GsonFactory
+    {
+        - -
+        +void prettyPrinting(boolean pretty)
+        #StringConverterGsonSerializer<T> serializer(StringConverter<T>)
+        - -(collection)- -
+        #void addSerializer(GsonBuilder, Class<T> type, GsonSerializer<T>)
+        #GsonBuilder addSerializers(GsonBuilder)
+    }
+    
+    interface JsonDeserializer<T>
+    interface JsonSerializer<T>
+    JsonSerializer <|- - GsonSerializer
+    JsonDeserializer <|- - GsonSerializer
+    interface GsonSerializer<T>
+    {
+    }
+    
+    GsonSerializer <|- - PrimitiveGsonSerializer
+    abstract class PrimitiveGsonSerializer<T, Primitive>
+    {
+        - -(constructors)- -
+        #PrimitiveGsonSerializer(Class<Primitive>)
+        - -(conversion)- -
+        #T toObject(Primitive scalar)
+        #Primitive toPrimitive(T object)
+    }
+    
+    GsonSerializer <|- - StringConverterGsonSerializer
+    class StringConverterGsonSerializer<T>
+    {
+        - -(constructors)- -
+        +StringConverterGsonSerializer(StringConverter<T>)
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.serialization.json"
+    
+    interface Factory
+    interface GsonSerializer
+    
+    Factory <|- - GsonFactory
+    abstract class GsonFactory
+    {
+        - -
+        +void prettyPrinting(boolean pretty)
+        #StringConverterGsonSerializer<T> serializer(StringConverter<T>)
+        - -(collection)- -
+        #void addSerializer(GsonBuilder, Class<T> type, GsonSerializer<T>)
+        #GsonBuilder addSerializers(GsonBuilder)
+    }
+    
+    interface JsonDeserializer<T>
+    interface JsonSerializer<T>
+    JsonSerializer <|- - GsonSerializer
+    JsonDeserializer <|- - GsonSerializer
+    interface GsonSerializer<T>
+    {
+    }
+    
+    GsonSerializer <|- - PrimitiveGsonSerializer
+    abstract class PrimitiveGsonSerializer<T, Primitive>
+    {
+        - -(constructors)- -
+        #PrimitiveGsonSerializer(Class<Primitive>)
+        - -(conversion)- -
+        #T toObject(Primitive scalar)
+        #Primitive toPrimitive(T object)
+    }
+    
+    GsonSerializer <|- - StringConverterGsonSerializer
+    class StringConverterGsonSerializer<T>
+    {
+        - -(constructors)- -
+        +StringConverterGsonSerializer(StringConverter<T>)
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

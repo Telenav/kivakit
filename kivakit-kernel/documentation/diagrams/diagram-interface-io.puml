@@ -1,0 +1,49 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Interfaces - I/O"
+    
+    interface AutoCloseable
+    AutoCloseable <|-- Closeable
+    interface Closeable
+    {
+    }
+    
+    interface Flushable
+    {
+        --(io)--
+        +void flush(Duration maximumWaitTime)
+        +void flush()
+    }
+    
+    interface Openable
+    {
+        --
+        +void open()
+    }
+    
+    interface ByteSized
+    ByteSized <|-- Readable
+    interface Readable
+    {
+        --(checks)--
+        +boolean isReadable()
+        --(read)--
+        +InputStream onOpenForReading()
+        +InputStream openForReading()
+        +InputStream openForReading(ProgressReporter)
+    }
+    
+    interface Writable
+    {
+        --(checks)--
+        +boolean isWritable()
+        --(write)--
+        +OutputStream onOpenForWriting()
+        +OutputStream openForWriting()
+        +OutputStream openForWriting(ProgressReporter)
+    }
+    
+@enduml
+

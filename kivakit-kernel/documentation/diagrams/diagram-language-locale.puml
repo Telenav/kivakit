@@ -1,0 +1,41 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Language - Locale"
+    
+    interface Comparable
+    
+    Name <|-- LanguageIsoCode
+    Comparable <|-- LanguageIsoCode
+    class LanguageIsoCode
+    {
+        --
+        +LanguageIsoCode forIso2Code(String code)
+        +LanguageIsoCode forIso3Code(String code)
+        +String iso2Code()
+        +String iso3Code()
+        +Locale world()
+        --(collection)--
+        +List<LanguageIsoCode> all()
+    }
+    
+    Locale o-- LanguageIsoCode
+    Locale o-- CountryIsoCode
+    class Locale
+    {
+        --(constructors)--
+        +Locale(LanguageIsoCode)
+        +Locale(LanguageIsoCode, CountryIsoCode)
+        --
+        +java.util.Locale asJavaLocale()
+        +CountryIsoCode country()
+        +LanguageIsoCode language()
+        --(checks)--
+        +boolean isWorld()
+        --(path)--
+        +StringPath path()
+    }
+    
+@enduml
+

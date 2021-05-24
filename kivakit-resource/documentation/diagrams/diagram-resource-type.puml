@@ -1,0 +1,110 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Resources - Built-In Resource Types"
+    
+    abstract BaseReadableResource
+    abstract BaseWritableResource
+    
+    interface ResourceFolder
+    
+    BaseReadableResource <|-- InputResource
+    class InputResource
+    {
+        --(constructors)--
+        +InputResource(InputStream)
+    }
+    
+    BaseWritableResource <|-- NullResource
+    class NullResource
+    {
+        --(constructors)--
+        +NullResource()
+    }
+    
+    BaseWritableResource <|-- OutputResource
+    class OutputResource
+    {
+        --(constructors)--
+        +OutputResource(OutputStream)
+    }
+    
+    ResourceFolder <|-- Package
+    class Package
+    {
+        --(constructors)--
+        #Package(PackagePath)
+        --
+        +Package child(String name)
+        +Package of(Class<?> _packageType, String path)
+        +Package of(PackagePath _package)
+        +Package parent()
+        --(collection)--
+        +PropertyMap localizedProperties(Locale)
+        --(path)--
+        +PackagePath path()
+    }
+    
+    BaseReadableResource <|-- PackageResource
+    class PackageResource
+    {
+        --(constructors)--
+        #PackageResource(PackagePath, ModuleResource, FileName)
+        --
+        +PackageResource of(Class<?> type, String path)
+        +PackageResource of(ModuleResource)
+        +PackageResource of(PackagePath _package, FilePath)
+        +PackageResource of(PackagePath _package, String path)
+        +PackageResource of(PackagePath _package, FileName)
+    }
+    
+    VariableMap <|-- PropertyMap
+    class PropertyMap
+    {
+        --(constructors)--
+        #PropertyMap()
+        --(collection)--
+        +void add(Object, PropertyFilter)
+        +Count asCount(String key)
+        +PropertyMap comment(String key, String comment)
+        +PropertyMap create()
+        +PropertyMap expandedWith(VariableMap<String> that)
+        +PropertyMap load(PackagePath _package, String path)
+        +PropertyMap load(Class<?> _package, String path)
+        +PropertyMap load(Resource)
+        +PropertyMap localized(PackagePath, Locale)
+        +PropertyMap of(VariableMap<String> variables)
+        --(conversion)--
+        +double asDouble(String key)
+        +File asFile(String key)
+        +Folder asFolder(String key)
+        +int asInt(String key)
+        +long asLong(String key)
+        +Object asObject(Listener, Class<?> type)
+        +String asPath(String key)
+        +URI asUri(String key)
+        --(write)--
+        +void save(String heading, WritableResource)
+        +void save(WritableResource)
+    }
+    
+    BaseReadableResource <|-- ResourceSection
+    class ResourceSection
+    {
+        --(constructors)--
+        +ResourceSection(Resource, long, long)
+    }
+    
+    BaseReadableResource <|-- StringResource
+    class StringResource
+    {
+        --(constructors)--
+        +StringResource(ResourcePath, String)
+        +StringResource(String)
+        --
+        +StringResource transform(Function<String,String> transformation)
+    }
+    
+@enduml
+

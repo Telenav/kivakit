@@ -1,0 +1,59 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Collection Watching"
+    
+    abstract BaseCollectionChangeWatcher
+    abstract BaseRepeater
+    
+    interface Startable
+    interface Runnable
+    interface CollectionChangeWatcher
+    
+    BaseRepeater <|-- BaseCollectionChangeWatcher
+    CollectionChangeWatcher <|-- BaseCollectionChangeWatcher
+    abstract class BaseCollectionChangeWatcher<T>
+    {
+        --
+        #void changed()
+        #void onAdded(T value)
+        #void onRemoved(T value)
+        --(thread)--
+        +void waitForChange()
+        --(time)--
+        #void onModified(T value)
+    }
+    
+    interface CollectionChangeListener<T>
+    {
+        --
+        +void onAdded(T value)
+        +void onRemoved(T value)
+        --(time)--
+        +void onModified(T value)
+    }
+    
+    interface CollectionChangeWatcher<T>
+    {
+        --(collection)--
+        +void addListener(CollectionChangeListener<T>)
+        +void removeListener(CollectionChangeListener<T>)
+    }
+    
+    BaseCollectionChangeWatcher <|-- PeriodicCollectionChangeWatcher
+    Runnable <|-- PeriodicCollectionChangeWatcher
+    Startable <|-- PeriodicCollectionChangeWatcher
+    abstract class PeriodicCollectionChangeWatcher<T>
+    {
+        --(constructors)--
+        #PeriodicCollectionChangeWatcher(Frequency)
+        --
+        +void compare()
+        #Collection<T> objects()
+        --(time)--
+        #Time lastModified(T object)
+    }
+    
+@enduml
+

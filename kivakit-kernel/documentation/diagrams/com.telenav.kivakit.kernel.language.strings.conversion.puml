@@ -1,0 +1,62 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.strings.conversion"
+    
+    interface AsString
+    AsString <|-- AsIndentedString
+    interface AsIndentedString
+    {
+        --(conversion)--
+        +AsStringIndenter asString(StringFormat, AsStringIndenter)
+    }
+    
+    AsString --> StringFormat : "formats with"
+    interface AsString
+    {
+        --(conversion)--
+        +String asString(StringFormat)
+        +String asString()
+    }
+    
+    class AsStringIndenter
+    {
+        --(constructors)--
+        +AsStringIndenter(StringFormat)
+        +AsStringIndenter(StringFormat, int)
+        +AsStringIndenter(StringFormat, int, PropertyFilter)
+        --
+        +boolean haveVisited(Object)
+        +int indentationLevel()
+        +void visited(Object)
+        --(checks)--
+        +boolean canExplore(Object value)
+        +boolean isLeaf(Object)
+        --(collection)--
+        +void add(String line, Object... arguments)
+        --(conversion)--
+        +AsStringIndenter asString(Object)
+        +AsStringIndenter bracketed(Iterable<?>, Consumer<Object>)
+        +AsStringIndenter indented(String label, Runnable code)
+        +AsStringIndenter indented(Runnable code)
+        +AsStringIndenter label(String label)
+        +AsStringIndenter labeled(String label, Object)
+        +AsStringIndenter levels(Maximum levels)
+        +AsStringIndenter pruneAt(Class<?> leaf)
+        +AsStringIndenter text(String label)
+    }
+    
+    class StringFormat
+    {
+        --(constructors)--
+        +StringFormat(String)
+        --
+        +StringFormat of(String identifier)
+        --(checks)--
+        +boolean isHtml()
+        +boolean isText()
+    }
+    
+@enduml
+

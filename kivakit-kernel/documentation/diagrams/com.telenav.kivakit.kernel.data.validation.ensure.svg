@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1033.3333px" preserveAspectRatio="none" style="width:655px;height:1033px;background:#333333;" version="1.1" viewBox="0 0 655 1033" width="655.2083px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="511.4583" x="64.5833" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="488.5417" x="76.0417" y="30.5583">com.telenav.kivakit.kernel.data.validation.ensure</text><!--MD5=[a9206357ac6517eaf62f4c0e10b22ef1]
+class Ensure--><rect codeLine="7" fill="#282828" height="764.1256" id="Ensure" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="511.4583" x="9.375" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="511.4583" x="9.375" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="511.4583" x="9.375" y="76.7578"/><rect codeLine="7" fill="none" height="764.1256" id="Ensure" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="511.4583" x="9.375" y="53.7028"/><ellipse cx="235.9375" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M237.8479,73.822 Q237.4207,74.0417 236.9507,74.1516 Q236.4807,74.2615 235.9619,74.2615 Q234.1187,74.2615 233.1482,73.0469 Q232.1777,71.8323 232.1777,69.5374 Q232.1777,67.2363 233.1482,66.0217 Q234.1187,64.8071 235.9619,64.8071 Q236.4807,64.8071 236.9568,64.917 Q237.4329,65.0269 237.8479,65.2466 L237.8479,67.2485 Q237.384,66.8213 236.9476,66.6229 Q236.5112,66.4246 236.0474,66.4246 Q235.0586,66.4246 234.5551,67.2089 Q234.0515,67.9932 234.0515,69.5374 Q234.0515,71.0754 234.5551,71.8597 Q235.0586,72.644 236.0474,72.644 Q236.5112,72.644 236.9476,72.4457 Q237.384,72.2473 237.8479,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="43.75" x="258.8542" y="74.1211">Ensure</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="10.4167" x2="519.7917" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="519.7917" y1="93.4245" y2="93.4245"/><ellipse cx="20.8333" cy="104.8828" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="402.0833" x="32.2917" y="111.794">T ensure(Supplier&lt;Boolean&gt; valid, String message, Object... arguments)</text><ellipse cx="20.8333" cy="124.6277" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="430.2083" x="32.2917" y="131.5389">T ensure(boolean condition, Throwable, String message, Object... arguments)</text><ellipse cx="20.8333" cy="144.3726" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="250" x="32.2917" y="151.2838">T ensure(ValidationReporter, Runnable code)</text><ellipse cx="20.8333" cy="164.1174" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="365.625" x="32.2917" y="171.0286">T ensure(boolean condition, String message, Object... arguments)</text><ellipse cx="20.8333" cy="183.8623" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="195.8333" x="32.2917" y="190.7735">boolean ensure(boolean condition)</text><ellipse cx="20.8333" cy="203.6072" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="442.7083" x="32.2917" y="210.5184">void ensureWithin(double expected, double actual, double maximumDifference)</text><ellipse cx="20.8333" cy="223.3521" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="343.75" x="32.2917" y="230.2633">T illegalState(Throwable, String message, Object... arguments)</text><ellipse cx="20.8333" cy="243.0969" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="279.1667" x="32.2917" y="250.0081">T illegalState(String message, Object... arguments)</text><ellipse cx="20.8333" cy="262.8418" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="479.1667" x="32.2917" y="269.753">T report(Class&lt;? extends Message&gt; type, Throwable, String text, Object... arguments)</text><ellipse cx="20.8333" cy="282.5867" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="414.5833" x="32.2917" y="289.4979">T report(Class&lt;? extends Message&gt; type, String text, Object... arguments)</text><ellipse cx="20.8333" cy="302.3315" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="342.7083" x="32.2917" y="309.2428">ValidationReporter reporter(Class&lt;? extends Message&gt; type)</text><ellipse cx="20.8333" cy="322.0764" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="372.9167" x="32.2917" y="328.9876">void reporter(Class&lt;? extends Message&gt; type, ValidationReporter)</text><polygon fill="#FFFF44" points="20.8333,336.613,25,340.7796,20.8333,344.9463,16.6667,340.7796" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="333.3333" x="32.2917" y="348.7325">void ensureBetween(double actual, double low, double high)</text><ellipse cx="20.8333" cy="385.4777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="403.125" x="32.2917" y="392.3889">T ensureEqual(T given, T expected, String message, Object... arguments)</text><ellipse cx="20.8333" cy="405.2226" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="195.8333" x="32.2917" y="412.1338">T ensureEqual(T given, T expected)</text><ellipse cx="20.8333" cy="424.9674" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="223.9583" x="32.2917" y="431.8787">boolean ensureFalse(boolean condition)</text><ellipse cx="20.8333" cy="444.7123" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="215.625" x="32.2917" y="451.6235">T ensureNotEqual(T given, T expected)</text><ellipse cx="20.8333" cy="464.4572" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="351.0417" x="32.2917" y="471.3684">T ensureNotNull(T object, String message, Object... arguments)</text><ellipse cx="20.8333" cy="484.2021" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="143.75" x="32.2917" y="491.1133">T ensureNotNull(T object)</text><ellipse cx="20.8333" cy="503.9469" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="331.25" x="32.2917" y="510.8582">T ensureNull(T object, String message, Object... arguments)</text><ellipse cx="20.8333" cy="523.6918" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="123.9583" x="32.2917" y="530.603">T ensureNull(T object)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="238.5417" y1="368.3136" y2="368.3136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="241.6667" y="372.1232">(checks)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="291.6667" x2="519.7917" y1="368.3136" y2="368.3136"/><ellipse cx="20.8333" cy="567.3482" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="308.3333" x="32.2917" y="574.2594">T illegalArgument(String message, Object... arguments)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="195.8333" y1="550.1841" y2="550.1841"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="132.2917" x="198.9583" y="553.9937">(command line parsing)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="334.375" x2="519.7917" y1="550.1841" y2="550.1841"/><ellipse cx="20.8333" cy="611.0046" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="467.7083" x="32.2917" y="617.9159">void reporterFactory(MapFactory&lt;Class&lt;? extends Message&gt;,ValidationReporter&gt;)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="238.0208" y1="593.8405" y2="593.8405"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="47.9167" x="241.1458" y="597.6501">(factory)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="292.1875" x2="519.7917" y1="593.8405" y2="593.8405"/><ellipse cx="20.8333" cy="654.6611" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="91.6667" x="32.2917" y="661.5723">T unsupported()</text><ellipse cx="20.8333" cy="674.4059" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="292.7083" x="32.2917" y="681.3171">T unsupported(String message, Object... arguments)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="229.6875" y1="637.4969" y2="637.4969"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="232.8125" y="641.3066">(functional)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="300.5208" x2="519.7917" y1="637.4969" y2="637.4969"/><polygon fill="#FFFF44" points="20.8333,712.854,25,717.0207,20.8333,721.1873,16.6667,717.0207" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="470.8333" x="32.2917" y="724.9736">void ensureClose(Number expected, Number actual, int numberOfDecimalsToMatch)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="252.6042" y1="700.8982" y2="700.8982"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="18.75" x="255.7292" y="704.7078">(io)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="277.6042" x2="519.7917" y1="700.8982" y2="700.8982"/><ellipse cx="20.8333" cy="761.7188" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="301.0417" x="32.2917" y="768.63">T fail(Throwable, String message, Object... arguments)</text><ellipse cx="20.8333" cy="781.4636" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="35.4167" x="32.2917" y="788.3748">T fail()</text><ellipse cx="20.8333" cy="801.2085" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="236.4583" x="32.2917" y="808.1197">T fail(String message, Object... arguments)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="240.625" y1="744.5546" y2="744.5546"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="42.7083" x="243.75" y="748.3643">(status)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="289.5833" x2="519.7917" y1="744.5546" y2="744.5546"/><!--MD5=[685388f63a0771495c137b79fd24535e]
+class ValidationProblem--><rect codeLine="48" fill="#282828" height="122.8678" id="ValidationProblem" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="282.2917" x="292.7083" y="903.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="282.2917" x="292.7083" y="903.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="282.2917" x="292.7083" y="926.7578"/><rect codeLine="48" fill="none" height="122.8678" id="ValidationProblem" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="282.2917" x="292.7083" y="903.7028"/><ellipse cx="367.1875" cy="919.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M369.0979,923.822 Q368.6707,924.0417 368.2007,924.1516 Q367.7307,924.2615 367.2119,924.2615 Q365.3687,924.2615 364.3982,923.0469 Q363.4277,921.8323 363.4277,919.5374 Q363.4277,917.2363 364.3982,916.0217 Q365.3687,914.8071 367.2119,914.8071 Q367.7307,914.8071 368.2068,914.917 Q368.6829,915.0269 369.0979,915.2466 L369.0979,917.2485 Q368.634,916.8213 368.1976,916.6229 Q367.7612,916.4246 367.2974,916.4246 Q366.3086,916.4246 365.8051,917.2089 Q365.3015,917.9932 365.3015,919.5374 Q365.3015,921.0754 365.8051,921.8597 Q366.3086,922.644 367.2974,922.644 Q367.7612,922.644 368.1976,922.4457 Q368.634,922.2473 369.0979,921.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="118.75" x="390.1042" y="924.1211">ValidationProblem</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="293.75" x2="573.9583" y1="935.0911" y2="935.0911"/><ellipse cx="304.1667" cy="970.461" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="109.375" x="315.625" y="977.3722">ValidationProblem()</text><ellipse cx="304.1667" cy="990.2059" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="185.4167" x="315.625" y="997.1171">ValidationProblem(String, Object)</text><ellipse cx="304.1667" cy="1009.9508" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="250" x="315.625" y="1016.862">ValidationProblem(Throwable, String, Object)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="293.75" x2="390.1042" y1="953.2969" y2="953.2969"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="393.2292" y="957.1065">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="477.6042" x2="573.9583" y1="953.2969" y2="953.2969"/><!--MD5=[08770b5ff02271603200ffd0f930842d]
+class Problem--><rect fill="#282828" height="48.055" id="Problem" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="90.625" x="557.2917" y="412.0361"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="90.625" x="557.2917" y="412.0361"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="90.625" x="557.2917" y="435.0911"/><rect fill="none" height="48.055" id="Problem" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="90.625" x="557.2917" y="412.0361"/><ellipse cx="571.875" cy="427.7303" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M573.7854,432.1554 Q573.3582,432.3751 572.8882,432.4849 Q572.4182,432.5948 571.8994,432.5948 Q570.0562,432.5948 569.0857,431.3802 Q568.1152,430.1656 568.1152,427.8707 Q568.1152,425.5697 569.0857,424.3551 Q570.0562,423.1405 571.8994,423.1405 Q572.4182,423.1405 572.8943,423.2503 Q573.3704,423.3602 573.7854,423.5799 L573.7854,425.5819 Q573.3215,425.1546 572.8851,424.9563 Q572.4487,424.7579 571.9849,424.7579 Q570.9961,424.7579 570.4926,425.5422 Q569.989,426.3265 569.989,427.8707 Q569.989,429.4088 570.4926,430.1931 Q570.9961,430.9774 571.9849,430.9774 Q572.4487,430.9774 572.8851,430.779 Q573.3215,430.5806 573.7854,430.1534 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="53.125" x="588.5417" y="432.4544">Problem</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="558.3333" x2="646.875" y1="443.4245" y2="443.4245"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="558.3333" x2="646.875" y1="451.7578" y2="451.7578"/><!--MD5=[fa817c86e165f8b058dda706222bbfda]
+link Ensure to ValidationProblem--><path codeLine="6" d="M387.1875,818.3486 C396.7917,848.3486 405.5729,875.7757 412.8646,898.557 " fill="none" id="Ensure-to-ValidationProblem" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="414.4896,903.6403,415.5885,893.4401,412.8963,898.6817,407.6547,895.9894,414.4896,903.6403" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="46.875" x="406.7708" y="865.7878">reports</text><!--MD5=[a32f5d0fc0cc714715c0f9e2b07a35dc]
+reverse link Problem to ValidationProblem--><path codeLine="47" d="M601.7188,481.2653 C598.8646,554.2132 587.0625,703.1611 539.0625,818.2861 C526.3854,848.682 506.2917,878.7965 487.0417,903.6924 " fill="none" id="Problem-backto-ValidationProblem" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="594.4271,480.984,602.3646,460.3799,609.0104,481.432,594.4271,480.984" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[6cf47584c64f2bda690ac9371f857c8b]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.data.validation.ensure"
+    
+    Ensure - -> ValidationProblem : "reports"
+    class Ensure
+    {
+        - -
+        +T ensure(Supplier<Boolean> valid, String message, Object... arguments)
+        +T ensure(boolean condition, Throwable, String message, Object... arguments)
+        +T ensure(ValidationReporter, Runnable code)
+        +T ensure(boolean condition, String message, Object... arguments)
+        +boolean ensure(boolean condition)
+        +void ensureWithin(double expected, double actual, double maximumDifference)
+        +T illegalState(Throwable, String message, Object... arguments)
+        +T illegalState(String message, Object... arguments)
+        +T report(Class<? extends Message> type, Throwable, String text, Object... arguments)
+        +T report(Class<? extends Message> type, String text, Object... arguments)
+        +ValidationReporter reporter(Class<? extends Message> type)
+        +void reporter(Class<? extends Message> type, ValidationReporter)
+        #void ensureBetween(double actual, double low, double high)
+        - -(checks)- -
+        +T ensureEqual(T given, T expected, String message, Object... arguments)
+        +T ensureEqual(T given, T expected)
+        +boolean ensureFalse(boolean condition)
+        +T ensureNotEqual(T given, T expected)
+        +T ensureNotNull(T object, String message, Object... arguments)
+        +T ensureNotNull(T object)
+        +T ensureNull(T object, String message, Object... arguments)
+        +T ensureNull(T object)
+        - -(command line parsing)- -
+        +T illegalArgument(String message, Object... arguments)
+        - -(factory)- -
+        +void reporterFactory(MapFactory<Class<? extends Message>,ValidationReporter>)
+        - -(functional)- -
+        +T unsupported()
+        +T unsupported(String message, Object... arguments)
+        - -(io)- -
+        #void ensureClose(Number expected, Number actual, int numberOfDecimalsToMatch)
+        - -(status)- -
+        +T fail(Throwable, String message, Object... arguments)
+        +T fail()
+        +T fail(String message, Object... arguments)
+    }
+    
+    Problem <|- - ValidationProblem
+    class ValidationProblem
+    {
+        - -(constructors)- -
+        +ValidationProblem()
+        +ValidationProblem(String, Object)
+        +ValidationProblem(Throwable, String, Object)
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.kernel.data.validation.ensure"
+    
+    Ensure - -> ValidationProblem : "reports"
+    class Ensure
+    {
+        - -
+        +T ensure(Supplier<Boolean> valid, String message, Object... arguments)
+        +T ensure(boolean condition, Throwable, String message, Object... arguments)
+        +T ensure(ValidationReporter, Runnable code)
+        +T ensure(boolean condition, String message, Object... arguments)
+        +boolean ensure(boolean condition)
+        +void ensureWithin(double expected, double actual, double maximumDifference)
+        +T illegalState(Throwable, String message, Object... arguments)
+        +T illegalState(String message, Object... arguments)
+        +T report(Class<? extends Message> type, Throwable, String text, Object... arguments)
+        +T report(Class<? extends Message> type, String text, Object... arguments)
+        +ValidationReporter reporter(Class<? extends Message> type)
+        +void reporter(Class<? extends Message> type, ValidationReporter)
+        #void ensureBetween(double actual, double low, double high)
+        - -(checks)- -
+        +T ensureEqual(T given, T expected, String message, Object... arguments)
+        +T ensureEqual(T given, T expected)
+        +boolean ensureFalse(boolean condition)
+        +T ensureNotEqual(T given, T expected)
+        +T ensureNotNull(T object, String message, Object... arguments)
+        +T ensureNotNull(T object)
+        +T ensureNull(T object, String message, Object... arguments)
+        +T ensureNull(T object)
+        - -(command line parsing)- -
+        +T illegalArgument(String message, Object... arguments)
+        - -(factory)- -
+        +void reporterFactory(MapFactory<Class<? extends Message>,ValidationReporter>)
+        - -(functional)- -
+        +T unsupported()
+        +T unsupported(String message, Object... arguments)
+        - -(io)- -
+        #void ensureClose(Number expected, Number actual, int numberOfDecimalsToMatch)
+        - -(status)- -
+        +T fail(Throwable, String message, Object... arguments)
+        +T fail()
+        +T fail(String message, Object... arguments)
+    }
+    
+    Problem <|- - ValidationProblem
+    class ValidationProblem
+    {
+        - -(constructors)- -
+        +ValidationProblem()
+        +ValidationProblem(String, Object)
+        +ValidationProblem(Throwable, String, Object)
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

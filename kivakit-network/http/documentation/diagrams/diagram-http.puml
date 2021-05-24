@@ -1,0 +1,120 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "HTTP"
+    
+    abstract BaseNetworkResource
+    abstract BaseHttpResource
+    
+    interface Resourceful
+    
+    BaseNetworkResource <|-- BaseHttpResource
+    BaseHttpResource --> HttpStatus : "yields"
+    BaseHttpResource o-- NetworkAccessConstraints
+    BaseHttpResource o-- NetworkLocation
+    abstract class BaseHttpResource
+    {
+        --(constructors)--
+        #BaseHttpResource(NetworkLocation, NetworkAccessConstraints)
+        --
+        +void consume()
+        +String content()
+        +String contentType()
+        +String encoding()
+        +String header(String header)
+        --(collection)--
+        +VariableMap<String> responseHeader()
+        --(network)--
+        +HttpStatus status()
+        #DefaultHttpClient newClient()
+        #HttpUriRequest newRequest()
+    }
+    
+    NetworkAccessConstraints <|-- HttpAccessConstraints
+    HttpAccessConstraints o-- HttpBasicCredentials
+    class HttpAccessConstraints
+    {
+        --(network)--
+        +HttpBasicCredentials httpBasicCredentials()
+        +void httpBasicCredentials(HttpBasicCredentials)
+    }
+    
+    class HttpBasicCredentials
+    {
+        --(constructors)--
+        +HttpBasicCredentials(UserName, Password)
+        --
+        +Password password()
+        --(naming)--
+        +UserName userName()
+    }
+    
+    BaseHttpResource <|-- HttpGetResource
+    class HttpGetResource
+    {
+        --(constructors)--
+        +HttpGetResource(NetworkLocation, NetworkAccessConstraints)
+        --(lifecycle)--
+        #void onInitialize(HttpGet)
+    }
+    
+    NetworkLocation <|-- HttpNetworkLocation
+    Resourceful <|-- HttpNetworkLocation
+    HttpNetworkLocation --> HttpGetResource : "creates"
+    HttpNetworkLocation --> HttpPostResource : "creates"
+    HttpNetworkLocation --> HttpPutResource : "creates"
+    class HttpNetworkLocation
+    {
+        --(constructors)--
+        +HttpNetworkLocation(NetworkLocation)
+        +HttpNetworkLocation(NetworkPath)
+        --
+        +String content()
+        --(network)--
+        +HttpNetworkLocation child(String child)
+        +HttpGetResource get(String contentType)
+        +HttpGetResource get(NetworkAccessConstraints, String contentType)
+        +HttpGetResource get()
+        +HttpGetResource get(NetworkAccessConstraints)
+        +HttpGetResource get(NetworkAccessConstraints, Initializer<HttpGet>)
+        +HttpNetworkLocation parent()
+        +HttpPostResource post()
+        +HttpPostResource post(NetworkAccessConstraints)
+        +HttpPostResource post(String value)
+        +HttpPostResource post(String contentType, String value)
+        +HttpPostResource post(NetworkAccessConstraints, String content)
+        +HttpPostResource post(NetworkAccessConstraints, String contentType, String value)
+        +HttpPutResource put(String contentType, String value)
+        +HttpPutResource put(NetworkAccessConstraints, String contentType, String content)
+    }
+    
+    BaseHttpResource <|-- HttpPostResource
+    class HttpPostResource
+    {
+        --(constructors)--
+        +HttpPostResource(NetworkLocation, NetworkAccessConstraints)
+        --(lifecycle)--
+        #void onInitialize(HttpPost)
+    }
+    
+    BaseHttpResource <|-- HttpPutResource
+    class HttpPutResource
+    {
+        --(constructors)--
+        +HttpPutResource(NetworkLocation, NetworkAccessConstraints)
+        --(lifecycle)--
+        #void onInitialize(HttpPut post)
+    }
+    
+    class HttpStatus
+    {
+        --(constructors)--
+        +HttpStatus(int)
+        --(checks)--
+        +boolean isFailure()
+        +boolean isOkay()
+    }
+    
+@enduml
+

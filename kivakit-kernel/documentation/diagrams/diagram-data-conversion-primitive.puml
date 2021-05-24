@@ -1,0 +1,90 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Data - Primitive Converters"
+    
+    abstract BaseConverter
+    abstract BaseStringConverter
+    
+    interface StringConverter
+    
+    BaseConverter <|-- BaseStringConverter
+    StringConverter <|-- BaseStringConverter
+    abstract class BaseStringConverter<Value>
+    {
+    }
+    
+    BaseStringConverter <|-- BooleanConverter
+    class BooleanConverter
+    {
+        --(constructors)--
+        +BooleanConverter(Listener)
+    }
+    
+    BaseStringConverter <|-- DoubleConverter
+    class DoubleConverter
+    {
+        --(constructors)--
+        +DoubleConverter(Listener)
+    }
+    
+    BaseStringConverter <|-- FloatConverter
+    class FloatConverter
+    {
+        --(constructors)--
+        +FloatConverter(Listener)
+    }
+    
+    BaseStringConverter <|-- FormattedDoubleConverter
+    class FormattedDoubleConverter
+    {
+        --(constructors)--
+        +FormattedDoubleConverter(Listener)
+        +FormattedDoubleConverter(Listener, DecimalFormat)
+        +FormattedDoubleConverter(Listener, boolean, int)
+        +FormattedDoubleConverter(Listener, int)
+    }
+    
+    BaseStringConverter <|-- FormattedIntegerConverter
+    class FormattedIntegerConverter
+    {
+        --(constructors)--
+        +FormattedIntegerConverter(Listener)
+        +FormattedIntegerConverter(Listener, DecimalFormat)
+        +FormattedIntegerConverter(Listener, boolean)
+    }
+    
+    BaseStringConverter <|-- FormattedLongConverter
+    class FormattedLongConverter
+    {
+        --(constructors)--
+        +FormattedLongConverter(Listener)
+        +FormattedLongConverter(Listener, DecimalFormat)
+        +FormattedLongConverter(Listener, boolean)
+    }
+    
+    BaseStringConverter <|-- HexadecimalLongConverter
+    class HexadecimalLongConverter
+    {
+        --(constructors)--
+        +HexadecimalLongConverter(Listener)
+        +HexadecimalLongConverter(Listener, Style)
+    }
+    
+    BaseStringConverter <|-- IntegerConverter
+    class IntegerConverter
+    {
+        --(constructors)--
+        +IntegerConverter(Listener)
+    }
+    
+    BaseStringConverter <|-- LongConverter
+    class LongConverter
+    {
+        --(constructors)--
+        +LongConverter(Listener)
+    }
+    
+@enduml
+

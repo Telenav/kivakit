@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1262.5px" preserveAspectRatio="none" style="width:1236px;height:1262px;background:#333333;" version="1.1" viewBox="0 0 1236 1262" width="1236.4583px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="207.2917" x="507.2917" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="184.375" x="518.75" y="30.5583">Network Locations</text><!--MD5=[a895581b51b0debe0fc56e5f7d686e14]
+class BaseReadableResource--><rect codeLine="6" fill="#282828" height="48.055" id="BaseReadableResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="184.375" x="62.5" y="182.8695"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="184.375" x="62.5" y="182.8695"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="184.375" x="62.5" y="205.9245"/><rect codeLine="6" fill="none" height="48.055" id="BaseReadableResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="184.375" x="62.5" y="182.8695"/><ellipse cx="77.0833" cy="198.5636" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M77.1973,195.2657 L76.3489,198.995 L78.0518,198.995 Z M76.0986,193.6178 L78.302,193.6178 L80.7617,202.7303 L78.9612,202.7303 L78.3997,200.4781 L75.9888,200.4781 L75.4395,202.7303 L73.6389,202.7303 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="146.875" x="93.75" y="203.2878">BaseReadableResource</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="63.5417" x2="245.8333" y1="214.2578" y2="214.2578"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="63.5417" x2="245.8333" y1="222.5911" y2="222.5911"/><!--MD5=[68ebd5602d5c1818272b8fbc834ffe1f]
+class NetworkResource--><rect codeLine="92" fill="#282828" height="83.3781" id="NetworkResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="182.2917" x="293.75" y="165.1611"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="182.2917" x="293.75" y="165.1611"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="182.2917" x="293.75" y="188.2161"/><rect codeLine="92" fill="none" height="83.3781" id="NetworkResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="182.2917" x="293.75" y="165.1611"/><ellipse cx="322.8646" cy="180.8553" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M319.7477,178.0172 L319.7477,176.4303 L325.1737,176.4303 L325.1737,178.0172 L323.361,178.0172 L323.361,183.9559 L325.1737,183.9559 L325.1737,185.5428 L319.7477,185.5428 L319.7477,183.9559 L321.5605,183.9559 L321.5605,178.0172 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="112.5" x="342.7604" y="185.5794">NetworkResource</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="294.7917" x2="475" y1="196.5495" y2="196.5495"/><ellipse cx="305.2083" cy="231.9194" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="150" x="316.6667" y="238.8306">NetworkLocation location()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="294.7917" x2="355.2083" y1="214.7552" y2="214.7552"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="358.3333" y="218.5649">(network)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="414.5833" x2="475" y1="214.7552" y2="214.7552"/><!--MD5=[f39ad9880bdb1ab85099c19a5add36ec]
+class AsString--><rect codeLine="9" fill="#282828" height="48.055" id="AsString" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="92.7083" x="669.7917" y="182.8695"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="92.7083" x="669.7917" y="182.8695"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="92.7083" x="669.7917" y="205.9245"/><rect codeLine="9" fill="none" height="48.055" id="AsString" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="92.7083" x="669.7917" y="182.8695"/><ellipse cx="684.375" cy="198.5636" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M681.2581,195.7255 L681.2581,194.1386 L686.6842,194.1386 L686.6842,195.7255 L684.8714,195.7255 L684.8714,201.6642 L686.6842,201.6642 L686.6842,203.2511 L681.2581,203.2511 L681.2581,201.6642 L683.0709,201.6642 L683.0709,195.7255 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="55.2083" x="701.0417" y="203.2878">AsString</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="670.8333" x2="761.4583" y1="214.2578" y2="214.2578"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="670.8333" x2="761.4583" y1="222.5911" y2="222.5911"/><!--MD5=[7a4729d26b999f6a4650b01106c103c5]
+class Comparable--><rect codeLine="10" fill="#282828" height="48.055" id="Comparable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="115.625" x="517.7083" y="182.8695"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="115.625" x="517.7083" y="182.8695"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="115.625" x="517.7083" y="205.9245"/><rect codeLine="10" fill="none" height="48.055" id="Comparable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="115.625" x="517.7083" y="182.8695"/><ellipse cx="532.2917" cy="198.5636" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M529.1748,195.7255 L529.1748,194.1386 L534.6008,194.1386 L534.6008,195.7255 L532.7881,195.7255 L532.7881,201.6642 L534.6008,201.6642 L534.6008,203.2511 L529.1748,203.2511 L529.1748,201.6642 L530.9875,201.6642 L530.9875,195.7255 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="78.125" x="548.9583" y="203.2878">Comparable</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="518.75" x2="632.2917" y1="214.2578" y2="214.2578"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="518.75" x2="632.2917" y1="222.5911" y2="222.5911"/><!--MD5=[7aca7191f476af6561cf4f43a12cda50]
+class Validatable--><rect codeLine="11" fill="#282828" height="48.055" id="Validatable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="109.375" x="336.4583" y="549.5361"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="109.375" x="336.4583" y="549.5361"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="109.375" x="336.4583" y="572.5911"/><rect codeLine="11" fill="none" height="48.055" id="Validatable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="109.375" x="336.4583" y="549.5361"/><ellipse cx="351.0417" cy="565.2303" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M347.9248,562.3922 L347.9248,560.8053 L353.3508,560.8053 L353.3508,562.3922 L351.5381,562.3922 L351.5381,568.3309 L353.3508,568.3309 L353.3508,569.9178 L347.9248,569.9178 L347.9248,568.3309 L349.7375,568.3309 L349.7375,562.3922 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="71.875" x="367.7083" y="569.9544">Validatable</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="337.5" x2="444.7917" y1="580.9245" y2="580.9245"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="337.5" x2="444.7917" y1="589.2578" y2="589.2578"/><!--MD5=[0d8f06937a3bcd729f0372312b29db1d]
+class BaseNetworkResource--><rect codeLine="15" fill="#282828" height="166.5243" id="BaseNetworkResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="290.625" x="9.375" y="490.1611"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="290.625" x="9.375" y="490.1611"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="290.625" x="9.375" y="513.2161"/><rect codeLine="15" fill="none" height="166.5243" id="BaseNetworkResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="290.625" x="9.375" y="490.1611"/><ellipse cx="76.0417" cy="505.8553" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M76.1556,502.5574 L75.3072,506.2866 L77.0101,506.2866 Z M75.057,500.9094 L77.2603,500.9094 L79.7201,510.022 L77.9195,510.022 L77.358,507.7698 L74.9471,507.7698 L74.3978,510.022 L72.5972,510.022 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="142.7083" x="98.9583" y="510.5794">BaseNetworkResource</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="10.4167" x2="298.9583" y1="521.5495" y2="521.5495"/><polygon fill="#FFFF44" points="20.8333,551.711,25,555.8777,20.8333,560.0444,16.6667,555.8777" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="258.3333" x="32.2917" y="563.8306">BaseNetworkResource(BaseReadableResource)</text><polygon fill="#FFFF44" points="20.8333,571.4559,25,575.6226,20.8333,579.7892,16.6667,575.6226" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="225" x="32.2917" y="583.5754">BaseNetworkResource(NetworkLocation)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="110.9375" y1="539.7552" y2="539.7552"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="114.0625" y="543.5649">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="198.4375" x2="298.9583" y1="539.7552" y2="539.7552"/><ellipse cx="20.8333" cy="620.3206" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="59.375" x="32.2917" y="627.2319">URI asUri()</text><ellipse cx="20.8333" cy="640.0655" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="32.2917" y="646.9767">URL asUrl()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="10.4167" x2="125" y1="603.1565" y2="603.1565"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="128.125" y="606.9661">(network)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="184.375" x2="298.9583" y1="603.1565" y2="603.1565"/><!--MD5=[d9354a1daa8ea11f28e96e6d3af2462c]
+class NetworkAccessConstraints--><rect codeLine="29" fill="#282828" height="214.3473" id="NetworkAccessConstraints" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="332.2917" x="190.625" y="914.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="332.2917" x="190.625" y="914.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="332.2917" x="190.625" y="937.1745"/><rect codeLine="29" fill="none" height="214.3473" id="NetworkAccessConstraints" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="332.2917" x="190.625" y="914.1195"/><ellipse cx="262.5" cy="929.8136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M264.4104,934.2387 Q263.9832,934.4584 263.5132,934.5683 Q263.0432,934.6781 262.5244,934.6781 Q260.6812,934.6781 259.7107,933.4635 Q258.7402,932.2489 258.7402,929.954 Q258.7402,927.653 259.7107,926.4384 Q260.6812,925.2238 262.5244,925.2238 Q263.0432,925.2238 263.5193,925.3337 Q263.9954,925.4435 264.4104,925.6632 L264.4104,927.6652 Q263.9465,927.238 263.5101,927.0396 Q263.0737,926.8412 262.6099,926.8412 Q261.6211,926.8412 261.1176,927.6255 Q260.614,928.4098 260.614,929.954 Q260.614,931.4921 261.1176,932.2764 Q261.6211,933.0607 262.6099,933.0607 Q263.0737,933.0607 263.5101,932.8623 Q263.9465,932.664 264.4104,932.2367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="173.9583" x="285.4167" y="934.5378">NetworkAccessConstraints</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="191.6667" x2="521.875" y1="945.5078" y2="945.5078"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="191.6667" x2="521.875" y1="953.8411" y2="953.8411"/><ellipse cx="202.0833" cy="965.2995" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="142.7083" x="213.5417" y="972.2107">void password(Password)</text><ellipse cx="202.0833" cy="985.0444" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="118.75" x="213.5417" y="991.9556">Password password()</text><ellipse cx="202.0833" cy="1028.7008" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="148.9583" x="213.5417" y="1035.612">void userName(UserName)</text><ellipse cx="202.0833" cy="1048.4456" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="125" x="213.5417" y="1055.3569">UserName userName()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="191.6667" x2="328.6458" y1="1011.5367" y2="1011.5367"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="50" x="331.7708" y="1015.3463">(naming)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="384.8958" x2="521.875" y1="1011.5367" y2="1011.5367"/><ellipse cx="202.0833" cy="1092.1021" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="103.125" x="213.5417" y="1099.0133">Duration timeout()</text><ellipse cx="202.0833" cy="1111.8469" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="300" x="213.5417" y="1118.7581">NetworkAccessConstraints timeout(Duration timeout)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="191.6667" x2="327.0833" y1="1074.9379" y2="1074.9379"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="330.2083" y="1078.7476">(network)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="386.4583" x2="521.875" y1="1074.9379" y2="1074.9379"/><!--MD5=[e7713a66b67445a0eb297b7e73c442e5]
+class Duration--><rect fill="#282828" height="48.055" id="Duration" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="94.7917" x="173.9583" y="1207.8695"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="94.7917" x="173.9583" y="1207.8695"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="94.7917" x="173.9583" y="1230.9245"/><rect fill="none" height="48.055" id="Duration" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="94.7917" x="173.9583" y="1207.8695"/><ellipse cx="188.5417" cy="1223.5636" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M190.4521,1227.9887 Q190.0248,1228.2084 189.5549,1228.3183 Q189.0849,1228.4281 188.5661,1228.4281 Q186.7228,1228.4281 185.7524,1227.2135 Q184.7819,1225.9989 184.7819,1223.704 Q184.7819,1221.403 185.7524,1220.1884 Q186.7228,1218.9738 188.5661,1218.9738 Q189.0849,1218.9738 189.561,1219.0837 Q190.037,1219.1935 190.4521,1219.4132 L190.4521,1221.4152 Q189.9882,1220.988 189.5518,1220.7896 Q189.1154,1220.5912 188.6515,1220.5912 Q187.6628,1220.5912 187.1592,1221.3755 Q186.6557,1222.1598 186.6557,1223.704 Q186.6557,1225.2421 187.1592,1226.0264 Q187.6628,1226.8107 188.6515,1226.8107 Q189.1154,1226.8107 189.5518,1226.6123 Q189.9882,1226.414 190.4521,1225.9867 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="57.2917" x="205.2083" y="1228.2878">Duration</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="175" x2="267.7083" y1="1239.2578" y2="1239.2578"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="175" x2="267.7083" y1="1247.5911" y2="1247.5911"/><!--MD5=[9a6e98b13a389138a8ee3cd2798f9215]
+class UserName--><rect fill="#282828" height="48.055" id="UserName" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="103.125" x="305.2083" y="1207.8695"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="103.125" x="305.2083" y="1207.8695"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="103.125" x="305.2083" y="1230.9245"/><rect fill="none" height="48.055" id="UserName" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="103.125" x="305.2083" y="1207.8695"/><ellipse cx="319.7917" cy="1223.5636" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M321.7021,1227.9887 Q321.2748,1228.2084 320.8049,1228.3183 Q320.3349,1228.4281 319.8161,1228.4281 Q317.9728,1228.4281 317.0024,1227.2135 Q316.0319,1225.9989 316.0319,1223.704 Q316.0319,1221.403 317.0024,1220.1884 Q317.9728,1218.9738 319.8161,1218.9738 Q320.3349,1218.9738 320.811,1219.0837 Q321.287,1219.1935 321.7021,1219.4132 L321.7021,1221.4152 Q321.2382,1220.988 320.8018,1220.7896 Q320.3654,1220.5912 319.9015,1220.5912 Q318.9128,1220.5912 318.4092,1221.3755 Q317.9057,1222.1598 317.9057,1223.704 Q317.9057,1225.2421 318.4092,1226.0264 Q318.9128,1226.8107 319.9015,1226.8107 Q320.3654,1226.8107 320.8018,1226.6123 Q321.2382,1226.414 321.7021,1225.9867 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="65.625" x="336.4583" y="1228.2878">UserName</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="306.25" x2="407.2917" y1="1239.2578" y2="1239.2578"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="306.25" x2="407.2917" y1="1247.5911" y2="1247.5911"/><!--MD5=[2f01b1126ff33a0669651ec2488a5ef9]
+class Password--><rect fill="#282828" height="48.055" id="Password" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="98.9583" x="444.7917" y="1207.8695"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="98.9583" x="444.7917" y="1207.8695"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="98.9583" x="444.7917" y="1230.9245"/><rect fill="none" height="48.055" id="Password" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="98.9583" x="444.7917" y="1207.8695"/><ellipse cx="459.375" cy="1223.5636" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M461.2854,1227.9887 Q460.8582,1228.2084 460.3882,1228.3183 Q459.9182,1228.4281 459.3994,1228.4281 Q457.5562,1228.4281 456.5857,1227.2135 Q455.6152,1225.9989 455.6152,1223.704 Q455.6152,1221.403 456.5857,1220.1884 Q457.5562,1218.9738 459.3994,1218.9738 Q459.9182,1218.9738 460.3943,1219.0837 Q460.8704,1219.1935 461.2854,1219.4132 L461.2854,1221.4152 Q460.8215,1220.988 460.3851,1220.7896 Q459.9487,1220.5912 459.4849,1220.5912 Q458.4961,1220.5912 457.9926,1221.3755 Q457.489,1222.1598 457.489,1223.704 Q457.489,1225.2421 457.9926,1226.0264 Q458.4961,1226.8107 459.4849,1226.8107 Q459.9487,1226.8107 460.3851,1226.6123 Q460.8215,1226.414 461.2854,1225.9867 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="61.4583" x="476.0417" y="1228.2878">Password</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="445.8333" x2="542.7083" y1="1239.2578" y2="1239.2578"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="445.8333" x2="542.7083" y1="1247.5911" y2="1247.5911"/><!--MD5=[66a462850cecc63a355ae0a9dda88528]
+class NetworkLocation--><rect codeLine="48" fill="#282828" height="479.364" id="NetworkLocation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="354.1667" x="510.9375" y="333.9111"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="354.1667" x="510.9375" y="333.9111"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="354.1667" x="510.9375" y="356.9661"/><rect codeLine="48" fill="none" height="479.364" id="NetworkLocation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="354.1667" x="510.9375" y="333.9111"/><ellipse cx="626.0417" cy="349.6053" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M627.9521,354.0304 Q627.5248,354.2501 627.0549,354.3599 Q626.5849,354.4698 626.0661,354.4698 Q624.2228,354.4698 623.2524,353.2552 Q622.2819,352.0406 622.2819,349.7457 Q622.2819,347.4447 623.2524,346.2301 Q624.2228,345.0155 626.0661,345.0155 Q626.5849,345.0155 627.061,345.1253 Q627.537,345.2352 627.9521,345.4549 L627.9521,347.4569 Q627.4882,347.0296 627.0518,346.8313 Q626.6154,346.6329 626.1515,346.6329 Q625.1628,346.6329 624.6592,347.4172 Q624.1557,348.2015 624.1557,349.7457 Q624.1557,351.2838 624.6592,352.0681 Q625.1628,352.8524 626.1515,352.8524 Q626.6154,352.8524 627.0518,352.654 Q627.4882,352.4556 627.9521,352.0284 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="109.375" x="648.9583" y="354.3294">NetworkLocation</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="511.9792" x2="864.0625" y1="365.2995" y2="365.2995"/><ellipse cx="522.3958" cy="400.6694" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="195.8333" x="533.8542" y="407.5806">NetworkLocation(NetworkLocation)</text><ellipse cx="522.3958" cy="420.4142" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="171.875" x="533.8542" y="427.3254">NetworkLocation(NetworkPath)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="511.9792" x2="644.2708" y1="383.5052" y2="383.5052"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="647.3958" y="387.3149">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="731.7708" x2="864.0625" y1="383.5052" y2="383.5052"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="511.9792" x2="864.0625" y1="437.0341" y2="437.0341"/><ellipse cx="522.3958" cy="448.4924" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="250" x="533.8542" y="455.4036">void constraints(NetworkAccessConstraints)</text><ellipse cx="522.3958" cy="468.2373" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="176.0417" x="533.8542" y="475.1485">void reference(String fragment)</text><ellipse cx="522.3958" cy="487.9822" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="97.9167" x="533.8542" y="494.8934">String reference()</text><ellipse cx="522.3958" cy="531.6386" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="227.0833" x="533.8542" y="538.5498">boolean isChildOf(NetworkLocation that)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="511.9792" x2="661.4583" y1="514.4745" y2="514.4745"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="664.5833" y="518.2841">(checks)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="714.5833" x2="864.0625" y1="514.4745" y2="514.4745"/><ellipse cx="522.3958" cy="575.295" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="59.375" x="533.8542" y="582.2062">URI asUri()</text><ellipse cx="522.3958" cy="595.0399" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="533.8542" y="601.9511">URL asUrl()</text><ellipse cx="522.3958" cy="614.7847" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="226.0417" x="533.8542" y="621.696">NetworkAccessConstraints constraints()</text><ellipse cx="522.3958" cy="634.5296" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="533.8542" y="641.4408">Host host()</text><ellipse cx="522.3958" cy="654.2745" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="150" x="533.8542" y="661.1857">NetworkPath networkPath()</text><ellipse cx="522.3958" cy="674.0194" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="58.3333" x="533.8542" y="680.9306">Port port()</text><ellipse cx="522.3958" cy="693.7642" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="106.25" x="533.8542" y="700.6755">Protocol protocol()</text><ellipse cx="522.3958" cy="713.5091" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="221.875" x="533.8542" y="720.4203">NetworkLocation withPath(NetworkPath)</text><ellipse cx="522.3958" cy="733.254" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="321.875" x="533.8542" y="740.1652">NetworkLocation withQueryParameters(QueryParameters)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="511.9792" x2="658.3333" y1="558.1309" y2="558.1309"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="661.4583" y="561.9405">(network)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="717.7083" x2="864.0625" y1="558.1309" y2="558.1309"/><ellipse cx="522.3958" cy="776.9104" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="203.125" x="533.8542" y="783.8216">QueryParameters queryParameters()</text><ellipse cx="522.3958" cy="796.6553" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="227.0833" x="533.8542" y="803.5665">void queryParameters(QueryParameters)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="511.9792" x2="661.9792" y1="759.7463" y2="759.7463"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="45.8333" x="665.1042" y="763.5559">(search)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="714.0625" x2="864.0625" y1="759.7463" y2="759.7463"/><!--MD5=[a0bfe97ac0a38e6e74cc1c7c7b744b71]
+class Port--><rect fill="#282828" height="48.055" id="Port" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="63.5417" x="853.125" y="997.4528"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="63.5417" x="853.125" y="997.4528"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="63.5417" x="853.125" y="1020.5078"/><rect fill="none" height="48.055" id="Port" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="63.5417" x="853.125" y="997.4528"/><ellipse cx="867.7083" cy="1013.147" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M869.6187,1017.572 Q869.1915,1017.7917 868.7215,1017.9016 Q868.2515,1018.0115 867.7327,1018.0115 Q865.8895,1018.0115 864.919,1016.7969 Q863.9486,1015.5823 863.9486,1013.2874 Q863.9486,1010.9863 864.919,1009.7717 Q865.8895,1008.5571 867.7327,1008.5571 Q868.2515,1008.5571 868.7276,1008.667 Q869.2037,1008.7769 869.6187,1008.9966 L869.6187,1010.9985 Q869.1549,1010.5713 868.7185,1010.3729 Q868.2821,1010.1746 867.8182,1010.1746 Q866.8294,1010.1746 866.3259,1010.9589 Q865.8223,1011.7432 865.8223,1013.2874 Q865.8223,1014.8254 866.3259,1015.6097 Q866.8294,1016.394 867.8182,1016.394 Q868.2821,1016.394 868.7185,1016.1957 Q869.1549,1015.9973 869.6187,1015.5701 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="26.0417" x="884.375" y="1017.8711">Port</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="854.1667" x2="915.625" y1="1028.8411" y2="1028.8411"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="854.1667" x2="915.625" y1="1037.1745" y2="1037.1745"/><!--MD5=[c3b661e0ca09a219b866b779e13f5061]
+class NetworkPath--><rect codeLine="75" fill="#282828" height="245.5037" id="NetworkPath" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="276.0417" x="953.125" y="898.4945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="276.0417" x="953.125" y="898.4945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="276.0417" x="953.125" y="921.5495"/><rect codeLine="75" fill="none" height="245.5037" id="NetworkPath" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="276.0417" x="953.125" y="898.4945"/><ellipse cx="1042.7083" cy="914.1886" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1044.6187,918.6137 Q1044.1915,918.8334 1043.7215,918.9433 Q1043.2515,919.0531 1042.7327,919.0531 Q1040.8895,919.0531 1039.919,917.8385 Q1038.9486,916.6239 1038.9486,914.329 Q1038.9486,912.028 1039.919,910.8134 Q1040.8895,909.5988 1042.7327,909.5988 Q1043.2515,909.5988 1043.7276,909.7087 Q1044.2037,909.8185 1044.6187,910.0382 L1044.6187,912.0402 Q1044.1549,911.613 1043.7185,911.4146 Q1043.2821,911.2162 1042.8182,911.2162 Q1041.8294,911.2162 1041.3259,912.0005 Q1040.8223,912.7848 1040.8223,914.329 Q1040.8223,915.8671 1041.3259,916.6514 Q1041.8294,917.4357 1042.8182,917.4357 Q1043.2821,917.4357 1043.7185,917.2373 Q1044.1549,917.039 1044.6187,916.6117 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="82.2917" x="1065.625" y="918.9128">NetworkPath</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="954.1667" x2="1228.125" y1="929.8828" y2="929.8828"/><polygon fill="#FFFF44" points="964.5833,960.0444,968.75,964.211,964.5833,968.3777,960.4167,964.211" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="147.9167" x="976.0417" y="972.1639">NetworkPath(NetworkPath)</text><polygon fill="#FFFF44" points="964.5833,979.7892,968.75,983.9559,964.5833,988.1226,960.4167,983.9559" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="218.75" x="976.0417" y="991.9088">NetworkPath(Port, String, List&lt;String&gt;)</text><polygon fill="#FFFF44" points="964.5833,999.5341,968.75,1003.7008,964.5833,1007.8674,960.4167,1003.7008" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="164.5833" x="976.0417" y="1011.6536">NetworkPath(Port, StringPath)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="954.1667" x2="1047.3958" y1="948.0886" y2="948.0886"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="1050.5208" y="951.8982">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1134.8958" x2="1228.125" y1="948.0886" y2="948.0886"/><ellipse cx="964.5833" cy="1048.3988" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="59.375" x="976.0417" y="1055.3101">URI asUri()</text><ellipse cx="964.5833" cy="1068.1437" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="168.75" x="976.0417" y="1075.0549">NetworkPath networkPath(URI)</text><ellipse cx="964.5833" cy="1087.8886" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="240.625" x="976.0417" y="1094.7998">NetworkPath networkPath(Port, String path)</text><ellipse cx="964.5833" cy="1107.6335" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="243.75" x="976.0417" y="1114.5447">NetworkPath parseNetworkPath(String path)</text><ellipse cx="964.5833" cy="1127.3783" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="58.3333" x="976.0417" y="1134.2896">Port port()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="954.1667" x2="1061.4583" y1="1031.2347" y2="1031.2347"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="1064.5833" y="1035.0444">(network)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1120.8333" x2="1228.125" y1="1031.2347" y2="1031.2347"/><!--MD5=[405ab2257796eab08016fdcb5b0b9178]
+class QueryParameters--><rect codeLine="98" fill="#282828" height="210.1807" id="QueryParameters" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="257.2917" x="559.375" y="916.2028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="257.2917" x="559.375" y="916.2028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="257.2917" x="559.375" y="939.2578"/><rect codeLine="98" fill="none" height="210.1807" id="QueryParameters" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="257.2917" x="559.375" y="916.2028"/><ellipse cx="625.5208" cy="931.897" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M627.4312,936.322 Q627.004,936.5417 626.534,936.6516 Q626.064,936.7615 625.5452,936.7615 Q623.702,936.7615 622.7315,935.5469 Q621.7611,934.3323 621.7611,932.0374 Q621.7611,929.7363 622.7315,928.5217 Q623.702,927.3071 625.5452,927.3071 Q626.064,927.3071 626.5401,927.417 Q627.0162,927.5269 627.4312,927.7466 L627.4312,929.7485 Q626.9674,929.3213 626.531,929.1229 Q626.0946,928.9246 625.6307,928.9246 Q624.6419,928.9246 624.1384,929.7089 Q623.6348,930.4932 623.6348,932.0374 Q623.6348,933.5754 624.1384,934.3597 Q624.6419,935.144 625.6307,935.144 Q626.0946,935.144 626.531,934.9457 Q626.9674,934.7473 627.4312,934.3201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="110.4167" x="648.4375" y="936.6211">QueryParameters</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="560.4167" x2="815.625" y1="947.5911" y2="947.5911"/><polygon fill="#FFFF44" points="570.8333,977.7527,575,981.9194,570.8333,986.086,566.6667,981.9194" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="138.5417" x="582.2917" y="989.8722">QueryParameters(String)</text><ellipse cx="570.8333" cy="1002.7059" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="225" x="582.2917" y="1009.6171">QueryParameters(VariableMap&lt;String&gt;)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="560.4167" x2="644.2708" y1="965.7969" y2="965.7969"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="647.3958" y="969.6065">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="731.7708" x2="815.625" y1="965.7969" y2="965.7969"/><ellipse cx="570.8333" cy="1046.3623" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="166.6667" x="582.2917" y="1053.2735">VariableMap&lt;String&gt; asMap()</text><ellipse cx="570.8333" cy="1066.1072" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="100" x="582.2917" y="1073.0184">boolean isEmpty()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="560.4167" x2="653.6458" y1="1029.1982" y2="1029.1982"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="656.7708" y="1033.0078">(collection)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="722.3958" x2="815.625" y1="1029.1982" y2="1029.1982"/><ellipse cx="570.8333" cy="1109.7636" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="172.9167" x="582.2917" y="1116.6748">QueryParameters parse(String)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="560.4167" x2="661.9792" y1="1092.5995" y2="1092.5995"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="45.8333" x="665.1042" y="1096.4091">(search)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="714.0625" x2="815.625" y1="1092.5995" y2="1092.5995"/><!--MD5=[85738745fc76c7072f01ba653768c762]
+class FilePath--><rect fill="#282828" height="48.055" id="FilePath" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="88.5417" x="1046.875" y="549.5361"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="88.5417" x="1046.875" y="549.5361"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="88.5417" x="1046.875" y="572.5911"/><rect fill="none" height="48.055" id="FilePath" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="88.5417" x="1046.875" y="549.5361"/><ellipse cx="1061.4583" cy="565.2303" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1063.3687,569.6554 Q1062.9415,569.8751 1062.4715,569.9849 Q1062.0015,570.0948 1061.4827,570.0948 Q1059.6395,570.0948 1058.669,568.8802 Q1057.6986,567.6656 1057.6986,565.3707 Q1057.6986,563.0697 1058.669,561.8551 Q1059.6395,560.6405 1061.4827,560.6405 Q1062.0015,560.6405 1062.4776,560.7503 Q1062.9537,560.8602 1063.3687,561.0799 L1063.3687,563.0819 Q1062.9049,562.6546 1062.4685,562.4563 Q1062.0321,562.2579 1061.5682,562.2579 Q1060.5794,562.2579 1060.0759,563.0422 Q1059.5723,563.8265 1059.5723,565.3707 Q1059.5723,566.9088 1060.0759,567.6931 Q1060.5794,568.4774 1061.5682,568.4774 Q1062.0321,568.4774 1062.4685,568.279 Q1062.9049,568.0806 1063.3687,567.6534 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="51.0417" x="1078.125" y="569.9544">FilePath</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1047.9167" x2="1134.375" y1="580.9245" y2="580.9245"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1047.9167" x2="1134.375" y1="589.2578" y2="589.2578"/><!--MD5=[6b13f1b330d33795af281e5c1dfe1e98]
+class Resource--><rect codeLine="89" fill="#282828" height="48.055" id="Resource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="95.8333" x="336.9792" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="95.8333" x="336.9792" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="95.8333" x="336.9792" y="76.7578"/><rect codeLine="89" fill="none" height="48.055" id="Resource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="95.8333" x="336.9792" y="53.7028"/><ellipse cx="351.5625" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M348.4456,66.5588 L348.4456,64.9719 L353.8717,64.9719 L353.8717,66.5588 L352.0589,66.5588 L352.0589,72.4976 L353.8717,72.4976 L353.8717,74.0845 L348.4456,74.0845 L348.4456,72.4976 L350.2584,72.4976 L350.2584,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="58.3333" x="368.2292" y="74.1211">Resource</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="338.0208" x2="431.7708" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="338.0208" x2="431.7708" y1="93.4245" y2="93.4245"/><!--MD5=[db22b422356ad386049746a823fc880c]
+reverse link BaseReadableResource to BaseNetworkResource--><path codeLine="13" d="M154.6875,252.0882 C154.6875,310.9215 154.6875,416.0674 154.6875,489.807 " fill="none" id="BaseReadableResource-backto-BaseNetworkResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="147.3958,251.7861,154.6875,230.9528,161.9792,251.7861,147.3958,251.7861" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[782901c25fa4ae20c9901752c96e17b2]
+reverse link NetworkResource to BaseNetworkResource--><path codeLine="14" d="M347.7917,266.6299 C309.5625,327.1715 249.6458,422.057 206.6979,490.0778 " fill="none" id="NetworkResource-backto-BaseNetworkResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="341.8646,262.3486,359.1563,248.6299,354.1979,270.1403,341.8646,262.3486" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[8eac8212839f309475013794b29220ce]
+reverse link Validatable to NetworkAccessConstraints--><path codeLine="25" d="M387.7604,618.4007 C382.5104,686.5257 372.2396,819.7236 364.9688,914.0986 " fill="none" id="Validatable-backto-NetworkAccessConstraints" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="380.5,617.7757,389.375,597.5674,395.0417,618.9007,380.5,617.7757" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[7b1e5a92242607074e6c0e5889531a57]
+reverse link NetworkAccessConstraints to Duration--><path codeLine="26" d="M280.2292,1140.2028 C263.5417,1165.8799 247.5833,1190.432 236.5,1207.484 " fill="none" id="NetworkAccessConstraints-backto-Duration" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="287.6771,1128.7549,280.7773,1131.7241,280.8642,1139.2351,287.7641,1136.2659,287.6771,1128.7549" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[724860ad6428d2b245db6470db43c25d]
+reverse link NetworkAccessConstraints to UserName--><path codeLine="27" d="M356.7708,1142.6195 C356.7708,1167.4111 356.7708,1190.9736 356.7708,1207.484 " fill="none" id="NetworkAccessConstraints-backto-UserName" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="356.7708,1128.7549,352.6042,1135.0049,356.7708,1141.2549,360.9375,1135.0049,356.7708,1128.7549" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[90196ef111acec11ba33287dc352b51f]
+reverse link NetworkAccessConstraints to Password--><path codeLine="28" d="M434.4896,1140.2028 C451.4375,1165.8799 467.6354,1190.432 478.8958,1207.484 " fill="none" id="NetworkAccessConstraints-backto-Password" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="426.9271,1128.7549,426.8996,1136.2664,433.8228,1139.1808,433.8502,1131.6693,426.9271,1128.7549" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f5164f0774a4c2ea7dd6cf9fe45d90fa]
+reverse link AsString to NetworkLocation--><path codeLine="42" d="M712.7604,251.8174 C711.0521,273.9632 708.8333,302.7028 706.4271,333.8903 " fill="none" id="AsString-backto-NetworkLocation" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="705.4896,251.1611,714.3646,230.9528,720.0313,252.2861,705.4896,251.1611" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[53a38c12a759ab3b04dcb12d4dfa1206]
+reverse link Comparable to NetworkLocation--><path codeLine="43" d="M588.8646,251.1195 C595.7292,273.3486 604.6875,302.3799 614.4063,333.8903 " fill="none" id="Comparable-backto-NetworkLocation" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="581.8229,253.0049,582.6458,230.9528,595.75,248.7132,581.8229,253.0049" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[5ce5d8a192bf24167ef36e57b295ec6f]
+reverse link NetworkLocation to Port--><path codeLine="44" d="M803.0208,825.7965 C813.9063,850.307 824.6875,874.8486 834.8958,898.4945 C849.6667,932.7236 865.8958,972.7757 875.7396,997.3486 " fill="none" id="NetworkLocation-backto-Port" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="797.4896,813.3799,796.2254,820.7843,802.574,824.7991,803.8382,817.3947,797.4896,813.3799" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[78cbb453cef41ed1085f46516ba0b623]
+reverse link NetworkLocation to NetworkPath--><path codeLine="45" d="M874.3646,780.6195 C910.7604,820.8695 947.8229,861.859 980.7604,898.2965 " fill="none" id="NetworkLocation-backto-NetworkPath" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="865.1354,770.4111,866.2346,777.8418,873.5164,779.6852,872.4173,772.2545,865.1354,770.4111" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[a504bb369d17d410a8fe18b3e51b89f6]
+reverse link NetworkLocation to NetworkAccessConstraints--><path codeLine="46" d="M502.4792,824.2653 C479.1146,855.7028 456.2917,886.4215 435.8958,913.8695 " fill="none" id="NetworkLocation-backto-NetworkAccessConstraints" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="510.7604,813.1195,503.6909,815.6583,503.3155,823.1605,510.385,820.6216,510.7604,813.1195" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[8882eff8eba24a97d4561e6431348fce]
+reverse link NetworkLocation to QueryParameters--><path codeLine="47" d="M688.0208,827.0465 C688.0208,858.3382 688.0208,888.8382 688.0208,916.0257 " fill="none" id="NetworkLocation-backto-QueryParameters" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="688.0208,813.1195,683.8542,819.3695,688.0208,825.6195,692.1875,819.3695,688.0208,813.1195" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="54.1667" x="692.1875" y="860.5794">optional</text><!--MD5=[e756b25b8ba05ea324c659b555e5d9e8]
+reverse link FilePath to NetworkPath--><path codeLine="74" d="M1091.1458,618.5049 C1091.1458,682.9007 1091.1458,805.2757 1091.1458,898.1403 " fill="none" id="FilePath-backto-NetworkPath" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1083.8542,618.4007,1091.1458,597.5674,1098.4375,618.4007,1083.8542,618.4007" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[5d518b302edf151eb90dba3a8b7295d8]
+reverse link Resource to NetworkResource--><path codeLine="90" d="M384.8958,122.9424 C384.8958,136.5882 384.8958,151.5465 384.8958,164.9528 " fill="none" id="Resource-backto-NetworkResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="377.6042,122.5465,384.8958,101.7132,392.1875,122.5465,377.6042,122.5465" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[3f109bc520e169528e89f69b5203a81c]
+link NetworkResource to NetworkLocation--><path codeLine="91" d="M418.7813,248.6299 C441.4479,275.8799 473.2083,314.0882 507.0104,354.7445 " fill="none" id="NetworkResource-to-NetworkLocation" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="510.7083,359.1924,507.9111,349.3218,507.3755,355.19,501.5073,354.6544,510.7083,359.1924" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="63.5417" x="461.9792" y="295.9961">located at</text><!--MD5=[0875153d283a270053a13ec091d13129]
+@startuml
+
+    !include lexakai.theme
+    
+    title "Network Locations"
+    
+    abstract BaseReadableResource
+    
+    interface NetworkResource
+    interface AsString
+    interface Comparable
+    interface Validatable
+    
+    BaseReadableResource <|- - BaseNetworkResource
+    NetworkResource <|- - BaseNetworkResource
+    abstract class BaseNetworkResource
+    {
+        - -(constructors)- -
+        #BaseNetworkResource(BaseReadableResource)
+        #BaseNetworkResource(NetworkLocation)
+        - -(network)- -
+        +URI asUri()
+        +URL asUrl()
+    }
+    
+    Validatable <|- - NetworkAccessConstraints
+    NetworkAccessConstraints o- - Duration
+    NetworkAccessConstraints o- - UserName
+    NetworkAccessConstraints o- - Password
+    class NetworkAccessConstraints
+    {
+        - -
+        +void password(Password)
+        +Password password()
+        - -(naming)- -
+        +void userName(UserName)
+        +UserName userName()
+        - -(network)- -
+        +Duration timeout()
+        +NetworkAccessConstraints timeout(Duration timeout)
+    }
+    
+    AsString <|- - NetworkLocation
+    Comparable <|- - NetworkLocation
+    NetworkLocation o- - Port
+    NetworkLocation o- - NetworkPath
+    NetworkLocation o- - NetworkAccessConstraints
+    NetworkLocation o- - QueryParameters : "optional"
+    class NetworkLocation
+    {
+        - -(constructors)- -
+        +NetworkLocation(NetworkLocation)
+        +NetworkLocation(NetworkPath)
+        - -
+        +void constraints(NetworkAccessConstraints)
+        +void reference(String fragment)
+        +String reference()
+        - -(checks)- -
+        +boolean isChildOf(NetworkLocation that)
+        - -(network)- -
+        +URI asUri()
+        +URL asUrl()
+        +NetworkAccessConstraints constraints()
+        +Host host()
+        +NetworkPath networkPath()
+        +Port port()
+        +Protocol protocol()
+        +NetworkLocation withPath(NetworkPath)
+        +NetworkLocation withQueryParameters(QueryParameters)
+        - -(search)- -
+        +QueryParameters queryParameters()
+        +void queryParameters(QueryParameters)
+    }
+    
+    FilePath <|- - NetworkPath
+    class NetworkPath
+    {
+        - -(constructors)- -
+        #NetworkPath(NetworkPath)
+        #NetworkPath(Port, String, List<String>)
+        #NetworkPath(Port, StringPath)
+        - -(network)- -
+        +URI asUri()
+        +NetworkPath networkPath(URI)
+        +NetworkPath networkPath(Port, String path)
+        +NetworkPath parseNetworkPath(String path)
+        +Port port()
+    }
+    
+    interface Resource
+    Resource <|- - NetworkResource
+    NetworkResource - -> NetworkLocation : "located at"
+    interface NetworkResource
+    {
+        - -(network)- -
+        +NetworkLocation location()
+    }
+    
+    class QueryParameters
+    {
+        - -(constructors)- -
+        #QueryParameters(String)
+        +QueryParameters(VariableMap<String>)
+        - -(collection)- -
+        +VariableMap<String> asMap()
+        +boolean isEmpty()
+        - -(search)- -
+        +QueryParameters parse(String)
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "Network Locations"
+    
+    abstract BaseReadableResource
+    
+    interface NetworkResource
+    interface AsString
+    interface Comparable
+    interface Validatable
+    
+    BaseReadableResource <|- - BaseNetworkResource
+    NetworkResource <|- - BaseNetworkResource
+    abstract class BaseNetworkResource
+    {
+        - -(constructors)- -
+        #BaseNetworkResource(BaseReadableResource)
+        #BaseNetworkResource(NetworkLocation)
+        - -(network)- -
+        +URI asUri()
+        +URL asUrl()
+    }
+    
+    Validatable <|- - NetworkAccessConstraints
+    NetworkAccessConstraints o- - Duration
+    NetworkAccessConstraints o- - UserName
+    NetworkAccessConstraints o- - Password
+    class NetworkAccessConstraints
+    {
+        - -
+        +void password(Password)
+        +Password password()
+        - -(naming)- -
+        +void userName(UserName)
+        +UserName userName()
+        - -(network)- -
+        +Duration timeout()
+        +NetworkAccessConstraints timeout(Duration timeout)
+    }
+    
+    AsString <|- - NetworkLocation
+    Comparable <|- - NetworkLocation
+    NetworkLocation o- - Port
+    NetworkLocation o- - NetworkPath
+    NetworkLocation o- - NetworkAccessConstraints
+    NetworkLocation o- - QueryParameters : "optional"
+    class NetworkLocation
+    {
+        - -(constructors)- -
+        +NetworkLocation(NetworkLocation)
+        +NetworkLocation(NetworkPath)
+        - -
+        +void constraints(NetworkAccessConstraints)
+        +void reference(String fragment)
+        +String reference()
+        - -(checks)- -
+        +boolean isChildOf(NetworkLocation that)
+        - -(network)- -
+        +URI asUri()
+        +URL asUrl()
+        +NetworkAccessConstraints constraints()
+        +Host host()
+        +NetworkPath networkPath()
+        +Port port()
+        +Protocol protocol()
+        +NetworkLocation withPath(NetworkPath)
+        +NetworkLocation withQueryParameters(QueryParameters)
+        - -(search)- -
+        +QueryParameters queryParameters()
+        +void queryParameters(QueryParameters)
+    }
+    
+    FilePath <|- - NetworkPath
+    class NetworkPath
+    {
+        - -(constructors)- -
+        #NetworkPath(NetworkPath)
+        #NetworkPath(Port, String, List<String>)
+        #NetworkPath(Port, StringPath)
+        - -(network)- -
+        +URI asUri()
+        +NetworkPath networkPath(URI)
+        +NetworkPath networkPath(Port, String path)
+        +NetworkPath parseNetworkPath(String path)
+        +Port port()
+    }
+    
+    interface Resource
+    Resource <|- - NetworkResource
+    NetworkResource - -> NetworkLocation : "located at"
+    interface NetworkResource
+    {
+        - -(network)- -
+        +NetworkLocation location()
+    }
+    
+    class QueryParameters
+    {
+        - -(constructors)- -
+        #QueryParameters(String)
+        +QueryParameters(VariableMap<String>)
+        - -(collection)- -
+        +VariableMap<String> asMap()
+        +boolean isEmpty()
+        - -(search)- -
+        +QueryParameters parse(String)
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

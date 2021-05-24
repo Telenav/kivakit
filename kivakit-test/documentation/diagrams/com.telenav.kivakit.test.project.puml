@@ -1,0 +1,17 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.test.project"
+    
+    Project <|-- CoreTestProject
+    class CoreTestProject
+    {
+        --(constructors)--
+        #CoreTestProject()
+        --
+        +CoreTestProject get()
+    }
+    
+@enduml
+

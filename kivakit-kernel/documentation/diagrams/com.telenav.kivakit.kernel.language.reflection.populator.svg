@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="282.2917px" preserveAspectRatio="none" style="width:597px;height:282px;background:#333333;" version="1.1" viewBox="0 0 597 282" width="597.9167px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="585.4167" x="2.0833" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="562.5" x="13.5417" y="30.5583">com.telenav.kivakit.kernel.language.reflection.populator</text><!--MD5=[6c396e6253fb519361827a1b125510f1]
+class KivaKitPropertyConverter--><rect codeLine="6" fill="#282828" height="48.055" id="KivaKitPropertyConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="202.0833" x="129.9479" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="202.0833" x="129.9479" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="202.0833" x="129.9479" y="76.7578"/><rect codeLine="6" fill="none" height="48.055" id="KivaKitPropertyConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="202.0833" x="129.9479" y="53.7028"/><ellipse cx="144.5313" cy="69.397" fill="#3380B9" rx="10.4167" ry="10.4167" style="stroke:#004D86;stroke-width:1.0416666666666667;"/><path d="M145.7825,69.7164 Q145.7825,69.0267 145.4712,68.6361 Q145.1599,68.2454 144.6167,68.2454 Q144.0735,68.2454 143.7653,68.6361 Q143.457,69.0267 143.457,69.7164 Q143.457,70.4122 143.7653,70.8028 Q144.0735,71.1934 144.6167,71.1934 Q145.1599,71.1934 145.4712,70.8028 Q145.7825,70.4122 145.7825,69.7164 Z M146.9177,72.2188 L145.7214,72.2188 L145.7214,71.7183 Q145.4895,72.0418 145.1752,72.1914 Q144.8608,72.3409 144.4214,72.3409 Q143.4204,72.3409 142.807,71.6207 Q142.1936,70.9005 142.1936,69.7164 Q142.1936,68.5384 142.804,67.8212 Q143.4143,67.1041 144.4214,67.1041 Q144.8547,67.1041 145.1843,67.2536 Q145.5139,67.4032 145.7214,67.69 L145.7214,67.4398 Q145.7214,66.6097 145.2667,66.158 Q144.812,65.7064 143.9697,65.7064 Q142.7002,65.7064 141.8976,66.8233 Q141.095,67.9403 141.095,69.7286 Q141.095,71.6024 142.0227,72.7102 Q142.9504,73.818 144.4946,73.818 Q144.9829,73.818 145.4407,73.6745 Q145.8984,73.5311 146.3196,73.2442 L146.8811,74.3184 Q146.3867,74.6541 145.8038,74.822 Q145.2209,74.9898 144.5557,74.9898 Q142.4194,74.9898 141.1499,73.5677 Q139.8804,72.1456 139.8804,69.7286 Q139.8804,67.3665 141.0217,65.9475 Q142.1631,64.5284 144.043,64.5284 Q145.3735,64.5284 146.1456,65.331 Q146.9177,66.1336 146.9177,67.5191 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="164.5833" x="161.1979" y="74.1211">KivaKitPropertyConverter</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="130.9896" x2="330.9896" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="130.9896" x2="330.9896" y1="93.4245" y2="93.4245"/><!--MD5=[6aa1f0c430d64a96818afa260443fb91]
+class KivaKitPropertyOptional--><rect codeLine="8" fill="#282828" height="48.055" id="KivaKitPropertyOptional" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="194.7917" x="369.0104" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="194.7917" x="369.0104" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="194.7917" x="369.0104" y="76.7578"/><rect codeLine="8" fill="none" height="48.055" id="KivaKitPropertyOptional" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="194.7917" x="369.0104" y="53.7028"/><ellipse cx="383.5938" cy="69.397" fill="#3380B9" rx="10.4167" ry="10.4167" style="stroke:#004D86;stroke-width:1.0416666666666667;"/><path d="M384.845,69.7164 Q384.845,69.0267 384.5337,68.6361 Q384.2224,68.2454 383.6792,68.2454 Q383.136,68.2454 382.8278,68.6361 Q382.5195,69.0267 382.5195,69.7164 Q382.5195,70.4122 382.8278,70.8028 Q383.136,71.1934 383.6792,71.1934 Q384.2224,71.1934 384.5337,70.8028 Q384.845,70.4122 384.845,69.7164 Z M385.9802,72.2188 L384.7839,72.2188 L384.7839,71.7183 Q384.552,72.0418 384.2377,72.1914 Q383.9233,72.3409 383.4839,72.3409 Q382.4829,72.3409 381.8695,71.6207 Q381.2561,70.9005 381.2561,69.7164 Q381.2561,68.5384 381.8665,67.8212 Q382.4768,67.1041 383.4839,67.1041 Q383.9172,67.1041 384.2468,67.2536 Q384.5764,67.4032 384.7839,67.69 L384.7839,67.4398 Q384.7839,66.6097 384.3292,66.158 Q383.8745,65.7064 383.0322,65.7064 Q381.7627,65.7064 380.9601,66.8233 Q380.1575,67.9403 380.1575,69.7286 Q380.1575,71.6024 381.0852,72.7102 Q382.0129,73.818 383.5571,73.818 Q384.0454,73.818 384.5032,73.6745 Q384.9609,73.5311 385.3821,73.2442 L385.9436,74.3184 Q385.4492,74.6541 384.8663,74.822 Q384.2834,74.9898 383.6182,74.9898 Q381.4819,74.9898 380.2124,73.5677 Q378.9429,72.1456 378.9429,69.7286 Q378.9429,67.3665 380.0842,65.9475 Q381.2256,64.5284 383.1055,64.5284 Q384.436,64.5284 385.2081,65.331 Q385.9802,66.1336 385.9802,67.5191 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="157.2917" x="400.2604" y="74.1211">KivaKitPropertyOptional</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="370.0521" x2="562.7604" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="370.0521" x2="562.7604" y1="93.4245" y2="93.4245"/><!--MD5=[a41c7a71ec1e77d6e5dd041281c68324]
+class ObjectPopulator--><rect codeLine="10" fill="#282828" height="111.4563" id="ObjectPopulator" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="381.25" x="40.3646" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="381.25" x="40.3646" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="381.25" x="40.3646" y="187.1745"/><rect codeLine="10" fill="none" height="111.4563" id="ObjectPopulator" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="381.25" x="40.3646" y="164.1195"/><ellipse cx="171.6146" cy="179.8136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M173.525,184.2387 Q173.0977,184.4584 172.6278,184.5683 Q172.1578,184.6781 171.639,184.6781 Q169.7957,184.6781 168.8253,183.4635 Q167.8548,182.2489 167.8548,179.954 Q167.8548,177.653 168.8253,176.4384 Q169.7957,175.2238 171.639,175.2238 Q172.1578,175.2238 172.6339,175.3337 Q173.1099,175.4435 173.525,175.6632 L173.525,177.6652 Q173.0611,177.238 172.6247,177.0396 Q172.1883,176.8412 171.7244,176.8412 Q170.7357,176.8412 170.2321,177.6255 Q169.7286,178.4098 169.7286,179.954 Q169.7286,181.4921 170.2321,182.2764 Q170.7357,183.0607 171.7244,183.0607 Q172.1883,183.0607 172.6247,182.8623 Q173.0611,182.664 173.525,182.2367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="104.1667" x="194.5313" y="184.5378">ObjectPopulator</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="41.4063" x2="420.5729" y1="195.5078" y2="195.5078"/><ellipse cx="51.8229" cy="230.8777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="348.9583" x="63.2813" y="237.7889">ObjectPopulator(Listener, PropertyFilter, PropertyValueSource)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="41.4063" x2="187.2396" y1="213.7136" y2="213.7136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="190.3646" y="217.5232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="274.7396" x2="420.5729" y1="213.7136" y2="213.7136"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="41.4063" x2="420.5729" y1="247.4976" y2="247.4976"/><ellipse cx="51.8229" cy="258.9559" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="112.5" x="63.2813" y="265.8671">T populate(T object)</text><!--MD5=[13baef925f5b5cdd56786c4855134697]
+link KivaKitPropertyConverter to KivaKitPropertyOptional--><!--MD5=[11496ab7bb443ba54ca59f90fb3f7b68]
+link KivaKitPropertyConverter to ObjectPopulator--><!--MD5=[3fcea6bd5c1ea17fba475d54b1bc1af8]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.reflection.populator"
+    
+    annotation KivaKitPropertyConverter
+    
+    annotation KivaKitPropertyOptional
+    
+    class ObjectPopulator
+    {
+        - -(constructors)- -
+        +ObjectPopulator(Listener, PropertyFilter, PropertyValueSource)
+        - -
+        +T populate(T object)
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.kernel.language.reflection.populator"
+    
+    annotation KivaKitPropertyConverter
+    
+    annotation KivaKitPropertyOptional
+    
+    class ObjectPopulator
+    {
+        - -(constructors)- -
+        +ObjectPopulator(Listener, PropertyFilter, PropertyValueSource)
+        - -
+        +T populate(T object)
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

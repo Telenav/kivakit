@@ -1,0 +1,24 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.resource.project"
+    
+    KryoTypes <|-- CoreResourceKryoTypes
+    class CoreResourceKryoTypes
+    {
+        --(constructors)--
+        +CoreResourceKryoTypes()
+    }
+    
+    Project <|-- CoreResourceProject
+    class CoreResourceProject
+    {
+        --(constructors)--
+        #CoreResourceProject()
+        --
+        +CoreResourceProject get()
+    }
+    
+@enduml
+

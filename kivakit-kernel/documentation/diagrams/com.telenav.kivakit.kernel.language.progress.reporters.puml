@@ -1,0 +1,49 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.progress.reporters"
+    
+    interface ProgressReporter
+    
+    Progress <|-- ConcurrentProgress
+    class ConcurrentProgress
+    {
+        --(constructors)--
+        #ConcurrentProgress()
+        +ConcurrentProgress(Progress)
+    }
+    
+    Multicaster <|-- Progress
+    ProgressReporter <|-- Progress
+    class Progress
+    {
+        --(constructors)--
+        #Progress()
+        #Progress(Progress)
+        --
+        +long at()
+        +Progress create(Listener, String itemName, Count steps)
+        +Progress create(Listener)
+        +Progress create()
+        +Progress create(Listener, String itemName)
+        +Progress createConcurrent(Listener, String itemName)
+        +Progress createConcurrent(Listener)
+        +Progress createConcurrent(Listener, String itemName, Count steps)
+        +void feedback(String message)
+        #void at(long at)
+        #long increase(long increase)
+        --(factory)--
+        #Progress newInstance()
+        --(functional)--
+        +Progress withItemName(String itemName)
+        +Progress withPhase(String phase)
+        +Progress withSteps(Count steps)
+        --(iteration)--
+        +void next(long increase)
+        --(math)--
+        #long increment()
+    }
+    
+@enduml
+

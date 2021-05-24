@@ -1,0 +1,21 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.objects.reference"
+    
+    abstract class ExpiringReference<T>
+    {
+        --(constructors)--
+        #ExpiringReference(Duration)
+        --
+        +T get()
+        --(checks)--
+        +boolean isNull()
+        --(factory)--
+        #void newObject()
+        #T onNewObject()
+    }
+    
+@enduml
+

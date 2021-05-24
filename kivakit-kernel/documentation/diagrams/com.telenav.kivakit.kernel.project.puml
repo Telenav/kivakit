@@ -1,0 +1,83 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.project"
+    
+    abstract BaseRepeater
+    
+    interface Named
+    interface Initializable
+    
+    Named <|-- Build
+    class Build
+    {
+        --(constructors)--
+        #Build()
+        --
+        +String formattedDate()
+        +int number()
+        +String property(String key)
+        +LocalDate utcDate()
+        --(building)--
+        +Build build(Class<?> project)
+        --(collection)--
+        +VariableMap<String> properties()
+        --(time)--
+        +LocalTime date()
+        +int epochDay()
+    }
+    
+    class CoreKernelLimits
+    {
+    }
+    
+    Project <|-- CoreKernelProject
+    class CoreKernelProject
+    {
+        --(constructors)--
+        #CoreKernelProject()
+        --
+        +CoreKernelProject get()
+    }
+    
+    BaseRepeater <|-- Project
+    Initializable <|-- Project
+    Project "1" --> "*" Project : "depends on"
+    abstract class Project
+    {
+        --
+        +Set<Project> dependencies()
+        +void onInitialized()
+        +void onInitializing()
+        +String property(String key)
+        +void visitDependencies(Visitor)
+        --(building)--
+        +Build build()
+        --(collection)--
+        +VariableMap<String> properties()
+        --(identity)--
+        +String artifactId()
+        +String groupId()
+        +Version kivakitVersion()
+        +Version version()
+        --(lifecycle)--
+        +void onInitialize()
+    }
+    
+    enum Release
+    {
+        ALPHA
+        BETA
+        FINAL
+        RC
+    }
+    
+    interface Project.Visitor
+    {
+        --
+        +void at(Project at, int level)
+    }
+    
+@enduml
+

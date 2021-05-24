@@ -1,0 +1,35 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Interfaces - Naming"
+    
+    interface Nameable
+    {
+        --(naming)--
+        +void name(String name)
+    }
+    
+    interface Named
+    {
+        --(naming)--
+        +String name()
+    }
+    
+    interface NamedObject
+    {
+        --(naming)--
+        +String objectName()
+        +void objectName(String name)
+    }
+    
+    interface Named
+    interface Valued
+    Named <|-- NamedValue
+    Valued <|-- NamedValue
+    interface NamedValue<T>
+    {
+    }
+    
+@enduml
+

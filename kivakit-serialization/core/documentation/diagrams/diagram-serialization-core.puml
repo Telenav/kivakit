@@ -1,0 +1,40 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Core Serialization"
+    
+    interface Closeable
+    interface Flushable
+    interface Named
+    interface Repeater
+    interface SerializationSessionReadWrite
+    interface Versioned
+    SerializationSessionReadWrite <|-- SerializationSession
+    Named <|-- SerializationSession
+    Closeable <|-- SerializationSession
+    Flushable <|-- SerializationSession
+    Versioned <|-- SerializationSession
+    Repeater <|-- SerializationSession
+    interface SerializationSession
+    {
+        --(checks)--
+        +boolean isActive()
+        +boolean isReading()
+        +boolean isWriting()
+        --(identity)--
+        +Version open(Type, Version, InputStream, OutputStream)
+        +Version open(Type, Version, Socket, ProgressReporter)
+        +Version open(Type, Version, OutputStream)
+        +Version open(Type, Version, InputStream)
+        --(io)--
+        +void onClose()
+        --(read)--
+        +VersionedObject<T> read()
+        --(write)--
+        +void write(VersionedObject<T>)
+        +void writeAndFlush(VersionedObject<T>)
+    }
+    
+@enduml
+

@@ -1,0 +1,17 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Language - Math"
+    
+    class Primes
+    {
+        --
+        +void main(String[] args)
+        +int powerOfTwoGreaterThan(int value)
+        --(collection)--
+        +long allocationSize(long size)
+    }
+    
+@enduml
+

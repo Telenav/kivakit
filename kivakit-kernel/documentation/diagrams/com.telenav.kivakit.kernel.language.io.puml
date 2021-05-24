@@ -1,0 +1,108 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.io"
+    
+    interface ByteSized
+    
+    OutputStream <|-- ByteSizedOutput
+    ByteSized <|-- ByteSizedOutput
+    class ByteSizedOutput
+    {
+        --(constructors)--
+        +ByteSizedOutput(OutputStream)
+    }
+    
+    enum IO.CopyStyle
+    {
+        BUFFERED
+        UNBUFFERED
+    }
+    
+    class IO
+    {
+        --
+        +void skip(InputStream, long offset)
+        +String string(InputStream)
+        --(filesystem)--
+        +boolean copy(InputStream, OutputStream)
+        +boolean copy(InputStream, OutputStream, CopyStyle)
+        --(io)--
+        +void close(ZipFile)
+        +void close(AutoCloseable)
+        +void close(OutputStream)
+        +void close(Writer)
+        +void close(InputStream)
+        +void close(Reader)
+        +boolean copyAndClose(InputStream, OutputStream)
+        +void flush(Writer out)
+        +boolean flush(OutputStream)
+        --(read)--
+        +BufferedInputStream buffer(InputStream)
+        +int readByte(InputStream)
+        +byte[] readBytes(InputStream)
+        --(write)--
+        +BufferedOutputStream buffer(OutputStream)
+    }
+    
+    InputStream <|-- LimitedInput
+    class LimitedInput
+    {
+        --(constructors)--
+        +LimitedInput(InputStream, Bytes)
+    }
+    
+    Reader <|-- LookAheadReader
+    class LookAheadReader
+    {
+        --(constructors)--
+        +LookAheadReader(Reader)
+        --
+        +int current()
+        +int lineNumber()
+        +int lookAhead()
+        --(iteration)--
+        +boolean hasNext()
+        +void next()
+        --(lifecycle)--
+        +boolean atEndOfLine()
+    }
+    
+    InputStream <|-- ProgressiveInput
+    class ProgressiveInput
+    {
+        --(constructors)--
+        +ProgressiveInput(InputStream)
+        +ProgressiveInput(InputStream, ProgressReporter)
+    }
+    
+    OutputStream <|-- ProgressiveOutput
+    class ProgressiveOutput
+    {
+        --(constructors)--
+        +ProgressiveOutput(OutputStream)
+        +ProgressiveOutput(OutputStream, ProgressReporter)
+    }
+    
+    InputStream <|-- StringInput
+    class StringInput
+    {
+        --(constructors)--
+        +StringInput(String)
+    }
+    
+    class StringReader
+    {
+        --(constructors)--
+        +StringReader(InputStream)
+        +StringReader(InputStream, String)
+        +StringReader(Reader)
+        --(io)--
+        +void close()
+        --(read)--
+        +String readString(ProgressReporter)
+    }
+    
+@enduml
+

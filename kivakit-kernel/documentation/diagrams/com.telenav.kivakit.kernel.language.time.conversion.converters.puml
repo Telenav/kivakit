@@ -1,0 +1,58 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.time.conversion.converters"
+    
+    abstract BaseFormattedLocalTimeConverter
+    abstract BaseStringConverter
+    
+    BaseStringConverter <|-- HumanizedLocalDateTimeConverter
+    class HumanizedLocalDateTimeConverter
+    {
+        --(constructors)--
+        +HumanizedLocalDateTimeConverter(Listener)
+    }
+    
+    BaseFormattedLocalTimeConverter <|-- LocalDateConverter
+    class LocalDateConverter
+    {
+        --(constructors)--
+        +LocalDateConverter(Listener)
+        +LocalDateConverter(Listener, ZoneId)
+    }
+    
+    BaseFormattedLocalTimeConverter <|-- LocalDateTimeConverter
+    class LocalDateTimeConverter
+    {
+        --(constructors)--
+        +LocalDateTimeConverter(Listener)
+        +LocalDateTimeConverter(Listener, ZoneId)
+    }
+    
+    BaseFormattedLocalTimeConverter <|-- LocalDateTimeWithMillisecondsConverter
+    class LocalDateTimeWithMillisecondsConverter
+    {
+        --(constructors)--
+        +LocalDateTimeWithMillisecondsConverter(Listener)
+        +LocalDateTimeWithMillisecondsConverter(Listener, ZoneId)
+    }
+    
+    BaseFormattedLocalTimeConverter <|-- LocalDateTimeWithSecondsConverter
+    class LocalDateTimeWithSecondsConverter
+    {
+        --(constructors)--
+        +LocalDateTimeWithSecondsConverter(Listener)
+        +LocalDateTimeWithSecondsConverter(Listener, ZoneId)
+    }
+    
+    BaseFormattedLocalTimeConverter <|-- LocalTimeConverter
+    class LocalTimeConverter
+    {
+        --(constructors)--
+        +LocalTimeConverter(Listener)
+        +LocalTimeConverter(Listener, ZoneId)
+    }
+    
+@enduml
+

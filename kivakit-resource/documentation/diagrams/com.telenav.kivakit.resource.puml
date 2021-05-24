@@ -1,0 +1,206 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.resource"
+    
+    abstract BaseStringConverter
+    
+    BaseStringConverter <|-- Resource.Converter
+    class Resource.Converter
+    {
+        --(constructors)--
+        +Converter(Listener)
+    }
+    
+    BaseStringConverter <|-- ResourcePath.Converter
+    class ResourcePath.Converter
+    {
+        --(constructors)--
+        +Converter(Listener)
+    }
+    
+    BaseStringConverter <|-- ResourceFolder.Converter
+    class ResourceFolder.Converter
+    {
+        --(constructors)--
+        +Converter(Listener)
+    }
+    
+    BaseStringConverter <|-- ResourceList.Converter
+    class ResourceList.Converter
+    {
+        --(constructors)--
+        +Converter(Listener, Extension)
+    }
+    
+    enum CopyMode
+    {
+        DO_NOT_OVERWRITE
+        OVERWRITE
+        UPDATE
+    }
+    
+    interface Readable
+    Readable <|-- ReadableResource
+    ReadableResource --> ResourceReader : "provides"
+    interface ReadableResource
+    {
+        --
+        +Charset charset()
+        +Resource resource()
+        --(conversion)--
+        +StringResource asStringResource()
+        --(filesystem)--
+        +void copyTo(WritableResource destination, CopyMode, ProgressReporter)
+        --(read)--
+        +ResourceReader reader(ProgressReporter)
+        +ResourceReader reader(ProgressReporter, Charset)
+        +ResourceReader reader()
+    }
+    
+    interface ByteSized
+    interface ModificationTimestamped
+    interface ReadableResource
+    interface Repeater
+    interface ResourcePathed
+    interface Resourceful
+    ResourcePathed <|-- Resource
+    ModificationTimestamped <|-- Resource
+    ByteSized <|-- Resource
+    ReadableResource <|-- Resource
+    Repeater <|-- Resource
+    Resourceful <|-- Resource
+    Resource --> Codec : "uses"
+    interface Resource
+    {
+        --
+        +Codec codec()
+        +void dematerialize()
+        +Resource resolve(ResourceIdentifier)
+        +Resource resolve(String identifier)
+        --(checks)--
+        +boolean isEmpty()
+        +boolean isLocal()
+        +boolean isMaterializable()
+        +boolean isPackaged()
+        +boolean isRemote()
+        +boolean isSame(Resource that)
+        --(command line parsing)--
+        +ArgumentParser.Builder<Resource> resource(Listener, String description)
+        +SwitchParser.Builder<Resource> resource(Listener, String name, String description)
+        +ArgumentParser.Builder<ResourceList> resourceList(String description, Extension)
+        +SwitchParser.Builder<ResourceList> resourceList(String name, String description, Extension)
+        +SwitchParser.Builder<ResourcePath> resourcePath(String name, String description)
+        --(filesystem)--
+        +void ensureExists()
+        +boolean exists()
+        +void safeCopyTo(File destination, CopyMode)
+        +void safeCopyTo(Folder destination, CopyMode, ProgressReporter)
+        +void safeCopyTo(Folder destination, CopyMode)
+        +void safeCopyTo(File destination, CopyMode, ProgressReporter)
+        --(functional)--
+        +Resource materialized(ProgressReporter)
+        --(identity)--
+        +ResourceIdentifier identifier(String identifier)
+    }
+    
+    interface ResourceFolder
+    {
+        --
+        +Resource resource(String name)
+        --(checks)--
+        +boolean isMaterialized()
+        --(collection)--
+        +List<? extends Resource> resources(Matcher<? super Resource>)
+        +List<? extends Resource> resources()
+        --(filesystem)--
+        +ResourceFolder folder(String path)
+        +ResourceFolderIdentifier identifier(String identifier)
+        +Folder materialize()
+        +Folder materializeTo(Folder)
+        +ResourceFolder resolve(ResourceFolderIdentifier)
+        +ResourceFolder resolve(String identifier)
+        +void safeCopyTo(Folder, CopyMode, ProgressReporter)
+    }
+    
+    class ResourceFolderIdentifier
+    {
+        --(constructors)--
+        +ResourceFolderIdentifier(String)
+        --(filesystem)--
+        +ResourceFolder resolve()
+        --(identity)--
+        +String identifier()
+    }
+    
+    class ResourceIdentifier
+    {
+        --(constructors)--
+        +ResourceIdentifier(String)
+        --
+        +Resource resolve()
+        --(identity)--
+        +String identifier()
+    }
+    
+    ArrayList <|-- ResourceList
+    ResourceList --> Resource : "contains"
+    class ResourceList
+    {
+        --(constructors)--
+        +ResourceList()
+        +ResourceList(Extension)
+        +ResourceList(Iterable<Resource>)
+        --(collection)--
+        +Count count()
+        +ResourceList matching(Matcher<Resource>)
+        +ResourceList matching(Extension)
+        +ResourceList relativeTo(Folder)
+        +void sortOldestToNewest()
+        +Bytes totalSize()
+        --(math)--
+        +Resource largest()
+        +Resource smallest()
+    }
+    
+    StringPath <|-- ResourcePath
+    class ResourcePath
+    {
+        --(constructors)--
+        #ResourcePath(List<String>)
+        #ResourcePath(ResourcePath)
+        #ResourcePath(String, List<String>)
+        --(filesystem)--
+        +File asFile()
+        +FileName fileName()
+        --(path)--
+        +FilePath asFilePath()
+        +ResourcePath normalized()
+        +ResourcePath parseResourcePath(String path)
+        +ResourcePath parseUnixResourcePath(String path)
+        +ResourcePath resourcePath(StringPath)
+        +FilePath withExtension(Extension)
+    }
+    
+    interface Resourceful
+    {
+        --
+        +Resource resource()
+    }
+    
+    interface Resource
+    interface Writable
+    Resource <|-- WritableResource
+    Writable <|-- WritableResource
+    WritableResource --> ResourceWriter : "provides"
+    interface WritableResource
+    {
+        --(write)--
+        +PrintWriter printWriter()
+        +ResourceWriter writer()
+        +ResourceWriter writer(Charset)
+    }
+    
+@enduml
+

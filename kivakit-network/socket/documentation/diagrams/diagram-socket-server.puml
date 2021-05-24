@@ -1,0 +1,20 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Server Sockets"
+    
+    abstract BaseRepeater
+    
+    BaseRepeater <|-- ConnectionListener
+    class ConnectionListener
+    {
+        --(constructors)--
+        +ConnectionListener(int)
+        +ConnectionListener(int, Maximum)
+        --(messaging)--
+        +void listen(Consumer<Socket> listener)
+    }
+    
+@enduml
+

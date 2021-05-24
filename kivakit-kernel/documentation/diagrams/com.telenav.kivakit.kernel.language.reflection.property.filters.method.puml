@@ -1,0 +1,22 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.reflection.property.filters.method"
+    
+    KivaKitProperties <|-- AllMethods
+    class AllMethods
+    {
+        --(constructors)--
+        +AllMethods(Set<Include>)
+    }
+    
+    AllMethods <|-- NamedMethod
+    class NamedMethod
+    {
+        --(constructors)--
+        +NamedMethod(String)
+    }
+    
+@enduml
+

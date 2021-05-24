@@ -1,0 +1,112 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.messaging.messages"
+    
+    interface Named
+    interface Message
+    
+    enum MessageFormatter.Format
+    {
+        WITHOUT_EXCEPTION
+        WITH_EXCEPTION
+    }
+    
+    Level <|-- Importance
+    class Importance
+    {
+        --
+        +Importance importance(double level)
+        +Importance importance(Class<? extends Message> type)
+        --(lookup)--
+        +Importance register(Class<? extends Message> low, Class<? extends Message> high)
+    }
+    
+    class MessageFormatter
+    {
+        --
+        +String format(String message, Object... arguments)
+        --(collection)--
+        +String formatArray(String message, Object[] arguments)
+    }
+    
+    OperationMessage <|-- OperationLifecycleMessage
+    abstract class OperationLifecycleMessage
+    {
+        --(constructors)--
+        #OperationLifecycleMessage()
+        #OperationLifecycleMessage(String, Object)
+    }
+    
+    Message <|-- OperationMessage
+    abstract class OperationMessage
+    {
+        --(constructors)--
+        #OperationMessage()
+        #OperationMessage(String)
+        --
+        +void context(CodeContext)
+        +void created(Time created)
+        --(command line parsing)--
+        +void arguments(Object[] arguments)
+        --(messaging)--
+        +OperationMessage cause(Throwable cause)
+        +OperationMessage maximumFrequency(Frequency maximumFrequency)
+        +void message(String message)
+        +OperationMessage of(String name)
+        +OperationMessage stackTrace(StackTrace)
+        #MessageFormatter formatter()
+    }
+    
+    OperationMessage <|-- OperationStatusMessage
+    abstract class OperationStatusMessage
+    {
+        --(constructors)--
+        #OperationStatusMessage()
+        #OperationStatusMessage(String, Object)
+    }
+    
+    Result --> Message : "failure reason"
+    class Result<T>
+    {
+        --
+        +boolean failed()
+        +T get()
+        +boolean has()
+        +Result<T> set(T result)
+        +Result<T> with(Result<T> that, BiFunction<T,T,T> combiner)
+        --(functional)--
+        +Result<T> failed(Result<?>, String message, Object... arguments)
+        +Result<T> failed(Throwable cause, String message, Object... arguments)
+        +Result<T> failed(String message, Object... arguments)
+        +Result<T> failed(Message)
+        +Result<T> succeeded(T value)
+        --(messaging)--
+        +Result<T> problem(String message, Object... arguments)
+        +Result<T> problem(Throwable cause, String message, Object... arguments)
+        +Message why()
+        --(status)--
+        +boolean succeeded()
+    }
+    
+    Level <|-- Severity
+    Named <|-- Severity
+    class Severity
+    {
+        --(constructors)--
+        #Severity()
+        +Severity(String, double)
+        --
+        +Severity of(String name)
+    }
+    
+    Triaged --> Severity : "has"
+    interface Triaged
+    {
+        --
+        +Severity severity()
+    }
+    
+@enduml
+

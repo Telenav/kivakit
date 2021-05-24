@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="835.4167px" preserveAspectRatio="none" style="width:993px;height:835px;background:#333333;" version="1.1" viewBox="0 0 993 835" width="993.75px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="593.75" x="192.9688" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="570.8333" x="204.4271" y="30.5583">com.telenav.kivakit.kernel.language.threading.conditions</text><!--MD5=[762aa3d0df6a9d47bd8e105afbd066b5]
+class BaseRepeater--><rect codeLine="6" fill="#282828" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="225" y="150.057"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="225" y="150.057"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="225" y="173.112"/><rect codeLine="6" fill="none" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="225" y="150.057"/><ellipse cx="239.5833" cy="165.7511" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M239.6973,162.4532 L238.8489,166.1825 L240.5518,166.1825 Z M238.5986,160.8053 L240.802,160.8053 L243.2617,169.9178 L241.4612,169.9178 L240.8997,167.6656 L238.4888,167.6656 L237.9395,169.9178 L236.1389,169.9178 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="86.4583" x="256.25" y="170.4753">BaseRepeater</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="226.0417" x2="347.9167" y1="181.4453" y2="181.4453"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="226.0417" x2="347.9167" y1="189.7786" y2="189.7786"/><!--MD5=[3626c233e602113c8cf5977cfac9c02f]
+class StateMachine--><rect codeLine="9" fill="#282828" height="475.1973" id="StateMachine" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="559.375" x="7.2917" y="353.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="559.375" x="7.2917" y="353.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="559.375" x="7.2917" y="376.7578"/><rect codeLine="9" fill="none" height="475.1973" id="StateMachine" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="559.375" x="7.2917" y="353.7028"/><ellipse cx="215.625" cy="369.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M217.5354,373.822 Q217.1082,374.0417 216.6382,374.1516 Q216.1682,374.2615 215.6494,374.2615 Q213.8062,374.2615 212.8357,373.0469 Q211.8652,371.8323 211.8652,369.5374 Q211.8652,367.2363 212.8357,366.0217 Q213.8062,364.8071 215.6494,364.8071 Q216.1682,364.8071 216.6443,364.917 Q217.1204,365.0269 217.5354,365.2466 L217.5354,367.2485 Q217.0715,366.8213 216.6351,366.6229 Q216.1987,366.4246 215.7349,366.4246 Q214.7461,366.4246 214.2426,367.2089 Q213.739,367.9932 213.739,369.5374 Q213.739,371.0754 214.2426,371.8597 Q214.7461,372.644 215.7349,372.644 Q216.1987,372.644 216.6351,372.4457 Q217.0715,372.2473 217.5354,371.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="85.4167" x="238.5417" y="374.1211">StateMachine</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="40.625" x="529.1667" y="350.5778"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="32.2917" x="533.3333" y="366.8294">State</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="8.3333" x2="565.625" y1="385.0911" y2="385.0911"/><ellipse cx="18.75" cy="420.461" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="108.3333" x="30.2083" y="427.3722">StateMachine(State)</text><ellipse cx="18.75" cy="440.2059" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="207.2917" x="30.2083" y="447.1171">StateMachine(State, Receiver&lt;State&gt;)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="243.2292" y1="403.2969" y2="403.2969"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="246.3542" y="407.1065">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="330.7292" x2="565.625" y1="403.2969" y2="403.2969"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="565.625" y1="456.8258" y2="456.8258"/><ellipse cx="18.75" cy="468.2841" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="48.9583" x="30.2083" y="475.1953">State at()</text><ellipse cx="18.75" cy="488.029" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="92.7083" x="30.2083" y="494.9402">boolean is(State)</text><ellipse cx="18.75" cy="507.7738" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="181.25" x="30.2083" y="514.6851">State toggle(State one, State two)</text><ellipse cx="18.75" cy="527.5187" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="527.0833" x="30.2083" y="534.4299">boolean transition(State from, State to, State waitFor, Duration maximumWait, Runnable before)</text><ellipse cx="18.75" cy="547.2636" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="390.625" x="30.2083" y="554.1748">boolean transition(State from, State to, State waitFor, Runnable before)</text><ellipse cx="18.75" cy="567.0085" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="215.625" x="30.2083" y="573.9197">boolean transition(State from, State to)</text><ellipse cx="18.75" cy="586.7533" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="119.7917" x="30.2083" y="593.6646">State transition(State)</text><ellipse cx="18.75" cy="606.4982" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="185.4167" x="30.2083" y="613.4094">void whileLocked(Runnable code)</text><ellipse cx="18.75" cy="650.1546" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="141.6667" x="30.2083" y="657.0658">T whileLocked(Code&lt;T&gt;)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="251.5625" y1="632.9905" y2="632.9905"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="254.6875" y="636.8001">(functional)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="322.3958" x2="565.625" y1="632.9905" y2="632.9905"/><ellipse cx="18.75" cy="693.811" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="201.0417" x="30.2083" y="700.7222">void transitionAndWaitForNot(State)</text><ellipse cx="18.75" cy="713.5559" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="123.9583" x="30.2083" y="720.4671">boolean waitFor(State)</text><ellipse cx="18.75" cy="733.3008" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="260.4167" x="30.2083" y="740.212">boolean waitFor(State, Duration maximumWait)</text><ellipse cx="18.75" cy="753.0457" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="193.75" x="30.2083" y="759.9569">boolean waitFor(Predicate&lt;State&gt;)</text><ellipse cx="18.75" cy="772.7905" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="330.2083" x="30.2083" y="779.7017">boolean waitFor(Predicate&lt;State&gt;, Duration maximumWait)</text><ellipse cx="18.75" cy="792.5354" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="143.75" x="30.2083" y="799.4466">boolean waitForNot(State)</text><ellipse cx="18.75" cy="812.2803" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="280.2083" x="30.2083" y="819.1915">boolean waitForNot(State, Duration maximumWait)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="261.4583" y1="676.6469" y2="676.6469"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="44.7917" x="264.5833" y="680.4565">(thread)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="312.5" x2="565.625" y1="676.6469" y2="676.6469"/><!--MD5=[e5564a1acc4df3f70dcbc94a812f1ed1]
+class StateWatcher--><rect codeLine="35" fill="#282828" height="234.0922" id="StateWatcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="400" x="385.9375" y="56.8278"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="400" x="385.9375" y="56.8278"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="400" x="385.9375" y="79.8828"/><rect codeLine="35" fill="none" height="234.0922" id="StateWatcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="400" x="385.9375" y="56.8278"/><ellipse cx="515.625" cy="72.522" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M517.5354,76.947 Q517.1082,77.1667 516.6382,77.2766 Q516.1682,77.3865 515.6494,77.3865 Q513.8062,77.3865 512.8357,76.1719 Q511.8652,74.9573 511.8652,72.6624 Q511.8652,70.3613 512.8357,69.1467 Q513.8062,67.9321 515.6494,67.9321 Q516.1682,67.9321 516.6443,68.042 Q517.1204,68.1519 517.5354,68.3716 L517.5354,70.3735 Q517.0715,69.9463 516.6351,69.7479 Q516.1987,69.5496 515.7349,69.5496 Q514.7461,69.5496 514.2426,70.3339 Q513.739,71.1182 513.739,72.6624 Q513.739,74.2004 514.2426,74.9847 Q514.7461,75.769 515.7349,75.769 Q516.1987,75.769 516.6351,75.5707 Q517.0715,75.3723 517.5354,74.9451 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="83.3333" x="538.5417" y="77.2461">StateWatcher</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="40.625" x="748.4375" y="53.7028"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="32.2917" x="752.6042" y="69.9544">State</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="386.9792" x2="784.8958" y1="88.2161" y2="88.2161"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="386.9792" x2="784.8958" y1="96.5495" y2="96.5495"/><ellipse cx="397.3958" cy="108.0078" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="185.4167" x="408.8542" y="114.919">void whileLocked(Runnable code)</text><ellipse cx="397.3958" cy="151.6642" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="141.6667" x="408.8542" y="158.5754">T whileLocked(Code&lt;T&gt;)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="386.9792" x2="550.5208" y1="134.5001" y2="134.5001"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="553.6458" y="138.3097">(functional)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="621.3542" x2="784.8958" y1="134.5001" y2="134.5001"/><ellipse cx="397.3958" cy="195.3206" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="95.8333" x="408.8542" y="202.2319">void signal(State)</text><ellipse cx="397.3958" cy="215.0655" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="342.7083" x="408.8542" y="221.9767">WakeState waitFor(State desired, Duration maximumWaitTime)</text><ellipse cx="397.3958" cy="234.8104" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="204.1667" x="408.8542" y="241.7216">WakeState waitFor(Predicate&lt;State&gt;)</text><ellipse cx="397.3958" cy="254.5553" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="179.1667" x="408.8542" y="261.4665">WakeState waitFor(State desired)</text><ellipse cx="397.3958" cy="274.3001" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="367.7083" x="408.8542" y="281.2113">WakeState waitFor(Predicate&lt;State&gt;, Duration maximumWaitTime)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="386.9792" x2="560.4167" y1="178.1565" y2="178.1565"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="44.7917" x="563.5417" y="181.9661">(thread)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="611.4583" x2="784.8958" y1="178.1565" y2="178.1565"/><!--MD5=[35f3d1e74c3824ed422c7eb49474339b]
+class StateWatcher.Waiter--><rect codeLine="49" fill="#282828" height="48.055" id="StateWatcher.Waiter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="164.5833" x="822.3958" y="150.057"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="164.5833" x="822.3958" y="150.057"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="164.5833" x="822.3958" y="173.112"/><rect codeLine="49" fill="none" height="48.055" id="StateWatcher.Waiter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="164.5833" x="822.3958" y="150.057"/><ellipse cx="836.9792" cy="165.7511" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M838.8896,170.1762 Q838.4623,170.3959 837.9924,170.5058 Q837.5224,170.6156 837.0036,170.6156 Q835.1603,170.6156 834.1899,169.401 Q833.2194,168.1864 833.2194,165.8915 Q833.2194,163.5905 834.1899,162.3759 Q835.1603,161.1613 837.0036,161.1613 Q837.5224,161.1613 837.9985,161.2712 Q838.4745,161.381 838.8896,161.6007 L838.8896,163.6027 Q838.4257,163.1755 837.9893,162.9771 Q837.5529,162.7787 837.089,162.7787 Q836.1003,162.7787 835.5967,163.563 Q835.0932,164.3473 835.0932,165.8915 Q835.0932,167.4296 835.5967,168.2139 Q836.1003,168.9982 837.089,168.9982 Q837.5529,168.9982 837.9893,168.7998 Q838.4257,168.6015 838.8896,168.1742 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="127.0833" x="853.6458" y="170.4753">StateWatcher.Waiter</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="823.4375" x2="985.9375" y1="181.4453" y2="181.4453"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="823.4375" x2="985.9375" y1="189.7786" y2="189.7786"/><!--MD5=[fdda41a12b25b3c7c5e655337c7fed7e]
+reverse link BaseRepeater to StateMachine--><path codeLine="8" d="M286.9792,219.3486 C286.9792,252.932 286.9792,301.9632 286.9792,353.4424 " fill="none" id="BaseRepeater-backto-StateMachine" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="279.6875,219.0986,286.9792,198.2653,294.2708,219.0986,279.6875,219.0986" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[c14b228d37a735091da4747fc72b944a]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.threading.conditions"
+    
+    abstract BaseRepeater
+    
+    BaseRepeater <|- - StateMachine
+    class StateMachine<State>
+    {
+        - -(constructors)- -
+        +StateMachine(State)
+        +StateMachine(State, Receiver<State>)
+        - -
+        +State at()
+        +boolean is(State)
+        +State toggle(State one, State two)
+        +boolean transition(State from, State to, State waitFor, Duration maximumWait, Runnable before)
+        +boolean transition(State from, State to, State waitFor, Runnable before)
+        +boolean transition(State from, State to)
+        +State transition(State)
+        +void whileLocked(Runnable code)
+        - -(functional)- -
+        +T whileLocked(Code<T>)
+        - -(thread)- -
+        +void transitionAndWaitForNot(State)
+        +boolean waitFor(State)
+        +boolean waitFor(State, Duration maximumWait)
+        +boolean waitFor(Predicate<State>)
+        +boolean waitFor(Predicate<State>, Duration maximumWait)
+        +boolean waitForNot(State)
+        +boolean waitForNot(State, Duration maximumWait)
+    }
+    
+    class StateWatcher<State>
+    {
+        - -
+        +void whileLocked(Runnable code)
+        - -(functional)- -
+        +T whileLocked(Code<T>)
+        - -(thread)- -
+        +void signal(State)
+        +WakeState waitFor(State desired, Duration maximumWaitTime)
+        +WakeState waitFor(Predicate<State>)
+        +WakeState waitFor(State desired)
+        +WakeState waitFor(Predicate<State>, Duration maximumWaitTime)
+    }
+    
+    class StateWatcher.Waiter
+    {
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.kernel.language.threading.conditions"
+    
+    abstract BaseRepeater
+    
+    BaseRepeater <|- - StateMachine
+    class StateMachine<State>
+    {
+        - -(constructors)- -
+        +StateMachine(State)
+        +StateMachine(State, Receiver<State>)
+        - -
+        +State at()
+        +boolean is(State)
+        +State toggle(State one, State two)
+        +boolean transition(State from, State to, State waitFor, Duration maximumWait, Runnable before)
+        +boolean transition(State from, State to, State waitFor, Runnable before)
+        +boolean transition(State from, State to)
+        +State transition(State)
+        +void whileLocked(Runnable code)
+        - -(functional)- -
+        +T whileLocked(Code<T>)
+        - -(thread)- -
+        +void transitionAndWaitForNot(State)
+        +boolean waitFor(State)
+        +boolean waitFor(State, Duration maximumWait)
+        +boolean waitFor(Predicate<State>)
+        +boolean waitFor(Predicate<State>, Duration maximumWait)
+        +boolean waitForNot(State)
+        +boolean waitForNot(State, Duration maximumWait)
+    }
+    
+    class StateWatcher<State>
+    {
+        - -
+        +void whileLocked(Runnable code)
+        - -(functional)- -
+        +T whileLocked(Code<T>)
+        - -(thread)- -
+        +void signal(State)
+        +WakeState waitFor(State desired, Duration maximumWaitTime)
+        +WakeState waitFor(Predicate<State>)
+        +WakeState waitFor(State desired)
+        +WakeState waitFor(Predicate<State>, Duration maximumWaitTime)
+    }
+    
+    class StateWatcher.Waiter
+    {
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

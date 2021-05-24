@@ -1,0 +1,180 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Fine-Grained Inheritance of Super-Interfaces by BaseList"
+    
+    interface Prependable
+    interface AsString
+    interface Addable
+    interface Appendable
+    interface RandomAccess
+    interface List
+    interface Indexable
+    interface NewInstance
+    interface CompressibleCollection
+    
+    interface Addable<T>
+    {
+        --(collection)--
+        +boolean add(T value)
+        +boolean addAll(Iterable<? extends T> values)
+        +boolean addAll(Iterator<? extends T> values)
+    }
+    
+    interface Appendable<T>
+    {
+        --
+        +Appendable<T> append(T value)
+        +Appendable<T> appendAll(Iterator<? extends T> values)
+        +Appendable<T> appendAll(Iterable<? extends T> values)
+    }
+    
+    AsString --> StringFormat : "formats with"
+    interface AsString
+    {
+        --(conversion)--
+        +String asString(StringFormat)
+        +String asString()
+    }
+    
+    NewInstance <|-- BaseList
+    List <|-- BaseList
+    Indexable <|-- BaseList
+    Addable <|-- BaseList
+    Appendable <|-- BaseList
+    Prependable <|-- BaseList
+    CompressibleCollection <|-- BaseList
+    RandomAccess <|-- BaseList
+    AsString <|-- BaseList
+    abstract class BaseList<Element>
+    {
+        --(constructors)--
+        #BaseList()
+        #BaseList(List<Element>)
+        #BaseList(Maximum)
+        #BaseList(Maximum, List<Element>)
+        --
+        +String bulleted()
+        +String bulleted(int indent)
+        +long[] quantized()
+        +void reverse()
+        #void onOutOfRoom()
+        #String separator()
+        --(checks)--
+        +boolean endsWith(BaseList<Element> that)
+        +boolean startsWith(BaseList<Element> that)
+        --(collection)--
+        +boolean addAll(Element[] elements)
+        +boolean addIfNotNull(Element)
+        +BaseList<Element> appendAll(Element[] elements)
+        +Element[] asArray(Class<Element> type)
+        +StringList asStringList()
+        +BaseList<Element> copy()
+        +BaseList<Element> filtered(Matcher<Element>)
+        +BaseList<Element> first(int count)
+        +BaseList<Element> first(Count)
+        +BaseList<Element> leftOf(int index)
+        +BaseList<Target> mapped(Function<Element,Target> mapper)
+        +Maximum maximumSize()
+        +BaseList<Element> maybeReversed(boolean reverse)
+        +Element removeLast()
+        +BaseList<Element> reversed()
+        +BaseList<Element> rightOf(int index)
+        +BaseList<Element> sorted(Comparator<Element>)
+        +BaseList<Element> sorted()
+        +BaseList<Element> uniqued()
+        +BaseList<Element> without(Matcher<Element>)
+        #boolean checkSizeIncrease(int increase)
+        --(lifecycle)--
+        +String join()
+    }
+    
+    interface CompressibleCollection
+    {
+        --
+        +Method compress(Method)
+        +Method compressionMethod()
+        --(checks)--
+        +boolean isCompressed()
+        --(primitive)--
+        +Bytes compressReachableObjects(Listener, Object root, Method, Receiver<CompressionEvent>)
+    }
+    
+    interface Countable
+    {
+        --(collection)--
+        +Count count()
+    }
+    
+    interface Sequence
+    interface Sized
+    Sized <|-- Indexable
+    Sequence <|-- Indexable
+    interface Indexable<Element>
+    {
+        --
+        +Element get(int index)
+        +Element getOrDefault(int index, Element defaultValue)
+        --(checks)--
+        +boolean isEqualTo(Indexable<Element> that)
+        --(collection)--
+        +Element last()
+    }
+    
+    interface NewInstance<T>
+    {
+        --(factory)--
+        +T newInstance()
+        +T onNewInstance()
+    }
+    
+    interface Prependable<T>
+    {
+        --
+        +Prependable<T> prepend(T value)
+    }
+    
+    interface Sequence<Element>
+    {
+        --
+        +Set<Element> asSet()
+        +Element head()
+        --(checks)--
+        +boolean isEqualTo(Sequence<Element> that)
+        --(collection)--
+        +int asHashCode()
+        +Iterable<Element> asIterable(Matcher<Element>)
+        +Iterable<Element> asIterable()
+        +Iterator<Element> asIterator(Matcher<Element>)
+        +Iterator<Element> asIterator()
+        +List<Element> asList()
+        +Element first()
+        +int indexOfFirst(Matcher<Element>)
+        +int indexOfFirst(Element value)
+        +List<Element> tail()
+        --(lifecycle)--
+        +String join(char separator)
+        +String join(String separator)
+        +String join(String separator, String defaultValue)
+        +String join(String separator, Function<Element,String> toString)
+        --(matching)--
+        +boolean allMatch(Matcher<Element>)
+        +boolean anyMatch(Matcher<Element>)
+        +boolean noneMatch(Matcher<Element>)
+        --(search)--
+        +Element find(Matcher<Element>)
+    }
+    
+    interface Countable
+    Countable <|-- Sized
+    interface Sized
+    {
+        --(collection)--
+        +boolean isEmpty()
+        +boolean isNonEmpty()
+        +int size()
+    }
+    
+@enduml
+

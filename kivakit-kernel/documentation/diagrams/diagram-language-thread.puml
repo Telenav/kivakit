@@ -1,0 +1,177 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Language - Concurrency"
+    
+    abstract BaseRepeater
+    
+    interface Startable
+    interface Named
+    interface Runnable
+    interface Stoppable
+    interface Pausable
+    
+    class CallStack
+    {
+        --
+        +Method callerOf(Proximity, Matching, Class<?> calleeType, Matching ignoreMatching, Class<?>... ignores)
+        +Method callerOf(Proximity, Matching, Class<?> calleeType)
+        --(collection)--
+        +List<Method> stack()
+        +List<Method> stack(Thread)
+    }
+    
+    class CodeContext
+    {
+        --(constructors)--
+        #CodeContext()
+        +CodeContext(Class<?>)
+        +CodeContext(Method)
+        +CodeContext(String)
+        --
+        +Class<?> type()
+        --(naming)--
+        +String fullTypeName()
+        +String typeName()
+        --(network)--
+        +String host()
+        +void hostResolver(Source<String> resolver)
+        --(path)--
+        +PackagePath packagePath()
+    }
+    
+    class InitializationLatch
+    {
+        --
+        +void ready()
+        --(checks)--
+        +boolean isReady()
+        --(lifecycle)--
+        +void reset()
+        --(thread)--
+        +boolean await(Duration)
+    }
+    
+    BaseRepeater <|-- KivaKitThread
+    Startable <|-- KivaKitThread
+    Runnable <|-- KivaKitThread
+    Stoppable <|-- KivaKitThread
+    Named <|-- KivaKitThread
+    class KivaKitThread
+    {
+        --(constructors)--
+        +KivaKitThread(String)
+        +KivaKitThread(String, Runnable)
+        --
+        +KivaKitThread daemon(boolean daemon)
+        +KivaKitThread highPriority()
+        +boolean is(State)
+        +KivaKitThread lowPriority()
+        +KivaKitThread repeat(Listener, String name, Frequency every, Runnable code)
+        +KivaKitThread repeat(String name, Frequency every, Runnable code)
+        +StateMachine<State> state()
+        +void whileLocked(Runnable code)
+        #void onExited()
+        #void onRan()
+        #void onWaiting()
+        #Thread thread()
+        #State transition(State to)
+        --(functional)--
+        +Time startedAt()
+        +T whileLocked(Code<T>)
+        --(lifecycle)--
+        +KivaKitThread initialDelay(Duration initialDelay)
+        +KivaKitThread interrupt()
+        +void join()
+        +KivaKitThread run(Listener, String name, Runnable code)
+        +KivaKitThread run(String name, Runnable code)
+        +KivaKitThread startSynchronously()
+        #void onRun()
+        #void onRunning()
+        #void waitForInitialDelayPeriod()
+        --(thread)--
+        +void waitFor(State)
+        +void waitFor(State, Duration maximumWait)
+    }
+    
+    class ReentrancyTracker
+    {
+        --
+        +boolean enter()
+        --(checks)--
+        +boolean hasReentered()
+        --(lifecycle)--
+        +void exit()
+    }
+    
+    KivaKitThread <|-- RepeatingKivaKitThread
+    Pausable <|-- RepeatingKivaKitThread
+    class RepeatingKivaKitThread
+    {
+        --(constructors)--
+        +RepeatingKivaKitThread(Listener, String)
+        +RepeatingKivaKitThread(Listener, String, Frequency)
+        +RepeatingKivaKitThread(Listener, String, Runnable)
+        --(lifecycle)--
+        +RepeatingKivaKitThread run(Listener, String name, Frequency every, Runnable code)
+        +RepeatingKivaKitThread run(Listener, String name, Runnable code)
+        --(time)--
+        +RepeatingKivaKitThread frequency(Frequency)
+        +Frequency frequency()
+    }
+    
+    BaseRepeater <|-- Retry
+    class Retry
+    {
+        --(constructors)--
+        +Retry(Listener)
+        +Retry(Listener, int, Duration, Class<? extends Throwable>, String)
+        --
+        +CheckedCode<T> retry(CheckedCode<T>, int times, Duration delay, Runnable... beforeRetry)
+        --(lifecycle)--
+        +T run(CheckedCode<T> runnable, Runnable... stepsBeforeRetry)
+    }
+    
+    ThreadSnapshot "1" o-- "*" ThreadStatus
+    class ThreadSnapshot
+    {
+        --(constructors)--
+        +ThreadSnapshot()
+        --
+        +ThreadSnapshot update()
+        --(collection)--
+        +List<ThreadStatus> snapshot()
+        --(time)--
+        +Time capturedAt()
+        +Duration totalCpuTime()
+    }
+    
+    class ThreadStatus
+    {
+        --
+        +Thread.State state()
+        --(checks)--
+        +boolean isDaemon()
+        +boolean isKivaKit()
+        --(naming)--
+        +String name()
+        --(time)--
+        +Duration cpuTime()
+    }
+    
+    class Threads
+    {
+        --
+        +ThreadGroup rootGroup()
+        --(collection)--
+        +Iterable<Thread> all()
+        --(thread)--
+        +void await(ExecutorService)
+        +void shutdownAndAwait(ExecutorService)
+        +ExecutorService threadPool(String name)
+        +ExecutorService threadPool(String name, Count threads)
+    }
+    
+@enduml
+

@@ -1,0 +1,97 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Language - Java Virtual Machine"
+    
+    interface Named
+    
+    JavaVirtualMachine o-- Instrumentation
+    JavaVirtualMachine o-- JavaVirtualMachineHealth
+    class JavaVirtualMachine
+    {
+        --
+        +void agentmain(String arguments, Instrumentation)
+        +boolean assertionsEnabled()
+        +void dumpHeap(Path)
+        +JavaVirtualMachineHealth health()
+        +boolean instrument()
+        +void instrumentation(Instrumentation)
+        +void invalidateProperties()
+        +JavaVirtualMachine local()
+        +void main(String[] args)
+        +void premain(String arguments, Instrumentation)
+        +String property(String key, String defaultValue)
+        +String property(String key)
+        +ThreadSnapshot threadSnapshot()
+        --(checks)--
+        +boolean isInstrumented()
+        +boolean isPropertyTrue(String key)
+        --(collection)--
+        +Count processors()
+        +VariableMap<String> properties()
+        +VariableMap<String> variables()
+        --(primitive)--
+        +Bytes freeMemory()
+        +Bytes maximumMemory()
+        +Bytes sizeOf(Object)
+        +Bytes sizeOfObjectGraph(Object, String prefix, Bytes minimumSizeToDebugTrace)
+        +Bytes sizeOfObjectGraph(Object)
+        +Bytes sizeOfPrimitive(Object value)
+        +Bytes sizeOfPrimitiveType(Class<?> type)
+        +Bytes totalMemory()
+        +Bytes traceSizeChange(Listener, String operation, Object root, Bytes minimumDebugTraceSize, Runnable)
+        +Bytes usedMemory()
+    }
+    
+    class JavaVirtualMachineHealth
+    {
+        --
+        +double cpuUse()
+        +void logEntry(LogEntry)
+        +double memoryUse()
+        +ThreadSnapshot threadSnapshot()
+        +JavaVirtualMachineHealth update()
+        --(collection)--
+        +Count count(String messageType)
+        +Count processors()
+        --(primitive)--
+        +Bytes freeMemory()
+        +Bytes maximumMemory()
+        +Map<String,Integer> messageType()
+        +Bytes totalMemory()
+        +Bytes usedMemory()
+        --(time)--
+        +Duration elapsed()
+        +Duration elapsedCpuTime()
+        +Duration upTime()
+    }
+    
+    class KivaKitShutdownHook
+    {
+        --(constructors)--
+        +KivaKitShutdownHook(Order, Runnable)
+    }
+    
+    Named <|-- OperatingSystem
+    class OperatingSystem
+    {
+        --
+        +String exec(File folder, String... command)
+        +OperatingSystem get()
+        +String java()
+        +String javaHome()
+        +String processor()
+        +String property(String variable)
+        --(checks)--
+        +boolean isMac()
+        +boolean isUnix()
+        +boolean isWindows()
+        --(collection)--
+        +VariableMap<String> environmentVariables()
+        --(identity)--
+        +int processIdentifier()
+    }
+    
+@enduml
+

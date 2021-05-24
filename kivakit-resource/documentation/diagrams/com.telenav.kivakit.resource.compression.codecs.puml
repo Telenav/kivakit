@@ -1,0 +1,25 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.resource.compression.codecs"
+    
+    interface Codec
+    
+    Codec <|-- GzipCodec
+    class GzipCodec
+    {
+    }
+    
+    Codec <|-- NullCodec
+    class NullCodec
+    {
+    }
+    
+    Codec <|-- ZipCodec
+    class ZipCodec
+    {
+    }
+    
+@enduml
+

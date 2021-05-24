@@ -1,0 +1,84 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Messaging - Core Message Listeners"
+    
+    abstract BaseRepeater
+    
+    interface Listener
+    interface MessageCounter
+    
+    Listener <|-- ConsoleWriter
+    class ConsoleWriter
+    {
+    }
+    
+    interface Filtered
+    interface Listener
+    Listener <|-- Logger
+    Filtered <|-- Logger
+    interface Logger
+    {
+        --
+        +LoggerCodeContext codeContext()
+        +void log(Message)
+        --(collection)--
+        +void addFilter(Filter<LogEntry>)
+    }
+    
+    BaseRepeater <|-- MessageChecker
+    class MessageChecker
+    {
+        --
+        +boolean check()
+        --(messaging)--
+        +MessageChecker check(Runnable code)
+        +MessageChecker expect(Class<? extends Message> messageClass)
+        +MessageChecker expect(Class<? extends Message> messageClass, int count)
+    }
+    
+    interface Listener
+    Listener <|-- MessageCounter
+    interface MessageCounter
+    {
+        --(collection)--
+        +Count count(Message.Status type)
+        +Count count(Class<? extends Message> type)
+        +Count countWorseThanOrEqualTo(Message.Status)
+    }
+    
+    ObjectList <|-- MessageList
+    MessageCounter <|-- MessageList
+    class MessageList
+    {
+        --(constructors)--
+        +MessageList(Matcher<Message>)
+        +MessageList(Maximum, Matcher<Message>)
+        --(collection)--
+        +StringList formatted()
+        +ObjectList<Message> messages(Class<? extends Message> type)
+        +StringList statistics(Message.Status... statuses)
+        +StringList statisticsByType(Class<? extends Message>... types)
+    }
+    
+    Listener <|-- NullListener
+    class NullListener
+    {
+    }
+    
+    Listener <|-- ThrowingListener
+    class ThrowingListener
+    {
+    }
+    
+    interface Listener
+    Listener <|-- ValidationReporter
+    interface ValidationReporter
+    {
+        --
+        +void report(Message)
+    }
+    
+@enduml
+

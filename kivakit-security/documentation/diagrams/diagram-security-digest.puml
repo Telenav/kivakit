@@ -1,0 +1,40 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Message Digests"
+    
+    abstract BaseDigester
+    
+    interface Digester
+    
+    Digester <|-- BaseDigester
+    abstract class BaseDigester
+    {
+        --(constructors)--
+        #BaseDigester(String)
+    }
+    
+    interface Digester
+    {
+        --
+        +byte[] digest(byte[] value)
+        +byte[] digest(String value)
+    }
+    
+    BaseDigester <|-- Md5Digester
+    class Md5Digester
+    {
+        --(constructors)--
+        +Md5Digester()
+    }
+    
+    BaseDigester <|-- Sha1Digester
+    class Sha1Digester
+    {
+        --(constructors)--
+        +Sha1Digester()
+    }
+    
+@enduml
+

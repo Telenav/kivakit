@@ -1,0 +1,50 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.collections"
+    
+    interface Transmittable
+    
+    class Collections
+    {
+        --
+        +Set<T> toSet(Collection<T>)
+        --(collection)--
+        +T first(Collection<T>)
+        +void repeatedAdd(Collection<T>, T value, int times)
+        +List<T> sorted(Collection<T>)
+        +List<T> toList(Collection<T>)
+    }
+    
+    interface CompressibleCollection
+    {
+        --
+        +Method compress(Method)
+        +Method compressionMethod()
+        --(checks)--
+        +boolean isCompressed()
+        --(primitive)--
+        +Bytes compressReachableObjects(Listener, Object root, Method, Receiver<CompressionEvent>)
+    }
+    
+    Transmittable <|-- CompressibleCollection.CompressionEvent
+    class CompressibleCollection.CompressionEvent
+    {
+        --(constructors)--
+        +CompressionEvent(CompressibleCollection, Method)
+        --
+        +void method(Method)
+        +CompressibleCollection object()
+    }
+    
+    enum CompressibleCollection.Method
+    {
+        FREEZE
+        MIXED
+        NONE
+        RESIZE
+    }
+    
+@enduml
+

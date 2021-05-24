@@ -1,0 +1,63 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.messaging.listeners"
+    
+    abstract BaseRepeater
+    
+    interface Listener
+    interface MessageCounter
+    
+    Listener <|-- ConsoleWriter
+    class ConsoleWriter
+    {
+    }
+    
+    BaseRepeater <|-- MessageChecker
+    class MessageChecker
+    {
+        --
+        +boolean check()
+        --(messaging)--
+        +MessageChecker check(Runnable code)
+        +MessageChecker expect(Class<? extends Message> messageClass)
+        +MessageChecker expect(Class<? extends Message> messageClass, int count)
+    }
+    
+    interface Listener
+    Listener <|-- MessageCounter
+    interface MessageCounter
+    {
+        --(collection)--
+        +Count count(Message.Status type)
+        +Count count(Class<? extends Message> type)
+        +Count countWorseThanOrEqualTo(Message.Status)
+    }
+    
+    ObjectList <|-- MessageList
+    MessageCounter <|-- MessageList
+    class MessageList
+    {
+        --(constructors)--
+        +MessageList(Matcher<Message>)
+        +MessageList(Maximum, Matcher<Message>)
+        --(collection)--
+        +StringList formatted()
+        +ObjectList<Message> messages(Class<? extends Message> type)
+        +StringList statistics(Message.Status... statuses)
+        +StringList statisticsByType(Class<? extends Message>... types)
+    }
+    
+    Listener <|-- NullListener
+    class NullListener
+    {
+    }
+    
+    Listener <|-- ThrowingListener
+    class ThrowingListener
+    {
+    }
+    
+@enduml
+

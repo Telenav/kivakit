@@ -1,0 +1,35 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.matchers"
+    
+    interface Matcher
+    
+    Matcher <|-- AnythingMatcher
+    class AnythingMatcher<T>
+    {
+    }
+    
+    Matcher <|-- NameMatcher
+    class NameMatcher<T>
+    {
+        --(constructors)--
+        +NameMatcher(Named)
+        +NameMatcher(String)
+    }
+    
+    Matcher <|-- NullMatcher
+    class NullMatcher<T>
+    {
+    }
+    
+    Matcher <|-- PatternMatcher
+    class PatternMatcher<T>
+    {
+        --(constructors)--
+        +PatternMatcher(Pattern)
+    }
+    
+@enduml
+

@@ -1,0 +1,59 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.resource.resources.packaged"
+    
+    abstract BaseReadableResource
+    
+    interface ResourceFolder
+    interface ResourceResolver
+    interface ResourceFolderResolver
+    
+    ResourceFolder <|-- Package
+    class Package
+    {
+        --(constructors)--
+        #Package(PackagePath)
+        --
+        +Package child(String name)
+        +Package of(Class<?> _packageType, String path)
+        +Package of(PackagePath _package)
+        +Package parent()
+        --(collection)--
+        +PropertyMap localizedProperties(Locale)
+        --(path)--
+        +PackagePath path()
+    }
+    
+    BaseReadableResource <|-- PackageResource
+    class PackageResource
+    {
+        --(constructors)--
+        #PackageResource(PackagePath, ModuleResource, FileName)
+        --
+        +PackageResource of(Class<?> type, String path)
+        +PackageResource of(ModuleResource)
+        +PackageResource of(PackagePath _package, FilePath)
+        +PackageResource of(PackagePath _package, String path)
+        +PackageResource of(PackagePath _package, FileName)
+    }
+    
+    interface Packaged
+    {
+        --
+        +Package _package()
+    }
+    
+    ResourceFolderResolver <|-- Package.Resolver
+    class Package.Resolver
+    {
+    }
+    
+    ResourceResolver <|-- PackageResource.Resolver
+    class PackageResource.Resolver
+    {
+    }
+    
+@enduml
+

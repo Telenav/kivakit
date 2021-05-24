@@ -1,0 +1,17 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.serialization.jersey.json.project"
+    
+    Project <|-- SerializationJerseyJsonProject
+    class SerializationJerseyJsonProject
+    {
+        --(constructors)--
+        #SerializationJerseyJsonProject()
+        --(serialization)--
+        +SerializationJerseyJsonProject get()
+    }
+    
+@enduml
+

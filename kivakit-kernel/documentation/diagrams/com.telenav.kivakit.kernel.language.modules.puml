@@ -1,0 +1,36 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.modules"
+    
+    class ModuleResource
+    {
+        --(constructors)--
+        #ModuleResource(PackagePath, URI)
+        --
+        +ModuleResource moduleResource(ModuleReference, URI)
+        --(collection)--
+        +Time lastModified()
+        +Bytes size()
+        --(network)--
+        +URI uri()
+        --(path)--
+        +Path fileNameAsJavaPath()
+        +Path javaPath()
+        +PackagePath packagePath()
+    }
+    
+    class Modules
+    {
+        --
+        +ModuleResource resource(StringPath)
+        --(collection)--
+        +List<ModuleResource> allNestedResources(PackagePath _package)
+        +List<ModuleResource> nestedResources(PackagePath _package, Matcher<ModuleResource>)
+        +List<ModuleResource> nestedResources(PackagePath _package)
+        +List<ModuleResource> resources(PackagePath _package)
+    }
+    
+@enduml
+

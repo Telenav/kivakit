@@ -1,0 +1,18 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.configuration.settings"
+    
+    class Settings
+    {
+        --(lookup)--
+        +void register(Object settings)
+        +T require(Class<T> settingsType)
+        +T require(Class<T> settingsClass, PackagePath defaultSettingsPackage, InstanceIdentifier)
+        +T require(Class<T> settingsType, Package defaultSettings)
+        +T require(Class<T> settingsType, InstanceIdentifier)
+    }
+    
+@enduml
+

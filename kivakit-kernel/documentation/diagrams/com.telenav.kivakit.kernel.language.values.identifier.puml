@@ -1,0 +1,83 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.values.identifier"
+    
+    interface Comparable
+    interface LongKeyed
+    interface Factory
+    interface Identifiable
+    
+    Quantizable.Converter <|-- Identifier.Converter
+    class Identifier.Converter
+    {
+        --(constructors)--
+        +Converter(Listener)
+    }
+    
+    Quantizable.Converter <|-- IntegerIdentifier.Converter
+    class IntegerIdentifier.Converter
+    {
+        --(constructors)--
+        +Converter(Listener)
+    }
+    
+    Identifiable <|-- Identifier
+    LongKeyed <|-- Identifier
+    Comparable <|-- Identifier
+    class Identifier
+    {
+        --(constructors)--
+        +Identifier(long)
+        --(collection)--
+        +BitCount bitsToRepresent()
+        --(primitive)--
+        +long asLong()
+    }
+    
+    Factory <|-- IdentifierFactory
+    class IdentifierFactory
+    {
+        --(constructors)--
+        +IdentifierFactory()
+        +IdentifierFactory(long)
+    }
+    
+    Comparable <|-- IntegerIdentifier
+    Identifiable <|-- IntegerIdentifier
+    class IntegerIdentifier
+    {
+        --(constructors)--
+        #IntegerIdentifier()
+        +IntegerIdentifier(int)
+        --(checks)--
+        +boolean isGreaterThan(IntegerIdentifier)
+        +boolean isLessThan(IntegerIdentifier)
+        --(primitive)--
+        +int asInteger()
+        +long asLong()
+    }
+    
+    class ObjectIdentifier<T>
+    {
+        --(constructors)--
+        +ObjectIdentifier(T)
+        --
+        +T object()
+    }
+    
+    Comparable <|-- StringIdentifier
+    class StringIdentifier
+    {
+        --(constructors)--
+        #StringIdentifier()
+        +StringIdentifier(String)
+        --(conversion)--
+        +String asString()
+        --(identity)--
+        +String identifier()
+    }
+    
+@enduml
+

@@ -1,0 +1,16 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.test.annotations"
+    
+    interface QuickTests
+    {
+    }
+    
+    interface SlowTests
+    {
+    }
+    
+@enduml
+

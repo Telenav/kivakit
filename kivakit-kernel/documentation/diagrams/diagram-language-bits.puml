@@ -1,0 +1,22 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Language - Bit Manipulation"
+    
+    class BitDiagram
+    {
+        --(constructors)--
+        +BitDiagram(String)
+        --
+        +BitField field(char fieldCharacter)
+    }
+    
+    class Bits
+    {
+        --
+        +long oneBits(Count)
+    }
+    
+@enduml
+

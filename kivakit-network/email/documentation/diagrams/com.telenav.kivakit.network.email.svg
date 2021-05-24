@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1228.125px" preserveAspectRatio="none" style="width:1062px;height:1228px;background:#333333;" version="1.1" viewBox="0 0 1062 1228" width="1062.5px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="363.5417" x="342.4479" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="340.625" x="353.9063" y="30.5583">com.telenav.kivakit.network.email</text><!--MD5=[24388abf6c614d2ac9b1fa5f691b44d9]
+cluster EmailSender--><polygon fill="#333333" points="371.3542,551.0986,463.0208,551.0986,470.3125,578.3203,749.4792,578.3203,749.4792,728.182,371.3542,728.182,371.3542,551.0986" style="stroke:#333333;stroke-width:2.0833333333333335;"/><line style="stroke:#333333;stroke-width:2.0833333333333335;" x1="371.3542" x2="470.3125" y1="578.3203" y2="578.3203"/><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="79.1667" x="378.6458" y="568.3919">EmailSender</text><!--MD5=[9bae61ffbc69aff448a67588dabb1c8d]
+class EmailSender.Configuration--><rect codeLine="14" fill="#282828" height="103.123" id="EmailSender.Configuration" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="307.2917" x="416.6667" y="600.057"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="307.2917" x="416.6667" y="600.057"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="307.2917" x="416.6667" y="623.112"/><rect codeLine="14" fill="none" height="103.123" id="EmailSender.Configuration" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="307.2917" x="416.6667" y="600.057"/><ellipse cx="517.7083" cy="615.7511" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M519.6187,620.1762 Q519.1915,620.3959 518.7215,620.5058 Q518.2515,620.6156 517.7327,620.6156 Q515.8895,620.6156 514.919,619.401 Q513.9486,618.1864 513.9486,615.8915 Q513.9486,613.5905 514.919,612.3759 Q515.8895,611.1613 517.7327,611.1613 Q518.2515,611.1613 518.7276,611.2712 Q519.2037,611.381 519.6187,611.6007 L519.6187,613.6027 Q519.1549,613.1755 518.7185,612.9771 Q518.2821,612.7787 517.8182,612.7787 Q516.8294,612.7787 516.3259,613.563 Q515.8223,614.3473 515.8223,615.8915 Q515.8223,617.4296 516.3259,618.2139 Q516.8294,618.9982 517.8182,618.9982 Q518.2821,618.9982 518.7185,618.7998 Q519.1549,618.6015 519.6187,618.1742 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="90.625" x="540.625" y="620.4753">Configuration</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="417.7083" x2="722.9167" y1="631.4453" y2="631.4453"/><ellipse cx="428.125" cy="666.8152" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="275" x="439.5833" y="673.7264">void maximumSendRate(Rate maximumSendRate)</text><ellipse cx="428.125" cy="686.5601" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="141.6667" x="439.5833" y="693.4713">Rate maximumSendRate()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="417.7083" x2="548.9583" y1="649.6511" y2="649.6511"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="36.4583" x="552.0833" y="653.4607">(math)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="591.6667" x2="722.9167" y1="649.6511" y2="649.6511"/><!--MD5=[762aa3d0df6a9d47bd8e105afbd066b5]
+class BaseRepeater--><rect codeLine="6" fill="#282828" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="271.875" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="271.875" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="123.9583" x="271.875" y="76.7578"/><rect codeLine="6" fill="none" height="48.055" id="BaseRepeater" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="123.9583" x="271.875" y="53.7028"/><ellipse cx="286.4583" cy="69.397" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M286.5723,66.099 L285.7239,69.8283 L287.4268,69.8283 Z M285.4736,64.4511 L287.677,64.4511 L290.1367,73.5636 L288.3362,73.5636 L287.7747,71.3114 L285.3638,71.3114 L284.8145,73.5636 L283.0139,73.5636 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="86.4583" x="303.125" y="74.1211">BaseRepeater</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="272.9167" x2="394.7917" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="272.9167" x2="394.7917" y1="93.4245" y2="93.4245"/><!--MD5=[1c38f4b24c2a8cc40df1b1f481d76b9f]
+class Startable--><rect codeLine="8" fill="#282828" height="48.055" id="Startable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="94.7917" x="432.2917" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="94.7917" x="432.2917" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="94.7917" x="432.2917" y="76.7578"/><rect codeLine="8" fill="none" height="48.055" id="Startable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="94.7917" x="432.2917" y="53.7028"/><ellipse cx="446.875" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M443.7581,66.5588 L443.7581,64.9719 L449.1842,64.9719 L449.1842,66.5588 L447.3714,66.5588 L447.3714,72.4976 L449.1842,72.4976 L449.1842,74.0845 L443.7581,74.0845 L443.7581,72.4976 L445.5709,72.4976 L445.5709,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="57.2917" x="463.5417" y="74.1211">Startable</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="433.3333" x2="526.0417" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="433.3333" x2="526.0417" y1="93.4245" y2="93.4245"/><!--MD5=[84d116d8586097e088223e800c641fac]
+class Closeable--><rect codeLine="9" fill="#282828" height="48.055" id="Closeable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="101.0417" x="857.2917" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="101.0417" x="857.2917" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="101.0417" x="857.2917" y="76.7578"/><rect codeLine="9" fill="none" height="48.055" id="Closeable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="101.0417" x="857.2917" y="53.7028"/><ellipse cx="871.875" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M868.7581,66.5588 L868.7581,64.9719 L874.1842,64.9719 L874.1842,66.5588 L872.3714,66.5588 L872.3714,72.4976 L874.1842,72.4976 L874.1842,74.0845 L868.7581,74.0845 L868.7581,72.4976 L870.5709,72.4976 L870.5709,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="63.5417" x="888.5417" y="74.1211">Closeable</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="858.3333" x2="957.2917" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="858.3333" x2="957.2917" y1="93.4245" y2="93.4245"/><!--MD5=[02d8e9e1cff711f67da7e3a29e67b3ab]
+class Stoppable--><rect codeLine="10" fill="#282828" height="48.055" id="Stoppable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="102.0833" x="564.0625" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="102.0833" x="564.0625" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="102.0833" x="564.0625" y="76.7578"/><rect codeLine="10" fill="none" height="48.055" id="Stoppable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="102.0833" x="564.0625" y="53.7028"/><ellipse cx="578.6458" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M575.529,66.5588 L575.529,64.9719 L580.955,64.9719 L580.955,66.5588 L579.1423,66.5588 L579.1423,72.4976 L580.955,72.4976 L580.955,74.0845 L575.529,74.0845 L575.529,72.4976 L577.3417,72.4976 L577.3417,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="64.5833" x="595.3125" y="74.1211">Stoppable</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="565.1042" x2="665.1042" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="565.1042" x2="665.1042" y1="93.4245" y2="93.4245"/><!--MD5=[c1a1fc4cfe30b7d369738b7190ecddf1]
+class Flushable--><rect codeLine="11" fill="#282828" height="48.055" id="Flushable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="100" x="702.6042" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="100" x="702.6042" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="100" x="702.6042" y="76.7578"/><rect codeLine="11" fill="none" height="48.055" id="Flushable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="100" x="702.6042" y="53.7028"/><ellipse cx="717.1875" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M714.0706,66.5588 L714.0706,64.9719 L719.4967,64.9719 L719.4967,66.5588 L717.6839,66.5588 L717.6839,72.4976 L719.4967,72.4976 L719.4967,74.0845 L714.0706,74.0845 L714.0706,72.4976 L715.8834,72.4976 L715.8834,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="62.5" x="733.8542" y="74.1211">Flushable</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="703.6458" x2="801.5625" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="703.6458" x2="801.5625" y1="93.4245" y2="93.4245"/><!--MD5=[7aca7191f476af6561cf4f43a12cda50]
+class Validatable--><rect codeLine="12" fill="#282828" height="48.055" id="Validatable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="109.375" x="128.125" y="280.2653"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="109.375" x="128.125" y="280.2653"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="109.375" x="128.125" y="303.3203"/><rect codeLine="12" fill="none" height="48.055" id="Validatable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="109.375" x="128.125" y="280.2653"/><ellipse cx="142.7083" cy="295.9595" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M139.5915,293.1213 L139.5915,291.5344 L145.0175,291.5344 L145.0175,293.1213 L143.2048,293.1213 L143.2048,299.0601 L145.0175,299.0601 L145.0175,300.647 L139.5915,300.647 L139.5915,299.0601 L141.4042,299.0601 L141.4042,293.1213 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="71.875" x="159.375" y="300.6836">Validatable</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="129.1667" x2="236.4583" y1="311.6536" y2="311.6536"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="129.1667" x2="236.4583" y1="319.987" y2="319.987"/><!--MD5=[78bec0fde86ad92ec1dc3fb343b83709]
+class Email--><rect codeLine="26" fill="#282828" height="245.5037" id="Email" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="320.8333" x="22.3958" y="528.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="320.8333" x="22.3958" y="528.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="320.8333" x="22.3958" y="551.7578"/><rect codeLine="26" fill="none" height="245.5037" id="Email" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="320.8333" x="22.3958" y="528.7028"/><ellipse cx="157.8125" cy="544.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M159.7229,548.822 Q159.2957,549.0417 158.8257,549.1516 Q158.3557,549.2615 157.8369,549.2615 Q155.9937,549.2615 155.0232,548.0469 Q154.0527,546.8323 154.0527,544.5374 Q154.0527,542.2363 155.0232,541.0217 Q155.9937,539.8071 157.8369,539.8071 Q158.3557,539.8071 158.8318,539.917 Q159.3079,540.0269 159.7229,540.2466 L159.7229,542.2485 Q159.259,541.8213 158.8226,541.6229 Q158.3862,541.4246 157.9224,541.4246 Q156.9336,541.4246 156.4301,542.2089 Q155.9265,542.9932 155.9265,544.5374 Q155.9265,546.0754 156.4301,546.8597 Q156.9336,547.644 157.9224,547.644 Q158.3862,547.644 158.8226,547.4457 Q159.259,547.2473 159.7229,546.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="35.4167" x="180.7292" y="549.1211">Email</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="23.4375" x2="342.1875" y1="560.0911" y2="560.0911"/><ellipse cx="33.8542" cy="595.461" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="152.0833" x="45.3125" y="602.3722">Email addTo(EmailAddress)</text><ellipse cx="33.8542" cy="615.2059" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="168.75" x="45.3125" y="622.1171">Email attach(EmailAttachment)</text><ellipse cx="33.8542" cy="634.9508" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="125" x="45.3125" y="641.862">Email body(EmailBody)</text><ellipse cx="33.8542" cy="654.6956" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="173.9583" x="45.3125" y="661.6069">Email from(EmailAddress from)</text><ellipse cx="33.8542" cy="674.4405" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="143.75" x="45.3125" y="681.3517">Email sentAt(Time sentAt)</text><ellipse cx="33.8542" cy="694.1854" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="158.3333" x="45.3125" y="701.0966">Email subject(String subject)</text><ellipse cx="33.8542" cy="713.9303" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="178.125" x="45.3125" y="720.8415">Email to(Set&lt;EmailAddress&gt; to)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="23.4375" x2="153.125" y1="578.2969" y2="578.2969"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="156.25" y="582.1065">(network)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="212.5" x2="342.1875" y1="578.2969" y2="578.2969"/><ellipse cx="33.8542" cy="757.5867" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="288.5417" x="45.3125" y="764.4979">void waitForRetry(Duration durationBetweenRetries)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="23.4375" x2="157.2917" y1="740.4226" y2="740.4226"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="44.7917" x="160.4167" y="744.2322">(thread)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="208.3333" x2="342.1875" y1="740.4226" y2="740.4226"/><!--MD5=[6a10e9b103e375a5f698786d329ce000]
+class EmailAddress--><rect fill="#282828" height="48.055" id="EmailAddress" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="126.0417" x="7.2917" y="943.2861"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="126.0417" x="7.2917" y="943.2861"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="126.0417" x="7.2917" y="966.3411"/><rect fill="none" height="48.055" id="EmailAddress" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="126.0417" x="7.2917" y="943.2861"/><ellipse cx="21.875" cy="958.9803" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M23.7854,963.4054 Q23.3582,963.6251 22.8882,963.7349 Q22.4182,963.8448 21.8994,963.8448 Q20.0562,963.8448 19.0857,962.6302 Q18.1152,961.4156 18.1152,959.1207 Q18.1152,956.8197 19.0857,955.6051 Q20.0562,954.3905 21.8994,954.3905 Q22.4182,954.3905 22.8943,954.5003 Q23.3704,954.6102 23.7854,954.8299 L23.7854,956.8319 Q23.3215,956.4046 22.8851,956.2063 Q22.4487,956.0079 21.9849,956.0079 Q20.9961,956.0079 20.4926,956.7922 Q19.989,957.5765 19.989,959.1207 Q19.989,960.6588 20.4926,961.4431 Q20.9961,962.2274 21.9849,962.2274 Q22.4487,962.2274 22.8851,962.029 Q23.3215,961.8306 23.7854,961.4034 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="88.5417" x="38.5417" y="963.7044">EmailAddress</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="132.2917" y1="974.6745" y2="974.6745"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="132.2917" y1="983.0078" y2="983.0078"/><!--MD5=[146aa0ce202d7e6333de756b48b95fc6]
+class EmailBody--><rect codeLine="53" fill="#282828" height="131.2012" id="EmailBody" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="134.375" x="169.7917" y="901.6195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="134.375" x="169.7917" y="901.6195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="134.375" x="169.7917" y="924.6745"/><rect codeLine="53" fill="none" height="131.2012" id="EmailBody" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="134.375" x="169.7917" y="901.6195"/><ellipse cx="197.5" cy="917.3136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M199.4104,921.7387 Q198.9832,921.9584 198.5132,922.0683 Q198.0432,922.1781 197.5244,922.1781 Q195.6812,922.1781 194.7107,920.9635 Q193.7402,919.7489 193.7402,917.454 Q193.7402,915.153 194.7107,913.9384 Q195.6812,912.7238 197.5244,912.7238 Q198.0432,912.7238 198.5193,912.8337 Q198.9954,912.9435 199.4104,913.1632 L199.4104,915.1652 Q198.9465,914.738 198.5101,914.5396 Q198.0737,914.3412 197.6099,914.3412 Q196.6211,914.3412 196.1176,915.1255 Q195.614,915.9098 195.614,917.454 Q195.614,918.9921 196.1176,919.7764 Q196.6211,920.5607 197.6099,920.5607 Q198.0737,920.5607 198.5101,920.3623 Q198.9465,920.164 199.4104,919.7367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="67.7083" x="217.0833" y="922.0378">EmailBody</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="170.8333" x2="303.125" y1="933.0078" y2="933.0078"/><ellipse cx="181.25" cy="968.3777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="97.9167" x="192.7083" y="975.2889">EmailBody(String)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="170.8333" x2="193.2292" y1="951.2136" y2="951.2136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="196.3542" y="955.0232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="280.7292" x2="303.125" y1="951.2136" y2="951.2136"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="170.8333" x2="303.125" y1="984.9976" y2="984.9976"/><ellipse cx="181.25" cy="996.4559" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="102.0833" x="192.7083" y="1003.3671">String mimeType()</text><ellipse cx="181.25" cy="1016.2008" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="66.6667" x="192.7083" y="1023.112">String text()</text><!--MD5=[4916e87abf0c4197a7f3a2701d0620b4]
+class EmailAttachment--><rect codeLine="40" fill="#282828" height="214.3473" id="EmailAttachment" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="288.5417" x="340.625" y="859.9528"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="288.5417" x="340.625" y="859.9528"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="288.5417" x="340.625" y="883.0078"/><rect codeLine="40" fill="none" height="214.3473" id="EmailAttachment" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="288.5417" x="340.625" y="859.9528"/><ellipse cx="422.3958" cy="875.647" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M424.3062,880.072 Q423.879,880.2917 423.409,880.4016 Q422.939,880.5115 422.4202,880.5115 Q420.577,880.5115 419.6065,879.2969 Q418.6361,878.0823 418.6361,875.7874 Q418.6361,873.4863 419.6065,872.2717 Q420.577,871.0571 422.4202,871.0571 Q422.939,871.0571 423.4151,871.167 Q423.8912,871.2769 424.3062,871.4966 L424.3062,873.4985 Q423.8424,873.0713 423.406,872.8729 Q422.9696,872.6746 422.5057,872.6746 Q421.5169,872.6746 421.0134,873.4589 Q420.5098,874.2432 420.5098,875.7874 Q420.5098,877.3254 421.0134,878.1097 Q421.5169,878.894 422.5057,878.894 Q422.9696,878.894 423.406,878.6957 Q423.8424,878.4973 424.3062,878.0701 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="110.4167" x="445.3125" y="880.3711">EmailAttachment</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="341.6667" x2="628.125" y1="891.3411" y2="891.3411"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="341.6667" x2="628.125" y1="899.6745" y2="899.6745"/><ellipse cx="352.0833" cy="911.1328" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="67.7083" x="363.5417" y="918.044">byte[] data()</text><ellipse cx="352.0833" cy="930.8777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="102.0833" x="363.5417" y="937.7889">String mimeType()</text><ellipse cx="352.0833" cy="974.5341" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="91.6667" x="363.5417" y="981.4453">String filename()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="341.6667" x2="449.4792" y1="957.37" y2="957.37"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="452.6042" y="961.1796">(filesystem)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="520.3125" x2="628.125" y1="957.37" y2="957.37"/><ellipse cx="352.0833" cy="1018.1905" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="188.5417" x="363.5417" y="1025.1017">EmailAttachment data(byte[] data)</text><ellipse cx="352.0833" cy="1037.9354" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="235.4167" x="363.5417" y="1044.8466">EmailAttachment filename(String filename)</text><ellipse cx="352.0833" cy="1057.6803" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="256.25" x="363.5417" y="1064.5915">EmailAttachment mimeType(String mimeType)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="341.6667" x2="455.2083" y1="1001.0264" y2="1001.0264"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="458.3333" y="1004.836">(network)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="514.5833" x2="628.125" y1="1001.0264" y2="1001.0264"/><!--MD5=[a405741d5b6f849ab1142f2384fc1ba3]
+class EmailQueue--><rect codeLine="63" fill="#282828" height="194.6025" id="EmailQueue" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="281.25" x="774.4792" y="554.2236"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="281.25" x="774.4792" y="554.2236"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="281.25" x="774.4792" y="577.2786"/><rect codeLine="63" fill="none" height="194.6025" id="EmailQueue" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="281.25" x="774.4792" y="554.2236"/><ellipse cx="869.2708" cy="569.9178" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M871.1812,574.3429 Q870.754,574.5626 870.284,574.6724 Q869.814,574.7823 869.2952,574.7823 Q867.452,574.7823 866.4815,573.5677 Q865.5111,572.3531 865.5111,570.0582 Q865.5111,567.7572 866.4815,566.5426 Q867.452,565.328 869.2952,565.328 Q869.814,565.328 870.2901,565.4378 Q870.7662,565.5477 871.1812,565.7674 L871.1812,567.7694 Q870.7174,567.3421 870.281,567.1438 Q869.8446,566.9454 869.3807,566.9454 Q868.3919,566.9454 867.8884,567.7297 Q867.3848,568.514 867.3848,570.0582 Q867.3848,571.5963 867.8884,572.3806 Q868.3919,573.1649 869.3807,573.1649 Q869.8446,573.1649 870.281,572.9665 Q870.7174,572.7681 871.1812,572.3409 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="77.0833" x="892.1875" y="574.6419">EmailQueue</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="775.5208" x2="1054.6875" y1="585.612" y2="585.612"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="775.5208" x2="1054.6875" y1="593.9453" y2="593.9453"/><ellipse cx="785.9375" cy="605.4036" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="248.9583" x="797.3958" y="612.3149">boolean offer(Email, Duration maximumWait)</text><ellipse cx="785.9375" cy="625.1485" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="88.5417" x="797.3958" y="632.0597">void sent(Email)</text><ellipse cx="785.9375" cy="668.8049" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="104.1667" x="797.3958" y="675.7161">boolean isClosed()</text><ellipse cx="785.9375" cy="688.5498" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="100" x="797.3958" y="695.461">boolean isEmpty()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="775.5208" x2="888.5417" y1="651.6408" y2="651.6408"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="891.6667" y="655.4504">(checks)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="941.6667" x2="1054.6875" y1="651.6408" y2="651.6408"/><ellipse cx="785.9375" cy="732.2062" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="63.5417" x="797.3958" y="739.1174">Email take()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="775.5208" x2="885.4167" y1="715.0421" y2="715.0421"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="888.5417" y="718.8517">(network)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="944.7917" x2="1054.6875" y1="715.0421" y2="715.0421"/><!--MD5=[dbd744789a27dfb7a38205596e031569]
+class EmailSender--><rect codeLine="83" fill="#282828" height="277.7486" id="EmailSender" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="357.2917" x="434.375" y="165.1611"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="357.2917" x="434.375" y="165.1611"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="357.2917" x="434.375" y="188.2161"/><rect codeLine="83" fill="none" height="277.7486" id="EmailSender" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="357.2917" x="434.375" y="165.1611"/><ellipse cx="566.1458" cy="180.8553" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M566.2598,177.5574 L565.4114,181.2866 L567.1143,181.2866 Z M565.1611,175.9094 L567.3645,175.9094 L569.8242,185.022 L568.0237,185.022 L567.4622,182.7698 L565.0513,182.7698 L564.502,185.022 L562.7014,185.022 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="79.1667" x="589.0625" y="185.5794">EmailSender</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="435.4167" x2="790.625" y1="196.5495" y2="196.5495"/><polygon fill="#FFFF44" points="445.8333,226.711,450,230.8777,445.8333,235.0444,441.6667,230.8777" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="154.1667" x="457.2917" y="238.8306">EmailSender(Configuration)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="435.4167" x2="569.2708" y1="214.7552" y2="214.7552"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="572.3958" y="218.5649">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="656.7708" x2="790.625" y1="214.7552" y2="214.7552"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="435.4167" x2="790.625" y1="248.5392" y2="248.5392"/><ellipse cx="445.8333" cy="259.9976" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="163.5417" x="457.2917" y="266.9088">Authenticator authenticator()</text><ellipse cx="445.8333" cy="279.7424" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="112.5" x="457.2917" y="286.6536">void enqueue(Email)</text><polygon fill="#FFFF44" points="445.8333,294.279,450,298.4456,445.8333,302.6123,441.6667,298.4456" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="208.3333" x="457.2917" y="306.3985">Properties getMailSessionProperties()</text><ellipse cx="445.8333" cy="343.1437" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="104.1667" x="457.2917" y="350.0549">boolean isClosed()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="435.4167" x2="600.5208" y1="325.9796" y2="325.9796"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="18.75" x="603.6458" y="329.7892">(io)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="625.5208" x2="790.625" y1="325.9796" y2="325.9796"/><ellipse cx="445.8333" cy="386.8001" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="323.9583" x="457.2917" y="393.7113">EmailSender maximumRetries(Maximum maximumRetries)</text><ellipse cx="445.8333" cy="406.545" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="325" x="457.2917" y="413.4562">EmailSender retryPeriod(Duration durationBetweenRetries)</text><ellipse cx="445.8333" cy="426.2899" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="203.125" x="457.2917" y="433.2011">EmailSender sendingOn(boolean on)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="435.4167" x2="583.3333" y1="369.636" y2="369.636"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="586.4583" y="373.4456">(network)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="642.7083" x2="790.625" y1="369.636" y2="369.636"/><!--MD5=[695fc88100522bff34c91ba6f69b941f]
+class HtmlEmailBody--><rect codeLine="100" fill="#282828" height="83.3781" id="HtmlEmailBody" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="156.25" x="158.8542" y="1138.0778"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="156.25" x="158.8542" y="1138.0778"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="156.25" x="158.8542" y="1161.1328"/><rect codeLine="100" fill="none" height="83.3781" id="HtmlEmailBody" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="156.25" x="158.8542" y="1138.0778"/><ellipse cx="182.3438" cy="1153.772" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M184.2542,1158.197 Q183.8269,1158.4167 183.3569,1158.5266 Q182.887,1158.6365 182.3682,1158.6365 Q180.5249,1158.6365 179.5544,1157.4219 Q178.584,1156.2073 178.584,1153.9124 Q178.584,1151.6113 179.5544,1150.3967 Q180.5249,1149.1821 182.3682,1149.1821 Q182.887,1149.1821 183.363,1149.292 Q183.8391,1149.4019 184.2542,1149.6216 L184.2542,1151.6235 Q183.7903,1151.1963 183.3539,1150.9979 Q182.9175,1150.7996 182.4536,1150.7996 Q181.4648,1150.7996 180.9613,1151.5839 Q180.4578,1152.3682 180.4578,1153.9124 Q180.4578,1155.4504 180.9613,1156.2347 Q181.4648,1157.019 182.4536,1157.019 Q182.9175,1157.019 183.3539,1156.8207 Q183.7903,1156.6223 184.2542,1156.1951 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="98.9583" x="200.9896" y="1158.4961">HtmlEmailBody</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="159.8958" x2="314.0625" y1="1169.4661" y2="1169.4661"/><ellipse cx="170.3125" cy="1204.836" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="123.9583" x="181.7708" y="1211.7472">HtmlEmailBody(String)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="159.8958" x2="193.2292" y1="1187.6719" y2="1187.6719"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="196.3542" y="1191.4815">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="280.7292" x2="314.0625" y1="1187.6719" y2="1187.6719"/><!--MD5=[4b8705263b64170b923d9cab3ee7e090]
+reverse link Validatable to Email--><path codeLine="21" d="M182.8125,349.057 C182.8125,394.0778 182.8125,466.2028 182.8125,528.6195 " fill="none" id="Validatable-backto-Email" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="175.5208,349.0257,182.8125,328.1924,190.1042,349.0257,175.5208,349.0257" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[5511cd90b32d6fd818b4ec3a096b5168]
+reverse link Email to EmailAddress--><path codeLine="22" d="M88.9375,787.3174 C86.2813,793.4424 83.8646,799.609 81.7708,805.7861 C65.8854,852.5882 66.4896,911.359 68.375,943.1715 " fill="none" id="Email-backto-EmailAddress" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="94.7188,774.8278,88.3096,778.7452,89.4605,786.168,95.8697,782.2507,94.7188,774.8278" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="13.5417" x="85.9375" y="822.0378">to</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="77.7459" y="797.7765">1</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="6.25" x="57.0043" y="929.1413">*</text><!--MD5=[5511cd90b32d6fd818b4ec3a096b5168]
+reverse link Email to EmailAddress--><path codeLine="23" d="M134.3542,787.7132 C113.1458,846.8278 90.4271,910.1403 78.5833,943.1507 " fill="none" id="Email-backto-EmailAddress-1" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="139,774.7861,132.9697,779.2648,134.7845,786.5539,140.8148,782.0752,139,774.7861" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="31.25" x="130.7292" y="822.0378">from</text><!--MD5=[0423131ec02545d7997fdccf9b1d0874]
+reverse link Email to EmailBody--><path codeLine="24" d="M206.2917,788.5465 C213.0521,827.7132 220.125,868.6403 225.7708,901.3382 " fill="none" id="Email-backto-EmailBody" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="203.9063,774.7861,200.8646,781.6543,206.0347,787.1036,209.0763,780.2354,203.9063,774.7861" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[21d5773e275249a29bd9f1e4c45a395a]
+reverse link Email to EmailAttachment--><path codeLine="25" d="M310.0208,784.6924 C334.125,809.7132 359.0625,835.5882 382.2813,859.7028 " fill="none" id="Email-backto-EmailAttachment" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="300.4688,774.7861,301.81,782.177,309.1482,783.7815,307.8069,776.3906,300.4688,774.7861" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="295.3909" y="797.7324">1</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="6.25" x="365.2517" y="845.7986">*</text><!--MD5=[666bf8bec9411f35d627388b54da8ead]
+reverse link Closeable to EmailQueue--><path codeLine="62" d="M908.375,122.9424 C909.5521,214.9424 912.2708,428.7028 913.875,554.0882 " fill="none" id="Closeable-backto-EmailQueue" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="901.0833,122.7549,908.1042,101.8278,915.6667,122.5674,901.0833,122.7549" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[d5e6cdef153bde7a66230f0683f1da5e]
+reverse link BaseRepeater to EmailSender--><path codeLine="75" d="M379.0313,115.0361 C396.7604,129.2861 418.3125,146.6195 441.0729,164.9215 " fill="none" id="BaseRepeater-backto-EmailSender" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="374.3438,120.6195,362.6771,101.8799,383.4792,109.2549,374.3438,120.6195" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[c8c6cd9b8b1bd696c668dae4fad25e8e]
+reverse link Startable to EmailSender--><path codeLine="76" d="M504.2083,119.984 C512.0208,133.1507 521.1563,148.5257 530.75,164.6611 " fill="none" id="Startable-backto-EmailSender" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="497.8229,123.5153,493.4583,101.8799,510.3646,116.0674,497.8229,123.5153" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[88f6cb5347cd2eb35f3dff3b2a32a2aa]
+reverse link Stoppable to EmailSender--><path codeLine="77" d="M614.6979,122.7965 C614.5833,135.3174 614.4479,149.6611 614.3021,164.6611 " fill="none" id="Stoppable-backto-EmailSender" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="607.4063,122.6403,614.8854,101.8799,621.9896,122.7757,607.4063,122.6403" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[77c865e9262bf71a480046c8bcf7e754]
+reverse link Flushable to EmailSender--><path codeLine="78" d="M726.9375,119.984 C718.75,133.1507 709.1875,148.5257 699.1563,164.6611 " fill="none" id="Flushable-backto-EmailSender" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="721,115.7236,738.1875,101.8799,733.3854,123.4215,721,115.7236" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[662228a6b4de2a1943b4f8c0c10ac652]
+reverse link Closeable to EmailSender--><path codeLine="79" d="M861.0208,114.3382 C841.4271,129.2549 817.2917,147.6299 791.8438,167.0049 " fill="none" id="Closeable-backto-EmailSender" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="856.6563,108.4945,877.6458,101.6715,865.4896,120.0986,856.6563,108.4945" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[ac2af55de684475b55d841ad36c9da24]
+link EmailSender to Email--><path codeLine="80" d="M440.8229,443.484 C407.25,470.432 372.2188,498.5465 339.1875,525.0674 " fill="none" id="EmailSender-to-Email" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="334.75,528.6195,344.67,526.0033,338.8127,525.3604,339.4555,519.503,334.75,528.6195" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="38.5417" x="401.5625" y="490.7878">sends</text><!--MD5=[f5cd920235759880c2a603df840ad01e]
+link EmailSender to EmailSender.Configuration--><path codeLine="81" d="M595.8958,443.7236 C589.3646,496.5257 582.2917,553.7549 577.2292,594.609 " fill="none" id="EmailSender-to-EmailSender.Configuration" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="576.5625,600.0153,581.8505,591.2239,577.203,594.8465,573.5804,590.1991,576.5625,600.0153" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="89.5833" x="595.3125" y="490.7878">configured by</text><!--MD5=[6ed959326af49dce5f8a675c0cbb5293]
+reverse link EmailSender to EmailQueue--><path codeLine="82" d="M734.1458,443.7236 C766.4896,480.6924 800.7292,519.8382 830.625,554.0049 " fill="none" id="EmailSender-backto-EmailQueue" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="734.1458,443.7236,735.1253,451.1711,742.3766,453.1313,741.3971,445.6839,734.1458,443.7236" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[0c28a3d99e8684b16dba2ba5ce784d26]
+reverse link EmailBody to HtmlEmailBody--><path codeLine="99" d="M236.9792,1054.2132 C236.9792,1083.1507 236.9792,1114.0986 236.9792,1137.9007 " fill="none" id="EmailBody-backto-HtmlEmailBody" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="229.6875,1053.9632,236.9792,1033.1299,244.2708,1053.9632,229.6875,1053.9632" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[6ff6dd0389ea51f7bef8889a7fa84f11]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.network.email"
+    
+    abstract BaseRepeater
+    
+    interface Startable
+    interface Closeable
+    interface Stoppable
+    interface Flushable
+    interface Validatable
+    
+    class EmailSender.Configuration
+    {
+        - -(math)- -
+        +void maximumSendRate(Rate maximumSendRate)
+        +Rate maximumSendRate()
+    }
+    
+    Validatable <|- - Email
+    Email "1" o- - "*" EmailAddress : "to"
+    Email o- - EmailAddress : "from"
+    Email o- - EmailBody
+    Email "1" o- - "*" EmailAttachment
+    class Email
+    {
+        - -(network)- -
+        +Email addTo(EmailAddress)
+        +Email attach(EmailAttachment)
+        +Email body(EmailBody)
+        +Email from(EmailAddress from)
+        +Email sentAt(Time sentAt)
+        +Email subject(String subject)
+        +Email to(Set<EmailAddress> to)
+        - -(thread)- -
+        +void waitForRetry(Duration durationBetweenRetries)
+    }
+    
+    class EmailAttachment
+    {
+        - -
+        +byte[] data()
+        +String mimeType()
+        - -(filesystem)- -
+        +String filename()
+        - -(network)- -
+        +EmailAttachment data(byte[] data)
+        +EmailAttachment filename(String filename)
+        +EmailAttachment mimeType(String mimeType)
+    }
+    
+    class EmailBody
+    {
+        - -(constructors)- -
+        +EmailBody(String)
+        - -
+        +String mimeType()
+        +String text()
+    }
+    
+    Closeable <|- - EmailQueue
+    class EmailQueue
+    {
+        - -
+        +boolean offer(Email, Duration maximumWait)
+        +void sent(Email)
+        - -(checks)- -
+        +boolean isClosed()
+        +boolean isEmpty()
+        - -(network)- -
+        +Email take()
+    }
+    
+    BaseRepeater <|- - EmailSender
+    Startable <|- - EmailSender
+    Stoppable <|- - EmailSender
+    Flushable <|- - EmailSender
+    Closeable <|- - EmailSender
+    EmailSender - -> Email : "sends"
+    EmailSender - -> EmailSender.Configuration : "configured by"
+    EmailSender o- - EmailQueue
+    abstract class EmailSender
+    {
+        - -(constructors)- -
+        #EmailSender(Configuration)
+        - -
+        +Authenticator authenticator()
+        +void enqueue(Email)
+        #Properties getMailSessionProperties()
+        - -(io)- -
+        +boolean isClosed()
+        - -(network)- -
+        +EmailSender maximumRetries(Maximum maximumRetries)
+        +EmailSender retryPeriod(Duration durationBetweenRetries)
+        +EmailSender sendingOn(boolean on)
+    }
+    
+    EmailBody <|- - HtmlEmailBody
+    class HtmlEmailBody
+    {
+        - -(constructors)- -
+        +HtmlEmailBody(String)
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.network.email"
+    
+    abstract BaseRepeater
+    
+    interface Startable
+    interface Closeable
+    interface Stoppable
+    interface Flushable
+    interface Validatable
+    
+    class EmailSender.Configuration
+    {
+        - -(math)- -
+        +void maximumSendRate(Rate maximumSendRate)
+        +Rate maximumSendRate()
+    }
+    
+    Validatable <|- - Email
+    Email "1" o- - "*" EmailAddress : "to"
+    Email o- - EmailAddress : "from"
+    Email o- - EmailBody
+    Email "1" o- - "*" EmailAttachment
+    class Email
+    {
+        - -(network)- -
+        +Email addTo(EmailAddress)
+        +Email attach(EmailAttachment)
+        +Email body(EmailBody)
+        +Email from(EmailAddress from)
+        +Email sentAt(Time sentAt)
+        +Email subject(String subject)
+        +Email to(Set<EmailAddress> to)
+        - -(thread)- -
+        +void waitForRetry(Duration durationBetweenRetries)
+    }
+    
+    class EmailAttachment
+    {
+        - -
+        +byte[] data()
+        +String mimeType()
+        - -(filesystem)- -
+        +String filename()
+        - -(network)- -
+        +EmailAttachment data(byte[] data)
+        +EmailAttachment filename(String filename)
+        +EmailAttachment mimeType(String mimeType)
+    }
+    
+    class EmailBody
+    {
+        - -(constructors)- -
+        +EmailBody(String)
+        - -
+        +String mimeType()
+        +String text()
+    }
+    
+    Closeable <|- - EmailQueue
+    class EmailQueue
+    {
+        - -
+        +boolean offer(Email, Duration maximumWait)
+        +void sent(Email)
+        - -(checks)- -
+        +boolean isClosed()
+        +boolean isEmpty()
+        - -(network)- -
+        +Email take()
+    }
+    
+    BaseRepeater <|- - EmailSender
+    Startable <|- - EmailSender
+    Stoppable <|- - EmailSender
+    Flushable <|- - EmailSender
+    Closeable <|- - EmailSender
+    EmailSender - -> Email : "sends"
+    EmailSender - -> EmailSender.Configuration : "configured by"
+    EmailSender o- - EmailQueue
+    abstract class EmailSender
+    {
+        - -(constructors)- -
+        #EmailSender(Configuration)
+        - -
+        +Authenticator authenticator()
+        +void enqueue(Email)
+        #Properties getMailSessionProperties()
+        - -(io)- -
+        +boolean isClosed()
+        - -(network)- -
+        +EmailSender maximumRetries(Maximum maximumRetries)
+        +EmailSender retryPeriod(Duration durationBetweenRetries)
+        +EmailSender sendingOn(boolean on)
+    }
+    
+    EmailBody <|- - HtmlEmailBody
+    class HtmlEmailBody
+    {
+        - -(constructors)- -
+        +HtmlEmailBody(String)
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

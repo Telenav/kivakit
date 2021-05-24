@@ -1,0 +1,137 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.configuration"
+    
+    abstract BaseRepeater
+    abstract BaseStringConverter
+    
+    interface Named
+    interface Serializable
+    interface Iterable
+    
+    ConfigurationEntry o-- ConfigurationIdentifier
+    -class ConfigurationEntry
+    {
+        --(constructors)--
+        +ConfigurationEntry(ConfigurationIdentifier, Object)
+        --
+        +T object()
+        --(configuration)--
+        +ConfigurationIdentifier identifier()
+    }
+    
+    ConfigurationSet <|-- ConfigurationFolder
+    class ConfigurationFolder
+    {
+        --(constructors)--
+        +ConfigurationFolder(Folder)
+    }
+    
+    ConfigurationIdentifier o-- Class
+    ConfigurationIdentifier o-- InstanceIdentifier
+    -class ConfigurationIdentifier
+    {
+        --(constructors)--
+        +ConfigurationIdentifier(Class<?>)
+        +ConfigurationIdentifier(Class<?>, InstanceIdentifier)
+        --
+        +Class<?> type()
+        --(identity)--
+        +InstanceIdentifier instance()
+    }
+    
+    ConfigurationSet <|-- ConfigurationPackage
+    class ConfigurationPackage
+    {
+        --(constructors)--
+        #ConfigurationPackage(PackagePath)
+        --(configuration)--
+        +ConfigurationPackage of(Package _package)
+        +ConfigurationPackage of(PackagePath)
+    }
+    
+    BaseRepeater <|-- ConfigurationSet
+    Named <|-- ConfigurationSet
+    Iterable <|-- ConfigurationSet
+    ConfigurationSet --> T : "gets values"
+    ConfigurationSet "1" o-- "*" ConfigurationEntry
+    class ConfigurationSet
+    {
+        --
+        +T get(Class<T> type)
+        +T get(Class<T> type, InstanceIdentifier)
+        +T get(Class<T> type, Enum<?> instance)
+        +boolean has(Class<?> type, Enum<?> instance)
+        +boolean has(Class<?> type)
+        +boolean has(Class<?> type, InstanceIdentifier)
+        --(collection)--
+        +void clear()
+        --(configuration)--
+        +ConfigurationSet add(Object configuration, InstanceIdentifier)
+        +ConfigurationSet add(Object configuration, Enum<?> instance)
+        +ConfigurationSet add(Object configuration)
+        +ConfigurationSet addAll(Collection<Object> configurations)
+        +ConfigurationSet addDeployment(Deployment)
+        +ConfigurationSet addFolder(Folder)
+        +ConfigurationSet addPackage(Class<?> type)
+        +ConfigurationSet addPackage(PackagePath)
+        +ConfigurationSet addPackage(Class<?> relativeTo, String path)
+        +ConfigurationSet addSet(ConfigurationSet)
+        +Iterator<Object> configurations()
+        +ConfigurationSet global()
+        +ConfigurationSet install()
+        --(search)--
+        +T require(Class<T> type, InstanceIdentifier)
+        +T require(Class<T> type, Enum<?> instance)
+        +T require(Class<T> type)
+    }
+    
+    BaseStringConverter <|-- Deployment.Converter
+    class Deployment.Converter
+    {
+        --(constructors)--
+        +Converter(Listener, DeploymentSet)
+    }
+    
+    ConfigurationSet <|-- Deployment
+    Named <|-- Deployment
+    Serializable <|-- Deployment
+    class Deployment
+    {
+        --(constructors)--
+        +Deployment(String, String)
+        --
+        +String description()
+        --(command line parsing)--
+        +SwitchParser<Deployment> deploymentSwitch(DeploymentSet)
+    }
+    
+    BaseRepeater <|-- DeploymentSet
+    DeploymentSet "1" o-- "*" Deployment
+    class DeploymentSet
+    {
+        --(configuration)--
+        +void add(Deployment)
+        +void addAll(Collection<Deployment> deployments)
+        +DeploymentSet addDeployments(PackagePath)
+        +DeploymentSet addDeployments(Folder parent)
+        +Deployment deployment(String name)
+        +DeploymentSet load(Listener, Package _package)
+        +DeploymentSet load(Listener, PackagePath)
+        +DeploymentSet load(Listener, Class<?> relativeTo, String path)
+        +DeploymentSet load(Listener, Folder)
+        +DeploymentSet of(Deployment, Deployment... more)
+    }
+    
+    class InstanceIdentifier
+    {
+        --(constructors)--
+        +InstanceIdentifier(Class<?>)
+        +InstanceIdentifier(Enum<?>)
+        +InstanceIdentifier(String)
+    }
+    
+@enduml
+

@@ -1,0 +1,26 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.collections.iteration.iterables"
+    
+    abstract BaseIterable
+    
+    interface Iterable
+    
+    Iterable <|-- DeduplicatingIterable
+    class DeduplicatingIterable<Element>
+    {
+        --(constructors)--
+        +DeduplicatingIterable(Iterable<Element>)
+    }
+    
+    BaseIterable <|-- FilteredIterable
+    class FilteredIterable<Element>
+    {
+        --(constructors)--
+        +FilteredIterable(Iterable<Element>, Matcher<Element>)
+    }
+    
+@enduml
+

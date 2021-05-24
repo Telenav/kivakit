@@ -1,0 +1,45 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Resources - Compression"
+    
+    interface Codec
+    
+    interface Compressor
+    interface Decompressor
+    Compressor <|-- Codec
+    Decompressor <|-- Codec
+    interface Codec
+    {
+    }
+    
+    interface Compressor
+    {
+        --(write)--
+        +OutputStream compressed(OutputStream)
+    }
+    
+    interface Decompressor
+    {
+        --(functional)--
+        +InputStream decompressed(InputStream)
+    }
+    
+    Codec <|-- GzipCodec
+    class GzipCodec
+    {
+    }
+    
+    Codec <|-- NullCodec
+    class NullCodec
+    {
+    }
+    
+    Codec <|-- ZipCodec
+    class ZipCodec
+    {
+    }
+    
+@enduml
+

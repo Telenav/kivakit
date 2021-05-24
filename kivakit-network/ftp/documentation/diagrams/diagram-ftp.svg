@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="690.625px" preserveAspectRatio="none" style="width:620px;height:690px;background:#333333;" version="1.1" viewBox="0 0 620 690" width="620.8333px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="59.375" x="273.6979" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="36.4583" x="285.1563" y="30.5583">FTP</text><!--MD5=[0d8f06937a3bcd729f0372312b29db1d]
+class BaseNetworkResource--><rect codeLine="6" fill="#282828" height="48.055" id="BaseNetworkResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="180.2083" x="82.2917" y="228.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="180.2083" x="82.2917" y="228.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="180.2083" x="82.2917" y="251.7578"/><rect codeLine="6" fill="none" height="48.055" id="BaseNetworkResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="180.2083" x="82.2917" y="228.7028"/><ellipse cx="96.875" cy="244.397" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M96.9889,241.099 L96.1405,244.8283 L97.8434,244.8283 Z M95.8903,239.4511 L98.0937,239.4511 L100.5534,248.5636 L98.7528,248.5636 L98.1913,246.3114 L95.7804,246.3114 L95.2311,248.5636 L93.4306,248.5636 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="142.7083" x="113.5417" y="249.1211">BaseNetworkResource</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="83.3333" x2="261.4583" y1="260.0911" y2="260.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="83.3333" x2="261.4583" y1="268.4245" y2="268.4245"/><!--MD5=[66a462850cecc63a355ae0a9dda88528]
+class NetworkLocation--><rect fill="#282828" height="48.055" id="NetworkLocation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="146.875" x="383.3333" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="146.875" x="383.3333" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="146.875" x="383.3333" y="76.7578"/><rect fill="none" height="48.055" id="NetworkLocation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="146.875" x="383.3333" y="53.7028"/><ellipse cx="397.9167" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M399.8271,73.822 Q399.3998,74.0417 398.9299,74.1516 Q398.4599,74.2615 397.9411,74.2615 Q396.0978,74.2615 395.1274,73.0469 Q394.1569,71.8323 394.1569,69.5374 Q394.1569,67.2363 395.1274,66.0217 Q396.0978,64.8071 397.9411,64.8071 Q398.4599,64.8071 398.936,64.917 Q399.412,65.0269 399.8271,65.2466 L399.8271,67.2485 Q399.3632,66.8213 398.9268,66.6229 Q398.4904,66.4246 398.0265,66.4246 Q397.0378,66.4246 396.5342,67.2089 Q396.0307,67.9932 396.0307,69.5374 Q396.0307,71.0754 396.5342,71.8597 Q397.0378,72.644 398.0265,72.644 Q398.4904,72.644 398.9268,72.4457 Q399.3632,72.2473 399.8271,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="109.375" x="414.5833" y="74.1211">NetworkLocation</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="384.375" x2="529.1667" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="384.375" x2="529.1667" y1="93.4245" y2="93.4245"/><!--MD5=[42a2ae60b488a05a5bb7fa91890d3295]
+class FtpNetworkLocation--><rect codeLine="11" fill="#282828" height="174.8576" id="FtpNetworkLocation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="314.5833" x="299.4792" y="165.1611"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="314.5833" x="299.4792" y="165.1611"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="314.5833" x="299.4792" y="188.2161"/><rect codeLine="11" fill="none" height="174.8576" id="FtpNetworkLocation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="314.5833" x="299.4792" y="165.1611"/><ellipse cx="384.375" cy="180.8553" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M386.2854,185.2804 Q385.8582,185.5001 385.3882,185.6099 Q384.9182,185.7198 384.3994,185.7198 Q382.5562,185.7198 381.5857,184.5052 Q380.6152,183.2906 380.6152,180.9957 Q380.6152,178.6947 381.5857,177.4801 Q382.5562,176.2655 384.3994,176.2655 Q384.9182,176.2655 385.3943,176.3753 Q385.8704,176.4852 386.2854,176.7049 L386.2854,178.7069 Q385.8215,178.2796 385.3851,178.0813 Q384.9487,177.8829 384.4849,177.8829 Q383.4961,177.8829 382.9926,178.6672 Q382.489,179.4515 382.489,180.9957 Q382.489,182.5338 382.9926,183.3181 Q383.4961,184.1024 384.4849,184.1024 Q384.9487,184.1024 385.3851,183.904 Q385.8215,183.7056 386.2854,183.2784 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="130.2083" x="407.2917" y="185.5794">FtpNetworkLocation</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="300.5208" x2="613.0208" y1="196.5495" y2="196.5495"/><ellipse cx="310.9375" cy="231.9194" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="189.5833" x="322.3958" y="238.8306">FtpNetworkLocation(NetworkPath)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="300.5208" x2="413.0208" y1="214.7552" y2="214.7552"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="416.1458" y="218.5649">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="500.5208" x2="613.0208" y1="214.7552" y2="214.7552"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="300.5208" x2="613.0208" y1="248.5392" y2="248.5392"/><ellipse cx="310.9375" cy="259.9976" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="96.875" x="322.3958" y="266.9088">void mode(Mode)</text><ellipse cx="310.9375" cy="303.654" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="72.9167" x="322.3958" y="310.5652">Mode mode()</text><ellipse cx="310.9375" cy="323.3988" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="282.2917" x="322.3958" y="330.3101">FtpResource resource(NetworkAccessConstraints)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="300.5208" x2="427.0833" y1="286.4899" y2="286.4899"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="430.2083" y="290.2995">(network)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="486.4583" x2="613.0208" y1="286.4899" y2="286.4899"/><!--MD5=[30e38f4fe6cf45f6fc8a5e73815c1bf5]
+class FtpResource--><rect codeLine="23" fill="#282828" height="258.0037" id="FtpResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="361.4583" x="7.2917" y="425.5778"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="361.4583" x="7.2917" y="425.5778"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="361.4583" x="7.2917" y="448.6328"/><rect codeLine="23" fill="none" height="258.0037" id="FtpResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="361.4583" x="7.2917" y="425.5778"/><ellipse cx="141.1458" cy="441.272" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M143.0562,445.697 Q142.629,445.9167 142.159,446.0266 Q141.689,446.1365 141.1702,446.1365 Q139.327,446.1365 138.3565,444.9219 Q137.3861,443.7073 137.3861,441.4124 Q137.3861,439.1113 138.3565,437.8967 Q139.327,436.6821 141.1702,436.6821 Q141.689,436.6821 142.1651,436.792 Q142.6412,436.9019 143.0562,437.1216 L143.0562,439.1235 Q142.5924,438.6963 142.156,438.4979 Q141.7196,438.2996 141.2557,438.2996 Q140.2669,438.2996 139.7634,439.0839 Q139.2598,439.8682 139.2598,441.4124 Q139.2598,442.9504 139.7634,443.7347 Q140.2669,444.519 141.2557,444.519 Q141.7196,444.519 142.156,444.3207 Q142.5924,444.1223 143.0562,443.6951 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="79.1667" x="164.0625" y="445.9961">FtpResource</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="8.3333" x2="367.7083" y1="456.9661" y2="456.9661"/><ellipse cx="18.75" cy="492.336" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="329.1667" x="30.2083" y="499.2472">FtpResource(NetworkLocation, NetworkAccessConstraints)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="144.2708" y1="475.1719" y2="475.1719"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="147.3958" y="478.9815">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="231.7708" x2="367.7083" y1="475.1719" y2="475.1719"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="367.7083" y1="508.9559" y2="508.9559"/><ellipse cx="18.75" cy="520.4142" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="30.2083" y="527.3254">void clean()</text><ellipse cx="18.75" cy="540.1591" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="96.875" x="30.2083" y="547.0703">void disconnect()</text><ellipse cx="18.75" cy="583.8155" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="126.0417" x="30.2083" y="590.7267">boolean isConnected()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="161.4583" y1="566.6514" y2="566.6514"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="164.5833" y="570.461">(checks)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="214.5833" x2="367.7083" y1="566.6514" y2="566.6514"/><ellipse cx="18.75" cy="627.4719" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="142.7083" x="30.2083" y="634.3831">List&lt;FtpResource&gt; files()</text><ellipse cx="18.75" cy="647.2168" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="236.4583" x="30.2083" y="654.128">ObjectList&lt;FTPFile&gt; listFiles(NetworkPath)</text><ellipse cx="18.75" cy="666.9617" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="223.9583" x="30.2083" y="673.8729">InputStream openBinaryFileForReading()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="152.6042" y1="610.3078" y2="610.3078"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="155.7292" y="614.1174">(filesystem)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="223.4375" x2="367.7083" y1="610.3078" y2="610.3078"/><!--MD5=[b3c9e4d6fec74416cda1c06d7e3aee1b]
+class FtpNetworkLocation.Mode--><rect codeLine="38" fill="#282828" height="87.5448" id="FtpNetworkLocation.Mode" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="72.9167" x="420.3125" y="510.9945"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="72.9167" x="420.3125" y="510.9945"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="72.9167" x="420.3125" y="534.0495"/><rect codeLine="38" fill="none" height="87.5448" id="FtpNetworkLocation.Mode" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="72.9167" x="420.3125" y="510.9945"/><ellipse cx="434.8958" cy="526.6886" fill="#CF6300" rx="10.4167" ry="10.4167" style="stroke:#EF8300;stroke-width:1.0416666666666667;"/><path d="M437.9517,531.3761 L432.2754,531.3761 L432.2754,522.2636 L437.9517,522.2636 L437.9517,523.8505 L434.0759,523.8505 L434.0759,525.8158 L437.5854,525.8158 L437.5854,527.4028 L434.0759,527.4028 L434.0759,529.7892 L437.9517,529.7892 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="35.4167" x="451.5625" y="531.4128">Mode</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="421.3542" x2="492.1875" y1="542.3828" y2="542.3828"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="34.375" x="429.6875" y="560.7524">Active</text><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="40.625" x="429.6875" y="580.4972">Passive</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="421.3542" x2="492.1875" y1="590.2059" y2="590.2059"/><!--MD5=[b536ce80dcf05f8f5ad4eee01963a5f0]
+reverse link NetworkLocation to FtpNetworkLocation--><path codeLine="8" d="M456.7708,122.8174 C456.7708,135.7861 456.7708,150.4424 456.7708,165.0986 " fill="none" id="NetworkLocation-backto-FtpNetworkLocation" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="449.4792,122.4945,456.7708,101.6611,464.0625,122.4945,449.4792,122.4945" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f673402e5b3e64ef8919a0f3ce16cb5b]
+link FtpNetworkLocation to FtpResource--><path codeLine="9" d="M379.0417,340.4736 C356.3542,365.7965 331.0417,394.057 306.4479,421.5049 " fill="none" id="FtpNetworkLocation-to-FtpResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="302.8229,425.5465,312.1835,421.3476,306.2997,421.6686,305.9788,415.7848,302.8229,425.5465" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="45.8333" x="350.5208" y="387.6628">creates</text><!--MD5=[66811dcd6ccfc12d19e9b836cfa9aef4]
+reverse link FtpNetworkLocation to FtpNetworkLocation.Mode--><path codeLine="10" d="M456.7708,354.1611 C456.7708,407.4528 456.7708,470.1403 456.7708,510.8382 " fill="none" id="FtpNetworkLocation-backto-FtpNetworkLocation.Mode" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="456.7708,340.4736,452.6042,346.7236,456.7708,352.9736,460.9375,346.7236,456.7708,340.4736" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="115.625" x="460.9375" y="387.6628">transfers in mode</text><!--MD5=[95ca8e31d67d1a6ef6987dc6f5edd7c7]
+reverse link BaseNetworkResource to FtpResource--><path codeLine="22" d="M174.7083,298.0361 C176.4583,331.7549 178.9688,379.9632 181.3438,425.4528 " fill="none" id="BaseNetworkResource-backto-FtpResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="167.3958,297.932,173.5938,276.7445,181.9583,297.1715,167.3958,297.932" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[675e4a1d7bf52e1617409cb16aa67cc3]
+@startuml
+
+    !include lexakai.theme
+    
+    title "FTP"
+    
+    abstract BaseNetworkResource
+    
+    NetworkLocation <|- - FtpNetworkLocation
+    FtpNetworkLocation - -> FtpResource : "creates"
+    FtpNetworkLocation o- - FtpNetworkLocation.Mode : "transfers in mode"
+    class FtpNetworkLocation
+    {
+        - -(constructors)- -
+        +FtpNetworkLocation(NetworkPath)
+        - -
+        +void mode(Mode)
+        - -(network)- -
+        +Mode mode()
+        +FtpResource resource(NetworkAccessConstraints)
+    }
+    
+    BaseNetworkResource <|- - FtpResource
+    class FtpResource
+    {
+        - -(constructors)- -
+        +FtpResource(NetworkLocation, NetworkAccessConstraints)
+        - -
+        +void clean()
+        +void disconnect()
+        - -(checks)- -
+        +boolean isConnected()
+        - -(filesystem)- -
+        +List<FtpResource> files()
+        +ObjectList<FTPFile> listFiles(NetworkPath)
+        +InputStream openBinaryFileForReading()
+    }
+    
+    enum FtpNetworkLocation.Mode
+    {
+        Active
+        Passive
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "FTP"
+    
+    abstract BaseNetworkResource
+    
+    NetworkLocation <|- - FtpNetworkLocation
+    FtpNetworkLocation - -> FtpResource : "creates"
+    FtpNetworkLocation o- - FtpNetworkLocation.Mode : "transfers in mode"
+    class FtpNetworkLocation
+    {
+        - -(constructors)- -
+        +FtpNetworkLocation(NetworkPath)
+        - -
+        +void mode(Mode)
+        - -(network)- -
+        +Mode mode()
+        +FtpResource resource(NetworkAccessConstraints)
+    }
+    
+    BaseNetworkResource <|- - FtpResource
+    class FtpResource
+    {
+        - -(constructors)- -
+        +FtpResource(NetworkLocation, NetworkAccessConstraints)
+        - -
+        +void clean()
+        +void disconnect()
+        - -(checks)- -
+        +boolean isConnected()
+        - -(filesystem)- -
+        +List<FtpResource> files()
+        +ObjectList<FTPFile> listFiles(NetworkPath)
+        +InputStream openBinaryFileForReading()
+    }
+    
+    enum FtpNetworkLocation.Mode
+    {
+        Active
+        Passive
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="452.0833px" preserveAspectRatio="none" style="width:1102px;height:452px;background:#333333;" version="1.1" viewBox="0 0 1102 452" width="1102.0833px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="419.7917" x="334.1146" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="396.875" x="345.5729" y="30.5583">com.telenav.kivakit.network.http.secure</text><!--MD5=[0731707a292826ebeb7787157e6d4722]
+class DefaultHttpClient--><rect fill="#282828" height="48.055" id="DefaultHttpClient" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="152.0833" x="66.1458" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="152.0833" x="66.1458" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="152.0833" x="66.1458" y="76.7578"/><rect fill="none" height="48.055" id="DefaultHttpClient" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="152.0833" x="66.1458" y="53.7028"/><ellipse cx="80.7292" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M82.6396,73.822 Q82.2123,74.0417 81.7424,74.1516 Q81.2724,74.2615 80.7536,74.2615 Q78.9103,74.2615 77.9399,73.0469 Q76.9694,71.8323 76.9694,69.5374 Q76.9694,67.2363 77.9399,66.0217 Q78.9103,64.8071 80.7536,64.8071 Q81.2724,64.8071 81.7485,64.917 Q82.2245,65.0269 82.6396,65.2466 L82.6396,67.2485 Q82.1757,66.8213 81.7393,66.6229 Q81.3029,66.4246 80.839,66.4246 Q79.8503,66.4246 79.3467,67.2089 Q78.8432,67.9932 78.8432,69.5374 Q78.8432,71.0754 79.3467,71.8597 Q79.8503,72.644 80.839,72.644 Q81.3029,72.644 81.7393,72.4457 Q82.1757,72.2473 82.6396,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="114.5833" x="97.3958" y="74.1211">DefaultHttpClient</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="67.1875" x2="217.1875" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="67.1875" x2="217.1875" y1="93.4245" y2="93.4245"/><!--MD5=[b7416f5241a4d7f78125543fd14bc805]
+class InvalidCertificateTrustingHttpClient--><rect codeLine="7" fill="#282828" height="83.3781" id="InvalidCertificateTrustingHttpClient" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="269.7917" x="7.2917" y="165.1611"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="269.7917" x="7.2917" y="165.1611"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="269.7917" x="7.2917" y="188.2161"/><rect codeLine="7" fill="none" height="83.3781" id="InvalidCertificateTrustingHttpClient" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="269.7917" x="7.2917" y="165.1611"/><ellipse cx="21.875" cy="180.8553" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M23.7854,185.2804 Q23.3582,185.5001 22.8882,185.6099 Q22.4182,185.7198 21.8994,185.7198 Q20.0562,185.7198 19.0857,184.5052 Q18.1152,183.2906 18.1152,180.9957 Q18.1152,178.6947 19.0857,177.4801 Q20.0562,176.2655 21.8994,176.2655 Q22.4182,176.2655 22.8943,176.3753 Q23.3704,176.4852 23.7854,176.7049 L23.7854,178.7069 Q23.3215,178.2796 22.8851,178.0813 Q22.4487,177.8829 21.9849,177.8829 Q20.9961,177.8829 20.4926,178.6672 Q19.989,179.4515 19.989,180.9957 Q19.989,182.5338 20.4926,183.3181 Q20.9961,184.1024 21.9849,184.1024 Q22.4487,184.1024 22.8851,183.904 Q23.3215,183.7056 23.7854,183.2784 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="232.2917" x="38.5417" y="185.5794">InvalidCertificateTrustingHttpClient</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="8.3333" x2="276.0417" y1="196.5495" y2="196.5495"/><ellipse cx="18.75" cy="231.9194" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="206.25" x="30.2083" y="238.8306">InvalidCertificateTrustingHttpClient()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="98.4375" y1="214.7552" y2="214.7552"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="101.5625" y="218.5649">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="185.9375" x2="276.0417" y1="214.7552" y2="214.7552"/><!--MD5=[fad6ba2768857d695f61116a5bf9c0eb]
+class HttpGetResource--><rect fill="#282828" height="48.055" id="HttpGetResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="145.8333" x="314.0625" y="182.8695"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="145.8333" x="314.0625" y="182.8695"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="145.8333" x="314.0625" y="205.9245"/><rect fill="none" height="48.055" id="HttpGetResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="145.8333" x="314.0625" y="182.8695"/><ellipse cx="328.6458" cy="198.5636" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M330.5562,202.9887 Q330.129,203.2084 329.659,203.3183 Q329.189,203.4281 328.6702,203.4281 Q326.827,203.4281 325.8565,202.2135 Q324.8861,200.9989 324.8861,198.704 Q324.8861,196.403 325.8565,195.1884 Q326.827,193.9738 328.6702,193.9738 Q329.189,193.9738 329.6651,194.0837 Q330.1412,194.1935 330.5562,194.4132 L330.5562,196.4152 Q330.0924,195.988 329.656,195.7896 Q329.2196,195.5912 328.7557,195.5912 Q327.7669,195.5912 327.2634,196.3755 Q326.7598,197.1598 326.7598,198.704 Q326.7598,200.2421 327.2634,201.0264 Q327.7669,201.8107 328.7557,201.8107 Q329.2196,201.8107 329.656,201.6123 Q330.0924,201.414 330.5562,200.9867 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="108.3333" x="345.3125" y="203.2878">HttpGetResource</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="315.1042" x2="458.8542" y1="214.2578" y2="214.2578"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="315.1042" x2="458.8542" y1="222.5911" y2="222.5911"/><!--MD5=[7c117b586cff559e9ad9e915c29285a9]
+class SecureHttpGetResource--><rect codeLine="14" fill="#282828" height="111.4563" id="SecureHttpGetResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="485.4167" x="144.2708" y="333.9111"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="485.4167" x="144.2708" y="333.9111"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="485.4167" x="144.2708" y="356.9661"/><rect codeLine="14" fill="none" height="111.4563" id="SecureHttpGetResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="485.4167" x="144.2708" y="333.9111"/><ellipse cx="304.6875" cy="349.6053" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M306.5979,354.0304 Q306.1707,354.2501 305.7007,354.3599 Q305.2307,354.4698 304.7119,354.4698 Q302.8687,354.4698 301.8982,353.2552 Q300.9277,352.0406 300.9277,349.7457 Q300.9277,347.4447 301.8982,346.2301 Q302.8687,345.0155 304.7119,345.0155 Q305.2307,345.0155 305.7068,345.1253 Q306.1829,345.2352 306.5979,345.4549 L306.5979,347.4569 Q306.134,347.0296 305.6976,346.8313 Q305.2612,346.6329 304.7974,346.6329 Q303.8086,346.6329 303.3051,347.4172 Q302.8015,348.2015 302.8015,349.7457 Q302.8015,351.2838 303.3051,352.0681 Q303.8086,352.8524 304.7974,352.8524 Q305.2612,352.8524 305.6976,352.654 Q306.134,352.4556 306.5979,352.0284 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="150" x="327.6042" y="354.3294">SecureHttpGetResource</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="145.3125" x2="628.6458" y1="365.2995" y2="365.2995"/><ellipse cx="155.7292" cy="400.6694" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="453.125" x="167.1875" y="407.5806">SecureHttpGetResource(SecureHttpNetworkLocation, NetworkAccessConstraints)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="145.3125" x2="343.2292" y1="383.5052" y2="383.5052"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="346.3542" y="387.3149">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="430.7292" x2="628.6458" y1="383.5052" y2="383.5052"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="145.3125" x2="628.6458" y1="417.2892" y2="417.2892"/><ellipse cx="155.7292" cy="428.7476" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="256.25" x="167.1875" y="435.6588">void ignoreInvalidCertificates(boolean ignore)</text><!--MD5=[141e7cec292b27cdb82c0916bd340d3c]
+class HttpNetworkLocation--><rect fill="#282828" height="48.055" id="HttpNetworkLocation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="175" x="545.3125" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="175" x="545.3125" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="175" x="545.3125" y="76.7578"/><rect fill="none" height="48.055" id="HttpNetworkLocation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="175" x="545.3125" y="53.7028"/><ellipse cx="559.8958" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M561.8062,73.822 Q561.379,74.0417 560.909,74.1516 Q560.439,74.2615 559.9202,74.2615 Q558.077,74.2615 557.1065,73.0469 Q556.1361,71.8323 556.1361,69.5374 Q556.1361,67.2363 557.1065,66.0217 Q558.077,64.8071 559.9202,64.8071 Q560.439,64.8071 560.9151,64.917 Q561.3912,65.0269 561.8062,65.2466 L561.8062,67.2485 Q561.3424,66.8213 560.906,66.6229 Q560.4696,66.4246 560.0057,66.4246 Q559.0169,66.4246 558.5134,67.2089 Q558.0098,67.9932 558.0098,69.5374 Q558.0098,71.0754 558.5134,71.8597 Q559.0169,72.644 560.0057,72.644 Q560.4696,72.644 560.906,72.4457 Q561.3424,72.2473 561.8062,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="137.5" x="576.5625" y="74.1211">HttpNetworkLocation</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="546.3542" x2="719.2708" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="546.3542" x2="719.2708" y1="93.4245" y2="93.4245"/><!--MD5=[1faf439c9bfb39542e17a40ecd42e819]
+class SecureHttpNetworkLocation--><rect codeLine="25" fill="#282828" height="83.3781" id="SecureHttpNetworkLocation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="265.625" x="500" y="165.1611"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="265.625" x="500" y="165.1611"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="265.625" x="500" y="188.2161"/><rect codeLine="25" fill="none" height="83.3781" id="SecureHttpNetworkLocation" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="265.625" x="500" y="165.1611"/><ellipse cx="536.6146" cy="180.8553" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M538.525,185.2804 Q538.0977,185.5001 537.6278,185.6099 Q537.1578,185.7198 536.639,185.7198 Q534.7957,185.7198 533.8253,184.5052 Q532.8548,183.2906 532.8548,180.9957 Q532.8548,178.6947 533.8253,177.4801 Q534.7957,176.2655 536.639,176.2655 Q537.1578,176.2655 537.6339,176.3753 Q538.1099,176.4852 538.525,176.7049 L538.525,178.7069 Q538.0611,178.2796 537.6247,178.0813 Q537.1883,177.8829 536.7244,177.8829 Q535.7357,177.8829 535.2321,178.6672 Q534.7286,179.4515 534.7286,180.9957 Q534.7286,182.5338 535.2321,183.3181 Q535.7357,184.1024 536.7244,184.1024 Q537.1883,184.1024 537.6247,183.904 Q538.0611,183.7056 538.525,183.2784 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="179.1667" x="558.1771" y="185.5794">SecureHttpNetworkLocation</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="501.0417" x2="764.5833" y1="196.5495" y2="196.5495"/><ellipse cx="511.4583" cy="231.9194" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="233.3333" x="522.9167" y="238.8306">SecureHttpNetworkLocation(NetworkPath)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="501.0417" x2="589.0625" y1="214.7552" y2="214.7552"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="592.1875" y="218.5649">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="676.5625" x2="764.5833" y1="214.7552" y2="214.7552"/><!--MD5=[bd7a994f41277c0d52085b20a0f733a0]
+class SecureHttpPostResource--><rect codeLine="32" fill="#282828" height="111.4563" id="SecureHttpPostResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="429.1667" x="666.1458" y="333.9111"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="429.1667" x="666.1458" y="333.9111"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="429.1667" x="666.1458" y="356.9661"/><rect codeLine="32" fill="none" height="111.4563" id="SecureHttpPostResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="429.1667" x="666.1458" y="333.9111"/><ellipse cx="795.3125" cy="349.6053" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M797.2229,354.0304 Q796.7957,354.2501 796.3257,354.3599 Q795.8557,354.4698 795.3369,354.4698 Q793.4937,354.4698 792.5232,353.2552 Q791.5527,352.0406 791.5527,349.7457 Q791.5527,347.4447 792.5232,346.2301 Q793.4937,345.0155 795.3369,345.0155 Q795.8557,345.0155 796.3318,345.1253 Q796.8079,345.2352 797.2229,345.4549 L797.2229,347.4569 Q796.759,347.0296 796.3226,346.8313 Q795.8862,346.6329 795.4224,346.6329 Q794.4336,346.6329 793.9301,347.4172 Q793.4265,348.2015 793.4265,349.7457 Q793.4265,351.2838 793.9301,352.0681 Q794.4336,352.8524 795.4224,352.8524 Q795.8862,352.8524 796.3226,352.654 Q796.759,352.4556 797.2229,352.0284 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="156.25" x="818.2292" y="354.3294">SecureHttpPostResource</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="667.1875" x2="1094.2708" y1="365.2995" y2="365.2995"/><ellipse cx="677.6042" cy="400.6694" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="396.875" x="689.0625" y="407.5806">SecureHttpPostResource(NetworkLocation, NetworkAccessConstraints)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="667.1875" x2="836.9792" y1="383.5052" y2="383.5052"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="840.1042" y="387.3149">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="924.4792" x2="1094.2708" y1="383.5052" y2="383.5052"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="667.1875" x2="1094.2708" y1="417.2892" y2="417.2892"/><ellipse cx="677.6042" cy="428.7476" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="256.25" x="689.0625" y="435.6588">void ignoreInvalidCertificates(boolean ignore)</text><!--MD5=[1d9e1dbf485c7f50b25d1a9966e9bb48]
+class HttpPostResource--><rect fill="#282828" height="48.055" id="HttpPostResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="152.0833" x="804.6875" y="182.8695"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="152.0833" x="804.6875" y="182.8695"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="152.0833" x="804.6875" y="205.9245"/><rect fill="none" height="48.055" id="HttpPostResource" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="152.0833" x="804.6875" y="182.8695"/><ellipse cx="819.2708" cy="198.5636" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M821.1812,202.9887 Q820.754,203.2084 820.284,203.3183 Q819.814,203.4281 819.2952,203.4281 Q817.452,203.4281 816.4815,202.2135 Q815.5111,200.9989 815.5111,198.704 Q815.5111,196.403 816.4815,195.1884 Q817.452,193.9738 819.2952,193.9738 Q819.814,193.9738 820.2901,194.0837 Q820.7662,194.1935 821.1812,194.4132 L821.1812,196.4152 Q820.7174,195.988 820.281,195.7896 Q819.8446,195.5912 819.3807,195.5912 Q818.3919,195.5912 817.8884,196.3755 Q817.3848,197.1598 817.3848,198.704 Q817.3848,200.2421 817.8884,201.0264 Q818.3919,201.8107 819.3807,201.8107 Q819.8446,201.8107 820.281,201.6123 Q820.7174,201.414 821.1812,200.9867 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="114.5833" x="835.9375" y="203.2878">HttpPostResource</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="805.7292" x2="955.7292" y1="214.2578" y2="214.2578"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="805.7292" x2="955.7292" y1="222.5911" y2="222.5911"/><!--MD5=[061ecc643d7c76719286eb7a92063fa1]
+reverse link DefaultHttpClient to InvalidCertificateTrustingHttpClient--><path codeLine="6" d="M142.1875,122.9424 C142.1875,136.5882 142.1875,151.5465 142.1875,164.9528 " fill="none" id="DefaultHttpClient-backto-InvalidCertificateTrustingHttpClient" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="134.8958,122.5465,142.1875,101.7132,149.4792,122.5465,134.8958,122.5465" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e3d422820a5c0a0ff4ea7ff864eb4aa5]
+reverse link HttpGetResource to SecureHttpGetResource--><path codeLine="13" d="M386.9792,252.0257 C386.9792,276.609 386.9792,307.432 386.9792,333.5674 " fill="none" id="HttpGetResource-backto-SecureHttpGetResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="379.6875,251.9632,386.9792,231.1299,394.2708,251.9632,379.6875,251.9632" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[0985cc9e497acb77a530189cecc3546d]
+reverse link HttpNetworkLocation to SecureHttpNetworkLocation--><path codeLine="22" d="M632.8125,122.9424 C632.8125,136.5882 632.8125,151.5465 632.8125,164.9528 " fill="none" id="HttpNetworkLocation-backto-SecureHttpNetworkLocation" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="625.5208,122.5465,632.8125,101.7132,640.1042,122.5465,625.5208,122.5465" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[f3d6450fcf7e20a426bf20df3cf273d0]
+link SecureHttpNetworkLocation to SecureHttpGetResource--><path codeLine="23" d="M577.3333,248.6507 C544.5417,272.7653 502.4688,303.6924 466.2188,330.3382 " fill="none" id="SecureHttpNetworkLocation-to-SecureHttpGetResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="461.8333,333.5674,471.8564,331.3787,466.0319,330.4854,466.9253,324.661,461.8333,333.5674" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="45.8333" x="536.9792" y="295.9961">creates</text><!--MD5=[3c126acdd857e7bc41f2321be00a1f0e]
+link SecureHttpNetworkLocation to SecureHttpPostResource--><path codeLine="24" d="M688.7604,248.6507 C721.8333,272.7653 764.2604,303.6924 800.8125,330.3382 " fill="none" id="SecureHttpNetworkLocation-to-SecureHttpPostResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="805.2396,333.5674,800.1326,324.6696,801.0358,330.4925,795.2128,331.3957,805.2396,333.5674" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="45.8333" x="760.9375" y="295.9961">creates</text><!--MD5=[030e3d0e44caaa5d23ac0da7d2adbba6]
+reverse link HttpPostResource to SecureHttpPostResource--><path codeLine="31" d="M880.7292,252.0257 C880.7292,276.609 880.7292,307.432 880.7292,333.5674 " fill="none" id="HttpPostResource-backto-SecureHttpPostResource" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="873.4375,251.9632,880.7292,231.1299,888.0208,251.9632,873.4375,251.9632" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[81f316a017f6b2050f7e70864658bd59]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.network.http.secure"
+    
+    DefaultHttpClient <|- - InvalidCertificateTrustingHttpClient
+    class InvalidCertificateTrustingHttpClient
+    {
+        - -(constructors)- -
+        +InvalidCertificateTrustingHttpClient()
+    }
+    
+    HttpGetResource <|- - SecureHttpGetResource
+    class SecureHttpGetResource
+    {
+        - -(constructors)- -
+        +SecureHttpGetResource(SecureHttpNetworkLocation, NetworkAccessConstraints)
+        - -
+        +void ignoreInvalidCertificates(boolean ignore)
+    }
+    
+    HttpNetworkLocation <|- - SecureHttpNetworkLocation
+    SecureHttpNetworkLocation - -> SecureHttpGetResource : "creates"
+    SecureHttpNetworkLocation - -> SecureHttpPostResource : "creates"
+    class SecureHttpNetworkLocation
+    {
+        - -(constructors)- -
+        +SecureHttpNetworkLocation(NetworkPath)
+    }
+    
+    HttpPostResource <|- - SecureHttpPostResource
+    class SecureHttpPostResource
+    {
+        - -(constructors)- -
+        +SecureHttpPostResource(NetworkLocation, NetworkAccessConstraints)
+        - -
+        +void ignoreInvalidCertificates(boolean ignore)
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.network.http.secure"
+    
+    DefaultHttpClient <|- - InvalidCertificateTrustingHttpClient
+    class InvalidCertificateTrustingHttpClient
+    {
+        - -(constructors)- -
+        +InvalidCertificateTrustingHttpClient()
+    }
+    
+    HttpGetResource <|- - SecureHttpGetResource
+    class SecureHttpGetResource
+    {
+        - -(constructors)- -
+        +SecureHttpGetResource(SecureHttpNetworkLocation, NetworkAccessConstraints)
+        - -
+        +void ignoreInvalidCertificates(boolean ignore)
+    }
+    
+    HttpNetworkLocation <|- - SecureHttpNetworkLocation
+    SecureHttpNetworkLocation - -> SecureHttpGetResource : "creates"
+    SecureHttpNetworkLocation - -> SecureHttpPostResource : "creates"
+    class SecureHttpNetworkLocation
+    {
+        - -(constructors)- -
+        +SecureHttpNetworkLocation(NetworkPath)
+    }
+    
+    HttpPostResource <|- - SecureHttpPostResource
+    class SecureHttpPostResource
+    {
+        - -(constructors)- -
+        +SecureHttpPostResource(NetworkLocation, NetworkAccessConstraints)
+        - -
+        +void ignoreInvalidCertificates(boolean ignore)
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

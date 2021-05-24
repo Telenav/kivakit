@@ -1,0 +1,34 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Interfaces - Factory"
+    
+    interface Source
+    Source <|-- Factory
+    interface Factory<Value>
+    {
+        --(factory)--
+        +Value newInstance()
+    }
+    
+    interface IntMapFactory<Value>
+    {
+        --(factory)--
+        +Value newInstance(int identifier)
+    }
+    
+    interface LongMapFactory<Value>
+    {
+        --(factory)--
+        +Value newInstance(long identifier)
+    }
+    
+    interface MapFactory<Parameter, Value>
+    {
+        --(factory)--
+        +Value newInstance(Parameter)
+    }
+    
+@enduml
+

@@ -1,0 +1,66 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Data - Validation Reporting"
+    
+    abstract BaseValidationReporter
+    
+    interface ValidationReporter
+    
+    BaseValidationReporter <|-- AssertingValidationReporter
+    class AssertingValidationReporter
+    {
+    }
+    
+    ValidationReporter <|-- BaseValidationReporter
+    abstract class BaseValidationReporter
+    {
+    }
+    
+    interface Receiver
+    interface Transceiver
+    Transceiver <|-- Listener
+    Receiver <|-- Listener
+    interface Listener
+    {
+        --(messaging)--
+        +T listenTo(T broadcaster, MessageFilter)
+        +T listenTo(T broadcaster)
+        +Listener none()
+        +void onMessage(Message)
+    }
+    
+    BaseValidationReporter <|-- LogValidationReporter
+    class LogValidationReporter
+    {
+    }
+    
+    BaseValidationReporter <|-- NullValidationReporter
+    class NullValidationReporter
+    {
+    }
+    
+    BaseValidationReporter <|-- ThrowingValidationReporter
+    ThrowingValidationReporter --> ValidationFailure : "throws"
+    class ThrowingValidationReporter
+    {
+    }
+    
+    RuntimeException <|-- ValidationFailure
+    class ValidationFailure
+    {
+        --(constructors)--
+        +ValidationFailure(Throwable, String)
+    }
+    
+    interface Listener
+    Listener <|-- ValidationReporter
+    interface ValidationReporter
+    {
+        --
+        +void report(Message)
+    }
+    
+@enduml
+

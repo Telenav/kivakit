@@ -1,0 +1,43 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.objects.reference.virtual"
+    
+    abstract BaseRepeater
+    
+    VirtualReference --> HardReferencedValue : "can take form of"
+    VirtualReference --> SoftReferencedValue : "can take form of"
+    VirtualReference --> WeakReferencedValue : "can take form of"
+    abstract class VirtualReference<T>
+    {
+        --(constructors)--
+        #VirtualReference(VirtualReferenceTracker<T>)
+        --
+        +T get()
+        --(extension points)--
+        #T onLoad()
+        --(naming)--
+        #String name()
+        --(primitive)--
+        #Bytes memorySize()
+    }
+    
+    BaseRepeater <|-- VirtualReferenceTracker
+    VirtualReferenceTracker o-- VirtualReferenceType
+    VirtualReferenceTracker "1" o-- "*" VirtualReference : "loads, weakens, hardens"
+    class VirtualReferenceTracker<T>
+    {
+        --(constructors)--
+        +VirtualReferenceTracker(Bytes, VirtualReferenceType)
+    }
+    
+    enum VirtualReferenceType
+    {
+        NONE
+        SOFT
+        WEAK
+    }
+    
+@enduml
+

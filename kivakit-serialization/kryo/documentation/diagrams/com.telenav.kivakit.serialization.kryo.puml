@@ -1,0 +1,98 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.serialization.kryo"
+    
+    abstract BaseRepeater
+    
+    interface Named
+    interface SerializationSession
+    
+    KryoTypes <|-- CoreKernelKryoTypes
+    class CoreKernelKryoTypes
+    {
+        --(constructors)--
+        +CoreKernelKryoTypes()
+    }
+    
+    Kryo <|-- DebugKryo
+    class DebugKryo
+    {
+        --(constructors)--
+        +DebugKryo(Listener)
+    }
+    
+    BaseRepeater <|-- KryoSerializationSession
+    Named <|-- KryoSerializationSession
+    SerializationSession <|-- KryoSerializationSession
+    class KryoSerializationSession
+    {
+        --(constructors)--
+        +KryoSerializationSession(KryoTypes)
+        --
+        +KryoTypes kryoTypes()
+        +Serializer<? extends T> serializer(Class<T> type)
+        +void trackReferences()
+        --(read)--
+        +Registration readClass()
+        +T readClassAndObject()
+    }
+    
+    Serializer <|-- KryoSerializer
+    abstract class KryoSerializer<Value>
+    {
+        --(constructors)--
+        #KryoSerializer(Class<Value>)
+        --
+        +Class<?> type()
+        --(extension points)--
+        #Value onRead(KryoSerializationSession)
+        --(identity)--
+        +void version(Version)
+        #void unsupportedVersion()
+        #Version version()
+        --(write)--
+        #void onWrite(KryoSerializationSession, Value)
+    }
+    
+    class KryoTypeEntry
+    {
+        --(filesystem)--
+        +KryoTypeEntry copy()
+    }
+    
+    Named <|-- KryoTypes
+    class KryoTypes
+    {
+        --(constructors)--
+        +KryoTypes()
+        --
+        +void group(String name, Runnable code)
+        +Set<Class<?>> registeredTypes()
+        --(filesystem)--
+        +KryoTypes deepCopy()
+        --(functional)--
+        +KryoTypes mergedWith(KryoTypes that)
+        --(identity)--
+        +int identifier(Class<?> type)
+        --(lookup)--
+        +KryoTypes register(Class<?> type)
+        +KryoTypes register(Class<?> type, Serializer<?>)
+        --(serialization)--
+        +SerializationSessionFactory sessionFactory()
+    }
+    
+    UnitTest <|-- KryoUnitTest
+    class KryoUnitTest
+    {
+        --
+        #KryoTypes kryoTypes()
+        --(serialization)--
+        #void serializationTest(Object)
+        #SerializationSession session()
+        #SerializationSessionFactory sessionFactory()
+    }
+    
+@enduml
+

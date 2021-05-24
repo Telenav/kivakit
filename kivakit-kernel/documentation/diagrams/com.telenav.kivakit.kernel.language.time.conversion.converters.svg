@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="273.9583px" preserveAspectRatio="none" style="width:1933px;height:273px;background:#333333;" version="1.1" viewBox="0 0 1933 273" width="1933.3333px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="655.2083" x="632.0313" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="632.2917" x="643.4896" y="30.5583">com.telenav.kivakit.kernel.language.time.conversion.converters</text><!--MD5=[12010cea93f1b91faade7a3dc642c76d]
+class BaseFormattedLocalTimeConverter--><rect codeLine="6" fill="#282828" height="48.055" id="BaseFormattedLocalTimeConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="263.5417" x="637.5" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="263.5417" x="637.5" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="263.5417" x="637.5" y="76.7578"/><rect codeLine="6" fill="none" height="48.055" id="BaseFormattedLocalTimeConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="263.5417" x="637.5" y="53.7028"/><ellipse cx="652.0833" cy="69.397" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M652.1973,66.099 L651.3489,69.8283 L653.0518,69.8283 Z M651.0986,64.4511 L653.302,64.4511 L655.7617,73.5636 L653.9612,73.5636 L653.3997,71.3114 L650.9888,71.3114 L650.4395,73.5636 L648.6389,73.5636 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="226.0417" x="668.75" y="74.1211">BaseFormattedLocalTimeConverter</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="638.5417" x2="900" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="638.5417" x2="900" y1="93.4245" y2="93.4245"/><!--MD5=[9aa687ed59f428548907e723dba1087a]
+class BaseStringConverter--><rect codeLine="7" fill="#282828" height="48.055" id="BaseStringConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="169.7917" x="1698.9583" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="169.7917" x="1698.9583" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="169.7917" x="1698.9583" y="76.7578"/><rect codeLine="7" fill="none" height="48.055" id="BaseStringConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="169.7917" x="1698.9583" y="53.7028"/><ellipse cx="1713.5417" cy="69.397" fill="#C8AC00" rx="10.4167" ry="10.4167" style="stroke:#D8BC00;stroke-width:1.0416666666666667;"/><path d="M1713.6556,66.099 L1712.8072,69.8283 L1714.5101,69.8283 Z M1712.557,64.4511 L1714.7603,64.4511 L1717.2201,73.5636 L1715.4195,73.5636 L1714.858,71.3114 L1712.4471,71.3114 L1711.8978,73.5636 L1710.0972,73.5636 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="132.2917" x="1730.2083" y="74.1211">BaseStringConverter</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1700" x2="1867.7083" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1700" x2="1867.7083" y1="93.4245" y2="93.4245"/><!--MD5=[4784686e375249f6f526840a7febd362]
+class HumanizedLocalDateTimeConverter--><rect codeLine="10" fill="#282828" height="83.3781" id="HumanizedLocalDateTimeConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="285.4167" x="1641.1458" y="174.0153"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="285.4167" x="1641.1458" y="174.0153"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="285.4167" x="1641.1458" y="197.0703"/><rect codeLine="10" fill="none" height="83.3781" id="HumanizedLocalDateTimeConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="285.4167" x="1641.1458" y="174.0153"/><ellipse cx="1662.7604" cy="189.7095" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1664.6708,194.1345 Q1664.2436,194.3542 1663.7736,194.4641 Q1663.3036,194.574 1662.7848,194.574 Q1660.9416,194.574 1659.9711,193.3594 Q1659.0007,192.1448 1659.0007,189.8499 Q1659.0007,187.5488 1659.9711,186.3342 Q1660.9416,185.1196 1662.7848,185.1196 Q1663.3036,185.1196 1663.7797,185.2295 Q1664.2558,185.3394 1664.6708,185.5591 L1664.6708,187.561 Q1664.2069,187.1338 1663.7705,186.9354 Q1663.3341,186.7371 1662.8703,186.7371 Q1661.8815,186.7371 1661.378,187.5214 Q1660.8744,188.3057 1660.8744,189.8499 Q1660.8744,191.3879 1661.378,192.1722 Q1661.8815,192.9565 1662.8703,192.9565 Q1663.3341,192.9565 1663.7705,192.7582 Q1664.2069,192.5598 1664.6708,192.1326 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="232.2917" x="1680.9896" y="194.4336">HumanizedLocalDateTimeConverter</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1642.1875" x2="1925.5208" y1="205.4036" y2="205.4036"/><ellipse cx="1652.6042" cy="240.7735" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="253.125" x="1664.0625" y="247.6847">HumanizedLocalDateTimeConverter(Listener)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1642.1875" x2="1740.1042" y1="223.6094" y2="223.6094"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="1743.2292" y="227.419">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1827.6042" x2="1925.5208" y1="223.6094" y2="223.6094"/><!--MD5=[17f137dfa24b805223a5423e10618b0c]
+class LocalDateConverter--><rect codeLine="17" fill="#282828" height="103.123" id="LocalDateConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="240.625" x="7.2917" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="240.625" x="7.2917" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="240.625" x="7.2917" y="187.1745"/><rect codeLine="17" fill="none" height="103.123" id="LocalDateConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="240.625" x="7.2917" y="164.1195"/><ellipse cx="56.7708" cy="179.8136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M58.6812,184.2387 Q58.254,184.4584 57.784,184.5683 Q57.314,184.6781 56.7952,184.6781 Q54.952,184.6781 53.9815,183.4635 Q53.0111,182.2489 53.0111,179.954 Q53.0111,177.653 53.9815,176.4384 Q54.952,175.2238 56.7952,175.2238 Q57.314,175.2238 57.7901,175.3337 Q58.2662,175.4435 58.6812,175.6632 L58.6812,177.6652 Q58.2174,177.238 57.781,177.0396 Q57.3446,176.8412 56.8807,176.8412 Q55.8919,176.8412 55.3884,177.6255 Q54.8848,178.4098 54.8848,179.954 Q54.8848,181.4921 55.3884,182.2764 Q55.8919,183.0607 56.8807,183.0607 Q57.3446,183.0607 57.781,182.8623 Q58.2174,182.664 58.6812,182.2367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="127.0833" x="79.6875" y="184.5378">LocalDateConverter</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="8.3333" x2="246.875" y1="195.5078" y2="195.5078"/><ellipse cx="18.75" cy="230.8777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="163.5417" x="30.2083" y="237.7889">LocalDateConverter(Listener)</text><ellipse cx="18.75" cy="250.6226" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="208.3333" x="30.2083" y="257.5338">LocalDateConverter(Listener, ZoneId)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="83.8542" y1="213.7136" y2="213.7136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="86.9792" y="217.5232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="171.3542" x2="246.875" y1="213.7136" y2="213.7136"/><!--MD5=[18ae419b4f55cafd1f2720e05c001aaa]
+class LocalDateTimeConverter--><rect codeLine="25" fill="#282828" height="103.123" id="LocalDateTimeConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="267.7083" x="284.375" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="267.7083" x="284.375" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="267.7083" x="284.375" y="187.1745"/><rect codeLine="25" fill="none" height="103.123" id="LocalDateTimeConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="267.7083" x="284.375" y="164.1195"/><ellipse cx="331.25" cy="179.8136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M333.1604,184.2387 Q332.7332,184.4584 332.2632,184.5683 Q331.7932,184.6781 331.2744,184.6781 Q329.4312,184.6781 328.4607,183.4635 Q327.4902,182.2489 327.4902,179.954 Q327.4902,177.653 328.4607,176.4384 Q329.4312,175.2238 331.2744,175.2238 Q331.7932,175.2238 332.2693,175.3337 Q332.7454,175.4435 333.1604,175.6632 L333.1604,177.6652 Q332.6965,177.238 332.2601,177.0396 Q331.8237,176.8412 331.3599,176.8412 Q330.3711,176.8412 329.8676,177.6255 Q329.364,178.4098 329.364,179.954 Q329.364,181.4921 329.8676,182.2764 Q330.3711,183.0607 331.3599,183.0607 Q331.8237,183.0607 332.2601,182.8623 Q332.6965,182.664 333.1604,182.2367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="159.375" x="354.1667" y="184.5378">LocalDateTimeConverter</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="285.4167" x2="551.0417" y1="195.5078" y2="195.5078"/><ellipse cx="295.8333" cy="230.8777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="190.625" x="307.2917" y="237.7889">LocalDateTimeConverter(Listener)</text><ellipse cx="295.8333" cy="250.6226" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="235.4167" x="307.2917" y="257.5338">LocalDateTimeConverter(Listener, ZoneId)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="285.4167" x2="374.4792" y1="213.7136" y2="213.7136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="377.6042" y="217.5232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="461.9792" x2="551.0417" y1="213.7136" y2="213.7136"/><!--MD5=[a220afb50dd6640cf223dc05d5fd885e]
+class LocalDateTimeWithMillisecondsConverter--><rect codeLine="33" fill="#282828" height="103.123" id="LocalDateTimeWithMillisecondsConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="360.4167" x="589.0625" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="360.4167" x="589.0625" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="360.4167" x="589.0625" y="187.1745"/><rect codeLine="33" fill="none" height="103.123" id="LocalDateTimeWithMillisecondsConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="360.4167" x="589.0625" y="164.1195"/><ellipse cx="627.5521" cy="179.8136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M629.4625,184.2387 Q629.0352,184.4584 628.5653,184.5683 Q628.0953,184.6781 627.5765,184.6781 Q625.7332,184.6781 624.7628,183.4635 Q623.7923,182.2489 623.7923,179.954 Q623.7923,177.653 624.7628,176.4384 Q625.7332,175.2238 627.5765,175.2238 Q628.0953,175.2238 628.5714,175.3337 Q629.0474,175.4435 629.4625,175.6632 L629.4625,177.6652 Q628.9986,177.238 628.5622,177.0396 Q628.1258,176.8412 627.6619,176.8412 Q626.6732,176.8412 626.1696,177.6255 Q625.6661,178.4098 625.6661,179.954 Q625.6661,181.4921 626.1696,182.2764 Q626.6732,183.0607 627.6619,183.0607 Q628.1258,183.0607 628.5622,182.8623 Q628.9986,182.664 629.4625,182.2367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="269.7917" x="649.5313" y="184.5378">LocalDateTimeWithMillisecondsConverter</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="590.1042" x2="948.4375" y1="195.5078" y2="195.5078"/><ellipse cx="600.5208" cy="230.8777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="283.3333" x="611.9792" y="237.7889">LocalDateTimeWithMillisecondsConverter(Listener)</text><ellipse cx="600.5208" cy="250.6226" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="328.125" x="611.9792" y="257.5338">LocalDateTimeWithMillisecondsConverter(Listener, ZoneId)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="590.1042" x2="725.5208" y1="213.7136" y2="213.7136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="728.6458" y="217.5232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="813.0208" x2="948.4375" y1="213.7136" y2="213.7136"/><!--MD5=[3ca9c261a23c4f6796a9be814ff3d9a3]
+class LocalDateTimeWithSecondsConverter--><rect codeLine="41" fill="#282828" height="103.123" id="LocalDateTimeWithSecondsConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="338.5417" x="986.4583" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="338.5417" x="986.4583" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="338.5417" x="986.4583" y="187.1745"/><rect codeLine="41" fill="none" height="103.123" id="LocalDateTimeWithSecondsConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="338.5417" x="986.4583" y="164.1195"/><ellipse cx="1027.7604" cy="179.8136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1029.6708,184.2387 Q1029.2436,184.4584 1028.7736,184.5683 Q1028.3036,184.6781 1027.7848,184.6781 Q1025.9416,184.6781 1024.9711,183.4635 Q1024.0007,182.2489 1024.0007,179.954 Q1024.0007,177.653 1024.9711,176.4384 Q1025.9416,175.2238 1027.7848,175.2238 Q1028.3036,175.2238 1028.7797,175.3337 Q1029.2558,175.4435 1029.6708,175.6632 L1029.6708,177.6652 Q1029.2069,177.238 1028.7705,177.0396 Q1028.3341,176.8412 1027.8703,176.8412 Q1026.8815,176.8412 1026.378,177.6255 Q1025.8744,178.4098 1025.8744,179.954 Q1025.8744,181.4921 1026.378,182.2764 Q1026.8815,183.0607 1027.8703,183.0607 Q1028.3341,183.0607 1028.7705,182.8623 Q1029.2069,182.664 1029.6708,182.2367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="241.6667" x="1050.3646" y="184.5378">LocalDateTimeWithSecondsConverter</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="987.5" x2="1323.9583" y1="195.5078" y2="195.5078"/><ellipse cx="997.9167" cy="230.8777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="261.4583" x="1009.375" y="237.7889">LocalDateTimeWithSecondsConverter(Listener)</text><ellipse cx="997.9167" cy="250.6226" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="306.25" x="1009.375" y="257.5338">LocalDateTimeWithSecondsConverter(Listener, ZoneId)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="987.5" x2="1111.9792" y1="213.7136" y2="213.7136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="1115.1042" y="217.5232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1199.4792" x2="1323.9583" y1="213.7136" y2="213.7136"/><!--MD5=[4921c59f79b438eee3203467cdc1356d]
+class LocalTimeConverter--><rect codeLine="49" fill="#282828" height="103.123" id="LocalTimeConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="242.7083" x="1361.4583" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="242.7083" x="1361.4583" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="242.7083" x="1361.4583" y="187.1745"/><rect codeLine="49" fill="none" height="103.123" id="LocalTimeConverter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="242.7083" x="1361.4583" y="164.1195"/><ellipse cx="1410.9375" cy="179.8136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M1412.8479,184.2387 Q1412.4207,184.4584 1411.9507,184.5683 Q1411.4807,184.6781 1410.9619,184.6781 Q1409.1187,184.6781 1408.1482,183.4635 Q1407.1777,182.2489 1407.1777,179.954 Q1407.1777,177.653 1408.1482,176.4384 Q1409.1187,175.2238 1410.9619,175.2238 Q1411.4807,175.2238 1411.9568,175.3337 Q1412.4329,175.4435 1412.8479,175.6632 L1412.8479,177.6652 Q1412.384,177.238 1411.9476,177.0396 Q1411.5112,176.8412 1411.0474,176.8412 Q1410.0586,176.8412 1409.5551,177.6255 Q1409.0515,178.4098 1409.0515,179.954 Q1409.0515,181.4921 1409.5551,182.2764 Q1410.0586,183.0607 1411.0474,183.0607 Q1411.5112,183.0607 1411.9476,182.8623 Q1412.384,182.664 1412.8479,182.2367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="129.1667" x="1433.8542" y="184.5378">LocalTimeConverter</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="1362.5" x2="1603.125" y1="195.5078" y2="195.5078"/><ellipse cx="1372.9167" cy="230.8777" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="165.625" x="1384.375" y="237.7889">LocalTimeConverter(Listener)</text><ellipse cx="1372.9167" cy="250.6226" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="210.4167" x="1384.375" y="257.5338">LocalTimeConverter(Listener, ZoneId)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1362.5" x2="1439.0625" y1="213.7136" y2="213.7136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="1442.1875" y="217.5232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="1526.5625" x2="1603.125" y1="213.7136" y2="213.7136"/><!--MD5=[f1a2b2f931048cb8ed482a50e3e28371]
+reverse link BaseStringConverter to HumanizedLocalDateTimeConverter--><path codeLine="9" d="M1783.8542,122.734 C1783.8542,139.1611 1783.8542,157.7236 1783.8542,173.8382 " fill="none" id="BaseStringConverter-backto-HumanizedLocalDateTimeConverter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="1776.5625,122.5986,1783.8542,101.7653,1791.1458,122.5986,1776.5625,122.5986" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[55d08a4ac67305efbaf9f3b8a520b12f]
+reverse link BaseFormattedLocalTimeConverter to LocalDateConverter--><path codeLine="16" d="M616.3854,97.307 C515.8646,111.3382 381.9792,133.4424 266.1458,164.1195 C260.2083,165.6924 254.1667,167.4111 248.0833,169.2445 " fill="none" id="BaseFormattedLocalTimeConverter-backto-LocalDateConverter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="615.6771,90.0465,637.3021,94.432,617.6563,104.4945,615.6771,90.0465" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[1dac7905b5f60612e7075411e982c911]
+reverse link BaseFormattedLocalTimeConverter to LocalDateTimeConverter--><path codeLine="24" d="M690.1771,109.3278 C648.5,125.4736 596.3125,145.682 548.8333,164.0674 " fill="none" id="BaseFormattedLocalTimeConverter-backto-LocalDateTimeConverter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="687.6563,102.484,709.7188,101.7653,692.9271,116.0882,687.6563,102.484" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[cf44bb86289c6d09bab769d9b114b3f8]
+reverse link BaseFormattedLocalTimeConverter to LocalDateTimeWithMillisecondsConverter--><path codeLine="32" d="M769.2708,122.8382 C769.2708,135.9945 769.2708,150.5257 769.2708,164.0674 " fill="none" id="BaseFormattedLocalTimeConverter-backto-LocalDateTimeWithMillisecondsConverter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="761.9792,122.5986,769.2708,101.7653,776.5625,122.5986,761.9792,122.5986" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[65becce410d1dc7a96e568beb31b2d56]
+reverse link BaseFormattedLocalTimeConverter to LocalDateTimeWithSecondsConverter--><path codeLine="40" d="M854.7917,108.7861 C900.9167,125.0049 959.0833,145.4736 1011.9479,164.0674 " fill="none" id="BaseFormattedLocalTimeConverter-backto-LocalDateTimeWithSecondsConverter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="852.0625,115.557,834.8333,101.7653,856.8958,101.7965,852.0625,115.557" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[d70ec0de9d2660e64f437d6ce3a52afe]
+reverse link BaseFormattedLocalTimeConverter to LocalTimeConverter--><path codeLine="48" d="M922.0833,93.0465 C1038.6771,106.0153 1202.625,128.5882 1343.2292,164.1195 C1349.2292,165.6299 1355.3229,167.307 1361.4583,169.0986 " fill="none" id="BaseFormattedLocalTimeConverter-backto-LocalTimeConverter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="921.1667,100.2861,901.2396,90.7861,922.75,85.7861,921.1667,100.2861" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[92e862c6a13f2a5d7622ecefaaa775e0]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.time.conversion.converters"
+    
+    abstract BaseFormattedLocalTimeConverter
+    abstract BaseStringConverter
+    
+    BaseStringConverter <|- - HumanizedLocalDateTimeConverter
+    class HumanizedLocalDateTimeConverter
+    {
+        - -(constructors)- -
+        +HumanizedLocalDateTimeConverter(Listener)
+    }
+    
+    BaseFormattedLocalTimeConverter <|- - LocalDateConverter
+    class LocalDateConverter
+    {
+        - -(constructors)- -
+        +LocalDateConverter(Listener)
+        +LocalDateConverter(Listener, ZoneId)
+    }
+    
+    BaseFormattedLocalTimeConverter <|- - LocalDateTimeConverter
+    class LocalDateTimeConverter
+    {
+        - -(constructors)- -
+        +LocalDateTimeConverter(Listener)
+        +LocalDateTimeConverter(Listener, ZoneId)
+    }
+    
+    BaseFormattedLocalTimeConverter <|- - LocalDateTimeWithMillisecondsConverter
+    class LocalDateTimeWithMillisecondsConverter
+    {
+        - -(constructors)- -
+        +LocalDateTimeWithMillisecondsConverter(Listener)
+        +LocalDateTimeWithMillisecondsConverter(Listener, ZoneId)
+    }
+    
+    BaseFormattedLocalTimeConverter <|- - LocalDateTimeWithSecondsConverter
+    class LocalDateTimeWithSecondsConverter
+    {
+        - -(constructors)- -
+        +LocalDateTimeWithSecondsConverter(Listener)
+        +LocalDateTimeWithSecondsConverter(Listener, ZoneId)
+    }
+    
+    BaseFormattedLocalTimeConverter <|- - LocalTimeConverter
+    class LocalTimeConverter
+    {
+        - -(constructors)- -
+        +LocalTimeConverter(Listener)
+        +LocalTimeConverter(Listener, ZoneId)
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.kernel.language.time.conversion.converters"
+    
+    abstract BaseFormattedLocalTimeConverter
+    abstract BaseStringConverter
+    
+    BaseStringConverter <|- - HumanizedLocalDateTimeConverter
+    class HumanizedLocalDateTimeConverter
+    {
+        - -(constructors)- -
+        +HumanizedLocalDateTimeConverter(Listener)
+    }
+    
+    BaseFormattedLocalTimeConverter <|- - LocalDateConverter
+    class LocalDateConverter
+    {
+        - -(constructors)- -
+        +LocalDateConverter(Listener)
+        +LocalDateConverter(Listener, ZoneId)
+    }
+    
+    BaseFormattedLocalTimeConverter <|- - LocalDateTimeConverter
+    class LocalDateTimeConverter
+    {
+        - -(constructors)- -
+        +LocalDateTimeConverter(Listener)
+        +LocalDateTimeConverter(Listener, ZoneId)
+    }
+    
+    BaseFormattedLocalTimeConverter <|- - LocalDateTimeWithMillisecondsConverter
+    class LocalDateTimeWithMillisecondsConverter
+    {
+        - -(constructors)- -
+        +LocalDateTimeWithMillisecondsConverter(Listener)
+        +LocalDateTimeWithMillisecondsConverter(Listener, ZoneId)
+    }
+    
+    BaseFormattedLocalTimeConverter <|- - LocalDateTimeWithSecondsConverter
+    class LocalDateTimeWithSecondsConverter
+    {
+        - -(constructors)- -
+        +LocalDateTimeWithSecondsConverter(Listener)
+        +LocalDateTimeWithSecondsConverter(Listener, ZoneId)
+    }
+    
+    BaseFormattedLocalTimeConverter <|- - LocalTimeConverter
+    class LocalTimeConverter
+    {
+        - -(constructors)- -
+        +LocalTimeConverter(Listener)
+        +LocalTimeConverter(Listener, ZoneId)
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

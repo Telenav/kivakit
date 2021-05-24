@@ -1,0 +1,48 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Projects"
+    
+    abstract BaseRepeater
+    
+    interface Initializable
+    
+    Project <|-- KivaKit
+    class KivaKit
+    {
+        --(constructors)--
+        #KivaKit()
+        --
+        +KivaKit get()
+        --(filesystem)--
+        +Path cacheFolderPath()
+        +Path homeFolderPath()
+    }
+    
+    BaseRepeater <|-- Project
+    Initializable <|-- Project
+    Project "1" --> "*" Project : "depends on"
+    abstract class Project
+    {
+        --
+        +Set<Project> dependencies()
+        +void onInitialized()
+        +void onInitializing()
+        +String property(String key)
+        +void visitDependencies(Visitor)
+        --(building)--
+        +Build build()
+        --(collection)--
+        +VariableMap<String> properties()
+        --(identity)--
+        +String artifactId()
+        +String groupId()
+        +Version kivakitVersion()
+        +Version version()
+        --(lifecycle)--
+        +void onInitialize()
+    }
+    
+@enduml
+

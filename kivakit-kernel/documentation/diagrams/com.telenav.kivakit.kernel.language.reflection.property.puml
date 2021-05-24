@@ -1,0 +1,48 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.reflection.property"
+    
+    interface Named
+    interface Comparable
+    
+    Named <|-- Property
+    Comparable <|-- Property
+    class Property
+    {
+        --(constructors)--
+        +Property(String, Getter, Setter)
+        --
+        +Object get(Object)
+        +void getter(Getter)
+        +Getter getter()
+        +void setter(Setter)
+        +Setter setter()
+        +Class<?> type()
+        --(checks)--
+        +boolean isNull(Object)
+        --(messaging)--
+        +Message clear(Object)
+        +Message set(Listener, Object, Object value)
+    }
+    
+    interface PropertyFilter
+    {
+        --(filtering)--
+        +boolean includeAsGetter(Method)
+        +boolean includeAsSetter(Method)
+        +boolean includeField(Field)
+        --(naming)--
+        +String nameForField(Field)
+        +String nameForMethod(Method)
+    }
+    
+    interface PropertyValueSource
+    {
+        --
+        +Object valueFor(Property)
+    }
+    
+@enduml
+

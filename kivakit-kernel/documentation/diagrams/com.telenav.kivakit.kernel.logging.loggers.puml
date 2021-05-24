@@ -1,0 +1,49 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.logging.loggers"
+    
+    abstract BaseLogger
+    
+    interface Logger
+    
+    Logger <|-- BaseLogger
+    abstract class BaseLogger
+    {
+        --(constructors)--
+        #BaseLogger()
+        #BaseLogger(LoggerCodeContext)
+        --(filtering)--
+        #boolean accept(LogEntry)
+    }
+    
+    BaseLogger <|-- ConsoleLogger
+    class ConsoleLogger
+    {
+    }
+    
+    LogServiceLoader "1" o-- "*" Log : "loads"
+    class LogServiceLoader
+    {
+        --
+        +Log log(String name)
+        --(collection)--
+        +List<Log> logs()
+    }
+    
+    BaseLogger <|-- LogServiceLogger
+    LogServiceLogger --> Log : "configures"
+    LogServiceLogger --> LogServiceLoader : "loads log services with"
+    LogServiceLogger "1" o-- "*" Log : "logs to"
+    class LogServiceLogger
+    {
+    }
+    
+    Logger <|-- NullLogger
+    class NullLogger
+    {
+    }
+    
+@enduml
+

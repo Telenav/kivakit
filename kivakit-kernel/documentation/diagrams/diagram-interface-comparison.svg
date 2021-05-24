@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="601.0417px" preserveAspectRatio="none" style="width:662px;height:601px;background:#333333;" version="1.1" viewBox="0 0 662 601" width="662.5px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="266.6667" x="190.8854" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="243.75" x="202.3438" y="30.5583">Interfaces - Comparison</text><!--MD5=[c249847c086044a14a4ecd1d09905030]
+class Matcher--><rect codeLine="38" fill="#282828" height="67.7999" id="Matcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="165.625" x="255.7292" y="211.5153"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="165.625" x="255.7292" y="211.5153"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="165.625" x="255.7292" y="234.5703"/><rect codeLine="38" fill="none" height="67.7999" id="Matcher" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="165.625" x="255.7292" y="211.5153"/><ellipse cx="284.375" cy="227.2095" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M281.2581,224.3713 L281.2581,222.7844 L286.6842,222.7844 L286.6842,224.3713 L284.8714,224.3713 L284.8714,230.3101 L286.6842,230.3101 L286.6842,231.897 L281.2581,231.897 L281.2581,230.3101 L283.0709,230.3101 L283.0709,224.3713 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="51.0417" x="304.1667" y="231.9336">Matcher</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="43.75" x="380.7292" y="208.3903"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="35.4167" x="384.8958" y="224.6419">Value</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="256.7708" x2="420.3125" y1="242.9036" y2="242.9036"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="256.7708" x2="420.3125" y1="251.237" y2="251.237"/><ellipse cx="267.1875" cy="262.6953" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="133.3333" x="278.6458" y="269.6065">boolean matches(Value)</text><!--MD5=[0ce016da0e98c92d1a10161d04e02805]
+class Equality--><rect codeLine="8" fill="#282828" height="83.3781" id="Equality" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="205.2083" x="446.3542" y="56.8278"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="205.2083" x="446.3542" y="56.8278"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="205.2083" x="446.3542" y="79.8828"/><rect codeLine="8" fill="none" height="83.3781" id="Equality" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="205.2083" x="446.3542" y="56.8278"/><ellipse cx="492.7083" cy="72.522" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M489.5915,69.6838 L489.5915,68.0969 L495.0175,68.0969 L495.0175,69.6838 L493.2048,69.6838 L493.2048,75.6226 L495.0175,75.6226 L495.0175,77.2095 L489.5915,77.2095 L489.5915,75.6226 L491.4042,75.6226 L491.4042,69.6838 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="52.0833" x="515.625" y="77.2461">Equality</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="43.75" x="610.9375" y="53.7028"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="35.4167" x="615.1042" y="69.9544">Value</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="447.3958" x2="650.5208" y1="88.2161" y2="88.2161"/><ellipse cx="457.8125" cy="123.586" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="172.9167" x="469.2708" y="130.4972">boolean isEqual(Value, Value b)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="447.3958" x2="522.3958" y1="106.4219" y2="106.4219"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="525.5208" y="110.2315">(checks)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="575.5208" x2="650.5208" y1="106.4219" y2="106.4219"/><!--MD5=[bddb511951cf0a1d6a79f67b0c2ed87d]
+class Filter--><rect codeLine="16" fill="#282828" height="221.5922" id="Filter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="206.25" x="7.2917" y="372.4528"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="206.25" x="7.2917" y="372.4528"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="206.25" x="7.2917" y="395.5078"/><rect codeLine="16" fill="none" height="221.5922" id="Filter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="206.25" x="7.2917" y="372.4528"/><ellipse cx="77.0833" cy="388.147" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M73.9665,385.3088 L73.9665,383.7219 L79.3925,383.7219 L79.3925,385.3088 L77.5798,385.3088 L77.5798,391.2476 L79.3925,391.2476 L79.3925,392.8345 L73.9665,392.8345 L73.9665,391.2476 L75.7792,391.2476 L75.7792,385.3088 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="33.3333" x="100" y="392.8711">Filter</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="16.6667" x="200" y="369.3278"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="204.1667" y="385.5794">T</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="8.3333" x2="212.5" y1="403.8411" y2="403.8411"/><ellipse cx="18.75" cy="439.211" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="138.5417" x="30.2083" y="446.1222">boolean accepts(T value)</text><ellipse cx="18.75" cy="458.9559" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="78.125" x="30.2083" y="465.8671">Filter&lt;T&gt; all()</text><ellipse cx="18.75" cy="478.7008" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="151.0417" x="30.2083" y="485.612">Filter&lt;T&gt; and(Filter&lt;T&gt; b)</text><ellipse cx="18.75" cy="498.4456" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="173.9583" x="30.2083" y="505.3569">Filter&lt;T&gt; exclude(Filter&lt;T&gt; b)</text><ellipse cx="18.75" cy="518.1905" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="170.8333" x="30.2083" y="525.1017">Filter&lt;T&gt; include(Filter&lt;T&gt; b)</text><ellipse cx="18.75" cy="537.9354" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="93.75" x="30.2083" y="544.8466">Filter&lt;T&gt; none()</text><ellipse cx="18.75" cy="557.6803" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="84.375" x="30.2083" y="564.5915">Filter&lt;T&gt; not()</text><ellipse cx="18.75" cy="577.4251" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="142.7083" x="30.2083" y="584.3363">Filter&lt;T&gt; or(Filter&lt;T&gt; b)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="81.25" y1="422.0469" y2="422.0469"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="52.0833" x="84.375" y="425.8565">(filtering)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="139.5833" x2="212.5" y1="422.0469" y2="422.0469"/><!--MD5=[6bfa4655901cabc32d335431318cc044]
+class Filtered--><rect codeLine="30" fill="#282828" height="83.3781" id="Filtered" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="168.75" x="26.0417" y="203.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="168.75" x="26.0417" y="203.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="168.75" x="26.0417" y="226.7578"/><rect codeLine="30" fill="none" height="83.3781" id="Filtered" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="168.75" x="26.0417" y="203.7028"/><ellipse cx="69.2708" cy="219.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M66.154,216.5588 L66.154,214.9719 L71.58,214.9719 L71.58,216.5588 L69.7673,216.5588 L69.7673,222.4976 L71.58,222.4976 L71.58,224.0845 L66.154,224.0845 L66.154,222.4976 L67.9667,222.4976 L67.9667,216.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="48.9583" x="92.1875" y="224.1211">Filtered</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="16.6667" x="181.25" y="200.5778"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="185.4167" y="216.8294">T</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="27.0833" x2="193.75" y1="235.0911" y2="235.0911"/><ellipse cx="37.5" cy="270.461" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="136.4583" x="48.9583" y="277.3722">List&lt;Filter&lt;T&gt;&gt; filters()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="27.0833" x2="76.0417" y1="253.2969" y2="253.2969"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="79.1667" y="257.1065">(collection)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="144.7917" x2="193.75" y1="253.2969" y2="253.2969"/><!--MD5=[e6dc55dd324d6a8c189f3ada02b144fc]
+class Predicate--><rect codeLine="36" fill="#282828" height="48.055" id="Predicate" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="141.6667" x="267.7083" y="74.5361"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="141.6667" x="267.7083" y="74.5361"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="141.6667" x="267.7083" y="97.5911"/><rect codeLine="36" fill="none" height="48.055" id="Predicate" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="141.6667" x="267.7083" y="74.5361"/><ellipse cx="282.2917" cy="90.2303" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M279.1748,87.3922 L279.1748,85.8053 L284.6008,85.8053 L284.6008,87.3922 L282.7881,87.3922 L282.7881,93.3309 L284.6008,93.3309 L284.6008,94.9178 L279.1748,94.9178 L279.1748,93.3309 L280.9875,93.3309 L280.9875,87.3922 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="58.3333" x="298.9583" y="94.9544">Predicate</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="43.75" x="368.75" y="71.4111"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="35.4167" x="372.9167" y="87.6628">Value</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="268.75" x2="408.3333" y1="105.9245" y2="105.9245"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="268.75" x2="408.3333" y1="114.2578" y2="114.2578"/><!--MD5=[a1d49d3fa24e64cce8d7bf0ca8ed5e04]
+class MatcherSet--><rect codeLine="45" fill="#282828" height="142.6127" id="MatcherSet" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="222.9167" x="250" y="412.0361"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="222.9167" x="250" y="412.0361"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="222.9167" x="250" y="435.0911"/><rect codeLine="45" fill="none" height="142.6127" id="MatcherSet" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="222.9167" x="250" y="412.0361"/><ellipse cx="309.375" cy="427.7303" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M311.2854,432.1554 Q310.8582,432.3751 310.3882,432.4849 Q309.9182,432.5948 309.3994,432.5948 Q307.5562,432.5948 306.5857,431.3802 Q305.6152,430.1656 305.6152,427.8707 Q305.6152,425.5697 306.5857,424.3551 Q307.5562,423.1405 309.3994,423.1405 Q309.9182,423.1405 310.3943,423.2503 Q310.8704,423.3602 311.2854,423.5799 L311.2854,425.5819 Q310.8215,425.1546 310.3851,424.9563 Q309.9487,424.7579 309.4849,424.7579 Q308.4961,424.7579 307.9926,425.5422 Q307.489,426.3265 307.489,427.8707 Q307.489,429.4088 307.9926,430.1931 Q308.4961,430.9774 309.4849,430.9774 Q309.9487,430.9774 310.3851,430.779 Q310.8215,430.5806 311.2854,430.1534 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="70.8333" x="332.2917" y="432.4544">MatcherSet</text><rect fill="#333333" height="23.055" style="stroke:#A0A0A0;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" width="16.6667" x="459.375" y="408.9111"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="463.5417" y="425.1628">T</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="251.0417" x2="471.875" y1="443.4245" y2="443.4245"/><ellipse cx="261.4583" cy="478.7944" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="190.625" x="272.9167" y="485.7056">MatcherSet&lt;T&gt; add(Matcher&lt;T&gt;)</text><ellipse cx="261.4583" cy="498.5392" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="128.125" x="272.9167" y="505.4504">Matcher&lt;T&gt; allMatch()</text><ellipse cx="261.4583" cy="518.2841" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="147.9167" x="272.9167" y="525.1953">Matcher&lt;T&gt; anyMatches()</text><ellipse cx="261.4583" cy="538.029" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="156.25" x="272.9167" y="544.9402">Matcher&lt;T&gt; noneMatches()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="251.0417" x2="328.125" y1="461.6302" y2="461.6302"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="60.4167" x="331.25" y="465.4399">(matching)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="394.7917" x2="471.875" y1="461.6302" y2="461.6302"/><!--MD5=[8ff3c3ce8e15ab51d888ec4f47b1194c]
+reverse link Matcher to Filter--><path codeLine="15" d="M291.6354,294.9215 C269.0104,318.3174 240.9167,347.3695 213.6667,375.5674 " fill="none" id="Matcher-backto-Filter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="286.6146,289.6195,306.3438,279.7132,297.1042,299.7653,286.6146,289.6195" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[1f7b22a00ec579a911986615fe4cb3eb]
+link Filtered to Filter--><path codeLine="29" d="M110.4167,287.234 C110.4167,309.4632 110.4167,338.1924 110.4167,366.7445 " fill="none" id="Filtered-to-Filter" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#545454" points="110.4167,372.0674,114.5833,362.6924,110.4167,366.859,106.25,362.6924,110.4167,372.0674" style="stroke:#545454;stroke-width:1.5625;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="22.9167" x="114.5833" y="334.5378">has</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="8.3333" x="97.7962" y="310.7838">1</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="6.25" x="100.6217" y="358.2788">*</text><!--MD5=[5bcdad2597d9267c67d8a50da5310cbe]
+reverse link Predicate to Matcher--><path codeLine="37" d="M338.5417,143.3174 C338.5417,165.1507 338.5417,191.1195 338.5417,211.2549 " fill="none" id="Predicate-backto-Matcher" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="331.25,143.307,338.5417,122.4736,345.8333,143.307,331.25,143.307" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[64b2484f49dc56f3219083d9f515cd9e]
+reverse link Matcher to MatcherSet--><path codeLine="44" d="M343.8333,300.8486 C347.0313,333.8382 351.1563,376.2861 354.6042,411.8382 " fill="none" id="Matcher-backto-MatcherSet" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="336.5313,301.1507,341.7813,279.7132,351.0521,299.7445,336.5313,301.1507" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[e5f89a11ba40bcd80bccf2297cdf3819]
+@startuml
+
+    !include lexakai.theme
+    
+    title "Interfaces - Comparison"
+    
+    interface Matcher
+    
+    interface Equality<Value>
+    {
+        - -(checks)- -
+        +boolean isEqual(Value, Value b)
+    }
+    
+    interface Matcher
+    Matcher <|- - Filter
+    interface Filter<T>
+    {
+        - -(filtering)- -
+        +boolean accepts(T value)
+        +Filter<T> all()
+        +Filter<T> and(Filter<T> b)
+        +Filter<T> exclude(Filter<T> b)
+        +Filter<T> include(Filter<T> b)
+        +Filter<T> none()
+        +Filter<T> not()
+        +Filter<T> or(Filter<T> b)
+    }
+    
+    Filtered "1" - -> "*" Filter : "has"
+    interface Filtered<T>
+    {
+        - -(collection)- -
+        +List<Filter<T>> filters()
+    }
+    
+    interface Predicate<Value>
+    Predicate <|- - Matcher
+    interface Matcher<Value>
+    {
+        - -
+        +boolean matches(Value)
+    }
+    
+    Matcher <|- - MatcherSet
+    class MatcherSet<T>
+    {
+        - -(matching)- -
+        +MatcherSet<T> add(Matcher<T>)
+        +Matcher<T> allMatch()
+        +Matcher<T> anyMatches()
+        +Matcher<T> noneMatches()
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "Interfaces - Comparison"
+    
+    interface Matcher
+    
+    interface Equality<Value>
+    {
+        - -(checks)- -
+        +boolean isEqual(Value, Value b)
+    }
+    
+    interface Matcher
+    Matcher <|- - Filter
+    interface Filter<T>
+    {
+        - -(filtering)- -
+        +boolean accepts(T value)
+        +Filter<T> all()
+        +Filter<T> and(Filter<T> b)
+        +Filter<T> exclude(Filter<T> b)
+        +Filter<T> include(Filter<T> b)
+        +Filter<T> none()
+        +Filter<T> not()
+        +Filter<T> or(Filter<T> b)
+    }
+    
+    Filtered "1" - -> "*" Filter : "has"
+    interface Filtered<T>
+    {
+        - -(collection)- -
+        +List<Filter<T>> filters()
+    }
+    
+    interface Predicate<Value>
+    Predicate <|- - Matcher
+    interface Matcher<Value>
+    {
+        - -
+        +boolean matches(Value)
+    }
+    
+    Matcher <|- - MatcherSet
+    class MatcherSet<T>
+    {
+        - -(matching)- -
+        +MatcherSet<T> add(Matcher<T>)
+        +Matcher<T> allMatch()
+        +Matcher<T> anyMatches()
+        +Matcher<T> noneMatches()
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="879.1667px" preserveAspectRatio="none" style="width:585px;height:879px;background:#333333;" version="1.1" viewBox="0 0 585 879" width="585.4167px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="572.9167" x="2.0833" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="550" x="13.5417" y="30.5583">com.telenav.kivakit.kernel.language.progress.reporters</text><!--MD5=[9749512bca80384ecd5266d1e4e24a6f]
+class ProgressReporter--><rect codeLine="6" fill="#282828" height="48.055" id="ProgressReporter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="148.9583" x="140.1042" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="148.9583" x="140.1042" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="148.9583" x="140.1042" y="76.7578"/><rect codeLine="6" fill="none" height="48.055" id="ProgressReporter" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="148.9583" x="140.1042" y="53.7028"/><ellipse cx="154.6875" cy="69.397" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M151.5706,66.5588 L151.5706,64.9719 L156.9967,64.9719 L156.9967,66.5588 L155.1839,66.5588 L155.1839,72.4976 L156.9967,72.4976 L156.9967,74.0845 L151.5706,74.0845 L151.5706,72.4976 L153.3834,72.4976 L153.3834,66.5588 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="111.4583" x="171.3542" y="74.1211">ProgressReporter</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="141.1458" x2="288.0208" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="141.1458" x2="288.0208" y1="93.4245" y2="93.4245"/><!--MD5=[f33202a4358b6dc53d5337ad154687fb]
+class Progress--><rect codeLine="18" fill="#282828" height="542.7653" id="Progress" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="409.375" x="92.1875" y="164.1195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="409.375" x="92.1875" y="164.1195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="409.375" x="92.1875" y="187.1745"/><rect codeLine="18" fill="none" height="542.7653" id="Progress" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="409.375" x="92.1875" y="164.1195"/><ellipse cx="261.4583" cy="179.8136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M263.3687,184.2387 Q262.9415,184.4584 262.4715,184.5683 Q262.0015,184.6781 261.4827,184.6781 Q259.6395,184.6781 258.669,183.4635 Q257.6986,182.2489 257.6986,179.954 Q257.6986,177.653 258.669,176.4384 Q259.6395,175.2238 261.4827,175.2238 Q262.0015,175.2238 262.4776,175.3337 Q262.9537,175.4435 263.3687,175.6632 L263.3687,177.6652 Q262.9049,177.238 262.4685,177.0396 Q262.0321,176.8412 261.5682,176.8412 Q260.5794,176.8412 260.0759,177.6255 Q259.5723,178.4098 259.5723,179.954 Q259.5723,181.4921 260.0759,182.2764 Q260.5794,183.0607 261.5682,183.0607 Q262.0321,183.0607 262.4685,182.8623 Q262.9049,182.664 263.3687,182.2367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="56.25" x="284.375" y="184.5378">Progress</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="93.2292" x2="500.5208" y1="195.5078" y2="195.5078"/><polygon fill="#FFFF44" points="103.6458,225.6694,107.8125,229.836,103.6458,234.0027,99.4792,229.836" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="58.3333" x="115.1042" y="237.7889">Progress()</text><polygon fill="#FFFF44" points="103.6458,245.4142,107.8125,249.5809,103.6458,253.7476,99.4792,249.5809" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="108.3333" x="115.1042" y="257.5338">Progress(Progress)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="93.2292" x2="253.125" y1="213.7136" y2="213.7136"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="256.25" y="217.5232">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="340.625" x2="500.5208" y1="213.7136" y2="213.7136"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="93.2292" x2="500.5208" y1="267.2424" y2="267.2424"/><ellipse cx="103.6458" cy="278.7008" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="115.1042" y="285.612">long at()</text><ellipse cx="103.6458" cy="298.4456" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="312.5" x="115.1042" y="305.3569">Progress create(Listener, String itemName, Count steps)</text><ellipse cx="103.6458" cy="318.1905" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="140.625" x="115.1042" y="325.1017">Progress create(Listener)</text><ellipse cx="103.6458" cy="337.9354" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="95.8333" x="115.1042" y="344.8466">Progress create()</text><ellipse cx="103.6458" cy="357.6803" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="238.5417" x="115.1042" y="364.5915">Progress create(Listener, String itemName)</text><ellipse cx="103.6458" cy="377.4251" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="303.125" x="115.1042" y="384.3363">Progress createConcurrent(Listener, String itemName)</text><ellipse cx="103.6458" cy="397.17" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="205.2083" x="115.1042" y="404.0812">Progress createConcurrent(Listener)</text><ellipse cx="103.6458" cy="416.9149" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="377.0833" x="115.1042" y="423.8261">Progress createConcurrent(Listener, String itemName, Count steps)</text><ellipse cx="103.6458" cy="436.6597" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="170.8333" x="115.1042" y="443.571">void feedback(String message)</text><polygon fill="#FFFF44" points="103.6458,451.1963,107.8125,455.363,103.6458,459.5296,99.4792,455.363" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="84.375" x="115.1042" y="463.3158">void at(long at)</text><polygon fill="#FFFF44" points="103.6458,470.9412,107.8125,475.1078,103.6458,479.2745,99.4792,475.1078" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="158.3333" x="115.1042" y="483.0607">long increase(long increase)</text><polygon fill="#FFFF44" points="103.6458,514.5976,107.8125,518.7642,103.6458,522.9309,99.4792,518.7642" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="130.2083" x="115.1042" y="526.7171">Progress newInstance()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="93.2292" x2="269.7917" y1="502.6418" y2="502.6418"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="47.9167" x="272.9167" y="506.4514">(factory)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="323.9583" x2="500.5208" y1="502.6418" y2="502.6418"/><ellipse cx="103.6458" cy="563.4623" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="231.25" x="115.1042" y="570.3735">Progress withItemName(String itemName)</text><ellipse cx="103.6458" cy="583.2072" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="186.4583" x="115.1042" y="590.1184">Progress withPhase(String phase)</text><ellipse cx="103.6458" cy="602.9521" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="182.2917" x="115.1042" y="609.8633">Progress withSteps(Count steps)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="93.2292" x2="261.4583" y1="546.2982" y2="546.2982"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="64.5833" x="264.5833" y="550.1078">(functional)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="332.2917" x2="500.5208" y1="546.2982" y2="546.2982"/><ellipse cx="103.6458" cy="646.6085" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="135.4167" x="115.1042" y="653.5197">void next(long increase)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="93.2292" x2="266.1458" y1="629.4444" y2="629.4444"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="55.2083" x="269.2708" y="633.254">(iteration)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="327.6042" x2="500.5208" y1="629.4444" y2="629.4444"/><polygon fill="#FFFF44" points="103.6458,685.0566,107.8125,689.2232,103.6458,693.3899,99.4792,689.2232" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="92.7083" x="115.1042" y="697.1761">long increment()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="93.2292" x2="275.5208" y1="673.1008" y2="673.1008"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="36.4583" x="278.6458" y="676.9104">(math)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="318.2292" x2="500.5208" y1="673.1008" y2="673.1008"/><!--MD5=[a9047a3f0d9efdfa22c830b302c2838b]
+class ConcurrentProgress--><rect codeLine="9" fill="#282828" height="103.123" id="ConcurrentProgress" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="205.2083" x="194.2708" y="769.3278"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="205.2083" x="194.2708" y="769.3278"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="205.2083" x="194.2708" y="792.3828"/><rect codeLine="9" fill="none" height="103.123" id="ConcurrentProgress" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="205.2083" x="194.2708" y="769.3278"/><ellipse cx="226.6667" cy="785.022" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M228.5771,789.447 Q228.1498,789.6667 227.6799,789.7766 Q227.2099,789.8865 226.6911,789.8865 Q224.8478,789.8865 223.8774,788.6719 Q222.9069,787.4573 222.9069,785.1624 Q222.9069,782.8613 223.8774,781.6467 Q224.8478,780.4321 226.6911,780.4321 Q227.2099,780.4321 227.686,780.542 Q228.162,780.6519 228.5771,780.8716 L228.5771,782.8735 Q228.1132,782.4463 227.6768,782.2479 Q227.2404,782.0496 226.7765,782.0496 Q225.7878,782.0496 225.2842,782.8339 Q224.7807,783.6182 224.7807,785.1624 Q224.7807,786.7004 225.2842,787.4847 Q225.7878,788.269 226.7765,788.269 Q227.2404,788.269 227.6768,788.0707 Q228.1132,787.8723 228.5771,787.4451 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="128.125" x="247.2917" y="789.7461">ConcurrentProgress</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="195.3125" x2="398.4375" y1="800.7161" y2="800.7161"/><polygon fill="#FFFF44" points="205.7292,830.8777,209.8958,835.0444,205.7292,839.211,201.5625,835.0444" style="stroke:#B38D22;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="122.9167" x="217.1875" y="842.9972">ConcurrentProgress()</text><ellipse cx="205.7292" cy="855.8309" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="172.9167" x="217.1875" y="862.7421">ConcurrentProgress(Progress)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="195.3125" x2="253.125" y1="818.9219" y2="818.9219"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="256.25" y="822.7315">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="340.625" x2="398.4375" y1="818.9219" y2="818.9219"/><!--MD5=[873ba24e1a4ad5eb78e001e5b8541c33]
+class Multicaster--><rect fill="#282828" height="48.055" id="Multicaster" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="109.375" x="325.5208" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="109.375" x="325.5208" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="109.375" x="325.5208" y="76.7578"/><rect fill="none" height="48.055" id="Multicaster" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="109.375" x="325.5208" y="53.7028"/><ellipse cx="340.1042" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M342.0146,73.822 Q341.5873,74.0417 341.1174,74.1516 Q340.6474,74.2615 340.1286,74.2615 Q338.2853,74.2615 337.3149,73.0469 Q336.3444,71.8323 336.3444,69.5374 Q336.3444,67.2363 337.3149,66.0217 Q338.2853,64.8071 340.1286,64.8071 Q340.6474,64.8071 341.1235,64.917 Q341.5995,65.0269 342.0146,65.2466 L342.0146,67.2485 Q341.5507,66.8213 341.1143,66.6229 Q340.6779,66.4246 340.214,66.4246 Q339.2253,66.4246 338.7217,67.2089 Q338.2182,67.9932 338.2182,69.5374 Q338.2182,71.0754 338.7217,71.8597 Q339.2253,72.644 340.214,72.644 Q340.6779,72.644 341.1143,72.4457 Q341.5507,72.2473 342.0146,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="71.875" x="356.7708" y="74.1211">Multicaster</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="326.5625" x2="433.8542" y1="85.0911" y2="85.0911"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="326.5625" x2="433.8542" y1="93.4245" y2="93.4245"/><!--MD5=[42e3bec891c0e0bece5e25dac1ebf1a4]
+reverse link Progress to ConcurrentProgress--><path codeLine="8" d="M296.875,728.0361 C296.875,743.0465 296.875,756.9215 296.875,769.109 " fill="none" id="Progress-backto-ConcurrentProgress" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="289.5833,727.7445,296.875,706.9111,304.1667,727.7445,289.5833,727.7445" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[8be6ab2610d0eed5794ee9f6eb38a5ec]
+reverse link Multicaster to Progress--><path codeLine="16" d="M369.9583,122.4424 C367.125,134.557 363.8229,148.6507 360.2188,164.0257 " fill="none" id="Multicaster-backto-Progress" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="362.9583,120.3903,374.8021,101.7653,377.1563,123.7132,362.9583,120.3903" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[c29769e1a7d24d59a4de1172f362a321]
+reverse link ProgressReporter to Progress--><path codeLine="17" d="M224.6979,122.4424 C227.5,134.557 230.7604,148.6507 234.3229,164.0257 " fill="none" id="ProgressReporter-backto-Progress" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="217.5104,123.7132,219.9167,101.7653,231.7188,120.4215,217.5104,123.7132" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[121035d851161514b0291cdf24190bf2]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.progress.reporters"
+    
+    interface ProgressReporter
+    
+    Progress <|- - ConcurrentProgress
+    class ConcurrentProgress
+    {
+        - -(constructors)- -
+        #ConcurrentProgress()
+        +ConcurrentProgress(Progress)
+    }
+    
+    Multicaster <|- - Progress
+    ProgressReporter <|- - Progress
+    class Progress
+    {
+        - -(constructors)- -
+        #Progress()
+        #Progress(Progress)
+        - -
+        +long at()
+        +Progress create(Listener, String itemName, Count steps)
+        +Progress create(Listener)
+        +Progress create()
+        +Progress create(Listener, String itemName)
+        +Progress createConcurrent(Listener, String itemName)
+        +Progress createConcurrent(Listener)
+        +Progress createConcurrent(Listener, String itemName, Count steps)
+        +void feedback(String message)
+        #void at(long at)
+        #long increase(long increase)
+        - -(factory)- -
+        #Progress newInstance()
+        - -(functional)- -
+        +Progress withItemName(String itemName)
+        +Progress withPhase(String phase)
+        +Progress withSteps(Count steps)
+        - -(iteration)- -
+        +void next(long increase)
+        - -(math)- -
+        #long increment()
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.kernel.language.progress.reporters"
+    
+    interface ProgressReporter
+    
+    Progress <|- - ConcurrentProgress
+    class ConcurrentProgress
+    {
+        - -(constructors)- -
+        #ConcurrentProgress()
+        +ConcurrentProgress(Progress)
+    }
+    
+    Multicaster <|- - Progress
+    ProgressReporter <|- - Progress
+    class Progress
+    {
+        - -(constructors)- -
+        #Progress()
+        #Progress(Progress)
+        - -
+        +long at()
+        +Progress create(Listener, String itemName, Count steps)
+        +Progress create(Listener)
+        +Progress create()
+        +Progress create(Listener, String itemName)
+        +Progress createConcurrent(Listener, String itemName)
+        +Progress createConcurrent(Listener)
+        +Progress createConcurrent(Listener, String itemName, Count steps)
+        +void feedback(String message)
+        #void at(long at)
+        #long increase(long increase)
+        - -(factory)- -
+        #Progress newInstance()
+        - -(functional)- -
+        +Progress withItemName(String itemName)
+        +Progress withPhase(String phase)
+        +Progress withSteps(Count steps)
+        - -(iteration)- -
+        +void next(long increase)
+        - -(math)- -
+        #long increment()
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

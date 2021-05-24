@@ -1,0 +1,67 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.resource.reading"
+    
+    abstract BaseRepeater
+    
+    interface Iterable
+    interface Resource
+    
+    BaseRepeater <|-- BaseReadableResource
+    Resource <|-- BaseReadableResource
+    abstract class BaseReadableResource
+    {
+        --(constructors)--
+        #BaseReadableResource()
+        #BaseReadableResource(BaseReadableResource)
+        #BaseReadableResource(ResourcePath)
+        --
+        +BaseReadableResource codec(Codec)
+        #void charset(Charset)
+    }
+    
+    Multicaster <|-- LineReader
+    Iterable <|-- LineReader
+    class LineReader
+    {
+        --(constructors)--
+        +LineReader(ReadableResource, ProgressReporter)
+        --
+        +void lines(Consumer<String>)
+        +Stream<String> stream()
+        --(collection)--
+        +StringList lines()
+    }
+    
+    interface LineSource
+    {
+        --(collection)--
+        +Iterable<String> lines()
+        --(read)--
+        +LineReader lineReader()
+    }
+    
+    class ResourceReader
+    {
+        --(constructors)--
+        +ResourceReader(Resource, ProgressReporter, Charset)
+        --
+        +Set<T> objectSet(Converter<String,T>, ProgressReporter)
+        +String string(ProgressReporter)
+        --(collection)--
+        +Iterable<String> lines(ProgressReporter)
+        +Iterable<String> lines()
+        +StringList linesAsStringList()
+        +StringList linesAsStringList(ProgressReporter)
+        +List<T> objectList(Converter<String,T>, ProgressReporter)
+        +Iterable<T> objects(Converter<String,T>, ProgressReporter)
+        --(primitive)--
+        +byte[] bytes()
+        --(read)--
+        +Reader textReader()
+    }
+    
+@enduml
+

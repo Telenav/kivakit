@@ -1,0 +1,20 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Interfaces - Persistence"
+    
+    interface Loadable
+    {
+        --(read)--
+        +void load()
+    }
+    
+    interface Unloadable
+    {
+        --
+        +void unload()
+    }
+    
+@enduml
+

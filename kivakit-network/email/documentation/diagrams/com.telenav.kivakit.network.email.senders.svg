@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="511.4583px" preserveAspectRatio="none" style="width:572px;height:511px;background:#333333;" version="1.1" viewBox="0 0 572 511" width="572.9167px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="447.9167" x="55.2083" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="425" x="66.6667" y="30.5583">com.telenav.kivakit.network.email.senders</text><!--MD5=[24388abf6c614d2ac9b1fa5f691b44d9]
+cluster EmailSender--><polygon fill="#333333" points="178.125,52.6611,269.7917,52.6611,277.0833,79.8828,377.0833,79.8828,377.0833,174.5361,178.125,174.5361,178.125,52.6611" style="stroke:#333333;stroke-width:2.0833333333333335;"/><line style="stroke:#333333;stroke-width:2.0833333333333335;" x1="178.125" x2="277.0833" y1="79.8828" y2="79.8828"/><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="79.1667" x="185.4167" y="69.9544">EmailSender</text><!--MD5=[19328d8518fc7674a25ec5e76a865608]
+cluster SmtpEmailSender--><polygon fill="#333333" points="250,216.2028,375,216.2028,382.2917,243.4245,555.2083,243.4245,555.2083,504.7445,250,504.7445,250,216.2028" style="stroke:#333333;stroke-width:2.0833333333333335;"/><line style="stroke:#333333;stroke-width:2.0833333333333335;" x1="250" x2="382.2917" y1="243.4245" y2="243.4245"/><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="112.5" x="257.2917" y="233.4961">SmtpEmailSender</text><!--MD5=[9bae61ffbc69aff448a67588dabb1c8d]
+class EmailSender.Configuration--><rect fill="#282828" height="48.055" id="EmailSender.Configuration" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="128.125" x="223.4375" y="101.6195"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="128.125" x="223.4375" y="101.6195"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="128.125" x="223.4375" y="124.6745"/><rect fill="none" height="48.055" id="EmailSender.Configuration" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="128.125" x="223.4375" y="101.6195"/><ellipse cx="238.0208" cy="117.3136" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M239.9312,121.7387 Q239.504,121.9584 239.034,122.0683 Q238.564,122.1781 238.0452,122.1781 Q236.202,122.1781 235.2315,120.9635 Q234.2611,119.7489 234.2611,117.454 Q234.2611,115.153 235.2315,113.9384 Q236.202,112.7238 238.0452,112.7238 Q238.564,112.7238 239.0401,112.8337 Q239.5162,112.9435 239.9312,113.1632 L239.9312,115.1652 Q239.4674,114.738 239.031,114.5396 Q238.5946,114.3412 238.1307,114.3412 Q237.1419,114.3412 236.6384,115.1255 Q236.1348,115.9098 236.1348,117.454 Q236.1348,118.9921 236.6384,119.7764 Q237.1419,120.5607 238.1307,120.5607 Q238.5946,120.5607 239.031,120.3623 Q239.4674,120.164 239.9312,119.7367 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="90.625" x="254.6875" y="122.0378">Configuration</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="224.4792" x2="350.5208" y1="133.0078" y2="133.0078"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="224.4792" x2="350.5208" y1="141.3411" y2="141.3411"/><!--MD5=[08aee09c36b8170fc1e4ef7e555aec55]
+class SmtpEmailSender.Configuration--><rect codeLine="7" fill="#282828" height="214.3473" id="SmtpEmailSender.Configuration" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="234.375" x="295.3125" y="265.1611"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="234.375" x="295.3125" y="265.1611"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="234.375" x="295.3125" y="288.2161"/><rect codeLine="7" fill="none" height="214.3473" id="SmtpEmailSender.Configuration" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="234.375" x="295.3125" y="265.1611"/><ellipse cx="359.8958" cy="280.8553" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M361.8062,285.2804 Q361.379,285.5001 360.909,285.6099 Q360.439,285.7198 359.9202,285.7198 Q358.077,285.7198 357.1065,284.5052 Q356.1361,283.2906 356.1361,280.9957 Q356.1361,278.6947 357.1065,277.4801 Q358.077,276.2655 359.9202,276.2655 Q360.439,276.2655 360.9151,276.3753 Q361.3912,276.4852 361.8062,276.7049 L361.8062,278.7069 Q361.3424,278.2796 360.906,278.0813 Q360.4696,277.8829 360.0057,277.8829 Q359.0169,277.8829 358.5134,278.6672 Q358.0098,279.4515 358.0098,280.9957 Q358.0098,282.5338 358.5134,283.3181 Q359.0169,284.1024 360.0057,284.1024 Q360.4696,284.1024 360.906,283.904 Q361.3424,283.7056 361.8062,283.2784 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="90.625" x="382.8125" y="285.5794">Configuration</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="296.3542" x2="528.6458" y1="296.5495" y2="296.5495"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="296.3542" x2="528.6458" y1="304.8828" y2="304.8828"/><ellipse cx="306.7708" cy="316.3411" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="118.75" x="318.2292" y="323.2524">Password password()</text><ellipse cx="306.7708" cy="359.9976" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="123.9583" x="318.2292" y="366.9088">UserName username()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="296.3542" x2="384.375" y1="342.8335" y2="342.8335"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="50" x="387.5" y="346.6431">(naming)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="440.625" x2="528.6458" y1="342.8335" y2="342.8335"/><ellipse cx="306.7708" cy="403.654" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="318.2292" y="410.5652">Host host()</text><ellipse cx="306.7708" cy="423.3988" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="140.625" x="318.2292" y="430.3101">Configuration host(Host)</text><ellipse cx="306.7708" cy="443.1437" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="196.875" x="318.2292" y="450.0549">Configuration password(Password)</text><ellipse cx="306.7708" cy="462.8886" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="202.0833" x="318.2292" y="469.7998">Configuration username(UserName)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="296.3542" x2="382.8125" y1="386.4899" y2="386.4899"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="53.125" x="385.9375" y="390.2995">(network)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="442.1875" x2="528.6458" y1="386.4899" y2="386.4899"/><!--MD5=[1ac45a79b83259a3c60a4b0f9fb8576c]
+class SmtpEmailSender--><rect codeLine="21" fill="#282828" height="83.3781" id="SmtpEmailSender" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="214.5833" x="7.2917" y="330.7861"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="214.5833" x="7.2917" y="330.7861"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="214.5833" x="7.2917" y="353.8411"/><rect codeLine="21" fill="none" height="83.3781" id="SmtpEmailSender" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="214.5833" x="7.2917" y="330.7861"/><ellipse cx="51.0417" cy="346.4803" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M52.9521,350.9054 Q52.5248,351.1251 52.0549,351.2349 Q51.5849,351.3448 51.0661,351.3448 Q49.2228,351.3448 48.2524,350.1302 Q47.2819,348.9156 47.2819,346.6207 Q47.2819,344.3197 48.2524,343.1051 Q49.2228,341.8905 51.0661,341.8905 Q51.5849,341.8905 52.061,342.0003 Q52.537,342.1102 52.9521,342.3299 L52.9521,344.3319 Q52.4882,343.9046 52.0518,343.7063 Q51.6154,343.5079 51.1515,343.5079 Q50.1628,343.5079 49.6592,344.2922 Q49.1557,345.0765 49.1557,346.6207 Q49.1557,348.1588 49.6592,348.9431 Q50.1628,349.7274 51.1515,349.7274 Q51.6154,349.7274 52.0518,349.529 Q52.4882,349.3306 52.9521,348.9034 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="112.5" x="73.9583" y="351.2044">SmtpEmailSender</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="8.3333" x2="220.8333" y1="362.1745" y2="362.1745"/><ellipse cx="18.75" cy="397.5444" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="182.2917" x="30.2083" y="404.4556">SmtpEmailSender(Configuration)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="70.8333" y1="380.3802" y2="380.3802"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="73.9583" y="384.1899">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="158.3333" x2="220.8333" y1="380.3802" y2="380.3802"/><!--MD5=[1d441e2f088bb2d7c6b74bc70fea3661]
+reverse link EmailSender.Configuration to SmtpEmailSender.Configuration--><path codeLine="6" d="M308.875,168.4736 C322.4896,195.1507 340.8021,231.0049 358.2396,265.1507 " fill="none" id="EmailSender.Configuration-backto-SmtpEmailSender.Configuration" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="302.2396,171.5153,299.2604,149.6507,315.2292,164.8903,302.2396,171.5153" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[a6f85d4c51351ca544189c4e83f96711]
+reverse link EmailSender to SmtpEmailSender--><path d="M177.985,155.4796 C177.4306,157.3678 176.8545,159.3296 176.2586,161.3591 C175.0669,165.418 173.7956,169.7474 172.4588,174.3002 C169.7852,183.4058 166.8493,193.4049 163.7617,203.9202 C151.4115,245.9814 136.6354,296.3018 126.5208,330.734 " fill="none" id="EmailSender-backto-SmtpEmailSender" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="177.985,155.4796,165.4128,172.4152,179.4054,176.5238,177.985,155.4796" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[6012a50c62fd736f572ed9a93e2db389]
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.network.email.senders"
+    
+    EmailSender.Configuration <|- - SmtpEmailSender.Configuration
+    class SmtpEmailSender.Configuration
+    {
+        - -
+        +Password password()
+        - -(naming)- -
+        +UserName username()
+        - -(network)- -
+        +Host host()
+        +Configuration host(Host)
+        +Configuration password(Password)
+        +Configuration username(UserName)
+    }
+    
+    EmailSender <|- - SmtpEmailSender
+    class SmtpEmailSender
+    {
+        - -(constructors)- -
+        +SmtpEmailSender(Configuration)
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "com.telenav.kivakit.network.email.senders"
+    
+    EmailSender.Configuration <|- - SmtpEmailSender.Configuration
+    class SmtpEmailSender.Configuration
+    {
+        - -
+        +Password password()
+        - -(naming)- -
+        +UserName username()
+        - -(network)- -
+        +Host host()
+        +Configuration host(Host)
+        +Configuration password(Password)
+        +Configuration username(UserName)
+    }
+    
+    EmailSender <|- - SmtpEmailSender
+    class SmtpEmailSender
+    {
+        - -(constructors)- -
+        +SmtpEmailSender(Configuration)
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

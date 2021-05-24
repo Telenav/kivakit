@@ -1,0 +1,51 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.test.random"
+    
+    class RandomValueFactory
+    {
+        --(constructors)--
+        +RandomValueFactory()
+        +RandomValueFactory(long)
+        --
+        +long seed()
+        +void seed(long seed)
+        --(factory)--
+        +char newAsciiChar()
+        +String newAsciiString()
+        +String newAsciiString(int minLength, int maxLength)
+        +boolean newBoolean()
+        +byte newByte()
+        +byte newByte(byte minimum, byte maximum)
+        +byte newByte(byte minimum, byte maximum, Predicate<Byte> filter)
+        +char newChar()
+        +Confidence newConfidence()
+        +int newCount(int minimum, int maximum)
+        +double newDouble(double minimum, double maximum)
+        +double newDouble()
+        +double newDoubleZeroToOne()
+        +T newFrom(Collection<T> values)
+        +T newFrom(T[] values)
+        +Identifier newIdentifier(long maximum)
+        +int newIndex(int maximum)
+        +int newInt(int minimum, int maximum, Predicate<Integer> filter)
+        +int newInt()
+        +int newInt(int minimum, int maximum)
+        +long newLong(long minimum, long maximum)
+        +long newLong(long minimum, long maximum, Predicate<Long> filter)
+        +long newLong()
+        +short newShort(short minimum, short maximum)
+        +short newShort()
+        +short newShort(short minimum, short maximum, Predicate<Short> filter)
+        +String newString()
+        +String newString(int minLength, int maxLength)
+        +double newUnsignedDouble(double maximum)
+        +double newUnsignedDouble()
+        +int newUnsignedInt()
+        +long newUnsignedLong()
+    }
+    
+@enduml
+

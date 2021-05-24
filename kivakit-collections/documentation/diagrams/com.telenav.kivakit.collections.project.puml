@@ -1,0 +1,22 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.collections.project"
+    
+    Project <|-- CoreCollectionsProject
+    class CoreCollectionsProject
+    {
+        --(constructors)--
+        #CoreCollectionsProject()
+        --
+        +CoreCollectionsProject get()
+    }
+    
+    KryoUnitTest <|-- CoreCollectionsUnitTest
+    abstract class CoreCollectionsUnitTest
+    {
+    }
+    
+@enduml
+

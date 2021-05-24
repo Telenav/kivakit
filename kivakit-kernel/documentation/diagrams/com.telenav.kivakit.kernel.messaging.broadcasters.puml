@@ -1,0 +1,39 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.messaging.broadcasters"
+    
+    interface PackagePathed
+    interface Broadcaster
+    
+    AudienceMember o-- Listener
+    AudienceMember o-- Filter
+    class AudienceMember
+    {
+        --(messaging)--
+        +Listener listener()
+        +void receive(Transmittable message)
+    }
+    
+    Broadcaster <|-- Multicaster
+    PackagePathed <|-- Multicaster
+    Multicaster "1" o-- "*" AudienceMember
+    class Multicaster
+    {
+        --(constructors)--
+        #Multicaster()
+        #Multicaster(Multicaster)
+        #Multicaster(String)
+        +Multicaster(Class<?>)
+        +Multicaster(String, Class<?>)
+        --(collection)--
+        +StringList parentChain()
+        --(messaging)--
+        +boolean isDeaf()
+        +String listenerTree()
+        +List<Listener> listeners()
+    }
+    
+@enduml
+

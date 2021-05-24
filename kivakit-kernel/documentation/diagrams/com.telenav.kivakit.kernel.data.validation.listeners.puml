@@ -1,0 +1,15 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.data.validation.listeners"
+    
+    MessageList <|-- ValidationIssues
+    class ValidationIssues
+    {
+        --(constructors)--
+        +ValidationIssues()
+    }
+    
+@enduml
+

@@ -1,0 +1,84 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.language.collections.map"
+    
+    abstract BaseMap
+    
+    interface ConcurrentMap
+    interface Indexable
+    interface Map
+    
+    BaseMap <|-- BaseConcurrentMap
+    ConcurrentMap <|-- BaseConcurrentMap
+    class BaseConcurrentMap<Key, Value>
+    {
+        --(constructors)--
+        #BaseConcurrentMap()
+        #BaseConcurrentMap(ConcurrentMap<Key, Value>)
+        +BaseConcurrentMap(Maximum)
+        +BaseConcurrentMap(Maximum, ConcurrentMap<Key, Value>)
+    }
+    
+    BaseMap <|-- BaseIndexedMap
+    Indexable <|-- BaseIndexedMap
+    class BaseIndexedMap<Key, Value>
+    {
+        --(constructors)--
+        +BaseIndexedMap(Maximum)
+        --(collection)--
+        +int indexOf(Value)
+        +void sort(Comparator<Value>)
+    }
+    
+    Map <|-- BaseMap
+    class BaseMap<Key, Value>
+    {
+        --(constructors)--
+        +BaseMap()
+        +BaseMap(Map<Key, Value>)
+        +BaseMap(Maximum)
+        +BaseMap(Maximum, Map<Key, Value>)
+        --
+        +Value get(Object key, Value defaultValue)
+        +Value getOrCreate(Key)
+        --(collection)--
+        +Maximum maximumSize()
+        +Value put(Key, Value, Value defaultValue)
+        +void putIfNotNull(Key, Value)
+        #boolean checkSize(int increase)
+        #Map<Key,Value> map()
+        --(extension points)--
+        #Value onInitialize(Key)
+    }
+    
+    BaseMap <|-- ClassMap
+    class ClassMap<T>
+    {
+        --(constructors)--
+        +ClassMap(Maximum)
+        --(collection)--
+        +void put(T object)
+    }
+    
+    class Maps
+    {
+        --(filesystem)--
+        +Map<Key,Value> copy(Factory<Map<Key,Value>>, Map<Key,Value>)
+        +Map<Key,Value> deepCopy(Map<Key,Value>, Function<Value,Value> clone)
+        +Map<Key,Value> deepCopy(Factory<Map<Key,Value>>, Map<Key,Value>, Function<Value,Value> clone)
+    }
+    
+    BaseMap <|-- ObjectMap
+    class ObjectMap<Key, Value>
+    {
+        --(constructors)--
+        +ObjectMap()
+        +ObjectMap(Map<Key, Value>)
+        +ObjectMap(Maximum)
+        +ObjectMap(Maximum, Map<Key, Value>)
+    }
+    
+@enduml
+

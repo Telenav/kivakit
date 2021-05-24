@@ -1,0 +1,62 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Language - Iteration"
+    
+    interface Iterable
+    interface Iterator
+    
+    Iterable <|-- BaseIterable
+    BaseIterable --> Next : "creates"
+    abstract class BaseIterable<T>
+    {
+        --(iteration)--
+        #Next<T> newNext()
+    }
+    
+    Iterator <|-- BaseIterator
+    abstract class BaseIterator<T>
+    {
+        --(filtering)--
+        +Matcher<T> filter()
+        +BaseIterator<T> filter(Matcher<T> filter)
+        --(iteration)--
+        #T findNext()
+        #T onNext()
+    }
+    
+    class Iterables
+    {
+        --(collection)--
+        +void addAll(Iterable<T>, Collection<? super T>)
+        +boolean contains(Iterable<T>, T value)
+        +boolean containsAny(Iterable<T>, Set<T> values)
+        +boolean isEmpty(Iterable<?>)
+        +Iterable<T> iterable(Factory<Next<T>>)
+        +int size(Iterable<T>)
+    }
+    
+    class Iterators
+    {
+        --(collection)--
+        +Iterator<T> empty()
+        +Iterator<T> iterator(Supplier<T>)
+    }
+    
+    interface Next<T>
+    {
+        --(iteration)--
+        +T onNext()
+    }
+    
+    class Streams
+    {
+        --
+        +Stream<T> parallelStream(Iterable<T>)
+        +Stream<T> stream(Processing, Iterable<T>)
+        +Stream<T> stream(Iterable<T>)
+    }
+    
+@enduml
+

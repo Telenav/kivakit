@@ -1,0 +1,127 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.resource.path"
+    
+    abstract BaseStringConverter
+    
+    interface Named
+    interface Comparable
+    
+    BaseStringConverter <|-- FilePath.Converter
+    class FilePath.Converter
+    {
+        --(constructors)--
+        +Converter(Listener)
+    }
+    
+    Named <|-- Extension
+    class Extension
+    {
+        --(constructors)--
+        #Extension(String)
+        --
+        +Codec codec()
+        +boolean matches(Resource)
+        --(checks)--
+        +boolean endsWith(Extension)
+        +boolean isArchive()
+        +boolean isExecutable()
+        --(filesystem)--
+        +List<Extension> archive()
+        +List<Extension> executable()
+        +Matcher<File> fileMatcher()
+        +Extension gzipped()
+        +List<Extension> known()
+        +Extension parse(String value)
+    }
+    
+    Named <|-- FileName
+    Comparable <|-- FileName
+    class FileName
+    {
+        --(constructors)--
+        #FileName(String)
+        --
+        +boolean matches(Pattern)
+        --(checks)--
+        +boolean endsWith(String suffix)
+        +boolean endsWith(Extension)
+        +boolean startsWith(String prefix)
+        --(filesystem)--
+        +FilePath asPath()
+        +FileName base()
+        +Extension compoundExtension()
+        +FileName date(LocalTime)
+        +FileName date(LocalTime, ZoneId)
+        +FileName date()
+        +FileName dateTime(LocalTime)
+        +FileName dateTime(LocalTime, ZoneId)
+        +FileName dateTime()
+        +Extension extension()
+        +Matcher<File> fileMatcher()
+        +FileName normalized()
+        +FileName parse(String name)
+        +FileName prefixedWith(String prefix)
+        +FileName time(LocalTime, ZoneId)
+        +FileName time(LocalTime)
+        +FileName toLowerCase()
+        +FileName toUpperCase()
+        +FileName withExtension(Extension)
+        +FileName withSuffix(String suffix)
+        +FileName withoutCompoundExtension()
+        +FileName withoutExtension(Extension)
+        +FileName withoutExtension()
+        +FileName withoutKnownExtensions()
+        --(matching)--
+        +Matcher<FileName> matcher()
+        --(time)--
+        +LocalTime localDateTime()
+        +LocalTime localDateTime(Listener)
+        +LocalTime parseDateTime(String dateTime)
+        +LocalTime parseDateTime(String dateTime, ZoneId)
+    }
+    
+    ResourcePath <|-- FilePath
+    class FilePath
+    {
+        --(constructors)--
+        #FilePath(FilePath)
+        #FilePath(String, String, List<String>)
+        #FilePath(String, StringPath)
+        --
+        +String scheme()
+        --(checks)--
+        +boolean hasScheme()
+        --(conversion)--
+        +StringPath asStringPath()
+        +String asUnixString()
+        --(filesystem)--
+        +FilePath absolute()
+        +FilePath file(FileName child)
+        +FilePath filePath(FileName)
+        +FilePath filePath(java.nio.file.Path)
+        +FilePath filePath(URI)
+        +FilePath filePath(StringPath)
+        +FilePath filePath(java.io.File)
+        +boolean isCurrentFolder()
+        +FilePath parseFilePath(String path)
+        +FilePath withoutScheme()
+    }
+    
+    ResourcePathed --> ResourcePath : "supplies"
+    interface ResourcePathed
+    {
+        --(filesystem)--
+        +FileName baseName()
+        +Extension compoundExtension()
+        +Extension extension()
+        +FileName fileName()
+        +boolean hasExtension(Extension)
+        --(path)--
+        +ResourcePath path()
+    }
+    
+@enduml
+

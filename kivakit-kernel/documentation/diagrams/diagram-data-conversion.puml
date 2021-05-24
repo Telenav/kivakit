@@ -1,0 +1,61 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Data - Conversion"
+    
+    abstract BaseConverter
+    abstract BaseRepeater
+    
+    interface Converter
+    interface StringConverter
+    
+    BaseRepeater <|-- BaseConverter
+    Converter <|-- BaseConverter
+    abstract class BaseConverter<From, To>
+    {
+        --(constructors)--
+        #BaseConverter(Listener)
+        --
+        +BaseConverter<From,To> allowNull(boolean allowNull)
+        +boolean allowsNull()
+        --(extension points)--
+        #To onConvert(From value)
+    }
+    
+    BaseConverter <|-- BaseStringConverter
+    StringConverter <|-- BaseStringConverter
+    abstract class BaseStringConverter<Value>
+    {
+        --
+        +Converter<String,Value> toObjectConverter()
+        --(collection)--
+        +BaseStringConverter<Value> allowEmpty(boolean allowEmpty)
+        +boolean allowsEmpty()
+        --(extension points)--
+        #Value onConvertToObject(String value)
+        #String onConvertToString(Value)
+    }
+    
+    interface Repeater
+    Repeater <|-- Converter
+    interface Converter<From, To>
+    {
+        --(conversion)--
+        +To convert(From)
+    }
+    
+    interface Converter<String,Value>
+    Converter <|-- StringConverter
+    interface StringConverter<Value>
+    {
+        --
+        +BaseStringConverter<To> create(Listener, Function<String,To> converter)
+        +BaseStringConverter<To> create(Function<String,To> converter)
+        --(collection)--
+        +ObjectList<Value> asObjectList(StringList)
+        +StringList asStringList(ObjectList<Value>)
+    }
+    
+@enduml
+

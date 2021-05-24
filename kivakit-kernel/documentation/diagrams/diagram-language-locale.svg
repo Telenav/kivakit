@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="571.875px" preserveAspectRatio="none" style="width:568px;height:571px;background:#333333;" version="1.1" viewBox="0 0 568 571" width="568.75px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="207.2917" x="173.4375" y="2.0833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="184.375" x="184.8958" y="30.5583">Language - Locale</text><!--MD5=[7a4729d26b999f6a4650b01106c103c5]
+class Comparable--><rect codeLine="6" fill="#282828" height="48.055" id="Comparable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="115.625" x="7.2917" y="158.9111"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="115.625" x="7.2917" y="158.9111"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="115.625" x="7.2917" y="181.9661"/><rect codeLine="6" fill="none" height="48.055" id="Comparable" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="115.625" x="7.2917" y="158.9111"/><ellipse cx="21.875" cy="174.6053" fill="#008400" rx="10.4167" ry="10.4167" style="stroke:#239C23;stroke-width:1.0416666666666667;"/><path d="M18.7581,171.7672 L18.7581,170.1803 L24.1842,170.1803 L24.1842,171.7672 L22.3714,171.7672 L22.3714,177.7059 L24.1842,177.7059 L24.1842,179.2928 L18.7581,179.2928 L18.7581,177.7059 L20.5709,177.7059 L20.5709,171.7672 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" font-weight="bold" lengthAdjust="spacing" textLength="78.125" x="38.5417" y="179.3294">Comparable</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="121.875" y1="190.2995" y2="190.2995"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="8.3333" x2="121.875" y1="198.6328" y2="198.6328"/><!--MD5=[53f6a92bd21ca2f2960392a061f3a1c6]
+class Name--><rect fill="#282828" height="48.055" id="Name" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="73.9583" x="159.375" y="158.9111"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="73.9583" x="159.375" y="158.9111"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="73.9583" x="159.375" y="181.9661"/><rect fill="none" height="48.055" id="Name" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="73.9583" x="159.375" y="158.9111"/><ellipse cx="173.9583" cy="174.6053" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M175.8687,179.0304 Q175.4415,179.2501 174.9715,179.3599 Q174.5015,179.4698 173.9827,179.4698 Q172.1395,179.4698 171.169,178.2552 Q170.1986,177.0406 170.1986,174.7457 Q170.1986,172.4447 171.169,171.2301 Q172.1395,170.0155 173.9827,170.0155 Q174.5015,170.0155 174.9776,170.1253 Q175.4537,170.2352 175.8687,170.4549 L175.8687,172.4569 Q175.4049,172.0296 174.9685,171.8313 Q174.5321,171.6329 174.0682,171.6329 Q173.0794,171.6329 172.5759,172.4172 Q172.0723,173.2015 172.0723,174.7457 Q172.0723,176.2838 172.5759,177.0681 Q173.0794,177.8524 174.0682,177.8524 Q174.5321,177.8524 174.9685,177.654 Q175.4049,177.4556 175.8687,177.0284 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="36.4583" x="190.625" y="179.3294">Name</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="160.4167" x2="232.2917" y1="190.2995" y2="190.2995"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="160.4167" x2="232.2917" y1="198.6328" y2="198.6328"/><!--MD5=[a5456834d5325446f9b62c8151456042]
+class LanguageIsoCode--><rect codeLine="10" fill="#282828" height="190.4358" id="LanguageIsoCode" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="277.0833" x="48.4375" y="374.5361"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="277.0833" x="48.4375" y="374.5361"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="277.0833" x="48.4375" y="397.5911"/><rect codeLine="10" fill="none" height="190.4358" id="LanguageIsoCode" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="277.0833" x="48.4375" y="374.5361"/><ellipse cx="121.875" cy="390.2303" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M123.7854,394.6554 Q123.3582,394.8751 122.8882,394.9849 Q122.4182,395.0948 121.8994,395.0948 Q120.0562,395.0948 119.0857,393.8802 Q118.1152,392.6656 118.1152,390.3707 Q118.1152,388.0697 119.0857,386.8551 Q120.0562,385.6405 121.8994,385.6405 Q122.4182,385.6405 122.8943,385.7503 Q123.3704,385.8602 123.7854,386.0799 L123.7854,388.0819 Q123.3215,387.6546 122.8851,387.4563 Q122.4487,387.2579 121.9849,387.2579 Q120.9961,387.2579 120.4926,388.0422 Q119.989,388.8265 119.989,390.3707 Q119.989,391.9088 120.4926,392.6931 Q120.9961,393.4774 121.9849,393.4774 Q122.4487,393.4774 122.8851,393.279 Q123.3215,393.0806 123.7854,392.6534 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="115.625" x="144.7917" y="394.9544">LanguageIsoCode</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="49.4792" x2="324.4792" y1="405.9245" y2="405.9245"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="49.4792" x2="324.4792" y1="414.2578" y2="414.2578"/><ellipse cx="59.8958" cy="425.7161" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="244.7917" x="71.3542" y="432.6274">LanguageIsoCode forIso2Code(String code)</text><ellipse cx="59.8958" cy="445.461" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="244.7917" x="71.3542" y="452.3722">LanguageIsoCode forIso3Code(String code)</text><ellipse cx="59.8958" cy="465.2059" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="97.9167" x="71.3542" y="472.1171">String iso2Code()</text><ellipse cx="59.8958" cy="484.9508" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="97.9167" x="71.3542" y="491.862">String iso3Code()</text><ellipse cx="59.8958" cy="504.6956" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="78.125" x="71.3542" y="511.6069">Locale world()</text><ellipse cx="59.8958" cy="548.3521" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="162.5" x="71.3542" y="555.2633">List&lt;LanguageIsoCode&gt; all()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="49.4792" x2="152.6042" y1="531.1879" y2="531.1879"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="62.5" x="155.7292" y="534.9976">(collection)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="221.3542" x2="324.4792" y1="531.1879" y2="531.1879"/><!--MD5=[cd5c1eb4fc0ba2dbe0cdadfbd732677f]
+class Locale--><rect codeLine="24" fill="#282828" height="258.0037" id="Locale" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="273.9583" x="287.5" y="53.7028"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="273.9583" x="287.5" y="53.7028"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="273.9583" x="287.5" y="76.7578"/><rect codeLine="24" fill="none" height="258.0037" id="Locale" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="273.9583" x="287.5" y="53.7028"/><ellipse cx="396.875" cy="69.397" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M398.7854,73.822 Q398.3582,74.0417 397.8882,74.1516 Q397.4182,74.2615 396.8994,74.2615 Q395.0562,74.2615 394.0857,73.0469 Q393.1152,71.8323 393.1152,69.5374 Q393.1152,67.2363 394.0857,66.0217 Q395.0562,64.8071 396.8994,64.8071 Q397.4182,64.8071 397.8943,64.917 Q398.3704,65.0269 398.7854,65.2466 L398.7854,67.2485 Q398.3215,66.8213 397.8851,66.6229 Q397.4487,66.4246 396.9849,66.4246 Q395.9961,66.4246 395.4926,67.2089 Q394.989,67.9932 394.989,69.5374 Q394.989,71.0754 395.4926,71.8597 Q395.9961,72.644 396.9849,72.644 Q397.4487,72.644 397.8851,72.4457 Q398.3215,72.2473 398.7854,71.8201 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="40.625" x="419.7917" y="74.1211">Locale</text><line style="stroke:#5E5E5E;stroke-width:1.5625;" x1="288.5417" x2="560.4167" y1="85.0911" y2="85.0911"/><ellipse cx="298.9583" cy="120.461" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="143.75" x="310.4167" y="127.3722">Locale(LanguageIsoCode)</text><ellipse cx="298.9583" cy="140.2059" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="241.6667" x="310.4167" y="147.1171">Locale(LanguageIsoCode, CountryIsoCode)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="288.5417" x2="380.7292" y1="103.2969" y2="103.2969"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="81.25" x="383.8542" y="107.1065">(constructors)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="468.2292" x2="560.4167" y1="103.2969" y2="103.2969"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="288.5417" x2="560.4167" y1="156.8258" y2="156.8258"/><ellipse cx="298.9583" cy="168.2841" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="162.5" x="310.4167" y="175.1953">java.util.Locale asJavaLocale()</text><ellipse cx="298.9583" cy="188.029" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="146.875" x="310.4167" y="194.9402">CountryIsoCode country()</text><ellipse cx="298.9583" cy="207.7738" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="162.5" x="310.4167" y="214.6851">LanguageIsoCode language()</text><ellipse cx="298.9583" cy="251.4303" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="97.9167" x="310.4167" y="258.3415">boolean isWorld()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="288.5417" x2="397.9167" y1="234.2662" y2="234.2662"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="46.875" x="401.0417" y="238.0758">(checks)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="451.0417" x2="560.4167" y1="234.2662" y2="234.2662"/><ellipse cx="298.9583" cy="295.0867" fill="#84BE84" rx="3.125" ry="3.125" style="stroke:#038048;stroke-width:1.0416666666666667;"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="93.75" x="310.4167" y="301.9979">StringPath path()</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="288.5417" x2="404.6875" y1="277.9226" y2="277.9226"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="33.3333" x="407.8125" y="281.7322">(path)</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="444.2708" x2="560.4167" y1="277.9226" y2="277.9226"/><!--MD5=[7c07d9e5eedfa7431d7063064138cae5]
+class CountryIsoCode--><rect fill="#282828" height="48.055" id="CountryIsoCode" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="142.7083" x="362.5" y="445.8903"/><rect fill="#1B1B1A" height="31.3883" rx="8.3333" ry="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="142.7083" x="362.5" y="445.8903"/><rect fill="#1B1B1A" height="8.3333" style="stroke:#1B1B1A;stroke-width:1.0416666666666667;" width="142.7083" x="362.5" y="468.9453"/><rect fill="none" height="48.055" id="CountryIsoCode" rx="8.3333" ry="8.3333" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" width="142.7083" x="362.5" y="445.8903"/><ellipse cx="377.0833" cy="461.5845" fill="#0066CF" rx="10.4167" ry="10.4167" style="stroke:#0086EF;stroke-width:1.0416666666666667;"/><path d="M378.9937,466.0095 Q378.5665,466.2292 378.0965,466.3391 Q377.6265,466.449 377.1077,466.449 Q375.2645,466.449 374.294,465.2344 Q373.3236,464.0198 373.3236,461.7249 Q373.3236,459.4238 374.294,458.2092 Q375.2645,456.9946 377.1077,456.9946 Q377.6265,456.9946 378.1026,457.1045 Q378.5787,457.2144 378.9937,457.4341 L378.9937,459.436 Q378.5299,459.0088 378.0935,458.8104 Q377.6571,458.6121 377.1932,458.6121 Q376.2044,458.6121 375.7009,459.3964 Q375.1973,460.1807 375.1973,461.7249 Q375.1973,463.2629 375.7009,464.0472 Q376.2044,464.8315 377.1932,464.8315 Q377.6571,464.8315 378.0935,464.6332 Q378.5299,464.4348 378.9937,464.0076 Z " fill="#000000"/><text fill="#D8BC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="105.2083" x="393.75" y="466.3086">CountryIsoCode</text><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="363.5417" x2="504.1667" y1="477.2786" y2="477.2786"/><line style="stroke:#5E5E5E;stroke-width:1.0416666666666667;" x1="363.5417" x2="504.1667" y1="485.612" y2="485.612"/><!--MD5=[8397343ffe611ca46b99901fd1d6c165]
+reverse link Name to LanguageIsoCode--><path codeLine="8" d="M194.8958,228.2549 C193.6146,267.1924 191.7083,325.1507 190.0833,374.4111 " fill="none" id="Name-backto-LanguageIsoCode" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="187.6146,227.807,195.5833,207.2236,202.1875,228.2861,187.6146,227.807" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[04b001753788308962d9673e039e8400]
+reverse link Comparable to LanguageIsoCode--><path codeLine="9" d="M83.375,226.6195 C100.0313,265.557 125.2292,324.4528 146.6042,374.4111 " fill="none" id="Comparable-backto-LanguageIsoCode" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="none" points="76.5729,229.2445,75.0729,207.2236,89.9792,223.5153,76.5729,229.2445" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[2ed7ea4cd687ab137fddc392256d10bf]
+reverse link Locale to LanguageIsoCode--><path codeLine="22" d="M308.5,323.0361 C293.9688,340.4736 279.3646,357.984 265.5938,374.5049 " fill="none" id="Locale-backto-LanguageIsoCode" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="317.5417,312.1924,310.3387,314.3233,309.5353,321.7918,316.7383,319.6609,317.5417,312.1924" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[3a15fc8eb94e8541887354867c89152b]
+reverse link Locale to CountryIsoCode--><path codeLine="23" d="M429.1563,325.9215 C430.6771,372.3695 432.2083,418.8799 433.0938,445.6924 " fill="none" id="Locale-backto-CountryIsoCode" style="stroke:#545454;stroke-width:1.5625;"/><polygon fill="#333333" points="428.6979,312.1924,424.7394,318.5763,429.1098,324.6856,433.0683,318.3017,428.6979,312.1924" style="stroke:#545454;stroke-width:1.5625;"/><!--MD5=[d72f91e4d82190046b5a5fbb193950ab]
+@startuml
+
+    !include lexakai.theme
+    
+    title "Language - Locale"
+    
+    interface Comparable
+    
+    Name <|- - LanguageIsoCode
+    Comparable <|- - LanguageIsoCode
+    class LanguageIsoCode
+    {
+        - -
+        +LanguageIsoCode forIso2Code(String code)
+        +LanguageIsoCode forIso3Code(String code)
+        +String iso2Code()
+        +String iso3Code()
+        +Locale world()
+        - -(collection)- -
+        +List<LanguageIsoCode> all()
+    }
+    
+    Locale o- - LanguageIsoCode
+    Locale o- - CountryIsoCode
+    class Locale
+    {
+        - -(constructors)- -
+        +Locale(LanguageIsoCode)
+        +Locale(LanguageIsoCode, CountryIsoCode)
+        - -
+        +java.util.Locale asJavaLocale()
+        +CountryIsoCode country()
+        +LanguageIsoCode language()
+        - -(checks)- -
+        +boolean isWorld()
+        - -(path)- -
+        +StringPath path()
+    }
+    
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #484848
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+    
+    title "Language - Locale"
+    
+    interface Comparable
+    
+    Name <|- - LanguageIsoCode
+    Comparable <|- - LanguageIsoCode
+    class LanguageIsoCode
+    {
+        - -
+        +LanguageIsoCode forIso2Code(String code)
+        +LanguageIsoCode forIso3Code(String code)
+        +String iso2Code()
+        +String iso3Code()
+        +Locale world()
+        - -(collection)- -
+        +List<LanguageIsoCode> all()
+    }
+    
+    Locale o- - LanguageIsoCode
+    Locale o- - CountryIsoCode
+    class Locale
+    {
+        - -(constructors)- -
+        +Locale(LanguageIsoCode)
+        +Locale(LanguageIsoCode, CountryIsoCode)
+        - -
+        +java.util.Locale asJavaLocale()
+        +CountryIsoCode country()
+        +LanguageIsoCode language()
+        - -(checks)- -
+        +boolean isWorld()
+        - -(path)- -
+        +StringPath path()
+    }
+    
+@enduml
+
+PlantUML version 1.2021.01(Tue Feb 02 00:55:08 MST 2021)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

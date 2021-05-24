@@ -1,0 +1,33 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.data.conversion.string.enumeration"
+    
+    abstract BaseListConverter
+    abstract BaseSetConverter
+    abstract BaseStringConverter
+    
+    BaseStringConverter <|-- EnumConverter
+    class EnumConverter<T>
+    {
+        --(constructors)--
+        +EnumConverter(Listener, Class<T>)
+    }
+    
+    BaseListConverter <|-- EnumListConverter
+    class EnumListConverter<T>
+    {
+        --(constructors)--
+        +EnumListConverter(Listener, Class<T>)
+    }
+    
+    BaseSetConverter <|-- EnumSetConverter
+    class EnumSetConverter<T>
+    {
+        --(constructors)--
+        +EnumSetConverter(Listener, Class<T>)
+    }
+    
+@enduml
+

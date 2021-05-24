@@ -1,0 +1,41 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.messaging.messages.lifecycle"
+    
+    OperationLifecycleMessage <|-- OperationFailed
+    class OperationFailed
+    {
+        --(constructors)--
+        #OperationFailed(String, Object)
+        +OperationFailed()
+    }
+    
+    OperationLifecycleMessage <|-- OperationHalted
+    class OperationHalted
+    {
+        --(constructors)--
+        +OperationHalted()
+        +OperationHalted(String, Object)
+        +OperationHalted(Throwable, String, Object)
+    }
+    
+    OperationLifecycleMessage <|-- OperationStarted
+    class OperationStarted
+    {
+        --(constructors)--
+        #OperationStarted(String, Object)
+        +OperationStarted()
+    }
+    
+    OperationLifecycleMessage <|-- OperationSucceeded
+    class OperationSucceeded
+    {
+        --(constructors)--
+        #OperationSucceeded(String, Object)
+        +OperationSucceeded()
+    }
+    
+@enduml
+

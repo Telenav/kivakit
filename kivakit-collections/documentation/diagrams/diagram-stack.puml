@@ -1,0 +1,19 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Stacks"
+    
+    ObjectList <|-- Stack
+    class Stack<T>
+    {
+        --(constructors)--
+        +Stack()
+        +Stack(Maximum)
+        --(collection)--
+        +T pop()
+        +void push(T value)
+    }
+    
+@enduml
+

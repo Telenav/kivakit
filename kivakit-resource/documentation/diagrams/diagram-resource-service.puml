@@ -1,0 +1,85 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Resources - Services"
+    
+    interface ResourceResolver
+    interface ResourceFolderResolver
+    
+    ResourceResolver <|-- File.Resolver
+    class File.Resolver
+    {
+    }
+    
+    ResourceFolderResolver <|-- Folder.Resolver
+    class Folder.Resolver
+    {
+    }
+    
+    ResourceFolderResolver <|-- Package.Resolver
+    class Package.Resolver
+    {
+    }
+    
+    ResourceResolver <|-- PackageResource.Resolver
+    class PackageResource.Resolver
+    {
+    }
+    
+    class ResourceFolderIdentifier
+    {
+        --(constructors)--
+        +ResourceFolderIdentifier(String)
+        --(filesystem)--
+        +ResourceFolder resolve()
+        --(identity)--
+        +String identifier()
+    }
+    
+    ResourceFolderResolver --> ResourceIdentifier : "parses"
+    ResourceFolderResolver --> ResourceFolder : "creates"
+    interface ResourceFolderResolver
+    {
+        --(filesystem)--
+        +ResourceFolder resolve(ResourceFolderIdentifier)
+        --(filtering)--
+        +boolean accepts(ResourceFolderIdentifier)
+    }
+    
+    ResourceFolderResolverServiceLoader "1" o-- "*" ResourceFolderResolver
+    class ResourceFolderResolverServiceLoader
+    {
+        --(filesystem)--
+        +ResourceFolder resolve(ResourceFolderIdentifier)
+    }
+    
+    class ResourceIdentifier
+    {
+        --(constructors)--
+        +ResourceIdentifier(String)
+        --
+        +Resource resolve()
+        --(identity)--
+        +String identifier()
+    }
+    
+    ResourceResolver --> ResourceFolderIdentifier : "parses"
+    ResourceResolver --> Resource : "creates"
+    interface ResourceResolver
+    {
+        --
+        +Resource resolve(ResourceIdentifier)
+        --(filtering)--
+        +boolean accepts(ResourceIdentifier)
+    }
+    
+    ResourceResolverServiceLoader "1" o-- "*" ResourceResolver
+    class ResourceResolverServiceLoader
+    {
+        --
+        +Resource resolve(ResourceIdentifier)
+    }
+    
+@enduml
+

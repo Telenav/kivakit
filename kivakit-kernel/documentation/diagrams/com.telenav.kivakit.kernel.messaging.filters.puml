@@ -1,0 +1,51 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.kernel.messaging.filters"
+    
+    interface Filter
+    interface MessageFilter
+    
+    MessageFilter <|-- AllMessages
+    class AllMessages
+    {
+    }
+    
+    SubClassesOf <|-- MessageType
+    class MessageType
+    {
+        --(constructors)--
+        +MessageType(Class<Message>)
+    }
+    
+    Filter <|-- SeverityGreaterThan
+    class SeverityGreaterThan<T>
+    {
+        --(constructors)--
+        +SeverityGreaterThan(Severity)
+    }
+    
+    MessageFilter <|-- SeverityGreaterThanOrEqualTo
+    class SeverityGreaterThanOrEqualTo
+    {
+        --(constructors)--
+        +SeverityGreaterThanOrEqualTo(Severity)
+    }
+    
+    Filter <|-- SeverityLessThan
+    class SeverityLessThan<T>
+    {
+        --(constructors)--
+        +SeverityLessThan(Severity)
+    }
+    
+    Filter <|-- SubClassesOf
+    class SubClassesOf<T>
+    {
+        --(constructors)--
+        +SubClassesOf(Class<T>)
+    }
+    
+@enduml
+

@@ -1,0 +1,53 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "kivakit-serialization-jersey-json"
+    
+    artifact jackson_annotations
+    artifact jackson_core
+    artifact jackson_databind
+    artifact jackson_module_jaxb_annotations
+    artifact gson
+    artifact cactus_build_metadata
+    artifact kivakit_kernel
+    artifact kivakit_serialization_jersey_json
+    artifact kivakit_serialization_json
+    artifact lexakai_annotations
+    artifact swagger_annotations
+    artifact jakarta_activation_api
+    artifact jakarta_annotation_api
+    artifact jakarta_ws_rs_api
+    artifact jakarta_xml_bind_api
+    artifact junit
+    artifact jakarta_inject
+    artifact osgi_resource_locator
+    artifact jersey_common
+    artifact jersey_entity_filtering
+    artifact jersey_media_json_jackson
+    artifact hamcrest_core
+    artifact annotations
+    jackson_databind --> jackson_core
+    jackson_module_jaxb_annotations --> jakarta_activation_api
+    jackson_module_jaxb_annotations --> jakarta_xml_bind_api
+    jersey_common --> jakarta_annotation_api
+    jersey_common --> jakarta_inject
+    jersey_common --> jakarta_ws_rs_api
+    jersey_common --> osgi_resource_locator
+    jersey_media_json_jackson --> jackson_annotations
+    jersey_media_json_jackson --> jackson_databind
+    jersey_media_json_jackson --> jackson_module_jaxb_annotations
+    jersey_media_json_jackson --> jersey_common
+    jersey_media_json_jackson --> jersey_entity_filtering
+    junit --> hamcrest_core
+    kivakit_kernel --> annotations
+    kivakit_kernel --> cactus_build_metadata
+    kivakit_kernel --> junit
+    kivakit_kernel --> lexakai_annotations
+    kivakit_kernel --> swagger_annotations
+    kivakit_serialization_jersey_json --> jersey_media_json_jackson
+    kivakit_serialization_jersey_json --> kivakit_serialization_json
+    kivakit_serialization_json --> gson
+    kivakit_serialization_json --> kivakit_kernel
+    
+@enduml
