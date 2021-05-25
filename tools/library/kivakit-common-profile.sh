@@ -43,6 +43,8 @@ echo "┋"
 echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
 echo " "
 
+SHOW_SYSTEM_ENVIRONMENT=false
+
 source_project_profile "mesakit"
 source_project_profile "lexakai"
 
@@ -59,3 +61,4 @@ perl -e 'print "┋                     Path: " . join("\n┋                   
 echo "┋"
 echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
 echo " "
+
