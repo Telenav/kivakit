@@ -20,8 +20,7 @@
 
 # kivakit 0.9.8-alpha-SNAPSHOT &nbsp;&nbsp; <img src="https://www.kivakit.org/images/kivakit-64.png" srcset="https://www.kivakit.org/images/kivakit-64-2x.png 2x"/>
 
-KivaKit is a set of integrated Java mini-frameworks that are potentially needed by any application
-or server.
+KivaKit is a set of integrated Java mini-frameworks that are potentially needed by any application or server.
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
@@ -43,38 +42,29 @@ or server.
 
 ### Welcome <a name = "welcome"></a>! <a name = "welcome"></a> &nbsp; <img src="https://www.kivakit.org/images/stars-32.png" srcset="https://www.kivakit.org/images/stars-32-2x.png 2x"/>
 
-*Perfection is achieved, not when there is nothing more to add, but when there is nothing left to
-take away.*
+*Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.*
 
 &nbsp; &nbsp; &nbsp; &nbsp; &mdash; Antoine de Saint-Exup&eacute;ry
 
 > *The mission of KivaKit is to accelerate the development of Java software through the use of integrated, modular, object-oriented design.*
 
-KivaKit extends the JDK to provide quick and easy solutions to common everyday software problems. It
-does this by providing new abstractions and APIs, and by simplifying an existing APIs.
+KivaKit extends the JDK to provide quick and easy solutions to common everyday software problems. It does this by providing new abstractions and APIs, and by simplifying an existing APIs.
 
-KivaKit is composed of a number of nested sub-projects that are Java 11+ modules. These modules
-address different areas of concern in developing Java applications. The resources below will help
-you to get started.
+KivaKit is composed of a number of nested sub-projects that are Java 11+ modules. These modules address different areas of concern in developing Java applications. The resources below will help you to get started.
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
 ### Summary <a name = "summary"></a>
 
-KivaKit is designed for use in everyday software development. KivaKit APIs work together through a
-set of common interfaces and components to provide a consistent and powerful development experience.
-Documentation and examples are provided, but much of KivaKit's functionality can also be discovered
-with class searching and autocomplete, because it was designed to be used in that way.
+KivaKit is designed for use in everyday software development. KivaKit APIs work together through a set of common interfaces and components to provide a consistent and powerful development experience. Documentation and examples are provided, but much of KivaKit's functionality can also be discovered with class searching and autocomplete, because it was designed to be used in that way.
 
 #### What is it?
 
-KivaKit is a collection of bite-sized Java development mini-frameworks that play well together.
-Using one part of KivaKit makes using other parts easier. Work with just the parts you need.
+KivaKit is a collection of bite-sized Java development mini-frameworks that play well together. Using one part of KivaKit makes using other parts easier. Work with just the parts you need.
 
 #### Why use it?
 
-KivaKit accelerates development and makes code simpler, safer and clearer. KivaKit increases
-modularity and code reuse.
+KivaKit accelerates development and makes code simpler, safer and clearer. KivaKit increases modularity and code reuse.
 
 #### What can it do?
 
@@ -89,8 +79,7 @@ KivaKit helps you to:
 
 ### Examples <a name = "examples"></a>
 
-The [**kivakit-examples**](https://github.com/Telenav/kivakit-examples) project contains useful,
-working examples of use cases for KivaKit.
+The [**kivakit-examples**](https://github.com/Telenav/kivakit-examples) project contains useful, working examples of use cases for KivaKit.
 
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
@@ -108,17 +97,20 @@ working examples of use cases for KivaKit.
 
 | Resource     |     Description                   |
 |--------------|-----------------------------------|
-| Project Name | KivaKit |
-| Summary | Library code for developing Java applications |
-| Javadoc Coverage |  <!-- <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/> --> <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/><!-- end --> |
-| Lead | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
-| Administrator | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
-| Email | [kivakit@telenav.com](mailto:kivakit@telenav.com) |
-| Chat | [Zulip](https://kivakit.zulip.com) |
-| Twitter | [@OpenKivaKit](https://twitter.com/openkivakit) |
-| Issues | [GitHub Issues](https://github.com/Telenav/kivakit/issues) |
-| Code | [GitHub](https://github.com/Telenav/kivakit) |
-| Checkout | `git clone https://github.com/Telenav/kivakit.git` |
+| *Project Name* | KivaKit |
+| *Related Projects* | [kivakit-examples](https://github.com/Telenav/kivakit-examples), [kivakit-extensions](https://github.com/Telenav/kivakit) |
+| *Summary* | A collection of mini-frameworks that extend and simplify the JDK and other common APIs |
+| *License* | <a href="https://apache.org"><img valign="middle" src="https://www.kivakit.org/images/feather.png" srcset="https://www.kivakit.org/images/feather-2x.png 2x"/></a> &nbsp; [Apache License, Version 2.0](LICENSE) |
+| *Javadoc Coverage* |  <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/> |
+| *Setup* | [Step-by-step setup instructions](https://github.com/Telenav/kivakit/blob/master/documentation/overview/setup.md)
+| *GitHub* | [GitHub project home page](https://github.com/Telenav/kivakit) |
+| *Code* | `git clone git@github.com:Telenav/kivakit.git` |
+| *Project Lead* | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
+| *Administrator* | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
+| *Email* | [kivakit@telenav.com](mailto:kivakit@telenav.com) |
+| *Chat* | [Zulip](https://kivakit.zulip.com) |
+| *Twitter* | [@OpenKivaKit](https://twitter.com/openkivakit) |
+| *Issues* | [GitHub Issues](https://github.com/Telenav/kivakit/issues) |
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
@@ -204,7 +196,5 @@ working examples of use cases for KivaKit.
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
-<sub>Copyright &#169; 2011-2021 [Telenav](https://telenav.com), Inc. Distributed
-under [Apache License, Version 2.0](LICENSE)</sub>  
-<sub>This documentation was generated by [Lexakai](https://www.lexakai.org). UML diagrams courtesy
-of [PlantUML](https://plantuml.com).</sub>
+<sub>Copyright &#169; 2011-2021 [Telenav](https://telenav.com), Inc. Distributed under [Apache License, Version 2.0](LICENSE)</sub>  
+<sub>This documentation was generated by [Lexakai](https://www.lexakai.org). UML diagrams courtesy of [PlantUML](https://plantuml.com).</sub>
