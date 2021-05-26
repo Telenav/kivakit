@@ -251,10 +251,10 @@ public class Ensure
                             + expected.getClass().getSimpleName() + ")", arguments);
 
             // check that given == expected,
-            ensure(Objects.equal(given, expected), message + " (Given != expected)", arguments);
+            ensure(Objects.equal(given, expected), message + " (Given " + given + " != expected " + expected + ")", arguments);
 
             // that expected == given,
-            ensure(Objects.equal(expected, given), message + " (Expected != given)", arguments);
+            ensure(Objects.equal(expected, given), message + " (Expected " + expected + " != given " + given + ")", arguments);
 
             // and that the hash codes match
             final var givenHashCode = Hash.code(given);
