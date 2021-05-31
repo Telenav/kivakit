@@ -58,6 +58,7 @@ open module kivakit.kernel
     exports com.telenav.kivakit.kernel.language.collections.map.count;
     exports com.telenav.kivakit.kernel.language.collections.set;
     exports com.telenav.kivakit.kernel.language.collections;
+    exports com.telenav.kivakit.kernel.language.functions;
     exports com.telenav.kivakit.kernel.language.io;
     exports com.telenav.kivakit.kernel.language.iteration;
     exports com.telenav.kivakit.kernel.language.locales;

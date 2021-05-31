@@ -197,6 +197,28 @@ public class Strings
     }
 
     /**
+     * Returns true if a string is non-empty and contains only digits
+     *
+     * @param string The string to check
+     * @return True if it's a number
+     */
+    public static boolean isNaturalNumber(final String string)
+    {
+        if (isEmpty(string))
+        {
+            return false;
+        }
+        for (var i = 0; i < string.length(); i++)
+        {
+            if (!Character.isDigit(string.charAt(i)))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * @return The leading n characters of the given text
      */
     public static String leading(final String text, final int n)

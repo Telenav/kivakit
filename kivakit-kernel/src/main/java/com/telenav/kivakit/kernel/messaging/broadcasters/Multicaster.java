@@ -63,9 +63,9 @@ import static com.telenav.kivakit.kernel.language.strings.formatting.IndentingSt
  *         this.repeater.broadcast(message);
  *     }
  *
- *     public void broadcastTo(final Listener&lt;Message&gt; listener)
+ *     public void addListener(final Listener&lt;Message&gt; listener)
  *     {
- *         this.repeater.broadcastTo(listener);
+ *         this.repeater.addListener(listener);
  *     }
  *
  *     public void clearListeners()

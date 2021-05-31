@@ -190,28 +190,6 @@ public class AsciiArt
     }
 
     /**
-     * Returns true if a string is non-empty and contains only digits
-     *
-     * @param string The string to check
-     * @return True if it's a number
-     */
-    public static boolean isNaturalNumber(final String string)
-    {
-        if (Strings.isEmpty(string))
-        {
-            return false;
-        }
-        for (var i = 0; i < string.length(); i++)
-        {
-            if (!Character.isDigit(string.charAt(i)))
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
      * @return A line
      */
     public static String line()

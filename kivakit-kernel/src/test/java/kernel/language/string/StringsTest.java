@@ -126,11 +126,11 @@ public class StringsTest
     @Test
     public void testIsInteger()
     {
-        ensureFalse(AsciiArt.isNaturalNumber(""));
-        ensureFalse(AsciiArt.isNaturalNumber(null));
-        ensureFalse(AsciiArt.isNaturalNumber("banana"));
-        ensure(AsciiArt.isNaturalNumber("1"));
-        ensure(AsciiArt.isNaturalNumber("1129831928379128739128739182739182739182793127"));
+        ensureFalse(Strings.isNaturalNumber(""));
+        ensureFalse(Strings.isNaturalNumber(null));
+        ensureFalse(Strings.isNaturalNumber("banana"));
+        ensure(Strings.isNaturalNumber("1"));
+        ensure(Strings.isNaturalNumber("1129831928379128739128739182739182739182793127"));
     }
 
     @Test

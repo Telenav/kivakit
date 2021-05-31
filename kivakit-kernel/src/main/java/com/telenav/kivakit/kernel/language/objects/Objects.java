@@ -30,7 +30,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.IdentityHashMap;
 import java.util.Map;
-import java.util.function.Function;
 
 @UmlClassDiagram(diagram = DiagramLanguageObject.class)
 public class Objects
@@ -38,15 +37,6 @@ public class Objects
     private static Debug DEBUG;
 
     private static final Map<Class<?>, ClassIdentityMap> classToIdentityMap = new HashMap<>();
-
-    public static <Input, Output> Output apply(final Input value, final Function<Input, Output> function)
-    {
-        if (value != null)
-        {
-            return function.apply(value);
-        }
-        return null;
-    }
 
     public static boolean equal(final Object a, final Object b)
     {
@@ -133,8 +123,8 @@ public class Objects
      * <p>
      * IMPORTANT NOTE: Since this method holds references to the objects it identifiers, it prevents garbage collection
      * of those objects, which can cause big memory leaks, but only when {@link Debug} is enabled for this class with
-     * -DKIVAKIT_DEBUG=Objects or another similar pattern. Be sure you don't have {@link Debug} enabled for this class when
-     * looking at memory leaks.
+     * -DKIVAKIT_DEBUG=Objects or another similar pattern. Be sure you don't have {@link Debug} enabled for this class
+     * when looking at memory leaks.
      *
      * @return A string representing the identity of the object. The ≡ symbol in math means "identity". Each class has a
      * separate sequence of objects that have been allocated, starting at identity 1. For example, StringList ≡1,
