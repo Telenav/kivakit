@@ -38,6 +38,16 @@ public class Objects
 
     private static final Map<Class<?>, ClassIdentityMap> classToIdentityMap = new HashMap<>();
 
+    public static <Value> Value notNullOr(final Value value, final Value defaultValue)
+    {
+        return (value != null) ? value : defaultValue;
+    }
+
+    public static boolean isNull(final Object object)
+    {
+        return object != null;
+    }
+
     public static boolean equal(final Object a, final Object b)
     {
         if (a == b)
