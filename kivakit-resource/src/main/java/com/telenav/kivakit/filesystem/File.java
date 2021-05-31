@@ -62,7 +62,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
 
 /**
  * File abstraction that adds integrates files with the KivaKit resource mini-framework and adds a variety of useful
- * methods. File system service providers for this abstraction are in <i>com.telenav.kivakit.core.filesystem.local</i>
+ * methods. File system service providers for this abstraction are in <i>com.telenav.kivakit.filesystem.local</i>
  * (the local filesystem provider) and in the <i>kivakit-filesystems</i> module.
  *
  * <p>

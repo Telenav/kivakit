@@ -244,7 +244,7 @@ public class CommandLineParser
      */
     private String help()
     {
-        final var kivakitVersion = "\nKivaKit " + KivaKit.get().version() + " (" + KivaKit.get().build().name() + ")";
+        final var kivakitVersion = "\nKivaKit " + KivaKit.get().projectVersion() + " (" + KivaKit.get().build().name() + ")";
         final var usage = "\n\nUsage: " + application.getClass().getSimpleName() + " " + application.version() + " <switches> <arguments>\n\n";
         final var description = Wrap.wrapRegion(application.description(), 100).trim() + "\n\n";
         final var arguments = "Arguments:\n\n" + argumentParsers.help();

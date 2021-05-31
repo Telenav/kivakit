@@ -78,8 +78,8 @@ import java.util.stream.Collectors;
  * PackagePath.parsePackagePath(MyClass.class, "resources/images")
  * PackagePath.parsePackagePath(MyClass.class, "resources.images")
  * PackagePath.parsePackagePath(getClass(), "resources/images")
- * PackagePath.parsePackagePath("com.telenav.kivakit.core/kernel")
- * PackagePath.parsePackagePath("com.telenav.kivakit.core.kernel")
+ * PackagePath.parsePackagePath("com.telenav.kivakit/kernel")
+ * PackagePath.parsePackagePath("com.telenav.kivakit.kernel")
  * </pre>
  *
  * @author jonathanl (shibo)

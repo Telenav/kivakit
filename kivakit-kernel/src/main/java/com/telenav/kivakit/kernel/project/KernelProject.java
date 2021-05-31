@@ -23,16 +23,16 @@ import com.telenav.kivakit.kernel.language.objects.Lazy;
 /**
  * @author jonathanl (shibo)
  */
-public class CoreKernelProject extends Project
+public class KernelProject extends Project
 {
-    private static final Lazy<CoreKernelProject> project = Lazy.of(CoreKernelProject::new);
+    private static final Lazy<KernelProject> project = Lazy.of(KernelProject::new);
 
-    public static CoreKernelProject get()
+    public static KernelProject get()
     {
         return project.get();
     }
 
-    protected CoreKernelProject()
+    protected KernelProject()
     {
     }
 }

@@ -62,7 +62,7 @@ public class KryoUnitTest extends UnitTest
                 final var session = session();
                 try (final var output = data)
                 {
-                    session.open(SerializationSession.Type.RESOURCE, KivaKit.get().version(), output);
+                    session.open(SerializationSession.Type.RESOURCE, KivaKit.get().projectVersion(), output);
                     for (var index = 0; index < 3; index++)
                     {
                         session.write(new VersionedObject<>(version, object));
@@ -79,7 +79,7 @@ public class KryoUnitTest extends UnitTest
                 final var session = session();
                 try (final var input = new ByteArrayInputStream(data.toByteArray()))
                 {
-                    Ensure.ensureEqual(session.open(SerializationSession.Type.RESOURCE, KivaKit.get().version(), input), KivaKit.get().version());
+                    Ensure.ensureEqual(session.open(SerializationSession.Type.RESOURCE, KivaKit.get().projectVersion(), input), KivaKit.get().projectVersion());
                     for (var index = 0; index < 3; index++)
                     {
                         final var deserialized = session.read();

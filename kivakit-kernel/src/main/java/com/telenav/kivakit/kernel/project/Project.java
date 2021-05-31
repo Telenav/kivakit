@@ -69,7 +69,7 @@ import java.util.Set;
  *
  * <ul>
  *     <li>{@link #build()} - Build information</li>
- *     <li>{@link #version()} - The project version</li>
+ *     <li>{@link #projectVersion()} - The project version</li>
  *     <li>{@link #kivakitVersion()} - The version of KivaKit used by the project</li>
  *     <li>{@link #properties()} - System properties, environment variables and build properties for this project</li>
  * </ul>
@@ -266,7 +266,7 @@ public abstract class Project extends BaseRepeater implements Initializable<Proj
     /**
      * @return The version of this project
      */
-    public Version version()
+    public Version projectVersion()
     {
         return Version.parse(property("project-version"));
     }

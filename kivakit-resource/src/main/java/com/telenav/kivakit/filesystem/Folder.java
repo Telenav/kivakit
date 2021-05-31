@@ -77,7 +77,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  * Folder abstraction that extends {@link FileSystemObject} and implements the {@link ResourceFolder} interface for
  * filesystems. Consumes a {@link FolderService} supplied by a filesystem service provider. Filesystem service providers
  * can be found in
- * <i>com.telenav.kivakit.core.filesystem.local</i> (the local filesystem provider) and in the
+ * <i>com.telenav.kivakit.filesystem.local</i> (the local filesystem provider) and in the
  * <i>kivakit-filesystems</i> module.
  *
  * <p><b>Factory Methods</b></p>

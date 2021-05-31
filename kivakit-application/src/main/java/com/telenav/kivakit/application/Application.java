@@ -561,7 +561,7 @@ public abstract class Application extends BaseRepeater implements Named, Applica
     @Override
     public Version version()
     {
-        return project().version();
+        return project().projectVersion();
     }
 
     /**

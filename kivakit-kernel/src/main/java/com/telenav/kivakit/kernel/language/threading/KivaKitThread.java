@@ -526,7 +526,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
 
     protected State transition(final State to)
     {
-        return state().transition(to);
+        return state().transitionTo(to);
     }
 
     /**

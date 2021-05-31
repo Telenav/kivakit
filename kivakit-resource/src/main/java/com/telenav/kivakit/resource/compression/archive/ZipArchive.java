@@ -278,7 +278,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
                 {
                     if (input != null)
                     {
-                        session.open(SerializationSession.Type.RESOURCE, KivaKit.get().version(), input);
+                        session.open(SerializationSession.Type.RESOURCE, KivaKit.get().projectVersion(), input);
                         return session.read();
                     }
                 }
@@ -327,7 +327,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
         {
             try
             {
-                session.open(SerializationSession.Type.RESOURCE, KivaKit.get().version(), output);
+                session.open(SerializationSession.Type.RESOURCE, KivaKit.get().projectVersion(), output);
                 session.write(object);
             }
             finally

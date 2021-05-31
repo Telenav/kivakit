@@ -115,6 +115,14 @@ public class StateMachine<State> extends BaseRepeater
     }
 
     /**
+     * @return True if the current state is not the given state
+     */
+    public boolean isNot(final State state)
+    {
+        return whileLocked(() -> !Objects.equals(at, state));
+    }
+
+    /**
      * Toggles between two states by transitioning from one to the other
      *
      * @param one The first state
@@ -125,11 +133,11 @@ public class StateMachine<State> extends BaseRepeater
     {
         if (is(one))
         {
-            return transition(two);
+            return transitionTo(two);
         }
         if (is(two))
         {
-            return transition(one);
+            return transitionTo(one);
         }
         return null;
     }
@@ -141,13 +149,13 @@ public class StateMachine<State> extends BaseRepeater
      * @param to The desired state
      * @return True if a state change occurred
      */
-    public boolean transition(final State from, final State to)
+    public boolean transitionTo(final State from, final State to)
     {
         return whileLocked(() ->
         {
             if (is(from))
             {
-                transition(to);
+                transitionTo(to);
                 return true;
             }
 
@@ -166,11 +174,11 @@ public class StateMachine<State> extends BaseRepeater
      * state. This code might be used to interrupt a thread, for example.
      * @return True if desired state was reached
      */
-    public boolean transition(final State from,
-                              final State to,
-                              final State waitFor,
-                              final Duration maximumWait,
-                              final Runnable before)
+    public boolean transitionTo(final State from,
+                                final State to,
+                                final State waitFor,
+                                final Duration maximumWait,
+                                final Runnable before)
     {
         return whileLocked(() ->
         {
@@ -185,7 +193,7 @@ public class StateMachine<State> extends BaseRepeater
             before.run();
 
             // and if we can transition from the 'from' state to the 'to' state,
-            if (transition(from, to))
+            if (transitionTo(from, to))
             {
                 // then wait for the desired state to arrive.
                 trace("$ => $ (wait for $ for up to $)", from, to, waitFor, maximumWait);
@@ -201,14 +209,14 @@ public class StateMachine<State> extends BaseRepeater
     /**
      * Transition and wait forever for the given state
      *
-     * @see #transition(Object, Object, Object, Duration, Runnable)
+     * @see #transitionTo(Object, Object, Object, Duration, Runnable)
      */
-    public synchronized boolean transition(final State from,
-                                           final State to,
-                                           final State waitFor,
-                                           final Runnable before)
+    public synchronized boolean transitionTo(final State from,
+                                             final State to,
+                                             final State waitFor,
+                                             final Runnable before)
     {
-        return transition(from, to, waitFor, Duration.MAXIMUM, before);
+        return transitionTo(from, to, waitFor, Duration.MAXIMUM, before);
     }
 
     /**
@@ -216,7 +224,7 @@ public class StateMachine<State> extends BaseRepeater
      *
      * @return The prior state
      */
-    public State transition(final State state)
+    public State transitionTo(final State state)
     {
         return whileLocked(() ->
         {
@@ -245,7 +253,7 @@ public class StateMachine<State> extends BaseRepeater
     {
         whileLocked(() ->
         {
-            transition(state);
+            transitionTo(state);
             waitForNot(state);
         });
     }
@@ -292,8 +300,25 @@ public class StateMachine<State> extends BaseRepeater
      */
     public boolean waitFor(final Predicate<State> predicate, final Duration maximumWait)
     {
+        return waitFor(predicate, maximumWait, () ->
+        {
+        });
+    }
+
+    /**
+     * Waits until the given predicate is satisfied
+     *
+     * @param predicate The desired state
+     * @param maximumWait The maximum amount of time to wait
+     * @param beforeWaiting Code to run after locking the state machine but before waiting for the predicate. This code
+     * might interrupt another thread, for example.
+     * @return True if the state was achieved, false if the operation timed out
+     */
+    public boolean waitFor(final Predicate<State> predicate, final Duration maximumWait, final Runnable beforeWaiting)
+    {
         return whileLocked(() ->
         {
+            beforeWaiting.run();
             watcher.waitFor(predicate, maximumWait);
             return predicate.test(at);
         });

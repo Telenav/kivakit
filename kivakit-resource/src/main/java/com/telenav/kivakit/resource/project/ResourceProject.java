@@ -16,28 +16,28 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.network.core.project;
+package com.telenav.kivakit.resource.project;
 
 import com.telenav.kivakit.kernel.language.objects.Lazy;
 import com.telenav.kivakit.kernel.project.Project;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
- * Project class for kivakit-core-network-core
+ * The project class for kivakit-core-resource
  *
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
-public class CoreNetworkCoreProject extends Project
+public class ResourceProject extends Project
 {
-    private static final Lazy<CoreNetworkCoreProject> project = Lazy.of(CoreNetworkCoreProject::new);
+    private static final Lazy<ResourceProject> project = Lazy.of(ResourceProject::new);
 
-    public static CoreNetworkCoreProject get()
+    public static ResourceProject get()
     {
         return project.get();
     }
 
-    protected CoreNetworkCoreProject()
+    protected ResourceProject()
     {
     }
 }
