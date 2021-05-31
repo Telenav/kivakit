@@ -114,7 +114,7 @@ public class Level
         return this;
     }
 
-    public Percent asPercentage()
+    public Percent asPercent()
     {
         return new Percent(value * 100.0);
     }

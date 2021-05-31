@@ -152,7 +152,7 @@ public class DurationTest
     }
 
     @Test
-    public void testPercentage()
+    public void testPercent()
     {
         ensureEqual(Percent._100, Duration.ONE_SECOND.percentageOf(Duration.ONE_SECOND));
         ensureEqual(Percent._50, Duration.ONE_SECOND.percentageOf(Duration.seconds(2)));

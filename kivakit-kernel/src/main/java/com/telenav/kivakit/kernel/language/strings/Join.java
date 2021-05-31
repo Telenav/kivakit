@@ -77,7 +77,8 @@ public class Join
     /**
      * @return The given collection of values converted using the given converter and separated by the given separator
      */
-    public static <T> String join(final Collection<T> values, final String separator,
+    public static <T> String join(final Collection<T> values,
+                                  final String separator,
                                   final Converter<T, String> converter)
     {
         final var builder = new StringBuilder();
