@@ -33,8 +33,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * EmployeeLoader and re-transmits them to its own listeners. Clients of the PayrollProcessor can listen to it in turn
  * and they will receive the warning transmitted EmployeeLoader, when it is repeated by the PayrollProcessor. This
  * pattern creates a chain of repeaters that terminates in one or more listeners. The final listener is often, but not
- * always a logger. The base Application class in kivakit-core-application, for example, is a {@link Repeater} which logs
- * the messages it receives by default.
+ * always a logger. The base Application class in kivakit-application, for example, is a {@link Repeater} which logs the
+ * messages it receives by default.
  * </p>
  * <p>
  * <b>Repeater Example</b>

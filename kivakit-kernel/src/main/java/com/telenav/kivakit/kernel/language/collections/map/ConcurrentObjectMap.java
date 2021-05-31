@@ -26,19 +26,19 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * Base class for concurrent maps with a bounded number of values.
+ * Class for concurrent maps with a bounded number of values.
  *
  * @author jonathanl
  * @author Junwei
  * @version 1.0.0 2012-12-27
  */
 @UmlClassDiagram(diagram = DiagramLanguageCollectionsMap.class)
-public class BaseConcurrentMap<Key, Value> extends BaseMap<Key, Value> implements ConcurrentMap<Key, Value>
+public class ConcurrentObjectMap<Key, Value> extends BaseMap<Key, Value> implements ConcurrentMap<Key, Value>
 {
     /**
      * A bounded concurrent map
      */
-    public BaseConcurrentMap(final Maximum maximumSize)
+    public ConcurrentObjectMap(final Maximum maximumSize)
     {
         this(maximumSize, new ConcurrentHashMap<>());
     }
@@ -46,7 +46,7 @@ public class BaseConcurrentMap<Key, Value> extends BaseMap<Key, Value> implement
     /**
      * A bounded concurrent map with the given implementation
      */
-    public BaseConcurrentMap(final Maximum maximumSize, final ConcurrentMap<Key, Value> map)
+    public ConcurrentObjectMap(final Maximum maximumSize, final ConcurrentMap<Key, Value> map)
     {
         super(maximumSize, map);
     }
@@ -54,7 +54,7 @@ public class BaseConcurrentMap<Key, Value> extends BaseMap<Key, Value> implement
     /**
      * An unbounded concurrent map
      */
-    protected BaseConcurrentMap()
+    protected ConcurrentObjectMap()
     {
         this(Maximum.MAXIMUM);
     }
@@ -62,7 +62,7 @@ public class BaseConcurrentMap<Key, Value> extends BaseMap<Key, Value> implement
     /**
      * An unbounded concurrent map with the given implementation
      */
-    protected BaseConcurrentMap(final ConcurrentMap<Key, Value> map)
+    protected ConcurrentObjectMap(final ConcurrentMap<Key, Value> map)
     {
         this(Maximum.MAXIMUM, map);
     }

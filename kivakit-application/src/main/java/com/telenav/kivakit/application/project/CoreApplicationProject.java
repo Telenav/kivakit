@@ -23,7 +23,7 @@ import com.telenav.kivakit.kernel.project.Project;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
- * Project class for kivakit-core-application
+ * Project class for kivakit-application
  *
  * @author jonathanl (shibo)
  */

@@ -70,7 +70,7 @@ import java.io.Serializable;
  * </pre>
  *
  * <p>
- * It does this by using a SwitchParser from kivakit-core-application to allow the user to select a deployment from the
+ * It does this by using a SwitchParser from kivakit-application to allow the user to select a deployment from the
  * command line. The deployment is automatically installed in the global {@link ConfigurationSet}, where configuration
  * objects can easily be located in the code. The usage for this application then, is:
  * </p>

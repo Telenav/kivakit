@@ -20,7 +20,7 @@ package com.telenav.kivakit.kernel.logging.loggers;
 
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
-import com.telenav.kivakit.kernel.language.collections.map.BaseConcurrentMap;
+import com.telenav.kivakit.kernel.language.collections.map.ConcurrentObjectMap;
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.logging.Log;
@@ -44,7 +44,7 @@ import java.util.Set;
 @UmlClassDiagram(diagram = DiagramLogging.class)
 public abstract class BaseLogger implements Logger
 {
-    private static final Map<String, Time> lastLogTime = new BaseConcurrentMap<>(CoreKernelLimits.UNIQUE_LOG_ENTRIES);
+    private static final Map<String, Time> lastLogTime = new ConcurrentObjectMap<>(CoreKernelLimits.UNIQUE_LOG_ENTRIES);
 
     /** The severity level to log */
     private static Severity level;
