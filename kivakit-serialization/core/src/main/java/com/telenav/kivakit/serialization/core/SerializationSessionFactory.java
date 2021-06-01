@@ -21,6 +21,8 @@ package com.telenav.kivakit.serialization.core;
 import com.telenav.kivakit.kernel.interfaces.factory.Factory;
 import com.telenav.kivakit.kernel.messaging.Listener;
 
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
+
 /**
  * Creates new thread-local instances of {@link SerializationSession} using the {@link Factory} passed to the
  * constructor.
@@ -29,6 +31,19 @@ import com.telenav.kivakit.kernel.messaging.Listener;
  */
 public class SerializationSessionFactory
 {
+    private static ThreadLocal<SerializationSessionFactory> local;
+
+    public static void threadLocal(final SerializationSessionFactory factory)
+    {
+        local = ThreadLocal.withInitial(() -> factory);
+    }
+
+    public static SerializationSessionFactory threadLocal()
+    {
+        ensureNotNull(local);
+        return local.get();
+    }
+
     /** Factory that produces serialization objects */
     private final Factory<SerializationSession> factory;
 

@@ -290,6 +290,13 @@ public class Deployment extends ConfigurationSet implements Named, Serializable
     }
 
     @Override
+    public Deployment addPackage(final PackagePath path)
+    {
+        addSet(listenTo(new ConfigurationPackage(path)));
+        return this;
+    }
+
+    @Override
     public Deployment addPackage(final Class<?> relativeTo, final String path)
     {
         addSet(listenTo(new ConfigurationPackage(PackagePath.parsePackagePath(relativeTo, path))));

@@ -60,14 +60,14 @@ public class IntegerIdentifier implements Comparable<IntegerIdentifier>, Identif
     {
     }
 
-    public int asInteger()
+    public int asInt()
     {
         return value;
     }
 
     public long asLong()
     {
-        return asInteger();
+        return asInt();
     }
 
     @Override

@@ -72,6 +72,11 @@ import java.net.Socket;
 @UmlClassDiagram(diagram = DiagramSerializationCore.class)
 public interface SerializationSession extends SerializationSessionReadWrite, Named, Closeable, Flushable, Versioned, Repeater
 {
+    static SerializationSession threadLocal(final Listener listener)
+    {
+        return SerializationSessionFactory.threadLocal().session(listener);
+    }
+
     /**
      * The type of serialization session. This determines the order of
      */
