@@ -42,7 +42,7 @@ public class ThreadSnapshot
 {
     /** The status of each thread */
     @UmlAggregation
-    private List<ThreadStatus> threads;
+    private List<ThreadStatus> threads = new ArrayList<>();
 
     /** The time at which this snapshot was captured */
     private Time capturedAt;
@@ -57,6 +57,23 @@ public class ThreadSnapshot
     public Time capturedAt()
     {
         return capturedAt;
+    }
+
+    public Duration cpuTime()
+    {
+        return cpuTime(Thread.currentThread());
+    }
+
+    public Duration cpuTime(final Thread thread)
+    {
+        for (final var status : threads)
+        {
+            if (status.identifier == thread.getId())
+            {
+                return status.cpuTime;
+            }
+        }
+        return null;
     }
 
     /**
@@ -98,6 +115,7 @@ public class ThreadSnapshot
                     status.cpuTime = Duration.milliseconds(management.getThreadCpuTime(identifier) / 1_000_000L);
                     status.isDaemon = information.isDaemon();
                     status.name = information.getThreadName();
+                    status.identifier = information.getThreadId();
                     status.state = information.getThreadState();
                     threads.add(status);
                 }

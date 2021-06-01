@@ -235,6 +235,24 @@ public class Strings
     /**
      * @return The index of the nth instance of the given character in the given text
      */
+    public static int nth(final String text, int n, final char c)
+    {
+        for (var i = 0; i < text.length(); i++)
+        {
+            if (text.charAt(i) == c)
+            {
+                if (--n == 0)
+                {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * @return The index of the nth instance of the given character in the given text
+     */
     public static int nthCharacter(final String text, int n, final char c)
     {
         for (var i = 0; i < text.length(); i++)

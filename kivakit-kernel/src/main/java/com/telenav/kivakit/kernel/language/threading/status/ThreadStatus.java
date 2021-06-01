@@ -40,12 +40,19 @@ public class ThreadStatus
 
     Thread.State state;
 
+    long identifier;
+
     /**
      * @return The CPU time consumed by this thread
      */
     public Duration cpuTime()
     {
         return cpuTime;
+    }
+
+    public long identifier()
+    {
+        return identifier;
     }
 
     /**
