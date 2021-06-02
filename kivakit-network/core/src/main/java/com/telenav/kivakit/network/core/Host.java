@@ -45,6 +45,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
+import static com.telenav.kivakit.commandline.SwitchParser.builder;
+import static com.telenav.kivakit.commandline.SwitchParser.listSwitchParser;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
 import static com.telenav.kivakit.network.core.Protocol.FTP;
 import static com.telenav.kivakit.network.core.Protocol.HAZELCAST;
@@ -115,7 +117,7 @@ public class Host implements Named, AsString, Comparable<Host>
 
     public static SwitchParser.Builder<Host> host(final String name, final String description)
     {
-        return SwitchParser.builder(Host.class)
+        return builder(Host.class)
                 .name(name)
                 .converter(new Host.Converter(LOGGER))
                 .description(description);
@@ -124,7 +126,7 @@ public class Host implements Named, AsString, Comparable<Host>
     public static SwitchParser.Builder<ObjectList<Host>> hostList(
             final String name, final String description, final String delimiter)
     {
-        return SwitchParser.listSwitch(name, description, new Host.Converter(LOGGER), Host.class, delimiter);
+        return listSwitchParser(name, description, new Host.Converter(LOGGER), Host.class, delimiter);
     }
 
     public static Host local()
@@ -139,7 +141,7 @@ public class Host implements Named, AsString, Comparable<Host>
 
     public static SwitchParser.Builder<NetworkPath> networkFilePath(final String name, final String description)
     {
-        return SwitchParser.builder(NetworkPath.class)
+        return builder(NetworkPath.class)
                 .name(name)
                 .converter(new NetworkPath.Converter(LOGGER))
                 .description(description);
@@ -157,7 +159,7 @@ public class Host implements Named, AsString, Comparable<Host>
 
     public static SwitchParser.Builder<Port> port(final String name, final String description)
     {
-        return SwitchParser.builder(Port.class)
+        return builder(Port.class)
                 .name(name)
                 .converter(new Port.Converter(LOGGER))
                 .description(description);
@@ -167,7 +169,7 @@ public class Host implements Named, AsString, Comparable<Host>
                                                                   final String description,
                                                                   final String delimiter)
     {
-        return SwitchParser.listSwitch(name, description, new Port.Converter(LOGGER), Port.class, delimiter);
+        return listSwitchParser(name, description, new Port.Converter(LOGGER), Port.class, delimiter);
     }
 
     /**

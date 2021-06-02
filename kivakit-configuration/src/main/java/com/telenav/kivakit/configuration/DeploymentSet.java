@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.configuration;
 
+import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfiguration;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
@@ -151,5 +152,15 @@ public class DeploymentSet extends BaseRepeater
             }
         }
         return null;
+    }
+
+    public Set<Deployment> deployments()
+    {
+        return deployments;
+    }
+
+    public SwitchParser<Deployment> switchParser(final String name)
+    {
+        return Deployment.deploymentSwitchParser(this, name);
     }
 }

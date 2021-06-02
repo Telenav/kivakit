@@ -84,7 +84,7 @@ import java.io.Serializable;
  * {
  *     DeploymentSet deployments = DeploymentSet.load(Demo.class, "configuration");
  *
- *     SwitchParser&lt;Deployment&gt; DEPLOYMENT = deployments.switchParser();
+ *     SwitchParser&lt;Deployment&gt; DEPLOYMENT = deployments.deploymentSwitchParser();
  *
  *     public static void main(final String[] arguments)
  *     {
@@ -184,10 +184,12 @@ public class Deployment extends ConfigurationSet implements Named, Serializable
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    public static SwitchParser<Deployment> deploymentSwitch(final DeploymentSet deployments)
+    public static SwitchParser<Deployment> deploymentSwitchParser(final DeploymentSet deployments,
+                                                                  final String switchName)
     {
         return SwitchParser.builder(Deployment.class)
                 .name("deployment")
+                .validValues(deployments.deployments())
                 .converter(new Deployment.Converter(LOGGER, deployments))
                 .description("The deployment configuration to run")
                 .required()
@@ -233,7 +235,7 @@ public class Deployment extends ConfigurationSet implements Named, Serializable
     private final String description;
 
     /**
-     * @param name The name of the deployment, like "navteam"
+     * @param name The name of the deployment, like "osm-team"
      * @param description A description of the deployment
      */
     public Deployment(final String name, final String description)

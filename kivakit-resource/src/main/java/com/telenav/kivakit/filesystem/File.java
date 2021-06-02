@@ -62,8 +62,8 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
 
 /**
  * File abstraction that adds integrates files with the KivaKit resource mini-framework and adds a variety of useful
- * methods. File system service providers for this abstraction are in <i>com.telenav.kivakit.filesystem.local</i>
- * (the local filesystem provider) and in the <i>kivakit-filesystems</i> module.
+ * methods. File system service providers for this abstraction are in <i>com.telenav.kivakit.filesystem.local</i> (the
+ * local filesystem provider) and in the <i>kivakit-filesystems</i> module.
  *
  * <p>
  * Files can be created with several static factory methods, including:
@@ -150,23 +150,24 @@ public class File extends BaseWritableResource implements FileSystemObject
 
     private static long temporaryFileNumber = System.currentTimeMillis();
 
-    public static ArgumentParser.Builder<File> fileArgument(final String description)
+    public static ArgumentParser.Builder<File> fileArgumentParser(final String description)
     {
         return ArgumentParser.builder(File.class)
                 .converter(new File.Converter(LOGGER))
                 .description(description);
     }
 
-    public static ArgumentParser.Builder<FileList> fileArgumentList(final String description, final Extension extension)
+    public static ArgumentParser.Builder<FileList> fileListArgumentParser(final String description,
+                                                                          final Extension extension)
     {
         return ArgumentParser.builder(FileList.class)
                 .converter(new FileList.Converter(LOGGER, extension))
                 .description(description);
     }
 
-    public static SwitchParser.Builder<FileList> fileList(final String name,
-                                                          final String description,
-                                                          final Extension extension)
+    public static SwitchParser.Builder<FileList> fileListSwitchParser(final String name,
+                                                                      final String description,
+                                                                      final Extension extension)
     {
         return SwitchParser.builder(FileList.class)
                 .name(name)
@@ -174,7 +175,7 @@ public class File extends BaseWritableResource implements FileSystemObject
                 .description(description);
     }
 
-    public static SwitchParser.Builder<FilePath> filePathSwitch(final String name, final String description)
+    public static SwitchParser.Builder<FilePath> filePathSwitchParser(final String name, final String description)
     {
         return SwitchParser.builder(FilePath.class)
                 .name(name)
@@ -182,7 +183,7 @@ public class File extends BaseWritableResource implements FileSystemObject
                 .description(description);
     }
 
-    public static SwitchParser.Builder<File> fileSwitch(final String name, final String description)
+    public static SwitchParser.Builder<File> fileSwitchParser(final String name, final String description)
     {
         return SwitchParser.builder(File.class)
                 .name(name)
@@ -190,9 +191,9 @@ public class File extends BaseWritableResource implements FileSystemObject
                 .description(description);
     }
 
-    public static SwitchParser.Builder<File> inputFile()
+    public static SwitchParser.Builder<File> inputFileSwitchParser()
     {
-        return fileSwitch("input", "The input file to process");
+        return fileSwitchParser("input", "The input file to process");
     }
 
     public static File of(final URI uri)
@@ -244,7 +245,7 @@ public class File extends BaseWritableResource implements FileSystemObject
 
     public static SwitchParser.Builder<File> outputFile()
     {
-        return fileSwitch("output", "The output file to target");
+        return fileSwitchParser("output", "The output file to target");
     }
 
     public static File parse(final String path)
@@ -386,7 +387,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     @Override
     public void dematerialize()
     {
-        trace("Dematerializing $", this);
+        trace("De-materializing $", this);
         service.dematerialize();
     }
 

@@ -67,6 +67,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 
+import static com.telenav.kivakit.commandline.SwitchParser.booleanSwitchParser;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
 
 /**
@@ -207,7 +208,7 @@ public abstract class Application extends BaseRepeater implements Named, Applica
 
     @UmlExcludeMember
     protected final SwitchParser<Boolean> QUIET =
-            SwitchParser.booleanSwitch("quiet", "Minimize output")
+            booleanSwitchParser("quiet", "Minimize output")
                     .optional()
                     .defaultValue(false)
                     .build();

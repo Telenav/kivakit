@@ -32,7 +32,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @UmlClassDiagram(diagram = DiagramLanguageString.class)
 @LexakaiJavadoc(complete = true)
-public class Comparison
+public class StringComparison
 {
     /**
      * Compares two strings avoiding problems with null values
@@ -133,7 +133,7 @@ public class Comparison
 
     /**
      * @return The similarity of the two strings
-     * @see Comparison#levenshteinDifference(String, String)
+     * @see StringComparison#levenshteinDifference(String, String)
      */
     public static Percent levenshteinSimilarity(final String a, final String b)
     {

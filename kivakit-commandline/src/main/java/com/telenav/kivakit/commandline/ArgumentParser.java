@@ -47,11 +47,11 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  * <p>
  * Several argument parsers can be created with static methods:
  * <ul>
- *     <li>{@link #booleanArgument(String)} - An argument that can be true or false</li>
- *     <li>{@link #integerArgument(String)} - An integer argument</li>
- *     <li>{@link #longArgument(String)} - A long argument</li>
- *     <li>{@link #stringArgument(String)} - A string argument</li>
- *     <li>{@link #stringArgument(String)} - A string argument</li>
+ *     <li>{@link #booleanArgumentParser(String)} - An argument that can be true or false</li>
+ *     <li>{@link #integerArgumentParser(String)} - An integer argument</li>
+ *     <li>{@link #longArgumentParser(String)} - A long argument</li>
+ *     <li>{@link #stringArgumentParser(String)} - A string argument</li>
+ *     <li>{@link #stringArgumentParser(String)} - A string argument</li>
  * </ul>
  *
  * <p><b>Parser Builders</b></p>
@@ -98,7 +98,7 @@ public class ArgumentParser<T>
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    public static Builder<Boolean> booleanArgument(final String description)
+    public static Builder<Boolean> booleanArgumentParser(final String description)
     {
         return builder(Boolean.class)
                 .converter(new BooleanConverter(LOGGER))
@@ -110,28 +110,28 @@ public class ArgumentParser<T>
         return new Builder<T>().type(type);
     }
 
-    public static Builder<Integer> integerArgument(final String description)
+    public static Builder<Integer> integerArgumentParser(final String description)
     {
         return builder(Integer.class)
                 .converter(new IntegerConverter(LOGGER))
                 .description(description);
     }
 
-    public static Builder<Long> longArgument(final String description)
+    public static Builder<Long> longArgumentParser(final String description)
     {
         return builder(Long.class)
                 .converter(new LongConverter(LOGGER))
                 .description(description);
     }
 
-    public static Builder<String> stringArgument(final String description)
+    public static Builder<String> stringArgumentParser(final String description)
     {
         return builder(String.class)
                 .converter(new IdentityConverter(LOGGER))
                 .description(description);
     }
 
-    public static Builder<Version> versionArgument(final String description)
+    public static Builder<Version> versionArgumentParser(final String description)
     {
         return builder(Version.class)
                 .converter(new VersionConverter(LOGGER))

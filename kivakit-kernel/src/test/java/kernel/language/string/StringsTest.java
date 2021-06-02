@@ -24,11 +24,11 @@ import com.telenav.kivakit.kernel.language.iteration.Iterables;
 import com.telenav.kivakit.kernel.language.strings.Align;
 import com.telenav.kivakit.kernel.language.strings.AsciiArt;
 import com.telenav.kivakit.kernel.language.strings.CaseFormat;
-import com.telenav.kivakit.kernel.language.strings.Comparison;
 import com.telenav.kivakit.kernel.language.strings.Escape;
 import com.telenav.kivakit.kernel.language.strings.Indent;
 import com.telenav.kivakit.kernel.language.strings.Paths;
 import com.telenav.kivakit.kernel.language.strings.Split;
+import com.telenav.kivakit.kernel.language.strings.StringComparison;
 import com.telenav.kivakit.kernel.language.strings.StringTo;
 import com.telenav.kivakit.kernel.language.strings.Strings;
 import org.junit.Test;
@@ -144,10 +144,10 @@ public class StringsTest
     @Test
     public void testLevenshteinDistance()
     {
-        ensureEqual(3, Comparison.levenshteinDistance("kitten", "sitting"));
-        ensureEqual(0, Comparison.levenshteinDistance("kitten", "kitten"));
-        ensureEqual(1, Comparison.levenshteinDistance("kitten", "kitton"));
-        ensureEqual(6, Comparison.levenshteinDistance("kitten", "flobpa"));
+        ensureEqual(3, StringComparison.levenshteinDistance("kitten", "sitting"));
+        ensureEqual(0, StringComparison.levenshteinDistance("kitten", "kitten"));
+        ensureEqual(1, StringComparison.levenshteinDistance("kitten", "kitton"));
+        ensureEqual(6, StringComparison.levenshteinDistance("kitten", "flobpa"));
     }
 
     @Test

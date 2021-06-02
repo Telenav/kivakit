@@ -205,12 +205,6 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
 
     private static final Monitor lock = new Monitor();
 
-    public static SwitchParser.Builder<Folder> INPUT = folderSwitch("input-folder", "Input folder to process");
-
-    // Note that this switch parser ensures that the folder exists
-    public static final SwitchParser.Builder<Folder> OUTPUT = SwitchParser.builder(Folder.class).name("output-folder")
-            .converter(new Folder.Converter(LOGGER, true)).description("Output folder to write to");
-
     public static Folder current()
     {
         try
@@ -228,21 +222,29 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         return userHome().folder("Desktop");
     }
 
-    public static ArgumentParser.Builder<Folder> folderArgument(final String description)
+    public static ArgumentParser.Builder<Folder> folderArgumentParser(final String description)
     {
         return ArgumentParser.builder(Folder.class)
                 .converter(new Folder.Converter(LOGGER))
                 .description(description);
     }
 
-    public static ArgumentParser.Builder<FolderList> folderArgumentList(final String description)
+    public static ArgumentParser.Builder<FolderList> folderListArgumentParser(final String description)
     {
         return ArgumentParser.builder(FolderList.class)
                 .converter(new FolderList.Converter(LOGGER))
                 .description(description);
     }
 
-    public static SwitchParser.Builder<Folder> folderSwitch(final String name, final String description)
+    public static SwitchParser.Builder<FolderList> folderListSwitchParser(final String name, final String description)
+    {
+        return SwitchParser.builder(FolderList.class)
+                .name(name)
+                .converter(new FolderList.Converter(LOGGER))
+                .description(description);
+    }
+
+    public static SwitchParser.Builder<Folder> folderSwitchParser(final String name, final String description)
     {
         return SwitchParser.builder(Folder.class)
                 .name(name)
@@ -250,12 +252,9 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
                 .description(description);
     }
 
-    public static SwitchParser.Builder<FolderList> folderSwitchList(final String name, final String description)
+    public static SwitchParser.Builder<Folder> inputFolderSwitchParser()
     {
-        return SwitchParser.builder(FolderList.class)
-                .name(name)
-                .converter(new FolderList.Converter(LOGGER))
-                .description(description);
+        return folderSwitchParser("input-folder", "Input folder to process");
     }
 
     public static boolean isFolder(final FilePath path)
@@ -321,9 +320,11 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         }
     }
 
-    public static SwitchParser.Builder<Folder> outputFolderSwitch()
+    // Note that this switch parser ensures that the folder exists
+    public static SwitchParser.Builder<Folder> outputFolderSwitchParser()
     {
-        return folderSwitch("output", "Output folder");
+        return SwitchParser.builder(Folder.class).name("output-folder")
+                .converter(new Folder.Converter(LOGGER, true)).description("Output folder to write to");
     }
 
     public static Folder parse(final String path)

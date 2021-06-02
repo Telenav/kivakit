@@ -39,7 +39,7 @@ public class Split
     /**
      * @return The sequence of strings resulting from splitting the given text using the given delimiter
      */
-    public static Iterable<String> split(final String text, final char delimeter)
+    public static Iterable<String> split(final String text, final char delimiter)
     {
         return Iterables.iterable(() -> new Next<>()
         {
@@ -54,7 +54,7 @@ public class Split
                 if (pos >= 0)
                 {
                     // find the next delimiter location
-                    next = text.indexOf(delimeter, pos);
+                    next = text.indexOf(delimiter, pos);
 
                     // If there's no delimiter
                     if (next == -1)
@@ -80,7 +80,7 @@ public class Split
     /**
      * @return The sequence of strings resulting from splitting the given text using the given delimiter
      */
-    public static Iterable<String> split(final String value, final String delimeter)
+    public static Iterable<String> split(final String value, final String delimiter)
     {
         return Iterables.iterable(() -> new Next<>()
         {
@@ -95,7 +95,7 @@ public class Split
                 if (pos >= 0)
                 {
                     // find the next delimiter location
-                    next = value.indexOf(delimeter, pos);
+                    next = value.indexOf(delimiter, pos);
 
                     // If there's no delimiter
                     if (next == -1)
