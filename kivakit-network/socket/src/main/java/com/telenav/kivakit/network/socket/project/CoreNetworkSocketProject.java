@@ -28,16 +28,16 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
-public class CoreNetworkSocket extends Project
+public class CoreNetworkSocketProject extends Project
 {
-    private static final Lazy<CoreNetworkSocket> project = Lazy.of(CoreNetworkSocket::new);
+    private static final Lazy<CoreNetworkSocketProject> project = Lazy.of(CoreNetworkSocketProject::new);
 
-    public static CoreNetworkSocket get()
+    public static CoreNetworkSocketProject get()
     {
         return project.get();
     }
 
-    protected CoreNetworkSocket()
+    protected CoreNetworkSocketProject()
     {
     }
 }
