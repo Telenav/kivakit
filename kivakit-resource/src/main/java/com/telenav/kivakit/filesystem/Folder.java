@@ -267,6 +267,11 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         return Folder.of(KivaKit.get().cacheFolderPath()).mkdirs();
     }
 
+    public static Folder kivakitExtensionsHome()
+    {
+        return kivakitHome().parent().folder("kivakit-extensions");
+    }
+
     public static Folder kivakitHome()
     {
         final var home = KivaKit.get().homeFolderPath();

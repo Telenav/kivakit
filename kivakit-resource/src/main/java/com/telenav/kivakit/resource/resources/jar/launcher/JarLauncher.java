@@ -211,7 +211,7 @@ public class JarLauncher extends BaseRepeater
                 }
                 if (debugPort > 0)
                 {
-                    arguments.add("-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=" + debugPort);
+                    arguments.add("-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=" + debugPort);
                 }
                 arguments.add("-jar");
                 arguments.add(resource.path().toString());

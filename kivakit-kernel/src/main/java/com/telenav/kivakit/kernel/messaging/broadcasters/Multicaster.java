@@ -41,6 +41,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.kernel.language.strings.formatting.IndentingStringBuilder.Indentation;
 import static com.telenav.kivakit.kernel.language.strings.formatting.IndentingStringBuilder.Style.TEXT;
@@ -151,6 +152,8 @@ public class Multicaster implements Broadcaster, PackagePathed
     @Override
     public void addListener(final Listener listener, final Filter<Transmittable> filter)
     {
+        ensure(listener != this, "Cannot listen to yourself");
+
         // If the listener to this multicaster is also a multicaster,
         if (listener instanceof Broadcaster)
         {
