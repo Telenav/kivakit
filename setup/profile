@@ -1,0 +1,10 @@
+
+#―――― Setup ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-12.0.2.jdk/Contents/Home
+export M2_HOME=$HOME/Developer/apache-maven-3.6.3
+export KIVAKIT_WORKSPACE=$HOME/Workspace
+
+#―――― KivaKit ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+
+source $KIVAKIT_WORKSPACE/kivakit/tools/library/kivakit-common-profile.sh
