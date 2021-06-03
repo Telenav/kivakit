@@ -74,7 +74,9 @@ On macOS or UNIX, you can use a sample *.profile* from KivaKit to configure your
 
    > **KIVAKIT_WORKSPACE** must point to your *IDE workspace* **NOT** the *kivakit* project in the workspace
 
-4. Start a new shell
+4. Exit your terminal program entirely (not just your shell window)
+
+5. Restart the terminal program and open a new shell window
 
 ### Windows &nbsp;&nbsp; <img src="https://www.kivakit.org/images/window-32.png" srcset="https://www.kivakit.org/images/window-32-2x.png 2x"/>
 
@@ -101,7 +103,9 @@ which will install both git, and a bash shell.
 
    > You must set KIVAKIT_WORKSPACE and KIVAKIT_HOME to UNIX-style paths such as /c/Users/jonathanl/Workspace
 
-5. Start a new shell
+5. Exit your terminal program entirely (not just your shell window)
+
+6. Restart the terminal program and open a new shell window
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
