@@ -38,16 +38,6 @@ public class Objects
 
     private static final Map<Class<?>, ClassIdentityMap> classToIdentityMap = new HashMap<>();
 
-    public static <Value> Value notNullOr(final Value value, final Value defaultValue)
-    {
-        return (value != null) ? value : defaultValue;
-    }
-
-    public static boolean isNull(final Object object)
-    {
-        return object != null;
-    }
-
     public static boolean equal(final Object a, final Object b)
     {
         if (a == b)
@@ -168,11 +158,26 @@ public class Objects
         return false;
     }
 
+    public static boolean isNotNull(final Object object)
+    {
+        return object != null;
+    }
+
+    public static boolean isNull(final Object object)
+    {
+        return object == null;
+    }
+
     public static boolean isPrimitiveWrapper(final Object object)
     {
         return object instanceof Long || object instanceof Integer || object instanceof Short
                 || object instanceof Character || object instanceof Byte || object instanceof Boolean
                 || object instanceof Double || object instanceof Float;
+    }
+
+    public static <Value> Value notNullOr(final Value value, final Value defaultValue)
+    {
+        return (value != null) ? value : defaultValue;
     }
 
     /**

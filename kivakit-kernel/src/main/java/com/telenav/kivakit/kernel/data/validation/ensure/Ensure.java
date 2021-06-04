@@ -30,7 +30,6 @@ import com.telenav.kivakit.kernel.interfaces.factory.MapFactory;
 import com.telenav.kivakit.kernel.language.objects.Hash;
 import com.telenav.kivakit.kernel.language.objects.Objects;
 import com.telenav.kivakit.kernel.language.reflection.Type;
-import com.telenav.kivakit.kernel.language.types.Classes;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Message;
@@ -243,13 +242,6 @@ public class Ensure
         // If the given and expected values are non-null,
         if (given != null && expected != null)
         {
-            // check that they are of the same class (not considering any anonymous subclasses),
-            ensure(Classes.simpleTopLevelClass(given.getClass())
-                            .equals(Classes.simpleTopLevelClass(expected.getClass())),
-                    message + " (" + given.getClass().getSimpleName()
-                            + " != "
-                            + expected.getClass().getSimpleName() + ")", arguments);
-
             // check that given == expected,
             ensure(Objects.equal(given, expected), message + " (Given " + given + " != expected " + expected + ")", arguments);
 

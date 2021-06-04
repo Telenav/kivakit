@@ -154,11 +154,11 @@ public class KryoTypes implements Named
      */
     public void group(final String name, final Runnable code)
     {
-        // Run the bracketed code block
-        code.run();
-
-        // then advance to the next group
+        // Advance to the next group
         nextGroup();
+
+        // then run the bracketed code block
+        code.run();
     }
 
     @Override
