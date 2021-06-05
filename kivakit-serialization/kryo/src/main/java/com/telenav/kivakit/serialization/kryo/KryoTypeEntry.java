@@ -95,6 +95,11 @@ class KryoTypeEntry
         return identifier;
     }
 
+    boolean isDynamic()
+    {
+        return identifier < KryoTypes.KRYO_TYPES_SIZE;
+    }
+
     void register(final Kryo kryo)
     {
         if (serializer == null)

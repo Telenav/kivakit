@@ -33,6 +33,7 @@ import com.telenav.kivakit.serialization.core.SerializationSession;
 import com.telenav.kivakit.serialization.core.SerializationSessionFactory;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -114,11 +115,17 @@ public class KryoTypes implements Named
     /** The next identifier for Kryo registration */
     private int nextIdentifier = KRYO_TYPES_SIZE;
 
+    /** The next identifier for Kryo registration */
+    private int nextDynamicIdentifier = 1;
+
     /** The Kryo type sets that have been merged into this set */
     private ObjectList<KryoTypes> merged = new ObjectList<>();
 
     /** Entries for classes */
     private Map<Class<?>, KryoTypeEntry> entries = new LinkedHashMap<>();
+
+    /** Used identifiers */
+    private final Set<Integer> identifiers = new HashSet<>();
 
     public KryoTypes()
     {
@@ -135,6 +142,7 @@ public class KryoTypes implements Named
         copy.merged = merged.copy();
         copy.entries = Maps.deepCopy(LinkedHashMap::new, entries, KryoTypeEntry::new);
         copy.nextIdentifier = nextIdentifier;
+        copy.nextDynamicIdentifier = nextDynamicIdentifier;
         return copy;
     }
 
@@ -193,7 +201,14 @@ public class KryoTypes implements Named
             assert !merged.entries.containsValue(entry);
 
             // and add it.
-            merged.register(entry.type(), entry.serializer());
+            if (entry.isDynamic())
+            {
+                merged.registerDynamic(entry.type(), entry.serializer());
+            }
+            else
+            {
+                merged.register(entry.type(), entry.serializer());
+            }
         }
 
         final var thisFirstEntry = Collections.first(entries.values());
@@ -220,7 +235,7 @@ public class KryoTypes implements Named
      */
     public KryoTypes register(final Class<?> type)
     {
-        addEntry(type, null);
+        addEntry(type, null, ++nextIdentifier);
         return this;
     }
 
@@ -232,7 +247,19 @@ public class KryoTypes implements Named
      */
     public KryoTypes register(final Class<?> type, final Serializer<?> serializer)
     {
-        addEntry(type, serializer);
+        addEntry(type, serializer, ++nextIdentifier);
+        return this;
+    }
+
+    /**
+     * Registers the given type for serialization using the given serializer
+     *
+     * @param type The type to register
+     * @param serializer The serializer to use for the given type
+     */
+    public KryoTypes registerDynamic(final Class<?> type, final Serializer<?> serializer)
+    {
+        addEntry(type, serializer, ++nextDynamicIdentifier);
         return this;
     }
 
@@ -291,22 +318,20 @@ public class KryoTypes implements Named
      * @param type The type to register
      * @param serializer Any type serializer
      */
-    private void addEntry(final Class<?> type, final Serializer<?> serializer)
+    private void addEntry(final Class<?> type, final Serializer<?> serializer, final int identifier)
     {
-        // Get any existing identifier,
-        final var existing = entries.get(type);
-
-        // and ensure that there isn't one,
-        ensure(existing == null, "Identifier conflict for ${class}", type);
+        // Ensure that the identifier is not already used
+        ensure(!identifiers.contains(identifier), "Identifier conflict for ${class}: $ already used", type, identifier);
 
         // then create the type entry
         final var entry = new KryoTypeEntry()
                 .type(type)
                 .serializer(serializer)
-                .identifier(nextIdentifier++);
+                .identifier(identifier);
 
         // and store it in the map.
         entries.put(type, entry);
+        identifiers.add(identifier);
     }
 
     private void nextGroup()
