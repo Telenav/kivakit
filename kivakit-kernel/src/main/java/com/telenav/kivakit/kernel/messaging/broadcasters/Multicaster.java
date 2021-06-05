@@ -323,7 +323,7 @@ public class Multicaster implements Broadcaster, PackagePathed
             }
             else
             {
-                LOGGER.warning("Broken listener chain: $", parentChain().join(" -> ") + " -> ? ");
+                LOGGER.warning(new Throwable(), "Broken listener chain: $", parentChain().join(" -> ") + " -> ? ");
             }
         });
     }
