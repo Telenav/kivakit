@@ -19,7 +19,6 @@
 package com.telenav.kivakit.kernel.project;
 
 import com.telenav.cactus.build.metadata.Metadata;
-import com.telenav.kivakit.kernel.KivaKit;
 import com.telenav.kivakit.kernel.interfaces.lifecycle.Initializable;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
@@ -221,6 +220,14 @@ public abstract class Project extends BaseRepeater implements Initializable<Proj
     }
 
     /**
+     * @return The version of this project
+     */
+    public Version projectVersion()
+    {
+        return Version.parse(property("project-version"));
+    }
+
+    /**
      * @return System properties, environment variables and build properties for this project
      */
     public VariableMap<String> properties()
@@ -231,8 +238,8 @@ public abstract class Project extends BaseRepeater implements Initializable<Proj
 
             final var properties = JavaVirtualMachine.local().variables();
             properties.addAll(VariableMap.of(projectProperties));
-            properties.put("kivakit-version", Metadata.of(KivaKit.class).projectProperties().get("project-version"));
-            properties.put("version", projectProperties.get("project-version"));
+            properties.put("kivakit-version", properties.get("project-version"));
+            properties.put("version", properties.get("project-version"));
             properties.putIfNotNull("build-name", build().name());
             properties.putIfNotNull("build-date", build().formattedDate());
             properties.putIfNotNull("build-number", Integer.toString(build().number()));
@@ -261,14 +268,6 @@ public abstract class Project extends BaseRepeater implements Initializable<Proj
                 .append(project.name())
                 .append("\n"));
         return builder.toString();
-    }
-
-    /**
-     * @return The version of this project
-     */
-    public Version projectVersion()
-    {
-        return Version.parse(property("project-version"));
     }
 
     /**
