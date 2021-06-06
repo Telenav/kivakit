@@ -85,7 +85,7 @@ public class StateMachine<State> extends BaseRepeater
     private State at;
 
     /** Watches the state */
-    private final StateWatcher<State> watcher = new StateWatcher<>();
+    private transient final StateWatcher<State> watcher = new StateWatcher<>();
 
     /** Listener to call when state transitions occur */
     private final Receiver<State> receiver;
@@ -140,6 +140,15 @@ public class StateMachine<State> extends BaseRepeater
             return transitionTo(one);
         }
         return null;
+    }
+
+    public void transitionAndWaitForNot(final State state)
+    {
+        whileLocked(() ->
+        {
+            transitionTo(state);
+            waitForNot(state);
+        });
     }
 
     /**
@@ -246,15 +255,6 @@ public class StateMachine<State> extends BaseRepeater
             }
 
             return prior;
-        });
-    }
-
-    public void transitionAndWaitForNot(final State state)
-    {
-        whileLocked(() ->
-        {
-            transitionTo(state);
-            waitForNot(state);
         });
     }
 

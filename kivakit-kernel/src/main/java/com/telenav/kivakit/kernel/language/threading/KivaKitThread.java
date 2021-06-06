@@ -214,10 +214,10 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
     }
 
     /** The thread */
-    private final Thread thread;
+    private transient final Thread thread;
 
     /** The current state of this thread */
-    private final StateMachine<State> state = listenTo(new StateMachine<>(CREATED, state -> trace(name() + ": " + state.name())));
+    private transient final StateMachine<State> state = listenTo(new StateMachine<>(CREATED, state -> trace(name() + ": " + state.name())));
 
     /** Any initial delay before the thread starts running */
     private Duration initialDelay = Duration.NONE;
@@ -228,7 +228,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
     private Time startedAt;
 
     /** The code to run, if any. If this value is null, then {@link #onRun()} is used instead */
-    private Runnable code;
+    private transient Runnable code;
 
     /**
      * Creates a daemon thread with the given name prefixed by "Kiva-" so it is easy to distinguish from other threads.

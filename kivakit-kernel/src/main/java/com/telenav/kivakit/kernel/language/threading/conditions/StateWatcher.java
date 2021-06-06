@@ -78,7 +78,7 @@ public class StateWatcher<State>
     }
 
     /** The re-entrant lock */
-    final Lock lock = new Lock();
+    final transient Lock lock = new Lock();
 
     /** The clients waiting for a predicate to be satisfied */
     private final List<Waiter> waiters = new ArrayList<>();
