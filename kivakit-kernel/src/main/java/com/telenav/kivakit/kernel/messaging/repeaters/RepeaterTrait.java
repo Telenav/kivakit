@@ -85,7 +85,7 @@ public interface RepeaterTrait extends Trait, Repeater
      */
     default Repeater repeater()
     {
-        return traitValue(RepeaterTrait.class, BaseRepeater::new);
+        return trait(RepeaterTrait.class, BaseRepeater::new);
     }
 
     @Override
