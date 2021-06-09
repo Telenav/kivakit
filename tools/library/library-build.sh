@@ -26,6 +26,8 @@ usage() {
     echo " "
     echo "           tools - compile, shade, run tests, build tools"
     echo " "
+    echo "             dmg - compile, shade, run tests, build tools, build dmg"
+    echo " "
     echo "         javadoc - compile and build javadoc"
     echo " "
     echo "  Build modifiers:"
@@ -130,6 +132,11 @@ build() {
         BUILD_MODIFIERS=(multi-threaded tests shade tools no-javadoc ${@:3})
         ;;
 
+    "dmg")
+        BUILD_ARGUMENTS="clean install"
+        BUILD_MODIFIERS=(multi-threaded tests shade tools dmg no-javadoc ${@:3})
+        ;;
+
     *)
         BUILD_TYPE="default"
         BUILD_ARGUMENTS="clean install"
@@ -167,6 +174,10 @@ build() {
 
         "debug-tests")
             addSwitch "-Dmaven.surefire.debug"
+            ;;
+
+        "dmg")
+            addSwitch "-P dmg"
             ;;
 
         "javadoc")
