@@ -110,13 +110,13 @@ public class KryoTypes implements Named
     public static final int GROUP_SIZE = 1_000;
 
     /** The number of identifiers in each KryoTypes set */
-    public static final int KRYO_TYPES_SIZE = 1_000_000;
+    public static final int KRYO_TYPES_SIZE = 2_000_000;
 
     /** The next identifier for Kryo registration */
     private int nextIdentifier = KRYO_TYPES_SIZE;
 
     /** The next identifier for Kryo registration */
-    private int nextDynamicIdentifier = 1;
+    private int nextDynamicIdentifier = 1_000_000;
 
     /** The Kryo type sets that have been merged into this set */
     private ObjectList<KryoTypes> merged = new ObjectList<>();
