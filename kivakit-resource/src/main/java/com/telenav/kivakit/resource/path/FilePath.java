@@ -229,6 +229,10 @@ public class FilePath extends ResourcePath
         {
             return Folder.current().path();
         }
+        if (scheme() != null)
+        {
+            return this;
+        }
         return FilePath.filePath(asJavaPath().toAbsolutePath());
     }
 
