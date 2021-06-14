@@ -117,12 +117,6 @@ public class FtpResource extends BaseNetworkResource
         this.constraints = constraints;
     }
 
-    @Override
-    public Bytes bytes()
-    {
-        return null;
-    }
-
     public void clean()
     {
         if (isConnected())
@@ -262,6 +256,12 @@ public class FtpResource extends BaseNetworkResource
         {
             throw new IllegalStateException("Unable to transfer files", e);
         }
+    }
+
+    @Override
+    public Bytes sizeInBytes()
+    {
+        return null;
     }
 
     /**

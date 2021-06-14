@@ -39,9 +39,10 @@ import java.io.OutputStream;
 public interface Writable
 {
     /**
-     * @return True if this write-openable object can be written to
+     * @return True if this write-openable object can be written to, false if it cannot and null if it cannot be
+     * determined if this object can be written to.
      */
-    boolean isWritable();
+    Boolean isWritable();
 
     /**
      * Opens the output stream to this writable

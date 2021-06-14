@@ -239,7 +239,7 @@ public class ResourceList extends ArrayList<Resource>
         var bytes = Bytes._0;
         for (final var resource : this)
         {
-            bytes = bytes.add(resource.bytes());
+            bytes = bytes.add(resource.sizeInBytes());
         }
         return bytes;
     }

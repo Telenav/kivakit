@@ -66,12 +66,6 @@ public class SecureFtpResource extends BaseNetworkResource
         }
     }
 
-    @Override
-    public Bytes bytes()
-    {
-        return null;
-    }
-
     /**
      * Copy this resource to the disk
      */
@@ -117,6 +111,12 @@ public class SecureFtpResource extends BaseNetworkResource
     {
         connector.connect(location);
         return SecureFtpInput.forConnectorAndLocation(connector, location);
+    }
+
+    @Override
+    public Bytes sizeInBytes()
+    {
+        return null;
     }
 
     @Override

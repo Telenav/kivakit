@@ -45,14 +45,7 @@ public class OutputResource extends BaseWritableResource
     }
 
     @Override
-    public Bytes bytes()
-    {
-        // Unknown size
-        return null;
-    }
-
-    @Override
-    public boolean isWritable()
+    public Boolean isWritable()
     {
         return true;
     }
@@ -67,5 +60,12 @@ public class OutputResource extends BaseWritableResource
     public OutputStream onOpenForWriting()
     {
         return out;
+    }
+
+    @Override
+    public Bytes sizeInBytes()
+    {
+        // Unknown size
+        return null;
     }
 }

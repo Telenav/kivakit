@@ -392,7 +392,7 @@ public class FileList implements List<File>
         var bytes = Bytes._0;
         for (final var file : this)
         {
-            bytes = bytes.add(file.bytes());
+            bytes = bytes.add(file.sizeInBytes());
         }
         return bytes;
     }

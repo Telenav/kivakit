@@ -61,13 +61,6 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
         this.path = path;
     }
 
-    @KivaKitIncludeProperty
-    @Override
-    public Bytes bytes()
-    {
-        return CheckedCode.of(() -> Bytes.bytes(Files.size(path))).or(null);
-    }
-
     @Override
     public void close()
     {
@@ -79,7 +72,7 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
     }
 
     @Override
-    public boolean isWritable()
+    public Boolean isWritable()
     {
         return false;
     }
@@ -124,6 +117,13 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
     public FilePath path()
     {
         return FilePath.filePath(path);
+    }
+
+    @KivaKitIncludeProperty
+    @Override
+    public Bytes sizeInBytes()
+    {
+        return CheckedCode.of(() -> Bytes.bytes(Files.size(path))).or(null);
     }
 
     @Override

@@ -228,7 +228,7 @@ public class ResourceReader implements StringSource
 
     private InputStream open()
     {
-        final var size = resource.bytes();
+        final var size = resource.sizeInBytes();
         if (size != null)
         {
             reporter.steps(size);

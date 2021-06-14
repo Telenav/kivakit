@@ -7,13 +7,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Stores values for {@link Trait}s, allowing {@link Trait} interfaces to be stateful by having associated values.
+ * Stores the state objects for {@link Trait}s, allowing {@link Trait} interfaces to be stateful by having associated
+ * values.
  *
  * @author jonathanl (shibo)
  * @see Trait
  */
 @LexakaiJavadoc(complete = true)
-class TraitValue
+class TraitState
 {
     private static final Map<TraitKey, Object> values = new HashMap<>();
 

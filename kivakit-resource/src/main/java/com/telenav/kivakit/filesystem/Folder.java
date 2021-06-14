@@ -847,7 +847,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         return "hdfs".equalsIgnoreCase(scheme) || "s3".equalsIgnoreCase(scheme);
     }
 
-    public boolean isWritable()
+    public Boolean isWritable()
     {
         return folder().isWritable();
     }
@@ -1030,7 +1030,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
 
     public Bytes size()
     {
-        return folder().bytes();
+        return folder().sizeInBytes();
     }
 
     public Folder temporary(final FileName baseName)

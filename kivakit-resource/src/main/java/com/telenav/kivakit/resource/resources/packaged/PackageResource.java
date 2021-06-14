@@ -174,15 +174,6 @@ public class PackageResource extends BaseReadableResource
         this.resource = resource != null ? resource : _package.resource(this.name.name());
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Bytes bytes()
-    {
-        return resource == null ? Bytes._0 : resource.size();
-    }
-
     @Override
     public boolean isPackaged()
     {
@@ -231,6 +222,15 @@ public class PackageResource extends BaseReadableResource
     {
         final var _package = resource != null ? resource.packagePath() : this._package;
         return ResourcePath.resourcePath(_package).withChild(name.name());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Bytes sizeInBytes()
+    {
+        return resource == null ? Bytes._0 : resource.size();
     }
 
     @Override

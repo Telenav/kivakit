@@ -351,15 +351,6 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * @return The size of this file
-     */
-    @Override
-    public Bytes bytes()
-    {
-        return service.bytes();
-    }
-
-    /**
      * Change the access permissions of this file
      *
      * @param permissions The permissions to apply
@@ -524,7 +515,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      * @return True if this file can be written to
      */
     @Override
-    public boolean isWritable()
+    public Boolean isWritable()
     {
         return service.isWritable();
     }
@@ -655,6 +646,15 @@ public class File extends BaseWritableResource implements FileSystemObject
     public void safeCopyFrom(final Resource resource, final CopyMode mode, final ProgressReporter reporter)
     {
         resource.safeCopyTo(this, mode, reporter);
+    }
+
+    /**
+     * @return The size of this file
+     */
+    @Override
+    public Bytes sizeInBytes()
+    {
+        return service.sizeInBytes();
     }
 
     @Override

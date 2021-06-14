@@ -143,7 +143,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
                 final var zip = new ZipArchive(filesystem, reporter, file);
                 if (mode == ZipArchive.Mode.READ)
                 {
-                    reporter.steps(zip.bytes());
+                    reporter.steps(zip.sizeInBytes());
                 }
                 return zip;
             }
@@ -189,17 +189,6 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
         {
             save(file.fileName().name(), file);
         }
-    }
-
-    @Override
-    public Bytes bytes()
-    {
-        final var bytes = new MutableCount();
-        for (final var entry : entries(Pattern.compile(".*")))
-        {
-            bytes.plus(entry.bytes());
-        }
-        return Bytes.bytes(bytes.asLong());
     }
 
     @Override
@@ -358,6 +347,17 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
         {
             fail("Unable to save object to zip entry '$'", entryName);
         }
+    }
+
+    @Override
+    public Bytes sizeInBytes()
+    {
+        final var bytes = new MutableCount();
+        for (final var entry : entries(Pattern.compile(".*")))
+        {
+            bytes.plus(entry.sizeInBytes());
+        }
+        return Bytes.bytes(bytes.asLong());
     }
 
     @Override

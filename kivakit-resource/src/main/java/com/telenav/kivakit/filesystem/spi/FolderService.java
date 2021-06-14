@@ -106,7 +106,7 @@ public interface FolderService extends FileSystemObjectService
     /**
      * @return True if this folder can be written to
      */
-    boolean isWritable();
+    Boolean isWritable();
 
     /**
      * @return True if the folder was created, along with all necessary parent folders.

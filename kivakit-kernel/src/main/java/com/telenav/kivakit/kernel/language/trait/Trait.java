@@ -23,8 +23,13 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 @LexakaiJavadoc(complete = true)
 public interface Trait
 {
+    /**
+     * @param type The type of trait state
+     * @param factory Factory that can create a new state object to associate with this trait
+     * @return The state for this trait
+     */
     default <T> T trait(final Class<? extends Trait> type, final Factory<T> factory)
     {
-        return TraitValue.get(this, type, factory);
+        return TraitState.get(this, type, factory);
     }
 }

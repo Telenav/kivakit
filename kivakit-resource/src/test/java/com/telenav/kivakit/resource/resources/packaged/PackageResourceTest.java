@@ -55,8 +55,8 @@ public class PackageResourceTest
     @Test
     public void testSize()
     {
-        ensure(a().bytes().isGreaterThanOrEqualTo(Bytes.bytes(4)));
-        ensure(b().bytes().isGreaterThanOrEqualTo(Bytes.bytes(5)));
+        ensure(a().sizeInBytes().isGreaterThanOrEqualTo(Bytes.bytes(4)));
+        ensure(b().sizeInBytes().isGreaterThanOrEqualTo(Bytes.bytes(5)));
     }
 
     @NotNull

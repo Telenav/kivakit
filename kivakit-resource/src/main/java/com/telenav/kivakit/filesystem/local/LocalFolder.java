@@ -126,12 +126,6 @@ public class LocalFolder implements FolderService
     }
 
     @Override
-    public Bytes bytes()
-    {
-        return null;
-    }
-
-    @Override
     public boolean chmod(final PosixFilePermission... permissions)
     {
         try
@@ -362,7 +356,7 @@ public class LocalFolder implements FolderService
     }
 
     @Override
-    public boolean isWritable()
+    public Boolean isWritable()
     {
         return file.canWrite();
     }
@@ -430,6 +424,12 @@ public class LocalFolder implements FolderService
     public FolderService root()
     {
         return new LocalFolder(path.rootElement());
+    }
+
+    @Override
+    public Bytes sizeInBytes()
+    {
+        return null;
     }
 
     @Override

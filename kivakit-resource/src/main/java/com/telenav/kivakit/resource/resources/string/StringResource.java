@@ -53,15 +53,15 @@ public class StringResource extends BaseReadableResource
     }
 
     @Override
-    public Bytes bytes()
-    {
-        return Bytes.bytes(value.length());
-    }
-
-    @Override
     public InputStream onOpenForReading()
     {
         return new StringInput(value);
+    }
+
+    @Override
+    public Bytes sizeInBytes()
+    {
+        return Bytes.bytes(value.length());
     }
 
     public StringResource transform(final Function<String, String> transformation)

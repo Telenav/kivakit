@@ -39,15 +39,6 @@ import java.io.InputStream;
 public interface Readable extends ByteSized
 {
     /**
-     * @return The number of bytes that can be read
-     */
-    @Override
-    default Bytes bytes()
-    {
-        return null;
-    }
-
-    /**
      * @return True if reading is possible
      */
     default boolean isReadable()
@@ -62,9 +53,9 @@ public interface Readable extends ByteSized
 
     /**
      * Opens something that can be read, returning an input stream. The given progress reporter is called for each byte
-     * that is read from the input stream. If the input size is known (meaning that {@link #bytes()} returns a non-null
-     * value), the reporter will be initialized with the number of bytes to allow percent completion to be computed as
-     * the stream is read.
+     * that is read from the input stream. If the input size is known (meaning that {@link #sizeInBytes()} returns a
+     * non-null value), the reporter will be initialized with the number of bytes to allow percent completion to be
+     * computed as the stream is read.
      *
      * @param reporter A progress reporter that is called for each byte that is read
      * @return The input stream to read from
@@ -72,7 +63,7 @@ public interface Readable extends ByteSized
     default InputStream openForReading(final ProgressReporter reporter)
     {
         // Get the size of this resource
-        final var size = bytes();
+        final var size = sizeInBytes();
         if (size != null)
         {
             // and set the number of steps so the progress reporter can report
@@ -91,5 +82,14 @@ public interface Readable extends ByteSized
     default InputStream openForReading()
     {
         return onOpenForReading();
+    }
+
+    /**
+     * @return The number of bytes that can be read
+     */
+    @Override
+    default Bytes sizeInBytes()
+    {
+        return null;
     }
 }

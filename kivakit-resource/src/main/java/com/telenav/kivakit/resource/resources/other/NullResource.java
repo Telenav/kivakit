@@ -43,13 +43,7 @@ public class NullResource extends BaseWritableResource
     }
 
     @Override
-    public Bytes bytes()
-    {
-        return null;
-    }
-
-    @Override
-    public boolean isWritable()
+    public Boolean isWritable()
     {
         // A null resource accepts it all.
         return true;
@@ -78,5 +72,11 @@ public class NullResource extends BaseWritableResource
             {
             }
         };
+    }
+
+    @Override
+    public Bytes sizeInBytes()
+    {
+        return null;
     }
 }

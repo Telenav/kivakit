@@ -98,7 +98,7 @@ public class FolderPruner
                             {
                                 // then remove the file and adjust the folder size
                                 onFileRemoved(file);
-                                final var length = file.bytes();
+                                final var length = file.sizeInBytes();
                                 file.delete();
                                 size = size.minus(length);
                             }

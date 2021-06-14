@@ -54,13 +54,6 @@ public class InputResource extends BaseReadableResource
         this.in = in;
     }
 
-    @Override
-    public Bytes bytes()
-    {
-        // Unknown size
-        return null;
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -73,5 +66,12 @@ public class InputResource extends BaseReadableResource
         }
         opened = true;
         return in;
+    }
+
+    @Override
+    public Bytes sizeInBytes()
+    {
+        // Unknown size
+        return null;
     }
 }

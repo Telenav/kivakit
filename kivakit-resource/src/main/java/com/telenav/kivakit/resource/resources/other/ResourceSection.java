@@ -63,12 +63,6 @@ public class ResourceSection extends BaseReadableResource
     }
 
     @Override
-    public Bytes bytes()
-    {
-        return Bytes.bytes(endOffset - startOffset);
-    }
-
-    @Override
     public InputStream onOpenForReading()
     {
         return new InputStream()
@@ -97,6 +91,12 @@ public class ResourceSection extends BaseReadableResource
                 IO.skip(in, startOffset);
             }
         };
+    }
+
+    @Override
+    public Bytes sizeInBytes()
+    {
+        return Bytes.bytes(endOffset - startOffset);
     }
 
     @Override

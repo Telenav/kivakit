@@ -68,7 +68,7 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
  * <p><b>Properties</b></p>
  *
  * <ul>
- *     <li>{@link #bytes()}</li>
+ *     <li>{@link #sizeInBytes()}</li>
  *     <li>{@link #codec()}</li>
  *     <li>{@link #path()}</li>
  * </ul>
@@ -216,7 +216,7 @@ public interface Resource extends
 
     default boolean isEmpty()
     {
-        return bytes().isZero();
+        return sizeInBytes().isZero();
     }
 
     default boolean isLocal()
@@ -252,11 +252,11 @@ public interface Resource extends
     {
         assert that != null;
         assert lastModified() != null;
-        assert bytes() != null;
+        assert sizeInBytes() != null;
         assert that.lastModified() != null;
-        assert that.bytes() != null;
+        assert that.sizeInBytes() != null;
 
-        return lastModified().equals(that.lastModified()) && bytes().equals(that.bytes());
+        return lastModified().equals(that.lastModified()) && sizeInBytes().equals(that.sizeInBytes());
     }
 
     /**

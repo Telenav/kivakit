@@ -314,12 +314,6 @@ public final class Bytes extends Count implements ByteSized
     }
 
     @Override
-    public Bytes bytes()
-    {
-        return this;
-    }
-
-    @Override
     public Bytes decremented()
     {
         return (Bytes) super.decremented();
@@ -484,6 +478,12 @@ public final class Bytes extends Count implements ByteSized
     public Bytes roundUpToPowerOfTwo()
     {
         return (Bytes) super.roundUpToPowerOfTwo();
+    }
+
+    @Override
+    public Bytes sizeInBytes()
+    {
+        return this;
     }
 
     @Override

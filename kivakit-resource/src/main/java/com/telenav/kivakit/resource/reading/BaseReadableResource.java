@@ -223,7 +223,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
                         trace("Materializing $ to $", this, cached.path().absolute());
                         safeCopyTo(cached, CopyMode.OVERWRITE, reporter);
                         trace("Materialized ${debug} ($) from ${debug} in ${debug}", cached.path().absolute(),
-                                cached.bytes(), this, start.elapsedSince());
+                                cached.sizeInBytes(), this, start.elapsedSince());
                     }
                     materialized = cached;
                 }
@@ -251,7 +251,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
         {
             // start it up
             reporter.start(fileName().name());
-            reporter.steps(bytes());
+            reporter.steps(sizeInBytes());
 
             // and return a progressive input which will call the reporter.
             return new ProgressiveInput(decompressed, reporter);

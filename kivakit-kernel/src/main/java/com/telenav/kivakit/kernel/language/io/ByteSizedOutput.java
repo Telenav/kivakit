@@ -19,8 +19,8 @@
 package com.telenav.kivakit.kernel.language.io;
 
 import com.telenav.kivakit.kernel.interfaces.io.ByteSized;
-import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageIo;
 import com.telenav.kivakit.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageIo;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.IOException;
@@ -39,12 +39,6 @@ public class ByteSizedOutput extends OutputStream implements ByteSized
     }
 
     @Override
-    public Bytes bytes()
-    {
-        return Bytes.bytes(size);
-    }
-
-    @Override
     public void close() throws IOException
     {
         out.close();
@@ -54,6 +48,12 @@ public class ByteSizedOutput extends OutputStream implements ByteSized
     public void flush() throws IOException
     {
         out.flush();
+    }
+
+    @Override
+    public Bytes sizeInBytes()
+    {
+        return Bytes.bytes(size);
     }
 
     @Override

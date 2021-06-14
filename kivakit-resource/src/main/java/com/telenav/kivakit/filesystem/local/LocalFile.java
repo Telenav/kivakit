@@ -94,12 +94,6 @@ public class LocalFile extends BaseWritableResource implements FileService
     }
 
     @Override
-    public Bytes bytes()
-    {
-        return Bytes.bytes(file.length());
-    }
-
-    @Override
     public boolean chmod(final PosixFilePermission... permissions)
     {
         try
@@ -168,7 +162,7 @@ public class LocalFile extends BaseWritableResource implements FileService
     }
 
     @Override
-    public boolean isWritable()
+    public Boolean isWritable()
     {
         // If we can write to the file,
         if (file.canWrite())
@@ -247,6 +241,12 @@ public class LocalFile extends BaseWritableResource implements FileService
     public FolderService root()
     {
         return new LocalFolder(path().rootElement());
+    }
+
+    @Override
+    public Bytes sizeInBytes()
+    {
+        return Bytes.bytes(file.length());
     }
 
     @Override
