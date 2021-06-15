@@ -39,12 +39,24 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 echo " "
 
 cd $KIVAKIT_WORKSPACE
+
 git clone https://github.com/Telenav/cactus-build.git
+git config pull.ff only
+
 git clone https://github.com/Telenav/cactus-build-assets.git
+git config pull.ff only
+
 git clone https://github.com/Telenav/lexakai-annotations.git
+git config pull.ff only
+
 git clone https://github.com/Telenav/kivakit-extensions.git
+git config pull.ff only
+
 git clone https://github.com/Telenav/kivakit-examples.git
+git config pull.ff only
+
 git clone https://github.com/Telenav/kivakit-assets.git
+git config pull.ff only
 
 #
 # Initialize git flow for each project
