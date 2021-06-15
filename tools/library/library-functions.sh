@@ -203,10 +203,10 @@ git_flow_feature_start() {
     project_home=$1
     feature_name=$2
 
-    if yes_no "Start 'Feature-$feature_name' branch of $project_home"; then
+    if yes_no "Start 'feature-$feature_name' branch of $project_home"; then
 
         cd $project_home
-        git-flow feature start Feature-$feature_name
+        git-flow feature start feature-$feature_name
 
     fi
 }
@@ -216,9 +216,9 @@ git_flow_feature_finish() {
     project_home=$1
     feature_name=$2
 
-    if yes_no "Finish 'Feature-$feature_name' branch of $project_home"; then
+    if yes_no "Finish 'feature-$feature_name' branch of $project_home"; then
         cd $project_home
-        git-flow feature finish Feature-$1
+        git-flow feature finish feature-$feature_name
     fi
 }
 
