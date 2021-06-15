@@ -294,8 +294,15 @@ public class IO
 
     public static String string(final InputStream in)
     {
-        return new BufferedReader(new InputStreamReader(in))
-                .lines().collect(Collectors.joining("\n")).trim();
+        return string(new InputStreamReader(in));
+    }
+
+    public static String string(final Reader in)
+    {
+        return new BufferedReader(in)
+                .lines()
+                .collect(Collectors.joining("\n"))
+                .trim();
     }
 
     /**
