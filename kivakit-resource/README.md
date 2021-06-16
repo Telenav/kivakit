@@ -266,7 +266,7 @@ A wide variety of other resources are available and new ones are easy to write. 
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 88.0%.  
+Javadoc coverage for this project is 88.1%.  
   
 &nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
 
@@ -282,7 +282,6 @@ Javadoc coverage for this project is 88.0%.
 | [*Compressor*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/compression/Compressor.html) |  |  
 | [*CopyMode*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/CopyMode.html) |  |  
 | [*CoreResourceKryoTypes*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/project/CoreResourceKryoTypes.html) |  |  
-| [*CoreResourceProject*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/project/CoreResourceProject.html) |  |  
 | [*Decompressor*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/compression/Decompressor.html) |  |  
 | [*Disk*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/filesystem/Disk.html) |  |  
 | [*DiskService*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/filesystem/spi/DiskService.html) |  |  
@@ -374,6 +373,7 @@ Javadoc coverage for this project is 88.0%.
 | | Factories |  
 | [*ResourcePath.Converter*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/ResourcePath.Converter.html) |  |  
 | [*ResourcePathed*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/path/ResourcePathed.html) |  |  
+| [*ResourceProject*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/project/ResourceProject.html) |  |  
 | [*ResourceReader*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/reading/ResourceReader.html) |  |  
 | [*ResourceResolver*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/spi/ResourceResolver.html) |  |  
 | [*ResourceResolverServiceLoader*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/spi/ResourceResolverServiceLoader.html) |  |  

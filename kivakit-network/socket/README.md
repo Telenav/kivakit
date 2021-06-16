@@ -93,7 +93,7 @@ Javadoc coverage for this project is 75.0%.
 | Class | Documentation Sections |
 |---|---|
 | [*ConnectionListener*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.network.socket/com/telenav/kivakit/network/socket/server/ConnectionListener.html) |  |  
-| [*CoreNetworkSocket*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.network.socket/com/telenav/kivakit/network/socket/project/CoreNetworkSocket.html) |  |  
+| [*CoreNetworkSocketProject*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.network.socket/com/telenav/kivakit/network/socket/project/CoreNetworkSocketProject.html) |  |  
 
 [//]: # (start-user-text)
 

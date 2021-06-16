@@ -140,7 +140,6 @@ Javadoc coverage for this project is 89.3%.
 |---|---|
 | [*BaseNetworkResource*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/BaseNetworkResource.html) |  |  
 | [*ClusterIdentifier*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/cluster/ClusterIdentifier.html) |  |  
-| [*CoreNetworkCoreProject*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/project/CoreNetworkCoreProject.html) |  |  
 | [*EmailAddress*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/EmailAddress.html) |  |  
 | [*EmailAddress.Converter*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/EmailAddress.Converter.html) |  |  
 | [*Host*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/Host.html) | Attributes |  
@@ -149,6 +148,7 @@ Javadoc coverage for this project is 89.3%.
 | [*LocalHost*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/LocalHost.html) |  |  
 | [*Loopback*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/Loopback.html) |  |  
 | [*NetworkAccessConstraints*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/NetworkAccessConstraints.html) |  |  
+| [*NetworkCoreProject*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/project/NetworkCoreProject.html) |  |  
 | [*NetworkLocation*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/NetworkLocation.html) |  |  
 | [*NetworkLocation.Converter*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/NetworkLocation.Converter.html) |  |  
 | [*NetworkPath*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/NetworkPath.html) | Path Parsing Methods |  
