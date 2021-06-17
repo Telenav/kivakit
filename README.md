@@ -48,7 +48,7 @@ KivaKit is a set of integrated Java mini-frameworks that are potentially needed 
 
 > *The mission of KivaKit is to accelerate the development of Java software through the use of integrated, modular, object-oriented design.*
 
-KivaKit extends the JDK to provide quick and easy solutions to common everyday software problems. It does this by providing new abstractions and APIs, and by simplifying an existing APIs.
+KivaKit extends the JDK to provide quick and easy solutions to common everyday software problems. It does this by providing new abstractions and APIs, and by simplifying existing APIs.
 
 KivaKit is composed of a number of nested sub-projects that are Java 11+ modules. These modules address different areas of concern in developing Java applications. The resources below will help you to get started.
 
