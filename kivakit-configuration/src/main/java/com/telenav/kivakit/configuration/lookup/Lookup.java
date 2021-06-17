@@ -103,12 +103,13 @@ public class Lookup
     /**
      * Registers the given singleton object in the lookup
      */
-    public void register(final Object singleton)
+    public <T> T register(final T singleton)
     {
         for (var at = singleton.getClass(); at != Object.class; at = at.getSuperclass())
         {
             objectForType.put(at, singleton);
         }
+        return singleton;
     }
 
     /**
