@@ -76,7 +76,7 @@ clean_maven_repository() {
     project_home=$1
     name=$(basename -- "$project_home")
 
-    if yes_no "Remove all $name artifacts from ~\.m2"; then
+    if yes_no "Remove all $name artifacts from ~/.m2/repository"; then
 
         rm -rf "~/.m2/repository/com/telenav/$name"
 
@@ -85,9 +85,13 @@ clean_maven_repository() {
 
 remove_maven_repository() {
 
-    if yes_no "Remove ALL artifacts in ~\.m2"; then
+    if [ -d "$HOME/.m2/repository" ]; then
 
-        rm -rf ~/.m2
+        if yes_no "Remove ALL artifacts in ~/.m2/repository"; then
+
+            rm -rf ~/.m2/repository
+
+        fi
 
     fi
 }
