@@ -308,7 +308,7 @@ public class Time implements Quantizable
 
     public Time roundDown(final Duration unit)
     {
-        return milliseconds(milliseconds * unit.asMilliseconds() / unit.asMilliseconds());
+        return milliseconds(milliseconds / unit.asMilliseconds() * unit.asMilliseconds());
     }
 
     public Time roundUp(final Duration unit)

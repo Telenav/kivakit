@@ -108,7 +108,7 @@ public class Settings
         loadOverrides();
 
         // then look in the global lookup for the settings
-        var settings = Lookup.global().locate(settingsClass, identifier);
+        var settings = Lookup.global().lookup(settingsClass, identifier);
 
         // and if settings have not been defined
         if (settings == null)
@@ -119,7 +119,7 @@ public class Settings
             defaultSettings.install();
 
             // and try again,
-            settings = Lookup.global().locate(settingsClass);
+            settings = Lookup.global().lookup(settingsClass);
 
             // and finally, fail if the settings still cannot be found
             Ensure.ensureNotNull(settings, "Unable to locate settings: ${class}", settingsClass);

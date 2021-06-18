@@ -427,7 +427,7 @@ public abstract class Application extends BaseRepeater implements Named, Applica
      */
     public <T> T locate(final Class<T> type)
     {
-        return Lookup.global().locate(type);
+        return Lookup.global().lookup(type);
     }
 
     public Project project()

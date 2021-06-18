@@ -29,14 +29,14 @@ import java.util.Map;
 /**
  * The {@link Lookup} class allows code to register and locate objects by class and instance (if there is more than one
  * instance). The methods {@link #register(Object)} and {@link #register(Object, Enum)} are used to install an object in
- * the lookup and {@link #locate(Class)} and {@link #locate(Class, Enum)} are used to find an object that has been
+ * the lookup and {@link #lookup(Class)} and {@link #lookup(Class, Enum)} are used to find an object that has been
  * registered.
  *
  * <p><b>Example</b></p>
  *
  * <p>
  * In this example, the initialize() method and the doit() method may be in different classes or packages. The doit()
- * method can find the WEB instance of the Server class using {@link #locate(Class, Enum)}
+ * method can find the WEB instance of the Server class using {@link #lookup(Class, Enum)}
  * </p>
  * <pre>
  * enum Servers { WEB, TRAFFIC, MAP }
@@ -81,7 +81,7 @@ public class Lookup
      * @return Any registered object of the given type
      */
     @SuppressWarnings("unchecked")
-    public <T> T locate(final Class<T> type)
+    public <T> T lookup(final Class<T> type)
     {
         return (T) objectForType.get(type);
     }
@@ -90,14 +90,14 @@ public class Lookup
      * @return Any registered object of the given type with the given instance identifier
      */
     @SuppressWarnings({ "unchecked" })
-    public <T> T locate(final Class<T> type, final InstanceIdentifier instance)
+    public <T> T lookup(final Class<T> type, final InstanceIdentifier instance)
     {
         return (T) objectForTypeAndInstance.get(key(type, instance));
     }
 
-    public <T> T locate(final Class<T> type, final Enum<?> instance)
+    public <T> T lookup(final Class<T> type, final Enum<?> instance)
     {
-        return locate(type, new InstanceIdentifier(instance));
+        return lookup(type, new InstanceIdentifier(instance));
     }
 
     /**
