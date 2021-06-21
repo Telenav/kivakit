@@ -91,6 +91,7 @@ open module kivakit.kernel
     exports com.telenav.kivakit.kernel.language.threading.conditions;
     exports com.telenav.kivakit.kernel.language.threading.context;
     exports com.telenav.kivakit.kernel.language.threading.latches;
+    exports com.telenav.kivakit.kernel.language.threading.local;
     exports com.telenav.kivakit.kernel.language.threading.locks;
     exports com.telenav.kivakit.kernel.language.threading.status;
     exports com.telenav.kivakit.kernel.language.threading;

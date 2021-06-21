@@ -83,7 +83,10 @@ public class Threads
     public static void shutdownAndAwait(final ExecutorService executor)
     {
         executor.shutdown();
-        await(executor);
+        if (!executor.isShutdown() && !executor.isTerminated())
+        {
+            await(executor);
+        }
     }
 
     public static ExecutorService threadPool(final String name, final Count threads)
