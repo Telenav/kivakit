@@ -21,9 +21,9 @@ package com.telenav.kivakit.kernel.language.threading.batcher;
 import com.telenav.kivakit.kernel.interfaces.code.CheckedCode;
 import com.telenav.kivakit.kernel.interfaces.collection.Addable;
 import com.telenav.kivakit.kernel.language.threading.Threads;
+import com.telenav.kivakit.kernel.language.threading.conditions.StateMachine;
 import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.language.values.count.Count;
-import com.telenav.kivakit.kernel.language.values.count.Maximum;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramBatchProcessing;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -34,6 +34,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
+import java.util.function.Consumer;
 
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
 
@@ -62,20 +63,21 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
  * <p><b>Example</b></p>
  *
  * <pre>
- * Batcher&lt;Record&gt; batcher = new Batcher&lt;&gt;("RecordBatcher", Maximum._8, Count.16_384)
- * {
- *     protected void onBatch(final Batch batch)
- *     {
- *         for (var record : batch)
- *         {
- *             [...]
- *         }
- *     }
- * };
+ * private static final Maximum QUEUE_SIZE = Maximum._128;
+ * private static final Count BATCH_SIZE = Count._16384;
+ * private static final Count WORKER_THREADS = Count._8;
  *
- *     [...]
+ *   [...]
  *
- * batcher.start(Count._8);
+ * var batcher = Batcher.<T>create()
+ *     .withName(qualifiedName())
+ *     .withQueueSize(QUEUE_SIZE)
+ *     .withBatchSize(BATCH_SIZE)
+ *     .withConsumer(batch -> batch.forEach(this::internalAdd));
+ *
+ *   [...]
+ *
+ * batcher.start(WORKER_THREADS);
  *
  *    [...]
  *
@@ -90,8 +92,25 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramBatchProcessing.class)
-public abstract class Batcher<Element> extends BaseRepeater
+public class Batcher<Element> extends BaseRepeater
 {
+    /**
+     * @return Creates a new batcher
+     */
+    public static <Element> Batcher<Element> create()
+    {
+        return new Batcher<>();
+    }
+
+    /** The execution state of this batcher */
+    private enum State
+    {
+        READY,
+        RUNNING,
+        STOPPING,
+        STOPPED,
+    }
+
     /**
      * Adds elements to a batch and enqueues the batch when it is full before starting a new one. Note that this design
      * is better than adding to a single batch in the {@link Batcher} because that batch data structure would have to be
@@ -111,8 +130,8 @@ public abstract class Batcher<Element> extends BaseRepeater
         {
             final var outer = Batcher.this;
 
-            assert !outer.stopping;
-            assert !outer.stopped;
+            assert !outer.state.is(State.STOPPING);
+            assert !outer.state.is(State.STOPPED);
 
             // add the item to the batch
             batch.add(item);
@@ -181,10 +200,13 @@ public abstract class Batcher<Element> extends BaseRepeater
     }
 
     /** Name of this batcher */
-    private final String name;
+    private String name = "Batcher";
 
     /** Size of batches */
-    private final int batchSize;
+    private int batchSize = 4096;
+
+    /** Size of batch queue */
+    private int queueSize = 8;
 
     /** The blocking queue of batches to process */
     private ArrayBlockingQueue<Batch> queue;
@@ -192,27 +214,32 @@ public abstract class Batcher<Element> extends BaseRepeater
     /** The worker threads to process batches */
     private ExecutorService executor;
 
-    /** True if we're trying to stop */
-    private volatile boolean stopping;
+    /** The code to process batches */
+    private Consumer<Batch> consumer;
 
-    /** True if this batcher is running */
-    private boolean running;
-
-    /** True if the batcher was running and now it has stopped */
-    private volatile boolean stopped;
+    /** State machine to track the execution phases of this batcher */
+    private StateMachine<State> state = new StateMachine<>(State.READY);
 
     /** Set of batch adders for clients */
     private final Set<BatchAdder> adders = new HashSet<>();
 
-    protected Batcher(final String name, final Maximum queueSize, final Count batchSize)
+    protected Batcher()
     {
-        this.name = name;
-        this.batchSize = batchSize.asInt();
-        queue = new ArrayBlockingQueue<>(queueSize.asInt(), true);
+    }
+
+    protected Batcher(final Batcher<Element> that)
+    {
+        this.name = that.name;
+        this.batchSize = that.batchSize;
+        this.queueSize = that.queueSize;
+        this.queue = that.queue;
+        this.consumer = that.consumer;
+        this.executor = that.executor;
+        this.state = that.state;
     }
 
     /**
-     * @return An object that adds to an unsynchronized batch and enqueues it when full
+     * @return An object that adds to an un-synchronized batch and enqueues it when full
      */
     public synchronized BatchAdder adder()
     {
@@ -226,13 +253,15 @@ public abstract class Batcher<Element> extends BaseRepeater
      */
     public synchronized void start(final Count workers)
     {
-        ensure(!stopped, "Cannot restart a batcher, create a new one instead");
+        ensure(!state.is(State.STOPPED), "Cannot restart a batcher, create a new one instead");
 
         // If we aren't already running
-        if (!running)
+        if (state.transition(State.READY, State.RUNNING))
         {
+            // create a blocking queue,
+            queue = new ArrayBlockingQueue<>(queueSize, true);
+
             // then create an executor,
-            running = true;
             executor = Threads.threadPool(name + "-Batcher", workers);
 
             // start a job for each worker,
@@ -241,7 +270,7 @@ public abstract class Batcher<Element> extends BaseRepeater
             {
                 // and loop until we are asked to stop,
                 trace("$: Processing batches", outer.name);
-                while (!stopping)
+                while (!state.is(State.STOPPING))
                 {
                     // processing batches.
                     nextBatch().process();
@@ -257,14 +286,12 @@ public abstract class Batcher<Element> extends BaseRepeater
     public synchronized void stop()
     {
         // If we are running and we aren't already trying to stop
-        if (running && !stopping)
+        if (state.transition(State.RUNNING, State.STOPPING))
         {
             // shut down the executor, interrupting waiting threads and waiting for them to exit,
             trace("$: Stopping", name);
-            stopping = true;
             final var pending = executor.shutdownNow();
             Threads.await(executor);
-            running = false;
             trace("$: Stopped", name);
 
             // then run any tasks that never started executing,
@@ -293,14 +320,50 @@ public abstract class Batcher<Element> extends BaseRepeater
                 batch.process();
             }
 
-            stopped = true;
+            state.transitionTo(State.STOPPED);
         }
+    }
+
+    public Batcher<Element> withBatchSize(final Count size)
+    {
+        final var copy = copy();
+        copy.batchSize = size.asInt();
+        return copy;
+    }
+
+    public Batcher<Element> withConsumer(final Consumer<Batch> consumer)
+    {
+        final var copy = copy();
+        copy.consumer = consumer;
+        return copy;
+    }
+
+    public Batcher<Element> withName(final String name)
+    {
+        final var copy = copy();
+        copy.name = name;
+        return copy;
+    }
+
+    public Batcher<Element> withQueueSize(final Count size)
+    {
+        final var copy = copy();
+        copy.queueSize = size.asInt();
+        return copy;
+    }
+
+    protected Batcher<Element> copy()
+    {
+        return new Batcher<>(this);
     }
 
     /**
      * @param batch The batch for the subclass to process
      */
-    protected abstract void onBatch(Batch batch);
+    protected void onBatch(final Batch batch)
+    {
+        consumer.accept(batch);
+    }
 
     /**
      * @return The next batch from the queue, or an empty batch if interrupted

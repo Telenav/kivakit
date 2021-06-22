@@ -19,26 +19,27 @@
 package com.telenav.kivakit.kernel.language.threading.batcher;
 
 import com.telenav.kivakit.kernel.language.values.count.Count;
-import com.telenav.kivakit.kernel.language.values.count.Maximum;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
+import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureEqual;
 
 public class BatcherTest extends BaseRepeater
 {
+    private static int number;
+
     /**
      * Processes batches of integer objects keeping a count of how many have been "processed"
      */
     private static class TestBatcher extends Batcher<Integer>
     {
-        private static int number;
-
         private int total;
 
-        public TestBatcher()
+        @Override
+        protected Batcher<Integer> copy()
         {
-            super("Test" + number++, Maximum._100, Count._100);
+            return new TestBatcher();
         }
 
         @Override
@@ -57,8 +58,7 @@ public class BatcherTest extends BaseRepeater
     @Test(timeout = 1_000)
     public void testEmptyFlush()
     {
-        final var batcher = new TestBatcher();
-        batcher.stop();
+        batcher().stop();
     }
 
     @Test
@@ -73,7 +73,7 @@ public class BatcherTest extends BaseRepeater
     @Test
     public void testStop()
     {
-        final var batcher = new TestBatcher();
+        final var batcher = batcher();
         batcher.start(Count._1);
         final var adder = batcher.adder();
         for (var i = 0; i < 1_000; i++)
@@ -84,9 +84,18 @@ public class BatcherTest extends BaseRepeater
         ensureEqual(Count._1_000, batcher.total());
     }
 
+    @NotNull
+    private BatcherTest.TestBatcher batcher()
+    {
+        return (TestBatcher) new TestBatcher()
+                .withName("TestBatcher-" + number++)
+                .withBatchSize(Count._100)
+                .withQueueSize(Count._100);
+    }
+
     private void testBatcher(final int totalCount)
     {
-        final var batcher = new TestBatcher();
+        final var batcher = batcher();
         batcher.addListener(this);
         batcher.start(Count._1);
         final var adder = batcher.adder();
