@@ -35,6 +35,7 @@ import java.util.Set;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
 
@@ -73,7 +74,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
  *     .withName(qualifiedName())
  *     .withQueueSize(QUEUE_SIZE)
  *     .withBatchSize(BATCH_SIZE)
- *     .withConsumer(batch -> batch.forEach(this::internalAdd));
+ *     .withConsumer(batch -> batch.forEach(this::add));
  *
  *   [...]
  *
@@ -137,9 +138,9 @@ public class Batcher<Element> extends BaseRepeater
             batch.add(item);
 
             // and if the batch is full,
-            if (batch.size() >= outer.batchSize)
+            if (batch.isFull())
             {
-                // add it to the queue
+                // add the batch to the queue
                 enqueue();
             }
             return true;
@@ -176,6 +177,11 @@ public class Batcher<Element> extends BaseRepeater
     @LexakaiJavadoc(complete = true)
     public class Batch extends ArrayList<Element>
     {
+        boolean isFull()
+        {
+            return size() >= Batcher.this.batchSize || batchFullPredicate.test(this);
+        }
+
         /**
          * Processes this batch of elements
          */
@@ -223,6 +229,9 @@ public class Batcher<Element> extends BaseRepeater
     /** Set of batch adders for clients */
     private final Set<BatchAdder> adders = new HashSet<>();
 
+    /** Predicate to determine if a batch is full (in addition to the batch size) */
+    private Predicate<Batch> batchFullPredicate = batch -> false;
+
     protected Batcher()
     {
     }
@@ -236,6 +245,7 @@ public class Batcher<Element> extends BaseRepeater
         this.consumer = that.consumer;
         this.executor = that.executor;
         this.state = that.state;
+        this.batchFullPredicate = that.batchFullPredicate;
     }
 
     /**
@@ -322,6 +332,13 @@ public class Batcher<Element> extends BaseRepeater
 
             state.transitionTo(State.STOPPED);
         }
+    }
+
+    public Batcher<Element> withBatchFullPredicate(final Predicate<Batch> predicate)
+    {
+        final var copy = copy();
+        copy.batchFullPredicate = predicate;
+        return copy;
     }
 
     public Batcher<Element> withBatchSize(final Count size)
