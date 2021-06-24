@@ -18,7 +18,6 @@
 
 package com.telenav.kivakit.configuration.lookup;
 
-import com.telenav.kivakit.configuration.InstanceIdentifier;
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramLookup;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -27,10 +26,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The {@link Lookup} class allows code to register and locate objects by class and instance (if there is more than one
- * instance). The methods {@link #register(Object)} and {@link #register(Object, Enum)} are used to install an object in
- * the lookup and {@link #lookup(Class)} and {@link #lookup(Class, Enum)} are used to find an object that has been
- * registered.
+ * The {@link Registry} class allows code to register and locate objects by class and instance (if there is more than
+ * one instance). The methods {@link #register(Object)} and {@link #register(Object, Enum)} are used to install an
+ * object in the lookup and {@link #lookup(Class)} and {@link #lookup(Class, Enum)} are used to find an object that has
+ * been registered.
  *
  * <p><b>Example</b></p>
  *
@@ -43,14 +42,14 @@ import java.util.Map;
  *
  * void initialize()
  * {
- *     Lookup.get().register(new Server(), WEB);
+ *     Registry.global().register(new Server(), WEB);
  * }
  *
  *     [...]
  *
  * void doit()
  * {
- *     var server = Lookup.get().locate(Server.class, WEB);
+ *     var server = Registry.global().lookup(Server.class, WEB);
  *
  *         [...]
  * }
@@ -58,17 +57,25 @@ import java.util.Map;
  */
 @UmlClassDiagram(diagram = DiagramLookup.class)
 @UmlRelation(label = "locates instances with", referent = InstanceIdentifier.class)
-public class Lookup
+public class Registry
 {
     /** The global lookup */
-    private static final Lookup GLOBAL = new Lookup();
+    private static final Registry GLOBAL = new Registry();
 
     /**
      * @return The global lookup
      */
-    public static Lookup global()
+    public static Registry global()
     {
         return GLOBAL;
+    }
+
+    /**
+     * @return The lookup for the given object
+     */
+    public static Registry of(final Object object)
+    {
+        return global();
     }
 
     /** Map from class to type for singleton objects */
@@ -84,6 +91,15 @@ public class Lookup
     public <T> T lookup(final Class<T> type)
     {
         return (T) objectForType.get(type);
+    }
+
+    /**
+     * @return Any registered object of the given type with the given instance identifier
+     */
+    @SuppressWarnings({ "unchecked" })
+    public <T> T lookup(final Class<T> type, final String instance)
+    {
+        return (T) objectForTypeAndInstance.get(key(type, new InstanceIdentifier(instance)));
     }
 
     /**
@@ -110,6 +126,14 @@ public class Lookup
             objectForType.put(at, singleton);
         }
         return singleton;
+    }
+
+    /**
+     * Registers the specified instance of the given object's type in the lookup
+     */
+    public void register(final Object object, final String instance)
+    {
+        register(object, new InstanceIdentifier(instance));
     }
 
     /**

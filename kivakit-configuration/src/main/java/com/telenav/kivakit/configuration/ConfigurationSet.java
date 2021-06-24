@@ -18,7 +18,8 @@
 
 package com.telenav.kivakit.configuration;
 
-import com.telenav.kivakit.configuration.lookup.Lookup;
+import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
+import com.telenav.kivakit.configuration.lookup.Registry;
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfiguration;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
@@ -73,14 +74,14 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  * configuration folder or package will often have more than one .properties resource in it.
  * </p>
  *
- * <p><b>Locating Configurations with Lookup</b></p>
+ * <p><b>Locating Configurations with Registry</b></p>
  *
  * <p>
  * For convenience, each configuration object is added to the global lookup. This allows clients to easily look up
  * configuration objects and not depend on where they came from. For example:
  * </p>
  * <pre>
- *     var serverSettings = Lookup.global().locate(ServerSettings.class)
+ *     var serverSettings = Registry.global().locate(ServerSettings.class)
  * </pre>
  *
  * <p><b>Properties File Format</b></p>
@@ -449,7 +450,7 @@ public class ConfigurationSet extends BaseRepeater implements Named, Iterable<Ob
             configurations.add(configuration);
 
             // add it to the global lookup
-            Lookup.global().register(configuration.object(), configuration.identifier().instance());
+            Registry.global().register(configuration.object(), configuration.identifier().instance());
 
             // then walk up the class hierarchy of the configuration object,
             var at = (Class<?>) configuration.object().getClass();

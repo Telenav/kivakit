@@ -22,8 +22,8 @@ import com.telenav.kivakit.configuration.ConfigurationFolder;
 import com.telenav.kivakit.configuration.ConfigurationPackage;
 import com.telenav.kivakit.configuration.ConfigurationSet;
 import com.telenav.kivakit.configuration.Deployment;
-import com.telenav.kivakit.configuration.InstanceIdentifier;
-import com.telenav.kivakit.configuration.lookup.Lookup;
+import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
+import com.telenav.kivakit.configuration.lookup.Registry;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
@@ -40,10 +40,11 @@ import com.telenav.kivakit.resource.resources.packaged.Package;
  * <p><b>Finding Settings</b></p>
  * <p>
  * The {@link #require(Class)} method and related overloads find settings objects, as described in {@link
- * ConfigurationSet}. To do this, the method first looks for the given settings object using the global {@link Lookup}.
- * This allows settings to be overridden by the configuration API using {@link Deployment}s or using a command line
- * variable, as described below.s If the required settings object is not already registered, all settings objects are
- * loaded from the specified package to provide a default object. Then, the lookup is retried and the result returned.
+ * ConfigurationSet}. To do this, the method first looks for the given settings object using the global {@link
+ * Registry}. This allows settings to be overridden by the configuration API using {@link Deployment}s or using a
+ * command line variable, as described below.s If the required settings object is not already registered, all settings
+ * objects are loaded from the specified package to provide a default object. Then, the lookup is retried and the result
+ * returned.
  * </p>
  *
  * <p><b>Overriding Settings from the Command Line</b></p>
@@ -68,11 +69,11 @@ public class Settings
 
     public static void register(final Object settings)
     {
-        Lookup.global().register(settings);
+        Registry.global().register(settings);
     }
 
     /**
-     * @return The settings object of the requested type from the global {@link Lookup} or from the package of default
+     * @return The settings object of the requested type from the global {@link Registry} or from the package of default
      * settings if it is not found there.
      */
     public static <T> T require(final Class<T> settingsType, final Package defaultSettings)
@@ -97,7 +98,7 @@ public class Settings
     }
 
     /**
-     * @return The settings object of the requested type from the global {@link Lookup} or from the package of default
+     * @return The settings object of the requested type from the global {@link Registry} or from the package of default
      * settings if it is not found there.
      */
     public static <T> T require(final Class<T> settingsClass,
@@ -108,7 +109,7 @@ public class Settings
         loadOverrides();
 
         // then look in the global lookup for the settings
-        var settings = Lookup.global().lookup(settingsClass, identifier);
+        var settings = Registry.global().lookup(settingsClass, identifier);
 
         // and if settings have not been defined
         if (settings == null)
@@ -119,7 +120,7 @@ public class Settings
             defaultSettings.install();
 
             // and try again,
-            settings = Lookup.global().lookup(settingsClass);
+            settings = Registry.global().lookup(settingsClass);
 
             // and finally, fail if the settings still cannot be found
             Ensure.ensureNotNull(settings, "Unable to locate settings: ${class}", settingsClass);

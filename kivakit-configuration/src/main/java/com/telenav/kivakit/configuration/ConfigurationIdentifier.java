@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.configuration;
 
+import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfiguration;
 import com.telenav.kivakit.kernel.language.objects.Hash;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;

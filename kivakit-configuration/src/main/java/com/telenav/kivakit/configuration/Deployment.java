@@ -19,6 +19,7 @@
 package com.telenav.kivakit.configuration;
 
 import com.telenav.kivakit.commandline.SwitchParser;
+import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfiguration;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;

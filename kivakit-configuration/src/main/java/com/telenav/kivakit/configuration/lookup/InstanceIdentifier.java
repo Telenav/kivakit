@@ -16,9 +16,9 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.configuration;
+package com.telenav.kivakit.configuration.lookup;
 
-import com.telenav.kivakit.configuration.lookup.Lookup;
+import com.telenav.kivakit.configuration.ConfigurationSet;
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfiguration;
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramLookup;
 import com.telenav.kivakit.kernel.language.values.identifier.StringIdentifier;
@@ -27,10 +27,10 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
 /**
  * An identifier for a particular instance of a class of configuration object stored in a {@link ConfigurationSet}. Also
- * used by {@link Lookup} when locating an object by class which has more than one instance.
+ * used by {@link Registry} when locating an object by class which has more than one instance.
  *
  * @author jonathanl (shibo)
- * @see Lookup
+ * @see Registry
  * @see ConfigurationSet
  */
 @UmlClassDiagram(diagram = DiagramConfiguration.class)

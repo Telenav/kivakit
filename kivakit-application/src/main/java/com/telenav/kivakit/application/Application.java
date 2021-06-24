@@ -27,8 +27,8 @@ import com.telenav.kivakit.commandline.CommandLineParser;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.configuration.ConfigurationSet;
 import com.telenav.kivakit.configuration.Deployment;
-import com.telenav.kivakit.configuration.InstanceIdentifier;
-import com.telenav.kivakit.configuration.lookup.Lookup;
+import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
+import com.telenav.kivakit.configuration.lookup.Registry;
 import com.telenav.kivakit.configuration.settings.Settings;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
@@ -163,10 +163,10 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  *     <li>{@link #requireConfiguration(Class, InstanceIdentifier)} - Gets the configuration object for the given instance or fails</li>
  * </ul>
  *
- * <p><b>Lookup</b></p>
+ * <p><b>Registry Lookups</b></p>
  *
  * <p>
- * Access to the global object {@link Lookup} is provided and fulfills basic needs for object wiring:
+ * Access to the global object {@link Registry} is provided and fulfills basic needs for object wiring:
  * </p>
  *
  * <ul>
@@ -226,7 +226,7 @@ public abstract class Application extends BaseRepeater implements Named, Applica
      */
     protected Application(final Project... projects)
     {
-        Lookup.global().register(this);
+        Registry.global().register(this);
 
         instance = this;
         if (projects.length == 1)
@@ -423,11 +423,11 @@ public abstract class Application extends BaseRepeater implements Named, Applica
     }
 
     /**
-     * @return The object of the given type from the global {@link Lookup}, if any
+     * @return The object of the given type from the global {@link Registry}, if any
      */
     public <T> T locate(final Class<T> type)
     {
-        return Lookup.global().lookup(type);
+        return Registry.global().lookup(type);
     }
 
     public Project project()
@@ -441,11 +441,11 @@ public abstract class Application extends BaseRepeater implements Named, Applica
     }
 
     /**
-     * Registers the given object with the global {@link Lookup}
+     * Registers the given object with the global {@link Registry}
      */
     public void register(final Object object)
     {
-        Lookup.global().register(object);
+        Registry.global().register(object);
     }
 
     /**
