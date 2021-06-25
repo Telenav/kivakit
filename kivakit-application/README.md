@@ -105,7 +105,7 @@ Javadoc coverage for this project is 100.0%.
 
 [//]: # (start-user-text)
 
----
+<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### How to Create an Application <a name="how-to-create-an-application"></a>
 
