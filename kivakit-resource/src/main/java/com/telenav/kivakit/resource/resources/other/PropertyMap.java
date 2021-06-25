@@ -20,7 +20,6 @@ package com.telenav.kivakit.resource.resources.other;
 
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.kernel.KivaKit;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
@@ -176,20 +175,6 @@ public class PropertyMap extends VariableMap<String>
     }
 
     /**
-     * @return This property map with all values expanded using the values in the given property map
-     */
-    public PropertyMap expandedWith(final VariableMap<String> that)
-    {
-        final var map = new PropertyMap();
-        for (final var key : keySet())
-        {
-            final var value = get(key);
-            map.put(key, that.expand(value));
-        }
-        return map;
-    }
-
-    /**
      * @return The value of the given key as a {@link Count}
      */
     public Count asCount(final String key)
@@ -289,6 +274,20 @@ public class PropertyMap extends VariableMap<String>
         return map;
     }
 
+    /**
+     * @return This property map with all values expanded using the values in the given property map
+     */
+    public PropertyMap expandedWith(final VariableMap<String> that)
+    {
+        final var map = new PropertyMap();
+        for (final var key : keySet())
+        {
+            final var value = get(key);
+            map.put(key, that.expand(value));
+        }
+        return map;
+    }
+
     @Override
     public String join(final String separator)
     {
@@ -339,7 +338,7 @@ public class PropertyMap extends VariableMap<String>
                 if (matcher.matches())
                 {
                     final var key = matcher.group("key");
-                    final var value = KivaKit.get().properties().expand(matcher.group("value"));
+                    final var value = matcher.group("value");
                     properties.put(key, value);
                 }
                 else

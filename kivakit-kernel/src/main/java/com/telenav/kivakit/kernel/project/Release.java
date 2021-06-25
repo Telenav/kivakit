@@ -30,7 +30,16 @@ public enum Release
     ALPHA(1),
     BETA(2),
     RC(3),
-    FINAL(4);
+    FINAL(4),
+    M1(5),
+    M2(6),
+    M3(7),
+    M4(8),
+    M5(9),
+    M6(10),
+    M7(11),
+    M8(12),
+    M9(13);
 
     public static Release forIdentifier(final int identifier)
     {
@@ -44,6 +53,24 @@ public enum Release
                 return RC;
             case 4:
                 return FINAL;
+            case 5:
+                return M1;
+            case 6:
+                return M2;
+            case 7:
+                return M3;
+            case 8:
+                return M4;
+            case 9:
+                return M5;
+            case 10:
+                return M6;
+            case 11:
+                return M7;
+            case 12:
+                return M8;
+            case 13:
+                return M9;
             default:
                 throw new IllegalArgumentException();
         }
