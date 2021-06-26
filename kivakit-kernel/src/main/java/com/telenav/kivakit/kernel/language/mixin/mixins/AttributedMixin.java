@@ -11,7 +11,7 @@ import java.util.HashMap;
  * @param <Value> The type of the attribute value
  * @author jonathanl (shibo)
  */
-public interface Attributed<Key, Value> extends Mixin
+public interface AttributedMixin<Key, Value> extends Mixin
 {
     default Value attribute(final Key key)
     {
@@ -26,6 +26,6 @@ public interface Attributed<Key, Value> extends Mixin
     @SuppressWarnings("Convert2MethodRef")
     private HashMap<Key, Value> map()
     {
-        return state(Attributed.class, () -> new HashMap<>());
+        return state(AttributedMixin.class, () -> new HashMap<>());
     }
 }
