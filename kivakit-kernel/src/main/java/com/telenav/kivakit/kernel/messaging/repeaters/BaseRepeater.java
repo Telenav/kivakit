@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.messaging.repeaters;
 
-import com.telenav.kivakit.kernel.language.trait.Trait;
+import com.telenav.kivakit.kernel.language.mixin.Mixin;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.Repeater;
@@ -31,7 +31,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * convenient way of implementing the {@link Repeater} interface by extension.
  *
  * <p>
- * If a class is already extending some other base class a stateful {@link RepeaterTrait} can be used:
+ * If a class is already extending some other base class a stateful {@link RepeaterMixin} can be used:
  * </p>
  *
  * <pre>
@@ -44,8 +44,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see Listener
  * @see Multicaster
  * @see Repeater
- * @see RepeaterTrait
- * @see Trait
+ * @see RepeaterMixin
+ * @see Mixin
  */
 @UmlClassDiagram(diagram = DiagramMessageRepeater.class)
 public class BaseRepeater extends Multicaster implements Repeater

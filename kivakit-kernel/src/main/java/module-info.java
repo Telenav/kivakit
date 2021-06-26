@@ -98,7 +98,7 @@ open module kivakit.kernel
     exports com.telenav.kivakit.kernel.language.time.conversion.converters;
     exports com.telenav.kivakit.kernel.language.time.conversion;
     exports com.telenav.kivakit.kernel.language.time;
-    exports com.telenav.kivakit.kernel.language.trait;
+    exports com.telenav.kivakit.kernel.language.mixin;
     exports com.telenav.kivakit.kernel.language.types;
     exports com.telenav.kivakit.kernel.language.values.count;
     exports com.telenav.kivakit.kernel.language.values.identifier;

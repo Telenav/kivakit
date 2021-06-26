@@ -2,8 +2,8 @@ package com.telenav.kivakit.kernel.messaging.repeaters;
 
 import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
 import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
+import com.telenav.kivakit.kernel.language.mixin.Mixin;
 import com.telenav.kivakit.kernel.language.threading.context.CodeContext;
-import com.telenav.kivakit.kernel.language.trait.Trait;
 import com.telenav.kivakit.kernel.messaging.Broadcaster;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
@@ -11,14 +11,14 @@ import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
- * A stateful {@link Trait} that can be used when a class can't extend {@link BaseRepeater} to implement the {@link
+ * A stateful {@link Mixin} that can be used when a class can't extend {@link BaseRepeater} to implement the {@link
  * Repeater} interface.
  *
  * @author jonathanl (shibo)
- * @see Trait
+ * @see Mixin
  */
 @LexakaiJavadoc(complete = true)
-public interface RepeaterTrait extends Trait, Repeater
+public interface RepeaterMixin extends Mixin, Repeater
 {
     @Override
     default void addListener(final Listener listener, final Filter<Transmittable> filter)
@@ -81,11 +81,11 @@ public interface RepeaterTrait extends Trait, Repeater
     }
 
     /**
-     * @return The {@link Repeater} implementation associated with this stateful trait
+     * @return The {@link Repeater} implementation associated with this mixin
      */
     default Repeater repeater()
     {
-        return trait(RepeaterTrait.class, BaseRepeater::new);
+        return state(RepeaterMixin.class, BaseRepeater::new);
     }
 
     @Override
