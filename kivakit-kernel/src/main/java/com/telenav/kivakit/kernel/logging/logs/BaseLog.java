@@ -108,7 +108,7 @@ public abstract class BaseLog implements Startable, Stoppable, Log
         if (isAsynchronous())
         {
             // when the VM shuts down
-            new KivaKitShutdownHook(LAST, () ->
+            KivaKitShutdownHook.register(LAST, () ->
             {
                 // flush asynchronous entries for up to one minute
                 flush(Duration.ONE_MINUTE);

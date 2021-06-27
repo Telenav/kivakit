@@ -56,6 +56,11 @@ public class KivaKitShutdownHook
         Runtime.getRuntime().addShutdownHook(shutdown);
     }
 
+    public static void register(final Order order, final Runnable code)
+    {
+        new KivaKitShutdownHook(order, code);
+    }
+
     /**
      * The order that a hook should be run in, either among the set of first hooks, or among the set of last hooks. The
      * only guarantee is that a hook that is FIRST will run before any hook that is LAST
@@ -72,7 +77,7 @@ public class KivaKitShutdownHook
 
     private final Runnable code;
 
-    public KivaKitShutdownHook(final Order order, final Runnable code)
+    private KivaKitShutdownHook(final Order order, final Runnable code)
     {
         synchronized (queue)
         {
