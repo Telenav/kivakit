@@ -39,6 +39,7 @@ import com.telenav.kivakit.kernel.language.strings.Align;
 import com.telenav.kivakit.kernel.language.strings.AsciiArt;
 import com.telenav.kivakit.kernel.language.strings.Strip;
 import com.telenav.kivakit.kernel.language.types.Classes;
+import com.telenav.kivakit.kernel.language.values.identifier.StringIdentifier;
 import com.telenav.kivakit.kernel.language.values.version.Version;
 import com.telenav.kivakit.kernel.language.vm.KivaKitShutdownHook;
 import com.telenav.kivakit.kernel.logging.Logger;
@@ -60,6 +61,8 @@ import com.telenav.lexakai.annotations.UmlNote;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
+import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -204,6 +207,28 @@ public abstract class Application extends BaseRepeater implements Named, Applica
     public static Application get()
     {
         return instance;
+    }
+
+    /**
+     * A unique string identifier for a KivaKit {@link Application}.
+     *
+     * @author jonathanl (shibo)
+     */
+    @Schema(description = "A unique identifier for a KivaKit application, provided by the Application base class",
+            example = "ServiceRegistryServer")
+    @UmlClassDiagram(diagram = DiagramApplication.class)
+    @UmlExcludeSuperTypes
+    @LexakaiJavadoc(complete = true)
+    public static class Identifier extends StringIdentifier
+    {
+        public Identifier(final String identifier)
+        {
+            super(identifier);
+        }
+
+        protected Identifier()
+        {
+        }
     }
 
     @UmlExcludeMember
@@ -412,9 +437,9 @@ public abstract class Application extends BaseRepeater implements Named, Applica
     }
 
     @UmlRelation(label = "identified by")
-    public ApplicationIdentifier identifier()
+    public Identifier identifier()
     {
-        return new ApplicationIdentifier(Classes.simpleName(getClass()));
+        return new Identifier(Classes.simpleName(getClass()));
     }
 
     public PropertyMap localizedProperties(final Locale locale)
