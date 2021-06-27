@@ -60,7 +60,7 @@ public class ConfigurationPackage extends ConfigurationSet
     private final PackagePath path;
 
     /** The configuration entries in this package */
-    private Set<ConfigurationEntry> configurations;
+    private Set<Entry> configurations;
 
     /**
      * @param path The path to the package where the configurations are stored
@@ -81,7 +81,7 @@ public class ConfigurationPackage extends ConfigurationSet
      */
     @Override
     @UmlExcludeMember
-    protected Set<ConfigurationEntry> onLoadConfigurations()
+    protected Set<Entry> onLoadConfigurations()
     {
         if (configurations == null)
         {

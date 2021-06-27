@@ -18,6 +18,8 @@
 
 package com.telenav.kivakit.configuration;
 
+import com.telenav.kivakit.configuration.deployment.Deployment;
+import com.telenav.kivakit.configuration.deployment.DeploymentSet;
 import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
 import com.telenav.kivakit.configuration.lookup.Registry;
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfiguration;
@@ -213,10 +215,10 @@ public class ConfigurationSet extends BaseRepeater implements Named, Iterable<Ob
 
     /** The set of configurations */
     @UmlAggregation
-    private final Set<ConfigurationEntry> configurations = new HashSet<>();
+    private final Set<Entry> configurations = new HashSet<>();
 
     /** Map to get configurations by identifier */
-    private final Map<ConfigurationIdentifier, ConfigurationEntry> identifierToConfiguration = new HashMap<>();
+    private final Map<Entry.ConfigurationIdentifier, Entry> identifierToConfiguration = new HashMap<>();
 
     /** True if the configurations in this set are loaded */
     private boolean loaded;
@@ -232,7 +234,7 @@ public class ConfigurationSet extends BaseRepeater implements Named, Iterable<Ob
      */
     public ConfigurationSet add(final Object configuration)
     {
-        internalAdd(new ConfigurationEntry(new ConfigurationIdentifier(configuration.getClass()), configuration));
+        internalAdd(new Entry(new Entry.ConfigurationIdentifier(configuration.getClass()), configuration));
         return this;
     }
 
@@ -262,7 +264,7 @@ public class ConfigurationSet extends BaseRepeater implements Named, Iterable<Ob
             return fail("To add a ConfigurationSet, call addSet()");
         }
 
-        internalAdd(new ConfigurationEntry(new ConfigurationIdentifier(configuration.getClass(), instance), configuration));
+        internalAdd(new Entry(new Entry.ConfigurationIdentifier(configuration.getClass(), instance), configuration));
 
         return this;
     }
@@ -328,7 +330,7 @@ public class ConfigurationSet extends BaseRepeater implements Named, Iterable<Ob
     @UmlRelation(label = "gets values")
     public <T> T get(final Class<T> type)
     {
-        return get(new ConfigurationIdentifier(type));
+        return get(new Entry.ConfigurationIdentifier(type));
     }
 
     /**
@@ -336,7 +338,7 @@ public class ConfigurationSet extends BaseRepeater implements Named, Iterable<Ob
      */
     public <T> T get(final Class<T> type, final InstanceIdentifier instance)
     {
-        return get(new ConfigurationIdentifier(type, instance));
+        return get(new Entry.ConfigurationIdentifier(type, instance));
     }
 
     /**
@@ -386,8 +388,8 @@ public class ConfigurationSet extends BaseRepeater implements Named, Iterable<Ob
     }
 
     /**
-     * @return An iterator over the underlying configuration {@link Object}s in this set (i.e., not the {@link
-     * ConfigurationEntry} objects)
+     * @return An iterator over the underlying configuration {@link Object}s in this set (i.e., not the {@link Entry}
+     * objects)
      */
     @NotNull
     @Override
@@ -396,7 +398,7 @@ public class ConfigurationSet extends BaseRepeater implements Named, Iterable<Ob
     {
         return asSet()
                 .stream()
-                .map(ConfigurationEntry::object)
+                .map(Entry::object)
                 .collect(Collectors.toSet())
                 .iterator();
     }
@@ -439,7 +441,7 @@ public class ConfigurationSet extends BaseRepeater implements Named, Iterable<Ob
 
     /** Adds the given configuration to this set */
     @UmlExcludeMember
-    protected void internalAdd(final ConfigurationEntry configuration)
+    protected void internalAdd(final Entry configuration)
     {
         assert configuration != null;
 
@@ -458,7 +460,7 @@ public class ConfigurationSet extends BaseRepeater implements Named, Iterable<Ob
             while (!at.equals(Object.class))
             {
                 // adding the configuration object for each superclass.
-                final var identifier = new ConfigurationIdentifier(at, instance);
+                final var identifier = new Entry.ConfigurationIdentifier(at, instance);
                 identifierToConfiguration.put(identifier, configuration);
                 at = at.getSuperclass();
 
@@ -483,7 +485,7 @@ public class ConfigurationSet extends BaseRepeater implements Named, Iterable<Ob
      * package)
      */
     @UmlExcludeMember
-    protected ConfigurationEntry internalLoadConfiguration(final Resource resource)
+    protected Entry internalLoadConfiguration(final Resource resource)
     {
         // Load the given properties
         trace("Loading configuration from $", resource);
@@ -507,7 +509,7 @@ public class ConfigurationSet extends BaseRepeater implements Named, Iterable<Ob
             trace("Loaded configuration: $", configuration);
 
             // and return the configuration set entry for the fully loaded configuration object
-            return new ConfigurationEntry(new ConfigurationIdentifier(configurationClass, identifier), configuration);
+            return new Entry(new Entry.ConfigurationIdentifier(configurationClass, identifier), configuration);
         }
         catch (final Exception e)
         {
@@ -519,13 +521,13 @@ public class ConfigurationSet extends BaseRepeater implements Named, Iterable<Ob
      * @return The set of loaded configurations
      */
     @UmlExcludeMember
-    protected Set<ConfigurationEntry> onLoadConfigurations()
+    protected Set<Entry> onLoadConfigurations()
     {
         return Set.of();
     }
 
-    /** Gets a <b>copy</b> of the {@link ConfigurationEntry} objects in this set, loading them if need be */
-    private Set<ConfigurationEntry> asSet()
+    /** Gets a <b>copy</b> of the {@link Entry} objects in this set, loading them if need be */
+    private Set<Entry> asSet()
     {
         return lock.write(() ->
         {
@@ -537,7 +539,7 @@ public class ConfigurationSet extends BaseRepeater implements Named, Iterable<Ob
     /**
      * @return The configuration for the given identifier
      */
-    private <T> T get(final ConfigurationIdentifier identifier)
+    private <T> T get(final Entry.ConfigurationIdentifier identifier)
     {
         return lock.read(() ->
         {

@@ -42,14 +42,14 @@ import java.util.Map;
  *
  * void initialize()
  * {
- *     Registry.global().register(new Server(), WEB);
+ *     Registry.of(this).register(new Server(), WEB);
  * }
  *
  *     [...]
  *
  * void doit()
  * {
- *     var server = Registry.global().lookup(Server.class, WEB);
+ *     var server = Registry.of(this).lookup(Server.class, WEB);
  *
  *         [...]
  * }

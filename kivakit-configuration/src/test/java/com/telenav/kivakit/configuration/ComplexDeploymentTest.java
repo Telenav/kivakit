@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.configuration;
 
+import com.telenav.kivakit.configuration.deployment.Deployment;
 import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.test.UnitTest;

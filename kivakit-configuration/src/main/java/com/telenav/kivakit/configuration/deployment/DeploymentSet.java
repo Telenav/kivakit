@@ -16,9 +16,10 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.configuration;
+package com.telenav.kivakit.configuration.deployment;
 
 import com.telenav.kivakit.commandline.SwitchParser;
+import com.telenav.kivakit.configuration.ConfigurationSet;
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfiguration;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;

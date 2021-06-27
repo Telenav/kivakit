@@ -60,9 +60,9 @@ public class ConfigurationFolder extends ConfigurationSet
      */
     @Override
     @UmlExcludeMember
-    protected Set<ConfigurationEntry> onLoadConfigurations()
+    protected Set<Entry> onLoadConfigurations()
     {
-        final Set<ConfigurationEntry> configurations = new HashSet<>();
+        final Set<Entry> configurations = new HashSet<>();
 
         // Go through properties files in the folder
         for (final var file : folder.files().matching(Extension.PROPERTIES.fileMatcher()))

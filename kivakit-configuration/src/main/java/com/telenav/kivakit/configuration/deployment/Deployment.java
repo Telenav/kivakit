@@ -16,9 +16,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.configuration;
+package com.telenav.kivakit.configuration.deployment;
 
 import com.telenav.kivakit.commandline.SwitchParser;
+import com.telenav.kivakit.configuration.ConfigurationFolder;
+import com.telenav.kivakit.configuration.ConfigurationPackage;
+import com.telenav.kivakit.configuration.ConfigurationSet;
 import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfiguration;
 import com.telenav.kivakit.filesystem.Folder;
@@ -295,14 +298,14 @@ public class Deployment extends ConfigurationSet implements Named, Serializable
     @Override
     public Deployment addPackage(final PackagePath path)
     {
-        addSet(listenTo(new ConfigurationPackage(path)));
+        addSet(listenTo(ConfigurationPackage.of(path)));
         return this;
     }
 
     @Override
     public Deployment addPackage(final Class<?> relativeTo, final String path)
     {
-        addSet(listenTo(new ConfigurationPackage(PackagePath.parsePackagePath(relativeTo, path))));
+        addSet(listenTo(ConfigurationPackage.of(PackagePath.parsePackagePath(relativeTo, path))));
         return this;
     }
 

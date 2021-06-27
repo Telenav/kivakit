@@ -26,7 +26,7 @@ import com.telenav.kivakit.commandline.CommandLine;
 import com.telenav.kivakit.commandline.CommandLineParser;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.configuration.ConfigurationSet;
-import com.telenav.kivakit.configuration.Deployment;
+import com.telenav.kivakit.configuration.deployment.Deployment;
 import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
 import com.telenav.kivakit.configuration.lookup.Registry;
 import com.telenav.kivakit.configuration.settings.Settings;

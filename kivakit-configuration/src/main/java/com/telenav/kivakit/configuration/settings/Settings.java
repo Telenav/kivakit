@@ -21,7 +21,7 @@ package com.telenav.kivakit.configuration.settings;
 import com.telenav.kivakit.configuration.ConfigurationFolder;
 import com.telenav.kivakit.configuration.ConfigurationPackage;
 import com.telenav.kivakit.configuration.ConfigurationSet;
-import com.telenav.kivakit.configuration.Deployment;
+import com.telenav.kivakit.configuration.deployment.Deployment;
 import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
 import com.telenav.kivakit.configuration.lookup.Registry;
 import com.telenav.kivakit.filesystem.Folder;
