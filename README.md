@@ -12,6 +12,10 @@
 <img src="https://www.kivakit.org/images/zulip-32.png" srcset="https://www.kivakit.org/images/zulip-32-2x.png 2x"/>
 </a>
 
+<a href="https://state-of-the-art.com">
+<img src="https://www.kivakit.org/images/blog-32.png" srcset="https://www.kivakit.org/images/blog-32-2x.png 2x"/>
+</a>
+
 <p></p>
 
 <img src="https://www.kivakit.org/images/kivakit-background.png" srcset="https://www.kivakit.org/images/kivakit-background-2x.png 2x"/>
