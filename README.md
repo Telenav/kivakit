@@ -11,7 +11,7 @@
 <a href="https://kivakit.zulipchat.com">
 <img src="https://www.kivakit.org/images/zulip-32.png" srcset="https://www.kivakit.org/images/zulip-32-2x.png 2x"/>
 </a>
-
+&nbsp;
 <a href="https://state-of-the-art.org">
 <img src="https://www.kivakit.org/images/blog-32.png" srcset="https://www.kivakit.org/images/blog-32-2x.png 2x"/>
 </a>
