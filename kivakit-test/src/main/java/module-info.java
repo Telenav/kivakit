@@ -2,7 +2,7 @@ open module kivakit.test
 {
     requires transitive kivakit.kernel;
 
-    requires transitive junit;
+    requires junit;
 
     exports com.telenav.kivakit.test.annotations;
     exports com.telenav.kivakit.test.project.lexakai.diagrams;

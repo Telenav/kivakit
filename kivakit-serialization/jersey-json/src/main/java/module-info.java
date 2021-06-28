@@ -1,5 +1,6 @@
 open module kivakit.serialization.jersey.json
 {
+    requires transitive kivakit.kernel;
     requires transitive kivakit.serialization.json;
 
     requires transitive java.ws.rs;
