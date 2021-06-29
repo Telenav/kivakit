@@ -31,8 +31,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * <p>
  * <b>Example</b>
  * <pre>
- *  private static final Lazy&lt;EdgeAttributes&gt; singleton =
- *      new Lazy&lt;&gt;(EdgeAttributes::new);
+ *  private static Lazy&lt;EdgeAttributes&gt; singleton = Lazy.of(EdgeAttributes::new);
  * </pre>
  *
  * @param <Value> The type of value to create
@@ -41,7 +40,10 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramLanguageObject.class)
 public class Lazy<Value> implements Loadable, Unloadable
 {
-    public static <Type> Lazy<Type> of(final Factory<Type> factory)
+    /**
+     * Factory method to create a Lazy object with the given value factory
+     */
+    public static <V> Lazy<V> of(final Factory<V> factory)
     {
         return new Lazy<>(factory);
     }
