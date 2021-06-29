@@ -163,16 +163,16 @@ git_flow_release_start() {
     git checkout release/$version
 
     # and update its version
-    bash $project_name-update-version.sh $version
+    bash $project_name-release-update-version.sh $version
 
     echo " "
-    echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Branch Created  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
+    echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Branch Created  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
     echo "┋"
     echo "┋  VERSION: $version"
     echo "┋"
-    echo "┋  1. A new release branch 'release/$version' has been created using git flow."
-    echo "┋  2. POM files and other version-related information in this branch has been updated to $version."
-    echo "┋  3. When the release branch is FULLY READY, run the release finish script to merge the branch into master."
+    echo "┋  1. A new release branch 'release/$version' has been created using git flow"
+    echo "┋  2. POM files and other version-related information in this branch has been updated to $version"
+    echo "┋  3. When the release branch is FULLY READY, run the release finish script to merge the branch into master"
     echo "┋"
     echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
     echo " "
@@ -191,12 +191,13 @@ git_flow_release_finish() {
     git push origin --tags
 
     echo " "
-    echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Merged and Published  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
+    echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Merged to Master and Ready to Publish  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
     echo "┋"
     echo "┋  VERSION: $version"
     echo "┋"
-    echo "┋  1. The branch 'release/$version' has been merged into master using git flow."
-    echo "┋  2. Artifacts from the release will be published shortly by Jenkins"
+    echo "┋  1. The branch 'release/$version' has been merged into master using git flow"
+    echo "┋  2. Artifacts from the release will now be built by GitHub"
+    echo "┋  3. When this succeeds, the release branch can be published on Maven Central using maven or GitHub actions"
     echo "┋"
     echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
     echo " "
@@ -295,8 +296,8 @@ is_mac() {
 
 lexakai() {
 
-    lexakai_download_version="0.9.8-alpha-SNAPSHOT"
-    lexakai_download_snapshot_version="20210524.201749-4"
+    lexakai_download_version="0.9.8-beta"
+    lexakai_download_snapshot_version=""
 
     lexakai_downloads="$HOME/.lexakai/downloads"
 

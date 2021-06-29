@@ -33,7 +33,7 @@ public class VersionTest
         ensure(Version.parse("2.0").isNewerThan(Version.parse("1.9.1-rc")));
         ensure(Version.parse("1.9").isOlderThan(Version.parse("1.9.1-rc")));
         ensure(Version.parse("1.9.3").isNewerThan(Version.parse("1.9.1-rc")));
-        ensure(Version.parse("1.9.2-alpha").isOlderThan(Version.parse("1.9.3")));
+        ensure(Version.parse("1.9.2-m3").isOlderThan(Version.parse("1.9.3")));
         ensure(Version.parse("4.9.1-beta").isNewerThan(Version.parse("1.9.3")));
         ensure(Version.of(1, 0).isNewerThan(Version.of(0, 9)));
         ensure(Version.parse("1.9").isNewerThan(Version.parse("0.9")));

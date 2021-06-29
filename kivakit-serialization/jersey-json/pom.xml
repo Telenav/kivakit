@@ -10,7 +10,7 @@
     <parent>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-serialization</artifactId>
-        <version>0.9.8-alpha-SNAPSHOT</version>
+        <version>0.9.8-beta</version>
     </parent>
 
     <name>KivaKit - Serialization - Jersey JSON</name>
