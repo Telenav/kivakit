@@ -4,8 +4,7 @@
 
 This section documents how to release a new version of KivaKit, step by step.
 
-In the text below *\[kivakit-version\]* refers to a [semantic versioning](https://semver.org) identifier, such
-as 2.1.7 or 1.0.0-beta.
+In the text below *\[kivakit-version\]* refers to a [semantic versioning](https://semver.org) identifier, such as 2.1.7 or 1.0.0-beta.
 
 KivaKit adheres to the standard [Git Flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) branching model.
 
@@ -25,13 +24,11 @@ Restart your terminal window to ensure environment variables are updated.
 
 ### 2. Preparing the Release &nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
-Once the release branch has been created, several steps need to be performed manually to prepare
-the branch for publication.
+Once the release branch has been created, several steps need to be performed manually to prepare the branch for publication.
 
 #### 2.1 Building the Release
 
-In order to ensure that the build will work on the build server, it is a good idea to completely
-clean out your maven repository and cache folders by building the project completely from scratch:
+In order to ensure that the build will work on the build server, it is a good idea to completely clean out your maven repository and cache folders by building the project completely from scratch:
 
     kivakit-build.sh all sparkling
 
@@ -51,10 +48,10 @@ The following command will build Javadoc, UML diagrams and update project README
 
 To publish code flowers for the build:
 
-1. Run *kivakit-build-codeflowers.sh* to build codeflowers for KivaKit
-2. Insert in *$KIVAKIT\_HOME/tools/codeflowers/site/index.html* the HTML code output by the build process
-   This will change the options in the dropdown to include any new projects
-3. Run *kivakit-upload-codeflowers.sh* to install the codeflowers on their web server
+1. Change your current directory to: kivakit-assets/docs/codeflowers
+2. Run *./kivakit-build-codeflowers.sh* to build codeflowers for KivaKit
+3. Insert into *site/index.html* the HTML code output by the build process. This will change the options in the dropdown to include any new projects.
+4. Commit your changes to kivakit-assets
 
 #### 2.4 Commit Changes
 
