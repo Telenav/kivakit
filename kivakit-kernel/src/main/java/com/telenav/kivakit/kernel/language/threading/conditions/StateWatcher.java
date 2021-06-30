@@ -86,6 +86,11 @@ public class StateWatcher<State>
     /** The most recently reported state */
     private volatile State current;
 
+    public StateWatcher(final State current)
+    {
+        this.current = current;
+    }
+
     /**
      * Signals any waiters if the state they are waiting for has arrived
      */

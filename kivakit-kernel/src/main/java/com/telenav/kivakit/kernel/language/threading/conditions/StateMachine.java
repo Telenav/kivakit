@@ -81,11 +81,11 @@ import java.util.function.Predicate;
 @UmlClassDiagram(diagram = DiagramLanguageThreadSynchronization.class)
 public class StateMachine<State> extends BaseRepeater
 {
-    /** The current state of the receiver */
+    /** The current state */
     private State at;
 
     /** Watches the state */
-    private transient final StateWatcher<State> watcher = new StateWatcher<>();
+    private final transient StateWatcher<State> watcher;
 
     /** Listener to call when state transitions occur */
     private final Receiver<State> receiver;
@@ -99,6 +99,7 @@ public class StateMachine<State> extends BaseRepeater
     {
         at = initial;
         this.receiver = receiver;
+        watcher = new StateWatcher<>(initial);
     }
 
     public State at()
@@ -235,6 +236,15 @@ public class StateMachine<State> extends BaseRepeater
         return transition(from, to, waitFor, Duration.MAXIMUM, before);
     }
 
+    public void transitionAndWaitFor(final State state)
+    {
+        whileLocked(() ->
+        {
+            transitionTo(state);
+            waitFor(state);
+        });
+    }
+
     public void transitionAndWaitForNot(final State state)
     {
         whileLocked(() ->
@@ -261,7 +271,7 @@ public class StateMachine<State> extends BaseRepeater
             trace("$ => $", prior, at);
 
             // signal any waiting threads that there is a new state,
-            watcher.signal(at);
+            this.watcher.signal(at);
 
             // and if there is a state receiver,
             if (receiver != null)

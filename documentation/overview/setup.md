@@ -13,8 +13,8 @@ You will need these products, or compatible products, set up to begin:
 1. Latest Git
 2. Latest GitFlow.  To install on macOS, install *Homebrew* and then use that to install git-flow:
    
-       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-       brew install git-flow
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"  
+        brew install git-flow
 
 2. Latest [Java 12](https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html)
 3. Latest [Maven](https://maven.apache.org/download.cgi)
@@ -26,25 +26,28 @@ You will need these products, or compatible products, set up to begin:
 The KivaKit project will look roughly like this when we're done with the setup process:
 
 > * Workspace
->   * kivakit
->     * kivakit-core
->     * kivakit-filesystems
->     * [...]
+>     * kivakit
+>         * kivakit-core
+>         * kivakit-filesystems
+>         * [...]
 
-Notice how the *kivakit* project (**KIVAKIT_HOME**) is checked out in the IDE workspace called
-*Workspace* (**KIVAKIT_WORKSPACE**).
+Notice how the *kivakit* project (**KIVAKIT_HOME**) is checked out in the IDE workspace called *Workspace* (**KIVAKIT_WORKSPACE**).
 
 To check out the *kivakit* project:
 
 1. If you're running macOS, and you want to switch your shell from *zsh* to *bash*, type:
 
-       chsh -s /bin/bash
+        chsh -s /bin/bash
 
 2. Open a *bash* shell and go to your IDE workspace (the folder *Workspace* above)
-3. Clone the *kivakit* git repository into your workspace
+3. Clone the *kivakit* git repository into your workspace:
 
-       cd Workspace 
-       git clone https://github.com/Telenav/kivakit.git
+        cd Workspace  
+        git clone https://github.com/Telenav/kivakit.git
+       
+4. Switch to the develop branch:
+   
+        git checkout develop
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
@@ -60,17 +63,17 @@ On macOS or UNIX, you can use a sample *.profile* from KivaKit to configure your
 
 1. Install the KivaKit *profile* sample from the *kivakit* project as shown here (or merge it into your existing .profile):
 
-       cp kivakit/setup/profile $HOME/.profile
+        cp kivakit/setup/profile $HOME/.profile
 
 2. Make sure that the **M2_HOME** and **JAVA_HOME** environment variables defined in the *.profile* 
    point to your Maven and Java installations
 
-       export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-12.0.2.jdk/Contents/Home 
-       export M2_HOME=$HOME/Developer/apache-maven-3.6.3
+        export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-12.0.2.jdk /Contents/Home  
+        export M2_HOME=$HOME/Developer/apache-maven-3.6.3
 
 3. Change the **KIVAKIT_WORKSPACE** variable to point to your IDE workspace (**Workspace**).
 
-       export KIVAKIT_WORKSPACE=$HOME/Workspace
+        export KIVAKIT_WORKSPACE=$HOME/Workspace
 
    > **KIVAKIT_WORKSPACE** must point to your *IDE workspace* **NOT** the *kivakit* project in the workspace
 
@@ -86,18 +89,18 @@ which will install both git, and a bash shell.
 1. Install KivaKit *.profile* sample from the *kivakit* project as shown here 
    (or merge it into your existing .profile):
 
-       cp kivakit/setup/profile $HOME/.profile
+        cp kivakit/setup/profile $HOME/.profile
 
 2. Make sure that the **M2_HOME** and **JAVA_HOME** environment variables defined in the *.profile*
    point to your Maven and Java installations
 
-       export JAVA_HOME=/c/Program\\ Files/Java/jdk-12.0.2 
-       export M2_HOME=$HOME/Tools/apache-maven-3.6.3
+        export JAVA_HOME=/c/Program\\ Files/Java/jdk-12.0.2 
+        export M2_HOME=$HOME/Tools/apache-maven-3.6.3
 
 3. Change the **KIVAKIT_WORKSPACE** variable to point to your IDE workspace (**$HOME/Workspace**).
    _Do not set KIVAKIT_HOME._
 
-       export KIVAKIT_WORKSPACE=$HOME/Workspace
+        export KIVAKIT_WORKSPACE=$HOME/Workspace
 
 4. Set **KIVAKIT_WORKSPACE** and **KIVAKIT_HOME** in your system or account properties.
 

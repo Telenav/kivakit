@@ -86,7 +86,7 @@ public abstract class BaseLog implements Startable, Stoppable, Log
 
     private final ArrayBlockingQueue<LogEntry> queue = new ArrayBlockingQueue<>(queueSize());
 
-    final StateWatcher<Boolean> queueEmpty = new StateWatcher<>();
+    final StateWatcher<Boolean> queueEmpty = new StateWatcher<>(true);
 
     @KivaKitIncludeProperty
     private final List<Filter<LogEntry>> filters = new ArrayList<>();

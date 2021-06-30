@@ -462,7 +462,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
      */
     public void whileLocked(final Runnable code)
     {
-        state.whileLocked(code);
+        state().whileLocked(code);
     }
 
     /**
@@ -470,7 +470,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
      */
     public <T> T whileLocked(final Code<T> code)
     {
-        return state.whileLocked(code);
+        return state().whileLocked(code);
     }
 
     /**
@@ -493,7 +493,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
      */
     protected void onRun()
     {
-        Ensure.ensureNotNull(code, "Must either provide code to thread constructor or implement onRun()");
+        Ensure.ensureNotNull(code, "Must either provide code to thread constructor or override onRun()");
         code.run();
     }
 
