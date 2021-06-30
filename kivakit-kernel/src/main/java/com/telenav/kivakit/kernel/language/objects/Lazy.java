@@ -73,7 +73,7 @@ public class Lazy<Value> implements Loadable, Unloadable
     /**
      * @return The value
      */
-    public final Value get()
+    public synchronized final Value get()
     {
         load();
         return value;
@@ -85,7 +85,7 @@ public class Lazy<Value> implements Loadable, Unloadable
     }
 
     @Override
-    public synchronized void load()
+    public void load()
     {
         if (value == null)
         {

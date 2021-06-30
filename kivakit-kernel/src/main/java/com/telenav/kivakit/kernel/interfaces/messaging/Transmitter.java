@@ -42,7 +42,7 @@ import java.util.function.Supplier;
 public interface Transmitter<T>
 {
     /**
-     * Receives the given value
+     * Transmits the given value
      */
     void transmit(T value);
 }

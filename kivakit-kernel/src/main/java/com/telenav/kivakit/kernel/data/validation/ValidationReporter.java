@@ -43,6 +43,12 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramDataValidationReporter.class)
 public interface ValidationReporter extends Listener
 {
+    @Override
+    default void onMessage(final Message message)
+    {
+        report(message);
+    }
+
     /**
      * Reports a validation issue
      */
