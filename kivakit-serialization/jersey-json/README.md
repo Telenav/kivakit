@@ -30,14 +30,14 @@ This module defines JSON serialization for use with Jersey.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/dependencies-32.png" srcset="https://www.kivakit.org/images/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/lexakai/kivakit/kivakit-serialization/jersey-json/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/0.9.9-SNAPSHOT/lexakai/kivakit/kivakit-serialization/jersey-json/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-serialization-jersey-json</artifactId>
-        <version>0.9.8-alpha-SNAPSHOT</version>
+        <version>0.9.9-SNAPSHOT</version>
     </dependency>
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
@@ -60,8 +60,8 @@ None
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
-[*com.telenav.kivakit.serialization.jersey.json*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/lexakai/kivakit/kivakit-serialization/jersey-json/documentation/diagrams/com.telenav.kivakit.serialization.jersey.json.svg)  
-[*com.telenav.kivakit.serialization.jersey.json.project*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/lexakai/kivakit/kivakit-serialization/jersey-json/documentation/diagrams/com.telenav.kivakit.serialization.jersey.json.project.svg)
+[*com.telenav.kivakit.serialization.jersey.json*](https://www.kivakit.org/0.9.9-SNAPSHOT/lexakai/kivakit/kivakit-serialization/jersey-json/documentation/diagrams/com.telenav.kivakit.serialization.jersey.json.svg)  
+[*com.telenav.kivakit.serialization.jersey.json.project*](https://www.kivakit.org/0.9.9-SNAPSHOT/lexakai/kivakit/kivakit-serialization/jersey-json/documentation/diagrams/com.telenav.kivakit.serialization.jersey.json.project.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
@@ -76,8 +76,8 @@ Javadoc coverage for this project is 83.3%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*JerseyGsonSerializer*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.serialization.jersey.json/com/telenav/kivakit/serialization/jersey/json/JerseyGsonSerializer.html) |  |  
-| [*SerializationJerseyJsonProject*](https://www.kivakit.org/0.9.8-alpha-SNAPSHOT/javadoc/kivakit/kivakit.serialization.jersey.json/com/telenav/kivakit/serialization/jersey/json/project/SerializationJerseyJsonProject.html) |  |  
+| [*JerseyGsonSerializer*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.serialization.jersey.json/com/telenav/kivakit/serialization/jersey/json/JerseyGsonSerializer.html) |  |  
+| [*SerializationJerseyJsonProject*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.serialization.jersey.json/com/telenav/kivakit/serialization/jersey/json/project/SerializationJerseyJsonProject.html) |  |  
 
 [//]: # (start-user-text)
 

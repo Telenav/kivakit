@@ -1,0 +1,16 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.network.core.cluster"
+    
+    StringIdentifier <|-- ClusterIdentifier
+    class ClusterIdentifier
+    {
+        --(constructors)--
+        #ClusterIdentifier()
+        +ClusterIdentifier(String)
+    }
+    
+@enduml
+

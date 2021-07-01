@@ -295,8 +295,8 @@ is_mac() {
 
 lexakai() {
 
-    lexakai_download_version="0.9.8-alpha-SNAPSHOT"
-    lexakai_download_snapshot_version="20210524.201749-4"
+    lexakai_download_version="0.9.8-beta"
+    lexakai_download_snapshot_version=""
 
     lexakai_downloads="$HOME/.lexakai/downloads"
 
@@ -322,6 +322,8 @@ lexakai() {
     fi
 
     # -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=1044
+    echo "java -jar $lexakai_jar -overwrite-resources=true -update-readme=true $@"
+
     java -jar $lexakai_jar -overwrite-resources=true -update-readme=true $@
 }
 

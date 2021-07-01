@@ -1,0 +1,17 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.commandline.project"
+    
+    Project <|-- CoreCommandLineProject
+    class CoreCommandLineProject
+    {
+        --(constructors)--
+        #CoreCommandLineProject()
+        --(command line parsing)--
+        +CoreCommandLineProject get()
+    }
+    
+@enduml
+

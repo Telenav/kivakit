@@ -1,0 +1,88 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.network.ftp.secure"
+    
+    abstract BaseNetworkResource
+    
+    class SecureFtpConnector
+    {
+        --(constructors)--
+        +SecureFtpConnector(NetworkAccessConstraints)
+        --
+        +void connect(NetworkLocation)
+        +void disconnect()
+        +void get(NetworkLocation, WritableResource destination)
+        +void safeDisconnect()
+        --(checks)--
+        +boolean isConnected()
+        --(filesystem)--
+        +ObjectList<LsEntry> listFiles(NetworkLocation)
+        --(read)--
+        +InputStream get(NetworkLocation)
+    }
+    
+    InputStream <|-- SecureFtpInput
+    SecureFtpInput o-- SecureFtpConnector : "connects with"
+    class SecureFtpInput
+    {
+        --(network)--
+        #SecureFtpInput forConnectorAndLocation(SecureFtpConnector, NetworkLocation)
+        --(primitive)--
+        +Bytes getBufferSize()
+    }
+    
+    NetworkLocation <|-- SecureFtpNetworkLocation
+    SecureFtpNetworkLocation --> SecureFtpResource : "creates"
+    class SecureFtpNetworkLocation
+    {
+        --(constructors)--
+        +SecureFtpNetworkLocation(NetworkPath)
+        --(network)--
+        +SecureFtpResource resource(NetworkAccessConstraints)
+    }
+    
+    BaseNetworkResource <|-- SecureFtpResource
+    SecureFtpResource --> InputStream : "reads"
+    SecureFtpResource o-- NetworkLocation : "accesses"
+    class SecureFtpResource
+    {
+        --(constructors)--
+        +SecureFtpResource(NetworkLocation, NetworkAccessConstraints)
+        --
+        +void disconnect()
+        --(extension points)--
+        +^InputStream onOpenForReading()
+        --(filesystem)--
+        +ObjectList<LsEntry> listFiles()
+    }
+    
+    class SecureFtpSettings
+    {
+        --(constructors)--
+        +SecureFtpSettings(Host, UserName, Password, Duration)
+        --
+        +void password(Password)
+        +Password password()
+        +void username(UserName)
+        --(naming)--
+        +UserName userName()
+        --(network)--
+        +Host host()
+        +void host(Host)
+        +Duration timeout()
+        +void timeout(Duration timeout)
+    }
+    
+    PeriodicCollectionChangeWatcher <|-- SftpFolderWatcher
+    SftpFolderWatcher --> SecureFtpConnector : "connects with"
+    SftpFolderWatcher o-- SecureFtpSettings
+    class SftpFolderWatcher
+    {
+        --(constructors)--
+        +SftpFolderWatcher(Frequency, SecureFtpSettings, SecureFtpNetworkLocation)
+    }
+    
+@enduml
+

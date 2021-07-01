@@ -23,9 +23,8 @@ public interface AttributedMixin<Key, Value> extends Mixin
         return map().put(key, value);
     }
 
-    @SuppressWarnings("Convert2MethodRef")
     private HashMap<Key, Value> map()
     {
-        return state(AttributedMixin.class, () -> new HashMap<>());
+        return state(AttributedMixin.class, HashMap::new);
     }
 }

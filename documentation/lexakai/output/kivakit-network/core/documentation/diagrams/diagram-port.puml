@@ -1,0 +1,121 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "Hosts, Ports and Protocols"
+    
+    interface AsString
+    interface Named
+    interface Comparable
+    
+    Named <|-- Host
+    AsString <|-- Host
+    Comparable <|-- Host
+    class Host
+    {
+        --(constructors)--
+        #Host(String)
+        #Host(String, String)
+        +Host(InetAddress, String)
+        +Host(InetAddress, String, String)
+        --
+        +InetAddress address()
+        +String description()
+        +void resolveAddress()
+        --(checks)--
+        +boolean isLocal()
+        +boolean isResolvable()
+        --(naming)--
+        +String canonicalName()
+        --(network)--
+        +Port ftp(int port)
+        +Port ftp()
+        +Port hazelcast(int port)
+        +Port hazelcast()
+        +SwitchParser.Builder<Host> host(String name, String description)
+        +SwitchParser.Builder<ObjectList<Host>> hostList(String name, String description, String delimiter)
+        +Port http(int port)
+        +Port http()
+        +Port https()
+        +Port https(int port)
+        +Host local()
+        +Host loopback()
+        +Port mongo(int port)
+        +Port mongo()
+        +Port mysql(int port)
+        +Port mysql()
+        +SwitchParser.Builder<NetworkPath> networkFilePath(String name, String description)
+        +Host parse(String name, String description)
+        +Host parse(String name)
+        +Port port(int number)
+        +Port port(Protocol, int number)
+        +SwitchParser.Builder<Port> port(String name, String description)
+        +SwitchParser.Builder<ObjectList<Port>> portList(String name, String description, String delimiter)
+        +Port sftp()
+        +Port sftp(int port)
+    }
+    
+    Host <|-- LocalHost
+    class LocalHost
+    {
+        --(constructors)--
+        #LocalHost()
+        --
+        +String hostname()
+        --(network)--
+        +LocalHost get()
+    }
+    
+    Host <|-- Loopback
+    class Loopback
+    {
+        --(constructors)--
+        #Loopback()
+        --
+        +Loopback get()
+    }
+    
+    Port o-- Host
+    Port o-- Protocol : "speaks"
+    class Port
+    {
+        --(constructors)--
+        #Port()
+        +Port(Host, Protocol, int)
+        +Port(Host, int)
+        +Port(InetSocketAddress, Protocol, String)
+        --
+        +int number()
+        +Socket socket()
+        --(checks)--
+        +boolean isAvailable()
+        --(conversion)--
+        +InetSocketAddress asInetSocketAddress()
+        --(network)--
+        +URI asUri()
+        +Protocol defaultProtocol()
+        +Port from(URI)
+        +Host host()
+        +boolean isHttp()
+        +Port parse(String port)
+        +NetworkPath path(String path)
+        +Protocol protocol()
+        +Port protocol(Protocol)
+        +Port resolve()
+        --(read)--
+        +InputStream open()
+    }
+    
+    Name <|-- Protocol
+    class Protocol
+    {
+        --(constructors)--
+        +Protocol(String, int)
+        --(network)--
+        +int defaultPort()
+        +Protocol forName(String name)
+        +Protocol forPort(int port)
+    }
+    
+@enduml
+

@@ -1,0 +1,57 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.commandline.parsing"
+    
+    abstract BaseValidator
+    
+    ArgumentParserList "1" o-- "*" ArgumentParser
+    -class ArgumentParserList
+    {
+        --
+        +String help()
+        --(collection)--
+        +boolean add(ArgumentParser<?>)
+        +boolean isEmpty()
+    }
+    
+    BaseValidator <|-- ArgumentValidator
+    ArgumentValidator o-- ArgumentList
+    ArgumentValidator o-- ArgumentParserList
+    -class ArgumentValidator
+    {
+        --(constructors)--
+        +ArgumentValidator(ArgumentParserList, ArgumentList)
+    }
+    
+    SwitchList "1" o-- "*" Switch
+    -class SwitchList
+    {
+        --(collection)--
+        +void add(Switch _switch)
+        --(command line parsing)--
+        +T get(SwitchParser<T>)
+    }
+    
+    SwitchParserList "1" o-- "*" SwitchParser
+    -class SwitchParserList
+    {
+        --
+        +String help()
+        --(command line parsing)--
+        +void add(SwitchParser<?>)
+        +SwitchParser<?> forName(String name)
+    }
+    
+    BaseValidator <|-- SwitchValidator
+    SwitchValidator o-- SwitchList
+    SwitchValidator o-- SwitchParserList
+    -class SwitchValidator
+    {
+        --(constructors)--
+        +SwitchValidator(SwitchParserList, SwitchList)
+    }
+    
+@enduml
+

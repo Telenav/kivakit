@@ -1,0 +1,48 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.network.email.converters"
+    
+    abstract BaseListConverter
+    abstract BaseCollectionConverter
+    abstract BaseSetConverter
+    abstract BaseStringConverter
+    
+    BaseCollectionConverter <|-- AttachmentConverter
+    class AttachmentConverter
+    {
+        --(constructors)--
+        +AttachmentConverter(Listener)
+    }
+    
+    BaseListConverter <|-- AttachmentListConverter
+    class AttachmentListConverter
+    {
+        --(constructors)--
+        +AttachmentListConverter(Listener)
+    }
+    
+    BaseCollectionConverter <|-- BodyConverter
+    class BodyConverter
+    {
+        --(constructors)--
+        +BodyConverter(Listener)
+    }
+    
+    BaseStringConverter <|-- EmailAddressConverter
+    class EmailAddressConverter
+    {
+        --(constructors)--
+        +EmailAddressConverter(Listener)
+    }
+    
+    BaseSetConverter <|-- EmailAddressSetConverter
+    class EmailAddressSetConverter
+    {
+        --(constructors)--
+        +EmailAddressSetConverter(Listener)
+    }
+    
+@enduml
+

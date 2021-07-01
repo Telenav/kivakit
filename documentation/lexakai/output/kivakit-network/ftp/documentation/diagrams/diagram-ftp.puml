@@ -1,0 +1,46 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "FTP"
+    
+    abstract BaseNetworkResource
+    
+    NetworkLocation <|-- FtpNetworkLocation
+    FtpNetworkLocation --> FtpResource : "creates"
+    FtpNetworkLocation o-- FtpNetworkLocation.Mode : "transfers in mode"
+    class FtpNetworkLocation
+    {
+        --(constructors)--
+        +FtpNetworkLocation(NetworkPath)
+        --
+        +void mode(Mode)
+        --(network)--
+        +Mode mode()
+        +FtpResource resource(NetworkAccessConstraints)
+    }
+    
+    BaseNetworkResource <|-- FtpResource
+    class FtpResource
+    {
+        --(constructors)--
+        +FtpResource(NetworkLocation, NetworkAccessConstraints)
+        --
+        +void clean()
+        +void disconnect()
+        --(checks)--
+        +boolean isConnected()
+        --(filesystem)--
+        +List<FtpResource> files()
+        +ObjectList<FTPFile> listFiles(NetworkPath)
+        +InputStream openBinaryFileForReading()
+    }
+    
+    enum FtpNetworkLocation.Mode
+    {
+        Active
+        Passive
+    }
+    
+@enduml
+
