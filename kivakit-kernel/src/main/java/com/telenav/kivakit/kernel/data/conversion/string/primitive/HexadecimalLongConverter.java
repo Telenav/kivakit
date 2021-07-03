@@ -79,7 +79,7 @@ public class HexadecimalLongConverter extends BaseStringConverter<Long>
      */
     @Override
     @UmlExcludeMember
-    protected Long onConvertToObject(final String value)
+    protected Long onToValue(final String value)
     {
         if (value.startsWith(style.prefix))
         {

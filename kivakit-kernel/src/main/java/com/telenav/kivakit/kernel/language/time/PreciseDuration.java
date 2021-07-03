@@ -214,6 +214,6 @@ public class PreciseDuration
      */
     private String unitString(final double value, final String units)
     {
-        return new FormattedDoubleConverter(LOGGER).toString(value) + " " + units + (value > 1.0 ? "s" : "");
+        return new FormattedDoubleConverter(LOGGER).unconvert(value) + " " + units + (value > 1.0 ? "s" : "");
     }
 }

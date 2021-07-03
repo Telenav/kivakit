@@ -34,8 +34,8 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 /**
  * Base class for implementing converters. The inherited {@link Converter#convert(Object)} method converts from the From
  * type to the To type. Whether the conversion allows null values or not can be specified with {@link
- * #allowNull(boolean)}. Converters are used extensively in KivaKit, including for switch parsing and populating
- * objects from properties files.
+ * #allowNull(boolean)}. Converters are used extensively in KivaKit for tasks as diverse as switch parsing and
+ * populating objects from properties files.
  *
  * <p>
  * Since this class extends {@link BaseRepeater} and implements the {@link Repeater} interface, it can both hear
@@ -118,7 +118,7 @@ public abstract class BaseConverter<From, To> extends BaseRepeater implements Co
         catch (final Exception e)
         {
             // and if an exception occurs, broadcast a problem
-            problem(problemBroadcastFrequency(), e, "${class}: Problem converting ${debug}", subclass(), from);
+            problem(problemBroadcastFrequency(), e, "${class}: Cannot convert ${debug}", subclass(), from);
 
             // and return null.
             return null;

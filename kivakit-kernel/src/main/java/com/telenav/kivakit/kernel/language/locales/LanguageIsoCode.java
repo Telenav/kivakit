@@ -259,13 +259,13 @@ public class LanguageIsoCode extends Name implements Comparable<LanguageIsoCode>
         }
 
         @Override
-        protected LanguageIsoCode onConvertToObject(final String value)
+        protected LanguageIsoCode onToValue(final String value)
         {
             return value.length() == 2 ? forIso2Code(value) : forIso3Code(value);
         }
 
         @Override
-        protected String onConvertToString(final LanguageIsoCode value)
+        protected String onToString(final LanguageIsoCode value)
         {
             return value.iso2Code();
         }

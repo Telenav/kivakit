@@ -60,7 +60,7 @@ public class BaseFormattedLocalTimeConverter extends BaseFormattedConverter
     }
 
     @Override
-    protected LocalTime onConvertToObject(final String value)
+    protected LocalTime onToValue(final String value)
     {
         zone(zone(value));
         var time = Paths.withoutSuffix(value, '_');
@@ -68,11 +68,11 @@ public class BaseFormattedLocalTimeConverter extends BaseFormattedConverter
         {
             time = value;
         }
-        return super.onConvertToObject(time);
+        return super.onToValue(time);
     }
 
     @Override
-    protected String onConvertToString(final LocalTime value)
+    protected String onToString(final LocalTime value)
     {
         final var timeZone = value.timeZone();
         return type.formatter().format(Instant.ofEpochMilli(value.asMilliseconds())

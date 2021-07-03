@@ -85,7 +85,7 @@ public final class Percent implements Comparable<Percent>
         }
 
         @Override
-        protected Percent onConvertToObject(final String value)
+        protected Percent onToValue(final String value)
         {
             return new Percent(Double.parseDouble(value.endsWith("%") ? Strip.ending(value, "%") : value));
         }

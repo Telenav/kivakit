@@ -94,7 +94,7 @@ public class FileList implements List<File>
         }
 
         @Override
-        protected FileList onConvertToObject(final String value)
+        protected FileList onToValue(final String value)
         {
             final var files = new FileList();
             for (final var path : value.split(","))
@@ -112,7 +112,7 @@ public class FileList implements List<File>
                     }
                     else
                     {
-                        LOGGER.warning("$ is not a $ file", file, extension);
+                        warning("$ is not a $ file", file, extension);
                     }
                 }
             }

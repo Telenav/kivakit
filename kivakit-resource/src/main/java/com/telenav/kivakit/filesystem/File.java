@@ -272,7 +272,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         }
 
         @Override
-        protected File onConvertToObject(final String value)
+        protected File onToValue(final String value)
         {
             return File.parse(value);
         }

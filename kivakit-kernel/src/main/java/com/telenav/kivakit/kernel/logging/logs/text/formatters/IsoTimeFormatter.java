@@ -45,7 +45,7 @@ public class IsoTimeFormatter implements LogEntryFormatter
     @Override
     public String format(final LogEntry entry, final MessageFormatter.Format format)
     {
-        return converter.toString(entry.message().created().utc()) + " " + entry.context() + " "
+        return converter.unconvert(entry.message().created().utc()) + " " + entry.context() + " "
                 + Classes.simpleName(entry.message().getClass()) + ": " + entry.formattedMessage();
     }
 }

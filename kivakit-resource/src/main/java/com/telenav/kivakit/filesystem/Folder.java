@@ -440,7 +440,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         }
 
         @Override
-        protected Folder onConvertToObject(final String value)
+        protected Folder onToValue(final String value)
         {
             final var path = FilePath.parseFilePath(value);
             final var folder = new Folder(path);

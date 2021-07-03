@@ -186,7 +186,7 @@ public class Host implements Named, AsString, Comparable<Host>
         }
 
         @Override
-        protected Host onConvertToObject(final String value)
+        protected Host onToValue(final String value)
         {
             return parse(value);
         }

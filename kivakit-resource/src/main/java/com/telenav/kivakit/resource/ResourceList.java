@@ -68,7 +68,7 @@ public class ResourceList extends ArrayList<Resource>
         }
 
         @Override
-        protected ResourceList onConvertToObject(final String value)
+        protected ResourceList onToValue(final String value)
         {
             final var resources = new ResourceList(extension);
             for (final var path : value.split(","))

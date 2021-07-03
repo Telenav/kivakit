@@ -117,7 +117,7 @@ public class NetworkPath extends FilePath
         }
 
         @Override
-        protected NetworkPath onConvertToObject(final String value)
+        protected NetworkPath onToValue(final String value)
         {
             return parseNetworkPath(value);
         }

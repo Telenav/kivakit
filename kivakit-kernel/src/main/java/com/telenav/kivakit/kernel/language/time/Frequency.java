@@ -105,7 +105,7 @@ public class Frequency
         }
 
         @Override
-        protected Frequency onConvertToObject(final String value)
+        protected Frequency onToValue(final String value)
         {
             final var duration = Duration.parse(value);
             return duration == null ? null : Frequency.every(duration);

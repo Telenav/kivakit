@@ -40,6 +40,6 @@ public class HumanizedLocalDateTimeConverterTest
 
         final var expected = now.startOfDay().withHourOfMeridiem(6, PM).withMinuteOfHour(15);
         ensureEqual(converter.convert("Today 6.15pm"), expected);
-        ensureEqual(converter.toString(expected), "Today 6.15PM");
+        ensureEqual(converter.unconvert(expected), "Today 6.15PM");
     }
 }

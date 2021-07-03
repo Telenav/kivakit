@@ -179,7 +179,7 @@ public interface Resource extends
         }
 
         @Override
-        protected Resource onConvertToObject(final String value)
+        protected Resource onToValue(final String value)
         {
             return new ResourceIdentifier(value).resolve();
         }

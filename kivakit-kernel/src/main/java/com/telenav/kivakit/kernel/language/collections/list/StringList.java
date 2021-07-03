@@ -209,7 +209,7 @@ public class StringList extends ObjectList<String>
         final var list = new StringList();
         for (final var value : values)
         {
-            list.addIfNotNull(converter.toString(value));
+            list.addIfNotNull(converter.unconvert(value));
         }
         return list;
     }

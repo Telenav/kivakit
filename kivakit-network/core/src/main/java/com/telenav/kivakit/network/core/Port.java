@@ -99,7 +99,7 @@ public class Port
         }
 
         @Override
-        protected Port onConvertToObject(final String value)
+        protected Port onToValue(final String value)
         {
             // It is expected that the port is in the format <host>:<portNumber>. If
             // no <portNumber> is specified then 80 is assumed.

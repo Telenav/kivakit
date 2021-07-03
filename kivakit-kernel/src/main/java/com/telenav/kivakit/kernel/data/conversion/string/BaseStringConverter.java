@@ -19,7 +19,6 @@
 package com.telenav.kivakit.kernel.data.conversion.string;
 
 import com.telenav.kivakit.kernel.data.conversion.BaseConverter;
-import com.telenav.kivakit.kernel.data.conversion.Converter;
 import com.telenav.kivakit.kernel.language.strings.Strings;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataConversion;
@@ -31,19 +30,10 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
  * Base class for conversions to and from String objects.
  *
  * <p><b>Converting to and from Strings</b>
- *
  * <p>
- * It would be more elegant for this class to implement the {@link Converter} interface twice, but due to type erasure
- * in Java, this class cannot implement both Converter&lt;String, Value&gt; and Converter&lt;Value, String&gt;, so
- * instead it implements Converter&lt;String, Value&gt;, which is the most common case and then it provides a separate
- * method, {@link #toString(Object)} which converts from Value to String. In the event that a Converter&lt;Value,
- * String&gt; is required, the {@link #toStringConverter()} method can be called to retrieve that converter.
- * </p>
- *
- * <p>
- * Subclasses implement conversion by overriding {@link #onConvertToObject(String)}. If no implementation is given for
- * {@link #onConvertToString(Object)}, a default implementation is provided which simply converts the object to a String
- * by calling {@link #toString()}.
+ * Subclasses implement conversion by overriding {@link #onToValue(String)}. If no implementation is given for {@link
+ * #onToString(Object)}, a default implementation is provided which simply converts the object to a String by calling
+ * {@link #toString()}.
  * </p>
  *
  * <p><b>Empty Strings</b></p>
@@ -72,9 +62,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 @UmlClassDiagram(diagram = DiagramDataConversionPrimitive.class, includeMembers = false)
 public abstract class BaseStringConverter<Value> extends BaseConverter<String, Value> implements StringConverter<Value>
 {
-    private BaseConverter<Value, String> toStringConverter;
-
-    /** True if null or empty strings may be converted */
+    /** True if empty strings are allowed */
     private boolean allowEmpty;
 
     /**
@@ -104,29 +92,24 @@ public abstract class BaseStringConverter<Value> extends BaseConverter<String, V
     }
 
     @Override
-    public final Value onConvert(final String value)
+    public final Value onConvert(final String string)
     {
-        // If we allow empty values,
-        if (allowEmpty)
+        // If we allow null values and our string is null,
+        if (allowsNull() && string == null)
         {
-            // and the value is empty,
-            if (Strings.isEmpty(value))
-            {
-                // return null.
-                return null;
-            }
+            // then return null.
+            return null;
         }
 
-        // otherwise, call the subclass converter
-        return onConvertToObject(value);
-    }
+        // If we allow empty strings and our string is empty,
+        if (allowEmpty && Strings.isEmpty(string))
+        {
+            // then return null.
+            return null;
+        }
 
-    /**
-     * @return A converter that will convert from a {@link String} to the value type
-     */
-    public final Converter<String, Value> toObjectConverter()
-    {
-        return this;
+        // Return the value of our string converted by the subclass.
+        return onToValue(string);
     }
 
     /**
@@ -134,7 +117,7 @@ public abstract class BaseStringConverter<Value> extends BaseConverter<String, V
      */
     @Override
     @UmlExcludeMember
-    public final String toString(final Value value)
+    public final String unconvert(final Value value)
     {
         // If the value is null
         if (value == null)
@@ -143,12 +126,12 @@ public abstract class BaseStringConverter<Value> extends BaseConverter<String, V
             if (allowsNull())
             {
                 // then let the subclass convert to a null string representation
-                return onConvertNullToString();
+                return nullString();
             }
             else
             {
                 // otherwise, we can't convert null values
-                problem("${class}: Cannot convert null value", getClass());
+                problem("${class}: Cannot unconvert null value", getClass());
                 return null;
             }
         }
@@ -156,63 +139,42 @@ public abstract class BaseStringConverter<Value> extends BaseConverter<String, V
         try
         {
             // Call the subclass to convert the value to a string,
-            return onConvertToString(value);
+            return onToString(value);
         }
         catch (final Exception e)
         {
             // and broadcast any exception thrown as a problem
-            problem(e, "${class}: Problem converting ${debug}", getClass(), value);
+            problem(e, "${class}: Cannot unconvert ${debug}", getClass(), value);
             return null;
         }
     }
 
     /**
-     * @return A Converter interface to this object which converts from Value to String. This is only necessary because
-     * Java performs type erasure on generic types.
+     * @return The string representation of a null value. By default this value is null, not "null".
      */
     @UmlExcludeMember
-    public final Converter<Value, String> toStringConverter()
-    {
-        if (toStringConverter == null)
-        {
-            toStringConverter = new BaseConverter<>(this)
-            {
-                @Override
-                public String onConvert(final Value value)
-                {
-                    return onConvertToString(value);
-                }
-            };
-        }
-        return toStringConverter;
-    }
-
-    /**
-     * @return The null string value for an object. By default this value is null, not "null".
-     */
-    @UmlExcludeMember
-    protected String onConvertNullToString()
+    protected String nullString()
     {
         return null;
     }
 
     /**
-     * Implemented by subclass to convert a given string value to an object. The subclass will never be called in cases
-     * where value is null, so it need not check for that case.
-     *
-     * @param value The (guaranteed non-null) value to convert
-     * @return The converted object
-     */
-    protected abstract Value onConvertToObject(String value);
-
-    /**
      * Convert the given value to a string
      *
-     * @param value The (guaranteed non-null) value
+     * @param value The (guaranteed non-null, non-empty) value
      * @return A string which is by default value.toString() if this method is not overridden
      */
-    protected String onConvertToString(final Value value)
+    protected String onToString(final Value value)
     {
         return value.toString();
     }
+
+    /**
+     * Implemented by subclass to convert the given string to a value. The subclass implementation will never be called
+     * in cases where value is null or empty, so it need not check for either case.
+     *
+     * @param value The (guaranteed non-null, non-empty) value to convert
+     * @return The converted object
+     */
+    protected abstract Value onToValue(String value);
 }

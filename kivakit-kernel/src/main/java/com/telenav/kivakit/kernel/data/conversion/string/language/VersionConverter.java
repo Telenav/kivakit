@@ -46,7 +46,7 @@ public class VersionConverter extends BaseStringConverter<Version>
      * {@inheritDoc}
      */
     @Override
-    protected Version onConvertToObject(final String text)
+    protected Version onToValue(final String text)
     {
         return Version.parse(text);
     }

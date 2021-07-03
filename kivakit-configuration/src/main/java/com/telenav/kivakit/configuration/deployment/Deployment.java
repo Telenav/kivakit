@@ -217,7 +217,7 @@ public class Deployment extends ConfigurationSet implements Named, Serializable
         }
 
         @Override
-        protected Deployment onConvertToObject(final String value)
+        protected Deployment onToValue(final String value)
         {
             if (value != null)
             {

@@ -53,7 +53,7 @@ public class EnumConverter<T extends Enum<T>> extends BaseStringConverter<T>
      * {@inheritDoc}
      */
     @Override
-    protected T onConvertToObject(final String value)
+    protected T onToValue(final String value)
     {
         return Enum.valueOf(enumType, CaseFormat.lowerHyphenToUpperUnderscore(value));
     }

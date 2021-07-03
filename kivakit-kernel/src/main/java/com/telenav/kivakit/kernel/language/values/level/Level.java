@@ -68,7 +68,7 @@ public class Level
         }
 
         @Override
-        protected Level onConvertToObject(final String value)
+        protected Level onToValue(final String value)
         {
             final var level = Double.parseDouble(value);
             if (level >= 0 && level <= 1.0)

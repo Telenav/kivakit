@@ -59,7 +59,7 @@ public class BaseFormattedConverter extends BaseStringConverter<LocalTime>
     }
 
     @Override
-    protected LocalTime onConvertToObject(final String value)
+    protected LocalTime onToValue(final String value)
     {
         switch (format)
         {
@@ -90,7 +90,7 @@ public class BaseFormattedConverter extends BaseStringConverter<LocalTime>
     }
 
     @Override
-    protected String onConvertToString(final LocalTime value)
+    protected String onToString(final LocalTime value)
     {
         return formatter().format(value.javaLocalDateTime());
     }

@@ -46,7 +46,7 @@ public class ClassConverter extends BaseStringConverter<Class<?>>
      * {@inheritDoc}
      */
     @Override
-    protected Class<?> onConvertToObject(final String value)
+    protected Class<?> onToValue(final String value)
     {
         try
         {

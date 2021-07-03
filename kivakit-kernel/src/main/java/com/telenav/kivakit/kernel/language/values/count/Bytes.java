@@ -196,7 +196,7 @@ public final class Bytes extends Count implements ByteSized
         }
 
         @Override
-        protected Bytes onConvertToObject(final String value)
+        protected Bytes onToValue(final String value)
         {
             final var matcher = PATTERN.matcher(value);
 

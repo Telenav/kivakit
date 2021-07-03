@@ -65,7 +65,7 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
         }
 
         @Override
-        protected NetworkLocation onConvertToObject(final String value)
+        protected NetworkLocation onToValue(final String value)
         {
             try
             {

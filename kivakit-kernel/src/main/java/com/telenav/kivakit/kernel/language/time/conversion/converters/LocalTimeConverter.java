@@ -51,7 +51,7 @@ public class LocalTimeConverter extends BaseFormattedLocalTimeConverter
     }
 
     @Override
-    protected String onConvertToString(final LocalTime value)
+    protected String onToString(final LocalTime value)
     {
         return DateTimeFormatter.ofPattern("h.mma").format(value.javaLocalDateTime());
     }

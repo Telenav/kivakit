@@ -53,6 +53,6 @@ public class StringConverterGsonSerializer<T> implements GsonSerializer<T>
     @Override
     public JsonElement serialize(final T value, final Type typeOfSrc, final JsonSerializationContext context)
     {
-        return context.serialize(converter.toString(value));
+        return context.serialize(converter.unconvert(value));
     }
 }

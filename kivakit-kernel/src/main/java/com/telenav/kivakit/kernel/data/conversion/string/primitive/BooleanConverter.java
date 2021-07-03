@@ -47,7 +47,7 @@ public class BooleanConverter extends BaseStringConverter<Boolean>
      */
     @Override
     @UmlExcludeMember
-    protected Boolean onConvertToObject(final String value)
+    protected Boolean onToValue(final String value)
     {
         if (Booleans.isTrue(value))
         {

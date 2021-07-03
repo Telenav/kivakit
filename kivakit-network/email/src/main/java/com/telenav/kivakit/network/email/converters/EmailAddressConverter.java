@@ -37,7 +37,7 @@ public class EmailAddressConverter extends BaseStringConverter<EmailAddress>
     }
 
     @Override
-    protected EmailAddress onConvertToObject(final String value)
+    protected EmailAddress onToValue(final String value)
     {
         return EmailAddress.parse(value);
     }

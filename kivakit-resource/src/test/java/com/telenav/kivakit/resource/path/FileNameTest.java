@@ -54,7 +54,7 @@ public class FileNameTest extends UnitTest
         trace("LocalTime: ${debug}", localTime.asMilliseconds());
 
         final var localMillisecondsConverter = new LocalDateTimeWithMillisecondsConverter(this);
-        final var timeRepresentation = localMillisecondsConverter.toString(localTime);
+        final var timeRepresentation = localMillisecondsConverter.unconvert(localTime);
         trace("Time Representation: ${debug}", timeRepresentation);
 
         trace("Hour of day:     ${debug}", localTime.hourOfDay());
@@ -97,21 +97,21 @@ public class FileNameTest extends UnitTest
         /*
           Test the local milliseconds
          */
-        timeRepresentation = millisecondsConverter.toString(localTime);
+        timeRepresentation = millisecondsConverter.unconvert(localTime);
         trace("Time Representation: ${debug}", timeRepresentation);
         ensure(timeRepresentation.matches("2012\\.08\\.03_1\\.21\\.21\\.123PM.PT"));
 
         /*
           Test the local seconds
          */
-        timeRepresentation = secondsConverter.toString(localTime);
+        timeRepresentation = secondsConverter.unconvert(localTime);
         trace("Time Representation: ${debug}", timeRepresentation);
         ensure(timeRepresentation.matches("2012\\.08\\.03_1\\.21\\.21PM.PT"));
 
         /*
           Test the GMT seconds
          */
-        timeRepresentation = secondsConverter.toString(localTime);
+        timeRepresentation = secondsConverter.unconvert(localTime);
         trace("Time Representation: ${debug}", timeRepresentation);
         ensure(timeRepresentation.matches("2012\\.08\\.03_[0-9]+\\.21\\.21PM.PT"));
     }
