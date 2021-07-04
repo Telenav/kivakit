@@ -16,13 +16,27 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.kernel.project.lexakai.diagrams;
+package com.telenav.kivakit.kernel.data.validation.ensure.reporters;
 
-import com.telenav.lexakai.annotations.diagrams.UmlDiagramIdentifier;
+import com.telenav.kivakit.kernel.data.validation.ensure.BaseFailureReporter;
+import com.telenav.kivakit.kernel.messaging.Message;
+import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataFailureReporter;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 /**
+ * A validation reporter that ignores all reported messages.
+ *
  * @author jonathanl (shibo)
  */
-public class DiagramDataValidationReporter implements UmlDiagramIdentifier
+@UmlClassDiagram(diagram = DiagramDataFailureReporter.class)
+@LexakaiJavadoc(complete = true)
+public class NullFailureReporter extends BaseFailureReporter
 {
+    @Override
+    @UmlExcludeMember
+    public void report(final Message message)
+    {
+    }
 }

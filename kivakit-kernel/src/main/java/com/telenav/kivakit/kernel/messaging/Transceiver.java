@@ -109,9 +109,9 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 @UmlNote(text = "Functionality common to transmitters and receivers")
 public interface Transceiver extends NamedObject
 {
-    default void announce(final String text, final Object... arguments)
+    default Announcement announce(final String text, final Object... arguments)
     {
-        handle(new Announcement(text, arguments));
+        return handle(new Announcement(text, arguments));
     }
 
     /**
@@ -148,14 +148,14 @@ public interface Transceiver extends NamedObject
     {
     }
 
-    default void halt(final String text, final Object... arguments)
+    default OperationHalted halt(final String text, final Object... arguments)
     {
-        handle(new OperationHalted(text, arguments));
+        return handle(new OperationHalted(text, arguments));
     }
 
-    default void halt(final Throwable cause, final String text, final Object... arguments)
+    default OperationHalted halt(final Throwable cause, final String text, final Object... arguments)
     {
-        handle(new OperationHalted(cause, text, arguments));
+        return handle(new OperationHalted(cause, text, arguments));
     }
 
     /**
@@ -166,12 +166,13 @@ public interface Transceiver extends NamedObject
      * </p>
      */
     @UmlExcludeMember
-    default void handle(final Transmittable message)
+    default <T extends Transmittable> T handle(final T message)
     {
         if (isOn())
         {
             onHandle(message);
         }
+        return message;
     }
 
     default void ifDebug(final Runnable code)
@@ -182,9 +183,9 @@ public interface Transceiver extends NamedObject
         }
     }
 
-    default void information(final String text, final Object... arguments)
+    default Information information(final String text, final Object... arguments)
     {
-        handle(new Information(text, arguments));
+        return handle(new Information(text, arguments));
     }
 
     default boolean isDebugOn()
@@ -200,9 +201,9 @@ public interface Transceiver extends NamedObject
         return true;
     }
 
-    default void narrate(final String text, final Object... arguments)
+    default Narration narrate(final String text, final Object... arguments)
     {
-        handle(new Narration(text, arguments));
+        return handle(new Narration(text, arguments));
     }
 
     /**
@@ -215,52 +216,54 @@ public interface Transceiver extends NamedObject
     @UmlExcludeMember
     void onHandle(final Transmittable message);
 
-    default void problem(final String text, final Object... arguments)
+    default Problem problem(final String text, final Object... arguments)
     {
-        handle(new Problem(text, arguments));
+        return handle(new Problem(text, arguments));
     }
 
-    default void problem(final Frequency maximumFrequency, final String text, final Object... arguments)
+    default Problem problem(final Frequency maximumFrequency, final String text, final Object... arguments)
     {
-        handle(new Problem(text, arguments).maximumFrequency(maximumFrequency));
+        return (Problem) handle(new Problem(text, arguments).maximumFrequency(maximumFrequency));
     }
 
-    default void problem(final Frequency maximumFrequency, final Throwable cause, final String text,
-                         final Object... arguments)
+    default Problem problem(final Frequency maximumFrequency, final Throwable cause, final String text,
+                            final Object... arguments)
     {
-        handle(new Problem(cause, text, arguments).maximumFrequency(maximumFrequency));
+        return (Problem) handle(new Problem(cause, text, arguments).maximumFrequency(maximumFrequency));
     }
 
-    default void problem(final Throwable cause, final String text, final Object... arguments)
+    default Problem problem(final Throwable cause, final String text, final Object... arguments)
     {
-        handle(new Problem(cause, text, arguments));
+        return handle(new Problem(cause, text, arguments));
     }
 
-    default void quibble(final Frequency maximumFrequency, final String text, final Object... arguments)
+    default Quibble quibble(final Frequency maximumFrequency, final String text, final Object... arguments)
     {
-        handle(new Quibble(text, arguments).maximumFrequency(maximumFrequency));
+        return (Quibble) handle(new Quibble(text, arguments).maximumFrequency(maximumFrequency));
     }
 
-    default void quibble(final Frequency maximumFrequency, final Throwable cause, final String text,
-                         final Object... arguments)
+    default Quibble quibble(final Frequency maximumFrequency, final Throwable cause, final String text,
+                            final Object... arguments)
     {
-        handle(new Quibble(cause, text, arguments).maximumFrequency(maximumFrequency));
+        return (Quibble) handle(new Quibble(cause, text, arguments).maximumFrequency(maximumFrequency));
     }
 
-    default void quibble(final String text, final Object... arguments)
+    default Quibble quibble(final String text, final Object... arguments)
     {
         if (isDebugOn())
         {
-            handle(new Quibble(text, arguments));
+            return handle(new Quibble(text, arguments));
         }
+        return null;
     }
 
-    default void quibble(final Throwable cause, final String text, final Object... arguments)
+    default Quibble quibble(final Throwable cause, final String text, final Object... arguments)
     {
         if (isDebugOn())
         {
-            handle(new Quibble(cause, text, arguments));
+            return handle(new Quibble(cause, text, arguments));
         }
+        return null;
     }
 
     default void throwProblem(final String text, final Object... arguments)
@@ -277,57 +280,61 @@ public interface Transceiver extends NamedObject
         problem.throwAsIllegalStateException();
     }
 
-    default void trace(final String text, final Object... arguments)
+    default Trace trace(final String text, final Object... arguments)
     {
         if (isDebugOn())
         {
-            handle(new Trace(text, arguments));
+            return handle(new Trace(text, arguments));
         }
+        return null;
     }
 
-    default void trace(final Throwable cause, final String text, final Object... arguments)
+    default Trace trace(final Throwable cause, final String text, final Object... arguments)
     {
         if (isDebugOn())
         {
-            handle(new Trace(cause, text, arguments));
+            return handle(new Trace(cause, text, arguments));
         }
+        return null;
     }
 
-    default void trace(final Frequency maximumFrequency, final String text, final Object... arguments)
+    default Trace trace(final Frequency maximumFrequency, final String text, final Object... arguments)
     {
         if (isDebugOn())
         {
-            handle(new Trace(text, arguments).maximumFrequency(maximumFrequency));
+            return (Trace) handle(new Trace(text, arguments).maximumFrequency(maximumFrequency));
         }
+        return null;
     }
 
-    default void trace(final Frequency maximumFrequency, final Throwable cause, final String text,
-                       final Object... arguments)
+    default Trace trace(final Frequency maximumFrequency, final Throwable cause, final String text,
+                        final Object... arguments)
     {
         if (isDebugOn())
         {
-            handle(new Trace(cause, text, arguments).maximumFrequency(maximumFrequency));
+            return (Trace) handle(new Trace(cause, text, arguments).maximumFrequency(maximumFrequency));
         }
+        return null;
     }
 
-    default void warning(final Frequency maximumFrequency, final String text, final Object... arguments)
+    default Warning warning(final Frequency maximumFrequency, final String text, final Object... arguments)
     {
-        handle(new Warning(text, arguments).maximumFrequency(maximumFrequency));
+        return (Warning) handle(new Warning(text, arguments).maximumFrequency(maximumFrequency));
     }
 
-    default void warning(final Frequency maximumFrequency, final Throwable cause, final String text,
-                         final Object... arguments)
+    default Warning warning(final Frequency maximumFrequency, final Throwable cause, final String text,
+                            final Object... arguments)
     {
-        handle(new Warning(cause, text, arguments).maximumFrequency(maximumFrequency));
+        return (Warning) handle(new Warning(cause, text, arguments).maximumFrequency(maximumFrequency));
     }
 
-    default void warning(final String text, final Object... arguments)
+    default Warning warning(final String text, final Object... arguments)
     {
-        handle(new Warning(text, arguments));
+        return handle(new Warning(text, arguments));
     }
 
-    default void warning(final Throwable cause, final String text, final Object... arguments)
+    default Warning warning(final Throwable cause, final String text, final Object... arguments)
     {
-        handle(new Warning(cause, text, arguments));
+        return handle(new Warning(cause, text, arguments));
     }
 }

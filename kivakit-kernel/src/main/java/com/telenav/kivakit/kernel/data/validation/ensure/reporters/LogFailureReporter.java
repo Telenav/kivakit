@@ -16,33 +16,30 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.test.reporters;
+package com.telenav.kivakit.kernel.data.validation.ensure.reporters;
 
-import com.telenav.kivakit.kernel.data.validation.BaseValidationReporter;
-import com.telenav.kivakit.kernel.data.validation.ValidationReporter;
-import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
+import com.telenav.kivakit.kernel.data.validation.ensure.BaseFailureReporter;
+import com.telenav.kivakit.kernel.logging.Logger;
+import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Message;
-import com.telenav.kivakit.test.UnitTest;
-import com.telenav.kivakit.test.project.lexakai.diagrams.DiagramTest;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataFailureReporter;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import org.junit.Assert;
-
-import static com.telenav.kivakit.kernel.messaging.messages.MessageFormatter.Format.WITHOUT_EXCEPTION;
+import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 /**
- * A {@link ValidationReporter} that causes a JUnit test failure. This validation reporter is installed by {@link
- * UnitTest} to ensure that validation failures by {@link Ensure} are reported through JUnit.
+ * A validation reporter that logs any messages reported to it.
  *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
-@UmlClassDiagram(diagram = DiagramTest.class)
-public class JUnitValidationReporter extends BaseValidationReporter
+@UmlClassDiagram(diagram = DiagramDataFailureReporter.class)
+public class LogFailureReporter extends BaseFailureReporter
 {
+    private static final Logger LOGGER = LoggerFactory.newLogger();
+
     @Override
+    @UmlExcludeMember
     public void report(final Message message)
     {
-        Assert.fail(message.formatted(WITHOUT_EXCEPTION));
+        LOGGER.log(message);
     }
 }

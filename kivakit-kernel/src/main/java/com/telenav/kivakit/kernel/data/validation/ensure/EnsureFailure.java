@@ -16,44 +16,31 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.kernel.messaging.messages.status;
+package com.telenav.kivakit.kernel.data.validation.ensure;
 
-import com.telenav.kivakit.kernel.messaging.messages.OperationStatusMessage;
-import com.telenav.kivakit.kernel.messaging.messages.Severity;
-import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageType;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
+import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataValidationEnsure;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * The current step succeeded and does not indicate any problem
+ * A validation problem reported by {@link Ensure} failures.
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramMessageType.class)
-@LexakaiJavadoc(complete = true)
-public class Success extends OperationStatusMessage
+@UmlClassDiagram(diagram = DiagramDataValidationEnsure.class)
+public class EnsureFailure extends Problem
 {
-    public static final Success INSTANCE = new Success();
-
-    public Success(final String message, final Object... arguments)
+    public EnsureFailure(final String message, final Object... arguments)
     {
-        super(message);
-        arguments(arguments);
+        super(message, arguments);
     }
 
-    public Success()
+    public EnsureFailure(final Throwable cause, final String message, final Object... arguments)
     {
+        super(cause, message, arguments);
     }
 
-    @Override
-    public Severity severity()
+    public EnsureFailure()
     {
-        return Severity.NONE;
-    }
-
-    @Override
-    public final Status status()
-    {
-        return Status.SUCCEEDED;
     }
 }

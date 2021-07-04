@@ -26,9 +26,9 @@ import com.telenav.kivakit.commandline.parsing.SwitchValidator;
 import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramArgument;
 import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramCommandLine;
 import com.telenav.kivakit.kernel.KivaKit;
-import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.data.validation.reporters.NullValidationReporter;
-import com.telenav.kivakit.kernel.data.validation.validators.BaseValidator;
+import com.telenav.kivakit.kernel.data.validation.BaseValidator;
+import com.telenav.kivakit.kernel.data.validation.ensure.Failure;
+import com.telenav.kivakit.kernel.data.validation.ensure.reporters.NullFailureReporter;
 import com.telenav.kivakit.kernel.language.matchers.AnythingMatcher;
 import com.telenav.kivakit.kernel.language.strings.AsciiArt;
 import com.telenav.kivakit.kernel.language.strings.Wrap;
@@ -218,7 +218,7 @@ public class CommandLineParser
      */
     void validate(final SwitchList switches, final ArgumentList arguments)
     {
-        Ensure.ensure(new NullValidationReporter(), () ->
+        Failure.withReporter(new NullFailureReporter(), () ->
         {
             final var messages = new MessageList(Maximum._100, new AnythingMatcher<>());
 

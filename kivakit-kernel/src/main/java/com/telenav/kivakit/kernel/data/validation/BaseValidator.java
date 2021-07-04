@@ -16,16 +16,15 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.kernel.data.validation.validators;
+package com.telenav.kivakit.kernel.data.validation;
 
-import com.telenav.kivakit.kernel.data.validation.Validatable;
-import com.telenav.kivakit.kernel.data.validation.Validator;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.kernel.language.strings.Strings;
 import com.telenav.kivakit.kernel.language.threading.status.ReentrancyTracker;
 import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.messaging.Listener;
+import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
 import com.telenav.kivakit.kernel.messaging.messages.lifecycle.OperationHalted;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
@@ -41,11 +40,10 @@ import java.util.Collection;
  * <p>
  * <b>Validation Issue Reporting</b>
  * <ul>
- *     <li>{@link #fatal(String, Object...)} - Reports a fatal validation failure, halting further progress via {@link Ensure#fail(String, Object...)}</li>
+ *     <li>{@link #halt(String, Object...)} - Reports a fatal validation failure, halting further progress via {@link Ensure#fail(String, Object...)}</li>
  *     <li>{@link #problem(String, Object...)} - Reports a non-fatal validation problem, causing data to be discarded but the process does not halt</li>
  *     <li>{@link #quibble(String, Object...)} - Reports a non-fatal and not very important validation problem where data is compromised but not discarded</li>
  *     <li>{@link #warning(String, Object...)} - Reports an issue that should ideally be corrected but is not fatal or a validation failure</li>
- *     <li>{@link #fatalIf(boolean, String, Object...)} - Conditionally reports a fatal problem</li>
  *     <li>{@link #problemIf(boolean, String, Object...)} - Conditionally reports a problem</li>
  *     <li>{@link #quibbleIf(boolean, String, Object...)} - Conditionally reports a quibble</li>
  *     <li>{@link #warningIf(boolean, String, Object...)} - Conditionally reports a warning</li>
@@ -117,53 +115,7 @@ public abstract class BaseValidator implements Validator
     private static final ReentrancyTracker reentrancy = new ReentrancyTracker();
 
     /** Per-thread validation statistics */
-    private static final ThreadLocal<Statistics> statistics = ThreadLocal.withInitial(Statistics::new);
-
-    /**
-     * Statistics kept during a (possibly nested) validation operation
-     */
-    private static class Statistics
-    {
-        /** The number of problems encountered during validation */
-        private int problems;
-
-        /** The number of quibbles encountered during validation */
-        private int quibbles;
-
-        /** The number of warnings encountered during validation */
-        private int warnings;
-
-        public Statistics()
-        {
-        }
-
-        public Statistics(final Statistics that)
-        {
-            this(that.problems, that.quibbles, that.warnings);
-        }
-
-        public Statistics(final int problems, final int quibbles, final int warnings)
-        {
-            this.problems = problems;
-            this.quibbles = quibbles;
-            this.warnings = warnings;
-        }
-
-        public void initialize()
-        {
-            problems = 0;
-            quibbles = 0;
-            warnings = 0;
-        }
-
-        /**
-         * @return True if no problems or quibbles have been encountered during validation
-         */
-        private boolean isValid()
-        {
-            return (quibbles + problems) == 0;
-        }
-    }
+    private static final ThreadLocal<ValidationIssues> issues = ThreadLocal.withInitial(ValidationIssues::new);
 
     /** The listener while validation is going on */
     private Listener listener;
@@ -173,7 +125,7 @@ public abstract class BaseValidator implements Validator
      */
     public boolean isInvalid()
     {
-        return !statistics().isValid();
+        return !issues().isValid();
     }
 
     /**
@@ -202,11 +154,11 @@ public abstract class BaseValidator implements Validator
         if (!reentered)
         {
             // initialize the statistics for the thread.
-            statistics().initialize();
+            issues().clear();
         }
 
-        // Make a copy of the current statistics for the thread.
-        final var statistics = new Statistics(statistics());
+        // Make a copy of the current issues for the thread.
+        final var issues = issues().copy();
 
         // Next, call the subclass onValidate() method (which may make calls to problem or quibble methods, causing invalidity)
         onValidate();
@@ -222,35 +174,45 @@ public abstract class BaseValidator implements Validator
             {
                 // we output a short summary of the validation results
                 listener.information("Validated $ in $ ($ problems, $ quibbles, $ warnings)", validationTarget(),
-                        start.elapsedSince(), statistics.problems, statistics.quibbles, statistics.warnings);
+                        start.elapsedSince(), issues.count(Problem.class), issues.count(Quibble.class), issues.count(Warning.class));
             }
         }
 
         // and finally, we're valid if the validation didn't change the number of problems or quibbles
-        return statistics.problems == statistics().problems && statistics.quibbles == statistics().quibbles;
+        return issues.count(Problem.class).equals(issues().count(Problem.class))
+                && issues.count(Quibble.class).equals(issues().count(Quibble.class));
+    }
+
+    /**
+     * Records a {@link Problem} with the given message without broadcasting it
+     */
+    protected Problem addProblem(final String message, final Object... parameters)
+    {
+        return addIfNotNull(new Problem(message, parameters));
+    }
+
+    /**
+     * Records a {@link Quibble} with the given message without broadcasting it
+     */
+    protected Quibble addQuibble(final String message, final Object... parameters)
+    {
+        return addIfNotNull(new Quibble(message, parameters));
+    }
+
+    /**
+     * Records a {@link Warning} with the given message without broadcasting it
+     */
+    protected Warning addWarning(final String message, final Object... parameters)
+    {
+        return addIfNotNull(new Warning(message, parameters));
     }
 
     /**
      * Broadcasts a {@link OperationHalted} with the given message
      */
-    protected void fatal(final String message, final Object... parameters)
+    protected OperationHalted halt(final String message, final Object... parameters)
     {
-        listener.halt(message, parameters);
-    }
-
-    /**
-     * Broadcasts a {@link OperationHalted} with the given message if the invalid parameter is true
-     *
-     * @return True if there was a problem
-     */
-    protected final boolean fatalIf(final boolean invalid, final String message, final Object... parameters)
-    {
-        if (invalid)
-        {
-            problem(message, parameters);
-            return true;
-        }
-        return false;
+        return listener.halt(message, parameters);
     }
 
     /**
@@ -294,19 +256,9 @@ public abstract class BaseValidator implements Validator
     /**
      * Broadcasts a {@link Problem} with the given message
      */
-    protected void problem(final String message, final Object... parameters)
+    protected Problem problem(final String message, final Object... parameters)
     {
-        problem();
-        listener.problem(message, parameters);
-    }
-
-    /**
-     * In some cases, a subclass may want to register a problem without actually calling a listener. For example, if a
-     * total count of problems is desired, but output is not.
-     */
-    protected void problem()
-    {
-        statistics().problems++;
+        return addIfNotNull(listener.problem(message, parameters));
     }
 
     /**
@@ -314,32 +266,21 @@ public abstract class BaseValidator implements Validator
      *
      * @return True if there was a problem
      */
-    protected final boolean problemIf(final boolean invalid, final String message, final Object... parameters)
+    protected final Problem problemIf(final boolean invalid, final String message, final Object... parameters)
     {
         if (invalid)
         {
-            problem(message, parameters);
-            return true;
+            return problem(message, parameters);
         }
-        return false;
+        return null;
     }
 
     /**
      * Broadcasts a {@link Quibble} with the given message
      */
-    protected void quibble(final String message, final Object... parameters)
+    protected Quibble quibble(final String message, final Object... parameters)
     {
-        quibble();
-        listener.quibble(message, parameters);
-    }
-
-    /**
-     * In some cases, a subclass may want to register a quibble without actually calling a listener. For example, if a
-     * total count of problems is desired, but output is not.
-     */
-    protected void quibble()
-    {
-        statistics().quibbles++;
+        return addIfNotNull(listener.quibble(message, parameters));
     }
 
     /**
@@ -347,14 +288,13 @@ public abstract class BaseValidator implements Validator
      *
      * @return True if there was a quibble
      */
-    protected final boolean quibbleIf(final boolean invalid, final String message, final Object... parameters)
+    protected final Quibble quibbleIf(final boolean invalid, final String message, final Object... parameters)
     {
         if (invalid)
         {
-            quibble(message, parameters);
-            return true;
+            return quibble(message, parameters);
         }
-        return false;
+        return null;
     }
 
     /**
@@ -393,25 +333,31 @@ public abstract class BaseValidator implements Validator
     /**
      * Broadcasts a {@link Warning} with the given message
      */
-    protected void warning(final String message, final Object... parameters)
+    protected Warning warning(final String message, final Object... parameters)
     {
-        listener.warning(message, parameters);
-        statistics().warnings++;
+        return addIfNotNull(listener.warning(message, parameters));
     }
 
     /**
      * Broadcasts a {@link Warning} with the given message if the invalid parameter is true
      */
-    protected void warningIf(final boolean invalid, final String message, final Object... parameters)
+    protected Warning warningIf(final boolean invalid, final String message, final Object... parameters)
     {
         if (invalid)
         {
-            warning(message, parameters);
+            return warning(message, parameters);
         }
+        return null;
     }
 
-    private static Statistics statistics()
+    private static ValidationIssues issues()
     {
-        return statistics.get();
+        return issues.get();
+    }
+
+    private <T extends Message> T addIfNotNull(final T message)
+    {
+        issues().add(message);
+        return message;
     }
 }

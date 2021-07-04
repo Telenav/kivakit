@@ -35,12 +35,12 @@ import com.telenav.kivakit.kernel.messaging.messages.lifecycle.OperationHalted;
 import com.telenav.kivakit.kernel.messaging.messages.status.Activity;
 import com.telenav.kivakit.kernel.messaging.messages.status.Alert;
 import com.telenav.kivakit.kernel.messaging.messages.status.CriticalAlert;
-import com.telenav.kivakit.kernel.messaging.messages.status.Failure;
-import com.telenav.kivakit.kernel.messaging.messages.status.Incomplete;
 import com.telenav.kivakit.kernel.messaging.messages.status.Information;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.kernel.messaging.messages.status.Quibble;
-import com.telenav.kivakit.kernel.messaging.messages.status.Success;
+import com.telenav.kivakit.kernel.messaging.messages.status.StepFailure;
+import com.telenav.kivakit.kernel.messaging.messages.status.StepIncomplete;
+import com.telenav.kivakit.kernel.messaging.messages.status.StepSuccess;
 import com.telenav.kivakit.kernel.messaging.messages.status.Trace;
 import com.telenav.kivakit.kernel.messaging.messages.status.Warning;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageBroadcaster;
@@ -100,12 +100,12 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  * <p>
  * A {@link Status} message relates to the result of executing a step in a larger operation:
  * <ul>
- *     <li>{@link Status#SUCCEEDED} - The step succeeded and the message is reporting progress: {@link Activity}, {@link Information}, {@link Success}, {@link Trace}</li>
+ *     <li>{@link Status#SUCCEEDED} - The step succeeded and the message is reporting progress: {@link Activity}, {@link Information}, {@link StepSuccess}, {@link Trace}</li>
  *     <li>{@link Status#COMPLETED} - The step completed and produced a result but there was an actual or potential negative effect that should be noted: {{@link Warning}}</li>
  *     <li>{@link Status#RESULT_COMPROMISED} - The step completed successfully amd data was not discarded, but the result may be partly invalid: {@link Quibble}</li>
- *     <li>{@link Status#RESULT_INCOMPLETE} - The step completed but some aspect of the result had to be discarded: {@link Incomplete}</li>
+ *     <li>{@link Status#RESULT_INCOMPLETE} - The step completed but some aspect of the result had to be discarded: {@link StepIncomplete}</li>
  *     <li>{@link Status#PROBLEM} - The step didn't complete correctly because something needs attention: {@link Problem}</li>
- *     <li>{@link Status#FAILED} - The step did not complete or did not produce any usable result: {@link Alert}, {@link CriticalAlert}, {@link Failure}</li>
+ *     <li>{@link Status#FAILED} - The step did not complete or did not produce any usable result: {@link Alert}, {@link CriticalAlert}, {@link StepFailure}</li>
  * </ul>
  *
  * @author jonathanl (shibo)

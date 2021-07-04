@@ -16,30 +16,29 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.kernel.data.validation.reporters;
+package com.telenav.kivakit.kernel.data.validation.ensure.reporters;
 
-import com.telenav.kivakit.kernel.data.validation.BaseValidationReporter;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
+import com.telenav.kivakit.kernel.data.validation.ensure.BaseFailureReporter;
 import com.telenav.kivakit.kernel.messaging.Message;
-import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataValidationReporter;
+import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
+import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataFailureReporter;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 /**
- * A validation reporter that logs any messages reported to it.
+ * A validation reporter that throws a {@link ValidationFailure} exception for any message that is reported to it.
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramDataValidationReporter.class)
-public class LogValidationReporter extends BaseValidationReporter
+@UmlClassDiagram(diagram = DiagramDataFailureReporter.class)
+@UmlRelation(label = "throws", referent = ValidationFailure.class)
+public class ThrowingFailureReporter extends BaseFailureReporter
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     @Override
     @UmlExcludeMember
     public void report(final Message message)
     {
-        LOGGER.log(message);
+        throw new ValidationFailure(message.cause(), message.formatted(MessageFormatter.Format.WITH_EXCEPTION));
     }
 }

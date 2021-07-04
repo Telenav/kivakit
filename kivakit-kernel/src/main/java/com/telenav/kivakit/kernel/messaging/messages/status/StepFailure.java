@@ -30,24 +30,24 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
-public class Failure extends OperationStatusMessage
+public class StepFailure extends OperationStatusMessage
 {
-    public static final Failure INSTANCE = new Failure();
+    public static final StepFailure INSTANCE = new StepFailure();
 
-    public Failure(final String message, final Object... arguments)
+    public StepFailure(final String message, final Object... arguments)
     {
         super(message);
         arguments(arguments);
     }
 
-    public Failure(final Throwable cause, final String message, final Object... arguments)
+    public StepFailure(final Throwable cause, final String message, final Object... arguments)
     {
         super(message + ": " + Message.escape(cause.getMessage()));
         cause(cause);
         arguments(arguments);
     }
 
-    public Failure()
+    public StepFailure()
     {
     }
 

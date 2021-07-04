@@ -16,21 +16,28 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.kernel.data.validation.reporters;
+package com.telenav.kivakit.kernel.data.validation.ensure.reporters;
 
-import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataValidationReporter;
+import com.telenav.kivakit.kernel.data.validation.ensure.BaseFailureReporter;
+import com.telenav.kivakit.kernel.messaging.Message;
+import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataFailureReporter;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 /**
- * An exception indicating validation failure that is thrown by {@link ThrowingValidationReporter}.
+ * A validation reporter that asserts false when it hears a message
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramDataValidationReporter.class)
-public class ValidationFailure extends RuntimeException
+@UmlClassDiagram(diagram = DiagramDataFailureReporter.class)
+@LexakaiJavadoc(complete = true)
+public class AssertingFailureReporter extends BaseFailureReporter
 {
-    public ValidationFailure(final Throwable cause, final String message)
+    @Override
+    @UmlExcludeMember
+    public void report(final Message message)
     {
-        super(message, cause);
+        assert false : message.description();
     }
 }

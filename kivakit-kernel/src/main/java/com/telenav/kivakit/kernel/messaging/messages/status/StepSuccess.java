@@ -16,30 +16,44 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.kernel.data.validation;
+package com.telenav.kivakit.kernel.messaging.messages.status;
 
-import com.telenav.kivakit.kernel.messaging.Message;
-import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataValidation;
-import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataValidationReporter;
+import com.telenav.kivakit.kernel.messaging.messages.OperationStatusMessage;
+import com.telenav.kivakit.kernel.messaging.messages.Severity;
+import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageType;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 /**
- * Base implementation of validation reporter that reports any message it hears in {@link #onMessage(Message)}.
+ * The current step succeeded and does not indicate any problem
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramDataValidation.class)
-@UmlClassDiagram(diagram = DiagramDataValidationReporter.class)
-public abstract class BaseValidationReporter implements ValidationReporter
+@UmlClassDiagram(diagram = DiagramMessageType.class)
+@LexakaiJavadoc(complete = true)
+public class StepSuccess extends OperationStatusMessage
 {
-    /**
-     * Reports the given message
-     */
-    @Override
-    @UmlExcludeMember
-    public final void onMessage(final Message message)
+    public static final StepSuccess INSTANCE = new StepSuccess();
+
+    public StepSuccess(final String message, final Object... arguments)
     {
-        report(message);
+        super(message);
+        arguments(arguments);
+    }
+
+    public StepSuccess()
+    {
+    }
+
+    @Override
+    public Severity severity()
+    {
+        return Severity.NONE;
+    }
+
+    @Override
+    public final Status status()
+    {
+        return Status.SUCCEEDED;
     }
 }

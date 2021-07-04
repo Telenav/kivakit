@@ -16,16 +16,16 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.kernel.data.validation;
+package com.telenav.kivakit.kernel.data.validation.ensure;
 
-import com.telenav.kivakit.kernel.data.validation.reporters.AssertingValidationReporter;
-import com.telenav.kivakit.kernel.data.validation.reporters.LogValidationReporter;
-import com.telenav.kivakit.kernel.data.validation.reporters.NullValidationReporter;
-import com.telenav.kivakit.kernel.data.validation.reporters.ThrowingValidationReporter;
+import com.telenav.kivakit.kernel.data.validation.ensure.reporters.AssertingFailureReporter;
+import com.telenav.kivakit.kernel.data.validation.ensure.reporters.LogFailureReporter;
+import com.telenav.kivakit.kernel.data.validation.ensure.reporters.NullFailureReporter;
+import com.telenav.kivakit.kernel.data.validation.ensure.reporters.ThrowingFailureReporter;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
+import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataFailureReporter;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataValidation;
-import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataValidationReporter;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageListenerType;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -33,15 +33,15 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * Reporter of validation issues.
  *
  * @author jonathanl (shibo)
- * @see ThrowingValidationReporter
- * @see LogValidationReporter
- * @see AssertingValidationReporter
- * @see NullValidationReporter
+ * @see ThrowingFailureReporter
+ * @see LogFailureReporter
+ * @see AssertingFailureReporter
+ * @see NullFailureReporter
  */
 @UmlClassDiagram(diagram = DiagramMessageListenerType.class)
 @UmlClassDiagram(diagram = DiagramDataValidation.class)
-@UmlClassDiagram(diagram = DiagramDataValidationReporter.class)
-public interface ValidationReporter extends Listener
+@UmlClassDiagram(diagram = DiagramDataFailureReporter.class)
+public interface FailureReporter extends Listener
 {
     /**
      * Reports a validation issue

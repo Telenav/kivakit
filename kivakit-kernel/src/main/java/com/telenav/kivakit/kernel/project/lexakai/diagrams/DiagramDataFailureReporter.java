@@ -16,28 +16,13 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.kernel.data.validation.reporters;
+package com.telenav.kivakit.kernel.project.lexakai.diagrams;
 
-import com.telenav.kivakit.kernel.data.validation.BaseValidationReporter;
-import com.telenav.kivakit.kernel.messaging.Message;
-import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataValidationReporter;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
+import com.telenav.lexakai.annotations.diagrams.UmlDiagramIdentifier;
 
 /**
- * A validation reporter that asserts false when it hears a message
- *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramDataValidationReporter.class)
-@LexakaiJavadoc(complete = true)
-public class AssertingValidationReporter extends BaseValidationReporter
+public class DiagramDataFailureReporter implements UmlDiagramIdentifier
 {
-    @Override
-    @UmlExcludeMember
-    public void report(final Message message)
-    {
-        assert false : message.description();
-    }
 }

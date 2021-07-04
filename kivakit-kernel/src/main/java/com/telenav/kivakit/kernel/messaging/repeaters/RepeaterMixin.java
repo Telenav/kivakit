@@ -45,9 +45,9 @@ public interface RepeaterMixin extends Mixin, Repeater
     }
 
     @Override
-    default void handle(final Transmittable message)
+    default <T extends Transmittable> T handle(final T message)
     {
-        repeater().handle(message);
+        return repeater().handle(message);
     }
 
     @Override

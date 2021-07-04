@@ -31,8 +31,8 @@ import java.util.Set;
  * <p>
  * {@link #VALIDATE_ALL} specifies that values of all types should be validated. Calling {@link #include(Class)} can
  * specify one or more specific types of values to validate. An object which is {@link Validatable} can then implement
- * {@link Validatable#validator(Validation)} by returning different {@link Validator} implementations depending on the
- * type of {@link Validation} requested or by doing validation conditionally depending on what {@link
+ * {@link Validatable#validator(ValidationType)} by returning different {@link Validator} implementations depending on
+ * the type of {@link ValidationType} requested or by doing validation conditionally depending on what {@link
  * #shouldValidate(Class)} returns for one or more different target types.
  * </p>
  *
@@ -41,12 +41,12 @@ import java.util.Set;
  * @see Validator
  */
 @UmlClassDiagram(diagram = DiagramDataValidation.class)
-public class Validation extends Name
+public class ValidationType extends Name
 {
     /**
      * Full validation of all relevant values
      */
-    public static final Validation VALIDATE_ALL = new Validation("ALL")
+    public static final ValidationType VALIDATE_ALL = new ValidationType("ALL")
     {
         @Override
         public boolean shouldValidate(final Class<?> type)
@@ -61,20 +61,20 @@ public class Validation extends Name
     /**
      * @param name A user-friendly name for this kind of validation
      */
-    public Validation(final String name)
+    public ValidationType(final String name)
     {
         super(name);
     }
 
     /** Skip validation of the given type of value */
-    public Validation exclude(final Class<?> type)
+    public ValidationType exclude(final Class<?> type)
     {
         toValidate.remove(type);
         return this;
     }
 
     /** Ensure the given type of value */
-    public Validation include(final Class<?> type)
+    public ValidationType include(final Class<?> type)
     {
         toValidate.add(type);
         return this;

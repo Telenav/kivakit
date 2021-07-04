@@ -18,7 +18,7 @@
 
 package kernel.time;
 
-import com.telenav.kivakit.kernel.data.validation.reporters.ValidationFailure;
+import com.telenav.kivakit.kernel.data.validation.ensure.reporters.ValidationFailure;
 import com.telenav.kivakit.kernel.language.time.DayOfWeek;
 import org.junit.Test;
 

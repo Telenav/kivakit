@@ -16,29 +16,30 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.kernel.data.validation.reporters;
+package com.telenav.kivakit.kernel.data.validation.ensure;
 
-import com.telenav.kivakit.kernel.data.validation.BaseValidationReporter;
 import com.telenav.kivakit.kernel.messaging.Message;
-import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
-import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataValidationReporter;
+import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataFailureReporter;
+import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataValidation;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 /**
- * A validation reporter that throws a {@link ValidationFailure} exception for any message that is reported to it.
+ * Base implementation of validation reporter that reports any message it hears in {@link #onMessage(Message)}.
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramDataValidationReporter.class)
-@UmlRelation(label = "throws", referent = ValidationFailure.class)
-public class ThrowingValidationReporter extends BaseValidationReporter
+@UmlClassDiagram(diagram = DiagramDataValidation.class)
+@UmlClassDiagram(diagram = DiagramDataFailureReporter.class)
+public abstract class BaseFailureReporter implements FailureReporter
 {
+    /**
+     * Reports the given message
+     */
     @Override
     @UmlExcludeMember
-    public void report(final Message message)
+    public final void onMessage(final Message message)
     {
-        throw new ValidationFailure(message.cause(), message.formatted(MessageFormatter.Format.WITH_EXCEPTION));
+        report(message);
     }
 }

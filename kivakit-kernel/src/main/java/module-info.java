@@ -33,9 +33,7 @@ open module kivakit.kernel
     exports com.telenav.kivakit.kernel.data.conversion;
     exports com.telenav.kivakit.kernel.data.extraction;
     exports com.telenav.kivakit.kernel.data.validation.ensure;
-    exports com.telenav.kivakit.kernel.data.validation.listeners;
-    exports com.telenav.kivakit.kernel.data.validation.reporters;
-    exports com.telenav.kivakit.kernel.data.validation.validators;
+    exports com.telenav.kivakit.kernel.data.validation.ensure.reporters;
     exports com.telenav.kivakit.kernel.data.validation;
     exports com.telenav.kivakit.kernel.interfaces.code;
     exports com.telenav.kivakit.kernel.interfaces.collection;

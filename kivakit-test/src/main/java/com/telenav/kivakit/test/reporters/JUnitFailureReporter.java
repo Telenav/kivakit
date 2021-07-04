@@ -16,52 +16,33 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.kernel.messaging.messages.status;
+package com.telenav.kivakit.test.reporters;
 
+import com.telenav.kivakit.kernel.data.validation.ensure.BaseFailureReporter;
+import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
+import com.telenav.kivakit.kernel.data.validation.ensure.FailureReporter;
 import com.telenav.kivakit.kernel.messaging.Message;
-import com.telenav.kivakit.kernel.messaging.messages.OperationStatusMessage;
-import com.telenav.kivakit.kernel.messaging.messages.Severity;
-import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageType;
+import com.telenav.kivakit.test.UnitTest;
+import com.telenav.kivakit.test.project.lexakai.diagrams.DiagramTest;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.junit.Assert;
+
+import static com.telenav.kivakit.kernel.messaging.messages.MessageFormatter.Format.WITHOUT_EXCEPTION;
 
 /**
- * The current step had to discard some of the result to continue
+ * A {@link FailureReporter} that causes a JUnit test failure. This validation reporter is installed by {@link UnitTest}
+ * to ensure that validation failures by {@link Ensure} are reported through JUnit.
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramMessageType.class)
 @LexakaiJavadoc(complete = true)
-public class Incomplete extends OperationStatusMessage
+@UmlClassDiagram(diagram = DiagramTest.class)
+public class JUnitFailureReporter extends BaseFailureReporter
 {
-    public static final Incomplete INSTANCE = new Incomplete();
-
-    public Incomplete(final String message, final Object... arguments)
-    {
-        super(message);
-        arguments(arguments);
-    }
-
-    public Incomplete(final Throwable cause, final String message, final Object... arguments)
-    {
-        super(message + ": " + Message.escape(cause.getMessage()));
-        cause(cause);
-        arguments(arguments);
-    }
-
-    public Incomplete()
-    {
-    }
-
     @Override
-    public Severity severity()
+    public void report(final Message message)
     {
-        return Severity.MEDIUM_HIGH;
-    }
-
-    @Override
-    public final Status status()
-    {
-        return Status.RESULT_INCOMPLETE;
+        Assert.fail(message.formatted(WITHOUT_EXCEPTION));
     }
 }

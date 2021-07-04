@@ -16,11 +16,13 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.kernel.data.validation.listeners;
+package com.telenav.kivakit.kernel.data.validation;
 
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.listeners.MessageCounter;
 import com.telenav.kivakit.kernel.messaging.listeners.MessageList;
+import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
+import com.telenav.kivakit.kernel.messaging.messages.status.Quibble;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataValidation;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -39,5 +41,19 @@ public class ValidationIssues extends MessageList
     {
         // Keep anything that doesn't represent outright success
         super(message -> !message.status().succeeded());
+    }
+
+    @Override
+    public ValidationIssues copy()
+    {
+        return (ValidationIssues) super.copy();
+    }
+
+    /**
+     * @return True if no problems or quibbles have been encountered during validation
+     */
+    public boolean isValid()
+    {
+        return count(Quibble.class).plus(count(Problem.class)).isZero();
     }
 }

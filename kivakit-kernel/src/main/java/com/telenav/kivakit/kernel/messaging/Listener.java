@@ -24,7 +24,7 @@ import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.messaging.listeners.NullListener;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataValidationReporter;
+import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataFailureReporter;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLogging;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageBroadcaster;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageListener;
@@ -108,7 +108,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 @UmlClassDiagram(diagram = DiagramMessageRepeater.class)
 @UmlClassDiagram(diagram = DiagramMessageListener.class)
 @UmlClassDiagram(diagram = DiagramLogging.class)
-@UmlClassDiagram(diagram = DiagramDataValidationReporter.class)
+@UmlClassDiagram(diagram = DiagramDataFailureReporter.class)
 @UmlExcludeSuperTypes({ NamedObject.class })
 public interface Listener extends Transceiver, Receiver<Transmittable>, NamedObject
 {

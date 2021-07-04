@@ -33,11 +33,11 @@ import com.telenav.kivakit.kernel.data.conversion.string.primitive.BooleanConver
 import com.telenav.kivakit.kernel.data.conversion.string.primitive.DoubleConverter;
 import com.telenav.kivakit.kernel.data.conversion.string.primitive.IntegerConverter;
 import com.telenav.kivakit.kernel.data.conversion.string.primitive.LongConverter;
+import com.telenav.kivakit.kernel.data.validation.BaseValidator;
 import com.telenav.kivakit.kernel.data.validation.Validatable;
-import com.telenav.kivakit.kernel.data.validation.Validation;
+import com.telenav.kivakit.kernel.data.validation.ValidationIssues;
+import com.telenav.kivakit.kernel.data.validation.ValidationType;
 import com.telenav.kivakit.kernel.data.validation.Validator;
-import com.telenav.kivakit.kernel.data.validation.listeners.ValidationIssues;
-import com.telenav.kivakit.kernel.data.validation.validators.BaseValidator;
 import com.telenav.kivakit.kernel.interfaces.factory.MapFactory;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.interfaces.numeric.Quantizable;
@@ -547,7 +547,7 @@ public class SwitchParser<T> implements Named, Validatable
      * {@inheritDoc}
      */
     @Override
-    public Validator validator(final Validation type)
+    public Validator validator(final ValidationType type)
     {
         return new BaseValidator()
         {

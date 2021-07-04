@@ -60,6 +60,12 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
         this.filter = filter;
     }
 
+    @Override
+    public MessageList copy()
+    {
+        return (MessageList) super.copy();
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -173,6 +179,12 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
         {
             add(message);
         }
+    }
+
+    @Override
+    public MessageList onNewInstance()
+    {
+        return new MessageList(filter);
     }
 
     /**

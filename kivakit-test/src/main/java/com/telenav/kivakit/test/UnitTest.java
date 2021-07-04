@@ -19,6 +19,7 @@
 package com.telenav.kivakit.test;
 
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
+import com.telenav.kivakit.kernel.data.validation.ensure.Failure;
 import com.telenav.kivakit.kernel.interfaces.code.Loopable;
 import com.telenav.kivakit.kernel.interfaces.value.Source;
 import com.telenav.kivakit.kernel.language.objects.Objects;
@@ -31,7 +32,7 @@ import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.listeners.ConsoleWriter;
 import com.telenav.kivakit.test.project.lexakai.diagrams.DiagramTest;
 import com.telenav.kivakit.test.random.RandomValueFactory;
-import com.telenav.kivakit.test.reporters.JUnitValidationReporter;
+import com.telenav.kivakit.test.reporters.JUnitFailureReporter;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -58,7 +59,7 @@ import java.util.function.Predicate;
  */
 @UmlClassDiagram(diagram = DiagramTest.class)
 @UmlRelation(label = "uses", referent = RandomValueFactory.class)
-@UmlRelation(label = "reports validation failures with", referent = JUnitValidationReporter.class)
+@UmlRelation(label = "reports validation failures with", referent = JUnitFailureReporter.class)
 public abstract class UnitTest extends TestWatcher implements Listener
 {
     private static boolean quickTest;
@@ -68,7 +69,7 @@ public abstract class UnitTest extends TestWatcher implements Listener
     {
         quickTest = Booleans.isTrue(System.getProperty("testQuick"));
         ClassLoader.getSystemClassLoader().setDefaultAssertionStatus(true);
-        Ensure.reporterFactory(messageType -> new JUnitValidationReporter());
+        Failure.reporterFactory(messageType -> new JUnitFailureReporter());
     }
 
     /**

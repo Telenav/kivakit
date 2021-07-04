@@ -24,13 +24,13 @@ import com.telenav.kivakit.kernel.messaging.messages.status.Activity;
 import com.telenav.kivakit.kernel.messaging.messages.status.Alert;
 import com.telenav.kivakit.kernel.messaging.messages.status.Announcement;
 import com.telenav.kivakit.kernel.messaging.messages.status.CriticalAlert;
-import com.telenav.kivakit.kernel.messaging.messages.status.Failure;
-import com.telenav.kivakit.kernel.messaging.messages.status.Incomplete;
 import com.telenav.kivakit.kernel.messaging.messages.status.Information;
 import com.telenav.kivakit.kernel.messaging.messages.status.Narration;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.kernel.messaging.messages.status.Quibble;
-import com.telenav.kivakit.kernel.messaging.messages.status.Success;
+import com.telenav.kivakit.kernel.messaging.messages.status.StepFailure;
+import com.telenav.kivakit.kernel.messaging.messages.status.StepIncomplete;
+import com.telenav.kivakit.kernel.messaging.messages.status.StepSuccess;
 import com.telenav.kivakit.kernel.messaging.messages.status.Trace;
 import com.telenav.kivakit.kernel.messaging.messages.status.Warning;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessaging;
@@ -60,14 +60,14 @@ public class Importance extends Level
                 Trace.class,
                 Activity.class,
                 Information.class,
-                Success.class,
+                StepSuccess.class,
                 Narration.class,
                 Announcement.class,
                 Quibble.class,
                 Warning.class,
-                Incomplete.class,
+                StepIncomplete.class,
                 Problem.class,
-                Failure.class,
+                StepFailure.class,
                 Alert.class,
                 CriticalAlert.class
         );

@@ -25,7 +25,7 @@ import com.telenav.kivakit.filesystem.local.LocalFile;
 import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.data.validation.reporters.ValidationFailure;
+import com.telenav.kivakit.kernel.data.validation.ensure.reporters.ValidationFailure;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.kernel.language.strings.Paths;
