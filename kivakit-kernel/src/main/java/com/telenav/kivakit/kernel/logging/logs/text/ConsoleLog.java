@@ -19,6 +19,7 @@
 package com.telenav.kivakit.kernel.logging.logs.text;
 
 import com.telenav.kivakit.kernel.language.time.Duration;
+import com.telenav.kivakit.kernel.language.vm.Console;
 import com.telenav.kivakit.kernel.logging.LogEntry;
 import com.telenav.kivakit.kernel.logging.loggers.LogServiceLogger;
 import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
@@ -53,6 +54,8 @@ public class ConsoleLog extends BaseTextLog
 
     private Format formatter = Format.COLUMNAR;
 
+    private final Console console = new Console();
+
     @Override
     @UmlExcludeMember
     public void configure(final Map<String, String> properties)
@@ -69,8 +72,7 @@ public class ConsoleLog extends BaseTextLog
     public void flush(final Duration maximumWaitTime)
     {
         super.flush(maximumWaitTime);
-        System.out.flush();
-        System.err.flush();
+        console.flush(maximumWaitTime);
     }
 
     @Override
@@ -84,16 +86,16 @@ public class ConsoleLog extends BaseTextLog
     @UmlExcludeMember
     public synchronized void onLog(final LogEntry entry)
     {
-        final var out = entry.isSevere() ? System.err : System.out;
+        final var outputType = entry.isSevere() ? Console.OutputType.ERROR : Console.OutputType.NORMAL;
         switch (formatter)
         {
             case UNFORMATTED:
-                out.println(entry.message().formatted(MessageFormatter.Format.WITH_EXCEPTION));
+                console.printLine(outputType, entry.message().formatted(MessageFormatter.Format.WITH_EXCEPTION));
                 break;
 
             case COLUMNAR:
                 final var formatted = format(entry, MessageFormatter.Format.WITH_EXCEPTION);
-                out.println(formatted);
+                console.printLine(outputType, formatted);
                 break;
         }
     }
