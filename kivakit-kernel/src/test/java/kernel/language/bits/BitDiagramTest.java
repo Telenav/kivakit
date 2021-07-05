@@ -39,9 +39,9 @@ public class BitDiagramTest
     {
         final var value = binary("100110011");
 
-        ensureEqual(9, A.extractInt(value));
-        ensureEqual(9, B.extractInt(value));
-        ensureEqual(true, C.extractBoolean(value));
+        ensureEqual(9, A.getInt(value));
+        ensureEqual(9, B.getInt(value));
+        ensureEqual(true, C.getBoolean(value));
     }
 
     @Test
