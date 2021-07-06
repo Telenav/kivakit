@@ -11,12 +11,12 @@ Whether you plan to use KivaKit or help to develop it, this page will help you g
 You will need these products, or compatible products, set up to begin:
 
 1. Latest Git
-2. Latest GitFlow.  To install on macOS, install *Homebrew* and then use that to install git-flow:
-   
+2. Latest GitFlow. To install on macOS, install *Homebrew* and then use that to install git-flow:
+
        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
        brew install git-flow
 
-2. Latest [Java 12](https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html)
+2. Latest [Java 11](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)
 3. Latest [Maven](https://maven.apache.org/download.cgi)
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
@@ -26,8 +26,10 @@ You will need these products, or compatible products, set up to begin:
 The KivaKit project will look roughly like this when we're done with the setup process:
 
 > * Workspace
->   * kivakit
->     * kivakit-core
+    >
+* kivakit
+  >
+* kivakit-core
 >     * kivakit-filesystems
 >     * [...]
 
@@ -62,10 +64,10 @@ On macOS or UNIX, you can use a sample *.profile* from KivaKit to configure your
 
        cp kivakit/setup/profile $HOME/.profile
 
-2. Make sure that the **M2_HOME** and **JAVA_HOME** environment variables defined in the *.profile* 
+2. Make sure that the **M2_HOME** and **JAVA_HOME** environment variables defined in the *.profile*
    point to your Maven and Java installations
 
-       export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-12.0.2.jdk/Contents/Home 
+       export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.0.11.jdk/Contents/Home 
        export M2_HOME=$HOME/Developer/apache-maven-3.6.3
 
 3. Change the **KIVAKIT_WORKSPACE** variable to point to your IDE workspace (**Workspace**).
@@ -80,10 +82,9 @@ On macOS or UNIX, you can use a sample *.profile* from KivaKit to configure your
 
 ### Windows &nbsp;&nbsp; <img src="https://www.kivakit.org/images/window-32.png" srcset="https://www.kivakit.org/images/window-32-2x.png 2x"/>
 
-On Windows, a UNIX-like environment with *bash* is required. It is recommended to install [Git for Windows](https://gitforwindows.org/),
-which will install both git, and a bash shell.
+On Windows, a UNIX-like environment with *bash* is required. It is recommended to install [Git for Windows](https://gitforwindows.org/), which will install both git, and a bash shell.
 
-1. Install KivaKit *.profile* sample from the *kivakit* project as shown here 
+1. Install KivaKit *.profile* sample from the *kivakit* project as shown here
    (or merge it into your existing .profile):
 
        cp kivakit/setup/profile $HOME/.profile
@@ -91,7 +92,7 @@ which will install both git, and a bash shell.
 2. Make sure that the **M2_HOME** and **JAVA_HOME** environment variables defined in the *.profile*
    point to your Maven and Java installations
 
-       export JAVA_HOME=/c/Program\\ Files/Java/jdk-12.0.2 
+       export JAVA_HOME=/c/Program\\ Files/Java/jdk-11.0.11  
        export M2_HOME=$HOME/Tools/apache-maven-3.6.3
 
 3. Change the **KIVAKIT_WORKSPACE** variable to point to your IDE workspace (**$HOME/Workspace**).
@@ -111,8 +112,7 @@ which will install both git, and a bash shell.
 
 ### 3. Finishing the Job  <img src="https://www.kivakit.org/images/stars-32.png" srcset="https://www.kivakit.org/images/stars-32-2x.png 2x"/>
 
-Once you have cloned the project into your workspace and set up your environment,
-you can complete your set up with one final command:
+Once you have cloned the project into your workspace and set up your environment, you can complete your set up with one final command:
 
     $KIVAKIT_HOME/setup/setup.sh
 

@@ -120,7 +120,7 @@ The [**kivakit-examples**](https://github.com/Telenav/kivakit-examples) project 
 
 ### Downloads <a name = "downloads"></a>&nbsp; <img src="https://www.kivakit.org/images/down-arrow-32.png" srcset="https://www.kivakit.org/images/down-arrow-32-2x.png 2x"/>
 
-[**Java 12**](https://www.oracle.com/java/technologies/javase/jdk12-archive-downloads.html)  
+[**Java 11**](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)  
 [**Maven**](https://maven.apache.org/download.cgi)  
 [**IntelliJ**](https://www.jetbrains.com/idea/download/)
 

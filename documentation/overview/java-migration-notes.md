@@ -47,7 +47,7 @@ Since KivaKit uses reflection, most modules in KivaKit are open modules. This al
 
 > WARNING: An illegal reflective access operation has occurred
 
-This warning is annoying, but it cannot be turned off by design. Although future versions of Java will restrict reflection further, it is nothing to worry about under Java 12.
+This warning is annoying, but it cannot be turned off by design. Although future versions of Java will restrict reflection further, it is nothing to worry about under Java 11.
 
 ### Making Your Application Modular &nbsp; <img src="https://www.kivakit.org/images/stars-32.png" srcset="https://www.kivakit.org/images/stars-32-2x.png 2x"/>
 
