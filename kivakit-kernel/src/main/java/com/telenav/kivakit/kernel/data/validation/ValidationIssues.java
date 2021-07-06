@@ -56,4 +56,10 @@ public class ValidationIssues extends MessageList
     {
         return count(Quibble.class).plus(count(Problem.class)).isZero();
     }
+
+    @Override
+    public MessageList onNewInstance()
+    {
+        return new ValidationIssues();
+    }
 }

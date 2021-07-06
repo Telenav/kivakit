@@ -47,7 +47,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramDataValidation.class)
 public class MessageList extends ObjectList<Message> implements MessageCounter
 {
-    private final Matcher<Message> filter;
+    private Matcher<Message> filter;
 
     public MessageList(final Matcher<Message> filter)
     {
@@ -63,7 +63,9 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
     @Override
     public MessageList copy()
     {
-        return (MessageList) super.copy();
+        final var copy = (MessageList) super.copy();
+        copy.filter = this.filter;
+        return copy;
     }
 
     /**
