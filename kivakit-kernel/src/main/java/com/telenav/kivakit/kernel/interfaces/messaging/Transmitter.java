@@ -39,7 +39,7 @@ import java.util.function.Supplier;
 @UmlClassDiagram(diagram = DiagramMessaging.class)
 @UmlClassDiagram(diagram = DiagramMessageBroadcaster.class)
 @UmlRelation(label = "transmits", referent = Transmittable.class)
-public interface Transmitter<T>
+public interface Transmitter<T extends Transmittable>
 {
     /**
      * Receives the given value
