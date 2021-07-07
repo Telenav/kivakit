@@ -59,9 +59,6 @@ public class ConfigurationPackage extends ConfigurationSet
     /** The path of this configuration package */
     private final PackagePath path;
 
-    /** The configuration entries in this package */
-    private Set<Entry> configurations;
-
     /**
      * @param path The path to the package where the configurations are stored
      */
@@ -81,28 +78,23 @@ public class ConfigurationPackage extends ConfigurationSet
      */
     @Override
     @UmlExcludeMember
-    protected Set<Entry> onLoadConfigurations()
+    protected Set<Entry> onLoad()
     {
-        if (configurations == null)
+        // Go through .properties files in the package
+        final var _package = Package.of(path);
+        trace("Loading resources from $", _package);
+        final Set<Entry> entries = new HashSet<>();
+        for (final var resource : _package.resources(Extension.PROPERTIES::matches))
         {
-            configurations = new HashSet<>();
-
-            // Go through .properties files in the package
-            final var _package = Package.of(path);
-            trace("Loading resources from $", _package);
-            for (final var resource : _package.resources(Extension.PROPERTIES::matches))
+            // load the properties file
+            final var configuration = internalLoadConfiguration(resource);
+            if (configuration != null)
             {
-                // load the properties file
-                final var configuration = internalLoadConfiguration(resource);
-                if (configuration != null)
-                {
-                    // and add the configuration
-                    configurations.add(configuration);
-                }
+                // and add the configuration
+                entries.add(configuration);
             }
-            trace("Loaded $ resources", configurations.size());
         }
-
-        return configurations;
+        trace("Loaded $ resources", entries.size());
+        return entries;
     }
 }

@@ -215,7 +215,7 @@ public class ConfigurationSet extends BaseRepeater implements Named, Iterable<Ob
 
     /** The set of configurations */
     @UmlAggregation
-    private final Set<Entry> configurations = new HashSet<>();
+    private final Set<Entry> entries = new HashSet<>();
 
     /** Map to get configurations by identifier */
     private final Map<Entry.ConfigurationIdentifier, Entry> identifierToConfiguration = new HashMap<>();
@@ -316,7 +316,7 @@ public class ConfigurationSet extends BaseRepeater implements Named, Iterable<Ob
      */
     public void clear()
     {
-        lock.write(configurations::clear);
+        lock.write(entries::clear);
     }
 
     public Iterator<Object> configurations()
@@ -449,7 +449,7 @@ public class ConfigurationSet extends BaseRepeater implements Named, Iterable<Ob
         lock.write(() ->
         {
             // add the configuration to the set of configurations,
-            configurations.add(configuration);
+            entries.add(configuration);
 
             // add it to the global lookup
             Registry.global().register(configuration.object(), configuration.identifier().instance());
@@ -479,7 +479,7 @@ public class ConfigurationSet extends BaseRepeater implements Named, Iterable<Ob
      * <b>Not public API</b>
      * <p>
      * Loads a configuration from the given properties resource. Note that when this method is called by a subclass
-     * implementing {@link #onLoadConfigurations()}, it will already hold a write lock.
+     * implementing {@link #onLoad()}, it will already hold a write lock.
      *
      * @return A configuration loaded from the given properties resource (could be a file in a folder or a resource in a
      * package)
@@ -521,7 +521,7 @@ public class ConfigurationSet extends BaseRepeater implements Named, Iterable<Ob
      * @return The set of loaded configurations
      */
     @UmlExcludeMember
-    protected Set<Entry> onLoadConfigurations()
+    protected Set<Entry> onLoad()
     {
         return Set.of();
     }
@@ -532,7 +532,7 @@ public class ConfigurationSet extends BaseRepeater implements Named, Iterable<Ob
         return lock.write(() ->
         {
             load();
-            return Sets.hashset(configurations);
+            return Sets.hashset(entries);
         });
     }
 
@@ -556,7 +556,8 @@ public class ConfigurationSet extends BaseRepeater implements Named, Iterable<Ob
             trace("Loading configurations from $", name());
             lock.write(() ->
             {
-                onLoadConfigurations().forEach(this::internalAdd);
+                final var entries = onLoad();
+                entries.forEach(this::internalAdd);
                 loaded = true;
             });
         }
