@@ -151,6 +151,14 @@ public interface Listener extends Transceiver, Receiver<Transmittable>, NamedObj
     /**
      * <b>Not public API</b>
      */
+    default void message(final Message message)
+    {
+        onMessage(message);
+    }
+
+    /**
+     * <b>Not public API</b>
+     */
     @Override
     @UmlExcludeMember
     default void onHandle(final Transmittable message)
@@ -168,7 +176,7 @@ public interface Listener extends Transceiver, Receiver<Transmittable>, NamedObj
     {
         if (transmittable instanceof Message)
         {
-            onMessage((Message) transmittable);
+            message((Message) transmittable);
         }
     }
 
