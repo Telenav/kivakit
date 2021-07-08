@@ -209,9 +209,8 @@ public class PackageResource extends BaseReadableResource
         }
         catch (final IOException e)
         {
-            problem(e, "Unable to open package resource $", this);
+            return fatal(e, "Unable to open package resource $", this);
         }
-        return null;
     }
 
     /**

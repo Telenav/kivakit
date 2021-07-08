@@ -28,8 +28,6 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
-
 /**
  * An {@link InputStream} stream wrapper that allows *one-time* reading of an input stream as a {@link
  * ReadableResource}. Once the StreamResource has been opened, it cannot be opened a second time. Attempting to do so
@@ -62,7 +60,7 @@ public class InputResource extends BaseReadableResource
     {
         if (opened)
         {
-            return fail("StreamResource can only be read once.");
+            return fatal("StreamResource can only be read once.");
         }
         opened = true;
         return in;

@@ -158,6 +158,11 @@ public class ResourcePath extends StringPath
         return FilePath.parseFilePath(asString());
     }
 
+    public Extension extension()
+    {
+        return fileName().extension();
+    }
+
     /**
      * @return The file name of this resource path
      */

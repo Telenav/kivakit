@@ -58,7 +58,6 @@ import java.nio.charset.Charset;
 import java.nio.file.attribute.PosixFilePermission;
 
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
 
 /**
  * File abstraction that adds integrates files with the KivaKit resource mini-framework and adds a variety of useful
@@ -201,33 +200,33 @@ public class File extends BaseWritableResource implements FileSystemObject
         // Ensure our many preconditions
         if (!uri.isAbsolute())
         {
-            fail("URI is not absolute");
+            Ensure.illegalArgument("URI is not absolute");
         }
         if (uri.isOpaque())
         {
-            fail("URI is not hierarchical");
+            Ensure.illegalArgument("URI is not hierarchical");
         }
         final var scheme = uri.getScheme();
         if (!"file".equalsIgnoreCase(scheme))
         {
-            fail("URI scheme is not \"file\"");
+            Ensure.illegalArgument("URI scheme is not \"file\"");
         }
         if (uri.getAuthority() != null)
         {
-            fail("URI has an authority component");
+            Ensure.illegalArgument("URI has an authority component");
         }
         if (uri.getFragment() != null)
         {
-            fail("URI has a fragment component");
+            Ensure.illegalArgument("URI has a fragment component");
         }
         if (uri.getQuery() != null)
         {
-            fail("URI has a query component");
+            Ensure.illegalArgument("URI has a query component");
         }
         var path = uri.getPath();
         if ("".equals(path))
         {
-            fail("URI path component is empty");
+            Ensure.illegalArgument("URI path component is empty");
         }
         path = path.replaceFirst("^/", "");
         return new File(FileSystemServiceLoader.fileSystem(FilePath.parseFilePath(path)).fileService(FilePath.parseFilePath(path)));
@@ -401,12 +400,12 @@ public class File extends BaseWritableResource implements FileSystemObject
         service.parent().mkdirs();
         if (!service.parent().exists())
         {
-            fail("Parent folder of " + this + " does not exist");
+            fatal("Parent folder of " + this + " does not exist");
         }
         if (!isWritable())
         {
             chmod(PosixFilePermission.OTHERS_WRITE);
-            fail("Resource " + this + " is not writable");
+            fatal("Resource " + this + " is not writable");
         }
         return this;
     }
@@ -563,7 +562,7 @@ public class File extends BaseWritableResource implements FileSystemObject
             {
                 return new File((LocalFile) resource);
             }
-            return fail("Materialized resource must be either a File or a LocalFile");
+            return fatal("Materialized resource must be either a File or a LocalFile");
         }
         else
         {

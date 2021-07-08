@@ -258,7 +258,7 @@ public final class KryoSerializationSession extends BaseRepeater implements Name
         }
         catch (final Exception e)
         {
-            throwProblem(e, "Unable to read object");
+            fatal(e, "Unable to read object");
         }
         return null;
     }
@@ -412,7 +412,7 @@ public final class KryoSerializationSession extends BaseRepeater implements Name
         }
         catch (final Exception e)
         {
-            throwProblem(e, "Unable to write $", object);
+            fatal(e, "Unable to write $", object);
         }
     }
 

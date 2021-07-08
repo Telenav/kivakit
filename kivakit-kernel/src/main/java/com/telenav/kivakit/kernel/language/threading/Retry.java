@@ -19,7 +19,7 @@
 package com.telenav.kivakit.kernel.language.threading;
 
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.interfaces.code.CheckedCode;
+import com.telenav.kivakit.kernel.interfaces.code.Unchecked;
 import com.telenav.kivakit.kernel.language.reflection.Type;
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.kernel.logging.Logger;
@@ -42,10 +42,10 @@ public class Retry extends BaseRepeater
 
     public static final int MAXIMUM_NUMBER_RETRIES = 5;
 
-    public static <T> CheckedCode<T> retry(final CheckedCode<T> code,
-                                           final int times,
-                                           final Duration delay,
-                                           final Runnable... beforeRetry)
+    public static <T> Unchecked<T> retry(final Unchecked<T> code,
+                                         final int times,
+                                         final Duration delay,
+                                         final Runnable... beforeRetry)
     {
         return () ->
         {
@@ -100,7 +100,7 @@ public class Retry extends BaseRepeater
      * @param stepsBeforeRetry This is an optional list of steps executed in case the try fails, and right before each
      * retry
      */
-    public <T> T run(final CheckedCode<T> runnable, final Runnable... stepsBeforeRetry)
+    public <T> T run(final Unchecked<T> runnable, final Runnable... stepsBeforeRetry)
     {
         try
         {
@@ -123,7 +123,7 @@ public class Retry extends BaseRepeater
      * @param stepsBeforeRetry This is an optional list of steps executed in case the try fails, and right before each
      * retry
      */
-    private <T> T runWithRetries(final CheckedCode<T> runnable, int numberOfRetries, int totalRetries,
+    private <T> T runWithRetries(final Unchecked<T> runnable, int numberOfRetries, int totalRetries,
                                  final Runnable... stepsBeforeRetry)
     {
         if (numberOfRetries < 0)

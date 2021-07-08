@@ -143,7 +143,7 @@ public interface SerializationSession extends SerializationSessionReadWrite, Nam
         }
         catch (final Exception e)
         {
-            throwProblem(e, "Socket connection failed");
+            fatal(e, "Socket connection failed");
             return null;
         }
     }

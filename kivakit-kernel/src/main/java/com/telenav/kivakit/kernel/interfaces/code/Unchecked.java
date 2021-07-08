@@ -1,11 +1,12 @@
 package com.telenav.kivakit.kernel.interfaces.code;
 
+import com.telenav.kivakit.kernel.interfaces.value.Source;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Listener;
 
 /**
- * Code that can throw a checked {@link Exception}.
+ * Removes exception handling from code that can throw a checked (or unchecked) {@link Exception}.
  * <p>
  * Methods are provided that provide exception handling. For example the code below executes the doIt() method and logs
  * a warning and returns the default value <i>false</i> if the code throws an exception. This design allows the code to
@@ -18,30 +19,34 @@ import com.telenav.kivakit.kernel.messaging.Listener;
  *
  *    [...]
  *
- * return Code.of(() -&gt; doIt()).or(false, "Unable to do it");
+ * return Unchecked.of(this::doIt).or(false, "Unable to do it");
  * </pre>
  *
  * @author jonathanl (shibo)
  */
 @FunctionalInterface
-public interface CheckedCode<Value>
+public interface Unchecked<Value>
 {
     Logger LOGGER = LoggerFactory.newLogger();
 
-    static <T> CheckedCode<T> of(final CheckedCode<T> code)
+    static <T> Unchecked<T> of(final Unchecked<T> code)
     {
         return code;
     }
 
     /**
-     * @param defaultValue A default value to return if the code throws an exception
-     * @param message A warning message to give to the listener if an exception is thrown
-     * @param arguments Arguments to interpolate into the message
-     * @return The value returned by the code, or the given default value if an exception is thrown
+     * @return The value returned by the code, or a default value if an exception is thrown
      */
-    default Value or(final Value defaultValue, final String message, final Object... arguments)
+    default Value or(final Source<Value> defaultValue)
     {
-        return or(LOGGER, defaultValue, message, arguments);
+        try
+        {
+            return run();
+        }
+        catch (final Exception ignored)
+        {
+            return defaultValue.get();
+        }
     }
 
     /**
@@ -51,7 +56,8 @@ public interface CheckedCode<Value>
      * @param arguments Arguments to interpolate into the message
      * @return The value returned by the code, or the given default value if an exception is thrown
      */
-    default Value or(final Listener listener, final Value defaultValue, final String message, final Object... arguments)
+    default Value orDefault(final Listener listener, final Value defaultValue, final String message,
+                            final Object... arguments)
     {
         try
         {
@@ -67,7 +73,7 @@ public interface CheckedCode<Value>
     /**
      * @return The value returned by the code, or a default value if an exception is thrown
      */
-    default Value or(final Value defaultValue)
+    default Value orDefault(final Value defaultValue)
     {
         try
         {
@@ -79,9 +85,20 @@ public interface CheckedCode<Value>
         }
     }
 
+    /**
+     * @param defaultValue A default value to return if the code throws an exception
+     * @param message A warning message to give to the listener if an exception is thrown
+     * @param arguments Arguments to interpolate into the message
+     * @return The value returned by the code, or the given default value if an exception is thrown
+     */
+    default Value orDefault(final Value defaultValue, final String message, final Object... arguments)
+    {
+        return orDefault(LOGGER, defaultValue, message, arguments);
+    }
+
     default Value orNull()
     {
-        return or(null);
+        return orDefault(null);
     }
 
     /**

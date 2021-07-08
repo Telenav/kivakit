@@ -24,6 +24,7 @@ import com.telenav.kivakit.kernel.language.threading.context.CodeContext;
 import com.telenav.kivakit.kernel.language.time.Frequency;
 import com.telenav.kivakit.kernel.messaging.messages.lifecycle.OperationHalted;
 import com.telenav.kivakit.kernel.messaging.messages.status.Announcement;
+import com.telenav.kivakit.kernel.messaging.messages.status.FatalProblem;
 import com.telenav.kivakit.kernel.messaging.messages.status.Information;
 import com.telenav.kivakit.kernel.messaging.messages.status.Narration;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
@@ -148,6 +149,22 @@ public interface Transceiver extends NamedObject
     {
     }
 
+    default <T> T fatal(final String text, final Object... arguments)
+    {
+        final var problem = new FatalProblem(text, arguments);
+        handle(problem);
+        problem.throwAsIllegalStateException();
+        return null;
+    }
+
+    default <T> T fatal(final Throwable cause, final String text, final Object... arguments)
+    {
+        final var problem = new FatalProblem(cause, text, arguments);
+        handle(problem);
+        problem.throwAsIllegalStateException();
+        return null;
+    }
+
     default OperationHalted halt(final String text, final Object... arguments)
     {
         return handle(new OperationHalted(text, arguments));
@@ -181,6 +198,30 @@ public interface Transceiver extends NamedObject
         {
             code.run();
         }
+    }
+
+    default <T> T illegalArgument(final String text, final Object... arguments)
+    {
+        final var problem = new Problem(text, arguments);
+        handle(problem);
+        problem.throwAsIllegalArgumentException();
+        return null;
+    }
+
+    default <T> T illegalState(final String text, final Object... arguments)
+    {
+        final var problem = new Problem(text, arguments);
+        handle(problem);
+        problem.throwAsIllegalStateException();
+        return null;
+    }
+
+    default <T> T illegalState(final Throwable e, final String text, final Object... arguments)
+    {
+        final var problem = new Problem(e, text, arguments);
+        handle(problem);
+        problem.throwAsIllegalStateException();
+        return null;
     }
 
     default Information information(final String text, final Object... arguments)
@@ -264,20 +305,6 @@ public interface Transceiver extends NamedObject
             return handle(new Quibble(cause, text, arguments));
         }
         return null;
-    }
-
-    default void throwProblem(final String text, final Object... arguments)
-    {
-        final var problem = new Problem(text, arguments);
-        handle(problem);
-        problem.throwAsIllegalStateException();
-    }
-
-    default void throwProblem(final Throwable cause, final String text, final Object... arguments)
-    {
-        final var problem = new Problem(cause, text, arguments);
-        handle(problem);
-        problem.throwAsIllegalStateException();
     }
 
     default Trace trace(final String text, final Object... arguments)
