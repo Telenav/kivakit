@@ -218,7 +218,7 @@
 
         <jersey.version>2.33</jersey.version>
         <swagger.version>2.1.6</swagger.version>
-        <httpclient.version>4.5.12</httpclient.version>
+        <httpclient.version>4.5.13</httpclient.version>
 
         <!-- XML -->
 
