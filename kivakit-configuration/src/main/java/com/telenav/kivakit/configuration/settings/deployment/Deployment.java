@@ -16,14 +16,14 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.configuration.deployment;
+package com.telenav.kivakit.configuration.settings.deployment;
 
 import com.telenav.kivakit.commandline.SwitchParser;
-import com.telenav.kivakit.configuration.ConfigurationFolder;
-import com.telenav.kivakit.configuration.ConfigurationPackage;
-import com.telenav.kivakit.configuration.ConfigurationSet;
 import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfiguration;
+import com.telenav.kivakit.configuration.settings.Settings;
+import com.telenav.kivakit.configuration.settings.SettingsFolder;
+import com.telenav.kivakit.configuration.settings.SettingsPackage;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
@@ -38,9 +38,9 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import java.io.Serializable;
 
 /**
- * A deployment is a named {@link ConfigurationSet}. The name of the set can be retrieved with {@link #name()} and a
- * description of its purpose with {@link #description()}. The example below, as well as the superclass {@link
- * ConfigurationSet}, has details on how configuration information can be loaded and queried.
+ * A deployment is a named {@link Settings}. The name of the set can be retrieved with {@link #name()} and a description
+ * of its purpose with {@link #description()}. The example below, as well as the superclass {@link Settings}, has
+ * details on how configuration information can be loaded and queried.
  *
  * <p><b>Configuring Applications</b></p>
  *
@@ -51,10 +51,10 @@ import java.io.Serializable;
  * </p>
  *
  * <p>
- * For example, an application might specify a deployment with the command line switch "-deployment=navteam". The
+ * For example, an application might specify a deployment with the command line switch "-deployment=production". The
  * configuration objects in the {@link Deployment} can then be installed into the global {@link Deployment} with {@link
- * #install()}. At a later point, the application can look up those objects with {@link #get(Class)} and {@link
- * #get(Class, InstanceIdentifier)}.
+ * #install()}. At a later point, the application can look up those objects with {@link #settings(Class)} and {@link
+ * #settings(Class, InstanceIdentifier)}.
  * </p>
  *
  * <p><b>Example</b></p>
@@ -75,8 +75,8 @@ import java.io.Serializable;
  *
  * <p>
  * It does this by using a SwitchParser from kivakit-application to allow the user to select a deployment from the
- * command line. The deployment is automatically installed in the global {@link ConfigurationSet}, where configuration
- * objects can easily be located in the code. The usage for this application then, is:
+ * command line. The deployment is automatically installed in the global {@link Settings}, where configuration objects
+ * can easily be located in the code. The usage for this application then, is:
  * </p>
  *
  * <pre>
@@ -168,23 +168,23 @@ import java.io.Serializable;
  * <p><b>Key Methods</b></p>
  *
  * <ul>
- *     <li>{@link #addPackage(Class, String)} - Adds the package of .properties files at the path relative to the given class</li>
- *     <li>{@link #addFolder(Folder)} - Adds the folder of .properties files</li>
+ *     <li>{@link #addAllFrom(Class, String)} - Adds the package of .properties files at the path relative to the given class</li>
+ *     <li>{@link #addAllFrom(Folder)} - Adds the folder of .properties files</li>
  *     <li>{@link #addDeployment(Deployment)} - Merges another deployment into this one</li>
  *     <li>{@link #install()} - Installs the contents of this {@link Deployment} into the global configuration set</li>
  * </ul>
  *
  * <p>
  * For more details on how configuration files are processed and how applications can locate configuration information,
- * see {@link ConfigurationSet}.
+ * see {@link Settings}.
  * </p>
  *
  * @author jonathanl (shibo)
- * @see ConfigurationSet
+ * @see Settings
  * @see DeploymentSet
  */
 @UmlClassDiagram(diagram = DiagramConfiguration.class, excludeSuperTypes = { Serializable.class })
-public class Deployment extends ConfigurationSet implements Named, Serializable
+public class Deployment extends Settings implements Named, Serializable
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
@@ -252,9 +252,9 @@ public class Deployment extends ConfigurationSet implements Named, Serializable
      * {@inheritDoc}
      */
     @Override
-    public Deployment add(final Object configuration, final InstanceIdentifier instance)
+    public Deployment add(final Object settings, final InstanceIdentifier instance)
     {
-        return (Deployment) super.add(configuration, instance);
+        return (Deployment) super.add(settings, instance);
     }
 
     /**
@@ -263,7 +263,7 @@ public class Deployment extends ConfigurationSet implements Named, Serializable
     @Override
     public Deployment add(final Object configuration, final Enum<?> instance)
     {
-        return add(configuration, new InstanceIdentifier(instance));
+        return add(configuration, InstanceIdentifier.of(instance));
     }
 
     /**
@@ -278,6 +278,27 @@ public class Deployment extends ConfigurationSet implements Named, Serializable
         return this;
     }
 
+    @Override
+    public Deployment addAllFrom(final Folder folder)
+    {
+        addAll(listenTo(SettingsFolder.of(folder)));
+        return this;
+    }
+
+    @Override
+    public Deployment addAllFrom(final PackagePath path)
+    {
+        addAll(listenTo(SettingsPackage.of(path)));
+        return this;
+    }
+
+    @Override
+    public Deployment addAllFrom(final Class<?> relativeTo, final String path)
+    {
+        addAll(listenTo(SettingsPackage.of(PackagePath.parsePackagePath(relativeTo, path))));
+        return this;
+    }
+
     /**
      * Adds all of the configurations in the given deployment to this deployment
      */
@@ -285,27 +306,6 @@ public class Deployment extends ConfigurationSet implements Named, Serializable
     public Deployment addDeployment(final Deployment deployment)
     {
         super.internalAddAll(deployment);
-        return this;
-    }
-
-    @Override
-    public Deployment addFolder(final Folder folder)
-    {
-        addSet(listenTo(new ConfigurationFolder(folder)));
-        return this;
-    }
-
-    @Override
-    public Deployment addPackage(final PackagePath path)
-    {
-        addSet(listenTo(ConfigurationPackage.of(path)));
-        return this;
-    }
-
-    @Override
-    public Deployment addPackage(final Class<?> relativeTo, final String path)
-    {
-        addSet(listenTo(ConfigurationPackage.of(PackagePath.parsePackagePath(relativeTo, path))));
         return this;
     }
 
@@ -335,7 +335,7 @@ public class Deployment extends ConfigurationSet implements Named, Serializable
     }
 
     /**
-     * Installs the configuration information for this deployment into the global {@link ConfigurationSet}
+     * Installs the configuration information for this deployment into the global {@link Settings}
      */
     @Override
     @UmlExcludeMember

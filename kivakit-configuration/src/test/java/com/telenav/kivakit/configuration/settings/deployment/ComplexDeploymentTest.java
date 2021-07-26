@@ -16,19 +16,20 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.configuration;
+package com.telenav.kivakit.configuration.settings.deployment;
 
-import com.telenav.kivakit.configuration.deployment.Deployment;
 import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
+import com.telenav.kivakit.configuration.settings.ServerSettings;
+import com.telenav.kivakit.configuration.settings.Settings;
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.test.UnitTest;
 import org.junit.Test;
 
 public class ComplexDeploymentTest extends UnitTest
 {
-    private static final InstanceIdentifier SERVER1 = new InstanceIdentifier("SERVER1");
+    private static final InstanceIdentifier SERVER1 = InstanceIdentifier.of("SERVER1");
 
-    private static final InstanceIdentifier SERVER2 = new InstanceIdentifier("SERVER2");
+    private static final InstanceIdentifier SERVER2 = InstanceIdentifier.of("SERVER2");
 
     public static class Development extends Deployment
     {
@@ -50,7 +51,7 @@ public class ComplexDeploymentTest extends UnitTest
         }
     }
 
-    public static final class Server1 extends ServerConfiguration
+    public static final class Server1 extends ServerSettings
     {
         public Server1()
         {
@@ -59,7 +60,7 @@ public class ComplexDeploymentTest extends UnitTest
         }
     }
 
-    public static final class Server2 extends ServerConfiguration
+    public static final class Server2 extends ServerSettings
     {
         public Server2()
         {
@@ -68,7 +69,7 @@ public class ComplexDeploymentTest extends UnitTest
         }
     }
 
-    public static final class Server3 extends ServerConfiguration
+    public static final class Server3 extends ServerSettings
     {
         public Server3()
         {
@@ -77,7 +78,7 @@ public class ComplexDeploymentTest extends UnitTest
         }
     }
 
-    public static final class Server4 extends ServerConfiguration
+    public static final class Server4 extends ServerSettings
     {
         public Server4()
         {
@@ -91,13 +92,11 @@ public class ComplexDeploymentTest extends UnitTest
     {
         new Development().install();
 
-        final var global = Deployment.global();
-
-        final var server1 = global.require(ServerConfiguration.class, SERVER1);
+        final var server1 = Settings.require(ServerSettings.class, SERVER1);
         ensureEqual(9001, server1.port());
         ensureEqual(Duration.ONE_MINUTE, server1.timeout());
 
-        final var server2 = global.require(ServerConfiguration.class, SERVER2);
+        final var server2 = Settings.require(ServerSettings.class, SERVER2);
         ensureEqual(9002, server2.port());
         ensureEqual(Duration.ONE_MINUTE, server2.timeout());
     }

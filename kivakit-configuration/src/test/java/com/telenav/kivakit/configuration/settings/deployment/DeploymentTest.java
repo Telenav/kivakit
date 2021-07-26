@@ -16,9 +16,10 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.configuration;
+package com.telenav.kivakit.configuration.settings.deployment;
 
-import com.telenav.kivakit.configuration.deployment.Deployment;
+import com.telenav.kivakit.configuration.settings.ServerSettings;
+import com.telenav.kivakit.configuration.settings.Settings;
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.test.UnitTest;
 import org.junit.Test;
@@ -30,10 +31,12 @@ public class DeploymentTest extends UnitTest
         public China()
         {
             super("china", "test china deployment");
-            final var configuration = new ServerConfiguration();
-            configuration.timeout(Duration.ONE_MINUTE);
-            configuration.port(9090);
-            add(configuration);
+
+            final var settings = new ServerSettings();
+            settings.timeout(Duration.ONE_MINUTE);
+            settings.port(9090);
+
+            add(settings);
         }
     }
 
@@ -42,10 +45,12 @@ public class DeploymentTest extends UnitTest
         public Development()
         {
             super("development", "test development deployment");
-            final var configuration = new ServerConfiguration();
-            configuration.timeout(Duration.ONE_MINUTE);
-            configuration.port(8080);
-            add(configuration);
+
+            final var settings = new ServerSettings();
+            settings.timeout(Duration.ONE_MINUTE);
+            settings.port(8080);
+
+            add(settings);
         }
     }
 
@@ -54,10 +59,12 @@ public class DeploymentTest extends UnitTest
         public Production()
         {
             super("production", "test production deployment");
-            final var configuration = new ServerConfiguration();
-            configuration.timeout(Duration.ONE_MINUTE);
-            configuration.port(80);
-            add(configuration);
+
+            final var settings = new ServerSettings();
+            settings.timeout(Duration.ONE_MINUTE);
+            settings.port(80);
+
+            add(settings);
         }
     }
 
@@ -66,10 +73,9 @@ public class DeploymentTest extends UnitTest
     {
         new China().install();
 
-        final var global = Deployment.global();
-        final var configuration = global.require(ServerConfiguration.class);
-        ensureEqual(9090, configuration.port());
-        ensureEqual(Duration.ONE_MINUTE, configuration.timeout());
+        final var settings = Settings.require(ServerSettings.class);
+        ensureEqual(settings.port(), 9090);
+        ensureEqual(settings.timeout(), Duration.ONE_MINUTE);
     }
 
     @Test
@@ -77,10 +83,9 @@ public class DeploymentTest extends UnitTest
     {
         new Development().install();
 
-        final var global = Deployment.global();
-        final var configuration = global.require(ServerConfiguration.class);
-        ensureEqual(8080, configuration.port());
-        ensureEqual(Duration.ONE_MINUTE, configuration.timeout());
+        final var settings = Settings.require(ServerSettings.class);
+        ensureEqual(8080, settings.port());
+        ensureEqual(Duration.ONE_MINUTE, settings.timeout());
     }
 
     @Test
@@ -88,9 +93,8 @@ public class DeploymentTest extends UnitTest
     {
         new Production().install();
 
-        final var global = Deployment.global();
-        final var configuration = global.require(ServerConfiguration.class);
-        ensureEqual(80, configuration.port());
-        ensureEqual(Duration.ONE_MINUTE, configuration.timeout());
+        final var settings = Settings.require(ServerSettings.class);
+        ensureEqual(80, settings.port());
+        ensureEqual(Duration.ONE_MINUTE, settings.timeout());
     }
 }

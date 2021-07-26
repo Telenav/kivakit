@@ -25,11 +25,7 @@ import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.CommandLine;
 import com.telenav.kivakit.commandline.CommandLineParser;
 import com.telenav.kivakit.commandline.SwitchParser;
-import com.telenav.kivakit.configuration.ConfigurationSet;
-import com.telenav.kivakit.configuration.deployment.Deployment;
-import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
-import com.telenav.kivakit.configuration.lookup.Registry;
-import com.telenav.kivakit.configuration.settings.Settings;
+import com.telenav.kivakit.configuration.BaseComponent;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
@@ -75,6 +71,13 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
 
 /**
  * Base class for KivaKit applications. Handles command line parsing, project initialization and configuration.
+ *
+ * <p><b>Messaging</b></p>
+ *
+ * <p>
+ * Because this class extends {@link BaseRepeater} and has a {@link Logger} that listens to the application class, all
+ * {@link Application}s automatically inherit logging functionality via the convenience methods in {@link Repeater}.
+ * </p>
  *
  * <p><b>Startup</b></p>
  *
@@ -138,52 +141,6 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  *     <li>Call the application implementation in {@link #onRun()}</li>
  * </ol>
  *
- * <p><b>Settings</b></p>
- *
- * <p>
- * Settings for any configurable object can be retrieved with {@link #settings(Class)}, as described in {@link Settings}.
- * This provides a simplified interface to load settings objects specified by the user while also allowing for default
- * settings when they are not specified.
- * </p>
- *
- * <ul>
- *     <li>{@link #settings(Class)} - A settings object of the specified class</li>
- * </ul>
- *
- * <p><b>Configuration</b></p>
- *
- * <p>
- * For convenience and brevity, access to the global {@link ConfigurationSet} is provided:
- * </p>
- *
- * <ul>
- *     <li>{@link #addDeployment(Deployment)} - Adds the configuration objects for the given deployment</li>
- *     <li>{@link #addConfiguration(Object)}  - Adds the given configuration object</li>
- *     <li>{@link #addConfiguration(Object, InstanceIdentifier)} - Adds the configuration object to configure the given instance</li>
- *     <li>{@link #configuration(Class)} - Get the configuration object of the given type</li>
- *     <li>{@link #configuration(Class, InstanceIdentifier)} - Get the configuration object to configure the given instance</li>
- *     <li>{@link #requireConfiguration(Class)} - Gets the given configuration object or fails</li>
- *     <li>{@link #requireConfiguration(Class, InstanceIdentifier)} - Gets the configuration object for the given instance or fails</li>
- * </ul>
- *
- * <p><b>Registry Lookups</b></p>
- *
- * <p>
- * Access to the global object {@link Registry} is provided and fulfills basic needs for object wiring:
- * </p>
- *
- * <ul>
- *     <li>{@link #locate(Class)} - Find the class of the given type</li>
- *     <li>{@link #register(Object)} - Register the given singleton object for lookup</li>
- * </ul>
- *
- * <p><b>Messaging</b></p>
- *
- * <p>
- * Because this class extends {@link BaseRepeater} and has a {@link Logger} that listens to the application class, all
- * {@link Application}s automatically inherit logging functionality via the convenience methods in {@link Repeater}.
- * </p>
- *
  * @author jonathanl (shibo)
  * @see BaseRepeater
  * @see CommandLine
@@ -194,7 +151,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
 @UmlClassDiagram(diagram = DiagramApplication.class)
 @UmlNote(text = "See kivakit-core-configuration for details on application configuration")
 @LexakaiJavadoc(complete = true)
-public abstract class Application extends BaseRepeater implements Named, ApplicationMetadata
+public abstract class Application extends BaseComponent implements Named, ApplicationMetadata
 {
     /** The one and only application running in this process */
     private static Application instance;
@@ -251,7 +208,7 @@ public abstract class Application extends BaseRepeater implements Named, Applica
      */
     protected Application(final Project... projects)
     {
-        Registry.global().register(this);
+        register(this);
 
         instance = this;
         if (projects.length == 1)
@@ -269,34 +226,6 @@ public abstract class Application extends BaseRepeater implements Named, Applica
                 }
             };
         }
-    }
-
-    /**
-     * Adds the given configuration object. The object can be retrieved with {@link #configuration(Class)} or by calling
-     * {@link ConfigurationSet#get(Class)} on the global configuration store retrieved with {@link
-     * ConfigurationSet#global()}.
-     */
-    public void addConfiguration(final Object configuration)
-    {
-        ConfigurationSet.global().add(configuration);
-    }
-
-    /**
-     * Adds a configuration object for the given instance. The object can be retrieved with {@link #configuration(Class,
-     * InstanceIdentifier)} or by calling {@link ConfigurationSet#get(Class, InstanceIdentifier)} on the global
-     * configuration store retrieved with {@link Deployment#global()}.
-     */
-    public void addConfiguration(final Object configuration, final InstanceIdentifier instance)
-    {
-        ConfigurationSet.global().add(configuration, instance);
-    }
-
-    /**
-     * Adds the set of configuration objects from the given {@link Deployment}
-     */
-    public void addDeployment(final Deployment deployment)
-    {
-        ConfigurationSet.global().addDeployment(deployment);
     }
 
     @UmlExcludeMember
@@ -375,22 +304,6 @@ public abstract class Application extends BaseRepeater implements Named, Applica
     }
 
     /**
-     * @return The configuration object of the given type, if any exists
-     */
-    public <T> T configuration(final Class<T> type)
-    {
-        return Deployment.global().get(type);
-    }
-
-    /**
-     * @return The configuration object of the given type for the given instance to be configured, if any exists
-     */
-    public <T> T configuration(final Class<T> type, final InstanceIdentifier instance)
-    {
-        return Deployment.global().get(type, instance);
-    }
-
-    /**
      * @return A description of the application for use in help
      */
     @Override
@@ -447,14 +360,6 @@ public abstract class Application extends BaseRepeater implements Named, Applica
         return PropertyMap.localized(packagePath(), locale);
     }
 
-    /**
-     * @return The object of the given type from the global {@link Registry}, if any
-     */
-    public <T> T locate(final Class<T> type)
-    {
-        return Registry.global().lookup(type);
-    }
-
     public Project project()
     {
         return project;
@@ -463,30 +368,6 @@ public abstract class Application extends BaseRepeater implements Named, Applica
     public VariableMap<String> properties()
     {
         return project.properties();
-    }
-
-    /**
-     * Registers the given object with the global {@link Registry}
-     */
-    public void register(final Object object)
-    {
-        Registry.global().register(object);
-    }
-
-    /**
-     * @return The configuration object of the given type or failure if it doesn't exist
-     */
-    public <T> T requireConfiguration(final Class<T> type)
-    {
-        return Deployment.global().require(type);
-    }
-
-    /**
-     * @return The configuration object of the given type to configure the given instance or failure if it doesn't exist
-     */
-    public <T> T requireConfiguration(final Class<T> type, final InstanceIdentifier instance)
-    {
-        return Deployment.global().require(type, instance);
     }
 
     /**
@@ -571,14 +452,6 @@ public abstract class Application extends BaseRepeater implements Named, Applica
         }
 
         onRan();
-    }
-
-    /**
-     * @return The settings object of the given configuration type
-     */
-    public <T> T settings(final Class<T> type)
-    {
-        return Settings.require(type);
     }
 
     /**

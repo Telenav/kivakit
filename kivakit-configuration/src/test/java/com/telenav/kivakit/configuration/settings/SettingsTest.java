@@ -16,111 +16,118 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.configuration;
+package com.telenav.kivakit.configuration.settings;
 
 import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.test.UnitTest;
+import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 
-public class ConfigurationSetTest extends UnitTest
+public class SettingsTest extends UnitTest
 {
-    private static final InstanceIdentifier SERVER1 = new InstanceIdentifier("SERVER1");
+    private static final InstanceIdentifier SERVER1 = InstanceIdentifier.of("SERVER1");
 
-    private static final InstanceIdentifier SERVER2 = new InstanceIdentifier("SERVER2");
+    private static final InstanceIdentifier SERVER2 = InstanceIdentifier.of("SERVER2");
 
     @Test
-    public void testMultipleConfigurations()
+    public void test()
     {
-        final var global = ConfigurationSet.global();
-        global.addListener(this);
+        final Settings settings = settings();
 
         // Configure
         {
             // Script or startup code creates configuration
-            final var server1 = new ServerConfiguration();
+            final var server = new ServerSettings();
+            server.timeout(Duration.ONE_MINUTE);
+            server.port(9000);
+
+            // and adds it to global configuration set
+            Settings.register(server);
+
+            // Dump the set to the console
+            trace("test: " + settings);
+        }
+
+        // Get configuration
+        {
+            // Client code, possibly in a library class, later retrieves the configuration
+            final var server = Settings.require(ServerSettings.class);
+            ensureEqual(Duration.ONE_MINUTE, server.timeout());
+            ensureEqual(9000, server.port());
+        }
+    }
+
+    @Test
+    public void testMultipleInstances()
+    {
+        final var settings = settings();
+
+        // Configure
+        {
+            // Script or startup code creates configuration
+            final var server1 = new ServerSettings();
             server1.timeout(Duration.ONE_MINUTE);
             server1.port(8080);
 
             // and adds it to the global configuration set with the given enum key
-            global.add(server1, SERVER1);
+            settings.add(server1, SERVER1);
 
             // Script can register a second configuration of the same class
-            final var server2 = new ServerConfiguration();
+            final var server2 = new ServerSettings();
             server2.timeout(Duration.ONE_MINUTE);
             server2.port(80);
 
             // under a different key
-            global.add(server2, SERVER2);
+            settings.add(server2, SERVER2);
 
             // Dump the global configuration set to the console
-            trace("testMultipleConfigurations: " + global);
+            trace("testMultipleInstances: " + settings);
         }
 
         // Get configuration
         {
             // Client code can then retrieve both configurations
-            final var server1 = global.require(ServerConfiguration.class, SERVER1);
+            final var server1 = Settings.require(ServerSettings.class, SERVER1);
             ensureEqual(Duration.ONE_MINUTE, server1.timeout());
             ensureEqual(8080, server1.port());
 
-            final var server2 = global.require(ServerConfiguration.class, SERVER2);
+            final var server2 = Settings.require(ServerSettings.class, SERVER2);
             ensureEqual(Duration.ONE_MINUTE, server2.timeout());
             ensureEqual(80, server2.port());
         }
     }
 
     @Test
-    public void testPropertiesFileConfiguration()
+    public void testPropertiesFile()
     {
-        final var global = ConfigurationSet.global();
-        global.clear();
-        global.addListener(this);
+        final var settings = settings();
 
         // Configure
         {
             // Add all properties files in this package to the global set
-            global.addPackage(getClass());
+            settings.addAllFrom(getClass());
 
             // Dump the set to the console
-            trace("testPropertiesFileConfiguration: " + global);
+            trace("testPropertiesFile: " + settings);
         }
 
         // Get configuration
         {
             // Client code, possibly in a library class, later retrieves the configuration
-            final var configuration = global.require(ServerConfiguration.class);
+            final var configuration = Settings.require(ServerSettings.class);
             ensureEqual(Duration.ONE_MINUTE, configuration.timeout());
             ensureEqual(7000, configuration.port());
         }
     }
 
-    @Test
-    public void testSingleConfiguration()
+    @NotNull
+    private Settings settings()
     {
-        final var global = ConfigurationSet.global();
+        final var global = Settings.of(this);
+        global.clear();
+        global.clearListeners();
         global.addListener(this);
-
-        // Configure
-        {
-            // Script or startup code creates configuration
-            final var configuration = new ServerConfiguration();
-            configuration.timeout(Duration.ONE_MINUTE);
-            configuration.port(9000);
-
-            // and adds it to global configuration set
-            global.add(configuration);
-
-            // Dump the set to the console
-            trace("testSingleConfiguration: " + global);
-        }
-
-        // Get configuration
-        {
-            // Client code, possibly in a library class, later retrieves the configuration
-            final var configuration = global.require(ServerConfiguration.class);
-            ensureEqual(Duration.ONE_MINUTE, configuration.timeout());
-            ensureEqual(9000, configuration.port());
-        }
+        return global;
     }
 }

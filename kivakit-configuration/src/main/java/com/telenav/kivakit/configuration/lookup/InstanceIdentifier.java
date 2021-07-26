@@ -18,20 +18,20 @@
 
 package com.telenav.kivakit.configuration.lookup;
 
-import com.telenav.kivakit.configuration.ConfigurationSet;
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfiguration;
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramLookup;
+import com.telenav.kivakit.configuration.settings.Settings;
 import com.telenav.kivakit.kernel.language.values.identifier.StringIdentifier;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
 /**
- * An identifier for a particular instance of a class of configuration object stored in a {@link ConfigurationSet}. Also
- * used by {@link Registry} when locating an object by class which has more than one instance.
+ * An identifier for a particular instance of a class of configuration object stored in a {@link Settings}. Also used by
+ * {@link Registry} when locating an object by class which has more than one instance.
  *
  * @author jonathanl (shibo)
  * @see Registry
- * @see ConfigurationSet
+ * @see Settings
  */
 @UmlClassDiagram(diagram = DiagramConfiguration.class)
 @UmlClassDiagram(diagram = DiagramLookup.class)
@@ -39,20 +39,30 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 public class InstanceIdentifier extends StringIdentifier
 {
     /** Identifies the one and only instance of a singleton */
-    public static final InstanceIdentifier SINGLETON = new InstanceIdentifier("[SINGLETON]");
+    public static final InstanceIdentifier SINGLETON = InstanceIdentifier.of("[SINGLETON]");
 
-    public InstanceIdentifier(final Class<?> value)
+    public static InstanceIdentifier of(final Class<?> value)
     {
-        super(value.getSimpleName());
+        return InstanceIdentifier.of(value.getSimpleName());
     }
 
-    public InstanceIdentifier(final Enum<?> value)
+    public static InstanceIdentifier of(final Enum<?> value)
     {
-        super(value.name());
+        return InstanceIdentifier.of(value.name());
     }
 
-    public InstanceIdentifier(final String string)
+    public static InstanceIdentifier of(final String value)
+    {
+        return new InstanceIdentifier(value);
+    }
+
+    protected InstanceIdentifier(final String string)
     {
         super(string);
+    }
+
+    RegistryKey key(final Class<?> at)
+    {
+        return new RegistryKey(at.getName() + ":" + identifier());
     }
 }

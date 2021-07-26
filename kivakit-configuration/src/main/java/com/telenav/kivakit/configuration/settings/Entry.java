@@ -16,7 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.configuration;
+package com.telenav.kivakit.configuration.settings;
 
 import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfiguration;
@@ -137,6 +137,23 @@ class Entry
     {
         this.identifier = identifier;
         this.object = object;
+    }
+
+    @Override
+    public boolean equals(final Object object)
+    {
+        if (object instanceof Entry)
+        {
+            final Entry that = (Entry) object;
+            return this.object == that.object;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Hash.identity(object);
     }
 
     public ConfigurationIdentifier identifier()

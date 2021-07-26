@@ -16,11 +16,11 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.configuration.deployment;
+package com.telenav.kivakit.configuration.settings.deployment;
 
 import com.telenav.kivakit.commandline.SwitchParser;
-import com.telenav.kivakit.configuration.ConfigurationSet;
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfiguration;
+import com.telenav.kivakit.configuration.settings.Settings;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.kernel.messaging.Listener;
@@ -41,7 +41,7 @@ import java.util.Set;
  *
  * @author jonathanl (shibo)
  * @see Deployment
- * @see ConfigurationSet
+ * @see Settings
  */
 @UmlClassDiagram(diagram = DiagramConfiguration.class)
 public class DeploymentSet extends BaseRepeater
@@ -105,7 +105,7 @@ public class DeploymentSet extends BaseRepeater
             final var deployment = listenTo(new Deployment(folder.name().name(), "'" + folder.name() + "' deployment"));
 
             // and add the configuration information from the sub-folder,
-            deployment.addFolder(folder);
+            deployment.addAllFrom(folder);
 
             // assert that the deployment has not already been added,
             assert !deployments.contains(deployment);
@@ -132,7 +132,7 @@ public class DeploymentSet extends BaseRepeater
             final var deployment = listenTo(new Deployment(subPackage.last(), "'" + subPackage.last() + "' deployment"));
 
             // and add the configuration information from the sub-folder,
-            deployment.addPackage(subPackage);
+            deployment.addAllFrom(subPackage);
 
             // add it to this set of deployments.
             deployments.add(deployment);
