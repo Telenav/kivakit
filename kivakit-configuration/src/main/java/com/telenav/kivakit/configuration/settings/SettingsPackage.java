@@ -16,7 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.configuration;
+package com.telenav.kivakit.configuration.settings;
 
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfiguration;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
@@ -35,25 +35,25 @@ import java.util.Set;
  * instantiate and populate the configuration objects.
  *
  * <p>
- * <i>See the superclass {@link ConfigurationSet} for details on how this works.</i>
+ * <i>See the superclass {@link Settings} for details on how this works.</i>
  * </p>
  *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("ClassEscapesDefinedScope")
 @UmlClassDiagram(diagram = DiagramConfiguration.class)
-public class ConfigurationPackage extends ConfigurationSet
+public class SettingsPackage extends Settings
 {
-    private static final Map<PackagePath, ConfigurationPackage> packages = new HashMap<>();
+    private static final Map<PackagePath, SettingsPackage> packages = new HashMap<>();
 
-    public static ConfigurationPackage of(final Package _package)
+    public static SettingsPackage of(final Package _package)
     {
         return of(_package.path());
     }
 
-    public static ConfigurationPackage of(final PackagePath path)
+    public static SettingsPackage of(final PackagePath path)
     {
-        return packages.computeIfAbsent(path, ignored -> new ConfigurationPackage(path));
+        return packages.computeIfAbsent(path, ignored -> new SettingsPackage(path));
     }
 
     /** The path of this configuration package */
@@ -62,7 +62,7 @@ public class ConfigurationPackage extends ConfigurationSet
     /**
      * @param path The path to the package where the configurations are stored
      */
-    protected ConfigurationPackage(final PackagePath path)
+    protected SettingsPackage(final PackagePath path)
     {
         this.path = path;
     }

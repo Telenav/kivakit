@@ -16,7 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.configuration;
+package com.telenav.kivakit.configuration.settings;
 
 import com.telenav.kivakit.kernel.data.conversion.string.primitive.IntegerConverter;
 import com.telenav.kivakit.kernel.language.reflection.populator.KivaKitPropertyConverter;
@@ -29,7 +29,7 @@ import com.telenav.kivakit.kernel.language.time.Duration;
  *
  * @author jonathanl (shibo)
  */
-public class ServerConfiguration
+public class ServerSettings
 {
     private int port;
 

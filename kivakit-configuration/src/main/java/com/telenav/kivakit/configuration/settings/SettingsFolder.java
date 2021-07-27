@@ -16,7 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.configuration;
+package com.telenav.kivakit.configuration.settings;
 
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfiguration;
 import com.telenav.kivakit.filesystem.Folder;
@@ -31,20 +31,28 @@ import java.util.Set;
  * A set of configuration objects stored in a folder. The folder contains a set of .properties files that are used to
  * instantiate and populate the configuration objects.
  * <p>
- * <i>See the superclass {@link ConfigurationSet} for details on how this works.</i>
+ * <i>See the superclass {@link Settings} for details on how this works.</i>
  *
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("ClassEscapesDefinedScope")
 @UmlClassDiagram(diagram = DiagramConfiguration.class)
-public class ConfigurationFolder extends ConfigurationSet
+public class SettingsFolder extends Settings
 {
+    /**
+     * @param folder The folder containing .properties files specifying configuration objects
+     */
+    public static SettingsFolder of(final Folder folder)
+    {
+        return new SettingsFolder(folder);
+    }
+
     private final Folder folder;
 
     /**
      * @param folder The folder containing .properties files specifying configuration objects
      */
-    public ConfigurationFolder(final Folder folder)
+    protected SettingsFolder(final Folder folder)
     {
         this.folder = folder;
     }
