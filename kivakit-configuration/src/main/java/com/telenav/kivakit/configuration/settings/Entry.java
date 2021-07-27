@@ -32,7 +32,7 @@ import java.security.Key;
 /**
  * <b>Not public API</b>
  * <p>
- * A configuration object with an identifier. Used as a data structure internally.
+ * A settings object with an identifier. Used as a data structure internally.
  *
  * @author jonathanl (shibo)
  */
@@ -51,20 +51,20 @@ class Entry
     @UmlNotPublicApi
     @UmlExcludeSuperTypes
     @LexakaiJavadoc(complete = true) static
-    class ConfigurationIdentifier implements Comparable<Key>
+    class Identifier implements Comparable<Key>
     {
-        /** The type of configuration */
+        /** The type of settings object */
         @UmlAggregation
         private final Class<?> type;
 
-        /** An instance identifier for use when there is more than one configuration object of the same type */
+        /** An instance identifier for use when there is more than one settings object of the same type */
         @UmlAggregation
         private final InstanceIdentifier instance;
 
         /**
          * @param type The type of configuration
          */
-        public ConfigurationIdentifier(final Class<?> type)
+        public Identifier(final Class<?> type)
         {
             this.type = type;
             instance = InstanceIdentifier.SINGLETON;
@@ -74,7 +74,7 @@ class Entry
          * @param type The type of configuration
          * @param instance The instance of the given type
          */
-        public ConfigurationIdentifier(final Class<?> type, final InstanceIdentifier instance)
+        public Identifier(final Class<?> type, final InstanceIdentifier instance)
         {
             this.type = type;
             this.instance = instance;
@@ -89,9 +89,9 @@ class Entry
         @Override
         public boolean equals(final Object object)
         {
-            if (object instanceof ConfigurationIdentifier)
+            if (object instanceof Identifier)
             {
-                final var that = (ConfigurationIdentifier) object;
+                final var that = (Identifier) object;
                 return type.equals(that.type) && instance.equals(that.instance);
             }
             return false;
@@ -128,12 +128,12 @@ class Entry
 
     /** Identifier of configuration */
     @UmlAggregation
-    private final ConfigurationIdentifier identifier;
+    private final Identifier identifier;
 
     /** The configuration object itself */
     private final Object object;
 
-    public Entry(final ConfigurationIdentifier identifier, final Object object)
+    public Entry(final Identifier identifier, final Object object)
     {
         this.identifier = identifier;
         this.object = object;
@@ -156,7 +156,7 @@ class Entry
         return Hash.identity(object);
     }
 
-    public ConfigurationIdentifier identifier()
+    public Identifier identifier()
     {
         return identifier;
     }

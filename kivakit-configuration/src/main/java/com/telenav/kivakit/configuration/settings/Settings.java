@@ -356,7 +356,7 @@ public class Settings extends BaseRepeater implements Named, Iterable<Object>
     private final Set<Entry> entries = new HashSet<>();
 
     /** Map to get configurations by identifier */
-    private final Map<Entry.ConfigurationIdentifier, Entry> identifierToConfiguration = new HashMap<>();
+    private final Map<Entry.Identifier, Entry> identifierToConfiguration = new HashMap<>();
 
     /** True if the configurations in this set are loaded */
     private boolean loaded;
@@ -372,7 +372,7 @@ public class Settings extends BaseRepeater implements Named, Iterable<Object>
      */
     public Settings add(final Object configuration)
     {
-        internalAdd(new Entry(new Entry.ConfigurationIdentifier(configuration.getClass()), configuration));
+        internalAdd(new Entry(new Entry.Identifier(configuration.getClass()), configuration));
         return this;
     }
 
@@ -402,7 +402,7 @@ public class Settings extends BaseRepeater implements Named, Iterable<Object>
             return fail("To add a ConfigurationSet, call addSet()");
         }
 
-        internalAdd(new Entry(new Entry.ConfigurationIdentifier(settings.getClass(), instance), settings));
+        internalAdd(new Entry(new Entry.Identifier(settings.getClass(), instance), settings));
 
         return this;
     }
@@ -564,7 +564,7 @@ public class Settings extends BaseRepeater implements Named, Iterable<Object>
     @UmlRelation(label = "gets values")
     public <T> T settings(final Class<T> type)
     {
-        return settings(new Entry.ConfigurationIdentifier(type));
+        return settings(new Entry.Identifier(type));
     }
 
     /**
@@ -572,7 +572,7 @@ public class Settings extends BaseRepeater implements Named, Iterable<Object>
      */
     public <T> T settings(final Class<T> type, final InstanceIdentifier instance)
     {
-        return settings(new Entry.ConfigurationIdentifier(type, instance));
+        return settings(new Entry.Identifier(type, instance));
     }
 
     /**
@@ -615,7 +615,7 @@ public class Settings extends BaseRepeater implements Named, Iterable<Object>
             while (!at.equals(Object.class))
             {
                 // adding the configuration object for each superclass.
-                final var identifier = new Entry.ConfigurationIdentifier(at, instance);
+                final var identifier = new Entry.Identifier(at, instance);
                 identifierToConfiguration.put(identifier, entry);
                 at = at.getSuperclass();
             }
@@ -662,7 +662,7 @@ public class Settings extends BaseRepeater implements Named, Iterable<Object>
             trace("Loaded configuration: $", configuration);
 
             // and return the configuration set entry for the fully loaded configuration object
-            return new Entry(new Entry.ConfigurationIdentifier(configurationClass, identifier), configuration);
+            return new Entry(new Entry.Identifier(configurationClass, identifier), configuration);
         }
         catch (final Exception e)
         {
@@ -764,7 +764,7 @@ public class Settings extends BaseRepeater implements Named, Iterable<Object>
     /**
      * @return The configuration for the given identifier
      */
-    private <T> T settings(final Entry.ConfigurationIdentifier identifier)
+    private <T> T settings(final Entry.Identifier identifier)
     {
         return lock.read(() ->
         {
