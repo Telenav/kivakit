@@ -47,6 +47,7 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
  * @see Repeater
  * @see Listener
  * @see Message
+ * @see <a href="https://state-of-the-art.org#broadcaster">State(Art) Blog Article</a>
  */
 @UmlClassDiagram(diagram = DiagramMessageBroadcaster.class)
 @UmlClassDiagram(diagram = DiagramMessageRepeater.class)
