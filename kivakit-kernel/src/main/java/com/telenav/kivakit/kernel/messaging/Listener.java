@@ -103,6 +103,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  *
  * @author jonathanl (shibo)
  * @see Broadcaster
+ * @see <a href="https://state-of-the-art.org#broadcaster">State(Art) Blog Article</a>
  */
 @UmlClassDiagram(diagram = DiagramMessageBroadcaster.class)
 @UmlClassDiagram(diagram = DiagramMessageRepeater.class)

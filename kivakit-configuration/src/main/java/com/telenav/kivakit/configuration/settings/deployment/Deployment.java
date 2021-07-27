@@ -168,8 +168,8 @@ import java.io.Serializable;
  * <p><b>Key Methods</b></p>
  *
  * <ul>
- *     <li>{@link #addAllFrom(Class, String)} - Adds the package of .properties files at the path relative to the given class</li>
- *     <li>{@link #addAllFrom(Folder)} - Adds the folder of .properties files</li>
+ *     <li>{@link #registerAllIn(Class, String)} - Adds the package of .properties files at the path relative to the given class</li>
+ *     <li>{@link #registerAllIn(Folder)} - Adds the folder of .properties files</li>
  *     <li>{@link #addDeployment(Deployment)} - Merges another deployment into this one</li>
  *     <li>{@link #install()} - Installs the contents of this {@link Deployment} into the global configuration set</li>
  * </ul>
@@ -249,60 +249,8 @@ public class Deployment extends Settings implements Named, Serializable
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Deployment add(final Object settings, final InstanceIdentifier instance)
-    {
-        return (Deployment) super.add(settings, instance);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Deployment add(final Object configuration, final Enum<?> instance)
-    {
-        return add(configuration, InstanceIdentifier.of(instance));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Deployment add(final Object configuration)
-    {
-        assert !(configuration instanceof PackagePath) && !(configuration instanceof Folder) :
-                "Should have called loadAll with the argument " + configuration;
-        super.add(configuration);
-        return this;
-    }
-
-    @Override
-    public Deployment addAllFrom(final Folder folder)
-    {
-        addAll(listenTo(SettingsFolder.of(folder)));
-        return this;
-    }
-
-    @Override
-    public Deployment addAllFrom(final PackagePath path)
-    {
-        addAll(listenTo(SettingsPackage.of(path)));
-        return this;
-    }
-
-    @Override
-    public Deployment addAllFrom(final Class<?> relativeTo, final String path)
-    {
-        addAll(listenTo(SettingsPackage.of(PackagePath.parsePackagePath(relativeTo, path))));
-        return this;
-    }
-
-    /**
      * Adds all of the configurations in the given deployment to this deployment
      */
-    @Override
     public Deployment addDeployment(final Deployment deployment)
     {
         super.internalAddAll(deployment);
@@ -349,6 +297,57 @@ public class Deployment extends Settings implements Named, Serializable
     public String name()
     {
         return name;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Deployment register(final Object settings, final InstanceIdentifier instance)
+    {
+        return (Deployment) super.register(settings, instance);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Deployment register(final Object settings, final Enum<?> instance)
+    {
+        return register(settings, InstanceIdentifier.of(instance));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Deployment register(final Object settings)
+    {
+        assert !(settings instanceof PackagePath) && !(settings instanceof Folder) :
+                "Should have called loadAll with the argument " + settings;
+        super.register(settings);
+        return this;
+    }
+
+    @Override
+    public Deployment registerAllIn(final Folder folder)
+    {
+        registerAll(listenTo(SettingsFolder.of(folder)));
+        return this;
+    }
+
+    @Override
+    public Deployment registerAllIn(final PackagePath path)
+    {
+        registerAll(listenTo(SettingsPackage.of(path)));
+        return this;
+    }
+
+    @Override
+    public Deployment registerAllIn(final Class<?> relativeTo, final String path)
+    {
+        registerAll(listenTo(SettingsPackage.of(PackagePath.parsePackagePath(relativeTo, path))));
+        return this;
     }
 
     @Override

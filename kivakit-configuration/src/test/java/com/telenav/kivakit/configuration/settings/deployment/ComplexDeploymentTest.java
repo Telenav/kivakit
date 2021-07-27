@@ -36,8 +36,8 @@ public class ComplexDeploymentTest extends UnitTest
         public Development()
         {
             super("development", "test development deployment");
-            add(new Server1(), SERVER1);
-            add(new Server2(), SERVER2);
+            register(new Server1(), SERVER1);
+            register(new Server2(), SERVER2);
         }
     }
 
@@ -46,8 +46,8 @@ public class ComplexDeploymentTest extends UnitTest
         public Production()
         {
             super("production", "test production deployment");
-            add(new Server3(), SERVER1);
-            add(new Server4(), SERVER2);
+            register(new Server3(), SERVER1);
+            register(new Server4(), SERVER2);
         }
     }
 
@@ -92,11 +92,11 @@ public class ComplexDeploymentTest extends UnitTest
     {
         new Development().install();
 
-        final var server1 = Settings.require(ServerSettings.class, SERVER1);
+        final var server1 = Settings.of(this).require(ServerSettings.class, SERVER1);
         ensureEqual(9001, server1.port());
         ensureEqual(Duration.ONE_MINUTE, server1.timeout());
 
-        final var server2 = Settings.require(ServerSettings.class, SERVER2);
+        final var server2 = Settings.of(this).require(ServerSettings.class, SERVER2);
         ensureEqual(9002, server2.port());
         ensureEqual(Duration.ONE_MINUTE, server2.timeout());
     }

@@ -65,92 +65,53 @@ public class Registry
     private static final Registry GLOBAL = new Registry();
 
     /**
-     * @return The global lookup
-     */
-    public static Registry global()
-    {
-        return GLOBAL;
-    }
-
-    /**
-     * @return Any registered object of the given type in the global lookup registry
-     */
-    public static <T> T lookup(final Class<T> type)
-    {
-        return global().find(type);
-    }
-
-    /**
-     * @return Any registered object of the given type with the given instance identifier in the global lookup registry
-     */
-    public static <T> T lookup(final Class<T> type, final String instance)
-    {
-        return global().find(type, instance);
-    }
-
-    /**
-     * @return Any registered object of the given type with the given instance identifier in the global lookup registry
-     */
-    public static <T> T lookup(final Class<T> type, final InstanceIdentifier instance)
-    {
-        return global().find(type, instance);
-    }
-
-    /**
-     * @return Any registered object of the given type with the given instance identifier in the global lookup registry
-     */
-    public static <T> T lookup(final Class<T> type, final Enum<?> instance)
-    {
-        return global().find(type, instance);
-    }
-
-    /**
      * @return The lookup for the given object
      */
     public static Registry of(final Object object)
     {
-        return global();
-    }
-
-    /**
-     * Registers the given singleton object in the global lookup registry
-     */
-    public static <T> T register(final T object)
-    {
-        return global().add(object);
-    }
-
-    /**
-     * Registers the specified instance of the given object's type in the global lookup registry
-     */
-    public static <T> T register(final T object, final String instance)
-    {
-        return global().add(object, instance);
-    }
-
-    /**
-     * Registers the specified instance of the given object's type in the global lookup registry
-     */
-    public static <T> T register(final T object, final InstanceIdentifier instance)
-    {
-        return global().add(object, instance);
-    }
-
-    /**
-     * Registers the specified instance of the given object's type in the lookup
-     */
-    public static <T> T register(final T object, final Enum<?> instance)
-    {
-        return global().add(object, instance);
+        return GLOBAL;
     }
 
     /** Map from class and instance to type for multi-instance objects */
     private final Map<RegistryKey, Object> registered = new HashMap<>();
 
     /**
+     * @return Any registered object of the given type
+     */
+    public <T> T lookup(final Class<T> type)
+    {
+        return lookup(type, SINGLETON);
+    }
+
+    /**
+     * @return Any registered object of the given type with the given instance identifier
+     */
+    public <T> T lookup(final Class<T> type, final String instance)
+    {
+        return lookup(type, InstanceIdentifier.of(instance));
+    }
+
+    /**
+     * @return Any registered object of the given type with the given instance identifier
+     */
+    @SuppressWarnings({ "unchecked" })
+    public <T> T lookup(final Class<T> type, final InstanceIdentifier instance)
+    {
+        return (T) registered.get(instance.key(type));
+    }
+
+    /**
+     * @return Any registered object of the given type with the given instance identifier
+     */
+    public <T> T lookup(final Class<T> type, final Enum<?> instance)
+    {
+        return lookup(type, InstanceIdentifier.of(instance));
+    }
+
+    /**
      * Registers the given singleton object in the lookup
      */
-    public <T> T add(final T object)
+    public <T> T register(final T object)
     {
         for (var at = object.getClass(); at != Object.class; at = at.getSuperclass())
         {
@@ -162,7 +123,7 @@ public class Registry
     /**
      * Registers the specified instance of the given object's type in the lookup
      */
-    public <T> T add(final T object, final String instance)
+    public <T> T register(final T object, final String instance)
     {
         register(object, InstanceIdentifier.of(instance));
         return object;
@@ -171,7 +132,7 @@ public class Registry
     /**
      * Registers the specified instance of the given object's type in the lookup
      */
-    public <T> T add(final T object, final InstanceIdentifier instance)
+    public <T> T register(final T object, final InstanceIdentifier instance)
     {
         for (var at = object.getClass(); at != Object.class; at = at.getSuperclass())
         {
@@ -183,42 +144,9 @@ public class Registry
     /**
      * Registers the specified instance of the given object's type in the lookup
      */
-    public <T> T add(final T object, final Enum<?> instance)
+    public <T> T register(final T object, final Enum<?> instance)
     {
         register(object, InstanceIdentifier.of(instance));
         return object;
-    }
-
-    /**
-     * @return Any registered object of the given type
-     */
-    public <T> T find(final Class<T> type)
-    {
-        return find(type, SINGLETON);
-    }
-
-    /**
-     * @return Any registered object of the given type with the given instance identifier
-     */
-    public <T> T find(final Class<T> type, final String instance)
-    {
-        return find(type, InstanceIdentifier.of(instance));
-    }
-
-    /**
-     * @return Any registered object of the given type with the given instance identifier
-     */
-    @SuppressWarnings({ "unchecked" })
-    public <T> T find(final Class<T> type, final InstanceIdentifier instance)
-    {
-        return (T) registered.get(instance.key(type));
-    }
-
-    /**
-     * @return Any registered object of the given type with the given instance identifier
-     */
-    public <T> T find(final Class<T> type, final Enum<?> instance)
-    {
-        return find(type, InstanceIdentifier.of(instance));
     }
 }

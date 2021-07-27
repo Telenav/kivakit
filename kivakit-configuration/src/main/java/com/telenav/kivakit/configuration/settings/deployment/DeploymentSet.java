@@ -105,7 +105,7 @@ public class DeploymentSet extends BaseRepeater
             final var deployment = listenTo(new Deployment(folder.name().name(), "'" + folder.name() + "' deployment"));
 
             // and add the configuration information from the sub-folder,
-            deployment.addAllFrom(folder);
+            deployment.registerAllIn(folder);
 
             // assert that the deployment has not already been added,
             assert !deployments.contains(deployment);
@@ -132,7 +132,7 @@ public class DeploymentSet extends BaseRepeater
             final var deployment = listenTo(new Deployment(subPackage.last(), "'" + subPackage.last() + "' deployment"));
 
             // and add the configuration information from the sub-folder,
-            deployment.addAllFrom(subPackage);
+            deployment.registerAllIn(subPackage);
 
             // add it to this set of deployments.
             deployments.add(deployment);

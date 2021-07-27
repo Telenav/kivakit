@@ -18,7 +18,7 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
  * @see Mixin
  */
 @LexakaiJavadoc(complete = true)
-public interface RepeaterMixin extends Mixin, Repeater
+public interface RepeaterMixin extends Repeater, Mixin
 {
     @Override
     default void addListener(final Listener listener, final Filter<Transmittable> filter)
