@@ -463,12 +463,6 @@ public class Settings extends BaseRepeater implements Named, Iterable<Object>
         return this;
     }
 
-    public Settings addDeployment(final Deployment deployment)
-    {
-        internalAddAll(deployment);
-        return this;
-    }
-
     /**
      * Clears this set of settings objects
      */

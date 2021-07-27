@@ -4,7 +4,9 @@ import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
 import com.telenav.kivakit.configuration.lookup.Registry;
 import com.telenav.kivakit.configuration.settings.Settings;
 import com.telenav.kivakit.configuration.settings.deployment.Deployment;
+import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.resource.resources.packaged.Package;
 
 /**
  * Base class for KivaKit components. Provides easy access to object registration and lookup (see {@link Registry}) as
@@ -22,14 +24,16 @@ import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
  *     <li>{@link #settings()} - Retrieves the {@link Settings} registry for this component</li>
  *     <li>{@link #settings(Class)} - A settings object of the specified class</li>
  *     <li>{@link #settings(Class, InstanceIdentifier)} - Get the configuration object to configure the given instance</li>
+ *     <li>{@link #registerDeployment(Deployment)} - Adds the settings objects for the given deployment</li>
+ *     <li>{@link #registerSettings(Object)}  - Adds the given settings object</li>
+ *     <li>{@link #registerSettings(Object, InstanceIdentifier)} - Adds the settings object with the given instance identifier</li>
+ *     <li>{@link #registerSettingsIn(Folder)} - Adds settings objects from the given folder</li>
+ *     <li>{@link #registerSettingsIn(Package)} - Adds settings objects from the given package</li>
  *     <li>{@link #require(Class)} - Gets the given configuration object or fails</li>
  *     <li>{@link #require(Class, InstanceIdentifier)} - Gets the configuration object for the given instance or fails</li>
- *     <li>{@link #addDeployment(Deployment)} - Adds the configuration objects for the given deployment</li>
- *     <li>{@link #addSettings(Object)}  - Adds the given configuration object</li>
- *     <li>{@link #addSettings(Object, InstanceIdentifier)} - Adds the configuration object to configure the given instance</li>
  * </ul>
  *
- * <p><b>Lookup Registry</b></p>
+ * <p><b>Object Lookup Registry</b></p>
  *
  * <p>
  * Access to this component's lookup {@link Registry} is provided and fulfills basic needs for object wiring:
@@ -51,33 +55,6 @@ import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
  */
 public class BaseComponent extends BaseRepeater
 {
-    /**
-     * Adds the set of settings objects from the given {@link Deployment} to the settings registry for this application.
-     * By default, this is the global settings store.
-     */
-    public void addDeployment(final Deployment deployment)
-    {
-        settings().addDeployment(deployment);
-    }
-
-    /**
-     * Adds the given settings object to the settings registry for this application. By default, this is the global
-     * settings store.
-     */
-    public void addSettings(final Object settings)
-    {
-        settings().add(settings);
-    }
-
-    /**
-     * Adds the identified settings object to the settings registry for this application. By default, this is the global
-     * settings store.
-     */
-    public void addSettings(final Object configuration, final InstanceIdentifier instance)
-    {
-        settings().add(configuration, instance);
-    }
-
     /**
      * @return Any registered object of the given type with the given instance identifier in the global lookup registry
      */
@@ -140,6 +117,43 @@ public class BaseComponent extends BaseRepeater
     public <T> T register(final T object, final Enum<?> instance)
     {
         return registry().add(object, instance);
+    }
+
+    /**
+     * Adds the set of settings objects from the given {@link Deployment} to the settings registry for this application.
+     * By default, this is the global settings store.
+     */
+    public void registerDeployment(final Deployment deployment)
+    {
+        settings().add(deployment);
+    }
+
+    /**
+     * Adds the given settings object to the settings registry for this application. By default, this is the global
+     * settings store.
+     */
+    public void registerSettings(final Object settings)
+    {
+        settings().add(settings);
+    }
+
+    /**
+     * Adds the identified settings object to the settings registry for this application. By default, this is the global
+     * settings store.
+     */
+    public void registerSettings(final Object settings, final InstanceIdentifier instance)
+    {
+        settings().add(settings, instance);
+    }
+
+    public void registerSettingsIn(final Folder folder)
+    {
+        settings().addAllFrom(folder);
+    }
+
+    public void registerSettingsIn(final Package package_)
+    {
+        settings().addAllFrom(package_);
     }
 
     /**
