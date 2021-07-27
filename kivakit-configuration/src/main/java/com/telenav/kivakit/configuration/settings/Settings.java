@@ -94,8 +94,8 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  *
  * <ul>
  *     <li>{@link #register(Object)} - Registers the given object in the global settings registry</li>
- *     <li>{@link #registerAllFrom(Folder)} - Registers the objects defined by .properties files in the given folder in the global settings registry</li>
- *     <li>{@link #registerAllFrom(Package)} - Registers the objects defined by .properties files in the given package in the global settings registry</li>
+ *     <li>{@link #registerAllIn(Folder)} - Registers the objects defined by .properties files in the given folder in the global settings registry</li>
+ *     <li>{@link #registerAllIn(Package)} - Registers the objects defined by .properties files in the given package in the global settings registry</li>
  *     <li>{@link #require(Class)} - Returns the settings object of the given class from the global settings registry</li>
  *     <li>{@link #require(Class, Enum)} - Returns the settings object of the given class and type from the global settings registry</li>
  *     <li>{@link #require(Class, Enum)} - Returns the settings object of the given class and type from the global settings registry</li>
@@ -204,7 +204,6 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  *     <li>{@link #addAllFrom(Package)} - Registers all the settings objects defined by .properties files in the given package</li>
  *     <li>{@link #addAllFrom(Class, String)} - Adds the package of .properties files at the given path relative to the given class</li>
  *     <li>{@link #addAllFrom(Folder)} - Adds the folder of .properties files</li>
- *     <li>{@link #addDeployment(Deployment)} - Merges a deployment into this configuration set</li>
  *     <li>{@link #install()} - Installs the contents of this {@link Settings} into the global configuration set</li>
  * </ul>
  * <p>
@@ -301,7 +300,7 @@ public class Settings extends BaseRepeater implements Named, Iterable<Object>
     /**
      * Registers all the settings objects defined by .properties files in the given {@link Folder}
      */
-    public static void registerAllFrom(final Folder settings)
+    public static void registerAllIn(final Folder settings)
     {
         SettingsFolder.of(settings).install();
     }
@@ -309,7 +308,7 @@ public class Settings extends BaseRepeater implements Named, Iterable<Object>
     /**
      * Registers all the settings objects defined by .properties files in the given {@link Package}
      */
-    public static void registerAllFrom(final Package settings)
+    public static void registerAllIn(final Package settings)
     {
         SettingsPackage.of(settings).install();
     }
