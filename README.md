@@ -90,6 +90,7 @@ The [**kivakit-examples**](https://github.com/Telenav/kivakit-examples) project 
 
 ### Quick Start <a name = "quick-start"></a>&nbsp; <img src="https://www.kivakit.org/images/rocket-32.png" srcset="https://www.kivakit.org/images/rocket-32-2x.png 2x"/>
 
+[**KivaKit Blog Articles**](https://state-of-the-art.org/)  
 [**Setup**](documentation/overview/setup.md)  
 [**Building**](documentation/overview/building.md)  
 [**Developing**](documentation/developing/index.md)  
