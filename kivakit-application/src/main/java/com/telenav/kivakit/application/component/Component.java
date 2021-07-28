@@ -7,7 +7,9 @@ import com.telenav.kivakit.configuration.settings.deployment.Deployment;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.kernel.messaging.Repeater;
+import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.resources.packaged.Package;
+import com.telenav.kivakit.resource.resources.packaged.PackageResource;
 
 import static com.telenav.kivakit.configuration.lookup.InstanceIdentifier.SINGLETON;
 
@@ -94,6 +96,11 @@ public interface Component extends Repeater
      * @return Any settings object of the given type and instance
      */
     <T> T lookup(Class<T> type, InstanceIdentifier instance);
+
+    default Resource packageResource(final String path)
+    {
+        return PackageResource.of(getClass(), path);
+    }
 
     /**
      * Adds the settings objects from the given {@link Deployment} to the settings registry for this component.

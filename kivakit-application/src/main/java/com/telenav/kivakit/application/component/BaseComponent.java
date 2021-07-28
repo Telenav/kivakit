@@ -43,15 +43,15 @@ public class BaseComponent extends BaseRepeater implements Component
     }
 
     @Override
-    public void registerSettingsIn(final Folder folder)
-    {
-        settingsRegistry().registerAllIn(folder);
-    }
-
-    @Override
     public void registerSettingsIn(final Package package_)
     {
         settingsRegistry().registerAllIn(package_);
+    }
+
+    @Override
+    public void registerSettingsIn(final Folder folder)
+    {
+        settingsRegistry().registerAllIn(folder);
     }
 
     /**
