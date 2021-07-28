@@ -175,6 +175,11 @@ public interface Component extends Repeater
         return Registry.of(this);
     }
 
+    default Package relativePackage(final String path)
+    {
+        return Package.of(getClass(), path);
+    }
+
     /**
      * Convenience method
      */
