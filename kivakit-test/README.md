@@ -80,7 +80,7 @@ Javadoc coverage for this project is 85.1%.
 | Class | Documentation Sections |
 |---|---|
 | [*CoreTestProject*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.test/com/telenav/kivakit/test/project/CoreTestProject.html) |  |  
-| [*JUnitValidationReporter*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.test/com/telenav/kivakit/test/reporters/JUnitValidationReporter.html) |  |  
+| [*JUnitFailureReporter*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.test/com/telenav/kivakit/test/reporters/JUnitFailureReporter.html) |  |  
 | [*QuickTests*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.test/com/telenav/kivakit/test/annotations/QuickTests.html) |  |  
 | [*RandomValueFactory*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.test/com/telenav/kivakit/test/random/RandomValueFactory.html) | Values |  
 | | Seeding |  

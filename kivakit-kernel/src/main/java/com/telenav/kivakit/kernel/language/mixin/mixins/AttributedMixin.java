@@ -7,8 +7,6 @@ import java.util.HashMap;
 /**
  * A {@link Mixin} that allows any object to have a set of attributes associated with it.
  *
- * @param <Key> The type of the attribute key
- * @param <Value> The type of the attribute value
  * @author jonathanl (shibo)
  */
 public interface AttributedMixin<Key, Value> extends Mixin

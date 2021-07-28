@@ -5,7 +5,6 @@ open module kivakit.configuration
     exports com.telenav.kivakit.configuration.lookup;
     exports com.telenav.kivakit.configuration.project.lexakai.diagrams;
     exports com.telenav.kivakit.configuration.project;
-    exports com.telenav.kivakit.configuration;
     exports com.telenav.kivakit.configuration.settings;
     exports com.telenav.kivakit.configuration.settings.deployment;
 }

@@ -64,17 +64,16 @@ Details on how to use the *kivakit-core configuration* API are available in the 
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
-[*com.telenav.kivakit.configuration*](https://www.kivakit.org/0.9.9-SNAPSHOT/lexakai/kivakit/kivakit-configuration/documentation/diagrams/com.telenav.kivakit.configuration.svg)  
-[*com.telenav.kivakit.configuration.deployment*](https://www.kivakit.org/0.9.9-SNAPSHOT/lexakai/kivakit/kivakit-configuration/documentation/diagrams/com.telenav.kivakit.configuration.deployment.svg)  
 [*com.telenav.kivakit.configuration.lookup*](https://www.kivakit.org/0.9.9-SNAPSHOT/lexakai/kivakit/kivakit-configuration/documentation/diagrams/com.telenav.kivakit.configuration.lookup.svg)  
 [*com.telenav.kivakit.configuration.project*](https://www.kivakit.org/0.9.9-SNAPSHOT/lexakai/kivakit/kivakit-configuration/documentation/diagrams/com.telenav.kivakit.configuration.project.svg)  
-[*com.telenav.kivakit.configuration.settings*](https://www.kivakit.org/0.9.9-SNAPSHOT/lexakai/kivakit/kivakit-configuration/documentation/diagrams/com.telenav.kivakit.configuration.settings.svg)
+[*com.telenav.kivakit.configuration.settings*](https://www.kivakit.org/0.9.9-SNAPSHOT/lexakai/kivakit/kivakit-configuration/documentation/diagrams/com.telenav.kivakit.configuration.settings.svg)  
+[*com.telenav.kivakit.configuration.settings.deployment*](https://www.kivakit.org/0.9.9-SNAPSHOT/lexakai/kivakit/kivakit-configuration/documentation/diagrams/com.telenav.kivakit.configuration.settings.deployment.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 92.9%.  
+Javadoc coverage for this project is 94.2%.  
   
 &nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
 
@@ -83,26 +82,26 @@ Javadoc coverage for this project is 92.9%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*ConfigurationFolder*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/ConfigurationFolder.html) |  |  
-| [*ConfigurationPackage*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/ConfigurationPackage.html) |  |  
-| [*ConfigurationSet*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/ConfigurationSet.html) | The Global Configuration Set |  
-| | Adding and Loading Configuration Objects |  
-| | Loading Configurations as DeploymentSets |  
-| | Locating Configuration Objects at Runtime |  
-| | Locating Configurations with Registry |  
-| | Properties File Format |  
 | [*CoreConfigurationProject*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/project/CoreConfigurationProject.html) |  |  
-| [*Deployment*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/deployment/Deployment.html) | Configuring Applications |  
+| [*Deployment*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/settings/deployment/Deployment.html) | Configuring Applications |  
 | | Key Methods |  
 | | Example |  
-| [*Deployment.Converter*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/deployment/Deployment.Converter.html) |  |  
-| [*DeploymentSet*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/deployment/DeploymentSet.html) |  |  
-| [*Entry*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/Entry.html) |  |  
-| [*Entry.ConfigurationIdentifier*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/Entry.ConfigurationIdentifier.html) |  |  
+| [*Deployment.Converter*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/settings/deployment/Deployment.Converter.html) |  |  
+| [*DeploymentSet*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/settings/deployment/DeploymentSet.html) |  |  
+| [*Entry*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/settings/Entry.html) |  |  
+| [*Entry.Identifier*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/settings/Entry.Identifier.html) |  |  
 | [*InstanceIdentifier*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/lookup/InstanceIdentifier.html) |  |  
 | [*Registry*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/lookup/Registry.html) | Example |  
-| [*Settings*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/settings/Settings.html) | Overriding Settings from the Command Line |  
-| | Finding Settings |  
+| [*RegistryKey*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/lookup/RegistryKey.html) |  |  
+| [*Settings*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/settings/Settings.html) | Locating Configurations with the Global Registry |  
+| | Loading Configurations as DeploymentSets |  
+| | Global Settings |  
+| | Overriding Settings from the Command Line |  
+| | Settings Registry Instances |  
+| | Properties File Format |  
+| | How Settings Are Located |  
+| [*SettingsFolder*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/settings/SettingsFolder.html) |  |  
+| [*SettingsPackage*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/settings/SettingsPackage.html) |  |  
 
 [//]: # (start-user-text)
 

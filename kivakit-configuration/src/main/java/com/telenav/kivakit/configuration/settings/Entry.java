@@ -19,12 +19,9 @@
 package com.telenav.kivakit.configuration.settings;
 
 import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
-import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfiguration;
 import com.telenav.kivakit.kernel.language.objects.Hash;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
-import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+import com.telenav.lexakai.annotations.visibility.UmlExcludeType;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
 import java.security.Key;
@@ -37,7 +34,8 @@ import java.security.Key;
  * @author jonathanl (shibo)
  */
 @UmlNotPublicApi
-@UmlClassDiagram(diagram = DiagramConfiguration.class)
+@UmlExcludeType(Comparable.class)
+@UmlExcludeType
 class Entry
 {
     /**
@@ -47,11 +45,10 @@ class Entry
      *
      * @author jonathanl (shibo)
      */
-    @UmlClassDiagram(diagram = DiagramConfiguration.class)
     @UmlNotPublicApi
-    @UmlExcludeSuperTypes
-    @LexakaiJavadoc(complete = true) static
-    class Identifier implements Comparable<Key>
+    @UmlExcludeType(Comparable.class)
+    @UmlExcludeType
+    static class Identifier implements Comparable<Key>
     {
         /** The type of settings object */
         @UmlAggregation

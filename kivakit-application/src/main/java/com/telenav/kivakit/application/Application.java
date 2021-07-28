@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.application;
 
+import com.telenav.kivakit.application.component.BaseComponent;
 import com.telenav.kivakit.application.project.lexakai.diagrams.DiagramApplication;
 import com.telenav.kivakit.commandline.ApplicationMetadata;
 import com.telenav.kivakit.commandline.ArgumentList;
@@ -25,7 +26,6 @@ import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.CommandLine;
 import com.telenav.kivakit.commandline.CommandLineParser;
 import com.telenav.kivakit.commandline.SwitchParser;
-import com.telenav.kivakit.configuration.BaseComponent;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
