@@ -1,0 +1,334 @@
+Diagrams:
+
+1. File System Service
+2. Create File
+3. Access Writable File
+
+------
+
+1. File System Service
+
+@startuml
+
+    !include ../lexakai.theme
+
+    title "File System Service"
+
+    class FileSystemServiceLoader {
+        {static} + fileSystem(filePath) : FileSystemService
+        {static} - services() : List<FileSystemService>
+    }
+
+    interface FileSystemService {
+        {abstract} + accepts(filePath) : boolean
+        {abstract} + diskService(filePath) : DiskService
+        {abstract} + fileService(filePath) : FileService
+        {abstract} + folderService(filePath) : FolderService
+        ---
+    }
+
+    class LocalFileSystemService {
+        + accepts(filePath) : boolean
+        + diskService(filePath) : LocalDisk
+        + fileService(filePath) : LocalFile
+        + folderService(filePath) : LocalFolder
+    }
+
+    FileSystemServiceLoader .r.> FileSystemService
+    LocalFileSystemService .u.^ FileSystemService
+
+    interface DiskService {
+        {abstract} + free() : Bytes
+        {abstract} + size() : Bytes
+        {abstract} + root() : FolderService
+        ---
+    }
+
+    class LocalDisk {
+        - root : LocalFolder
+        + free() : Bytes
+        + size() : Bytes
+        + root() : FolderService
+    }
+
+    LocalDisk .u.^ DiskService
+    FileSystemService .r.> DiskService
+
+    interface FolderService {
+        {abstract} + files() : List<^FileService>
+        {abstract} + folders() : Iterable<^FolderService>
+        {abstract} + mkdirs() : FolderService
+        ---
+    }
+
+    class LocalFolder {
+        - file : java.io.File
+        + files() : List<^FileService>
+        + folders() : Iterable<^FolderService>
+        + mkdirs() : FolderService
+    }
+
+    DiskService -r[hidden] FolderService
+    FolderService .r.> "*" FolderService
+    LocalFolder .u.^ FolderService
+    FileSystemService .r.> FolderService
+
+    interface FileSystemObjectService {
+        {abstract} + chmod(PosixFilePermission) : boolean
+        {abstract} + delete() : boolean
+        {abstract} + parent() : FolderService
+        ---
+        + diskService() : DiskService
+        + folderService() : FolderService
+    }
+
+    FolderService -u-^ FileSystemObjectService
+    FileService -u-^ FileSystemObjectService
+
+    interface WritableResource {
+        + writer() : ResourceWriter
+        + printWriter() : PrintWriter
+    }
+
+    FileService -u-^ WritableResource
+
+    interface FileService {
+        {abstract} + renameTo(fileService)
+        ---
+        + asJavaFile() : java.io.File
+    }
+
+    class LocalFile {
+        - file : java.io.File
+        + asJavaFile() : java.io.File
+        + delete() : boolean
+    }
+
+    FolderService -r[hidden] FileService
+    FolderService .r.> "*" FileService
+    LocalFile .u.^ FileService
+    FileSystemService .r.> FileService
+
+    abstract class BaseWritableResource {
+        + openForWriting() : OutputStream
+    }
+
+    LocalFile -r-^ BaseWritableResource
+    File -d-^ BaseWritableResource
+
+    interface ModificationTimestamped {
+        + lastModified() : Time
+    }
+
+    interface FileSystemObject {
+
+    }
+
+    FileSystemObject -u-> ModificationTimestamped
+
+    interface ResourceFolder {
+        {abstract} + folder(String) : ResourceFolder
+        {abstract} + resource(name) : Resource
+        {abstract} + resources(matcher) : List<^Resource>
+    }
+
+    class Folder {
+        {static} + parse(String) : Folder
+        {static} + of(java.io.File) : Folder
+        ---
+        - service : FolderService
+        ---
+        + file(String) : File
+        + folder(String) : Folder
+        + mkdirs() : Folder
+        + lastModified() : Time
+    }
+
+    Folder -[norank]-> FolderService
+    Folder .u.^ FileSystemObject
+    Folder .u.^ ResourceFolder
+
+    class File {
+        {static} + parse(String) : File
+        {static} + of(java.io.File) : File
+        ---
+        - fileService : FileService
+        ---
+        + onOpenForReading() : InputStream
+        + onOpenForWriting() : OutputStream
+        + lastModified() : Time
+    }
+
+    File -l-> FileService
+    File .u.^ FileSystemObject
+    File -r[hidden] Folder
+
+    abstract class Path<String> {
+        - root : String
+        - elements : ObjectList<String>
+        ---
+        {abstract} # onCopy(root, elements) : Path<String>
+        ---
+        + elements() : List<String>
+        + root() : Path<String>
+        + subpath(start, end) : Path<String>
+        + withoutLast() : Path<String>
+        + withChild(String) : Path<String>
+        # copy() : Path<String>
+    }
+
+    class StringPath {
+        {static} + parseStringPath(path, separator) : StringPath
+        ---
+        + join() : String
+        + subpath(start, end) : StringPath
+        + withoutLast() : StringPath
+        + withChild(String) : StringPath
+        # onCopy(root, elements) : Path<String>
+    }
+
+    class ResourcePath {
+        {static} + parseResourcePath(String) : ResourcePath
+        ---
+        + asFile() : File
+        + fileName() : FileName
+        + normalize() : ResourcePath
+        + resourcePath(StringPath) : ResourcePath
+    }
+
+    class FilePath {
+        {static} + parseFilePath(String) : FilePath
+        {static} + filePath(java.nio.file.Path) : FilePath
+        ---
+        + join() : String
+        + asFile() : File
+        + absolute() : FilePath
+        + separator() : String
+        + scheme() : String
+        + onCopy(root, elements) : FilePath
+    }
+
+    StringPath -u-^ Path
+    ResourcePath -u-^ StringPath
+    FilePath -r-^ ResourcePath
+
+    BaseWritableResource -r[hidden] FilePath
+    File .r..> FilePath : uses
+
+@enduml
+
+2. Create File
+
+@startuml
+
+    !include ../lexakai.theme
+
+    title "Create File"
+
+    autoactivate on
+
+    actor Client
+    participant ":File" as file <<filesystem>>
+    participant ":FilePath" as filePath <<filesystem>>
+    participant "FileSystemServiceLoader" as fssLoader <<filesystem>>
+    participant ":LocalFileSystemService" as localFss <<filesystem>>
+    participant ":LocalFile" as localFile <<filesystem>>
+
+    Client -> file ** : __parse(String)__
+    file -> filePath ** : __parseFilePath(String)__
+    alt scheme path
+        filePath -> filePath : __filePath__(java.net.URI)
+        return
+        else simple path
+        filePath -> filePath : __filePath__(java.nio.file.Path)
+        return
+    end alt
+
+    file -> file : __of(String)__
+
+    file -> fssLoader : __fileSystem(FilePath)__
+    alt
+        fssLoader -> fssLoader : __services()__
+        note right fssLoader
+            load FileSystemService provider
+            by ServiceLoader
+        end note
+        return filesystem services
+    else local service accepts
+        note right fssLoader
+            result = LocalFileSystemService
+        end note
+    end alt
+    return FileSystemService
+
+    file -> localFss : fileService(filePath)
+    localFss -> localFile ** : new(filePath)
+    return
+
+    return
+
+@enduml
+
+3. Access Writable File
+
+@startuml
+
+    !include ../lexakai.theme
+
+    title "Access Writable File"
+
+    autoactivate on
+
+    actor Client
+    participant ":LineReader" as lineReader <<resource>>
+    participant ":ResourceWriter" as resourceWriter <<resource>>
+    participant ":File" as file <<resource>>
+    participant ":LocalFile" as localFile <<kernel>>
+
+    Client -> file ** : __of__(filePath))
+    file -> localFile ** : new(filePath)
+    note right file
+        FileSystemServiceLoader get FileSystemService by filePath
+        then LocalFileSystemService create LocalFile with filePath
+    end note
+
+    Client -> file : WritableResource\n::writer()
+    file -> resourceWriter ** : new
+    return resourceWriter
+
+    Client -> resourceWriter : save(String)
+    resourceWriter -> resourceWriter : printWriter()
+    resourceWriter -> resourceWriter : textWriter()
+
+    resourceWriter -> file : BaseWritableResource\n::openForWriting()
+    file -> file : onOpenForWriting()
+    file -> localFile : BaseWritableResource\n::openForWriting
+
+    localFile -> localFile : onOpenForWriting()
+    note right localFile
+        new java.io.FileOutputStream(file)
+    end note
+    return java.io.OutputStream
+    note right localFile
+        new java.io.BufferedOutputStream(outputStream)
+        then codec changes output as compressed
+    end note
+
+    return java.io.OutputStream
+    return
+    return java.io.OutputStream
+
+    note right resourceWriter
+        new java.io.OutputStreamWriter(outputStream)
+    end note
+    return java.io.Writer
+    note right resourceWriter
+        new java.io.PrintWriter(writer)
+    end note
+    return java.io.PrintWriter
+    note right resourceWriter
+        printWriter.print(string)
+    end note
+    return
+
+@enduml

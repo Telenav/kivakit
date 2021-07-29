@@ -1,0 +1,396 @@
+Issues:
+
+- Duplicated abstract method path() in Resource and ResourcePathed
+
+- LineReader.stream(): to improve as try with resource statement
+  when trigger reader.close()?
+
+- LineReader extends Multicaster, but does not broadcast message inside, transmit outside? what kind of situation?
+
+- LineReader has field resource, what about ResourceReader instead?
+  resource.reader(reporter) -> resourceReader; avoid create new instance
+
+- ResourceWriter create new output stream in each save;
+  No LineWriter or Appender
+
+------
+
+Diagrams:
+
+1. Readable and Writable Resource
+2. Access Package Resource (Readable Resource)
+3. Access File Readable(Writable Resource)
+
+------
+
+1. Readable and Writable Resource
+
+@startuml
+
+    !include ../lexakai.theme
+
+    title "Readable and Writable Resource"
+
+    package kivakit.kernel.interfaces.io {
+        interface ByteSized  {
+            {abstract} + sizeInBytes() : Bytes
+            ---
+            + isLargerThan(that) : boolean
+            + isSmallerThan(that) : boolean
+        }
+
+        interface Readable {
+            {abstract} + onOpenForReading() : InputStream
+            ---
+            + sizeInBytes() : null
+            + openForReading() : InputStream
+        }
+
+        Readable -up-^ ByteSized
+    }
+
+    package "kivakit.kernel.interfaces.io" as io {
+        interface Writable {
+            {abstract} + isWritable(): Boolean
+            {abstract} + onOpenForWriting(): OutputStream
+            ---
+            + openForWriting() : OutputStream
+        }
+
+    }
+
+    package kivakit.kernel.language.paths {
+        abstract class Path<String> {
+            - root : String
+            - elements : ObjectList<String>
+            ---
+            {abstract} # onCopy(root, elements) : Path<String>
+            ---
+            + elements() : List<String>
+            + root() : Path<String>
+            + subpath(start, end) : Path<String>
+            + withoutLast() : Path<String>
+            + withChild(String) : Path<String>
+            # copy() : Path<String>
+        }
+
+        class StringPath {
+            {static} + stringPath(uri) : StringPath
+            ---
+            + join() : String
+            + subpath(start, end) : StringPath
+            + withoutLast() : StringPath
+            + withChild(String) : StringPath
+            # onCopy(root, elements) : Path<String>
+        }
+
+        class PackagePath {
+            {static} + packagePath(classType) : PackagePath
+            ---
+            - classType : Class<?>
+            ---
+            + withoutLast() : PackagePath
+            + withChild(String) : PackagePath
+            # onCopy(root, elements) : Path<String>
+            - path(String) : StringPath
+        }
+
+        StringPath -up-^ Path
+        PackagePath -up-^ StringPath
+    }
+
+    package kivakit.kernel.language.modules {
+
+        class ModuleResource ##[dotted] {
+            {static} + moduleResource(moduleReference, uri) : ModuleResource
+            ---
+            - uri : java.net.URI
+            ---
+            + uri() : java.net.URI
+            + size() : Bytes
+            + lastModified() : Time
+            + packagePath() : PackagePath
+        }
+    }
+
+    'package kivakit.resource {
+
+        interface ReadableResource {
+            {abstract} + resource() : Resource
+            {abstract} + copyTo(writableResource)
+            ---
+            + reader() : ResourceReader
+        }
+
+        interface ResourcePathed {
+            {abstract} + path() : ResourcePath
+            ---
+            + fileName() : FileName
+            + extension() : Extension
+        }
+
+        interface Resource {
+            {abstract} + path() : ResourcePath
+            {abstract} + codec() : Codec
+            {abstract} + exists() : boolean
+            {abstract} + materialized() : Resource
+            + dematerialize()
+            ---
+            + resource() : this
+            + isPackaged() : false
+            + isRemote() : false
+        }
+
+        ReadableResource -up-^ Readable
+        Resource -up-^ ResourcePathed
+        Resource -up-^ ReadableResource
+
+        ResourcePathed -right[hidden]- ReadableResource
+
+        class LineReader {
+            - resource : ReadableResource
+            ---
+            + stream() : Stream<String>
+            + iterator() : Iterator<String>
+        }
+
+        class ResourceReader {
+            - resource : Resource
+            ---
+            + string() : String
+            + lines() : LineReader
+            + textReader() : Reader
+            - open() : InputStream
+        }
+
+        ReadableResource .right.> ResourceReader : provides
+        ResourceReader .up.> LineReader : provides
+        LineReader --> ReadableResource
+        ResourceReader -down-> Resource
+        ReadableResource .[hidden]- ResourceReader
+
+        abstract class BaseReadableResource {
+            + openForReading() : InputStream
+            + exists() : boolean
+            + codec() : Codec
+            + materialized() : Resource
+            + dematerialize()
+        }
+
+        class PackageResource {
+            {static} + of(moduleResource) : PackageResource
+            {static} + of(packagePath, relativePath) : PackageResource
+            ---
+            - resource : ModuleResource
+            ---
+            + onOpenForReading() : InputStream
+        }
+
+        BaseReadableResource .up.^ Resource
+        PackageResource -up-^ BaseReadableResource
+        'ModuleResource -right[hidden]- PackageResource
+
+        interface WritableResource {
+            + writer() : ResourceWriter
+            + printWriter() : PrintWriter
+        }
+
+        abstract class BaseWritableResource {
+            + openForWriting() : OutputStream
+        }
+
+        class ResourceWriter {
+            + textWriter() : Writer
+            + save(string)
+        }
+
+        WritableResource -up-^ Resource
+        WritableResource -up-^ Writable
+        BaseWritableResource -up-^ BaseReadableResource
+        BaseWritableResource .up.^ WritableResource
+        BaseReadableResource -right[hidden]- WritableResource
+
+        WritableResource .right.> ResourceWriter : provides
+
+        interface ResourceFolder {
+            {abstract} + resource(name) : Resource
+            {abstract} + resources(matcher) : List<^Resource>
+        }
+
+        class Package {
+            {static} + of(packagePath) : Package
+            ---
+            - packagePath : PackagePath
+            ---
+            + resource(name) : PackageResource
+            + resources(matcher) : List<PackageResource>
+        }
+
+        PackageResource .up.> PackagePath : use
+        PackageResource --> ModuleResource
+        Package ..> PackageResource : provides *
+        Package .up.^ ResourceFolder
+        Package -left-> PackagePath
+
+        class File {
+            + {static} of (java.io.File) : File
+            + {static} of (filePath) : File
+            ---
+            - fileService : FileService
+            ---
+            + onOpenForReading() : InputStream
+            + onOpenForWriting() : OutputStream
+        }
+
+        interface FileService {
+            {abstract} + renameTo(fileService)
+            ---
+            + asJavaFile() : java.io.File
+        }
+
+        class LocalFile {
+            - file : java.io.File
+            + asJavaFile() : java.io.File
+            + delete() : boolean
+        }
+
+        File -up-^ BaseWritableResource
+        LocalFile .up.^ FileService
+        LocalFile --[norank]^ BaseWritableResource
+        File -up-> FileService
+        BaseWritableResource -right[hidden]- FileService
+    '}
+
+@enduml
+
+2. Access Package Resource
+
+@startuml
+
+    !include ../lexakai.theme
+
+    title "Access Package Resource"
+
+    autoactivate on
+
+    actor Client
+    participant ":LineReader" as lineReader <<resource>>
+    participant ":ResourceReader" as resourceReader <<resource>>
+    participant ":PackageResource" as packageResource <<resource>>
+    participant ":ModuleResource" as moduleResource <<kernel>>
+
+    Client -> packageResource ** : __of__(packagePath, relativePath))
+    packageResource -> moduleResource ** : __moduleResource__(\n  moduleReference, uri)
+
+    Client -> packageResource : ReadableResource\n::reader()
+    packageResource -> resourceReader ** : new
+    return resourceReader
+
+    Client -> resourceReader : lines()
+    resourceReader -> lineReader ** : new
+    return lineReader
+
+    Client -> lineReader : iterator()
+    lineReader -> lineReader : stream()
+    lineReader -> packageResource : ReadableResource\n::reader()
+    packageResource -> resourceReader ** : new
+    return resourceReader
+
+    lineReader -> resourceReader : textReader()
+    resourceReader -> resourceReader : open()
+    resourceReader -> packageResource : sizeInBytes()
+    packageResource -> moduleResource : size()
+    return size
+    return
+
+    resourceReader -> packageResource : BaseReadableResource\n::openForReading()
+    packageResource -> packageResource : onOpenForReading()
+    packageResource -> moduleResource : uri().toURL().openStream()
+    note left moduleResource
+        java.net.URI to java.net.URL
+        then open connection
+        and get inputStream
+    end note
+
+    return java.io.InputStream
+    return
+    return java.io.InputStream
+    return
+
+    note right resourceReader
+        reader = new java.io.InputStreamReader(inputStream)
+    end note
+    return java.io.Reader
+
+    note right lineReader
+        lineNumberReader = new java.io.LineNumberReader(reader)
+        lineNumberReader.lines() : java.util.Stream<String>
+    end note
+    return java.util.Stream<String>
+    return java.util.Iterator<String>
+
+@enduml
+
+3. Access Writable File
+
+@startuml
+
+    !include ../lexakai.theme
+
+    title "Access Writable File"
+
+    autoactivate on
+
+    actor Client
+    participant ":LineReader" as lineReader <<resource>>
+    participant ":ResourceWriter" as resourceWriter <<resource>>
+    participant ":File" as file <<resource>>
+    participant ":LocalFile" as localFile <<kernel>>
+
+    Client -> file ** : __of__(filePath))
+    file -> localFile ** : new(filePath)
+    note right file
+        FileSystemServiceLoader get FileSystemService by filePath
+        then LocalFileSystemService create LocalFile with filePath
+    end note
+
+    Client -> file : WritableResource\n::writer()
+    file -> resourceWriter ** : new
+    return resourceWriter
+
+    Client -> resourceWriter : save(String)
+    resourceWriter -> resourceWriter : printWriter()
+    resourceWriter -> resourceWriter : textWriter()
+
+    resourceWriter -> file : BaseWritableResource\n::openForWriting()
+    file -> file : onOpenForWriting()
+    file -> localFile : BaseWritableResource\n::openForWriting
+
+    localFile -> localFile : onOpenForWriting()
+    note right localFile
+        new java.io.FileOutputStream(file)
+    end note
+    return java.io.OutputStream
+    note right localFile
+        new java.io.BufferedOutputStream(outputStream)
+        then codec changes output as compressed
+    end note
+
+    return java.io.OutputStream
+    return
+    return java.io.OutputStream
+
+    note right resourceWriter
+        new java.io.OutputStreamWriter(outputStream)
+    end note
+    return java.io.Writer
+    note right resourceWriter
+        new java.io.PrintWriter(writer)
+    end note
+    return java.io.PrintWriter
+    note right resourceWriter
+        printWriter.print(string)
+    end note
+    return
+
+@enduml

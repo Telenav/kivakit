@@ -1,0 +1,266 @@
+Issues:
+
+1. When the BaseRepeater received message from another BaseRepeater, not handle the message
+   but transmit to listener directly
+    default void receive(final Transmittable message)
+    {
+        transmit(message);
+    }
+2. Listener does not need extends NamedObject
+
+------
+
+Diagrams:
+
+1. Broadcast Listener Types
+2. Broadcaster Interactions
+3. Base Repeater Interactions
+
+------
+
+1. Broadcast Listener Types
+
+@startuml
+
+    !include ../lexakai.theme
+
+    title "Broadcast Listener Types"
+
+    package kivakit.kernel {
+
+        interface NamedObject {
+            + objectName() : String
+        }
+
+        interface Transmitter {
+            {abstract} + transmit(message)
+            ---
+        }
+
+        interface Transceiver {
+            {abstract} + onHandle(message)
+            ---
+            + handle(message)
+            + information(text, arguments)
+        }
+
+        interface PackagePathed {
+            + packagePath() : PackagePath
+        }
+
+        Transceiver -up-^ NamedObject
+
+        interface Receiver {
+            {abstract} + receive(message)
+            ---
+        }
+
+        interface Listener {
+            {abstract} + onMessage(message)
+            ---
+            + onHandle(message)
+            + receive(message)
+            + onReceive(message)
+            + listenTo(broadcaster) : Broadcaster
+        }
+
+        interface Broadcaster {
+            {abstract} + addListener(listener, filter)
+            ---
+            + onHandle(message)
+            + transmit(message)
+            + onTransmit(message)
+            + addListener(listener)
+        }
+
+        Broadcaster -up-^ Transmitter
+        Broadcaster -up-^ Transceiver
+        Listener -up-^ Transceiver
+        Listener -up-^ Receiver
+
+        Repeater -up-^ Listener
+        Repeater -up-^ Broadcaster
+
+        Multicaster .up.^ Broadcaster
+        Multicaster .up.^ PackagePathed
+
+        interface Repeater {
+            + onHandle(message)
+            + receive(message)
+        }
+
+        class Multicaster {
+            - audience : List<AudienceMember>
+            + addListener(listener, filter)
+            + transmit(message)
+            + parentBroadcaster(parent)
+            + objectName() : String
+            + lock() : ReadWriteLock
+        }
+
+        class BaseRepeater {
+            + onMessage(message)
+        }
+
+        class AudienceMember {
+            - listener : Listener
+            - filter : Filter
+            + receive(message)
+        }
+
+        BaseRepeater -up-^ Multicaster
+        BaseRepeater .up.^ Repeater
+        Repeater -[hidden] Multicaster
+        Multicaster *--right> AudienceMember
+
+    }
+
+@enduml
+
+2. Broadcaster Interactions
+
+@startuml
+
+    !include ../lexakai.theme
+
+    title "Broadcaster Interactions"
+
+    autoactivate on
+
+    actor Client
+    participant ":Multicaster" as multicaster <<kivakit>>
+    participant "listener\n:Listener" as listener <<kivakit>>
+
+    Client -> listener ** : new()
+    Client -> multicaster ** : new()
+
+    Client -> multicaster : Broadcaster\n::addListener(listener)
+    multicaster -> multicaster : addListener(listener, allFilter)
+    note right multicaster
+        add into list of AudienceMember
+        which encapsulated listener and filter
+    end note
+    return
+    return
+
+    Client -> multicaster : Transceiver\n::information(message)
+    multicaster -> multicaster : Transceiver\n::handle(message)
+    multicaster -> multicaster : Broadcaster\n::onHandle(message)
+
+    multicaster -> multicaster : transmit(message)
+    note right multicaster
+        iterate list of AudienceMember
+        call listener if filter accepts
+    end note
+
+    loop audience member
+        alt filter accepts message
+            multicaster -> listener : receive(message)
+            listener -> listener : onReceive(message)
+            listener -> listener : YourListener\n::onMessage(message)
+            return
+            return
+            return
+        end alt
+    end loop
+
+    return
+
+    return
+    return
+    return
+
+@enduml
+
+3. Base Repeater Interactions
+
+@startuml
+
+    !include ../lexakai.theme
+
+    title "Base Repeater Interactions"
+
+    autoactivate on
+
+    actor Client
+    participant "anotherRepeater\n:BaseRepeater" as anotherRepeater <<kivakit>>
+    participant "baseRepeater\n:BaseRepeater" as baseRepeater <<kivakit>>
+    participant "listener\n:Listener" as listener <<kivakit>>
+
+    Client -> listener ** : new()
+    Client -> baseRepeater ** : new(listener)
+
+    baseRepeater -> baseRepeater : initialize object
+    baseRepeater -> anotherRepeater ** : new()
+
+    baseRepeater -> baseRepeater : Listener\n::listenTo(anotherRepeater)
+    baseRepeater -> anotherRepeater : Broadcaster\n::addListener(baseRepeater)
+    anotherRepeater -> anotherRepeater : Multicaster\n::addListener(baseRepeater, allFilter)
+    note right anotherRepeater
+        add into list of AudienceMember
+        which encapsulated listener and filter
+    end note
+    return
+    return
+    return anotherRepeater
+
+    baseRepeater -> listener : listenTo(baseRepeater)
+    listener -> baseRepeater : Broadcaster\n::addListener(listener)
+    baseRepeater -> baseRepeater : Multicaster\n::addListener(listener, allFilter)
+    note right baseRepeater
+        add into list of AudienceMember
+        which encapsulated listener and filter
+    end note
+    return
+    return
+    return baseRepeater
+
+    return
+
+    Client -> anotherRepeater : YourMulticaster\n::yourMethod(state)
+    anotherRepeater -> anotherRepeater : Transceiver\n::handle(message)
+    anotherRepeater -> anotherRepeater : Repeater\n::onHandle(message)
+    anotherRepeater -> anotherRepeater : transmit(message)
+    note right anotherRepeater
+        iterate list of AudienceMember
+        call listener if filter accepts
+    end note
+
+    loop audience member
+        alt filter accepts message
+            anotherRepeater -> baseRepeater : Repeater\n::receive(message)
+
+            baseRepeater -> baseRepeater : Listener\n::onReceive(message)
+            baseRepeater -> baseRepeater : YourBaseRepeater\n::onMessage(message)
+            return
+            return
+
+            baseRepeater -> baseRepeater : Multicaster\n::transmit(message)
+            note right baseRepeater
+                iterate list of AudienceMember
+                call listener if filter accepts
+            end note
+
+            loop audience member
+                alt filter accepts message
+                    baseRepeater -> listener : receive(message)
+                    listener -> listener : onReceive(message)
+                    listener -> listener : YourListener\n::onMessage(message)
+                    return
+                    return
+                    return
+                end alt
+            end loop
+
+            return
+
+            return
+        end alt
+    end loop
+
+    return
+    return
+    return
+    return
+
+@enduml
