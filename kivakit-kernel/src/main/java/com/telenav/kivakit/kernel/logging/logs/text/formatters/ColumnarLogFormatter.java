@@ -25,7 +25,7 @@ import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.language.values.count.Maximum;
 import com.telenav.kivakit.kernel.logging.LogEntry;
-import com.telenav.kivakit.kernel.logging.logs.text.LogEntryFormatter;
+import com.telenav.kivakit.kernel.logging.logs.text.LogFormatter;
 import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLoggingLogs;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -40,9 +40,9 @@ import java.util.List;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLoggingLogs.class)
-public class ColumnarFormatter implements LogEntryFormatter
+public class ColumnarLogFormatter implements LogFormatter
 {
-    public static final ColumnarFormatter DEFAULT = new ColumnarFormatter();
+    public static final ColumnarLogFormatter DEFAULT = new ColumnarLogFormatter();
 
     private static final boolean DURATION = true;
 
@@ -85,7 +85,7 @@ public class ColumnarFormatter implements LogEntryFormatter
         private StringList formatLine(String value)
         {
             final var rows = new StringList();
-            while (!"".equals(value))
+            while (!"" .equals(value))
             {
                 final var width = value.length();
                 if (width < this.width)

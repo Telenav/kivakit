@@ -16,20 +16,23 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.kernel.logging.logs.text;
+package com.telenav.kivakit.kernel.logging.logs.text.formatters;
 
+import com.telenav.kivakit.kernel.language.types.Classes;
 import com.telenav.kivakit.kernel.logging.LogEntry;
+import com.telenav.kivakit.kernel.logging.logs.text.LogFormatter;
 import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLoggingLogs;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-/**
- * Something that formats log entries in a text log
- *
- * @author jonathanl (shibo)
- */
 @UmlClassDiagram(diagram = DiagramLoggingLogs.class)
-public interface LogEntryFormatter
+public class SimpleLogFormatter implements LogFormatter
 {
-    String format(LogEntry entry, MessageFormatter.Format format);
+    @Override
+    public String format(final LogEntry entry, final MessageFormatter.Format format)
+    {
+        return entry.message().created().utc() + " " + entry.context() + " "
+                + Classes.simpleName(entry.message().getClass()) + " " + entry.threadName() + ": "
+                + entry.formattedMessage(format);
+    }
 }
