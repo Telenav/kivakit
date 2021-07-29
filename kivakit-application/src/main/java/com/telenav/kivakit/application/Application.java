@@ -53,7 +53,6 @@ import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.resources.other.PropertyMap;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.UmlNote;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
@@ -149,7 +148,6 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramApplication.class)
-@UmlNote(text = "See kivakit-core-configuration for details on application configuration")
 @LexakaiJavadoc(complete = true)
 public abstract class Application extends BaseComponent implements Named, ApplicationMetadata
 {

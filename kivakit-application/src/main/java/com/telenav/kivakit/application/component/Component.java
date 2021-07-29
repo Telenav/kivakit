@@ -17,6 +17,18 @@ import static com.telenav.kivakit.configuration.lookup.InstanceIdentifier.SINGLE
  * Interface to KivaKit component functionality, including easy access to settings (see {@link Settings}) and object
  * registries (see {@link Registry}).
  *
+ * <p><b>Packaging Methods</b></p>
+ *
+ * <p>
+ * Classes implementing this interface are provided with easy access to packages and package resources relative to the
+ * class' package:
+ * </p>
+ *
+ * <ul>
+ *     <li>{@link #relativeResource(String)} - Returns a {@link Resource} for the given path relative to the class implementing this interface</li>
+ *     <li>{@link #relativePackage(String)} - Returns a KivaKit {@link Package} for the given path relative to the class implementing this interface</li>
+ * </ul>
+ *
  * <p><b>Settings Registry Methods</b></p>
  *
  * <p>
@@ -97,11 +109,6 @@ public interface Component extends Repeater
      */
     <T> T lookup(Class<T> type, InstanceIdentifier instance);
 
-    default Resource packageResource(final String path)
-    {
-        return PackageResource.of(getClass(), path);
-    }
-
     /**
      * Adds the settings objects from the given {@link Deployment} to the settings registry for this component.
      */
@@ -178,6 +185,11 @@ public interface Component extends Repeater
     default Package relativePackage(final String path)
     {
         return Package.of(getClass(), path);
+    }
+
+    default Resource relativeResource(final String path)
+    {
+        return PackageResource.of(getClass(), path);
     }
 
     /**

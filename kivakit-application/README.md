@@ -100,6 +100,7 @@ Javadoc coverage for this project is 100.0%.
 | [*Application.Identifier*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/Application.Identifier.html) |  |  
 | [*BaseComponent*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/component/BaseComponent.html) |  |  
 | [*Component*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/component/Component.html) | Object Lookup Registry |  
+| | Packaging Methods |  
 | | Settings Registry Methods |  
 | [*ComponentMixin*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/component/ComponentMixin.html) |  |  
 | [*CoreApplicationProject*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/project/CoreApplicationProject.html) |  |  
