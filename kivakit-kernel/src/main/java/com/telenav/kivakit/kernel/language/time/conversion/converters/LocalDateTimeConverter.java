@@ -18,7 +18,6 @@
 
 package com.telenav.kivakit.kernel.language.time.conversion.converters;
 
-import com.telenav.kivakit.kernel.language.time.LocalTime;
 import com.telenav.kivakit.kernel.language.time.conversion.BaseFormattedLocalTimeConverter;
 import com.telenav.kivakit.kernel.language.time.conversion.TimeFormats;
 import com.telenav.kivakit.kernel.messaging.Listener;
@@ -35,7 +34,7 @@ public class LocalDateTimeConverter extends BaseFormattedLocalTimeConverter
 {
     public LocalDateTimeConverter(final Listener listener)
     {
-        this(listener, LocalTime.localTimeZone());
+        this(listener, null);
     }
 
     public LocalDateTimeConverter(final Listener listener, final ZoneId zone)
