@@ -27,6 +27,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.time.Instant;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Converts time to and from a format that is a valid filename across Mac, Linux and Windows operating systems. Time
@@ -38,25 +39,28 @@ import java.time.ZoneId;
 @UmlClassDiagram(diagram = DiagramLanguageTime.class)
 public class BaseFormattedLocalTimeConverter extends BaseFormattedConverter
 {
-    private final ZoneId timeZone;
-
-    private final TimeFormat type;
-
-    public BaseFormattedLocalTimeConverter(final Listener listener, final TimeFormat type)
+    public BaseFormattedLocalTimeConverter(final Listener listener, final DateTimeFormatter formatter)
     {
-        this(listener, type, null);
+        this(listener, formatter, null);
     }
 
-    public BaseFormattedLocalTimeConverter(final Listener listener, final TimeFormat type, final ZoneId zone)
+    public BaseFormattedLocalTimeConverter(final Listener listener, final DateTimeFormatter formatter,
+                                           final ZoneId zone)
     {
-        super(listener, zone, type.formatter(), type);
-        this.type = type;
-        timeZone = zone;
+        super(listener, formatter, zone);
     }
 
     protected boolean addTimeZone()
     {
         return true;
+    }
+
+    @Override
+    protected String onToString(final LocalTime value)
+    {
+        final var timeZone = value.timeZone();
+        return formatter().format(Instant.ofEpochMilli(value.asMilliseconds())
+                .atZone(timeZone)) + (addTimeZone() ? "_" + TimeZones.displayName(timeZone) : "");
     }
 
     @Override
@@ -71,20 +75,12 @@ public class BaseFormattedLocalTimeConverter extends BaseFormattedConverter
         return super.onToValue(time);
     }
 
-    @Override
-    protected String onToString(final LocalTime value)
-    {
-        final var timeZone = value.timeZone();
-        return type.formatter().format(Instant.ofEpochMilli(value.asMilliseconds())
-                .atZone(timeZone)) + (addTimeZone() ? "_" + TimeZones.displayName(timeZone) : "");
-    }
-
     @SuppressWarnings("ConstantConditions")
     private ZoneId zone(final String value)
     {
-        if (timeZone != null)
+        if (zone() != null)
         {
-            return timeZone;
+            return zone();
         }
         final var zone = TimeZones.forDisplayName(Paths.optionalSuffix(value, '_'));
         if (zone != null)

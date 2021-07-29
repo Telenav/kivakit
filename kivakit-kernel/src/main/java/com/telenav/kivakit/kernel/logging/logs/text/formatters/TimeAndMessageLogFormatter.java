@@ -18,21 +18,15 @@
 
 package com.telenav.kivakit.kernel.logging.logs.text.formatters;
 
-import com.telenav.kivakit.kernel.language.types.Classes;
 import com.telenav.kivakit.kernel.logging.LogEntry;
-import com.telenav.kivakit.kernel.logging.logs.text.LogEntryFormatter;
+import com.telenav.kivakit.kernel.logging.logs.text.LogFormatter;
 import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
-import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLoggingLogs;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-@UmlClassDiagram(diagram = DiagramLoggingLogs.class)
-public class SimpleFormatter implements LogEntryFormatter
+public class TimeAndMessageLogFormatter implements LogFormatter
 {
     @Override
     public String format(final LogEntry entry, final MessageFormatter.Format format)
     {
-        return entry.message().created().utc() + " " + entry.context() + " "
-                + Classes.simpleName(entry.message().getClass()) + " " + entry.threadName() + ": "
-                + entry.formattedMessage(format);
+        return entry.message().created() + " " + entry.formattedMessage(format);
     }
 }

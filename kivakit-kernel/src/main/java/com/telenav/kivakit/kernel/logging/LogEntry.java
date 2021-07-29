@@ -25,8 +25,8 @@ import com.telenav.kivakit.kernel.language.threading.context.CodeContext;
 import com.telenav.kivakit.kernel.language.threading.context.StackTrace;
 import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.language.types.Classes;
-import com.telenav.kivakit.kernel.logging.logs.text.LogEntryFormatter;
-import com.telenav.kivakit.kernel.logging.logs.text.formatters.ColumnarFormatter;
+import com.telenav.kivakit.kernel.logging.logs.text.LogFormatter;
+import com.telenav.kivakit.kernel.logging.logs.text.formatters.ColumnarLogFormatter;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
 import com.telenav.kivakit.kernel.messaging.messages.Severity;
@@ -75,7 +75,7 @@ public class LogEntry implements Triaged
 
     private transient Message message;
 
-    private transient LogEntryFormatter lastFormatter;
+    private transient LogFormatter lastFormatter;
 
     private transient String formattedEntry;
 
@@ -113,7 +113,7 @@ public class LogEntry implements Triaged
         return created;
     }
 
-    public String format(final LogEntryFormatter formatter, final MessageFormatter.Format format)
+    public String format(final LogFormatter formatter, final MessageFormatter.Format format)
     {
         assert context != null;
         if (formattedEntry != null && Objects.equal(formatter, lastFormatter))
@@ -126,7 +126,7 @@ public class LogEntry implements Triaged
             lastFormatter = formatter;
             return formattedEntry;
         }
-        return ColumnarFormatter.DEFAULT.format(this, format);
+        return ColumnarLogFormatter.DEFAULT.format(this, format);
     }
 
     /**

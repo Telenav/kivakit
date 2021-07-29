@@ -18,29 +18,24 @@
 
 package com.telenav.kivakit.kernel.logging.logs.text.formatters;
 
-import com.telenav.kivakit.kernel.language.time.LocalTime;
-import com.telenav.kivakit.kernel.language.time.conversion.BaseFormattedConverter;
-import com.telenav.kivakit.kernel.language.time.conversion.TimeFormat;
+import com.telenav.kivakit.kernel.language.time.conversion.converters.UtcDateTimeConverter;
 import com.telenav.kivakit.kernel.language.types.Classes;
 import com.telenav.kivakit.kernel.logging.LogEntry;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.kernel.logging.logs.text.LogEntryFormatter;
+import com.telenav.kivakit.kernel.logging.logs.text.LogFormatter;
 import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
 
-import java.time.format.DateTimeFormatter;
-
 /**
- * A simple log formatter with an ISO-formatted date, including milliseconds.
+ * A simple log formatter with an ISO-formatted UTC date, including milliseconds.
  *
  * @author pierrem
  */
-public class IsoTimeFormatter implements LogEntryFormatter
+public class UtcDateTimeLogFormatter implements LogFormatter
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    private final BaseFormattedConverter converter = new BaseFormattedConverter(LOGGER,
-            LocalTime.utcTimeZone(), DateTimeFormatter.ISO_LOCAL_DATE_TIME, TimeFormat.DATE_TIME);
+    private final UtcDateTimeConverter converter = new UtcDateTimeConverter(LOGGER);
 
     @Override
     public String format(final LogEntry entry, final MessageFormatter.Format format)
