@@ -251,20 +251,19 @@ The major feature areas are listed here, each having its own documentation:
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 72.7%.  
+Javadoc coverage for this project is 72.5%.  
   
 &nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-70-96.png" srcset="https://www.kivakit.org/images/meter-70-96-2x.png 2x"/>
 
 
 The following significant classes are undocumented:  
 
-- BaseFormattedConverter  
 - BaseLog  
 - BaseLogger  
 - BaseMap  
 - CharacterClass  
 - Classes  
-- ColumnarFormatter  
+- ColumnarLogFormatter  
 - ConcurrentObjectMap  
 - Failure  
 - HumanizedLocalDateTimeConverter  
@@ -372,10 +371,10 @@ The following significant classes are undocumented:
 | [*Code*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/interfaces/code/Code.html) |  |  
 | [*CodeContext*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/threading/context/CodeContext.html) |  |  
 | [*Collections*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/collections/Collections.html) |  |  
-| [*ColumnarFormatter*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/logging/logs/text/formatters/ColumnarFormatter.html) |  |  
-| [*ColumnarFormatter.Column*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/logging/logs/text/formatters/ColumnarFormatter.Column.html) |  |  
-| [*ColumnarFormatter.Layout*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/logging/logs/text/formatters/ColumnarFormatter.Layout.html) |  |  
-| [*ColumnarFormatter.LineOutput*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/logging/logs/text/formatters/ColumnarFormatter.LineOutput.html) |  |  
+| [*ColumnarLogFormatter*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/logging/logs/text/formatters/ColumnarLogFormatter.html) |  |  
+| [*ColumnarLogFormatter.Column*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/logging/logs/text/formatters/ColumnarLogFormatter.Column.html) |  |  
+| [*ColumnarLogFormatter.Layout*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/logging/logs/text/formatters/ColumnarLogFormatter.Layout.html) |  |  
+| [*ColumnarLogFormatter.LineOutput*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/logging/logs/text/formatters/ColumnarLogFormatter.LineOutput.html) |  |  
 | [*CompletionLatch*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/threading/latches/CompletionLatch.html) |  |  
 | [*CompressibleCollection*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/collections/CompressibleCollection.html) |  |  
 | [*CompressibleCollection.CompressionEvent*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/collections/CompressibleCollection.CompressionEvent.html) |  |  
@@ -480,7 +479,7 @@ The following significant classes are undocumented:
 | [*IntegerIdentifier*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/values/identifier/IntegerIdentifier.html) |  |  
 | [*IntegerIdentifier.Converter*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/values/identifier/IntegerIdentifier.Converter.html) |  |  
 | [*Ints*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/primitives/Ints.html) |  |  
-| [*IsoTimeFormatter*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/logging/logs/text/formatters/IsoTimeFormatter.html) |  |  
+| [*IsoLocalDateTimeConverter*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/time/conversion/converters/IsoLocalDateTimeConverter.html) |  |  
 | [*Iterables*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/iteration/Iterables.html) |  |  
 | [*Iterators*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/iteration/Iterators.html) |  |  
 | [*JavaVirtualMachine*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/vm/JavaVirtualMachine.html) |  |  
@@ -534,8 +533,8 @@ The following significant classes are undocumented:
 | [*LogEntriesWithSeverityGreaterThanOrEqualTo*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/logging/filters/LogEntriesWithSeverityGreaterThanOrEqualTo.html) |  |  
 | [*LogEntriesWithSeverityLessThanOrEqualTo*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/logging/filters/LogEntriesWithSeverityLessThanOrEqualTo.html) |  |  
 | [*LogEntry*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/logging/LogEntry.html) |  |  
-| [*LogEntryFormatter*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/logging/logs/text/LogEntryFormatter.html) |  |  
 | [*LogFailureReporter*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/data/validation/ensure/reporters/LogFailureReporter.html) |  |  
+| [*LogFormatter*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/logging/logs/text/LogFormatter.html) |  |  
 | [*LogServiceLoader*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/logging/loggers/LogServiceLoader.html) |  |  
 | [*LogServiceLogger*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/logging/loggers/LogServiceLogger.html) |  |  
 | [*Logger*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/logging/Logger.html) |  |  
@@ -697,7 +696,7 @@ The following significant classes are undocumented:
 | [*SeverityGreaterThan*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/messaging/filters/SeverityGreaterThan.html) |  |  
 | [*SeverityGreaterThanOrEqualTo*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/messaging/filters/SeverityGreaterThanOrEqualTo.html) |  |  
 | [*SeverityLessThan*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/messaging/filters/SeverityLessThan.html) |  |  
-| [*SimpleFormatter*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/logging/logs/text/formatters/SimpleFormatter.html) |  |  
+| [*SimpleLogFormatter*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/logging/logs/text/formatters/SimpleLogFormatter.html) |  |  
 | [*SimplifiedPattern*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/patterns/SimplifiedPattern.html) |  |  
 | [*Sized*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/interfaces/numeric/Sized.html) |  |  
 | [*SoftReferencedValue*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/objects/reference/virtual/types/SoftReferencedValue.html) |  |  
@@ -744,8 +743,8 @@ The following significant classes are undocumented:
 | [*ThrowingFailureReporter*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/data/validation/ensure/reporters/ThrowingFailureReporter.html) |  |  
 | [*ThrowingListener*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/messaging/listeners/ThrowingListener.html) |  |  
 | [*Time*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/time/Time.html) |  |  
-| [*TimeAndMessageFormatter*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/logging/logs/text/formatters/TimeAndMessageFormatter.html) |  |  
-| [*TimeFormat*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/time/conversion/TimeFormat.html) |  |  
+| [*TimeAndMessageLogFormatter*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/logging/logs/text/formatters/TimeAndMessageLogFormatter.html) |  |  
+| [*TimeFormats*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/time/conversion/TimeFormats.html) |  |  
 | [*TimeSpan*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/time/TimeSpan.html) |  |  
 | [*TimeZones*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/time/TimeZones.html) |  |  
 | [*Trace*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/messaging/messages/status/Trace.html) |  |  
@@ -759,6 +758,8 @@ The following significant classes are undocumented:
 | [*Unchecked*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/interfaces/code/Unchecked.html) |  |  
 | [*Unloadable*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/interfaces/loading/Unloadable.html) |  |  
 | [*Unsupported*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/messaging/messages/status/Unsupported.html) |  |  
+| [*UtcDateTimeConverter*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/time/conversion/converters/UtcDateTimeConverter.html) |  |  
+| [*UtcDateTimeLogFormatter*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/logging/logs/text/formatters/UtcDateTimeLogFormatter.html) |  |  
 | [*Validatable*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/data/validation/Validatable.html) |  |  
 | [*ValidationFailure*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/data/validation/ensure/reporters/ValidationFailure.html) |  |  
 | [*ValidationIssues*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/data/validation/ValidationIssues.html) |  |  

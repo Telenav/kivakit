@@ -1,6 +1,8 @@
 package com.telenav.kivakit.kernel.data.conversion;
 
 import com.telenav.kivakit.kernel.messaging.Listener;
+import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataConversion;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
  * The superinterface, {@link Converter}, converts values from type &lt;From&gt; to type &lt;To&gt; while this interface
@@ -10,6 +12,7 @@ import com.telenav.kivakit.kernel.messaging.Listener;
  * @param <To> The desired type
  * @author jonathanl (shibo)
  */
+@UmlClassDiagram(diagram = DiagramDataConversion.class)
 public interface TwoWayConverter<From, To> extends Converter<From, To>
 {
     /**
