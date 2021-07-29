@@ -1,0 +1,151 @@
+Diagrams:
+
+1. ReadWriteLock Type
+2. Run returnable code with WriteLock
+
+------
+
+1. ReadWriteLock Type
+
+@startuml
+
+    !include ../lexakai.theme
+
+    title "ReadWriteLock Type"
+
+    package java.util.concurrent.locks {
+
+        abstract class AbstractOwnableSynchronizer {
+            - exclusiveOwnerThread : Thread
+            + setExclusiveOwnerThread(Thread)
+            + getExclusiveOwnerThread() : Thread
+        }
+
+        abstract class AbstractQueuedSynchronizer {
+            - state : int <<volatile>>
+            + acquire(int)
+            + release(int)
+            + acquireShared(int)
+            + releaseShared(int)
+        }
+
+        AbstractQueuedSynchronizer -up-^ AbstractOwnableSynchronizer
+
+        interface Lock {
+            {abstract} + lock();
+            {abstract} + unlock();
+        }
+
+        abstract class "ReentrantReadWriteLock.Sync" as Sync {
+            # tryAcquire(int) : boolean
+            # tryRelease(int) : boolean
+            # tryAcquireShared(int) : int
+            # tryReleaseShared(int) : int
+        }
+
+        class "ReentrantReadWriteLock.ReadLock" as ReadLock {
+            - sync : Sync
+            + lock();
+            + unlock();
+        }
+
+        class "ReentrantReadWriteLock.WriteLock" as WriteLock {
+            - sync : Sync
+            + lock();
+            + unlock();
+        }
+
+        ReadLock .up.^ Lock
+        WriteLock .up.^ Lock
+
+        ReadLock -up-> "share" Sync
+        WriteLock -up-> "share" Sync
+        Sync -up-^ AbstractQueuedSynchronizer
+
+        ReentrantReadWriteLock -right-> WriteLock : has
+        ReentrantReadWriteLock -right-> ReadLock : has
+        ReentrantReadWriteLock -up-> Sync
+        ReentrantReadWriteLock -up-^ ReadWriteLock
+
+        interface ReadWriteLock {
+            {abstract} + readLock() : Lock;
+            {abstract} + writeLock() : Lock;
+        }
+
+        class ReentrantReadWriteLock {
+            - sync : Sync
+            + readLock() : ReadLock
+            + writeLock() : WriteLock
+        }
+    }
+
+    package kivakit.kernel.language.threading.locks {
+        class "ReadWriteLock" as KivakitLock {
+            + read(returnableCode) : ReturnType
+            + read(runnableCode)
+            + write(returnableCode) : ReturnType
+            + write(runnableCode)
+        }
+
+        KivakitLock -up-^ ReentrantReadWriteLock
+    }
+
+@enduml
+
+2. Run returnable code with WriteLock
+
+@startuml
+
+    !include ../lexakai.theme
+
+    title "Run returnable code with WriteLock"
+
+    autoactivate on
+
+    actor Client
+    participant "returnableCode\n:Returnable<ResultType>" as returnableCode
+    participant ":ReadWriteLock" as readWriteLock <<kivakit>>
+    participant ":WriteLock" as writeLock <<java>>
+    participant ":Sync" as sync <<java>>
+
+    Client -> returnableCode ** : define()
+    note right returnableCode
+        returnableCode (lambda)
+        return ResultType value
+    end note
+
+    Client -> readWriteLock : write(returnableCode)
+
+    readWriteLock -> writeLock : lock()
+    writeLock -> sync : AbstractQueuedSynchronizer\n::acquire(1)
+    sync -> sync : tryAcquire(1)
+    sync -> sync : AbstractQueuedSynchronizer\n::getState()
+    return count
+    sync -> sync : AbstractQueuedSynchronizer\n::setState(count + 1)
+    return
+    sync -> sync : AbstractOwnableSynchronizer\n::setExclusiveOwnerThread(currentThread)
+    return
+    return
+    return
+    return
+
+    readWriteLock -> returnableCode : run()
+
+    return ResultType
+
+    readWriteLock -> writeLock : unlock()
+    writeLock -> sync : AbstractQueuedSynchronizer\n::release(1)
+    sync -> sync : tryRelease(1)
+    sync -> sync : AbstractQueuedSynchronizer\n::getState()
+    return count
+    sync -> sync : AbstractQueuedSynchronizer\n::setState(count - 1)
+    return
+    sync -> sync : AbstractOwnableSynchronizer\n::setExclusiveOwnerThread(null)
+    return
+    return
+    return
+    return
+
+    return ResultType
+
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+
+    !include ../lexakai.theme
+
+    title "Checked Method with Exception Handling"
+
+    autoactivate on
+
+    actor Client
+    participant CheckedCode <<kivakit>>
+    participant ":CheckedCode" as checkedCode <<kivakit>>
+    participant "returnableCode\n:Returnable<ResultType>" as returnableCode
+
+    Client -> returnableCode ** : define()
+
+    Client -> CheckedCode : of(returnableCode)
+    CheckedCode -> checkedCode ** : new(returnableCode)
+    return
+
+    Client -> checkedCode : or(defaultResult, message)
+    alt
+        checkedCode -> returnableCode : run
+        return result
+    else catch exception
+        checkedCode -> checkedCode : log message
+        return
+        note right checkedCode
+            result = defaultResult
+        end note
+    end alt
+    return result
+
+@enduml
