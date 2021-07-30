@@ -152,7 +152,7 @@ public class CommandLine implements AsString, Iterable<Argument>
     /**
      * @return The non-switch argument at the given index parsed using the given argument parser
      */
-    @UmlRelation(label = "gets argument values")
+    @UmlRelation(label = "gets arguments")
     public <T> T argument(final int index, final ArgumentParser<T> parser)
     {
         return arguments().get(index).get(parser);
@@ -232,7 +232,7 @@ public class CommandLine implements AsString, Iterable<Argument>
     /**
      * @return The value of any switch on this command line for the given switch parser
      */
-    @UmlRelation(label = "gets switch values")
+    @UmlRelation(label = "gets switches")
     public <T> T get(final SwitchParser<T> parser)
     {
         // Get the value for the given parser,

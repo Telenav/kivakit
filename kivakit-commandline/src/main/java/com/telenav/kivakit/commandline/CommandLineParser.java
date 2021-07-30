@@ -126,7 +126,7 @@ public class CommandLineParser
     private final ArgumentParserList argumentParsers = new ArgumentParserList();
 
     /** Parsers for switches */
-    @UmlAggregation(diagram = DiagramCommandLine.class)
+    @UmlAggregation
     private final SwitchParserList switchParsers = new SwitchParserList();
 
     /** The application that created this command line parser */
