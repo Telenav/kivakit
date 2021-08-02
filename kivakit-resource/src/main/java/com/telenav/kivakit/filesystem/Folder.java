@@ -34,10 +34,10 @@ import com.telenav.kivakit.kernel.language.values.count.Bytes;
 import com.telenav.kivakit.kernel.language.vm.OperatingSystem;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.kernel.messaging.Debug;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.filters.operators.All;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
+import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
@@ -191,16 +191,14 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  */
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
 @LexakaiJavadoc(complete = true)
-public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFolder
+public class Folder extends BaseRepeater implements FileSystemObject, Comparable<Folder>, ResourceFolder
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    private static final Debug DEBUG = new Debug(LOGGER);
-
-    // a flag to make sure the temporary folder will be create only once per process
+    /** A flag to make sure the temporary folder will be created only once per process */
     private static boolean temporaryForProcessInitialized;
 
-    // Monitor for serializing the creation of temporary files
+    /** Monitor for serializing the creation of temporary files */
     private static final Monitor temporaryLock = new Monitor();
 
     private static final Monitor lock = new Monitor();
@@ -328,8 +326,10 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
     // Note that this switch parser ensures that the folder exists
     public static SwitchParser.Builder<Folder> outputFolderSwitchParser()
     {
-        return SwitchParser.builder(Folder.class).name("output-folder")
-                .converter(new Folder.Converter(LOGGER, true)).description("Output folder to write to");
+        return SwitchParser.builder(Folder.class)
+                .name("output-folder")
+                .converter(new Folder.Converter(LOGGER, true))
+                .description("Output folder to write to");
     }
 
     public static Folder parse(final String path)
@@ -541,7 +541,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
     @SuppressWarnings("UnusedReturnValue")
     public synchronized Folder clearAll()
     {
-        DEBUG.trace("Clearing $", this);
+        trace("Clearing $", this);
         try
         {
             if (exists())
@@ -551,7 +551,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
                     file.delete();
                     if (file.exists())
                     {
-                        LOGGER.warning("Unable to remove $", file);
+                        warning("Unable to remove $", file);
                     }
                 }
                 for (final var folder : folders())
@@ -563,7 +563,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         }
         catch (final Exception e)
         {
-            LOGGER.warning("Unable to clear $", this);
+            warning("Unable to clear $", this);
         }
         return this;
     }
@@ -574,7 +574,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
     @SuppressWarnings("UnusedReturnValue")
     public Folder clearAllAndDelete()
     {
-        DEBUG.trace("Clearing and deleting $", this);
+        trace("Clearing and deleting $", this);
         try
         {
             if (exists())
@@ -585,7 +585,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         }
         catch (final Exception e)
         {
-            LOGGER.warning("Unable to deleteAll on $", this);
+            warning("Unable to deleteAll on $", this);
         }
         return this;
     }
@@ -607,7 +607,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         final var start = Time.now();
 
         // Ensure the destination folder exists,
-        LOGGER.information("Copying $ to $", this, destination);
+        information("Copying $ to $", this, destination);
         destination.ensureExists();
 
         // then for each nested file,
@@ -624,7 +624,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
                 target.lastModified(file.lastModified());
             }
         }
-        LOGGER.information("Copy completed in $", start.elapsedSince());
+        information("Copy completed in $", start.elapsedSince());
     }
 
     /**
@@ -643,7 +643,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
     @SuppressWarnings("UnusedReturnValue")
     public boolean delete()
     {
-        DEBUG.trace("Deleting $", this);
+        trace("Deleting $", this);
         return folder().delete();
     }
 
@@ -662,7 +662,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
      */
     public Folder ensureExists()
     {
-        DEBUG.trace("Ensuring that $ exists", this);
+        trace("Ensuring that $ exists", this);
         synchronized (lock)
         {
             if (!exists())
@@ -670,7 +670,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
                 mkdirs();
                 if (!exists())
                 {
-                    throw new IllegalStateException("Unable to create folder " + this);
+                    fatal("Unable to create folder " + this);
                 }
             }
             return this;
@@ -717,12 +717,12 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         final var parent = child.parent();
         if (parent.isEmpty())
         {
-            // then it's a simple filename
+            // then it's a simple filename.
             return new File(folder().file(fileName));
         }
         else
         {
-            // otherwise append the parent path and filename to this folder
+            // Otherwise, append the parent path and filename to this folder
             return new File(folder().folder(new Folder(parent)).file(fileName));
         }
     }
@@ -756,7 +756,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
                 }
             }
         }
-        DEBUG.trace("Files in $: $", this, files);
+        trace("Files in $: $", this, files);
         return files;
     }
 
@@ -810,7 +810,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
             }
         }
         Collections.sort(folders);
-        DEBUG.trace("Folders in $: $", this, folders);
+        trace("Folders in $: $", this, folders);
         return folders;
     }
 
@@ -867,7 +867,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
     {
         if (!exists())
         {
-            DEBUG.trace("Creating folder $", this);
+            trace("Creating folder $", this);
             folder().mkdirs();
         }
         return this;
@@ -889,7 +889,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
     public FileList nestedFiles(final Matcher<File> matcher)
     {
         final var files = FileList.forServices(folder().nestedFiles(path -> matcher.matches(path.asFile())));
-        DEBUG.trace("Nested files in $: $", this, files);
+        trace("Nested files in $: $", this, files);
         return files;
     }
 
@@ -899,7 +899,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
     public FolderList nestedFolders(final Matcher<Folder> matcher)
     {
         final var folders = FolderList.forVirtual(folder().nestedFolders(path -> matcher.matches(new Folder(path))));
-        DEBUG.trace("Nested folders in $: $", this, folders);
+        trace("Nested folders in $: $", this, folders);
         return folders;
     }
 
@@ -947,7 +947,7 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
     @SuppressWarnings("UnusedReturnValue")
     public boolean renameTo(final Folder that)
     {
-        DEBUG.trace("Renaming $ to $", this, that);
+        trace("Renaming $ to $", this, that);
         return folder().renameTo(that.folder());
     }
 
@@ -988,14 +988,14 @@ public class Folder implements FileSystemObject, Comparable<Folder>, ResourceFol
         }
 
         final var start = Time.now();
-        LOGGER.information("Safely copying $ to $", this, destination);
+        information("Safely copying $ to $", this, destination);
         final var temporary = destination.parent().temporary(FileName.parse("temporary-copy"));
         for (final var file : nestedFiles(matcher))
         {
             file.copyTo(temporary.file(file.relativeTo(this)), mode, reporter);
         }
         temporary.renameTo(destination);
-        LOGGER.information("Safe copy completed in $", start.elapsedSince());
+        information("Safe copy completed in $", start.elapsedSince());
     }
 
     @Override

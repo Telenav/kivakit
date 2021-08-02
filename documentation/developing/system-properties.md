@@ -11,6 +11,7 @@ The following properties affect the function of KivaKit in useful ways.
 | **KIVAKIT_AGENT_JAR** | Location of KivaKit instrumentation agent JAR file |
 | **KIVAKIT_DEBUG** | Turns on/off debug traces for packages and classes matching a series of one or more patterns. See [kivakit-kernel debugging](../../../kivakit/kivakit-kernel/documentation/messaging-debugging.md) and Javadoc in Debug.java
 | **KIVAKIT_HDFS_CONFIGURATION_FOLDER** | Location of configuration folder for HDFS filesystem service |
+| **KIVAKIT_IGNORE_MISSING_LISTENERS** | Suppresses warnings about broken and unterminated listener chains |
 | **KIVAKIT_KEEP_TEMPORARY_FILES** | Stops temporary files created by KivaKit from being removed on exit. |
 | **KIVAKIT_LOG** | A comma-separated list of logs to send log entries to along with their configurations. See [kivakit-kernel logging](../../../kivakit/kivakit-kernel/documentation/logging.md) |
 | **KIVAKIT_LOG_ALLOCATIONS** | Set to true to log allocations of primitive collections and other KivaKit objects |

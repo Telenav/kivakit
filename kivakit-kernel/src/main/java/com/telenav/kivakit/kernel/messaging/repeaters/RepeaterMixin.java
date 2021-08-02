@@ -57,21 +57,21 @@ public interface RepeaterMixin extends Repeater, Mixin
     }
 
     @Override
+    default void messageSource(final Broadcaster parent)
+    {
+        repeater().messageSource(parent);
+    }
+
+    @Override
+    default Broadcaster messageSource()
+    {
+        return repeater().messageSource();
+    }
+
+    @Override
     default void onMessage(final Message message)
     {
         repeater().onMessage(message);
-    }
-
-    @Override
-    default void parentBroadcaster(final Broadcaster parent)
-    {
-        repeater().parentBroadcaster(parent);
-    }
-
-    @Override
-    default Broadcaster parentBroadcaster()
-    {
-        return repeater().parentBroadcaster();
     }
 
     @Override

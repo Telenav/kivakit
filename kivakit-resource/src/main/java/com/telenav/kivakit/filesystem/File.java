@@ -84,7 +84,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
  * <ul>
  *     <li>{@link #absolute()}</li>
  *     <li>{@link #normalized()}</li>
- *     <li>{@link #parentBroadcaster()}</li>
+ *     <li>{@link #messageSource()}</li>
  *     <li>{@link #relativeTo(Folder)}</li>
  *     <li>{@link #root()}</li>
  * </ul>

@@ -106,6 +106,20 @@ public interface Resource extends
 {
     Logger LOGGER = LoggerFactory.newLogger();
 
+    static ArgumentParser.Builder<ResourceList> argumentListParser(final String description, final Extension extension)
+    {
+        return ArgumentParser.builder(ResourceList.class)
+                .converter(new ResourceList.Converter(LOGGER, extension))
+                .description(description);
+    }
+
+    static ArgumentParser.Builder<Resource> argumentParser(final Listener listener, final String description)
+    {
+        return ArgumentParser.builder(Resource.class)
+                .converter(new Resource.Converter(listener))
+                .description(description);
+    }
+
     static ResourceIdentifier identifier(final String identifier)
     {
         return new ResourceIdentifier(identifier);
@@ -121,32 +135,7 @@ public interface Resource extends
         return resolve(new ResourceIdentifier(identifier));
     }
 
-    static ArgumentParser.Builder<Resource> resource(final Listener listener, final String description)
-    {
-        return ArgumentParser.builder(Resource.class)
-                .converter(new Resource.Converter(listener))
-                .description(description);
-    }
-
-    static SwitchParser.Builder<Resource> resource(
-            final Listener listener,
-            final String name,
-            final String description)
-    {
-        return SwitchParser.builder(Resource.class)
-                .name(name)
-                .converter(new Resource.Converter(listener))
-                .description(description);
-    }
-
-    static ArgumentParser.Builder<ResourceList> resourceList(final String description, final Extension extension)
-    {
-        return ArgumentParser.builder(ResourceList.class)
-                .converter(new ResourceList.Converter(LOGGER, extension))
-                .description(description);
-    }
-
-    static SwitchParser.Builder<ResourceList> resourceList(
+    static SwitchParser.Builder<ResourceList> switchListParser(
             final String name,
             final String description,
             final Extension extension)
@@ -157,11 +146,14 @@ public interface Resource extends
                 .description(description);
     }
 
-    static SwitchParser.Builder<ResourcePath> resourcePath(final String name, final String description)
+    static SwitchParser.Builder<Resource> switchParser(
+            final Listener listener,
+            final String name,
+            final String description)
     {
-        return SwitchParser.builder(ResourcePath.class)
+        return SwitchParser.builder(Resource.class)
                 .name(name)
-                .converter(new ResourcePath.Converter(LOGGER))
+                .converter(new Resource.Converter(listener))
                 .description(description);
     }
 

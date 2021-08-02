@@ -110,6 +110,14 @@ public interface Component extends Repeater
     <T> T lookup(Class<T> type, InstanceIdentifier instance);
 
     /**
+     * @return The resource at the given path relative to this component's class
+     */
+    default Resource packageResource(String path)
+    {
+        return PackageResource.of(getClass(), path);
+    }
+
+    /**
      * Registers the settings from the given settings registry with the settings registry for this component
      */
     void registerAllSettings(Settings settings);

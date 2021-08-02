@@ -26,6 +26,7 @@ import com.telenav.kivakit.kernel.language.strings.formatting.IndentingStringBui
 import com.telenav.kivakit.kernel.language.threading.context.CodeContext;
 import com.telenav.kivakit.kernel.language.threading.locks.ReadWriteLock;
 import com.telenav.kivakit.kernel.language.values.name.Name;
+import com.telenav.kivakit.kernel.language.vm.JavaVirtualMachine;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.loggers.ConsoleLogger;
 import com.telenav.kivakit.kernel.messaging.Broadcaster;
@@ -90,7 +91,7 @@ public class Multicaster implements Broadcaster, PackagePathed
 {
     private static final Logger LOGGER = new ConsoleLogger();
 
-    /** This multicaster's audience */
+    /** This multicaster audience */
     @UmlAggregation
     private final transient List<AudienceMember> audience = new ArrayList<>();
 
@@ -102,7 +103,7 @@ public class Multicaster implements Broadcaster, PackagePathed
 
     private transient ReadWriteLock lock;
 
-    private Broadcaster parent;
+    private Broadcaster source;
 
     public Multicaster(final String objectName, final Class<?> debugClassContext)
     {
@@ -135,7 +136,7 @@ public class Multicaster implements Broadcaster, PackagePathed
     protected Multicaster(final Multicaster that)
     {
         objectName = that.objectName;
-        parent = that.parent;
+        source = that.source;
         debugCodeContext = that.debugCodeContext;
         debugClassContext = that.debugClassContext;
         lock = that.lock;
@@ -159,7 +160,7 @@ public class Multicaster implements Broadcaster, PackagePathed
         {
             // then we are the parent of that multicaster. This information is used to provide the listener
             // chain when it doesn't terminate correctly.
-            ((Broadcaster) listener).parentBroadcaster(this);
+            ((Broadcaster) listener).messageSource(this);
         }
 
         ensureNotNull(listener);
@@ -228,6 +229,20 @@ public class Multicaster implements Broadcaster, PackagePathed
     }
 
     /**
+     * @return The chain of broadcasters that leads to this {@link Multicaster}.
+     */
+    @NotNull
+    public StringList listenerChain()
+    {
+        final var chain = new StringList();
+        for (var at = (Broadcaster) this; at.messageSource() != null; at = at.messageSource())
+        {
+            chain.append(at.objectName());
+        }
+        return chain.reversed();
+    }
+
+    /**
      * @return An indented tree of listeners to this multicaster
      */
     public String listenerTree()
@@ -249,35 +264,21 @@ public class Multicaster implements Broadcaster, PackagePathed
     }
 
     @Override
+    public Broadcaster messageSource()
+    {
+        return source;
+    }
+
+    @Override
+    public void messageSource(final Broadcaster source)
+    {
+        this.source = source;
+    }
+
+    @Override
     public String objectName()
     {
         return objectName;
-    }
-
-    @Override
-    public Broadcaster parentBroadcaster()
-    {
-        return parent;
-    }
-
-    @Override
-    public void parentBroadcaster(final Broadcaster parent)
-    {
-        this.parent = parent;
-    }
-
-    /**
-     * @return The chain of multicasters that leads to this {@link Multicaster}.
-     */
-    @NotNull
-    public StringList parentChain()
-    {
-        final var chain = new StringList();
-        for (var at = (Broadcaster) this; at.parentBroadcaster() != null; at = at.parentBroadcaster())
-        {
-            chain.append(at.objectName());
-        }
-        return chain.reversed();
     }
 
     /**
@@ -308,22 +309,33 @@ public class Multicaster implements Broadcaster, PackagePathed
                     ((OperationMessage) message).context(debugCodeContext);
                 }
 
-                try
+                // then send to members of the audience
+                for (final var member : audience)
                 {
-                    // the send to members of the audience
-                    for (final var receiver : audience)
+                    try
                     {
-                        receiver.receive(message);
+                        member.receive(message);
                     }
-                }
-                catch (final Exception e)
-                {
-                    LOGGER.problem(e, "Listener threw exception");
+                    catch (final Exception e)
+                    {
+                        LOGGER.problem(e, "Listener threw exception");
+                    }
                 }
             }
             else
             {
-                LOGGER.warning(new Throwable(), "Broken listener chain: $", parentChain().join(" -> ") + " -> ? ");
+                // If there is no receiver for this message, and it can be logged,
+                if (message instanceof Message)
+                {
+                    // then log it.
+                    LOGGER.log((Message) message);
+                }
+
+                // Notify that there was nowhere to send the message.
+                if (!JavaVirtualMachine.isPropertyTrue("KIVAKIT_IGNORE_MISSING_LISTENERS"))
+                {
+                    LOGGER.warning("No listeners found: $", listenerChain().join(" -> ") + " -> [no listener] ");
+                }
             }
         });
     }
