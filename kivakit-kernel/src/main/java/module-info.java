@@ -3,6 +3,10 @@ import com.telenav.kivakit.kernel.logging.logs.text.ConsoleLog;
 
 open module kivakit.kernel
 {
+    uses Log;
+
+    provides Log with ConsoleLog;
+
     // Java
     requires transitive jdk.attach;
     requires transitive java.instrument;
@@ -20,10 +24,7 @@ open module kivakit.kernel
     requires transitive com.fasterxml.jackson.annotation;
     requires transitive io.swagger.v3.oas.annotations;
 
-    uses Log;
-
-    provides Log with ConsoleLog;
-
+    // Module exports
     exports com.telenav.kivakit.kernel.data.comparison;
     exports com.telenav.kivakit.kernel.data.conversion.string.collection;
     exports com.telenav.kivakit.kernel.data.conversion.string.enumeration;

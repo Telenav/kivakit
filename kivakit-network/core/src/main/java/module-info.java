@@ -1,9 +1,11 @@
 open module kivakit.network.core
 {
+    // KivaKit
     requires transitive kivakit.commandline;
     requires transitive kivakit.security;
     requires transitive kivakit.resource;
 
+    // Module exports
     exports com.telenav.kivakit.network.core;
     exports com.telenav.kivakit.network.core.converters;
     exports com.telenav.kivakit.network.core.cluster;
