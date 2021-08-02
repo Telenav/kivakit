@@ -30,6 +30,24 @@ public class BaseComponent extends BaseRepeater implements Component
         return registry().lookup(type, instance);
     }
 
+    @Override
+    public void registerAllSettings(final Settings settings)
+    {
+        settingsRegistry().registerAll(settings);
+    }
+
+    @Override
+    public void registerAllSettingsIn(final Package package_)
+    {
+        settingsRegistry().registerAllIn(package_);
+    }
+
+    @Override
+    public void registerAllSettingsIn(final Folder folder)
+    {
+        settingsRegistry().registerAllIn(folder);
+    }
+
     /**
      * Registers the specified instance of the given object's type in the global lookup registry
      */
@@ -37,24 +55,6 @@ public class BaseComponent extends BaseRepeater implements Component
     public <T> T registerObject(final T object, final InstanceIdentifier instance)
     {
         return registry().register(object, instance);
-    }
-
-    @Override
-    public void registerSettings(final Settings settings)
-    {
-        settingsRegistry().registerAll(settings);
-    }
-
-    @Override
-    public void registerSettingsIn(final Package package_)
-    {
-        settingsRegistry().registerAllIn(package_);
-    }
-
-    @Override
-    public void registerSettingsIn(final Folder folder)
-    {
-        settingsRegistry().registerAllIn(folder);
     }
 
     /**

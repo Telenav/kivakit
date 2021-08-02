@@ -48,11 +48,11 @@ import static com.telenav.kivakit.configuration.lookup.InstanceIdentifier.SINGLE
  *     <li>{@link #settings(Class, InstanceIdentifier)} - Get any given instance of the given settings object type</li>
  *     <li>{@link #settingsRegistry()} - Retrieves the {@link Settings} registry for this component</li>
  *     <li>{@link #registerDeployment(Deployment)} - Adds the settings objects for the given deployment</li>
- *     <li>{@link #registerSettings(Settings)} - Adds the settings objects in the given settings registry</li>
+ *     <li>{@link #registerAllSettings(Settings)} - Adds the settings objects in the given settings registry</li>
  *     <li>{@link #registerSettingsObject(Object)}  - Adds the given settings object</li>
  *     <li>{@link #registerSettingsObject(Object, InstanceIdentifier)} - Adds the given settings object under the given instance identifier</li>
- *     <li>{@link #registerSettingsIn(Folder)} - Adds settings objects from the given folder</li>
- *     <li>{@link #registerSettingsIn(Package)} - Adds settings objects from the given package</li>
+ *     <li>{@link #registerAllSettingsIn(Folder)} - Adds settings objects from the given folder</li>
+ *     <li>{@link #registerAllSettingsIn(Package)} - Adds settings objects from the given package</li>
  * </ul>
  *
  * <p><b>Object Lookup Registry</b></p>
@@ -110,11 +110,26 @@ public interface Component extends Repeater
     <T> T lookup(Class<T> type, InstanceIdentifier instance);
 
     /**
+     * Registers the settings from the given settings registry with the settings registry for this component
+     */
+    void registerAllSettings(Settings settings);
+
+    /**
+     * Registers the settings in the given folder with the settings registry for this component
+     */
+    void registerAllSettingsIn(Folder folder);
+
+    /**
+     * Registers the settings in the given package with the registry for this component
+     */
+    void registerAllSettingsIn(Package package_);
+
+    /**
      * Adds the settings objects from the given {@link Deployment} to the settings registry for this component.
      */
     default void registerDeployment(final Deployment deployment)
     {
-        registerSettings(deployment);
+        registerAllSettings(deployment);
     }
 
     /**
@@ -145,21 +160,6 @@ public interface Component extends Repeater
      * Registers the given object and instance in the global object {@link Registry}
      */
     <T> T registerObject(T object, InstanceIdentifier instance);
-
-    /**
-     * Registers the settings from the given settings registry with the settings registry for this component
-     */
-    void registerSettings(Settings settings);
-
-    /**
-     * Registers the settings in the given folder with the settings registry for this component
-     */
-    void registerSettingsIn(Folder folder);
-
-    /**
-     * Registers the settings in the given package with the registry for this component
-     */
-    void registerSettingsIn(Package package_);
 
     /**
      * Convenience method

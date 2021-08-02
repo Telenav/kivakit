@@ -31,27 +31,27 @@ public interface ComponentMixin extends Component, Mixin, RepeaterMixin
     }
 
     @Override
-    default <T> T registerObject(final T object, final InstanceIdentifier instance)
-    {
-        return component().registerObject(object, instance);
-    }
-
-    @Override
-    default void registerSettings(final Settings settings)
+    default void registerAllSettings(final Settings settings)
     {
         settingsRegistry().registerAll(settings);
     }
 
     @Override
-    default void registerSettingsIn(final Folder folder)
+    default void registerAllSettingsIn(final Folder folder)
     {
         settingsRegistry().registerAllIn(folder);
     }
 
     @Override
-    default void registerSettingsIn(final Package package_)
+    default void registerAllSettingsIn(final Package package_)
     {
         settingsRegistry().registerAllIn(package_);
+    }
+
+    @Override
+    default <T> T registerObject(final T object, final InstanceIdentifier instance)
+    {
+        return component().registerObject(object, instance);
     }
 
     @Override
