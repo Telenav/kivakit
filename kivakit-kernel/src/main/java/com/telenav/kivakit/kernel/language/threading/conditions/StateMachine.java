@@ -26,6 +26,7 @@ import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageThread
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 /**
@@ -79,13 +80,13 @@ import java.util.function.Predicate;
  * @see StateWatcher
  */
 @UmlClassDiagram(diagram = DiagramLanguageThreadSynchronization.class)
-public class StateMachine<State> extends BaseRepeater
+public final class StateMachine<State> extends BaseRepeater
 {
     /** The current state of the receiver */
     private State at;
 
     /** Watches the state */
-    private transient final StateWatcher<State> watcher = new StateWatcher<>();
+    private final StateWatcher<State> watcher = new StateWatcher<>();
 
     /** Listener to call when state transitions occur */
     private final Receiver<State> receiver;
@@ -145,17 +146,17 @@ public class StateMachine<State> extends BaseRepeater
      * @param two The second state
      * @return The previous state, or null if toggling is not possible because this state machine isn't in either state
      */
-    public State toggle(final State one, final State two)
+    public Optional<State> toggle(final State one, final State two)
     {
         if (is(one))
         {
-            return transitionTo(two);
+            return Optional.of(transitionTo(two));
         }
         if (is(two))
         {
-            return transitionTo(one);
+            return Optional.of(transitionTo(one));
         }
-        return null;
+        return Optional.empty();
     }
 
     /**
