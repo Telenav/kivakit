@@ -26,10 +26,16 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
-public interface Initializable<T>
+public interface Initializable
 {
     /**
      * Initializes this object.
      */
-    T initialize();
+    void initialize();
+
+    default <T extends Initializable> T initialize(T object)
+    {
+        object.initialize();
+        return object;
+    }
 }

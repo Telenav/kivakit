@@ -232,12 +232,6 @@ public abstract class Application extends BaseComponent implements Named, Applic
         }
     }
 
-    @UmlExcludeMember
-    public void announce()
-    {
-        announce(commandLineDescription(name()));
-    }
-
     /**
      * @return The non-switch argument at the given index parsed using the given argument parser
      */
@@ -433,6 +427,13 @@ public abstract class Application extends BaseComponent implements Named, Applic
                 .addArgumentParsers(argumentParsers())
                 .parse(argumentList.asStringArray());
 
+        // If a deployment was specified,
+        if (has(DEPLOYMENT))
+        {
+            // install it in the global settings registry
+            get(DEPLOYMENT).install();
+        }
+
         // Allow subclass to configure output streams
         onConfigureOutput();
 
@@ -465,6 +466,12 @@ public abstract class Application extends BaseComponent implements Named, Applic
         }
 
         onRan();
+    }
+
+    @UmlExcludeMember
+    public void showCommandLine()
+    {
+        announce(commandLineDescription(name()));
     }
 
     /**
@@ -562,8 +569,8 @@ public abstract class Application extends BaseComponent implements Named, Applic
         // Create an empty set of deployments,
         var deployments = DeploymentSet.create();
 
-        // and if there is a root package called 'settings' in the application,
-        var settings = relativePackage("settings");
+        // and if there is a root package called 'deployments' in the application,
+        var settings = relativePackage("deployments");
         if (settings != null)
         {
             // then add all the deployments in that package,

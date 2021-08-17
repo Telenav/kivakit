@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.telenav.kivakit.configuration.lookup.InstanceIdentifier.SINGLETON;
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
 
 /**
  * The {@link Registry} class allows code to register and locate objects by class and instance (if there is more than
@@ -134,10 +135,17 @@ public class Registry
      */
     public <T> T register(final T object, final InstanceIdentifier instance)
     {
+        ensureNotNull(object);
+
         for (var at = object.getClass(); at != Object.class; at = at.getSuperclass())
         {
             registered.put(instance.key(at), object);
+            for (var next : at.getInterfaces())
+            {
+                registered.put(instance.key(next), object);
+            }
         }
+
         return object;
     }
 

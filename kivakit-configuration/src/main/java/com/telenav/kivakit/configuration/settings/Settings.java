@@ -593,10 +593,17 @@ public class Settings extends BaseRepeater implements Named, Iterable<Object>
 
             // then create the configuration object and populate it using the converter framework
             final var configuration = properties.asObject(this, configurationClass);
-            trace("Loaded configuration: $", configuration);
+            if (configuration != null)
+            {
+                trace("Loaded configuration: $", configuration);
 
-            // and return the configuration set entry for the fully loaded configuration object
-            return new Entry(new Entry.Identifier(configurationClass, identifier), configuration);
+                // and return the configuration set entry for the fully loaded configuration object
+                return new Entry(new Entry.Identifier(configurationClass, identifier), configuration);
+            }
+            else
+            {
+                return fail("Unable to load configuration object from $", resource);
+            }
         }
         catch (final Exception e)
         {

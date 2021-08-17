@@ -26,6 +26,8 @@ import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
 import java.security.Key;
 
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
+
 /**
  * <b>Not public API</b>
  * <p>
@@ -132,6 +134,9 @@ class Entry
 
     public Entry(final Identifier identifier, final Object object)
     {
+        ensureNotNull(identifier);
+        ensureNotNull(object);
+        
         this.identifier = identifier;
         this.object = object;
     }
