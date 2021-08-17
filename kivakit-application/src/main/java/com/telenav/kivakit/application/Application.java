@@ -391,7 +391,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
         onRunning();
 
         // Load deployments and build switch parser for selecting a deployment
-        DEPLOYMENT = listenTo(deployments()).switchParser("deployment")
+        DEPLOYMENT = listenTo(DeploymentSet.load(getClass())).switchParser("deployment")
                 .required()
                 .build();
 
@@ -559,33 +559,6 @@ public abstract class Application extends BaseComponent implements Named, Applic
     protected Set<SwitchParser<?>> switchParsers()
     {
         return Sets.empty();
-    }
-
-    /**
-     * Loads all deployments in the root package 'settings' and in any folder specified by KIVAKIT_DEPLOYMENT_FOLDER.
-     */
-    private DeploymentSet deployments()
-    {
-        // Create an empty set of deployments,
-        var deployments = DeploymentSet.create();
-
-        // and if there is a root package called 'deployments' in the application,
-        var settings = relativePackage("deployments");
-        if (settings != null)
-        {
-            // then add all the deployments in that package,
-            deployments.addDeploymentsIn(settings);
-        }
-
-        // and if a deployment folder was specified and it exists,
-        var deploymentFolder = properties().asFolder("KIVAKIT_DEPLOYMENT_FOLDER");
-        if (deploymentFolder != null && deploymentFolder.exists())
-        {
-            // then add all the deployments in that folder.
-            deployments.addDeploymentsIn(deploymentFolder);
-        }
-
-        return deployments;
     }
 
     private Set<SwitchParser<?>> internalSwitchParsers()

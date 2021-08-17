@@ -23,6 +23,7 @@ import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfigu
 import com.telenav.kivakit.configuration.settings.Settings;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
+import com.telenav.kivakit.kernel.language.vm.JavaVirtualMachine;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.resources.other.PropertyMap;
@@ -34,6 +35,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
 
 /**
  * A set of {@link Deployment} objects, each being a set of configuration objects. Deployments can be added to the set
@@ -50,6 +53,35 @@ public class DeploymentSet extends BaseRepeater
     public static DeploymentSet create()
     {
         return new DeploymentSet();
+    }
+
+    /**
+     * Loads all deployments in the root package 'deployments' and in any folder specified by
+     * KIVAKIT_DEPLOYMENT_FOLDER.
+     */
+    public static DeploymentSet load(Class<?> relativeTo)
+    {
+        // Create an empty set of deployments,
+        var deployments = DeploymentSet.create();
+
+        // and if there is a root package called 'deployments' in the application,
+        var settings = Package.of(relativeTo, "deployments");
+        if (settings != null)
+        {
+            // then add all the deployments in that package,
+            deployments.addDeploymentsIn(settings);
+        }
+
+        // and if a deployment folder was specified and it exists,
+        var deploymentFolder = PropertyMap.of(JavaVirtualMachine.local().properties())
+                .asFolder("KIVAKIT_DEPLOYMENT_FOLDER");
+        if (deploymentFolder != null && deploymentFolder.exists())
+        {
+            // then add all the deployments in that folder.
+            deployments.addDeploymentsIn(deploymentFolder);
+        }
+
+        return deployments;
     }
 
     public static DeploymentSet of(final Deployment deployment, final Deployment... more)
@@ -167,6 +199,11 @@ public class DeploymentSet extends BaseRepeater
     public Set<Deployment> deployments()
     {
         return deployments;
+    }
+
+    public void install(final String name)
+    {
+        ensureNotNull(deployment(name)).install();
     }
 
     public boolean isEmpty()
