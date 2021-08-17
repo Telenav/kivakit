@@ -23,8 +23,9 @@ import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfigu
 import com.telenav.kivakit.configuration.settings.Settings;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
-import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.resource.Resource;
+import com.telenav.kivakit.resource.resources.other.PropertyMap;
 import com.telenav.kivakit.resource.resources.packaged.Package;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -36,8 +37,8 @@ import java.util.Set;
 
 /**
  * A set of {@link Deployment} objects, each being a set of configuration objects. Deployments can be added to the set
- * from a folder with {@link #addDeployments(Folder)}. A switch parser to select a deployment from the command line can
- * be retrieved with SwitchParser.deployment(DeploymentSet).
+ * from a folder with {@link #addDeploymentsIn(Folder)}. A switch parser to select a deployment from the command line
+ * can be retrieved with SwitchParser.deployment(DeploymentSet).
  *
  * @author jonathanl (shibo)
  * @see Deployment
@@ -46,24 +47,9 @@ import java.util.Set;
 @UmlClassDiagram(diagram = DiagramConfiguration.class)
 public class DeploymentSet extends BaseRepeater
 {
-    public static DeploymentSet load(final Listener listener, final Class<?> relativeTo, final String path)
+    public static DeploymentSet create()
     {
-        return load(listener, PackagePath.parsePackagePath(relativeTo, path));
-    }
-
-    public static DeploymentSet load(final Listener listener, final Package _package)
-    {
-        return load(listener, _package.path());
-    }
-
-    public static DeploymentSet load(final Listener listener, final PackagePath path)
-    {
-        return listener.listenTo(new DeploymentSet()).addDeployments(path);
-    }
-
-    public static DeploymentSet load(final Listener listener, final Folder folder)
-    {
-        return new DeploymentSet().addDeployments(folder);
+        return new DeploymentSet();
     }
 
     public static DeploymentSet of(final Deployment deployment, final Deployment... more)
@@ -76,6 +62,10 @@ public class DeploymentSet extends BaseRepeater
 
     @UmlAggregation
     private final Set<Deployment> deployments = new HashSet<>();
+
+    protected DeploymentSet()
+    {
+    }
 
     /**
      * Adds the given deployment to this set
@@ -96,13 +86,16 @@ public class DeploymentSet extends BaseRepeater
     /**
      * Adds all the deployments from the sub-folders found in the given folder.
      */
-    public DeploymentSet addDeployments(final Folder parent)
+    public DeploymentSet addDeploymentsIn(final Folder parent)
     {
         // Go through the sub-folders,
         for (final var folder : parent.folders())
         {
+            // get description from deployment metadata,
+            String description = description(folder.file("Deployment.metadata"));
+
             // create a deployment,
-            final var deployment = listenTo(new Deployment(folder.name().name(), "'" + folder.name() + "' deployment"));
+            final var deployment = listenTo(new Deployment(folder.name().name(), description));
 
             // and add the configuration information from the sub-folder,
             deployment.registerAllIn(folder);
@@ -123,13 +116,29 @@ public class DeploymentSet extends BaseRepeater
     /**
      * Adds all the deployments from the sub-packages found in the given package.
      */
-    public DeploymentSet addDeployments(final PackagePath path)
+    public DeploymentSet addDeploymentsIn(final Package package_)
+    {
+        return addDeploymentsIn(package_.path());
+    }
+
+    public DeploymentSet addDeploymentsIn(final Class<?> relativeTo, final String path)
+    {
+        return addDeploymentsIn(PackagePath.parsePackagePath(relativeTo, path));
+    }
+
+    /**
+     * Adds all the deployments from the sub-packages found in the given package.
+     */
+    public DeploymentSet addDeploymentsIn(final PackagePath path)
     {
         // Go through the sub-packages,
         for (final var subPackage : path.subPackages())
         {
+            // get description from deployment metadata,
+            String description = description(Package.of(subPackage).resource("Deployment.metadata"));
+
             // create a deployment,
-            final var deployment = listenTo(new Deployment(subPackage.last(), "'" + subPackage.last() + "' deployment"));
+            final var deployment = listenTo(new Deployment(subPackage.last(), description));
 
             // and add the configuration information from the sub-folder,
             deployment.registerAllIn(subPackage);
@@ -160,8 +169,29 @@ public class DeploymentSet extends BaseRepeater
         return deployments;
     }
 
-    public SwitchParser<Deployment> switchParser(final String name)
+    public boolean isEmpty()
+    {
+        return deployments.isEmpty();
+    }
+
+    public int size()
+    {
+        return deployments.size();
+    }
+
+    public SwitchParser.Builder<Deployment> switchParser(final String name)
     {
         return Deployment.deploymentSwitchParser(this, name);
+    }
+
+    private String description(final Resource resource)
+    {
+        var description = "'" + resource.fileName().name() + "' deployment";
+        var deploymentProperties = PropertyMap.load(resource);
+        if (deploymentProperties.containsKey("description"))
+        {
+            description = deploymentProperties.get("description");
+        }
+        return description;
     }
 }

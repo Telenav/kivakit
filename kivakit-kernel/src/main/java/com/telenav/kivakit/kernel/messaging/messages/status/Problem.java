@@ -37,7 +37,6 @@ public class Problem extends OperationStatusMessage
     public Problem(final String message, final Object... arguments)
     {
         super(message);
-        cause(new Throwable("Problem stack trace"));
         arguments(arguments);
     }
 

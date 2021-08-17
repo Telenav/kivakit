@@ -26,9 +26,10 @@ import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.CommandLine;
 import com.telenav.kivakit.commandline.CommandLineParser;
 import com.telenav.kivakit.commandline.SwitchParser;
+import com.telenav.kivakit.configuration.settings.deployment.Deployment;
+import com.telenav.kivakit.configuration.settings.deployment.DeploymentSet;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.language.collections.set.Sets;
 import com.telenav.kivakit.kernel.language.locales.Locale;
 import com.telenav.kivakit.kernel.language.strings.Align;
@@ -62,6 +63,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -154,6 +156,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
     /** The one and only application running in this process */
     private static Application instance;
 
+    /** The default final destination for messages that bubble up to the application level */
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
     /**
@@ -186,13 +189,6 @@ public abstract class Application extends BaseComponent implements Named, Applic
         }
     }
 
-    @UmlExcludeMember
-    protected final SwitchParser<Boolean> QUIET =
-            booleanSwitchParser("quiet", "Minimize output")
-                    .optional()
-                    .defaultValue(false)
-                    .build();
-
     /** The project that this application uses */
     @UmlAggregation(label = "initializes and uses")
     private final Project project;
@@ -200,6 +196,16 @@ public abstract class Application extends BaseComponent implements Named, Applic
     /** The parsed command line for this application */
     @UmlAggregation
     private CommandLine commandLine;
+
+    /** Switch parser to specify deployment settings */
+    private SwitchParser<Deployment> DEPLOYMENT;
+
+    @UmlExcludeMember
+    protected final SwitchParser<Boolean> QUIET =
+            booleanSwitchParser("quiet", "Minimize output")
+                    .optional()
+                    .defaultValue(false)
+                    .build();
 
     /**
      * @param projects One or more projects to initialize
@@ -283,12 +289,12 @@ public abstract class Application extends BaseComponent implements Named, Applic
                 box.add(AsciiArt.repeat(4, ' ') + "$. $", number++, argument.value());
             }
         }
-        if (!switchParsers().isEmpty())
+        if (!internalSwitchParsers().isEmpty())
         {
             box.add("");
             box.add("Switches:");
             box.add("");
-            final var sorted = new ArrayList<>(switchParsers());
+            final var sorted = new ArrayList<>(internalSwitchParsers());
             sorted.sort(Comparator.comparing(SwitchParser::name));
             final var width = new StringList(sorted).longest().asInt();
             for (final var switchParser : sorted)
@@ -363,9 +369,9 @@ public abstract class Application extends BaseComponent implements Named, Applic
         return project;
     }
 
-    public VariableMap<String> properties()
+    public PropertyMap properties()
     {
-        return project.properties();
+        return PropertyMap.of(project().properties());
     }
 
     /**
@@ -387,7 +393,13 @@ public abstract class Application extends BaseComponent implements Named, Applic
      */
     public final void run(final String[] arguments)
     {
+        // Signal that we're about to start running
         onRunning();
+
+        // Load deployments and build switch parser for selecting a deployment
+        DEPLOYMENT = listenTo(deployments()).switchParser("deployment")
+                .required()
+                .build();
 
         // Go through arguments
         final var argumentList = new StringList();
@@ -417,12 +429,14 @@ public abstract class Application extends BaseComponent implements Named, Applic
 
         // then parse the command line arguments.
         commandLine = new CommandLineParser(this)
-                .addSwitchParsers(switchParsers())
+                .addSwitchParsers(internalSwitchParsers())
                 .addArgumentParsers(argumentParsers())
                 .parse(argumentList.asStringArray());
 
+        // Allow subclass to configure output streams
         onConfigureOutput();
 
+        // Initialize this application's project
         onProjectInitializing();
         project.initialize();
         onProjectInitialized();
@@ -432,6 +446,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
 
         try
         {
+            // Run the application's code
             onRun();
         }
         catch (final Exception e)
@@ -537,5 +552,41 @@ public abstract class Application extends BaseComponent implements Named, Applic
     protected Set<SwitchParser<?>> switchParsers()
     {
         return Sets.empty();
+    }
+
+    /**
+     * Loads all deployments in the root package 'settings' and in any folder specified by KIVAKIT_DEPLOYMENT_FOLDER.
+     */
+    private DeploymentSet deployments()
+    {
+        // Create an empty set of deployments,
+        var deployments = DeploymentSet.create();
+
+        // and if there is a root package called 'settings' in the application,
+        var settings = relativePackage("settings");
+        if (settings != null)
+        {
+            // then add all the deployments in that package,
+            deployments.addDeploymentsIn(settings);
+        }
+
+        // and if a deployment folder was specified and it exists,
+        var deploymentFolder = properties().asFolder("KIVAKIT_DEPLOYMENT_FOLDER");
+        if (deploymentFolder != null && deploymentFolder.exists())
+        {
+            // then add all the deployments in that folder.
+            deployments.addDeploymentsIn(deploymentFolder);
+        }
+
+        return deployments;
+    }
+
+    private Set<SwitchParser<?>> internalSwitchParsers()
+    {
+        var parsers = new HashSet<SwitchParser<?>>();
+        parsers.add(DEPLOYMENT);
+        parsers.add(QUIET);
+        parsers.addAll(switchParsers());
+        return parsers;
     }
 }

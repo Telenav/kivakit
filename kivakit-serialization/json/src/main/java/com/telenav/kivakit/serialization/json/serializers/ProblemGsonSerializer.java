@@ -18,11 +18,10 @@
 
 package com.telenav.kivakit.serialization.json.serializers;
 
+import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.serialization.json.PrimitiveGsonSerializer;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
-
-import static com.telenav.kivakit.kernel.messaging.messages.MessageFormatter.Format.WITH_EXCEPTION;
 
 /**
  * Serializes {@link Problem}s to and from JSON.
@@ -32,9 +31,12 @@ import static com.telenav.kivakit.kernel.messaging.messages.MessageFormatter.For
 @LexakaiJavadoc(complete = true)
 public class ProblemGsonSerializer extends PrimitiveGsonSerializer<Problem, String>
 {
-    public ProblemGsonSerializer()
+    private final MessageFormatter.Format format;
+
+    public ProblemGsonSerializer(MessageFormatter.Format format)
     {
         super(String.class);
+        this.format = format;
     }
 
     @Override
@@ -46,6 +48,6 @@ public class ProblemGsonSerializer extends PrimitiveGsonSerializer<Problem, Stri
     @Override
     protected String toPrimitive(final Problem problem)
     {
-        return problem.formatted(WITH_EXCEPTION);
+        return problem.formatted(format);
     }
 }
