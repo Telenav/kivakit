@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.application;
 
-import com.telenav.kivakit.application.component.BaseComponent;
+import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.application.project.lexakai.diagrams.DiagramApplication;
 import com.telenav.kivakit.commandline.ApplicationMetadata;
 import com.telenav.kivakit.commandline.ArgumentList;

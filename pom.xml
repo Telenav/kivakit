@@ -142,6 +142,7 @@
         <module>kivakit-configuration</module>
         <module>kivakit-security</module>
         <module>kivakit-network</module>
+        <module>kivakit-component</module>
         <module>kivakit-application</module>
 
     </modules>

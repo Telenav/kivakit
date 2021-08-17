@@ -1,4 +1,4 @@
-package com.telenav.kivakit.application.component;
+package com.telenav.kivakit.component;
 
 import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
 import com.telenav.kivakit.configuration.lookup.Registry;

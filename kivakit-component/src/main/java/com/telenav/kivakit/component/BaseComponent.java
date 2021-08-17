@@ -1,13 +1,11 @@
-package com.telenav.kivakit.application.component;
+package com.telenav.kivakit.component;
 
-import com.telenav.kivakit.application.project.lexakai.diagrams.DiagramApplication;
 import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
 import com.telenav.kivakit.configuration.lookup.Registry;
 import com.telenav.kivakit.configuration.settings.Settings;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.resource.resources.packaged.Package;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
  * Base class for KivaKit components. Provides easy access to object registration and lookup (see {@link Registry}) as
@@ -18,7 +16,6 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see Registry
  * @see Settings
  */
-@UmlClassDiagram(diagram = DiagramApplication.class)
 public class BaseComponent extends BaseRepeater implements Component
 {
     /**
