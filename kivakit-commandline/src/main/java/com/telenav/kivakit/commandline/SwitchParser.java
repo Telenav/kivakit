@@ -508,8 +508,7 @@ public class SwitchParser<T> implements Named, Validatable
         }
         return this + "=" + type.simpleName()
                 + " (" + specifics.join() + ") : " + description
-                + (validValues != null ? "\n\n" + new ObjectList<>().appendAll(validValues).bulleted(4) + "\n"
-                : "");
+                + (validValues != null ? "\n\n" + new ObjectList<>().appendAll(validValues).bulleted(4) : "");
     }
 
     /**

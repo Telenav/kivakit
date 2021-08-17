@@ -188,16 +188,14 @@ public class Deployment extends Settings implements Named, Serializable
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    public static SwitchParser<Deployment> deploymentSwitchParser(final DeploymentSet deployments,
-                                                                  final String switchName)
+    public static SwitchParser.Builder<Deployment> deploymentSwitchParser(final DeploymentSet deployments,
+                                                                          final String switchName)
     {
         return SwitchParser.builder(Deployment.class)
                 .name("deployment")
                 .validValues(deployments.deployments())
                 .converter(new Deployment.Converter(LOGGER, deployments))
-                .description("The deployment configuration to run")
-                .required()
-                .build();
+                .description("The deployment configuration to run");
     }
 
     /**

@@ -141,7 +141,7 @@ public final class PackagePath extends StringPath
     }
 
     /** A class where the package is defined */
-    private final Class<?> packageType;
+    private Class<?> packageType;
 
     protected PackagePath(final Class<?> packageType, final Path<String> path)
     {
@@ -276,7 +276,7 @@ public final class PackagePath extends StringPath
     {
         final var packages = Modules.allNestedResources(this)
                 .stream()
-                .map(ModuleResource::packagePath)
+                .map(resource -> resource.packagePath().withPackageType(packageType))
                 .collect(Collectors.toSet());
         DEBUG.trace("Found sub-packages:\n$", ObjectList.objectList(packages).join("\n"));
         return packages;
@@ -316,6 +316,13 @@ public final class PackagePath extends StringPath
     public PackagePath withChild(final String path)
     {
         return (PackagePath) super.withChild(path(path));
+    }
+
+    public PackagePath withPackageType(Class<?> type)
+    {
+        var copy = (PackagePath) copy();
+        copy.packageType = type;
+        return copy;
     }
 
     /**
