@@ -74,6 +74,9 @@ public abstract class OperationMessage implements Named, Message
 
     private static final ReentrancyTracker reentrancy = new ReentrancyTracker();
 
+    /** This flag can be helpful in detecting infinite recursion of message formatting */
+    private static final boolean DETECT_REENTRANCY = false;
+
     public static OperationMessage of(final String name)
     {
         initialize();
@@ -190,7 +193,7 @@ public abstract class OperationMessage implements Named, Message
         {
             try
             {
-                if (reentrancy.enter())
+                if (reentrancy.enter() && DETECT_REENTRANCY)
                 {
                     formattedMessage = "Re-entrant message formatting detected. This could result in infinite recursion: '" + message + "'";
                 }
@@ -294,7 +297,7 @@ public abstract class OperationMessage implements Named, Message
 
     private static void initialize()
     {
-        // Prepopulate the name map
+        // Pre-populate the name map
 
         // Lifecycle messages
         new OperationStarted();
