@@ -29,7 +29,7 @@ fi
 # Ensure that KivaKit is on the develop branch
 #
 
-cd $KIVAKIT_WORKSPACE/kivakit
+cd "$KIVAKIT_WORKSPACE"/kivakit
 
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 
@@ -48,7 +48,7 @@ fi
 
 if [ ! -e "$KIVAKIT_WORKSPACE/kivakit/setup.properties" ]; then
     
-    date +setup-time=%Y.%m.%d-%I.%M%p > $KIVAKIT_WORKSPACE/kivakit/setup.properties
+    date +setup-time=%Y.%m.%d-%I.%M%p > "$KIVAKIT_WORKSPACE"/kivakit/setup.properties
 
     echo " "
     echo "Please exit your shell program and start it up again before continuing KivaKit setup."
@@ -66,7 +66,7 @@ echo " "
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Cloning Repositories"
 echo " "
 
-cd $KIVAKIT_WORKSPACE
+cd "$KIVAKIT_WORKSPACE"
 
 git clone https://github.com/Telenav/cactus-build-assets.git
 git clone https://github.com/Telenav/kivakit-assets.git
@@ -83,20 +83,20 @@ echo " "
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Initializing Git"
 echo " "
 
-cd $KIVAKIT_WORKSPACE/cactus-build-assets
+cd "$KIVAKIT_WORKSPACE"/cactus-build-assets
 echo "Initializing $(pwd)"
 git config pull.ff only
 
-cd $KIVAKIT_WORKSPACE/kivakit-assets
+cd "$KIVAKIT_WORKSPACE"/kivakit-assets
 echo "Initializing $(pwd)"
 git config pull.ff only
 
-cd $KIVAKIT_WORKSPACE/cactus-build
+cd "$KIVAKIT_WORKSPACE"/cactus-build
 echo "Initializing $(pwd)"
 git config pull.ff only
 git flow init -d /dev/null 2>&1
 
-if [ $(git flow config >/dev/null 2>&1) ]; then
+if [ "$(git flow config >/dev/null 2>&1)" ]; then
     echo " "
     echo "Please install git flow before continuing KivaKit setup."
     echo "See https://kivakit.org for details."
@@ -104,22 +104,22 @@ if [ $(git flow config >/dev/null 2>&1) ]; then
     exit 1
 fi
 
-cd $KIVAKIT_WORKSPACE/lexakai-annotations
+cd "$KIVAKIT_WORKSPACE"/lexakai-annotations
 echo "Initializing $(pwd)"
 git config pull.ff only
 git flow init -d /dev/null 2>&1
 
-cd $KIVAKIT_WORKSPACE/kivakit
+cd "$KIVAKIT_WORKSPACE"/kivakit
 echo "Initializing $(pwd)"
 git config pull.ff only
 git flow init -d /dev/null 2>&1
 
-cd $KIVAKIT_WORKSPACE/kivakit-extensions
+cd "$KIVAKIT_WORKSPACE"/kivakit-extensions
 echo "Initializing $(pwd)"
 git config pull.ff only
 git flow init -d /dev/null 2>&1
 
-cd $KIVAKIT_WORKSPACE/kivakit-examples
+cd "$KIVAKIT_WORKSPACE"/kivakit-examples
 echo "Initializing $(pwd)"
 git config pull.ff only
 git flow init -d /dev/null 2>&1
@@ -132,7 +132,7 @@ echo " "
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Building Projects"
 echo " "
 
-cd $KIVAKIT_HOME
+cd "$KIVAKIT_HOME"
 kivakit-build.sh setup
 
 echo " "
