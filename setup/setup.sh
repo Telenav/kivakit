@@ -11,27 +11,55 @@ echo " "
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Preparing for Setup"
 echo " "
 
+#
+# Ensure KIVAKIT_WORKSPACE variable is set
+#
+
 if [ -z "$KIVAKIT_WORKSPACE" ]; then
+
     echo " "
     echo "Please set up your .profile before setting up KivaKit."
     echo "See https://kivakit.org for details."
     echo " "
-    exit 1
-fi
 
-cd $KIVAKIT_WORKSPACE/kivakit
-git checkout -q develop
-
-if [ ! -e "$KIVAKIT_WORKSPACE/kivakit/setup.properties" ]; then
-    echo " "
-    echo "Please restart your shell before continuing KivaKit setup."
-    echo "See https://kivakit.org for details."
-    echo " "
     exit 1
 fi
 
 #
-# Check out required repositories
+# Ensure that KivaKit is on the develop branch
+#
+
+cd $KIVAKIT_WORKSPACE/kivakit
+
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+
+if [[ "$BRANCH" != "develop" ]]; then
+    
+    echo " ";
+    echo "Must checkout develop branch to setup KivaKit"
+    echo " ";
+    
+    exit 1;    
+fi
+
+#
+# Make sure that the shell has been restarted
+#
+
+if [ ! -e "$KIVAKIT_WORKSPACE/kivakit/setup.properties" ]; then
+    
+    date +setup-time=%Y.%m.%d-%I.%M%p > $KIVAKIT_WORKSPACE/kivakit/setup.properties
+
+    echo " "
+    echo "Please exit your shell program and start it up again before continuing KivaKit setup."
+    echo "See https://kivakit.org for details."
+    echo " "
+
+    exit 1    
+fi
+
+#
+# Clone required repositories
 #
 
 echo " "
@@ -40,23 +68,12 @@ echo " "
 
 cd $KIVAKIT_WORKSPACE
 
-git clone https://github.com/Telenav/cactus-build.git
-git config pull.ff only
-
 git clone https://github.com/Telenav/cactus-build-assets.git
-git config pull.ff only
-
-git clone https://github.com/Telenav/lexakai-annotations.git
-git config pull.ff only
-
-git clone https://github.com/Telenav/kivakit-extensions.git
-git config pull.ff only
-
-git clone https://github.com/Telenav/kivakit-examples.git
-git config pull.ff only
-
 git clone https://github.com/Telenav/kivakit-assets.git
-git config pull.ff only
+git clone https://github.com/Telenav/cactus-build.git
+git clone https://github.com/Telenav/lexakai-annotations.git
+git clone https://github.com/Telenav/kivakit-extensions.git
+git clone https://github.com/Telenav/kivakit-examples.git
 
 #
 # Initialize git flow for each project
@@ -66,7 +83,14 @@ echo " "
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Initializing Git Flow"
 echo " "
 
+cd $KIVAKIT_WORKSPACE/cactus-build-assets
+git config pull.ff only
+
+cd $KIVAKIT_WORKSPACE/kivakit-assets
+git config pull.ff only
+
 cd $KIVAKIT_WORKSPACE/cactus-build
+git config pull.ff only
 git flow init -d /dev/null 2>&1
 
 if [ $(git flow config >/dev/null 2>&1) ]; then
@@ -78,15 +102,19 @@ if [ $(git flow config >/dev/null 2>&1) ]; then
 fi
 
 cd $KIVAKIT_WORKSPACE/lexakai-annotations
+git config pull.ff only
 git flow init -d /dev/null 2>&1
 
 cd $KIVAKIT_WORKSPACE/kivakit
+git config pull.ff only
 git flow init -d /dev/null 2>&1
 
 cd $KIVAKIT_WORKSPACE/kivakit-extensions
+git config pull.ff only
 git flow init -d /dev/null 2>&1
 
 cd $KIVAKIT_WORKSPACE/kivakit-examples
+git config pull.ff only
 git flow init -d /dev/null 2>&1
 
 #
