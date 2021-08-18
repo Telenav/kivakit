@@ -26,6 +26,7 @@ import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.kernel.language.strings.Strip;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
@@ -174,9 +175,9 @@ public class Package implements ResourceFolder
     /**
      * @return A localized property map for the given locale
      */
-    public PropertyMap localizedProperties(final Locale locale)
+    public PropertyMap localizedProperties(Listener listener, final Locale locale)
     {
-        return PropertyMap.localized(path(), locale);
+        return PropertyMap.localized(listener, path(), locale);
     }
 
     /**

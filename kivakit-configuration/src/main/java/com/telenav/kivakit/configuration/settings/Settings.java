@@ -576,7 +576,7 @@ public class Settings extends BaseRepeater implements Named, Iterable<Object>
     {
         // Load the given properties
         trace("Loading configuration from $", resource);
-        final var properties = PropertyMap.load(resource);
+        final var properties = PropertyMap.load(this, resource);
         try
         {
             // then get the configuration class to instantiate,

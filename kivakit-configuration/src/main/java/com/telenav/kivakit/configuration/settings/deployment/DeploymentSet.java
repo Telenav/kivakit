@@ -24,6 +24,7 @@ import com.telenav.kivakit.configuration.settings.Settings;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.kernel.language.vm.JavaVirtualMachine;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.resources.other.PropertyMap;
@@ -59,10 +60,10 @@ public class DeploymentSet extends BaseRepeater
      * Loads all deployments in the root package 'deployments' and in any folder specified by
      * KIVAKIT_DEPLOYMENT_FOLDER.
      */
-    public static DeploymentSet load(Class<?> relativeTo)
+    public static DeploymentSet load(Listener listener, Class<?> relativeTo)
     {
         // Create an empty set of deployments,
-        var deployments = DeploymentSet.create();
+        var deployments = listener.listenTo(DeploymentSet.create());
 
         // and if there is a root package called 'deployments' in the application,
         var settings = Package.of(relativeTo, "deployments");
@@ -224,7 +225,7 @@ public class DeploymentSet extends BaseRepeater
     private String description(final Resource resource)
     {
         var description = "'" + resource.fileName().name() + "' deployment";
-        var deploymentProperties = PropertyMap.load(resource);
+        var deploymentProperties = PropertyMap.load(this, resource);
         if (deploymentProperties.containsKey("description"))
         {
             description = deploymentProperties.get("description");

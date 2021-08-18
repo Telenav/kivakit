@@ -18,7 +18,6 @@
 
 package com.telenav.kivakit.application;
 
-import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.application.project.lexakai.diagrams.DiagramApplication;
 import com.telenav.kivakit.commandline.ApplicationMetadata;
 import com.telenav.kivakit.commandline.ArgumentList;
@@ -26,6 +25,7 @@ import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.CommandLine;
 import com.telenav.kivakit.commandline.CommandLineParser;
 import com.telenav.kivakit.commandline.SwitchParser;
+import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.configuration.settings.deployment.Deployment;
 import com.telenav.kivakit.configuration.settings.deployment.DeploymentSet;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
@@ -42,7 +42,6 @@ import com.telenav.kivakit.kernel.language.vm.KivaKitShutdownHook;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.logging.logs.BaseLog;
-import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.kernel.messaging.filters.AllMessages;
@@ -355,7 +354,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
 
     public PropertyMap localizedProperties(final Locale locale)
     {
-        return PropertyMap.localized(packagePath(), locale);
+        return PropertyMap.localized(this, packagePath(), locale);
     }
 
     public Project project()
@@ -374,7 +373,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
      * <ol>
      *     <li>{@link #onRunning()} is called to indicate that running is about to start</li>
      *     <li>Command line arguments are validated and parsed into a {@link CommandLine}</li>
-     *     <li>{@link #onConfigureOutput()} is called to allow redirection of output</li>
+     *     <li>{@link #onConfigureListeners()} is called to allow redirection of output</li>
      *     <li>{@link #onProjectInitializing()} is called before the {@link Project} for this application is initialized</li>
      *     <li>{@link Project#initialize()} is called</li>
      *     <li>{@link #onProjectInitialized()} is called</li>
@@ -387,11 +386,14 @@ public abstract class Application extends BaseComponent implements Named, Applic
      */
     public final void run(final String[] arguments)
     {
-        // Signal that we're about to start running
+        // Signal that we're about to start running,
         onRunning();
 
-        // Load deployments and build switch parser for selecting a deployment
-        DEPLOYMENT = listenTo(DeploymentSet.load(getClass())).switchParser("deployment")
+        // set up temporary listener,
+        LOGGER.listenTo(this);
+
+        // load deployments and build switch parser for selecting a deployment.
+        DEPLOYMENT = DeploymentSet.load(this, getClass()).switchParser("deployment")
                 .required()
                 .build();
 
@@ -405,7 +407,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
                 // then load properties from the resource
                 final var resourceIdentifier = Strip.leading(argument, "-switches=");
                 final var resource = Resource.resolve(resourceIdentifier);
-                final var properties = PropertyMap.load(resource);
+                final var properties = PropertyMap.load(this, resource);
 
                 // and add those properties to the argument list
                 for (final var key : properties.keySet())
@@ -427,15 +429,16 @@ public abstract class Application extends BaseComponent implements Named, Applic
                 .addArgumentParsers(argumentParsers())
                 .parse(argumentList.asStringArray());
 
-        // If a deployment was specified,
+        // Remove temporary logger and allow subclass to configure output streams,
+        clearListeners();
+        onConfigureListeners();
+
+        // and if a deployment was specified,
         if (has(DEPLOYMENT))
         {
-            // install it in the global settings registry
+            // install it in the global settings registry.
             get(DEPLOYMENT).install();
         }
-
-        // Allow subclass to configure output streams
-        onConfigureOutput();
 
         // Initialize this application's project
         onProjectInitializing();
@@ -495,9 +498,9 @@ public abstract class Application extends BaseComponent implements Named, Applic
      * Configures output of the application
      */
     @UmlExcludeMember
-    protected void onConfigureOutput()
+    protected void onConfigureListeners()
     {
-        output(LOGGER);
+        configureLogging();
     }
 
     /**
@@ -539,26 +542,26 @@ public abstract class Application extends BaseComponent implements Named, Applic
     }
 
     /**
-     * Sets output for the application to go to the given listener. This is the same in an application as
-     * LOGGER.listenTo(this), but this method adds a filter which reduces output to a minimum if the -quiet=true switch
-     * is set (the switch must be added to the return value of {@link #switchParsers()}).
-     */
-    @UmlExcludeMember
-    protected void output(final Listener listener)
-    {
-        final var filter = get(QUIET)
-                ? new SeverityGreaterThanOrEqualTo(new Quibble().severity())
-                : new AllMessages();
-
-        listener.listenTo(this, filter);
-    }
-
-    /**
      * @return The switch parsers for this application
      */
     protected Set<SwitchParser<?>> switchParsers()
     {
         return Sets.empty();
+    }
+
+    /**
+     * Sets output for the application to go to the application logger. This is the same in an application as
+     * LOGGER.listenTo(this), but this method adds a filter which reduces output to a minimum if the -quiet=true switch
+     * is set (the switch must be added to the return value of {@link #switchParsers()}).
+     */
+    @UmlExcludeMember
+    private void configureLogging()
+    {
+        final var filter = get(QUIET)
+                ? new SeverityGreaterThanOrEqualTo(new Quibble().severity())
+                : new AllMessages();
+
+        LOGGER.listenTo(this, filter);
     }
 
     private Set<SwitchParser<?>> internalSwitchParsers()

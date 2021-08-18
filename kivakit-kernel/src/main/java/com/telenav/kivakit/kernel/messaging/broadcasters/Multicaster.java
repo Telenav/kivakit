@@ -237,7 +237,7 @@ public class Multicaster implements Broadcaster, PackagePathed
         final var chain = new StringList();
         for (var at = (Broadcaster) this; at.messageSource() != null; at = at.messageSource())
         {
-            chain.append(at.objectName());
+            chain.append(at.getClass().getSimpleName());
         }
         return chain.reversed();
     }
@@ -334,7 +334,11 @@ public class Multicaster implements Broadcaster, PackagePathed
                 // Notify that there was nowhere to send the message.
                 if (!JavaVirtualMachine.isPropertyTrue("KIVAKIT_IGNORE_MISSING_LISTENERS"))
                 {
-                    LOGGER.warning("No listeners found: $", listenerChain().join(" -> ") + " -> [no listener] ");
+                    LOGGER.warning("Broken listener chain:\n$", listenerChain()
+                            .append("[no listener]")
+                            .numbered()
+                            .indented(4)
+                            .join("\n"));
                 }
             }
         });
