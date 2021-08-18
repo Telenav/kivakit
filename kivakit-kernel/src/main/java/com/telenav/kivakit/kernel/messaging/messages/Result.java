@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.messaging.messages;
 
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessaging;

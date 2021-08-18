@@ -28,10 +28,16 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * Specifies the KivaKit {@link Converter} to use when populating the annotated field or method.
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.FIELD, ElementType.METHOD })
 @UmlClassDiagram(diagram = DiagramLanguageReflection.class)
 public @interface KivaKitPropertyConverter
 {
+    /**
+     * @return The converter class to apply to this field or method
+     */
     Class<? extends Converter<?, ?>> value() default IdentityConverter.class;
 }

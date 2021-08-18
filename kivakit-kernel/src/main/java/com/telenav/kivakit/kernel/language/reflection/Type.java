@@ -20,29 +20,37 @@ package com.telenav.kivakit.kernel.language.reflection;
 
 import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
+import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
+import com.telenav.kivakit.kernel.language.collections.map.ClassMap;
+import com.telenav.kivakit.kernel.language.collections.map.string.NameMap;
+import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
+import com.telenav.kivakit.kernel.language.reflection.access.field.FieldGetter;
+import com.telenav.kivakit.kernel.language.reflection.access.field.FieldSetter;
+import com.telenav.kivakit.kernel.language.reflection.access.method.MethodGetter;
+import com.telenav.kivakit.kernel.language.reflection.access.method.MethodSetter;
+import com.telenav.kivakit.kernel.language.reflection.property.NamingConvention;
+import com.telenav.kivakit.kernel.language.reflection.property.Property;
+import com.telenav.kivakit.kernel.language.reflection.property.PropertyFilter;
+import com.telenav.kivakit.kernel.language.reflection.property.filters.field.NamedField;
+import com.telenav.kivakit.kernel.language.reflection.property.filters.method.NamedMethod;
 import com.telenav.kivakit.kernel.language.types.Classes;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.project.CoreKernelLimits;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageReflection;
-import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
-import com.telenav.kivakit.kernel.language.collections.map.ClassMap;
-import com.telenav.kivakit.kernel.language.reflection.property.Property;
-import com.telenav.kivakit.kernel.language.reflection.property.PropertyFilter;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.kivakit.kernel.language.collections.map.string.NameMap;
-import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
-import com.telenav.kivakit.kernel.language.reflection.access.field.FieldGetter;
-import com.telenav.kivakit.kernel.language.reflection.access.field.FieldSetter;
-import com.telenav.kivakit.kernel.language.reflection.access.method.MethodGetter;
-import com.telenav.kivakit.kernel.language.reflection.access.method.MethodSetter;
-import com.telenav.kivakit.kernel.language.reflection.property.filters.field.NamedField;
-import com.telenav.kivakit.kernel.language.reflection.property.filters.method.NamedMethod;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.IdentityHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 /**
@@ -92,7 +100,7 @@ public class Type<T> implements Named
     }
 
     /** Properties stored by name */
-    private final Map<PropertyFilter, NameMap<Property>> propertiesForFilter = new HashMap<>();
+    private final Map<PropertyFilter, NameMap<Property>> propertiesForFilter = new IdentityHashMap<>();
 
     private final Class<T> type;
 
@@ -149,7 +157,7 @@ public class Type<T> implements Named
 
     public Property field(final String name)
     {
-        final var iterator = properties(new NamedField(name)).iterator();
+        final var iterator = properties(new NamedField(NamingConvention.KIVAKIT, name)).iterator();
         if (iterator.hasNext())
         {
             return iterator.next();
@@ -202,7 +210,7 @@ public class Type<T> implements Named
 
     public Property method(final String name)
     {
-        final var iterator = properties(new NamedMethod(name)).iterator();
+        final var iterator = properties(new NamedMethod(NamingConvention.KIVAKIT, name)).iterator();
         if (iterator.hasNext())
         {
             return iterator.next();
@@ -279,6 +287,7 @@ public class Type<T> implements Named
                 {
                     continue;
                 }
+
                 if (filter.includeAsGetter(method))
                 {
                     final var name = filter.nameForMethod(method);
@@ -292,6 +301,7 @@ public class Type<T> implements Named
                         property.getter(new MethodGetter(method));
                     }
                 }
+
                 if (filter.includeAsSetter(method))
                 {
                     final var name = filter.nameForMethod(method);
@@ -306,6 +316,7 @@ public class Type<T> implements Named
                     }
                 }
             }
+            
             propertiesForFilter.put(filter, properties);
         }
         return ObjectList.objectList(properties.values()).sorted();

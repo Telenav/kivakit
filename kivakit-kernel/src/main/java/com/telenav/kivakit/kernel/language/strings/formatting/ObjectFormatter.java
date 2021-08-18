@@ -23,10 +23,9 @@ import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.kernel.language.reflection.Type;
 import com.telenav.kivakit.kernel.language.reflection.access.Getter;
+import com.telenav.kivakit.kernel.language.reflection.property.KivaKitExcludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.language.reflection.property.PropertyFilter;
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitExcludeProperty;
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitProperties;
 import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.project.CoreKernelLimits;
@@ -34,6 +33,9 @@ import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageString
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
+
+import static com.telenav.kivakit.kernel.language.reflection.property.IncludeProperty.INCLUDED_FIELDS;
+import static com.telenav.kivakit.kernel.language.reflection.property.IncludeProperty.INCLUDED_FIELDS_AND_METHODS;
 
 /**
  * A convenient class for formatting the fields and also particular methods of an object. By default, all fields will be
@@ -53,7 +55,7 @@ public class ObjectFormatter
         MULTILINE
     }
 
-    private PropertyFilter filter = KivaKitProperties.INCLUDED_PROPERTIES_AND_FIELDS;
+    private PropertyFilter filter = PropertyFilter.kivakitProperties(INCLUDED_FIELDS_AND_METHODS, INCLUDED_FIELDS);
 
     /** The package paths to include when recursing */
     private final PackagePath[] include;
