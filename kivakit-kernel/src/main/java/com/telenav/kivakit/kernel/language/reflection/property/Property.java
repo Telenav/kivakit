@@ -121,6 +121,11 @@ public class Property implements Named, Comparable<Property>
         return get(object) == null;
     }
 
+    public boolean isOptional()
+    {
+        return setter.hasAnnotation(KivaKitOptionalProperty.class);
+    }
+
     @Override
     public String name()
     {
@@ -290,10 +295,5 @@ public class Property implements Named, Comparable<Property>
             return to == Float.class && from == Float.TYPE;
         }
         return false;
-    }
-
-    private boolean isOptional()
-    {
-        return setter.annotation(KivaKitOptionalProperty.class) != null;
     }
 }
