@@ -20,7 +20,6 @@ package com.telenav.kivakit.configuration.settings;
 
 import com.telenav.kivakit.kernel.data.conversion.string.primitive.IntegerConverter;
 import com.telenav.kivakit.kernel.language.reflection.populator.KivaKitPropertyConverter;
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.language.time.Duration;
 
 /**
@@ -35,27 +34,23 @@ public class ServerSettings
 
     private Duration timeout;
 
-    @KivaKitIncludeProperty
     public int port()
     {
         return port;
     }
 
     @KivaKitPropertyConverter(IntegerConverter.class)
-    @KivaKitIncludeProperty
     public void port(final int port)
     {
         this.port = port;
     }
 
-    @KivaKitIncludeProperty
     public Duration timeout()
     {
         return timeout;
     }
 
     @KivaKitPropertyConverter(Duration.Converter.class)
-    @KivaKitIncludeProperty
     public void timeout(final Duration timeout)
     {
         this.timeout = timeout;

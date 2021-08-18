@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.reflection.property;
 
+import com.telenav.kivakit.kernel.language.reflection.property.filters.PropertyFilterSet;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -25,13 +26,23 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
- * A filter that determines how a {@link Property} can be accessed.
+ * A filter that determines how a {@link Property} field or method can be accessed.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageReflection.class)
 public interface PropertyFilter
 {
+    static PropertyFilter beansProperties(IncludeProperty... included)
+    {
+        return new PropertyFilterSet(NamingConvention.JAVA_BEANS, included);
+    }
+
+    static PropertyFilter kivakitProperties(IncludeProperty... included)
+    {
+        return new PropertyFilterSet(NamingConvention.KIVAKIT, included);
+    }
+
     /** True if the given method should be included as a property getter */
     boolean includeAsGetter(Method method);
 

@@ -20,10 +20,9 @@ package com.telenav.kivakit.kernel.language.strings.conversion;
 
 import com.telenav.kivakit.kernel.language.collections.set.Sets;
 import com.telenav.kivakit.kernel.language.reflection.Type;
+import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.language.reflection.property.Property;
 import com.telenav.kivakit.kernel.language.reflection.property.PropertyFilter;
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitProperties;
 import com.telenav.kivakit.kernel.language.strings.CaseFormat;
 import com.telenav.kivakit.kernel.language.strings.StringTo;
 import com.telenav.kivakit.kernel.language.strings.formatting.IndentingStringBuilder;
@@ -38,6 +37,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
 
+import static com.telenav.kivakit.kernel.language.reflection.property.IncludeProperty.INCLUDED_FIELDS;
+import static com.telenav.kivakit.kernel.language.reflection.property.IncludeProperty.INCLUDED_FIELDS_AND_METHODS;
 import static com.telenav.kivakit.kernel.language.strings.formatting.IndentingStringBuilder.Indentation;
 
 /**
@@ -88,7 +89,7 @@ public class AsStringIndenter
      */
     public AsStringIndenter(final StringFormat format)
     {
-        this(format, 0, KivaKitProperties.INCLUDED_PROPERTIES_AND_FIELDS);
+        this(format, 0);
     }
 
     /**
@@ -96,7 +97,7 @@ public class AsStringIndenter
      */
     public AsStringIndenter(final StringFormat format, final int level)
     {
-        this(format, level, KivaKitProperties.INCLUDED_PROPERTIES_AND_FIELDS);
+        this(format, level, PropertyFilter.kivakitProperties(INCLUDED_FIELDS_AND_METHODS, INCLUDED_FIELDS));
     }
 
     /**

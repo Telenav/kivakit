@@ -18,27 +18,24 @@
 
 package com.telenav.kivakit.kernel.language.reflection.property.filters.method;
 
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitProperties;
+import com.telenav.kivakit.kernel.language.reflection.property.NamingConvention;
+import com.telenav.kivakit.kernel.language.reflection.property.filters.PropertyFilterSet;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.Set;
 
 /**
  * A filter that includes all methods with no parameters and a return value other than void as getters and all methods
  * with a void return type and one parameter as setters.
  */
 @UmlClassDiagram(diagram = DiagramLanguageReflection.class)
-public class AllMethods extends KivaKitProperties
+public class AllMethods extends PropertyFilterSet
 {
-    /**
-     * @param included Set of fields and properties to include
-     */
-    public AllMethods(final Set<Include> included)
+    public AllMethods(NamingConvention convention)
     {
-        super(included);
+        super(convention);
     }
 
     @Override

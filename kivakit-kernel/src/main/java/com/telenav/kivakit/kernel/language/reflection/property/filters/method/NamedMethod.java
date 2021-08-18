@@ -19,11 +19,11 @@
 package com.telenav.kivakit.kernel.language.reflection.property.filters.method;
 
 import com.telenav.kivakit.kernel.language.objects.Hash;
+import com.telenav.kivakit.kernel.language.reflection.property.NamingConvention;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.reflect.Method;
-import java.util.Collections;
 
 /**
  * This filter matches a field with a particular name
@@ -33,9 +33,9 @@ public class NamedMethod extends AllMethods
 {
     private final String name;
 
-    public NamedMethod(final String name)
+    public NamedMethod(NamingConvention convention, final String name)
     {
-        super(Collections.emptySet());
+        super(convention);
         this.name = name;
     }
 

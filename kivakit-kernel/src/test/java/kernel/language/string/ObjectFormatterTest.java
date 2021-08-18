@@ -18,7 +18,7 @@
 
 package kernel.language.string;
 
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
 import org.junit.Assert;
 import org.junit.Test;

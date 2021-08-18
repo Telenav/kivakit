@@ -19,6 +19,10 @@
 package com.telenav.kivakit.kernel.language.reflection.property.filters;
 
 import com.telenav.kivakit.kernel.language.reflection.populator.KivaKitPropertyConverter;
+import com.telenav.kivakit.kernel.language.reflection.property.IncludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.KivaKitExcludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.NamingConvention;
 import com.telenav.kivakit.kernel.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.kernel.language.strings.CaseFormat;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageReflection;
@@ -30,19 +34,19 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Set;
 
-import static com.telenav.kivakit.kernel.language.reflection.property.filters.BasePropertyFilter.Include.KIVAKIT_INCLUDED_FIELDS;
-import static com.telenav.kivakit.kernel.language.reflection.property.filters.BasePropertyFilter.Include.KIVAKIT_INCLUDED_PROPERTIES;
-import static com.telenav.kivakit.kernel.language.reflection.property.filters.BasePropertyFilter.Include.NON_PUBLIC_PROPERTIES;
-import static com.telenav.kivakit.kernel.language.reflection.property.filters.BasePropertyFilter.Include.NON_TRANSIENT_FIELDS;
-import static com.telenav.kivakit.kernel.language.reflection.property.filters.BasePropertyFilter.Include.PUBLIC_PROPERTIES;
-import static com.telenav.kivakit.kernel.language.reflection.property.filters.BasePropertyFilter.Include.TRANSIENT_FIELDS;
-import static com.telenav.kivakit.kernel.language.reflection.property.filters.BasePropertyFilter.NamingConvention.KivaKit;
+import static com.telenav.kivakit.kernel.language.reflection.property.IncludeProperty.CONVERTED_FIELDS_AND_METHODS;
+import static com.telenav.kivakit.kernel.language.reflection.property.IncludeProperty.INCLUDED_FIELDS;
+import static com.telenav.kivakit.kernel.language.reflection.property.IncludeProperty.INCLUDED_FIELDS_AND_METHODS;
+import static com.telenav.kivakit.kernel.language.reflection.property.IncludeProperty.NON_PUBLIC_METHODS;
+import static com.telenav.kivakit.kernel.language.reflection.property.IncludeProperty.PUBLIC_METHODS;
+import static com.telenav.kivakit.kernel.language.reflection.property.NamingConvention.KIVAKIT;
 
 /**
  * Base class for property filters. Supports Java Beans and KivaKit style accessor naming conventions with the enum
- * {@link NamingConvention} and filtering of properties and fields with {@link Include}. The constructor takes a style
- * and a set of explicit includes (nothing is included by default). Static fields and properties are never included. Any
- * field or method tagged with {@link KivaKitExcludeProperty} will be excluded regardless of the inclusions specified.
+ * {@link NamingConvention} and filtering of properties and fields with {@link IncludeProperty}. The constructor takes a
+ * style and a set of explicit includes (nothing is included by default). Static fields and properties are never
+ * included. Any field or method tagged with {@link KivaKitExcludeProperty} will be excluded regardless of the
+ * inclusions specified.
  * <p>
  * Subclasses can utilize the following tests to implement filters that don't follow the pattern implemented by this
  * base class.
@@ -55,8 +59,8 @@ import static com.telenav.kivakit.kernel.language.reflection.property.filters.Ba
  * <p>
  * <b>Include Tests</b>
  * <ul>
- *     <li>{@link #isIncluded(Method)} - True if the method is included under the given set of {@link Include}s</li>
- *     <li>{@link #isIncluded(Field)} - True if the field is included under the given set of {@link Include}s</li>
+ *     <li>{@link #isIncluded(Method)} - True if the method is included under the given set of {@link IncludeProperty}s</li>
+ *     <li>{@link #isIncluded(Field)} - True if the field is included under the given set of {@link IncludeProperty}s</li>
  * </ul>
  * <p>
  * <b>KivaKit Annotation Tests</b>
@@ -70,62 +74,30 @@ import static com.telenav.kivakit.kernel.language.reflection.property.filters.Ba
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageReflection.class)
-public class BasePropertyFilter implements PropertyFilter
+public class PropertyFilterSet implements PropertyFilter
 {
-    /**
-     * Kinds of properties and fields to include
-     */
-    @UmlClassDiagram(diagram = DiagramLanguageReflection.class)
-    public enum Include
-    {
-        /** Include properties with public getters and setters */
-        PUBLIC_PROPERTIES,
-
-        /** Include properties with non-public getters and setters */
-        NON_PUBLIC_PROPERTIES,
-
-        /** Include properties marked with {@link KivaKitIncludeProperty} */
-        KIVAKIT_INCLUDED_PROPERTIES,
-
-        /** Include non-transient fields regardless of visibility */
-        NON_TRANSIENT_FIELDS,
-
-        /** Include transient fields (implies FIELDS) */
-        TRANSIENT_FIELDS,
-
-        /** Include fields marked with {@link KivaKitIncludeProperty} */
-        KIVAKIT_INCLUDED_FIELDS,
-    }
-
-    @UmlClassDiagram(diagram = DiagramLanguageReflection.class)
-    protected enum NamingConvention
-    {
-        BEANS,
-        KivaKit
-    }
-
     @UmlAggregation
     private final NamingConvention convention;
 
     @UmlAggregation
-    private final Set<Include> included;
+    private final Set<IncludeProperty> included;
 
     /**
      * @param convention The naming convention used for getters and setters
      * @param included Set of fields and properties to include
      */
-    public BasePropertyFilter(final NamingConvention convention, final Set<Include> included)
+    public PropertyFilterSet(final NamingConvention convention, final IncludeProperty... included)
     {
         this.convention = convention;
-        this.included = included;
+        this.included = Set.of(included);
     }
 
     @Override
     public boolean equals(final Object object)
     {
-        if (object instanceof BasePropertyFilter)
+        if (object instanceof PropertyFilterSet)
         {
-            final var that = (BasePropertyFilter) object;
+            final var that = (PropertyFilterSet) object;
             return getClass().equals(that.getClass());
         }
         return false;
@@ -216,7 +188,7 @@ public class BasePropertyFilter implements PropertyFilter
             final var name = method.getName();
             switch (convention)
             {
-                case BEANS:
+                case JAVA_BEANS:
                     if (!"getClass".equals(method.getName()))
                     {
                         if (name.startsWith("get") && name.matches("get[A-Z].*")
@@ -227,7 +199,7 @@ public class BasePropertyFilter implements PropertyFilter
                     }
                     break;
 
-                case KivaKit:
+                case KIVAKIT:
                     return true;
 
                 default:
@@ -252,17 +224,7 @@ public class BasePropertyFilter implements PropertyFilter
             return false;
         }
 
-        if (included.contains(KIVAKIT_INCLUDED_FIELDS) && isKivaKitIncluded(field))
-        {
-            return true;
-        }
-
-        if (included.contains(TRANSIENT_FIELDS) && Modifier.isTransient(field.getModifiers()))
-        {
-            return true;
-        }
-
-        return included.contains(NON_TRANSIENT_FIELDS);
+        return isKivaKitIncluded(field);
     }
 
     /**
@@ -280,17 +242,7 @@ public class BasePropertyFilter implements PropertyFilter
             return false;
         }
 
-        if (included.contains(KIVAKIT_INCLUDED_PROPERTIES) && isKivaKitIncluded(method))
-        {
-            return true;
-        }
-
-        if (included.contains(PUBLIC_PROPERTIES) && Modifier.isPublic(method.getModifiers()))
-        {
-            return true;
-        }
-
-        return included.contains(NON_PUBLIC_PROPERTIES);
+        return isKivaKitIncluded(method);
     }
 
     /**
@@ -316,7 +268,11 @@ public class BasePropertyFilter implements PropertyFilter
     {
         if (!field.isSynthetic() && !java.lang.reflect.Modifier.isStatic(field.getModifiers()))
         {
-            return field.getAnnotation(KivaKitIncludeProperty.class) != null;
+            if (field.getAnnotation(KivaKitIncludeProperty.class) != null && included.contains(INCLUDED_FIELDS))
+            {
+                return true;
+            }
+            return field.getAnnotation(KivaKitPropertyConverter.class) != null && included.contains(CONVERTED_FIELDS_AND_METHODS);
         }
         return false;
     }
@@ -326,8 +282,26 @@ public class BasePropertyFilter implements PropertyFilter
      */
     protected boolean isKivaKitIncluded(final Method method)
     {
-        return method.getAnnotation(KivaKitIncludeProperty.class) != null
-                || method.getAnnotation(KivaKitPropertyConverter.class) != null;
+        if (!method.isSynthetic() && !java.lang.reflect.Modifier.isStatic(method.getModifiers()))
+        {
+            if (method.getAnnotation(KivaKitPropertyConverter.class) != null && included.contains(CONVERTED_FIELDS_AND_METHODS))
+            {
+                return true;
+            }
+
+            if (method.getAnnotation(KivaKitIncludeProperty.class) != null && included.contains(INCLUDED_FIELDS_AND_METHODS))
+            {
+                return true;
+            }
+
+            if (included.contains(PUBLIC_METHODS) && Modifier.isPublic(method.getModifiers()))
+            {
+                return true;
+            }
+
+            return included.contains(NON_PUBLIC_METHODS);
+        }
+        return false;
     }
 
     /**
@@ -338,7 +312,7 @@ public class BasePropertyFilter implements PropertyFilter
         // If the method takes one parameter and it's not static,
         if (method.getParameterTypes().length == 1)
         {
-            return convention == KivaKit || method.getName().startsWith("set");
+            return convention == KIVAKIT || method.getName().startsWith("set");
         }
         return false;
     }

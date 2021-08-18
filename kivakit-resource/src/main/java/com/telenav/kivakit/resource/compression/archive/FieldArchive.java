@@ -25,7 +25,8 @@ import com.telenav.kivakit.kernel.language.objects.Lazy;
 import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.kernel.language.reflection.Type;
 import com.telenav.kivakit.kernel.language.reflection.property.Property;
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.NamingConvention;
 import com.telenav.kivakit.kernel.language.strings.CaseFormat;
 import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
 import com.telenav.kivakit.kernel.language.values.version.Version;
@@ -257,7 +258,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
         {
             // and for each archived field
             final Type<?> type = Type.of(object);
-            for (final var field : type.properties(new ArchivedFields()).sorted())
+            for (final var field : type.properties(new ArchivedFields(NamingConvention.KIVAKIT)).sorted())
             {
                 // if it is not lazy,
                 if (!field.getter().annotation(KivaKitArchivedField.class).lazy())
@@ -307,7 +308,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
 
         try (final var session = session())
         {
-            for (final var field : Type.of(object).properties(new ArchivedFields()).sorted())
+            for (final var field : Type.of(object).properties(new ArchivedFields(NamingConvention.KIVAKIT)).sorted())
             {
                 try
                 {

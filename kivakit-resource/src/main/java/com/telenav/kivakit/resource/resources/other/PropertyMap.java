@@ -49,7 +49,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitProperties.INCLUDED_PROPERTIES_AND_FIELDS;
+import static com.telenav.kivakit.kernel.language.reflection.property.IncludeProperty.CONVERTED_FIELDS_AND_METHODS;
 
 /**
  * A property map is a {@link VariableMap} with strings as both keys and values.
@@ -227,7 +227,8 @@ public class PropertyMap extends VariableMap<String>
         try
         {
             final var object = Type.forClass(type).newInstance();
-            new ObjectPopulator(listener, INCLUDED_PROPERTIES_AND_FIELDS, this).populate(object);
+            var filter = PropertyFilter.kivakitProperties(CONVERTED_FIELDS_AND_METHODS);
+            new ObjectPopulator(listener, filter, this).populate(object);
             return object;
         }
         catch (final Exception e)

@@ -33,7 +33,7 @@ public class SettingsTest extends UnitTest
     @Test
     public void test()
     {
-        final Settings settings = settings();
+        final Settings settings = globalSettings();
 
         // Configure
         {
@@ -61,7 +61,7 @@ public class SettingsTest extends UnitTest
     @Test
     public void testMultipleInstances()
     {
-        final var settings = settings();
+        final var settings = globalSettings();
 
         // Configure
         {
@@ -101,7 +101,7 @@ public class SettingsTest extends UnitTest
     @Test
     public void testPropertiesFile()
     {
-        final var settings = settings();
+        final var settings = globalSettings();
 
         // Configure
         {
@@ -122,7 +122,7 @@ public class SettingsTest extends UnitTest
     }
 
     @NotNull
-    private Settings settings()
+    private Settings globalSettings()
     {
         final var global = Settings.of(this);
         global.clear();

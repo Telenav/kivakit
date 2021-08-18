@@ -16,7 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.kernel.language.reflection.property.filters;
+package com.telenav.kivakit.kernel.language.reflection.populator;
 
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -26,9 +26,13 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * This annotation signals that a missing converted property (labeled by @{@link KivaKitPropertyConverter}) should not
+ * be considered a problem.
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.FIELD, ElementType.METHOD })
 @UmlClassDiagram(diagram = DiagramLanguageReflection.class)
-public @interface KivaKitExcludeProperty
+public @interface KivaKitOptionalProperty
 {
 }

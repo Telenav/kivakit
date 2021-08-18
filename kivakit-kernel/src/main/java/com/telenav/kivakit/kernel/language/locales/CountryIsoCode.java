@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.locales;
 
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitExcludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.KivaKitExcludeProperty;
 
 /**
  * This class defines countries by name and relevant ISO codes. Provides the ISO country code, which can be represented

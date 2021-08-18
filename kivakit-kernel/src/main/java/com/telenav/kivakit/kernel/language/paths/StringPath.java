@@ -20,7 +20,7 @@ package com.telenav.kivakit.kernel.language.paths;
 
 import com.telenav.kivakit.kernel.KivaKit;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.language.strings.Strings;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguagePath;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

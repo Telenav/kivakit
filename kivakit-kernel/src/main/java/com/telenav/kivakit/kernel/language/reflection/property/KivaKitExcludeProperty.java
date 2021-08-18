@@ -16,7 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.kernel.language.reflection.property.filters;
+package com.telenav.kivakit.kernel.language.reflection.property;
 
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -26,13 +26,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * Marks a field or method as excluded from property operations
+ *
+ * @author jonathanl (shibo)
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.FIELD, ElementType.METHOD })
 @UmlClassDiagram(diagram = DiagramLanguageReflection.class)
-public @interface KivaKitIncludeProperty
+public @interface KivaKitExcludeProperty
 {
-    /**
-     * @return Optional alternate name of property
-     */
-    String name() default "";
 }

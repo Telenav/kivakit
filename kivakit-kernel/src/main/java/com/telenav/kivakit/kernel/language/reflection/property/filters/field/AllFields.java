@@ -18,27 +18,24 @@
 
 package com.telenav.kivakit.kernel.language.reflection.property.filters.field;
 
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitProperties;
+import com.telenav.kivakit.kernel.language.reflection.property.NamingConvention;
+import com.telenav.kivakit.kernel.language.reflection.property.filters.PropertyFilterSet;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.Set;
 
 /**
- * A filter that includes all non-static fields
+ * A filter that includes all non-static fields of the given naming convention
  */
 @UmlClassDiagram(diagram = DiagramLanguageReflection.class)
-public class AllFields extends KivaKitProperties
+public class AllFields extends PropertyFilterSet
 {
-    /**
-     * @param included Set of fields and properties to include
-     */
-    public AllFields(final Set<Include> included)
+    public AllFields(NamingConvention convention)
     {
-        super(included);
+        super(convention);
     }
 
     @Override
