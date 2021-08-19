@@ -23,6 +23,7 @@ import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.modules.ModuleResource;
 import com.telenav.kivakit.kernel.language.modules.Modules;
+import com.telenav.kivakit.kernel.language.strings.Strip;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Debug;
@@ -31,10 +32,16 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.Files;
+import java.security.CodeSource;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 /**
  * Represents the path to a Java package.
@@ -279,6 +286,105 @@ public final class PackagePath extends StringPath
                 .map(resource -> resource.packagePath().withPackageType(packageType))
                 .collect(Collectors.toSet());
         DEBUG.trace("Found sub-packages:\n$", ObjectList.objectList(packages).join("\n"));
+        packages.addAll(jarSubPackages());
+        packages.addAll(directorySubPackages());
+        return packages;
+    }
+
+    /**
+     * @return A list of sub packages under this package from the jars in classpath
+     */
+    public Set<PackagePath> jarSubPackages() {
+        // Get the code source for the package type class,
+        final var packages = new HashSet<PackagePath>();
+        final CodeSource source = packageType().getProtectionDomain().getCodeSource();
+        if (source != null)
+        {
+            try
+            {
+                // and if the location URL ends in ".jar",
+                final URL location = source.getLocation();
+                if (location != null && location.toString().endsWith(".jar"))
+                {
+                    // then open the jar as a zip input stream,
+                    final var urlConnection = location.openConnection();
+                    final ZipInputStream zip = new ZipInputStream(urlConnection.getInputStream());
+
+                    // form a file path from the package path,
+                    final var filepath = join("/") + "/";
+
+                    // and loop,
+                    while (true)
+                    {
+                        // reading the next entry,
+                        final ZipEntry e = zip.getNextEntry();
+
+                        // until we are out.
+                        if (e == null)
+                        {
+                            break;
+                        }
+
+                        // Get the entry's name
+                        final String name = e.getName();
+
+                        // and if it is a folder and it starts with the file path for the package,
+                        if (name.endsWith("/") && name.startsWith(filepath))
+                        {
+                            // then strip off the leading filepath,
+                            var suffix = Strip.leading(name, filepath);
+                            suffix = Strip.ending(suffix, "/");
+
+                            // and if we have only a folder name left,
+                            if (!suffix.contains("/") && !suffix.isEmpty())
+                            {
+                                // then the entry is in the package, so add it to the resources list
+                                packages.add(withChild(suffix));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (final Exception ignored)
+            {
+                LOGGER.warning("Exception thrown while searching jar sub packages from $", this);
+            }
+        }
+        return packages;
+    }
+
+    /**
+     * @return A list of sub packages under this package from the directories in classpath
+     */
+    public Set<PackagePath> directorySubPackages() {
+        // Get the code source for the package type class,
+        final var packages = new HashSet<PackagePath>();
+        final CodeSource source = packageType().getProtectionDomain().getCodeSource();
+        if (source != null)
+        {
+            try
+            {
+                // and if the location URL ends in "/",
+                final URL location = source.getLocation();
+                if (location != null && location.toString().endsWith("/"))
+                {
+                    final var filepath = join("/") + "/";
+
+                    var directory = StringPath.stringPath(location.toURI()).withChild(filepath).asJavaPath();
+
+                    if (Files.exists(directory))
+                    {
+                        Files.list(directory)
+                                .filter(path -> Files.isDirectory(path))
+                                .forEach(path  -> packages.add(withChild(path.getFileName().toString())));
+                    }
+                }
+            }
+            catch (final Exception ignored)
+            {
+                LOGGER.warning("Exception thrown while searching directory sub packages from $", this);
+            }
+        }
         return packages;
     }
 

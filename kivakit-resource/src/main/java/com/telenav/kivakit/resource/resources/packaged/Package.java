@@ -43,8 +43,10 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.net.URL;
 import java.security.CodeSource;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -231,7 +233,21 @@ public class Package implements ResourceFolder
                 .filter(matcher)
                 .collect(Collectors.toList());
 
-        resources.addAll(jarResources(matcher));
+        final var existing = new HashSet<PackagePath>();
+        resources.forEach(resource -> existing.add(resource.packagePath()));
+
+        Consumer<PackageResource> addDeduplicated = resource ->
+        {
+            final var path = resource.packagePath();
+            if (!existing.contains(path))
+            {
+                resources.add(resource);
+                existing.add(path);
+            }
+        };
+
+        jarResources(matcher).stream().forEach(addDeduplicated);
+        directoryResources(matcher).forEach(addDeduplicated);
 
         return resources;
     }
@@ -307,6 +323,48 @@ public class Package implements ResourceFolder
                 LOGGER.warning("Exception thrown while loading jar resources from $", _package);
             }
         }
+        return resources;
+    }
+
+    /**
+     * List of resources loaded from this package folder in any directory classpath that might contain this class.
+     *
+     * @return Any package resources that can be found in the directory classpath (if any) containing this class
+     */
+    private List<PackageResource> directoryResources(final Matcher<? super PackageResource> matcher)
+    {
+        // Get the code source for the package type class,
+        final var resources = new ArrayList<PackageResource>();
+        final CodeSource source = _package.packageType().getProtectionDomain().getCodeSource();
+        if (source != null)
+        {
+            try
+            {
+                // and if the location URL ends in "/",
+                final URL location = source.getLocation();
+                if (location != null && location.toString().endsWith("/"))
+                {
+                    final var filepath = _package.join("/") + "/";
+                    var directory = Folder.of(location.toURI()).folder(filepath);
+                    if (directory.exists())
+                    {
+                        for (var file : directory.files())
+                        {
+                            var resource = PackageResource.of(_package, file.fileName().name());
+                            if (matcher.matches(resource))
+                            {
+                                resources.add(resource);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (final Exception ignored)
+            {
+                LOGGER.warning("Exception thrown while loading directory resources from $", _package);
+            }
+        }
+
         return resources;
     }
 }
