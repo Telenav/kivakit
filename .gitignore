@@ -1,5 +1,6 @@
 **/target/
 **/tools/downloads/**
+tools/applications/**
 setup.properties
 **/build.properties
 **/.settings/
