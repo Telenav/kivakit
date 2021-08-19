@@ -282,7 +282,7 @@ build() {
             cd $BUILD_FOLDER
             $M2_HOME/bin/mvn -DKIVAKIT_DEBUG="$KIVAKIT_DEBUG" $SWITCHES $BUILD_ARGUMENTS 2>&1 | $FILTER_OUT "illegal reflective access\|denied in a future release\|please consider reporting"
 
-            if [ ${PIPESTATUS[0]} -ne "0" ]; then
+            if [ "${PIPESTATUS[0]}" -ne "0" ]; then
 
                 echo "Unable to build $PROJECT_NAME."
                 exit 1
@@ -295,8 +295,8 @@ build() {
 
         fi
 
-        KIVAKIT_BUILD_NAME=$(cat $KIVAKIT_HOME/build.properties | grep "build-name" | cut -d'=' -f2 | xargs echo)
-        KIVAKIT_BUILD_DATE=$(cat $KIVAKIT_HOME/build.properties | grep "build-date" | cut -d'=' -f2 | xargs echo)
+        KIVAKIT_BUILD_NAME=$(cat "$KIVAKIT_HOME"/build.properties | grep "build-name" | cut -d'=' -f2 | xargs echo)
+        KIVAKIT_BUILD_DATE=$(cat "$KIVAKIT_HOME"/build.properties | grep "build-date" | cut -d'=' -f2 | xargs echo)
 
         if [ ! -z "$KIVAKIT_BUILD_NAME" ]; then
 
