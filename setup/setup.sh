@@ -93,6 +93,7 @@ git config pull.ff only
 
 cd "$KIVAKIT_WORKSPACE"/cactus-build
 echo "Initializing $(pwd)"
+git checkout develop
 git config pull.ff only
 git flow init -d /dev/null 2>&1
 
@@ -106,21 +107,25 @@ fi
 
 cd "$KIVAKIT_WORKSPACE"/lexakai-annotations
 echo "Initializing $(pwd)"
+git checkout develop
 git config pull.ff only
 git flow init -d /dev/null 2>&1
 
 cd "$KIVAKIT_WORKSPACE"/kivakit
 echo "Initializing $(pwd)"
+git checkout develop
 git config pull.ff only
 git flow init -d /dev/null 2>&1
 
 cd "$KIVAKIT_WORKSPACE"/kivakit-extensions
 echo "Initializing $(pwd)"
+git checkout develop
 git config pull.ff only
 git flow init -d /dev/null 2>&1
 
 cd "$KIVAKIT_WORKSPACE"/kivakit-examples
 echo "Initializing $(pwd)"
+git checkout develop
 git config pull.ff only
 git flow init -d /dev/null 2>&1
 
