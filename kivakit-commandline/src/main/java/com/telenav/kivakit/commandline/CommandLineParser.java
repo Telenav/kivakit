@@ -41,6 +41,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
+import org.junit.runners.model.InitializationError;
 
 import java.util.Collection;
 
@@ -215,6 +216,10 @@ public class CommandLineParser
         {
             // then quit the whole VM
             System.exit(1);
+        }
+        else
+        {
+            throw new IllegalArgumentException("Illegal command line arguments.");
         }
     }
 
