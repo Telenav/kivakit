@@ -13,6 +13,6 @@ source kivakit-projects.sh
 
 for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
 
-    build "$project_home" $@
+    build "$project_home" "$@"
 
 done

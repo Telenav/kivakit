@@ -45,9 +45,9 @@ import java.io.Serializable;
  * <p><b>Configuring Applications</b></p>
  *
  * <p>
- * Deployments can be added to a {@link DeploymentSet} via {@link DeploymentSet#load(Listener, Class, String)} or {@link
- * DeploymentSet#load(Listener, Folder)} and then the method SwitchParser.deployment(DeploymentSet) will create a
- * command line SwitchParser that can select among several deployments in a {@link DeploymentSet} by name.
+ * Deployments can be added to a {@link DeploymentSet} via {@link DeploymentSet#addDeploymentsIn(Class, String)} or
+ * {@link DeploymentSet#addDeploymentsIn(Folder)} and then the method SwitchParser.deployment(DeploymentSet) will create
+ * a command line SwitchParser that can select among several deployments in a {@link DeploymentSet} by name.
  * </p>
  *
  * <p>

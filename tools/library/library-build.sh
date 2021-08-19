@@ -1,3 +1,4 @@
+
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #
 #  © 2011-2021 Telenav, Inc.
@@ -148,7 +149,7 @@ build() {
     BUILD_MODIFIERS_STRING=""
     DELIMITER=""
 
-    for MODIFIER in ${BUILD_MODIFIERS[@]}; do
+    for MODIFIER in w${BUILD_MODIFIERS[@]}; do
 
         BUILD_MODIFIERS_STRING="$BUILD_MODIFIERS_STRING$DELIMITER$MODIFIER"
         DELIMITER=" "
