@@ -209,7 +209,13 @@ public class CommandLineParser
         Duration.seconds(0.25).sleep();
         System.out.println(help() + "\n");
         System.out.flush();
-        System.exit(1);
+
+        // If the application allows calling System.exit()
+        if (application.callSystemExitOnUnrecoverableError())
+        {
+            // then quit the whole VM
+            System.exit(1);
+        }
     }
 
     /**
