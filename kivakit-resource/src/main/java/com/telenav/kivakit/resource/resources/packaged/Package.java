@@ -233,16 +233,15 @@ public class Package implements ResourceFolder
                 .filter(matcher)
                 .collect(Collectors.toList());
 
-        final var existing = new HashSet<PackagePath>();
-        resources.forEach(resource -> existing.add(resource.packagePath()));
+        final var existing = new HashSet<PackageResource>();
+        resources.forEach(resource -> existing.add(resource));
 
         Consumer<PackageResource> addDeduplicated = resource ->
         {
-            final var path = resource.packagePath();
-            if (!existing.contains(path))
+            if (!existing.contains(resource))
             {
                 resources.add(resource);
-                existing.add(path);
+                existing.add(resource);
             }
         };
 
@@ -297,13 +296,11 @@ public class Package implements ResourceFolder
 
                         // Get the entry's name
                         final String name = e.getName();
-
                         // and if it is not a folder and it starts with the file path for the package,
                         if (!name.endsWith("/") && name.startsWith(filepath))
                         {
                             // then strip off the leading filepath,
                             final var suffix = Strip.leading(name, filepath);
-
                             // and if we have only a filename left,
                             if (!suffix.contains("/"))
                             {
