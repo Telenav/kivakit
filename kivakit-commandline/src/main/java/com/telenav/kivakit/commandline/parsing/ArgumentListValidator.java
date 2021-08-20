@@ -34,7 +34,7 @@ import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
  */
 @UmlClassDiagram(diagram = DiagramValidation.class)
 @UmlNotPublicApi
-public class ArgumentValidator extends BaseValidator
+public class ArgumentListValidator extends BaseValidator
 {
     /** The arguments to check */
     @UmlAggregation
@@ -48,7 +48,7 @@ public class ArgumentValidator extends BaseValidator
      * @param parsers The argument parsers to check against
      * @param arguments The arguments to check
      */
-    public ArgumentValidator(final ArgumentParserList parsers, final ArgumentList arguments)
+    public ArgumentListValidator(final ArgumentParserList parsers, final ArgumentList arguments)
     {
         this.parsers = parsers;
         this.arguments = arguments;

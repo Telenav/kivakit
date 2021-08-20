@@ -35,7 +35,7 @@ import java.util.HashMap;
  */
 @UmlClassDiagram(diagram = DiagramValidation.class)
 @UmlNotPublicApi
-public class SwitchValidator extends BaseValidator
+public class SwitchListValidator extends BaseValidator
 {
     /** The list of switches to validate */
     @UmlAggregation
@@ -49,7 +49,7 @@ public class SwitchValidator extends BaseValidator
      * @param parsers The switch parsers to validate against
      * @param switches The switches
      */
-    public SwitchValidator(final SwitchParserList parsers, final SwitchList switches)
+    public SwitchListValidator(final SwitchParserList parsers, final SwitchList switches)
     {
         this.parsers = parsers;
         this.switches = switches;

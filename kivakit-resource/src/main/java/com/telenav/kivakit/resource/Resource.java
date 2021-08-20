@@ -135,7 +135,7 @@ public interface Resource extends
         return resolve(new ResourceIdentifier(identifier));
     }
 
-    static SwitchParser.Builder<ResourceList> switchListParser(
+    static SwitchParser.Builder<ResourceList> resourceListSwitchParser(
             final String name,
             final String description,
             final Extension extension)
@@ -146,7 +146,7 @@ public interface Resource extends
                 .description(description);
     }
 
-    static SwitchParser.Builder<Resource> switchParser(
+    static SwitchParser.Builder<Resource> resourceSwitchParser(
             final Listener listener,
             final String name,
             final String description)

@@ -105,7 +105,8 @@ public class ResourcePath extends StringPath
         return new ResourcePath(path.rootElement(), path.elements());
     }
 
-    public static SwitchParser.Builder<ResourcePath> switchParser(final String name, final String description)
+    public static SwitchParser.Builder<ResourcePath> resourcePathSwitchParser(final String name,
+                                                                              final String description)
     {
         return SwitchParser.builder(ResourcePath.class)
                 .name(name)

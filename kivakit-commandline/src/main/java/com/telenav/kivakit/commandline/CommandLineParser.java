@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.commandline;
 
+import com.telenav.kivakit.commandline.parsing.ArgumentListValidator;
 import com.telenav.kivakit.commandline.parsing.ArgumentParserList;
-import com.telenav.kivakit.commandline.parsing.ArgumentValidator;
 import com.telenav.kivakit.commandline.parsing.SwitchList;
+import com.telenav.kivakit.commandline.parsing.SwitchListValidator;
 import com.telenav.kivakit.commandline.parsing.SwitchParserList;
-import com.telenav.kivakit.commandline.parsing.SwitchValidator;
 import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramArgument;
 import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramCommandLine;
 import com.telenav.kivakit.kernel.KivaKit;
@@ -233,8 +233,8 @@ public class CommandLineParser
                 @Override
                 protected void onValidate()
                 {
-                    validate(new SwitchValidator(switchParsers, switches));
-                    validate(new ArgumentValidator(argumentParsers, arguments));
+                    validate(new SwitchListValidator(switchParsers, switches));
+                    validate(new ArgumentListValidator(argumentParsers, arguments));
                 }
             };
 
