@@ -21,16 +21,15 @@ package com.telenav.kivakit.kernel.data.validation;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.listeners.MessageCounter;
 import com.telenav.kivakit.kernel.messaging.listeners.MessageList;
+import com.telenav.kivakit.kernel.messaging.messages.status.Glitch;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
-import com.telenav.kivakit.kernel.messaging.messages.status.Quibble;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataValidation;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * A {@link MessageList} and {@link MessageCounter} that captures validation issues. The number of issues of different
- * types can be retrieved with {@link #count(Class)}, passing in the type of message for which a count is desired. The
- * method {@link #countWorseThanOrEqualTo(Message.Status)} gives a count of all messages that are at least as bad or
- * worse than the given message status value. For example, <i>countWorseThanOrEqualTo(Status.PROBLEM)</i>.
+ * A {@link MessageList} and {@link MessageCounter} that captures validation issues. Any message with a {@link
+ * Message.Status} worse than or equal to that of a {@link Glitch} causes {@link #isValid()} to return false. In
+ * particular, capturing a {@link Glitch} or {@link Problem} makes this {@link ValidationIssues} object invalid.
  *
  * @author jonathanl (shibo)
  */
@@ -50,11 +49,11 @@ public class ValidationIssues extends MessageList
     }
 
     /**
-     * @return True if no problems or quibbles have been encountered during validation
+     * @return True if no problems or warnings have been encountered during validation
      */
     public boolean isValid()
     {
-        return count(Quibble.class).plus(count(Problem.class)).isZero();
+        return countWorseThanOrEqualTo(new Glitch().status()).isZero();
     }
 
     @Override

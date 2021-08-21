@@ -46,9 +46,9 @@ import java.util.Map;
  * assign it to a private, static, final field, presumably) matches a list of simplified regular expression patterns in
  * the KIVAKIT_DEBUG system property. If there is a match, then debugging is enabled.
  * <p>
- * If debugging is enabled, the trace*(), warning*() and quibble*() methods will operate. When debugging is disabled,
- * they will not. In the case where a block of code is conditional on debugging or the parameters passed to trace,
- * warning or quibble are expensive to construct, the code can be made conditional with {@link #isOn()}.
+ * If debugging is enabled, the trace*(), warning*() and glitch*() methods will operate. When debugging is disabled,
+ * they will not. In the case where a block of code is conditional on debugging or the parameters passed to trace are
+ * expensive to construct, the code can be made conditional with {@link #isOn()}.
  * <p>
  * A few KIVAKIT_DEBUG pattern examples:
  * <pre>

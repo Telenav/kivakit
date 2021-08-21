@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.messaging.messages.status;
 
+import com.telenav.kivakit.kernel.data.validation.ValidationIssues;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.kernel.messaging.messages.Severity;
@@ -25,28 +26,31 @@ import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageType;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * A problem with low severity that may cause a less-than-optimal result but will not cause the operation to halt or
- * data to be discarded.
+ * A glitch is an issue that represents a temporary problem where recovery will happen. Unlike a {@link Warning},
+ * however, a glitch should be addressed because it is causing an invalid state and possibly data loss. The {@link
+ * ValidationIssues#isValid()} method returns false if it contains a {@link Problem} or a {@link Glitch} (or anything
+ * worse), but not if it contains a {@link Warning}. You can think of a glitch as a "stern warning" and an indication
+ * that you are possibly losing data.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
-public class Quibble extends OperationStatusMessage
+public class Glitch extends OperationStatusMessage
 {
-    public Quibble(final String message, final Object... arguments)
+    public Glitch(final String message, final Object... arguments)
     {
         super(message);
         arguments(arguments);
     }
 
-    public Quibble(final Throwable cause, final String message, final Object... arguments)
+    public Glitch(final Throwable cause, final String message, final Object... arguments)
     {
         super(message + ": " + Message.escape(cause.getMessage()));
         cause(cause);
         arguments(arguments);
     }
 
-    public Quibble()
+    public Glitch()
     {
     }
 

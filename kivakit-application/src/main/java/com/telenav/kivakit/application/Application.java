@@ -46,7 +46,7 @@ import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.kernel.messaging.filters.AllMessages;
 import com.telenav.kivakit.kernel.messaging.filters.SeverityGreaterThanOrEqualTo;
-import com.telenav.kivakit.kernel.messaging.messages.status.Quibble;
+import com.telenav.kivakit.kernel.messaging.messages.status.Glitch;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.kernel.project.Project;
 import com.telenav.kivakit.resource.Resource;
@@ -558,7 +558,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
     private void configureLogging()
     {
         final var filter = get(QUIET)
-                ? new SeverityGreaterThanOrEqualTo(new Quibble().severity())
+                ? new SeverityGreaterThanOrEqualTo(new Glitch().severity())
                 : new AllMessages();
 
         LOGGER.listenTo(this, filter);

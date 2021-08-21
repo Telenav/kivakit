@@ -38,9 +38,9 @@ import com.telenav.kivakit.kernel.messaging.messages.lifecycle.OperationSucceede
 import com.telenav.kivakit.kernel.messaging.messages.status.Activity;
 import com.telenav.kivakit.kernel.messaging.messages.status.Alert;
 import com.telenav.kivakit.kernel.messaging.messages.status.CriticalAlert;
+import com.telenav.kivakit.kernel.messaging.messages.status.Glitch;
 import com.telenav.kivakit.kernel.messaging.messages.status.Information;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
-import com.telenav.kivakit.kernel.messaging.messages.status.Quibble;
 import com.telenav.kivakit.kernel.messaging.messages.status.Trace;
 import com.telenav.kivakit.kernel.messaging.messages.status.Warning;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageType;
@@ -311,7 +311,7 @@ public abstract class OperationMessage implements Named, Message
         new CriticalAlert();
         new Information();
         new Problem();
-        new Quibble();
+        new Glitch();
         new Trace();
         new Warning();
     }

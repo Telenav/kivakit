@@ -27,8 +27,8 @@ import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
 import com.telenav.kivakit.kernel.messaging.messages.lifecycle.OperationHalted;
+import com.telenav.kivakit.kernel.messaging.messages.status.Glitch;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
-import com.telenav.kivakit.kernel.messaging.messages.status.Quibble;
 import com.telenav.kivakit.kernel.messaging.messages.status.Warning;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataValidation;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -42,10 +42,10 @@ import java.util.Collection;
  * <ul>
  *     <li>{@link #halt(String, Object...)} - Reports a fatal validation failure, halting further progress via {@link Ensure#fail(String, Object...)}</li>
  *     <li>{@link #problem(String, Object...)} - Reports a non-fatal validation problem, causing data to be discarded but the process does not halt</li>
- *     <li>{@link #quibble(String, Object...)} - Reports a non-fatal and not very important validation problem where data is compromised but not discarded</li>
+ *     <li>{@link #glitch(String, Object...)} - Reports a non-fatal and not very important validation problem where data is compromised but not discarded</li>
  *     <li>{@link #warning(String, Object...)} - Reports an issue that should ideally be corrected but is not fatal or a validation failure</li>
  *     <li>{@link #problemIf(boolean, String, Object...)} - Conditionally reports a problem</li>
- *     <li>{@link #quibbleIf(boolean, String, Object...)} - Conditionally reports a quibble</li>
+ *     <li>{@link #glitchIf(boolean, String, Object...)} - Conditionally reports a glitch</li>
  *     <li>{@link #warningIf(boolean, String, Object...)} - Conditionally reports a warning</li>
  * </ul>
  * The base validator also assists in running other validators ({@link #validate(Validator)}, such as validators
@@ -77,7 +77,7 @@ import java.util.Collection;
  * </pre>
  * <b>Validation Results</b>
  * <p>
- * Once validation has occurred, the method {@link #isInvalid()} can be called to determine if any problems or quibbles
+ * Once validation has occurred, the method {@link #isInvalid()} can be called to determine if any problems or glitches
  * (which are both are considered invalidating while warnings are not) were broadcast during the (possibly nested)
  * validation process. The state of {@link #isInvalid()} is used as the return value of {@link Validator#validate}
  * when the validator is used.
@@ -103,7 +103,7 @@ import java.util.Collection;
  * @see Ensure
  * @see Validator
  * @see Problem
- * @see Quibble
+ * @see Glitch
  * @see Warning
  * @see ReentrancyTracker
  * @see ThreadLocal
@@ -160,7 +160,7 @@ public abstract class BaseValidator implements Validator
         // Make a copy of the current issues for the thread.
         final var issues = issues().copy();
 
-        // Next, call the subclass onValidate() method (which may make calls to problem or quibble methods, causing invalidity)
+        // Next, call the subclass onValidate() method (which may make calls to problem or glitch methods, causing invalidity)
         onValidate();
 
         // and if we haven't re-entered, we're done with the top-level validation,
@@ -173,14 +173,22 @@ public abstract class BaseValidator implements Validator
             if (validationReport())
             {
                 // we output a short summary of the validation results
-                listener.information("Validated $ in $ ($ problems, $ quibbles, $ warnings)", validationTarget(),
-                        start.elapsedSince(), issues.count(Problem.class), issues.count(Quibble.class), issues.count(Warning.class));
+                listener.information("Validated $ in $ ($ problems, $ glitches, $ warnings)", validationTarget(),
+                        start.elapsedSince(), issues.count(Problem.class), issues.count(Glitch.class), issues.count(Warning.class));
             }
         }
 
-        // and finally, we're valid if the validation didn't change the number of problems or quibbles
+        // and finally, we're valid if the validation didn't change the number of problems or glitches
         return issues.count(Problem.class).equals(issues().count(Problem.class))
-                && issues.count(Quibble.class).equals(issues().count(Quibble.class));
+                && issues.count(Glitch.class).equals(issues().count(Glitch.class));
+    }
+
+    /**
+     * Records a {@link Glitch} with the given message without broadcasting it
+     */
+    protected Glitch addGlitch(final String message, final Object... parameters)
+    {
+        return addIfNotNull(new Glitch(message, parameters));
     }
 
     /**
@@ -192,19 +200,31 @@ public abstract class BaseValidator implements Validator
     }
 
     /**
-     * Records a {@link Quibble} with the given message without broadcasting it
-     */
-    protected Quibble addQuibble(final String message, final Object... parameters)
-    {
-        return addIfNotNull(new Quibble(message, parameters));
-    }
-
-    /**
      * Records a {@link Warning} with the given message without broadcasting it
      */
     protected Warning addWarning(final String message, final Object... parameters)
     {
         return addIfNotNull(new Warning(message, parameters));
+    }
+
+    /**
+     * Broadcasts a {@link Glitch} with the given message
+     */
+    protected Glitch glitch(final String message, final Object... parameters)
+    {
+        return addIfNotNull(listener.glitch(message, parameters));
+    }
+
+    /**
+     * Broadcasts a {@link Glitch} with the given message if the invalid parameter is true
+     */
+    protected final Glitch glitchIf(final boolean invalid, final String message, final Object... parameters)
+    {
+        if (invalid)
+        {
+            return glitch(message, parameters);
+        }
+        return null;
     }
 
     /**
@@ -271,28 +291,6 @@ public abstract class BaseValidator implements Validator
         if (invalid)
         {
             return problem(message, parameters);
-        }
-        return null;
-    }
-
-    /**
-     * Broadcasts a {@link Quibble} with the given message
-     */
-    protected Quibble quibble(final String message, final Object... parameters)
-    {
-        return addIfNotNull(listener.quibble(message, parameters));
-    }
-
-    /**
-     * Broadcasts a {@link Quibble} with the given message if the invalid parameter is true
-     *
-     * @return True if there was a quibble
-     */
-    protected final Quibble quibbleIf(final boolean invalid, final String message, final Object... parameters)
-    {
-        if (invalid)
-        {
-            return quibble(message, parameters);
         }
         return null;
     }

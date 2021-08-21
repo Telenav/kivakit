@@ -24,10 +24,10 @@ import com.telenav.kivakit.kernel.messaging.messages.status.Activity;
 import com.telenav.kivakit.kernel.messaging.messages.status.Alert;
 import com.telenav.kivakit.kernel.messaging.messages.status.Announcement;
 import com.telenav.kivakit.kernel.messaging.messages.status.CriticalAlert;
+import com.telenav.kivakit.kernel.messaging.messages.status.Glitch;
 import com.telenav.kivakit.kernel.messaging.messages.status.Information;
 import com.telenav.kivakit.kernel.messaging.messages.status.Narration;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
-import com.telenav.kivakit.kernel.messaging.messages.status.Quibble;
 import com.telenav.kivakit.kernel.messaging.messages.status.StepFailure;
 import com.telenav.kivakit.kernel.messaging.messages.status.StepIncomplete;
 import com.telenav.kivakit.kernel.messaging.messages.status.StepSuccess;
@@ -63,7 +63,7 @@ public class Importance extends Level
                 StepSuccess.class,
                 Narration.class,
                 Announcement.class,
-                Quibble.class,
+                Glitch.class,
                 Warning.class,
                 StepIncomplete.class,
                 Problem.class,

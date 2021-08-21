@@ -37,9 +37,11 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * A list of messages that listens for and adds incoming messages. Only messages that are accepted by a {@link Matcher}
  * (or {@link Filter} subclass) are added. The list of messages can be rebroadcast with {@link
  * Broadcaster#transmitAll(Iterable)} and they can be counted with {@link #count(Message.Status)} and {@link
- * #count(Class)}. A filtered list of messages can be retrieved with {@link #filtered(Matcher)} and a {@link StringList}
- * of formatted messages with {@link #formatted()}. Statistics can be retrieved for types of messages and for message
- * statuses with {@link #statisticsByType(Class[])} and {@link #statistics(Message.Status...)}, respectively.
+ * #count(Class)}. The method {@link #countWorseThanOrEqualTo(Message.Status)} gives a count of all messages that are at
+ * least as bad or worse than the given message status value. For example, <i>countWorseThanOrEqualTo(Status.PROBLEM)</i>.
+ * A filtered list of messages can be retrieved with {@link #filtered(Matcher)} and a {@link StringList} of formatted
+ * messages with {@link #formatted()}. Statistics can be retrieved for types of messages and for message statuses with
+ * {@link #statisticsByType(Class[])} and {@link #statistics(Message.Status...)}, respectively.
  *
  * @author jonathanl (shibo)
  */

@@ -50,9 +50,9 @@ import com.telenav.kivakit.kernel.messaging.messages.lifecycle.OperationSucceede
 import com.telenav.kivakit.kernel.messaging.messages.status.Activity;
 import com.telenav.kivakit.kernel.messaging.messages.status.Alert;
 import com.telenav.kivakit.kernel.messaging.messages.status.CriticalAlert;
+import com.telenav.kivakit.kernel.messaging.messages.status.Glitch;
 import com.telenav.kivakit.kernel.messaging.messages.status.Information;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
-import com.telenav.kivakit.kernel.messaging.messages.status.Quibble;
 import com.telenav.kivakit.kernel.messaging.messages.status.Trace;
 import com.telenav.kivakit.kernel.messaging.messages.status.Warning;
 import com.telenav.kivakit.kernel.project.Release;
@@ -152,7 +152,7 @@ public class CoreKernelKryoTypes extends KryoTypes
             register(CriticalAlert.class);
             register(Information.class);
             register(Problem.class);
-            register(Quibble.class);
+            register(Glitch.class);
             register(Trace.class);
             register(Warning.class);
         });
