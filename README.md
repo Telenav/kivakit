@@ -26,9 +26,8 @@
 
 KivaKit is a set of integrated Java mini-frameworks that are potentially needed by any application or server.
 
-<img src="https://www.kivakit.org/images/mini-frameworks.svg" width="600"/>  
+<img src="https://www.kivakit.org/images/mini-frameworks.svg" width="700"/>  
 
-<br/>
 <br/>
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
