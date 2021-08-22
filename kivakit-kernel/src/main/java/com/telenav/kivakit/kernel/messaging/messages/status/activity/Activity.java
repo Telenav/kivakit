@@ -16,52 +16,49 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.kernel.messaging.messages.status;
+package com.telenav.kivakit.kernel.messaging.messages.status.activity;
 
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.kernel.messaging.messages.Severity;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageType;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * The current step had to discard some of the result to continue
+ * A message sent to indicate that an activity that might be monitored has occurred. For example, a resource (usually a
+ * large resource) might have been allocated. This can be used to track, for example, memory consumption.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
-@LexakaiJavadoc(complete = true)
-public class StepIncomplete extends OperationStatusMessage
+public class Activity extends OperationStatusMessage
 {
-    public static final StepIncomplete INSTANCE = new StepIncomplete();
+    public Activity()
+    {
+    }
 
-    public StepIncomplete(final String message, final Object... arguments)
+    public Activity(final String message, final Object... arguments)
     {
         super(message);
         arguments(arguments);
     }
 
-    public StepIncomplete(final Throwable cause, final String message, final Object... arguments)
+    public Activity(final Throwable cause, final String message, final Object... arguments)
     {
         super(message + ": " + Message.escape(cause.getMessage()));
         cause(cause);
         arguments(arguments);
     }
 
-    public StepIncomplete()
-    {
-    }
-
     @Override
     public Severity severity()
     {
-        return Severity.MEDIUM_HIGH;
+        return Severity.LOW;
     }
 
     @Override
-    public final Status status()
+    public Status status()
     {
-        return Status.RESULT_INCOMPLETE;
+        return Status.SUCCEEDED;
     }
 }

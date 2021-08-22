@@ -32,6 +32,23 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * worse), but not if it contains a {@link Warning}. You can think of a glitch as a "stern warning" and an indication
  * that you are possibly losing data.
  *
+ * <p>
+ * {@link OperationStatusMessage}s in order of importance:
+ * </p>
+ * <ul>
+ *     <li>Critical Alert - An operation failed and needs <i>immediate attention</i> from a human operator</li>
+ *     <li>Alert - An operation failed and needs to be looked at by an operator soon</li>
+ *     <li>FatalProblem - An unrecoverable problem has caused an operation to fail and needs to be addressed</li>
+ *     <li>Problem - Something has gone wrong and needs to be addressed, but it's not fatal to the current operation</li>
+ *     <li><b>Glitch</b> - A minor problem has occurred. Unlike a Warning, a Glitch indicates validation failure or minor data loss has occurred. Unlike a Problem, a Glitch indicates that the operation will definitely recover and continue.</li>
+ *     <li>Warning - A minor issue occurred which should be corrected, but does not necessarily require attention</li>
+ *     <li>Quibble - A trivial issue that does not require correction</li>
+ *     <li>Announcement - Announcement of an important phase of an operation</li>
+ *     <li>Narration - A step in some operation has started or completed</li>
+ *     <li>Information - Commonly useful information that doesn't represent any problem</li>
+ *     <li>Trace - Diagnostic information for use when debugging</li>
+ * </ul>
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)

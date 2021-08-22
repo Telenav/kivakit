@@ -29,6 +29,7 @@ import com.telenav.kivakit.kernel.messaging.messages.status.Glitch;
 import com.telenav.kivakit.kernel.messaging.messages.status.Information;
 import com.telenav.kivakit.kernel.messaging.messages.status.Narration;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
+import com.telenav.kivakit.kernel.messaging.messages.status.Quibble;
 import com.telenav.kivakit.kernel.messaging.messages.status.Trace;
 import com.telenav.kivakit.kernel.messaging.messages.status.Warning;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
@@ -301,6 +302,31 @@ public interface Transceiver extends NamedObject
     default Problem problem(final Throwable cause, final String text, final Object... arguments)
     {
         return handle(new Problem(cause, text, arguments));
+    }
+
+    default Quibble quibble(final Frequency maximumFrequency, final String text, final Object... arguments)
+    {
+        return (Quibble) handle(new Quibble(text, arguments).maximumFrequency(maximumFrequency));
+    }
+
+    default Quibble quibble(final Frequency maximumFrequency, final Throwable cause, final String text,
+                            final Object... arguments)
+    {
+        return (Quibble) handle(new Quibble(cause, text, arguments).maximumFrequency(maximumFrequency));
+    }
+
+    default Quibble quibble(final String text, final Object... arguments)
+    {
+        return handle(new Quibble(text, arguments));
+    }
+
+    default Quibble quibble(final Throwable cause, final String text, final Object... arguments)
+    {
+        if (isDebugOn())
+        {
+            return handle(new Quibble(cause, text, arguments));
+        }
+        return null;
     }
 
     default Trace trace(final String text, final Object... arguments)

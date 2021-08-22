@@ -142,6 +142,7 @@ The [**kivakit-examples**](https://github.com/Telenav/kivakit-examples) project 
 [**kivakit-application**](kivakit-application/README.md)  
 [**kivakit-collections**](kivakit-collections/README.md)  
 [**kivakit-commandline**](kivakit-commandline/README.md)  
+[**kivakit-component**](kivakit-component/README.md)  
 [**kivakit-configuration**](kivakit-configuration/README.md)  
 [**kivakit-kernel**](kivakit-kernel/README.md)  
 [**kivakit-network**](kivakit-network/README.md)  
@@ -160,6 +161,8 @@ The [**kivakit-examples**](https://github.com/Telenav/kivakit-examples) project 
  &nbsp; &nbsp; [**kivakit-collections**](kivakit-collections/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-commandline**](kivakit-commandline/README.md)  
+&nbsp; <img src="https://www.kivakit.org/images/meter-100-96.png" srcset="https://www.kivakit.org/images/meter-100-96-2x.png 2x"/>
+ &nbsp; &nbsp; [**kivakit-component**](kivakit-component/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-configuration**](kivakit-configuration/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-70-96.png" srcset="https://www.kivakit.org/images/meter-70-96-2x.png 2x"/>

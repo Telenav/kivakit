@@ -85,11 +85,11 @@ Javadoc coverage for this project is 91.4%.
 | [*ApplicationMetadata*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/ApplicationMetadata.html) |  |  
 | [*Argument*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/Argument.html) |  |  
 | [*ArgumentList*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/ArgumentList.html) |  |  
+| [*ArgumentListValidator*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/parsing/ArgumentListValidator.html) |  |  
 | [*ArgumentParser*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/ArgumentParser.html) | Parser Builders |  
 | | Built-In Parsers |  
 | [*ArgumentParser.Builder*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/ArgumentParser.Builder.html) |  |  
 | [*ArgumentParserList*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/parsing/ArgumentParserList.html) |  |  
-| [*ArgumentValidator*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/parsing/ArgumentValidator.html) |  |  
 | [*CommandLine*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/CommandLine.html) | Retrieving Switches and Arguments |  
 | | Error Handling |  
 | [*CommandLineParser*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/CommandLineParser.html) | Example |  
@@ -99,11 +99,11 @@ Javadoc coverage for this project is 91.4%.
 | [*Quantifier*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/Quantifier.html) |  |  
 | [*Switch*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/Switch.html) |  |  
 | [*SwitchList*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/parsing/SwitchList.html) |  |  
+| [*SwitchListValidator*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/parsing/SwitchListValidator.html) |  |  
 | [*SwitchParser*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/SwitchParser.html) | Parser Builders |  
 | | Built-In Parsers |  
 | [*SwitchParser.Builder*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/SwitchParser.Builder.html) |  |  
 | [*SwitchParserList*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/parsing/SwitchParserList.html) |  |  
-| [*SwitchValidator*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/parsing/SwitchValidator.html) |  |  
 
 [//]: # (start-user-text)
 

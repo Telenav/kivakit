@@ -47,7 +47,7 @@ import com.telenav.kivakit.kernel.messaging.messages.lifecycle.OperationFailed;
 import com.telenav.kivakit.kernel.messaging.messages.lifecycle.OperationHalted;
 import com.telenav.kivakit.kernel.messaging.messages.lifecycle.OperationStarted;
 import com.telenav.kivakit.kernel.messaging.messages.lifecycle.OperationSucceeded;
-import com.telenav.kivakit.kernel.messaging.messages.status.Activity;
+import com.telenav.kivakit.kernel.messaging.messages.status.activity.Activity;
 import com.telenav.kivakit.kernel.messaging.messages.status.Alert;
 import com.telenav.kivakit.kernel.messaging.messages.status.CriticalAlert;
 import com.telenav.kivakit.kernel.messaging.messages.status.Glitch;

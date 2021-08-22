@@ -76,7 +76,6 @@ browse the [**Javadoc**](#javadoc).
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
 [*com.telenav.kivakit.application*](https://www.kivakit.org/0.9.9-SNAPSHOT/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.svg)  
-[*com.telenav.kivakit.application.component*](https://www.kivakit.org/0.9.9-SNAPSHOT/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.component.svg)  
 [*com.telenav.kivakit.application.project*](https://www.kivakit.org/0.9.9-SNAPSHOT/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.project.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
@@ -98,11 +97,6 @@ Javadoc coverage for this project is 100.0%.
 | | Important Note: Project Initialization |  
 | | Startup |  
 | [*Application.Identifier*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/Application.Identifier.html) |  |  
-| [*BaseComponent*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/component/BaseComponent.html) |  |  
-| [*Component*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/component/Component.html) | Object Lookup Registry |  
-| | Packaging Methods |  
-| | Settings Registry Methods |  
-| [*ComponentMixin*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/component/ComponentMixin.html) |  |  
 | [*CoreApplicationProject*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/project/CoreApplicationProject.html) |  |  
 | [*Server*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/Server.html) |  |  
 

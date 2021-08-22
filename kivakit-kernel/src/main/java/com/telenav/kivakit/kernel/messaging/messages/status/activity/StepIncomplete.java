@@ -16,49 +16,52 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.kernel.messaging.messages.status;
+package com.telenav.kivakit.kernel.messaging.messages.status.activity;
 
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.kernel.messaging.messages.Severity;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageType;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * A message sent to indicate that an activity that might be monitored has occurred. For example, a resource (usually a
- * large resource) might have been allocated. This can be used to track, for example, memory consumption.
+ * The current step had to discard some of the result to continue
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
-public class Activity extends OperationStatusMessage
+@LexakaiJavadoc(complete = true)
+public class StepIncomplete extends OperationStatusMessage
 {
-    public Activity()
-    {
-    }
+    public static final StepIncomplete INSTANCE = new StepIncomplete();
 
-    public Activity(final String message, final Object... arguments)
+    public StepIncomplete(final String message, final Object... arguments)
     {
         super(message);
         arguments(arguments);
     }
 
-    public Activity(final Throwable cause, final String message, final Object... arguments)
+    public StepIncomplete(final Throwable cause, final String message, final Object... arguments)
     {
         super(message + ": " + Message.escape(cause.getMessage()));
         cause(cause);
         arguments(arguments);
     }
 
-    @Override
-    public Severity severity()
+    public StepIncomplete()
     {
-        return Severity.LOW;
     }
 
     @Override
-    public Status status()
+    public Severity severity()
     {
-        return Status.SUCCEEDED;
+        return Severity.MEDIUM_HIGH;
+    }
+
+    @Override
+    public final Status status()
+    {
+        return Status.RESULT_INCOMPLETE;
     }
 }

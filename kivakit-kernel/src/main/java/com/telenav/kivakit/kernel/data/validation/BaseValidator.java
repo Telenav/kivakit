@@ -29,6 +29,7 @@ import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
 import com.telenav.kivakit.kernel.messaging.messages.lifecycle.OperationHalted;
 import com.telenav.kivakit.kernel.messaging.messages.status.Glitch;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
+import com.telenav.kivakit.kernel.messaging.messages.status.Quibble;
 import com.telenav.kivakit.kernel.messaging.messages.status.Warning;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataValidation;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -200,6 +201,14 @@ public abstract class BaseValidator implements Validator
     }
 
     /**
+     * Records a {@link Quibble} with the given message without broadcasting it
+     */
+    protected Quibble addQuibble(final String message, final Object... parameters)
+    {
+        return addIfNotNull(new Quibble(message, parameters));
+    }
+
+    /**
      * Records a {@link Warning} with the given message without broadcasting it
      */
     protected Warning addWarning(final String message, final Object... parameters)
@@ -291,6 +300,26 @@ public abstract class BaseValidator implements Validator
         if (invalid)
         {
             return problem(message, parameters);
+        }
+        return null;
+    }
+
+    /**
+     * Broadcasts a {@link Quibble} with the given message
+     */
+    protected Quibble quibble(final String message, final Object... parameters)
+    {
+        return addIfNotNull(listener.quibble(message, parameters));
+    }
+
+    /**
+     * Broadcasts a {@link Quibble} with the given message if the invalid parameter is true
+     */
+    protected final Quibble quibbleIf(final boolean invalid, final String message, final Object... parameters)
+    {
+        if (invalid)
+        {
+            return quibble(message, parameters);
         }
         return null;
     }

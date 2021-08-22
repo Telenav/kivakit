@@ -123,13 +123,14 @@ project [*kivakit-network-core-email*](../email/README.md) makes use of this cla
 
 [*com.telenav.kivakit.network.core*](https://www.kivakit.org/0.9.9-SNAPSHOT/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.svg)  
 [*com.telenav.kivakit.network.core.cluster*](https://www.kivakit.org/0.9.9-SNAPSHOT/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.cluster.svg)  
+[*com.telenav.kivakit.network.core.converters*](https://www.kivakit.org/0.9.9-SNAPSHOT/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.converters.svg)  
 [*com.telenav.kivakit.network.core.project*](https://www.kivakit.org/0.9.9-SNAPSHOT/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.project.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 89.3%.  
+Javadoc coverage for this project is 86.9%.  
   
 &nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
 
@@ -145,6 +146,7 @@ Javadoc coverage for this project is 89.3%.
 | [*Host*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/Host.html) | Attributes |  
 | | Ports |  
 | [*Host.Converter*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/Host.Converter.html) |  |  
+| [*HttpDateTimeConverter*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/converters/HttpDateTimeConverter.html) |  |  
 | [*LocalHost*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/LocalHost.html) |  |  
 | [*Loopback*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/Loopback.html) |  |  
 | [*NetworkAccessConstraints*](https://www.kivakit.org/0.9.9-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/NetworkAccessConstraints.html) |  |  

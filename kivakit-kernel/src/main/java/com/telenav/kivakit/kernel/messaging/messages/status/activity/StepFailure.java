@@ -16,44 +16,50 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.kernel.messaging.messages.status;
+package com.telenav.kivakit.kernel.messaging.messages.status.activity;
 
+import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.kernel.messaging.messages.Severity;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageType;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * The current step succeeded and does not indicate any problem
+ * The current step failed to produce any useful result
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
-@LexakaiJavadoc(complete = true)
-public class StepSuccess extends OperationStatusMessage
+public class StepFailure extends OperationStatusMessage
 {
-    public static final StepSuccess INSTANCE = new StepSuccess();
+    public static final StepFailure INSTANCE = new StepFailure();
 
-    public StepSuccess(final String message, final Object... arguments)
+    public StepFailure(final String message, final Object... arguments)
     {
         super(message);
         arguments(arguments);
     }
 
-    public StepSuccess()
+    public StepFailure(final Throwable cause, final String message, final Object... arguments)
+    {
+        super(message + ": " + Message.escape(cause.getMessage()));
+        cause(cause);
+        arguments(arguments);
+    }
+
+    public StepFailure()
     {
     }
 
     @Override
     public Severity severity()
     {
-        return Severity.NONE;
+        return Severity.MEDIUM_HIGH;
     }
 
     @Override
     public final Status status()
     {
-        return Status.SUCCEEDED;
+        return Status.FAILED;
     }
 }

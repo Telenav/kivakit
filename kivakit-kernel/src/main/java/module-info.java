@@ -118,6 +118,7 @@ open module kivakit.kernel
     exports com.telenav.kivakit.kernel.messaging.listeners;
     exports com.telenav.kivakit.kernel.messaging.messages.lifecycle;
     exports com.telenav.kivakit.kernel.messaging.messages.status;
+    exports com.telenav.kivakit.kernel.messaging.messages.status.activity;
     exports com.telenav.kivakit.kernel.messaging.messages;
     exports com.telenav.kivakit.kernel.messaging.repeaters;
     exports com.telenav.kivakit.kernel.messaging;

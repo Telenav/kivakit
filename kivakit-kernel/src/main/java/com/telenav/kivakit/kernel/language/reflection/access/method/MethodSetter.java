@@ -20,8 +20,8 @@ package com.telenav.kivakit.kernel.language.reflection.access.method;
 
 import com.telenav.kivakit.kernel.language.reflection.access.Setter;
 import com.telenav.kivakit.kernel.messaging.Message;
-import com.telenav.kivakit.kernel.messaging.messages.status.StepFailure;
-import com.telenav.kivakit.kernel.messaging.messages.status.StepSuccess;
+import com.telenav.kivakit.kernel.messaging.messages.status.activity.StepFailure;
+import com.telenav.kivakit.kernel.messaging.messages.status.activity.StepSuccess;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
