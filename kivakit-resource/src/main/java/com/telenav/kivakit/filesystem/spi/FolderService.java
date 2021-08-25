@@ -29,6 +29,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.unsupported;
+
 /**
  * A service provider interface (SPI) for filesystem folders. In addition to the methods required by {@link
  * FileSystemObjectService}, this interface requires:
@@ -38,8 +40,8 @@ import java.util.List;
  *     <li>{@link #file(FileName)} - The file with the given name</li>
  *     <li>{@link #files()} - All files in this folder</li>
  *     <li>{@link #files(Matcher)} - All files matching the given matcher</li>
- *     <li>{@link #folder(Folder)} - The given subfolder</li>
- *     <li>{@link #folder(FileName)} - The given subfolder</li>
+ *     <li>{@link #folder(Folder)} - The given sub-folder</li>
+ *     <li>{@link #folder(FileName)} - The given sub-folder</li>
  *     <li>{@link #folders()} - All folders in this folder</li>
  *     <li>{@link #isEmpty()} - True if the folder is empty</li>
  *     <li>{@link #isWritable()} - True if the folder can be written to</li>
@@ -60,26 +62,29 @@ import java.util.List;
 public interface FolderService extends FileSystemObjectService
 {
     /**
-     * clear the contents of this folder
+     * Clear the contents of this folder
      */
-    FolderService clear();
+    default FolderService clear()
+    {
+        return unsupported();
+    }
 
     /**
-     *
+     * @return The file service for the given file name
      */
     FileService file(FileName name);
 
     /**
      * @return The files in this folder
      */
-    List<? extends FileService> files();
+    List<FileService> files();
 
     /**
      * @return The files in this folder that match the matcher
      */
-    default List<? extends FileService> files(final Matcher<FilePath> matcher)
+    default List<FileService> files(final Matcher<FilePath> matcher)
     {
-        final List<? extends FileService> files = new ArrayList<>();
+        final List<FileService> files = new ArrayList<>();
         for (final var file : files())
         {
             if (matcher.matches(file.path()))
@@ -103,14 +108,14 @@ public interface FolderService extends FileSystemObjectService
     /**
      * @return The folders in this folder
      */
-    Iterable<? extends FolderService> folders();
+    Iterable<FolderService> folders();
 
     /**
      * @return The folders in this folder that match the matcher
      */
-    default List<? extends FolderService> folders(final Matcher<FilePath> matcher)
+    default List<FolderService> folders(final Matcher<FilePath> matcher)
     {
-        final List<? extends FolderService> folders = new ArrayList<>();
+        final List<FolderService> folders = new ArrayList<>();
         for (final var folder : folders())
         {
             if (matcher.matches(folder.path()))
@@ -121,10 +126,23 @@ public interface FolderService extends FileSystemObjectService
         return folders;
     }
 
+    default boolean hasFiles()
+    {
+        return exists() && !files().isEmpty();
+    }
+
+    default boolean hasSubFolders()
+    {
+        return exists() && folders().iterator().hasNext();
+    }
+
     /**
      * @return true if the folder is empty
      */
-    boolean isEmpty();
+    default boolean isEmpty()
+    {
+        return !hasFiles() && !hasSubFolders();
+    }
 
     /**
      * @return True if this folder can be written to
@@ -134,33 +152,45 @@ public interface FolderService extends FileSystemObjectService
     /**
      * @return True if the folder was created, along with all necessary parent folders.
      */
-    FolderService mkdirs();
+    default FolderService mkdirs()
+    {
+        return unsupported();
+    }
 
     /**
      * @return Files in this folder that match the given matcher, recursively
      */
-    List<? extends FileService> nestedFiles(final Matcher<FilePath> matcher);
+    List<FileService> nestedFiles(final Matcher<FilePath> matcher);
 
     /**
      * @return Files in this folder that match the given matcher, recursively
      */
-    List<? extends FolderService> nestedFolders(final Matcher<FilePath> matcher);
+    List<FolderService> nestedFolders(final Matcher<FilePath> matcher);
 
     /**
      * @param that The folder to rename this folder to
      * @return True if the folder was renamed
      */
-    boolean renameTo(final FolderService that);
+    default boolean renameTo(final FolderService that)
+    {
+        return unsupported();
+    }
 
     /**
      * @param baseName Base name of temporary file
      * @return A unique, existing temporary file in this folder
      */
-    FileService temporaryFile(final FileName baseName);
+    default FileService temporaryFile(final FileName baseName)
+    {
+        return unsupported();
+    }
 
     /**
      * @param baseName Base name of temporary folder
      * @return A unique, existing temporary folder in this folder
      */
-    FolderService temporaryFolder(final FileName baseName);
+    default FolderService temporaryFolder(final FileName baseName)
+    {
+        return unsupported();
+    }
 }
