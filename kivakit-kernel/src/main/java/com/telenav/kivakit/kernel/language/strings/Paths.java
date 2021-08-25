@@ -90,23 +90,23 @@ public class Paths
     }
 
     /**
-     * @return All but the first element in the path or null if the value does not occur
+     * @return All but the first element in the path or null if the separator does not occur
      */
-    public static String tail(final String string, final String value)
+    public static String tail(final String string, final String separator)
     {
         if (string != null)
         {
-            final var index = string.indexOf(value);
+            final var index = string.indexOf(separator);
             if (index >= 0 && index < string.length() - 1)
             {
-                return string.substring(index + value.length());
+                return string.substring(index + separator.length());
             }
         }
         return null;
     }
 
     /**
-     * @return All but the first element in the path or null if the value does not occur
+     * @return All but the first element in the path or null if the separator does not occur
      */
     public static String tail(final String text, final char separator)
     {

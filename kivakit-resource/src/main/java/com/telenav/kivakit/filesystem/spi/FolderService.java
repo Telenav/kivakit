@@ -26,6 +26,7 @@ import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemSe
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -76,7 +77,18 @@ public interface FolderService extends FileSystemObjectService
     /**
      * @return The files in this folder that match the matcher
      */
-    List<? extends FileService> files(final Matcher<FilePath> matcher);
+    default List<? extends FileService> files(final Matcher<FilePath> matcher)
+    {
+        final List<? extends FileService> files = new ArrayList<>();
+        for (final var file : files())
+        {
+            if (matcher.matches(file.path()))
+            {
+                files.add(file);
+            }
+        }
+        return files;
+    }
 
     /**
      * @return The named sub-folder in this folder
@@ -96,7 +108,18 @@ public interface FolderService extends FileSystemObjectService
     /**
      * @return The folders in this folder that match the matcher
      */
-    List<? extends FolderService> folders(final Matcher<FilePath> matcher);
+    default List<? extends FolderService> folders(final Matcher<FilePath> matcher)
+    {
+        final List<? extends FolderService> folders = new ArrayList<>();
+        for (final var folder : folders())
+        {
+            if (matcher.matches(folder.path()))
+            {
+                folders.add(folder);
+            }
+        }
+        return folders;
+    }
 
     /**
      * @return true if the folder is empty
