@@ -241,9 +241,9 @@ public class LocalFolder implements FolderService
     }
 
     @Override
-    public synchronized List<LocalFile> files()
+    public synchronized List<FileService> files()
     {
-        final List<LocalFile> files = new ArrayList<>();
+        final List<FileService> files = new ArrayList<>();
         if (exists())
         {
             if (file != null)
@@ -387,7 +387,7 @@ public class LocalFolder implements FolderService
     }
 
     @Override
-    public List<? extends FolderService> nestedFolders(final Matcher<FilePath> matcher)
+    public List<FolderService> nestedFolders(final Matcher<FilePath> matcher)
     {
         final var folders = folders(matcher);
         for (final var folder : folders())

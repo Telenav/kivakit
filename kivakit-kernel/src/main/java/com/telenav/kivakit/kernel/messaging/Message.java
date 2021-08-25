@@ -32,17 +32,17 @@ import com.telenav.kivakit.kernel.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.kernel.messaging.messages.Severity;
 import com.telenav.kivakit.kernel.messaging.messages.Triaged;
 import com.telenav.kivakit.kernel.messaging.messages.lifecycle.OperationHalted;
-import com.telenav.kivakit.kernel.messaging.messages.status.activity.Activity;
 import com.telenav.kivakit.kernel.messaging.messages.status.Alert;
 import com.telenav.kivakit.kernel.messaging.messages.status.CriticalAlert;
 import com.telenav.kivakit.kernel.messaging.messages.status.Glitch;
 import com.telenav.kivakit.kernel.messaging.messages.status.Information;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
+import com.telenav.kivakit.kernel.messaging.messages.status.Trace;
+import com.telenav.kivakit.kernel.messaging.messages.status.Warning;
+import com.telenav.kivakit.kernel.messaging.messages.status.activity.Activity;
 import com.telenav.kivakit.kernel.messaging.messages.status.activity.StepFailure;
 import com.telenav.kivakit.kernel.messaging.messages.status.activity.StepIncomplete;
 import com.telenav.kivakit.kernel.messaging.messages.status.activity.StepSuccess;
-import com.telenav.kivakit.kernel.messaging.messages.status.Trace;
-import com.telenav.kivakit.kernel.messaging.messages.status.Warning;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageBroadcaster;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageListener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessaging;
@@ -343,7 +343,7 @@ public interface Message extends Transmittable, Triaged, AsString
     Status status();
 
     /**
-     * @return The unformatted message text. See {@link #format(String, Object...) and MessageFormatter} for details on
+     * @return The un-formatted message text. See {@link #format(String, Object...) and MessageFormatter} for details on
      * how this text is formatted using the {@link #arguments()} to the message.
      */
     String text();

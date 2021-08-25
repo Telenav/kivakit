@@ -58,12 +58,18 @@ public interface FileSystemObjectService extends ByteSized, ModificationTimestam
     /**
      * @return True if the permissions were changed
      */
-    boolean chmod(PosixFilePermission... permissions);
+    default boolean chmod(PosixFilePermission... permissions)
+    {
+        return unsupported();
+    }
 
     /**
      * Deletes this filesystem object
      */
-    boolean delete();
+    default boolean delete()
+    {
+        return unsupported();
+    }
 
     /**
      * @return The disk that this object is on
