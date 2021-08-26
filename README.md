@@ -31,12 +31,10 @@ KivaKit is a set of integrated Java mini-frameworks that are potentially needed 
 [//]: # (start-user-text)
 
 <br/>
-<br/>
 
 <img src="https://www.kivakit.org/images/mini-frameworks.svg" width="702"/>  
 
 <br/> 
-<br/>
 <br/>
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
