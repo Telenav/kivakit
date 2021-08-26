@@ -38,16 +38,17 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import java.io.Serializable;
 
 /**
- * A deployment is a named {@link Settings}. The name of the set can be retrieved with {@link #name()} and a description
- * of its purpose with {@link #description()}. The example below, as well as the superclass {@link Settings}, has
- * details on how configuration information can be loaded and queried.
+ * A deployment is a named {@link Settings} registry. The name of the set can be retrieved with {@link #name()} and
+ * a description of its purpose with {@link #description()}. The example below, as well as the superclass {@link Settings},
+ * has details on how configuration information can be loaded and queried.
  *
- * <p><b>Configuring Applications</b></p>
+ * <p><b>Deploying Applications</b></p>
  *
  * <p>
  * Deployments can be added to a {@link DeploymentSet} via {@link DeploymentSet#addDeploymentsIn(Class, String)} or
  * {@link DeploymentSet#addDeploymentsIn(Folder)} and then the method SwitchParser.deployment(DeploymentSet) will create
- * a command line SwitchParser that can select among several deployments in a {@link DeploymentSet} by name.
+ * a command line SwitchParser that can select among several deployments in a {@link DeploymentSet} by name. This is
+ * handled automatically if the application places deployments in the application-relative package "deployments".
  * </p>
  *
  * <p>
@@ -60,15 +61,15 @@ import java.io.Serializable;
  * <p><b>Example</b></p>
  *
  * <p>
- * The application below loads a set of deployments each of which is a set of configuration .properties resources in a
- * sub-package of the "configuration" package next to the Demo class exists like this:
+ * The application below loads a set of deployments, each of which is a set of <i>.properties</i> resources in a
+ * sub-package of the "deployments" package next to the Demo class:
  * <pre>
  * Demo.class
- *     configuration/
- *         navteam/
+ *     deployments/
+ *         development/
  *             DemoSettings.properties
  *             RouterSettings.properties
- *         osmteam/
+ *         production/
  *             DemoSettings.properties
  *             RouterSettings.properties
  * </pre>
@@ -80,41 +81,13 @@ import java.io.Serializable;
  * </p>
  *
  * <pre>
- * java -jar Demo.jar -deployment=navteam
- * </pre>
- *
- * <pre>
- * public class Demo extends Application
- * {
- *     DeploymentSet deployments = DeploymentSet.load(Demo.class, "configuration");
- *
- *     SwitchParser&lt;Deployment&gt; DEPLOYMENT = deployments.deploymentSwitchParser();
- *
- *     public static void main(final String[] arguments)
- *     {
- *         new Demo.run(arguments);
- *     }
- *
- *     public void onRun(final CommandLine commandLine)
- *     {
- *         commandLine.get(DEPLOYMENT).install();
- *
- *             [...]
- *
- *         var settings = ConfigurationSet.global().require(DemoSettings.class);
- *     }
- *
- *     public Set&lt;SwitchParser&gt; switchParsers
- *     {
- *         return Set.of(DEPLOYMENT);
- *     }
- * }
+ * java -jar Demo.jar -deployment=production
  * </pre>
  *
  * <p>
- * In the configuration.local and configuration.navteam sub-packages, there will be properties files for each deployment
- * which are used to create and populate the required configuration objects. One of the properties files in
- * configuration/navteam might look like this:
+ * In the deployments.development and deployments.production sub-packages, there will be properties files for each
+ * deployment which are used to create and populate the required configuration objects. One of the properties files in
+ * deployments/development might look like this:
  * </p>
  *
  * <p><i>AwsServer.properties</i></p>
@@ -149,16 +122,16 @@ import java.io.Serializable;
  * </pre>
  *
  * <p>
- * Once the deployment's configuration information is all loaded into the global configuration set, any class in the
+ * Once the deployment's configuration information is all loaded into the global settings registry, any component in the
  * project can then locate the configured object like this:
  * </p>
  *
  * <pre>
- * public class SomeOtherClass
+ * public class SomeOtherClass extends BaseComponent
  * {
  *     public void doIt()
  *     {
- *         var configuration = BaseDeployment.get().get(ServerConfiguration.class);
+ *         var configuration = require(ServerConfiguration.class);
  *
  *             [...]
  *     }
@@ -171,7 +144,7 @@ import java.io.Serializable;
  *     <li>{@link #registerAllIn(Class, String)} - Adds the package of .properties files at the path relative to the given class</li>
  *     <li>{@link #registerAllIn(Folder)} - Adds the folder of .properties files</li>
  *     <li>{@link #addDeployment(Deployment)} - Merges another deployment into this one</li>
- *     <li>{@link #install()} - Installs the contents of this {@link Deployment} into the global configuration set</li>
+ *     <li>{@link #install()} - Installs the contents of this {@link Deployment} into the global settings registry</li>
  * </ul>
  *
  * <p>
