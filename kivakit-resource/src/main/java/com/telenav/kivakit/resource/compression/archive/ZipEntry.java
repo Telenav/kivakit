@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
-import com.telenav.kivakit.kernel.interfaces.code.CheckedCode;
+import com.telenav.kivakit.kernel.interfaces.code.Unchecked;
 import com.telenav.kivakit.kernel.language.io.IO;
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
 import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.language.values.count.Bytes;
@@ -81,7 +81,7 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
     @Override
     public Time lastModified()
     {
-        return CheckedCode.of(() -> Time.milliseconds(Files.getLastModifiedTime(path).toMillis())).or(null);
+        return Unchecked.of(() -> Time.milliseconds(Files.getLastModifiedTime(path).toMillis())).orNull();
     }
 
     @Override
@@ -89,10 +89,14 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
     {
         if (in == null)
         {
-            final var in = CheckedCode.of(() -> Files.newInputStream(path)).or(null);
+            final var in = Unchecked.of(() -> Files.newInputStream(path)).orNull();
             if (in != null)
             {
                 this.in = IO.buffer(in);
+            }
+            else
+            {
+                fatal("Unable to open $ for reading", this);
             }
         }
         return in;
@@ -103,10 +107,14 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
     {
         if (out == null)
         {
-            final var out = CheckedCode.of(() -> Files.newOutputStream(path, CREATE)).or(null);
+            final var out = Unchecked.of(() -> Files.newOutputStream(path, CREATE)).orNull();
             if (out != null)
             {
                 this.out = IO.buffer(out);
+            }
+            else
+            {
+                fatal("Unable to open $ for writing", this);
             }
         }
         return out;
@@ -123,7 +131,7 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
     @Override
     public Bytes sizeInBytes()
     {
-        return CheckedCode.of(() -> Bytes.bytes(Files.size(path))).or(null);
+        return Unchecked.of(() -> Bytes.bytes(Files.size(path))).orNull();
     }
 
     @Override

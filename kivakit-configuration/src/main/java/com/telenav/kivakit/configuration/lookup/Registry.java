@@ -25,6 +25,9 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.telenav.kivakit.configuration.lookup.InstanceIdentifier.SINGLETON;
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
+
 /**
  * The {@link Registry} class allows code to register and locate objects by class and instance (if there is more than
  * one instance). The methods {@link #register(Object)} and {@link #register(Object, Enum)} are used to install an
@@ -63,43 +66,30 @@ public class Registry
     private static final Registry GLOBAL = new Registry();
 
     /**
-     * @return The global lookup
-     */
-    public static Registry global()
-    {
-        return GLOBAL;
-    }
-
-    /**
      * @return The lookup for the given object
      */
     public static Registry of(final Object object)
     {
-        return global();
+        return GLOBAL;
     }
 
-    /** Map from class to type for singleton objects */
-    private final Map<Class<?>, Object> objectForType = new HashMap<>();
-
     /** Map from class and instance to type for multi-instance objects */
-    private final Map<String, Object> objectForTypeAndInstance = new HashMap<>();
+    private final Map<RegistryKey, Object> registered = new HashMap<>();
 
     /**
      * @return Any registered object of the given type
      */
-    @SuppressWarnings("unchecked")
     public <T> T lookup(final Class<T> type)
     {
-        return (T) objectForType.get(type);
+        return lookup(type, SINGLETON);
     }
 
     /**
      * @return Any registered object of the given type with the given instance identifier
      */
-    @SuppressWarnings({ "unchecked" })
     public <T> T lookup(final Class<T> type, final String instance)
     {
-        return (T) objectForTypeAndInstance.get(key(type, new InstanceIdentifier(instance)));
+        return lookup(type, InstanceIdentifier.of(instance));
     }
 
     /**
@@ -108,62 +98,63 @@ public class Registry
     @SuppressWarnings({ "unchecked" })
     public <T> T lookup(final Class<T> type, final InstanceIdentifier instance)
     {
-        return (T) objectForTypeAndInstance.get(key(type, instance));
+        return (T) registered.get(instance.key(type));
     }
 
+    /**
+     * @return Any registered object of the given type with the given instance identifier
+     */
     public <T> T lookup(final Class<T> type, final Enum<?> instance)
     {
-        return lookup(type, new InstanceIdentifier(instance));
+        return lookup(type, InstanceIdentifier.of(instance));
     }
 
     /**
      * Registers the given singleton object in the lookup
      */
-    public <T> T register(final T singleton)
+    public <T> T register(final T object)
     {
-        for (var at = singleton.getClass(); at != Object.class; at = at.getSuperclass())
+        for (var at = object.getClass(); at != Object.class; at = at.getSuperclass())
         {
-            objectForType.put(at, singleton);
+            registered.put(SINGLETON.key(at), object);
         }
-        return singleton;
+        return object;
     }
 
     /**
      * Registers the specified instance of the given object's type in the lookup
      */
-    public void register(final Object object, final String instance)
+    public <T> T register(final T object, final String instance)
     {
-        register(object, new InstanceIdentifier(instance));
+        register(object, InstanceIdentifier.of(instance));
+        return object;
     }
 
     /**
      * Registers the specified instance of the given object's type in the lookup
      */
-    public void register(final Object object, final InstanceIdentifier instance)
+    public <T> T register(final T object, final InstanceIdentifier instance)
     {
-        if (InstanceIdentifier.SINGLETON.equals(instance))
+        ensureNotNull(object);
+
+        for (var at = object.getClass(); at != Object.class; at = at.getSuperclass())
         {
-            register(object);
-        }
-        else
-        {
-            for (var at = object.getClass(); at != Object.class; at = at.getSuperclass())
+            registered.put(instance.key(at), object);
+            for (var next : at.getInterfaces())
             {
-                objectForTypeAndInstance.put(key(at, instance), object);
+                registered.put(instance.key(next), object);
             }
         }
+
+        return object;
     }
 
     /**
      * Registers the specified instance of the given object's type in the lookup
      */
-    public void register(final Object object, final Enum<?> instance)
+    public <T> T register(final T object, final Enum<?> instance)
     {
-        register(object, new InstanceIdentifier(instance));
-    }
-
-    private String key(final Class<?> at, final InstanceIdentifier identifier)
-    {
-        return at.getName() + identifier.toString();
+        register(object, InstanceIdentifier.of(instance));
+        return object;
     }
 }

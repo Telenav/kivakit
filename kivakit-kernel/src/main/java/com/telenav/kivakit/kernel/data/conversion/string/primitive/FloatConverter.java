@@ -47,7 +47,7 @@ public class FloatConverter extends BaseStringConverter<Float>
      */
     @Override
     @UmlExcludeMember
-    protected Float onConvertToObject(final String value)
+    protected Float onToValue(final String value)
     {
         return Float.valueOf(value);
     }
@@ -57,7 +57,7 @@ public class FloatConverter extends BaseStringConverter<Float>
      */
     @Override
     @UmlExcludeMember
-    protected String onConvertToString(final Float value)
+    protected String onToString(final Float value)
     {
         if (Float.isNaN(value) || Float.isInfinite(value))
         {

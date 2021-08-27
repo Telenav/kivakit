@@ -24,7 +24,7 @@ import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.messaging.listeners.NullListener;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataValidationReporter;
+import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataFailureReporter;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLogging;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageBroadcaster;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageListener;
@@ -103,12 +103,13 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  *
  * @author jonathanl (shibo)
  * @see Broadcaster
+ * @see <a href="https://state-of-the-art.org#broadcaster">State(Art) Blog Article</a>
  */
 @UmlClassDiagram(diagram = DiagramMessageBroadcaster.class)
 @UmlClassDiagram(diagram = DiagramMessageRepeater.class)
 @UmlClassDiagram(diagram = DiagramMessageListener.class)
 @UmlClassDiagram(diagram = DiagramLogging.class)
-@UmlClassDiagram(diagram = DiagramDataValidationReporter.class)
+@UmlClassDiagram(diagram = DiagramDataFailureReporter.class)
 @UmlExcludeSuperTypes({ NamedObject.class })
 public interface Listener extends Transceiver, Receiver<Transmittable>, NamedObject
 {
@@ -151,6 +152,14 @@ public interface Listener extends Transceiver, Receiver<Transmittable>, NamedObj
     /**
      * <b>Not public API</b>
      */
+    default void message(final Message message)
+    {
+        onMessage(message);
+    }
+
+    /**
+     * <b>Not public API</b>
+     */
     @Override
     @UmlExcludeMember
     default void onHandle(final Transmittable message)
@@ -168,7 +177,7 @@ public interface Listener extends Transceiver, Receiver<Transmittable>, NamedObj
     {
         if (transmittable instanceof Message)
         {
-            onMessage((Message) transmittable);
+            message((Message) transmittable);
         }
     }
 

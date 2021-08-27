@@ -30,6 +30,15 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 public interface ApplicationMetadata extends Versioned
 {
     /**
+     * @return True if command line parsing problems should result in a call to {@link System#exit(int)}. The default
+     * return value for this method is *true* to ensure that the VM isn't prevented from exiting by non-daemon threads.
+     */
+    default boolean callSystemExitOnUnrecoverableError()
+    {
+        return true;
+    }
+
+    /**
      * @return The application description
      */
     String description();

@@ -18,12 +18,15 @@
 
 package com.telenav.kivakit.resource;
 
+import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.paths.Path;
 import com.telenav.kivakit.kernel.language.paths.StringPath;
 import com.telenav.kivakit.kernel.language.strings.Strip;
+import com.telenav.kivakit.kernel.logging.Logger;
+import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.kivakit.resource.path.FileName;
@@ -70,6 +73,8 @@ import java.util.function.Function;
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
 public class ResourcePath extends StringPath
 {
+    private static final Logger LOGGER = LoggerFactory.newLogger();
+
     /**
      * @return A resource path for the given string
      */
@@ -100,6 +105,15 @@ public class ResourcePath extends StringPath
         return new ResourcePath(path.rootElement(), path.elements());
     }
 
+    public static SwitchParser.Builder<ResourcePath> resourcePathSwitchParser(final String name,
+                                                                              final String description)
+    {
+        return SwitchParser.builder(ResourcePath.class)
+                .name(name)
+                .converter(new ResourcePath.Converter(LOGGER))
+                .description(description);
+    }
+
     /**
      * Converts to and from {@link ResourcePath}s
      *
@@ -114,7 +128,7 @@ public class ResourcePath extends StringPath
         }
 
         @Override
-        protected ResourcePath onConvertToObject(final String value)
+        protected ResourcePath onToValue(final String value)
         {
             return parseResourcePath(value);
         }
@@ -156,6 +170,11 @@ public class ResourcePath extends StringPath
     public FilePath asFilePath()
     {
         return FilePath.parseFilePath(asString());
+    }
+
+    public Extension extension()
+    {
+        return fileName().extension();
     }
 
     /**

@@ -35,12 +35,12 @@ import com.telenav.kivakit.kernel.messaging.messages.lifecycle.OperationFailed;
 import com.telenav.kivakit.kernel.messaging.messages.lifecycle.OperationHalted;
 import com.telenav.kivakit.kernel.messaging.messages.lifecycle.OperationStarted;
 import com.telenav.kivakit.kernel.messaging.messages.lifecycle.OperationSucceeded;
-import com.telenav.kivakit.kernel.messaging.messages.status.Activity;
+import com.telenav.kivakit.kernel.messaging.messages.status.activity.Activity;
 import com.telenav.kivakit.kernel.messaging.messages.status.Alert;
 import com.telenav.kivakit.kernel.messaging.messages.status.CriticalAlert;
+import com.telenav.kivakit.kernel.messaging.messages.status.Glitch;
 import com.telenav.kivakit.kernel.messaging.messages.status.Information;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
-import com.telenav.kivakit.kernel.messaging.messages.status.Quibble;
 import com.telenav.kivakit.kernel.messaging.messages.status.Trace;
 import com.telenav.kivakit.kernel.messaging.messages.status.Warning;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageType;
@@ -73,6 +73,9 @@ public abstract class OperationMessage implements Named, Message
     private static NameMap<OperationMessage> messages;
 
     private static final ReentrancyTracker reentrancy = new ReentrancyTracker();
+
+    /** This flag can be helpful in detecting infinite recursion of message formatting */
+    private static final boolean DETECT_REENTRANCY = false;
 
     public static OperationMessage of(final String name)
     {
@@ -190,7 +193,7 @@ public abstract class OperationMessage implements Named, Message
         {
             try
             {
-                if (reentrancy.enter())
+                if (reentrancy.enter() && DETECT_REENTRANCY)
                 {
                     formattedMessage = "Re-entrant message formatting detected. This could result in infinite recursion: '" + message + "'";
                 }
@@ -294,7 +297,7 @@ public abstract class OperationMessage implements Named, Message
 
     private static void initialize()
     {
-        // Prepopulate the name map
+        // Pre-populate the name map
 
         // Lifecycle messages
         new OperationStarted();
@@ -308,7 +311,7 @@ public abstract class OperationMessage implements Named, Message
         new CriticalAlert();
         new Information();
         new Problem();
-        new Quibble();
+        new Glitch();
         new Trace();
         new Warning();
     }

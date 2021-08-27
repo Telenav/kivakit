@@ -76,7 +76,10 @@ public class ObjectPopulator
             }
             else
             {
-                listener.warning("No value found for property: $", property.name());
+                if (!property.isOptional())
+                {
+                    listener.warning("No value found for property: $", property.name());
+                }
             }
         }
 

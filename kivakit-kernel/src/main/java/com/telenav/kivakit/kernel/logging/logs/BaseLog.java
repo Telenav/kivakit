@@ -23,7 +23,7 @@ import com.telenav.kivakit.kernel.interfaces.lifecycle.Startable;
 import com.telenav.kivakit.kernel.interfaces.lifecycle.Stoppable;
 import com.telenav.kivakit.kernel.language.collections.map.count.CountMap;
 import com.telenav.kivakit.kernel.language.primitives.Booleans;
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.language.strings.Plural;
 import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
 import com.telenav.kivakit.kernel.language.threading.RepeatingKivaKitThread;

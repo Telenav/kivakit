@@ -29,7 +29,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 /**
  * A message object that can be transmitted with a {@link Broadcaster} and received by a {@link Listener}. Although
  * {@link Message} is the primary implementor {@link Transmittable} any class can implement this interface and
- * participate in the broadcaster / listener framework.
+ * participate in the messaging framework.
  *
  * @author jonathanl (shibo)
  */

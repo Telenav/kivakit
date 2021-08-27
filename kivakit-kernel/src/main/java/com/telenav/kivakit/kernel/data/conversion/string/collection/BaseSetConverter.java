@@ -63,7 +63,7 @@ public abstract class BaseSetConverter<T> extends BaseCollectionConverter<Set<T>
         final var list = new StringList();
         for (final var element : value)
         {
-            list.add(converter.toString(element));
+            list.add(converter.unconvert(element));
         }
         sort(list);
         return list;

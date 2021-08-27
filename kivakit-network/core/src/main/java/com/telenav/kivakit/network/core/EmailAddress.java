@@ -67,7 +67,7 @@ public class EmailAddress
         }
 
         @Override
-        protected EmailAddress onConvertToObject(final String value)
+        protected EmailAddress onToValue(final String value)
         {
             return parse(value);
         }

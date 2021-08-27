@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.interfaces.io;
 
+import com.telenav.kivakit.kernel.language.io.IO;
 import com.telenav.kivakit.kernel.language.io.ProgressiveOutput;
 import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.kernel.language.values.count.Count;
@@ -56,7 +57,7 @@ public interface Writable
      */
     default OutputStream openForWriting()
     {
-        return onOpenForWriting();
+        return openForWriting(ProgressReporter.NULL);
     }
 
     /**
@@ -70,6 +71,6 @@ public interface Writable
      */
     default OutputStream openForWriting(final ProgressReporter reporter)
     {
-        return new ProgressiveOutput(onOpenForWriting(), reporter);
+        return new ProgressiveOutput(IO.buffer(onOpenForWriting()), reporter);
     }
 }

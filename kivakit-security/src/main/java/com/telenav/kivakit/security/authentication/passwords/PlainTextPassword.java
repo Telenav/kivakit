@@ -58,7 +58,7 @@ public class PlainTextPassword implements Password, AsString
         }
 
         @Override
-        protected Password onConvertToObject(final String value)
+        protected Password onToValue(final String value)
         {
             return parse(value);
         }

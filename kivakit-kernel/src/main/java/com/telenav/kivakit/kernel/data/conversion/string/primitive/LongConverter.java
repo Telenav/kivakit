@@ -47,7 +47,7 @@ public class LongConverter extends BaseStringConverter<Long>
      */
     @Override
     @UmlExcludeMember
-    protected Long onConvertToObject(final String value)
+    protected Long onToValue(final String value)
     {
         return Long.parseLong(value);
     }

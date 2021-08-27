@@ -10,7 +10,7 @@
     <parent>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-network</artifactId>
-        <version>0.9.8-beta</version>
+        <version>1.0.0</version>
     </parent>
 
     <name>KivaKit - Network - FTP</name>
@@ -26,11 +26,6 @@
         <dependency>
             <groupId>com.telenav.kivakit</groupId>
             <artifactId>kivakit-network-core</artifactId>
-            <version>${kivakit.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-resource</artifactId>
             <version>${kivakit.version}</version>
         </dependency>
 

@@ -369,7 +369,7 @@ public class Count implements Countable, Comparable<Count>, Quantizable, AsStrin
         }
 
         @Override
-        protected Count onConvertToObject(final String value)
+        protected Count onToValue(final String value)
         {
             return parse(value);
         }

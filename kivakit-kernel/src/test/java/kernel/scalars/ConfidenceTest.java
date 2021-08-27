@@ -18,7 +18,7 @@
 
 package kernel.scalars;
 
-import com.telenav.kivakit.kernel.data.validation.reporters.ValidationFailure;
+import com.telenav.kivakit.kernel.data.validation.ensure.reporters.ValidationFailure;
 import com.telenav.kivakit.kernel.language.values.level.Confidence;
 import org.junit.Test;
 

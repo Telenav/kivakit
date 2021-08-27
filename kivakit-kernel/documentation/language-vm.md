@@ -17,8 +17,7 @@
 
 ### Summary <a name="summary"></a>
 
-This package contains classes relevant to the Java virtual machine (VM), the operating system  
-it runs on, and the processes that run on the OS.
+This package contains classes relevant to the Java virtual machine (VM), the operating system it runs on, and the processes that run on the OS.
 
 ### The Java Virtual Machine
 
@@ -30,9 +29,7 @@ The class *JavaVirtualMachine* provides access to:
 * VM health in the form of *JavaVirtualMachineHealth*
 * Information about resources such as free memory and processors
 
-In addition, the *KivaShutdownHook* provides basic ordered execution of Java shutdown hooks  
-as one of the set of 'first' executed hooks or one of the set of 'last' shutdown hooks.  
-The idea is to provide the ability to ensure that one of two (or more) hooks runs before the  
+In addition, the *KivaShutdownHook* provides basic ordered execution of Java shutdown hooks as one of the set of 'first' executed hooks or one of the set of 'last' shutdown hooks. The idea is to provide the ability to ensure that one of two (or more) hooks runs before the  
 other(s).
 
 ### The Operating System

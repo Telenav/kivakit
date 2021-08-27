@@ -18,21 +18,21 @@
 
 package com.telenav.kivakit.kernel.data.validation;
 
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitExcludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.KivaKitExcludeProperty;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataValidation;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 /**
- * An object that is {@link Validatable} can create a {@link Validator} for a given kind of {@link Validation}.
+ * An object that is {@link Validatable} can create a {@link Validator} for a given kind of {@link ValidationType}.
  *
  * @author jonathanl (shibo)
  * @see Validator
- * @see Validation
+ * @see ValidationType
  */
 @UmlClassDiagram(diagram = DiagramDataValidation.class)
-@UmlRelation(label = "how to validate", referent = Validation.class)
+@UmlRelation(label = "how to validate", referent = ValidationType.class)
 @UmlRelation(label = "provides", referent = Validator.class)
 public interface Validatable
 {
@@ -59,16 +59,16 @@ public interface Validatable
 
     /**
      * @return A validator for full validation, if any. Although it cannot be final, this method should not be
-     * overridden. Instead, override {@link #validator(Validation)}
+     * overridden. Instead, override {@link #validator(ValidationType)}
      */
     default Validator validator()
     {
-        return validator(Validation.VALIDATE_ALL);
+        return validator(ValidationType.VALIDATE_ALL);
     }
 
     /**
      * @param type The type of validation to perform
-     * @return A new {@link Validator} instance
+     * @return A {@link Validator} instance
      */
-    Validator validator(Validation type);
+    Validator validator(ValidationType type);
 }

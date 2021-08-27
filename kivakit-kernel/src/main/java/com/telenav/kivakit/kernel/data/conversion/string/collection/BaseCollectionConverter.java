@@ -64,30 +64,30 @@ public abstract class BaseCollectionConverter<T> extends BaseStringConverter<T>
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected final T onConvertToObject(final String value)
-    {
-        return onConvertToObject(StringList.split(value, delimiter()));
-    }
-
-    /**
      * @return A collection from the given list of strings
      */
     protected abstract T onConvertToObject(StringList list);
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected final String onConvertToString(final T value)
-    {
-        return onConvertToStringList(value).join(delimiter);
-    }
-
-    /**
      * @return A list of strings from the given collection
      */
     protected abstract StringList onConvertToStringList(T value);
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected final T onToValue(final String value)
+    {
+        return onConvertToObject(StringList.split(value, delimiter()));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected final String onToString(final T value)
+    {
+        return onConvertToStringList(value).join(delimiter);
+    }
 }

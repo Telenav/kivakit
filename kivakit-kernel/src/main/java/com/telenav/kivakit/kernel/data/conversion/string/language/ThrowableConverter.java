@@ -46,7 +46,7 @@ public class ThrowableConverter extends BaseStringConverter<Throwable>
      * {@inheritDoc}
      */
     @Override
-    protected Throwable onConvertToObject(final String value)
+    protected Throwable onToValue(final String value)
     {
         return null;
     }
@@ -55,7 +55,7 @@ public class ThrowableConverter extends BaseStringConverter<Throwable>
      * {@inheritDoc}
      */
     @Override
-    protected String onConvertToString(final Throwable throwable)
+    protected String onToString(final Throwable throwable)
     {
         if (throwable != null)
         {

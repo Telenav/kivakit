@@ -247,7 +247,7 @@ public class Duration implements Comparable<Duration>, AsString
          * {@inheritDoc}
          */
         @Override
-        protected Duration onConvertToObject(final String value)
+        protected Duration onToValue(final String value)
         {
             final var matcher = PATTERN.matcher(value);
             if (matcher.matches())
@@ -313,7 +313,7 @@ public class Duration implements Comparable<Duration>, AsString
         }
 
         @Override
-        protected Duration onConvertToObject(final String value)
+        protected Duration onToValue(final String value)
         {
             final var milliseconds = longConverter.convert(value);
             return milliseconds == null ? null : milliseconds(milliseconds);
@@ -334,7 +334,7 @@ public class Duration implements Comparable<Duration>, AsString
         }
 
         @Override
-        protected Duration onConvertToObject(final String value)
+        protected Duration onToValue(final String value)
         {
             final var seconds = Double.parseDouble(value);
             if (seconds >= 0)
@@ -829,6 +829,6 @@ public class Duration implements Comparable<Duration>, AsString
      */
     private String unitString(final double value, final String units)
     {
-        return new FormattedDoubleConverter(LOGGER).toString(value) + " " + units + (value > 1.0 ? "s" : "");
+        return new FormattedDoubleConverter(LOGGER).unconvert(value) + " " + units + (value > 1.0 ? "s" : "");
     }
 }

@@ -21,7 +21,7 @@ package com.telenav.kivakit.kernel.language.threading.context;
 import com.telenav.kivakit.kernel.interfaces.value.Source;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.kernel.language.reflection.Method;
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.language.types.Classes;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageThread;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.vm;
 
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
 import com.telenav.kivakit.kernel.language.threading.status.ThreadSnapshot;
 import com.telenav.kivakit.kernel.language.time.Duration;

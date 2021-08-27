@@ -22,7 +22,7 @@ import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.language.objects.Hash;
 import com.telenav.kivakit.kernel.language.objects.Objects;
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
@@ -65,7 +65,7 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
         }
 
         @Override
-        protected NetworkLocation onConvertToObject(final String value)
+        protected NetworkLocation onToValue(final String value)
         {
             try
             {

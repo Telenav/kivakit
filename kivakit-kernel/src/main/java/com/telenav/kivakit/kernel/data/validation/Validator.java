@@ -18,8 +18,6 @@
 
 package com.telenav.kivakit.kernel.data.validation;
 
-import com.telenav.kivakit.kernel.data.validation.listeners.ValidationIssues;
-import com.telenav.kivakit.kernel.data.validation.validators.BaseValidator;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.Transceiver;

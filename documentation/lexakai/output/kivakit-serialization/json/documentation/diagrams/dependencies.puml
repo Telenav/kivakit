@@ -1,0 +1,27 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "kivakit-serialization-json"
+    
+    artifact jackson_annotations
+    artifact gson
+    artifact cactus_build_metadata
+    artifact kivakit_kernel
+    artifact kivakit_serialization_json
+    artifact lexakai_annotations
+    artifact swagger_annotations
+    artifact junit
+    artifact hamcrest_core
+    artifact annotations
+    junit --> hamcrest_core
+    kivakit_kernel --> annotations
+    kivakit_kernel --> cactus_build_metadata
+    kivakit_kernel --> jackson_annotations
+    kivakit_kernel --> junit
+    kivakit_kernel --> lexakai_annotations
+    kivakit_kernel --> swagger_annotations
+    kivakit_serialization_json --> gson
+    kivakit_serialization_json --> kivakit_kernel
+    
+@enduml

@@ -23,7 +23,7 @@ import com.telenav.kivakit.serialization.kryo.KryoTypes;
 import com.telenav.kivakit.serialization.kryo.KryoUnitTest;
 
 /**
- * This is the base test class for all unit tests. It provides some methods common to all tests.
+ * This is the base class for collections unit tests.
  *
  * @author jonathanl (shibo)
  */

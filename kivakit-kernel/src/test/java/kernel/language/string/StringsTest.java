@@ -18,7 +18,7 @@
 
 package kernel.language.string;
 
-import com.telenav.kivakit.kernel.data.validation.reporters.ValidationFailure;
+import com.telenav.kivakit.kernel.data.validation.ensure.reporters.ValidationFailure;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.iteration.Iterables;
 import com.telenav.kivakit.kernel.language.strings.Align;

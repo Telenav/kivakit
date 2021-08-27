@@ -22,8 +22,8 @@ import com.telenav.kivakit.kernel.data.conversion.string.StringConverter;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataConversionOther;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
  * Converts between lists of objects and comma delimited strings.
@@ -64,7 +64,7 @@ public abstract class BaseListConverter<T> extends BaseCollectionConverter<Objec
         final var list = new StringList();
         for (final var value : values)
         {
-            list.addIfNotNull(converter.toString(value));
+            list.addIfNotNull(converter.unconvert(value));
         }
         return list;
     }

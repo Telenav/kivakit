@@ -1,8 +1,10 @@
 open module kivakit.collections
 {
+    // KivaKit
     requires transitive kivakit.serialization.kryo;
     requires transitive kivakit.test;
 
+    // Module exports
     exports com.telenav.kivakit.collections.iteration.iterables;
     exports com.telenav.kivakit.collections.iteration.iterators;
     exports com.telenav.kivakit.collections.map;

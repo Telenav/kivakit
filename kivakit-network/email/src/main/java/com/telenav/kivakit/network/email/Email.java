@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.network.email;
 
+import com.telenav.kivakit.kernel.data.validation.BaseValidator;
 import com.telenav.kivakit.kernel.data.validation.Validatable;
-import com.telenav.kivakit.kernel.data.validation.Validation;
+import com.telenav.kivakit.kernel.data.validation.ValidationType;
 import com.telenav.kivakit.kernel.data.validation.Validator;
-import com.telenav.kivakit.kernel.data.validation.validators.BaseValidator;
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.language.values.count.Count;
@@ -131,7 +131,7 @@ public class Email implements Validatable
     }
 
     @Override
-    public Validator validator(final Validation type)
+    public Validator validator(final ValidationType type)
     {
         return new BaseValidator()
         {

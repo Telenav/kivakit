@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
+import com.telenav.kivakit.kernel.language.reflection.property.NamingConvention;
 import com.telenav.kivakit.kernel.language.reflection.property.filters.field.AllFields;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.lang.reflect.Field;
-import java.util.Collections;
 
 /**
  * A filter that matches all fields annotated with {@link KivaKitArchivedField}
@@ -32,9 +32,9 @@ import java.util.Collections;
 @LexakaiJavadoc(complete = true)
 class ArchivedFields extends AllFields
 {
-    public ArchivedFields()
+    public ArchivedFields(final NamingConvention convention)
     {
-        super(Collections.emptySet());
+        super(convention);
     }
 
     @Override

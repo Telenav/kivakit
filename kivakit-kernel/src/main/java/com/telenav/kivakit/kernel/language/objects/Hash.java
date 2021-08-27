@@ -184,6 +184,11 @@ public class Hash
         return result;
     }
 
+    public static int identity(final Object object)
+    {
+        return System.identityHashCode(object);
+    }
+
     public static int knuth(final int value)
     {
         return (int) Math.abs(value * KNUTH_SEED);

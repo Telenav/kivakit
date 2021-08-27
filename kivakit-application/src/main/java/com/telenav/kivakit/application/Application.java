@@ -25,14 +25,11 @@ import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.CommandLine;
 import com.telenav.kivakit.commandline.CommandLineParser;
 import com.telenav.kivakit.commandline.SwitchParser;
-import com.telenav.kivakit.configuration.ConfigurationSet;
-import com.telenav.kivakit.configuration.deployment.Deployment;
-import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
-import com.telenav.kivakit.configuration.lookup.Registry;
-import com.telenav.kivakit.configuration.settings.Settings;
+import com.telenav.kivakit.component.BaseComponent;
+import com.telenav.kivakit.configuration.settings.deployment.Deployment;
+import com.telenav.kivakit.configuration.settings.deployment.DeploymentSet;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.language.collections.set.Sets;
 import com.telenav.kivakit.kernel.language.locales.Locale;
 import com.telenav.kivakit.kernel.language.strings.Align;
@@ -45,19 +42,17 @@ import com.telenav.kivakit.kernel.language.vm.KivaKitShutdownHook;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.logging.logs.BaseLog;
-import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.kernel.messaging.filters.AllMessages;
 import com.telenav.kivakit.kernel.messaging.filters.SeverityGreaterThanOrEqualTo;
-import com.telenav.kivakit.kernel.messaging.messages.status.Quibble;
+import com.telenav.kivakit.kernel.messaging.messages.status.Glitch;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.kernel.project.Project;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.resources.other.PropertyMap;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.UmlNote;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
@@ -67,6 +62,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -75,6 +71,13 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
 
 /**
  * Base class for KivaKit applications. Handles command line parsing, project initialization and configuration.
+ *
+ * <p><b>Messaging</b></p>
+ *
+ * <p>
+ * Because this class extends {@link BaseRepeater} and has a {@link Logger} that listens to the application class, all
+ * {@link Application}s automatically inherit logging functionality via the convenience methods in {@link Repeater}.
+ * </p>
  *
  * <p><b>Startup</b></p>
  *
@@ -138,52 +141,6 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  *     <li>Call the application implementation in {@link #onRun()}</li>
  * </ol>
  *
- * <p><b>Settings</b></p>
- *
- * <p>
- * Settings for any configurable object can be retrieved with {@link #settings(Class)}, as described in {@link Settings}.
- * This provides a simplified interface to load settings objects specified by the user while also allowing for default
- * settings when they are not specified.
- * </p>
- *
- * <ul>
- *     <li>{@link #settings(Class)} - A settings object of the specified class</li>
- * </ul>
- *
- * <p><b>Configuration</b></p>
- *
- * <p>
- * For convenience and brevity, access to the global {@link ConfigurationSet} is provided:
- * </p>
- *
- * <ul>
- *     <li>{@link #addDeployment(Deployment)} - Adds the configuration objects for the given deployment</li>
- *     <li>{@link #addConfiguration(Object)}  - Adds the given configuration object</li>
- *     <li>{@link #addConfiguration(Object, InstanceIdentifier)} - Adds the configuration object to configure the given instance</li>
- *     <li>{@link #configuration(Class)} - Get the configuration object of the given type</li>
- *     <li>{@link #configuration(Class, InstanceIdentifier)} - Get the configuration object to configure the given instance</li>
- *     <li>{@link #requireConfiguration(Class)} - Gets the given configuration object or fails</li>
- *     <li>{@link #requireConfiguration(Class, InstanceIdentifier)} - Gets the configuration object for the given instance or fails</li>
- * </ul>
- *
- * <p><b>Registry Lookups</b></p>
- *
- * <p>
- * Access to the global object {@link Registry} is provided and fulfills basic needs for object wiring:
- * </p>
- *
- * <ul>
- *     <li>{@link #locate(Class)} - Find the class of the given type</li>
- *     <li>{@link #register(Object)} - Register the given singleton object for lookup</li>
- * </ul>
- *
- * <p><b>Messaging</b></p>
- *
- * <p>
- * Because this class extends {@link BaseRepeater} and has a {@link Logger} that listens to the application class, all
- * {@link Application}s automatically inherit logging functionality via the convenience methods in {@link Repeater}.
- * </p>
- *
  * @author jonathanl (shibo)
  * @see BaseRepeater
  * @see CommandLine
@@ -192,13 +149,13 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramApplication.class)
-@UmlNote(text = "See kivakit-core-configuration for details on application configuration")
 @LexakaiJavadoc(complete = true)
-public abstract class Application extends BaseRepeater implements Named, ApplicationMetadata
+public abstract class Application extends BaseComponent implements Named, ApplicationMetadata
 {
     /** The one and only application running in this process */
     private static Application instance;
 
+    /** The default final destination for messages that bubble up to the application level */
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
     /**
@@ -231,13 +188,6 @@ public abstract class Application extends BaseRepeater implements Named, Applica
         }
     }
 
-    @UmlExcludeMember
-    protected final SwitchParser<Boolean> QUIET =
-            booleanSwitchParser("quiet", "Minimize output")
-                    .optional()
-                    .defaultValue(false)
-                    .build();
-
     /** The project that this application uses */
     @UmlAggregation(label = "initializes and uses")
     private final Project project;
@@ -246,12 +196,22 @@ public abstract class Application extends BaseRepeater implements Named, Applica
     @UmlAggregation
     private CommandLine commandLine;
 
+    /** Switch parser to specify deployment settings */
+    private SwitchParser<Deployment> DEPLOYMENT;
+
+    @UmlExcludeMember
+    protected final SwitchParser<Boolean> QUIET =
+            booleanSwitchParser("quiet", "Minimize output")
+                    .optional()
+                    .defaultValue(false)
+                    .build();
+
     /**
      * @param projects One or more projects to initialize
      */
     protected Application(final Project... projects)
     {
-        Registry.global().register(this);
+        registerObject(this);
 
         instance = this;
         if (projects.length == 1)
@@ -269,40 +229,6 @@ public abstract class Application extends BaseRepeater implements Named, Applica
                 }
             };
         }
-    }
-
-    /**
-     * Adds the given configuration object. The object can be retrieved with {@link #configuration(Class)} or by calling
-     * {@link ConfigurationSet#get(Class)} on the global configuration store retrieved with {@link
-     * ConfigurationSet#global()}.
-     */
-    public void addConfiguration(final Object configuration)
-    {
-        ConfigurationSet.global().add(configuration);
-    }
-
-    /**
-     * Adds a configuration object for the given instance. The object can be retrieved with {@link #configuration(Class,
-     * InstanceIdentifier)} or by calling {@link ConfigurationSet#get(Class, InstanceIdentifier)} on the global
-     * configuration store retrieved with {@link Deployment#global()}.
-     */
-    public void addConfiguration(final Object configuration, final InstanceIdentifier instance)
-    {
-        ConfigurationSet.global().add(configuration, instance);
-    }
-
-    /**
-     * Adds the set of configuration objects from the given {@link Deployment}
-     */
-    public void addDeployment(final Deployment deployment)
-    {
-        ConfigurationSet.global().addDeployment(deployment);
-    }
-
-    @UmlExcludeMember
-    public void announce()
-    {
-        announce(commandLineDescription(name()));
     }
 
     /**
@@ -356,12 +282,12 @@ public abstract class Application extends BaseRepeater implements Named, Applica
                 box.add(AsciiArt.repeat(4, ' ') + "$. $", number++, argument.value());
             }
         }
-        if (!switchParsers().isEmpty())
+        if (!internalSwitchParsers().isEmpty())
         {
             box.add("");
             box.add("Switches:");
             box.add("");
-            final var sorted = new ArrayList<>(switchParsers());
+            final var sorted = new ArrayList<>(internalSwitchParsers());
             sorted.sort(Comparator.comparing(SwitchParser::name));
             final var width = new StringList(sorted).longest().asInt();
             for (final var switchParser : sorted)
@@ -372,22 +298,6 @@ public abstract class Application extends BaseRepeater implements Named, Applica
         }
         box.add("");
         return box.titledBox(title);
-    }
-
-    /**
-     * @return The configuration object of the given type, if any exists
-     */
-    public <T> T configuration(final Class<T> type)
-    {
-        return Deployment.global().get(type);
-    }
-
-    /**
-     * @return The configuration object of the given type for the given instance to be configured, if any exists
-     */
-    public <T> T configuration(final Class<T> type, final InstanceIdentifier instance)
-    {
-        return Deployment.global().get(type, instance);
     }
 
     /**
@@ -444,15 +354,7 @@ public abstract class Application extends BaseRepeater implements Named, Applica
 
     public PropertyMap localizedProperties(final Locale locale)
     {
-        return PropertyMap.localized(packagePath(), locale);
-    }
-
-    /**
-     * @return The object of the given type from the global {@link Registry}, if any
-     */
-    public <T> T locate(final Class<T> type)
-    {
-        return Registry.global().lookup(type);
+        return PropertyMap.localized(this, packagePath(), locale);
     }
 
     public Project project()
@@ -460,33 +362,9 @@ public abstract class Application extends BaseRepeater implements Named, Applica
         return project;
     }
 
-    public VariableMap<String> properties()
+    public PropertyMap properties()
     {
-        return project.properties();
-    }
-
-    /**
-     * Registers the given object with the global {@link Registry}
-     */
-    public void register(final Object object)
-    {
-        Registry.global().register(object);
-    }
-
-    /**
-     * @return The configuration object of the given type or failure if it doesn't exist
-     */
-    public <T> T requireConfiguration(final Class<T> type)
-    {
-        return Deployment.global().require(type);
-    }
-
-    /**
-     * @return The configuration object of the given type to configure the given instance or failure if it doesn't exist
-     */
-    public <T> T requireConfiguration(final Class<T> type, final InstanceIdentifier instance)
-    {
-        return Deployment.global().require(type, instance);
+        return PropertyMap.of(project().properties());
     }
 
     /**
@@ -495,7 +373,7 @@ public abstract class Application extends BaseRepeater implements Named, Applica
      * <ol>
      *     <li>{@link #onRunning()} is called to indicate that running is about to start</li>
      *     <li>Command line arguments are validated and parsed into a {@link CommandLine}</li>
-     *     <li>{@link #onConfigureOutput()} is called to allow redirection of output</li>
+     *     <li>{@link #onConfigureListeners()} is called to allow redirection of output</li>
      *     <li>{@link #onProjectInitializing()} is called before the {@link Project} for this application is initialized</li>
      *     <li>{@link Project#initialize()} is called</li>
      *     <li>{@link #onProjectInitialized()} is called</li>
@@ -508,7 +386,16 @@ public abstract class Application extends BaseRepeater implements Named, Applica
      */
     public final void run(final String[] arguments)
     {
+        // Signal that we're about to start running,
         onRunning();
+
+        // set up temporary listener,
+        LOGGER.listenTo(this);
+
+        // load deployments and build switch parser for selecting a deployment.
+        DEPLOYMENT = DeploymentSet.load(this, getClass()).switchParser("deployment")
+                .required()
+                .build();
 
         // Go through arguments
         final var argumentList = new StringList();
@@ -520,7 +407,7 @@ public abstract class Application extends BaseRepeater implements Named, Applica
                 // then load properties from the resource
                 final var resourceIdentifier = Strip.leading(argument, "-switches=");
                 final var resource = Resource.resolve(resourceIdentifier);
-                final var properties = PropertyMap.load(resource);
+                final var properties = PropertyMap.load(this, resource);
 
                 // and add those properties to the argument list
                 for (final var key : properties.keySet())
@@ -538,12 +425,22 @@ public abstract class Application extends BaseRepeater implements Named, Applica
 
         // then parse the command line arguments.
         commandLine = new CommandLineParser(this)
-                .addSwitchParsers(switchParsers())
+                .addSwitchParsers(internalSwitchParsers())
                 .addArgumentParsers(argumentParsers())
                 .parse(argumentList.asStringArray());
 
-        onConfigureOutput();
+        // Remove temporary logger and allow subclass to configure output streams,
+        clearListeners();
+        onConfigureListeners();
 
+        // and if a deployment was specified,
+        if (has(DEPLOYMENT))
+        {
+            // install it in the global settings registry.
+            get(DEPLOYMENT).install();
+        }
+
+        // Initialize this application's project
         onProjectInitializing();
         project.initialize();
         onProjectInitialized();
@@ -553,6 +450,7 @@ public abstract class Application extends BaseRepeater implements Named, Applica
 
         try
         {
+            // Run the application's code
             onRun();
         }
         catch (final Exception e)
@@ -573,12 +471,10 @@ public abstract class Application extends BaseRepeater implements Named, Applica
         onRan();
     }
 
-    /**
-     * @return The settings object of the given configuration type
-     */
-    public <T> T settings(final Class<T> type)
+    @UmlExcludeMember
+    public void showCommandLine()
     {
-        return Settings.require(type);
+        announce(commandLineDescription(name()));
     }
 
     /**
@@ -602,9 +498,9 @@ public abstract class Application extends BaseRepeater implements Named, Applica
      * Configures output of the application
      */
     @UmlExcludeMember
-    protected void onConfigureOutput()
+    protected void onConfigureListeners()
     {
-        output(LOGGER);
+        configureLogging();
     }
 
     /**
@@ -646,25 +542,34 @@ public abstract class Application extends BaseRepeater implements Named, Applica
     }
 
     /**
-     * Sets output for the application to go to the given listener. This is the same in an application as
-     * LOGGER.listenTo(this), but this method adds a filter which reduces output to a minimum if the -quiet=true switch
-     * is set (the switch must be added to the return value of {@link #switchParsers()}).
-     */
-    @UmlExcludeMember
-    protected void output(final Listener listener)
-    {
-        final var filter = get(QUIET)
-                ? new SeverityGreaterThanOrEqualTo(new Quibble().severity())
-                : new AllMessages();
-
-        listener.listenTo(this, filter);
-    }
-
-    /**
      * @return The switch parsers for this application
      */
     protected Set<SwitchParser<?>> switchParsers()
     {
         return Sets.empty();
+    }
+
+    /**
+     * Sets output for the application to go to the application logger. This is the same in an application as
+     * LOGGER.listenTo(this), but this method adds a filter which reduces output to a minimum if the -quiet=true switch
+     * is set (the switch must be added to the return value of {@link #switchParsers()}).
+     */
+    @UmlExcludeMember
+    private void configureLogging()
+    {
+        final var filter = get(QUIET)
+                ? new SeverityGreaterThanOrEqualTo(new Glitch().severity())
+                : new AllMessages();
+
+        LOGGER.listenTo(this, filter);
+    }
+
+    private Set<SwitchParser<?>> internalSwitchParsers()
+    {
+        var parsers = new HashSet<SwitchParser<?>>();
+        parsers.add(DEPLOYMENT);
+        parsers.add(QUIET);
+        parsers.addAll(switchParsers());
+        return parsers;
     }
 }

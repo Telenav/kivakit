@@ -10,7 +10,7 @@
     <parent>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit</artifactId>
-        <version>0.9.8-beta</version>
+        <version>1.0.0</version>
     </parent>
 
     <name>KivaKit - Serialization</name>

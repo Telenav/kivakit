@@ -199,7 +199,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource
         }
         catch (final Exception e)
         {
-            throw new IllegalStateException("Can't open input stream", e);
+            illegalState(e, "Can't open input stream");
         }
         return null;
     }

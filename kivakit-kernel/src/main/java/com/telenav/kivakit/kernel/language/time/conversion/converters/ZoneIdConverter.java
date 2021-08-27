@@ -16,7 +16,7 @@ public class ZoneIdConverter extends BaseStringConverter<ZoneId>
     }
 
     @Override
-    protected ZoneId onConvertToObject(final String value)
+    protected ZoneId onToValue(final String value)
     {
         return ZoneId.of(value);
     }

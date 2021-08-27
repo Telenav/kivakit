@@ -62,7 +62,7 @@ import static com.telenav.kivakit.kernel.language.threading.status.WakeState.TIM
  */
 @UmlClassDiagram(diagram = DiagramLanguageThreadSynchronization.class)
 @LexakaiJavadoc(complete = true)
-public class StateWatcher<State>
+public final class StateWatcher<State>
 {
     /**
      * A thread that is waiting for its predicate to be satisfied
@@ -75,16 +75,22 @@ public class StateWatcher<State>
 
         /** The condition variable to wait on and signal */
         Condition condition;
+
+        private Waiter(final Predicate<State> predicate, final Condition condition)
+        {
+            this.predicate = predicate;
+            this.condition = condition;
+        }
     }
 
     /** The re-entrant lock */
-    final transient Lock lock = new Lock();
+    private final Lock lock = new Lock();
 
     /** The clients waiting for a predicate to be satisfied */
     private final List<Waiter> waiters = new ArrayList<>();
 
     /** The most recently reported state */
-    private volatile State current;
+    private State current;
 
     public StateWatcher(final State current)
     {
@@ -143,9 +149,7 @@ public class StateWatcher<State>
             }
 
             // otherwise, add ourselves as a waiter,
-            final var waiter = new Waiter();
-            waiter.predicate = predicate;
-            waiter.condition = lock.newCondition();
+            final var waiter = new Waiter(predicate, lock.newCondition());
             waiters.add(waiter);
 
             try

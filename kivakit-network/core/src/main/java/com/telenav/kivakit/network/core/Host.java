@@ -25,7 +25,7 @@ import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.objects.reference.ExpiringReference;
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
@@ -115,18 +115,18 @@ public class Host implements Named, AsString, Comparable<Host>
 
     public static Host NONE = new Host("None");
 
-    public static SwitchParser.Builder<Host> host(final String name, final String description)
+    public static SwitchParser.Builder<ObjectList<Host>> hostListSwitchParser(
+            final String name, final String description, final String delimiter)
+    {
+        return listSwitchParser(name, description, new Host.Converter(LOGGER), Host.class, delimiter);
+    }
+
+    public static SwitchParser.Builder<Host> hostSwitchParser(final String name, final String description)
     {
         return builder(Host.class)
                 .name(name)
                 .converter(new Host.Converter(LOGGER))
                 .description(description);
-    }
-
-    public static SwitchParser.Builder<ObjectList<Host>> hostList(
-            final String name, final String description, final String delimiter)
-    {
-        return listSwitchParser(name, description, new Host.Converter(LOGGER), Host.class, delimiter);
     }
 
     public static Host local()
@@ -139,7 +139,8 @@ public class Host implements Named, AsString, Comparable<Host>
         return Loopback.get();
     }
 
-    public static SwitchParser.Builder<NetworkPath> networkFilePath(final String name, final String description)
+    public static SwitchParser.Builder<NetworkPath> networkFilePathSwitchParser(final String name,
+                                                                                final String description)
     {
         return builder(NetworkPath.class)
                 .name(name)
@@ -157,19 +158,19 @@ public class Host implements Named, AsString, Comparable<Host>
         return new Host(name, description);
     }
 
-    public static SwitchParser.Builder<Port> port(final String name, final String description)
+    public static SwitchParser.Builder<ObjectList<Port>> portListSwitchParser(final String name,
+                                                                              final String description,
+                                                                              final String delimiter)
+    {
+        return listSwitchParser(name, description, new Port.Converter(LOGGER), Port.class, delimiter);
+    }
+
+    public static SwitchParser.Builder<Port> portSwitchParser(final String name, final String description)
     {
         return builder(Port.class)
                 .name(name)
                 .converter(new Port.Converter(LOGGER))
                 .description(description);
-    }
-
-    public static SwitchParser.Builder<ObjectList<Port>> portList(final String name,
-                                                                  final String description,
-                                                                  final String delimiter)
-    {
-        return listSwitchParser(name, description, new Port.Converter(LOGGER), Port.class, delimiter);
     }
 
     /**
@@ -186,7 +187,7 @@ public class Host implements Named, AsString, Comparable<Host>
         }
 
         @Override
-        protected Host onConvertToObject(final String value)
+        protected Host onToValue(final String value)
         {
             return parse(value);
         }

@@ -21,7 +21,7 @@ package com.telenav.kivakit.commandline;
 import com.telenav.kivakit.commandline.parsing.SwitchList;
 import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramCommandLine;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.language.strings.AsciiArt;
 import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
@@ -152,7 +152,7 @@ public class CommandLine implements AsString, Iterable<Argument>
     /**
      * @return The non-switch argument at the given index parsed using the given argument parser
      */
-    @UmlRelation(label = "gets argument values")
+    @UmlRelation(label = "gets arguments")
     public <T> T argument(final int index, final ArgumentParser<T> parser)
     {
         return arguments().get(index).get(parser);
@@ -232,7 +232,7 @@ public class CommandLine implements AsString, Iterable<Argument>
     /**
      * @return The value of any switch on this command line for the given switch parser
      */
-    @UmlRelation(label = "gets switch values")
+    @UmlRelation(label = "gets switches")
     public <T> T get(final SwitchParser<T> parser)
     {
         // Get the value for the given parser,

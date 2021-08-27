@@ -89,7 +89,7 @@ public class Version
                 + "\\."
                 + "(?<minor> \\d+)"
                 + "(\\. (?<patch> \\d+))?"
-                + "(- (?<release> \\w+))?"
+                + "(- (?<release> \\w+))??"
                 + "(- (?<snapshot> SNAPSHOT))?", CASE_INSENSITIVE);
     }
 

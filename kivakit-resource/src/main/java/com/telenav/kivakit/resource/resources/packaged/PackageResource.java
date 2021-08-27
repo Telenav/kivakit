@@ -21,6 +21,8 @@ package com.telenav.kivakit.resource.resources.packaged;
 import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.language.modules.ModuleResource;
 import com.telenav.kivakit.kernel.language.modules.Modules;
+import com.telenav.kivakit.kernel.language.objects.Hash;
+import com.telenav.kivakit.kernel.language.objects.Objects;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.kernel.language.strings.Strip;
 import com.telenav.kivakit.kernel.language.time.Time;
@@ -175,6 +177,23 @@ public class PackageResource extends BaseReadableResource
     }
 
     @Override
+    public boolean equals(Object  object)
+    {
+        if (object instanceof PackageResource)
+        {
+            final var that = (PackageResource) object;
+            return Objects.equalPairs(_package, that._package, name, that.name);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Hash.many(_package, name);
+    }
+
+    @Override
     public boolean isPackaged()
     {
         return true;
@@ -209,9 +228,8 @@ public class PackageResource extends BaseReadableResource
         }
         catch (final IOException e)
         {
-            problem(e, "Unable to open package resource $", this);
+            return fatal(e, "Unable to open package resource $", this);
         }
-        return null;
     }
 
     /**

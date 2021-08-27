@@ -1,0 +1,17 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "com.telenav.kivakit.network.email.project"
+    
+    Project <|-- CoreNetworkEmailProject
+    class CoreNetworkEmailProject
+    {
+        --(constructors)--
+        #CoreNetworkEmailProject()
+        --(network)--
+        +CoreNetworkEmailProject get()
+    }
+    
+@enduml
+

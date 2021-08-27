@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.language.primitives.Ints;
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.language.strings.CaseFormat;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageValue;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;

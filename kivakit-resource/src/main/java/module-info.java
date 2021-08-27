@@ -26,10 +26,6 @@ import com.telenav.kivakit.resource.spi.ResourceResolver;
 
 open module kivakit.resource
 {
-    requires transitive kivakit.commandline;
-    requires transitive kivakit.serialization.core;
-    requires transitive kivakit.collections;
-
     uses FileSystemService;
     uses ResourceResolver;
     uses ResourceFolderResolver;
@@ -37,9 +33,14 @@ open module kivakit.resource
     provides ResourceResolver with File.Resolver, PackageResource.Resolver;
     provides ResourceFolderResolver with Folder.Resolver, Package.Resolver;
 
+    // KivaKit
+    requires transitive kivakit.commandline;
+    requires transitive kivakit.serialization.core;
+    requires transitive kivakit.collections;
+
+    // Module exports
     exports com.telenav.kivakit.filesystem.spi;
     exports com.telenav.kivakit.filesystem;
-
     exports com.telenav.kivakit.resource;
     exports com.telenav.kivakit.resource.compression;
     exports com.telenav.kivakit.resource.compression.archive;

@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.network.core;
 
+import com.telenav.kivakit.kernel.data.validation.BaseValidator;
 import com.telenav.kivakit.kernel.data.validation.Validatable;
-import com.telenav.kivakit.kernel.data.validation.Validation;
+import com.telenav.kivakit.kernel.data.validation.ValidationType;
 import com.telenav.kivakit.kernel.data.validation.Validator;
-import com.telenav.kivakit.kernel.data.validation.validators.BaseValidator;
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.network.core.project.lexakai.diagrams.DiagramNetworkLocation;
@@ -93,7 +93,7 @@ public class NetworkAccessConstraints implements Validatable
     }
 
     @Override
-    public Validator validator(final Validation type)
+    public Validator validator(final ValidationType type)
     {
         return new BaseValidator()
         {

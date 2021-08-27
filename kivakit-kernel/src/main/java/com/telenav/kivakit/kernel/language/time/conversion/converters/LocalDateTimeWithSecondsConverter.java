@@ -19,7 +19,7 @@
 package com.telenav.kivakit.kernel.language.time.conversion.converters;
 
 import com.telenav.kivakit.kernel.language.time.conversion.BaseFormattedLocalTimeConverter;
-import com.telenav.kivakit.kernel.language.time.conversion.TimeFormat;
+import com.telenav.kivakit.kernel.language.time.conversion.TimeFormats;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageTime;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -34,11 +34,11 @@ public class LocalDateTimeWithSecondsConverter extends BaseFormattedLocalTimeCon
 {
     public LocalDateTimeWithSecondsConverter(final Listener listener)
     {
-        super(listener, TimeFormat.DATE_TIME_WITH_SECONDS);
+        super(listener, TimeFormats.KIVAKIT_DATE_TIME_SECONDS);
     }
 
     public LocalDateTimeWithSecondsConverter(final Listener listener, final ZoneId zone)
     {
-        super(listener, TimeFormat.DATE_TIME_WITH_SECONDS, zone);
+        super(listener, TimeFormats.KIVAKIT_DATE_TIME_SECONDS, zone);
     }
 }

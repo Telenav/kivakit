@@ -247,7 +247,7 @@ public class Maximum extends Count
         }
 
         @Override
-        protected Maximum onConvertToObject(final String value)
+        protected Maximum onToValue(final String value)
         {
             return parse(value);
         }

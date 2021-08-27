@@ -24,8 +24,7 @@ import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageTime;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
@@ -36,20 +35,17 @@ import java.time.format.DateTimeFormatter;
 public class BaseFormattedConverter extends BaseStringConverter<LocalTime>
 {
     /** The date time formatter */
-    private final DateTimeFormatter formatter;
+    private DateTimeFormatter formatter;
 
     /** The local time zone */
     private ZoneId zone;
 
-    /** Which kind of formatting is going on */
-    private final TimeFormat format;
-
-    public BaseFormattedConverter(final Listener listener, final ZoneId zone,
-                                  final DateTimeFormatter formatter, final TimeFormat format)
+    public BaseFormattedConverter(final Listener listener,
+                                  final DateTimeFormatter formatter,
+                                  final ZoneId zone)
     {
         super(listener);
         this.zone = zone;
-        this.format = format;
         this.formatter = formatter;
     }
 
@@ -58,45 +54,32 @@ public class BaseFormattedConverter extends BaseStringConverter<LocalTime>
         return formatter.withZone(zone);
     }
 
-    @Override
-    protected LocalTime onConvertToObject(final String value)
+    public void formatter(final DateTimeFormatter formatter)
     {
-        switch (format)
-        {
-            case DATE:
-            {
-                final var date = LocalDate.parse(value, formatter);
-                final var instant = date.atStartOfDay(zone).toInstant();
-                return LocalTime.milliseconds(zone, instant.toEpochMilli());
-            }
+        this.formatter = formatter;
+    }
 
-            case TIME:
-            {
-                final var dateTime = java.time.LocalTime.parse(value, formatter);
-                final var instant = dateTime.atDate(LocalDate.EPOCH).atZone(zone).toInstant();
-                return LocalTime.milliseconds(zone, instant.toEpochMilli());
-            }
+    public ZoneId zone()
+    {
+        return zone;
+    }
 
-            case DATE_TIME:
-            {
-                final var dateTime = LocalDateTime.parse(value, formatter);
-                final var instant = dateTime.atZone(zone).toInstant();
-                return LocalTime.milliseconds(zone, instant.toEpochMilli());
-            }
-
-            default:
-                return null;
-        }
+    public void zone(final ZoneId zone)
+    {
+        this.zone = zone;
     }
 
     @Override
-    protected String onConvertToString(final LocalTime value)
+    protected String onToString(final LocalTime value)
     {
         return formatter().format(value.javaLocalDateTime());
     }
 
-    protected void zone(final ZoneId zone)
+    @Override
+    protected LocalTime onToValue(final String value)
     {
-        this.zone = zone;
+        final var parsed = formatter().parse(value);
+        final var time = Instant.from(parsed);
+        return LocalTime.milliseconds(zone, time.toEpochMilli());
     }
 }

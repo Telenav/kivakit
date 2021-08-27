@@ -24,8 +24,8 @@ import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.objects.Hash;
 import com.telenav.kivakit.kernel.language.reflection.access.Getter;
 import com.telenav.kivakit.kernel.language.reflection.access.Setter;
+import com.telenav.kivakit.kernel.language.reflection.populator.KivaKitOptionalProperty;
 import com.telenav.kivakit.kernel.language.reflection.populator.KivaKitPropertyConverter;
-import com.telenav.kivakit.kernel.language.reflection.populator.KivaKitPropertyOptional;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
@@ -34,7 +34,7 @@ import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageReflec
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * Abstracts a property in such a way that we can add direct field access in the future.
+ * A property with a getter and/or setter
  *
  * @author jonathanl (shibo)
  */
@@ -119,6 +119,11 @@ public class Property implements Named, Comparable<Property>
     public boolean isNull(final Object object)
     {
         return get(object) == null;
+    }
+
+    public boolean isOptional()
+    {
+        return setter.hasAnnotation(KivaKitOptionalProperty.class);
     }
 
     @Override
@@ -290,10 +295,5 @@ public class Property implements Named, Comparable<Property>
             return to == Float.class && from == Float.TYPE;
         }
         return false;
-    }
-
-    private boolean isOptional()
-    {
-        return setter.annotation(KivaKitPropertyOptional.class) != null;
     }
 }

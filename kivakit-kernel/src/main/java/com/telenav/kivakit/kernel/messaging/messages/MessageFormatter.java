@@ -30,7 +30,7 @@ import com.telenav.kivakit.kernel.logging.LogEntry;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.logs.text.BaseTextLog;
 import com.telenav.kivakit.kernel.logging.logs.text.ConsoleLog;
-import com.telenav.kivakit.kernel.logging.logs.text.LogEntryFormatter;
+import com.telenav.kivakit.kernel.logging.logs.text.LogFormatter;
 import com.telenav.kivakit.kernel.messaging.Broadcaster;
 import com.telenav.kivakit.kernel.messaging.Debug;
 import com.telenav.kivakit.kernel.messaging.Listener;
@@ -94,7 +94,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see LogEntry
  * @see ConsoleLog
  * @see BaseTextLog
- * @see LogEntryFormatter
+ * @see LogFormatter
  * @see ConsoleLog.Format
  * @see Debug
  * @see ObjectFormatter

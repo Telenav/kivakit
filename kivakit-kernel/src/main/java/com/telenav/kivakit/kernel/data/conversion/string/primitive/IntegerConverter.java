@@ -47,7 +47,7 @@ public class IntegerConverter extends BaseStringConverter<Integer>
      */
     @Override
     @UmlExcludeMember
-    protected Integer onConvertToObject(final String value)
+    protected Integer onToValue(final String value)
     {
         return Integer.parseInt(value);
     }

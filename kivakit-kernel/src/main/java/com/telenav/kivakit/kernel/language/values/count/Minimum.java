@@ -247,7 +247,7 @@ public class Minimum extends Count
         }
 
         @Override
-        protected Minimum onConvertToObject(final String value)
+        protected Minimum onToValue(final String value)
         {
             return parse(value);
         }

@@ -78,7 +78,7 @@ import java.util.Set;
  */
 @UmlClassDiagram(diagram = DiagramProject.class)
 @UmlExcludeSuperTypes({ Named.class })
-public abstract class Project extends BaseRepeater implements Initializable<Project>, Named
+public abstract class Project extends BaseRepeater implements Initializable, Named
 {
     private static final Lazy<Logger> LOGGER = Lazy.of(LoggerFactory::newLogger);
 
@@ -165,7 +165,7 @@ public abstract class Project extends BaseRepeater implements Initializable<Proj
      * called before using any classes or methods in the project.
      */
     @Override
-    public final Project initialize()
+    public final void initialize()
     {
         // If we haven't already initialized,
         if (!initialized)
@@ -184,7 +184,6 @@ public abstract class Project extends BaseRepeater implements Initializable<Proj
             // and signal that we are done initializing.
             onInitialized();
         }
-        return this;
     }
 
     /**

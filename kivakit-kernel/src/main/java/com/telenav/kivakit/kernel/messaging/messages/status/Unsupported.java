@@ -29,7 +29,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @UmlClassDiagram(diagram = DiagramMessageType.class)
 @LexakaiJavadoc(complete = true)
-public class Unsupported extends Problem
+public class Unsupported extends FatalProblem
 {
     public Unsupported(final String message, final Object... arguments)
     {

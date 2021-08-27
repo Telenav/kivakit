@@ -57,18 +57,17 @@ public class ResourceSection extends BaseReadableResource
         this.endOffset = endOffset;
         if (startOffset > endOffset)
         {
-            throw new IllegalStateException(
-                    "Start index of " + startOffset + " must be less than end index of " + endOffset);
+            illegalArgument("Start index of " + startOffset + " must be less than end index of " + endOffset);
         }
     }
 
     @Override
     public InputStream onOpenForReading()
     {
+        final InputStream in = parent.openForReading();
+        IO.skip(in, startOffset);
         return new InputStream()
         {
-            private final InputStream in = parent.openForReading();
-
             private long offset = startOffset;
 
             @Override
@@ -85,10 +84,6 @@ public class ResourceSection extends BaseReadableResource
                     return in.read();
                 }
                 return -1;
-            }
-
-            {
-                IO.skip(in, startOffset);
             }
         };
     }

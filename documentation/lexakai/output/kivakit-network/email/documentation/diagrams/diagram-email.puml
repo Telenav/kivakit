@@ -1,0 +1,115 @@
+@startuml
+
+    !include lexakai.theme
+    
+    title "E-Mail Composition and Sending"
+    
+    abstract BaseRepeater
+    
+    interface Startable
+    interface Closeable
+    interface Stoppable
+    interface Flushable
+    interface Validatable
+    
+    class EmailSender.Configuration
+    {
+        --(math)--
+        +void maximumSendRate(Rate maximumSendRate)
+        +Rate maximumSendRate()
+    }
+    
+    Validatable <|-- Email
+    Email "1" o-- "*" EmailAddress : "to"
+    Email o-- EmailAddress : "from"
+    Email o-- EmailBody
+    Email "1" o-- "*" EmailAttachment
+    class Email
+    {
+        --(network)--
+        +Email addTo(EmailAddress)
+        +Email attach(EmailAttachment)
+        +Email body(EmailBody)
+        +Email from(EmailAddress from)
+        +Email sentAt(Time sentAt)
+        +Email subject(String subject)
+        +Email to(Set<EmailAddress> to)
+        --(thread)--
+        +void waitForRetry(Duration durationBetweenRetries)
+    }
+    
+    class EmailAttachment
+    {
+        --
+        +byte[] data()
+        +String mimeType()
+        --(filesystem)--
+        +String filename()
+        --(network)--
+        +EmailAttachment data(byte[] data)
+        +EmailAttachment filename(String filename)
+        +EmailAttachment mimeType(String mimeType)
+    }
+    
+    class EmailBody
+    {
+        --(constructors)--
+        +EmailBody(String)
+        --
+        +String mimeType()
+        +String text()
+    }
+    
+    Closeable <|-- EmailQueue
+    class EmailQueue
+    {
+        --
+        +boolean offer(Email, Duration maximumWait)
+        +void sent(Email)
+        --(checks)--
+        +boolean isClosed()
+        +boolean isEmpty()
+        --(network)--
+        +Email take()
+    }
+    
+    BaseRepeater <|-- EmailSender
+    Startable <|-- EmailSender
+    Stoppable <|-- EmailSender
+    Flushable <|-- EmailSender
+    Closeable <|-- EmailSender
+    EmailSender --> Email : "sends"
+    EmailSender --> EmailSender.Configuration : "configured by"
+    EmailSender o-- EmailQueue
+    abstract class EmailSender
+    {
+        --(constructors)--
+        #EmailSender(Configuration)
+        --
+        +Authenticator authenticator()
+        +void enqueue(Email)
+        #Properties getMailSessionProperties()
+        --(io)--
+        +boolean isClosed()
+        --(network)--
+        +EmailSender maximumRetries(Maximum maximumRetries)
+        +EmailSender retryPeriod(Duration durationBetweenRetries)
+        +EmailSender sendingOn(boolean on)
+    }
+    
+    EmailBody <|-- HtmlEmailBody
+    class HtmlEmailBody
+    {
+        --(constructors)--
+        +HtmlEmailBody(String)
+    }
+    
+    EmailSender <|-- SmtpEmailSender
+    class SmtpEmailSender
+    {
+        --(constructors)--
+        +SmtpEmailSender(Configuration)
+    }
+    
+@enduml
+

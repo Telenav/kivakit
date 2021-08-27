@@ -19,7 +19,7 @@
 package com.telenav.kivakit.kernel.language.values.identifier;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageValue;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

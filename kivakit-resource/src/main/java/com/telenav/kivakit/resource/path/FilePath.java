@@ -184,7 +184,7 @@ public class FilePath extends ResourcePath
         }
 
         @Override
-        protected FilePath onConvertToObject(final String value)
+        protected FilePath onToValue(final String value)
         {
             return parseFilePath(value);
         }

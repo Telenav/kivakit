@@ -101,12 +101,12 @@ public class FileName implements Named, Comparable<FileName>
 
     public static FileName date(final LocalTime time)
     {
-        return parse(new LocalDateConverter(LOGGER).toString(time));
+        return parse(new LocalDateConverter(LOGGER).unconvert(time));
     }
 
     public static FileName date(final LocalTime time, final ZoneId zone)
     {
-        return parse(new LocalDateConverter(LOGGER, zone).toString(time));
+        return parse(new LocalDateConverter(LOGGER, zone).unconvert(time));
     }
 
     public static FileName dateTime()
@@ -116,12 +116,12 @@ public class FileName implements Named, Comparable<FileName>
 
     public static FileName dateTime(final LocalTime time)
     {
-        return parse(new LocalDateTimeConverter(LOGGER).toString(time));
+        return parse(new LocalDateTimeConverter(LOGGER).unconvert(time));
     }
 
     public static FileName dateTime(final LocalTime time, final ZoneId zone)
     {
-        return parse(new LocalDateTimeConverter(LOGGER, zone).toString(time));
+        return parse(new LocalDateTimeConverter(LOGGER, zone).unconvert(time));
     }
 
     public static FileName parse(final String name)
@@ -141,12 +141,12 @@ public class FileName implements Named, Comparable<FileName>
 
     public static FileName time(final LocalTime time)
     {
-        return parse(new LocalTimeConverter(LOGGER, time.timeZone()).toString(time));
+        return parse(new LocalTimeConverter(LOGGER, time.timeZone()).unconvert(time));
     }
 
     public static FileName time(final LocalTime time, final ZoneId zone)
     {
-        return parse(new LocalTimeConverter(LOGGER, zone).toString(time));
+        return parse(new LocalTimeConverter(LOGGER, zone).unconvert(time));
     }
 
     private final String name;

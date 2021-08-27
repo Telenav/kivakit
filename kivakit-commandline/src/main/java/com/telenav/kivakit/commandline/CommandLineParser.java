@@ -18,17 +18,17 @@
 
 package com.telenav.kivakit.commandline;
 
+import com.telenav.kivakit.commandline.parsing.ArgumentListValidator;
 import com.telenav.kivakit.commandline.parsing.ArgumentParserList;
-import com.telenav.kivakit.commandline.parsing.ArgumentValidator;
 import com.telenav.kivakit.commandline.parsing.SwitchList;
+import com.telenav.kivakit.commandline.parsing.SwitchListValidator;
 import com.telenav.kivakit.commandline.parsing.SwitchParserList;
-import com.telenav.kivakit.commandline.parsing.SwitchValidator;
 import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramArgument;
 import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramCommandLine;
 import com.telenav.kivakit.kernel.KivaKit;
-import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.data.validation.reporters.NullValidationReporter;
-import com.telenav.kivakit.kernel.data.validation.validators.BaseValidator;
+import com.telenav.kivakit.kernel.data.validation.BaseValidator;
+import com.telenav.kivakit.kernel.data.validation.ensure.Failure;
+import com.telenav.kivakit.kernel.data.validation.ensure.reporters.NullFailureReporter;
 import com.telenav.kivakit.kernel.language.matchers.AnythingMatcher;
 import com.telenav.kivakit.kernel.language.strings.AsciiArt;
 import com.telenav.kivakit.kernel.language.strings.Wrap;
@@ -41,6 +41,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
+import org.junit.runners.model.InitializationError;
 
 import java.util.Collection;
 
@@ -126,7 +127,7 @@ public class CommandLineParser
     private final ArgumentParserList argumentParsers = new ArgumentParserList();
 
     /** Parsers for switches */
-    @UmlAggregation(diagram = DiagramCommandLine.class)
+    @UmlAggregation
     private final SwitchParserList switchParsers = new SwitchParserList();
 
     /** The application that created this command line parser */
@@ -209,7 +210,17 @@ public class CommandLineParser
         Duration.seconds(0.25).sleep();
         System.out.println(help() + "\n");
         System.out.flush();
-        System.exit(1);
+
+        // If the application allows calling System.exit()
+        if (application.callSystemExitOnUnrecoverableError())
+        {
+            // then quit the whole VM
+            System.exit(1);
+        }
+        else
+        {
+            throw new IllegalArgumentException("Illegal command line arguments.");
+        }
     }
 
     /**
@@ -218,7 +229,7 @@ public class CommandLineParser
      */
     void validate(final SwitchList switches, final ArgumentList arguments)
     {
-        Ensure.ensure(new NullValidationReporter(), () ->
+        Failure.withReporter(new NullFailureReporter(), () ->
         {
             final var messages = new MessageList(Maximum._100, new AnythingMatcher<>());
 
@@ -227,8 +238,8 @@ public class CommandLineParser
                 @Override
                 protected void onValidate()
                 {
-                    validate(new SwitchValidator(switchParsers, switches));
-                    validate(new ArgumentValidator(argumentParsers, arguments));
+                    validate(new SwitchListValidator(switchParsers, switches));
+                    validate(new ArgumentListValidator(argumentParsers, arguments));
                 }
             };
 

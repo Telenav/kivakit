@@ -20,7 +20,7 @@ package com.telenav.kivakit.kernel.language.time.conversion.converters;
 
 import com.telenav.kivakit.kernel.language.time.LocalTime;
 import com.telenav.kivakit.kernel.language.time.conversion.BaseFormattedLocalTimeConverter;
-import com.telenav.kivakit.kernel.language.time.conversion.TimeFormat;
+import com.telenav.kivakit.kernel.language.time.conversion.TimeFormats;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageTime;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -36,12 +36,12 @@ public class LocalTimeConverter extends BaseFormattedLocalTimeConverter
 {
     public LocalTimeConverter(final Listener listener, final ZoneId zone)
     {
-        super(listener, TimeFormat.TIME, zone);
+        super(listener, TimeFormats.KIVAKIT_TIME, zone);
     }
 
     public LocalTimeConverter(final Listener listener)
     {
-        super(listener, TimeFormat.TIME);
+        super(listener, TimeFormats.KIVAKIT_TIME);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class LocalTimeConverter extends BaseFormattedLocalTimeConverter
     }
 
     @Override
-    protected String onConvertToString(final LocalTime value)
+    protected String onToString(final LocalTime value)
     {
         return DateTimeFormatter.ofPattern("h.mma").format(value.javaLocalDateTime());
     }

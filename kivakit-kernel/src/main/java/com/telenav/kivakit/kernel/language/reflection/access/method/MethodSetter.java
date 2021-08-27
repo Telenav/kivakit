@@ -20,8 +20,8 @@ package com.telenav.kivakit.kernel.language.reflection.access.method;
 
 import com.telenav.kivakit.kernel.language.reflection.access.Setter;
 import com.telenav.kivakit.kernel.messaging.Message;
-import com.telenav.kivakit.kernel.messaging.messages.status.Failure;
-import com.telenav.kivakit.kernel.messaging.messages.status.Success;
+import com.telenav.kivakit.kernel.messaging.messages.status.activity.StepFailure;
+import com.telenav.kivakit.kernel.messaging.messages.status.activity.StepSuccess;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -56,11 +56,11 @@ public class MethodSetter implements Setter
         try
         {
             method.invoke(object, value);
-            return Success.INSTANCE;
+            return StepSuccess.INSTANCE;
         }
         catch (final Exception e)
         {
-            return new Failure("Cannot set ${debug}", this);
+            return new StepFailure("Cannot set ${debug}", this);
         }
     }
 

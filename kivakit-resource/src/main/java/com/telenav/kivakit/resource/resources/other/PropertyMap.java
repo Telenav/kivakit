@@ -49,7 +49,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitProperties.INCLUDED_PROPERTIES_AND_FIELDS;
+import static com.telenav.kivakit.kernel.language.reflection.property.IncludeProperty.CONVERTED_FIELDS_AND_METHODS;
 
 /**
  * A property map is a {@link VariableMap} with strings as both keys and values.
@@ -63,8 +63,8 @@ import static com.telenav.kivakit.kernel.language.reflection.property.filters.Ki
  * <ul>
  *     <li>{@link #create()} - Creates an empty property map</li>
  *     <li>{@link #of(VariableMap)} - Creates a property map from the given variable map</li>
- *     <li>{@link #load(Resource)} - Loads property map from the given resource</li>
- *     <li>{@link #localized(PackagePath, Locale)} - Loads a property map from the given package with a relative path
+ *     <li>{@link #load(Listener, Resource)} - Loads property map from the given resource</li>
+ *     <li>{@link #localized(Listener, PackagePath, Locale)} - Loads a property map from the given package with a relative path
  *      from the given {@link Locale} of the form "locales/[language-name](/[country-name])?.</li>
  * </ul>
  *
@@ -114,28 +114,29 @@ public class PropertyMap extends VariableMap<String>
         return new PropertyMap();
     }
 
-    public static PropertyMap load(final Resource resource)
+    public static PropertyMap load(Listener listener, final Resource resource)
     {
         if (resource.exists())
         {
             return load(resource, ProgressReporter.NULL);
         }
+        listener.warning("Unable to load property map from: $", resource);
         return new PropertyMap();
     }
 
-    public static PropertyMap load(final PackagePath _package, final String path)
+    public static PropertyMap load(Listener listener, final PackagePath _package, final String path)
     {
-        return load(PackageResource.of(_package, FilePath.parseFilePath(path)));
+        return load(listener, PackageResource.of(_package, FilePath.parseFilePath(path)));
     }
 
-    public static PropertyMap load(final Class<?> _package, final String path)
+    public static PropertyMap load(Listener listener, final Class<?> _package, final String path)
     {
-        return load(PackagePath.packagePath(_package), path);
+        return load(listener, PackagePath.packagePath(_package), path);
     }
 
-    public static PropertyMap localized(final PackagePath path, final Locale locale)
+    public static PropertyMap localized(Listener listener, final PackagePath path, final Locale locale)
     {
-        return PropertyMap.load(path, locale.path().join("/"));
+        return PropertyMap.load(listener, path, locale.path().join("/"));
     }
 
     public static PropertyMap of(final VariableMap<String> variables)
@@ -227,7 +228,8 @@ public class PropertyMap extends VariableMap<String>
         try
         {
             final var object = Type.forClass(type).newInstance();
-            new ObjectPopulator(listener, INCLUDED_PROPERTIES_AND_FIELDS, this).populate(object);
+            var filter = PropertyFilter.kivakitProperties(CONVERTED_FIELDS_AND_METHODS);
+            new ObjectPopulator(listener, filter, this).populate(object);
             return object;
         }
         catch (final Exception e)

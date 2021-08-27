@@ -26,6 +26,7 @@ import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.kernel.language.strings.Strip;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
@@ -42,8 +43,10 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.net.URL;
 import java.security.CodeSource;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -174,9 +177,9 @@ public class Package implements ResourceFolder
     /**
      * @return A localized property map for the given locale
      */
-    public PropertyMap localizedProperties(final Locale locale)
+    public PropertyMap localizedProperties(Listener listener, final Locale locale)
     {
-        return PropertyMap.localized(path(), locale);
+        return PropertyMap.localized(listener, path(), locale);
     }
 
     /**
@@ -230,7 +233,20 @@ public class Package implements ResourceFolder
                 .filter(matcher)
                 .collect(Collectors.toList());
 
-        resources.addAll(jarResources(matcher));
+        final var existing = new HashSet<PackageResource>();
+        resources.forEach(resource -> existing.add(resource));
+
+        Consumer<PackageResource> addDeduplicated = resource ->
+        {
+            if (!existing.contains(resource))
+            {
+                resources.add(resource);
+                existing.add(resource);
+            }
+        };
+
+        jarResources(matcher).stream().forEach(addDeduplicated);
+        directoryResources(matcher).forEach(addDeduplicated);
 
         return resources;
     }
@@ -280,13 +296,11 @@ public class Package implements ResourceFolder
 
                         // Get the entry's name
                         final String name = e.getName();
-
                         // and if it is not a folder and it starts with the file path for the package,
                         if (!name.endsWith("/") && name.startsWith(filepath))
                         {
                             // then strip off the leading filepath,
                             final var suffix = Strip.leading(name, filepath);
-
                             // and if we have only a filename left,
                             if (!suffix.contains("/"))
                             {
@@ -306,6 +320,48 @@ public class Package implements ResourceFolder
                 LOGGER.warning("Exception thrown while loading jar resources from $", _package);
             }
         }
+        return resources;
+    }
+
+    /**
+     * List of resources loaded from this package folder in any directory classpath that might contain this class.
+     *
+     * @return Any package resources that can be found in the directory classpath (if any) containing this class
+     */
+    private List<PackageResource> directoryResources(final Matcher<? super PackageResource> matcher)
+    {
+        // Get the code source for the package type class,
+        final var resources = new ArrayList<PackageResource>();
+        final CodeSource source = _package.packageType().getProtectionDomain().getCodeSource();
+        if (source != null)
+        {
+            try
+            {
+                // and if the location URL ends in "/",
+                final URL location = source.getLocation();
+                if (location != null && location.toString().endsWith("/"))
+                {
+                    final var filepath = _package.join("/") + "/";
+                    var directory = Folder.of(location.toURI()).folder(filepath);
+                    if (directory.exists())
+                    {
+                        for (var file : directory.files())
+                        {
+                            var resource = PackageResource.of(_package, file.fileName().name());
+                            if (matcher.matches(resource))
+                            {
+                                resources.add(resource);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (final Exception ignored)
+            {
+                LOGGER.warning("Exception thrown while loading directory resources from $", _package);
+            }
+        }
+
         return resources;
     }
 }

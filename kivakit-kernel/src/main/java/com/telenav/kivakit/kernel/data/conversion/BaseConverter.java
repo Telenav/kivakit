@@ -23,8 +23,8 @@ import com.telenav.kivakit.kernel.messaging.Broadcaster;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.kernel.messaging.Transceiver;
+import com.telenav.kivakit.kernel.messaging.messages.status.Glitch;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
-import com.telenav.kivakit.kernel.messaging.messages.status.Quibble;
 import com.telenav.kivakit.kernel.messaging.messages.status.Warning;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataConversion;
@@ -34,8 +34,8 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 /**
  * Base class for implementing converters. The inherited {@link Converter#convert(Object)} method converts from the From
  * type to the To type. Whether the conversion allows null values or not can be specified with {@link
- * #allowNull(boolean)}. Converters are used extensively in KivaKit, including for switch parsing and populating
- * objects from properties files.
+ * #allowNull(boolean)}. Converters are used extensively in KivaKit for tasks as diverse as switch parsing and
+ * populating objects from properties files.
  *
  * <p>
  * Since this class extends {@link BaseRepeater} and implements the {@link Repeater} interface, it can both hear
@@ -45,8 +45,8 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
  * <p>
  * For example, if there is a problem with a conversion, {@link Transceiver#problem(String, Object...)} (which {@link
  * Repeater} indirectly extends) can broadcast a {@link Problem} message to any clients of the converter. Similarly
- * {@link Warning} and {@link Quibble} messages can be broadcast with {@link #warning(String, Object...)} and {@link
- * #quibble(String, Object...)}.
+ * {@link Warning} and {@link Glitch} messages can be broadcast with {@link #warning(String, Object...)} and {@link
+ * #glitch(String, Object...)}.
  * </p>
  *
  * @param <From> The type to convert from
@@ -57,7 +57,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
  * @see Broadcaster
  * @see Problem
  * @see Warning
- * @see Quibble
+ * @see Glitch
  */
 @UmlClassDiagram(diagram = DiagramDataConversion.class)
 public abstract class BaseConverter<From, To> extends BaseRepeater implements Converter<From, To>
@@ -118,7 +118,7 @@ public abstract class BaseConverter<From, To> extends BaseRepeater implements Co
         catch (final Exception e)
         {
             // and if an exception occurs, broadcast a problem
-            problem(problemBroadcastFrequency(), e, "${class}: Problem converting ${debug}", subclass(), from);
+            problem(problemBroadcastFrequency(), e, "${class}: Cannot convert ${debug}", subclass(), from);
 
             // and return null.
             return null;

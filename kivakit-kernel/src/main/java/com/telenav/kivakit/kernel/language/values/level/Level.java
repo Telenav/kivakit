@@ -20,7 +20,7 @@ package com.telenav.kivakit.kernel.language.values.level;
 
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitExcludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.KivaKitExcludeProperty;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageValue;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -68,7 +68,7 @@ public class Level
         }
 
         @Override
-        protected Level onConvertToObject(final String value)
+        protected Level onToValue(final String value)
         {
             final var level = Double.parseDouble(value);
             if (level >= 0 && level <= 1.0)

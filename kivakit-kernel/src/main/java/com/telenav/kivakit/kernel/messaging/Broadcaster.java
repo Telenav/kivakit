@@ -47,6 +47,7 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
  * @see Repeater
  * @see Listener
  * @see Message
+ * @see <a href="https://state-of-the-art.org#broadcaster">State(Art) Blog Article</a>
  */
 @UmlClassDiagram(diagram = DiagramMessageBroadcaster.class)
 @UmlClassDiagram(diagram = DiagramMessageRepeater.class)
@@ -80,6 +81,16 @@ public interface Broadcaster extends Transceiver, Transmitter<Transmittable>
     boolean hasListeners();
 
     /**
+     * <b>Not public API</b>
+     */
+    Broadcaster messageSource();
+
+    /**
+     * <b>Not public API</b>
+     */
+    void messageSource(Broadcaster parent);
+
+    /**
      * A broadcaster handles a message by transmitting it
      */
     @Override
@@ -97,16 +108,6 @@ public interface Broadcaster extends Transceiver, Transmitter<Transmittable>
     default void onTransmit(final Transmittable message)
     {
     }
-
-    /**
-     * <b>Not public API</b>
-     */
-    Broadcaster parentBroadcaster();
-
-    /**
-     * <b>Not public API</b>
-     */
-    void parentBroadcaster(Broadcaster parent);
 
     /**
      * Removes the given listener from this broadcaster

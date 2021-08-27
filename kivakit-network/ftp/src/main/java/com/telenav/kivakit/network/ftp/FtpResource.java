@@ -111,7 +111,7 @@ public class FtpResource extends BaseNetworkResource
         super(location);
         if (!location.protocol().equals(Protocol.FTP))
         {
-            throw new IllegalArgumentException("FTP location must use FTP protocol:  " + location);
+            illegalArgument("FTP location must use FTP protocol:  " + location);
         }
         networkLocation = location;
         this.constraints = constraints;
@@ -147,7 +147,7 @@ public class FtpResource extends BaseNetworkResource
         }
         catch (final IOException e)
         {
-            throw new IllegalStateException("Unable to download file to " + destination, e);
+            illegalState("Unable to download file to " + destination, e);
         }
     }
 
@@ -208,7 +208,7 @@ public class FtpResource extends BaseNetworkResource
         }
         catch (final Exception e)
         {
-            throw new IllegalStateException("Unable to list files at " + path, e);
+            return fatal(e, "Unable to list files at $", path);
         }
     }
 
@@ -233,7 +233,7 @@ public class FtpResource extends BaseNetworkResource
         }
         catch (final IOException e)
         {
-            throw new IllegalStateException("Unable to transfer files", e);
+            return fatal(e, "Unable to transfer files");
         }
     }
 
@@ -254,7 +254,7 @@ public class FtpResource extends BaseNetworkResource
         }
         catch (final IOException e)
         {
-            throw new IllegalStateException("Unable to transfer files", e);
+            return fatal(e, "Unable to transfer files");
         }
     }
 
@@ -287,7 +287,7 @@ public class FtpResource extends BaseNetworkResource
 
         if (!FTPReply.isPositiveCompletion(client.getReplyCode()))
         {
-            throw new IllegalStateException("Unable to connect: " + client.getReplyString());
+            fatal("Unable to connect: " + client.getReplyString());
         }
 
         // Login
@@ -296,7 +296,7 @@ public class FtpResource extends BaseNetworkResource
             if (!client.login(networkLocation.constraints().userName().toString(),
                     networkLocation.constraints().password().toString()))
             {
-                throw new IllegalStateException("Unable to connect: " + client.getReplyString());
+                fatal("Unable to connect: " + client.getReplyString());
             }
         }
     }

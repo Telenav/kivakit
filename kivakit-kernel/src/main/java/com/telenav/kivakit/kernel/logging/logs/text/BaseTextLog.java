@@ -20,19 +20,19 @@ package com.telenav.kivakit.kernel.logging.logs.text;
 
 import com.telenav.kivakit.kernel.logging.LogEntry;
 import com.telenav.kivakit.kernel.logging.logs.BaseLog;
-import com.telenav.kivakit.kernel.logging.logs.text.formatters.ColumnarFormatter;
+import com.telenav.kivakit.kernel.logging.logs.text.formatters.ColumnarLogFormatter;
 import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLoggingLogs;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 @UmlClassDiagram(diagram = DiagramLoggingLogs.class)
-@UmlRelation(label = "formats entries with", referent = LogEntryFormatter.class)
+@UmlRelation(label = "formats entries with", referent = LogFormatter.class)
 public abstract class BaseTextLog extends BaseLog
 {
-    private LogEntryFormatter formatter = ColumnarFormatter.DEFAULT;
+    private LogFormatter formatter = ColumnarLogFormatter.DEFAULT;
 
-    public void formatter(final LogEntryFormatter formatter)
+    public void formatter(final LogFormatter formatter)
     {
         this.formatter = formatter;
     }

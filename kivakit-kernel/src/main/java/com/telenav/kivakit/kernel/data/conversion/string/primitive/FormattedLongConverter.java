@@ -74,7 +74,7 @@ public class FormattedLongConverter extends BaseStringConverter<Long>
      */
     @Override
     @UmlExcludeMember
-    protected Long onConvertToObject(final String value)
+    protected Long onToValue(final String value)
     {
         try
         {
@@ -92,7 +92,7 @@ public class FormattedLongConverter extends BaseStringConverter<Long>
      */
     @Override
     @UmlExcludeMember
-    protected String onConvertToString(final Long value)
+    protected String onToString(final Long value)
     {
         return format.format(value);
     }

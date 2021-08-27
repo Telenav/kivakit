@@ -69,7 +69,7 @@ public interface ResourceFolder
         }
 
         @Override
-        protected ResourceFolder onConvertToObject(final String value)
+        protected ResourceFolder onToValue(final String value)
         {
             return new ResourceFolderIdentifier(value).resolve();
         }

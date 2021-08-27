@@ -18,10 +18,10 @@
 
 package kernel.validation;
 
+import com.telenav.kivakit.kernel.data.validation.BaseValidator;
 import com.telenav.kivakit.kernel.data.validation.Validatable;
-import com.telenav.kivakit.kernel.data.validation.Validation;
+import com.telenav.kivakit.kernel.data.validation.ValidationType;
 import com.telenav.kivakit.kernel.data.validation.Validator;
-import com.telenav.kivakit.kernel.data.validation.validators.BaseValidator;
 import org.junit.Assert;
 
 public class ValidationTest
@@ -36,7 +36,7 @@ public class ValidationTest
         }
 
         @Override
-        public Validator validator(final Validation type)
+        public Validator validator(final ValidationType type)
         {
             return new BaseValidator()
             {

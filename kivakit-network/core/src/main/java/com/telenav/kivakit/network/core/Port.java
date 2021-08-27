@@ -24,7 +24,7 @@ import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.data.conversion.string.collection.BaseListConverter;
 import com.telenav.kivakit.kernel.data.conversion.string.primitive.IntegerConverter;
 import com.telenav.kivakit.kernel.language.objects.Hash;
-import com.telenav.kivakit.kernel.language.reflection.property.filters.KivaKitIncludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Listener;
@@ -99,7 +99,7 @@ public class Port
         }
 
         @Override
-        protected Port onConvertToObject(final String value)
+        protected Port onToValue(final String value)
         {
             // It is expected that the port is in the format <host>:<portNumber>. If
             // no <portNumber> is specified then 80 is assumed.

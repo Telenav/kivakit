@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.interfaces.io;
 
+import com.telenav.kivakit.kernel.language.io.IO;
 import com.telenav.kivakit.kernel.language.io.ProgressiveInput;
 import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.kernel.language.values.count.Bytes;
@@ -81,7 +82,7 @@ public interface Readable extends ByteSized
      */
     default InputStream openForReading()
     {
-        return onOpenForReading();
+        return IO.buffer(onOpenForReading());
     }
 
     /**

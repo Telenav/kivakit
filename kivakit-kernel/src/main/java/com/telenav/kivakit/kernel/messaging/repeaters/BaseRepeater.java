@@ -70,8 +70,14 @@ public class BaseRepeater extends Multicaster implements Repeater
     }
 
     @Override
+    public void message(final Message message)
+    {
+        onMessage(message);
+        transmit(message);
+    }
+
+    @Override
     public void onMessage(final Message message)
     {
-        transmit(message);
     }
 }

@@ -163,16 +163,16 @@ git_flow_release_start() {
     git checkout release/$version
 
     # and update its version
-    bash $project_name-release-update-version.sh $version
+    bash $project_name-update-version.sh $version
 
     echo " "
-    echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Branch Created  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
+    echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Branch Created  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
     echo "┋"
     echo "┋  VERSION: $version"
     echo "┋"
-    echo "┋  1. A new release branch 'release/$version' has been created using git flow"
-    echo "┋  2. POM files and other version-related information in this branch has been updated to $version"
-    echo "┋  3. When the release branch is FULLY READY, run the release finish script to merge the branch into master"
+    echo "┋  1. A new release branch 'release/$version' has been created using git flow."
+    echo "┋  2. POM files and other version-related information in this branch has been updated to $version."
+    echo "┋  3. When the release branch is FULLY READY, run the release finish script to merge the branch into master."
     echo "┋"
     echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
     echo " "
@@ -186,20 +186,17 @@ git_flow_release_finish() {
     cd $project_home
 
     git checkout master
-    git pull
     git merge release/$version
-    git tag -a $version -m "release_added"
     git flow release finish $version
     git push origin --tags
 
     echo " "
-    echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Merged to Master and Ready to Publish  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
+    echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Merged and Published  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
     echo "┋"
     echo "┋  VERSION: $version"
     echo "┋"
-    echo "┋  1. The branch 'release/$version' has been merged into master using git flow"
-    echo "┋  2. Artifacts from the release will now be built by GitHub"
-    echo "┋  3. When this succeeds, the release branch can be published on Maven Central using maven or GitHub actions"
+    echo "┋  1. The branch 'release/$version' has been merged into master using git flow."
+    echo "┋  2. Artifacts from the release will be published shortly by Jenkins"
     echo "┋"
     echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
     echo " "
@@ -298,16 +295,16 @@ is_mac() {
 
 lexakai() {
 
-    lexakai_download_version="0.9.8-beta"
-    lexakai_download_snapshot_version=""
+    lexakai_download_version="0.9.9-SNAPSHOT"
+    lexakai_download_name="lexakai-0.9.9-20210727.211904-5.jar"
 
     lexakai_downloads="$HOME/.lexakai/downloads"
 
     if [[ "$lexakai_download_version" == *"SNAPSHOT"* ]]; then
 
         lexakai_snapshot_repository="https://s01.oss.sonatype.org/content/repositories/snapshots/com/telenav/lexakai/lexakai"
-        lexakai_url="$lexakai_snapshot_repository/${lexakai_download_version}/lexakai-${lexakai_download_version%-SNAPSHOT}-${lexakai_download_snapshot_version}.jar"
-        lexakai_jar="${lexakai_downloads}/lexakai-${lexakai_download_version}-${lexakai_download_snapshot_version}.jar"
+        lexakai_url="$lexakai_snapshot_repository/${lexakai_download_version}/${lexakai_download_name}"
+        lexakai_jar="${lexakai_downloads}/${lexakai_download_name}"
 
     else
 
@@ -320,11 +317,15 @@ lexakai() {
 
     if [ ! -e "$lexakai_jar" ]; then
 
+        echo "$lexakai_jar doesn't exist"
+
         wget $lexakai_url --output-document=$lexakai_jar
 
     fi
 
     # -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=1044
+    echo "java -jar $lexakai_jar -overwrite-resources=true -update-readme=true $@"
+
     java -jar $lexakai_jar -overwrite-resources=true -update-readme=true $@
 }
 

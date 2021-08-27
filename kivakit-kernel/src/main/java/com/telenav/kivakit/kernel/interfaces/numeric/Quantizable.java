@@ -128,7 +128,7 @@ public interface Quantizable
         }
 
         @Override
-        protected T onConvertToObject(final String value)
+        protected T onToValue(final String value)
         {
             return factory.newInstance(Long.parseLong(value));
         }

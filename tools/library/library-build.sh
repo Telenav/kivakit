@@ -1,3 +1,4 @@
+
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #
 #  © 2011-2021 Telenav, Inc.
@@ -64,7 +65,7 @@ usage() {
 if [[ "$1" == "help" ]]; then
 
     SCRIPT=$(basename -- "$0")
-    usage $SCRIPT
+    usage "$SCRIPT"
 fi
 
 addSwitch() {
@@ -81,7 +82,7 @@ addSwitch() {
 build() {
 
     PROJECT=$1
-    PROJECT_NAME=$(basename $PROJECT)
+    PROJECT_NAME=$(basename "$PROJECT")
     BUILD_TYPE=$2
 
     case "${BUILD_TYPE}" in
@@ -89,7 +90,7 @@ build() {
     "all")
         JAVADOC=true
         BUILD_ARGUMENTS="clean install"
-        BUILD_MODIFIERS="multi-threaded clean-all tests shade tools ${@:3}"
+        BUILD_MODIFIERS=(multi-threaded clean-all tests shade tools ${@:3})
         ;;
 
     "compile")
@@ -101,14 +102,14 @@ build() {
         JAVADOC=true
         export NO_PROMPT=true
         BUILD_ARGUMENTS="clean deploy"
-        BUILD_MODIFIERS="multi-threaded clean-all tests attach-jars sign-artifacts ${@:3}"
+        BUILD_MODIFIERS=(multi-threaded clean-all tests attach-jars sign-artifacts ${@:3})
         ;;
 
     "deploy-local")
         JAVADOC=true
         export NO_PROMPT=true
         BUILD_ARGUMENTS="clean install"
-        BUILD_MODIFIERS="multi-threaded clean-all tests attach-jars sign-artifacts ${@:3}"
+        BUILD_MODIFIERS=(multi-threaded clean-all tests attach-jars sign-artifacts ${@:3})
         ;;
 
     "javadoc")
@@ -119,12 +120,12 @@ build() {
 
     "setup")
         BUILD_ARGUMENTS="clean install"
-        BUILD_MODIFIERS="multi-threaded tests shade tools ${@:3}"
+        BUILD_MODIFIERS=(multi-threaded tests shade tools ${@:3})
         ;;
 
     "test")
         BUILD_ARGUMENTS="clean install"
-        BUILD_MODIFIERS="single-threaded tests no-javadoc ${@:3}"
+        BUILD_MODIFIERS=(single-threaded tests no-javadoc ${@:3})
         ;;
 
     "tools")
@@ -235,7 +236,7 @@ build() {
         *)
             echo " "
             echo "Build modifier '$MODIFIER' is not recognized"
-            usage $SCRIPT
+            usage "$SCRIPT"
             ;;
 
         esac
@@ -255,8 +256,8 @@ build() {
 
     if [ -f "$KIVAKIT_HOME/build.properties" ]; then
 
-        KIVAKIT_BUILD_NAME=$(cat $KIVAKIT_HOME/build.properties | grep "build-name" | cut -d'=' -f2 | xargs echo)
-        KIVAKIT_BUILD_DATE=$(cat $KIVAKIT_HOME/build.properties | grep "build-date" | cut -d'=' -f2 | xargs echo)
+        KIVAKIT_BUILD_NAME=$(cat "$KIVAKIT_HOME"/build.properties | grep "build-name" | cut -d'=' -f2 | xargs echo)
+        KIVAKIT_BUILD_DATE=$(cat "$KIVAKIT_HOME"/build.properties | grep "build-date" | cut -d'=' -f2 | xargs echo)
 
     fi
 
@@ -279,10 +280,12 @@ build() {
 
             $PRE_BUILD_SCRIPT
 
-            cd $BUILD_FOLDER
-            $M2_HOME/bin/mvn -DKIVAKIT_DEBUG="$KIVAKIT_DEBUG" $SWITCHES $BUILD_ARGUMENTS 2>&1 | $FILTER_OUT "illegal reflective access\|denied in a future release\|please consider reporting"
+            cd "$BUILD_FOLDER"
 
-            if [ ${PIPESTATUS[0]} -ne "0" ]; then
+            # shellcheck disable=SC2086
+            "$M2_HOME"/bin/mvn -DKIVAKIT_DEBUG="$KIVAKIT_DEBUG" $SWITCHES $BUILD_ARGUMENTS 2>&1 | $FILTER_OUT "illegal reflective access\|denied in a future release\|please consider reporting"
+
+            if [ "${PIPESTATUS[0]}" -ne "0" ]; then
 
                 echo "Unable to build $PROJECT_NAME."
                 exit 1
@@ -295,8 +298,8 @@ build() {
 
         fi
 
-        KIVAKIT_BUILD_NAME=$(cat $KIVAKIT_HOME/build.properties | grep "build-name" | cut -d'=' -f2 | xargs echo)
-        KIVAKIT_BUILD_DATE=$(cat $KIVAKIT_HOME/build.properties | grep "build-date" | cut -d'=' -f2 | xargs echo)
+        KIVAKIT_BUILD_NAME=$(cat "$KIVAKIT_HOME"/build.properties | grep "build-name" | cut -d'=' -f2 | xargs echo)
+        KIVAKIT_BUILD_DATE=$(cat "$KIVAKIT_HOME"/build.properties | grep "build-date" | cut -d'=' -f2 | xargs echo)
 
         if [ ! -z "$KIVAKIT_BUILD_NAME" ]; then
 

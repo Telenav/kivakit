@@ -88,7 +88,7 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
         }
 
         @Override
-        protected HttpNetworkLocation onConvertToObject(final String value)
+        protected HttpNetworkLocation onToValue(final String value)
         {
             try
             {

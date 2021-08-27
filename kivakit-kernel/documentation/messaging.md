@@ -18,10 +18,10 @@
 
 ### Summary <a name="summary"></a>
 
-KivaKit has an implementation of the broadcaster / listener design pattern which is used  
+KivaKit has an implementation of the *broadcaster / listener* design pattern which is used  
 extensively throughout KivaKit to provide loose-coupled integration between components.
 
-A few examples of objects in KivaKit that use broadcaster / listener messaging:
+A few examples of objects in KivaKit that transmit and receive messages:
 
 * Loggers
 * Extractors

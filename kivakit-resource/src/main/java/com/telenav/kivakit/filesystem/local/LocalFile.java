@@ -30,7 +30,6 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
-import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -40,8 +39,6 @@ import java.nio.file.Files;
 import java.nio.file.attribute.PosixFilePermission;
 import java.util.Arrays;
 import java.util.HashSet;
-
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
 
 /**
  * Implementation of {@link FileService} provider interface for the local filesystem.
@@ -193,11 +190,11 @@ public class LocalFile extends BaseWritableResource implements FileService
     {
         try
         {
-            return new BufferedInputStream(new FileInputStream(file));
+            return new FileInputStream(file);
         }
         catch (final FileNotFoundException e)
         {
-            return fail(e, "Couldn't open file for reading: " + this);
+            return fatal(e, "Couldn't open file for reading: " + this);
         }
     }
 
@@ -210,7 +207,7 @@ public class LocalFile extends BaseWritableResource implements FileService
         }
         catch (final FileNotFoundException e)
         {
-            return fail(e, "Couldn't open file for writing: " + file);
+            return fatal(e, "Couldn't open file for writing: " + file);
         }
     }
 
@@ -233,8 +230,7 @@ public class LocalFile extends BaseWritableResource implements FileService
         {
             return this.file.renameTo(((LocalFile) file.resolveService()).file);
         }
-        fail("Cannot rename across filesystems");
-        return false;
+        return fatal("Cannot rename across filesystems");
     }
 
     @Override

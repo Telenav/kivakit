@@ -48,7 +48,7 @@ public class PatternConverter extends BaseStringConverter<Pattern>
      * {@inheritDoc}
      */
     @Override
-    protected Pattern onConvertToObject(final String text)
+    protected Pattern onToValue(final String text)
     {
         return Pattern.compile(text);
     }

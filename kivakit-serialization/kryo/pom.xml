@@ -10,7 +10,7 @@
     <parent>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-serialization</artifactId>
-        <version>0.9.8-beta</version>
+        <version>1.0.0</version>
     </parent>
 
     <name>KivaKit - Serialization - Kryo</name>
@@ -51,12 +51,6 @@
                     <artifactId>kryo</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-serialization-json</artifactId>
-            <version>0.9.8-beta</version>
-            <scope>compile</scope>
         </dependency>
 
     </dependencies>

@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.kernel.language.time.conversion.converters;
 
+import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.language.time.LocalTime;
 import com.telenav.kivakit.kernel.language.time.Time;
-import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageTime;
-import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.messaging.Listener;
+import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageTime;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.HashMap;
@@ -65,7 +65,7 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
     }
 
     @Override
-    protected LocalTime onConvertToObject(final String value)
+    protected LocalTime onToValue(final String value)
     {
         final var matcher = HUMANIZED_DATE.matcher(value);
         if (matcher.matches())
@@ -113,9 +113,9 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
     }
 
     @Override
-    protected String onConvertToString(final LocalTime time)
+    protected String onToString(final LocalTime time)
     {
-        return humanizedDate(time) + " " + new LocalTimeConverter(Listener.none(), time.timeZone()).toString(time);
+        return humanizedDate(time) + " " + new LocalTimeConverter(Listener.none(), time.timeZone()).unconvert(time);
     }
 
     private String humanizedDate(final LocalTime time)
@@ -140,6 +140,6 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
             }
         }
 
-        return new LocalDateConverter(Listener.none()).toString(time);
+        return new LocalDateConverter(Listener.none()).unconvert(time);
     }
 }

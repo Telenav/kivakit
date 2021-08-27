@@ -18,32 +18,23 @@
 
 package com.telenav.kivakit.kernel.data.validation.ensure;
 
-import com.telenav.kivakit.kernel.data.validation.BaseValidationReporter;
-import com.telenav.kivakit.kernel.data.validation.ValidationReporter;
 import com.telenav.kivakit.kernel.data.validation.Validator;
-import com.telenav.kivakit.kernel.data.validation.reporters.AssertingValidationReporter;
-import com.telenav.kivakit.kernel.data.validation.reporters.LogValidationReporter;
-import com.telenav.kivakit.kernel.data.validation.reporters.NullValidationReporter;
-import com.telenav.kivakit.kernel.data.validation.reporters.ThrowingValidationReporter;
-import com.telenav.kivakit.kernel.data.validation.reporters.ValidationFailure;
-import com.telenav.kivakit.kernel.interfaces.factory.MapFactory;
+import com.telenav.kivakit.kernel.data.validation.ensure.reporters.AssertingFailureReporter;
+import com.telenav.kivakit.kernel.data.validation.ensure.reporters.LogFailureReporter;
+import com.telenav.kivakit.kernel.data.validation.ensure.reporters.NullFailureReporter;
+import com.telenav.kivakit.kernel.data.validation.ensure.reporters.ThrowingFailureReporter;
+import com.telenav.kivakit.kernel.data.validation.ensure.reporters.ValidationFailure;
 import com.telenav.kivakit.kernel.language.objects.Hash;
 import com.telenav.kivakit.kernel.language.objects.Objects;
-import com.telenav.kivakit.kernel.language.reflection.Type;
 import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
-import com.telenav.kivakit.kernel.messaging.messages.OperationMessage;
-import com.telenav.kivakit.kernel.messaging.messages.status.Failure;
 import com.telenav.kivakit.kernel.messaging.messages.status.Unsupported;
 import com.telenav.kivakit.kernel.messaging.messages.status.Warning;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataValidationEnsure;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Supplier;
 
 /**
@@ -54,39 +45,39 @@ import java.util.function.Supplier;
  * can be changed at runtime for different classes of failures.
  *
  * <p>
- * An application can specify what kind of reporting it wants by calling {@link #reporter(Class, ValidationReporter)},
- * passing in the class of failure and the {@link ValidationReporter} that should be used to report it.
+ * An application can specify what kind of reporting it wants by calling {@link Failure#reporter(Class,
+ * FailureReporter)}, passing in the class of failure and the {@link FailureReporter} that should be used to report it.
  * </p>
  *
  * <p><b>Failure Types</b></p>
  *
  * <ul>
  *     <li><b>{@link Failure}</b> - A generic failure message reported by {@link #fail(String, Object...)}</li>
- *     <li><b>{@link ValidationProblem}</b> - An ensure failure reported by one of the ensure() methods</li>
+ *     <li><b>{@link EnsureFailure}</b> - An ensure failure reported by one of the ensure() methods</li>
  *     <li><b>{@link Unsupported}</b> - An unsupported operation reported by {@link #unsupported(String, Object...)}</li>
  * </ul>
  *
  * <p><b>Validation Reporters</b></p>
  *
  * <p>
- * The {@link BaseValidationReporter} subclasses used by {@link Validator} are used to report {@link Ensure} failures as well.
+ * The {@link BaseFailureReporter} subclasses used by {@link Validator} are used to report {@link Ensure} failures as well.
  * <ul>
- *     <li><b>{@link AssertingValidationReporter}</b> - Fails with a Java assertion</li>
- *     <li><b>{@link LogValidationReporter}</b> - Logs the failure</li>
- *     <li><b>{@link NullValidationReporter}</b> - Does nothing</li>
- *     <li><b>{@link ThrowingValidationReporter}</b> - Throws a {@link ValidationFailure} exception</li>
+ *     <li><b>{@link AssertingFailureReporter}</b> - Fails with a Java assertion</li>
+ *     <li><b>{@link LogFailureReporter}</b> - Logs the failure</li>
+ *     <li><b>{@link NullFailureReporter}</b> - Does nothing</li>
+ *     <li><b>{@link ThrowingFailureReporter}</b> - Throws a {@link ValidationFailure} exception</li>
  * </ul>
  *
  * <p><b>Default Reporting</b></p>
  *
  * <p>
- * All failure types are linked to the {@link ThrowingValidationReporter} by default.
+ * All failure types are linked to the {@link ThrowingFailureReporter} by default.
  * </p>
  *
  * <p><b>Ensure Methods</b></p>
  *
  * <p>
- * The method {@link #ensure(boolean, String, Object...)} will report an {@link ValidationProblem} if the given boolean
+ * The method {@link #ensure(boolean, String, Object...)} will report an {@link EnsureFailure} if the given boolean
  * condition value is false. Other convenience methods include:
  * <ul>
  *     <li>{@link #ensure(boolean, Throwable, String, Object...)}</li>
@@ -151,20 +142,9 @@ import java.util.function.Supplier;
  * @see Message#format(String, Object...)
  */
 @UmlClassDiagram(diagram = DiagramDataValidationEnsure.class)
-@UmlRelation(label = "reports", referent = ValidationProblem.class)
+@UmlRelation(label = "reports", referent = EnsureFailure.class)
 public class Ensure
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
-    /** Creates a {@link BaseValidationReporter} given a message type */
-    private static MapFactory<Class<? extends Message>, ValidationReporter> reporterFactory = message ->
-    {
-        // Initialize everything to throw by default
-        return new ThrowingValidationReporter();
-    };
-
-    /** Thread-local map from message type to reporter, useful in reporting different messages differently */
-    private static ThreadLocal<Map<Class<? extends Message>, ValidationReporter>> reporterMap = ThreadLocal.withInitial(HashMap::new);
 
     /**
      * @see #ensure(boolean, String, Object...)
@@ -196,35 +176,15 @@ public class Ensure
     }
 
     /**
-     * If the condition is false (the check is invalid), a {@link ValidationProblem} message is given to the {@link
-     * BaseValidationReporter} that message type.
+     * If the condition is false (the check is invalid), a {@link EnsureFailure} message is given to the {@link
+     * BaseFailureReporter} that message type.
      */
     public static <T> T ensure(final boolean condition, final Throwable e, final String message,
                                final Object... arguments)
     {
-        if (!condition && !(reporter(ValidationProblem.class) instanceof NullValidationReporter))
+        if (!condition && !(Failure.reporter(EnsureFailure.class) instanceof NullFailureReporter))
         {
-            report(ValidationProblem.class, e, message, arguments);
-        }
-        return null;
-    }
-
-    /**
-     * Temporarily sets the validation reporter for {@link ValidationProblem} messages to the given reporter (only for
-     * the current thread) while the given code is executed.
-     */
-    public static <T> T ensure(final ValidationReporter reporter, final Runnable code)
-    {
-        final var reporterMap = Ensure.reporterMap.get();
-        final var originalReporter = reporterMap.get(ValidationProblem.class);
-        reporterMap.put(ValidationProblem.class, reporter);
-        try
-        {
-            code.run();
-        }
-        finally
-        {
-            reporterMap.put(ValidationProblem.class, originalReporter);
+            Failure.report(EnsureFailure.class, e, message, arguments);
         }
         return null;
     }
@@ -313,7 +273,7 @@ public class Ensure
 
     public static <T> T fail(final Throwable e, final String message, final Object... arguments)
     {
-        return report(Failure.class, e, message, arguments);
+        return Failure.report(EnsureFailure.class, e, message, arguments);
     }
 
     public static <T> T fail(final String message, final Object... arguments)
@@ -337,53 +297,6 @@ public class Ensure
         throw new IllegalStateException(format(message, arguments), e);
     }
 
-    public static <T> T report(final Class<? extends Message> type,
-                               final String text,
-                               final Object... arguments)
-    {
-        report(type, null, text, arguments);
-        return null;
-    }
-
-    public static <T> T report(final Class<? extends Message> type,
-                               final Throwable e,
-                               final String text,
-                               final Object... arguments)
-    {
-        final var message = (OperationMessage) Type.forClass(type).newInstance();
-        message.cause(e);
-        message.message(text);
-        message.arguments(arguments);
-        reporter(type).report(message);
-        return null;
-    }
-
-    public static ValidationReporter reporter(final Class<? extends Message> type)
-    {
-        return reporterMap.get().computeIfAbsent(type, ignored -> reporterFactory.newInstance(type));
-    }
-
-    public static void reporter(final Class<? extends Message> type, final ValidationReporter reporter)
-    {
-        LOGGER.announce("Validation will report ${class} messages with ${class}", type, reporter.getClass());
-        reporterMap.get().put(type, reporter);
-    }
-
-    /**
-     * Changes the factory being used to map message types to validation reporters on a per-thread basis. Note that this
-     * method should only be called once at the start of a program. Calling it again can result in unpredictable results
-     * because the method clears the thread-local map from message type to reporter and other threads might be using
-     * values in the map.
-     */
-    public static void reporterFactory(final MapFactory<Class<? extends Message>, ValidationReporter> factory)
-    {
-        // Install the reporter factory
-        Ensure.reporterFactory = factory;
-
-        // and clear the reporter map by replacing it.
-        reporterMap = ThreadLocal.withInitial(HashMap::new);
-    }
-
     public static <T> T unsupported()
     {
         return unsupported("Unsupported operation");
@@ -391,7 +304,7 @@ public class Ensure
 
     public static <T> T unsupported(final String message, final Object... arguments)
     {
-        report(Unsupported.class, message, arguments);
+        Failure.report(Unsupported.class, message, arguments);
         return null;
     }
 

@@ -74,7 +74,7 @@ public class FormattedIntegerConverter extends BaseStringConverter<Integer>
      */
     @Override
     @UmlExcludeMember
-    protected Integer onConvertToObject(final String value)
+    protected Integer onToValue(final String value)
     {
         try
         {
@@ -92,7 +92,7 @@ public class FormattedIntegerConverter extends BaseStringConverter<Integer>
      */
     @Override
     @UmlExcludeMember
-    protected String onConvertToString(final Integer value)
+    protected String onToString(final Integer value)
     {
         return format.format(value);
     }

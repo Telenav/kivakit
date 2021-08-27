@@ -19,8 +19,6 @@
 package com.telenav.kivakit.kernel.language.time;
 
 import com.telenav.kivakit.kernel.language.objects.Hash;
-import com.telenav.kivakit.kernel.language.time.conversion.BaseFormattedConverter;
-import com.telenav.kivakit.kernel.language.time.conversion.TimeFormat;
 import com.telenav.kivakit.kernel.language.time.conversion.converters.HumanizedLocalDateTimeConverter;
 import com.telenav.kivakit.kernel.language.time.conversion.converters.LocalDateConverter;
 import com.telenav.kivakit.kernel.language.time.conversion.converters.LocalDateTimeConverter;
@@ -35,7 +33,6 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 
 import static java.time.temporal.ChronoField.AMPM_OF_DAY;
 import static java.time.temporal.ChronoField.DAY_OF_WEEK;
@@ -53,9 +50,6 @@ import static java.time.temporal.ChronoField.MINUTE_OF_HOUR;
 public class LocalTime extends Time
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
-
-    public static final BaseFormattedConverter ISO_UTC_TIMESTAMP_CONVERTER = new BaseFormattedConverter(
-            LOGGER, utcTimeZone(), DateTimeFormatter.ISO_LOCAL_DATE_TIME, TimeFormat.DATE_TIME);
 
     public static LocalTime from(final ZoneId zone, final LocalDateTime dateTime)
     {
@@ -98,7 +92,7 @@ public class LocalTime extends Time
 
     public static LocalTime parseDateTime(final String text)
     {
-        return new LocalDateTimeConverter(Listener.none()).convert(text);
+        return new LocalDateTimeConverter(Listener.none(), localTimeZone()).convert(text);
     }
 
     public static LocalTime seconds(final ZoneId zone, final long seconds)
@@ -139,7 +133,7 @@ public class LocalTime extends Time
 
     public String asDateString(final ZoneId zone)
     {
-        return new LocalDateConverter(Listener.none(), zone).toString(this);
+        return new LocalDateConverter(Listener.none(), zone).unconvert(this);
     }
 
     public String asDateTimeString()
@@ -149,7 +143,7 @@ public class LocalTime extends Time
 
     public String asDateTimeString(final ZoneId zone)
     {
-        return new LocalDateTimeConverter(Listener.none(), zone).toString(this);
+        return new LocalDateTimeConverter(Listener.none(), zone).unconvert(this);
     }
 
     public String asTimeString()
@@ -159,7 +153,7 @@ public class LocalTime extends Time
 
     public String asTimeString(final ZoneId zone)
     {
-        return new LocalTimeConverter(Listener.none(), zone).toString(this);
+        return new LocalTimeConverter(Listener.none(), zone).unconvert(this);
     }
 
     public long asZonedMilliseconds()
@@ -234,7 +228,7 @@ public class LocalTime extends Time
 
     public String humanizedDateTime()
     {
-        return new HumanizedLocalDateTimeConverter(LOGGER).toString(this);
+        return new HumanizedLocalDateTimeConverter(LOGGER).unconvert(this);
     }
 
     public LocalDateTime javaLocalDateTime()

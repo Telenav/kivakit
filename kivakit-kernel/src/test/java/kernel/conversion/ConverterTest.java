@@ -47,7 +47,7 @@ public class ConverterTest
     {
         final EnumConverter<Type> converter = new EnumConverter<>(LOGGER, Type.class);
         ensureEqual(Type.A, converter.convert("A"));
-        ensureEqual("A", converter.toString(Type.A));
+        ensureEqual("A", converter.unconvert(Type.A));
         new MessageChecker().expect(Problem.class).check(() ->
                 ensureEqual(null, new Duration.SecondsConverter(Listener.none()).convert("x")));
         ensureEqual(Duration.seconds(5), new Duration.SecondsConverter(Listener.none()).convert("5"));

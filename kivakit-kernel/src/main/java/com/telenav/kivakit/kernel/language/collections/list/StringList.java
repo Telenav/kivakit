@@ -19,6 +19,8 @@
 package com.telenav.kivakit.kernel.language.collections.list;
 
 import com.telenav.kivakit.kernel.data.conversion.string.StringConverter;
+import com.telenav.kivakit.kernel.data.conversion.string.collection.BaseListConverter;
+import com.telenav.kivakit.kernel.data.conversion.string.language.IdentityConverter;
 import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.language.strings.AsciiArt;
@@ -29,6 +31,7 @@ import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.messages.status.Information;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageString;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Arrays;
@@ -209,7 +212,7 @@ public class StringList extends ObjectList<String>
         final var list = new StringList();
         for (final var value : values)
         {
-            list.addIfNotNull(converter.toString(value));
+            list.addIfNotNull(converter.unconvert(value));
         }
         return list;
     }
@@ -269,6 +272,25 @@ public class StringList extends ObjectList<String>
         }
 
         return list;
+    }
+
+    /**
+     * Converts to and from a list of strings
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
+    public static class Converter extends BaseListConverter<String>
+    {
+        public Converter(final Listener listener)
+        {
+            super(listener, new IdentityConverter(listener), ",");
+        }
+
+        public Converter(final Listener listener, final String delimiter)
+        {
+            super(listener, new IdentityConverter(listener), delimiter);
+        }
     }
 
     public StringList()

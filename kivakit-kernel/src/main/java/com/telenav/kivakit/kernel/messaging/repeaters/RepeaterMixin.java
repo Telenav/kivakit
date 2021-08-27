@@ -18,7 +18,7 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
  * @see Mixin
  */
 @LexakaiJavadoc(complete = true)
-public interface RepeaterMixin extends Mixin, Repeater
+public interface RepeaterMixin extends Repeater, Mixin
 {
     @Override
     default void addListener(final Listener listener, final Filter<Transmittable> filter)
@@ -45,9 +45,9 @@ public interface RepeaterMixin extends Mixin, Repeater
     }
 
     @Override
-    default void handle(final Transmittable message)
+    default <T extends Transmittable> T handle(final T message)
     {
-        repeater().handle(message);
+        return repeater().handle(message);
     }
 
     @Override
@@ -57,21 +57,21 @@ public interface RepeaterMixin extends Mixin, Repeater
     }
 
     @Override
+    default void messageSource(final Broadcaster parent)
+    {
+        repeater().messageSource(parent);
+    }
+
+    @Override
+    default Broadcaster messageSource()
+    {
+        return repeater().messageSource();
+    }
+
+    @Override
     default void onMessage(final Message message)
     {
         repeater().onMessage(message);
-    }
-
-    @Override
-    default void parentBroadcaster(final Broadcaster parent)
-    {
-        repeater().parentBroadcaster(parent);
-    }
-
-    @Override
-    default Broadcaster parentBroadcaster()
-    {
-        return repeater().parentBroadcaster();
     }
 
     @Override

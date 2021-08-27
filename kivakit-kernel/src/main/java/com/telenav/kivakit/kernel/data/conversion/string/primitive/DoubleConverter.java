@@ -45,7 +45,7 @@ public class DoubleConverter extends BaseStringConverter<Double>
      */
     @Override
     @UmlExcludeMember
-    protected Double onConvertToObject(final String value)
+    protected Double onToValue(final String value)
     {
         return Double.valueOf(value);
     }
@@ -55,7 +55,7 @@ public class DoubleConverter extends BaseStringConverter<Double>
      */
     @Override
     @UmlExcludeMember
-    protected String onConvertToString(final Double value)
+    protected String onToString(final Double value)
     {
         if (Double.isNaN(value) || Double.isInfinite(value))
         {

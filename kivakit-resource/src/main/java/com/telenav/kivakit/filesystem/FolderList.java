@@ -79,7 +79,7 @@ public class FolderList implements List<Folder>
         }
 
         @Override
-        protected FolderList onConvertToObject(final String value)
+        protected FolderList onToValue(final String value)
         {
             final var folders = new FolderList();
             for (final var path : value.split(","))

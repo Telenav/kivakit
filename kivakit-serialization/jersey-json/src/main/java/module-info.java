@@ -1,11 +1,12 @@
 open module kivakit.serialization.jersey.json
 {
-    requires transitive kivakit.kernel;
+    // KivaKit
     requires transitive kivakit.serialization.json;
 
+    // Jersey bindings
     requires transitive java.ws.rs;
-    requires transitive java.xml.bind;
 
+    // Module exports
     exports com.telenav.kivakit.serialization.jersey.json;
     exports com.telenav.kivakit.serialization.jersey.json.project;
 }

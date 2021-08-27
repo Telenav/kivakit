@@ -71,7 +71,7 @@ public class Confidence extends Level
         }
 
         @Override
-        protected Confidence onConvertToObject(final String value)
+        protected Confidence onToValue(final String value)
         {
             return new Confidence(Double.parseDouble(value));
         }

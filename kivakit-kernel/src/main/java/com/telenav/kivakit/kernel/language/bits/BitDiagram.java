@@ -41,9 +41,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *
  * int rgb = 0xff00ff;
  *
- * System.out.println(&quot;Red = &quot; + RED.extractInt(rgb));
- * System.out.println(&quot;Green = &quot; + GREEN.extractInt(rgb));
- * System.out.println(&quot;Blue = &quot; + BLUE.extractInt(rgb));
+ * System.out.println(&quot;Red = &quot; + RED.getInt(rgb));
+ * System.out.println(&quot;Green = &quot; + GREEN.getInt(rgb));
+ * System.out.println(&quot;Blue = &quot; + BLUE.getInt(rgb));
  * </pre>
  *
  * @author jonathanl (shibo)
@@ -86,31 +86,31 @@ public class BitDiagram
         /**
          * @return A boolean value for this bitfield extracted from the given value
          */
-        public boolean extractBoolean(final long value)
+        public boolean getBoolean(final long value)
         {
-            return extractInt(value) == 1;
+            return getInt(value) == 1;
         }
 
         /**
          * @return A byte for this bitfield extracted from the given value
          */
-        public byte extractByte(final long value)
+        public byte getByte(final long value)
         {
-            return (byte) extractLong(value);
+            return (byte) getLong(value);
         }
 
         /**
          * @return An int value for this bitfield extracted from the given value
          */
-        public int extractInt(final long value)
+        public int getInt(final long value)
         {
-            return (int) extractLong(value);
+            return (int) getLong(value);
         }
 
         /**
          * @return A long value for this bitfield extracted from the given value
          */
-        public long extractLong(final long value)
+        public long getLong(final long value)
         {
             return (value & mask) >>> shift;
         }
@@ -118,9 +118,9 @@ public class BitDiagram
         /**
          * @return A short value for this bitfield extracted from the given value
          */
-        public short extractShort(final long value)
+        public short getShort(final long value)
         {
-            return (short) extractLong(value);
+            return (short) getLong(value);
         }
 
         /**

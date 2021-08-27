@@ -1,0 +1,290 @@
+# Issues:
+
+1. Setting.toString() call asSet() cause debug difficult
+2. Register object twice in Setting and SettingsPackage;
+   1) SettingsPackage instance: Settings.load()  entries.forEach(this::internalAdd);
+   2) Setting instance: Settings.internalAddAll(): that.asSet().forEach(this::internalAdd))
+3. Move Settings.internalLoad into SettingsPackage
+4. SettingsPackage: create SettingsPackage once per path, but may keep registerAllIn although loaded
+   packages.computeIfAbsent(path, ignored -> new SettingsPackage(path));
+5. Repeatedly register object with class w/ super classes in Settings, Registry
+
+------
+
+1. Settings
+2. Register and Require Settings
+3. Register and Require Properties File
+
+@startuml
+
+    !include ../lexakai.theme
+
+    title "Settings"
+
+    class BaseRepeater ##[dotted] {
+        + onMessage(message)
+    }
+
+    class Settings {
+        {static} + global() : Settings
+        ---
+        - entries : Map<Identifier, Entry>
+        ---
+        + install() : Settings
+        + register(object) : Settings
+        + register(object, instanceIdentifier) : Settings
+        + require(Class<Type>, instanceIdentifier) : Type
+        # internalAdd(Entry)
+        # onLoad() : Set<Entry>
+        - load()
+    }
+
+    class SettingsPackage {
+        + name() : String
+        # onLoad() : Set<Entry>
+        # internalLoad(Resource) : Entry
+    }
+
+    class SettingsFolder {
+        + name() : String
+        # onLoad() : Set<Entry>
+    }
+
+    class Deployment {
+        + register(object, instanceIdentifier) : Development
+        + install() : Development
+        + name() : String
+    }
+
+    Settings -u-^ BaseRepeater
+    Deployment -u-^ Settings
+    SettingsPackage -u-^ Settings
+    SettingsFolder -u-^ Settings
+
+    class Entry {
+        - identifier : Identifier
+        - object : Object
+    }
+
+    note right of Entry
+        Identifier:
+        instance class and string identifier
+    end note
+
+    Settings *-r-> Entry
+    Settings "*" -u-> "1" Settings
+
+    class Registry {
+        {static} + global() : Registry
+        ---
+        - registered : Map<RegistryKey, Object>
+        ---
+        + register(object, instanceIdentifier)
+        + lookup(type, instanceIdentifier)
+    }
+
+    Registry "*" -u-> "1" Registry : global
+    Settings .u.> Registry : call
+    Entry -u[hidden] Registry
+
+@enduml
+
+2. Register and Require Settings
+
+@startuml
+
+    !include ../lexakai.theme
+
+    title "Register and Require Settings"
+
+    autoactivate on
+
+    actor Client
+    participant "settings\n:Settings" as settings <<configuration>>
+    participant "registry\n:Registry" as registry <<configuration>>
+
+    Client -> settings ** : __of__(this)
+    Client -> settings : register(object)
+    note right settings
+        Entry:
+            identifier with object
+    end note
+
+    settings -> settings : internalAdd(Entry)
+    settings ->> registry : register(object, identifier)
+    note right registry
+        register object by
+        class and all super classes
+    end note
+    return
+    note right of settings
+        loop class and all super classes:
+        entries.put(identifier, object)
+    end note
+    return
+
+    return Settings
+
+    Client -> settings : require(Class)
+    settings -> settings : require(Class, PackagePath,\n   InstanceIdentifier)
+    settings -> settings : loadSystemPropertyOverrides()
+    return
+    settings -> registry : lookup(Class, InstanceIdentifier)
+    note right registry
+        object = registered.get(RegistryKey)
+    end note
+    return object
+    return
+    return object
+
+@enduml
+
+3. Register and Require Properties File
+
+@startuml
+
+    !include ../lexakai.theme
+
+    title "Register and Require Properties File"
+
+    autoactivate on
+
+    actor Client
+    participant ":Setting" as settings <<configuration>>
+    participant ":SettingsPackage" as settingsPackage <<configuration>>
+    participant ":Registry" as registry <<configuration>>
+
+    Client -> settings ** : __of__(object)
+    Client -> settings : registerAllIn(packagePath)
+
+    alt not registered
+        settings -> settingsPackage ** : new(packagePath)
+        note left settingsPackage
+            call SettingsPackage.of(),
+            if absent in map, create settingsPackage
+        end note
+
+        settings -> settings : registerAll(settingsPackage)
+        settings -> settings : internalAddAll(settingsPackage)
+
+        settings ->> settingsPackage : Settings\n::asSet()
+        settingsPackage ->> settingsPackage : Settings\n::load
+
+        alt not load
+            settingsPackage -> settingsPackage : onLoad()
+            loop properties resource in package
+                settingsPackage -> settingsPackage : Settings\n::internalLoad(resource)
+
+                note right settingsPackage
+                    properties = PropertyMap.load(resource)
+                    ...
+                    object = properties.asObject(this, objectClass);
+                end note
+
+                return Entry
+                note right of settingsPackage
+                    this.entries.add(entry)
+                end note
+            end loop
+            return entries
+
+            loop entries
+                settingsPackage -> settingsPackage : Settings\n::internalAdd(entry))
+                settingsPackage ->> registry : register(object, identifier)
+                note right registry
+                    register object by
+                    class and all super classes
+                end note
+                return
+                note right settingsPackage
+                    loop class and all super classes:
+                    entries.put(identifier, object)
+                end note
+                return
+            end loop
+        end alt
+
+        return
+        return entries
+
+        loop entries
+            settings -> settings : internalAdd(entry))
+            settings ->> registry : register(object, identifier)
+            note right registry
+                register object by
+                class and all super classes
+            end note
+            return
+            note right settings
+                loop class and all super classes:
+                entries.put(identifier, object)
+            end note
+            return
+        end loop
+
+        return
+        return
+
+    end alt
+    return  Settings
+
+    Client -> settings : require(Class)
+    settings -> settings : require(Class, PackagePath,\n   InstanceIdentifier)
+    settings -> settings : loadSystemPropertyOverrides()
+    return
+    settings -> registry : lookup(Class, InstanceIdentifier)
+    note right registry
+        object = registered.get(RegistryKey)
+    end note
+    return object
+    return
+    return object
+
+@enduml
+
+
+2. Register and Require Settings
+
+
+
+    Client -> settings : install
+    settings -> settings : install()
+    alt not installed
+
+        settings -> global : addSet(settings)
+        global -> global : internalAddAll(settings)
+
+        global ->> settings : asSet()
+        settings ->> settings : Settings\n::load
+        alt not load
+            settings -> settings : onLoadConfigurations
+            return empty set
+        end alt
+        return
+        return entries
+
+        loop entries
+            global -> global : internalAdd(configuration)
+            note right of global
+                this.entries.add(configuration)
+            end note
+            global ->> registry : register(configuration)
+            note right registry
+                register configuration for
+                class and all super classes
+            end note
+            return
+            note right of global
+                loop class and all super classes:
+                this.identifierToConfiguration.put(identifier, configuration)
+            end note
+            return
+        end loop
+
+        return
+        return
+
+    end alt
+
+    return
+    return Deployment

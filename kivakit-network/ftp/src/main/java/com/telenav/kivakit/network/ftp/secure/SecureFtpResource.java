@@ -55,7 +55,7 @@ public class SecureFtpResource extends BaseNetworkResource
         super(location);
         if (!(location instanceof SecureFtpNetworkLocation))
         {
-            throw new IllegalArgumentException("SFTP request must use an sftp network location:  " + location);
+            illegalArgument("SFTP request must use an sftp network location:  " + location);
         }
         connector = new SecureFtpConnector(constraints);
         this.location = location;

@@ -53,7 +53,7 @@ public class UserName extends Name
         }
 
         @Override
-        protected UserName onConvertToObject(final String value)
+        protected UserName onToValue(final String value)
         {
             return parse(value);
         }
