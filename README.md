@@ -138,7 +138,7 @@ The [**kivakit-examples**](https://github.com/Telenav/kivakit-examples) project 
 
 ### Reference <a name = "reference"></a>&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-[**Javadoc**](https://www.kivakit.org/javadoc/1.0.0/kivakit)  
+[**Javadoc**](https://www.kivakit.org/1.0.0/javadoc/kivakit)  
 [**CodeFlowers**](https://www.kivakit.org/1.0.0/codeflowers/site/index.html)  
 [**System Properties**](documentation/developing/system-properties.md)
 
