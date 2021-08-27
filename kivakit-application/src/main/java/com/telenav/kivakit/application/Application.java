@@ -394,7 +394,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
 
         // load deployments and build switch parser for selecting a deployment.
         DEPLOYMENT = DeploymentSet.load(this, getClass()).switchParser("deployment")
-                .required()
+                .optional()
                 .build();
 
         // Go through arguments

@@ -16,4 +16,5 @@ version=$1
 
 require_variable version "$help"
 
+update_version $CACTUS_HOME $version
 update_version $KIVAKIT_HOME $version

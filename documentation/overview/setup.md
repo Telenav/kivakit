@@ -17,6 +17,11 @@ You will need these products, or compatible products, set up to begin:
        brew install git-flow
 
 2. Latest [Java 11](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)
+
+   > TEMPORARY NOTE: At this time, even though KivaKit targets Java 11, it is not possible to build KivaKit under Java 11 due to a bug in the compiler. It is also not possible to build KivaKit's documentation under Java 12 due to a bug in Javadoc. Therefore, until these fixes are back-ported to Java 11, Java 13 is recommended to build KivaKit:
+   >
+   > https://www.oracle.com/java/technologies/javase/jdk13-archive-downloads.html
+
 3. Latest [Maven](https://maven.apache.org/download.cgi)
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
@@ -25,13 +30,19 @@ You will need these products, or compatible products, set up to begin:
 
 The KivaKit project will look roughly like this when we're done with the setup process:
 
-> * Workspace
-    >
-* kivakit
-  >
-* kivakit-core
->     * kivakit-filesystems
->     * [...]
+    └── Workspace
+        ├── kivakit
+        │   ├── kivakit-application
+        │   ├── kivakit-collections
+        │   ├── kivakit-commandline
+        │   └── [...]
+        ├── kivakit-extensions
+        │   ├── kivakit-data
+        │   ├── kivakit-filesystems
+        │   ├── kivakit-logs
+        │   └── [...]
+        └── kivakit-examples
+            └── [...]
 
 Notice how the *kivakit* project (**KIVAKIT_HOME**) is checked out in the IDE workspace called
 *Workspace* (**KIVAKIT_WORKSPACE**).

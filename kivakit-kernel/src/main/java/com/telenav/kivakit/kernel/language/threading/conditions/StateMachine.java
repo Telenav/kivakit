@@ -86,7 +86,7 @@ public final class StateMachine<State> extends BaseRepeater
     private State at;
 
     /** Watches the state */
-    private final StateWatcher<State> watcher = new StateWatcher<>();
+    private final StateWatcher<State> watcher;
 
     /** Listener to call when state transitions occur */
     private final Receiver<State> receiver;
@@ -100,6 +100,7 @@ public final class StateMachine<State> extends BaseRepeater
     {
         at = initial;
         this.receiver = receiver;
+        watcher = new StateWatcher<>(initial);
     }
 
     public State at()

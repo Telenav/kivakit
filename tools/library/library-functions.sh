@@ -295,8 +295,8 @@ is_mac() {
 
 lexakai() {
 
-    lexakai_download_version="0.9.9-SNAPSHOT"
-    lexakai_download_name="lexakai-0.9.9-20210727.211904-5.jar"
+    lexakai_download_version="1.0.0"
+    lexakai_download_name="lexakai-1.0.0.jar"
 
     lexakai_downloads="$HOME/.lexakai/downloads"
 

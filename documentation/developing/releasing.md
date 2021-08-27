@@ -9,6 +9,20 @@ as 2.1.7 or 1.0.0-beta.
 
 KivaKit adheres to the standard [Git Flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) branching model.
 
+### 0. Releasing Cactus Build
+
+Before building KivaKit, cactus-build must be released. The version number should always be in sync with KivaKit.
+
+1. Run cactus-release-start.sh [kivakit-version]
+2. Run cactus-release-update-version.sh [kivakit-version]
+3. Run cactus-build.sh
+4. Run cactus-build-documentation.sh
+5. Run cactus-build.sh deploy-local
+6. Double check the release branch
+7. Run cactus-release-finish.sh [kivakit-version]
+8. Run cactus-build.sh deploy-ossrh
+9. Sign into OSSRH and release to Maven Central
+
 ### 1. Creating the Release Branch <img src="https://www.kivakit.org/images/branch-32.png" srcset="https://www.kivakit.org/images/branch-32-2x.png 2x"/>
 
 Start a new release branch with the following commands:
@@ -35,7 +49,12 @@ Finally, search for and replace any stray version numbers from the previous revi
 
 Once the release branch has been created, several steps need to be performed manually to prepare the branch for publication.
 
-#### 2.1 Building the Release
+#### 2.1 Prepare the Release Branch
+
+1. Update references to cactus-build version in pom.xml files
+2. Double check for stray references to the previous version in pom.xml files
+
+#### 2.2 Building the Release
 
 In order to ensure that the build will work on the build server, it is a good idea to completely clean out your maven repository and cache folders by building the project completely from scratch:
 
@@ -47,13 +66,13 @@ This will remove (after prompting) the following before building:
 2. KivaKit cache folder *~/.kivakit/\[kivakit-version\]*
 3. Temporary files, logs, etc. in the source tree
 
-#### 2.2 Building the Documentation
+#### 2.3 Building the Documentation
 
 The following command will build Javadoc, UML diagrams and update project README.md indexes.
 
     kivakit-build-documentation.sh
 
-#### 2.3 Updating Code Flowers
+#### 2.4 Updating Code Flowers
 
 To publish code flowers for the build:
 
@@ -68,7 +87,13 @@ To publish code flowers for the build:
         
 1. Open *site/index.html* in an editor and insert the &lt;option&gt; HTML code that was output by the build process.
 
-#### 2.4 Commit Changes
+#### 2.5 Check Deployment Build
+
+To ensure that the build will be accepted on Maven Central, run:
+
+    kivakit-build.sh deploy-local.sh
+
+#### 2.6 Commit Changes
 
 Commit any changes to the release branch.
 
@@ -78,3 +103,10 @@ The release is finished and merged into master with another script that uses git
 
     kivakit-release-finish.sh [kivakit-version]
 
+### 4. Pushing the Release to Maven Central
+
+To push the release to OSSRH, run:
+
+    kivakit-build.sh deploy-ossrh
+
+The sign into OSSRH and push the build to Maven Central
