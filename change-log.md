@@ -1,30 +1,28 @@
-![](kivakit-core/https://www.kivakit.org/images/horizontal-line.png)
+![](https://www.kivakit.org/images/horizontal-line.png)
 
-### Version 0.9.0 (2021.04.01)
+## Version 1.0.0 (2021.08.27) "puffy mouse"
 
-Initial version.
+Initial release of KivaKit.
 
-![](kivakit-core/https://www.kivakit.org/images/horizontal-line.png)
+### updated
 
-#### updated
+* N/A
 
-* None
+### optimized
 
-#### optimized
+* N/A
 
-* None
+### changed
 
-#### changed
+* N/A
 
-* None
+### fixed
 
-#### fixed
+* N/A
 
-* None
-
-#### added
+### added
 
 * All
 
-![](kivakit-core/https://www.kivakit.org/images/horizontal-line.png)
+![](https://www.kivakit.org/images/horizontal-line.png)
 
