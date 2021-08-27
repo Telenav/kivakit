@@ -12,7 +12,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.telenav.kivakit</groupId>
     <artifactId>kivakit</artifactId>
-    <version>0.9.9-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
 
     <!-- Project -->
@@ -153,7 +153,7 @@
 
         <!-- KivaKit Version -->
 
-        <kivakit.version>0.9.9-SNAPSHOT</kivakit.version>
+        <kivakit.version>1.0.0</kivakit.version>
 
         <!-- Cactus Build -->
 

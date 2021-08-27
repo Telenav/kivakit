@@ -10,7 +10,7 @@
     <parent>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-network</artifactId>
-        <version>0.9.9-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <name>KivaKit - Network - HTTP</name>
