@@ -68,7 +68,7 @@ public interface Validatable
 
     /**
      * @param type The type of validation to perform
-     * @return A new {@link Validator} instance
+     * @return A {@link Validator} instance
      */
     Validator validator(ValidationType type);
 }
