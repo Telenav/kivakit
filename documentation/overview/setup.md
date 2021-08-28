@@ -18,9 +18,9 @@ You will need these products, or compatible products, set up to begin:
 
 2. Latest [Java 11](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)
 
-   > TEMPORARY NOTE: At this time, even though KivaKit targets Java 11 bytecode, it is not possible to build KivaKit under Java 11 due to a bug in the compiler ([JDK-8254557](https://bugs.openjdk.java.net/browse/JDK-8254557)). It is also not possible to build KivaKit's documentation under Java 12 due to a bug in Javadoc. Therefore, until these fixes are back-ported to Java 11, it is recommended to build KivaKit with Java 13:
+   > **IMPORTANT NOTE**: At this time, even though KivaKit targets Java 11 bytecode, it is not possible to build KivaKit under Java 11 due to a bug in the compiler ([JDK-8254557](https://bugs.openjdk.java.net/browse/JDK-8254557)). It is also not possible to build KivaKit's documentation under Java 12 due to a bug in Javadoc ([JDK-8212233](https://bugs.openjdk.java.net/browse/JDK-8212233)). Therefore, until these fixes are back-ported to Java 11, it is recommended to build KivaKit with **Java 16**, where both of these bugs have been fixed.
    >
-   > https://www.oracle.com/java/technologies/javase/jdk13-archive-downloads.html
+   > [Download Open JDK Java 16](https://adoptopenjdk.net/?variant=openjdk16&jvmVariant=hotspot)
 
 3. Latest [Maven](https://maven.apache.org/download.cgi)
 
