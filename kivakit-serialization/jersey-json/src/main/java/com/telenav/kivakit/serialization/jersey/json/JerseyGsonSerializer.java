@@ -50,7 +50,11 @@ import java.nio.charset.StandardCharsets;
 @LexakaiJavadoc(complete = true)
 public class JerseyGsonSerializer<T> implements MessageBodyReader<T>, MessageBodyWriter<T>
 {
-    private final Gson gson;
+    private Gson gson;
+
+    public JerseyGsonSerializer()
+    {
+    }
 
     public JerseyGsonSerializer(final GsonFactory factory)
     {
@@ -102,5 +106,10 @@ public class JerseyGsonSerializer<T> implements MessageBodyReader<T>, MessageBod
             writer.write(json);
             writer.flush();
         }
+    }
+
+    protected Gson gson()
+    {
+        return gson;
     }
 }
