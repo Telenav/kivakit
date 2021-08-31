@@ -22,6 +22,7 @@ import com.telenav.cactus.build.metadata.Metadata;
 import com.telenav.kivakit.kernel.interfaces.lifecycle.Initializable;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
+import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
 import com.telenav.kivakit.kernel.language.objects.Lazy;
 import com.telenav.kivakit.kernel.language.strings.AsciiArt;
 import com.telenav.kivakit.kernel.language.time.LocalTime;
@@ -124,9 +125,9 @@ public abstract class Project extends BaseRepeater implements Initializable, Nam
      * @return The set of dependent projects for this project
      */
     @UmlRelation(label = "depends on")
-    public Set<Project> dependencies()
+    public ObjectSet<Project> dependencies()
     {
-        return Set.of();
+        return ObjectSet.empty();
     }
 
     /**

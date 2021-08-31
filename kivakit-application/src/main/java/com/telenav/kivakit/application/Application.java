@@ -31,7 +31,6 @@ import com.telenav.kivakit.configuration.settings.deployment.DeploymentSet;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
-import com.telenav.kivakit.kernel.language.collections.set.Sets;
 import com.telenav.kivakit.kernel.language.locales.Locale;
 import com.telenav.kivakit.kernel.language.strings.Align;
 import com.telenav.kivakit.kernel.language.strings.AsciiArt;
@@ -191,7 +190,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
 
     /** The project that this application uses */
     @UmlAggregation(label = "initializes and uses")
-    private final Project project;
+    private Project project;
 
     /** The parsed command line for this application */
     @UmlAggregation
@@ -224,9 +223,9 @@ public abstract class Application extends BaseComponent implements Named, Applic
             project = new Project()
             {
                 @Override
-                public Set<Project> dependencies()
+                public ObjectSet<Project> dependencies()
                 {
-                    return Sets.of(projects);
+                    return ObjectSet.of(projects);
                 }
             };
         }
@@ -360,6 +359,10 @@ public abstract class Application extends BaseComponent implements Named, Applic
 
     public Project project()
     {
+        if (project == null)
+        {
+            project = ensureNotNull(newProject());
+        }
         return project;
     }
 
@@ -493,6 +496,17 @@ public abstract class Application extends BaseComponent implements Named, Applic
     protected List<ArgumentParser<?>> argumentParsers()
     {
         return Collections.emptyList();
+    }
+
+    /**
+     * If a project is <i>not</i> passed to the constructor, then this method can be overridden to provide a {@link
+     * Project} dynamically.
+     *
+     * @return The {@link Project} for this application
+     */
+    protected Project newProject()
+    {
+        return null;
     }
 
     /**

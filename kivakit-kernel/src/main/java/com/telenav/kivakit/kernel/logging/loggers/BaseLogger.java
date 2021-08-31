@@ -21,6 +21,7 @@ package com.telenav.kivakit.kernel.logging.loggers;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
 import com.telenav.kivakit.kernel.language.collections.map.ConcurrentObjectMap;
+import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.logging.Log;
@@ -39,7 +40,6 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @UmlClassDiagram(diagram = DiagramLogging.class)
 public abstract class BaseLogger implements Logger
@@ -180,7 +180,7 @@ public abstract class BaseLogger implements Logger
     }
 
     @UmlExcludeMember
-    protected abstract Set<Log> logs();
+    protected abstract ObjectSet<Log> logs();
 
     private static Severity level()
     {

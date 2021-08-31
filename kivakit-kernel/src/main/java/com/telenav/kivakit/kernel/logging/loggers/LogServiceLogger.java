@@ -19,7 +19,7 @@
 package com.telenav.kivakit.kernel.logging.loggers;
 
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.language.collections.set.Sets;
+import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
 import com.telenav.kivakit.kernel.language.strings.Strings;
 import com.telenav.kivakit.kernel.language.vm.JavaVirtualMachine;
 import com.telenav.kivakit.kernel.logging.Log;
@@ -33,9 +33,7 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 /**
@@ -57,7 +55,7 @@ public class LogServiceLogger extends BaseLogger
 {
     /** List of logs to log to, initially just a console log, unless logs are specified with KIVAKIT_LOG */
     @UmlAggregation(label = "logs to")
-    private static Set<Log> logs = Sets.of(new ConsoleLog());
+    private static ObjectSet<Log> logs = ObjectSet.of(new ConsoleLog());
 
     private static boolean loaded;
 
@@ -75,7 +73,7 @@ public class LogServiceLogger extends BaseLogger
 
     @Override
     @UmlExcludeMember
-    public synchronized Set<Log> logs()
+    public synchronized ObjectSet<Log> logs()
     {
         // If we haven't loaded log services yet,
         if (!loaded)
@@ -88,7 +86,7 @@ public class LogServiceLogger extends BaseLogger
             if (descriptors != null)
             {
                 // and for each descriptor,
-                final Set<Log> loadedLogs = new HashSet<>();
+                final ObjectSet<Log> loadedLogs = new ObjectSet<>();
                 for (final var descriptor : descriptors.split(","))
                 {
                     // load and configure the log
