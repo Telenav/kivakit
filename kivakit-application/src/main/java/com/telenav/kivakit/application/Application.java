@@ -306,7 +306,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
     @Override
     public String description()
     {
-        return "";
+        return "No description available for '$'" + name();
     }
 
     /**
