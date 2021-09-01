@@ -197,7 +197,7 @@
 
         <!-- Serialization -->
 
-        <kryo.version>4.0.2</kryo.version>
+        <kryo.version>5.2.0</kryo.version>
         <kryo.serializers.version>0.45</kryo.serializers.version>
 
         <!-- Testing -->
