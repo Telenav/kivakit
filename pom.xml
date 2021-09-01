@@ -364,6 +364,27 @@
 
         <plugins>
 
+            <!-- Dependencies -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>enforce</id>
+                        <configuration>
+                            <rules>
+                                <dependencyConvergence/>
+                            </rules>
+                        </configuration>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
             <!-- Build Metadata -->
 
             <plugin>
@@ -388,7 +409,7 @@
                                     <equals arg1 = "${maven.multiModuleProjectDirectory}" arg2 = "${project.basedir}"/>
                                     <then>
                                         <mkdir dir = "${cactus.downloads.folder}"/>
-                                        <get ignoreerrors="true" src = "${cactus.url}" dest = "${cactus.jar}"/>
+                                        <get ignoreerrors = "true" src = "${cactus.url}" dest = "${cactus.jar}"/>
                                     </then>
                                 </if>
                                 <if>
