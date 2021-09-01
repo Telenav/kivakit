@@ -192,7 +192,7 @@
 
         <!-- Build -->
 
-        <nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
+        <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
         <moditect-maven-plugin.version>1.0.0.RC1</moditect-maven-plugin.version>
 
         <!-- Serialization -->
@@ -217,7 +217,7 @@
 
         <!-- Web -->
 
-        <jersey.version>2.33</jersey.version>
+        <jersey.version>3.0.2</jersey.version>
         <swagger.version>2.1.6</swagger.version>
         <httpclient.version>4.5.12</httpclient.version>
 
