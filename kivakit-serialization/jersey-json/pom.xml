@@ -7,6 +7,7 @@
 
 <project xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <parent>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-serialization</artifactId>
@@ -29,7 +30,7 @@
             <version>${kivakit.version}</version>
         </dependency>
 
-        <!-- Jersey JSON -->
+        <!-- Jersey -->
 
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
@@ -41,8 +42,12 @@
                     <artifactId>jackson-annotations</artifactId>
                 </exclusion>
                 <exclusion>
-                    <groupId>jakarta.activation</groupId>
-                    <artifactId>*</artifactId>
+                    <groupId>com.fasterxml.jackson.module</groupId>
+                    <artifactId>jackson-module-jaxb-annotations</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-databind</artifactId>
                 </exclusion>
                 <exclusion>
                     <groupId>jakarta.xml.bind</groupId>
@@ -57,12 +62,34 @@
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
-            <version>2.3.1</version>
+            <version>${jaxb.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.activation</groupId>
+                    <artifactId>javax.activation-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
-            <groupId>javax.ws.rs</groupId>
-            <artifactId>javax.ws.rs-api</artifactId>
-            <version>2.1.1</version>
+            <groupId>com.sun.activation</groupId>
+            <artifactId>javax.activation</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
+            <version>2.1.6</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>jakarta.activation</groupId>
+                    <artifactId>jakarta.activation-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.activation</groupId>
+            <artifactId>jakarta.activation-api</artifactId>
+            <version>${jakarta.activation.version}</version>
         </dependency>
 
     </dependencies>

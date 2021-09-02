@@ -6,7 +6,7 @@ open module kivakit.network.email
 
     // Java mail
     requires java.mail;
-    requires jakarta.activation;
+    requires java.activation;
 
     // Module exports
     exports com.telenav.kivakit.network.email;
