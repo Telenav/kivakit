@@ -5,7 +5,7 @@ open module kivakit.serialization.jersey.json
 
     // Jersey
     requires transitive java.ws.rs;
-    requires transitive java.xml.bind;
+    requires transitive java.activation;
 
     // Module exports
     exports com.telenav.kivakit.serialization.jersey.json;

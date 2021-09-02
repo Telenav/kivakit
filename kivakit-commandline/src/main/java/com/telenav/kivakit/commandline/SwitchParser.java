@@ -368,8 +368,7 @@ public class SwitchParser<T> implements Named, Validatable
             {
                 return fail("Must provide description");
             }
-            return new SwitchParser<>(quantifier, name, type, defaultValue, validValues,
-                    converter, description);
+            return new SwitchParser<>(quantifier, name, type, defaultValue, validValues, converter, description);
         }
 
         public Builder<T> converter(final Converter<String, T> converter)
@@ -399,6 +398,12 @@ public class SwitchParser<T> implements Named, Validatable
         public Builder<T> optional()
         {
             quantifier = Quantifier.OPTIONAL;
+            return this;
+        }
+
+        public Builder<T> quantifier(Quantifier quantifier)
+        {
+            this.quantifier = quantifier;
             return this;
         }
 

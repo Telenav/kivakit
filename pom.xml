@@ -171,7 +171,7 @@
 
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jakarta.activation.version>1.2.2</jakarta.activation.version>
+        <jakarta.activation.version>2.0.0</jakarta.activation.version>
         <java-mail.version>1.6.2</java-mail.version>
 
         <!-- Protocols -->
@@ -218,12 +218,13 @@
         <!-- Web -->
 
         <jersey.version>2.33</jersey.version>
-        <swagger.version>2.1.6</swagger.version>
-        <httpclient.version>4.5.12</httpclient.version>
+        <swagger.version>2.1.10</swagger.version>
+        <httpclient.version>4.5.13</httpclient.version>
 
         <!-- XML -->
 
-        <jackson.version>2.12.2</jackson.version>
+        <jaxb.version>2.3.1</jaxb.version>
+        <jackson.version>2.12.3</jackson.version>
         <xerces.version>2.11.0</xerces.version>
 
     </properties>
@@ -384,7 +385,7 @@
                     </execution>
                 </executions>
             </plugin>
-            
+
             <!-- Build Metadata -->
 
             <plugin>
