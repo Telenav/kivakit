@@ -1,0 +1,39 @@
+#///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#
+#  © 2021 Telenav, Inc.
+#  Licensed under Apache License, Version 2.0
+#
+#///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#
+# GitHub action that publishes signed SNAPSHOT artifacts with Javadoc and source code attachments to the
+# OSSRH snapshot repository (https://s01.oss.sonatype.org/) when code is checked in to the develop branch.
+#
+
+name: Build Feature Branch
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ feature/* ]
+  pull_request:
+    branches: [ feature/* ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 16
+
+      - name: Build
+        run: |
+          mvn -Dmaven.javadoc.skip=true -DKIVAKIT_DEBUG="!Debug" -P shade -P tools --no-transfer-progress --batch-mode clean install
