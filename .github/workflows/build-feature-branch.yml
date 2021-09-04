@@ -6,8 +6,7 @@
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #
-# GitHub action that publishes signed SNAPSHOT artifacts with Javadoc and source code attachments to the
-# OSSRH snapshot repository (https://s01.oss.sonatype.org/) when code is checked in to the develop branch.
+# GitHub action that builds feature branches when code is checked into a branch named feature/*
 #
 
 name: Build Feature Branch
