@@ -27,7 +27,6 @@
         <dependency>
             <groupId>com.telenav.kivakit</groupId>
             <artifactId>kivakit-kernel</artifactId>
-            <version>${kivakit.version}</version>
         </dependency>
 
     </dependencies>
