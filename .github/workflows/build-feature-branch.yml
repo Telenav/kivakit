@@ -35,4 +35,6 @@ jobs:
 
       - name: Build
         run: |
+          cd superpom |
+          mvn clean install |
           mvn -Dmaven.javadoc.skip=true -DKIVAKIT_DEBUG="!Debug" -P shade -P tools --no-transfer-progress --batch-mode clean install
