@@ -33,5 +33,5 @@ jobs:
 
       - name: Build
         run: |
-          perl ./.github/scripts/build.pl package $GITHUB_REF
+          perl ./.github/scripts/build.pl package
         shell: bash
