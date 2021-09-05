@@ -6,15 +6,15 @@
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #
-# GitHub action that builds code that is pushed into a feature branch
+# GitHub action that builds pull requests to the develop branch
 #
 
-name: Build Feature Branch
+name: Build Pull Request
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ feature/* ]
+  pull_request:
+    branches: [ develop ]
 
 jobs:
   build:
