@@ -20,8 +20,8 @@ if (!-d "cactus-build")
     system("git clone --branch develop --quiet https://github.com/Telenav/cactus-build.git");
 }
 
-#require "./cactus-build/.github/scripts/build-include.pl";
-require "$ENV{'KIVAKIT_WORKSPACE'}/cactus-build/.github/scripts/build-include.pl";
+require "./cactus-build/.github/scripts/build-include.pl";
+#require "$ENV{'KIVAKIT_WORKSPACE'}/cactus-build/.github/scripts/build-include.pl";
 
 #
 # Clone repositories and build
