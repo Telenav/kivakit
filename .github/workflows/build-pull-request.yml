@@ -1,0 +1,37 @@
+#///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#
+#  © 2021 Telenav, Inc.
+#  Licensed under Apache License, Version 2.0
+#
+#///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#
+# GitHub action that builds pull requests to the develop branch
+#
+
+name: Build Pull Request
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 16
+
+      - name: Build
+        run: |
+          perl ./.github/scripts/build.pl package
+        shell: bash

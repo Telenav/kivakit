@@ -25,7 +25,6 @@
         <module>core</module>
         <module>kryo</module>
         <module>json</module>
-        <module>jersey-json</module>
 
     </modules>
 

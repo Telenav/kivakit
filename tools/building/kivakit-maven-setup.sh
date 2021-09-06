@@ -7,9 +7,6 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-source "$KIVAKIT_WORKSPACE"/kivakit/tools/library/library-functions.sh
+cd "$KIVAKIT_HOME"/superpom
+mvn clean install
 
-clean_cache "$KIVAKIT_CACHE_HOME"
-clean_temporary_files "$KIVAKIT_WORKSPACE"
-
-bash kivakit-maven-setup.sh

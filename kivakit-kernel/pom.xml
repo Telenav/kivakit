@@ -27,7 +27,6 @@
         <dependency>
             <groupId>com.telenav.cactus</groupId>
             <artifactId>cactus-build-metadata</artifactId>
-            <version>${cactus.version}</version>
         </dependency>
 
         <!-- Test -->
@@ -35,7 +34,6 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
         </dependency>
 
         <!-- Annotations -->
@@ -43,22 +41,18 @@
         <dependency>
             <groupId>com.telenav.lexakai</groupId>
             <artifactId>lexakai-annotations</artifactId>
-            <version>${lexakai.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
-            <version>20.1.0</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
-            <version>${jackson.version}</version>
         </dependency>
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
             <artifactId>swagger-annotations</artifactId>
-            <version>${swagger.version}</version>
         </dependency>
 
     </dependencies>
