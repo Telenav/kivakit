@@ -904,11 +904,6 @@
             </dependency>
             <dependency>
                 <groupId>com.telenav.kivakit</groupId>
-                <artifactId>kivakit-serialization-jersey-json</artifactId>
-                <version>${kivakit.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.telenav.kivakit</groupId>
                 <artifactId>kivakit-serialization-kryo</artifactId>
                 <version>${kivakit.version}</version>
             </dependency>
