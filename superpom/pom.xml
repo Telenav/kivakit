@@ -232,6 +232,7 @@
                         <configuration>
                             <show>public</show>
                             <source>11</source>
+                            <sourcepath>src/main/java</sourcepath>
                             <detectJavaApiLink>false</detectJavaApiLink>
                             <doclint>none</doclint>
                             <nohelp>true</nohelp>
