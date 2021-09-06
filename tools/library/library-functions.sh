@@ -64,7 +64,7 @@ showVersion() {
 
 clean_cache() {
 
-    cache=$2
+    cache=$1
 
     if [ -d "$cache" ]; then
         read -p "┋ Remove ALL cached files in $cache (y/n)? " -n 1 -r

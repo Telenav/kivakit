@@ -1,3 +1,4 @@
+#!/bin/bash
 
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #
@@ -15,7 +16,7 @@ usage() {
     echo " "
     echo "  Build types:"
     echo " "
-    echo "       [default] - compile, shade and run quick tests"
+    echo "       [default] - compile, shade and run all tests"
     echo " "
     echo "             all - clean-all, compile, shade, run tests, build tools and javadoc"
     echo " "
@@ -33,11 +34,11 @@ usage() {
     echo " "
     echo "  Build modifiers:"
     echo " "
-    echo "       all-clean - prompt to remove cached and temporary files and kivakit artifacts from ~/.m2"
-    echo " "
     echo "     attach-jars - attach source and javadoc jars to maven artifacts"
     echo " "
     echo "           clean - prompt to remove cached and temporary files"
+    echo " "
+    echo "       clean-all - prompt to remove cached and temporary files and kivakit artifacts from ~/.m2"
     echo " "
     echo "           debug - turn maven debug mode on"
     echo " "
@@ -84,6 +85,8 @@ build() {
     PROJECT=$1
     PROJECT_NAME=$(basename "$PROJECT")
     BUILD_TYPE=$2
+    SWITCHES=""
+    BUILD_ARGUMENTS=""
 
     case "${BUILD_TYPE}" in
 
@@ -141,7 +144,7 @@ build() {
     *)
         BUILD_TYPE="default"
         BUILD_ARGUMENTS="clean install"
-        BUILD_MODIFIERS=(multi-threaded quick-tests shade no-javadoc ${@:2})
+        BUILD_MODIFIERS=(multi-threaded tests shade no-javadoc ${@:2})
         ;;
 
     esac
