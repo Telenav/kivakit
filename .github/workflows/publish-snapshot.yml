@@ -41,7 +41,7 @@ jobs:
         env:
           OSSRH_GPG_SECRET_KEY: ${{ secrets.OSSRH_GPG_SECRET_KEY }}
 
-      - name: Publish Snapshot to OSSRH
+      - name: Build and
         run: |
           perl ./.github/scripts/build.pl publish
         env:
