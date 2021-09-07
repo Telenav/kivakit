@@ -10,7 +10,7 @@
 # OSSRH snapshot repository (https://s01.oss.sonatype.org/) when code is checked in to the develop branch.
 #
 
-name: Publish Snapshot
+name: Build and Publish Snapshotshot
 
 on:
   workflow_dispatch:
