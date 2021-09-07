@@ -19,7 +19,7 @@
 
     <name>KivaKit</name>
     <description>KivaKit is a collection of easy-to-use, integrated mini-frameworks for developing Java software.</description>
-    <url>http://www.kivakit.org</url>
+    <url>https://www.kivakit.org</url>
     <inceptionYear>2011</inceptionYear>
     <organization>
         <name>Telenav</name>
@@ -47,7 +47,7 @@
             <name>Jonathan Locke (Luo Shibo)</name>
             <email>jonathanl@telenav.com</email>
             <organization>Telenav</organization>
-            <organizationUrl>http://www.telenav.com/</organizationUrl>
+            <organizationUrl>https://www.telenav.com/</organizationUrl>
             <roles>
                 <role>lead</role>
                 <role>administrator</role>
@@ -59,7 +59,7 @@
             <name>Haifeng Zhu</name>
             <email>hfzhu@telenav.com</email>
             <organization>Telenav</organization>
-            <organizationUrl>http://www.telenav.com/</organizationUrl>
+            <organizationUrl>https://www.telenav.com/</organizationUrl>
             <roles>
                 <role>developer</role>
                 <role>administrator</role>
