@@ -735,6 +735,10 @@
                         <artifactId>jackson-databind</artifactId>
                     </exclusion>
                     <exclusion>
+                        <groupId>javax.xml.bind</groupId>
+                        <artifactId>jaxb-api</artifactId>
+                    </exclusion>
+                    <exclusion>
                         <groupId>jakarta.xml.bind</groupId>
                         <artifactId>*</artifactId>
                     </exclusion>

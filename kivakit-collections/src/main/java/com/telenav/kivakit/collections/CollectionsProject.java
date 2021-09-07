@@ -16,28 +16,28 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.test.project;
+package com.telenav.kivakit.collections;
 
 import com.telenav.kivakit.kernel.language.objects.Lazy;
 import com.telenav.kivakit.kernel.project.Project;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
- * Project class for kivakit-core-test
+ * Project class for kivakit-core-collections
  *
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
-public class CoreTestProject extends Project
+public class CollectionsProject extends Project
 {
-    private static final Lazy<CoreTestProject> project = Lazy.of(CoreTestProject::new);
+    private static final Lazy<CollectionsProject> project = Lazy.of(CollectionsProject::new);
 
-    public static CoreTestProject get()
+    public static CollectionsProject get()
     {
         return project.get();
     }
 
-    protected CoreTestProject()
+    protected CollectionsProject()
     {
     }
 }

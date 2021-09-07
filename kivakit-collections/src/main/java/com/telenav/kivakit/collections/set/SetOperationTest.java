@@ -18,13 +18,13 @@
 
 package com.telenav.kivakit.collections.set;
 
-import com.telenav.kivakit.collections.project.CoreCollectionsUnitTest;
+import com.telenav.kivakit.collections.project.CollectionsUnitTest;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public abstract class SetOperationTest extends CoreCollectionsUnitTest
+public abstract class SetOperationTest extends CollectionsUnitTest
 {
     protected Set<Integer> set(final Integer... values)
     {

@@ -37,7 +37,7 @@ import com.telenav.kivakit.kernel.language.reflection.property.filters.method.Na
 import com.telenav.kivakit.kernel.language.types.Classes;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.kernel.project.CoreKernelLimits;
+import com.telenav.kivakit.kernel.project.KernelLimits;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -64,7 +64,7 @@ public class Type<T> implements Named
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    private static final ClassMap<Type<?>> types = new ClassMap<>(CoreKernelLimits.REFLECTED_CLASSES)
+    private static final ClassMap<Type<?>> types = new ClassMap<>(KernelLimits.REFLECTED_CLASSES)
     {
         @SuppressWarnings({ "rawtypes", "unchecked" })
         @Override
@@ -265,7 +265,7 @@ public class Type<T> implements Named
         if (properties == null)
         {
             // create a new set of properties
-            properties = new NameMap<>(CoreKernelLimits.PROPERTIES_PER_OBJECT, new TreeMap<>());
+            properties = new NameMap<>(KernelLimits.PROPERTIES_PER_OBJECT, new TreeMap<>());
 
             // and add a property getter/setter for each declared field in this type and all super classes
             for (final var field : allFields())

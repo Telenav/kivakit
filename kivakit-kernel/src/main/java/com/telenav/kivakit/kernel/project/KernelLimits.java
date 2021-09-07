@@ -20,7 +20,7 @@ package com.telenav.kivakit.kernel.project;
 
 import com.telenav.kivakit.kernel.language.values.count.Maximum;
 
-public class CoreKernelLimits
+public class KernelLimits
 {
     // Command Line
     public static final Maximum COMMAND_LINE_ARGUMENTS = Maximum.parse("1024");

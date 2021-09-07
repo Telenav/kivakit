@@ -16,23 +16,22 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.kernel.project;
+package com.telenav.kivakit.collections.project;
 
-import com.telenav.kivakit.kernel.language.objects.Lazy;
+import com.telenav.kivakit.serialization.kryo.CoreKernelKryoTypes;
+import com.telenav.kivakit.serialization.kryo.KryoTypes;
+import com.telenav.kivakit.serialization.kryo.KryoUnitTest;
 
 /**
+ * This is the base class for collections unit tests.
+ *
  * @author jonathanl (shibo)
  */
-public class KernelProject extends Project
+public abstract class CollectionsUnitTest extends KryoUnitTest
 {
-    private static final Lazy<KernelProject> project = Lazy.of(KernelProject::new);
-
-    public static KernelProject get()
+    @Override
+    protected KryoTypes kryoTypes()
     {
-        return project.get();
-    }
-
-    protected KernelProject()
-    {
+        return new CoreKernelKryoTypes();
     }
 }

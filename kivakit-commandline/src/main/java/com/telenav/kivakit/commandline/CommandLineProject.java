@@ -16,28 +16,28 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.network.socket.project;
+package com.telenav.kivakit.commandline;
 
 import com.telenav.kivakit.kernel.language.objects.Lazy;
 import com.telenav.kivakit.kernel.project.Project;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
- * Project class for kivakit-core-network-socket.
+ * Project class for kivakit-core-commandline
  *
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
-public class CoreNetworkSocketProject extends Project
+public class CommandLineProject extends Project
 {
-    private static final Lazy<CoreNetworkSocketProject> project = Lazy.of(CoreNetworkSocketProject::new);
+    private static final Lazy<CommandLineProject> project = Lazy.of(CommandLineProject::new);
 
-    public static CoreNetworkSocketProject get()
+    public static CommandLineProject get()
     {
         return project.get();
     }
 
-    protected CoreNetworkSocketProject()
+    protected CommandLineProject()
     {
     }
 }

@@ -16,28 +16,28 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.application.project;
+package com.telenav.kivakit.serialization.core;
 
 import com.telenav.kivakit.kernel.language.objects.Lazy;
 import com.telenav.kivakit.kernel.project.Project;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
- * Project class for kivakit-application
+ * Project class for kivakit-core-serialization-core
  *
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
-public class CoreApplicationProject extends Project
+public class SerializationProject extends Project
 {
-    private static final Lazy<CoreApplicationProject> project = Lazy.of(CoreApplicationProject::new);
+    private static final Lazy<SerializationProject> project = Lazy.of(SerializationProject::new);
 
-    public static CoreApplicationProject get()
+    public static SerializationProject get()
     {
         return project.get();
     }
 
-    protected CoreApplicationProject()
+    protected SerializationProject()
     {
     }
 }

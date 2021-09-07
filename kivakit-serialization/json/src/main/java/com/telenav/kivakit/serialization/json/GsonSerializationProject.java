@@ -16,28 +16,28 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.network.core.project;
+package com.telenav.kivakit.serialization.json;
 
 import com.telenav.kivakit.kernel.language.objects.Lazy;
 import com.telenav.kivakit.kernel.project.Project;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
- * Project class for kivakit-core-network-core
+ * Project class for kivakit-core-serialization-json
  *
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
-public class NetworkCoreProject extends Project
+public class GsonSerializationProject extends Project
 {
-    private static final Lazy<NetworkCoreProject> project = Lazy.of(NetworkCoreProject::new);
+    private static final Lazy<GsonSerializationProject> project = Lazy.of(GsonSerializationProject::new);
 
-    public static NetworkCoreProject get()
+    public static GsonSerializationProject get()
     {
         return project.get();
     }
 
-    protected NetworkCoreProject()
+    protected GsonSerializationProject()
     {
     }
 }

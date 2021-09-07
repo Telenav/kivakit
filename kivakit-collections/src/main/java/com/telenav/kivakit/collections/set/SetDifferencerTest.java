@@ -18,14 +18,14 @@
 
 package com.telenav.kivakit.collections.set;
 
-import com.telenav.kivakit.collections.project.CoreCollectionsUnitTest;
+import com.telenav.kivakit.collections.project.CollectionsUnitTest;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class SetDifferencerTest extends CoreCollectionsUnitTest
+public class SetDifferencerTest extends CollectionsUnitTest
 {
     private static class Value
     {

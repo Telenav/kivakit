@@ -16,28 +16,27 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.network.http.project;
+package com.telenav.kivakit.resource.project;
 
-import com.telenav.kivakit.kernel.language.objects.Lazy;
-import com.telenav.kivakit.kernel.project.Project;
+import com.telenav.kivakit.resource.resources.other.PropertyMap;
+import com.telenav.kivakit.serialization.kryo.KryoTypes;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
- * Project class for kivakit-core-network-http
+ * The types to register with Kryo for this project
  *
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
-public class CoreNetworkHttpProject extends Project
+public class ResourceKryoTypes extends KryoTypes
 {
-    private static final Lazy<CoreNetworkHttpProject> project = Lazy.of(CoreNetworkHttpProject::new);
-
-    public static CoreNetworkHttpProject get()
+    public ResourceKryoTypes()
     {
-        return project.get();
-    }
+        //----------------------------------------------------------------------------------------------
+        // NOTE: To maintain backward compatibility of serialization, registration groups and the types
+        // in each registration group must remain in the same order.
+        //----------------------------------------------------------------------------------------------
 
-    protected CoreNetworkHttpProject()
-    {
+        group("other", () -> register(PropertyMap.class));
     }
 }

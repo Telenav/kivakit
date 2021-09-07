@@ -16,28 +16,28 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.resource.project;
+package com.telenav.kivakit.serialization.kryo;
 
 import com.telenav.kivakit.kernel.language.objects.Lazy;
 import com.telenav.kivakit.kernel.project.Project;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
- * The project class for kivakit-core-resource
+ * Project class for kivakit-core-serialization-kryo
  *
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
-public class ResourceProject extends Project
+public class KryoSerializationProject extends Project
 {
-    private static final Lazy<ResourceProject> project = Lazy.of(ResourceProject::new);
+    private static final Lazy<KryoSerializationProject> project = Lazy.of(KryoSerializationProject::new);
 
-    public static ResourceProject get()
+    public static KryoSerializationProject get()
     {
         return project.get();
     }
 
-    protected ResourceProject()
+    protected KryoSerializationProject()
     {
     }
 }

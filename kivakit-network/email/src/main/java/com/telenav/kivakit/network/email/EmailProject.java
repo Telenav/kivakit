@@ -16,28 +16,28 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.serialization.json.project;
+package com.telenav.kivakit.network.email;
 
 import com.telenav.kivakit.kernel.language.objects.Lazy;
 import com.telenav.kivakit.kernel.project.Project;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
- * Project class for kivakit-core-serialization-json
+ * Project class for kivakit-core-network-email
  *
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
-public class SerializationJsonProject extends Project
+public class EmailProject extends Project
 {
-    private static final Lazy<SerializationJsonProject> project = Lazy.of(SerializationJsonProject::new);
+    private static final Lazy<EmailProject> project = Lazy.of(EmailProject::new);
 
-    public static SerializationJsonProject get()
+    public static EmailProject get()
     {
         return project.get();
     }
 
-    protected SerializationJsonProject()
+    protected EmailProject()
     {
     }
 }

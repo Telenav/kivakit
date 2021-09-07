@@ -16,27 +16,28 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.resource.project;
+package com.telenav.kivakit.test;
 
-import com.telenav.kivakit.resource.resources.other.PropertyMap;
-import com.telenav.kivakit.serialization.kryo.KryoTypes;
+import com.telenav.kivakit.kernel.language.objects.Lazy;
+import com.telenav.kivakit.kernel.project.Project;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
- * The types to register with Kryo for this project
+ * Project class for kivakit-core-test
  *
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
-public class CoreResourceKryoTypes extends KryoTypes
+public class UnitTestProject extends Project
 {
-    public CoreResourceKryoTypes()
-    {
-        //----------------------------------------------------------------------------------------------
-        // NOTE: To maintain backward compatibility of serialization, registration groups and the types
-        // in each registration group must remain in the same order.
-        //----------------------------------------------------------------------------------------------
+    private static final Lazy<UnitTestProject> project = Lazy.of(UnitTestProject::new);
 
-        group("other", () -> register(PropertyMap.class));
+    public static UnitTestProject get()
+    {
+        return project.get();
+    }
+
+    protected UnitTestProject()
+    {
     }
 }

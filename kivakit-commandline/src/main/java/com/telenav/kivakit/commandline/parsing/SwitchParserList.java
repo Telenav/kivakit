@@ -23,7 +23,7 @@ import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramCommandLi
 import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramValidation;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.collections.map.string.IndexedNameMap;
-import com.telenav.kivakit.kernel.project.CoreKernelLimits;
+import com.telenav.kivakit.kernel.project.KernelLimits;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
@@ -73,7 +73,7 @@ public class SwitchParserList implements Iterable<SwitchParser<?>>
      */
     public String help()
     {
-        final var descriptions = new StringList(CoreKernelLimits.COMMAND_LINE_SWITCHES);
+        final var descriptions = new StringList(KernelLimits.COMMAND_LINE_SWITCHES);
         parsers.sort(Comparator.comparing(SwitchParser::name));
 
         int required = 0;
