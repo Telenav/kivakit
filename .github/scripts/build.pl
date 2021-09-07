@@ -10,7 +10,6 @@
 use strict;
 use warnings FATAL => 'all';
 
-
 #
 # Include build script from cactus-build
 #
