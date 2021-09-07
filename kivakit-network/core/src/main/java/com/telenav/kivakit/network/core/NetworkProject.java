@@ -16,28 +16,28 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.network.email.project;
+package com.telenav.kivakit.network.core;
 
 import com.telenav.kivakit.kernel.language.objects.Lazy;
 import com.telenav.kivakit.kernel.project.Project;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
- * Project class for kivakit-core-network-email
+ * Project class for kivakit-core-network-core
  *
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
-public class CoreNetworkEmailProject extends Project
+public class NetworkProject extends Project
 {
-    private static final Lazy<CoreNetworkEmailProject> project = Lazy.of(CoreNetworkEmailProject::new);
+    private static final Lazy<NetworkProject> project = Lazy.of(NetworkProject::new);
 
-    public static CoreNetworkEmailProject get()
+    public static NetworkProject get()
     {
         return project.get();
     }
 
-    protected CoreNetworkEmailProject()
+    protected NetworkProject()
     {
     }
 }

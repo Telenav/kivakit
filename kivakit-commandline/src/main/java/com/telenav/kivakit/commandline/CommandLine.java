@@ -27,7 +27,7 @@ import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
 import com.telenav.kivakit.kernel.messaging.Message;
-import com.telenav.kivakit.kernel.project.CoreKernelLimits;
+import com.telenav.kivakit.kernel.project.KernelLimits;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.UmlNote;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -195,7 +195,7 @@ public class CommandLine implements AsString, Iterable<Argument>
     @UmlExcludeMember
     public String[] asArgumentArray()
     {
-        final var strings = new StringList(CoreKernelLimits.COMMAND_LINE_ARGUMENTS.plus(CoreKernelLimits.COMMAND_LINE_SWITCHES));
+        final var strings = new StringList(KernelLimits.COMMAND_LINE_ARGUMENTS.plus(KernelLimits.COMMAND_LINE_SWITCHES));
         for (final var _switch : switches)
         {
             strings.add(_switch.toString());

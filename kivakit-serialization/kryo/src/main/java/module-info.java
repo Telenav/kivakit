@@ -11,6 +11,5 @@ open module kivakit.serialization.kryo
 
     // Module exports
     exports com.telenav.kivakit.serialization.kryo;
-    exports com.telenav.kivakit.serialization.kryo.project;
     exports com.telenav.kivakit.serialization.kryo.project.lexakai.diagrams;
 }

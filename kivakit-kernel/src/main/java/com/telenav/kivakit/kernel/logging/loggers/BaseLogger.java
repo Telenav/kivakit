@@ -32,7 +32,7 @@ import com.telenav.kivakit.kernel.logging.filters.LogEntriesWithSeverityGreaterT
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.messages.OperationMessage;
 import com.telenav.kivakit.kernel.messaging.messages.Severity;
-import com.telenav.kivakit.kernel.project.CoreKernelLimits;
+import com.telenav.kivakit.kernel.project.KernelLimits;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLogging;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
@@ -44,7 +44,7 @@ import java.util.Map;
 @UmlClassDiagram(diagram = DiagramLogging.class)
 public abstract class BaseLogger implements Logger
 {
-    private static final Map<String, Time> lastLogTime = new ConcurrentObjectMap<>(CoreKernelLimits.UNIQUE_LOG_ENTRIES);
+    private static final Map<String, Time> lastLogTime = new ConcurrentObjectMap<>(KernelLimits.UNIQUE_LOG_ENTRIES);
 
     /** The severity level to log */
     private static Severity level;

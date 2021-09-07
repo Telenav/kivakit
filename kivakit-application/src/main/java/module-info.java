@@ -7,6 +7,5 @@ open module kivakit.application
 
     // Module exports
     exports com.telenav.kivakit.application;
-    exports com.telenav.kivakit.application.project;
     exports com.telenav.kivakit.application.project.lexakai.diagrams;
 }

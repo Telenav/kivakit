@@ -16,7 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.network.ftp.project;
+package com.telenav.kivakit.network.ftp;
 
 import com.telenav.kivakit.kernel.language.objects.Lazy;
 import com.telenav.kivakit.kernel.project.Project;
@@ -28,16 +28,16 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
-public class CoreNetworkFtpProject extends Project
+public class FtpProject extends Project
 {
-    private static final Lazy<CoreNetworkFtpProject> project = Lazy.of(CoreNetworkFtpProject::new);
+    private static final Lazy<FtpProject> project = Lazy.of(FtpProject::new);
 
-    public static CoreNetworkFtpProject get()
+    public static FtpProject get()
     {
         return project.get();
     }
 
-    protected CoreNetworkFtpProject()
+    protected FtpProject()
     {
     }
 }

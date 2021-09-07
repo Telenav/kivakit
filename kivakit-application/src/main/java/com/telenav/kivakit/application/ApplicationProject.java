@@ -16,28 +16,28 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.security.project;
+package com.telenav.kivakit.application;
 
 import com.telenav.kivakit.kernel.language.objects.Lazy;
 import com.telenav.kivakit.kernel.project.Project;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
- * Project subclass for <i>kivakit-core-security</i>.
+ * Project class for kivakit-application
  *
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
-public class CoreSecurityProject extends Project
+public class ApplicationProject extends Project
 {
-    private static final Lazy<CoreSecurityProject> project = Lazy.of(CoreSecurityProject::new);
+    private static final Lazy<ApplicationProject> project = Lazy.of(ApplicationProject::new);
 
-    public static CoreSecurityProject get()
+    public static ApplicationProject get()
     {
         return project.get();
     }
 
-    protected CoreSecurityProject()
+    protected ApplicationProject()
     {
     }
 }

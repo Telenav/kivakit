@@ -28,7 +28,7 @@ import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludePro
 import com.telenav.kivakit.kernel.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
-import com.telenav.kivakit.kernel.project.CoreKernelLimits;
+import com.telenav.kivakit.kernel.project.KernelLimits;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -93,7 +93,7 @@ public class ObjectFormatter
             return "null";
         }
         final Type<?> type = Type.of(object);
-        final var strings = new StringList(CoreKernelLimits.PROPERTIES_PER_OBJECT);
+        final var strings = new StringList(KernelLimits.PROPERTIES_PER_OBJECT);
         for (final var property : type.properties(filter))
         {
             if (!"class".equals(property.name()))

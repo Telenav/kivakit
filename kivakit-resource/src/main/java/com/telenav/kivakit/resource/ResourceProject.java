@@ -16,22 +16,28 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.collections.project;
+package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.serialization.kryo.CoreKernelKryoTypes;
-import com.telenav.kivakit.serialization.kryo.KryoTypes;
-import com.telenav.kivakit.serialization.kryo.KryoUnitTest;
+import com.telenav.kivakit.kernel.language.objects.Lazy;
+import com.telenav.kivakit.kernel.project.Project;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
- * This is the base class for collections unit tests.
+ * The project class for kivakit-core-resource
  *
  * @author jonathanl (shibo)
  */
-public abstract class CoreCollectionsUnitTest extends KryoUnitTest
+@LexakaiJavadoc(complete = true)
+public class ResourceProject extends Project
 {
-    @Override
-    protected KryoTypes kryoTypes()
+    private static final Lazy<ResourceProject> project = Lazy.of(ResourceProject::new);
+
+    public static ResourceProject get()
     {
-        return new CoreKernelKryoTypes();
+        return project.get();
+    }
+
+    protected ResourceProject()
+    {
     }
 }
