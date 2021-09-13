@@ -15,4 +15,5 @@ open module kivakit.collections
     exports com.telenav.kivakit.collections.set;
     exports com.telenav.kivakit.collections.stack;
     exports com.telenav.kivakit.collections.watcher;
+    exports com.telenav.kivakit.collections;
 }

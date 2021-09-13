@@ -10,13 +10,11 @@
 # OSSRH snapshot repository (https://s01.oss.sonatype.org/) when code is checked in to the develop branch.
 #
 
-name: Publish Snapshot
+name: Build and Publish Snapshot
 
 on:
   workflow_dispatch:
   push:
-    branches: [ develop ]
-  pull_request:
     branches: [ develop ]
 
 jobs:
@@ -43,10 +41,11 @@ jobs:
         env:
           OSSRH_GPG_SECRET_KEY: ${{ secrets.OSSRH_GPG_SECRET_KEY }}
 
-      - name: Publish Snapshot to OSSRH
+      - name: Build and
         run: |
-          mvn -P attach-jars -P sign-artifacts -P shade -P tools --no-transfer-progress --batch-mode \
-            -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} clean deploy
+          perl ./.github/scripts/build.pl publish
         env:
+          OSSRH_GPG_SECRET_KEY_PASSWORD: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}

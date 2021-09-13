@@ -4,8 +4,12 @@ import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
 import com.telenav.kivakit.configuration.lookup.Registry;
 import com.telenav.kivakit.configuration.settings.Settings;
 import com.telenav.kivakit.filesystem.Folder;
+import com.telenav.kivakit.kernel.messaging.Listener;
+import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.resource.resources.packaged.Package;
+
+import java.util.function.Consumer;
 
 /**
  * Base class for KivaKit components. Provides easy access to object registration and lookup (see {@link Registry}) as
@@ -25,6 +29,17 @@ public class BaseComponent extends BaseRepeater implements Component
     public <T> T lookup(final Class<T> type, final InstanceIdentifier instance)
     {
         return registry().lookup(type, instance);
+    }
+
+    /**
+     * Call the consumer with any messages this component hears
+     *
+     * @param handler The handler to call
+     */
+    public void onMessage(Consumer<Message> handler)
+    {
+        final Listener listener = message -> handler.accept(message);
+        listener.listenTo(this);
     }
 
     @Override

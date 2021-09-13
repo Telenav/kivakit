@@ -20,6 +20,7 @@ package com.telenav.kivakit.kernel.language.collections.set;
 
 import com.telenav.kivakit.kernel.language.values.count.Maximum;
 
+import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -27,6 +28,19 @@ import java.util.Set;
  */
 public class ObjectSet<T> extends BaseSet<T>
 {
+    public static <T> ObjectSet<T> empty()
+    {
+        return of();
+    }
+
+    @SafeVarargs
+    public static <T> ObjectSet<T> of(T... objects)
+    {
+        var set = new ObjectSet<T>();
+        set.addAll(objects);
+        return set;
+    }
+
     public ObjectSet(final Maximum maximumSize)
     {
         super(maximumSize);
@@ -43,8 +57,20 @@ public class ObjectSet<T> extends BaseSet<T>
     }
 
     @Override
+    public ObjectSet<T> copy()
+    {
+        return (ObjectSet<T>) super.copy();
+    }
+
+    @Override
     public ObjectSet<T> onNewInstance()
     {
         return new ObjectSet<>();
+    }
+
+    @Override
+    public ObjectSet<T> with(final Collection<T> that)
+    {
+        return (ObjectSet<T>) super.with(that);
     }
 }

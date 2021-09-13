@@ -24,13 +24,14 @@ import com.telenav.kivakit.commandline.ArgumentList;
 import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.CommandLine;
 import com.telenav.kivakit.commandline.CommandLineParser;
+import com.telenav.kivakit.commandline.Quantifier;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.configuration.settings.deployment.Deployment;
 import com.telenav.kivakit.configuration.settings.deployment.DeploymentSet;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.collections.set.Sets;
+import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
 import com.telenav.kivakit.kernel.language.locales.Locale;
 import com.telenav.kivakit.kernel.language.strings.Align;
 import com.telenav.kivakit.kernel.language.strings.AsciiArt;
@@ -190,7 +191,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
 
     /** The project that this application uses */
     @UmlAggregation(label = "initializes and uses")
-    private final Project project;
+    private Project project;
 
     /** The parsed command line for this application */
     @UmlAggregation
@@ -205,6 +206,9 @@ public abstract class Application extends BaseComponent implements Named, Applic
                     .optional()
                     .defaultValue(false)
                     .build();
+
+    /** Set of deployments for the application, if any */
+    private DeploymentSet deployments;
 
     /**
      * @param projects One or more projects to initialize
@@ -223,9 +227,9 @@ public abstract class Application extends BaseComponent implements Named, Applic
             project = new Project()
             {
                 @Override
-                public Set<Project> dependencies()
+                public ObjectSet<Project> dependencies()
                 {
-                    return Sets.of(projects);
+                    return ObjectSet.of(projects);
                 }
             };
         }
@@ -306,7 +310,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
     @Override
     public String description()
     {
-        return "";
+        return "No description available for '$'" + name();
     }
 
     /**
@@ -359,6 +363,10 @@ public abstract class Application extends BaseComponent implements Named, Applic
 
     public Project project()
     {
+        if (project == null)
+        {
+            project = ensureNotNull(newProject());
+        }
         return project;
     }
 
@@ -392,12 +400,10 @@ public abstract class Application extends BaseComponent implements Named, Applic
         // set up temporary listener,
         LOGGER.listenTo(this);
 
-        // load deployments and build switch parser for selecting a deployment.
-        DEPLOYMENT = DeploymentSet.load(this, getClass()).switchParser("deployment")
-                .optional()
-                .build();
+        // load deployments,
+        deployments = DeploymentSet.load(this, getClass());
 
-        // Go through arguments
+        // then through arguments
         final var argumentList = new StringList();
         for (final var argument : arguments)
         {
@@ -495,6 +501,17 @@ public abstract class Application extends BaseComponent implements Named, Applic
     }
 
     /**
+     * If a project is <i>not</i> passed to the constructor, then this method can be overridden to provide a {@link
+     * Project} dynamically.
+     *
+     * @return The {@link Project} for this application
+     */
+    protected Project newProject()
+    {
+        return null;
+    }
+
+    /**
      * Configures output of the application
      */
     @UmlExcludeMember
@@ -544,9 +561,9 @@ public abstract class Application extends BaseComponent implements Named, Applic
     /**
      * @return The switch parsers for this application
      */
-    protected Set<SwitchParser<?>> switchParsers()
+    protected ObjectSet<SwitchParser<?>> switchParsers()
     {
-        return Sets.empty();
+        return ObjectSet.of();
     }
 
     /**
@@ -567,9 +584,20 @@ public abstract class Application extends BaseComponent implements Named, Applic
     private Set<SwitchParser<?>> internalSwitchParsers()
     {
         var parsers = new HashSet<SwitchParser<?>>();
-        parsers.add(DEPLOYMENT);
+
+        if (!deployments.isEmpty() && DEPLOYMENT == null)
+        {
+            DEPLOYMENT = deployments
+                    .switchParser("deployment")
+                    .quantifier(deployments.isEmpty() ? Quantifier.OPTIONAL : Quantifier.REQUIRED)
+                    .build();
+
+            parsers.add(DEPLOYMENT);
+        }
+
         parsers.add(QUIET);
         parsers.addAll(switchParsers());
+        
         return parsers;
     }
 }

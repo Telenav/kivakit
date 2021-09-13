@@ -117,6 +117,14 @@ public abstract class BaseSet<Element> implements
         return success;
     }
 
+    public void addAll(final Element[] objects)
+    {
+        for (var object : objects)
+        {
+            add(object);
+        }
+    }
+
     @Override
     public void clear()
     {
@@ -133,6 +141,13 @@ public abstract class BaseSet<Element> implements
     public boolean containsAll(final Collection<?> collection)
     {
         return set.containsAll(collection);
+    }
+
+    public BaseSet<Element> copy()
+    {
+        var set = newInstance();
+        set.addAll(this);
+        return set;
     }
 
     @Override
@@ -235,6 +250,13 @@ public abstract class BaseSet<Element> implements
     public String toString()
     {
         return set.toString();
+    }
+
+    public BaseSet<Element> with(Collection<Element> that)
+    {
+        var set = copy();
+        set.addAll(that);
+        return set;
     }
 
     protected boolean checkSize(final int increase)

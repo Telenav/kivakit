@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.collections.iteration.iterators;
 
-import com.telenav.kivakit.collections.project.CoreCollectionsUnitTest;
+import com.telenav.kivakit.collections.project.CollectionsUnitTest;
 import com.telenav.kivakit.kernel.language.collections.list.BaseList;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.iteration.BaseIterator;
@@ -29,7 +29,7 @@ import org.junit.Test;
 
 import java.util.Collections;
 
-public class IteratorTest extends CoreCollectionsUnitTest
+public class IteratorTest extends CollectionsUnitTest
 {
     @Test
     public void abstractIterableTest()

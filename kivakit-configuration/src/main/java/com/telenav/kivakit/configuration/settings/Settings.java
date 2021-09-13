@@ -612,7 +612,7 @@ public class Settings extends BaseRepeater implements Named, Iterable<Object>
     }
 
     /**
-     * @return The set of loaded configurations
+     * @return The set of loaded settings entries
      */
     @UmlExcludeMember
     protected Set<Entry> onLoad()

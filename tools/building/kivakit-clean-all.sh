@@ -14,7 +14,7 @@ source kivakit-projects.sh
 
 for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
 
-    clean_maven_repository $project_home
+    clean_maven_repository "$project_home"
 
 done
 

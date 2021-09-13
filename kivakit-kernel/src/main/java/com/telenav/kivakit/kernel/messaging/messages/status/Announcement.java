@@ -31,7 +31,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * {@link OperationStatusMessage}s in order of importance:
  * </p>
  * <ul>
- *     <li>Critical Alert< - An operation failed and needs <i>immediate attention</i> from a human operator</li>
+ *     <li>Critical Alert - An operation failed and needs <i>immediate attention</i> from a human operator</li>
  *     <li>Alert - An operation failed and needs to be looked at by an operator soon</li>
  *     <li>FatalProblem - An unrecoverable problem has caused an operation to fail and needs to be addressed</li>
  *     <li>Problem - Something has gone wrong and needs to be addressed, but it's not fatal to the current operation</li>

@@ -6,12 +6,11 @@ open module kivakit.network.email
 
     // Java mail
     requires java.mail;
-    requires jakarta.activation;
+    requires java.activation;
 
     // Module exports
     exports com.telenav.kivakit.network.email;
     exports com.telenav.kivakit.network.email.senders;
-    exports com.telenav.kivakit.network.email.project;
     exports com.telenav.kivakit.network.email.project.lexakai.diagrams;
     exports com.telenav.kivakit.network.email.converters;
 }
