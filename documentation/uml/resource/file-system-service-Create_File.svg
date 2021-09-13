@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1132.2917px" preserveAspectRatio="none" style="width:1293px;height:1132px;background:#333333;" version="1.1" viewBox="0 0 1293 1132" width="1293.75px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="129.1667" x="602.3438" y="14.5833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="106.25" x="613.8021" y="43.0583">Create File</text><rect fill="#3A3A3A" height="465.0167" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="228.6458" y="550.0854"/><rect fill="#3A3A3A" height="26.0417" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="481.25" y="365.2954"/><rect fill="#3A3A3A" height="26.0417" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="481.25" y="465.5721"/><rect fill="#3A3A3A" height="289.093" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="718.75" y="590.8488"/><rect fill="#3A3A3A" height="101.0864" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="723.9583" y="665.0838"/><rect fill="#3A3A3A" height="78.772" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="1003.125" y="915.4968"/><rect fill="#333333" height="205.9001" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:2.0833333333333335;" width="292.1875" x="388.0208" y="301.3387"/><rect fill="#333333" height="100.2767" style="stroke:none;stroke-width:1.0416666666666667;" width="292.1875" x="388.0208" y="406.9621"/><rect fill="#333333" height="238.9547" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:2.0833333333333335;" width="379.6875" x="574.4792" y="606.4738"/><rect fill="#333333" height="63.6332" style="stroke:none;stroke-width:1.0416666666666667;" width="379.6875" x="574.4792" y="781.7952"/><line style="stroke:#484848;stroke-width:2.0833333333333335;stroke-dasharray:5.0,5.0;" x1="32.2917" x2="32.2917" y1="155.2531" y2="1041.1438"/><line style="stroke:#484848;stroke-width:2.0833333333333335;stroke-dasharray:5.0,5.0;" x1="233.3333" x2="233.3333" y1="208.1807" y2="1041.1438"/><line style="stroke:#484848;stroke-width:2.0833333333333335;stroke-dasharray:5.0,5.0;" x1="485.9375" x2="485.9375" y1="272.3694" y2="1041.1438"/><line style="stroke:#484848;stroke-width:2.0833333333333335;stroke-dasharray:5.0,5.0;" x1="723.4375" x2="723.4375" y1="155.2531" y2="1041.1438"/><line style="stroke:#484848;stroke-width:2.0833333333333335;stroke-dasharray:5.0,5.0;" x1="1007.8125" x2="1007.8125" y1="155.2531" y2="1041.1438"/><line style="stroke:#484848;stroke-width:2.0833333333333335;stroke-dasharray:5.0,5.0;" x1="1241.1458" x2="1241.1458" y1="966.3411" y2="1041.1438"/><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="41.6667" x="8.3333" y="149.0519">Client</text><ellipse cx="32.2917" cy="76.6195" fill="#484848" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:2.0833333333333335;"/><path d="M32.2917,84.9528 L32.2917,113.0778 M18.75,93.2861 L45.8333,93.2861 M32.2917,113.0778 L18.75,128.7028 M32.2917,113.0778 L45.8333,128.7028 " fill="none" style="stroke:#484848;stroke-width:2.0833333333333335;"/><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="41.6667" x="8.3333" y="1057.3263">Client</text><ellipse cx="32.2917" cy="1073.9441" fill="#484848" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:2.0833333333333335;"/><path d="M32.2917,1082.2774 L32.2917,1110.4024 M18.75,1090.6108 L45.8333,1090.6108 M32.2917,1110.4024 L18.75,1126.0274 M32.2917,1110.4024 L45.8333,1126.0274 " fill="none" style="stroke:#484848;stroke-width:2.0833333333333335;"/><rect fill="#484848" height="52.7303" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="92.7083" x="187.5" y="1040.1021"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="71.875" x="197.9167" y="1062.6038">«filesystem»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="29.1667" x="219.2708" y="1079.3396">:File</text><rect fill="#484848" height="52.7303" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="92.7083" x="440.1042" y="1040.1021"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="71.875" x="450.5208" y="1062.6038">«filesystem»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="60.4167" x="456.25" y="1079.3396">:FilePath</text><rect fill="#484848" height="52.7303" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="194.7917" x="626.5625" y="101.4811"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="71.875" x="688.0208" y="123.9827">«filesystem»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="173.9583" x="636.9792" y="140.7186">FileSystemServiceLoader</text><rect fill="#484848" height="52.7303" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="194.7917" x="626.5625" y="1040.1021"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="71.875" x="688.0208" y="1062.6038">«filesystem»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="173.9583" x="636.9792" y="1079.3396">FileSystemServiceLoader</text><rect fill="#484848" height="52.7303" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="186.4583" x="915.1042" y="101.4811"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="71.875" x="972.3958" y="123.9827">«filesystem»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="165.625" x="925.5208" y="140.7186">:LocalFileSystemService</text><rect fill="#484848" height="52.7303" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="186.4583" x="915.1042" y="1040.1021"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="71.875" x="972.3958" y="1062.6038">«filesystem»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="165.625" x="925.5208" y="1079.3396">:LocalFileSystemService</text><rect fill="#484848" height="52.7303" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="92.7083" x="1195.3125" y="1040.1021"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="71.875" x="1205.7292" y="1062.6038">«filesystem»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="65.625" x="1208.8542" y="1079.3396">:LocalFile</text><rect fill="#3A3A3A" height="465.0167" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="228.6458" y="550.0854"/><rect fill="#3A3A3A" height="26.0417" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="481.25" y="365.2954"/><rect fill="#3A3A3A" height="26.0417" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="481.25" y="465.5721"/><rect fill="#3A3A3A" height="289.093" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="718.75" y="590.8488"/><rect fill="#3A3A3A" height="101.0864" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="723.9583" y="665.0838"/><rect fill="#3A3A3A" height="78.772" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="1003.125" y="915.4968"/><polygon fill="#545454" points="175,188.7248,185.4167,192.8914,175,197.0581,179.1667,192.8914" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="32.2917" x2="181.25" y1="192.8914" y2="192.8914"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" text-decoration="underline" textLength="82.2917" x="42.7083" y="185.0464">parse(String)</text><rect fill="#484848" height="52.7303" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="92.7083" x="187.5" y="165.6698"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="71.875" x="197.9167" y="188.1714">«filesystem»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="29.1667" x="219.2708" y="204.9072">:File</text><polygon fill="#545454" points="427.6042,252.9134,438.0208,257.0801,427.6042,261.2467,431.7708,257.0801" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="233.8542" x2="433.8542" y1="257.0801" y2="257.0801"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" text-decoration="underline" textLength="133.3333" x="244.2708" y="249.235">parseFilePath(String)</text><rect fill="#484848" height="52.7303" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="92.7083" x="440.1042" y="229.8584"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="71.875" x="450.5208" y="252.36">«filesystem»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="60.4167" x="456.25" y="269.0959">:FilePath</text><path d="M396.3542,301.3387 L457.8125,301.3387 L457.8125,313.8387 L447.3958,324.2554 L388.0208,324.2554 L388.0208,309.672 " fill="#484848" style="stroke:#484848;stroke-width:1.0416666666666667;"/><rect fill="none" height="205.9001" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:2.0833333333333335;" width="292.1875" x="388.0208" y="301.3387"/><text fill="#0060A8" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="16.6667" x="406.7708" y="317.5903">alt</text><text fill="#3380B9" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="90.625" x="476.5625" y="318.632">[scheme path]</text><line style="stroke:#545454;stroke-width:1.5625;" x1="486.4583" x2="535.4167" y1="351.7537" y2="351.7537"/><line style="stroke:#545454;stroke-width:1.5625;" x1="535.4167" x2="535.4167" y1="351.7537" y2="365.2954"/><line style="stroke:#545454;stroke-width:1.5625;" x1="492.7083" x2="535.4167" y1="365.2954" y2="365.2954"/><polygon fill="#545454" points="503.125,361.1287,492.7083,365.2954,503.125,369.4621,498.9583,365.2954" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" text-decoration="underline" textLength="48.9583" x="502.0833" y="343.9087">filePath</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="83.3333" x="551.0417" y="343.9087">(java.net.URI)</text><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="491.6667" x2="535.4167" y1="390.2954" y2="390.2954"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="535.4167" x2="535.4167" y1="390.2954" y2="403.8371"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="486.4583" x2="535.4167" y1="403.8371" y2="403.8371"/><polygon fill="#545454" points="496.875,399.6704,486.4583,403.8371,496.875,408.0037,492.7083,403.8371" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#484848;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" x1="388.0208" x2="680.2083" y1="408.0037" y2="408.0037"/><text fill="#3380B9" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="85.4167" x="396.3542" y="423.2137">[simple path]</text><line style="stroke:#545454;stroke-width:1.5625;" x1="486.4583" x2="535.4167" y1="452.0304" y2="452.0304"/><line style="stroke:#545454;stroke-width:1.5625;" x1="535.4167" x2="535.4167" y1="452.0304" y2="465.5721"/><line style="stroke:#545454;stroke-width:1.5625;" x1="492.7083" x2="535.4167" y1="465.5721" y2="465.5721"/><polygon fill="#545454" points="503.125,461.4054,492.7083,465.5721,503.125,469.7388,498.9583,465.5721" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" text-decoration="underline" textLength="48.9583" x="502.0833" y="444.1854">filePath</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="113.5417" x="551.0417" y="444.1854">(java.nio.file.Path)</text><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="491.6667" x2="535.4167" y1="490.5721" y2="490.5721"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="535.4167" x2="535.4167" y1="490.5721" y2="504.1138"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="486.4583" x2="535.4167" y1="504.1138" y2="504.1138"/><polygon fill="#545454" points="496.875,499.9471,486.4583,504.1138,496.875,508.2804,492.7083,504.1138" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="233.8542" x2="282.8125" y1="536.5438" y2="536.5438"/><line style="stroke:#545454;stroke-width:1.5625;" x1="282.8125" x2="282.8125" y1="536.5438" y2="550.0854"/><line style="stroke:#545454;stroke-width:1.5625;" x1="240.1042" x2="282.8125" y1="550.0854" y2="550.0854"/><polygon fill="#545454" points="250.5208,545.9188,240.1042,550.0854,250.5208,554.2521,246.3542,550.0854" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" text-decoration="underline" textLength="60.4167" x="249.4792" y="528.6987">of(String)</text><polygon fill="#545454" points="706.25,586.6821,716.6667,590.8488,706.25,595.0155,710.4167,590.8488" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="239.0625" x2="712.5" y1="590.8488" y2="590.8488"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" text-decoration="underline" textLength="127.0833" x="249.4792" y="583.0037">fileSystem(FilePath)</text><path d="M582.8125,606.4738 L644.2708,606.4738 L644.2708,618.9738 L633.8542,629.3905 L574.4792,629.3905 L574.4792,614.8071 " fill="#484848" style="stroke:#484848;stroke-width:1.0416666666666667;"/><rect fill="none" height="238.9547" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:2.0833333333333335;" width="379.6875" x="574.4792" y="606.4738"/><text fill="#0060A8" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="16.6667" x="593.2292" y="622.7254">alt</text><line style="stroke:#545454;stroke-width:1.5625;" x1="729.1667" x2="778.125" y1="651.5422" y2="651.5422"/><line style="stroke:#545454;stroke-width:1.5625;" x1="778.125" x2="778.125" y1="651.5422" y2="665.0838"/><line style="stroke:#545454;stroke-width:1.5625;" x1="735.4167" x2="778.125" y1="665.0838" y2="665.0838"/><polygon fill="#545454" points="745.8333,660.9172,735.4167,665.0838,745.8333,669.2505,741.6667,665.0838" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" text-decoration="underline" textLength="60.4167" x="744.7917" y="643.6971">services()</text><path d="M739.5833,692.1672 L739.5833,718.2088 A8.3333,8.3333 0 0 0 747.9167,726.5422 L935.4167,726.5422 A8.3333,8.3333 0 0 0 943.75,718.2088 L943.75,694.2505 L933.3333,683.8338 L747.9167,683.8338 A8.3333,8.3333 0 0 0 739.5833,692.1672 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><path d="M933.3333,683.8338 L933.3333,690.0838 A4.1667,4.1667 0 0 0 937.5,694.2505 L943.75,694.2505 L933.3333,683.8338 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="176.0417" x="748.9583" y="703.245">load FileSystemService provider</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="94.7917" x="748.9583" y="716.7399">by ServiceLoader</text><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="734.375" x2="778.125" y1="765.1286" y2="765.1286"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="778.125" x2="778.125" y1="765.1286" y2="778.6702"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="729.1667" x2="778.125" y1="778.6702" y2="778.6702"/><polygon fill="#545454" points="739.5833,774.5036,729.1667,778.6702,739.5833,782.8369,735.4167,778.6702" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="123.9583" x="744.7917" y="757.2835">filesystem services</text><line style="stroke:#484848;stroke-width:1.0416666666666667;stroke-dasharray:2.0,2.0;" x1="574.4792" x2="954.1667" y1="782.8369" y2="782.8369"/><text fill="#3380B9" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="139.5833" x="582.8125" y="798.0469">[local service accepts]</text><path d="M734.375,818.3919 L734.375,830.8919 A8.3333,8.3333 0 0 0 742.7083,839.2253 L929.1667,839.2253 A8.3333,8.3333 0 0 0 937.5,830.8919 L937.5,820.4753 L927.0833,810.0586 L742.7083,810.0586 A8.3333,8.3333 0 0 0 734.375,818.3919 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><path d="M927.0833,810.0586 L927.0833,816.3086 A4.1667,4.1667 0 0 0 931.25,820.4753 L937.5,820.4753 L927.0833,810.0586 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="175" x="743.75" y="829.4698">result = LocalFileSystemService</text><polygon fill="#545454" points="250.5208,875.7751,240.1042,879.9418,250.5208,884.1085,246.3542,879.9418" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="244.2708" x2="722.9167" y1="879.9418" y2="879.9418"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="114.5833" x="259.8958" y="872.0968">FileSystemService</text><polygon fill="#545454" points="990.625,911.3302,1001.0417,915.4968,990.625,919.6635,994.7917,915.4968" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="239.0625" x2="996.875" y1="915.4968" y2="915.4968"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="122.9167" x="249.4792" y="907.6518">fileService(filePath)</text><polygon fill="#545454" points="1182.8125,946.8852,1193.2292,951.0518,1182.8125,955.2185,1186.9792,951.0518" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="1013.5417" x2="1189.0625" y1="951.0518" y2="951.0518"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="83.3333" x="1023.9583" y="943.2068">new(filePath)</text><rect fill="#484848" height="52.7303" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="92.7083" x="1195.3125" y="923.8302"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="71.875" x="1205.7292" y="946.3318">«filesystem»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="65.625" x="1208.8542" y="963.0676">:LocalFile</text><polygon fill="#545454" points="250.5208,990.1021,240.1042,994.2688,250.5208,998.4355,246.3542,994.2688" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="244.2708" x2="1007.2917" y1="994.2688" y2="994.2688"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="239.0625" x2="282.8125" y1="1014.0605" y2="1014.0605"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="282.8125" x2="282.8125" y1="1014.0605" y2="1027.6021"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="233.8542" x2="282.8125" y1="1027.6021" y2="1027.6021"/><polygon fill="#545454" points="244.2708,1023.4355,233.8542,1027.6021,244.2708,1031.7688,240.1042,1027.6021" style="stroke:#545454;stroke-width:1.0416666666666667;"/><!--MD5=[cb6d66c93de8b3675f3357a926dbb496]
+@startuml
+
+    !include ../lexakai.theme
+
+    title "Create File"
+
+    autoactivate on
+
+    actor Client
+    participant ":File" as file <<filesystem>>
+    participant ":FilePath" as filePath <<filesystem>>
+    participant "FileSystemServiceLoader" as fssLoader <<filesystem>>
+    participant ":LocalFileSystemService" as localFss <<filesystem>>
+    participant ":LocalFile" as localFile <<filesystem>>
+
+    Client -> file ** : __parse(String)__
+    file -> filePath ** : __parseFilePath(String)__
+    alt scheme path
+        filePath -> filePath : __filePath__(java.net.URI)
+        return
+        else simple path
+        filePath -> filePath : __filePath__(java.nio.file.Path)
+        return
+    end alt
+
+    file -> file : __of(String)__
+
+    file -> fssLoader : __fileSystem(FilePath)__
+    alt
+        fssLoader -> fssLoader : __services()__
+        note right fssLoader
+            load FileSystemService provider
+            by ServiceLoader
+        end note
+        return filesystem services
+    else local service accepts
+        note right fssLoader
+            result = LocalFileSystemService
+        end note
+    end alt
+    return FileSystemService
+
+    file -> localFss : fileService(filePath)
+    localFss -> localFile ** : new(filePath)
+    return
+
+    return
+
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #3380b9
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+    Participant underline
+    ParticipantBackgroundColor #484848
+    ParticipantBorderColor #484848
+    ParticipantFontSize 14
+    ActorBorderColor #484848
+    ActorBackgroundColor #484848
+    ActorFontSize 14
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderColor #5e5e5e
+	BorderStyle dashed
+	Style rectangle
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+    title "Create File"
+
+    autoactivate on
+
+    actor Client
+    participant ":File" as file <<filesystem>>
+    participant ":FilePath" as filePath <<filesystem>>
+    participant "FileSystemServiceLoader" as fssLoader <<filesystem>>
+    participant ":LocalFileSystemService" as localFss <<filesystem>>
+    participant ":LocalFile" as localFile <<filesystem>>
+
+    Client -> file ** : __parse(String)__
+    file -> filePath ** : __parseFilePath(String)__
+    alt scheme path
+        filePath -> filePath : __filePath__(java.net.URI)
+        return
+        else simple path
+        filePath -> filePath : __filePath__(java.nio.file.Path)
+        return
+    end alt
+
+    file -> file : __of(String)__
+
+    file -> fssLoader : __fileSystem(FilePath)__
+    alt
+        fssLoader -> fssLoader : __services()__
+        note right fssLoader
+            load FileSystemService provider
+            by ServiceLoader
+        end note
+        return filesystem services
+    else local service accepts
+        note right fssLoader
+            result = LocalFileSystemService
+        end note
+    end alt
+    return FileSystemService
+
+    file -> localFss : fileService(filePath)
+    localFss -> localFile ** : new(filePath)
+    return
+
+    return
+
+@enduml
+
+PlantUML version 1.2021.7(Sun May 23 05:40:07 PDT 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: Dynamic Code Evolution 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
