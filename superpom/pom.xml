@@ -162,7 +162,7 @@
 
         <commons.collections.version>3.2.2</commons.collections.version>
         <commons.compress.version>1.18</commons.compress.version>
-        <commons.lang3.version>3.4</commons.lang3.version>
+        <commons.lang3.version>3.7</commons.lang3.version>
         <commons.net.version>3.0.1</commons.net.version>
         <commons.math.version>2.1</commons.math.version>
         <beanutils.version>1.8.3</beanutils.version>
@@ -179,7 +179,7 @@
         <jersey.version>2.33</jersey.version>
         <wicket.version>9.2.0</wicket.version>
         <swagger.version>2.1.10</swagger.version>
-        <swagger.webjar.version>3.34.0</swagger.webjar.version>
+        <swagger.webjar.version>3.51.2</swagger.webjar.version>
         <httpclient.version>4.5.13</httpclient.version>
         <jakarta.ws.rs.version>2.1.6</jakarta.ws.rs.version>
         <wicket-jquery.version>8.8.0</wicket-jquery.version>
