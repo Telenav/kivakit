@@ -240,6 +240,30 @@ git_flow_feature_finish() {
     fi
 }
 
+git_flow_hotfix_start() {
+
+    project_home=$1
+    feature_name=$2
+
+    if yes_no "Start '$feature_name' branch of $project_home"; then
+
+        cd "$project_home"
+        git-flow hotfix start "$feature_name"
+
+    fi
+}
+
+git_flow_hotfix_finish() {
+
+    project_home=$1
+    feature_name=$2
+
+    if yes_no "Finish '$feature_name' branch of $project_home"; then
+        cd "$project_home"
+        git-flow hotfix finish "$feature_name"
+    fi
+}
+
 ################ VERSIONING ################################################################################################
 
 update_version() {
