@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="1410.4167px" preserveAspectRatio="none" style="width:1098px;height:1410px;background:#333333;" version="1.1" viewBox="0 0 1098 1410" width="1098.9583px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="220.8333" x="436.4583" y="14.5833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="197.9167" x="447.9167" y="43.0583">Access Writable File</text><rect fill="#3A3A3A" height="774.4344" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="370.8333" y="525.3621"/><rect fill="#3A3A3A" height="668.0929" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="376.0417" y="569.2505"/><rect fill="#3A3A3A" height="529.3213" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="381.25" y="618.3472"/><rect fill="#3A3A3A" height="99.7437" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="573.9583" y="390.0635"/><rect fill="#3A3A3A" height="391.453" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="573.9583" y="673.8322"/><rect fill="#3A3A3A" height="304.718" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="579.1667" y="717.7205"/><rect fill="#3A3A3A" height="228.3997" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="773.4375" y="773.2056"/><rect fill="#3A3A3A" height="87.5916" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="778.6458" y="817.0939"/><line style="stroke:#484848;stroke-width:2.0833333333333335;stroke-dasharray:5.0,5.0;" x1="32.2917" x2="32.2917" y1="155.2531" y2="1318.5465"/><line style="stroke:#484848;stroke-width:2.0833333333333335;stroke-dasharray:5.0,5.0;" x1="163.5417" x2="163.5417" y1="155.2531" y2="1318.5465"/><line style="stroke:#484848;stroke-width:2.0833333333333335;stroke-dasharray:5.0,5.0;" x1="376.0417" x2="376.0417" y1="440.9078" y2="1318.5465"/><line style="stroke:#484848;stroke-width:2.0833333333333335;stroke-dasharray:5.0,5.0;" x1="579.1667" x2="579.1667" y1="208.1807" y2="1318.5465"/><line style="stroke:#484848;stroke-width:2.0833333333333335;stroke-dasharray:5.0,5.0;" x1="778.125" x2="778.125" y1="272.3694" y2="1318.5465"/><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="41.6667" x="8.3333" y="149.0519">Client</text><ellipse cx="32.2917" cy="76.6195" fill="#484848" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:2.0833333333333335;"/><path d="M32.2917,84.9528 L32.2917,113.0778 M18.75,93.2861 L45.8333,93.2861 M32.2917,113.0778 L18.75,128.7028 M32.2917,113.0778 L45.8333,128.7028 " fill="none" style="stroke:#484848;stroke-width:2.0833333333333335;"/><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="41.6667" x="8.3333" y="1334.729">Client</text><ellipse cx="32.2917" cy="1351.3468" fill="#484848" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:2.0833333333333335;"/><path d="M32.2917,1359.6802 L32.2917,1387.8052 M18.75,1368.0135 L45.8333,1368.0135 M32.2917,1387.8052 L18.75,1403.4302 M32.2917,1387.8052 L45.8333,1403.4302 " fill="none" style="stroke:#484848;stroke-width:2.0833333333333335;"/><rect fill="#484848" height="52.7303" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="104.1667" x="111.4583" y="101.4811"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="64.5833" x="131.25" y="123.9827">«resource»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="83.3333" x="121.875" y="140.7186">:LineReader</text><rect fill="#484848" height="52.7303" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="104.1667" x="111.4583" y="1317.5049"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="64.5833" x="131.25" y="1340.0065">«resource»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="83.3333" x="121.875" y="1356.7424">:LineReader</text><rect fill="#484848" height="52.7303" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="133.3333" x="309.375" y="1317.5049"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="64.5833" x="343.75" y="1340.0065">«resource»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="112.5" x="319.7917" y="1356.7424">:ResourceWriter</text><rect fill="#484848" height="52.7303" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="85.4167" x="536.4583" y="1317.5049"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="64.5833" x="546.875" y="1340.0065">«resource»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="29.1667" x="564.5833" y="1356.7424">:File</text><rect fill="#484848" height="52.7303" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="86.4583" x="735.4167" y="1317.5049"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="50" x="753.6458" y="1340.0065">«kernel»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="65.625" x="745.8333" y="1356.7424">:LocalFile</text><rect fill="#3A3A3A" height="774.4344" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="370.8333" y="525.3621"/><rect fill="#3A3A3A" height="668.0929" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="376.0417" y="569.2505"/><rect fill="#3A3A3A" height="529.3213" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="381.25" y="618.3472"/><rect fill="#3A3A3A" height="99.7437" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="573.9583" y="390.0635"/><rect fill="#3A3A3A" height="391.453" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="573.9583" y="673.8322"/><rect fill="#3A3A3A" height="304.718" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="579.1667" y="717.7205"/><rect fill="#3A3A3A" height="228.3997" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="773.4375" y="773.2056"/><rect fill="#3A3A3A" height="87.5916" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="778.6458" y="817.0939"/><polygon fill="#545454" points="523.9583,188.7248,534.375,192.8914,523.9583,197.0581,528.125,192.8914" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="32.2917" x2="530.2083" y1="192.8914" y2="192.8914"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" text-decoration="underline" textLength="13.5417" x="42.7083" y="185.0464">of</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="61.4583" x="56.25" y="185.0464">(filePath))</text><rect fill="#484848" height="52.7303" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="85.4167" x="536.4583" y="165.6698"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="64.5833" x="546.875" y="188.1714">«resource»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="29.1667" x="564.5833" y="204.9072">:File</text><polygon fill="#545454" points="722.9167,252.9134,733.3333,257.0801,722.9167,261.2467,727.0833,257.0801" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="579.1667" x2="729.1667" y1="257.0801" y2="257.0801"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="83.3333" x="589.5833" y="249.235">new(filePath)</text><rect fill="#484848" height="52.7303" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="86.4583" x="735.4167" y="229.8584"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="50" x="753.6458" y="252.36">«kernel»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="65.625" x="745.8333" y="269.0959">:LocalFile</text><path d="M584.375,307.5887 L584.375,333.6304 A8.3333,8.3333 0 0 0 592.7083,341.9637 L922.9167,341.9637 A8.3333,8.3333 0 0 0 931.25,333.6304 L931.25,309.672 L920.8333,299.2554 L592.7083,299.2554 A8.3333,8.3333 0 0 0 584.375,307.5887 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><path d="M920.8333,299.2554 L920.8333,305.5054 A4.1667,4.1667 0 0 0 925,309.672 L931.25,309.672 L920.8333,299.2554 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="318.75" x="593.75" y="318.6666">FileSystemServiceLoader get FileSystemService by filePath</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="313.5417" x="593.75" y="332.1615">then LocalFileSystemService create LocalFile with filePath</text><polygon fill="#545454" points="561.4583,385.8968,571.875,390.0635,561.4583,394.2301,565.625,390.0635" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="32.2917" x2="567.7083" y1="390.0635" y2="390.0635"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="111.4583" x="42.7083" y="367.4967">WritableResource</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="52.0833" x="42.7083" y="382.2184">::writer()</text><polygon fill="#545454" points="454.1667,421.4518,443.75,425.6185,454.1667,429.7852,450,425.6185" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="447.9167" x2="572.9167" y1="425.6185" y2="425.6185"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="26.0417" x="463.5417" y="417.7734">new</text><rect fill="#484848" height="52.7303" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="133.3333" x="309.375" y="398.3968"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="64.5833" x="343.75" y="420.8984">«resource»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="112.5" x="319.7917" y="437.6343">:ResourceWriter</text><polygon fill="#545454" points="43.75,485.6405,33.3333,489.8071,43.75,493.9738,39.5833,489.8071" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="37.5" x2="578.125" y1="489.8071" y2="489.8071"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="93.75" x="53.125" y="481.9621">resourceWriter</text><polygon fill="#545454" points="358.3333,521.1955,368.75,525.3621,358.3333,529.5288,362.5,525.3621" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="32.2917" x2="364.5833" y1="525.3621" y2="525.3621"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="76.0417" x="42.7083" y="517.5171">save(String)</text><line style="stroke:#545454;stroke-width:1.5625;" x1="381.25" x2="430.2083" y1="555.7088" y2="555.7088"/><line style="stroke:#545454;stroke-width:1.5625;" x1="430.2083" x2="430.2083" y1="555.7088" y2="569.2505"/><line style="stroke:#545454;stroke-width:1.5625;" x1="387.5" x2="430.2083" y1="569.2505" y2="569.2505"/><polygon fill="#545454" points="397.9167,565.0838,387.5,569.2505,397.9167,573.4172,393.75,569.2505" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="78.125" x="396.875" y="547.8638">printWriter()</text><line style="stroke:#545454;stroke-width:1.5625;" x1="386.4583" x2="435.4167" y1="604.8055" y2="604.8055"/><line style="stroke:#545454;stroke-width:1.5625;" x1="435.4167" x2="435.4167" y1="604.8055" y2="618.3472"/><line style="stroke:#545454;stroke-width:1.5625;" x1="392.7083" x2="435.4167" y1="618.3472" y2="618.3472"/><polygon fill="#545454" points="403.125,614.1805,392.7083,618.3472,403.125,622.5138,398.9583,618.3472" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="71.875" x="402.0833" y="596.9604">textWriter()</text><polygon fill="#545454" points="561.4583,669.6655,571.875,673.8322,561.4583,677.9989,565.625,673.8322" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="391.6667" x2="567.7083" y1="673.8322" y2="673.8322"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="141.6667" x="402.0833" y="651.2655">BaseWritableResource</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="114.5833" x="402.0833" y="665.9871">::openForWriting()</text><line style="stroke:#545454;stroke-width:1.5625;" x1="584.375" x2="633.3333" y1="704.1789" y2="704.1789"/><line style="stroke:#545454;stroke-width:1.5625;" x1="633.3333" x2="633.3333" y1="704.1789" y2="717.7205"/><line style="stroke:#545454;stroke-width:1.5625;" x1="590.625" x2="633.3333" y1="717.7205" y2="717.7205"/><polygon fill="#545454" points="601.0417,713.5539,590.625,717.7205,601.0417,721.8872,596.875,717.7205" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="127.0833" x="600" y="696.3338">onOpenForWriting()</text><polygon fill="#545454" points="760.9375,769.0389,771.3542,773.2056,760.9375,777.3722,765.1042,773.2056" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="589.5833" x2="767.1875" y1="773.2056" y2="773.2056"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="141.6667" x="600" y="750.6388">BaseWritableResource</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="106.25" x="600" y="765.3605">::openForWriting</text><line style="stroke:#545454;stroke-width:1.5625;" x1="783.8542" x2="832.8125" y1="803.5522" y2="803.5522"/><line style="stroke:#545454;stroke-width:1.5625;" x1="832.8125" x2="832.8125" y1="803.5522" y2="817.0939"/><line style="stroke:#545454;stroke-width:1.5625;" x1="790.1042" x2="832.8125" y1="817.0939" y2="817.0939"/><polygon fill="#545454" points="800.5208,812.9272,790.1042,817.0939,800.5208,821.2606,796.3542,817.0939" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="127.0833" x="799.4792" y="795.7072">onOpenForWriting()</text><path d="M793.75,844.1772 L793.75,856.6772 A8.3333,8.3333 0 0 0 802.0833,865.0106 L998.9583,865.0106 A8.3333,8.3333 0 0 0 1007.2917,856.6772 L1007.2917,846.2606 L996.875,835.8439 L802.0833,835.8439 A8.3333,8.3333 0 0 0 793.75,844.1772 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><path d="M996.875,835.8439 L996.875,842.0939 A4.1667,4.1667 0 0 0 1001.0417,846.2606 L1007.2917,846.2606 L996.875,835.8439 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="185.4167" x="803.125" y="855.2551">new java.io.FileOutputStream(file)</text><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="789.0625" x2="832.8125" y1="903.6438" y2="903.6438"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="832.8125" x2="832.8125" y1="903.6438" y2="917.1855"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="783.8542" x2="832.8125" y1="917.1855" y2="917.1855"/><polygon fill="#545454" points="794.2708,913.0188,783.8542,917.1855,794.2708,921.3521,790.1042,917.1855" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="135.4167" x="799.4792" y="895.7987">java.io.OutputStream</text><path d="M788.5417,933.8521 L788.5417,959.8938 A8.3333,8.3333 0 0 0 796.875,968.2271 L1081.25,968.2271 A8.3333,8.3333 0 0 0 1089.5833,959.8938 L1089.5833,935.9355 L1079.1667,925.5188 L796.875,925.5188 A8.3333,8.3333 0 0 0 788.5417,933.8521 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><path d="M1079.1667,925.5188 L1079.1667,931.7688 A4.1667,4.1667 0 0 0 1083.3333,935.9355 L1089.5833,935.9355 L1079.1667,925.5188 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="272.9167" x="797.9167" y="944.93">new java.io.BufferedOutputStream(outputStream)</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="239.5833" x="797.9167" y="958.4249">then codec changes output as compressed</text><polygon fill="#545454" points="601.0417,997.4386,590.625,1001.6052,601.0417,1005.7719,596.875,1001.6052" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="594.7917" x2="777.6042" y1="1001.6052" y2="1001.6052"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="135.4167" x="610.4167" y="993.7602">java.io.OutputStream</text><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="589.5833" x2="633.3333" y1="1021.3969" y2="1021.3969"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="633.3333" x2="633.3333" y1="1021.3969" y2="1034.9386"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="584.375" x2="633.3333" y1="1034.9386" y2="1034.9386"/><polygon fill="#545454" points="594.7917,1030.7719,584.375,1034.9386,594.7917,1039.1052,590.625,1034.9386" style="stroke:#545454;stroke-width:1.0416666666666667;"/><polygon fill="#545454" points="403.125,1061.1186,392.7083,1065.2852,403.125,1069.4519,398.9583,1065.2852" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="396.875" x2="578.125" y1="1065.2852" y2="1065.2852"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="135.4167" x="412.5" y="1057.4402">java.io.OutputStream</text><path d="M396.875,1087.1602 L396.875,1099.6602 A8.3333,8.3333 0 0 0 405.2083,1107.9936 L676.0417,1107.9936 A8.3333,8.3333 0 0 0 684.375,1099.6602 L684.375,1089.2436 L673.9583,1078.8269 L405.2083,1078.8269 A8.3333,8.3333 0 0 0 396.875,1087.1602 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><path d="M673.9583,1078.8269 L673.9583,1085.0769 A4.1667,4.1667 0 0 0 678.125,1089.2436 L684.375,1089.2436 L673.9583,1078.8269 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="259.375" x="406.25" y="1098.2381">new java.io.OutputStreamWriter(outputStream)</text><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="391.6667" x2="435.4167" y1="1146.6268" y2="1146.6268"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="435.4167" x2="435.4167" y1="1146.6268" y2="1160.1685"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="386.4583" x2="435.4167" y1="1160.1685" y2="1160.1685"/><polygon fill="#545454" points="396.875,1156.0018,386.4583,1160.1685,396.875,1164.3351,392.7083,1160.1685" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="83.3333" x="402.0833" y="1138.7817">java.io.Writer</text><path d="M391.6667,1176.8351 L391.6667,1189.3351 A8.3333,8.3333 0 0 0 400,1197.6685 L575,1197.6685 A8.3333,8.3333 0 0 0 583.3333,1189.3351 L583.3333,1178.9185 L572.9167,1168.5018 L400,1168.5018 A8.3333,8.3333 0 0 0 391.6667,1176.8351 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><path d="M572.9167,1168.5018 L572.9167,1174.7518 A4.1667,4.1667 0 0 0 577.0833,1178.9185 L583.3333,1178.9185 L572.9167,1168.5018 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="163.5417" x="401.0417" y="1187.913">new java.io.PrintWriter(writer)</text><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="386.4583" x2="430.2083" y1="1236.3017" y2="1236.3017"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="430.2083" x2="430.2083" y1="1236.3017" y2="1249.8433"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="381.25" x2="430.2083" y1="1249.8433" y2="1249.8433"/><polygon fill="#545454" points="391.6667,1245.6767,381.25,1249.8433,391.6667,1254.01,387.5,1249.8433" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="113.5417" x="396.875" y="1228.4566">java.io.PrintWriter</text><path d="M386.4583,1266.51 L386.4583,1279.01 A8.3333,8.3333 0 0 0 394.7917,1287.3433 L538.5417,1287.3433 A8.3333,8.3333 0 0 0 546.875,1279.01 L546.875,1268.5933 L536.4583,1258.1767 L394.7917,1258.1767 A8.3333,8.3333 0 0 0 386.4583,1266.51 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><path d="M536.4583,1258.1767 L536.4583,1264.4267 A4.1667,4.1667 0 0 0 540.625,1268.5933 L546.875,1268.5933 L536.4583,1258.1767 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="132.2917" x="395.8333" y="1277.5879">printWriter.print(string)</text><polygon fill="#545454" points="43.75,1295.6299,33.3333,1299.7965,43.75,1303.9632,39.5833,1299.7965" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="37.5" x2="375" y1="1299.7965" y2="1299.7965"/><!--MD5=[fa9a8b8c87ff28726aae221303ad36f9]
+@startuml
+
+    !include ../lexakai.theme
+
+    title "Access Writable File"
+
+    autoactivate on
+
+    actor Client
+    participant ":LineReader" as lineReader <<resource>>
+    participant ":ResourceWriter" as resourceWriter <<resource>>
+    participant ":File" as file <<resource>>
+    participant ":LocalFile" as localFile <<kernel>>
+
+    Client -> file ** : __of__(filePath))
+    file -> localFile ** : new(filePath)
+    note right file
+        FileSystemServiceLoader get FileSystemService by filePath
+        then LocalFileSystemService create LocalFile with filePath
+    end note
+
+    Client -> file : WritableResource\n::writer()
+    file -> resourceWriter ** : new
+    return resourceWriter
+
+    Client -> resourceWriter : save(String)
+    resourceWriter -> resourceWriter : printWriter()
+    resourceWriter -> resourceWriter : textWriter()
+
+    resourceWriter -> file : BaseWritableResource\n::openForWriting()
+    file -> file : onOpenForWriting()
+    file -> localFile : BaseWritableResource\n::openForWriting
+
+    localFile -> localFile : onOpenForWriting()
+    note right localFile
+        new java.io.FileOutputStream(file)
+    end note
+    return java.io.OutputStream
+    note right localFile
+        new java.io.BufferedOutputStream(outputStream)
+        then codec changes output as compressed
+    end note
+
+    return java.io.OutputStream
+    return
+    return java.io.OutputStream
+
+    note right resourceWriter
+        new java.io.OutputStreamWriter(outputStream)
+    end note
+    return java.io.Writer
+    note right resourceWriter
+        new java.io.PrintWriter(writer)
+    end note
+    return java.io.PrintWriter
+    note right resourceWriter
+        printWriter.print(string)
+    end note
+    return
+
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #3380b9
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+    Participant underline
+    ParticipantBackgroundColor #484848
+    ParticipantBorderColor #484848
+    ParticipantFontSize 14
+    ActorBorderColor #484848
+    ActorBackgroundColor #484848
+    ActorFontSize 14
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderColor #5e5e5e
+	BorderStyle dashed
+	Style rectangle
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+    title "Access Writable File"
+
+    autoactivate on
+
+    actor Client
+    participant ":LineReader" as lineReader <<resource>>
+    participant ":ResourceWriter" as resourceWriter <<resource>>
+    participant ":File" as file <<resource>>
+    participant ":LocalFile" as localFile <<kernel>>
+
+    Client -> file ** : __of__(filePath))
+    file -> localFile ** : new(filePath)
+    note right file
+        FileSystemServiceLoader get FileSystemService by filePath
+        then LocalFileSystemService create LocalFile with filePath
+    end note
+
+    Client -> file : WritableResource\n::writer()
+    file -> resourceWriter ** : new
+    return resourceWriter
+
+    Client -> resourceWriter : save(String)
+    resourceWriter -> resourceWriter : printWriter()
+    resourceWriter -> resourceWriter : textWriter()
+
+    resourceWriter -> file : BaseWritableResource\n::openForWriting()
+    file -> file : onOpenForWriting()
+    file -> localFile : BaseWritableResource\n::openForWriting
+
+    localFile -> localFile : onOpenForWriting()
+    note right localFile
+        new java.io.FileOutputStream(file)
+    end note
+    return java.io.OutputStream
+    note right localFile
+        new java.io.BufferedOutputStream(outputStream)
+        then codec changes output as compressed
+    end note
+
+    return java.io.OutputStream
+    return
+    return java.io.OutputStream
+
+    note right resourceWriter
+        new java.io.OutputStreamWriter(outputStream)
+    end note
+    return java.io.Writer
+    note right resourceWriter
+        new java.io.PrintWriter(writer)
+    end note
+    return java.io.PrintWriter
+    note right resourceWriter
+        printWriter.print(string)
+    end note
+    return
+
+@enduml
+
+PlantUML version 1.2021.7(Sun May 23 05:40:07 PDT 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: Dynamic Code Evolution 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
