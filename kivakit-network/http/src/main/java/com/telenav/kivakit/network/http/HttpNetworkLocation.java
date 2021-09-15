@@ -74,6 +74,11 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
 @LexakaiJavadoc(complete = true)
 public class HttpNetworkLocation extends NetworkLocation implements Resourceful
 {
+    public static HttpNetworkLocation parse(Listener listener, String path)
+    {
+        return new Converter(listener).convert(path);
+    }
+
     /**
      * Converts to and from {@link HttpNetworkLocation}
      *

@@ -19,17 +19,14 @@
 package com.telenav.kivakit.serialization.json.serializers;
 
 import com.telenav.kivakit.kernel.language.time.LocalTime;
-import com.telenav.kivakit.kernel.language.time.conversion.converters.HumanizedLocalDateTimeConverter;
+import com.telenav.kivakit.kernel.language.time.conversion.converters.LocalDateTimeConverter;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.serialization.json.PrimitiveGsonSerializer;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
-import java.time.ZoneId;
-
 /**
- * Serializes {@link LocalTime} objects to and from JSON as a number of milliseconds since the start of the UNIX epoch
- * using the system default {@link ZoneId}.
+ * Serializes {@link LocalTime} objects to and from JSON in KivaKit format.
  *
  * @author jonathanl (shibo)
  */
@@ -46,7 +43,7 @@ public class LocalTimeGsonSerializer extends PrimitiveGsonSerializer<LocalTime, 
     @Override
     protected LocalTime toObject(final String text)
     {
-        return new HumanizedLocalDateTimeConverter(LOGGER).convert(text);
+        return new LocalDateTimeConverter(LOGGER, LocalTime.localTimeZone()).convert(text);
     }
 
     @Override

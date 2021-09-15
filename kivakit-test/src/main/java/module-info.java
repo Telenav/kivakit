@@ -9,7 +9,6 @@ open module kivakit.test
     // Module exports
     exports com.telenav.kivakit.test.annotations;
     exports com.telenav.kivakit.test.project.lexakai.diagrams;
-    exports com.telenav.kivakit.test.project;
     exports com.telenav.kivakit.test.random;
     exports com.telenav.kivakit.test.reporters;
     exports com.telenav.kivakit.test;

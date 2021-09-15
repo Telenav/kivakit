@@ -100,12 +100,23 @@ public interface Broadcaster extends Transceiver, Transmitter<Transmittable>
     }
 
     /**
-     * <b>Not public API</b>
-     * <p>
      * Allows subclass to transmit message to listeners
-     * </p>
      */
     default void onTransmit(final Transmittable message)
+    {
+    }
+
+    /**
+     * Allows subclass to process a message after it is transmitted
+     */
+    default void onTransmitted(final Transmittable message)
+    {
+    }
+
+    /**
+     * Allows subclass to process a message before it is transmitted
+     */
+    default void onTransmitting(final Transmittable message)
     {
     }
 
@@ -132,7 +143,9 @@ public interface Broadcaster extends Transceiver, Transmitter<Transmittable>
     @Override
     default void transmit(final Transmittable message)
     {
+        onTransmitting(message);
         onTransmit(message);
+        onTransmitted(message);
     }
 
     default void transmit(final Message message)

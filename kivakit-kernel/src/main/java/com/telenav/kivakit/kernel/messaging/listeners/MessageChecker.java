@@ -25,7 +25,7 @@ import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.kernel.project.CoreKernelLimits;
+import com.telenav.kivakit.kernel.project.KernelLimits;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageListenerType;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -50,7 +50,7 @@ public class MessageChecker extends BaseRepeater
     private final MessageList messages = new MessageList(new AnythingMatcher<>());
 
     private final BaseMap<Class<? extends Message>, Count> expectedCount =
-            new BaseMap<>(CoreKernelLimits.MESSAGE_CLASSES);
+            new BaseMap<>(KernelLimits.MESSAGE_CLASSES);
 
     /**
      * Runs the given code and then checks messages received

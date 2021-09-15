@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="2360.4167px" preserveAspectRatio="none" style="width:909px;height:2360px;background:#333333;" version="1.1" viewBox="0 0 909 2360" width="909.375px" zoomAndPan="magnify"><defs/><g><rect fill="#48494B" height="41.2028" rx="8.3333" ry="8.3333" style="stroke:#545454;stroke-width:1.0416666666666667;" width="286.4583" x="313.0208" y="14.5833"/><text fill="#C0C0C0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="20.8333" lengthAdjust="spacing" textLength="263.5417" x="324.4792" y="43.0583">Base Repeater Interactions</text><rect fill="#3A3A3A" height="160.5998" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="183.3333" y="564.62"/><rect fill="#3A3A3A" height="80.1147" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="188.5417" y="623.23"/><rect fill="#3A3A3A" height="1115.7715" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="183.3333" y="1134.7046"/><rect fill="#3A3A3A" height="1035.2865" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="188.5417" y="1193.3146"/><rect fill="#3A3A3A" height="943.3431" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="193.75" y="1257.133"/><rect fill="#3A3A3A" height="866.1214" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="198.9583" y="1306.2297"/><rect fill="#3A3A3A" height="713.1836" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="447.9167" y="363.9526"/><rect fill="#3A3A3A" height="257.8898" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="453.125" y="509.1349"/><rect fill="#3A3A3A" height="160.5998" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="453.125" y="860.1481"/><rect fill="#3A3A3A" height="80.1147" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="458.3333" y="918.7581"/><rect fill="#3A3A3A" height="649.7599" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="447.9167" y="1487.1745"/><rect fill="#3A3A3A" height="117.985" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="453.125" y="1545.7845"/><rect fill="#3A3A3A" height="26.0417" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="458.3333" y="1609.6029"/><rect fill="#3A3A3A" height="385.3882" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="453.125" y="1729.6712"/><rect fill="#3A3A3A" height="246.4315" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="680.2083" y="809.8714"/><rect fill="#3A3A3A" height="183.7484" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="680.2083" y="1895.8944"/><rect fill="#3A3A3A" height="117.985" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="685.4167" y="1939.7827"/><rect fill="#3A3A3A" height="26.0417" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="690.625" y="2003.6011"/><rect fill="#333333" height="771.4233" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:2.0833333333333335;" width="847.3958" x="55.7292" y="1381.1361"/><rect fill="#333333" height="728.4383" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:2.0833333333333335;" width="826.5625" x="66.1458" y="1416.8294"/><rect fill="#333333" height="290.6901" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:2.0833333333333335;" width="552.0833" x="330.2083" y="1804.5776"/><rect fill="#333333" height="247.7051" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:2.0833333333333335;" width="531.25" x="340.625" y="1840.271"/><line style="stroke:#484848;stroke-width:2.0833333333333335;stroke-dasharray:5.0,5.0;" x1="32.2917" x2="32.2917" y1="155.2531" y2="2269.2261"/><line style="stroke:#484848;stroke-width:2.0833333333333335;stroke-dasharray:5.0,5.0;" x1="188.0208" x2="188.0208" y1="428.5929" y2="2269.2261"/><line style="stroke:#484848;stroke-width:2.0833333333333335;stroke-dasharray:5.0,5.0;" x1="453.125" x2="453.125" y1="298.1323" y2="2269.2261"/><line style="stroke:#484848;stroke-width:2.0833333333333335;stroke-dasharray:5.0,5.0;" x1="685.4167" x2="685.4167" y1="216.7684" y2="2269.2261"/><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="41.6667" x="8.3333" y="149.0519">Client</text><ellipse cx="32.2917" cy="76.6195" fill="#484848" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:2.0833333333333335;"/><path d="M32.2917,84.9528 L32.2917,113.0778 M18.75,93.2861 L45.8333,93.2861 M32.2917,113.0778 L18.75,128.7028 M32.2917,113.0778 L45.8333,128.7028 " fill="none" style="stroke:#484848;stroke-width:2.0833333333333335;"/><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="41.6667" x="8.3333" y="2285.4085">Client</text><ellipse cx="32.2917" cy="2302.0264" fill="#484848" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:2.0833333333333335;"/><path d="M32.2917,2310.3597 L32.2917,2338.4847 M18.75,2318.693 L45.8333,2318.693 M32.2917,2338.4847 L18.75,2354.1097 M32.2917,2338.4847 L45.8333,2354.1097 " fill="none" style="stroke:#484848;stroke-width:2.0833333333333335;"/><rect fill="#484848" height="69.9056" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="140.625" x="118.2292" y="2268.1844"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="51.0417" x="163.0208" y="2290.686">«kivakit»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="119.7917" x="128.6458" y="2307.4219">anotherRepeater</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="100" x="138.5417" y="2324.5972">:BaseRepeater</text><rect fill="#484848" height="69.9056" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="120.8333" x="392.7083" y="2268.1844"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="51.0417" x="427.6042" y="2290.686">«kivakit»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="96.875" x="404.6875" y="2307.4219">baseRepeater</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="100" x="403.125" y="2324.5972">:BaseRepeater</text><rect fill="#484848" height="69.9056" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="81.25" x="644.7917" y="2268.1844"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="51.0417" x="659.8958" y="2290.686">«kivakit»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="53.125" x="658.8542" y="2307.4219">listener</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="60.4167" x="655.2083" y="2324.5972">:Listener</text><rect fill="#3A3A3A" height="160.5998" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="183.3333" y="564.62"/><rect fill="#3A3A3A" height="80.1147" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="188.5417" y="623.23"/><rect fill="#3A3A3A" height="1115.7715" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="183.3333" y="1134.7046"/><rect fill="#3A3A3A" height="1035.2865" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="188.5417" y="1193.3146"/><rect fill="#3A3A3A" height="943.3431" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="193.75" y="1257.133"/><rect fill="#3A3A3A" height="866.1214" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="198.9583" y="1306.2297"/><rect fill="#3A3A3A" height="713.1836" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="447.9167" y="363.9526"/><rect fill="#3A3A3A" height="257.8898" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="453.125" y="509.1349"/><rect fill="#3A3A3A" height="160.5998" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="453.125" y="860.1481"/><rect fill="#3A3A3A" height="80.1147" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="458.3333" y="918.7581"/><rect fill="#3A3A3A" height="649.7599" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="447.9167" y="1487.1745"/><rect fill="#3A3A3A" height="117.985" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="453.125" y="1545.7845"/><rect fill="#3A3A3A" height="26.0417" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="458.3333" y="1609.6029"/><rect fill="#3A3A3A" height="385.3882" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="453.125" y="1729.6712"/><rect fill="#3A3A3A" height="246.4315" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="680.2083" y="809.8714"/><rect fill="#3A3A3A" height="183.7484" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="680.2083" y="1895.8944"/><rect fill="#3A3A3A" height="117.985" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="685.4167" y="1939.7827"/><rect fill="#3A3A3A" height="26.0417" style="stroke:#484848;stroke-width:1.0416666666666667;" width="10.4167" x="690.625" y="2003.6011"/><polygon fill="#545454" points="632.2917,188.7248,642.7083,192.8914,632.2917,197.0581,636.4583,192.8914" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="32.2917" x2="638.5417" y1="192.8914" y2="192.8914"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="34.375" x="42.7083" y="185.0464">new()</text><rect fill="#484848" height="69.9056" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="81.25" x="644.7917" y="165.6698"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="51.0417" x="659.8958" y="188.1714">«kivakit»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="53.125" x="658.8542" y="204.9072">listener</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="60.4167" x="655.2083" y="222.0825">:Listener</text><polygon fill="#545454" points="380.2083,270.0887,390.625,274.2554,380.2083,278.422,384.375,274.2554" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="32.2917" x2="386.4583" y1="274.2554" y2="274.2554"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="83.3333" x="42.7083" y="266.4103">new(listener)</text><rect fill="#484848" height="69.9056" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="120.8333" x="392.7083" y="247.0337"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="51.0417" x="427.6042" y="269.5353">«kivakit»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="96.875" x="404.6875" y="286.2712">baseRepeater</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="100" x="403.125" y="303.4465">:BaseRepeater</text><line style="stroke:#545454;stroke-width:1.5625;" x1="453.125" x2="502.0833" y1="350.411" y2="350.411"/><line style="stroke:#545454;stroke-width:1.5625;" x1="502.0833" x2="502.0833" y1="350.411" y2="363.9526"/><line style="stroke:#545454;stroke-width:1.5625;" x1="459.375" x2="502.0833" y1="363.9526" y2="363.9526"/><polygon fill="#545454" points="469.7917,359.786,459.375,363.9526,469.7917,368.1193,465.625,363.9526" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="100" x="468.75" y="342.5659">initialize object</text><polygon fill="#545454" points="270.3125,400.5493,259.8958,404.716,270.3125,408.8826,266.1458,404.716" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="264.0625" x2="446.875" y1="404.716" y2="404.716"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="34.375" x="279.6875" y="396.8709">new()</text><rect fill="#484848" height="69.9056" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:1.5625;" width="140.625" x="118.2292" y="377.4943"/><text fill="#000000" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-style="italic" lengthAdjust="spacing" textLength="51.0417" x="163.0208" y="399.9959">«kivakit»</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="119.7917" x="128.6458" y="416.7318">anotherRepeater</text><text fill="#C8AC00" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="14.5833" lengthAdjust="spacing" text-decoration="underline" textLength="100" x="138.5417" y="433.9071">:BaseRepeater</text><line style="stroke:#545454;stroke-width:1.5625;" x1="458.3333" x2="507.2917" y1="495.5933" y2="495.5933"/><line style="stroke:#545454;stroke-width:1.5625;" x1="507.2917" x2="507.2917" y1="495.5933" y2="509.1349"/><line style="stroke:#545454;stroke-width:1.5625;" x1="464.5833" x2="507.2917" y1="509.1349" y2="509.1349"/><polygon fill="#545454" points="475,504.9683,464.5833,509.1349,475,513.3016,470.8333,509.1349" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="52.0833" x="473.9583" y="473.0265">Listener</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="173.9583" x="473.9583" y="487.7482">::listenTo(anotherRepeater)</text><polygon fill="#545454" points="205.2083,560.4533,194.7917,564.62,205.2083,568.7866,201.0417,564.62" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="198.9583" x2="452.0833" y1="564.62" y2="564.62"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="76.0417" x="214.5833" y="542.0532">Broadcaster</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="177.0833" x="214.5833" y="556.7749">::addListener(baseRepeater)</text><line style="stroke:#545454;stroke-width:1.5625;" x1="193.75" x2="242.7083" y1="609.6883" y2="609.6883"/><line style="stroke:#545454;stroke-width:1.5625;" x1="242.7083" x2="242.7083" y1="609.6883" y2="623.23"/><line style="stroke:#545454;stroke-width:1.5625;" x1="200" x2="242.7083" y1="623.23" y2="623.23"/><polygon fill="#545454" points="210.4167,619.0633,200,623.23,210.4167,627.3966,206.25,623.23" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="71.875" x="209.375" y="587.1216">Multicaster</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="233.3333" x="209.375" y="601.8433">::addListener(baseRepeater, allFilter)</text><path d="M204.1667,650.3133 L204.1667,676.355 A8.3333,8.3333 0 0 0 212.5,684.6883 L431.25,684.6883 A8.3333,8.3333 0 0 0 439.5833,676.355 L439.5833,652.3966 L429.1667,641.98 L212.5,641.98 A8.3333,8.3333 0 0 0 204.1667,650.3133 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><path d="M429.1667,641.98 L429.1667,648.23 A4.1667,4.1667 0 0 0 433.3333,652.3966 L439.5833,652.3966 L429.1667,641.98 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="180.2083" x="213.5417" y="661.3912">add into list of AudienceMember</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="207.2917" x="213.5417" y="674.8861">which encapsulated listener and filter</text><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="198.9583" x2="242.7083" y1="702.3031" y2="702.3031"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="242.7083" x2="242.7083" y1="702.3031" y2="715.8447"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="193.75" x2="242.7083" y1="715.8447" y2="715.8447"/><polygon fill="#545454" points="204.1667,711.6781,193.75,715.8447,204.1667,720.0114,200,715.8447" style="stroke:#545454;stroke-width:1.0416666666666667;"/><polygon fill="#545454" points="440.625,721.0531,451.0417,725.2197,440.625,729.3864,444.7917,725.2197" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="188.5417" x2="446.875" y1="725.2197" y2="725.2197"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="463.5417" x2="507.2917" y1="765.9831" y2="765.9831"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="507.2917" x2="507.2917" y1="765.9831" y2="779.5247"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="458.3333" x2="507.2917" y1="779.5247" y2="779.5247"/><polygon fill="#545454" points="468.75,775.3581,458.3333,779.5247,468.75,783.6914,464.5833,779.5247" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="106.25" x="473.9583" y="758.138">anotherRepeater</text><polygon fill="#545454" points="667.7083,805.7048,678.125,809.8714,667.7083,814.0381,671.875,809.8714" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="458.3333" x2="673.9583" y1="809.8714" y2="809.8714"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="147.9167" x="468.75" y="802.0264">listenTo(baseRepeater)</text><polygon fill="#545454" points="475,855.9814,464.5833,860.1481,475,864.3148,470.8333,860.1481" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="468.75" x2="679.1667" y1="860.1481" y2="860.1481"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="76.0417" x="484.375" y="837.5814">Broadcaster</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="139.5833" x="484.375" y="852.3031">::addListener(listener)</text><line style="stroke:#545454;stroke-width:1.5625;" x1="463.5417" x2="512.5" y1="905.2165" y2="905.2165"/><line style="stroke:#545454;stroke-width:1.5625;" x1="512.5" x2="512.5" y1="905.2165" y2="918.7581"/><line style="stroke:#545454;stroke-width:1.5625;" x1="469.7917" x2="512.5" y1="918.7581" y2="918.7581"/><polygon fill="#545454" points="480.2083,914.5915,469.7917,918.7581,480.2083,922.9248,476.0417,918.7581" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="71.875" x="479.1667" y="882.6497">Multicaster</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="195.8333" x="479.1667" y="897.3714">::addListener(listener, allFilter)</text><path d="M473.9583,945.8415 L473.9583,971.8831 A8.3333,8.3333 0 0 0 482.2917,980.2165 L701.0417,980.2165 A8.3333,8.3333 0 0 0 709.375,971.8831 L709.375,947.9248 L698.9583,937.5081 L482.2917,937.5081 A8.3333,8.3333 0 0 0 473.9583,945.8415 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><path d="M698.9583,937.5081 L698.9583,943.7581 A4.1667,4.1667 0 0 0 703.125,947.9248 L709.375,947.9248 L698.9583,937.5081 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="180.2083" x="483.3333" y="956.9194">add into list of AudienceMember</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="207.2917" x="483.3333" y="970.4142">which encapsulated listener and filter</text><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="468.75" x2="512.5" y1="997.8312" y2="997.8312"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="512.5" x2="512.5" y1="997.8312" y2="1011.3729"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="463.5417" x2="512.5" y1="1011.3729" y2="1011.3729"/><polygon fill="#545454" points="473.9583,1007.2062,463.5417,1011.3729,473.9583,1015.5396,469.7917,1011.3729" style="stroke:#545454;stroke-width:1.0416666666666667;"/><polygon fill="#545454" points="667.7083,1016.5812,678.125,1020.7479,667.7083,1024.9146,671.875,1020.7479" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="458.3333" x2="673.9583" y1="1020.7479" y2="1020.7479"/><polygon fill="#545454" points="469.7917,1052.1362,459.375,1056.3029,469.7917,1060.4696,465.625,1056.3029" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="463.5417" x2="684.375" y1="1056.3029" y2="1056.3029"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="86.4583" x="479.1667" y="1048.4578">baseRepeater</text><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="458.3333" x2="502.0833" y1="1076.0946" y2="1076.0946"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="502.0833" x2="502.0833" y1="1076.0946" y2="1089.6362"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="453.125" x2="502.0833" y1="1089.6362" y2="1089.6362"/><polygon fill="#545454" points="463.5417,1085.4696,453.125,1089.6362,463.5417,1093.8029,459.375,1089.6362" style="stroke:#545454;stroke-width:1.0416666666666667;"/><polygon fill="#545454" points="170.8333,1130.5379,181.25,1134.7046,170.8333,1138.8713,175,1134.7046" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="32.2917" x2="177.0833" y1="1134.7046" y2="1134.7046"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="102.0833" x="42.7083" y="1112.1379">YourMulticaster</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="125" x="42.7083" y="1126.8595">::yourMethod(state)</text><line style="stroke:#545454;stroke-width:1.5625;" x1="193.75" x2="242.7083" y1="1179.7729" y2="1179.7729"/><line style="stroke:#545454;stroke-width:1.5625;" x1="242.7083" x2="242.7083" y1="1179.7729" y2="1193.3146"/><line style="stroke:#545454;stroke-width:1.5625;" x1="200" x2="242.7083" y1="1193.3146" y2="1193.3146"/><polygon fill="#545454" points="210.4167,1189.1479,200,1193.3146,210.4167,1197.4813,206.25,1193.3146" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="73.9583" x="209.375" y="1157.2062">Transceiver</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="115.625" x="209.375" y="1171.9279">::handle(message)</text><line style="stroke:#545454;stroke-width:1.5625;" x1="198.9583" x2="247.9167" y1="1243.5913" y2="1243.5913"/><line style="stroke:#545454;stroke-width:1.5625;" x1="247.9167" x2="247.9167" y1="1243.5913" y2="1257.133"/><line style="stroke:#545454;stroke-width:1.5625;" x1="205.2083" x2="247.9167" y1="1257.133" y2="1257.133"/><polygon fill="#545454" points="215.625,1252.9663,205.2083,1257.133,215.625,1261.2996,211.4583,1257.133" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="56.25" x="214.5833" y="1221.0246">Repeater</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="133.3333" x="214.5833" y="1235.7463">::onHandle(message)</text><line style="stroke:#545454;stroke-width:1.5625;" x1="204.1667" x2="253.125" y1="1292.688" y2="1292.688"/><line style="stroke:#545454;stroke-width:1.5625;" x1="253.125" x2="253.125" y1="1292.688" y2="1306.2297"/><line style="stroke:#545454;stroke-width:1.5625;" x1="210.4167" x2="253.125" y1="1306.2297" y2="1306.2297"/><polygon fill="#545454" points="220.8333,1302.063,210.4167,1306.2297,220.8333,1310.3963,216.6667,1306.2297" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="120.8333" x="219.7917" y="1284.8429">transmit(message)</text><path d="M214.5833,1333.313 L214.5833,1359.3547 A8.3333,8.3333 0 0 0 222.9167,1367.688 L404.1667,1367.688 A8.3333,8.3333 0 0 0 412.5,1359.3547 L412.5,1335.3963 L402.0833,1324.9797 L222.9167,1324.9797 A8.3333,8.3333 0 0 0 214.5833,1333.313 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><path d="M402.0833,1324.9797 L402.0833,1331.2297 A4.1667,4.1667 0 0 0 406.25,1335.3963 L412.5,1335.3963 L402.0833,1324.9797 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="169.7917" x="223.9583" y="1344.3909">iterate list of AudienceMember</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="148.9583" x="223.9583" y="1357.8857">call listener if filter accepts</text><path d="M64.0625,1381.1361 L138.0208,1381.1361 L138.0208,1393.6361 L127.6042,1404.0527 L55.7292,1404.0527 L55.7292,1389.4694 " fill="#484848" style="stroke:#484848;stroke-width:1.0416666666666667;"/><rect fill="none" height="771.4233" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:2.0833333333333335;" width="847.3958" x="55.7292" y="1381.1361"/><text fill="#0060A8" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="29.1667" x="74.4792" y="1397.3877">loop</text><text fill="#3380B9" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="122.9167" x="156.7708" y="1398.4294">[audience member]</text><path d="M74.4792,1416.8294 L135.9375,1416.8294 L135.9375,1429.3294 L125.5208,1439.7461 L66.1458,1439.7461 L66.1458,1425.1628 " fill="#484848" style="stroke:#484848;stroke-width:1.0416666666666667;"/><rect fill="none" height="728.4383" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:2.0833333333333335;" width="826.5625" x="66.1458" y="1416.8294"/><text fill="#0060A8" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="16.6667" x="84.8958" y="1433.0811">alt</text><text fill="#3380B9" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="153.125" x="154.6875" y="1434.1227">[filter accepts message]</text><polygon fill="#545454" points="435.4167,1483.0078,445.8333,1487.1745,435.4167,1491.3411,439.5833,1487.1745" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="209.375" x2="441.6667" y1="1487.1745" y2="1487.1745"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="56.25" x="219.7917" y="1464.6077">Repeater</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="116.6667" x="219.7917" y="1479.3294">::receive(message)</text><line style="stroke:#545454;stroke-width:1.5625;" x1="458.3333" x2="507.2917" y1="1532.2428" y2="1532.2428"/><line style="stroke:#545454;stroke-width:1.5625;" x1="507.2917" x2="507.2917" y1="1532.2428" y2="1545.7845"/><line style="stroke:#545454;stroke-width:1.5625;" x1="464.5833" x2="507.2917" y1="1545.7845" y2="1545.7845"/><polygon fill="#545454" points="475,1541.6178,464.5833,1545.7845,475,1549.9512,470.8333,1545.7845" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="52.0833" x="473.9583" y="1509.6761">Listener</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="136.4583" x="473.9583" y="1524.3978">::onReceive(message)</text><line style="stroke:#545454;stroke-width:1.5625;" x1="463.5417" x2="512.5" y1="1596.0612" y2="1596.0612"/><line style="stroke:#545454;stroke-width:1.5625;" x1="512.5" x2="512.5" y1="1596.0612" y2="1609.6029"/><line style="stroke:#545454;stroke-width:1.5625;" x1="469.7917" x2="512.5" y1="1609.6029" y2="1609.6029"/><polygon fill="#545454" points="480.2083,1605.4362,469.7917,1609.6029,480.2083,1613.7695,476.0417,1609.6029" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="116.6667" x="479.1667" y="1573.4945">YourBaseRepeater</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="144.7917" x="479.1667" y="1588.2161">::onMessage(message)</text><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="468.75" x2="512.5" y1="1634.6029" y2="1634.6029"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="512.5" x2="512.5" y1="1634.6029" y2="1648.1445"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="463.5417" x2="512.5" y1="1648.1445" y2="1648.1445"/><polygon fill="#545454" points="473.9583,1643.9779,463.5417,1648.1445,473.9583,1652.3112,469.7917,1648.1445" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="463.5417" x2="507.2917" y1="1662.7279" y2="1662.7279"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="507.2917" x2="507.2917" y1="1662.7279" y2="1676.2695"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="458.3333" x2="507.2917" y1="1676.2695" y2="1676.2695"/><polygon fill="#545454" points="468.75,1672.1029,458.3333,1676.2695,468.75,1680.4362,464.5833,1676.2695" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="458.3333" x2="507.2917" y1="1716.1296" y2="1716.1296"/><line style="stroke:#545454;stroke-width:1.5625;" x1="507.2917" x2="507.2917" y1="1716.1296" y2="1729.6712"/><line style="stroke:#545454;stroke-width:1.5625;" x1="464.5833" x2="507.2917" y1="1729.6712" y2="1729.6712"/><polygon fill="#545454" points="475,1725.5046,464.5833,1729.6712,475,1733.8379,470.8333,1729.6712" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="71.875" x="473.9583" y="1693.5628">Multicaster</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="127.0833" x="473.9583" y="1708.2845">::transmit(message)</text><path d="M468.75,1756.7546 L468.75,1782.7962 A8.3333,8.3333 0 0 0 477.0833,1791.1296 L658.3333,1791.1296 A8.3333,8.3333 0 0 0 666.6667,1782.7962 L666.6667,1758.8379 L656.25,1748.4212 L477.0833,1748.4212 A8.3333,8.3333 0 0 0 468.75,1756.7546 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><path d="M656.25,1748.4212 L656.25,1754.6712 A4.1667,4.1667 0 0 0 660.4167,1758.8379 L666.6667,1758.8379 L656.25,1748.4212 " fill="#1B1B1A" style="stroke:#5E5E5E;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="169.7917" x="478.125" y="1767.8324">iterate list of AudienceMember</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="11.4583" lengthAdjust="spacing" textLength="148.9583" x="478.125" y="1781.3273">call listener if filter accepts</text><path d="M338.5417,1804.5776 L412.5,1804.5776 L412.5,1817.0776 L402.0833,1827.4943 L330.2083,1827.4943 L330.2083,1812.911 " fill="#484848" style="stroke:#484848;stroke-width:1.0416666666666667;"/><rect fill="none" height="290.6901" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:2.0833333333333335;" width="552.0833" x="330.2083" y="1804.5776"/><text fill="#0060A8" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="29.1667" x="348.9583" y="1820.8293">loop</text><text fill="#3380B9" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="122.9167" x="431.25" y="1821.8709">[audience member]</text><path d="M348.9583,1840.271 L410.4167,1840.271 L410.4167,1852.771 L400,1863.1877 L340.625,1863.1877 L340.625,1848.6043 " fill="#484848" style="stroke:#484848;stroke-width:1.0416666666666667;"/><rect fill="none" height="247.7051" rx="8.3333" ry="8.3333" style="stroke:#484848;stroke-width:2.0833333333333335;" width="531.25" x="340.625" y="1840.271"/><text fill="#0060A8" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="16.6667" x="359.375" y="1856.5226">alt</text><text fill="#3380B9" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="153.125" x="429.1667" y="1857.5643">[filter accepts message]</text><polygon fill="#545454" points="667.7083,1891.7277,678.125,1895.8944,667.7083,1900.061,671.875,1895.8944" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;" x1="463.5417" x2="673.9583" y1="1895.8944" y2="1895.8944"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="110.4167" x="473.9583" y="1888.0493">receive(message)</text><line style="stroke:#545454;stroke-width:1.5625;" x1="690.625" x2="739.5833" y1="1926.241" y2="1926.241"/><line style="stroke:#545454;stroke-width:1.5625;" x1="739.5833" x2="739.5833" y1="1926.241" y2="1939.7827"/><line style="stroke:#545454;stroke-width:1.5625;" x1="696.875" x2="739.5833" y1="1939.7827" y2="1939.7827"/><polygon fill="#545454" points="707.2917,1935.616,696.875,1939.7827,707.2917,1943.9494,703.125,1939.7827" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="130.2083" x="706.25" y="1918.396">onReceive(message)</text><line style="stroke:#545454;stroke-width:1.5625;" x1="695.8333" x2="744.7917" y1="1990.0594" y2="1990.0594"/><line style="stroke:#545454;stroke-width:1.5625;" x1="744.7917" x2="744.7917" y1="1990.0594" y2="2003.6011"/><line style="stroke:#545454;stroke-width:1.5625;" x1="702.0833" x2="744.7917" y1="2003.6011" y2="2003.6011"/><polygon fill="#545454" points="712.5,1999.4344,702.0833,2003.6011,712.5,2007.7677,708.3333,2003.6011" style="stroke:#545454;stroke-width:1.0416666666666667;"/><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="82.2917" x="711.4583" y="1967.4927">YourListener</text><text fill="#A0A0A0" font-family="Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif" font-size="12.5" font-weight="bold" lengthAdjust="spacing" textLength="144.7917" x="711.4583" y="1982.2144">::onMessage(message)</text><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="701.0417" x2="744.7917" y1="2028.6011" y2="2028.6011"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="744.7917" x2="744.7917" y1="2028.6011" y2="2042.1427"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="695.8333" x2="744.7917" y1="2042.1427" y2="2042.1427"/><polygon fill="#545454" points="706.25,2037.9761,695.8333,2042.1427,706.25,2046.3094,702.0833,2042.1427" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="695.8333" x2="739.5833" y1="2056.7261" y2="2056.7261"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="739.5833" x2="739.5833" y1="2056.7261" y2="2070.2677"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="690.625" x2="739.5833" y1="2070.2677" y2="2070.2677"/><polygon fill="#545454" points="701.0417,2066.1011,690.625,2070.2677,701.0417,2074.4344,696.875,2070.2677" style="stroke:#545454;stroke-width:1.0416666666666667;"/><polygon fill="#545454" points="475,2075.4761,464.5833,2079.6427,475,2083.8094,470.8333,2079.6427" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="468.75" x2="684.375" y1="2079.6427" y2="2079.6427"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="463.5417" x2="507.2917" y1="2114.0177" y2="2114.0177"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="507.2917" x2="507.2917" y1="2114.0177" y2="2127.5594"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="458.3333" x2="507.2917" y1="2127.5594" y2="2127.5594"/><polygon fill="#545454" points="468.75,2123.3927,458.3333,2127.5594,468.75,2131.7261,464.5833,2127.5594" style="stroke:#545454;stroke-width:1.0416666666666667;"/><polygon fill="#545454" points="220.8333,2132.7677,210.4167,2136.9344,220.8333,2141.1011,216.6667,2136.9344" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="214.5833" x2="452.0833" y1="2136.9344" y2="2136.9344"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="209.375" x2="253.125" y1="2171.3094" y2="2171.3094"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="253.125" x2="253.125" y1="2171.3094" y2="2184.8511"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="204.1667" x2="253.125" y1="2184.8511" y2="2184.8511"/><polygon fill="#545454" points="214.5833,2180.6844,204.1667,2184.8511,214.5833,2189.0177,210.4167,2184.8511" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="204.1667" x2="247.9167" y1="2199.4344" y2="2199.4344"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="247.9167" x2="247.9167" y1="2199.4344" y2="2212.9761"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="198.9583" x2="247.9167" y1="2212.9761" y2="2212.9761"/><polygon fill="#545454" points="209.375,2208.8094,198.9583,2212.9761,209.375,2217.1427,205.2083,2212.9761" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="198.9583" x2="242.7083" y1="2227.5594" y2="2227.5594"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="242.7083" x2="242.7083" y1="2227.5594" y2="2241.1011"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="193.75" x2="242.7083" y1="2241.1011" y2="2241.1011"/><polygon fill="#545454" points="204.1667,2236.9344,193.75,2241.1011,204.1667,2245.2677,200,2241.1011" style="stroke:#545454;stroke-width:1.0416666666666667;"/><polygon fill="#545454" points="43.75,2246.3094,33.3333,2250.4761,43.75,2254.6427,39.5833,2250.4761" style="stroke:#545454;stroke-width:1.0416666666666667;"/><line style="stroke:#545454;stroke-width:1.5625;stroke-dasharray:2.0,2.0;" x1="37.5" x2="187.5" y1="2250.4761" y2="2250.4761"/><!--MD5=[f7bcc2c2dfc0a7f59371e748d3cb108c]
+@startuml
+
+    !include ../lexakai.theme
+
+    title "Base Repeater Interactions"
+
+    autoactivate on
+
+    actor Client
+    participant "anotherRepeater\n:BaseRepeater" as anotherRepeater <<kivakit>>
+    participant "baseRepeater\n:BaseRepeater" as baseRepeater <<kivakit>>
+    participant "listener\n:Listener" as listener <<kivakit>>
+
+    Client -> listener ** : new()
+    Client -> baseRepeater ** : new(listener)
+
+    baseRepeater -> baseRepeater : initialize object
+    baseRepeater -> anotherRepeater ** : new()
+
+    baseRepeater -> baseRepeater : Listener\n::listenTo(anotherRepeater)
+    baseRepeater -> anotherRepeater : Broadcaster\n::addListener(baseRepeater)
+    anotherRepeater -> anotherRepeater : Multicaster\n::addListener(baseRepeater, allFilter)
+    note right anotherRepeater
+        add into list of AudienceMember
+        which encapsulated listener and filter
+    end note
+    return
+    return
+    return anotherRepeater
+
+    baseRepeater -> listener : listenTo(baseRepeater)
+    listener -> baseRepeater : Broadcaster\n::addListener(listener)
+    baseRepeater -> baseRepeater : Multicaster\n::addListener(listener, allFilter)
+    note right baseRepeater
+        add into list of AudienceMember
+        which encapsulated listener and filter
+    end note
+    return
+    return
+    return baseRepeater
+
+    return
+
+    Client -> anotherRepeater : YourMulticaster\n::yourMethod(state)
+    anotherRepeater -> anotherRepeater : Transceiver\n::handle(message)
+    anotherRepeater -> anotherRepeater : Repeater\n::onHandle(message)
+    anotherRepeater -> anotherRepeater : transmit(message)
+    note right anotherRepeater
+        iterate list of AudienceMember
+        call listener if filter accepts
+    end note
+
+    loop audience member
+        alt filter accepts message
+            anotherRepeater -> baseRepeater : Repeater\n::receive(message)
+
+            baseRepeater -> baseRepeater : Listener\n::onReceive(message)
+            baseRepeater -> baseRepeater : YourBaseRepeater\n::onMessage(message)
+            return
+            return
+
+            baseRepeater -> baseRepeater : Multicaster\n::transmit(message)
+            note right baseRepeater
+                iterate list of AudienceMember
+                call listener if filter accepts
+            end note
+
+            loop audience member
+                alt filter accepts message
+                    baseRepeater -> listener : receive(message)
+                    listener -> listener : onReceive(message)
+                    listener -> listener : YourListener\n::onMessage(message)
+                    return
+                    return
+                    return
+                end alt
+            end loop
+
+            return
+
+            return
+        end alt
+    end loop
+
+    return
+    return
+    return
+    return
+
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam backgroundColor #333333
+
+
+
+
+
+
+skinparam  {
+    defaultFontName   "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+    defaultFontSize   12
+    defaultTextAlignment left
+    shadowing false
+    RoundCorner 10
+    TitleFontSize 18
+}
+
+skinparam defaultFontName       "Open Sans,Avenir,Nunito,Arial,Helvetica,SansSerif"
+skinparam defaultFontSize       12
+skinparam dpi                   100
+skinparam shadowing             false
+skinparam roundcorner           16
+skinparam ParticipantPadding    40
+skinparam BoxPadding            40
+skinparam Padding               3
+skinparam ArrowColor            #545454
+skinparam stereotype {
+    CBackgroundColor #0066cf
+    CBorderColor #0086ef
+    ABackgroundColor #C8Ac00
+    ABorderColor #D8Bc00
+    IBackgroundColor #008400
+    IBorderColor #239c23
+    EBackgroundColor #cf6300
+    EBorderColor #ef8300
+    NBackgroundColor #3380b9
+    NBorderColor #004d86
+}
+skinparam title {
+	FontColor	                 #c0c0c0
+ 	BorderColor                  #545454
+	FontSize	    	         20
+	BorderRoundCorner            16
+	BorderThickness 	         1
+	BackgroundColor              #48494b
+}
+
+
+skinparam legend {
+	BackgroundColor #303030
+	BorderColor #404040
+	FontColor #a0a0a0
+}
+
+	skinparam swimlane {
+	BorderColor #5e5e5e
+	BorderThickness 2
+	TitleBackgroundColor  #6d6d6d-#484848
+	TitleFontColor #303030
+}
+
+skinparam activity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BarColor #00FF00
+	StartColor #0060a8
+	EndColor #0060a8
+	DiamondBackgroundColor #6d6d6d-#3a3a3a
+  	DiamondBorderColor #3a3a3a
+  	DiamondFontColor #fefefe
+}
+
+
+skinparam participant {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	ParticipantBorderThickness 2
+}
+
+
+skinparam actor {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam arrow {
+	Thickness 1.5
+	Color #545454
+	FontColor #a0a0a0
+    FontStyle bold
+    MessageAlignment center
+}
+
+
+
+skinparam sequence {
+	BorderColor #303030
+	TitleFontColor #303030
+	BackgroundColor #333333
+	StartColor #303030
+	EndColor #303030
+	BoxBackgroundColor #333333
+	BoxBorderColor #484848
+	BoxFontColor #484848
+	LifeLineBorderColor #484848
+	LifeLineBorderThickness 2
+	LifeLineBackgroundColor #3a3a3a
+	GroupBorderColor #484848
+	GroupFontColor #3380b9
+	GroupHeaderFontColor #0060a8
+	GroupBackgroundColor #484848
+	GroupHeaderBackgroundColor #333333
+	DividerBackgroundColor #484848
+    DividerBorderColor #484848
+    DividerBorderThickness 2
+    DividerFontColor #D8Bc00
+	ReferenceBackgroundColor #333333
+	ReferenceBorderColor #484848
+	ReferenceFontColor #fefefe
+	ReferenceHeaderBackgroundColor #484848
+    Participant underline
+    ParticipantBackgroundColor #484848
+    ParticipantBorderColor #484848
+    ParticipantFontSize 14
+    ActorBorderColor #484848
+    ActorBackgroundColor #484848
+    ActorFontSize 14
+}
+
+
+skinparam partition {
+	BorderColor #303030
+	FontColor #333333
+	BackgroundColor #333333
+}
+
+
+skinparam collections {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam control {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam entity {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam boundary {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam agent {
+	BackgroundColor #ff8000
+	BorderColor #ff9933
+	FontColor #484848
+}
+
+
+skinparam note {
+	BorderThickness 1
+	BackgroundColor #1b1b1a
+	BorderColor #5e5e5e
+	FontSize 11
+	FontColor #a0a0a0
+}
+
+
+skinparam artifact {
+	BorderThickness 10
+	BorderColor #5e5e5e
+	BackgroundColor #1b1b1a
+	FontColor #D8Bc00
+}
+
+
+skinparam component {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam interface {
+	BackgroundColor  #008400
+	BorderColor  #007F00
+	FontColor #484848
+}
+
+
+skinparam storage {
+	BackgroundColor #ff8000
+  	BorderColor #cc6600
+	FontColor #222222
+}
+
+
+skinparam node {
+	BackgroundColor #333333
+	BorderColor #333333
+	FontColor #C8Ac00
+}
+
+
+skinparam cloud {
+	BackgroundColor #484848-black
+	BorderColor #484848
+	FontColor #D8Bc00
+}
+
+
+skinparam database {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor  #333333
+}
+
+
+skinparam class {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	HeaderBackgroundColor #1b1b1a
+    BackgroundColor #282828
+    BorderColor #5e5e5e
+ 	StereotypeFontColor #a0a0a0
+    StereotypeFontStyle bold
+	BorderThickness 1
+	AttributeFontColor #D8Bc00
+	AttributeFontSize 11
+    FontColor #D8Bc00
+    FontStyle bold
+}
+
+
+skinparam object {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StereotypeFontColor #484848
+	BorderThickness 1
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam usecase {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam rectangle {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderThickness 2
+	StereotypeFontColor #303030
+}
+
+
+skinparam package {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	BackgroundColor #333333
+	BorderColor #5e5e5e
+	BorderStyle dashed
+	Style rectangle
+}
+
+
+skinparam folder {
+	BackgroundColor #6d6d6d
+  	BorderColor #ff8000
+	FontColor #ff8000
+	BorderThickness 2
+}
+
+
+skinparam frame {
+	BackgroundColor #6d6d6d
+  	BorderColor #0060a8
+	FontColor #0060a8
+	BorderThickness 2
+}
+
+
+skinparam state {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+	StartColor #0060a8
+	EndColor #0060a8
+	AttributeFontColor #fefefe
+	AttributeFontSize 11
+}
+
+
+skinparam queue {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+skinparam card {
+	BackgroundColor #0060a8
+	BorderColor #004d86
+	FontColor $INFO_TEXT
+}
+
+
+skinparam file {
+	BackgroundColor #6d6d6d-#484848
+	BorderColor #0060a8
+	FontColor #fefefe
+}
+
+
+skinparam stack {
+		FontColor #C8Ac00
+	BorderColor #333333
+	BackgroundColor #333333-#333333
+}
+
+
+    title "Base Repeater Interactions"
+
+    autoactivate on
+
+    actor Client
+    participant "anotherRepeater\n:BaseRepeater" as anotherRepeater <<kivakit>>
+    participant "baseRepeater\n:BaseRepeater" as baseRepeater <<kivakit>>
+    participant "listener\n:Listener" as listener <<kivakit>>
+
+    Client -> listener ** : new()
+    Client -> baseRepeater ** : new(listener)
+
+    baseRepeater -> baseRepeater : initialize object
+    baseRepeater -> anotherRepeater ** : new()
+
+    baseRepeater -> baseRepeater : Listener\n::listenTo(anotherRepeater)
+    baseRepeater -> anotherRepeater : Broadcaster\n::addListener(baseRepeater)
+    anotherRepeater -> anotherRepeater : Multicaster\n::addListener(baseRepeater, allFilter)
+    note right anotherRepeater
+        add into list of AudienceMember
+        which encapsulated listener and filter
+    end note
+    return
+    return
+    return anotherRepeater
+
+    baseRepeater -> listener : listenTo(baseRepeater)
+    listener -> baseRepeater : Broadcaster\n::addListener(listener)
+    baseRepeater -> baseRepeater : Multicaster\n::addListener(listener, allFilter)
+    note right baseRepeater
+        add into list of AudienceMember
+        which encapsulated listener and filter
+    end note
+    return
+    return
+    return baseRepeater
+
+    return
+
+    Client -> anotherRepeater : YourMulticaster\n::yourMethod(state)
+    anotherRepeater -> anotherRepeater : Transceiver\n::handle(message)
+    anotherRepeater -> anotherRepeater : Repeater\n::onHandle(message)
+    anotherRepeater -> anotherRepeater : transmit(message)
+    note right anotherRepeater
+        iterate list of AudienceMember
+        call listener if filter accepts
+    end note
+
+    loop audience member
+        alt filter accepts message
+            anotherRepeater -> baseRepeater : Repeater\n::receive(message)
+
+            baseRepeater -> baseRepeater : Listener\n::onReceive(message)
+            baseRepeater -> baseRepeater : YourBaseRepeater\n::onMessage(message)
+            return
+            return
+
+            baseRepeater -> baseRepeater : Multicaster\n::transmit(message)
+            note right baseRepeater
+                iterate list of AudienceMember
+                call listener if filter accepts
+            end note
+
+            loop audience member
+                alt filter accepts message
+                    baseRepeater -> listener : receive(message)
+                    listener -> listener : onReceive(message)
+                    listener -> listener : YourListener\n::onMessage(message)
+                    return
+                    return
+                    return
+                end alt
+            end loop
+
+            return
+
+            return
+        end alt
+    end loop
+
+    return
+    return
+    return
+    return
+
+@enduml
+
+PlantUML version 1.2021.7(Sun May 23 05:40:07 PDT 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: Dynamic Code Evolution 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

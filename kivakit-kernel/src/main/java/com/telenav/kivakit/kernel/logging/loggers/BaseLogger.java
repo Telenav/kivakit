@@ -21,6 +21,7 @@ package com.telenav.kivakit.kernel.logging.loggers;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
 import com.telenav.kivakit.kernel.language.collections.map.ConcurrentObjectMap;
+import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.logging.Log;
@@ -31,7 +32,7 @@ import com.telenav.kivakit.kernel.logging.filters.LogEntriesWithSeverityGreaterT
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.messages.OperationMessage;
 import com.telenav.kivakit.kernel.messaging.messages.Severity;
-import com.telenav.kivakit.kernel.project.CoreKernelLimits;
+import com.telenav.kivakit.kernel.project.KernelLimits;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLogging;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
@@ -39,12 +40,11 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @UmlClassDiagram(diagram = DiagramLogging.class)
 public abstract class BaseLogger implements Logger
 {
-    private static final Map<String, Time> lastLogTime = new ConcurrentObjectMap<>(CoreKernelLimits.UNIQUE_LOG_ENTRIES);
+    private static final Map<String, Time> lastLogTime = new ConcurrentObjectMap<>(KernelLimits.UNIQUE_LOG_ENTRIES);
 
     /** The severity level to log */
     private static Severity level;
@@ -180,7 +180,7 @@ public abstract class BaseLogger implements Logger
     }
 
     @UmlExcludeMember
-    protected abstract Set<Log> logs();
+    protected abstract ObjectSet<Log> logs();
 
     private static Severity level()
     {

@@ -16,11 +16,11 @@ You will need these products, or compatible products, set up to begin:
        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
        brew install git-flow
 
-2. Latest [Java 11](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)
+2. [Open JDK Java 16](https://adoptopenjdk.net/?variant=openjdk16&jvmVariant=hotspot) 
 
    > **IMPORTANT NOTE**: At this time, even though KivaKit targets Java 11 bytecode, it is not possible to build KivaKit under Java 11 due to a bug in the compiler ([JDK-8254557](https://bugs.openjdk.java.net/browse/JDK-8254557)). It is also not possible to build KivaKit's documentation under Java 12 due to a bug in Javadoc ([JDK-8212233](https://bugs.openjdk.java.net/browse/JDK-8212233)). Therefore, until these fixes are back-ported to Java 11, it is recommended to build KivaKit with **Java 16**, where both of these bugs have been fixed.
    >
-   > [Download Open JDK Java 16](https://adoptopenjdk.net/?variant=openjdk16&jvmVariant=hotspot)
+   > 
 
 3. Latest [Maven](https://maven.apache.org/download.cgi)
 
@@ -78,7 +78,7 @@ On macOS or UNIX, you can use a sample *.profile* from KivaKit to configure your
 2. Make sure that the **M2_HOME** and **JAVA_HOME** environment variables defined in the *.profile*
    point to your Maven and Java installations
 
-       export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.0.11.jdk/Contents/Home 
+       export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-16.0.2_7.jdk/Contents/Home 
        export M2_HOME=$HOME/Developer/apache-maven-3.6.3
 
 3. Change the **KIVAKIT_WORKSPACE** variable to point to your IDE workspace (**Workspace**).
@@ -103,7 +103,7 @@ On Windows, a UNIX-like environment with *bash* is required. It is recommended t
 2. Make sure that the **M2_HOME** and **JAVA_HOME** environment variables defined in the *.profile*
    point to your Maven and Java installations
 
-       export JAVA_HOME=/c/Program\\ Files/Java/jdk-11.0.11  
+       export JAVA_HOME=/c/Program\\ Files/Java/jdk-16.0.2_7  
        export M2_HOME=$HOME/Tools/apache-maven-3.6.3
 
 3. Change the **KIVAKIT_WORKSPACE** variable to point to your IDE workspace (**$HOME/Workspace**).
