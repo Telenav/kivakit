@@ -38,7 +38,7 @@ import static com.telenav.kivakit.resource.CopyMode.OVERWRITE;
  *
  * @author jonathanl (shibo)
  */
-public interface ResourceFolder
+public interface ResourceFolder extends UriIdentified
 {
     static ResourceFolderIdentifier identifier(final String identifier)
     {
@@ -79,6 +79,8 @@ public interface ResourceFolder
      * @return The child resource container at the given relative path
      */
     ResourceFolder folder(String path);
+
+    ResourceFolderIdentifier identifier();
 
     boolean isMaterialized();
 

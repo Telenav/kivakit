@@ -169,7 +169,7 @@
         <guava.version>29.0-jre</guava.version>
         <htrace.version>4.2.0-incubating</htrace.version>
         <log4j.version>1.2.17</log4j.version>
-        <slf4j.version>1.7.2</slf4j.version>
+        <slf4j.version>1.7.25</slf4j.version>
         <yourkit.version>8.0.1</yourkit.version>
         <classgraph.version>4.8.102</classgraph.version>
 
@@ -793,6 +793,11 @@
             </dependency>
             <dependency>
                 <groupId>com.telenav.kivakit</groupId>
+                <artifactId>kivakit-microservice</artifactId>
+                <version>${kivakit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.telenav.kivakit</groupId>
                 <artifactId>kivakit-collections</artifactId>
                 <version>${kivakit.version}</version>
             </dependency>
@@ -1260,6 +1265,11 @@
 
             <!-- Utility -->
 
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>

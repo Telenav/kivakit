@@ -36,6 +36,7 @@ import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourcePath
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.net.URI;
 import java.util.List;
 import java.util.function.Function;
 
@@ -71,7 +72,7 @@ import java.util.function.Function;
  */
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
-public class ResourcePath extends StringPath
+public class ResourcePath extends StringPath implements UriIdentified
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
@@ -134,13 +135,17 @@ public class ResourcePath extends StringPath
         }
     }
 
+    /** The {@link URI} scheme for this path */
+    private String scheme;
+
     /**
      * @param root The root element
      * @param elements The path elements
      */
-    protected ResourcePath(final String root, final List<String> elements)
+    protected ResourcePath(String scheme, final String root, final List<String> elements)
     {
         super(root, elements);
+        this.scheme = scheme;
     }
 
     /**
@@ -149,11 +154,13 @@ public class ResourcePath extends StringPath
     protected ResourcePath(final ResourcePath that)
     {
         super(that);
+        this.scheme = that.scheme;
     }
 
-    protected ResourcePath(final List<String> elements)
+    protected ResourcePath(String scheme, final List<String> elements)
     {
         super(elements);
+        this.scheme = scheme;
     }
 
     /**
@@ -184,6 +191,27 @@ public class ResourcePath extends StringPath
     {
         final var last = last();
         return last == null ? null : FileName.parse(last);
+    }
+
+    /**
+     * @return True if this file path has a scheme
+     */
+    public boolean hasScheme()
+    {
+        return scheme != null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String join()
+    {
+        if (scheme != null)
+        {
+            return scheme + ":/" + super.join("/");
+        }
+        return super.join();
     }
 
     @Override
@@ -223,6 +251,14 @@ public class ResourcePath extends StringPath
     }
 
     /**
+     * @return Any scheme for this filepath, such as 'file' or 's3' as in s3://telenav/file.txt
+     */
+    public String scheme()
+    {
+        return scheme;
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -238,6 +274,12 @@ public class ResourcePath extends StringPath
     public ResourcePath transformed(final Function<String, String> consumer)
     {
         return (ResourcePath) super.transformed(consumer);
+    }
+
+    @Override
+    public URI uri()
+    {
+        return URI.create(join());
     }
 
     /**
@@ -354,6 +396,16 @@ public class ResourcePath extends StringPath
     public ResourcePath withoutRoot()
     {
         return (ResourcePath) super.withoutRoot();
+    }
+
+    /**
+     * @return This filepath without any scheme
+     */
+    public ResourcePath withoutScheme()
+    {
+        final ResourcePath copy = (ResourcePath) copy();
+        copy.scheme = null;
+        return copy;
     }
 
     /**
