@@ -397,28 +397,6 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
     }
 
     /**
-     * Resolves valid folder paths into {@link ResourceFolder}s.
-     *
-     * @author jonathanl (shibo)
-     */
-    @UmlClassDiagram(diagram = DiagramResourceService.class)
-    @LexakaiJavadoc(complete = true)
-    public static class Resolver implements ResourceFolderResolver
-    {
-        @Override
-        public boolean accepts(final ResourceFolderIdentifier identifier)
-        {
-            return Folder.parse(identifier.identifier()) != null;
-        }
-
-        @Override
-        public ResourceFolder resolve(final ResourceFolderIdentifier identifier)
-        {
-            return Folder.parse(identifier.identifier());
-        }
-    }
-
-    /**
      * Converts to and from {@link Folder}s
      *
      * @author jonathanl (shibo)
@@ -449,6 +427,28 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
                 folder.ensureExists();
             }
             return folder;
+        }
+    }
+
+    /**
+     * Resolves valid folder paths into {@link ResourceFolder}s.
+     *
+     * @author jonathanl (shibo)
+     */
+    @UmlClassDiagram(diagram = DiagramResourceService.class)
+    @LexakaiJavadoc(complete = true)
+    public static class Resolver implements ResourceFolderResolver
+    {
+        @Override
+        public boolean accepts(final ResourceFolderIdentifier identifier)
+        {
+            return Folder.parse(identifier.identifier()) != null;
+        }
+
+        @Override
+        public ResourceFolder resolve(final ResourceFolderIdentifier identifier)
+        {
+            return Folder.parse(identifier.identifier());
         }
     }
 
@@ -820,6 +820,12 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         return path().hashCode();
     }
 
+    @Override
+    public ResourceFolderIdentifier identifier()
+    {
+        return ResourceFolder.identifier(path().join());
+    }
+
     public boolean isEmpty()
     {
         return exists() && files().isEmpty() && folders().isEmpty();
@@ -1082,6 +1088,12 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
     public Type type()
     {
         return type;
+    }
+
+    @Override
+    public URI uri()
+    {
+        return path().uri();
     }
 
     FolderService service()

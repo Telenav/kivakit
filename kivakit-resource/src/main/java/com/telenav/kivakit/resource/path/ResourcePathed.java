@@ -19,11 +19,14 @@
 package com.telenav.kivakit.resource.path;
 
 import com.telenav.kivakit.resource.ResourcePath;
+import com.telenav.kivakit.resource.UriIdentified;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResource;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourcePath;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+
+import java.net.URI;
 
 /**
  * An object which has a {@link ResourcePath}, as returned by {@link #path()}. Convenience methods provide access to the
@@ -34,7 +37,7 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
 @LexakaiJavadoc(complete = true)
-public interface ResourcePathed
+public interface ResourcePathed extends UriIdentified
 {
     /**
      * @return The base name of the file name of this object
@@ -81,4 +84,13 @@ public interface ResourcePathed
      */
     @UmlRelation(label = "supplies")
     ResourcePath path();
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    default URI uri()
+    {
+        return path().uri();
+    }
 }

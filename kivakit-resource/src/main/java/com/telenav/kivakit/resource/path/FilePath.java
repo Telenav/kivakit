@@ -190,16 +190,12 @@ public class FilePath extends ResourcePath
         }
     }
 
-    /** The {@link URI} scheme for this path */
-    private String scheme;
-
     /**
      * Copy constructor
      */
     protected FilePath(final FilePath that)
     {
         super(that);
-        scheme = that.scheme;
     }
 
     /**
@@ -207,8 +203,7 @@ public class FilePath extends ResourcePath
      */
     protected FilePath(final String scheme, final String root, final List<String> elements)
     {
-        super(root, elements);
-        this.scheme = scheme;
+        super(scheme, root, elements);
     }
 
     /**
@@ -216,8 +211,7 @@ public class FilePath extends ResourcePath
      */
     protected FilePath(final String scheme, final StringPath path)
     {
-        super(path.rootElement(), path.elements());
-        this.scheme = scheme;
+        super(scheme, path.rootElement(), path.elements());
     }
 
     /**
@@ -303,14 +297,6 @@ public class FilePath extends ResourcePath
     }
 
     /**
-     * @return True if this file path has a scheme
-     */
-    public boolean hasScheme()
-    {
-        return scheme != null;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -327,20 +313,7 @@ public class FilePath extends ResourcePath
     {
         return toString().equals(".") || equals(Folder.current().path());
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String join()
-    {
-        if (scheme != null)
-        {
-            return scheme + ":/" + super.join("/");
-        }
-        return super.join();
-    }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -366,14 +339,6 @@ public class FilePath extends ResourcePath
     public FilePath root()
     {
         return (FilePath) super.root();
-    }
-
-    /**
-     * @return Any scheme for this filepath, such as 'file' or 's3' as in s3://telenav/file.txt
-     */
-    public String scheme()
-    {
-        return scheme;
     }
 
     /**
@@ -526,9 +491,7 @@ public class FilePath extends ResourcePath
      */
     public FilePath withoutScheme()
     {
-        final FilePath copy = (FilePath) copy();
-        copy.scheme = null;
-        return copy;
+        return (FilePath) super.withoutScheme();
     }
 
     /**
@@ -546,7 +509,7 @@ public class FilePath extends ResourcePath
     @Override
     protected FilePath onCopy(final String root, final List<String> elements)
     {
-        return new FilePath(scheme, root, elements);
+        return new FilePath(scheme(), root, elements);
     }
 
     private static FilePath filepath(final String root, final List<String> elements)

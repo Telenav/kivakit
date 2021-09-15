@@ -102,7 +102,8 @@ public interface Resource extends
         ByteSized,
         ReadableResource,
         Repeater,
-        Resourceful
+        Resourceful,
+        UriIdentified
 {
     Logger LOGGER = LoggerFactory.newLogger();
 
