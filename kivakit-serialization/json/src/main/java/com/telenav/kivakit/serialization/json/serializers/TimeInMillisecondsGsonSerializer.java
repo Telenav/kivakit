@@ -28,9 +28,9 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
-public class TimeGsonSerializer extends PrimitiveGsonSerializer<Time, Long>
+public class TimeInMillisecondsGsonSerializer extends PrimitiveGsonSerializer<Time, Long>
 {
-    public TimeGsonSerializer()
+    public TimeInMillisecondsGsonSerializer()
     {
         super(Long.class);
     }
