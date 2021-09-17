@@ -195,11 +195,6 @@ public interface Component extends Repeater
         return Package.of(getClass(), path);
     }
 
-    default Resource relativeResource(final String path)
-    {
-        return PackageResource.of(getClass(), path);
-    }
-
     /**
      * Convenience method
      */
