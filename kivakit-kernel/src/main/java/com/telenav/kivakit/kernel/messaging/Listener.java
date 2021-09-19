@@ -23,6 +23,7 @@ import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.messaging.listeners.NullListener;
+import com.telenav.kivakit.kernel.messaging.listeners.ThrowingListener;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataFailureReporter;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLogging;
@@ -119,6 +120,11 @@ public interface Listener extends Transceiver, Receiver<Transmittable>, NamedObj
     static Listener none()
     {
         return new NullListener();
+    }
+
+    static Listener throwing()
+    {
+        return new ThrowingListener();
     }
 
     /**
