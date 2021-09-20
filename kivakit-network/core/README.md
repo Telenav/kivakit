@@ -123,8 +123,7 @@ project [*kivakit-network-core-email*](../email/README.md) makes use of this cla
 
 [*com.telenav.kivakit.network.core*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.svg)  
 [*com.telenav.kivakit.network.core.cluster*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.cluster.svg)  
-[*com.telenav.kivakit.network.core.converters*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.converters.svg)  
-[*com.telenav.kivakit.network.core.project*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.project.svg)
+[*com.telenav.kivakit.network.core.converters*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.converters.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
@@ -150,12 +149,12 @@ Javadoc coverage for this project is 86.9%.
 | [*LocalHost*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/LocalHost.html) |  |  
 | [*Loopback*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/Loopback.html) |  |  
 | [*NetworkAccessConstraints*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/NetworkAccessConstraints.html) |  |  
-| [*NetworkCoreProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/project/NetworkCoreProject.html) |  |  
 | [*NetworkLocation*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/NetworkLocation.html) |  |  
 | [*NetworkLocation.Converter*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/NetworkLocation.Converter.html) |  |  
 | [*NetworkPath*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/NetworkPath.html) | Path Parsing Methods |  
 | | Path Factory Methods |  
 | [*NetworkPath.Converter*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/NetworkPath.Converter.html) |  |  
+| [*NetworkProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/NetworkProject.html) |  |  
 | [*NetworkResource*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/NetworkResource.html) |  |  
 | [*Port*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/Port.html) |  |  
 | [*Port.Converter*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/Port.Converter.html) |  |  

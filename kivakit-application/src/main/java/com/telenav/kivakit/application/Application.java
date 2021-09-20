@@ -440,7 +440,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
         onConfigureListeners();
 
         // and if a deployment was specified,
-        if (has(DEPLOYMENT))
+        if (!deployments.isEmpty() && has(DEPLOYMENT))
         {
             // install it in the global settings registry.
             get(DEPLOYMENT).install();
@@ -583,7 +583,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
 
     private Set<SwitchParser<?>> internalSwitchParsers()
     {
-        var parsers = new HashSet<SwitchParser<?>>();
+        final var parsers = new HashSet<SwitchParser<?>>();
 
         if (!deployments.isEmpty() && DEPLOYMENT == null)
         {
@@ -597,7 +597,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
 
         parsers.add(QUIET);
         parsers.addAll(switchParsers());
-        
+
         return parsers;
     }
 }

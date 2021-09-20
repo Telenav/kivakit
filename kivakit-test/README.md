@@ -62,7 +62,6 @@ This module provides a mini-framework for testing, including random value testin
 
 [*com.telenav.kivakit.test*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-test/documentation/diagrams/com.telenav.kivakit.test.svg)  
 [*com.telenav.kivakit.test.annotations*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-test/documentation/diagrams/com.telenav.kivakit.test.annotations.svg)  
-[*com.telenav.kivakit.test.project*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-test/documentation/diagrams/com.telenav.kivakit.test.project.svg)  
 [*com.telenav.kivakit.test.random*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-test/documentation/diagrams/com.telenav.kivakit.test.random.svg)  
 [*com.telenav.kivakit.test.reporters*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-test/documentation/diagrams/com.telenav.kivakit.test.reporters.svg)
 
@@ -79,7 +78,6 @@ Javadoc coverage for this project is 85.1%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*CoreTestProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.test/com/telenav/kivakit/test/project/CoreTestProject.html) |  |  
 | [*JUnitFailureReporter*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.test/com/telenav/kivakit/test/reporters/JUnitFailureReporter.html) |  |  
 | [*QuickTests*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.test/com/telenav/kivakit/test/annotations/QuickTests.html) |  |  
 | [*RandomValueFactory*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.test/com/telenav/kivakit/test/random/RandomValueFactory.html) | Values |  
@@ -87,6 +85,7 @@ Javadoc coverage for this project is 85.1%.
 | [*SlowTests*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.test/com/telenav/kivakit/test/annotations/SlowTests.html) |  |  
 | [*UnitTest*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.test/com/telenav/kivakit/test/UnitTest.html) |  |  
 | [*UnitTest.Repeats*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.test/com/telenav/kivakit/test/UnitTest.Repeats.html) |  |  
+| [*UnitTestProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.test/com/telenav/kivakit/test/UnitTestProject.html) |  |  
 | [*UnitTestWatcher*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.test/com/telenav/kivakit/test/UnitTestWatcher.html) |  |  
 
 [//]: # (start-user-text)

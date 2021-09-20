@@ -75,14 +75,13 @@ browse the [**Javadoc**](#javadoc).
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
-[*com.telenav.kivakit.application*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.svg)  
-[*com.telenav.kivakit.application.project*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.project.svg)
+[*com.telenav.kivakit.application*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-application/documentation/diagrams/com.telenav.kivakit.application.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 1.1.0-SNAPSHOT%.  
+Javadoc coverage for this project is 98.2%.  
   
 &nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-100-96.png" srcset="https://www.kivakit.org/images/meter-100-96-2x.png 2x"/>
 
@@ -97,7 +96,7 @@ Javadoc coverage for this project is 1.1.0-SNAPSHOT%.
 | | Important Note: Project Initialization |  
 | | Startup |  
 | [*Application.Identifier*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/Application.Identifier.html) |  |  
-| [*CoreApplicationProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/project/CoreApplicationProject.html) |  |  
+| [*ApplicationProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/ApplicationProject.html) |  |  
 | [*Server*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/Server.html) |  |  
 
 [//]: # (start-user-text)

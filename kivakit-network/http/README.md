@@ -88,14 +88,13 @@ The *SecureHttpNetworkLocation*, *SecureHttpGetResource* and *SecureHttpPostReso
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
 [*com.telenav.kivakit.network.http*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-network/http/documentation/diagrams/com.telenav.kivakit.network.http.svg)  
-[*com.telenav.kivakit.network.http.project*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-network/http/documentation/diagrams/com.telenav.kivakit.network.http.project.svg)  
 [*com.telenav.kivakit.network.http.secure*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-network/http/documentation/diagrams/com.telenav.kivakit.network.http.secure.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 90.6%.  
+Javadoc coverage for this project is 90.7%.  
   
 &nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
 
@@ -105,13 +104,13 @@ Javadoc coverage for this project is 90.6%.
 | Class | Documentation Sections |
 |---|---|
 | [*BaseHttpResource*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/BaseHttpResource.html) | Content |  
-| [*CoreNetworkHttpProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/project/CoreNetworkHttpProject.html) |  |  
 | [*HttpAccessConstraints*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/HttpAccessConstraints.html) |  |  
 | [*HttpBasicCredentials*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/HttpBasicCredentials.html) |  |  
 | [*HttpGetResource*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/HttpGetResource.html) |  |  
 | [*HttpNetworkLocation*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/HttpNetworkLocation.html) | Access |  
 | [*HttpNetworkLocation.Converter*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/HttpNetworkLocation.Converter.html) |  |  
 | [*HttpPostResource*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/HttpPostResource.html) |  |  
+| [*HttpProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/HttpProject.html) |  |  
 | [*HttpPutResource*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/HttpPutResource.html) |  |  
 | [*HttpStatus*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/HttpStatus.html) |  |  
 | [*InvalidCertificateTrustingHttpClient*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.http/com/telenav/kivakit/network/http/secure/InvalidCertificateTrustingHttpClient.html) |  |  

@@ -143,6 +143,7 @@ more methods in *CollectionChangeListener* is called with information about what
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
+[*com.telenav.kivakit.collections*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.svg)  
 [*com.telenav.kivakit.collections.iteration.iterables*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.iteration.iterables.svg)  
 [*com.telenav.kivakit.collections.iteration.iterators*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.iteration.iterators.svg)  
 [*com.telenav.kivakit.collections.map*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.map.svg)  
@@ -171,11 +172,11 @@ Javadoc coverage for this project is 79.9%.
 | [*CaseFoldingStringMap*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/map/CaseFoldingStringMap.html) |  |  
 | [*CollectionChangeListener*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/watcher/CollectionChangeListener.html) |  |  
 | [*CollectionChangeWatcher*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/watcher/CollectionChangeWatcher.html) |  |  
+| [*CollectionsProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/CollectionsProject.html) |  |  
+| [*CollectionsUnitTest*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/project/CollectionsUnitTest.html) |  |  
 | [*CompoundIterator*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/iteration/iterators/CompoundIterator.html) |  |  
 | [*CompoundSet*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/CompoundSet.html) |  |  
 | [*ConcurrentHashSet*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/ConcurrentHashSet.html) |  |  
-| [*CoreCollectionsProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/project/CoreCollectionsProject.html) |  |  
-| [*CoreCollectionsUnitTest*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/project/CoreCollectionsUnitTest.html) |  |  
 | [*DeduplicatingIterable*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/iteration/iterables/DeduplicatingIterable.html) |  |  
 | [*DeduplicatingIterator*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/iteration/iterators/DeduplicatingIterator.html) |  |  
 | [*EmptyIterator*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/iteration/iterators/EmptyIterator.html) |  |  

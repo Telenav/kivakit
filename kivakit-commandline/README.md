@@ -66,14 +66,13 @@ arguments and switches is available in the Javadoc for the [*Application*](https
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
 [*com.telenav.kivakit.commandline*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-commandline/documentation/diagrams/com.telenav.kivakit.commandline.svg)  
-[*com.telenav.kivakit.commandline.parsing*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-commandline/documentation/diagrams/com.telenav.kivakit.commandline.parsing.svg)  
-[*com.telenav.kivakit.commandline.project*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-commandline/documentation/diagrams/com.telenav.kivakit.commandline.project.svg)
+[*com.telenav.kivakit.commandline.parsing*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-commandline/documentation/diagrams/com.telenav.kivakit.commandline.parsing.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 91.4%.  
+Javadoc coverage for this project is 91.5%.  
   
 &nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
 
@@ -95,7 +94,7 @@ Javadoc coverage for this project is 91.4%.
 | [*CommandLineParser*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/CommandLineParser.html) | Example |  
 | | Parsing a Command Line |  
 | | Switch Conventions |  
-| [*CoreCommandLineProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/project/CoreCommandLineProject.html) |  |  
+| [*CommandLineProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/CommandLineProject.html) |  |  
 | [*Quantifier*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/Quantifier.html) |  |  
 | [*Switch*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/Switch.html) |  |  
 | [*SwitchList*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/parsing/SwitchList.html) |  |  

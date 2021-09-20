@@ -96,7 +96,7 @@
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
-        <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
+        <maven-javadoc-plugin.version>3.3.1</maven-javadoc-plugin.version>
         <maven-resources-plugin.version>2.7</maven-resources-plugin.version>
         <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
@@ -107,7 +107,8 @@
         <cactus.url>https://repo1.maven.org/maven2/com/telenav/cactus/cactus-build-metadata/${cactus.download.version}/cactus-build-metadata-${cactus.download.version}.jar</cactus.url>
         <cactus.jar>${cactus.downloads.folder}/cactus-build-metadata-${cactus.download.version}.jar</cactus.jar>
 
-        <lexakai.version>1.0.0</lexakai.version>
+        <lexakai.version>1.0.1</lexakai.version>
+        <lexakai.annotations.version>1.0.0</lexakai.annotations.version>
         <nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
         <moditect-maven-plugin.version>1.0.0.RC1</moditect-maven-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -230,14 +231,18 @@
                         <artifactId>maven-javadoc-plugin</artifactId>
                         <version>${maven-javadoc-plugin.version}</version>
                         <configuration>
-                            <show>public</show>
+                            <show>protected</show>
                             <source>11</source>
                             <sourcepath>src/main/java</sourcepath>
+                            <failOnError>false</failOnError>
                             <detectJavaApiLink>false</detectJavaApiLink>
                             <doclint>none</doclint>
                             <nohelp>true</nohelp>
                             <additionalOptions>-notimestamp --show-module-contents all --show-packages all --show-types private</additionalOptions>
                             <destDir>target/attached-javadocs</destDir>
+                            <sourceFileIncludes>
+                                <sourceFileInclude>**/*.java</sourceFileInclude>
+                            </sourceFileIncludes>
                         </configuration>
                         <executions>
                             <execution>
@@ -515,7 +520,7 @@
             <dependency>
                 <groupId>com.telenav.lexakai</groupId>
                 <artifactId>lexakai-annotations</artifactId>
-                <version>${lexakai.version}</version>
+                <version>${lexakai.annotations.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jetbrains</groupId>

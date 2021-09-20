@@ -60,14 +60,13 @@ This package provides serialization abstraction useful to Kryo and other seriali
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
-[*com.telenav.kivakit.serialization.core*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-serialization/core/documentation/diagrams/com.telenav.kivakit.serialization.core.svg)  
-[*com.telenav.kivakit.serialization.core.project*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-serialization/core/documentation/diagrams/com.telenav.kivakit.serialization.core.project.svg)
+[*com.telenav.kivakit.serialization.core*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-serialization/core/documentation/diagrams/com.telenav.kivakit.serialization.core.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 1.1.0-SNAPSHOT%.  
+Javadoc coverage for this project is 100.0%.  
   
 &nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-100-96.png" srcset="https://www.kivakit.org/images/meter-100-96-2x.png 2x"/>
 
@@ -76,7 +75,7 @@ Javadoc coverage for this project is 1.1.0-SNAPSHOT%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*SerializationCoreProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.serialization.core/com/telenav/kivakit/serialization/core/project/SerializationCoreProject.html) |  |  
+| [*SerializationProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.serialization.core/com/telenav/kivakit/serialization/core/SerializationProject.html) |  |  
 | [*SerializationSession*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.serialization.core/com/telenav/kivakit/serialization/core/SerializationSession.html) | Creating a Session |  
 | | Opening a Session |  
 | | Example |  

@@ -185,6 +185,7 @@ The major feature areas are listed here, each having its own documentation:
 [*com.telenav.kivakit.kernel.language.matchers*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-kernel/documentation/diagrams/com.telenav.kivakit.kernel.language.matchers.svg)  
 [*com.telenav.kivakit.kernel.language.math*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-kernel/documentation/diagrams/com.telenav.kivakit.kernel.language.math.svg)  
 [*com.telenav.kivakit.kernel.language.mixin*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-kernel/documentation/diagrams/com.telenav.kivakit.kernel.language.mixin.svg)  
+[*com.telenav.kivakit.kernel.language.mixin.mixins*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-kernel/documentation/diagrams/com.telenav.kivakit.kernel.language.mixin.mixins.svg)  
 [*com.telenav.kivakit.kernel.language.modules*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-kernel/documentation/diagrams/com.telenav.kivakit.kernel.language.modules.svg)  
 [*com.telenav.kivakit.kernel.language.objects*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-kernel/documentation/diagrams/com.telenav.kivakit.kernel.language.objects.svg)  
 [*com.telenav.kivakit.kernel.language.objects.reference*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-kernel/documentation/diagrams/com.telenav.kivakit.kernel.language.objects.reference.svg)  
@@ -252,7 +253,7 @@ The major feature areas are listed here, each having its own documentation:
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 73.2%.  
+Javadoc coverage for this project is 73.0%.  
   
 &nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-70-96.png" srcset="https://www.kivakit.org/images/meter-70-96-2x.png 2x"/>
 
@@ -304,6 +305,7 @@ The following significant classes are undocumented:
 | [*AsStringIndenter*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/strings/conversion/AsStringIndenter.html) |  |  
 | [*AsciiArt*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/strings/AsciiArt.html) |  |  
 | [*AssertingFailureReporter*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/data/validation/ensure/reporters/AssertingFailureReporter.html) |  |  
+| [*AttributedMixin*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/mixin/mixins/AttributedMixin.html) |  |  
 | [*AudienceMember*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/messaging/broadcasters/AudienceMember.html) |  |  
 | [*BaseCollectionConverter*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/data/conversion/string/collection/BaseCollectionConverter.html) |  |  
 | [*BaseConverter*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/data/conversion/BaseConverter.html) |  |  
@@ -392,7 +394,6 @@ The following significant classes are undocumented:
 | [*ConsoleWriter*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/messaging/listeners/ConsoleWriter.html) |  |  
 | [*Contains*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/interfaces/collection/Contains.html) |  |  
 | [*Converter*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/data/conversion/Converter.html) |  |  
-| [*CoreKernelLimits*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/project/CoreKernelLimits.html) |  |  
 | [*Count*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/values/count/Count.html) |  |  
 | [*Count.Converter*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/values/count/Count.Converter.html) |  |  
 | [*CountMap*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/collections/map/count/CountMap.html) |  |  
@@ -488,7 +489,8 @@ The following significant classes are undocumented:
 | [*JavaVirtualMachine.KivaKitNonCyclicObjectGraph*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/vm/JavaVirtualMachine.KivaKitNonCyclicObjectGraph.html) |  |  
 | [*JavaVirtualMachineHealth*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/vm/JavaVirtualMachineHealth.html) |  |  
 | [*Join*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/strings/Join.html) |  |  
-| [*KernelProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/project/KernelProject.html) |  |  
+| [*KernelLimits*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/project/KernelLimits.html) |  |  
+| [*KernelProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/KernelProject.html) |  |  
 | [*Keyed*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/interfaces/collection/Keyed.html) |  |  
 | [*KivaKit*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/KivaKit.html) |  |  
 | [*KivaKitExcludeProperty*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/reflection/property/KivaKitExcludeProperty.html) |  |  

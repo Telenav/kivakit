@@ -21,7 +21,7 @@ public interface AttributedMixin<Key, Value> extends Mixin
         return map().put(key, value);
     }
 
-    private HashMap<Key, Value> map()
+    default HashMap<Key, Value> map()
     {
         return state(AttributedMixin.class, HashMap::new);
     }
