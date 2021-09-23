@@ -188,6 +188,7 @@
         <!-- XML -->
 
         <jaxb.version>2.3.1</jaxb.version>
+        <jakarta.xml.version>2.3.2</jakarta.xml.version>
         <jackson.version>2.12.3</jackson.version>
         <xerces.version>2.11.0</xerces.version>
 
@@ -1016,7 +1017,7 @@
                         <artifactId>*</artifactId>
                     </exclusion>
 
-                    <!-- Exclude all implementations of javax.xml.bind -->
+                    <!-- Exclude all implementations of xml.bind -->
 
                     <exclusion>
                         <groupId>java.xml.bind</groupId>
@@ -1080,7 +1081,7 @@
                         <artifactId>*</artifactId>
                     </exclusion>
 
-                    <!-- Exclude all implementations of javax.xml.bind -->
+                    <!-- Exclude all implementations of xml.bind -->
 
                     <exclusion>
                         <groupId>java.xml.bind</groupId>
@@ -1342,9 +1343,9 @@
             <!-- XML -->
 
             <dependency>
-                <groupId>javax.xml.bind</groupId>
-                <artifactId>jaxb-api</artifactId>
-                <version>${jaxb.version}</version>
+                <groupId>jakarta.xml.bind</groupId>
+                <artifactId>jakarta.xml.bind-api</artifactId>
+                <version>${jakarta.xml.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>javax.activation</groupId>

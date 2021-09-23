@@ -37,7 +37,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
-import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileTime;
 import java.nio.file.attribute.PosixFilePermission;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -111,9 +111,8 @@ public class LocalFile extends BaseWritableResource implements FileService
     {
         try
         {
-            return Time.milliseconds(Files.readAttributes(path().asJavaPath(), BasicFileAttributes.class)
-                    .creationTime()
-                    .toMillis());
+            final FileTime creationTime = (FileTime) Files.getAttribute(path().asJavaPath(), "creationTime");
+            return Time.milliseconds(creationTime.toMillis());
         }
         catch (IOException e)
         {
