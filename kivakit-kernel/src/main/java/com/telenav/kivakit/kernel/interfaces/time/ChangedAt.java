@@ -16,36 +16,29 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.kernel.language.time;
+package com.telenav.kivakit.kernel.interfaces.time;
 
+import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageTime;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.unsupported;
+
 @UmlClassDiagram(diagram = DiagramLanguageTime.class)
-public interface ModificationTimestamped
+public interface ChangedAt
 {
-    default Duration age()
+    default Time lastModified()
     {
-        return lastModified().elapsedSince();
+        return unsupported("Cannot retrieve last modified time from: ${class}", getClass());
     }
 
-    default boolean isNewerThan(final ModificationTimestamped that)
+    default boolean wasChangedAfter(final ChangedAt that)
     {
         return lastModified().isAfter(that.lastModified());
     }
 
-    default boolean isOlderThan(final ModificationTimestamped that)
+    default boolean wasChangedBefore(final ChangedAt that)
     {
         return lastModified().isBefore(that.lastModified());
-    }
-
-    default boolean lastModified(final Time modified)
-    {
-        return false;
-    }
-
-    default Time lastModified()
-    {
-        return Time.now();
     }
 }

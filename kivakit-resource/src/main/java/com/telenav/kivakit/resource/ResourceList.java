@@ -222,11 +222,11 @@ public class ResourceList extends ArrayList<Resource>
     {
         sort((a, b) ->
         {
-            if (a.isOlderThan(b))
+            if (a.wasChangedBefore(b))
             {
                 return -1;
             }
-            if (b.isOlderThan(a))
+            if (b.wasChangedBefore(a))
             {
                 return 1;
             }

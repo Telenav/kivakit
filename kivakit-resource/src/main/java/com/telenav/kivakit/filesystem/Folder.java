@@ -161,7 +161,6 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  *     <li>{@link #delete()} - Deletes this folder if it is empty</li>
  *     <li>{@link #mkdirs()} - Creates this folder and any required parent folders</li>
  *     <li>{@link #renameTo(Folder)} - Renames this folder to the given folder</li>
- *     <li>{@link #lastModified(Time)} - Sets the last modified time of this folder</li>
  *     <li>{@link #scheduleCleanUpOnExit()} - Schedules this folder to be removed when the VM exits</li>
  * </ul>
  *
@@ -633,6 +632,12 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
     public void copyTo(final Folder destination, final CopyMode mode, final ProgressReporter reporter)
     {
         copyTo(destination, mode, new All<>(), reporter);
+    }
+
+    @Override
+    public Time created()
+    {
+        return service.created();
     }
 
     /**

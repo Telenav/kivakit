@@ -122,6 +122,9 @@ public class Duration implements Comparable<Duration>, AsString
 
     private static final double WEEKS_PER_YEAR = 52.177457;
 
+    /** Constant for one year. */
+    public static final Duration ONE_YEAR = years(1);
+
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
     public static Duration days(final double days)

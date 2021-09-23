@@ -34,11 +34,13 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.PosixFilePermission;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -153,6 +155,22 @@ public class LocalFolder implements FolderService
             file.delete();
         }
         return this;
+    }
+
+    @Override
+    public Time created()
+    {
+        try
+        {
+            return Time.milliseconds(Files.readAttributes(path().asJavaPath(), BasicFileAttributes.class)
+                    .creationTime()
+                    .toMillis());
+        }
+        catch (IOException e)
+        {
+            LOGGER.problem(e, "Unable to determine file creation time: $", path());
+            return null;
+        }
     }
 
     /**

@@ -33,9 +33,11 @@ import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.PosixFilePermission;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -101,6 +103,22 @@ public class LocalFile extends BaseWritableResource implements FileService
         catch (final Exception e)
         {
             return false;
+        }
+    }
+
+    @Override
+    public Time created()
+    {
+        try
+        {
+            return Time.milliseconds(Files.readAttributes(path().asJavaPath(), BasicFileAttributes.class)
+                    .creationTime()
+                    .toMillis());
+        }
+        catch (IOException e)
+        {
+            LOGGER.problem(e, "Unable to determine file creation time: $", path());
+            return null;
         }
     }
 

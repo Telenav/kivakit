@@ -25,7 +25,7 @@ import static com.telenav.kivakit.configuration.lookup.InstanceIdentifier.SINGLE
  * </p>
  *
  * <ul>
- *     <li>{@link #relativeResource(String)} - Returns a {@link Resource} for the given path relative to the class implementing this interface</li>
+ *     <li>{@link #packageResource(String)} - Returns a {@link Resource} for the given path relative to the class implementing this interface</li>
  *     <li>{@link #relativePackage(String)} - Returns a KivaKit {@link Package} for the given path relative to the class implementing this interface</li>
  * </ul>
  *

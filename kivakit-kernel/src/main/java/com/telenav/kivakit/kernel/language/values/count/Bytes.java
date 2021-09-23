@@ -243,11 +243,6 @@ public final class Bytes extends Count implements ByteSized
         }
     }
 
-    protected Bytes()
-    {
-        super(0L);
-    }
-
     /**
      * Private constructor forces use of static factory methods.
      *
@@ -268,7 +263,7 @@ public final class Bytes extends Count implements ByteSized
      *
      * @return Byte count
      */
-    public final long asBytes()
+    public long asBytes()
     {
         return super.get();
     }
@@ -278,7 +273,7 @@ public final class Bytes extends Count implements ByteSized
      *
      * @return The value in gigabytes
      */
-    public final double asGigabytes()
+    public double asGigabytes()
     {
         return asMegabytes() / 1024.0;
     }
@@ -288,7 +283,7 @@ public final class Bytes extends Count implements ByteSized
      *
      * @return The value in kilobytes
      */
-    public final double asKilobytes()
+    public double asKilobytes()
     {
         return asBytes() / 1024.0;
     }
@@ -298,7 +293,7 @@ public final class Bytes extends Count implements ByteSized
      *
      * @return The value in megabytes
      */
-    public final double asMegabytes()
+    public double asMegabytes()
     {
         return asKilobytes() / 1024.0;
     }
@@ -308,7 +303,7 @@ public final class Bytes extends Count implements ByteSized
      *
      * @return The value in terabytes
      */
-    public final double asTerabytes()
+    public double asTerabytes()
     {
         return asGigabytes() / 1024.0;
     }

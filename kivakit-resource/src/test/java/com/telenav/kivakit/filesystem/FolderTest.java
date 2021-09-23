@@ -31,7 +31,7 @@ public class FolderTest extends UnitTest
     {
         final var file = Folder.kivakitTest(getClass()).file("age-test.txt");
         file.print("test");
-        ensure(file.age().isLessThan(Duration.seconds(30)));
+        ensure(file.created().elapsedSince().isLessThan(Duration.seconds(30)));
     }
 
     @Test

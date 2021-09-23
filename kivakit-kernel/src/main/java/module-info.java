@@ -125,4 +125,5 @@ open module kivakit.kernel
     exports com.telenav.kivakit.kernel.project.lexakai.diagrams;
     exports com.telenav.kivakit.kernel.project;
     exports com.telenav.kivakit.kernel;
+    exports com.telenav.kivakit.kernel.interfaces.time;
 }

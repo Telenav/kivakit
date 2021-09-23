@@ -24,8 +24,9 @@ import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.interfaces.io.ByteSized;
+import com.telenav.kivakit.kernel.interfaces.time.ChangedAt;
+import com.telenav.kivakit.kernel.interfaces.time.Modifiable;
 import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.kernel.language.time.ModificationTimestamped;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Listener;
@@ -45,9 +46,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 /**
- * A resource that can be read via {@link ReadableResource}. In addition, resources are {@link ModificationTimestamped},
- * {@link ByteSized} and are message {@link Repeater}s. A resource can be created by instantiating a concrete
- * implementation of {@link Resource} or one can be resolved from an abstract {@link ResourceIdentifier} with {@link
+ * A resource that can be read via {@link ReadableResource}. In addition, resources are {@link ChangedAt}, {@link
+ * ByteSized} and are message {@link Repeater}s. A resource can be created by instantiating a concrete implementation of
+ * {@link Resource} or one can be resolved from an abstract {@link ResourceIdentifier} with {@link
  * #resolve(ResourceIdentifier)}.
  *
  * <p><b>Examples</b></p>
@@ -98,7 +99,8 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 @LexakaiJavadoc(complete = true)
 public interface Resource extends
         ResourcePathed,
-        ModificationTimestamped,
+        Modifiable,
+        ChangedAt,
         ByteSized,
         ReadableResource,
         Repeater,
