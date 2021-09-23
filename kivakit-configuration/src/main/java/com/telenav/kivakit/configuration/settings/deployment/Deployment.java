@@ -38,9 +38,9 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import java.io.Serializable;
 
 /**
- * A deployment is a named {@link Settings} registry. The name of the set can be retrieved with {@link #name()} and
- * a description of its purpose with {@link #description()}. The example below, as well as the superclass {@link Settings},
- * has details on how configuration information can be loaded and queried.
+ * A deployment is a named {@link Settings} registry. The name of the set can be retrieved with {@link #name()} and a
+ * description of its purpose with {@link #description()}. The example below, as well as the superclass {@link
+ * Settings}, has details on how configuration information can be loaded and queried.
  *
  * <p><b>Deploying Applications</b></p>
  *
@@ -303,21 +303,21 @@ public class Deployment extends Settings implements Named, Serializable
     @Override
     public Deployment registerAllIn(final Folder folder)
     {
-        registerAll(listenTo(SettingsFolder.of(folder)));
+        registerAllIn(listenTo(SettingsFolder.of(folder)));
         return this;
     }
 
     @Override
     public Deployment registerAllIn(final PackagePath path)
     {
-        registerAll(listenTo(SettingsPackage.of(path)));
+        registerAllIn(listenTo(SettingsPackage.of(path)));
         return this;
     }
 
     @Override
     public Deployment registerAllIn(final Class<?> relativeTo, final String path)
     {
-        registerAll(listenTo(SettingsPackage.of(PackagePath.parsePackagePath(relativeTo, path))));
+        registerAllIn(listenTo(SettingsPackage.of(PackagePath.parsePackagePath(relativeTo, path))));
         return this;
     }
 

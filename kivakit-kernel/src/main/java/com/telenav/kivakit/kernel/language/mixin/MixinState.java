@@ -1,7 +1,9 @@
 package com.telenav.kivakit.kernel.language.mixin;
 
 import com.telenav.kivakit.kernel.interfaces.factory.Factory;
+import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.language.objects.Hash;
+import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.util.Map;
@@ -24,12 +26,12 @@ class MixinState
      * already exist.
      */
     @SuppressWarnings("unchecked")
-    public static synchronized <T> T get(final Object object,
+    public static synchronized <T> T get(final Object attachTo,
                                          final Class<? extends Mixin> mixinType,
                                          final Factory<T> factory)
     {
         // Create a composite key (to allow multiple traits on an object),
-        final var key = new MixinKey(object, mixinType);
+        final var key = new MixinKey(attachTo, mixinType);
 
         // get any current value for the mixin,
         var value = (T) values.get(key);
@@ -39,6 +41,10 @@ class MixinState
         {
             // create a new value,
             value = factory.newInstance();
+            if (value instanceof NamedObject)
+            {
+                ((NamedObject) value).objectName(key.toString());
+            }
 
             // and store that.
             values.put(key, value);
@@ -52,13 +58,13 @@ class MixinState
      */
     private static class MixinKey
     {
-        private final Object object;
+        private final Object attachTo;
 
         private final Class<? extends Mixin> mixinType;
 
-        public MixinKey(final Object object, final Class<? extends Mixin> mixinType)
+        public MixinKey(final Object attachTo, final Class<? extends Mixin> mixinType)
         {
-            this.object = object;
+            this.attachTo = attachTo;
             this.mixinType = mixinType;
         }
 
@@ -68,7 +74,7 @@ class MixinState
             if (uncast instanceof MixinKey)
             {
                 final MixinKey that = (MixinKey) uncast;
-                return object == that.object && mixinType == that.mixinType;
+                return attachTo == that.attachTo && mixinType == that.mixinType;
             }
             return false;
         }
@@ -76,7 +82,13 @@ class MixinState
         @Override
         public int hashCode()
         {
-            return Hash.many(object, mixinType);
+            return Hash.many(attachTo, mixinType);
+        }
+
+        @Override
+        public String toString()
+        {
+            return Message.format("[Mixin object-type = ${class}, mixin-type = ${class}]", attachTo.getClass(), mixinType);
         }
     }
 }

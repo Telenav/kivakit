@@ -25,7 +25,6 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.telenav.kivakit.configuration.lookup.InstanceIdentifier.SINGLETON;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
 
 /**
@@ -60,7 +59,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  */
 @UmlClassDiagram(diagram = DiagramLookup.class)
 @UmlRelation(label = "locates instances with", referent = InstanceIdentifier.class)
-public class Registry
+public class Registry implements RegistryTrait
 {
     /** The global lookup */
     private static final Registry GLOBAL = new Registry();
@@ -77,57 +76,12 @@ public class Registry
     private final Map<RegistryKey, Object> registered = new HashMap<>();
 
     /**
-     * @return Any registered object of the given type
-     */
-    public <T> T lookup(final Class<T> type)
-    {
-        return lookup(type, SINGLETON);
-    }
-
-    /**
-     * @return Any registered object of the given type with the given instance identifier
-     */
-    public <T> T lookup(final Class<T> type, final String instance)
-    {
-        return lookup(type, InstanceIdentifier.of(instance));
-    }
-
-    /**
      * @return Any registered object of the given type with the given instance identifier
      */
     @SuppressWarnings({ "unchecked" })
     public <T> T lookup(final Class<T> type, final InstanceIdentifier instance)
     {
         return (T) registered.get(instance.key(type));
-    }
-
-    /**
-     * @return Any registered object of the given type with the given instance identifier
-     */
-    public <T> T lookup(final Class<T> type, final Enum<?> instance)
-    {
-        return lookup(type, InstanceIdentifier.of(instance));
-    }
-
-    /**
-     * Registers the given singleton object in the lookup
-     */
-    public <T> T register(final T object)
-    {
-        for (var at = object.getClass(); at != Object.class; at = at.getSuperclass())
-        {
-            registered.put(SINGLETON.key(at), object);
-        }
-        return object;
-    }
-
-    /**
-     * Registers the specified instance of the given object's type in the lookup
-     */
-    public <T> T register(final T object, final String instance)
-    {
-        register(object, InstanceIdentifier.of(instance));
-        return object;
     }
 
     /**
@@ -149,12 +103,8 @@ public class Registry
         return object;
     }
 
-    /**
-     * Registers the specified instance of the given object's type in the lookup
-     */
-    public <T> T register(final T object, final Enum<?> instance)
+    public <T> T require(final Class<T> type, final InstanceIdentifier instance)
     {
-        register(object, InstanceIdentifier.of(instance));
-        return object;
+        return ensureNotNull(lookup(type, instance));
     }
 }

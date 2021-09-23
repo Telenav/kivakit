@@ -261,7 +261,7 @@ public interface Transceiver extends NamedObject
     }
 
     /**
-     *
+     * @return True if this transceiver is enabled
      */
     default boolean isOn()
     {

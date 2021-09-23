@@ -22,6 +22,9 @@ import java.util.function.Consumer;
  */
 public class BaseComponent extends BaseRepeater implements Component
 {
+    /** The name of this object for debugging purposes */
+    private String objectName;
+
     /**
      * @return Any registered object of the given type with the given instance identifier in the global lookup registry
      */
@@ -29,6 +32,16 @@ public class BaseComponent extends BaseRepeater implements Component
     public <T> T lookup(final Class<T> type, final InstanceIdentifier instance)
     {
         return registry().lookup(type, instance);
+    }
+
+    public String objectName()
+    {
+        return objectName;
+    }
+
+    public void objectName(String objectName)
+    {
+        this.objectName = objectName;
     }
 
     /**
@@ -45,7 +58,7 @@ public class BaseComponent extends BaseRepeater implements Component
     @Override
     public void registerAllSettings(final Settings settings)
     {
-        settingsRegistry().registerAll(settings);
+        settingsRegistry().registerAllIn(settings);
     }
 
     @Override
@@ -80,12 +93,12 @@ public class BaseComponent extends BaseRepeater implements Component
     }
 
     /**
-     * @return The configuration object of the given type to configure the given instance or failure if it doesn't exist
+     * @return The object of the given type and instance or failure if it doesn't exist
      */
     @Override
     public <T> T require(final Class<T> type, final InstanceIdentifier instance)
     {
-        return settingsRegistry().require(type, instance);
+        return registry().require(type, instance);
     }
 
     /**

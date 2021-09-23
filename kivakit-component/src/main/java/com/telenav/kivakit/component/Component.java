@@ -2,10 +2,11 @@ package com.telenav.kivakit.component;
 
 import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
 import com.telenav.kivakit.configuration.lookup.Registry;
+import com.telenav.kivakit.configuration.lookup.RegistryTrait;
 import com.telenav.kivakit.configuration.settings.Settings;
 import com.telenav.kivakit.configuration.settings.deployment.Deployment;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
+import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.resources.packaged.Package;
@@ -78,36 +79,8 @@ import static com.telenav.kivakit.configuration.lookup.InstanceIdentifier.SINGLE
  * @see Settings
  * @see Repeater
  */
-public interface Component extends Repeater
+public interface Component extends Repeater, NamedObject, RegistryTrait
 {
-    /**
-     * Convenience method
-     */
-    default <T> T lookup(final Class<T> type)
-    {
-        return lookup(type, SINGLETON);
-    }
-
-    /**
-     * Convenience method
-     */
-    default <T> T lookup(final Class<T> type, final Enum<?> instance)
-    {
-        return lookup(type, InstanceIdentifier.of(instance));
-    }
-
-    /**
-     * Convenience method
-     */
-    default <T> T lookup(final Class<T> type, final String instance)
-    {
-        return lookup(type, InstanceIdentifier.of(instance));
-    }
-
-    /**
-     * @return Any settings object of the given type and instance
-     */
-    <T> T lookup(Class<T> type, InstanceIdentifier instance);
 
     /**
      * @return The resource at the given path relative to this component's class
@@ -182,48 +155,10 @@ public interface Component extends Repeater
      */
     void registerSettingsObject(Object settings, InstanceIdentifier instance);
 
-    /**
-     * @return The lookup registry for this component
-     */
-    default Registry registry()
-    {
-        return Registry.of(this);
-    }
-
     default Package relativePackage(final String path)
     {
         return Package.of(getClass(), path);
     }
-
-    /**
-     * Convenience method
-     */
-    default <T> T require(final Class<T> type)
-    {
-        return require(type, SINGLETON);
-    }
-
-    /**
-     * Convenience method
-     */
-    default <T> T require(final Class<T> type, final Enum<?> instance)
-    {
-        return require(type, InstanceIdentifier.of(instance));
-    }
-
-    /**
-     * Convenience method
-     */
-    default <T> T require(final Class<T> type, final String instance)
-    {
-        return require(type, InstanceIdentifier.of(instance));
-    }
-
-    /**
-     * @return The settings object of the given instance and type, or {@link Ensure#fail()} is called if there is no
-     * such object
-     */
-    <T> T require(Class<T> type, InstanceIdentifier instance);
 
     /**
      * Convenience method

@@ -37,6 +37,11 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @LexakaiJavadoc(complete = true)
 public class Name implements Named
 {
+    public static boolean isSynthetic(String name)
+    {
+        return name != null && name.startsWith("synthetic:");
+    }
+
     /**
      * Extracts a name for the given object by trying the following in order:
      * <ul>
@@ -67,8 +72,8 @@ public class Name implements Named
 
     public static String synthetic(final Object object)
     {
-        return CaseFormat.camelCaseToHyphenated(object.getClass().getSimpleName())
-                + " (" + Ints.toHex(System.identityHashCode(object)) + ")";
+        return "synthetic:" + CaseFormat.camelCaseToHyphenated(object.getClass().getSimpleName())
+                + ":" + Ints.toHex(System.identityHashCode(object));
     }
 
     @JsonProperty
