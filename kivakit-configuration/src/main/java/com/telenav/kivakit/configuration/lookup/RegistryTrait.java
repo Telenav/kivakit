@@ -5,9 +5,37 @@ import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import static com.telenav.kivakit.configuration.lookup.InstanceIdentifier.SINGLETON;
 
 /**
- * A stateless trait for accessing the {@link Registry} for a component
+ * <p>
+ * A stateless trait for accessing the {@link Registry} for the implementing component. Includes methods to look up,
+ * register and require settings objects. When there is more than one settings object of a given type, an {@link
+ * InstanceIdentifier} can be given to distinguish between instances. Convenience methods are provided to create
+ * instance identifiers for {@link Enum}s and {@link String}s. The Component interface in kivakit-component uses this
+ * trait to add easy access to registry methods to all components.
+ * </p>
+ *
+ * <p><b>Lookup methods</b></p>
+ * <ul>
+ *     <li>{@link #lookup(Class)} - Locates the registered instance of the given class</li>
+ *     <li>{@link #lookup(Class, String)} - Locates the specified registered instance of the given class</li>
+ *     <li>{@link #lookup(Class, Enum)} - Locates the specified registered instance of the given class</li>
+ * </ul>
+ *
+ * <p><b>Register methods</b></p>
+ * <ul>
+ *     <li>{@link #register(Object)} - Registers the given object</li>
+ *     <li>{@link #register(Object, String)} - Registers the given identified object instance</li>
+ *     <li>{@link #register(Object, Enum)} - Registers the given identified object instance</li>
+ * </ul>
+ *
+ * <p><b>Require methods</b></p>
+ * <ul>
+ *     <li>{@link #require(Class)} - Locates the registered instance of the given class or fails</li>
+ *     <li>{@link #require(Class, String)} - Locates the specified registered instance of the given class or fails</li>
+ *     <li>{@link #require(Class, Enum)} - Locates the specified registered instance of the given class or fails</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
+ * @see Registry
  */
 public interface RegistryTrait
 {
@@ -38,7 +66,7 @@ public interface RegistryTrait
     /**
      * @return Any settings object of the given type and instance
      */
-    default <T> T lookup(Class<T> type, InstanceIdentifier instance)
+    default <T> T lookup(final Class<T> type, final InstanceIdentifier instance)
     {
         return registry().lookup(type, instance);
     }
@@ -115,7 +143,7 @@ public interface RegistryTrait
     /**
      * @return The object of the given instance and type, or {@link Ensure#fail()} if there is no such object
      */
-    default <T> T require(Class<T> type, InstanceIdentifier instance)
+    default <T> T require(final Class<T> type, final InstanceIdentifier instance)
     {
         return registry().require(type, instance);
     }

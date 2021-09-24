@@ -215,7 +215,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
      */
     protected Application(final Project... projects)
     {
-        registerObject(this);
+        register(this);
 
         instance = this;
         if (projects.length == 1)
