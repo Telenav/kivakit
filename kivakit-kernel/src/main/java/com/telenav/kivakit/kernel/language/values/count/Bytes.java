@@ -243,12 +243,16 @@ public final class Bytes extends Count implements ByteSized
         }
     }
 
+    protected Bytes()
+    {
+    }
+
     /**
      * Private constructor forces use of static factory methods.
      *
      * @param bytes Number of bytes
      */
-    private Bytes(final long bytes)
+    protected Bytes(final long bytes)
     {
         super(bytes);
     }

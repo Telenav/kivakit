@@ -75,6 +75,12 @@ public interface RepeaterMixin extends Repeater, Mixin
     }
 
     @Override
+    default void receive(final Transmittable message)
+    {
+        repeater().receive(message);
+    }
+
+    @Override
     default void removeListener(final Listener listener)
     {
         repeater().removeListener(listener);

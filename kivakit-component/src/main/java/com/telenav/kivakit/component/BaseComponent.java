@@ -21,21 +21,6 @@ import java.util.function.Consumer;
  */
 public class BaseComponent extends BaseRepeater implements Component, RegistryTrait, SettingsTrait
 {
-    /** The name of this object for debugging purposes */
-    private String objectName;
-
-    @Override
-    public String objectName()
-    {
-        return objectName;
-    }
-
-    @Override
-    public void objectName(final String objectName)
-    {
-        this.objectName = objectName;
-    }
-
     /**
      * Call the consumer with any messages this component hears
      *
