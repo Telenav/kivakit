@@ -136,7 +136,7 @@ public abstract class UnitTest extends TestWatcher implements Listener
                 / Math.pow(10, numberOfDecimalsToMatch);
         final var roundedActual = (int) (actual.doubleValue() * Math.pow(10, numberOfDecimalsToMatch))
                 / Math.pow(10, numberOfDecimalsToMatch);
-        ensureWithin(roundedExpected, roundedActual, 1E-6);
+        ensureWithin(roundedExpected, roundedActual, 1E-3);
     }
 
     @SuppressWarnings("UnusedReturnValue")
