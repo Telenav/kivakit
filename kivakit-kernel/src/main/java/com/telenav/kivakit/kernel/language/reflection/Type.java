@@ -41,6 +41,7 @@ import com.telenav.kivakit.kernel.project.KernelLimits;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -49,6 +50,7 @@ import java.util.HashSet;
 import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
@@ -96,7 +98,11 @@ public class Type<T> implements Named
     @SuppressWarnings("unchecked")
     public static <T> Type<T> of(final Object object)
     {
-        return (Type<T>) forClass(object.getClass());
+        if (object != null)
+        {
+            return (Type<T>) forClass(object.getClass());
+        }
+        return null;
     }
 
     /** Properties stored by name */
@@ -123,6 +129,20 @@ public class Type<T> implements Named
             }
         }
         return fields;
+    }
+
+    public <A extends Annotation> A annotation(final Class<A> annotationType)
+    {
+        return type.getAnnotation(annotationType);
+    }
+
+    public Type<?> arrayElementType()
+    {
+        if (isArray())
+        {
+            return Type.of(type.getComponentType());
+        }
+        return null;
     }
 
     public Constructor<T> constructor(final Class<?>... types)
@@ -155,6 +175,27 @@ public class Type<T> implements Named
         return hasToString;
     }
 
+    public Set<Type<?>> enumValues()
+    {
+        final var values = new HashSet<Type<?>>();
+        for (final var value : type.getEnumConstants())
+        {
+            values.add(Type.of(value));
+        }
+        return values;
+    }
+
+    @Override
+    public boolean equals(final Object object)
+    {
+        if (object instanceof Type<?>)
+        {
+            final Type<?> that = (Type<?>) object;
+            return type.equals(that.type);
+        }
+        return false;
+    }
+
     public Property field(final String name)
     {
         final var iterator = properties(new NamedField(NamingConvention.KIVAKIT, name)).iterator();
@@ -175,7 +216,18 @@ public class Type<T> implements Named
         return type.getName();
     }
 
-    public boolean is(Class<?> type)
+    public <A extends Annotation> boolean hasAnnotation(final Class<A> annotationType)
+    {
+        return annotation(annotationType) != null;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(type);
+    }
+
+    public boolean is(final Class<?> type)
     {
         return this.type == type;
     }
@@ -201,6 +253,11 @@ public class Type<T> implements Named
             isDescendant = at.equals(that);
         }
         return isDescendant;
+    }
+
+    public boolean isEnum()
+    {
+        return Enum.class.isAssignableFrom(type);
     }
 
     public boolean isInside(final PackagePath path)
@@ -382,6 +439,24 @@ public class Type<T> implements Named
         {
             return forClass(type.getSuperclass());
         }
+    }
+
+    public Set<Type<?>> superTypes()
+    {
+        final var supertypes = new HashSet<Type<?>>();
+
+        // Go through each interface of this type,
+        for (final var at : type.getInterfaces())
+        {
+            // and recursively add any superinterfaces,
+            supertypes.addAll(Type.of(at).superTypes());
+        }
+
+        // then get the superclass and add all supertypes of that class
+        final var superClass = type.getSuperclass();
+        supertypes.addAll(Type.of(superClass).superTypes());
+
+        return supertypes;
     }
 
     @Override
