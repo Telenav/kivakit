@@ -58,7 +58,6 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -172,8 +171,6 @@ public abstract class Application extends BaseComponent implements Named, Applic
      *
      * @author jonathanl (shibo)
      */
-    @Schema(description = "A unique identifier for a KivaKit application, provided by the Application base class",
-            example = "ServiceRegistryServer")
     @UmlClassDiagram(diagram = DiagramApplication.class)
     @UmlExcludeSuperTypes
     @LexakaiJavadoc(complete = true)

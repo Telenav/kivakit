@@ -32,7 +32,6 @@ import com.telenav.kivakit.network.core.project.lexakai.diagrams.DiagramPort;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -51,7 +50,6 @@ import static com.telenav.kivakit.network.core.Protocol.HTTPS;
  *
  * @author jonathanl (shibo)
  */
-@Schema(description = "A unique port on the network that communicates with clients using a specific protocol")
 @UmlClassDiagram(diagram = DiagramPort.class)
 public class Port
 {
@@ -138,20 +136,13 @@ public class Port
     }
 
     @JsonProperty
-    @Schema(description = "The host which owns the port",
-            required = true)
     @UmlAggregation
     private Host host;
 
     @JsonProperty
-    @Schema(description = "The port number",
-            example = "8080",
-            required = true)
     private int port;
 
     @JsonProperty
-    @Schema(description = "The protocol that is used to communicate with the port",
-            example = "http")
     @UmlAggregation(label = "speaks")
     private Protocol protocol;
 

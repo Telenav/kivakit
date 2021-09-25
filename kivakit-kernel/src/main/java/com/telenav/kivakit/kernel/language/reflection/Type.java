@@ -55,6 +55,8 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
+
 /**
  * Reflects on a class and retains a set of {@link Property} objects that can be used to efficiently set property
  * values.
@@ -79,7 +81,7 @@ public class Type<T> implements Named
     @SuppressWarnings("unchecked")
     public static <T> Type<T> forClass(final Class<T> type)
     {
-        return (Type<T>) types.getOrCreate(type);
+        return (Type<T>) types.getOrCreate(ensureNotNull(type));
     }
 
     @SuppressWarnings("unchecked")
@@ -98,11 +100,9 @@ public class Type<T> implements Named
     @SuppressWarnings("unchecked")
     public static <T> Type<T> of(final Object object)
     {
-        if (object != null)
-        {
-            return (Type<T>) forClass(object.getClass());
-        }
-        return null;
+        ensureNotNull(object);
+
+        return (Type<T>) forClass(object.getClass());
     }
 
     /** Properties stored by name */
@@ -134,6 +134,11 @@ public class Type<T> implements Named
     public <A extends Annotation> A annotation(final Class<A> annotationType)
     {
         return type.getAnnotation(annotationType);
+    }
+
+    public <A extends Annotation> A[] annotations(final Class<A> annotationType)
+    {
+        return type.getAnnotationsByType(annotationType);
     }
 
     public Type<?> arrayElementType()
@@ -449,12 +454,15 @@ public class Type<T> implements Named
         for (final var at : type.getInterfaces())
         {
             // and recursively add any superinterfaces,
-            supertypes.addAll(Type.of(at).superTypes());
+            supertypes.addAll(Type.forClass(at).superTypes());
         }
 
         // then get the superclass and add all supertypes of that class
         final var superClass = type.getSuperclass();
-        supertypes.addAll(Type.of(superClass).superTypes());
+        if (superClass != null)
+        {
+            supertypes.addAll(Type.forClass(superClass).superTypes());
+        }
 
         return supertypes;
     }
