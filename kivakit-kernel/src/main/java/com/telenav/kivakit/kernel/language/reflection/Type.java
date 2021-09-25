@@ -175,6 +175,11 @@ public class Type<T> implements Named
         return type.getName();
     }
 
+    public boolean is(Class<?> type)
+    {
+        return this.type == type;
+    }
+
     public boolean isArray()
     {
         return type.isArray();
@@ -316,7 +321,7 @@ public class Type<T> implements Named
                     }
                 }
             }
-            
+
             propertiesForFilter.put(filter, properties);
         }
         return ObjectList.objectList(properties.values()).sorted();

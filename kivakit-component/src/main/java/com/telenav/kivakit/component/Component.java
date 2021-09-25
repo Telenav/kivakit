@@ -6,6 +6,7 @@ import com.telenav.kivakit.configuration.settings.Settings;
 import com.telenav.kivakit.configuration.settings.SettingsTrait;
 import com.telenav.kivakit.configuration.settings.deployment.Deployment;
 import com.telenav.kivakit.filesystem.Folder;
+import com.telenav.kivakit.kernel.interfaces.code.Unchecked;
 import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Repeater;
@@ -89,5 +90,31 @@ public interface Component extends Repeater, NamedObject, SettingsTrait, Registr
     default Package relativePackage(final String path)
     {
         return Package.of(getClass(), path);
+    }
+
+    default <T> T tryCatch(Unchecked<T> code, String message, Object... arguments)
+    {
+        try
+        {
+            return code.run();
+        }
+        catch (Exception e)
+        {
+            problem(message, arguments);
+            return null;
+        }
+    }
+
+    default <T> T tryCatchThrow(Unchecked<T> code, String message, Object... arguments)
+    {
+        try
+        {
+            return code.run();
+        }
+        catch (Exception e)
+        {
+            problem(message, arguments).throwAsIllegalStateException();
+            return null;
+        }
     }
 }

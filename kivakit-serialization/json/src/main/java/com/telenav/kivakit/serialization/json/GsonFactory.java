@@ -26,6 +26,7 @@ import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Debug;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import org.jetbrains.annotations.MustBeInvokedByOverriders;
 
 /**
  * Factory that produces configured {@link Gson} JSON serializers via {@link #newInstance()}.
@@ -46,26 +47,53 @@ public abstract class GsonFactory implements Factory<Gson>
         prettyPrinting.set(pretty);
     }
 
-    @Override
-    public Gson newInstance()
-    {
-        final var builder = addSerializers(new GsonBuilder());
-        builder.serializeNulls();
-        if (DEBUG.isDebugOn() || prettyPrinting.get())
-        {
-            builder.setPrettyPrinting();
-        }
-        return builder.create();
-    }
-
-    protected <T> void addSerializer(final GsonBuilder builder,
-                                     final Class<T> type,
-                                     final GsonSerializer<T> serializer)
+    public <T> void addSerializer(final GsonBuilder builder,
+                                  final Class<T> type,
+                                  final GsonSerializer<T> serializer)
     {
         builder.registerTypeAdapter(type, serializer);
     }
 
-    protected abstract GsonBuilder addSerializers(GsonBuilder builder);
+    public final GsonFactory addSerializers(GsonBuilder builder)
+    {
+        onAddSerializers(builder);
+        return this;
+    }
+
+    public GsonBuilder builder()
+    {
+        final var builder = new GsonBuilder();
+        if (DEBUG.isDebugOn() || prettyPrinting.get())
+        {
+            builder.setPrettyPrinting();
+        }
+        return builder;
+    }
+
+    public GsonFactory initialize(GsonBuilder builder)
+    {
+        onInitialize(builder);
+        return this;
+    }
+
+    @Override
+    public Gson newInstance()
+    {
+        var builder = builder();
+        initialize(builder);
+        addSerializers(builder);
+        return builder.create();
+    }
+
+    @MustBeInvokedByOverriders
+    protected void onAddSerializers(GsonBuilder builder)
+    {
+    }
+
+    @MustBeInvokedByOverriders
+    protected void onInitialize(final GsonBuilder builder)
+    {
+    }
 
     /**
      * @return A GSON serializer for the given string converter

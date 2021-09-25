@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.messaging;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.telenav.kivakit.kernel.interfaces.messaging.Receiver;
 import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
@@ -131,6 +132,7 @@ public interface Listener extends Transceiver, Receiver<Transmittable>, NamedObj
      * @return True if this listener doesn't do anything with the messages it gets
      */
     @UmlExcludeMember
+    @JsonIgnore
     default boolean isDeaf()
     {
         return false;

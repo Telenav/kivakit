@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.messaging.broadcasters;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
 import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
@@ -213,6 +214,7 @@ public class Multicaster implements Broadcaster, PackagePathed
     /**
      * @return True if no listeners can hear any messages
      */
+    @JsonIgnore
     public boolean isDeaf()
     {
         return lock().read(() ->
