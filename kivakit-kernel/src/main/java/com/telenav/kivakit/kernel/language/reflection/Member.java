@@ -10,7 +10,7 @@ public abstract class Member
         return type().annotation(annotationClass);
     }
 
-    public abstract List<Type<?>> genericTypeParameters();
+    public abstract <T> List<Type<T>> genericTypeParameters();
 
     public abstract String name();
 

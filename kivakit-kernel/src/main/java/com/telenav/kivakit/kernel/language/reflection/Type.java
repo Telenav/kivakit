@@ -24,6 +24,7 @@ import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.collections.map.ClassMap;
 import com.telenav.kivakit.kernel.language.collections.map.string.NameMap;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
+import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.kernel.language.reflection.access.field.FieldGetter;
 import com.telenav.kivakit.kernel.language.reflection.access.field.FieldSetter;
@@ -41,6 +42,7 @@ import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.project.KernelLimits;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
@@ -49,6 +51,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.IdentityHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -121,7 +124,7 @@ public class Type<T> implements Named
     public List<java.lang.reflect.Field> allFields()
     {
         final List<java.lang.reflect.Field> fields = new ArrayList<>();
-        for (Type<?> current = this; current != null; current = current.superClass())
+        for (Type<?> current = this; !current.is(Object.class); current = current.superClass())
         {
             if (current.type != null)
             {
@@ -231,6 +234,16 @@ public class Type<T> implements Named
     public int hashCode()
     {
         return Objects.hash(type);
+    }
+
+    public List<Type<?>> interfaces()
+    {
+        var interfaces = new ArrayList<Type<?>>();
+        for (final var at : type.getInterfaces())
+        {
+            interfaces.add(Type.forClass(at));
+        }
+        return interfaces;
     }
 
     public boolean is(final Class<?> type)
@@ -442,32 +455,55 @@ public class Type<T> implements Named
 
     public Type<?> superClass()
     {
-        if (type == null || type == Object.class)
+        if (type == null)
         {
             return null;
         }
         else
         {
-            return forClass(type.getSuperclass());
+            final Class<? super T> superclass = type.getSuperclass();
+            return superclass == null ? null : forClass(superclass);
         }
     }
 
-    public Set<Type<?>> superTypes()
+    public ObjectList<Type<?>> superClasses()
     {
-        final var supertypes = new HashSet<Type<?>>();
+        var superclasses = new ObjectList<Type<?>>();
+
+        final var superClass = superClass();
+        if (superClass != null)
+        {
+            superclasses.add(superClass);
+            superclasses.addAll(superClass.superClasses());
+        }
+
+        return superclasses;
+    }
+
+    @NotNull
+    public ObjectSet<Type<?>> superInterfaces()
+    {
+        final var superinterfaces = new ObjectSet<Type<?>>(new LinkedHashSet<>());
 
         // Go through each interface of this type,
-        for (final var at : type.getInterfaces())
+        for (final var at : interfaces())
         {
             // and recursively add any superinterfaces,
-            supertypes.addAll(Type.forClass(at).superTypes());
+            superinterfaces.add(at);
+            superinterfaces.addAll(at.superInterfaces());
         }
 
         // then get the superclass and add all supertypes of that class
-        final var superClass = type.getSuperclass();
-        if (superClass != null)
+        return superinterfaces;
+    }
+
+    public ObjectList<Type<?>> superTypes()
+    {
+        var supertypes = superClasses();
+
+        for (var at : supertypes.copy())
         {
-            supertypes.addAll(Type.forClass(superClass).superTypes());
+            supertypes.addAll(at.superInterfaces());
         }
 
         return supertypes;

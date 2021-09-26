@@ -51,6 +51,11 @@ public class ObjectSet<T> extends BaseSet<T>
         super(maximumSize, set);
     }
 
+    public ObjectSet(final Set<T> set)
+    {
+        super(Maximum.MAXIMUM, set);
+    }
+
     public ObjectSet()
     {
         this(Maximum.MAXIMUM);

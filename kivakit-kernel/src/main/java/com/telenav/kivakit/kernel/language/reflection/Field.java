@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.reflection;
 
+import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.objects.Hash;
 import com.telenav.kivakit.kernel.language.types.Classes;
 import com.telenav.kivakit.kernel.logging.Logger;
@@ -29,8 +30,6 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
-import java.util.List;
 
 @UmlClassDiagram(diagram = DiagramLanguageReflection.class)
 public class Field extends Member
@@ -79,13 +78,20 @@ public class Field extends Member
         return false;
     }
 
-    public List<Type<?>> genericTypeParameters()
+    @SuppressWarnings("unchecked")
+    public <T> ObjectList<Type<T>> genericTypeParameters()
     {
-        var list = new ArrayList<Type<?>>();
-        var genericType = (ParameterizedType) field.getGenericType();
-        for (var at : genericType.getActualTypeArguments())
+        var list = new ObjectList<Type<T>>();
+        if (field.getGenericType() instanceof ParameterizedType)
         {
-            list.add(Type.forClass((Class<?>) at));
+            var genericType = (ParameterizedType) field.getGenericType();
+            for (var at : genericType.getActualTypeArguments())
+            {
+                if (at instanceof Class)
+                {
+                    list.add(Type.forClass((Class<T>) at));
+                }
+            }
         }
         return list;
     }
