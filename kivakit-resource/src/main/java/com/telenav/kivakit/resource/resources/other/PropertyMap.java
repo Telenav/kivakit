@@ -114,7 +114,7 @@ public class PropertyMap extends VariableMap<String>
         return new PropertyMap();
     }
 
-    public static PropertyMap load(Listener listener, final Resource resource)
+    public static PropertyMap load(final Listener listener, final Resource resource)
     {
         if (resource.exists())
         {
@@ -124,17 +124,17 @@ public class PropertyMap extends VariableMap<String>
         return new PropertyMap();
     }
 
-    public static PropertyMap load(Listener listener, final PackagePath _package, final String path)
+    public static PropertyMap load(final Listener listener, final PackagePath _package, final String path)
     {
         return load(listener, PackageResource.of(_package, FilePath.parseFilePath(path)));
     }
 
-    public static PropertyMap load(Listener listener, final Class<?> _package, final String path)
+    public static PropertyMap load(final Listener listener, final Class<?> _package, final String path)
     {
         return load(listener, PackagePath.packagePath(_package), path);
     }
 
-    public static PropertyMap localized(Listener listener, final PackagePath path, final Locale locale)
+    public static PropertyMap localized(final Listener listener, final PackagePath path, final Locale locale)
     {
         return PropertyMap.load(listener, path, locale.path().join("/"));
     }
@@ -216,6 +216,14 @@ public class PropertyMap extends VariableMap<String>
     }
 
     /**
+     * @return This property map as a JSON string
+     */
+    public String asJson()
+    {
+        return "{\n" + join("\n    ") + "}";
+    }
+
+    /**
      * @return The value of the given key as a long, or an exception is thrown if the value is invalid or missing
      */
     public long asLong(final String key)
@@ -228,7 +236,7 @@ public class PropertyMap extends VariableMap<String>
         try
         {
             final var object = Type.forClass(type).newInstance();
-            var filter = PropertyFilter.kivakitProperties(CONVERTED_FIELDS_AND_METHODS);
+            final var filter = PropertyFilter.kivakitProperties(CONVERTED_FIELDS_AND_METHODS);
             new ObjectPopulator(listener, filter, this).populate(object);
             return object;
         }

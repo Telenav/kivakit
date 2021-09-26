@@ -20,8 +20,10 @@ package com.telenav.kivakit.filesystem.spi;
 
 import com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader;
 import com.telenav.kivakit.kernel.interfaces.io.ByteSized;
+import com.telenav.kivakit.kernel.interfaces.time.ChangedAt;
+import com.telenav.kivakit.kernel.interfaces.time.CreatedAt;
+import com.telenav.kivakit.kernel.interfaces.time.Modifiable;
 import com.telenav.kivakit.kernel.language.strings.Strings;
-import com.telenav.kivakit.kernel.language.time.ModificationTimestamped;
 import com.telenav.kivakit.resource.path.FilePath;
 import com.telenav.kivakit.resource.path.ResourcePathed;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemService;
@@ -53,7 +55,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.unsupport
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 @UmlExcludeSuperTypes(ResourcePathed.class)
 @LexakaiJavadoc(complete = true)
-public interface FileSystemObjectService extends ByteSized, ModificationTimestamped, ResourcePathed
+public interface FileSystemObjectService extends ByteSized, ChangedAt, CreatedAt, Modifiable, ResourcePathed
 {
     /**
      * @return True if the permissions were changed

@@ -36,7 +36,7 @@ public class DeploymentTest extends UnitTest
             settings.timeout(Duration.ONE_MINUTE);
             settings.port(9090);
 
-            register(settings);
+            registerSettings(settings);
         }
     }
 
@@ -50,7 +50,7 @@ public class DeploymentTest extends UnitTest
             settings.timeout(Duration.ONE_MINUTE);
             settings.port(8080);
 
-            register(settings);
+            registerSettings(settings);
         }
     }
 
@@ -64,7 +64,7 @@ public class DeploymentTest extends UnitTest
             settings.timeout(Duration.ONE_MINUTE);
             settings.port(80);
 
-            register(settings);
+            registerSettings(settings);
         }
     }
 
@@ -73,7 +73,7 @@ public class DeploymentTest extends UnitTest
     {
         new China().install();
 
-        final var settings = Settings.of(this).require(ServerSettings.class);
+        final var settings = Settings.of(this).requireSettings(ServerSettings.class);
         ensureEqual(settings.port(), 9090);
         ensureEqual(settings.timeout(), Duration.ONE_MINUTE);
     }
@@ -83,7 +83,7 @@ public class DeploymentTest extends UnitTest
     {
         new Development().install();
 
-        final var settings = Settings.of(this).require(ServerSettings.class);
+        final var settings = Settings.of(this).requireSettings(ServerSettings.class);
         ensureEqual(8080, settings.port());
         ensureEqual(Duration.ONE_MINUTE, settings.timeout());
     }
@@ -93,7 +93,7 @@ public class DeploymentTest extends UnitTest
     {
         new Production().install();
 
-        final var settings = Settings.of(this).require(ServerSettings.class);
+        final var settings = Settings.of(this).requireSettings(ServerSettings.class);
         ensureEqual(80, settings.port());
         ensureEqual(Duration.ONE_MINUTE, settings.timeout());
     }

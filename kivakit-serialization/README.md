@@ -29,7 +29,6 @@ This module provides an abstraction for serialization.
 ### Projects <a name = "projects"></a> &nbsp; <img src="https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/gears-32-2x.png 2x"/>
 
 [**kivakit-serialization-core**](core/README.md)  
-[**kivakit-serialization-jersey-json**](jersey-json/README.md)  
 [**kivakit-serialization-json**](json/README.md)  
 [**kivakit-serialization-kryo**](kryo/README.md)  
 
@@ -39,8 +38,6 @@ This module provides an abstraction for serialization.
 
 &nbsp; <img src="https://www.kivakit.org/images/meter-100-96.png" srcset="https://www.kivakit.org/images/meter-100-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-serialization-core**](core/README.md)  
-&nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-serialization-jersey-json**](jersey-json/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-serialization-json**](json/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>

@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.data.validation;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitExcludeProperty;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataValidation;
@@ -42,6 +43,7 @@ public interface Validatable
      * @see Validator#validate()
      */
     @KivaKitExcludeProperty
+    @JsonIgnore
     default boolean isValid()
     {
         return validator().validate();

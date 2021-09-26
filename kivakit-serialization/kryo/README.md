@@ -60,8 +60,7 @@ This module is a serialization provider for the *kivakit-core-serialization-core
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
-[*com.telenav.kivakit.serialization.kryo*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-serialization/kryo/documentation/diagrams/com.telenav.kivakit.serialization.kryo.svg)  
-[*com.telenav.kivakit.serialization.kryo.project*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-serialization/kryo/documentation/diagrams/com.telenav.kivakit.serialization.kryo.project.svg)
+[*com.telenav.kivakit.serialization.kryo*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-serialization/kryo/documentation/diagrams/com.telenav.kivakit.serialization.kryo.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
@@ -78,6 +77,7 @@ Javadoc coverage for this project is 88.1%.
 |---|---|
 | [*CoreKernelKryoTypes*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.serialization.kryo/com/telenav/kivakit/serialization/kryo/CoreKernelKryoTypes.html) |  |  
 | [*DebugKryo*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.serialization.kryo/com/telenav/kivakit/serialization/kryo/DebugKryo.html) |  |  
+| [*KryoSerializationProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.serialization.kryo/com/telenav/kivakit/serialization/kryo/KryoSerializationProject.html) |  |  
 | [*KryoSerializationSession*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.serialization.kryo/com/telenav/kivakit/serialization/kryo/KryoSerializationSession.html) |  |  
 | [*KryoSerializer*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.serialization.kryo/com/telenav/kivakit/serialization/kryo/KryoSerializer.html) |  |  
 | [*KryoTypeEntry*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.serialization.kryo/com/telenav/kivakit/serialization/kryo/KryoTypeEntry.html) |  |  
@@ -86,7 +86,6 @@ Javadoc coverage for this project is 88.1%.
 | | Backwards Compatibility |  
 | | Important Note |  
 | [*KryoUnitTest*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.serialization.kryo/com/telenav/kivakit/serialization/kryo/KryoUnitTest.html) |  |  
-| [*SerializationKryoProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.serialization.kryo/com/telenav/kivakit/serialization/kryo/project/SerializationKryoProject.html) |  |  
 
 [//]: # (start-user-text)
 

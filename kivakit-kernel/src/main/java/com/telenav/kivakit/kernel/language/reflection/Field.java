@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.reflection;
 
+import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.objects.Hash;
 import com.telenav.kivakit.kernel.language.types.Classes;
 import com.telenav.kivakit.kernel.logging.Logger;
@@ -26,10 +27,12 @@ import com.telenav.kivakit.kernel.messaging.Debug;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Modifier;
+import java.lang.reflect.ParameterizedType;
 
 @UmlClassDiagram(diagram = DiagramLanguageReflection.class)
-public class Field
+public class Field extends Member
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
@@ -59,6 +62,11 @@ public class Field
         this.field = field;
     }
 
+    public <T extends Annotation> T annotation(final Class<T> annotationClass)
+    {
+        return field.getAnnotation(annotationClass);
+    }
+
     @Override
     public boolean equals(final Object object)
     {
@@ -68,6 +76,24 @@ public class Field
             return this.object == that.object && field.equals(that.field);
         }
         return false;
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T> ObjectList<Type<T>> genericTypeParameters()
+    {
+        var list = new ObjectList<Type<T>>();
+        if (field.getGenericType() instanceof ParameterizedType)
+        {
+            var genericType = (ParameterizedType) field.getGenericType();
+            for (var at : genericType.getActualTypeArguments())
+            {
+                if (at instanceof Class)
+                {
+                    list.add(Type.forClass((Class<T>) at));
+                }
+            }
+        }
+        return list;
     }
 
     @Override
@@ -82,9 +108,20 @@ public class Field
     }
 
     @Override
+    public String name()
+    {
+        return field.getName();
+    }
+
+    @Override
     public String toString()
     {
         return Classes.simpleName(object.getClass()) + "." + field.getName() + " = " + object;
+    }
+
+    public Type<?> type()
+    {
+        return Type.forClass(field.getType());
     }
 
     public Object value()

@@ -22,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.regex.Pattern;
 
@@ -31,8 +30,6 @@ import java.util.regex.Pattern;
  *
  * @author jonathanl (shibo)
  */
-@Schema(description = "An email address",
-        example = "jonathanl@telenav.com")
 @LexakaiJavadoc(complete = true)
 public class EmailAddress
 {
@@ -74,8 +71,6 @@ public class EmailAddress
     }
 
     @JsonProperty
-    @Schema(description = "An SMTP email address of the form user@host",
-            required = true)
     private String email;
 
     protected EmailAddress(final String email)

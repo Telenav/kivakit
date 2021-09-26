@@ -61,14 +61,13 @@ None
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
 [*com.telenav.kivakit.serialization.json*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-serialization/json/documentation/diagrams/com.telenav.kivakit.serialization.json.svg)  
-[*com.telenav.kivakit.serialization.json.project*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-serialization/json/documentation/diagrams/com.telenav.kivakit.serialization.json.project.svg)  
 [*com.telenav.kivakit.serialization.json.serializers*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-serialization/json/documentation/diagrams/com.telenav.kivakit.serialization.json.serializers.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 91.7%.  
+Javadoc coverage for this project is 92.5%.  
   
 &nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
 
@@ -79,13 +78,14 @@ Javadoc coverage for this project is 91.7%.
 |---|---|
 | [*CountGsonSerializer*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.serialization.json/com/telenav/kivakit/serialization/json/serializers/CountGsonSerializer.html) |  |  
 | [*GsonFactory*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.serialization.json/com/telenav/kivakit/serialization/json/GsonFactory.html) |  |  
+| [*GsonSerializationProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.serialization.json/com/telenav/kivakit/serialization/json/GsonSerializationProject.html) |  |  
 | [*GsonSerializer*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.serialization.json/com/telenav/kivakit/serialization/json/GsonSerializer.html) |  |  
 | [*LocalTimeGsonSerializer*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.serialization.json/com/telenav/kivakit/serialization/json/serializers/LocalTimeGsonSerializer.html) |  |  
 | [*PrimitiveGsonSerializer*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.serialization.json/com/telenav/kivakit/serialization/json/PrimitiveGsonSerializer.html) |  |  
 | [*ProblemGsonSerializer*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.serialization.json/com/telenav/kivakit/serialization/json/serializers/ProblemGsonSerializer.html) |  |  
-| [*SerializationJsonProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.serialization.json/com/telenav/kivakit/serialization/json/project/SerializationJsonProject.html) |  |  
 | [*StringConverterGsonSerializer*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.serialization.json/com/telenav/kivakit/serialization/json/StringConverterGsonSerializer.html) |  |  
-| [*TimeGsonSerializer*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.serialization.json/com/telenav/kivakit/serialization/json/serializers/TimeGsonSerializer.html) |  |  
+| [*TimeInMillisecondsGsonSerializer*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.serialization.json/com/telenav/kivakit/serialization/json/serializers/TimeInMillisecondsGsonSerializer.html) |  |  
+| [*UtcTimeInKivaKitFormatGsonSerializer*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.serialization.json/com/telenav/kivakit/serialization/json/serializers/UtcTimeInKivaKitFormatGsonSerializer.html) |  |  
 
 [//]: # (start-user-text)
 

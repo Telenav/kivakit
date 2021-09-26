@@ -60,21 +60,21 @@ public class DeploymentSet extends BaseRepeater
      * Loads all deployments in the root package 'deployments' and in any folder specified by
      * KIVAKIT_DEPLOYMENT_FOLDER.
      */
-    public static DeploymentSet load(Listener listener, Class<?> relativeTo)
+    public static DeploymentSet load(final Listener listener, final Class<?> relativeTo)
     {
         // Create an empty set of deployments,
-        var deployments = listener.listenTo(DeploymentSet.create());
+        final var deployments = listener.listenTo(DeploymentSet.create());
 
         // and if there is a root package called 'deployments' in the application,
-        var settings = Package.of(relativeTo, "deployments");
+        final var settings = Package.of(relativeTo, "deployments");
         if (settings != null)
         {
             // then add all the deployments in that package,
             deployments.addDeploymentsIn(settings);
         }
 
-        // and if a deployment folder was specified and it exists,
-        var deploymentFolder = PropertyMap.of(JavaVirtualMachine.local().properties())
+        // and if a deployment folder was specified, and it exists,
+        final var deploymentFolder = PropertyMap.of(JavaVirtualMachine.local().properties())
                 .asFolder("KIVAKIT_DEPLOYMENT_FOLDER");
         if (deploymentFolder != null && deploymentFolder.exists())
         {
@@ -125,13 +125,13 @@ public class DeploymentSet extends BaseRepeater
         for (final var folder : parent.folders())
         {
             // get description from deployment metadata,
-            String description = description(folder.file("Deployment.metadata"));
+            final String description = description(folder.file("Deployment.metadata"));
 
             // create a deployment,
             final var deployment = listenTo(new Deployment(folder.name().name(), description));
 
             // and add the configuration information from the sub-folder,
-            deployment.registerAllIn(folder);
+            deployment.registerAllSettingsIn(this, folder);
 
             // assert that the deployment has not already been added,
             assert !deployments.contains(deployment);
@@ -168,13 +168,13 @@ public class DeploymentSet extends BaseRepeater
         for (final var subPackage : path.subPackages())
         {
             // get description from deployment metadata,
-            String description = description(Package.of(subPackage).resource("Deployment.metadata"));
+            final String description = description(Package.of(subPackage).resource("Deployment.metadata"));
 
             // create a deployment,
             final var deployment = listenTo(new Deployment(subPackage.last(), description));
 
             // and add the configuration information from the sub-folder,
-            deployment.registerAllIn(subPackage);
+            deployment.registerAllSettingsIn(this, subPackage);
 
             // add it to this set of deployments.
             deployments.add(deployment);
@@ -225,7 +225,7 @@ public class DeploymentSet extends BaseRepeater
     private String description(final Resource resource)
     {
         var description = "'" + resource.fileName().name() + "' deployment";
-        var deploymentProperties = PropertyMap.load(this, resource);
+        final var deploymentProperties = PropertyMap.load(this, resource);
         if (deploymentProperties.containsKey("description"))
         {
             description = deploymentProperties.get("description");

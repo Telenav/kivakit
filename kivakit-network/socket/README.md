@@ -76,7 +76,7 @@ a connection is made. Usage looks like this:
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
-[*com.telenav.kivakit.network.socket.project*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-network/socket/documentation/diagrams/com.telenav.kivakit.network.socket.project.svg)  
+[*com.telenav.kivakit.network.socket*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-network/socket/documentation/diagrams/com.telenav.kivakit.network.socket.svg)  
 [*com.telenav.kivakit.network.socket.server*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-network/socket/documentation/diagrams/com.telenav.kivakit.network.socket.server.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
@@ -93,7 +93,7 @@ Javadoc coverage for this project is 75.0%.
 | Class | Documentation Sections |
 |---|---|
 | [*ConnectionListener*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.socket/com/telenav/kivakit/network/socket/server/ConnectionListener.html) |  |  
-| [*CoreNetworkSocketProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.socket/com/telenav/kivakit/network/socket/project/CoreNetworkSocketProject.html) |  |  
+| [*SocketProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.network.socket/com/telenav/kivakit/network/socket/SocketProject.html) |  |  
 
 [//]: # (start-user-text)
 

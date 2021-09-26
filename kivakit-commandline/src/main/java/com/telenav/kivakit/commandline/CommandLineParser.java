@@ -33,7 +33,6 @@ import com.telenav.kivakit.kernel.language.matchers.AnythingMatcher;
 import com.telenav.kivakit.kernel.language.strings.AsciiArt;
 import com.telenav.kivakit.kernel.language.strings.Wrap;
 import com.telenav.kivakit.kernel.language.time.Duration;
-import com.telenav.kivakit.kernel.language.values.count.Maximum;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.listeners.MessageList;
 import com.telenav.kivakit.kernel.messaging.messages.OperationMessage;
@@ -41,7 +40,6 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
-import org.junit.runners.model.InitializationError;
 
 import java.util.Collection;
 
@@ -231,7 +229,7 @@ public class CommandLineParser
     {
         Failure.withReporter(new NullFailureReporter(), () ->
         {
-            final var messages = new MessageList(Maximum._100, new AnythingMatcher<>());
+            final var messages = new MessageList(new AnythingMatcher<>());
 
             final var validator = new BaseValidator()
             {

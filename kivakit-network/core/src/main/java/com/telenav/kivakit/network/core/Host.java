@@ -37,7 +37,6 @@ import com.telenav.kivakit.network.core.project.lexakai.diagrams.DiagramPort;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -95,8 +94,6 @@ import static com.telenav.kivakit.network.core.Protocol.UNKNOWN;
  *
  * @author jonathanl (shibo)
  */
-@Schema(description = "A host on the network",
-        example = "worker-67.osmteam.telenav.com")
 @UmlClassDiagram(diagram = DiagramPort.class)
 @LexakaiJavadoc(complete = true)
 public class Host implements Named, AsString, Comparable<Host>
@@ -194,15 +191,12 @@ public class Host implements Named, AsString, Comparable<Host>
     }
 
     @JsonProperty
-    @Schema(description = "A description of the purpose or function of the host")
     private String description;
 
     @JsonIgnore
     private Boolean local;
 
     @JsonProperty
-    @Schema(description = "The host name, such as eidolon.muppetlabs.com",
-            required = true)
     private String name;
 
     @JsonIgnore

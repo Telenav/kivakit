@@ -16,23 +16,20 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.filesystem;
+package com.telenav.kivakit.kernel.interfaces.time;
 
-import com.telenav.kivakit.kernel.interfaces.time.ChangedAt;
-import com.telenav.kivakit.kernel.interfaces.time.CreatedAt;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemFile;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemFolder;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.kivakit.kernel.language.time.Time;
+import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageTime;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-/**
- * Base class for all filesystem objects.
- *
- * @author jonathanl (shibo)
- */
-@UmlClassDiagram(diagram = DiagramFileSystemFile.class)
-@UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
-@LexakaiJavadoc(complete = true)
-public interface FileSystemObject extends ChangedAt, CreatedAt
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.unsupported;
+
+@UmlClassDiagram(diagram = DiagramLanguageTime.class)
+public interface Modifiable
 {
+    default boolean lastModified(Time time)
+    {
+        unsupported("Modification of ${class} is not supported", getClass());
+        return false;
+    }
 }

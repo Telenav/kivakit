@@ -24,6 +24,7 @@ import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.collections.map.ClassMap;
 import com.telenav.kivakit.kernel.language.collections.map.string.NameMap;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
+import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.kernel.language.reflection.access.field.FieldGetter;
 import com.telenav.kivakit.kernel.language.reflection.access.field.FieldSetter;
@@ -37,21 +38,28 @@ import com.telenav.kivakit.kernel.language.reflection.property.filters.method.Na
 import com.telenav.kivakit.kernel.language.types.Classes;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
+import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.project.KernelLimits;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.IdentityHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
+
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
 
 /**
  * Reflects on a class and retains a set of {@link Property} objects that can be used to efficiently set property
@@ -77,7 +85,7 @@ public class Type<T> implements Named
     @SuppressWarnings("unchecked")
     public static <T> Type<T> forClass(final Class<T> type)
     {
-        return (Type<T>) types.getOrCreate(type);
+        return (Type<T>) types.getOrCreate(ensureNotNull(type));
     }
 
     @SuppressWarnings("unchecked")
@@ -96,6 +104,8 @@ public class Type<T> implements Named
     @SuppressWarnings("unchecked")
     public static <T> Type<T> of(final Object object)
     {
+        ensureNotNull(object);
+
         return (Type<T>) forClass(object.getClass());
     }
 
@@ -114,7 +124,7 @@ public class Type<T> implements Named
     public List<java.lang.reflect.Field> allFields()
     {
         final List<java.lang.reflect.Field> fields = new ArrayList<>();
-        for (Type<?> current = this; current != null; current = current.superClass())
+        for (Type<?> current = this; !current.is(Object.class); current = current.superClass())
         {
             if (current.type != null)
             {
@@ -123,6 +133,25 @@ public class Type<T> implements Named
             }
         }
         return fields;
+    }
+
+    public <A extends Annotation> A annotation(final Class<A> annotationType)
+    {
+        return type.getAnnotation(annotationType);
+    }
+
+    public <A extends Annotation> A[] annotations(final Class<A> annotationType)
+    {
+        return type.getAnnotationsByType(annotationType);
+    }
+
+    public Type<?> arrayElementType()
+    {
+        if (isArray())
+        {
+            return Type.of(type.getComponentType());
+        }
+        return null;
     }
 
     public Constructor<T> constructor(final Class<?>... types)
@@ -155,6 +184,27 @@ public class Type<T> implements Named
         return hasToString;
     }
 
+    public Set<Enum<?>> enumValues()
+    {
+        final var values = new HashSet<Enum<?>>();
+        for (final var value : type.getEnumConstants())
+        {
+            values.add((Enum<?>) value);
+        }
+        return values;
+    }
+
+    @Override
+    public boolean equals(final Object object)
+    {
+        if (object instanceof Type<?>)
+        {
+            final Type<?> that = (Type<?>) object;
+            return type.equals(that.type);
+        }
+        return false;
+    }
+
     public Property field(final String name)
     {
         final var iterator = properties(new NamedField(NamingConvention.KIVAKIT, name)).iterator();
@@ -175,6 +225,32 @@ public class Type<T> implements Named
         return type.getName();
     }
 
+    public <A extends Annotation> boolean hasAnnotation(final Class<A> annotationType)
+    {
+        return annotation(annotationType) != null;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(type);
+    }
+
+    public List<Type<?>> interfaces()
+    {
+        var interfaces = new ArrayList<Type<?>>();
+        for (final var at : type.getInterfaces())
+        {
+            interfaces.add(Type.forClass(at));
+        }
+        return interfaces;
+    }
+
+    public boolean is(final Class<?> type)
+    {
+        return this.type.equals(type);
+    }
+
     public boolean isArray()
     {
         return type.isArray();
@@ -188,14 +264,12 @@ public class Type<T> implements Named
      */
     public boolean isDescendantOf(final Class<?> that)
     {
-        Class<?> at = type;
-        var isDescendant = at.equals(that);
-        while (!isDescendant && !at.equals(Object.class))
-        {
-            at = at.getSuperclass();
-            isDescendant = at.equals(that);
-        }
-        return isDescendant;
+        return that.isAssignableFrom(this.type);
+    }
+
+    public boolean isEnum()
+    {
+        return Enum.class.isAssignableFrom(type);
     }
 
     public boolean isInside(final PackagePath path)
@@ -203,19 +277,26 @@ public class Type<T> implements Named
         return packagePath().startsWith(path);
     }
 
+    public boolean isPrimitive()
+    {
+        return type.isPrimitive();
+    }
+
     public boolean isSystem()
     {
         return type.getName().startsWith("java.");
     }
 
-    public Property method(final String name)
+    public Method method(final String methodName)
     {
-        final var iterator = properties(new NamedMethod(NamingConvention.KIVAKIT, name)).iterator();
-        if (iterator.hasNext())
+        try
         {
-            return iterator.next();
+            return new Method(type, type.getMethod(methodName));
         }
-        return null;
+        catch (Exception e)
+        {
+            throw new IllegalStateException(Message.format("Unable to get method $.$", type, methodName));
+        }
     }
 
     @Override
@@ -316,10 +397,15 @@ public class Type<T> implements Named
                     }
                 }
             }
-            
+
             propertiesForFilter.put(filter, properties);
         }
         return ObjectList.objectList(properties.values()).sorted();
+    }
+
+    public Property property(final String name)
+    {
+        return properties(new NamedMethod(NamingConvention.KIVAKIT, name)).first();
     }
 
     public List<Field> reachableFields(final Object root, final Filter<java.lang.reflect.Field> filter)
@@ -369,14 +455,58 @@ public class Type<T> implements Named
 
     public Type<?> superClass()
     {
-        if (type == null || type == Object.class)
+        if (type == null)
         {
             return null;
         }
         else
         {
-            return forClass(type.getSuperclass());
+            final Class<? super T> superclass = type.getSuperclass();
+            return superclass == null ? null : forClass(superclass);
         }
+    }
+
+    public ObjectList<Type<?>> superClasses()
+    {
+        var superclasses = new ObjectList<Type<?>>();
+
+        final var superClass = superClass();
+        if (superClass != null)
+        {
+            superclasses.add(superClass);
+            superclasses.addAll(superClass.superClasses());
+        }
+
+        return superclasses;
+    }
+
+    @NotNull
+    public ObjectSet<Type<?>> superInterfaces()
+    {
+        final var superinterfaces = new ObjectSet<Type<?>>(new LinkedHashSet<>());
+
+        // Go through each interface of this type,
+        for (final var at : interfaces())
+        {
+            // and recursively add any superinterfaces,
+            superinterfaces.add(at);
+            superinterfaces.addAll(at.superInterfaces());
+        }
+
+        // then get the superclass and add all supertypes of that class
+        return superinterfaces;
+    }
+
+    public ObjectList<Type<?>> superTypes()
+    {
+        var supertypes = superClasses();
+
+        for (var at : supertypes.copy())
+        {
+            supertypes.addAll(at.superInterfaces());
+        }
+
+        return supertypes;
     }
 
     @Override

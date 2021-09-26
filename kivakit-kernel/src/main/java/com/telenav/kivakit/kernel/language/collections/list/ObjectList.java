@@ -310,6 +310,15 @@ public class ObjectList<Element> extends BaseList<Element>
         return (ObjectList<Element>) super.uniqued();
     }
 
+    @SuppressWarnings("unchecked")
+    public <T> ObjectList<T> with(T value)
+    {
+        var copy = new ObjectList();
+        copy.addAll(this);
+        copy.add(value);
+        return copy;
+    }
+
     @Override
     public ObjectList<Element> without(final Matcher<Element> matcher)
     {

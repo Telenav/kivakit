@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.messaging;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.language.threading.context.CodeContext;
@@ -255,14 +256,16 @@ public interface Transceiver extends NamedObject
         return handle(new Information(text, arguments));
     }
 
+    @JsonIgnore
     default boolean isDebugOn()
     {
         return debug().isDebugOn();
     }
 
     /**
-     *
+     * @return True if this transceiver is enabled
      */
+    @JsonIgnore
     default boolean isOn()
     {
         return true;

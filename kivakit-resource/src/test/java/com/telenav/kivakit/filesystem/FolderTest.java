@@ -30,14 +30,17 @@ public class FolderTest extends UnitTest
     public void testAge()
     {
         final var file = Folder.kivakitTest(getClass()).file("age-test.txt");
+        file.delete();
         file.print("test");
-        ensure(file.age().isLessThan(Duration.seconds(30)));
+        ensure(file.created().elapsedSince().isLessThan(Duration.seconds(30)));
     }
 
     @Test
     public void testAsAbsolute()
     {
-        ensureEqual(Folder.userHome().folder("foo"), Folder.parse("~/foo").absolute());
+        final Folder foo = Folder.parse("~/foo");
+        assert foo != null;
+        ensureEqual(Folder.userHome().folder("foo"), foo.absolute());
     }
 
     @Test

@@ -1,11 +1,8 @@
 package com.telenav.kivakit.component;
 
-import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
-import com.telenav.kivakit.configuration.settings.Settings;
-import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.language.mixin.Mixin;
+import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.kernel.messaging.repeaters.RepeaterMixin;
-import com.telenav.kivakit.resource.resources.packaged.Package;
 
 /**
  * A mixin for {@link BaseComponent} which can be used by a class that already extends another base class.
@@ -25,50 +22,20 @@ public interface ComponentMixin extends Component, Mixin, RepeaterMixin
     }
 
     @Override
-    default <T> T lookup(final Class<T> type, final InstanceIdentifier instance)
+    default String objectName()
     {
-        return component().lookup(type, instance);
+        return component().objectName();
     }
 
     @Override
-    default void registerAllSettings(final Settings settings)
+    default void objectName(final String objectName)
     {
-        settingsRegistry().registerAll(settings);
+        component().objectName(objectName);
     }
 
     @Override
-    default void registerAllSettingsIn(final Folder folder)
+    default Repeater repeater()
     {
-        settingsRegistry().registerAllIn(folder);
-    }
-
-    @Override
-    default void registerAllSettingsIn(final Package package_)
-    {
-        settingsRegistry().registerAllIn(package_);
-    }
-
-    @Override
-    default <T> T registerObject(final T object, final InstanceIdentifier instance)
-    {
-        return component().registerObject(object, instance);
-    }
-
-    @Override
-    default void registerSettingsObject(final Object settings, final InstanceIdentifier instance)
-    {
-        settingsRegistry().register(settings, instance);
-    }
-
-    @Override
-    default <T> T require(final Class<T> type, final InstanceIdentifier instance)
-    {
-        return settingsRegistry().require(type, instance);
-    }
-
-    @Override
-    default <T> T settings(final Class<T> type, final InstanceIdentifier instance)
-    {
-        return settingsRegistry().settings(type, instance);
+        return component();
     }
 }

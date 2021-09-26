@@ -23,7 +23,6 @@ import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludePro
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageValue;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
  * An identifier whose value is a {@link String}.
@@ -35,8 +34,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public class StringIdentifier implements Comparable<StringIdentifier>
 {
     @JsonProperty
-    @Schema(description = "The unique identifier",
-            required = true)
     private String identifier;
 
     public StringIdentifier(final String identifier)

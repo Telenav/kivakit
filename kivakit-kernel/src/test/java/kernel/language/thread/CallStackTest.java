@@ -36,13 +36,13 @@ public class CallStackTest
     {
         public Class<?> testExact()
         {
-            return CallStack.callerOf(IMMEDIATE, Matching.EXACT, Nested.class).type();
+            return CallStack.callerOf(IMMEDIATE, Matching.EXACT, Nested.class).typeClass();
         }
 
         @Override
         public Class<?> testSubClass()
         {
-            return CallStack.callerOf(IMMEDIATE, Matching.SUBCLASS, TestInterface.class).type();
+            return CallStack.callerOf(IMMEDIATE, Matching.SUBCLASS, TestInterface.class).typeClass();
         }
     }
 

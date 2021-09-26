@@ -58,7 +58,6 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
-import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -172,8 +171,6 @@ public abstract class Application extends BaseComponent implements Named, Applic
      *
      * @author jonathanl (shibo)
      */
-    @Schema(description = "A unique identifier for a KivaKit application, provided by the Application base class",
-            example = "ServiceRegistryServer")
     @UmlClassDiagram(diagram = DiagramApplication.class)
     @UmlExcludeSuperTypes
     @LexakaiJavadoc(complete = true)
@@ -215,7 +212,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
      */
     protected Application(final Project... projects)
     {
-        registerObject(this);
+        register(this);
 
         instance = this;
         if (projects.length == 1)
@@ -440,7 +437,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
         onConfigureListeners();
 
         // and if a deployment was specified,
-        if (has(DEPLOYMENT))
+        if (!deployments.isEmpty() && has(DEPLOYMENT))
         {
             // install it in the global settings registry.
             get(DEPLOYMENT).install();
@@ -583,7 +580,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
 
     private Set<SwitchParser<?>> internalSwitchParsers()
     {
-        var parsers = new HashSet<SwitchParser<?>>();
+        final var parsers = new HashSet<SwitchParser<?>>();
 
         if (!deployments.isEmpty() && DEPLOYMENT == null)
         {
@@ -597,7 +594,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
 
         parsers.add(QUIET);
         parsers.addAll(switchParsers());
-        
+
         return parsers;
     }
 }

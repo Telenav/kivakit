@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.interfaces.numeric;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramExampleBaseList;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramInterfaceNumeric;
@@ -43,11 +44,13 @@ public interface Sized extends Countable
     /**
      * @return True if the size is zero
      */
+    @JsonIgnore
     default boolean isEmpty()
     {
         return size() == 0;
     }
 
+    @JsonIgnore
     default boolean isNonEmpty()
     {
         return !isEmpty();

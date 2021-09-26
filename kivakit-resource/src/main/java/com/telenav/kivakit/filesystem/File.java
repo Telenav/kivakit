@@ -361,6 +361,12 @@ public class File extends BaseWritableResource implements FileSystemObject
         return service.chmod(permissions);
     }
 
+    @Override
+    public Time created()
+    {
+        return service.created();
+    }
+
     /**
      * @return True if this file was deleted
      */
@@ -473,7 +479,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      */
     public boolean isNewerThan(final File that)
     {
-        return service.isNewerThan(that.service);
+        return service.lastModified().isAfter(that.service.lastModified());
     }
 
     /**
@@ -489,7 +495,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      */
     public boolean isOlderThan(final File that)
     {
-        return service.isOlderThan(that.service);
+        return service.lastModified().isBefore(that.service.lastModified());
     }
 
     /**

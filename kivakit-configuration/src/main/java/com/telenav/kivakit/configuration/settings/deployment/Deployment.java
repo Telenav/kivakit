@@ -22,8 +22,6 @@ import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfiguration;
 import com.telenav.kivakit.configuration.settings.Settings;
-import com.telenav.kivakit.configuration.settings.SettingsFolder;
-import com.telenav.kivakit.configuration.settings.SettingsPackage;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
@@ -38,9 +36,9 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import java.io.Serializable;
 
 /**
- * A deployment is a named {@link Settings} registry. The name of the set can be retrieved with {@link #name()} and
- * a description of its purpose with {@link #description()}. The example below, as well as the superclass {@link Settings},
- * has details on how configuration information can be loaded and queried.
+ * A deployment is a named {@link Settings} registry. The name of the set can be retrieved with {@link #name()} and a
+ * description of its purpose with {@link #description()}. The example below, as well as the superclass {@link
+ * Settings}, has details on how configuration information can be loaded and queried.
  *
  * <p><b>Deploying Applications</b></p>
  *
@@ -54,8 +52,8 @@ import java.io.Serializable;
  * <p>
  * For example, an application might specify a deployment with the command line switch "-deployment=production". The
  * configuration objects in the {@link Deployment} can then be installed into the global {@link Deployment} with {@link
- * #install()}. At a later point, the application can look up those objects with {@link #settings(Class)} and {@link
- * #settings(Class, InstanceIdentifier)}.
+ * #install()}. At a later point, the application can look up those objects with {@link #lookupSettings(Class)} and
+ * {@link #lookupSettings(Class, InstanceIdentifier)}.
  * </p>
  *
  * <p><b>Example</b></p>
@@ -141,8 +139,8 @@ import java.io.Serializable;
  * <p><b>Key Methods</b></p>
  *
  * <ul>
- *     <li>{@link #registerAllIn(Class, String)} - Adds the package of .properties files at the path relative to the given class</li>
- *     <li>{@link #registerAllIn(Folder)} - Adds the folder of .properties files</li>
+ *     <li>{@link #registerAllSettingsIn(Listener, Class, String)} - Adds the package of .properties files at the path relative to the given class</li>
+ *     <li>{@link #registerAllSettingsIn(Listener, Folder)} - Adds the folder of .properties files</li>
  *     <li>{@link #addDeployment(Deployment)} - Merges another deployment into this one</li>
  *     <li>{@link #install()} - Installs the contents of this {@link Deployment} into the global settings registry</li>
  * </ul>
@@ -270,54 +268,54 @@ public class Deployment extends Settings implements Named, Serializable
         return name;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public Deployment register(final Object settings, final InstanceIdentifier instance)
+    public Deployment registerAllSettingsIn(final Listener listener, final Folder folder)
     {
-        return (Deployment) super.register(settings, instance);
+        super.registerAllSettingsIn(listener, folder);
+        return this;
+    }
+
+    @Override
+    public Deployment registerAllSettingsIn(final Listener listener, final PackagePath path)
+    {
+        super.registerAllSettingsIn(listener, path);
+        return this;
+    }
+
+    @Override
+    public Deployment registerAllSettingsIn(final Listener listener, final Class<?> relativeTo, final String path)
+    {
+        super.registerAllSettingsIn(listener, relativeTo, path);
+        return this;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Deployment register(final Object settings, final Enum<?> instance)
+    public Deployment registerSettings(final Object settings, final InstanceIdentifier instance)
     {
-        return register(settings, InstanceIdentifier.of(instance));
+        return (Deployment) super.registerSettings(settings, instance);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public Deployment register(final Object settings)
+    public Deployment registerSettings(final Object settings, final Enum<?> instance)
+    {
+        return registerSettings(settings, InstanceIdentifier.of(instance));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Deployment registerSettings(final Object settings)
     {
         assert !(settings instanceof PackagePath) && !(settings instanceof Folder) :
                 "Should have called loadAll with the argument " + settings;
-        super.register(settings);
-        return this;
-    }
-
-    @Override
-    public Deployment registerAllIn(final Folder folder)
-    {
-        registerAll(listenTo(SettingsFolder.of(folder)));
-        return this;
-    }
-
-    @Override
-    public Deployment registerAllIn(final PackagePath path)
-    {
-        registerAll(listenTo(SettingsPackage.of(path)));
-        return this;
-    }
-
-    @Override
-    public Deployment registerAllIn(final Class<?> relativeTo, final String path)
-    {
-        registerAll(listenTo(SettingsPackage.of(PackagePath.parsePackagePath(relativeTo, path))));
+        super.registerSettings(settings);
         return this;
     }
 

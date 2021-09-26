@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.messaging;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.language.strings.Strings;
 import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
@@ -272,6 +273,12 @@ public interface Message extends Transmittable, Triaged, AsString
      * @return Formatted message, including any stack trace information
      */
     String formatted(MessageFormatter.Format format);
+
+    @JsonProperty
+    default String formatted()
+    {
+        return formatted(MessageFormatter.Format.WITHOUT_EXCEPTION);
+    }
 
     /**
      * @return The importance of this message, without respect to severity

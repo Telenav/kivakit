@@ -170,7 +170,7 @@ The [**kivakit-examples**](https://github.com/Telenav/kivakit-examples) project 
  &nbsp; &nbsp; [**kivakit-collections**](kivakit-collections/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-commandline**](kivakit-commandline/README.md)  
-&nbsp; <img src="https://www.kivakit.org/images/meter-100-96.png" srcset="https://www.kivakit.org/images/meter-100-96-2x.png 2x"/>
+&nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-component**](kivakit-component/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-configuration**](kivakit-configuration/README.md)  
@@ -192,8 +192,6 @@ The [**kivakit-examples**](https://github.com/Telenav/kivakit-examples) project 
  &nbsp; &nbsp; [**kivakit-security**](kivakit-security/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-100-96.png" srcset="https://www.kivakit.org/images/meter-100-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-serialization-core**](kivakit-serialization/core/README.md)  
-&nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-serialization-jersey-json**](kivakit-serialization/jersey-json/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-serialization-json**](kivakit-serialization/json/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>

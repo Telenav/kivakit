@@ -20,6 +20,7 @@ package com.telenav.kivakit.kernel.language.types;
 
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.kernel.language.strings.Paths;
+import com.telenav.kivakit.kernel.messaging.Listener;
 
 import java.io.InputStream;
 import java.net.URI;
@@ -63,6 +64,19 @@ public class Classes
         return Long.TYPE.equals(type) || Integer.TYPE.equals(type) || Short.TYPE.equals(type)
                 || Character.TYPE.equals(type) || Byte.TYPE.equals(type) || Boolean.TYPE.equals(type)
                 || Double.TYPE.equals(type) || Float.TYPE.equals(type);
+    }
+
+    public static <T> T newInstance(Listener listener, Class<T> type)
+    {
+        try
+        {
+            return type.getConstructor().newInstance();
+        }
+        catch (Exception e)
+        {
+            listener.problem(e, "Unable to create instance: $", type);
+            return null;
+        }
     }
 
     public static InputStream openResource(final Class<?> base, final String path)

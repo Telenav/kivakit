@@ -62,7 +62,7 @@ public class CodeContext
     {
         if (callerOf != null)
         {
-            type = callerOf.type();
+            type = callerOf.typeClass();
             fullTypeName = type.getName();
             typeName = Classes.simpleName(type);
         }

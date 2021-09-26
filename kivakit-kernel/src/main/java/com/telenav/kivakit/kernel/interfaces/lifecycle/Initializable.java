@@ -31,11 +31,18 @@ public interface Initializable
     /**
      * Initializes this object.
      */
-    void initialize();
+    default void initialize()
+    {
+        onInitialize();
+    }
 
     default <T extends Initializable> T initialize(T object)
     {
         object.initialize();
         return object;
+    }
+
+    default void onInitialize()
+    {
     }
 }

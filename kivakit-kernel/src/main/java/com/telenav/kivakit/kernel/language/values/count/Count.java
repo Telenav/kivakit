@@ -22,6 +22,8 @@ import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.kernel.interfaces.code.Loopable;
 import com.telenav.kivakit.kernel.interfaces.numeric.Countable;
+import com.telenav.kivakit.kernel.interfaces.numeric.Maximizable;
+import com.telenav.kivakit.kernel.interfaces.numeric.Minimizable;
 import com.telenav.kivakit.kernel.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.kernel.language.math.Primes;
 import com.telenav.kivakit.kernel.language.primitives.Ints;
@@ -135,7 +137,7 @@ import static com.telenav.kivakit.kernel.language.strings.conversion.StringForma
  */
 @SuppressWarnings("SwitchStatementWithTooFewBranches")
 @UmlClassDiagram(diagram = DiagramLanguageValue.class)
-public class Count implements Countable, Comparable<Count>, Quantizable, AsString, Serializable
+public class Count implements Countable, Comparable<Count>, Quantizable, Maximizable<Count>, Minimizable<Count>, AsString, Serializable
 {
     public static final Count _0 = new Count(0);
 
@@ -589,6 +591,7 @@ public class Count implements Countable, Comparable<Count>, Quantizable, AsStrin
         loop(asInt(), iteration -> code.run());
     }
 
+    @Override
     public Count maximum(final Count that)
     {
         if (count > that.count)
@@ -601,6 +604,7 @@ public class Count implements Countable, Comparable<Count>, Quantizable, AsStrin
         }
     }
 
+    @Override
     public Count minimum(final Count that)
     {
         if (count < that.count)

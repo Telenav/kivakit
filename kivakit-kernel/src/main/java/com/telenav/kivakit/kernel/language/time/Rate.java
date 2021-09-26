@@ -18,6 +18,9 @@
 
 package com.telenav.kivakit.kernel.language.time;
 
+import com.telenav.kivakit.kernel.interfaces.numeric.Maximizable;
+import com.telenav.kivakit.kernel.interfaces.numeric.Minimizable;
+import com.telenav.kivakit.kernel.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageTime;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -46,7 +49,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @UmlClassDiagram(diagram = DiagramLanguageTime.class)
 @LexakaiJavadoc(complete = true)
-public class Rate implements Comparable<Rate>
+public class Rate implements Comparable<Rate>, Quantizable, Maximizable<Rate>, Minimizable<Rate>
 {
     public static final Rate MAXIMUM = new Rate(Integer.MAX_VALUE, Duration.milliseconds(1));
 
@@ -68,6 +71,11 @@ public class Rate implements Comparable<Rate>
     public static Rate perSecond(final double count)
     {
         return new Rate(count, Duration.ONE_SECOND);
+    }
+
+    public static Rate perYear(final double count)
+    {
+        return new Rate(count, Duration.ONE_YEAR);
     }
 
     private final Duration duration;
@@ -127,6 +135,18 @@ public class Rate implements Comparable<Rate>
         return perMinute().count < that.perMinute().count;
     }
 
+    @Override
+    public Rate maximum(final Rate that)
+    {
+        return isGreaterThan(that) ? this : that;
+    }
+
+    @Override
+    public Rate minimum(final Rate that)
+    {
+        return isGreaterThan(that) ? this : that;
+    }
+
     public Rate perDay()
     {
         return new Rate(count / duration.asDays(), Duration.ONE_DAY);
@@ -145,6 +165,22 @@ public class Rate implements Comparable<Rate>
     public Rate perSecond()
     {
         return new Rate(count / duration.asSeconds(), Duration.ONE_SECOND);
+    }
+
+    public Rate perYear()
+    {
+        return new Rate(count / duration.asYears(), Duration.ONE_YEAR);
+    }
+
+    public Rate plus(final Rate that)
+    {
+        return Rate.perDay(perDay().count() + that.perDay().count());
+    }
+
+    @Override
+    public long quantum()
+    {
+        return (long) perYear().count();
     }
 
     public void throttle(final Rate maximumRate)

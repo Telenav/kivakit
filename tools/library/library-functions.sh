@@ -334,8 +334,8 @@ is_mac() {
 
 lexakai() {
 
-    lexakai_download_version="1.0.0"
-    lexakai_download_name="lexakai-1.0.0.jar"
+    lexakai_download_version="1.0.1"
+    lexakai_download_name="lexakai-1.0.1.jar"
 
     lexakai_downloads="$HOME/.lexakai/downloads"
 

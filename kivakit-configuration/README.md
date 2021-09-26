@@ -64,8 +64,8 @@ Details on how to use the *kivakit-core configuration* API are available in the 
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
+[*com.telenav.kivakit.configuration*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-configuration/documentation/diagrams/com.telenav.kivakit.configuration.svg)  
 [*com.telenav.kivakit.configuration.lookup*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-configuration/documentation/diagrams/com.telenav.kivakit.configuration.lookup.svg)  
-[*com.telenav.kivakit.configuration.project*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-configuration/documentation/diagrams/com.telenav.kivakit.configuration.project.svg)  
 [*com.telenav.kivakit.configuration.settings*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-configuration/documentation/diagrams/com.telenav.kivakit.configuration.settings.svg)  
 [*com.telenav.kivakit.configuration.settings.deployment*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-configuration/documentation/diagrams/com.telenav.kivakit.configuration.settings.deployment.svg)
 
@@ -82,7 +82,7 @@ Javadoc coverage for this project is 94.4%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*CoreConfigurationProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/project/CoreConfigurationProject.html) |  |  
+| [*ConfigurationProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/ConfigurationProject.html) |  |  
 | [*Deployment*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/settings/deployment/Deployment.html) | Deploying Applications |  
 | | Key Methods |  
 | | Example |  

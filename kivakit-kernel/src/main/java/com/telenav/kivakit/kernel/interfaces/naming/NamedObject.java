@@ -32,6 +32,11 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramInterfaceNaming.class)
 public interface NamedObject
 {
+    default boolean hasSyntheticName()
+    {
+        return Name.isSynthetic(objectName());
+    }
+
     /**
      * @return The name of this object for use in programming and debugging. If this method is not overridden, the name
      * will be the simple class name in hyphenated form followed by this object's identity hash code in hexadecimal.

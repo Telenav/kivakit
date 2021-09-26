@@ -45,6 +45,11 @@ public class FieldGetter implements Getter
         return field.getAnnotation(annotationType);
     }
 
+    public java.lang.reflect.Field field()
+    {
+        return field;
+    }
+
     @Override
     public Object get(final Object object)
     {

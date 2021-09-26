@@ -67,8 +67,11 @@ public class CallStack
      * @param ignores Any intermediate classes to ignore
      * @return The class that most recently called the given callee on this thread's execution stack
      */
-    public static Method callerOf(final Proximity proximity, final Matching matching, final Class<?> calleeType,
-                                  final Matching ignoreMatching, final Class<?>... ignores)
+    public static Method callerOf(final Proximity proximity,
+                                  final Matching matching,
+                                  final Class<?> calleeType,
+                                  final Matching ignoreMatching,
+                                  final Class<?>... ignores)
     {
         // Get call stack
         final var stack = stack();
@@ -89,6 +92,7 @@ public class CallStack
             }
             return caller < stack.size() ? stack.get(caller) : null;
         }
+
         return null;
     }
 
@@ -129,7 +133,9 @@ public class CallStack
         IMMEDIATE
     }
 
-    private static int findCallee(final Matching matching, final Proximity proximity, final List<Method> stack,
+    private static int findCallee(final Matching matching,
+                                  final Proximity proximity,
+                                  final List<Method> stack,
                                   final Class<?> calleeType)
     {
         var callee = -1;
@@ -137,7 +143,7 @@ public class CallStack
         var index = 0;
         for (final var method : stack)
         {
-            final var matches = matching == Matching.EXACT ? calleeType.equals(method.type()) : calleeType.isAssignableFrom(method.type());
+            final var matches = matching == Matching.EXACT ? calleeType.equals(method.typeClass()) : calleeType.isAssignableFrom(method.typeClass());
 
             switch (proximity)
             {
@@ -177,7 +183,7 @@ public class CallStack
         {
             for (final var ignore : ignores)
             {
-                if ((exact && ignore == caller.type()) || (!exact && ignore.isAssignableFrom(caller.type())))
+                if ((exact && ignore == caller.typeClass()) || (!exact && ignore.isAssignableFrom(caller.typeClass())))
                 {
                     ignored = true;
                 }
