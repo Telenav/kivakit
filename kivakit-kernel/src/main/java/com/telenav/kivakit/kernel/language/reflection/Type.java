@@ -234,7 +234,7 @@ public class Type<T> implements Named
 
     public boolean is(final Class<?> type)
     {
-        return this.type == type;
+        return this.type.equals(type);
     }
 
     public boolean isArray()
