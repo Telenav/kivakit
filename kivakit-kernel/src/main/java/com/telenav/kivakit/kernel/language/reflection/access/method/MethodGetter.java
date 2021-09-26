@@ -56,6 +56,11 @@ public class MethodGetter implements Getter
         }
     }
 
+    public Method method()
+    {
+        return method;
+    }
+
     @Override
     public String name()
     {

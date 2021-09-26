@@ -18,9 +18,16 @@
 
 package com.telenav.kivakit.kernel.language.reflection;
 
-import com.telenav.kivakit.kernel.language.strings.Strings;
+import com.telenav.kivakit.kernel.logging.Logger;
+import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import java.lang.reflect.ParameterizedType;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
 
 /**
  * Holds a class and method name when a proper Java reflection {@link java.lang.reflect.Method} cannot be determined, as
@@ -29,8 +36,10 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageReflection.class)
-public class Method
+public class Method extends Member
 {
+    private static final Logger LOGGER = LoggerFactory.newLogger();
+
     /**
      * @return A {@link Method} instance for the given stack frame
      */
@@ -39,39 +48,67 @@ public class Method
         try
         {
             final var type = Class.forName(frame.getClassName());
-            if (!Strings.isEmpty(frame.getMethodName()))
-            {
-                return new Method(type, frame.getMethodName());
-            }
+            return new Method(type, frame.getMethodName());
         }
-        catch (final ClassNotFoundException ignored)
+        catch (final Exception e)
         {
+            LOGGER.problem(e, "Unable to find method for: $", frame);
         }
         return null;
     }
 
     private final Class<?> type;
 
-    private final String methodName;
+    private java.lang.reflect.Method method;
 
-    private Method(final Class<?> type, final String methodName)
+    private final String name;
+
+    public Method(final Class<?> type, final java.lang.reflect.Method method)
     {
-        this.type = type;
-        this.methodName = methodName;
+        this.type = ensureNotNull(type);
+        this.method = ensureNotNull(method);
+        this.name = method.getName();
     }
 
-    public String methodName()
+    public Method(final Class<?> type, String name)
     {
-        return methodName;
+        this.type = ensureNotNull(type);
+        this.name = ensureNotNull(name);
+    }
+
+    public List<Type<?>> genericTypeParameters()
+    {
+        var list = new ArrayList<Type<?>>();
+        var genericType = (ParameterizedType) method.getGenericReturnType();
+        for (var at : genericType.getActualTypeArguments())
+        {
+            list.add(Type.forClass((Class<?>) at));
+        }
+        return list;
+    }
+
+    public java.lang.reflect.Method method()
+    {
+        return method;
+    }
+
+    public String name()
+    {
+        return name;
     }
 
     @Override
     public String toString()
     {
-        return type.getSimpleName() + "." + methodName + "()";
+        return typeClass().getSimpleName() + "." + name() + "()";
     }
 
-    public Class<?> type()
+    public Type<?> type()
+    {
+        return Type.forClass(typeClass());
+    }
+
+    public Class<?> typeClass()
     {
         return type;
     }

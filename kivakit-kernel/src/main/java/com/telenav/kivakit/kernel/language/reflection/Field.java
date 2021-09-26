@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @UmlClassDiagram(diagram = DiagramLanguageReflection.class)
-public class Field
+public class Field extends Member
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
@@ -99,6 +99,12 @@ public class Field
     public boolean isPrimitive()
     {
         return field.getType().isPrimitive();
+    }
+
+    @Override
+    public String name()
+    {
+        return field.getName();
     }
 
     @Override

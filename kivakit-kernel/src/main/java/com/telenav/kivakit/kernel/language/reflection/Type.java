@@ -37,6 +37,7 @@ import com.telenav.kivakit.kernel.language.reflection.property.filters.method.Na
 import com.telenav.kivakit.kernel.language.types.Classes;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
+import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.project.KernelLimits;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -273,14 +274,16 @@ public class Type<T> implements Named
         return type.getName().startsWith("java.");
     }
 
-    public Property method(final String name)
+    public Method method(final String methodName)
     {
-        final var iterator = properties(new NamedMethod(NamingConvention.KIVAKIT, name)).iterator();
-        if (iterator.hasNext())
+        try
         {
-            return iterator.next();
+            return new Method(type, type.getMethod(methodName));
         }
-        return null;
+        catch (Exception e)
+        {
+            throw new IllegalStateException(Message.format("Unable to get method $.$", type, methodName));
+        }
     }
 
     @Override
@@ -385,6 +388,11 @@ public class Type<T> implements Named
             propertiesForFilter.put(filter, properties);
         }
         return ObjectList.objectList(properties.values()).sorted();
+    }
+
+    public Property property(final String name)
+    {
+        return properties(new NamedMethod(NamingConvention.KIVAKIT, name)).first();
     }
 
     public List<Field> reachableFields(final Object root, final Filter<java.lang.reflect.Field> filter)

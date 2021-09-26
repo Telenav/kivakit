@@ -23,10 +23,13 @@ import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.objects.Hash;
 import com.telenav.kivakit.kernel.language.reflection.Field;
+import com.telenav.kivakit.kernel.language.reflection.Member;
+import com.telenav.kivakit.kernel.language.reflection.Method;
 import com.telenav.kivakit.kernel.language.reflection.Type;
 import com.telenav.kivakit.kernel.language.reflection.access.Getter;
 import com.telenav.kivakit.kernel.language.reflection.access.Setter;
 import com.telenav.kivakit.kernel.language.reflection.access.field.FieldGetter;
+import com.telenav.kivakit.kernel.language.reflection.access.method.MethodGetter;
 import com.telenav.kivakit.kernel.language.reflection.populator.KivaKitOptionalProperty;
 import com.telenav.kivakit.kernel.language.reflection.populator.KivaKitPropertyConverter;
 import com.telenav.kivakit.kernel.messaging.Listener;
@@ -137,6 +140,26 @@ public class Property implements Named, Comparable<Property>
     public boolean isOptional()
     {
         return setter.hasAnnotation(KivaKitOptionalProperty.class);
+    }
+
+    public Member member()
+    {
+        var method = method();
+        if (method == null)
+        {
+            return field();
+        }
+        return method;
+    }
+
+    public Method method()
+    {
+        var getter = getter();
+        if (getter instanceof MethodGetter)
+        {
+            return new Method(null, ((MethodGetter) getter).method());
+        }
+        return null;
     }
 
     @Override

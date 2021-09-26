@@ -35,6 +35,11 @@ public class ClassMap<T> extends BaseMap<Class<?>, T>
         super(maximumSize);
     }
 
+    public ClassMap()
+    {
+        super(Maximum.MAXIMUM);
+    }
+
     public void put(final T object)
     {
         put(object.getClass(), object);
