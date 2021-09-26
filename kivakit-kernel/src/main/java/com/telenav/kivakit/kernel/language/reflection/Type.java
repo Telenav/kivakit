@@ -180,12 +180,12 @@ public class Type<T> implements Named
         return hasToString;
     }
 
-    public Set<Type<?>> enumValues()
+    public Set<Enum<?>> enumValues()
     {
-        final var values = new HashSet<Type<?>>();
+        final var values = new HashSet<Enum<?>>();
         for (final var value : type.getEnumConstants())
         {
-            values.add(Type.of(value));
+            values.add((Enum<?>) value);
         }
         return values;
     }
@@ -261,6 +261,11 @@ public class Type<T> implements Named
     public boolean isInside(final PackagePath path)
     {
         return packagePath().startsWith(path);
+    }
+
+    public boolean isPrimitive()
+    {
+        return type.isPrimitive();
     }
 
     public boolean isSystem()

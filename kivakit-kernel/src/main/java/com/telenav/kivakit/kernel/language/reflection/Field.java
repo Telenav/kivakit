@@ -26,6 +26,7 @@ import com.telenav.kivakit.kernel.messaging.Debug;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
@@ -60,6 +61,11 @@ public class Field
     {
         this.object = object;
         this.field = field;
+    }
+
+    public <T extends Annotation> T annotation(final Class<T> annotationClass)
+    {
+        return field.getAnnotation(annotationClass);
     }
 
     @Override
