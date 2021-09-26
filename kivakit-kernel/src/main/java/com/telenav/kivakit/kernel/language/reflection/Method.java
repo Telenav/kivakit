@@ -18,8 +18,6 @@
 
 package com.telenav.kivakit.kernel.language.reflection;
 
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -38,8 +36,6 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
 @UmlClassDiagram(diagram = DiagramLanguageReflection.class)
 public class Method extends Member
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     /**
      * @return A {@link Method} instance for the given stack frame
      */
@@ -50,9 +46,8 @@ public class Method extends Member
             final var type = Class.forName(frame.getClassName());
             return new Method(type, frame.getMethodName());
         }
-        catch (final Exception e)
+        catch (final Exception ignored)
         {
-            LOGGER.problem(e, "Unable to find method for: $", frame);
         }
         return null;
     }
@@ -76,13 +71,17 @@ public class Method extends Member
         this.name = ensureNotNull(name);
     }
 
-    public List<Type<?>> genericTypeParameters()
+    @SuppressWarnings("unchecked")
+    public <T> List<Type<T>> genericTypeParameters()
     {
-        var list = new ArrayList<Type<?>>();
+        var list = new ArrayList<Type<T>>();
         var genericType = (ParameterizedType) method.getGenericReturnType();
         for (var at : genericType.getActualTypeArguments())
         {
-            list.add(Type.forClass((Class<?>) at));
+            if (at instanceof Class)
+            {
+                list.add(Type.forClass((Class<T>) at));
+            }
         }
         return list;
     }
