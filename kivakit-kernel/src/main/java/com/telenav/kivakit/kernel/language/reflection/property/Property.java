@@ -22,8 +22,11 @@ import com.telenav.kivakit.kernel.data.conversion.Converter;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.objects.Hash;
+import com.telenav.kivakit.kernel.language.reflection.Field;
+import com.telenav.kivakit.kernel.language.reflection.Type;
 import com.telenav.kivakit.kernel.language.reflection.access.Getter;
 import com.telenav.kivakit.kernel.language.reflection.access.Setter;
+import com.telenav.kivakit.kernel.language.reflection.access.field.FieldGetter;
 import com.telenav.kivakit.kernel.language.reflection.populator.KivaKitOptionalProperty;
 import com.telenav.kivakit.kernel.language.reflection.populator.KivaKitPropertyConverter;
 import com.telenav.kivakit.kernel.messaging.Listener;
@@ -87,6 +90,16 @@ public class Property implements Named, Comparable<Property>
         return false;
     }
 
+    public Field field()
+    {
+        var getter = getter();
+        if (getter instanceof FieldGetter)
+        {
+            return new Field(null, ((FieldGetter) getter).field());
+        }
+        return null;
+    }
+
     /**
      * @param object The object to get from
      * @return The object retrieved or an instance of {@link Message} if something went wrong
@@ -138,7 +151,7 @@ public class Property implements Named, Comparable<Property>
         if (value != null)
         {
             // If the type can't be assigned
-            if (!canAssign(value.getClass(), type()))
+            if (!canAssign(value.getClass(), type().type()))
             {
                 // convert the value
                 final var converter = converter(listener);
@@ -191,18 +204,18 @@ public class Property implements Named, Comparable<Property>
     @Override
     public String toString()
     {
-        return "[Property name = " + name() + ", type = " + type().getSimpleName() + "]";
+        return "[Property name = " + name() + ", type = " + type().simpleName() + "]";
     }
 
-    public Class<?> type()
+    public Type<?> type()
     {
         if (getter != null)
         {
-            return getter.type();
+            return Type.forClass(getter.type());
         }
         if (setter != null)
         {
-            return setter.type();
+            return Type.forClass(setter.type());
         }
         return null;
     }

@@ -250,14 +250,7 @@ public class Type<T> implements Named
      */
     public boolean isDescendantOf(final Class<?> that)
     {
-        Class<?> at = type;
-        var isDescendant = at.equals(that);
-        while (!isDescendant && !at.equals(Object.class))
-        {
-            at = at.getSuperclass();
-            isDescendant = at.equals(that);
-        }
-        return isDescendant;
+        return that.isAssignableFrom(this.type);
     }
 
     public boolean isEnum()

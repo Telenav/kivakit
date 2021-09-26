@@ -27,6 +27,9 @@ import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageReflec
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.reflect.Modifier;
+import java.lang.reflect.ParameterizedType;
+import java.util.ArrayList;
+import java.util.List;
 
 @UmlClassDiagram(diagram = DiagramLanguageReflection.class)
 public class Field
@@ -70,6 +73,17 @@ public class Field
         return false;
     }
 
+    public List<Type<?>> genericTypeParameters()
+    {
+        var list = new ArrayList<Type<?>>();
+        var genericType = (ParameterizedType) field.getGenericType();
+        for (var at : genericType.getActualTypeArguments())
+        {
+            list.add(Type.forClass((Class<?>) at));
+        }
+        return list;
+    }
+
     @Override
     public int hashCode()
     {
@@ -85,6 +99,11 @@ public class Field
     public String toString()
     {
         return Classes.simpleName(object.getClass()) + "." + field.getName() + " = " + object;
+    }
+
+    public Type<?> type()
+    {
+        return Type.forClass(field.getType());
     }
 
     public Object value()
