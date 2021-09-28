@@ -313,7 +313,13 @@ public class FilePath extends ResourcePath
     {
         return toString().equals(".") || equals(Folder.current().path());
     }
-    
+
+    @Override
+    public FilePath last(final int n)
+    {
+        return (FilePath) super.last(n);
+    }
+
     /**
      * {@inheritDoc}
      */

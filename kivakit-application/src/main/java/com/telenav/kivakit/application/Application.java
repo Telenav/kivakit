@@ -36,6 +36,7 @@ import com.telenav.kivakit.kernel.language.locales.Locale;
 import com.telenav.kivakit.kernel.language.strings.Align;
 import com.telenav.kivakit.kernel.language.strings.AsciiArt;
 import com.telenav.kivakit.kernel.language.strings.Strip;
+import com.telenav.kivakit.kernel.language.threading.conditions.StateMachine;
 import com.telenav.kivakit.kernel.language.types.Classes;
 import com.telenav.kivakit.kernel.language.values.identifier.StringIdentifier;
 import com.telenav.kivakit.kernel.language.values.version.Version;
@@ -66,6 +67,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static com.telenav.kivakit.application.Application.State.CREATED;
+import static com.telenav.kivakit.application.Application.State.INITIALIZING;
+import static com.telenav.kivakit.application.Application.State.READY;
+import static com.telenav.kivakit.application.Application.State.RUNNING;
+import static com.telenav.kivakit.application.Application.State.STOPPED;
+import static com.telenav.kivakit.application.Application.State.STOPPING;
 import static com.telenav.kivakit.commandline.SwitchParser.booleanSwitchParser;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
 
@@ -166,6 +173,16 @@ public abstract class Application extends BaseComponent implements Named, Applic
         return instance;
     }
 
+    public enum State
+    {
+        CREATED,
+        INITIALIZING,
+        RUNNING,
+        READY,
+        STOPPING,
+        STOPPED
+    }
+
     /**
      * A unique string identifier for a KivaKit {@link Application}.
      *
@@ -206,6 +223,8 @@ public abstract class Application extends BaseComponent implements Named, Applic
 
     /** Set of deployments for the application, if any */
     private DeploymentSet deployments;
+
+    private final StateMachine<State> state = new StateMachine<>(CREATED);
 
     /**
      * @param projects One or more projects to initialize
@@ -372,6 +391,11 @@ public abstract class Application extends BaseComponent implements Named, Applic
         return PropertyMap.of(project().properties());
     }
 
+    public void ready()
+    {
+        state.transitionTo(READY);
+    }
+
     /**
      * Runs the application by calling {@link #onRun()} given the arguments from the Java main(String[]) application
      * entrypoint. Operations occur in this order:
@@ -391,6 +415,8 @@ public abstract class Application extends BaseComponent implements Named, Applic
      */
     public final void run(final String[] arguments)
     {
+        state.transitionTo(INITIALIZING);
+
         // Signal that we're about to start running,
         onRunning();
 
@@ -454,7 +480,9 @@ public abstract class Application extends BaseComponent implements Named, Applic
         try
         {
             // Run the application's code
+            state.transitionTo(RUNNING);
             onRun();
+            state.transitionTo(STOPPING);
         }
         catch (final Exception e)
         {
@@ -472,6 +500,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
         }
 
         onRan();
+        state.transitionTo(STOPPED);
     }
 
     @UmlExcludeMember
@@ -487,6 +516,15 @@ public abstract class Application extends BaseComponent implements Named, Applic
     public Version version()
     {
         return project().projectVersion();
+    }
+
+    /**
+     * Waits until the {@link #ready()} method is called in the {@link #onRun()} implementation to indicate that the
+     * application is fully ready. If {@link #ready()} is not called, this method will never return.
+     */
+    public void waitForReady()
+    {
+        state.waitFor(READY);
     }
 
     /**

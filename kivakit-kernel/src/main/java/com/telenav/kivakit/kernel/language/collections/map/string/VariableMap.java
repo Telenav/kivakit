@@ -101,6 +101,19 @@ public class VariableMap<Value> extends BaseStringMap<Value>
     }
 
     /**
+     * @return This variable map with all the keys and values as double-quoted strings.
+     */
+    public VariableMap<String> doubleQuoted()
+    {
+        final var quoted = new VariableMap<String>();
+        for (final var key : keySet())
+        {
+            quoted.add("\"" + key + "\"", "\"" + get(key) + "\"");
+        }
+        return quoted;
+    }
+
+    /**
      * Expands the given text, leaving any ${x} markers for which there is no value in place.
      *
      * @param text The string to interpolate values into
