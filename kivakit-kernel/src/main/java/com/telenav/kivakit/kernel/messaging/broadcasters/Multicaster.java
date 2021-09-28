@@ -96,15 +96,15 @@ public class Multicaster implements Broadcaster, PackagePathed
     @UmlAggregation
     private final transient List<AudienceMember> audience = new ArrayList<>();
 
-    private final String objectName;
+    private final transient String objectName;
 
-    private CodeContext debugCodeContext;
+    private transient CodeContext debugCodeContext;
 
-    private final Class<?> debugClassContext;
+    private final transient Class<?> debugClassContext;
 
     private transient ReadWriteLock lock;
 
-    private Broadcaster source;
+    private transient Broadcaster source;
 
     public Multicaster(final String objectName, final Class<?> debugClassContext)
     {
