@@ -99,7 +99,6 @@ initialize() {
 
     if [[ $branch == "develop" ]]; then
 
-        git checkout master
         git flow init -d /dev/null 2>&1
 
         if [ "$(git flow config >/dev/null 2>&1)" ]; then
