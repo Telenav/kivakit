@@ -430,9 +430,9 @@ public class StringList extends ObjectList<String>
      * {@inheritDoc}
      */
     @Override
-    public StringList filtered(final Matcher<String> matcher)
+    public StringList matching(final Matcher<String> matcher)
     {
-        return (StringList) super.filtered(matcher);
+        return (StringList) super.matching(matcher);
     }
 
     /**

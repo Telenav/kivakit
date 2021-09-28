@@ -86,7 +86,7 @@ public class Strip
 
     public static String packagePrefix(final String type)
     {
-        return StringList.split(type, '.').filtered(at -> !Strings.isLowerCase(at)).join(".");
+        return StringList.split(type, '.').matching(at -> !Strings.isLowerCase(at)).join(".");
     }
 
     public static String quotes(final String text)

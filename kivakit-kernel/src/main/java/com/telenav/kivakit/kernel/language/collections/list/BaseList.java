@@ -100,7 +100,7 @@ import java.util.stream.Collectors;
  *     <li>{@link #first(Count)} - A new list with the first n elements in it</li>
  *     <li>{@link #leftOf(int)} - The elements in this list to the left on the given index, exclusive</li>
  *     <li>{@link #rightOf(int)} - The elements in this list to the right on the given index, exclusive</li>
- *     <li>{@link #filtered(Matcher)} - A copy of this list filtered to matching elements</li>
+ *     <li>{@link #matching(Matcher)} - A copy of this list filtered to matching elements</li>
  *     <li>{@link #mapped(Function)} - A copy of this list with elements mapped to another type</li>
  *     <li>{@link #sorted(Comparator)} - A copy of this list sorted by the given comparator</li>
  *     <li>{@link #reversed()} - This list reversed</li>
@@ -539,7 +539,7 @@ public abstract class BaseList<Element> implements
     /**
      * @return This bounded list filtered to only the elements that match the given matcher
      */
-    public BaseList<Element> filtered(final Matcher<Element> matcher)
+    public BaseList<Element> matching(final Matcher<Element> matcher)
     {
         final var filtered = newInstance();
         filtered.addAll(asIterable(matcher));
@@ -1028,17 +1028,16 @@ public abstract class BaseList<Element> implements
     public BaseList<Element> without(final Matcher<Element> matcher)
     {
         final var iterator = iterator();
-        final var removed = newInstance();
+        final var without = newInstance();
         while (iterator.hasNext())
         {
             final var element = iterator.next();
-            if (matcher.matches(element))
+            if (!matcher.matches(element))
             {
-                removed.add(element);
-                iterator.remove();
+                without.add(element);
             }
         }
-        return removed;
+        return without;
     }
 
     /**

@@ -19,6 +19,7 @@
 package com.telenav.kivakit.kernel.interfaces.collection;
 
 import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
+import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.matchers.AnythingMatcher;
 import com.telenav.kivakit.kernel.language.objects.Hash;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramExampleBaseList;
@@ -340,9 +341,9 @@ public interface Sequence<Element>
      * @return The tail of this sequence (all elements but the first element). If there is only one element, the tail is
      * an empty list.
      */
-    default List<Element> tail()
+    default ObjectList<Element> tail()
     {
-        final var tail = new ArrayList<Element>();
+        final var tail = new ObjectList<Element>();
         int index = 0;
         for (final var element : asIterable())
         {

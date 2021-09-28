@@ -212,12 +212,6 @@ public class ObjectList<Element> extends BaseList<Element>
     }
 
     @Override
-    public ObjectList<Element> filtered(final Matcher<Element> matcher)
-    {
-        return (ObjectList<Element>) super.filtered(matcher);
-    }
-
-    @Override
     public ObjectList<Element> first(final Count count)
     {
         return (ObjectList<Element>) super.first(count);
@@ -239,6 +233,12 @@ public class ObjectList<Element> extends BaseList<Element>
     public <To> ObjectList<To> mapped(final Function<Element, To> mapper)
     {
         return (ObjectList<To>) super.mapped(mapper);
+    }
+
+    @Override
+    public ObjectList<Element> matching(final Matcher<Element> matcher)
+    {
+        return (ObjectList<Element>) super.matching(matcher);
     }
 
     @Override
@@ -310,7 +310,7 @@ public class ObjectList<Element> extends BaseList<Element>
         return (ObjectList<Element>) super.uniqued();
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     public <T> ObjectList<T> with(T value)
     {
         var copy = new ObjectList();
