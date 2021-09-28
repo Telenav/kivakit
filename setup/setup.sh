@@ -89,7 +89,9 @@ initialize() {
     branch=$2
 
     cd "$project_home"
-    echo "Initializing $(pwd)"
+    echo " "
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━┫ Initializing $(pwd)"
+    echo " "
     git checkout "$branch"
     git config pull.ff only
 
