@@ -20,12 +20,12 @@ package com.telenav.kivakit.kernel.data.conversion.string.collection;
 
 import com.telenav.kivakit.kernel.data.conversion.string.StringConverter;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
+import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataConversionOther;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -36,7 +36,7 @@ import java.util.Set;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramDataConversionOther.class)
-public abstract class BaseSetConverter<T> extends BaseCollectionConverter<Set<T>>
+public abstract class BaseSetConverter<T> extends BaseCollectionConverter<ObjectSet<T>>
 {
     private final StringConverter<T> converter;
 
@@ -47,18 +47,18 @@ public abstract class BaseSetConverter<T> extends BaseCollectionConverter<Set<T>
     }
 
     @Override
-    protected Set<T> onConvertToObject(final StringList columns)
+    protected ObjectSet<T> onConvertToObject(final StringList columns)
     {
-        final var set = new HashSet<T>();
+        final var set = new ObjectSet<T>();
         for (final var element : columns)
         {
-            set.add(converter.convert(element));
+            set.add(converter.convert(element.trim()));
         }
         return set;
     }
 
     @Override
-    protected StringList onConvertToStringList(final Set<T> value)
+    protected StringList onConvertToStringList(final ObjectSet<T> value)
     {
         final var list = new StringList();
         for (final var element : value)

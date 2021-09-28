@@ -23,6 +23,7 @@ import com.telenav.kivakit.kernel.interfaces.messaging.Receiver;
 import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.logging.Logger;
+import com.telenav.kivakit.kernel.messaging.listeners.ConsoleWriter;
 import com.telenav.kivakit.kernel.messaging.listeners.NullListener;
 import com.telenav.kivakit.kernel.messaging.listeners.ThrowingListener;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
@@ -115,6 +116,14 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 @UmlExcludeSuperTypes({ NamedObject.class })
 public interface Listener extends Transceiver, Receiver<Transmittable>, NamedObject
 {
+    /**
+     * Listener that does nothing with messages. Useful only when you want to discard output from something
+     */
+    static Listener console()
+    {
+        return new ConsoleWriter();
+    }
+
     /**
      * Listener that does nothing with messages. Useful only when you want to discard output from something
      */

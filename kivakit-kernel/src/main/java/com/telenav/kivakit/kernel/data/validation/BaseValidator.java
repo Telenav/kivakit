@@ -151,37 +151,45 @@ public abstract class BaseValidator implements Validator
         // determine if we have re-entered this method on this thread
         final var reentered = reentrancy.hasReentered();
 
-        // and we HAVE NOT reentered due to a sub-validation, we're just starting to validate, so we
-        if (!reentered)
+        reentrancy.enter();
+        try
         {
-            // initialize the statistics for the thread.
-            issues().clear();
-        }
-
-        // Make a copy of the current issues for the thread.
-        final var issues = issues().copy();
-
-        // Next, call the subclass onValidate() method (which may make calls to problem or glitch methods, causing invalidity)
-        onValidate();
-
-        // and if we haven't re-entered, we're done with the top-level validation,
-        if (!reentered)
-        {
-            // so we reset the listener for cleanliness,
-            this.listener = null;
-
-            // and if a validation report is desired,
-            if (validationReport())
+            // and we HAVE NOT reentered due to a sub-validation, we're just starting to validate, so we
+            if (!reentered)
             {
-                // we output a short summary of the validation results
-                listener.information("Validated $ in $ ($ problems, $ glitches, $ warnings)", validationTarget(),
-                        start.elapsedSince(), issues.count(Problem.class), issues.count(Glitch.class), issues.count(Warning.class));
+                // initialize the statistics for the thread.
+                issues().clear();
             }
-        }
 
-        // and finally, we're valid if the validation didn't change the number of problems or glitches
-        return issues.count(Problem.class).equals(issues().count(Problem.class))
-                && issues.count(Glitch.class).equals(issues().count(Glitch.class));
+            // Make a copy of the current issues for the thread.
+            final var issues = issues().copy();
+
+            // Next, call the subclass onValidate() method (which may make calls to problem or glitch methods, causing invalidity)
+            onValidate();
+
+            // and if we haven't re-entered, we're done with the top-level validation,
+            if (!reentered)
+            {
+                // so we reset the listener for cleanliness,
+                this.listener = null;
+
+                // and if a validation report is desired,
+                if (validationReport())
+                {
+                    // we output a short summary of the validation results
+                    listener.information("Validated $ in $ ($ problems, $ glitches, $ warnings)", validationTarget(),
+                            start.elapsedSince(), issues.count(Problem.class), issues.count(Glitch.class), issues.count(Warning.class));
+                }
+            }
+
+            // and finally, we're valid if the validation didn't change the number of problems or glitches
+            return issues.count(Problem.class).equals(issues().count(Problem.class))
+                    && issues.count(Glitch.class).equals(issues().count(Glitch.class));
+        }
+        finally
+        {
+            reentrancy.exit();
+        }
     }
 
     /**

@@ -53,7 +53,7 @@ public abstract class BaseListConverter<T> extends BaseCollectionConverter<Objec
         final var list = new ObjectList<T>(columns.maximumSize());
         for (final var element : columns)
         {
-            list.addIfNotNull(converter.convert(element));
+            list.addIfNotNull(converter.convert(element.trim()));
         }
         return list;
     }

@@ -20,13 +20,12 @@ package com.telenav.kivakit.kernel.data.extraction;
 
 import com.telenav.kivakit.kernel.interfaces.collection.Keyed;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
+import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataExtraction;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
-
-import java.util.Map;
 
 /**
  * A base implementation for extractors that handles edge conditions like exceptions as well as extracting lists from
@@ -77,52 +76,17 @@ public abstract class BaseExtractor<Value, From> extends BaseRepeater implements
     }
 
     /**
-     * @return A list of values extracted from the map using the given key and separator
+     * @return A list of values extracted from the given array of objects
      */
     @SuppressWarnings("unchecked")
-    public ObjectList<Value> extractList(final Map<String, String> map, final From key, final String separator)
+    public ObjectList<Value> extract(final StringList values)
     {
         final var extracted = new ObjectList<Value>();
-        final var value = map.get(key.toString());
-        for (final var part : value.split(separator))
+        for (final var value : values)
         {
-            extracted.add(extract((From) part));
+            extracted.add(extract((From) value));
         }
         return extracted;
-    }
-
-    /**
-     * @return A list of values extracted from the keyed object using the given key and separator
-     */
-    @SuppressWarnings("unchecked")
-    public ObjectList<Value> extractList(final Keyed<String, String> map, final From key, final String separator)
-    {
-        final var extracted = new ObjectList<Value>();
-        final var value = map.get(key.toString());
-        if (value != null)
-        {
-            for (final var part : value.split(separator))
-            {
-                extracted.add(extract((From) part));
-            }
-        }
-        return extracted;
-    }
-
-    /**
-     * @return A list of values extracted from the keyed object using the given key and the separator '|'
-     */
-    public ObjectList<Value> extractList(final Keyed<String, String> map, final From key)
-    {
-        return extractList(map, key, "\\|");
-    }
-
-    /**
-     * @return A list of values extracted from the given map using the given key and the separator '|'
-     */
-    public ObjectList<Value> extractList(final Map<String, String> map, final From key)
-    {
-        return extractList(map, key, "\\|");
     }
 
     /**

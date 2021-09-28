@@ -43,6 +43,7 @@ import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
+import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
 import com.telenav.kivakit.kernel.language.reflection.Type;
 import com.telenav.kivakit.kernel.language.strings.CaseFormat;
 import com.telenav.kivakit.kernel.language.time.LocalTime;
@@ -269,14 +270,14 @@ public class SwitchParser<T> implements Named, Validatable
                 .converter(new Quantizable.Converter<>(LOGGER, factory));
     }
 
-    public static <E> Builder<Set<E>> setSwitchParser(
+    public static <E> Builder<ObjectSet<E>> setSwitchParser(
             final String name,
             final String description,
             final StringConverter<E> elementConverter,
             final Class<E> elementType,
             final String delimiter)
     {
-        final var builder = new Builder<Set<E>>();
+        final var builder = new Builder<ObjectSet<E>>();
         builder.type = Type.of(elementType);
         return builder
                 .name(name)
