@@ -113,7 +113,6 @@ initialize() {
 initialize "$KIVAKIT_WORKSPACE"/cactus-build-assets publish
 initialize "$KIVAKIT_WORKSPACE"/kivakit-assets publish
 initialize "$KIVAKIT_WORKSPACE"/cactus-build develop
-initialize "$KIVAKIT_WORKSPACE"/cactus-build develop
 initialize "$KIVAKIT_WORKSPACE"/lexakai-annotations develop
 initialize "$KIVAKIT_WORKSPACE"/kivakit develop
 initialize "$KIVAKIT_WORKSPACE"/kivakit-extensions develop
