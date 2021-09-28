@@ -83,51 +83,39 @@ echo " "
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Initializing Git"
 echo " "
 
-cd "$KIVAKIT_WORKSPACE"/cactus-build-assets
-echo "Initializing $(pwd)"
-git config pull.ff only
+initialize() {
 
-cd "$KIVAKIT_WORKSPACE"/kivakit-assets
-echo "Initializing $(pwd)"
-git config pull.ff only
+    project_home=$1
+    branch=$2
 
-cd "$KIVAKIT_WORKSPACE"/cactus-build
-echo "Initializing $(pwd)"
-git checkout develop
-git config pull.ff only
-git flow init -d /dev/null 2>&1
+    cd "$project_home"
+    echo "Initializing $(pwd)"
+    git checkout "$branch"
+    git config pull.ff only
 
-if [ "$(git flow config >/dev/null 2>&1)" ]; then
-    echo " "
-    echo "Please install git flow before continuing KivaKit setup."
-    echo "See https://kivakit.org for details."
-    echo " "
-    exit 1
-fi
+    if [[ $branch == "develop" ]]; then
 
-cd "$KIVAKIT_WORKSPACE"/lexakai-annotations
-echo "Initializing $(pwd)"
-git checkout develop
-git config pull.ff only
-git flow init -d /dev/null 2>&1
+        git flow init -d /dev/null 2>&1
 
-cd "$KIVAKIT_WORKSPACE"/kivakit
-echo "Initializing $(pwd)"
-git checkout develop
-git config pull.ff only
-git flow init -d /dev/null 2>&1
+        if [ "$(git flow config >/dev/null 2>&1)" ]; then
+            echo " "
+            echo "Please install git flow before continuing MesaKit setup."
+            echo "See https://mesakit.org for details."
+            echo " "
+            exit 1
+        fi
 
-cd "$KIVAKIT_WORKSPACE"/kivakit-extensions
-echo "Initializing $(pwd)"
-git checkout develop
-git config pull.ff only
-git flow init -d /dev/null 2>&1
+    fi
+}
 
-cd "$KIVAKIT_WORKSPACE"/kivakit-examples
-echo "Initializing $(pwd)"
-git checkout develop
-git config pull.ff only
-git flow init -d /dev/null 2>&1
+initialize "$KIVAKIT_WORKSPACE"/cactus-build-assets publish
+initialize "$KIVAKIT_WORKSPACE"/kivakit-assets publish
+initialize "$KIVAKIT_WORKSPACE"/cactus-build develop
+initialize "$KIVAKIT_WORKSPACE"/cactus-build develop
+initialize "$KIVAKIT_WORKSPACE"/lexakai-annotations develop
+initialize "$KIVAKIT_WORKSPACE"/kivakit develop
+initialize "$KIVAKIT_WORKSPACE"/kivakit-extensions develop
+initialize "$KIVAKIT_WORKSPACE"/kivakit-examples develop
 
 #
 # Build
