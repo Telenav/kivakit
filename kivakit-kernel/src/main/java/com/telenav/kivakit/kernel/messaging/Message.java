@@ -26,6 +26,7 @@ import com.telenav.kivakit.kernel.language.threading.context.CodeContext;
 import com.telenav.kivakit.kernel.language.threading.context.StackTrace;
 import com.telenav.kivakit.kernel.language.time.Frequency;
 import com.telenav.kivakit.kernel.language.time.Time;
+import com.telenav.kivakit.kernel.language.types.Classes;
 import com.telenav.kivakit.kernel.messaging.messages.Importance;
 import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
 import com.telenav.kivakit.kernel.messaging.messages.OperationLifecycleMessage;
@@ -308,12 +309,32 @@ public interface Message extends Transmittable, Triaged, AsString
     }
 
     /**
+     * @return True if the status of this message is worse than the given message
+     */
+    @UmlExcludeMember
+    default <T extends Message> boolean isWorseThan(final Class<T> message)
+    {
+        var instance = Classes.newInstance(Listener.console(), message);
+        return isWorseThan(instance.status());
+    }
+
+    /**
      * @return True if the status of this message is worse than the given value
      */
     @UmlExcludeMember
     default boolean isWorseThanOrEqualTo(final Status status)
     {
         return status().isWorseThanOrEqualTo(status);
+    }
+
+    /**
+     * @return True if the status of this message is worse than the given message
+     */
+    @UmlExcludeMember
+    default <T extends Message> boolean isWorseThanOrEqualTo(final Class<T> message)
+    {
+        var instance = Classes.newInstance(Listener.console(), message);
+        return isWorseThanOrEqualTo(instance.status());
     }
 
     /**

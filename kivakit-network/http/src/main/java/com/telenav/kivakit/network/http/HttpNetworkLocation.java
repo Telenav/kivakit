@@ -132,7 +132,7 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
 
     public String content()
     {
-        return get().content();
+        return get().asString();
     }
 
     public HttpGetResource get()

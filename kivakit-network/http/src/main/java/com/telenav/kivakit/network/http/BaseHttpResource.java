@@ -27,7 +27,6 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -51,10 +50,10 @@ import java.io.InputStream;
  * </p>
  *
  * <ul>
- *     <li>{@link #contentType()} - A MIME content type</li>
- *     <li>{@link #content()} - The resource content as a string</li>
+ *     <li>{@link #retrieveContentType()} - A MIME content type</li>
+ *     <li>{@link #asString()} - The resource content as a string</li>
  *     <li>{@link #encoding()} - A content encoding</li>
- *     <li>{@link #header(String)} - An optional header</li>
+ *     <li>{@link #retrieveHeaderField(String)} - An optional header</li>
  *     <li>{@link #status()} - A status code once the resource has been accessed</li>
  * </ul>
  *
@@ -71,15 +70,13 @@ public abstract class BaseHttpResource extends BaseNetworkResource
     @UmlAggregation
     private final NetworkLocation networkLocation;
 
-    // Response content encoding
-    private String encoding;
-
-    // Entity opened, to be able to close it
-    private HttpEntity entityMirror;
+    private String contentEncoding;
 
     private final VariableMap<String> responseHeader = new VariableMap<>();
 
     private int statusCode;
+
+    private HttpResponse response;
 
     /**
      * Constructs a resource accessible via HTTP
@@ -91,53 +88,34 @@ public abstract class BaseHttpResource extends BaseNetworkResource
         this.constraints = constraints;
     }
 
-    public void consume()
-    {
-        if (entityMirror != null)
-        {
-            EntityUtils.consumeQuietly(entityMirror);
-        }
-    }
-
-    public String content()
+    /**
+     * @return The content of this HTTP resource as a string
+     */
+    public String asString()
     {
         return reader().string();
     }
 
-    public String contentType()
-    {
-        return header("Content-CheckType");
-    }
-
+    /**
+     * @return The content encoding once the resource has been opened for reading
+     */
     public String encoding()
     {
-        return encoding;
+        return contentEncoding;
     }
 
-    public String header(final String header)
-    {
-        final var client = newClient();
-        final var head = new HttpHead(asUri());
-        try
-        {
-            final HttpResponse response = client.execute(head);
-            final var value = response.getFirstHeader(header).getValue();
-            EntityUtils.consume(response.getEntity());
-            return value;
-        }
-        catch (final IOException e)
-        {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
+    /**
+     * @return Always true
+     */
     @Override
     public boolean isRemote()
     {
         return true;
     }
 
+    /**
+     * @return The network location of this HTTP resource
+     */
     @Override
     public NetworkLocation location()
     {
@@ -145,7 +123,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource
     }
 
     /**
-     * Opens this resource
+     * Opens this resource for reading
      *
      * @return Input stream to read
      */
@@ -154,36 +132,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource
     {
         try
         {
-            final var client = newClient();
-
-            // Set the timeouts
-            final var httpParameters = client.getParams();
-            HttpConnectionParams.setConnectionTimeout(httpParameters,
-                    (int) constraints.timeout().asMilliseconds());
-            HttpConnectionParams.setSoTimeout(httpParameters, (int) constraints.timeout().asMilliseconds());
-
-            if (constraints instanceof HttpAccessConstraints)
-            {
-                final var httpConstraints = (HttpAccessConstraints) constraints;
-                final var credentials = httpConstraints.httpBasicCredentials();
-                if (credentials != null)
-                {
-                    client.getCredentialsProvider().setCredentials(
-                            new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT), new UsernamePasswordCredentials(
-                                    credentials.userName().toString(), credentials.password().toString()));
-                }
-            }
-            final var httpRequest = newRequest();
-            final HttpResponse response = client.execute(httpRequest);
-            statusCode = response.getStatusLine().getStatusCode();
-
-            if (responseHeader != null)
-            {
-                for (final var header : response.getAllHeaders())
-                {
-                    responseHeader.put(header.getName(), header.getValue());
-                }
-            }
+            executeRequest(newRequest());
 
             final var entity = response.getEntity();
             if (entity != null)
@@ -191,9 +140,8 @@ public abstract class BaseHttpResource extends BaseNetworkResource
                 final var contentEncoding = entity.getContentEncoding();
                 if (contentEncoding != null)
                 {
-                    encoding = contentEncoding.getValue();
+                    this.contentEncoding = contentEncoding.getValue();
                 }
-                entityMirror = entity;
                 return entity.getContent();
             }
         }
@@ -204,14 +152,52 @@ public abstract class BaseHttpResource extends BaseNetworkResource
         return null;
     }
 
+    /**
+     * @return Response header variables
+     */
     public VariableMap<String> responseHeader()
     {
         return responseHeader;
     }
 
+    /**
+     * @return The content type, as determined by a Content-CheckType HTTP HEAD request
+     */
+    public String retrieveContentType()
+    {
+        return retrieveHeaderField("Content-CheckType");
+    }
+
+    /**
+     * @return The value for the given HTTP header field, as determined by an HTTP HEAD request
+     */
+    public String retrieveHeaderField(final String fieldName)
+    {
+        final var client = newClient();
+        final var head = new HttpHead(asUri());
+        try
+        {
+            final HttpResponse response = client.execute(head);
+            final var value = response.getFirstHeader(fieldName).getValue();
+            EntityUtils.consume(response.getEntity());
+            return value;
+        }
+        catch (final IOException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * Executes the request for this resource and returns the status code
+     *
+     * @return The status code for this resource
+     */
     @UmlRelation(label = "yields")
     public HttpStatus status()
     {
+        executeRequest(newRequest());
         return new HttpStatus(statusCode);
     }
 
@@ -221,10 +207,65 @@ public abstract class BaseHttpResource extends BaseNetworkResource
         return networkLocation.toString();
     }
 
+    /**
+     * @return A configured HTTP client
+     */
     protected DefaultHttpClient newClient()
     {
-        return new DefaultHttpClient();
+        var client = new DefaultHttpClient();
+
+        // Set timeouts
+        final var httpParameters = client.getParams();
+        HttpConnectionParams.setConnectionTimeout(httpParameters,
+                (int) constraints.timeout().asMilliseconds());
+        HttpConnectionParams.setSoTimeout(httpParameters, (int) constraints.timeout().asMilliseconds());
+
+        // add any credentials
+        if (constraints instanceof HttpAccessConstraints)
+        {
+            final var httpConstraints = (HttpAccessConstraints) constraints;
+            final var credentials = httpConstraints.httpBasicCredentials();
+            if (credentials != null)
+            {
+                client.getCredentialsProvider().setCredentials(
+                        new AuthScope(AuthScope.ANY_HOST, AuthScope.ANY_PORT), new UsernamePasswordCredentials(
+                                credentials.userName().toString(), credentials.password().toString()));
+            }
+        }
+
+        return client;
     }
 
+    /**
+     * @return The subclass' request object
+     */
     protected abstract HttpUriRequest newRequest();
+
+    /**
+     * Executes the given request, reads the status code and header map
+     *
+     * @param httpRequest The HTTP request to execute
+     */
+    private void executeRequest(final HttpUriRequest httpRequest)
+    {
+        if (response == null)
+        {
+            try
+            {
+                response = newClient().execute(httpRequest);
+                statusCode = response.getStatusLine().getStatusCode();
+                if (responseHeader != null)
+                {
+                    for (final var header : response.getAllHeaders())
+                    {
+                        responseHeader.put(header.getName(), header.getValue());
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                problem(e, "Unable to execute HTTP request to: $", httpRequest);
+            }
+        }
+    }
 }
