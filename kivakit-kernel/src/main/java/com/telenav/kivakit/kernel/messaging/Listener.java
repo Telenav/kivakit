@@ -19,7 +19,6 @@
 package com.telenav.kivakit.kernel.messaging;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.telenav.kivakit.kernel.interfaces.messaging.Receiver;
 import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.logging.Logger;
@@ -37,9 +36,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
 /**
- * Handles messages through {@link Transceiver#onHandle(Transmittable)} by receiving them through the {@link
- * #receive(Transmittable)} method unless the listener {@link #isDeaf()}, meaning that it is discarding messages it
- * receives.
+ * Handles messages through {@link #onMessage(Message)}.
  *
  * <p><b>Listening to Broadcasters</b></p>
  * <p>
@@ -114,7 +111,8 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 @UmlClassDiagram(diagram = DiagramLogging.class)
 @UmlClassDiagram(diagram = DiagramDataFailureReporter.class)
 @UmlExcludeSuperTypes({ NamedObject.class })
-public interface Listener extends Transceiver, Receiver<Transmittable>, NamedObject
+@FunctionalInterface
+public interface Listener extends Transceiver
 {
     /**
      * Listener that does nothing with messages. Useful only when you want to discard output from something
@@ -166,24 +164,6 @@ public interface Listener extends Transceiver, Receiver<Transmittable>, NamedObj
         return broadcaster;
     }
 
-    /**
-     * <b>Not public API</b>
-     */
-    default void message(final Message message)
-    {
-        onMessage(message);
-    }
-
-    /**
-     * <b>Not public API</b>
-     */
-    @Override
-    @UmlExcludeMember
-    default void onHandle(final Transmittable message)
-    {
-        receive(message);
-    }
-
     void onMessage(final Message message);
 
     /**
@@ -194,17 +174,7 @@ public interface Listener extends Transceiver, Receiver<Transmittable>, NamedObj
     {
         if (transmittable instanceof Message)
         {
-            message((Message) transmittable);
+            onMessage((Message) transmittable);
         }
-    }
-
-    /**
-     * <b>Not public API</b>
-     */
-    @Override
-    @UmlExcludeMember
-    default void receive(final Transmittable message)
-    {
-        onReceive(message);
     }
 }

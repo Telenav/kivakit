@@ -45,15 +45,21 @@ public interface RepeaterMixin extends Repeater, Mixin
     }
 
     @Override
-    default <T extends Transmittable> T handle(final T message)
-    {
-        return repeater().handle(message);
-    }
-
-    @Override
     default boolean hasListeners()
     {
         return repeater().hasListeners();
+    }
+
+    @Override
+    default boolean isReceiving()
+    {
+        return repeater().isReceiving();
+    }
+
+    @Override
+    default boolean isTransmitting()
+    {
+        return repeater().isTransmitting();
     }
 
     @Override
@@ -74,10 +80,9 @@ public interface RepeaterMixin extends Repeater, Mixin
         repeater().onMessage(message);
     }
 
-    @Override
-    default void receive(final Transmittable message)
+    default <M extends Transmittable> M receive(final M message)
     {
-        repeater().receive(message);
+        return repeater().receive(message);
     }
 
     @Override

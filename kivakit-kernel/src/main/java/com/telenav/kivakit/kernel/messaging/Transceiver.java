@@ -19,7 +19,9 @@
 package com.telenav.kivakit.kernel.messaging;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.telenav.kivakit.kernel.interfaces.messaging.Receiver;
 import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
+import com.telenav.kivakit.kernel.interfaces.messaging.Transmitter;
 import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.language.threading.context.CodeContext;
 import com.telenav.kivakit.kernel.language.time.Frequency;
@@ -45,13 +47,14 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
 /**
  * Functionality that is common to {@link Broadcaster}s, {@link Listener}s, {@link Repeater}s and potentially other
- * classes that are involved in handling messages. The {@link #isOn()} method returns true if the transceiver is
- * enabled. When enabled, the {@link #handle(Transmittable)} method calls {@link #onHandle(Transmittable)} to allow the
- * subclass to handle the message.
+ * classes that are involved in handling messages. The {@link #isTransmitting()} method returns true if transmitting is
+ * enabled. The {@link #isReceiving()} method returns true if receiving is enabled. When enabled, the {@link
+ * #receive(Transmittable)} method calls {@link #onReceive(Transmittable)} (Transmittable)} to allow the subclass to
+ * handle the message.
  *
  * <p><b>Convenience Methods</b></p>
  * <p>
- * The following convenience methods call {@link #handle(Transmittable)} with the appropriate class of message.
+ * The following convenience methods call {@link #receive(Transmittable)} with the appropriate class of message.
  * </p>
  * <ul>
  *     <li>trace*() - The listener handles a {@link Trace} message</li>
@@ -103,18 +106,17 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  * @see Problem
  * @see OperationHalted
  */
-@FunctionalInterface
 @UmlClassDiagram(diagram = DiagramLogging.class)
 @UmlClassDiagram(diagram = DiagramMessageBroadcaster.class)
 @UmlClassDiagram(diagram = DiagramMessageListener.class)
 @UmlRelation(label = "delegates to", referent = Debug.class)
 @UmlExcludeSuperTypes({ NamedObject.class })
 @UmlNote(text = "Functionality common to transmitters and receivers")
-public interface Transceiver extends NamedObject
+public interface Transceiver extends NamedObject, Receiver, Transmitter
 {
     default Announcement announce(final String text, final Object... arguments)
     {
-        return handle(new Announcement(text, arguments));
+        return receive(new Announcement(text, arguments));
     }
 
     /**
@@ -154,7 +156,7 @@ public interface Transceiver extends NamedObject
     default <T> T fatal(final String text, final Object... arguments)
     {
         final var problem = new FatalProblem(text, arguments);
-        handle(problem);
+        receive(problem);
         problem.throwAsIllegalStateException();
         return null;
     }
@@ -162,61 +164,44 @@ public interface Transceiver extends NamedObject
     default <T> T fatal(final Throwable cause, final String text, final Object... arguments)
     {
         final var problem = new FatalProblem(cause, text, arguments);
-        handle(problem);
+        receive(problem);
         problem.throwAsIllegalStateException();
         return null;
     }
 
     default Glitch glitch(final Frequency maximumFrequency, final String text, final Object... arguments)
     {
-        return (Glitch) handle(new Glitch(text, arguments).maximumFrequency(maximumFrequency));
+        return (Glitch) receive(new Glitch(text, arguments).maximumFrequency(maximumFrequency));
     }
 
     default Glitch glitch(final Frequency maximumFrequency, final Throwable cause, final String text,
                           final Object... arguments)
     {
-        return (Glitch) handle(new Glitch(cause, text, arguments).maximumFrequency(maximumFrequency));
+        return (Glitch) receive(new Glitch(cause, text, arguments).maximumFrequency(maximumFrequency));
     }
 
     default Glitch glitch(final String text, final Object... arguments)
     {
-        return handle(new Glitch(text, arguments));
+        return receive(new Glitch(text, arguments));
     }
 
     default Glitch glitch(final Throwable cause, final String text, final Object... arguments)
     {
         if (isDebugOn())
         {
-            return handle(new Glitch(cause, text, arguments));
+            return receive(new Glitch(cause, text, arguments));
         }
         return null;
     }
 
     default OperationHalted halt(final String text, final Object... arguments)
     {
-        return handle(new OperationHalted(text, arguments));
+        return receive(new OperationHalted(text, arguments));
     }
 
     default OperationHalted halt(final Throwable cause, final String text, final Object... arguments)
     {
-        return handle(new OperationHalted(cause, text, arguments));
-    }
-
-    /**
-     * <b>Not public API</b>
-     * <p>
-     * Allows the subclass to handle the messages originating from the convenience methods in this class via the {@link
-     * #onHandle(Transmittable)} functional method.
-     * </p>
-     */
-    @UmlExcludeMember
-    default <T extends Transmittable> T handle(final T message)
-    {
-        if (isOn())
-        {
-            onHandle(message);
-        }
-        return message;
+        return receive(new OperationHalted(cause, text, arguments));
     }
 
     default void ifDebug(final Runnable code)
@@ -230,7 +215,7 @@ public interface Transceiver extends NamedObject
     default <T> T illegalArgument(final String text, final Object... arguments)
     {
         final var problem = new Problem(text, arguments);
-        handle(problem);
+        receive(problem);
         problem.throwAsIllegalArgumentException();
         return null;
     }
@@ -238,7 +223,7 @@ public interface Transceiver extends NamedObject
     default <T> T illegalState(final String text, final Object... arguments)
     {
         final var problem = new Problem(text, arguments);
-        handle(problem);
+        receive(problem);
         problem.throwAsIllegalStateException();
         return null;
     }
@@ -246,14 +231,14 @@ public interface Transceiver extends NamedObject
     default <T> T illegalState(final Throwable e, final String text, final Object... arguments)
     {
         final var problem = new Problem(e, text, arguments);
-        handle(problem);
+        receive(problem);
         problem.throwAsIllegalStateException();
         return null;
     }
 
     default Information information(final String text, final Object... arguments)
     {
-        return handle(new Information(text, arguments));
+        return receive(new Information(text, arguments));
     }
 
     @JsonIgnore
@@ -262,72 +247,58 @@ public interface Transceiver extends NamedObject
         return debug().isDebugOn();
     }
 
-    /**
-     * @return True if this transceiver is enabled
-     */
-    @JsonIgnore
-    default boolean isOn()
-    {
-        return true;
-    }
-
     default Narration narrate(final String text, final Object... arguments)
     {
-        return handle(new Narration(text, arguments));
+        return receive(new Narration(text, arguments));
     }
 
-    /**
-     * <b>Not public API</b>
-     * <p>
-     * Functional method that allows the subclass to handle a message given to this receiver via {@link
-     * #handle(Transmittable)}.
-     * </p>
-     */
-    @UmlExcludeMember
-    void onHandle(final Transmittable message);
+    @Override
+    default void onReceive(final Transmittable message)
+    {
+    }
 
     default Problem problem(final String text, final Object... arguments)
     {
-        return handle(new Problem(text, arguments));
+        return receive(new Problem(text, arguments));
     }
 
     default Problem problem(final Frequency maximumFrequency, final String text, final Object... arguments)
     {
-        return (Problem) handle(new Problem(text, arguments).maximumFrequency(maximumFrequency));
+        return (Problem) receive(new Problem(text, arguments).maximumFrequency(maximumFrequency));
     }
 
     default Problem problem(final Frequency maximumFrequency, final Throwable cause, final String text,
                             final Object... arguments)
     {
-        return (Problem) handle(new Problem(cause, text, arguments).maximumFrequency(maximumFrequency));
+        return (Problem) receive(new Problem(cause, text, arguments).maximumFrequency(maximumFrequency));
     }
 
     default Problem problem(final Throwable cause, final String text, final Object... arguments)
     {
-        return handle(new Problem(cause, text, arguments));
+        return receive(new Problem(cause, text, arguments));
     }
 
     default Quibble quibble(final Frequency maximumFrequency, final String text, final Object... arguments)
     {
-        return (Quibble) handle(new Quibble(text, arguments).maximumFrequency(maximumFrequency));
+        return (Quibble) receive(new Quibble(text, arguments).maximumFrequency(maximumFrequency));
     }
 
     default Quibble quibble(final Frequency maximumFrequency, final Throwable cause, final String text,
                             final Object... arguments)
     {
-        return (Quibble) handle(new Quibble(cause, text, arguments).maximumFrequency(maximumFrequency));
+        return (Quibble) receive(new Quibble(cause, text, arguments).maximumFrequency(maximumFrequency));
     }
 
     default Quibble quibble(final String text, final Object... arguments)
     {
-        return handle(new Quibble(text, arguments));
+        return receive(new Quibble(text, arguments));
     }
 
     default Quibble quibble(final Throwable cause, final String text, final Object... arguments)
     {
         if (isDebugOn())
         {
-            return handle(new Quibble(cause, text, arguments));
+            return receive(new Quibble(cause, text, arguments));
         }
         return null;
     }
@@ -336,7 +307,7 @@ public interface Transceiver extends NamedObject
     {
         if (isDebugOn())
         {
-            return handle(new Trace(text, arguments));
+            return receive(new Trace(text, arguments));
         }
         return null;
     }
@@ -345,7 +316,7 @@ public interface Transceiver extends NamedObject
     {
         if (isDebugOn())
         {
-            return handle(new Trace(cause, text, arguments));
+            return receive(new Trace(cause, text, arguments));
         }
         return null;
     }
@@ -354,7 +325,7 @@ public interface Transceiver extends NamedObject
     {
         if (isDebugOn())
         {
-            return (Trace) handle(new Trace(text, arguments).maximumFrequency(maximumFrequency));
+            return (Trace) receive(new Trace(text, arguments).maximumFrequency(maximumFrequency));
         }
         return null;
     }
@@ -364,29 +335,29 @@ public interface Transceiver extends NamedObject
     {
         if (isDebugOn())
         {
-            return (Trace) handle(new Trace(cause, text, arguments).maximumFrequency(maximumFrequency));
+            return (Trace) receive(new Trace(cause, text, arguments).maximumFrequency(maximumFrequency));
         }
         return null;
     }
 
     default Warning warning(final Frequency maximumFrequency, final String text, final Object... arguments)
     {
-        return (Warning) handle(new Warning(text, arguments).maximumFrequency(maximumFrequency));
+        return (Warning) receive(new Warning(text, arguments).maximumFrequency(maximumFrequency));
     }
 
     default Warning warning(final Frequency maximumFrequency, final Throwable cause, final String text,
                             final Object... arguments)
     {
-        return (Warning) handle(new Warning(cause, text, arguments).maximumFrequency(maximumFrequency));
+        return (Warning) receive(new Warning(cause, text, arguments).maximumFrequency(maximumFrequency));
     }
 
     default Warning warning(final String text, final Object... arguments)
     {
-        return handle(new Warning(text, arguments));
+        return receive(new Warning(text, arguments));
     }
 
     default Warning warning(final Throwable cause, final String text, final Object... arguments)
     {
-        return handle(new Warning(cause, text, arguments));
+        return receive(new Warning(cause, text, arguments));
     }
 }

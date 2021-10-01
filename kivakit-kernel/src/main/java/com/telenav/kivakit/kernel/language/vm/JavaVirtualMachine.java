@@ -214,7 +214,7 @@ public class JavaVirtualMachine
             triedToInstrument = true;
 
             // Show virtual machines available if we're debugging
-            if (DEBUG.get().isOn())
+            if (DEBUG.get().isDebugOn())
             {
                 for (final var descriptor : VirtualMachine.list())
                 {

@@ -26,7 +26,6 @@ import com.telenav.kivakit.kernel.language.threading.context.StackTrace;
 import com.telenav.kivakit.kernel.language.threading.status.ReentrancyTracker;
 import com.telenav.kivakit.kernel.language.time.Frequency;
 import com.telenav.kivakit.kernel.language.time.Time;
-import com.telenav.kivakit.kernel.language.types.Classes;
 import com.telenav.kivakit.kernel.logging.Log;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.messaging.Listener;
@@ -35,7 +34,6 @@ import com.telenav.kivakit.kernel.messaging.messages.lifecycle.OperationFailed;
 import com.telenav.kivakit.kernel.messaging.messages.lifecycle.OperationHalted;
 import com.telenav.kivakit.kernel.messaging.messages.lifecycle.OperationStarted;
 import com.telenav.kivakit.kernel.messaging.messages.lifecycle.OperationSucceeded;
-import com.telenav.kivakit.kernel.messaging.messages.status.activity.Activity;
 import com.telenav.kivakit.kernel.messaging.messages.status.Alert;
 import com.telenav.kivakit.kernel.messaging.messages.status.CriticalAlert;
 import com.telenav.kivakit.kernel.messaging.messages.status.Glitch;
@@ -43,6 +41,7 @@ import com.telenav.kivakit.kernel.messaging.messages.status.Information;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.kernel.messaging.messages.status.Trace;
 import com.telenav.kivakit.kernel.messaging.messages.status.Warning;
+import com.telenav.kivakit.kernel.messaging.messages.status.activity.Activity;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageType;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
@@ -76,6 +75,27 @@ public abstract class OperationMessage implements Named, Message
 
     /** This flag can be helpful in detecting infinite recursion of message formatting */
     private static final boolean DETECT_REENTRANCY = false;
+
+    public static Message forName(String name)
+    {
+        return messages.get(name);
+    }
+
+    public static <T extends Message> T newInstance(Listener listener,
+                                                    Class<T> type,
+                                                    String message,
+                                                    Object[] arguments)
+    {
+        try
+        {
+            return type.getConstructor(String.class, Object[].class).newInstance(message, arguments);
+        }
+        catch (Exception e)
+        {
+            listener.problem(e, "Unable to create instance: $", type);
+            return null;
+        }
+    }
 
     public static OperationMessage of(final String name)
     {
@@ -242,12 +262,6 @@ public abstract class OperationMessage implements Named, Message
     }
 
     @Override
-    public String name()
-    {
-        return Classes.simpleName(getClass());
-    }
-
-    @Override
     public Severity severity()
     {
         return Severity.NONE;
@@ -321,6 +335,7 @@ public abstract class OperationMessage implements Named, Message
         if (messages == null)
         {
             messages = new NameMap<>();
+            messages.caseSensitive(true);
         }
         return messages;
     }

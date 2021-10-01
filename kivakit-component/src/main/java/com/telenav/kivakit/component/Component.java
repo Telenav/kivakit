@@ -8,6 +8,7 @@ import com.telenav.kivakit.configuration.settings.deployment.Deployment;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.interfaces.code.Unchecked;
 import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
+import com.telenav.kivakit.kernel.language.paths.PackagePathTrait;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.resource.Resource;
@@ -77,7 +78,7 @@ import com.telenav.kivakit.resource.resources.packaged.PackageResource;
  * @see SettingsTrait
  * @see RegistryTrait
  */
-public interface Component extends Repeater, NamedObject, SettingsTrait, RegistryTrait
+public interface Component extends Repeater, NamedObject, SettingsTrait, RegistryTrait, PackagePathTrait
 {
     /**
      * @return The resource at the given path relative to this component's class

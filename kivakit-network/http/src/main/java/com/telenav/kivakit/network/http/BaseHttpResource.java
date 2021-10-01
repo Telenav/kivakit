@@ -50,10 +50,10 @@ import java.io.InputStream;
  * </p>
  *
  * <ul>
- *     <li>{@link #retrieveContentType()} - A MIME content type</li>
+ *     <li>{@link #httpHeadRequestContentType()} - A MIME content type</li>
  *     <li>{@link #asString()} - The resource content as a string</li>
  *     <li>{@link #encoding()} - A content encoding</li>
- *     <li>{@link #retrieveHeaderField(String)} - An optional header</li>
+ *     <li>{@link #httpHeadRequestHeaderField(String)} - An optional header</li>
  *     <li>{@link #status()} - A status code once the resource has been accessed</li>
  * </ul>
  *
@@ -97,11 +97,50 @@ public abstract class BaseHttpResource extends BaseNetworkResource
     }
 
     /**
+     * Executes the request for this resource and returns the content type from the response header
+     *
+     * @return The content type of this resource
+     */
+    public String contentType()
+    {
+        return responseHeader().get("Content-Type");
+    }
+
+    /**
      * @return The content encoding once the resource has been opened for reading
      */
     public String encoding()
     {
         return contentEncoding;
+    }
+
+    /**
+     * @return The content type, as determined by a Content-CheckType HTTP HEAD request
+     */
+    public String httpHeadRequestContentType()
+    {
+        return httpHeadRequestHeaderField("Content-CheckType");
+    }
+
+    /**
+     * @return The value for the given HTTP header field, as determined by an HTTP HEAD request
+     */
+    public String httpHeadRequestHeaderField(final String fieldName)
+    {
+        final var client = newClient();
+        final var head = new HttpHead(asUri());
+        try
+        {
+            final HttpResponse response = client.execute(head);
+            final var value = response.getFirstHeader(fieldName).getValue();
+            EntityUtils.consume(response.getEntity());
+            return value;
+        }
+        catch (final IOException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -157,36 +196,8 @@ public abstract class BaseHttpResource extends BaseNetworkResource
      */
     public VariableMap<String> responseHeader()
     {
+        executeRequest(newRequest());
         return responseHeader;
-    }
-
-    /**
-     * @return The content type, as determined by a Content-CheckType HTTP HEAD request
-     */
-    public String retrieveContentType()
-    {
-        return retrieveHeaderField("Content-CheckType");
-    }
-
-    /**
-     * @return The value for the given HTTP header field, as determined by an HTTP HEAD request
-     */
-    public String retrieveHeaderField(final String fieldName)
-    {
-        final var client = newClient();
-        final var head = new HttpHead(asUri());
-        try
-        {
-            final HttpResponse response = client.execute(head);
-            final var value = response.getFirstHeader(fieldName).getValue();
-            EntityUtils.consume(response.getEntity());
-            return value;
-        }
-        catch (final IOException e)
-        {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     /**

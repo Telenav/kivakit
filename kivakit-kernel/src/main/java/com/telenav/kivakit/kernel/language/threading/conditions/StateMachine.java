@@ -19,7 +19,6 @@
 package com.telenav.kivakit.kernel.language.threading.conditions;
 
 import com.telenav.kivakit.kernel.interfaces.code.Code;
-import com.telenav.kivakit.kernel.interfaces.messaging.Receiver;
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageThreadSynchronization;
@@ -27,6 +26,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 /**
@@ -89,14 +89,14 @@ public final class StateMachine<State> extends BaseRepeater
     private final StateWatcher<State> watcher;
 
     /** Listener to call when state transitions occur */
-    private final Receiver<State> receiver;
+    private final Consumer<State> receiver;
 
     public StateMachine(final State initial)
     {
         this(initial, null);
     }
 
-    public StateMachine(final State initial, final Receiver<State> receiver)
+    public StateMachine(final State initial, final Consumer<State> receiver)
     {
         at = initial;
         this.receiver = receiver;
@@ -269,7 +269,7 @@ public final class StateMachine<State> extends BaseRepeater
             if (receiver != null)
             {
                 // notify it.
-                receiver.receive(at);
+                receiver.accept(at);
             }
 
             return prior;

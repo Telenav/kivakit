@@ -53,7 +53,7 @@ public interface CompressibleCollection
             final Listener listener,
             final Object root,
             final Method method,
-            final Receiver<CompressionEvent> receiver
+            final Receiver receiver
     )
     {
         return JavaVirtualMachine.local().traceSizeChange(listener, "compress", root, Bytes.megabytes(1), () ->
