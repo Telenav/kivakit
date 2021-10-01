@@ -266,7 +266,15 @@ public class Package implements ResourceFolder
     @Override
     public URI uri()
     {
-        return Classes.resourceUri(package_.packageType(), package_.join("/"));
+        try
+        {
+            return Classes.resourceUri(package_.packageType(), package_.join("/"));
+        }
+        catch (IllegalArgumentException ignored)
+        {
+            // If there is no file in the package, we can't get a URI for the package
+            return null;
+        }
     }
 
     /**

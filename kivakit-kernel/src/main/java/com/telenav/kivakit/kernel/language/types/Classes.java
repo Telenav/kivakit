@@ -138,7 +138,10 @@ public class Classes
         {
             resource = ClassLoader.getSystemClassLoader().getResource(path);
         }
-        Ensure.ensure(resource != null, "Unable to find resource: ${class}:$", base, path);
+        if (resource == null)
+        {
+            Ensure.illegalArgument("Unable to find resource: ${class}:$", base, path);
+        }
         return resource;
     }
 
