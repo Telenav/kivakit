@@ -22,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
 import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.paths.PackagePathed;
 import com.telenav.kivakit.kernel.language.strings.formatting.IndentingStringBuilder;
 import com.telenav.kivakit.kernel.language.threading.context.CodeContext;
 import com.telenav.kivakit.kernel.language.threading.locks.ReadWriteLock;
@@ -88,7 +87,7 @@ import static com.telenav.kivakit.kernel.language.strings.formatting.IndentingSt
  * @see Listener
  */
 @UmlClassDiagram(diagram = DiagramMessageRepeater.class)
-public class Multicaster implements Broadcaster, PackagePathed
+public class Multicaster implements Broadcaster
 {
     private static final Logger LOGGER = new ConsoleLogger();
 
@@ -299,7 +298,7 @@ public class Multicaster implements Broadcaster, PackagePathed
      * {@inheritDoc}
      */
     @Override
-    public void transmit(final Transmittable message)
+    public <M extends Transmittable> M transmit(final M message)
     {
         lock().read(() ->
         {
@@ -344,6 +343,7 @@ public class Multicaster implements Broadcaster, PackagePathed
                 }
             }
         });
+        return message;
     }
 
     private void listenerTree(final IndentingStringBuilder builder)

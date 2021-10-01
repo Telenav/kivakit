@@ -20,15 +20,18 @@ package com.telenav.kivakit.kernel.messaging;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
+import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.strings.Strings;
 import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.kernel.language.threading.context.CodeContext;
 import com.telenav.kivakit.kernel.language.threading.context.StackTrace;
 import com.telenav.kivakit.kernel.language.time.Frequency;
 import com.telenav.kivakit.kernel.language.time.Time;
+import com.telenav.kivakit.kernel.language.types.Classes;
 import com.telenav.kivakit.kernel.messaging.messages.Importance;
 import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
 import com.telenav.kivakit.kernel.messaging.messages.OperationLifecycleMessage;
+import com.telenav.kivakit.kernel.messaging.messages.OperationMessage;
 import com.telenav.kivakit.kernel.messaging.messages.OperationStatusMessage;
 import com.telenav.kivakit.kernel.messaging.messages.Severity;
 import com.telenav.kivakit.kernel.messaging.messages.Triaged;
@@ -54,14 +57,15 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
 /**
  * An interface to retrieve the basic attributes of a message, find out what it means and format it as text. A message's
- * text is unformatted when it is created. The message text and any arguments must be passed to {@link MessageFormatter}
- * to produce a final formatted message, which can be retrieved with {@link #formatted(MessageFormatter.Format)}. This
- * is a useful design because it is cheaper to construct messages if the formatting is delayed until the formatted
- * string is need, for example, when a log message is added to a formatted text log.
+ * text is un-formatted when it is created. The message text and any arguments must be passed to {@link
+ * MessageFormatter} to produce a final formatted message, which can be retrieved with {@link
+ * #formatted(MessageFormatter.Format)}. This is a useful design because it is cheaper to construct messages if the
+ * formatting is delayed until the formatted string is need, for example, when a log message is added to a formatted
+ * text log.
  * <p>
  * <b>Message Attributes</b>
  * <ul>
- *     <li>{@link #text()} - The unformatted text of the message</li>
+ *     <li>{@link #text()} - The un-formatted text of the message</li>
  *     <li>{@link #arguments()} - Arguments that can be applied to the message text when formatting it</li>
  *     <li>{@link #cause()} - Any exception associated with the message</li>
  *     <li>{@link #created()} - The time that the message was created</li>
@@ -116,7 +120,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 @UmlClassDiagram(diagram = DiagramMessageListener.class)
 @UmlExcludeSuperTypes({ AsString.class })
 @UmlRelation(label = "formats with", diagram = DiagramMessaging.class, referent = MessageFormatter.class)
-public interface Message extends Transmittable, Triaged, AsString
+public interface Message extends Transmittable, Triaged, AsString, Named
 {
     /** Static instance of a (stateless) message formatter */
     MessageFormatter FORMATTER = new MessageFormatter();
@@ -130,6 +134,14 @@ public interface Message extends Transmittable, Triaged, AsString
     }
 
     /**
+     * @return The message with the given simple name (Problem, Warning, etc)
+     */
+    static Message forName(String name)
+    {
+        return OperationMessage.forName(name);
+    }
+
+    /**
      * @return The message text formatted with the given arguments
      */
     static String format(final String message, final Object... arguments)
@@ -137,6 +149,12 @@ public interface Message extends Transmittable, Triaged, AsString
         return FORMATTER.format(message, arguments);
     }
 
+    /**
+     * Formats and prints the given message
+     *
+     * @param message The message
+     * @param arguments Any arguments to interpolate
+     */
     static void println(final String message, final Object... arguments)
     {
         System.out.println(format(message, arguments));
@@ -308,6 +326,20 @@ public interface Message extends Transmittable, Triaged, AsString
     }
 
     /**
+     * @return True if the status of this message is worse than the given message
+     */
+    @UmlExcludeMember
+    default <T extends Message> boolean isWorseThan(final Class<T> message)
+    {
+        var instance = Classes.newInstance(Listener.console(), message);
+        if (instance != null)
+        {
+            return isWorseThan(instance.status());
+        }
+        return false;
+    }
+
+    /**
      * @return True if the status of this message is worse than the given value
      */
     @UmlExcludeMember
@@ -317,13 +349,33 @@ public interface Message extends Transmittable, Triaged, AsString
     }
 
     /**
+     * @return True if the status of this message is worse than the given message
+     */
+    @UmlExcludeMember
+    default <T extends Message> boolean isWorseThanOrEqualTo(final Class<T> message)
+    {
+        var instance = Classes.newInstance(Listener.console(), message);
+        if (instance != null)
+        {
+            return isWorseThanOrEqualTo(instance.status());
+        }
+        return false;
+    }
+
+    /**
      * @return The frequency with which this message should be logged or null if the message should always be logged.
      * <p>
-     * NOTE: Message identity is determined by looking at the unformatted message returned by message(). If message()
+     * NOTE: Message identity is determined by looking at the un-formatted message returned by message(). If message()
      * does not return a constant string, a bounded map error may occur as the system attempts to track too many message
      * frequencies.
      */
     Frequency maximumFrequency();
+
+    @Override
+    default String name()
+    {
+        return Classes.simpleName(getClass());
+    }
 
     /**
      * @return The operational status represented by this message, if any

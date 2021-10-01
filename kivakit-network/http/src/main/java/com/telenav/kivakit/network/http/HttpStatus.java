@@ -22,6 +22,10 @@ import com.telenav.kivakit.network.http.project.lexakai.diagrams.DiagramHttp;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static org.apache.http.HttpStatus.SC_BAD_REQUEST;
+import static org.apache.http.HttpStatus.SC_INTERNAL_SERVER_ERROR;
+import static org.apache.http.HttpStatus.SC_UNAUTHORIZED;
+
 /**
  * The status of an HTTP request.
  *
@@ -38,11 +42,34 @@ public class HttpStatus
         this.code = code;
     }
 
+    /**
+     * @return True if this status code is accompanied by an error message
+     */
+    public boolean hasAssociatedErrorMessages()
+    {
+        switch (code)
+        {
+            case SC_INTERNAL_SERVER_ERROR:
+            case SC_BAD_REQUEST:
+            case SC_UNAUTHORIZED:
+                return true;
+
+            default:
+                return false;
+        }
+    }
+
+    /**
+     * @return True if this status code represents request failure
+     */
     public boolean isFailure()
     {
         return !isOkay();
     }
 
+    /**
+     * @return True if this status code represents request success
+     */
     public boolean isOkay()
     {
         return code >= 200 && code <= 300;

@@ -168,17 +168,9 @@ public final class Debug implements Transceiver
     }
 
     @Override
-    public void onHandle(final Transmittable message)
+    public void onReceive(final Transmittable message)
     {
-        transceiver.handle(message);
-    }
-
-    public void println(final Object object)
-    {
-        if (debugOn)
-        {
-            System.out.println(object.toString());
-        }
+        transceiver.receive(message);
     }
 
     /**

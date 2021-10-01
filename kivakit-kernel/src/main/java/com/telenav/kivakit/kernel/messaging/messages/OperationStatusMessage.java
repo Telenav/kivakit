@@ -45,6 +45,11 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramMessageType.class)
 public abstract class OperationStatusMessage extends OperationMessage
 {
+    /**
+     * A hierarchical error code per IETF RFC 7807. For example, "errors/authentication/incorrect-password".
+     */
+    public String code;
+
     protected OperationStatusMessage()
     {
     }
@@ -53,6 +58,17 @@ public abstract class OperationStatusMessage extends OperationMessage
     {
         super(message);
         arguments(arguments);
+    }
+
+    public String code()
+    {
+        return code;
+    }
+
+    public OperationStatusMessage code(final String code)
+    {
+        this.code = code;
+        return this;
     }
 
     @Override

@@ -20,66 +20,107 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 @LexakaiJavadoc(complete = true)
 public interface RepeaterMixin extends Repeater, Mixin
 {
+    /**
+     * {@inheritDoc}
+     */
     @Override
     default void addListener(final Listener listener, final Filter<Transmittable> filter)
     {
         repeater().addListener(listener, filter);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     default void clearListeners()
     {
         repeater().clearListeners();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     default CodeContext debugCodeContext()
     {
         return repeater().debugCodeContext();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     default void debugCodeContext(final CodeContext context)
     {
         repeater().debugCodeContext(context);
     }
 
-    @Override
-    default <T extends Transmittable> T handle(final T message)
-    {
-        return repeater().handle(message);
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     default boolean hasListeners()
     {
         return repeater().hasListeners();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    default boolean isReceiving()
+    {
+        return repeater().isReceiving();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    default boolean isTransmitting()
+    {
+        return repeater().isTransmitting();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     default void messageSource(final Broadcaster parent)
     {
         repeater().messageSource(parent);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     default Broadcaster messageSource()
     {
         return repeater().messageSource();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     default void onMessage(final Message message)
     {
         repeater().onMessage(message);
     }
 
-    @Override
-    default void receive(final Transmittable message)
+    /**
+     * {@inheritDoc}
+     */
+    default <M extends Transmittable> M receive(final M message)
     {
-        repeater().receive(message);
+        return repeater().receive(message);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     default void removeListener(final Listener listener)
     {
@@ -87,6 +128,8 @@ public interface RepeaterMixin extends Repeater, Mixin
     }
 
     /**
+     * <b>Not public API</b>
+     *
      * @return The {@link Repeater} implementation associated with this mixin
      */
     default Repeater repeater()
@@ -94,6 +137,9 @@ public interface RepeaterMixin extends Repeater, Mixin
         return state(RepeaterMixin.class, BaseRepeater::new);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     default void transmit(final Message message)
     {

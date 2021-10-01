@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.interfaces.messaging;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramInterfaceMessaging;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageBroadcaster;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageListener;
@@ -27,21 +28,51 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import java.util.function.Consumer;
 
 /**
- * A receiver of values with similar function to a {@link Consumer}, a sink, a callback or a target. {@link Receiver}s
- * and {@link Transmittable}s are used in the messaging API.
+ * A receiver of  {@link Transmittable} messages with similar function to a {@link Consumer}, a sink, a callback or a
+ * target.
+ *
+ * <p>
+ * If the {@link #isReceiving()} method returns true, then a call to {@link #receive(Transmittable)} will result in a
+ * call to {@link #onReceive(Transmittable)}.
+ * </p>
  *
  * @author jonathanl (shibo)
  * @see Transmittable
  */
-@FunctionalInterface
 @UmlClassDiagram(diagram = DiagramInterfaceMessaging.class)
 @UmlClassDiagram(diagram = DiagramMessageListener.class)
 @UmlClassDiagram(diagram = DiagramMessageBroadcaster.class)
 @UmlRelation(label = "receives", referent = Transmittable.class)
-public interface Receiver<T>
+@FunctionalInterface
+public interface Receiver
 {
     /**
-     * Receives the given value
+     * @return True if this receiver is enabled
      */
-    void receive(T value);
+    @JsonIgnore
+    default boolean isReceiving()
+    {
+        return true;
+    }
+
+    /**
+     * Method that receives a message
+     */
+    void onReceive(final Transmittable message);
+
+    /**
+     * <b>Not public API</b>
+     *
+     * <p>
+     * If this transceiver is enabled, passes the message to {@link #onReceive(Transmittable)}
+     * </p>
+     */
+    default <M extends Transmittable> M receive(final M message)
+    {
+        if (isReceiving())
+        {
+            onReceive(message);
+        }
+        return message;
+    }
 }

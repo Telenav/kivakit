@@ -249,7 +249,7 @@ public abstract class BaseValidator implements Validator
      */
     protected OperationHalted halt(final String message, final Object... parameters)
     {
-        return listener.halt(message, parameters);
+        return listener.halted(message, parameters);
     }
 
     /**

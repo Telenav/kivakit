@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.interfaces.messaging;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.telenav.kivakit.kernel.interfaces.value.Source;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramInterfaceMessaging;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageBroadcaster;
@@ -28,21 +29,51 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import java.util.function.Supplier;
 
 /**
- * A transmitter of values with similar function to a {@link Source}, or a {@link Supplier}. {@link Transmitter}s are
- * used in the messaging framework to transmit {@link Transmittable} values.
+ * A transmitter of values with similar function to a {@link Source}, or a {@link Supplier}.
+ *
+ * <p>
+ * If the {@link #isTransmitting()} method returns true, then a call to {@link #transmit(Transmittable)} will result in
+ * a call to {@link #onTransmit(Transmittable)}.
+ * </p>
  *
  * @author jonathanl (shibo)
  * @see Transmittable
  */
-@FunctionalInterface
 @UmlClassDiagram(diagram = DiagramInterfaceMessaging.class)
 @UmlClassDiagram(diagram = DiagramMessaging.class)
 @UmlClassDiagram(diagram = DiagramMessageBroadcaster.class)
 @UmlRelation(label = "transmits", referent = Transmittable.class)
-public interface Transmitter<T extends Transmittable>
+public interface Transmitter
 {
     /**
-     * Transmits the given value
+     * @return True if this transmitter is enabled
      */
-    void transmit(T value);
+    @JsonIgnore
+    default boolean isTransmitting()
+    {
+        return true;
+    }
+
+    /**
+     * Method that transmits a message
+     */
+    default void onTransmit(final Transmittable message)
+    {
+    }
+
+    /**
+     * <b>Not public API</b>
+     *
+     * <p>
+     * If this transmitter is enabled, passes the message to {@link #onTransmit(Transmittable)}
+     * </p>
+     */
+    default <M extends Transmittable> M transmit(final M message)
+    {
+        if (isTransmitting())
+        {
+            onTransmit(message);
+        }
+        return message;
+    }
 }

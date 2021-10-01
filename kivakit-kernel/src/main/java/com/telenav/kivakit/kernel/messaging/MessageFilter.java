@@ -24,6 +24,8 @@ import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessaging;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
+ * Filters {@link Transmittable} objects down to {@link Message}s only
+ *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessaging.class)

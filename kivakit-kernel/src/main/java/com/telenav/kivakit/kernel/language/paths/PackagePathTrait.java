@@ -26,7 +26,7 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
-public interface PackagePathed
+public interface PackagePathTrait
 {
     default PackagePath packagePath()
     {

@@ -18,10 +18,12 @@
 
 package com.telenav.kivakit.kernel.messaging;
 
+import com.telenav.kivakit.kernel.interfaces.messaging.Receiver;
 import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageRepeater;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.MustBeInvokedByOverriders;
 
 /**
  * A repeater is both a {@link Listener} and a {@link Broadcaster}, receiving messages in {@link
@@ -70,38 +72,40 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see Listener
  */
 @UmlClassDiagram(diagram = DiagramMessageRepeater.class)
-public interface Repeater extends Listener, Broadcaster
+public interface Repeater extends Listener, Broadcaster, Receiver
 {
     /**
-     * <b>Not public API</b>
-     * <p>
-     * Repeaters handle messages by broadcasting them
-     * </p>
+     * True if this repeater is repeating messages it receives
      */
-    @Override
-    default void onHandle(final Transmittable message)
+    default boolean isRepeating()
     {
-        transmit(message);
+        return true;
     }
 
     /**
-     * Handles any received messages by broadcasting them
+     * Handles any received messages by re-broadcasting them
      */
     @Override
+    @MustBeInvokedByOverriders
     default void onReceive(final Transmittable message)
     {
-        transmit(message);
+        if (isRepeating())
+        {
+            transmit(message);
+        }
     }
 
     /**
      * <b>Not public API</b>
+     *
      * <p>
-     * Repeaters broadcast messages they receive
+     * Repeaters re-broadcast messages they receive
      * </p>
      */
     @Override
-    default void receive(final Transmittable message)
+    default <M extends Transmittable> M receive(final M message)
     {
-        transmit(message);
+        onReceive(message);
+        return message;
     }
 }

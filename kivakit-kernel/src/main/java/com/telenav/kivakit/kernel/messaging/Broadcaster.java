@@ -20,7 +20,6 @@ package com.telenav.kivakit.kernel.messaging;
 
 import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
 import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
-import com.telenav.kivakit.kernel.interfaces.messaging.Transmitter;
 import com.telenav.kivakit.kernel.messaging.filters.operators.All;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageBroadcaster;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageRepeater;
@@ -52,7 +51,7 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 @UmlClassDiagram(diagram = DiagramMessageBroadcaster.class)
 @UmlClassDiagram(diagram = DiagramMessageRepeater.class)
 @UmlRelation(label = "transmits", referent = Listener.class, refereeCardinality = "1", referentCardinality = "*")
-public interface Broadcaster extends Transceiver, Transmitter<Transmittable>
+public interface Broadcaster extends Transceiver
 {
     /**
      * Adds a listener to this broadcaster that wants to receive future messages. This is the mirror method of {@link
@@ -94,7 +93,7 @@ public interface Broadcaster extends Transceiver, Transmitter<Transmittable>
      * A broadcaster handles a message by transmitting it
      */
     @Override
-    default void onHandle(final Transmittable message)
+    default void onReceive(final Transmittable message)
     {
         transmit(message);
     }
@@ -136,25 +135,39 @@ public interface Broadcaster extends Transceiver, Transmitter<Transmittable>
 
     /**
      * <b>Not public API</b>
+     *
      * <p>
      * Transmits the given message by calling the subclass
      * </p>
      */
     @Override
-    default void transmit(final Transmittable message)
+    default <M extends Transmittable> M transmit(final M message)
     {
         onTransmitting(message);
         onTransmit(message);
         onTransmitted(message);
+
+        return message;
     }
 
+    /**
+     * <b>Not public API</b>
+     *
+     * <p>
+     * Broadcasts the given message to any listeners in the audience of this broadcaster
+     * </p>
+     */
     default void transmit(final Message message)
     {
         transmit((Transmittable) message);
     }
 
     /**
+     * <b>Not public API</b>
+     *
+     * <p>
      * Broadcasts the given messages to any listeners in the audience of this broadcaster
+     * </p>
      *
      * @param messages The messages to broadcast
      */

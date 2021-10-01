@@ -23,6 +23,7 @@ import com.telenav.kivakit.kernel.language.strings.Paths;
 import com.telenav.kivakit.kernel.messaging.Listener;
 
 import java.io.InputStream;
+import java.lang.reflect.Constructor;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -35,6 +36,19 @@ import java.net.URL;
 @SuppressWarnings("unchecked")
 public class Classes
 {
+    public static <T> Constructor<T> constructor(Listener listener, Class<T> type, Class<?>... arguments)
+    {
+        try
+        {
+            return type.getConstructor(arguments);
+        }
+        catch (Exception e)
+        {
+            listener.problem(e, "Unable to create instance: $", type);
+            return null;
+        }
+    }
+
     public static <T> Class<T> forName(final ClassLoader loader, final String name)
     {
         try
@@ -66,11 +80,11 @@ public class Classes
                 || Double.TYPE.equals(type) || Float.TYPE.equals(type);
     }
 
-    public static <T> T newInstance(Listener listener, Class<T> type)
+    public static <T> T newInstance(Listener listener, Class<T> type, Object... arguments)
     {
         try
         {
-            return type.getConstructor().newInstance();
+            return type.getConstructor().newInstance(arguments);
         }
         catch (Exception e)
         {
@@ -124,7 +138,10 @@ public class Classes
         {
             resource = ClassLoader.getSystemClassLoader().getResource(path);
         }
-        Ensure.ensure(resource != null, "Unable to find resource: ${class}:$", base, path);
+        if (resource == null)
+        {
+            Ensure.illegalArgument("Unable to find resource: ${class}:$", base, path);
+        }
         return resource;
     }
 

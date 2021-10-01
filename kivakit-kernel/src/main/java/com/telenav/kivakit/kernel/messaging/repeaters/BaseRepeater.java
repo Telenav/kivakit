@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.messaging.repeaters;
 
+import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.language.mixin.Mixin;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
@@ -70,14 +71,18 @@ public class BaseRepeater extends Multicaster implements Repeater
     }
 
     @Override
-    public void message(final Message message)
+    public void onMessage(final Message message)
     {
-        onMessage(message);
-        transmit(message);
     }
 
     @Override
-    public void onMessage(final Message message)
+    public void onReceive(final Transmittable message)
     {
+        onMessage((Message) message);
+        
+        if (isRepeating())
+        {
+            transmit(message);
+        }
     }
 }

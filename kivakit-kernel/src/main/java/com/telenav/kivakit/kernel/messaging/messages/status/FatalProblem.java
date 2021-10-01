@@ -70,6 +70,13 @@ public class FatalProblem extends Problem
     }
 
     @Override
+    public FatalProblem code(final String code)
+    {
+        super.code(code);
+        return this;
+    }
+
+    @Override
     public Severity severity()
     {
         return Severity.HIGH;
