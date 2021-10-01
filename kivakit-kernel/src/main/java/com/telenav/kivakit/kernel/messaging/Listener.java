@@ -115,7 +115,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 public interface Listener extends Transceiver
 {
     /**
-     * Listener that does nothing with messages. Useful only when you want to discard output from something
+     * @return A listener that does nothing with messages. Useful only when you want to discard output from something
      */
     static Listener console()
     {
@@ -123,13 +123,16 @@ public interface Listener extends Transceiver
     }
 
     /**
-     * Listener that does nothing with messages. Useful only when you want to discard output from something
+     * @return A listener that does nothing with messages. Useful only when you want to discard output from something
      */
     static Listener none()
     {
         return new NullListener();
     }
 
+    /**
+     * @return A listener that throws exceptions
+     */
     static Listener throwing()
     {
         return new ThrowingListener();
@@ -164,6 +167,11 @@ public interface Listener extends Transceiver
         return broadcaster;
     }
 
+    /**
+     * Functional interface method called when a message is received by this listener
+     *
+     * @param message The message
+     */
     void onMessage(final Message message);
 
     /**

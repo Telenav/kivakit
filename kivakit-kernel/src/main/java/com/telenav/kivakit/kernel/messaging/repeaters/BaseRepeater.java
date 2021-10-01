@@ -79,6 +79,7 @@ public class BaseRepeater extends Multicaster implements Repeater
     public void onReceive(final Transmittable message)
     {
         onMessage((Message) message);
+        
         if (isRepeating())
         {
             transmit(message);

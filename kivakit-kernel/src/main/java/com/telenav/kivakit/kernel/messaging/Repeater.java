@@ -83,7 +83,7 @@ public interface Repeater extends Listener, Broadcaster, Receiver
     }
 
     /**
-     * Handles any received messages by broadcasting them
+     * Handles any received messages by re-broadcasting them
      */
     @Override
     @MustBeInvokedByOverriders
@@ -96,7 +96,11 @@ public interface Repeater extends Listener, Broadcaster, Receiver
     }
 
     /**
+     * <b>Not public API</b>
+     *
+     * <p>
      * Repeaters re-broadcast messages they receive
+     * </p>
      */
     @Override
     default <M extends Transmittable> M receive(final M message)

@@ -135,6 +135,7 @@ public interface Broadcaster extends Transceiver
 
     /**
      * <b>Not public API</b>
+     *
      * <p>
      * Transmits the given message by calling the subclass
      * </p>
@@ -149,13 +150,24 @@ public interface Broadcaster extends Transceiver
         return message;
     }
 
+    /**
+     * <b>Not public API</b>
+     *
+     * <p>
+     * Broadcasts the given message to any listeners in the audience of this broadcaster
+     * </p>
+     */
     default void transmit(final Message message)
     {
         transmit((Transmittable) message);
     }
 
     /**
+     * <b>Not public API</b>
+     *
+     * <p>
      * Broadcasts the given messages to any listeners in the audience of this broadcaster
+     * </p>
      *
      * @param messages The messages to broadcast
      */

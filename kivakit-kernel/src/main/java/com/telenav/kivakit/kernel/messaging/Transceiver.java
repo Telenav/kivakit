@@ -57,13 +57,16 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  * The following convenience methods call {@link #receive(Transmittable)} with the appropriate class of message.
  * </p>
  * <ul>
- *     <li>trace*() - The listener handles a {@link Trace} message</li>
- *     <li>information*() - The listener handles an {@link Information} message</li>
- *     <li>narrate() - The listener handles a {@link Narration} message</li>
- *     <li>warning*() - The listener handles a {@link Warning} message</li>
- *     <li>glitch*() - The listener handles a {@link Glitch} message</li>
+ *     <li>announce*() - The sends a formatted {@link Announcement} message to this {@link Transceiver}</li>
+ *     <li>trace*() - The sends a formatted {@link Trace} message to this {@link Transceiver}</li>
+ *     <li>information*() - The sends a formatted {@link Information} message to this {@link Transceiver}</li>
+ *     <li>narrate() - The sends a formatted {@link Narration} message to this {@link Transceiver}</li>
+ *     <li>warning*() - The sends a formatted {@link Warning} message to this {@link Transceiver}</li>
+ *     <li>glitch*() - The sends a formatted {@link Glitch} message to this {@link Transceiver}/li>
+ *     <li>quibble*() - The sends a formatted {@link Quibble} message to this {@link Transceiver}/li>
  *     <li>problem*() - The listener handles a {@link Problem} message</li>
- *     <li>halt*() - The listener handles an {@link OperationHalted} message</li>
+ *     <li>fatal*() - The sends a formatted {@link FatalProblem} message to this {@link Transceiver}</li>
+ *     <li>halted*() - The sends a formatted {@link OperationHalted} message to this {@link Transceiver}</li>
  * </ul>
  *
  * <p><b>Debugging</b></p>
@@ -114,6 +117,11 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 @UmlNote(text = "Functionality common to transmitters and receivers")
 public interface Transceiver extends NamedObject, Receiver, Transmitter
 {
+    /**
+     * Sends a formatted {@link Announcement} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
     default Announcement announce(final String text, final Object... arguments)
     {
         return receive(new Announcement(text, arguments));
@@ -137,6 +145,8 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     }
 
     /**
+     * <b>Not public API</b>
+     *
      * @return The context of this broadcaster in code
      */
     @UmlExcludeMember
@@ -146,6 +156,8 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     }
 
     /**
+     * <b>Not public API</b>
+     *
      * @param context The context in code
      */
     @UmlExcludeMember
@@ -153,6 +165,9 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     {
     }
 
+    /**
+     * Throws a formatted {@link FatalProblem} message as an {@link IllegalStateException}
+     */
     default <T> T fatal(final String text, final Object... arguments)
     {
         final var problem = new FatalProblem(text, arguments);
@@ -161,6 +176,9 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
         return null;
     }
 
+    /**
+     * Throws a formatted {@link FatalProblem} message as an {@link IllegalStateException}
+     */
     default <T> T fatal(final Throwable cause, final String text, final Object... arguments)
     {
         final var problem = new FatalProblem(cause, text, arguments);
@@ -169,22 +187,42 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
         return null;
     }
 
+    /**
+     * Sends a formatted {@link Glitch} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
     default Glitch glitch(final Frequency maximumFrequency, final String text, final Object... arguments)
     {
         return (Glitch) receive(new Glitch(text, arguments).maximumFrequency(maximumFrequency));
     }
 
+    /**
+     * Sends a formatted {@link Glitch} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
     default Glitch glitch(final Frequency maximumFrequency, final Throwable cause, final String text,
                           final Object... arguments)
     {
         return (Glitch) receive(new Glitch(cause, text, arguments).maximumFrequency(maximumFrequency));
     }
 
+    /**
+     * Sends a formatted {@link Glitch} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
     default Glitch glitch(final String text, final Object... arguments)
     {
         return receive(new Glitch(text, arguments));
     }
 
+    /**
+     * Sends a formatted {@link Glitch} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
     default Glitch glitch(final Throwable cause, final String text, final Object... arguments)
     {
         if (isDebugOn())
@@ -194,16 +232,29 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
         return null;
     }
 
-    default OperationHalted halt(final String text, final Object... arguments)
+    /**
+     * Sends a formatted {@link OperationHalted} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
+    default OperationHalted halted(final String text, final Object... arguments)
     {
         return receive(new OperationHalted(text, arguments));
     }
 
-    default OperationHalted halt(final Throwable cause, final String text, final Object... arguments)
+    /**
+     * Sends a formatted {@link OperationHalted} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
+    default OperationHalted halted(final Throwable cause, final String text, final Object... arguments)
     {
         return receive(new OperationHalted(cause, text, arguments));
     }
 
+    /**
+     * Runs the given code if debug is turned on for this {@link Transceiver}
+     */
     default void ifDebug(final Runnable code)
     {
         if (isDebugOn())
@@ -212,22 +263,31 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
         }
     }
 
-    default <T> T illegalArgument(final String text, final Object... arguments)
+    /**
+     * Throws an {@link IllegalArgumentException} with the given formatted message
+     */
+    default <T> T illegalArgument(final String message, final Object... arguments)
     {
-        final var problem = new Problem(text, arguments);
+        final var problem = new Problem(message, arguments);
         receive(problem);
         problem.throwAsIllegalArgumentException();
         return null;
     }
 
-    default <T> T illegalState(final String text, final Object... arguments)
+    /**
+     * Throws an {@link IllegalStateException} with the given formatted message
+     */
+    default <T> T illegalState(final String message, final Object... arguments)
     {
-        final var problem = new Problem(text, arguments);
+        final var problem = new Problem(message, arguments);
         receive(problem);
         problem.throwAsIllegalStateException();
         return null;
     }
 
+    /**
+     * Throws an {@link IllegalStateException} with the given exception and formatted message
+     */
     default <T> T illegalState(final Throwable e, final String text, final Object... arguments)
     {
         final var problem = new Problem(e, text, arguments);
@@ -236,64 +296,120 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
         return null;
     }
 
+    /**
+     * Sends a formatted {@link Information} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
     default Information information(final String text, final Object... arguments)
     {
         return receive(new Information(text, arguments));
     }
 
+    /**
+     * @return True if debugging is on for this {@link Transceiver}
+     */
     @JsonIgnore
     default boolean isDebugOn()
     {
         return debug().isDebugOn();
     }
 
+    /**
+     * Sends a formatted {@link Narration} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
     default Narration narrate(final String text, final Object... arguments)
     {
         return receive(new Narration(text, arguments));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     default void onReceive(final Transmittable message)
     {
     }
 
+    /**
+     * Sends a formatted {@link Problem} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
     default Problem problem(final String text, final Object... arguments)
     {
         return receive(new Problem(text, arguments));
     }
 
+    /**
+     * Sends a formatted {@link Problem} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
     default Problem problem(final Frequency maximumFrequency, final String text, final Object... arguments)
     {
         return (Problem) receive(new Problem(text, arguments).maximumFrequency(maximumFrequency));
     }
 
+    /**
+     * Sends a formatted {@link Problem} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
     default Problem problem(final Frequency maximumFrequency, final Throwable cause, final String text,
                             final Object... arguments)
     {
         return (Problem) receive(new Problem(cause, text, arguments).maximumFrequency(maximumFrequency));
     }
 
+    /**
+     * Sends a formatted {@link Problem} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
     default Problem problem(final Throwable cause, final String text, final Object... arguments)
     {
         return receive(new Problem(cause, text, arguments));
     }
 
+    /**
+     * Sends a formatted {@link Quibble} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
     default Quibble quibble(final Frequency maximumFrequency, final String text, final Object... arguments)
     {
         return (Quibble) receive(new Quibble(text, arguments).maximumFrequency(maximumFrequency));
     }
 
+    /**
+     * Sends a formatted {@link Quibble} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
     default Quibble quibble(final Frequency maximumFrequency, final Throwable cause, final String text,
                             final Object... arguments)
     {
         return (Quibble) receive(new Quibble(cause, text, arguments).maximumFrequency(maximumFrequency));
     }
 
+    /**
+     * Sends a formatted {@link Quibble} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
     default Quibble quibble(final String text, final Object... arguments)
     {
         return receive(new Quibble(text, arguments));
     }
 
+    /**
+     * Sends a formatted {@link Quibble} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
     default Quibble quibble(final Throwable cause, final String text, final Object... arguments)
     {
         if (isDebugOn())
@@ -303,6 +419,11 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
         return null;
     }
 
+    /**
+     * Sends a formatted {@link Trace} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
     default Trace trace(final String text, final Object... arguments)
     {
         if (isDebugOn())
@@ -312,6 +433,11 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
         return null;
     }
 
+    /**
+     * Sends a formatted {@link Trace} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
     default Trace trace(final Throwable cause, final String text, final Object... arguments)
     {
         if (isDebugOn())
@@ -321,6 +447,11 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
         return null;
     }
 
+    /**
+     * Sends a formatted {@link Trace} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
     default Trace trace(final Frequency maximumFrequency, final String text, final Object... arguments)
     {
         if (isDebugOn())
@@ -330,6 +461,11 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
         return null;
     }
 
+    /**
+     * Sends a formatted {@link Trace} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
     default Trace trace(final Frequency maximumFrequency, final Throwable cause, final String text,
                         final Object... arguments)
     {
@@ -340,22 +476,42 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
         return null;
     }
 
+    /**
+     * Sends a formatted {@link Warning} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
     default Warning warning(final Frequency maximumFrequency, final String text, final Object... arguments)
     {
         return (Warning) receive(new Warning(text, arguments).maximumFrequency(maximumFrequency));
     }
 
+    /**
+     * Sends a formatted {@link Warning} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
     default Warning warning(final Frequency maximumFrequency, final Throwable cause, final String text,
                             final Object... arguments)
     {
         return (Warning) receive(new Warning(cause, text, arguments).maximumFrequency(maximumFrequency));
     }
 
+    /**
+     * Sends a formatted {@link Warning} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
     default Warning warning(final String text, final Object... arguments)
     {
         return receive(new Warning(text, arguments));
     }
 
+    /**
+     * Sends a formatted {@link Warning} message to this {@link Transceiver}
+     *
+     * @return The message
+     */
     default Warning warning(final Throwable cause, final String text, final Object... arguments)
     {
         return receive(new Warning(cause, text, arguments));

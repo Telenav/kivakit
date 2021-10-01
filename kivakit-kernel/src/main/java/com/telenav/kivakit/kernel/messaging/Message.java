@@ -133,6 +133,9 @@ public interface Message extends Transmittable, Triaged, AsString, Named
         return Strings.replaceAll(text, "$", "$$");
     }
 
+    /**
+     * @return The message with the given simple name (Problem, Warning, etc)
+     */
     static Message forName(String name)
     {
         return OperationMessage.forName(name);
@@ -146,6 +149,12 @@ public interface Message extends Transmittable, Triaged, AsString, Named
         return FORMATTER.format(message, arguments);
     }
 
+    /**
+     * Formats and prints the given message
+     *
+     * @param message The message
+     * @param arguments Any arguments to interpolate
+     */
     static void println(final String message, final Object... arguments)
     {
         System.out.println(format(message, arguments));

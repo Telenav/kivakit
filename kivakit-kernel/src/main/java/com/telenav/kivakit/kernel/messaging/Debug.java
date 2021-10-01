@@ -173,14 +173,6 @@ public final class Debug implements Transceiver
         transceiver.receive(message);
     }
 
-    public void println(final Object object)
-    {
-        if (debugOn)
-        {
-            System.out.println(object.toString());
-        }
-    }
-
     /**
      * @return Boolean.TRUE if the class is enabled by KIVAKIT_DEBUG, Boolean.FALSE if it is explicitly disabled and
      * null if the class is simply available for enabling.

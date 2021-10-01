@@ -62,7 +62,11 @@ public interface Transmitter
     }
 
     /**
+     * <b>Not public API</b>
+     *
+     * <p>
      * If this transmitter is enabled, passes the message to {@link #onTransmit(Transmittable)}
+     * </p>
      */
     default <M extends Transmittable> M transmit(final M message)
     {
