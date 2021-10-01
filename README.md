@@ -164,7 +164,7 @@ The [**kivakit-examples**](https://github.com/Telenav/kivakit-examples) project 
 
 ### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; <img src="https://www.kivakit.org/images/bargraph-32.png" srcset="https://www.kivakit.org/images/bargraph-32-2x.png 2x"/>
 
-&nbsp; <img src="https://www.kivakit.org/images/meter-100-96.png" srcset="https://www.kivakit.org/images/meter-100-96-2x.png 2x"/>
+&nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-application**](kivakit-application/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-collections**](kivakit-collections/README.md)  

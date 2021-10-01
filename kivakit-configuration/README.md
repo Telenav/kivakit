@@ -73,7 +73,7 @@ Details on how to use the *kivakit-core configuration* API are available in the 
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 94.4%.  
+Javadoc coverage for this project is 93.1%.  
   
 &nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
 
@@ -92,16 +92,25 @@ Javadoc coverage for this project is 94.4%.
 | [*Entry.Identifier*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/settings/Entry.Identifier.html) |  |  
 | [*InstanceIdentifier*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/lookup/InstanceIdentifier.html) |  |  
 | [*Registry*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/lookup/Registry.html) | Example |  
+| | RegistryTrait |  
 | [*RegistryKey*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/lookup/RegistryKey.html) |  |  
+| [*RegistryTrait*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/lookup/RegistryTrait.html) | Register methods |  
+| | Lookup methods |  
+| | Require methods |  
 | [*Settings*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/settings/Settings.html) | Locating Configurations with the Global Registry |  
 | | Loading Configurations as DeploymentSets |  
+| | Component Settings |  
 | | Global Settings |  
+| | SettingsTrait |  
 | | Overriding Settings from the Command Line |  
 | | Settings Registry Instances |  
 | | Properties File Format |  
 | | How Settings Are Located |  
 | [*SettingsFolder*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/settings/SettingsFolder.html) |  |  
 | [*SettingsPackage*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/settings/SettingsPackage.html) |  |  
+| [*SettingsTrait*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.configuration/com/telenav/kivakit/configuration/settings/SettingsTrait.html) | Register methods |  
+| | Lookup methods |  
+| | Require methods |  
 
 [//]: # (start-user-text)
 

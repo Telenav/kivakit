@@ -81,9 +81,9 @@ browse the [**Javadoc**](#javadoc).
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 98.2%.  
+Javadoc coverage for this project is 88.3%.  
   
-&nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-100-96.png" srcset="https://www.kivakit.org/images/meter-100-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
 
 
 
@@ -96,6 +96,7 @@ Javadoc coverage for this project is 98.2%.
 | | Important Note: Project Initialization |  
 | | Startup |  
 | [*Application.Identifier*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/Application.Identifier.html) |  |  
+| [*Application.State*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/Application.State.html) |  |  
 | [*ApplicationProject*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/ApplicationProject.html) |  |  
 | [*Server*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.application/com/telenav/kivakit/application/Server.html) |  |  
 

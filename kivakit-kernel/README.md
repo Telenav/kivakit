@@ -170,6 +170,7 @@ The major feature areas are listed here, each having its own documentation:
 [*com.telenav.kivakit.kernel.interfaces.naming*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-kernel/documentation/diagrams/com.telenav.kivakit.kernel.interfaces.naming.svg)  
 [*com.telenav.kivakit.kernel.interfaces.numeric*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-kernel/documentation/diagrams/com.telenav.kivakit.kernel.interfaces.numeric.svg)  
 [*com.telenav.kivakit.kernel.interfaces.string*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-kernel/documentation/diagrams/com.telenav.kivakit.kernel.interfaces.string.svg)  
+[*com.telenav.kivakit.kernel.interfaces.time*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-kernel/documentation/diagrams/com.telenav.kivakit.kernel.interfaces.time.svg)  
 [*com.telenav.kivakit.kernel.interfaces.value*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-kernel/documentation/diagrams/com.telenav.kivakit.kernel.interfaces.value.svg)  
 [*com.telenav.kivakit.kernel.language.bits*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-kernel/documentation/diagrams/com.telenav.kivakit.kernel.language.bits.svg)  
 [*com.telenav.kivakit.kernel.language.collections*](https://www.kivakit.org/1.1.0-SNAPSHOT/lexakai/kivakit/kivakit-kernel/documentation/diagrams/com.telenav.kivakit.kernel.language.collections.svg)  
@@ -253,7 +254,7 @@ The major feature areas are listed here, each having its own documentation:
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 73.0%.  
+Javadoc coverage for this project is 72.6%.  
   
 &nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-70-96.png" srcset="https://www.kivakit.org/images/meter-70-96-2x.png 2x"/>
 
@@ -268,6 +269,7 @@ The following significant classes are undocumented:
 - ColumnarLogFormatter  
 - ConcurrentObjectMap  
 - Failure  
+- Field  
 - HumanizedLocalDateTimeConverter  
 - JavaVirtualMachineHealth  
 - Level  
@@ -360,6 +362,7 @@ The following significant classes are undocumented:
 | [*CallStack.Proximity*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/threading/context/CallStack.Proximity.html) |  |  
 | [*Callback*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/interfaces/code/Callback.html) |  |  
 | [*CaseFormat*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/strings/CaseFormat.html) |  |  
+| [*ChangedAt*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/interfaces/time/ChangedAt.html) |  |  
 | [*Character*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/patterns/character/Character.html) |  |  
 | [*CharacterClass*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/patterns/character/CharacterClass.html) |  |  
 | [*ClassConverter*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/data/conversion/string/language/ClassConverter.html) |  |  
@@ -399,6 +402,7 @@ The following significant classes are undocumented:
 | [*CountMap*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/collections/map/count/CountMap.html) |  |  
 | [*Countable*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/interfaces/numeric/Countable.html) |  |  
 | [*CountryIsoCode*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/locales/CountryIsoCode.html) |  |  
+| [*CreatedAt*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/interfaces/time/CreatedAt.html) |  |  
 | [*CriticalAlert*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/messaging/messages/status/CriticalAlert.html) |  |  
 | [*DateTimeConverter*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/time/conversion/converters/DateTimeConverter.html) |  |  
 | [*DayOfWeek*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/time/DayOfWeek.html) |  |  
@@ -558,6 +562,7 @@ The following significant classes are undocumented:
 | [*Maximizable*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/interfaces/numeric/Maximizable.html) |  |  
 | [*Maximum*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/values/count/Maximum.html) |  |  
 | [*Maximum.Converter*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/values/count/Maximum.Converter.html) |  |  
+| [*Member*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/reflection/Member.html) |  |  
 | [*Meridiem*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/time/Meridiem.html) |  |  
 | [*Message*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/messaging/Message.html) |  |  
 | [*Message.OperationStatus*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/messaging/Message.OperationStatus.html) |  |  
@@ -580,7 +585,7 @@ The following significant classes are undocumented:
 | [*MixinState*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/mixin/MixinState.html) |  |  
 | [*MixinState.MixinKey*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/mixin/MixinState.MixinKey.html) |  |  
 | [*ModelListener*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/interfaces/model/ModelListener.html) |  |  
-| [*ModificationTimestamped*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/time/ModificationTimestamped.html) |  |  
+| [*Modifiable*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/interfaces/time/Modifiable.html) |  |  
 | [*ModuleResource*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/modules/ModuleResource.html) | NOTE |  
 | [*Modules*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/modules/Modules.html) |  |  
 | [*Monitor*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/threading/locks/Monitor.html) |  |  
@@ -634,7 +639,7 @@ The following significant classes are undocumented:
 | [*PackagePath*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/paths/PackagePath.html) | Parsing |  
 | | Factories |  
 | | Examples |  
-| [*PackagePathed*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/paths/PackagePathed.html) |  |  
+| [*PackagePathTrait*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/paths/PackagePathTrait.html) |  |  
 | [*Packages*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/strings/Packages.html) |  |  
 | [*Pair*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/objects/Pair.html) |  |  
 | [*Parenthesized*](https://www.kivakit.org/1.1.0-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/patterns/Parenthesized.html) |  |  
