@@ -86,7 +86,7 @@ public class FileSystemServiceLoader
         }
 
         // Couldn't find an applicable server.
-        return fail("No file system service understands '$'", path);
+        return fail("No filesystem service understands '$'", path);
     }
 
     private static synchronized List<FileSystemService> services()

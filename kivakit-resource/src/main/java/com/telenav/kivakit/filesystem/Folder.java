@@ -833,7 +833,9 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
 
     public boolean isEmpty()
     {
-        return exists() && files().isEmpty() && folders().isEmpty();
+        return exists()
+                && files().isEmpty()
+                && folders().isEmpty();
     }
 
     public boolean isFolder()
@@ -854,8 +856,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
 
     public boolean isRemote()
     {
-        final var scheme = path().scheme();
-        return "hdfs".equalsIgnoreCase(scheme) || "s3".equalsIgnoreCase(scheme);
+        return folder().isRemote();
     }
 
     public Boolean isWritable()

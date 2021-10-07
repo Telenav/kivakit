@@ -18,9 +18,10 @@
 
 package com.telenav.kivakit.resource.path;
 
-import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.filesystem.Folder;
+import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.vm.OperatingSystem;
+import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.test.UnitTest;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
@@ -166,7 +167,7 @@ public class FilePathTest extends UnitTest
     public void testScheme()
     {
         final var path = FilePath.parseFilePath("hdfs://192.168.0.1/user/jonathanl/test.txt");
-        ensureEqual("hdfs", path.scheme());
+        ensureEqual(path.schemes(), StringList.stringList("hdfs"));
     }
 
     @Test

@@ -40,7 +40,7 @@ import java.util.regex.Pattern;
  * <p><b>String Values</b></p>
  *
  * <ul>
- *     <li>{@link #asContractedString(int)} - This path as a contracted string of the given maximum length </li>
+ *     <li>{@link #asContraction(int)} - This path as a contracted string of the given maximum length </li>
  *     <li>{@link #asString()} - This path as a string</li>
  *     <li>{@link #asJavaPath()} - This path as a {@link java.nio.file.Path}</li>
  *     <li>{@link #separator()} - The separator string for this path, by default this is a forward slash</li>
@@ -54,7 +54,6 @@ import java.util.regex.Pattern;
  * <p><b>Parsing</b></p>
  *
  * <ul>
- *     <li>{@link #parsePackageStringPath(String)} - A string path for the given Java package path</li>
  *     <li>{@link #parseStringPath(String, String)} - A string path for the given string and separator</li>
  *     <li>{@link #parseStringPath(String, String, String)} - A string for the given root pattern, string and separator</li>
  * </ul>
@@ -73,14 +72,6 @@ import java.util.regex.Pattern;
 public class StringPath extends Path<String>
 {
     private static final Map<String, Pattern> patterns = new HashMap<>();
-
-    /**
-     * @return A dot separated Java-style package path
-     */
-    public static StringPath parsePackageStringPath(final String path)
-    {
-        return parseStringPath(path, "\\.");
-    }
 
     /**
      * @param path The path to parse
@@ -160,7 +151,7 @@ public class StringPath extends Path<String>
         return new StringPath(root == null ? null : root.toString(), elements);
     }
 
-    /** By default paths are separated by slashes */
+    /** By default, paths are separated by slashes */
     private String separator = "/";
 
     protected StringPath(final List<String> elements)
@@ -183,7 +174,7 @@ public class StringPath extends Path<String>
      * @return A contraction of this path as a string. Middle elements are removed until the length is less than the
      * given maximum length.
      */
-    public String asContractedString(final int maximumLength)
+    public String asContraction(final int maximumLength)
     {
         final int size = size();
         if (size >= 3)
@@ -253,10 +244,10 @@ public class StringPath extends Path<String>
     /**
      * @return This path joined by the given separator
      */
-    public String join(final String separator)
+    public final String join(final String separator)
     {
         final var list = new StringList();
-        list.addAll(this);
+        list.addAll(super.elements());
         final var root = rootElement();
         return Strings.notNull(root) + list.join(separator);
     }

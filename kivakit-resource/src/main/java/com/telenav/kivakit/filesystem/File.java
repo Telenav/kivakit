@@ -118,7 +118,6 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
  * <p><b>Functional Methods</b></p>
  *
  * <ul>
- *     <li>{@link #expanded(VariableMap)}</li>
  *     <li>{@link #withBaseName(String)}</li>
  *     <li>{@link #withCharset(Charset)}</li>
  *     <li>{@link #withCodec(Codec)}</li>
@@ -247,8 +246,27 @@ public class File extends BaseWritableResource implements FileSystemObject
         return fileSwitchParser("output", "The output file to target");
     }
 
+    public static File parse(final String path, VariableMap<String> variables)
+    {
+        return parse(variables.expand(path));
+    }
+
     public static File parse(final String path)
     {
+        // If there is a KivaKit scheme, like "s3", "hdfs" or "java",
+        var scheme = Paths.head(path, ":");
+        if (scheme != null)
+        {
+            // parse the rest of the path into a FilePath,
+            var filePath = FilePath.parseFilePath(Paths.tail(path, ":"));
+
+            // then prepend the KivaKit scheme to the list of schemes in the parsed FilePath,
+            final var schemes = filePath.schemes().copy().prepend(scheme);
+
+            // and create the file.
+            return File.of(filePath.withSchemes(schemes));
+        }
+
         return File.of(FilePath.parseFilePath(path));
     }
 
@@ -388,7 +406,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * Reports a validation failure through {@link Ensure#fail()} if this file is not readable. By default failure
+     * Reports a validation failure through {@link Ensure#fail()} if this file is not readable. By default, failure
      * throws a {@link ValidationFailure} exception.
      */
     public File ensureReadable()
@@ -398,7 +416,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * Reports a validation failure through {@link Ensure#fail()} if this file is not writable. By default failure
+     * Reports a validation failure through {@link Ensure#fail()} if this file is not writable. By default, failure
      * throws a {@link ValidationFailure} exception.
      */
     public File ensureWritable()
@@ -434,22 +452,6 @@ public class File extends BaseWritableResource implements FileSystemObject
     public boolean exists()
     {
         return service.exists();
-    }
-
-    /**
-     * Expands the path of this file with the given variables. For example:
-     * <pre>
-     * File.parse("data/${project-version}/data.txt")
-     *     .withVariables(properties())
-     * </pre>
-     * Might resolve to a file with the path <i>data/1.0.7/data.txt</i>.
-     *
-     * @return This file with the given variables interpolated into the path.
-     */
-    @UmlExcludeMember
-    public File expanded(final VariableMap<?> variables)
-    {
-        return File.parse(variables.expand(toString()));
     }
 
     @Override
@@ -546,7 +548,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     /**
-     * Materializes this file: if it file is remote, it is copied to the local filesystem and that file is returned.
+     * Materializes this file: if the file is remote, it is copied to the local filesystem and that file is returned.
      * Materialization is necessary because some files, such as zip and JAR archives cannot be accessed as resources
      * since they are <i>random access</i>. It is necessary to materialize such files before accessing them. Another
      * reason to materialize a file is to improve performance if a file is to be read more than once.
@@ -612,6 +614,18 @@ public class File extends BaseWritableResource implements FileSystemObject
     public FilePath path()
     {
         return service.path();
+    }
+
+    @Override
+    public File print(final String text)
+    {
+        return (File) super.print(text);
+    }
+
+    @Override
+    public File println(final String text)
+    {
+        return (File) super.println(text);
     }
 
     /**

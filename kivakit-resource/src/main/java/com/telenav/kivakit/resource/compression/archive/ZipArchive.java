@@ -25,6 +25,7 @@ import com.telenav.kivakit.kernel.interfaces.code.Unchecked;
 import com.telenav.kivakit.kernel.interfaces.io.ByteSized;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.language.io.IO;
+import com.telenav.kivakit.kernel.language.paths.Nio;
 import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.kernel.language.progress.reporters.Progress;
 import com.telenav.kivakit.kernel.language.values.count.Bytes;
@@ -32,6 +33,7 @@ import com.telenav.kivakit.kernel.language.values.count.MutableCount;
 import com.telenav.kivakit.kernel.language.values.version.VersionedObject;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourceArchive;
 import com.telenav.kivakit.serialization.core.SerializationSession;
@@ -108,7 +110,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
     /**
      * @return True if the resource is a zip archive
      */
-    public static boolean is(final File file)
+    public static boolean is(Listener listener, final File file)
     {
         if (file.isRemote())
         {
@@ -118,7 +120,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
         {
             if (file.exists())
             {
-                final var zip = open(file, ProgressReporter.NULL, READ);
+                final var zip = open(listener, file, ProgressReporter.NULL, READ);
                 if (zip != null)
                 {
                     zip.close();
@@ -129,7 +131,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
         return false;
     }
 
-    public static ZipArchive open(final File file, final ProgressReporter reporter, final Mode mode)
+    public static ZipArchive open(Listener listener, final File file, final ProgressReporter reporter, final Mode mode)
     {
         if (file.isRemote())
         {
@@ -137,7 +139,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
         }
         else
         {
-            final var filesystem = filesystem(file, mode);
+            final var filesystem = filesystem(listener, file, mode);
             if (filesystem != null)
             {
                 final var zip = new ZipArchive(filesystem, reporter, file);
@@ -194,6 +196,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
     @Override
     public synchronized void close()
     {
+        Nio.close(filesystem);
         IO.close(filesystem);
         filesystem = null;
     }
@@ -225,7 +228,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
         final var path = Unchecked.of(() -> filesystem.getPath(pathname)).orNull();
         if (path != null)
         {
-            return new ZipEntry(this, path);
+            return new ZipEntry(filesystem, path);
         }
         LOGGER.warning("Couldn't find zip entry '$'", pathname);
         return null;
@@ -249,7 +252,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
         final var files = Unchecked.of(() -> Files.walk(filesystem.getPath("/"))).orNull();
         return files == null ? null : files
                 .filter(path -> !Files.isDirectory(path))
-                .map(path -> new ZipEntry(this, path))
+                .map(path -> new ZipEntry(filesystem, path))
                 .iterator();
     }
 
@@ -295,7 +298,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
      * @param entryName The entry name
      * @param resource The resource to save
      */
-    public void save(final String entryName, final Resource resource)
+    public ZipArchive save(final String entryName, final Resource resource)
     {
         saveEntry(entryName, output ->
         {
@@ -303,6 +306,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
             IO.copy(input, output);
             IO.close(input);
         });
+        return this;
     }
 
     /**
@@ -366,7 +370,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
         return file.path().toString();
     }
 
-    private static FileSystem filesystem(final File file, final Mode mode)
+    private static FileSystem filesystem(Listener listener, final File file, final Mode mode)
     {
         final var fileUri = file.asJavaFile().toURI();
         final var uri = URI.create("jar:" + fileUri);
@@ -376,7 +380,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
             {
                 final var environment = new VariableMap<String>();
                 environment.put("create", "true");
-                return Unchecked.of(() -> FileSystems.newFileSystem(uri, environment)).orNull();
+                return Unchecked.of(() -> Nio.filesystem(listener, uri, environment)).orNull();
             }
 
             case READ:

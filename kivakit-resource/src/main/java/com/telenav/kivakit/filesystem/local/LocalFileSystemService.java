@@ -23,6 +23,7 @@ import com.telenav.kivakit.filesystem.spi.DiskService;
 import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.filesystem.spi.FileSystemService;
 import com.telenav.kivakit.filesystem.spi.FolderService;
+import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.strings.Strings;
 import com.telenav.kivakit.resource.path.FilePath;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemService;
@@ -50,10 +51,16 @@ public class LocalFileSystemService implements FileSystemService
     @Override
     public boolean accepts(final FilePath path)
     {
+        if (path.schemes().equals(StringList.stringList("file")))
+        {
+            return true;
+        }
+
         if (path.hasScheme())
         {
             return false;
         }
+
         try
         {
             Paths.get(path.toString());
@@ -87,8 +94,9 @@ public class LocalFileSystemService implements FileSystemService
     {
         if (path.startsWith("~"))
         {
-            return FilePath.parseFilePath(Strings.replace(path.toString(), 0, 1, Folder.userHome().toString()));
+            return FilePath.parseFilePath(Strings.replace(path.toString(), 0, 1,
+                    Folder.userHome().toString())).withoutSchemes();
         }
-        return path;
+        return path.withoutSchemes();
     }
 }

@@ -35,7 +35,7 @@ public class PackageFolderTest extends UnitTest
         {
             final var folder = new Package(PackagePath.packagePath(getClass()));
             int textFiles = 0;
-            for (final var ignored : folder.resources(Extension.TXT::matches))
+            for (final var ignored : folder.resources(Extension.TXT::ends))
             {
                 textFiles++;
             }

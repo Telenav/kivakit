@@ -108,7 +108,7 @@ public interface FolderService extends FileSystemObjectService
     /**
      * @return The folders in this folder
      */
-    Iterable<FolderService> folders();
+    List<FolderService> folders();
 
     /**
      * @return The folders in this folder that match the matcher
@@ -133,7 +133,7 @@ public interface FolderService extends FileSystemObjectService
 
     default boolean hasSubFolders()
     {
-        return exists() && folders().iterator().hasNext();
+        return !folders().isEmpty();
     }
 
     /**

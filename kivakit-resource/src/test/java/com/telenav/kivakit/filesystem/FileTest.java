@@ -47,10 +47,10 @@ public class FileTest extends UnitTest
     @Test
     public void testWithVariables()
     {
-        final var test = File.parse("foo/bar/${garply}/banana.txt");
         final var variables = new VariableMap<String>();
         variables.add("garply", "baz");
-        ensureEqual(File.parse("foo/bar/baz/banana.txt"), test.expanded(variables));
+        final var test = File.parse("foo/bar/${garply}/banana.txt", variables);
+        ensureEqual(File.parse("foo/bar/baz/banana.txt"), test);
     }
 
     @Test

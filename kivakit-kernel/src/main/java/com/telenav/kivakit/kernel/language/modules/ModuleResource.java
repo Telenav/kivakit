@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.modules;
 
+import com.telenav.kivakit.kernel.language.paths.Nio;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.kernel.language.paths.StringPath;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
@@ -32,11 +33,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.io.IOException;
 import java.lang.module.ModuleReference;
 import java.net.URI;
-import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * A resource in a module having the following attributes. {@link ModuleResource}s can be found with the methods in
@@ -64,8 +62,6 @@ import java.util.Map;
 public class ModuleResource
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
-
-    private static final Map<URI, Boolean> fileSystemCreated = new HashMap<>();
 
     public static ModuleResource moduleResource(final ModuleReference reference, final URI uri)
     {
@@ -103,21 +99,9 @@ public class ModuleResource
                 case "jar":
                 case "zip":
                 {
-                    try
-                    {
-                        if (fileSystemCreated.get(location.get()) == null)
-                        {
-                            FileSystems.newFileSystem(uri, new HashMap<>());
-                            fileSystemCreated.put(location.get(), Boolean.TRUE);
-                        }
-                        final var _package = PackagePath.packagePath(StringPath.stringPath(uri));
-                        return new ModuleResource(_package, uri);
-                    }
-                    catch (final IOException e)
-                    {
-                        LOGGER.problem("Could not create jar filesystem for $", uri);
-                    }
-                    break;
+                    Nio.filesystem(LOGGER, uri);
+                    final var _package = PackagePath.packagePath(StringPath.stringPath(uri));
+                    return new ModuleResource(_package, uri);
                 }
 
                 case "jrt":

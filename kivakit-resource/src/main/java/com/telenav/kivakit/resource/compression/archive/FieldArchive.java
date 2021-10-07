@@ -24,9 +24,9 @@ import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.language.objects.Lazy;
 import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.kernel.language.reflection.Type;
-import com.telenav.kivakit.kernel.language.reflection.property.Property;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.language.reflection.property.NamingConvention;
+import com.telenav.kivakit.kernel.language.reflection.property.Property;
 import com.telenav.kivakit.kernel.language.strings.CaseFormat;
 import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
 import com.telenav.kivakit.kernel.language.values.version.Version;
@@ -372,7 +372,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
     {
         if (zip == null)
         {
-            zip = ZipArchive.open(file, reporter, mode);
+            zip = ZipArchive.open(this, file, reporter, mode);
         }
         return zip;
     }

@@ -115,6 +115,14 @@ public interface FileSystemObjectService extends ByteSized, ChangedAt, CreatedAt
     }
 
     /**
+     * @return True if this folder is remote
+     */
+    default boolean isRemote()
+    {
+        return false;
+    }
+
+    /**
      * @return The parent of this folder or null if none exists
      */
     FolderService parent();

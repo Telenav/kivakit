@@ -19,6 +19,7 @@
 package com.telenav.kivakit.network.core;
 
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
+import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.paths.Path;
 import com.telenav.kivakit.kernel.language.paths.StringPath;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
@@ -133,7 +134,7 @@ public class NetworkPath extends FilePath
 
     protected NetworkPath(final Port port, final String root, final List<String> elements)
     {
-        super(port.protocol().name(), root, elements);
+        super(StringList.stringList(port.protocol().name()), root, elements);
         this.port = port;
     }
 
@@ -361,9 +362,9 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withoutScheme()
+    public NetworkPath withoutSchemes()
     {
-        return (NetworkPath) super.withoutScheme();
+        return (NetworkPath) super.withoutSchemes();
     }
 
     /**
