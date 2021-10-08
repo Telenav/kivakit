@@ -106,6 +106,18 @@ public interface Component extends Repeater, NamedObject, SettingsTrait, Registr
         }
     }
 
+    default <T> T tryCatchDefault(Unchecked<T> code, T defaultValue)
+    {
+        try
+        {
+            return code.run();
+        }
+        catch (Exception e)
+        {
+            return defaultValue;
+        }
+    }
+
     default <T> T tryCatchThrow(Unchecked<T> code, String message, Object... arguments)
     {
         try

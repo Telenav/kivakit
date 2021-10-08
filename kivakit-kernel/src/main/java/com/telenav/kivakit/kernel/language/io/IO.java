@@ -59,7 +59,11 @@ public class IO
         {
             return (BufferedInputStream) in;
         }
-        return new BufferedInputStream(in);
+        if (in != null)
+        {
+            return new BufferedInputStream(in);
+        }
+        return null;
     }
 
     public static BufferedOutputStream buffer(final OutputStream out)
@@ -68,7 +72,11 @@ public class IO
         {
             return (BufferedOutputStream) out;
         }
-        return new BufferedOutputStream(out);
+        if (out != null)
+        {
+            return new BufferedOutputStream(out);
+        }
+        return null;
     }
 
     /**

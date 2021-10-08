@@ -84,7 +84,7 @@ public class SettingsPackage extends Settings
         final var _package = Package.of(path);
         trace("Loading resources from $", _package);
         final Set<Entry> entries = new HashSet<>();
-        for (final var resource : _package.resources(Extension.PROPERTIES::matches))
+        for (final var resource : _package.resources(Extension.PROPERTIES::ends))
         {
             // load the properties file
             final var configuration = internalLoadConfiguration(resource);

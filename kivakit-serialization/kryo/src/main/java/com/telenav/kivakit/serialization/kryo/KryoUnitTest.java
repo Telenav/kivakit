@@ -33,8 +33,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 /**
- * Adds Kryo serialization testing to the {@link UnitTest} base class. Serizability of objects can be tested with {@link
- * #serializationTest(Object)} and serialization sessions can be specialized by {@link #kryoTypes()} and {@link
+ * Adds Kryo serialization testing to the {@link UnitTest} base class. Serialization of objects can be tested with
+ * {@link #serializationTest(Object)} and serialization sessions can be specialized by {@link #kryoTypes()} and {@link
  * #sessionFactory()}.
  *
  * @author jonathanl (shibo)

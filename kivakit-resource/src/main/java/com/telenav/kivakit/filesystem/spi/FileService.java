@@ -40,6 +40,12 @@ public interface FileService extends FileSystemObjectService, WritableResource
         return null;
     }
 
+    @Override
+    default boolean isRemote()
+    {
+        return FileSystemObjectService.super.isRemote();
+    }
+
     /**
      * @param that The file to rename to
      * @return True if the file was renamed

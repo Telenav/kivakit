@@ -41,8 +41,8 @@ import java.util.List;
 import java.util.function.Function;
 
 /**
- * A path to a resource of any kind. By default the separator character for a resource is forward slash. But in the case
- * of some file paths this may be overridden. For example, in {@link FilePath}.
+ * A path to a resource of any kind. By default, the separator character for a resource is forward slash. But in the
+ * case of some file paths this may be overridden. For example, in {@link FilePath}.
  * <p>
  * This class contains numerous methods which down-cast the return value of the superclass to make use easier for
  * clients. Methods that are unique to this class mainly have to do with filenames and file paths:
@@ -95,7 +95,7 @@ public class ResourcePath extends StringPath implements UriIdentified
             root = "/";
             path = Strip.leading(path, "/");
         }
-        return new ResourcePath(root, StringList.split(path, "/"));
+        return new ResourcePath(StringList.create(), root, StringList.split(path, "/"));
     }
 
     /**
@@ -103,7 +103,7 @@ public class ResourcePath extends StringPath implements UriIdentified
      */
     public static ResourcePath resourcePath(final StringPath path)
     {
-        return new ResourcePath(path.rootElement(), path.elements());
+        return new ResourcePath(StringList.create(), path.rootElement(), path.elements());
     }
 
     public static SwitchParser.Builder<ResourcePath> resourcePathSwitchParser(final String name,
@@ -135,17 +135,19 @@ public class ResourcePath extends StringPath implements UriIdentified
         }
     }
 
-    /** The {@link URI} scheme for this path */
-    private String scheme;
+    /** The {@link URI} schemes for this resource path */
+    private StringList schemes;
 
     /**
+     * @param schemes The list of schemes for this path
      * @param root The root element
      * @param elements The path elements
      */
-    protected ResourcePath(String scheme, final String root, final List<String> elements)
+    protected ResourcePath(StringList schemes, final String root, final List<String> elements)
     {
         super(root, elements);
-        this.scheme = scheme;
+
+        this.schemes = schemes.copy();
     }
 
     /**
@@ -154,13 +156,13 @@ public class ResourcePath extends StringPath implements UriIdentified
     protected ResourcePath(final ResourcePath that)
     {
         super(that);
-        this.scheme = that.scheme;
+        this.schemes = that.schemes.copy();
     }
 
-    protected ResourcePath(String scheme, final List<String> elements)
+    protected ResourcePath(StringList schemes, final List<String> elements)
     {
         super(elements);
-        this.scheme = scheme;
+        this.schemes = schemes.copy();
     }
 
     /**
@@ -179,6 +181,9 @@ public class ResourcePath extends StringPath implements UriIdentified
         return FilePath.parseFilePath(asString());
     }
 
+    /**
+     * @return The file extension of this resource path's filename
+     */
     public Extension extension()
     {
         return fileName().extension();
@@ -198,7 +203,7 @@ public class ResourcePath extends StringPath implements UriIdentified
      */
     public boolean hasScheme()
     {
-        return scheme != null;
+        return schemes.isNonEmpty();
     }
 
     /**
@@ -207,13 +212,15 @@ public class ResourcePath extends StringPath implements UriIdentified
     @Override
     public String join()
     {
-        if (scheme != null)
-        {
-            return scheme + ":/" + super.join("/");
-        }
-        return super.join();
+        // NOTE: We call super.join(String) here because it is not overridden
+        return schemes.join(":")
+                + (hasScheme() ? ":" : "")
+                + super.join("/");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourcePath last(final int n)
     {
@@ -251,11 +258,12 @@ public class ResourcePath extends StringPath implements UriIdentified
     }
 
     /**
-     * @return Any scheme for this filepath, such as 'file' or 's3' as in s3://telenav/file.txt
+     * @return Any schemes for this filepath. For example, a file such as "jar:file:/test.zip" would have the schemes
+     * "jar" and "file". In "s3://telenav/file.txt", there is only one scheme, "s3".
      */
-    public String scheme()
+    public StringList schemes()
     {
-        return scheme;
+        return schemes;
     }
 
     /**
@@ -276,6 +284,9 @@ public class ResourcePath extends StringPath implements UriIdentified
         return (ResourcePath) super.transformed(consumer);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public URI uri()
     {
@@ -333,6 +344,13 @@ public class ResourcePath extends StringPath implements UriIdentified
     public ResourcePath withRoot(final String root)
     {
         return (ResourcePath) super.withRoot(root);
+    }
+
+    public ResourcePath withSchemes(StringList schemes)
+    {
+        var copy = (ResourcePath) copy();
+        copy.schemes = schemes.copy();
+        return copy;
     }
 
     /**
@@ -401,10 +419,10 @@ public class ResourcePath extends StringPath implements UriIdentified
     /**
      * @return This filepath without any scheme
      */
-    public ResourcePath withoutScheme()
+    public ResourcePath withoutSchemes()
     {
         final ResourcePath copy = (ResourcePath) copy();
-        copy.scheme = null;
+        copy.schemes = StringList.create();
         return copy;
     }
 
@@ -423,6 +441,6 @@ public class ResourcePath extends StringPath implements UriIdentified
     @Override
     protected ResourcePath onCopy(final String root, final List<String> elements)
     {
-        return new ResourcePath(root, elements);
+        return new ResourcePath(schemes(), root, elements);
     }
 }

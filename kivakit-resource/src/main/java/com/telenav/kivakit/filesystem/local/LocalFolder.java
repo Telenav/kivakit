@@ -261,7 +261,7 @@ public class LocalFolder implements FolderService
     @Override
     public synchronized List<FileService> files()
     {
-        final List<FileService> files = new ArrayList<>();
+        final var files = new ArrayList<FileService>();
         if (exists())
         {
             if (file != null)
@@ -271,11 +271,10 @@ public class LocalFolder implements FolderService
                 {
                     for (final var file : list)
                     {
-                        final var path = FilePath.filePath(file);
+                        final var path = FilePath.filePath(file).withoutFileScheme();
                         if (!isFolder(path))
                         {
-                            final var result = new LocalFile(file);
-                            files.add(result);
+                            files.add(new LocalFile(file));
                         }
                     }
                 }
@@ -424,7 +423,7 @@ public class LocalFolder implements FolderService
     @Override
     public FilePath path()
     {
-        return path;
+        return path.withoutFileScheme();
     }
 
     @Override

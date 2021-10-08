@@ -34,10 +34,12 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.FileSystem;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 import static java.nio.file.StandardOpenOption.CREATE;
+import static java.nio.file.StandardOpenOption.WRITE;
 
 /**
  * A zip entry in a {@link ZipArchive} that is a {@link WritableResource}.
@@ -56,9 +58,12 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
 
     private OutputStream out;
 
-    public ZipEntry(final ZipArchive archive, final Path path)
+    private final FileSystem filesystem;
+
+    public ZipEntry(final FileSystem filesystem, final Path path)
     {
-        this.path = path;
+        this.filesystem = filesystem;
+        this.path = filesystem.getPath(path.toString());
     }
 
     @Override
@@ -107,14 +112,27 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
     {
         if (out == null)
         {
-            final var out = Unchecked.of(() -> Files.newOutputStream(path, CREATE)).orNull();
-            if (out != null)
+            final OutputStream out;
+            try
             {
-                this.out = IO.buffer(out);
+                final var parent = path.getParent();
+                if (parent != null)
+                {
+                    Files.createDirectories(parent);
+                }
+                out = Files.newOutputStream(path, CREATE, WRITE);
+                if (out != null)
+                {
+                    this.out = IO.buffer(out);
+                }
+                else
+                {
+                    fatal("Unable to open $ for writing", this);
+                }
             }
-            else
+            catch (Exception e)
             {
-                fatal("Unable to open $ for writing", this);
+                problem(e, "Unable to open for writing").throwAsIllegalStateException();
             }
         }
         return out;

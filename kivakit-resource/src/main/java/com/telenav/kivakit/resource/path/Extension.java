@@ -61,7 +61,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  *
  * <ul>
  *     <li>{@link #fileMatcher()} - A matcher that matches resources with this extension</li>
- *     <li>{@link #matches(Resource)} - True if the given resource has this extension</li>
+ *     <li>{@link #ends(Resource)} - True if the given resource has this extension</li>
  * </ul>
  *
  * <p><b>Checks</b></p>
@@ -231,6 +231,22 @@ public class Extension implements Named
     }
 
     /**
+     * True if the given resource has this extension
+     */
+    public boolean ends(final Resource resource)
+    {
+        return resource.hasExtension(this);
+    }
+
+    /**
+     * True if the given path has this extension
+     */
+    public boolean ends(final FilePath path)
+    {
+        return path.extension().equals(this);
+    }
+
+    /**
      * @return True if this extension ends with the given extension. For example the extension ".tar.gz" ends with the
      * extension ".gz"
      */
@@ -279,14 +295,6 @@ public class Extension implements Named
     public boolean isExecutable()
     {
         return executable().contains(this);
-    }
-
-    /**
-     *
-     */
-    public boolean matches(final Resource resource)
-    {
-        return resource.hasExtension(this);
     }
 
     @Override

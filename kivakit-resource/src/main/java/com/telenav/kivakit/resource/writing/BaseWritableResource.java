@@ -96,12 +96,13 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
      *
      * @param text The text to print
      */
-    public void print(final String text)
+    public Resource print(final String text)
     {
         try (final var out = printWriter())
         {
             out.print(text);
         }
+        return this;
     }
 
     /**
@@ -109,9 +110,10 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
      *
      * @param text The text to print
      */
-    public void println(final String text)
+    public Resource println(final String text)
     {
         print(text + "\n");
+        return this;
     }
 
     /**
