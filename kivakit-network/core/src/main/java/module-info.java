@@ -5,6 +5,8 @@ open module kivakit.network.core
     requires transitive kivakit.security;
     requires transitive kivakit.resource;
 
+    requires junit;
+
     // Module exports
     exports com.telenav.kivakit.network.core;
     exports com.telenav.kivakit.network.core.converters;

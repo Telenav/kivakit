@@ -7,6 +7,8 @@ open module kivakit.network.email
     // Java mail
     requires java.mail;
     requires java.activation;
+    
+    requires junit;
 
     // Module exports
     exports com.telenav.kivakit.network.email;

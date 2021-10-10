@@ -4,6 +4,9 @@ open module kivakit.collections
     requires transitive kivakit.serialization.kryo;
     requires transitive kivakit.test;
 
+    requires junit;
+    requires org.jetbrains.annotations;
+
     // Module exports
     exports com.telenav.kivakit.collections.iteration.iterables;
     exports com.telenav.kivakit.collections.iteration.iterators;

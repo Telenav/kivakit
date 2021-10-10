@@ -5,9 +5,9 @@ open module kivakit.serialization.kryo
     requires transitive kivakit.test;
 
     // Kryo
-    requires transitive kryo;
-    requires transitive de.javakaffee.kryoserializers;
-    requires transitive minlog;
+    requires kryo;
+    requires de.javakaffee.kryoserializers;
+    requires minlog;
 
     // Module exports
     exports com.telenav.kivakit.serialization.kryo;

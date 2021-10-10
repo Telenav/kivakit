@@ -29,7 +29,6 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 
@@ -104,7 +103,6 @@ public class ArgumentParserList implements Iterable<ArgumentParser<?>>
         return parsers.isEmpty();
     }
 
-    @NotNull
     @Override
     public Iterator<ArgumentParser<?>> iterator()
     {

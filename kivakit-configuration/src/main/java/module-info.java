@@ -3,6 +3,8 @@ open module kivakit.configuration
     // KivaKit
     requires transitive kivakit.resource;
 
+    requires org.jetbrains.annotations;
+
     // Module exports
     exports com.telenav.kivakit.configuration.lookup;
     exports com.telenav.kivakit.configuration.project.lexakai.diagrams;

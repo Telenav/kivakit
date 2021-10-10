@@ -38,6 +38,8 @@ open module kivakit.resource
     requires transitive kivakit.serialization.core;
     requires transitive kivakit.collections;
 
+    requires org.jetbrains.annotations;
+
     // Module exports
     exports com.telenav.kivakit.filesystem.spi;
     exports com.telenav.kivakit.filesystem;

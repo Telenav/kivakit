@@ -13,16 +13,16 @@ open module kivakit.kernel
     requires transitive java.management;
 
     // Build
-    requires transitive cactus.build.metadata;
+    requires cactus.build.metadata;
 
     // Test
-    requires transitive junit;
+    requires junit;
 
     // Annotations
     requires transitive lexakai.annotations;
-    requires transitive org.jetbrains.annotations;
     requires transitive com.fasterxml.jackson.annotation;
-    requires transitive io.swagger.v3.oas.annotations;
+    requires org.jetbrains.annotations;
+    requires io.swagger.v3.oas.annotations;
 
     // Module exports
     exports com.telenav.kivakit.kernel.data.comparison;

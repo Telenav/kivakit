@@ -4,7 +4,7 @@ open module kivakit.serialization.json
     requires transitive kivakit.kernel;
 
     // JSON
-    requires transitive gson;
+    requires gson;
 
     // Module exports
     exports com.telenav.kivakit.serialization.json;

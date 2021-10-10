@@ -23,15 +23,14 @@ import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramCommandLine;
 import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramSwitch;
 import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramValidation;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.associations.UmlAggregation;
-import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
-import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.reflection.property.Property;
 import com.telenav.kivakit.kernel.language.reflection.property.PropertyValueSource;
 import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
-import org.jetbrains.annotations.NotNull;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+import com.telenav.lexakai.annotations.associations.UmlAggregation;
+import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
 import java.util.Iterator;
 
@@ -87,7 +86,6 @@ public class SwitchList implements Iterable<Switch>, PropertyValueSource, AsStri
         }
     }
 
-    @NotNull
     @Override
     public Iterator<Switch> iterator()
     {
