@@ -319,15 +319,21 @@ public class Type<T> implements Named
         }
     }
 
-    public T newInstance(final Object parameter)
+    public T newInstance(final Object... parameters)
     {
         try
         {
-            return type.getConstructor(parameter.getClass()).newInstance(parameter);
+            var types = new Class<?>[parameters.length];
+            int i = 0;
+            for (var at : parameters)
+            {
+                types[i++] = at.getClass();
+            }
+            return type.getConstructor(types).newInstance(parameters);
         }
         catch (final Exception e)
         {
-            throw new IllegalStateException("Couldn't construct " + type + " with " + parameter, e);
+            throw new IllegalStateException("Couldn't construct " + type + "(" + Arrays.toString(parameters) + ")", e);
         }
     }
 

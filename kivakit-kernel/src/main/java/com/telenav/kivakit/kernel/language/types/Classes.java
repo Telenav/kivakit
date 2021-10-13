@@ -80,19 +80,6 @@ public class Classes
                 || Double.TYPE.equals(type) || Float.TYPE.equals(type);
     }
 
-    public static <T> T newInstance(Listener listener, Class<T> type, Object... arguments)
-    {
-        try
-        {
-            return type.getConstructor().newInstance(arguments);
-        }
-        catch (Exception e)
-        {
-            listener.problem(e, "Unable to create instance: $", type);
-            return null;
-        }
-    }
-
     public static InputStream openResource(final Class<?> base, final String path)
     {
         var in = base.getResourceAsStream(path);

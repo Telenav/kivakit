@@ -2,11 +2,11 @@ open module kivakit.serialization.kryo
 {
     // KivaKit
     requires transitive kivakit.serialization.core;
-    requires transitive kivakit.test;
+    requires kivakit.test;
 
     // Kryo
-    requires kryo;
-    requires de.javakaffee.kryoserializers;
+    requires transitive kryo;
+    requires transitive de.javakaffee.kryoserializers;
     requires minlog;
 
     // Module exports

@@ -1,9 +1,7 @@
 open module kivakit.security
 {
     // KivaKit
-    requires transitive kivakit.test;
-
-    requires junit;
+    requires kivakit.test;
 
     // Module exports
     exports com.telenav.kivakit.security.authentication;

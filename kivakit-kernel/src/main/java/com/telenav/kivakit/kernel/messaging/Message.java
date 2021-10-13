@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.kernel.messaging;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
+import com.telenav.kivakit.kernel.language.reflection.Type;
 import com.telenav.kivakit.kernel.language.strings.Strings;
 import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.kernel.language.threading.context.CodeContext;
@@ -292,7 +292,6 @@ public interface Message extends Transmittable, Triaged, AsString, Named
      */
     String formatted(MessageFormatter.Format format);
 
-    @JsonProperty
     default String formatted()
     {
         return formatted(MessageFormatter.Format.WITHOUT_EXCEPTION);
@@ -331,7 +330,7 @@ public interface Message extends Transmittable, Triaged, AsString, Named
     @UmlExcludeMember
     default <T extends Message> boolean isWorseThan(final Class<T> message)
     {
-        var instance = Classes.newInstance(Listener.console(), message);
+        var instance = (Message) Type.forClass(message).newInstance();
         if (instance != null)
         {
             return isWorseThan(instance.status());
@@ -354,7 +353,7 @@ public interface Message extends Transmittable, Triaged, AsString, Named
     @UmlExcludeMember
     default <T extends Message> boolean isWorseThanOrEqualTo(final Class<T> message)
     {
-        var instance = Classes.newInstance(Listener.console(), message);
+        var instance = (Message) Type.forClass(message).newInstance();
         if (instance != null)
         {
             return isWorseThanOrEqualTo(instance.status());
