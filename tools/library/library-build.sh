@@ -152,6 +152,7 @@ build() {
     BUILD_MODIFIERS_STRING=""
     DELIMITER=""
 
+    # shellcheck disable=SC2068
     for MODIFIER in ${BUILD_MODIFIERS[@]}; do
 
         BUILD_MODIFIERS_STRING="$BUILD_MODIFIERS_STRING$DELIMITER$MODIFIER"
@@ -284,6 +285,8 @@ build() {
             $PRE_BUILD_SCRIPT
 
             cd "$BUILD_FOLDER"
+
+            bash "${KIVAKIT_HOME}/tools/library/install-merged-jars.sh"
 
             # shellcheck disable=SC2086
             "$M2_HOME"/bin/mvn -DKIVAKIT_DEBUG="$KIVAKIT_DEBUG" $SWITCHES $BUILD_ARGUMENTS 2>&1 | $FILTER_OUT "illegal reflective access\|denied in a future release\|please consider reporting"
