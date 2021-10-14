@@ -289,7 +289,7 @@ build() {
             bash "${KIVAKIT_HOME}/tools/library/install-merged-jars.sh"
 
             # shellcheck disable=SC2086
-            "$M2_HOME"/bin/mvn -DKIVAKIT_DEBUG="$KIVAKIT_DEBUG" $SWITCHES $BUILD_ARGUMENTS 2>&1 | $FILTER_OUT "illegal reflective access\|denied in a future release\|please consider reporting"
+            "$M2_HOME"/bin/mvn --no-transfer-progress -DKIVAKIT_DEBUG="$KIVAKIT_DEBUG" $SWITCHES $BUILD_ARGUMENTS 2>&1 | $FILTER_OUT "illegal reflective access\|denied in a future release\|please consider reporting"
 
             if [ "${PIPESTATUS[0]}" -ne "0" ]; then
 
