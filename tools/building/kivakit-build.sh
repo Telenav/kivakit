@@ -12,7 +12,7 @@ source library-build.sh
 source kivakit-projects.sh
 
 cd "$KIVAKIT_HOME"/superpom
-mvn clean install
+mvn --batch-mode --no-transfer-progress clean install
 
 export ALLOW_CLEANING=true
 
