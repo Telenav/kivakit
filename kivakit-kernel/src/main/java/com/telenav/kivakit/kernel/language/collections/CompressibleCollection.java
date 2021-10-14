@@ -18,7 +18,6 @@
 
 package com.telenav.kivakit.kernel.language.collections;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.telenav.kivakit.kernel.interfaces.messaging.Receiver;
 import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.language.reflection.Type;
@@ -158,7 +157,6 @@ public interface CompressibleCollection
     /**
      * @return True if this collection has been compressed by some method
      */
-    @JsonIgnore
     default boolean isCompressed()
     {
         return compressionMethod() != null && compressionMethod() != Method.NONE;

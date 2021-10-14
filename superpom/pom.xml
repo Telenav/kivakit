@@ -100,6 +100,9 @@
         <maven-resources-plugin.version>2.7</maven-resources-plugin.version>
         <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
+        <maven-exec-plugin.version>3.0.0</maven-exec-plugin.version>
+        <maven-protobuf-plugin.version>0.6.1</maven-protobuf-plugin.version>
+        <maven-os-plugin.version>1.6.1</maven-os-plugin.version>
 
         <cactus.version>1.0.0</cactus.version>
         <cactus.download.version>1.0.0</cactus.download.version>
@@ -134,9 +137,12 @@
 
         <!-- Protocols -->
 
-        <protobuf.version>3.11.4</protobuf.version>
+        <protobuf.version>3.18.1</protobuf.version>
         <gson.version>2.8.0</gson.version>
         <jettison.version>1.1</jettison.version>
+        <kivakit.grpc.merged.version>1.1.0</kivakit.grpc.merged.version>
+        <kivakit.protostuff.merged.version>1.1.0</kivakit.protostuff.merged.version>
+        <protostuff.version>1.1.6</protostuff.version>
 
         <!-- Serialization -->
 
@@ -437,8 +443,9 @@
                     <configuration>
                         <release>${java.version}</release>
                         <compilerArgs>
-                            <compilerArgument>-Xlint:unchecked</compilerArgument>
-                            <compilerArgument>-Xlint:deprecation</compilerArgument>
+                            <compilerArg>-Xlint:unchecked</compilerArg>
+                            <compilerArg>-Xlint:-requires-transitive-automatic</compilerArg>
+                            <compilerArg>-Xlint:deprecation</compilerArg>
                         </compilerArgs>
                     </configuration>
                 </plugin>
@@ -1122,6 +1129,27 @@
                 <version>${antlr.version}</version>
             </dependency>
 
+            <!-- Protocols -->
+
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>${protobuf.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.telenav.kivakit</groupId>
+                <artifactId>kivakit-protostuff-merged</artifactId>
+                <version>${kivakit.protostuff.merged.version}</version>
+            </dependency>
+
+            <!-- GRPC -->
+
+            <dependency>
+                <groupId>com.telenav.kivakit</groupId>
+                <artifactId>kivakit-grpc-merged</artifactId>
+                <version>${kivakit.grpc.merged.version}</version>
+            </dependency>
+
             <!-- S3 -->
 
             <dependency>
@@ -1277,6 +1305,11 @@
                 <version>${slf4j.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons.lang3.version}</version>
@@ -1322,6 +1355,11 @@
             <dependency>
                 <groupId>org.apache.wicket</groupId>
                 <artifactId>wicket-util</artifactId>
+                <version>${wicket.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.wicket</groupId>
+                <artifactId>wicket-request</artifactId>
                 <version>${wicket.version}</version>
             </dependency>
             <dependency>

@@ -4,7 +4,7 @@ open module kivakit.test
     requires transitive kivakit.kernel;
 
     // Test
-    requires junit;
+    requires transitive junit;
 
     // Module exports
     exports com.telenav.kivakit.test.annotations;

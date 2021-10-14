@@ -2,6 +2,7 @@ open module kivakit.configuration
 {
     // KivaKit
     requires transitive kivakit.resource;
+    requires kivakit.test;
 
     // Module exports
     exports com.telenav.kivakit.configuration.lookup;

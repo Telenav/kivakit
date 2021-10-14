@@ -28,7 +28,6 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -109,7 +108,6 @@ public class ArgumentList implements Iterable<Argument>, AsString, Sized
         return arguments.isEmpty();
     }
 
-    @NotNull
     @Override
     public Iterator<Argument> iterator()
     {

@@ -21,7 +21,6 @@ package com.telenav.kivakit.collections.iteration.iterables;
 import com.telenav.kivakit.collections.iteration.iterators.DeduplicatingIterator;
 import com.telenav.kivakit.collections.project.lexakai.diagrams.DiagramIteration;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 
@@ -44,7 +43,7 @@ public class DeduplicatingIterable<Element> implements Iterable<Element>
     }
 
     @Override
-    public @NotNull Iterator<Element> iterator()
+    public Iterator<Element> iterator()
     {
         return new DeduplicatingIterator<>(iterable.iterator());
     }

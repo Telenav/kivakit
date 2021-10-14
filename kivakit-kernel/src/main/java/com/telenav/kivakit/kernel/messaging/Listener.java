@@ -162,8 +162,15 @@ public interface Listener extends Transceiver
      */
     default <T extends Broadcaster> T listenTo(final T broadcaster)
     {
-        assert broadcaster != null;
-        broadcaster.addListener(this);
+        if (broadcaster != null)
+        {
+            broadcaster.addListener(this);
+        }
+        else
+        {
+            warning("Null broadcaster");
+        }
+
         return broadcaster;
     }
 

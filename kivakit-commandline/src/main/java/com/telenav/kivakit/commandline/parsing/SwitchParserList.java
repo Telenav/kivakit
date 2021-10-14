@@ -28,7 +28,6 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Comparator;
 import java.util.Iterator;
@@ -106,7 +105,6 @@ public class SwitchParserList implements Iterable<SwitchParser<?>>
         return "  " + descriptions.join("\n  ");
     }
 
-    @NotNull
     @Override
     public Iterator<SwitchParser<?>> iterator()
     {

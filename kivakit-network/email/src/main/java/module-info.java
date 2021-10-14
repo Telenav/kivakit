@@ -3,6 +3,7 @@ open module kivakit.network.email
     // KivaKit
     requires transitive kivakit.configuration;
     requires transitive kivakit.network.core;
+    requires kivakit.test;
 
     // Java mail
     requires java.mail;

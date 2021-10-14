@@ -463,7 +463,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
         onConfigureListeners();
 
         // and if a deployment was specified,
-        if (!deployments.isEmpty() && has(DEPLOYMENT))
+        if (!ignoreDeployments() && !deployments.isEmpty() && has(DEPLOYMENT))
         {
             // install it in the global settings registry.
             get(DEPLOYMENT).install();
@@ -533,6 +533,11 @@ public abstract class Application extends BaseComponent implements Named, Applic
     protected List<ArgumentParser<?>> argumentParsers()
     {
         return Collections.emptyList();
+    }
+
+    protected boolean ignoreDeployments()
+    {
+        return false;
     }
 
     /**
@@ -620,7 +625,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
     {
         final var parsers = new HashSet<SwitchParser<?>>();
 
-        if (!deployments.isEmpty() && DEPLOYMENT == null)
+        if (!ignoreDeployments() && !deployments.isEmpty() && DEPLOYMENT == null)
         {
             DEPLOYMENT = deployments
                     .switchParser("deployment")

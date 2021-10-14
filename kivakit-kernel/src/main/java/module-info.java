@@ -8,21 +8,20 @@ open module kivakit.kernel
     provides Log with ConsoleLog;
 
     // Java
-    requires transitive jdk.attach;
-    requires transitive java.instrument;
-    requires transitive java.management;
+    requires jdk.attach;
+    requires java.instrument;
+    requires java.management;
 
     // Build
     requires transitive cactus.build.metadata;
 
     // Test
-    requires transitive junit;
+    requires junit;
 
     // Annotations
     requires transitive lexakai.annotations;
     requires transitive org.jetbrains.annotations;
     requires transitive com.fasterxml.jackson.annotation;
-    requires transitive io.swagger.v3.oas.annotations;
 
     // Module exports
     exports com.telenav.kivakit.kernel.data.comparison;

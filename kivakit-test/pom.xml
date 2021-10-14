@@ -29,6 +29,13 @@
             <artifactId>kivakit-kernel</artifactId>
         </dependency>
 
+        <!-- Test -->
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

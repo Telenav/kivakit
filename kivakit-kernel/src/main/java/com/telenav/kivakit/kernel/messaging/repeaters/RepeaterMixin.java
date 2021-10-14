@@ -87,9 +87,9 @@ public interface RepeaterMixin extends Repeater, Mixin
      * {@inheritDoc}
      */
     @Override
-    default void messageSource(final Broadcaster parent)
+    default void messageSource(final Broadcaster source)
     {
-        repeater().messageSource(parent);
+        repeater().messageSource(source);
     }
 
     /**

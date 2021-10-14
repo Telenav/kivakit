@@ -18,7 +18,6 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -70,7 +69,6 @@ public class EmailAddress
         }
     }
 
-    @JsonProperty
     private String email;
 
     protected EmailAddress(final String email)
