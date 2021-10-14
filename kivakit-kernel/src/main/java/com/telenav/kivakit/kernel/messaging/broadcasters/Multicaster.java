@@ -240,7 +240,7 @@ public class Multicaster implements Broadcaster
         {
             chain.append(at.getClass().getSimpleName());
         }
-        return chain.reversed();
+        return chain;
     }
 
     /**
