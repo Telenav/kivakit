@@ -44,6 +44,10 @@ public class Monitor
         }
     }
 
+    public void done()
+    {
+    }
+
     public void signal()
     {
         synchronized (this)

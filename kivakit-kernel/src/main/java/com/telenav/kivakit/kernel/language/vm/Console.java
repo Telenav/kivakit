@@ -11,6 +11,11 @@ import static com.telenav.kivakit.kernel.language.vm.Console.OutputType.NORMAL;
 
 public class Console implements Flushable
 {
+    public static Console instance()
+    {
+        return new Console();
+    }
+
     public enum OutputType
     {
         NORMAL,
