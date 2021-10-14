@@ -25,8 +25,8 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  * <ul>
  *     <li>{@link #settingsRegistry()} - The {@link Settings} for this object</li>
  *     <li>{@link #hasSettings(Class)} - Determines if the registered instance of the given class can be found</li>
- *     <li>{@link #hasSettings(Class, String)} - Determines if the registered instance of the given class can be found<</li>
- *     <li>{@link #hasSettings(Class, Enum)} - Determines if the registered instance of the given class can be found<</li>
+ *     <li>{@link #hasSettings(Class, String)} - Determines if the registered instance of the given class can be found</li>
+ *     <li>{@link #hasSettings(Class, Enum)} - Determines if the registered instance of the given class can be found</li>
  *     <li>{@link #lookupSettings(Class)} - Locates the registered instance of the given class</li>
  *     <li>{@link #lookupSettings(Class, String)} - Locates the specified registered instance of the given class</li>
  *     <li>{@link #lookupSettings(Class, Enum)} - Locates the specified registered instance of the given class</li>

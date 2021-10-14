@@ -45,7 +45,7 @@ public class PlainTextPassword implements Password, AsString
     }
 
     /**
-     * Converts passwords to and from {@link Password} objects. {@value}
+     * Converts passwords to and from {@link Password} objects.
      *
      * @author jonathanl (shibo)
      */

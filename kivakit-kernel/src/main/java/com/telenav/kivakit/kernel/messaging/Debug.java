@@ -48,7 +48,7 @@ import java.util.Map;
  * <p>
  * If debugging is enabled, the trace*(), warning*() and glitch*() methods will operate. When debugging is disabled,
  * they will not. In the case where a block of code is conditional on debugging or the parameters passed to trace are
- * expensive to construct, the code can be made conditional with {@link #isOn()}.
+ * expensive to construct, the code can be made conditional with {@link #isDebugOn()}.
  * <p>
  * A few KIVAKIT_DEBUG pattern examples:
  * <pre>
