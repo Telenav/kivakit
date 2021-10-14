@@ -59,10 +59,10 @@ import static com.telenav.kivakit.resource.compression.archive.ZipArchive.Mode.R
 
 /**
  * A wrapper around the JDK zip filesystem that makes it easier to use. A {@link ZipArchive} can be created with {@link
- * #open(File, ProgressReporter, Mode)}, which returns the open zip archive or null if the operation fails. Adds the
- * ability to save and load objects into zip entries using a {@link SerializationSession}. A zip archive contains
- * entries wrapped by {@link ZipEntry} and a {@link ZipArchive} is {@link Iterable} to make it easy to enumerate zip
- * entries:
+ * #open(Listener, File, ProgressReporter, Mode)}, which returns the open zip archive or null if the operation fails.
+ * Adds the ability to save and load objects into zip entries using a {@link SerializationSession}. A zip archive
+ * contains entries wrapped by {@link ZipEntry} and a {@link ZipArchive} is {@link Iterable} to make it easy to
+ * enumerate zip entries:
  * <pre>
  * var archive = new ZipArchive("test.zip");
  * for (var entry : archive)
