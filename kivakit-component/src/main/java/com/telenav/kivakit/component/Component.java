@@ -7,6 +7,7 @@ import com.telenav.kivakit.configuration.settings.SettingsTrait;
 import com.telenav.kivakit.configuration.settings.deployment.Deployment;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.interfaces.code.Unchecked;
+import com.telenav.kivakit.kernel.interfaces.code.UncheckedMethod;
 import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.language.paths.PackagePathTrait;
 import com.telenav.kivakit.kernel.messaging.Listener;
@@ -80,6 +81,15 @@ import com.telenav.kivakit.resource.resources.packaged.PackageResource;
  */
 public interface Component extends Repeater, NamedObject, SettingsTrait, RegistryTrait, PackagePathTrait
 {
+    class UncheckedVoid implements Unchecked<Void>
+    {
+        @Override
+        public Void run() throws Exception
+        {
+            return null;
+        }
+    }
+
     /**
      * @return The resource at the given path relative to this component's class
      */
@@ -128,6 +138,39 @@ public interface Component extends Repeater, NamedObject, SettingsTrait, Registr
         {
             problem(message, arguments).throwAsIllegalStateException();
             return null;
+        }
+    }
+
+    default void tryFinally(UncheckedMethod code, Runnable after)
+    {
+        try
+        {
+            code.run();
+        }
+        catch (Exception e)
+        {
+            problem(e, "Code threw exception");
+        }
+        finally
+        {
+            after.run();
+        }
+    }
+
+    default <T> T tryFinallyFunction(Unchecked<T> code, Runnable after)
+    {
+        try
+        {
+            return code.run();
+        }
+        catch (Exception e)
+        {
+            problem(e, "Code threw exception");
+            return null;
+        }
+        finally
+        {
+            after.run();
         }
     }
 }
