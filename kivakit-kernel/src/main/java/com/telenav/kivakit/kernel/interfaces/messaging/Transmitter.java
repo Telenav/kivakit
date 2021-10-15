@@ -29,6 +29,8 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import java.util.function.Supplier;
 
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.unsupported;
+
 /**
  * A transmitter of values with similar function to a {@link Source}, or a {@link Supplier}.
  *
@@ -81,5 +83,8 @@ public interface Transmitter
     /**
      * Executes the given code with transmitting turned off
      */
-    <T> T withoutTransmitting(Code<T> code);
+    default <T> T withoutTransmitting(Code<T> code)
+    {
+        return unsupported();
+    }
 }
