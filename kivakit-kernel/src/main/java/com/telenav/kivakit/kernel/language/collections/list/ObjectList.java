@@ -63,6 +63,11 @@ import java.util.function.Function;
 @UmlClassDiagram(diagram = DiagramLanguageCollectionsList.class)
 public class ObjectList<Element> extends BaseList<Element>
 {
+    public static <T> ObjectList<T> create()
+    {
+        return new ObjectList<T>();
+    }
+
     /**
      * @return An empty object list
      */

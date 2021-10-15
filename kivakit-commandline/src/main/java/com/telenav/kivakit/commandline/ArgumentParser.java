@@ -282,6 +282,11 @@ public class ArgumentParser<T>
         this.description = description;
     }
 
+    public boolean canParse(final String argument)
+    {
+        return converter.withoutTransmitting(() -> converter.convert(argument) != null);
+    }
+
     public String description()
     {
         return description;

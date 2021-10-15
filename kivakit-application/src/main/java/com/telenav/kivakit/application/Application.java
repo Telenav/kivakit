@@ -30,6 +30,7 @@ import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.configuration.settings.deployment.Deployment;
 import com.telenav.kivakit.configuration.settings.deployment.DeploymentSet;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
+()import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
 import com.telenav.kivakit.kernel.language.locales.Locale;
@@ -114,7 +115,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  *
  * <ul>
  *     <li>{@link #commandLine()} - Gets the parsed command line</li>
- *     <li>{@link #arguments()} - Gets command line arguments (excluding switches)</li>
+ *     <li>{@link #argumentList()} - Gets command line arguments (excluding switches)</li>
  *     <li>{@link #argument(ArgumentParser)} - Gets the first command line argument (excluding switches)</li>
  *     <li>{@link #argument(int, ArgumentParser)} - Gets the nth argument using the given argument parser</li>
  *     <li>{@link #get(SwitchParser)} - Gets the switch value for the given switch parser</li>
@@ -270,9 +271,25 @@ public abstract class Application extends BaseComponent implements Named, Applic
     /**
      * @return All non-switch command line arguments
      */
-    public ArgumentList arguments()
+    public ArgumentList argumentList()
     {
         return commandLine.arguments();
+    }
+
+    /**
+     * @return A list of parsed arguments
+     */
+    public <T> ObjectList<T> arguments(ArgumentParser<T> parser)
+    {
+        var arguments = new ObjectList<T>();
+        for (int i = 0; i < argumentList().size(); i++)
+        {
+            if (parser.canParse(argumentList().get(i).value()))
+            {
+                arguments.add(argument(i, parser));
+            }
+        }
+        return arguments;
     }
 
     /**
@@ -292,12 +309,12 @@ public abstract class Application extends BaseComponent implements Named, Applic
         final var box = new StringList();
         int number = 1;
 
-        if (!arguments().isEmpty())
+        if (!argumentList().isEmpty())
         {
             box.add("");
             box.add("Arguments:");
             box.add("");
-            for (final var argument : arguments())
+            for (final var argument : argumentList())
             {
                 box.add(AsciiArt.repeat(4, ' ') + "$. $", number++, argument.value());
             }

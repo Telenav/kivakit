@@ -19,6 +19,7 @@
 package com.telenav.kivakit.kernel.messaging.broadcasters;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.telenav.kivakit.kernel.interfaces.code.Code;
 import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
 import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
@@ -104,6 +105,8 @@ public class Multicaster implements Broadcaster
     private transient ReadWriteLock lock;
 
     private transient Broadcaster source;
+
+    private boolean transmitting;
 
     public Multicaster(final String objectName, final Class<?> debugClassContext)
     {
@@ -229,6 +232,12 @@ public class Multicaster implements Broadcaster
         });
     }
 
+    @Override
+    public boolean isTransmitting()
+    {
+        return transmitting;
+    }
+
     /**
      * @return The chain of broadcasters that leads to this {@link Multicaster}.
      */
@@ -344,6 +353,19 @@ public class Multicaster implements Broadcaster
             }
         });
         return message;
+    }
+
+    public <T> T withoutTransmitting(Code<T> code)
+    {
+        transmitting = false;
+        try
+        {
+            return code.run();
+        }
+        finally
+        {
+            transmitting = true;
+        }
     }
 
     private void listenerTree(final IndentingStringBuilder builder)

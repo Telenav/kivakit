@@ -19,6 +19,7 @@
 package com.telenav.kivakit.kernel.interfaces.messaging;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.telenav.kivakit.kernel.interfaces.code.Code;
 import com.telenav.kivakit.kernel.interfaces.value.Source;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramInterfaceMessaging;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageBroadcaster;
@@ -76,4 +77,9 @@ public interface Transmitter
         }
         return message;
     }
+
+    /**
+     * Executes the given code with transmitting turned off
+     */
+    <T> T withoutTransmitting(Code<T> code);
 }
