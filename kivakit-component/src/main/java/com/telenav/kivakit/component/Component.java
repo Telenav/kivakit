@@ -157,7 +157,7 @@ public interface Component extends Repeater, NamedObject, SettingsTrait, Registr
         }
     }
 
-    default <T> T tryFinallyFunction(Unchecked<T> code, Runnable after)
+    default <T> T tryFinallyReturn(Unchecked<T> code, Runnable after)
     {
         try
         {

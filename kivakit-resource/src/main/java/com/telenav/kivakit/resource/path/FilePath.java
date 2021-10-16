@@ -177,7 +177,6 @@ public class FilePath extends ResourcePath
             return empty();
         }
 
-        // If the
         if (path.contains("\\${"))
         {
             var elements = StringList.split(path, "/");

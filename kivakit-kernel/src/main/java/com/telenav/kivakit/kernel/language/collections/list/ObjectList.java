@@ -76,6 +76,13 @@ public class ObjectList<Element> extends BaseList<Element>
         return new ObjectList<>(Maximum._0);
     }
 
+    public static <T> ObjectList<T> forArray(final T[] objects)
+    {
+        var list = new ObjectList<T>();
+        list.addAll(objects);
+        return list;
+    }
+
     /**
      * @return A list of objects from the given iterable
      */
