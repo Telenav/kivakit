@@ -116,7 +116,7 @@ public class LocalFile extends BaseWritableResource implements FileService
         }
         catch (IOException e)
         {
-            LOGGER.problem(e, "Unable to determine file creation time: $", path());
+            problem(e, "Unable to determine file creation time: $", path());
             return null;
         }
     }

@@ -24,11 +24,10 @@ import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.interfaces.io.ByteSized;
+import com.telenav.kivakit.kernel.interfaces.string.StringSource;
 import com.telenav.kivakit.kernel.interfaces.time.ChangedAt;
 import com.telenav.kivakit.kernel.interfaces.time.Modifiable;
 import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.resource.compression.Codec;
@@ -102,17 +101,17 @@ public interface Resource extends
         Modifiable,
         ChangedAt,
         ByteSized,
+        StringSource,
         ReadableResource,
         Repeater,
         Resourceful,
         UriIdentified
 {
-    Logger LOGGER = LoggerFactory.newLogger();
-
-    static ArgumentParser.Builder<ResourceList> argumentListParser(final String description, final Extension extension)
+    static ArgumentParser.Builder<ResourceList> argumentListParser(Listener listener, final String description,
+                                                                   final Extension extension)
     {
         return ArgumentParser.builder(ResourceList.class)
-                .converter(new ResourceList.Converter(LOGGER, extension))
+                .converter(new ResourceList.Converter(listener, extension))
                 .description(description);
     }
 
@@ -139,13 +138,14 @@ public interface Resource extends
     }
 
     static SwitchParser.Builder<ResourceList> resourceListSwitchParser(
+            Listener listener,
             final String name,
             final String description,
             final Extension extension)
     {
         return SwitchParser.builder(ResourceList.class)
                 .name(name)
-                .converter(new ResourceList.Converter(LOGGER, extension))
+                .converter(new ResourceList.Converter(listener, extension))
                 .description(description);
     }
 
@@ -333,5 +333,11 @@ public interface Resource extends
             // and rename the temporary file to the destination file.
             temporary.renameTo(destination);
         }
+    }
+
+    @Override
+    default String string()
+    {
+        return reader().string();
     }
 }

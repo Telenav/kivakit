@@ -30,15 +30,11 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramInterfaceString.class)
-public interface StringSource extends Source<String>
+public interface StringSource
 {
-    /**
-     * @return The string value
-     */
-    @Override
-    default String get()
+    static StringSource of(String string)
     {
-        return string();
+        return () -> string;
     }
 
     /**

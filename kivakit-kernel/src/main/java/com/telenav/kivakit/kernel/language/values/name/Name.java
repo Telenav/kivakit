@@ -21,6 +21,7 @@ package com.telenav.kivakit.kernel.language.values.name;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
+import com.telenav.kivakit.kernel.interfaces.string.StringSource;
 import com.telenav.kivakit.kernel.language.primitives.Ints;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.language.strings.CaseFormat;
@@ -35,7 +36,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @UmlClassDiagram(diagram = DiagramLanguageValue.class)
 @LexakaiJavadoc(complete = true)
-public class Name implements Named
+public class Name implements Named, StringSource
 {
     public static boolean isSynthetic(String name)
     {
@@ -115,6 +116,12 @@ public class Name implements Named
     public String name()
     {
         return name;
+    }
+
+    @Override
+    public String string()
+    {
+        return name();
     }
 
     @Override
