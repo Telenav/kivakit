@@ -135,6 +135,8 @@ public class Extension implements Named
 
     public static final Extension JAVA = parse(".java");
 
+    public static final Extension POM = parse(".pom");
+
     public static List<Extension> archive()
     {
         final List<Extension> executable = new ArrayList<>();

@@ -641,13 +641,13 @@ public class FilePath extends ResourcePath
         }
 
         // and if the path is not empty,
-        var pathElements = StringList.create();
+        var pathElements = new StringList();
         if (!Strings.isEmpty(path))
         {
             // we split the path into elements.
             pathElements = StringList.split(path, "/");
         }
 
-        return new FilePath(StringList.create(), root, pathElements);
+        return new FilePath(new StringList(), root, pathElements);
     }
 }

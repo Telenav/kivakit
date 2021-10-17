@@ -132,6 +132,11 @@ public interface Resource extends
         return ResourceResolverServiceLoader.resolve(identifier);
     }
 
+    static Resource resolve(ResourcePath path)
+    {
+        return resolve(path.asString());
+    }
+
     static Resource resolve(final String identifier)
     {
         return resolve(new ResourceIdentifier(identifier));

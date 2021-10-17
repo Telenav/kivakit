@@ -29,7 +29,6 @@ import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.language.values.count.Maximum;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
-import com.telenav.kivakit.kernel.messaging.messages.status.Information;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageString;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -78,21 +77,12 @@ import java.util.function.Function;
  *     <li>{@link #numbered()} - This string list with each string prefixed by a number starting at 1</li>
  *     <li>{@link #prefixedWith(String)} - This string list with each element prefixed with the given string</li>
  *     <li>{@link #singleQuoted()} - This string list with all strings in single quotes</li>
- *     <li>{@link #titledBox(String)} - This string list in a titled box</li>
- *     <li>{@link #titledBox(Listener, String)} - This string list in a titled box sent as information to the given listener</li>
+ *     <li>{@link #titledBox(String, Object...)} - This string list in a titled box</li>
  * </ul>
  */
 @UmlClassDiagram(diagram = DiagramLanguageString.class)
 public class StringList extends ObjectList<String>
 {
-    /**
-     * @return An empty string list
-     */
-    public static StringList create()
-    {
-        return stringList();
-    }
-
     /**
      * @return A string list of the given text repeated the given number of times
      */
@@ -627,15 +617,6 @@ public class StringList extends ObjectList<String>
     public StringList subList(final int start, final int end)
     {
         return (StringList) super.subList(start, end);
-    }
-
-    /**
-     * @return Sends a titled box of this string list to the given listener as {@link Information}
-     */
-    public StringList titledBox(final Listener listener, final String title)
-    {
-        listener.information(titledBox(title));
-        return this;
     }
 
     /**

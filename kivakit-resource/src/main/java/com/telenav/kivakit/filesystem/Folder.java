@@ -299,6 +299,11 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         return parse(path.toString());
     }
 
+    public static Folder of(final FilePath path)
+    {
+        return parse(path.toString());
+    }
+
     public static Folder of(final java.io.File file)
     {
         return of(file.toPath());

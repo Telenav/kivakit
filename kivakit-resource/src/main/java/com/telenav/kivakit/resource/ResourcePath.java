@@ -95,7 +95,7 @@ public class ResourcePath extends StringPath implements UriIdentified
             root = "/";
             path = Strip.leading(path, "/");
         }
-        return new ResourcePath(StringList.create(), root, StringList.split(path, "/"));
+        return new ResourcePath(new StringList(), root, StringList.split(path, "/"));
     }
 
     /**
@@ -103,7 +103,7 @@ public class ResourcePath extends StringPath implements UriIdentified
      */
     public static ResourcePath resourcePath(final StringPath path)
     {
-        return new ResourcePath(StringList.create(), path.rootElement(), path.elements());
+        return new ResourcePath(new StringList(), path.rootElement(), path.elements());
     }
 
     public static SwitchParser.Builder<ResourcePath> resourcePathSwitchParser(final String name,
@@ -422,7 +422,7 @@ public class ResourcePath extends StringPath implements UriIdentified
     public ResourcePath withoutSchemes()
     {
         final ResourcePath copy = (ResourcePath) copy();
-        copy.schemes = StringList.create();
+        copy.schemes = new StringList();
         return copy;
     }
 
