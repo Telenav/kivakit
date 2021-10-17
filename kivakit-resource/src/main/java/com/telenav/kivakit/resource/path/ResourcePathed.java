@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.resource.path;
 
+import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.UriIdentified;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResource;
@@ -39,6 +40,7 @@ import java.net.URI;
 @LexakaiJavadoc(complete = true)
 public interface ResourcePathed extends UriIdentified
 {
+
     /**
      * @return The base name of the file name of this object
      */
@@ -77,6 +79,14 @@ public interface ResourcePathed extends UriIdentified
     default boolean hasExtension(final Extension extension)
     {
         return fileName().endsWith(extension);
+    }
+
+    /**
+     * @return True if the resource path matches the given matcher
+     */
+    default boolean matches(Matcher<String> matcher)
+    {
+        return matcher.matches(path().asString());
     }
 
     /**

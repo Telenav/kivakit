@@ -430,15 +430,6 @@ public class StringList extends ObjectList<String>
      * {@inheritDoc}
      */
     @Override
-    public StringList matching(final Matcher<String> matcher)
-    {
-        return (StringList) super.matching(matcher);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public StringList first(final Count count)
     {
         return (StringList) super.first(count);
@@ -496,6 +487,15 @@ public class StringList extends ObjectList<String>
     public <To> ObjectList<To> mapped(final Function<String, To> mapper)
     {
         return super.mapped(mapper);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public StringList matching(final Matcher<String> matcher)
+    {
+        return (StringList) super.matching(matcher);
     }
 
     /**
@@ -641,9 +641,9 @@ public class StringList extends ObjectList<String>
     /**
      * @return This list of strings as an ASCII art text box with the given title
      */
-    public String titledBox(final String title)
+    public String titledBox(final String title, Object... arguments)
     {
-        return AsciiArt.textBox(title, join("\n"));
+        return AsciiArt.textBox(Message.format(title, arguments), join("\n"));
     }
 
     /**

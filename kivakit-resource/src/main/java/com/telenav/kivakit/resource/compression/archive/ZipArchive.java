@@ -74,8 +74,8 @@ import static com.telenav.kivakit.resource.compression.archive.ZipArchive.Mode.R
  * <p><b>Adding Files</b></p>
  *
  * <p>
- * Files can be added to the archive with {@link #add(List)}. To do this, the zip file must be opened in {@link
- * Mode#WRITE}.
+ * Files can be added to the archive with {@link #add(List, ProgressReporter)}. To do this, the zip file must be opened
+ * in {@link Mode#WRITE}.
  * </p>
  *
  * <p><b>Saving</b></p>
@@ -131,6 +131,11 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
         return false;
     }
 
+    public static ZipArchive open(Listener listener, final File file, final Mode mode)
+    {
+        return open(listener, file, ProgressReporter.NULL, mode);
+    }
+
     public static ZipArchive open(Listener listener, final File file, final ProgressReporter reporter, final Mode mode)
     {
         if (file.isRemote())
@@ -172,6 +177,11 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
 
     private final ProgressReporter reporter;
 
+    public ZipArchive(final FileSystem filesystem, final File file)
+    {
+        this(filesystem, ProgressReporter.NULL, file);
+    }
+
     public ZipArchive(final FileSystem filesystem, final ProgressReporter reporter, final File file)
     {
         this.reporter = reporter;
@@ -182,14 +192,20 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
         this.filesystem = filesystem;
     }
 
+    public void add(final List<File> files)
+    {
+        add(files, ProgressReporter.NULL);
+    }
+
     /**
      * Adds the given list of files to this archive, calling the progress reporter as the operation proceeds
      */
-    public void add(final List<File> files)
+    public void add(final List<File> files, ProgressReporter reporter)
     {
         for (final var file : files)
         {
             save(file.fileName().name(), file);
+            reporter.next();
         }
     }
 

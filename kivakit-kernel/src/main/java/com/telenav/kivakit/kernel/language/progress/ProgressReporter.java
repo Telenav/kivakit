@@ -48,7 +48,7 @@ public interface ProgressReporter extends Resettable
     /**
      * Report that the operation has ended
      */
-    default void end(final String label)
+    default void end(final String message, Object... arguments)
     {
     }
 

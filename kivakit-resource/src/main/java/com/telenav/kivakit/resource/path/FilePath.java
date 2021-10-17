@@ -359,6 +359,14 @@ public class FilePath extends ResourcePath
     }
 
     /**
+     * @return True if this path matches the given matcher
+     */
+    public boolean matches(com.telenav.kivakit.kernel.interfaces.comparison.Matcher<String> matcher)
+    {
+        return matcher.matches(asString());
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override

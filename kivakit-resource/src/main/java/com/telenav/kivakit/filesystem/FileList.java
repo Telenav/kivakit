@@ -22,8 +22,10 @@ import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
+import com.telenav.kivakit.kernel.interfaces.numeric.Countable;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemFile;
@@ -61,7 +63,7 @@ import java.util.Set;
  */
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @LexakaiJavadoc(complete = true)
-public class FileList implements List<File>
+public class FileList implements List<File>, Countable
 {
     /**
      * <b>Not public API</b>
@@ -185,6 +187,12 @@ public class FileList implements List<File>
     public boolean containsAll(@NotNull final Collection<?> c)
     {
         return files.containsAll(c);
+    }
+
+    @Override
+    public Count count()
+    {
+        return Count.count(size());
     }
 
     @Override

@@ -27,6 +27,7 @@ import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.language.values.level.Percent;
 import com.telenav.kivakit.kernel.messaging.Listener;
+import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.broadcasters.Multicaster;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageProgress;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -160,13 +161,14 @@ public class Progress extends Multicaster implements ProgressReporter
     }
 
     @Override
-    public synchronized void end(final String label)
+    public synchronized void end(final String message, Object... arguments)
     {
         if (!ended)
         {
             ended = true;
             report(at());
-            feedback(AsciiArt.bottomLine("$ $ in $", label, itemName, Time.milliseconds(start).elapsedSince()));
+            var formatted = Message.format(message, arguments);
+            feedback(AsciiArt.bottomLine("$ $ in $", formatted, itemName, Time.milliseconds(start).elapsedSince()));
         }
     }
 

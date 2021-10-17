@@ -747,6 +747,11 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         return recurse == RECURSE ? nestedFiles(matcher) : files(matcher);
     }
 
+    public FileList files(final String globPattern)
+    {
+        return files(FileGlobPattern.parse(globPattern));
+    }
+
     public FileList files(final Matcher<File> matcher)
     {
         final var files = new FileList();
