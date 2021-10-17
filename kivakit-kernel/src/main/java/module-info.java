@@ -48,6 +48,7 @@ open module kivakit.kernel
     exports com.telenav.kivakit.kernel.interfaces.naming;
     exports com.telenav.kivakit.kernel.interfaces.numeric;
     exports com.telenav.kivakit.kernel.interfaces.string;
+    exports com.telenav.kivakit.kernel.interfaces.time;
     exports com.telenav.kivakit.kernel.interfaces.value;
     exports com.telenav.kivakit.kernel.language.bits;
     exports com.telenav.kivakit.kernel.language.collections.list;
@@ -77,6 +78,7 @@ open module kivakit.kernel
     exports com.telenav.kivakit.kernel.language.progress.reporters;
     exports com.telenav.kivakit.kernel.language.progress;
     exports com.telenav.kivakit.kernel.language.reflection.access;
+    exports com.telenav.kivakit.kernel.language.reflection.access.field;
     exports com.telenav.kivakit.kernel.language.reflection.populator;
     exports com.telenav.kivakit.kernel.language.reflection.property.filters.field;
     exports com.telenav.kivakit.kernel.language.reflection.property.filters;
@@ -97,6 +99,7 @@ open module kivakit.kernel
     exports com.telenav.kivakit.kernel.language.time.conversion;
     exports com.telenav.kivakit.kernel.language.time;
     exports com.telenav.kivakit.kernel.language.mixin;
+    exports com.telenav.kivakit.kernel.language.traits;
     exports com.telenav.kivakit.kernel.language.types;
     exports com.telenav.kivakit.kernel.language.values.count;
     exports com.telenav.kivakit.kernel.language.values.identifier;
@@ -124,6 +127,4 @@ open module kivakit.kernel
     exports com.telenav.kivakit.kernel.project.lexakai.diagrams;
     exports com.telenav.kivakit.kernel.project;
     exports com.telenav.kivakit.kernel;
-    exports com.telenav.kivakit.kernel.interfaces.time;
-    exports com.telenav.kivakit.kernel.language.reflection.access.field;
 }

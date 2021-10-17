@@ -297,6 +297,11 @@ public class Ensure
         throw new IllegalStateException(format(message, arguments), e);
     }
 
+    public static <T> T unimplemented()
+    {
+        return fail("Not implemented");
+    }
+
     public static <T> T unsupported()
     {
         return unsupported("Unsupported operation");

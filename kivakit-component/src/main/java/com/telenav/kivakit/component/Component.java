@@ -7,14 +7,14 @@ import com.telenav.kivakit.configuration.settings.SettingsTrait;
 import com.telenav.kivakit.configuration.settings.deployment.Deployment;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.interfaces.code.Unchecked;
-import com.telenav.kivakit.kernel.interfaces.code.UncheckedMethod;
 import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.language.paths.PackagePathTrait;
+import com.telenav.kivakit.kernel.language.traits.TryTrait;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.resource.Resource;
+import com.telenav.kivakit.resource.ResourceTrait;
 import com.telenav.kivakit.resource.resources.packaged.Package;
-import com.telenav.kivakit.resource.resources.packaged.PackageResource;
 
 /**
  * Interface to KivaKit component functionality, including easy access to settings (see {@link Settings}) and object
@@ -78,8 +78,17 @@ import com.telenav.kivakit.resource.resources.packaged.PackageResource;
  * @see Repeater
  * @see SettingsTrait
  * @see RegistryTrait
+ * @see TryTrait
+ * @see ResourceTrait
  */
-public interface Component extends Repeater, NamedObject, SettingsTrait, RegistryTrait, PackagePathTrait
+public interface Component extends
+        Repeater,
+        NamedObject,
+        SettingsTrait,
+        RegistryTrait,
+        PackagePathTrait,
+        TryTrait,
+        ResourceTrait
 {
     class UncheckedVoid implements Unchecked<Void>
     {
@@ -87,90 +96,6 @@ public interface Component extends Repeater, NamedObject, SettingsTrait, Registr
         public Void run() throws Exception
         {
             return null;
-        }
-    }
-
-    /**
-     * @return The resource at the given path relative to this component's class
-     */
-    default Resource packageResource(final String path)
-    {
-        return PackageResource.of(getClass(), path);
-    }
-
-    default Package relativePackage(final String path)
-    {
-        return Package.of(getClass(), path);
-    }
-
-    default <T> T tryCatch(Unchecked<T> code, String message, Object... arguments)
-    {
-        try
-        {
-            return code.run();
-        }
-        catch (Exception e)
-        {
-            problem(message, arguments);
-            return null;
-        }
-    }
-
-    default <T> T tryCatchDefault(Unchecked<T> code, T defaultValue)
-    {
-        try
-        {
-            return code.run();
-        }
-        catch (Exception e)
-        {
-            return defaultValue;
-        }
-    }
-
-    default <T> T tryCatchThrow(Unchecked<T> code, String message, Object... arguments)
-    {
-        try
-        {
-            return code.run();
-        }
-        catch (Exception e)
-        {
-            problem(message, arguments).throwAsIllegalStateException();
-            return null;
-        }
-    }
-
-    default void tryFinally(UncheckedMethod code, Runnable after)
-    {
-        try
-        {
-            code.run();
-        }
-        catch (Exception e)
-        {
-            problem(e, "Code threw exception");
-        }
-        finally
-        {
-            after.run();
-        }
-    }
-
-    default <T> T tryFinallyReturn(Unchecked<T> code, Runnable after)
-    {
-        try
-        {
-            return code.run();
-        }
-        catch (Exception e)
-        {
-            problem(e, "Code threw exception");
-            return null;
-        }
-        finally
-        {
-            after.run();
         }
     }
 }
