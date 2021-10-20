@@ -28,6 +28,7 @@ import com.telenav.kivakit.kernel.language.strings.Strings;
 import com.telenav.kivakit.kernel.language.strings.Strip;
 import com.telenav.kivakit.kernel.language.vm.OperatingSystem;
 import com.telenav.kivakit.kernel.messaging.Listener;
+import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourcePath;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -170,12 +171,14 @@ public class FilePath extends ResourcePath
     /**
      * @return A file path for the given string
      */
-    public static FilePath parseFilePath(final String path)
+    public static FilePath parseFilePath(String path, Object... arguments)
     {
         if (path.isBlank())
         {
             return empty();
         }
+
+        path = Message.format(path, arguments);
 
         if (path.contains("\\${"))
         {
