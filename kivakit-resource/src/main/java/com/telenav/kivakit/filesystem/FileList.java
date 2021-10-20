@@ -385,7 +385,12 @@ public class FileList implements List<File>, Countable
     @Override
     public Object[] toArray()
     {
-        return Ensure.unsupported();
+        var array = new Object[size()];
+        for (int i = 0; i < size(); i++)
+        {
+            array[i] = get(i);
+        }
+        return array;
     }
 
     @NotNull

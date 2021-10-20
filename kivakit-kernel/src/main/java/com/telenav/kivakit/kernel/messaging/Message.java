@@ -146,7 +146,11 @@ public interface Message extends Transmittable, Triaged, AsString, Named
      */
     static String format(final String message, final Object... arguments)
     {
-        return FORMATTER.format(message, arguments);
+        if (arguments.length > 0)
+        {
+            return FORMATTER.format(message, arguments);
+        }
+        return message;
     }
 
     /**

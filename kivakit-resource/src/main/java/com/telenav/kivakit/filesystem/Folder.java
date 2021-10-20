@@ -35,6 +35,7 @@ import com.telenav.kivakit.kernel.language.vm.OperatingSystem;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Listener;
+import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.filters.operators.All;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
@@ -83,7 +84,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  * <p><b>Factory Methods</b></p>
  *
  * <ul>
- *     <li>{@link #parse(String)} - A folder for the given string</li>
+ *     <li>{@link #parse(String, Object...)} - A folder for the given string</li>
  *     <li>{@link #of(URI)} - A folder for the given URI</li>
  *     <li>{@link #of(URL)} - A folder for the given URL</li>
  *     <li>{@link #of(java.io.File)} - A folder for the given Java file</li>
@@ -336,8 +337,9 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
                 .description("Output folder to write to");
     }
 
-    public static Folder parse(final String path)
+    public static Folder parse(String path, Object... arguments)
     {
+        path = Message.format(path, arguments);
         if (Strings.isEmpty(path))
         {
             return null;
