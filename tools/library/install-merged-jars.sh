@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "${KIVAKIT_EXTENSIONS_HOME}/kivakit-merged-jars/"
+
 if [ ! -e "${HOME}/.m2/repository/com/telenav/kivakit/kivakit-grpc-merged/1.1.0/kivakit-grpc-merged-1.1.0.jar" ]; then
 
     echo "Installing GRPC merged JAR"
