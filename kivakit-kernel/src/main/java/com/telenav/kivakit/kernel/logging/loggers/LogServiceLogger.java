@@ -42,7 +42,7 @@ import java.util.regex.Pattern;
  * LogServiceLoader} as services. They are then configured and added to the list of logs. Configuration properties are
  * specified as key value pairs.
  * <pre>
- * -DKIVAKIT_LOG="console level=warning,file level=information location=log.txt"
+ * -DKIVAKIT_LOG="console level=warning,file level=information file=log.txt"
  * </pre>
  * This command line sends warnings to the console and information messages (and higher) to the specified log file.
  *

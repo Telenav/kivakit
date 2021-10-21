@@ -100,6 +100,7 @@ public abstract class OperationMessage implements Named, Message
     public static OperationMessage of(final String name)
     {
         initialize();
+        
         return messages.get(name);
     }
 
@@ -335,7 +336,7 @@ public abstract class OperationMessage implements Named, Message
         if (messages == null)
         {
             messages = new NameMap<>();
-            messages.caseSensitive(true);
+            messages.caseSensitive(false);
         }
         return messages;
     }
