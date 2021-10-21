@@ -31,6 +31,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.List;
 import java.util.function.Function;
 
 /**
@@ -164,6 +165,14 @@ public class ObjectList<Element> extends BaseList<Element>
     public ObjectList(final Maximum maximumSize)
     {
         super(maximumSize);
+    }
+
+    /**
+     * An list of objects with the given upper bound
+     */
+    public ObjectList(final List<Element> list)
+    {
+        super(list);
     }
 
     /**

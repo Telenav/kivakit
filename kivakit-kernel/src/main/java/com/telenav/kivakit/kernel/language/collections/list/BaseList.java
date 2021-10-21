@@ -537,16 +537,6 @@ public abstract class BaseList<Element> implements
     }
 
     /**
-     * @return This bounded list filtered to only the elements that match the given matcher
-     */
-    public BaseList<Element> matching(final Matcher<Element> matcher)
-    {
-        final var filtered = newInstance();
-        filtered.addAll(asIterable(matcher));
-        return filtered;
-    }
-
-    /**
      * @return The first n elements in this list
      */
     public BaseList<Element> first(final Count count)
@@ -729,6 +719,16 @@ public abstract class BaseList<Element> implements
         {
             filtered.add(mapper.apply(element));
         }
+        return filtered;
+    }
+
+    /**
+     * @return This bounded list filtered to only the elements that match the given matcher
+     */
+    public BaseList<Element> matching(final Matcher<Element> matcher)
+    {
+        final var filtered = newInstance();
+        filtered.addAll(asIterable(matcher));
         return filtered;
     }
 

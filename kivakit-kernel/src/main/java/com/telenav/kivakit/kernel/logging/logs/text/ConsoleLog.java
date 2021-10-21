@@ -22,13 +22,13 @@ import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.kernel.language.vm.Console;
 import com.telenav.kivakit.kernel.logging.LogEntry;
 import com.telenav.kivakit.kernel.logging.loggers.LogServiceLogger;
-import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLoggingLogs;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import java.util.Map;
+import static com.telenav.kivakit.kernel.language.vm.Console.OutputType.ERROR;
+import static com.telenav.kivakit.kernel.language.vm.Console.OutputType.NORMAL;
 
 /**
  * A text log that logs to the console. The formatter can be specified from the command line as "formatter=columnar" or
@@ -42,30 +42,7 @@ import java.util.Map;
 @LexakaiJavadoc(complete = true)
 public class ConsoleLog extends BaseTextLog
 {
-    /**
-     * The type of formatting to perform on log entries
-     */
-    @LexakaiJavadoc(complete = true)
-    public enum Format
-    {
-        COLUMNAR,
-        UNFORMATTED
-    }
-
-    private Format formatter = Format.COLUMNAR;
-
     private final Console console = new Console();
-
-    @Override
-    @UmlExcludeMember
-    public void configure(final Map<String, String> properties)
-    {
-        final var formatter = properties.get("formatter");
-        if (formatter != null)
-        {
-            this.formatter = Format.valueOf(formatter.toUpperCase());
-        }
-    }
 
     @Override
     @UmlExcludeMember
@@ -86,17 +63,6 @@ public class ConsoleLog extends BaseTextLog
     @UmlExcludeMember
     public synchronized void onLog(final LogEntry entry)
     {
-        final var outputType = entry.isSevere() ? Console.OutputType.ERROR : Console.OutputType.NORMAL;
-        switch (formatter)
-        {
-            case UNFORMATTED:
-                console.printLine(outputType, entry.message().formatted(MessageFormatter.Format.WITH_EXCEPTION));
-                break;
-
-            case COLUMNAR:
-                final var formatted = format(entry, MessageFormatter.Format.WITH_EXCEPTION);
-                console.printLine(outputType, formatted);
-                break;
-        }
+        console.printLine(entry.isSevere() ? ERROR : NORMAL, formatted(entry));
     }
 }

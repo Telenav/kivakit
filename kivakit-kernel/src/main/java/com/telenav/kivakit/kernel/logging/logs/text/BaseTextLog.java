@@ -23,21 +23,67 @@ import com.telenav.kivakit.kernel.logging.logs.BaseLog;
 import com.telenav.kivakit.kernel.logging.logs.text.formatters.ColumnarLogFormatter;
 import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLoggingLogs;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
+import org.jetbrains.annotations.MustBeInvokedByOverriders;
+
+import java.util.Map;
+
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
 
 @UmlClassDiagram(diagram = DiagramLoggingLogs.class)
 @UmlRelation(label = "formats entries with", referent = LogFormatter.class)
 public abstract class BaseTextLog extends BaseLog
 {
+    /**
+     * The type of formatting to perform on log entries
+     */
+    @LexakaiJavadoc(complete = true)
+    public enum Format
+    {
+        FORMATTED,
+        UNFORMATTED,
+    }
+
+    private Format format = Format.FORMATTED;
+
     private LogFormatter formatter = ColumnarLogFormatter.DEFAULT;
+
+    @Override
+    @UmlExcludeMember
+    @MustBeInvokedByOverriders
+    public void configure(final Map<String, String> properties)
+    {
+        final var formatter = properties.get("formatter");
+        if (formatter != null)
+        {
+            this.format = Format.valueOf(formatter.toUpperCase());
+        }
+    }
 
     public void formatter(final LogFormatter formatter)
     {
         this.formatter = formatter;
     }
 
-    protected String format(final LogEntry entry, final MessageFormatter.Format format)
+    protected String formatted(LogEntry entry)
+    {
+        switch (format)
+        {
+            case UNFORMATTED:
+                return entry.message().formatted(MessageFormatter.Format.WITH_EXCEPTION);
+
+            case FORMATTED:
+                return format(entry, MessageFormatter.Format.WITH_EXCEPTION);
+
+            default:
+                return fail("Unsupported format: $", format);
+        }
+    }
+
+    private String format(final LogEntry entry, final MessageFormatter.Format format)
     {
         return entry.format(formatter, format);
     }

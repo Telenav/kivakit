@@ -56,13 +56,15 @@ public class MultiMap<Key, Value> extends BaseMap<Key, ObjectList<Value>>
         this.maximumValues = maximumValues;
     }
 
-    /**
-     * In case another implementation wants to control the type of map used underneath
-     */
-    protected MultiMap(final Maximum maximumKeys, final Maximum maximumValues, final Map<Key, ObjectList<Value>> map)
+    public MultiMap(final Maximum maximumKeys, final Maximum maximumValues, final Map<Key, ObjectList<Value>> map)
     {
         super(maximumKeys, map);
         this.maximumValues = maximumValues;
+    }
+
+    public MultiMap(final Map<Key, ObjectList<Value>> map)
+    {
+        this(Maximum.MAXIMUM, Maximum.MAXIMUM, map);
     }
 
     public void add(final Key key, final Value value)
