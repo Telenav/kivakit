@@ -506,7 +506,12 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
     {
         try
         {
-            return new URI(folder().toString() + "/");
+            var path = path();
+            if (!path.hasScheme())
+            {
+                path = path.withScheme("file");
+            }
+            return new URI(Strings.ensureEndsWith(path.toString(), "/"));
         }
         catch (final Exception e)
         {
@@ -518,7 +523,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
     {
         try
         {
-            return asUri().toURL();
+            return withTrailingSlash().asUri().toURL();
         }
         catch (final Exception e)
         {
@@ -828,6 +833,11 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         return folders;
     }
 
+    public boolean hasTrailingSlash()
+    {
+        return "".equals(last().toString());
+    }
+
     @Override
     public int hashCode()
     {
@@ -1109,6 +1119,15 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
     public URI uri()
     {
         return path().uri();
+    }
+
+    public Folder withTrailingSlash()
+    {
+        if (hasTrailingSlash())
+        {
+            return this;
+        }
+        return new Folder(path().withChild(""));
     }
 
     FolderService service()

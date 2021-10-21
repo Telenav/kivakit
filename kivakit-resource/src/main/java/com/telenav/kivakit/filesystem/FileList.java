@@ -36,6 +36,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -65,6 +66,13 @@ import java.util.Set;
 @LexakaiJavadoc(complete = true)
 public class FileList implements List<File>, Countable
 {
+    public static FileList files(File... files)
+    {
+        var list = new FileList();
+        list.addAll(Arrays.asList(files));
+        return list;
+    }
+
     /**
      * <b>Not public API</b>
      */

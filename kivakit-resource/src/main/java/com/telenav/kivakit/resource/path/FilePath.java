@@ -67,7 +67,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  * <p><b>Parsing</b></p>
  *
  * <ul>
- *     <li>{@link #parseFilePath(String)} - The given string as a file path</li>
+ *     <li>{@link #parseFilePath(String, Object...)} - The given string as a file path</li>
  * </ul>
  *
  * <p><b>Factories</b></p>
@@ -147,7 +147,7 @@ public class FilePath extends ResourcePath
      */
     public static FilePath filePath(final java.nio.file.Path path)
     {
-        return filePath(path.toUri());
+        return filePath(path.toUri()).withoutFileScheme();
     }
 
     /**
@@ -482,6 +482,11 @@ public class FilePath extends ResourcePath
     public FilePath withRoot(final String root)
     {
         return (FilePath) super.withRoot(root);
+    }
+
+    public FilePath withScheme(String scheme)
+    {
+        return withSchemes(StringList.stringList(scheme));
     }
 
     public FilePath withSchemes(StringList scheme)

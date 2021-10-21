@@ -23,6 +23,7 @@ import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.strings.Align;
+import com.telenav.kivakit.kernel.language.strings.Plural;
 import com.telenav.kivakit.kernel.language.types.Classes;
 import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.language.values.count.Maximum;
@@ -134,12 +135,6 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
         return super.equals(object);
     }
 
-    @Override
-    public ObjectList<Message> matching(final Matcher<Message> filter)
-    {
-        return super.matching(filter);
-    }
-
     /**
      * The messages in this list, formatted
      */
@@ -158,6 +153,12 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
     {
         // Local fields are not considered
         return super.hashCode();
+    }
+
+    @Override
+    public ObjectList<Message> matching(final Matcher<Message> filter)
+    {
+        return super.matching(filter);
     }
 
     /**
@@ -217,8 +218,8 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
         final var statistics = new StringList();
         for (final var type : types)
         {
-            statistics.append(Align.right(Classes.simpleName(type), 24, ' '))
-                    .append(": ").append(count(type).toCommaSeparatedString());
+            statistics.append(Align.right(Plural.pluralize(Classes.simpleName(type)), 24, ' ')
+                    + ": " + count(type).toCommaSeparatedString());
         }
         return statistics;
     }

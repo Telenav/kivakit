@@ -466,6 +466,10 @@ public abstract class Path<Element extends Comparable<Element>> implements
                 return isAbsolute() ? root() : emptyPath();
 
             default:
+                if ("".equals(last()))
+                {
+                    return subpath(0, size() - 2);
+                }
                 return subpath(0, size() - 1);
         }
     }

@@ -345,7 +345,7 @@ public class Multicaster implements Broadcaster
                 if (!JavaVirtualMachine.isPropertyTrue("KIVAKIT_IGNORE_MISSING_LISTENERS"))
                 {
                     LOGGER.warning("Broken listener chain:\n$", listenerChain()
-                            .append("[no listener]")
+                            .append(getClass().getSimpleName() + " [no listener]")
                             .numbered()
                             .indented(4)
                             .join("\n"));
