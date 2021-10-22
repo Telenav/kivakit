@@ -19,6 +19,7 @@
 package com.telenav.kivakit.network.http.secure;
 
 import com.telenav.kivakit.network.core.NetworkPath;
+import com.telenav.kivakit.network.http.HttpGetResource;
 import com.telenav.kivakit.network.http.HttpNetworkLocation;
 import com.telenav.kivakit.network.http.project.lexakai.diagrams.DiagramHttps;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -43,5 +44,11 @@ public class SecureHttpNetworkLocation extends HttpNetworkLocation
     {
         super(path);
         ensure(HTTPS.equals(path.port().protocol()));
+    }
+
+    @Override
+    public HttpGetResource get()
+    {
+        return new SecureHttpGetResource(this);
     }
 }

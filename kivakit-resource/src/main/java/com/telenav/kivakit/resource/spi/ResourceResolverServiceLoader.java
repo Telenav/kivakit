@@ -21,6 +21,7 @@ package com.telenav.kivakit.resource.spi;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Debug;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourceService;
@@ -34,10 +35,10 @@ import java.util.ServiceLoader;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
 
 /**
- * {@link #resolve(ResourceIdentifier)} iterates through implementations of the {@link ResourceResolver} interface
- * provided by Java's {@link ServiceLoader} and resolves {@link ResourceIdentifier}s by calling {@link
+ * {@link #resolve(Listener, ResourceIdentifier)} iterates through implementations of the {@link ResourceResolver}
+ * interface provided by Java's {@link ServiceLoader} and resolves {@link ResourceIdentifier}s by calling {@link
  * ResourceResolver#accepts(ResourceIdentifier)} until it reaches a resolver that recognizes the identifier. It then
- * returns the resolved resource with {@link ResourceResolver#resolve(ResourceIdentifier)}.
+ * returns the resolved resource with {@link ResourceResolver#resolve(Listener, ResourceIdentifier)}.
  *
  * @author jonathanl (shibo)
  */
@@ -51,13 +52,13 @@ public class ResourceResolverServiceLoader
     @UmlAggregation
     private static List<ResourceResolver> resolvers;
 
-    public static Resource resolve(final ResourceIdentifier identifier)
+    public static Resource resolve(Listener listener, final ResourceIdentifier identifier)
     {
         for (final var resolver : resolvers())
         {
             if (resolver.accepts(identifier))
             {
-                return resolver.resolve(identifier);
+                return resolver.resolve(listener, identifier);
             }
         }
 

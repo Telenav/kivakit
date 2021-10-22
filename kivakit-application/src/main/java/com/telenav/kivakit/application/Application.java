@@ -452,7 +452,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
             {
                 // then load properties from the resource
                 final var resourceIdentifier = Strip.leading(argument, "-switches=");
-                final var resource = Resource.resolve(resourceIdentifier);
+                final var resource = Resource.resolve(this, resourceIdentifier);
                 final var properties = PropertyMap.load(this, resource);
 
                 // and add those properties to the argument list

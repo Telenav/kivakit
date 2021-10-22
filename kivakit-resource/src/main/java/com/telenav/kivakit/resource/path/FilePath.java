@@ -591,6 +591,15 @@ public class FilePath extends ResourcePath
         return (FilePath) super.withoutSuffix(suffix);
     }
 
+    public FilePath withoutTrailingSlash()
+    {
+        if (last().equals(""))
+        {
+            return first(size() - 1);
+        }
+        return this;
+    }
+
     /**
      * {@inheritDoc}
      */

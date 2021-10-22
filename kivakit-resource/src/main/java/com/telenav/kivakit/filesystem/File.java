@@ -307,7 +307,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         @Override
         public boolean accepts(final ResourceIdentifier identifier)
         {
-            if (identifier.identifier().startsWith("classpath:"))
+            if (identifier.identifier().matches("^(http|https|classpath):.*"))
             {
                 return false;
             }
@@ -315,7 +315,8 @@ public class File extends BaseWritableResource implements FileSystemObject
         }
 
         @Override
-        public Resource resolve(final ResourceIdentifier identifier)
+        public Resource resolve(final Listener listener,
+                                final ResourceIdentifier identifier)
         {
             return File.parse(identifier.identifier());
         }

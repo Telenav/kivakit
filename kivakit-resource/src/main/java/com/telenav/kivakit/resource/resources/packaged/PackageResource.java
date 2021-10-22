@@ -27,6 +27,7 @@ import com.telenav.kivakit.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.kernel.language.strings.Strip;
 import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.ResourcePath;
@@ -146,7 +147,7 @@ public class PackageResource extends BaseReadableResource
         }
 
         @Override
-        public Resource resolve(final ResourceIdentifier identifier)
+        public Resource resolve(final Listener listener, final ResourceIdentifier identifier)
         {
             final var filepath = FilePath.parseFilePath(Strip.leading(identifier.identifier(), SCHEME));
             final var parent = filepath.parent();
@@ -177,7 +178,7 @@ public class PackageResource extends BaseReadableResource
     }
 
     @Override
-    public boolean equals(Object  object)
+    public boolean equals(Object object)
     {
         if (object instanceof PackageResource)
         {

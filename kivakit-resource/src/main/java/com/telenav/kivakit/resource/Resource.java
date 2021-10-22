@@ -47,8 +47,8 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 /**
  * A resource that can be read via {@link ReadableResource}. In addition, resources are {@link ChangedAt}, {@link
  * ByteSized} and are message {@link Repeater}s. A resource can be created by instantiating a concrete implementation of
- * {@link Resource} or one can be resolved from an abstract {@link ResourceIdentifier} with {@link
- * #resolve(ResourceIdentifier)}.
+ * {@link Resource} or one can be resolved from an abstract {@link ResourceIdentifier} with {@link #resolve(Listener,
+ * ResourceIdentifier)}.
  *
  * <p><b>Examples</b></p>
  * <p>
@@ -127,19 +127,19 @@ public interface Resource extends
         return new ResourceIdentifier(identifier);
     }
 
-    static Resource resolve(final ResourceIdentifier identifier)
+    static Resource resolve(Listener listener, final ResourceIdentifier identifier)
     {
-        return ResourceResolverServiceLoader.resolve(identifier);
+        return ResourceResolverServiceLoader.resolve(listener, identifier);
     }
 
-    static Resource resolve(ResourcePath path)
+    static Resource resolve(Listener listener, ResourcePath path)
     {
-        return resolve(path.asString());
+        return resolve(listener, path.asString());
     }
 
-    static Resource resolve(final String identifier)
+    static Resource resolve(Listener listener, final String identifier)
     {
-        return resolve(new ResourceIdentifier(identifier));
+        return resolve(listener, new ResourceIdentifier(identifier));
     }
 
     static SwitchParser.Builder<ResourceList> resourceListSwitchParser(
@@ -181,7 +181,7 @@ public interface Resource extends
         @Override
         protected Resource onToValue(final String value)
         {
-            return new ResourceIdentifier(value).resolve();
+            return new ResourceIdentifier(value).resolve(this);
         }
     }
 

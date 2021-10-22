@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.resource.spi;
 
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolderIdentifier;
 import com.telenav.kivakit.resource.ResourceIdentifier;
@@ -29,9 +30,9 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 /**
  * Service provider interface that resolves resource identifiers to resources. If the resolver returns true from {@link
  * #accepts(ResourceIdentifier)}, then the resource identifier can be resolved to a {@link Resource} by {@link
- * #resolve(ResourceIdentifier)}. Resource resolution permits a very broad abstraction to be used when denoting
- * resources with strings. In particular, it is possible to accept an arbitrary string, like a command line switch, and
- * convert this value into a {@link Resource} that can subsequently be read.
+ * #resolve(Listener, ResourceIdentifier)}. Resource resolution permits a very broad abstraction to be used when
+ * denoting resources with strings. In particular, it is possible to accept an arbitrary string, like a command line
+ * switch, and convert this value into a {@link Resource} that can subsequently be read.
  *
  * @author jonathanl (shibo)
  */
@@ -49,5 +50,5 @@ public interface ResourceResolver
      * @return A new resource for the given resource identifier
      */
     @UmlRelation(label = "creates")
-    Resource resolve(ResourceIdentifier identifier);
+    Resource resolve(final Listener listener, ResourceIdentifier identifier);
 }
