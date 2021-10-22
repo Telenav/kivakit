@@ -165,7 +165,7 @@ public class FilePath extends ResourcePath
      */
     public static FilePath filePath(final StringPath path)
     {
-        return new FilePath(null, path);
+        return new FilePath(StringList.stringList(), path);
     }
 
     /**
@@ -180,7 +180,7 @@ public class FilePath extends ResourcePath
 
         path = Message.format(path, arguments);
 
-        if (path.contains("\\${"))
+        if (path.contains("${"))
         {
             var elements = StringList.split(path, "/");
             return filePath(StringPath.stringPath(elements)).withoutFileScheme();

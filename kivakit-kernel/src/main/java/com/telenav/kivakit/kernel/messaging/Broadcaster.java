@@ -26,6 +26,8 @@ import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageRepeate
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
+import java.util.List;
+
 /**
  * Broadcasts a message to zero or more listeners via {@link #transmit(Transmittable)}. Listeners can be added with
  * {@link #addListener(Listener)} and can be cleared with {@link #clearListeners()}. A number of convenience methods in
@@ -75,9 +77,22 @@ public interface Broadcaster extends Transceiver
     void clearListeners();
 
     /**
+     * Copies the listeners of another broadcaster
+     */
+    default void copyListeners(Broadcaster that)
+    {
+        that.listeners().forEach(this::addListener);
+    }
+
+    /**
      * @return True if this broadcaster has any listeners
      */
     boolean hasListeners();
+
+    /**
+     * @return The listeners to this broadcaster
+     */
+    List<Listener> listeners();
 
     /**
      * <b>Not public API</b>
