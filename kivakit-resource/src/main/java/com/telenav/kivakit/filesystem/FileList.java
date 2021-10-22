@@ -20,29 +20,22 @@ package com.telenav.kivakit.filesystem;
 
 import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
-import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
-import com.telenav.kivakit.kernel.interfaces.numeric.Countable;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.values.count.Bytes;
-import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemFile;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
-import org.jetbrains.annotations.NotNull;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -64,7 +57,7 @@ import java.util.Set;
  */
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @LexakaiJavadoc(complete = true)
-public class FileList implements List<File>, Countable
+public class FileList extends ObjectList<File>
 {
     public static FileList files(File... files)
     {
@@ -130,40 +123,13 @@ public class FileList implements List<File>, Countable
         }
     }
 
-    @UmlAggregation
-    private final ObjectList<File> files = new ObjectList<>();
-
     public FileList()
     {
     }
 
     FileList(final FileList that)
     {
-        files.addAll(that.files);
-    }
-
-    @Override
-    public boolean add(final File file)
-    {
-        return files.add(file);
-    }
-
-    @Override
-    public void add(final int index, final File file)
-    {
-        files.add(index, file);
-    }
-
-    @Override
-    public boolean addAll(@NotNull final Collection<? extends File> c)
-    {
-        return files.addAll(c);
-    }
-
-    @Override
-    public boolean addAll(final int index, @NotNull final Collection<? extends File> c)
-    {
-        return files.addAll(index, c);
+        addAll(that);
     }
 
     @UmlExcludeMember
@@ -176,78 +142,31 @@ public class FileList implements List<File>, Countable
 
     public Set<File> asSet()
     {
-        return new HashSet<>(files);
+        return new HashSet<>(this);
     }
 
-    @Override
-    public void clear()
+    public byte[] digest()
     {
-        files.clear();
-    }
-
-    @Override
-    public boolean contains(final Object o)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean containsAll(@NotNull final Collection<?> c)
-    {
-        return files.containsAll(c);
-    }
-
-    @Override
-    public Count count()
-    {
-        return Count.count(size());
-    }
-
-    @Override
-    public boolean equals(final Object object)
-    {
-        if (object instanceof FileList)
+        MessageDigest digester = null;
+        try
         {
-            final FileList that = (FileList) object;
-            return files.equals(that.files);
+            digester = MessageDigest.getInstance("MD5");
+            var builder = new StringBuilder();
+            for (var file : this)
+            {
+                builder.append("[" + file.path().absolute()
+                        + ":" + file.created()
+                        + ":" + file.lastModified()
+                        + ":" + file.sizeInBytes()
+                        + "]");
+            }
+            return digester.digest(builder.toString().getBytes());
         }
-        return false;
-    }
-
-    public File first()
-    {
-        return files.first();
-    }
-
-    @Override
-    public File get(final int index)
-    {
-        return files.get(index);
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return Objects.hash(files);
-    }
-
-    @Override
-    public int indexOf(final Object o)
-    {
-        return files.indexOf(o);
-    }
-
-    @Override
-    public boolean isEmpty()
-    {
-        return files.isEmpty();
-    }
-
-    @NotNull
-    @Override
-    public Iterator<File> iterator()
-    {
-        return files.iterator();
+        catch (NoSuchAlgorithmException ignored)
+        {
+            // Not possible
+        }
+        return null;
     }
 
     public File largest()
@@ -263,26 +182,6 @@ public class FileList implements List<File>, Countable
         return largest;
     }
 
-    @Override
-    public int lastIndexOf(final Object o)
-    {
-        return files.lastIndexOf(o);
-    }
-
-    @NotNull
-    @Override
-    public ListIterator<File> listIterator()
-    {
-        return files.listIterator();
-    }
-
-    @NotNull
-    @Override
-    public ListIterator<File> listIterator(final int index)
-    {
-        return files.listIterator(index);
-    }
-
     public FileList matching(final Matcher<File> matcher)
     {
         final var files = new FileList();
@@ -294,42 +193,6 @@ public class FileList implements List<File>, Countable
             }
         }
         return files;
-    }
-
-    @Override
-    public boolean remove(final Object o)
-    {
-        return files.remove(o);
-    }
-
-    @Override
-    public File remove(final int index)
-    {
-        return files.remove(index);
-    }
-
-    @Override
-    public boolean removeAll(@NotNull final Collection<?> c)
-    {
-        return files.removeAll(c);
-    }
-
-    @Override
-    public boolean retainAll(@NotNull final Collection<?> c)
-    {
-        return files.retainAll(c);
-    }
-
-    @Override
-    public File set(final int index, final File file)
-    {
-        return files.set(index, file);
-    }
-
-    @Override
-    public int size()
-    {
-        return files.size();
     }
 
     public File smallest()
@@ -348,7 +211,7 @@ public class FileList implements List<File>, Countable
     public FileList sortedLargestToSmallest()
     {
         final var sorted = new FileList(this);
-        sorted.files.sort((a, b) ->
+        sorted.sort((a, b) ->
         {
             if (a.isLargerThan(b))
             {
@@ -367,7 +230,7 @@ public class FileList implements List<File>, Countable
     public FileList sortedOldestToNewest()
     {
         final var sorted = new FileList(this);
-        sorted.files.sort((a, b) ->
+        sorted.sort((a, b) ->
         {
             if (a.isOlderThan(b))
             {
@@ -380,32 +243,6 @@ public class FileList implements List<File>, Countable
             return 0;
         });
         return sorted;
-    }
-
-    @NotNull
-    @Override
-    public List<File> subList(final int fromIndex, final int toIndex)
-    {
-        return files.subList(fromIndex, toIndex);
-    }
-
-    @NotNull
-    @Override
-    public Object[] toArray()
-    {
-        var array = new Object[size()];
-        for (int i = 0; i < size(); i++)
-        {
-            array[i] = get(i);
-        }
-        return array;
-    }
-
-    @NotNull
-    @Override
-    public <T> T[] toArray(@NotNull final T[] a)
-    {
-        return Ensure.unsupported();
     }
 
     public Bytes totalSize()

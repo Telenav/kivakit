@@ -5,6 +5,7 @@ import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.kernel.messaging.Message;
 
 import java.io.PrintStream;
+import java.io.PrintWriter;
 
 import static com.telenav.kivakit.kernel.language.vm.Console.OutputType.ERROR;
 import static com.telenav.kivakit.kernel.language.vm.Console.OutputType.NORMAL;
@@ -52,5 +53,10 @@ public class Console implements Flushable
     public void printLine(final String text, final Object... arguments)
     {
         printLine(NORMAL, text, arguments);
+    }
+
+    public PrintWriter printWriter()
+    {
+        return new PrintWriter(NORMAL.stream());
     }
 }
