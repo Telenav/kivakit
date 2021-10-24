@@ -284,6 +284,12 @@ public class PropertyMap extends VariableMap<String>
         return map;
     }
 
+    @Override
+    public PropertyMap expanded()
+    {
+        return (PropertyMap) super.expanded();
+    }
+
     /**
      * @return This property map with all values expanded using the values in the given property map
      */
@@ -329,6 +335,12 @@ public class PropertyMap extends VariableMap<String>
         out.println("");
         out.println(this);
         out.close();
+    }
+
+    @Override
+    protected VariableMap<String> newStringMap()
+    {
+        return PropertyMap.create();
     }
 
     /**

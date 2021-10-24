@@ -537,16 +537,6 @@ public abstract class BaseList<Element> implements
     }
 
     /**
-     * @return This bounded list filtered to only the elements that match the given matcher
-     */
-    public BaseList<Element> matching(final Matcher<Element> matcher)
-    {
-        final var filtered = newInstance();
-        filtered.addAll(asIterable(matcher));
-        return filtered;
-    }
-
-    /**
      * @return The first n elements in this list
      */
     public BaseList<Element> first(final Count count)
@@ -733,6 +723,16 @@ public abstract class BaseList<Element> implements
     }
 
     /**
+     * @return This bounded list filtered to only the elements that match the given matcher
+     */
+    public BaseList<Element> matching(final Matcher<Element> matcher)
+    {
+        final var filtered = newInstance();
+        filtered.addAll(asIterable(matcher));
+        return filtered;
+    }
+
+    /**
      * @return The maximum size of this bounded list
      */
     public final Maximum maximumSize()
@@ -756,6 +756,11 @@ public abstract class BaseList<Element> implements
         return instance;
     }
 
+    public Element pop()
+    {
+        return removeLast();
+    }
+
     /**
      * Prepends the given element to the front of this list
      */
@@ -772,6 +777,11 @@ public abstract class BaseList<Element> implements
             add(0, element);
         }
         return this;
+    }
+
+    public void push(Element element)
+    {
+        append(element);
     }
 
     /**

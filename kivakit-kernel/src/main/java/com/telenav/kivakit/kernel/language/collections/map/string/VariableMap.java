@@ -36,7 +36,6 @@ import java.util.Map;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("unchecked")
 @UmlClassDiagram(diagram = DiagramLanguageCollectionsMap.class)
 public class VariableMap<Value> extends BaseStringMap<Value>
 {
@@ -105,7 +104,7 @@ public class VariableMap<Value> extends BaseStringMap<Value>
      */
     public VariableMap<String> doubleQuoted()
     {
-        final var quoted = new VariableMap<String>();
+        final var quoted = newStringMap();
         for (final var key : keySet())
         {
             quoted.add("\"" + key + "\"", "\"" + get(key) + "\"");
@@ -189,7 +188,7 @@ public class VariableMap<Value> extends BaseStringMap<Value>
      */
     public VariableMap<String> expanded()
     {
-        final var expanded = new VariableMap<String>();
+        final var expanded = newStringMap();
         for (final var key : new HashSet<>(keySet()))
         {
             final var value = get(key);
@@ -203,12 +202,17 @@ public class VariableMap<Value> extends BaseStringMap<Value>
      */
     public VariableMap<String> withQuotedValues()
     {
-        final var quoted = new VariableMap<String>();
+        final var quoted = newStringMap();
         for (final var key : keySet())
         {
             quoted.add(key, "'" + get(key) + "'");
         }
         return quoted;
+    }
+
+    protected VariableMap<String> newStringMap()
+    {
+        return new VariableMap<>();
     }
 
     private boolean isVariableCharacter(final char character)

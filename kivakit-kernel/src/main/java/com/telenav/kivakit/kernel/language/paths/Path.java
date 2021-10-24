@@ -300,6 +300,16 @@ public abstract class Path<Element extends Comparable<Element>> implements
         return withoutLast();
     }
 
+    public Element pop()
+    {
+        return elements.pop();
+    }
+
+    public void push(Element element)
+    {
+        elements.push(element);
+    }
+
     /**
      * @return The root path if this path is absolute or null if it is relative
      */

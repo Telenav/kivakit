@@ -139,6 +139,8 @@ public class Extension implements Named
 
     public static final Extension CLASS = parse(".class");
 
+    public static final Extension XML = parse(".xml");
+
     public static List<Extension> archive()
     {
         final List<Extension> executable = new ArrayList<>();
