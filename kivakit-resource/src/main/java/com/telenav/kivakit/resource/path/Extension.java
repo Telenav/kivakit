@@ -21,6 +21,7 @@ package com.telenav.kivakit.resource.path;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
+import com.telenav.kivakit.kernel.language.strings.Strip;
 import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.compression.Codec;
@@ -140,6 +141,10 @@ public class Extension implements Named
     public static final Extension CLASS = parse(".class");
 
     public static final Extension XML = parse(".xml");
+
+    public static final Extension MD5 = parse(".md5");
+
+    public static final Extension SHA1 = parse(".sha1");
 
     public static List<Extension> archive()
     {
@@ -313,6 +318,11 @@ public class Extension implements Named
     public String toString()
     {
         return "." + extension;
+    }
+
+    public Extension withExtension(Extension extension)
+    {
+        return new Extension(this.extension + "." + Strip.leading(this.extension, "."));
     }
 
     Count length()
