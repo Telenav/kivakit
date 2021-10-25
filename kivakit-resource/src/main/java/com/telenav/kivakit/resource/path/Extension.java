@@ -21,7 +21,6 @@ package com.telenav.kivakit.resource.path;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
-import com.telenav.kivakit.kernel.language.strings.Strip;
 import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.compression.Codec;
@@ -202,7 +201,7 @@ public class Extension implements Named
 
     public static Extension parse(final String value)
     {
-        if (value.matches("(\\.[A-Za-z]+)+"))
+        if (value.matches("(\\.[A-Za-z0-9]+)+"))
         {
             return new Extension(value);
         }
@@ -322,7 +321,7 @@ public class Extension implements Named
 
     public Extension withExtension(Extension extension)
     {
-        return new Extension(this.extension + "." + Strip.leading(this.extension, "."));
+        return new Extension(this.extension + extension);
     }
 
     Count length()
