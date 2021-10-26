@@ -19,6 +19,7 @@
 package com.telenav.kivakit.kernel.logging.loggers;
 
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
+import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
 import com.telenav.kivakit.kernel.language.strings.Strings;
 import com.telenav.kivakit.kernel.language.vm.JavaVirtualMachine;
@@ -32,8 +33,6 @@ import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
@@ -125,7 +124,7 @@ public class LogServiceLogger extends BaseLogger
             final var logName = descriptorMatcher.group("log");
 
             // and the configuration, if any
-            final Map<String, String> configuration = new HashMap<>();
+            final VariableMap<String> configuration = new VariableMap<>();
             final var arguments = descriptorMatcher.group("arguments");
             if (!Strings.isEmpty(arguments))
             {

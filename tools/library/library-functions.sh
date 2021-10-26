@@ -64,25 +64,33 @@ showVersion() {
 
 clean_cache() {
 
-    cache=$1
+    if [[ "$ALLOW_CLEANING" == "true" ]]; then
 
-    if [ -d "$cache" ]; then
-        read -p "┋ Remove ALL cached files in $cache (y/n)? " -n 1 -r
-        echo "┋ "
-        if [[ $REPLY =~ ^[Yy]$ ]]; then
-            rm -rf "$cache"
+        cache=$1
+
+        if [ -d "$cache" ]; then
+            read -p "┋ Remove ALL cached files in $cache (y/n)? " -n 1 -r
+            echo "┋ "
+            if [[ $REPLY =~ ^[Yy]$ ]]; then
+                rm -rf "$cache"
+            fi
         fi
+
     fi
 }
 
 clean_maven_repository() {
 
-    project_home=$1
-    name=$(basename -- "$project_home")
+    if [[ "$ALLOW_CLEANING" == "true" ]]; then
 
-    if yes_no "Remove all $name artifacts from $HOME/.m2/repository"; then
+        project_home=$1
+        name=$(basename -- "$project_home")
 
-        rm -rf "$HOME/.m2/repository/com/telenav/$name"
+        if yes_no "Remove all $name artifacts from $HOME/.m2/repository"; then
+
+            rm -rf "$HOME/.m2/repository/com/telenav/$name"
+
+        fi
 
     fi
 }
@@ -365,7 +373,7 @@ lexakai() {
     # -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=1044
     echo "java -jar $lexakai_jar -overwrite-resources=true -update-readme=true $*"
 
-    java -jar "$lexakai_jar" -overwrite-resources=true -update-readme=true $@
+    java -jar "$lexakai_jar" -overwrite-resources=true -update-readme=true "$@"
 }
 
 yes_no() {

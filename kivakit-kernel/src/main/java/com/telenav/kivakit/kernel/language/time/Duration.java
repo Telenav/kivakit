@@ -23,6 +23,7 @@ import com.telenav.kivakit.kernel.data.conversion.string.primitive.FormattedDoub
 import com.telenav.kivakit.kernel.data.conversion.string.primitive.LongConverter;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.kernel.interfaces.code.Callback;
+import com.telenav.kivakit.kernel.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.language.values.level.Percent;
@@ -91,7 +92,7 @@ import static com.telenav.kivakit.kernel.language.strings.conversion.StringForma
  * @see Time
  */
 @UmlClassDiagram(diagram = DiagramLanguageTime.class)
-public class Duration implements Comparable<Duration>, AsString
+public class Duration implements Comparable<Duration>, AsString, Quantizable
 {
     /** Constant for maximum duration. */
     public static final Duration MAXIMUM = milliseconds(Long.MAX_VALUE);
@@ -239,7 +240,7 @@ public class Duration implements Comparable<Duration>, AsString
     {
         /** Pattern to match strings */
         private final Pattern PATTERN = Pattern.compile(
-                "([0-9]+([.,][0-9]+)?)\\s+(millisecond|second|minute|hour|day|week|year)s?", Pattern.CASE_INSENSITIVE);
+                "(?<quantity>[0-9]+([.,][0-9]+)?)(\\s+|-|_)(?<units>millisecond|second|minute|hour|day|week|year)s?", Pattern.CASE_INSENSITIVE);
 
         public Converter(final Listener listener)
         {
@@ -255,35 +256,35 @@ public class Duration implements Comparable<Duration>, AsString
             final var matcher = PATTERN.matcher(value);
             if (matcher.matches())
             {
-                final var scalar = Double.parseDouble(matcher.group(1));
-                final var units = matcher.group(3);
+                final var quantity = Double.parseDouble(matcher.group("quantity"));
+                final var units = matcher.group("units");
                 if ("millisecond".equalsIgnoreCase(units))
                 {
-                    return milliseconds(scalar);
+                    return milliseconds(quantity);
                 }
                 else if ("second".equalsIgnoreCase(units))
                 {
-                    return seconds(scalar);
+                    return seconds(quantity);
                 }
                 else if ("minute".equalsIgnoreCase(units))
                 {
-                    return minutes(scalar);
+                    return minutes(quantity);
                 }
                 else if ("hour".equalsIgnoreCase(units))
                 {
-                    return hours(scalar);
+                    return hours(quantity);
                 }
                 else if ("day".equalsIgnoreCase(units))
                 {
-                    return days(scalar);
+                    return days(quantity);
                 }
                 else if ("week".equalsIgnoreCase(units))
                 {
-                    return weeks(scalar);
+                    return weeks(quantity);
                 }
                 else if ("year".equalsIgnoreCase(units))
                 {
-                    return years(scalar);
+                    return years(quantity);
                 }
                 else
                 {
@@ -721,6 +722,12 @@ public class Duration implements Comparable<Duration>, AsString
     public Duration plus(final Duration that)
     {
         return milliseconds(milliseconds + that.milliseconds);
+    }
+
+    @Override
+    public long quantum()
+    {
+        return milliseconds;
     }
 
     public Duration shorter(final Percent percentage)

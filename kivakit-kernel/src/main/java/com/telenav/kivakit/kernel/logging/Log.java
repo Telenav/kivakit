@@ -22,6 +22,7 @@ import com.telenav.kivakit.kernel.interfaces.comparison.Filtered;
 import com.telenav.kivakit.kernel.interfaces.io.Closeable;
 import com.telenav.kivakit.kernel.interfaces.io.Flushable;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
+import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.logging.logs.text.ConsoleLog;
 import com.telenav.kivakit.kernel.messaging.messages.Severity;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLogging;
@@ -30,14 +31,12 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
-import java.util.Map;
-
 /**
  * Accepts log entries for some purpose, such as writing them to a file or displaying them in a terminal window. {@link
  * Logger} implementations write log entries to one or more {@link Log}s via {@link #log(LogEntry)}. Which log entries
  * are logged can be controlled with filters returned from {@link Filtered#filters()} and by setting a minimum severity
  * level with {@link #level(Severity)}. Some logs are configurable with a string-to-string property map via {@link
- * #configure(Map)}. Logs are also {@link Closeable}, {@link Flushable} and {@link Named}.
+ * #configure(VariableMap)}. Logs are also {@link Closeable}, {@link Flushable} and {@link Named}.
  * <p>
  * <b>Wiki Documentation</b>
  * <p>
@@ -75,7 +74,7 @@ public interface Log extends Named, Filtered<LogEntry>, Closeable, Flushable
      *
      * @param properties A property map specific to the type of log
      */
-    void configure(Map<String, String> properties);
+    void configure(VariableMap<String> properties);
 
     /**
      * Sets the "log level"

@@ -30,10 +30,8 @@ import com.telenav.kivakit.kernel.language.reflection.Type;
 import com.telenav.kivakit.kernel.language.reflection.populator.ObjectPopulator;
 import com.telenav.kivakit.kernel.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.kernel.language.strings.AsciiArt;
-import com.telenav.kivakit.kernel.language.strings.Strip;
 import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.WritableResource;
 import com.telenav.kivakit.resource.path.FilePath;
@@ -42,14 +40,11 @@ import com.telenav.kivakit.resource.resources.packaged.PackageResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
-
-import static com.telenav.kivakit.kernel.language.reflection.property.IncludeProperty.CONVERTED_FIELDS_AND_METHODS;
 
 /**
  * A property map is a {@link VariableMap} with strings as both keys and values.
@@ -176,22 +171,6 @@ public class PropertyMap extends VariableMap<String>
     }
 
     /**
-     * @return The value of the given key as a {@link Count}
-     */
-    public Count asCount(final String key)
-    {
-        return Count.parse(get(key));
-    }
-
-    /**
-     * @return The value of the given key as a double, or an exception is thrown if the value is invalid or missing
-     */
-    public double asDouble(final String key)
-    {
-        return Double.parseDouble(key);
-    }
-
-    /**
      * @return The given value as a {@link Folder}
      */
     public File asFile(final String key)
@@ -208,60 +187,11 @@ public class PropertyMap extends VariableMap<String>
     }
 
     /**
-     * @return The value of the given key as an integer, or an exception is thrown if the value is invalid or missing
-     */
-    public int asInt(final String key)
-    {
-        return Integer.parseInt(get(key));
-    }
-
-    /**
      * @return This property map as a JSON string
      */
     public String asJson()
     {
         return "{ " + doubleQuoted().join(", ") + " }";
-    }
-
-    /**
-     * @return The value of the given key as a long, or an exception is thrown if the value is invalid or missing
-     */
-    public long asLong(final String key)
-    {
-        return Long.parseLong(get(key));
-    }
-
-    public Object asObject(final Listener listener, final Class<?> type)
-    {
-        try
-        {
-            final var object = Type.forClass(type).newInstance();
-            final var filter = PropertyFilter.kivakitProperties(CONVERTED_FIELDS_AND_METHODS);
-            new ObjectPopulator(listener, filter, this).populate(object);
-            return object;
-        }
-        catch (final Exception e)
-        {
-            listener.receive(new Problem(e, "Unable to convert $", type));
-            return null;
-        }
-    }
-
-    /**
-     * @return The given key as a path with no trailing slash
-     */
-    public String asPath(final String key)
-    {
-        final var value = get(key);
-        return value == null ? null : Strip.trailing(value, "/");
-    }
-
-    /**
-     * @return The given value as a {@link URI}
-     */
-    public URI asUri(final String key)
-    {
-        return URI.create(key);
     }
 
     /**

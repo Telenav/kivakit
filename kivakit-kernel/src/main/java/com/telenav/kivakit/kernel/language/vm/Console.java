@@ -11,7 +11,7 @@ import static com.telenav.kivakit.kernel.language.vm.Console.OutputType.NORMAL;
 
 public class Console implements Flushable
 {
-    public static Console instance()
+    public static Console get()
     {
         return new Console();
     }

@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.logging.logs.text;
 
+import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.logging.LogEntry;
 import com.telenav.kivakit.kernel.logging.logs.BaseLog;
 import com.telenav.kivakit.kernel.logging.logs.text.formatters.ColumnarLogFormatter;
@@ -28,8 +29,6 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import org.jetbrains.annotations.MustBeInvokedByOverriders;
-
-import java.util.Map;
 
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
 
@@ -54,7 +53,7 @@ public abstract class BaseTextLog extends BaseLog
     @Override
     @UmlExcludeMember
     @MustBeInvokedByOverriders
-    public void configure(final Map<String, String> properties)
+    public void configure(final VariableMap<String> properties)
     {
         final var formatter = properties.get("formatter");
         if (formatter != null)
