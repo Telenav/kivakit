@@ -225,7 +225,7 @@ public abstract class Project extends BaseRepeater implements Initializable, Nam
      */
     public Version projectVersion()
     {
-        return Version.parse(property("project-version"));
+        return Version.parse(this, property("project-version"));
     }
 
     /**

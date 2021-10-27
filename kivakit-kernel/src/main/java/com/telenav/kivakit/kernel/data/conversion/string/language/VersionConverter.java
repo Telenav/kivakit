@@ -48,6 +48,6 @@ public class VersionConverter extends BaseStringConverter<Version>
     @Override
     protected Version onToValue(final String text)
     {
-        return Version.parse(text);
+        return Version.parse(this, text);
     }
 }

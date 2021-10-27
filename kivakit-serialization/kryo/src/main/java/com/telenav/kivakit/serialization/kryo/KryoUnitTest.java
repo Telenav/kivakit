@@ -55,7 +55,7 @@ public class KryoUnitTest extends UnitTest
         {
             trace("before serialization = $", object);
 
-            final var version = Version.parse("1.0");
+            final var version = Version.parse(this, "1.0");
             final var data = new ByteArrayOutputStream();
 
             {

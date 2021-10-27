@@ -255,6 +255,6 @@ public class PackageResource extends BaseReadableResource
     @Override
     public String toString()
     {
-        return resource.toString();
+        return resource != null ? resource.toString() : _package + "/" + name;
     }
 }

@@ -38,6 +38,7 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 
 /**
  * A network resource accessible via HTTP.
@@ -112,6 +113,23 @@ public abstract class BaseHttpResource extends BaseNetworkResource
     public String encoding()
     {
         return contentEncoding;
+    }
+
+    @Override
+    public boolean equals(final Object object)
+    {
+        if (object instanceof BaseHttpResource)
+        {
+            BaseHttpResource that = (BaseHttpResource) object;
+            return this.networkLocation.equals(that.networkLocation);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(networkLocation);
     }
 
     /**
