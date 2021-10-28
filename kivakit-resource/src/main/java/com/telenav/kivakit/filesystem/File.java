@@ -30,6 +30,7 @@ import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.kernel.language.strings.Paths;
 import com.telenav.kivakit.kernel.language.strings.Strip;
+import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.language.values.count.Bytes;
 import com.telenav.kivakit.kernel.logging.Logger;
@@ -351,6 +352,11 @@ public class File extends BaseWritableResource implements FileSystemObject
         return File.of(path().absolute());
     }
 
+    public Duration age()
+    {
+        return created().elapsedSince();
+    }
+
     /**
      * @return This file as a folder
      */
@@ -484,6 +490,11 @@ public class File extends BaseWritableResource implements FileSystemObject
         return service.lastModified().isAfter(that.service.lastModified());
     }
 
+    public boolean isNewerThan(Duration duration)
+    {
+        return age().isLessThan(duration);
+    }
+
     /**
      * @return True if this file exists and has at least one byte in it
      */
@@ -498,6 +509,11 @@ public class File extends BaseWritableResource implements FileSystemObject
     public boolean isOlderThan(final File that)
     {
         return service.lastModified().isBefore(that.service.lastModified());
+    }
+
+    public boolean isOlderThan(Duration duration)
+    {
+        return age().isGreaterThan(duration);
     }
 
     /**

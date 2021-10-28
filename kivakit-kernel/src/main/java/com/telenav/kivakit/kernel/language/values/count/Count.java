@@ -137,7 +137,14 @@ import static com.telenav.kivakit.kernel.language.strings.conversion.StringForma
  */
 @SuppressWarnings("SwitchStatementWithTooFewBranches")
 @UmlClassDiagram(diagram = DiagramLanguageValue.class)
-public class Count implements Countable, Comparable<Count>, Quantizable, Maximizable<Count>, Minimizable<Count>, AsString, Serializable
+public class Count implements
+        Countable,
+        Comparable<Count>,
+        Quantizable,
+        Maximizable<Count>,
+        Minimizable<Count>,
+        AsString,
+        Serializable
 {
     public static final Count _0 = new Count(0);
 
@@ -316,6 +323,11 @@ public class Count implements Countable, Comparable<Count>, Quantizable, Maximiz
             }
         }
         return count(count);
+    }
+
+    public static Count count(double value)
+    {
+        return count((long) value);
     }
 
     public static Count count(final long value)

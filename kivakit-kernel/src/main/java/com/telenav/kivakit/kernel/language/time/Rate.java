@@ -49,7 +49,11 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @UmlClassDiagram(diagram = DiagramLanguageTime.class)
 @LexakaiJavadoc(complete = true)
-public class Rate implements Comparable<Rate>, Quantizable, Maximizable<Rate>, Minimizable<Rate>
+public class Rate implements
+        Comparable<Rate>,
+        Quantizable,
+        Maximizable<Rate>,
+        Minimizable<Rate>
 {
     public static final Rate MAXIMUM = new Rate(Integer.MAX_VALUE, Duration.milliseconds(1));
 
@@ -106,6 +110,12 @@ public class Rate implements Comparable<Rate>, Quantizable, Maximizable<Rate>, M
     public double count()
     {
         return count;
+    }
+
+    @Override
+    public double doubleQuantum()
+    {
+        return perSecond().count();
     }
 
     @Override
@@ -180,7 +190,7 @@ public class Rate implements Comparable<Rate>, Quantizable, Maximizable<Rate>, M
     @Override
     public long quantum()
     {
-        return (long) perYear().count();
+        return (long) perSecond().count();
     }
 
     public void throttle(final Rate maximumRate)

@@ -77,7 +77,7 @@ import java.util.Collection;
  */
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramInterfaceNumeric.class)
-public interface Quantizable
+public interface Quantizable extends DoubleQuantizable
 {
     static Quantizable quantizable(final Integer value)
     {
@@ -132,6 +132,12 @@ public interface Quantizable
         {
             return factory.newInstance(Long.parseLong(value));
         }
+    }
+
+    @Override
+    default double doubleQuantum()
+    {
+        return quantum();
     }
 
     default boolean isGreaterThan(final Quantizable that)
