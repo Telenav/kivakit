@@ -34,7 +34,7 @@ public class Plural
     /**
      * @return The given text, pluralized if size is greater than one
      */
-    public static String pluralize(final int size, final String text)
+    public static String pluralize(int size, String text)
     {
         return size == 1 ? text : pluralize(text);
     }
@@ -48,7 +48,7 @@ public class Plural
      *
      * @return The given text as a plural
      */
-    public static String pluralize(final String text)
+    public static String pluralize(String text)
     {
         if (text.endsWith("y"))
         {
@@ -68,7 +68,7 @@ public class Plural
     /**
      * @return The given text without the last character (if any)
      */
-    private static String withoutLastCharacter(final String text)
+    private static String withoutLastCharacter(String text)
     {
         return !text.isEmpty() ? text.substring(0, text.length() - 1) : text;
     }

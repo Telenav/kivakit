@@ -43,7 +43,7 @@ public interface AsString
     /**
      * @return A string representation of this object that is suitable for the given purpose
      */
-    default String asString(final StringFormat format)
+    default String asString(StringFormat format)
     {
         switch (format.identifier())
         {

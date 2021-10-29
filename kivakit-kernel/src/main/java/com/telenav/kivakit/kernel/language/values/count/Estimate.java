@@ -170,17 +170,17 @@ public class Estimate extends Count implements AsString
         }
     }
 
-    public static Estimate estimate(final Collection<?> collection)
+    public static Estimate estimate(Collection<?> collection)
     {
         return estimate(collection.size());
     }
 
-    public static Estimate estimate(final Iterable<?> iterable)
+    public static Estimate estimate(Iterable<?> iterable)
     {
         return estimate(iterable.iterator());
     }
 
-    public static Estimate estimate(final Iterator<?> iterator)
+    public static Estimate estimate(Iterator<?> iterator)
     {
         var count = 0L;
         while (iterator.hasNext())
@@ -191,7 +191,7 @@ public class Estimate extends Count implements AsString
         return estimate(count);
     }
 
-    public static Estimate estimate(final long value)
+    public static Estimate estimate(long value)
     {
         // If we have a cached value,
         if (value < CACHE_SIZE)
@@ -211,7 +211,7 @@ public class Estimate extends Count implements AsString
         return new Estimate(value);
     }
 
-    public static <T> Estimate estimate(final T[] values)
+    public static <T> Estimate estimate(T[] values)
     {
         return estimate(values.length);
     }
@@ -225,7 +225,7 @@ public class Estimate extends Count implements AsString
         return estimate(Long.parseLong(value));
     }
 
-    protected Estimate(final long estimate)
+    protected Estimate(long estimate)
     {
         super(estimate);
     }
@@ -235,7 +235,7 @@ public class Estimate extends Count implements AsString
         super(0);
     }
 
-    public Estimate add(final Estimate that)
+    public Estimate add(Estimate that)
     {
         return plus(that.get());
     }
@@ -247,7 +247,7 @@ public class Estimate extends Count implements AsString
     }
 
     @Override
-    public Estimate ceiling(final int digits)
+    public Estimate ceiling(int digits)
     {
         return (Estimate) super.ceiling(digits);
     }
@@ -259,19 +259,19 @@ public class Estimate extends Count implements AsString
     }
 
     @Override
-    public Estimate dividedBy(final Count divisor)
+    public Estimate dividedBy(Count divisor)
     {
         return dividedBy(divisor.get());
     }
 
     @Override
-    public Estimate dividedBy(final long divisor)
+    public Estimate dividedBy(long divisor)
     {
         return estimate(get() / divisor);
     }
 
     @Override
-    public Estimate floor(final int digits)
+    public Estimate floor(int digits)
     {
         return (Estimate) super.floor(digits);
     }
@@ -283,7 +283,7 @@ public class Estimate extends Count implements AsString
     }
 
     @Override
-    public Estimate maximum(final Count that)
+    public Estimate maximum(Count that)
     {
         if (isGreaterThan(that))
         {
@@ -296,7 +296,7 @@ public class Estimate extends Count implements AsString
     }
 
     @Override
-    public Estimate minimum(final Count that)
+    public Estimate minimum(Count that)
     {
         if (isLessThan(that))
         {
@@ -309,13 +309,13 @@ public class Estimate extends Count implements AsString
     }
 
     @Override
-    public Estimate minus(final Count count)
+    public Estimate minus(Count count)
     {
         return (Estimate) super.minus(count);
     }
 
     @Override
-    public Estimate minus(final long count)
+    public Estimate minus(long count)
     {
         return (Estimate) super.minus(count);
     }
@@ -333,19 +333,19 @@ public class Estimate extends Count implements AsString
     }
 
     @Override
-    public Estimate percent(final Percent percentage)
+    public Estimate percent(Percent percentage)
     {
         return (Estimate) super.percent(percentage);
     }
 
     @Override
-    public Estimate plus(final Count count)
+    public Estimate plus(Count count)
     {
         return (Estimate) super.plus(count);
     }
 
     @Override
-    public Estimate plus(final long count)
+    public Estimate plus(long count)
     {
         return estimate(get() + count);
     }
@@ -363,31 +363,31 @@ public class Estimate extends Count implements AsString
     }
 
     @Override
-    public Estimate times(final long count)
+    public Estimate times(long count)
     {
         return (Estimate) super.times(count);
     }
 
     @Override
-    public Estimate times(final Count count)
+    public Estimate times(Count count)
     {
         return estimate(get() * count.get());
     }
 
     @Override
-    public Estimate times(final double multiplier)
+    public Estimate times(double multiplier)
     {
         return estimate((long) (get() * multiplier));
     }
 
     @Override
-    public Estimate times(final Percent percentage)
+    public Estimate times(Percent percentage)
     {
         return times(percentage.asUnitValue());
     }
 
     @Override
-    protected Estimate onNewInstance(final long value)
+    protected Estimate onNewInstance(long value)
     {
         return new Estimate(value);
     }

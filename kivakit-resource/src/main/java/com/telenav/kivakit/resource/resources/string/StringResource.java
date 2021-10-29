@@ -41,12 +41,12 @@ public class StringResource extends BaseReadableResource
 {
     private final String value;
 
-    public StringResource(final String value)
+    public StringResource(String value)
     {
         this(ResourcePath.parseUnixResourcePath("/objects/String@" + Integer.toHexString(value.hashCode())), value);
     }
 
-    public StringResource(final ResourcePath path, final String value)
+    public StringResource(ResourcePath path, String value)
     {
         super(path);
         this.value = value;
@@ -64,7 +64,7 @@ public class StringResource extends BaseReadableResource
         return Bytes.bytes(value.length());
     }
 
-    public StringResource transform(final Function<String, String> transformation)
+    public StringResource transform(Function<String, String> transformation)
     {
         return new StringResource(transformation.apply(value));
     }

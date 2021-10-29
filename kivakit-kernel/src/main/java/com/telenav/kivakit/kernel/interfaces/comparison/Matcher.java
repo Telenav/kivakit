@@ -41,7 +41,7 @@ public interface Matcher<Value> extends Predicate<Value>
      * {@inheritDoc}
      */
     @Override
-    default boolean test(final Value value)
+    default boolean test(Value value)
     {
         return matches(value);
     }

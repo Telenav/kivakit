@@ -41,7 +41,7 @@ import static com.telenav.kivakit.kernel.messaging.messages.MessageFormatter.For
 public class JUnitFailureReporter extends BaseFailureReporter
 {
     @Override
-    public void report(final Message message)
+    public void report(Message message)
     {
         Assert.fail(message.formatted(WITHOUT_EXCEPTION));
     }

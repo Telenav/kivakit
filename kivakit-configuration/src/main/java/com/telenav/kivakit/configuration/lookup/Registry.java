@@ -81,7 +81,7 @@ public class Registry implements RegistryTrait
     /**
      * @return The lookup for the given object
      */
-    public static Registry of(final Object object)
+    public static Registry of(Object object)
     {
         return GLOBAL;
     }
@@ -94,7 +94,7 @@ public class Registry implements RegistryTrait
      */
     @Override
     @SuppressWarnings({ "unchecked" })
-    public <T> T lookup(final Class<T> type, final InstanceIdentifier instance)
+    public <T> T lookup(Class<T> type, InstanceIdentifier instance)
     {
         return (T) registered.get(instance.key(type));
     }
@@ -103,14 +103,14 @@ public class Registry implements RegistryTrait
      * Registers the specified instance of the given object's type in the lookup
      */
     @Override
-    public <T> T register(final T object, final InstanceIdentifier instance)
+    public <T> T register(T object, InstanceIdentifier instance)
     {
         ensureNotNull(object);
 
         for (var at = object.getClass(); at != Object.class; at = at.getSuperclass())
         {
             registered.put(instance.key(at), object);
-            for (final var next : at.getInterfaces())
+            for (var next : at.getInterfaces())
             {
                 registered.put(instance.key(next), object);
             }
@@ -120,7 +120,7 @@ public class Registry implements RegistryTrait
     }
 
     @Override
-    public <T> T require(final Class<T> type, final InstanceIdentifier instance)
+    public <T> T require(Class<T> type, InstanceIdentifier instance)
     {
         return ensureNotNull(lookup(type, instance));
     }

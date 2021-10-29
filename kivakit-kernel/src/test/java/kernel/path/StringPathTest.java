@@ -42,17 +42,17 @@ public class StringPathTest
         ensureEqual(":a:b", StringPath.parseStringPath(":a:b", ":", ":").withSeparator(":").toString());
     }
 
-    private StringPath absoluteSlashPath(final String path)
+    private StringPath absoluteSlashPath(String path)
     {
         return StringPath.parseStringPath(path, "/", "/");
     }
 
-    private StringPath dotPath(final String path)
+    private StringPath dotPath(String path)
     {
         return StringPath.parseStringPath(path, "\\.");
     }
 
-    private StringPath slashPath(final String path)
+    private StringPath slashPath(String path)
     {
         return StringPath.parseStringPath(path, "/");
     }

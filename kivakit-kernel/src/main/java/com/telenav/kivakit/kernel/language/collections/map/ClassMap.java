@@ -30,7 +30,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramLanguageCollectionsMap.class)
 public class ClassMap<T> extends BaseMap<Class<?>, T>
 {
-    public ClassMap(final Maximum maximumSize)
+    public ClassMap(Maximum maximumSize)
     {
         super(maximumSize);
     }
@@ -40,7 +40,7 @@ public class ClassMap<T> extends BaseMap<Class<?>, T>
         super(Maximum.MAXIMUM);
     }
 
-    public void put(final T object)
+    public void put(T object)
     {
         put(object.getClass(), object);
     }

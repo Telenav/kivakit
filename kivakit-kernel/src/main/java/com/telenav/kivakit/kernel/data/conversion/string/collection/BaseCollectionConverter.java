@@ -49,7 +49,7 @@ public abstract class BaseCollectionConverter<T> extends BaseStringConverter<T>
      * @param listener The conversion listener
      * @param delimiter The separator between collection elements
      */
-    protected BaseCollectionConverter(final Listener listener, final String delimiter)
+    protected BaseCollectionConverter(Listener listener, String delimiter)
     {
         super(listener);
         this.delimiter = ensureNotNull(delimiter);
@@ -77,17 +77,17 @@ public abstract class BaseCollectionConverter<T> extends BaseStringConverter<T>
      * {@inheritDoc}
      */
     @Override
-    protected final T onToValue(final String value)
+    protected final String onToString(T value)
     {
-        return onConvertToObject(StringList.split(value, delimiter()));
+        return onConvertToStringList(value).join(delimiter);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    protected final String onToString(final T value)
+    protected final T onToValue(String value)
     {
-        return onConvertToStringList(value).join(delimiter);
+        return onConvertToObject(StringList.split(value, delimiter()));
     }
 }

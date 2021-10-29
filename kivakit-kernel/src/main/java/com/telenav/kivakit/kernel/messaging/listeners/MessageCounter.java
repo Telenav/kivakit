@@ -65,5 +65,5 @@ public interface MessageCounter extends Listener
     /**
      * @return The number of messages that are worse than or equal to the given status
      */
-    Count countWorseThanOrEqualTo(final Message.Status status);
+    Count countWorseThanOrEqualTo(Message.Status status);
 }

@@ -42,7 +42,7 @@ public abstract class OperationLifecycleMessage extends OperationMessage
     {
     }
 
-    protected OperationLifecycleMessage(final String message, final Object... arguments)
+    protected OperationLifecycleMessage(String message, Object... arguments)
     {
         super(message);
         arguments(arguments);

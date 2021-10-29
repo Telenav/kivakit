@@ -44,7 +44,7 @@ public abstract class KryoSerializer<Value> extends Serializer<Value>
 {
     private static final ThreadLocal<Version> threadLocalVersion = new ThreadLocal<>();
 
-    public static void version(final Version version)
+    public static void version(Version version)
     {
         threadLocalVersion.set(Objects.requireNonNull(version));
     }
@@ -55,7 +55,7 @@ public abstract class KryoSerializer<Value> extends Serializer<Value>
     /**
      * @param type The type of object being serialized
      */
-    protected KryoSerializer(final Class<Value> type)
+    protected KryoSerializer(Class<Value> type)
     {
         this.type = Objects.requireNonNull(type);
     }
@@ -66,7 +66,7 @@ public abstract class KryoSerializer<Value> extends Serializer<Value>
      * @return The value
      */
     @Override
-    public final Value read(final Kryo kryo, final Input input, final Class<Value> type)
+    public final Value read(Kryo kryo, Input input, Class<Value> type)
     {
         return onRead(KryoSerializationSession.session(kryo));
     }
@@ -85,7 +85,7 @@ public abstract class KryoSerializer<Value> extends Serializer<Value>
      * @param value The value
      */
     @Override
-    public final void write(final Kryo kryo, final Output output, final Value value)
+    public final void write(Kryo kryo, Output output, Value value)
     {
         onWrite(KryoSerializationSession.session(kryo), value);
     }

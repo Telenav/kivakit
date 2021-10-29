@@ -37,13 +37,13 @@ public class PatternMatcher<T extends Named> implements Matcher<T>
 {
     private final Pattern pattern;
 
-    public PatternMatcher(final Pattern pattern)
+    public PatternMatcher(Pattern pattern)
     {
         this.pattern = pattern;
     }
 
     @Override
-    public boolean matches(final T value)
+    public boolean matches(T value)
     {
         return pattern.matcher(value.name()).matches();
     }

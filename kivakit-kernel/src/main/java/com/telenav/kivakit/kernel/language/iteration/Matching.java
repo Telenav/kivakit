@@ -34,7 +34,7 @@ public abstract class Matching<T> extends BaseIterable<T>
 {
     private final Matcher<T> matcher;
 
-    protected Matching(final Matcher<T> matcher)
+    protected Matching(Matcher<T> matcher)
     {
         this.matcher = matcher;
     }
@@ -51,7 +51,7 @@ public abstract class Matching<T> extends BaseIterable<T>
             {
                 while (values.hasNext())
                 {
-                    final var value = values.next();
+                    var value = values.next();
                     if (matcher.matches(value))
                     {
                         return value;

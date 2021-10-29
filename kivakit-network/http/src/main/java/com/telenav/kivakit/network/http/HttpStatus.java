@@ -37,7 +37,7 @@ public class HttpStatus
 {
     private final int code;
 
-    public HttpStatus(final int code)
+    public HttpStatus(int code)
     {
         this.code = code;
     }

@@ -26,7 +26,7 @@ import java.util.Set;
 
 public abstract class SetOperationTest extends CollectionsUnitTest
 {
-    protected Set<Integer> set(final Integer... values)
+    protected Set<Integer> set(Integer... values)
     {
         return new HashSet<>(Arrays.asList(values));
     }

@@ -50,12 +50,12 @@ import static com.telenav.kivakit.kernel.language.reflection.property.IncludePro
 @UmlClassDiagram(diagram = DiagramLanguageCollectionsMap.class)
 public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implements PropertyValueSource
 {
-    protected BaseStringMap(final Maximum maximumSize)
+    protected BaseStringMap(Maximum maximumSize)
     {
         super(maximumSize);
     }
 
-    protected BaseStringMap(final Maximum maximumSize, final Map<String, Value> map)
+    protected BaseStringMap(Maximum maximumSize, Map<String, Value> map)
     {
         super(maximumSize, map);
     }
@@ -63,7 +63,7 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
     /**
      * @return The value of the given key as a {@link Count}
      */
-    public Count asCount(final String key)
+    public Count asCount(String key)
     {
         return Count.parse(asString(key));
     }
@@ -71,7 +71,7 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
     /**
      * @return The value of the given key as a double, or an exception is thrown if the value is invalid or missing
      */
-    public double asDouble(final String key)
+    public double asDouble(String key)
     {
         return Double.parseDouble(key);
     }
@@ -79,7 +79,7 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
     /**
      * @return The value of the given key as an integer, or an exception is thrown if the value is invalid or missing
      */
-    public int asInt(final String key)
+    public int asInt(String key)
     {
         return Integer.parseInt(asString(key));
     }
@@ -87,7 +87,7 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
     /**
      * @return The value of the given key as a long, or an exception is thrown if the value is invalid or missing
      */
-    public long asLong(final String key)
+    public long asLong(String key)
     {
         return Long.parseLong(asString(key));
     }
@@ -103,16 +103,16 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
         return object != null ? object : defaultValue;
     }
 
-    public Object asObject(final Listener listener, final Class<?> type)
+    public Object asObject(Listener listener, Class<?> type)
     {
         try
         {
-            final var object = Type.forClass(type).newInstance();
-            final var filter = PropertyFilter.kivakitProperties(CONVERTED_FIELDS_AND_METHODS);
+            var object = Type.forClass(type).newInstance();
+            var filter = PropertyFilter.kivakitProperties(CONVERTED_FIELDS_AND_METHODS);
             new ObjectPopulator(listener, filter, this).populate(object);
             return object;
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             listener.receive(new Problem(e, "Unable to convert $", type));
             return null;
@@ -122,9 +122,9 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
     /**
      * @return The given key as a path with no trailing slash
      */
-    public String asPath(final String key)
+    public String asPath(String key)
     {
-        final var value = asString(key);
+        var value = asString(key);
         return value == null ? null : Strip.trailing(value, "/");
     }
 
@@ -135,10 +135,10 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
 
     public StringList asStringList()
     {
-        final var entries = new StringList();
-        final var keys = new ArrayList<>(keySet());
+        var entries = new StringList();
+        var keys = new ArrayList<>(keySet());
         keys.sort(Comparator.naturalOrder());
-        for (final var key : keys)
+        for (var key : keys)
         {
             entries.add(key + " = " + get(key));
         }
@@ -148,7 +148,7 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
     /**
      * @return The given value as a {@link URI}
      */
-    public URI asUri(final String key)
+    public URI asUri(String key)
     {
         return URI.create(key);
     }
@@ -156,7 +156,7 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
     /**
      * @return The keys and values of this map separated by the given separator
      */
-    public String join(final String separator)
+    public String join(String separator)
     {
         return asStringList().join(separator);
     }
@@ -168,9 +168,9 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
     }
 
     @Override
-    public Value valueFor(final Property property)
+    public Value valueFor(Property property)
     {
-        final var value = get(property.name());
+        var value = get(property.name());
         if (value != null)
         {
             return value;

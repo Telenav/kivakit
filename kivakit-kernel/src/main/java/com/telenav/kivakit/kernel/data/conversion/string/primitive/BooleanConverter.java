@@ -37,7 +37,7 @@ public class BooleanConverter extends BaseStringConverter<Boolean>
     /**
      * @param listener The listener to hear any conversion issues
      */
-    public BooleanConverter(final Listener listener)
+    public BooleanConverter(Listener listener)
     {
         super(listener);
     }
@@ -47,7 +47,7 @@ public class BooleanConverter extends BaseStringConverter<Boolean>
      */
     @Override
     @UmlExcludeMember
-    protected Boolean onToValue(final String value)
+    protected Boolean onToValue(String value)
     {
         if (Booleans.isTrue(value))
         {

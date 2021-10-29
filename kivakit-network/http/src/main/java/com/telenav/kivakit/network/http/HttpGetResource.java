@@ -37,7 +37,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
 @LexakaiJavadoc(complete = true)
 public class HttpGetResource extends BaseHttpResource
 {
-    public HttpGetResource(final NetworkLocation location, final NetworkAccessConstraints constraints)
+    public HttpGetResource(NetworkLocation location, NetworkAccessConstraints constraints)
     {
         super(location, constraints);
         ensure(location.port().isHttp());
@@ -46,8 +46,8 @@ public class HttpGetResource extends BaseHttpResource
     @Override
     protected HttpUriRequest newRequest()
     {
-        final var uri = asUri();
-        final var request = new HttpGet(uri);
+        var uri = asUri();
+        var request = new HttpGet(uri);
         onInitialize(request);
         return request;
     }
@@ -57,7 +57,7 @@ public class HttpGetResource extends BaseHttpResource
      *
      * @param get The get to be sent.
      */
-    protected void onInitialize(final HttpGet get)
+    protected void onInitialize(HttpGet get)
     {
     }
 }

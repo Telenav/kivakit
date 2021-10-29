@@ -33,7 +33,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 public class NullMatcher<T> implements Matcher<T>
 {
     @Override
-    public boolean matches(final T value)
+    public boolean matches(T value)
     {
         return false;
     }

@@ -33,29 +33,29 @@ public class PreciseDuration
         return nanoseconds(cpu.getCurrentThreadCpuTime());
     }
 
-    public static PreciseDuration microseconds(final double microseconds)
+    public static PreciseDuration microseconds(double microseconds)
     {
         return nanoseconds((long) (microseconds * 1_000));
     }
 
-    public static PreciseDuration milliseconds(final double milliseconds)
+    public static PreciseDuration milliseconds(double milliseconds)
     {
         return microseconds(milliseconds * 1_000);
     }
 
-    public static PreciseDuration nanoseconds(final long nanoseconds)
+    public static PreciseDuration nanoseconds(long nanoseconds)
     {
         return new PreciseDuration(nanoseconds);
     }
 
-    public static PreciseDuration seconds(final double seconds)
+    public static PreciseDuration seconds(double seconds)
     {
         return milliseconds(seconds * 1_000);
     }
 
     private final long nanoseconds;
 
-    private PreciseDuration(final long nanoseconds)
+    private PreciseDuration(long nanoseconds)
     {
         this.nanoseconds = nanoseconds;
     }
@@ -140,22 +140,22 @@ public class PreciseDuration
         return asWeeks() / WEEKS_PER_YEAR;
     }
 
-    public boolean isGreaterThan(final PreciseDuration that)
+    public boolean isGreaterThan(PreciseDuration that)
     {
         return nanoseconds > that.nanoseconds;
     }
 
-    public boolean isLessThan(final PreciseDuration that)
+    public boolean isLessThan(PreciseDuration that)
     {
         return nanoseconds < that.nanoseconds;
     }
 
-    public PreciseDuration minus(final PreciseDuration that)
+    public PreciseDuration minus(PreciseDuration that)
     {
         return new PreciseDuration(nanoseconds - that.nanoseconds);
     }
 
-    public PreciseDuration plus(final PreciseDuration that)
+    public PreciseDuration plus(PreciseDuration that)
     {
         return new PreciseDuration(nanoseconds + that.nanoseconds);
     }
@@ -212,7 +212,7 @@ public class PreciseDuration
      * @param units the units to apply singular or plural suffix to
      * @return a <code>String</code> representation
      */
-    private String unitString(final double value, final String units)
+    private String unitString(double value, String units)
     {
         return new FormattedDoubleConverter(LOGGER).unconvert(value) + " " + units + (value > 1.0 ? "s" : "");
     }

@@ -53,9 +53,9 @@ public class ResourceFolderResolverServiceLoader
     @UmlAggregation
     private static List<ResourceFolderResolver> resolvers;
 
-    public static ResourceFolder resolve(final ResourceFolderIdentifier identifier)
+    public static ResourceFolder resolve(ResourceFolderIdentifier identifier)
     {
-        for (final var factory : resolvers())
+        for (var factory : resolvers())
         {
             if (factory.accepts(identifier))
             {
@@ -71,7 +71,7 @@ public class ResourceFolderResolverServiceLoader
         if (resolvers == null)
         {
             resolvers = new ArrayList<>();
-            for (final var resolver : ServiceLoader.load(ResourceFolderResolver.class))
+            for (var resolver : ServiceLoader.load(ResourceFolderResolver.class))
             {
                 DEBUG.trace("Loaded resource factory '${class}'", resolver.getClass());
                 resolvers.add(resolver);

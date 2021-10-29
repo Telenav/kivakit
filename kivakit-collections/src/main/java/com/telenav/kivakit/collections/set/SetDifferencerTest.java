@@ -34,11 +34,11 @@ public class SetDifferencerTest extends CollectionsUnitTest
         String name;
 
         @Override
-        public boolean equals(final Object object)
+        public boolean equals(Object object)
         {
             if (object instanceof SetDifferencerTest.Value)
             {
-                final var that = (SetDifferencerTest.Value) object;
+                var that = (SetDifferencerTest.Value) object;
                 return id == that.id;
             }
             return false;
@@ -85,31 +85,31 @@ public class SetDifferencerTest extends CollectionsUnitTest
                 values(value(3, "three")));
     }
 
-    private void check(final Set<Value> before, final Set<Value> after, final Set<Value> expectedAdded,
-                       final Set<Value> expectedRemoved, final Set<Value> expectedUpdated)
+    private void check(Set<Value> before, Set<Value> after, Set<Value> expectedAdded,
+                       Set<Value> expectedRemoved, Set<Value> expectedUpdated)
     {
-        final Set<Value> added = new HashSet<>();
-        final Set<Value> removed = new HashSet<>();
-        final Set<Value> updated = new HashSet<>();
+        Set<Value> added = new HashSet<>();
+        Set<Value> removed = new HashSet<>();
+        Set<Value> updated = new HashSet<>();
 
         new SetDifferencer<Value>((a, b) -> a.equals(b) && a.name.equals(b.name))
         {
             @Override
-            protected void onAdded(final Value value)
+            protected void onAdded(Value value)
             {
                 added.add(value);
                 trace("added " + value);
             }
 
             @Override
-            protected void onRemoved(final Value value)
+            protected void onRemoved(Value value)
             {
                 removed.add(value);
                 trace("removed " + value);
             }
 
             @Override
-            protected void onUpdated(final Value value)
+            protected void onUpdated(Value value)
             {
                 updated.add(value);
                 trace("updated " + value);
@@ -121,30 +121,30 @@ public class SetDifferencerTest extends CollectionsUnitTest
         ensureEqual(expectedUpdated, updated);
     }
 
-    private Set<Value> ids(final int... values)
+    private Set<Value> ids(int... values)
     {
-        final Set<Value> set = new HashSet<>();
-        for (final int value : values)
+        Set<Value> set = new HashSet<>();
+        for (int value : values)
         {
             set.add(value(value));
         }
         return set;
     }
 
-    private Value value(final int id)
+    private Value value(int id)
     {
         return value(id, "" + id);
     }
 
-    private Value value(final int id, final String name)
+    private Value value(int id, String name)
     {
-        final var value = new Value();
+        var value = new Value();
         value.id = id;
         value.name = name;
         return value;
     }
 
-    private Set<Value> values(final Value... values)
+    private Set<Value> values(Value... values)
     {
         return new HashSet<>(Arrays.asList(values));
     }

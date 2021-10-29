@@ -45,7 +45,7 @@ public class MultiSet<Key, Value> extends BaseMap<Key, ObjectSet<Value>>
 {
     private final Maximum maximumValues;
 
-    public MultiSet(final Maximum maximumKeys, final Maximum maximumValues)
+    public MultiSet(Maximum maximumKeys, Maximum maximumValues)
     {
         super(maximumKeys);
         this.maximumValues = maximumValues;
@@ -59,13 +59,13 @@ public class MultiSet<Key, Value> extends BaseMap<Key, ObjectSet<Value>>
     /**
      * In case another implementation wants to control the type of map used underneath
      */
-    protected MultiSet(final Maximum maximumKeys, final Maximum maximumValues, final Map<Key, ObjectSet<Value>> map)
+    protected MultiSet(Maximum maximumKeys, Maximum maximumValues, Map<Key, ObjectSet<Value>> map)
     {
         super(maximumKeys, map);
         this.maximumValues = maximumValues;
     }
 
-    public void add(final Key key, final Value value)
+    public void add(Key key, Value value)
     {
         getOrCreate(key).add(value);
     }
@@ -73,7 +73,7 @@ public class MultiSet<Key, Value> extends BaseMap<Key, ObjectSet<Value>>
     public int entryCount()
     {
         var count = 0;
-        for (final var set : values())
+        for (var set : values())
         {
             if (set != null)
             {
@@ -110,7 +110,7 @@ public class MultiSet<Key, Value> extends BaseMap<Key, ObjectSet<Value>>
         });
     }
 
-    public Set<Value> getOrEmptySet(final Object key)
+    public Set<Value> getOrEmptySet(Object key)
     {
         return getOrDefault(key, new ObjectSet<>());
     }
@@ -118,32 +118,32 @@ public class MultiSet<Key, Value> extends BaseMap<Key, ObjectSet<Value>>
     public Count maximumSetSize()
     {
         var maximum = 0;
-        for (final var set : values())
+        for (var set : values())
         {
             maximum = Math.max(set.size(), maximum);
         }
         return Count.count(maximum);
     }
 
-    public void removeFromSet(final Key key, final Value value)
+    public void removeFromSet(Key key, Value value)
     {
-        final var set = getOrEmptySet(key);
+        var set = getOrEmptySet(key);
         set.remove(value);
     }
 
-    public void replaceValue(final Key key, final Value value)
+    public void replaceValue(Key key, Value value)
     {
         removeFromSet(key, value);
         add(key, value);
     }
 
-    public ObjectSet<Value> set(final Key key)
+    public ObjectSet<Value> set(Key key)
     {
         return computeIfAbsent(key, ignored -> new ObjectSet<>());
     }
 
     @Override
-    protected ObjectSet<Value> onInitialize(final Key key)
+    protected ObjectSet<Value> onInitialize(Key key)
     {
         return new ObjectSet<>(maximumValues);
     }

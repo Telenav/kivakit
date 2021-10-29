@@ -53,7 +53,7 @@ public class IO
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    public static BufferedInputStream buffer(final InputStream in)
+    public static BufferedInputStream buffer(InputStream in)
     {
         if (in instanceof BufferedInputStream)
         {
@@ -66,7 +66,7 @@ public class IO
         return null;
     }
 
-    public static BufferedOutputStream buffer(final OutputStream out)
+    public static BufferedOutputStream buffer(OutputStream out)
     {
         if (out instanceof BufferedOutputStream)
         {
@@ -82,7 +82,7 @@ public class IO
     /**
      * Added writer safe close capability
      */
-    public static void close(final AutoCloseable closeable)
+    public static void close(AutoCloseable closeable)
     {
         if (closeable != null)
         {
@@ -90,14 +90,14 @@ public class IO
             {
                 closeable.close();
             }
-            catch (final Exception e)
+            catch (Exception e)
             {
                 LOGGER.problem(e, "Can't close AutoCloseable $", closeable);
             }
         }
     }
 
-    public static void close(final InputStream in)
+    public static void close(InputStream in)
     {
         try
         {
@@ -106,13 +106,13 @@ public class IO
                 in.close();
             }
         }
-        catch (final IOException e)
+        catch (IOException e)
         {
             LOGGER.problem(e, "Can't close input stream");
         }
     }
 
-    public static void close(final OutputStream out)
+    public static void close(OutputStream out)
     {
         try
         {
@@ -121,12 +121,12 @@ public class IO
                 out.close();
             }
         }
-        catch (final Exception ignored)
+        catch (Exception ignored)
         {
         }
     }
 
-    public static void close(final Reader reader)
+    public static void close(Reader reader)
     {
         try
         {
@@ -135,7 +135,7 @@ public class IO
                 reader.close();
             }
         }
-        catch (final IOException e)
+        catch (IOException e)
         {
             LOGGER.problem(e, "Can't close reader");
         }
@@ -144,7 +144,7 @@ public class IO
     /**
      * Added writer safe close capability
      */
-    public static void close(final Writer writer)
+    public static void close(Writer writer)
     {
         try
         {
@@ -153,13 +153,13 @@ public class IO
                 writer.close();
             }
         }
-        catch (final IOException e)
+        catch (IOException e)
         {
             LOGGER.problem(e, "Can't close writer");
         }
     }
 
-    public static void close(final ZipFile zip)
+    public static void close(ZipFile zip)
     {
         try
         {
@@ -168,13 +168,13 @@ public class IO
                 zip.close();
             }
         }
-        catch (final IOException e)
+        catch (IOException e)
         {
             LOGGER.problem(e, "Can't close input stream");
         }
     }
 
-    public static boolean copy(final InputStream input, final OutputStream output)
+    public static boolean copy(InputStream input, OutputStream output)
     {
         return copy(input, output, BUFFERED);
     }
@@ -187,13 +187,13 @@ public class IO
      *
      * @return True if the copy succeeded.
      */
-    public static boolean copy(final InputStream input, final OutputStream output, final CopyStyle style)
+    public static boolean copy(InputStream input, OutputStream output, CopyStyle style)
     {
-        final var in = style == BUFFERED ? buffer(input) : input;
-        final var out = style == BUFFERED ? buffer(output) : output;
+        var in = style == BUFFERED ? buffer(input) : input;
+        var out = style == BUFFERED ? buffer(output) : output;
         try
         {
-            final var buffer = new byte[style == BUFFERED ? 4096 : 1];
+            var buffer = new byte[style == BUFFERED ? 4096 : 1];
             int bytes;
             while ((bytes = in.read(buffer)) > 0)
             {
@@ -202,7 +202,7 @@ public class IO
             out.flush();
             return true;
         }
-        catch (final IOException e)
+        catch (IOException e)
         {
             LOGGER.problem(e, "Could not copy streams ${debug} to ${debug}", input, output);
             return false;
@@ -215,8 +215,8 @@ public class IO
      *
      * @return True if the copy succeeded.
      */
-    public static boolean copyAndClose(final InputStream input,
-                                       final OutputStream output)
+    public static boolean copyAndClose(InputStream input,
+                                       OutputStream output)
     {
         try
         {
@@ -229,27 +229,27 @@ public class IO
         }
     }
 
-    public static boolean flush(final OutputStream out)
+    public static boolean flush(OutputStream out)
     {
         try
         {
             out.flush();
             return true;
         }
-        catch (final IOException e)
+        catch (IOException e)
         {
             LOGGER.problem(e, "Couldn't flush output stream");
             return false;
         }
     }
 
-    public static void flush(final Writer out)
+    public static void flush(Writer out)
     {
         try
         {
             out.flush();
         }
-        catch (final IOException ignored)
+        catch (IOException ignored)
         {
         }
     }
@@ -259,27 +259,27 @@ public class IO
      */
     @SuppressWarnings("UseOfSystemOutOrSystemErr")
     @UmlExcludeMember
-    public static void println(final String message, final Object... arguments)
+    public static void println(String message, Object... arguments)
     {
         System.out.println(Message.format(message, arguments));
     }
 
-    public static int readByte(final InputStream in)
+    public static int readByte(InputStream in)
     {
         try
         {
             return in.read();
         }
-        catch (final IOException e)
+        catch (IOException e)
         {
             LOGGER.problem(e, "OperationFailed reading from input stream");
             return -1;
         }
     }
 
-    public static byte[] readBytes(final InputStream in)
+    public static byte[] readBytes(InputStream in)
     {
-        final var out = new ByteArrayOutputStream();
+        var out = new ByteArrayOutputStream();
         if (copyAndClose(in, out))
         {
             return out.toByteArray();
@@ -288,24 +288,24 @@ public class IO
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    public static void skip(final InputStream in, final long offset)
+    public static void skip(InputStream in, long offset)
     {
         try
         {
             in.skip(offset);
         }
-        catch (final IOException e)
+        catch (IOException e)
         {
             LOGGER.problem(e, "Can't skip bytes on input stream");
         }
     }
 
-    public static String string(final InputStream in)
+    public static String string(InputStream in)
     {
         return string(new InputStreamReader(in));
     }
 
-    public static String string(final Reader in)
+    public static String string(Reader in)
     {
         return new BufferedReader(in)
                 .lines()

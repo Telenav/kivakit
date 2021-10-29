@@ -86,7 +86,7 @@ public abstract class VirtualReference<T>
 
     private volatile boolean triedToLoad;
 
-    protected VirtualReference(final VirtualReferenceTracker<T> tracker)
+    protected VirtualReference(VirtualReferenceTracker<T> tracker)
     {
         this.tracker = tracker;
     }
@@ -97,7 +97,7 @@ public abstract class VirtualReference<T>
     public T get()
     {
         // Get the value
-        final var value = this.value.get();
+        var value = this.value.get();
 
         // If we got a value
         if (value != null)
@@ -113,7 +113,7 @@ public abstract class VirtualReference<T>
                 // There's no value, so load it
                 return load();
             }
-            catch (final Exception e)
+            catch (Exception e)
             {
                 DEBUG.warning(e, "Unable to load " + name());
             }
@@ -141,7 +141,7 @@ public abstract class VirtualReference<T>
         if (value instanceof HardReferencedValue)
         {
             // get the value
-            final var value = this.value.get();
+            var value = this.value.get();
 
             // and if it's non-null
             if (value != null)
@@ -180,7 +180,7 @@ public abstract class VirtualReference<T>
         }
 
         // Start loading
-        final var start = Time.now();
+        var start = Time.now();
 
         // load a new value, if possible
         value = onLoad();

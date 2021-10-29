@@ -34,7 +34,7 @@ public class Escape
     /**
      * @return The given text with single quotes escaped
      */
-    public static String javaScriptString(final String text)
+    public static String javaScriptString(String text)
     {
         return Strings.replaceAll(text, "'", "\\'");
     }
@@ -42,7 +42,7 @@ public class Escape
     /**
      * @return The given string with single quotes escaped
      */
-    public static String sqlString(final String text)
+    public static String sqlString(String text)
     {
         return Strings.replaceAll(text, "'", "''");
     }
@@ -50,24 +50,24 @@ public class Escape
     /**
      * @return The given xml string with escaping removed
      */
-    public static String unescapeXml(final String xml)
+    public static String unescapeXml(String xml)
     {
-        final var u1 = Strings.replaceAll(xml, "&quot;", "\"");
-        final var u2 = Strings.replaceAll(u1, "&amp;", "&");
-        final var u3 = Strings.replaceAll(u2, "&apos;", "'");
-        final var u4 = Strings.replaceAll(u3, "&lt;", "<");
+        var u1 = Strings.replaceAll(xml, "&quot;", "\"");
+        var u2 = Strings.replaceAll(u1, "&amp;", "&");
+        var u3 = Strings.replaceAll(u2, "&apos;", "'");
+        var u4 = Strings.replaceAll(u3, "&lt;", "<");
         return Strings.replaceAll(u4, "&gt;", ">");
     }
 
     /**
      * @return The given XML text with special characters escaped
      */
-    public static String xml(final String xml)
+    public static String xml(String xml)
     {
-        final var u1 = Strings.replaceAll(unescapeXml(xml), "\"", "&quot;");
-        final var u2 = Strings.replaceAll(u1, "&", "&amp;");
-        final var u3 = Strings.replaceAll(u2, "'", "&apos;");
-        final var u4 = Strings.replaceAll(u3, "<", "&lt;");
+        var u1 = Strings.replaceAll(unescapeXml(xml), "\"", "&quot;");
+        var u2 = Strings.replaceAll(u1, "&", "&amp;");
+        var u3 = Strings.replaceAll(u2, "'", "&apos;");
+        var u4 = Strings.replaceAll(u3, "<", "&lt;");
         return Strings.replaceAll(u4, ">", "&gt;");
     }
 }

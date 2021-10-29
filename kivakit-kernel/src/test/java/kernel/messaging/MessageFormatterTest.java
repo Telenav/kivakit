@@ -35,7 +35,7 @@ public class MessageFormatterTest
         int x = 5;
 
         @Override
-        public String asString(final StringFormat ignored)
+        public String asString(StringFormat ignored)
         {
             return "*" + x + "*";
         }
@@ -61,7 +61,7 @@ public class MessageFormatterTest
         Assert.assertEquals("*5*", format("${debug}", new Bean()));
     }
 
-    private String format(final String message, final Object... arguments)
+    private String format(String message, Object... arguments)
     {
         return new MessageFormatter().formatArray(message, arguments);
     }

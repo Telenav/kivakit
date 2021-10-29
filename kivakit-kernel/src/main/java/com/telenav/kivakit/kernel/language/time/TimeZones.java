@@ -41,19 +41,19 @@ public class TimeZones
 
     static
     {
-        for (final var zone : ZoneId.getAvailableZoneIds())
+        for (var zone : ZoneId.getAvailableZoneIds())
         {
-            final var zoneId = ZoneId.of(zone);
+            var zoneId = ZoneId.of(zone);
             shortToLong.put(displayName(zoneId), zone);
         }
     }
 
-    public static String displayName(final ZoneId zone)
+    public static String displayName(ZoneId zone)
     {
         return zone.getDisplayName(TextStyle.SHORT, Locale.getDefault());
     }
 
-    public static ZoneId forDisplayName(final String displayName)
+    public static ZoneId forDisplayName(String displayName)
     {
         return ZoneId.of(shortToLong.get(displayName));
     }

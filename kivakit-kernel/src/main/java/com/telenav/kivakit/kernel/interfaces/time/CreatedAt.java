@@ -6,12 +6,12 @@ public interface CreatedAt
 {
     Time created();
 
-    default boolean wasCreatedAfter(final CreatedAt that)
+    default boolean wasCreatedAfter(CreatedAt that)
     {
         return created().isAfter(that.created());
     }
 
-    default boolean wasCreatedBefore(final CreatedAt that)
+    default boolean wasCreatedBefore(CreatedAt that)
     {
         return created().isBefore(that.created());
     }

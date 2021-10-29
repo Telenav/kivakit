@@ -43,7 +43,7 @@ public class HexadecimalLongConverter extends BaseStringConverter<Long>
 
         private final String prefix;
 
-        Style(final String prefix)
+        Style(String prefix)
         {
             this.prefix = prefix;
         }
@@ -60,7 +60,7 @@ public class HexadecimalLongConverter extends BaseStringConverter<Long>
     /**
      * @param listener The listener to hear any conversion issues
      */
-    public HexadecimalLongConverter(final Listener listener)
+    public HexadecimalLongConverter(Listener listener)
     {
         this(listener, JAVA);
     }
@@ -68,7 +68,7 @@ public class HexadecimalLongConverter extends BaseStringConverter<Long>
     /**
      * @param listener The listener to hear any conversion issues
      */
-    public HexadecimalLongConverter(final Listener listener, final Style style)
+    public HexadecimalLongConverter(Listener listener, Style style)
     {
         super(listener);
         this.style = style;
@@ -79,7 +79,7 @@ public class HexadecimalLongConverter extends BaseStringConverter<Long>
      */
     @Override
     @UmlExcludeMember
-    protected Long onToValue(final String value)
+    protected Long onToValue(String value)
     {
         if (value.startsWith(style.prefix))
         {

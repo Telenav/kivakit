@@ -38,7 +38,7 @@ public class LogFailureReporter extends BaseFailureReporter
 
     @Override
     @UmlExcludeMember
-    public void report(final Message message)
+    public void report(Message message)
     {
         LOGGER.log(message);
     }

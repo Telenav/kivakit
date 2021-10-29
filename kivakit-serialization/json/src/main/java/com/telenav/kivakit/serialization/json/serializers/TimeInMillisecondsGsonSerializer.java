@@ -36,13 +36,13 @@ public class TimeInMillisecondsGsonSerializer extends PrimitiveGsonSerializer<Ti
     }
 
     @Override
-    protected Time toObject(final Long identifier)
+    protected Time toObject(Long identifier)
     {
         return Time.milliseconds(identifier);
     }
 
     @Override
-    protected Long toPrimitive(final Time time)
+    protected Long toPrimitive(Time time)
     {
         return time.asMilliseconds();
     }

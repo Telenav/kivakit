@@ -31,7 +31,7 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 @LexakaiJavadoc(complete = true)
 public class AttachmentListConverter extends BaseListConverter<EmailAttachment>
 {
-    public AttachmentListConverter(final Listener listener)
+    public AttachmentListConverter(Listener listener)
     {
         super(listener, new AttachmentConverter(listener), ",");
     }

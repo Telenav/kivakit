@@ -69,7 +69,7 @@ public interface Writable
      * @param reporter A progress reporter that is called for each byte that is written
      * @return The output stream to write to
      */
-    default OutputStream openForWriting(final ProgressReporter reporter)
+    default OutputStream openForWriting(ProgressReporter reporter)
     {
         return new ProgressiveOutput(IO.buffer(onOpenForWriting()), reporter);
     }

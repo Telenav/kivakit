@@ -50,7 +50,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramMessageType.class)
 public class Announcement extends OperationStatusMessage
 {
-    public Announcement(final String message, final Object... arguments)
+    public Announcement(String message, Object... arguments)
     {
         super(message);
         arguments(arguments);

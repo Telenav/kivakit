@@ -34,7 +34,7 @@ import org.apache.http.client.methods.HttpPost;
 @LexakaiJavadoc(complete = true)
 public class HttpPostResource extends BaseHttpResource
 {
-    public HttpPostResource(final NetworkLocation networkLocation, final NetworkAccessConstraints constraints)
+    public HttpPostResource(NetworkLocation networkLocation, NetworkAccessConstraints constraints)
     {
         super(networkLocation, constraints);
     }
@@ -42,7 +42,7 @@ public class HttpPostResource extends BaseHttpResource
     @Override
     protected HttpPost newRequest()
     {
-        final var request = new HttpPost(asUri());
+        var request = new HttpPost(asUri());
         onInitialize(request);
         return request;
     }
@@ -52,7 +52,7 @@ public class HttpPostResource extends BaseHttpResource
      *
      * @param post The post to be sent.
      */
-    protected void onInitialize(final HttpPost post)
+    protected void onInitialize(HttpPost post)
     {
     }
 }

@@ -31,7 +31,7 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 @LexakaiJavadoc(complete = true)
 public class EmailAddressSetConverter extends BaseSetConverter<EmailAddress>
 {
-    public EmailAddressSetConverter(final Listener listener)
+    public EmailAddressSetConverter(Listener listener)
     {
         super(listener, new EmailAddressConverter(listener), ",");
     }

@@ -42,14 +42,14 @@ public class Retry extends BaseRepeater
 
     public static final int MAXIMUM_NUMBER_RETRIES = 5;
 
-    public static <T> Unchecked<T> retry(final Unchecked<T> code,
-                                         final int times,
-                                         final Duration delay,
-                                         final Runnable... beforeRetry)
+    public static <T> Unchecked<T> retry(Unchecked<T> code,
+                                         int times,
+                                         Duration delay,
+                                         Runnable... beforeRetry)
     {
         return () ->
         {
-            final var retry = new Retry(LOGGER, times, delay, Exception.class);
+            var retry = new Retry(LOGGER, times, delay, Exception.class);
             return retry.run(code, beforeRetry);
         };
     }
@@ -65,7 +65,7 @@ public class Retry extends BaseRepeater
     /**
      * A basic {@link Retry} that does not wait before retrying and catches all {@link Throwable} errors.
      */
-    public Retry(final Listener listener)
+    public Retry(Listener listener)
     {
         this(listener, MAXIMUM_NUMBER_RETRIES, Duration.NONE, Throwable.class);
     }
@@ -80,11 +80,11 @@ public class Retry extends BaseRepeater
      * @param exceptionMessageExclusion An arbitrary number of Strings. If the exception caught has a message that
      * contains one of the Strings contained in this set, the exception will be thrown and no retry will be made.
      */
-    public Retry(final Listener listener,
-                 final int numberOfRetries,
-                 final Duration retryWaitDuration,
-                 final Class<? extends Throwable> exceptionType,
-                 final String... exceptionMessageExclusion)
+    public Retry(Listener listener,
+                 int numberOfRetries,
+                 Duration retryWaitDuration,
+                 Class<? extends Throwable> exceptionType,
+                 String... exceptionMessageExclusion)
     {
         this.numberOfRetries = numberOfRetries;
         retryWaitTime = retryWaitDuration;
@@ -100,13 +100,13 @@ public class Retry extends BaseRepeater
      * @param stepsBeforeRetry This is an optional list of steps executed in case the try fails, and right before each
      * retry
      */
-    public <T> T run(final Unchecked<T> runnable, final Runnable... stepsBeforeRetry)
+    public <T> T run(Unchecked<T> runnable, Runnable... stepsBeforeRetry)
     {
         try
         {
             return runWithRetries(runnable, numberOfRetries, numberOfRetries, stepsBeforeRetry);
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             return Ensure.fail(e, "Execution with retry of " + e.getMessage() + " failed ");
         }
@@ -123,8 +123,8 @@ public class Retry extends BaseRepeater
      * @param stepsBeforeRetry This is an optional list of steps executed in case the try fails, and right before each
      * retry
      */
-    private <T> T runWithRetries(final Unchecked<T> runnable, int numberOfRetries, int totalRetries,
-                                 final Runnable... stepsBeforeRetry)
+    private <T> T runWithRetries(Unchecked<T> runnable, int numberOfRetries, int totalRetries,
+                                 Runnable... stepsBeforeRetry)
     {
         if (numberOfRetries < 0)
         {
@@ -151,21 +151,21 @@ public class Retry extends BaseRepeater
                 if (totalRetries - numberOfRetries > 0)
                 {
                     /* We want to run the steps before retry if we are not in the first try */
-                    for (final var step : stepsBeforeRetry)
+                    for (var step : stepsBeforeRetry)
                     {
                         step.run();
                     }
                 }
                 return runnable.run();
             }
-            catch (final Exception e)
+            catch (Exception e)
             {
-                final Type<? extends Exception> errorType = Type.of(e);
+                Type<? extends Exception> errorType = Type.of(e);
                 var shouldRetry = false;
                 if (errorType.isDescendantOf(exceptionType))
                 {
                     shouldRetry = true;
-                    for (final var messageSnippet : exceptionMessageExclusion)
+                    for (var messageSnippet : exceptionMessageExclusion)
                     {
                         if (e.getMessage() != null && e.getMessage().contains(messageSnippet))
                         {

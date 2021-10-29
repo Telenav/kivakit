@@ -29,9 +29,8 @@ public interface Mixin
      * @param factory Factory that can create a new state to associate with this mixin
      * @return The state for this mixin
      */
-    default <T> T state(final Class<? extends Mixin> type, final Factory<T> factory)
+    default <T> T state(Class<? extends Mixin> type, Factory<T> factory)
     {
         return MixinState.get(this, type, factory);
     }
 }
-

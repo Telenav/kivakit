@@ -91,12 +91,12 @@ public final class StateMachine<State> extends BaseRepeater
     /** Listener to call when state transitions occur */
     private final Consumer<State> receiver;
 
-    public StateMachine(final State initial)
+    public StateMachine(State initial)
     {
         this(initial, null);
     }
 
-    public StateMachine(final State initial, final Consumer<State> receiver)
+    public StateMachine(State initial, Consumer<State> receiver)
     {
         at = initial;
         this.receiver = receiver;
@@ -111,7 +111,7 @@ public final class StateMachine<State> extends BaseRepeater
     /**
      * @return True if the current state is the given state
      */
-    public boolean is(final State state)
+    public boolean is(State state)
     {
         return whileLocked(() -> Objects.equals(at, state));
     }
@@ -119,7 +119,7 @@ public final class StateMachine<State> extends BaseRepeater
     /**
      * @return True if the current state is the given state
      */
-    public boolean is(final Predicate<State> predicate)
+    public boolean is(Predicate<State> predicate)
     {
         return whileLocked(() -> predicate.test(at));
     }
@@ -127,7 +127,7 @@ public final class StateMachine<State> extends BaseRepeater
     /**
      * @return True if the current state is the given state
      */
-    public boolean isNot(final Predicate<State> predicate)
+    public boolean isNot(Predicate<State> predicate)
     {
         return whileLocked(() -> !predicate.test(at));
     }
@@ -135,7 +135,7 @@ public final class StateMachine<State> extends BaseRepeater
     /**
      * @return True if the current state is not the given state
      */
-    public boolean isNot(final State state)
+    public boolean isNot(State state)
     {
         return whileLocked(() -> !Objects.equals(at, state));
     }
@@ -147,7 +147,7 @@ public final class StateMachine<State> extends BaseRepeater
      * @param two The second state
      * @return The previous state, or null if toggling is not possible because this state machine isn't in either state
      */
-    public Optional<State> toggle(final State one, final State two)
+    public Optional<State> toggle(State one, State two)
     {
         if (is(one))
         {
@@ -167,7 +167,7 @@ public final class StateMachine<State> extends BaseRepeater
      * @param to The desired state
      * @return True if a state change occurred
      */
-    public boolean transition(final State from, final State to)
+    public boolean transition(State from, State to)
     {
         return whileLocked(() ->
         {
@@ -192,11 +192,11 @@ public final class StateMachine<State> extends BaseRepeater
      * state. This code might be used to interrupt a thread, for example.
      * @return True if desired state was reached
      */
-    public boolean transition(final State from,
-                              final State to,
-                              final State waitFor,
-                              final Duration maximumWait,
-                              final Runnable before)
+    public boolean transition(State from,
+                              State to,
+                              State waitFor,
+                              Duration maximumWait,
+                              Runnable before)
     {
         return whileLocked(() ->
         {
@@ -229,15 +229,15 @@ public final class StateMachine<State> extends BaseRepeater
      *
      * @see #transition(Object, Object, Object, Duration, Runnable)
      */
-    public synchronized boolean transition(final State from,
-                                           final State to,
-                                           final State waitFor,
-                                           final Runnable before)
+    public synchronized boolean transition(State from,
+                                           State to,
+                                           State waitFor,
+                                           Runnable before)
     {
         return transition(from, to, waitFor, Duration.MAXIMUM, before);
     }
 
-    public void transitionAndWaitForNot(final State state)
+    public void transitionAndWaitForNot(State state)
     {
         whileLocked(() ->
         {
@@ -251,12 +251,12 @@ public final class StateMachine<State> extends BaseRepeater
      *
      * @return The prior state
      */
-    public State transitionTo(final State state)
+    public State transitionTo(State state)
     {
         return whileLocked(() ->
         {
             // Get the current state,
-            final var prior = at;
+            var prior = at;
 
             // update the current state,
             at = state;
@@ -282,7 +282,7 @@ public final class StateMachine<State> extends BaseRepeater
      * @param state The state to wait for
      * @return True if the state was achieved, false if the operation timed out
      */
-    public boolean waitFor(final State state)
+    public boolean waitFor(State state)
     {
         return waitFor(state, Duration.MAXIMUM);
     }
@@ -294,7 +294,7 @@ public final class StateMachine<State> extends BaseRepeater
      * @param maximumWait The maximum amount of time to wait
      * @return True if the state was achieved, false if the operation timed out
      */
-    public boolean waitFor(final State state, final Duration maximumWait)
+    public boolean waitFor(State state, Duration maximumWait)
     {
         return waitFor(ignored -> is(state), maximumWait);
     }
@@ -304,7 +304,7 @@ public final class StateMachine<State> extends BaseRepeater
      *
      * @return True if the state was achieved, false if the operation timed out
      */
-    public boolean waitFor(final Predicate<State> predicate)
+    public boolean waitFor(Predicate<State> predicate)
     {
         return waitFor(predicate, Duration.MAXIMUM);
     }
@@ -316,7 +316,7 @@ public final class StateMachine<State> extends BaseRepeater
      * @param maximumWait The maximum amount of time to wait
      * @return True if the state was achieved, false if the operation timed out
      */
-    public boolean waitFor(final Predicate<State> predicate, final Duration maximumWait)
+    public boolean waitFor(Predicate<State> predicate, Duration maximumWait)
     {
         return waitFor(predicate, maximumWait, () ->
         {
@@ -332,7 +332,7 @@ public final class StateMachine<State> extends BaseRepeater
      * might interrupt another thread, for example.
      * @return True if the state was achieved, false if the operation timed out
      */
-    public boolean waitFor(final Predicate<State> predicate, final Duration maximumWait, final Runnable beforeWaiting)
+    public boolean waitFor(Predicate<State> predicate, Duration maximumWait, Runnable beforeWaiting)
     {
         return whileLocked(() ->
         {
@@ -348,7 +348,7 @@ public final class StateMachine<State> extends BaseRepeater
      * @param state The state this machine should NOT be in
      * @return True if the desired state was achieved, false if the operation timed out
      */
-    public boolean waitForNot(final State state)
+    public boolean waitForNot(State state)
     {
         return waitForNot(state, Duration.MAXIMUM);
     }
@@ -360,7 +360,7 @@ public final class StateMachine<State> extends BaseRepeater
      * @param maximumWait The maximum amount of time to wait
      * @return True if the desired state was achieved, false if the operation timed out
      */
-    public boolean waitForNot(final State state, final Duration maximumWait)
+    public boolean waitForNot(State state, Duration maximumWait)
     {
         return waitFor(ignored -> !is(state), maximumWait);
     }
@@ -368,7 +368,7 @@ public final class StateMachine<State> extends BaseRepeater
     /**
      * Executes the given code while holding the state watcher's reentrant lock
      */
-    public void whileLocked(final Runnable code)
+    public void whileLocked(Runnable code)
     {
         watcher.whileLocked(code);
     }
@@ -376,7 +376,7 @@ public final class StateMachine<State> extends BaseRepeater
     /**
      * Executes the given code while holding the state watcher's reentrant lock
      */
-    public <T> T whileLocked(final Code<T> code)
+    public <T> T whileLocked(Code<T> code)
     {
         return watcher.whileLocked(code);
     }

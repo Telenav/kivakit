@@ -42,7 +42,7 @@ public class EnumConverter<T extends Enum<T>> extends BaseStringConverter<T>
      * @param listener The listener to hear any conversion issues
      * @param enumType The enum type to convert
      */
-    public EnumConverter(final Listener listener, final Class<T> enumType)
+    public EnumConverter(Listener listener, Class<T> enumType)
     {
         super(listener);
         ensureNotNull(enumType);
@@ -53,7 +53,7 @@ public class EnumConverter<T extends Enum<T>> extends BaseStringConverter<T>
      * {@inheritDoc}
      */
     @Override
-    protected T onToValue(final String value)
+    protected T onToValue(String value)
     {
         return Enum.valueOf(enumType, CaseFormat.lowerHyphenToUpperUnderscore(value));
     }

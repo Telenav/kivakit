@@ -87,7 +87,7 @@ public class RandomValueFactory
 
     private long seed;
 
-    public RandomValueFactory(final long seed)
+    public RandomValueFactory(long seed)
     {
         seed(seed);
     }
@@ -109,9 +109,9 @@ public class RandomValueFactory
         return newAsciiString(1, 32);
     }
 
-    public String newAsciiString(final int minLength, final int maxLength)
+    public String newAsciiString(int minLength, int maxLength)
     {
-        final var builder = new StringBuilder();
+        var builder = new StringBuilder();
         for (var i = 0; i < newCount(minLength, maxLength); i++)
         {
             builder.append(newAsciiChar());
@@ -124,7 +124,7 @@ public class RandomValueFactory
         return newInt(0, 2) == 0;
     }
 
-    public final byte newByte(final byte minimum, final byte maximum)
+    public final byte newByte(byte minimum, byte maximum)
     {
         return (byte) newInt(minimum, maximum);
     }
@@ -134,7 +134,7 @@ public class RandomValueFactory
         return (byte) newInt();
     }
 
-    public final byte newByte(final byte minimum, final byte maximum, final Predicate<Byte> filter)
+    public final byte newByte(byte minimum, byte maximum, Predicate<Byte> filter)
     {
         byte value;
         do
@@ -155,7 +155,7 @@ public class RandomValueFactory
         return Confidence.confidence(newDoubleZeroToOne());
     }
 
-    public int newCount(final int minimum, final int maximum)
+    public int newCount(int minimum, int maximum)
     {
         return Math.abs(newInt(minimum, maximum));
     }
@@ -165,9 +165,9 @@ public class RandomValueFactory
         return newDouble(-1 * Double.MAX_VALUE, Double.MIN_VALUE);
     }
 
-    public final double newDouble(final double minimum, final double maximum)
+    public final double newDouble(double minimum, double maximum)
     {
-        final var difference = maximum - minimum;
+        var difference = maximum - minimum;
         return minimum + random.nextDouble() * difference;
     }
 
@@ -176,7 +176,7 @@ public class RandomValueFactory
         return random.nextDouble();
     }
 
-    public <T> T newFrom(final Collection<T> values)
+    public <T> T newFrom(Collection<T> values)
     {
         if (values.isEmpty())
         {
@@ -184,12 +184,12 @@ public class RandomValueFactory
         }
         else
         {
-            final List<T> list = new ArrayList<>(values);
+            List<T> list = new ArrayList<>(values);
             return list.get(newIndex(list.size()));
         }
     }
 
-    public <T> T newFrom(final T[] values)
+    public <T> T newFrom(T[] values)
     {
         if (values.length == 0)
         {
@@ -201,18 +201,18 @@ public class RandomValueFactory
         }
     }
 
-    public Identifier newIdentifier(final long maximum)
+    public Identifier newIdentifier(long maximum)
     {
         return new Identifier(newLong(1, maximum));
     }
 
-    public int newIndex(final int maximum)
+    public int newIndex(int maximum)
     {
         ensure(maximum > 0);
         return newInt(0, maximum);
     }
 
-    public final int newInt(final int minimum, final int maximum, final Predicate<Integer> filter)
+    public final int newInt(int minimum, int maximum, Predicate<Integer> filter)
     {
         int value;
         do
@@ -223,7 +223,7 @@ public class RandomValueFactory
         return value;
     }
 
-    public final int newInt(final int minimum, final int maximum)
+    public final int newInt(int minimum, int maximum)
     {
         return (int) newLong(minimum, maximum);
     }
@@ -233,7 +233,7 @@ public class RandomValueFactory
         return random.nextInt();
     }
 
-    public final long newLong(final long minimum, final long maximum, final Predicate<Long> filter)
+    public final long newLong(long minimum, long maximum, Predicate<Long> filter)
     {
         long value;
         do
@@ -246,19 +246,19 @@ public class RandomValueFactory
 
     public final long newLong()
     {
-        final var value = random.nextLong();
+        var value = random.nextLong();
         DEBUG.trace("Next = $", value);
         return value;
     }
 
-    public final long newLong(final long minimum, final long maximum)
+    public final long newLong(long minimum, long maximum)
     {
-        final var value = internalNextLong(minimum, maximum);
+        var value = internalNextLong(minimum, maximum);
         DEBUG.trace("Next long = $", value);
         return value;
     }
 
-    public final short newShort(final short minimum, final short maximum, final Predicate<Short> filter)
+    public final short newShort(short minimum, short maximum, Predicate<Short> filter)
     {
         short value;
         do
@@ -269,7 +269,7 @@ public class RandomValueFactory
         return value;
     }
 
-    public final short newShort(final short minimum, final short maximum)
+    public final short newShort(short minimum, short maximum)
     {
         return (short) newInt(minimum, maximum);
     }
@@ -284,9 +284,9 @@ public class RandomValueFactory
         return newString(1, 1024);
     }
 
-    public String newString(final int minLength, final int maxLength)
+    public String newString(int minLength, int maxLength)
     {
-        final var builder = new StringBuilder();
+        var builder = new StringBuilder();
         for (var i = 0; i < newInt(minLength, maxLength); i++)
         {
             builder.append(newChar());
@@ -299,7 +299,7 @@ public class RandomValueFactory
         return newUnsignedDouble(Double.MAX_VALUE);
     }
 
-    public final double newUnsignedDouble(final double maximum)
+    public final double newUnsignedDouble(double maximum)
     {
         return newDouble(0, maximum);
     }
@@ -319,7 +319,7 @@ public class RandomValueFactory
         return seed;
     }
 
-    public void seed(final long seed)
+    public void seed(long seed)
     {
         random = new Random(seed);
         this.seed = seed;
@@ -337,7 +337,7 @@ public class RandomValueFactory
      * @return a pseudorandom value
      */
     @SuppressWarnings("StatementWithEmptyBody")
-    private long internalNextLong(final long origin, final long bound)
+    private long internalNextLong(long origin, long bound)
     {
         if (origin == bound)
         {
@@ -346,8 +346,8 @@ public class RandomValueFactory
         var r = random.nextLong();
         if (origin < bound)
         {
-            final var n = bound - origin;
-            final var m = n - 1;
+            var n = bound - origin;
+            var m = n - 1;
             if ((n & m) == 0L)  // power of two
             {
                 r = (r & m) + origin;

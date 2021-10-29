@@ -39,19 +39,19 @@ public class AllMethods extends PropertyFilterSet
     }
 
     @Override
-    public boolean includeAsGetter(final Method method)
+    public boolean includeAsGetter(Method method)
     {
         return method.getParameterTypes().length == 0 && method.getReturnType() != Void.class;
     }
 
     @Override
-    public boolean includeAsSetter(final Method method)
+    public boolean includeAsSetter(Method method)
     {
         return method.getReturnType() == Void.class && method.getParameterTypes().length == 1;
     }
 
     @Override
-    public boolean includeField(final Field field)
+    public boolean includeField(Field field)
     {
         return false;
     }

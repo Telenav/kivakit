@@ -27,19 +27,19 @@ public final class ZeroOrMore extends Closure
 {
     private final Pattern pattern;
 
-    public ZeroOrMore(final Pattern pattern)
+    public ZeroOrMore(Pattern pattern)
     {
         this(pattern, false);
     }
 
-    public ZeroOrMore(final Pattern pattern, final boolean greedy)
+    public ZeroOrMore(Pattern pattern, boolean greedy)
     {
         super(greedy);
         this.pattern = pattern;
     }
 
     @Override
-    public int bind(final int group)
+    public int bind(int group)
     {
         return pattern.bind(group);
     }

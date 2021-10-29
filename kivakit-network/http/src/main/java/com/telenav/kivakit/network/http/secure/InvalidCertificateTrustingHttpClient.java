@@ -48,16 +48,16 @@ class InvalidCertificateTrustingHttpClient extends DefaultHttpClient
     {
         try
         {
-            final var context = SSLContext.getInstance("TLS");
-            final var trustManager = new X509TrustManager()
+            var context = SSLContext.getInstance("TLS");
+            var trustManager = new X509TrustManager()
             {
                 @Override
-                public void checkClientTrusted(final X509Certificate[] xcs, final String string)
+                public void checkClientTrusted(X509Certificate[] xcs, String string)
                 {
                 }
 
                 @Override
-                public void checkServerTrusted(final X509Certificate[] xcs, final String string)
+                public void checkServerTrusted(X509Certificate[] xcs, String string)
                 {
                 }
 
@@ -69,11 +69,11 @@ class InvalidCertificateTrustingHttpClient extends DefaultHttpClient
             };
             context.init(null, new TrustManager[] { trustManager }, null);
 
-            final var socketFactory = new SSLSocketFactory(context, SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
-            final var schemeRegistry = getConnectionManager().getSchemeRegistry();
+            var socketFactory = new SSLSocketFactory(context, SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+            var schemeRegistry = getConnectionManager().getSchemeRegistry();
             schemeRegistry.register(new Scheme("https", 443, socketFactory));
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             throw new Problem(e, "Unable to create trusting certificate").asException();
         }

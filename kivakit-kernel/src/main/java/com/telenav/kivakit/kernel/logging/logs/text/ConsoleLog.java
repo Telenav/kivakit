@@ -46,7 +46,7 @@ public class ConsoleLog extends BaseTextLog
 
     @Override
     @UmlExcludeMember
-    public void flush(final Duration maximumWaitTime)
+    public void flush(Duration maximumWaitTime)
     {
         super.flush(maximumWaitTime);
         console.flush(maximumWaitTime);
@@ -61,7 +61,7 @@ public class ConsoleLog extends BaseTextLog
 
     @Override
     @UmlExcludeMember
-    public synchronized void onLog(final LogEntry entry)
+    public synchronized void onLog(LogEntry entry)
     {
         console.printLine(entry.isSevere() ? ERROR : NORMAL, formatted(entry));
     }

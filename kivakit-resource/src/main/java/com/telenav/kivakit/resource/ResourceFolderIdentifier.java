@@ -37,7 +37,7 @@ public class ResourceFolderIdentifier
 {
     private final String identifier;
 
-    public ResourceFolderIdentifier(final String identifier)
+    public ResourceFolderIdentifier(String identifier)
     {
         this.identifier = identifier;
     }

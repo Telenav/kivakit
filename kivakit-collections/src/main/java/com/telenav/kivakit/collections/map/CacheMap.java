@@ -41,12 +41,12 @@ public class CacheMap<Key, Value> extends BaseMap<Key, Value>
      *
      * @param cacheSize The size after which the eldest entry will be deleted to leave room for new entries.
      */
-    public CacheMap(final Maximum cacheSize)
+    public CacheMap(Maximum cacheSize)
     {
         super(Maximum.MAXIMUM, new LinkedHashMap<>()
         {
             @Override
-            protected boolean removeEldestEntry(final Map.Entry<Key, Value> eldest)
+            protected boolean removeEldestEntry(Map.Entry<Key, Value> eldest)
             {
                 return size() >= cacheSize.asInt();
             }

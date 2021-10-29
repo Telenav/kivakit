@@ -87,25 +87,25 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
     @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<HttpNetworkLocation>
     {
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
         }
 
         @Override
-        protected HttpNetworkLocation onToValue(final String value)
+        protected HttpNetworkLocation onToValue(String value)
         {
             try
             {
                 // NOTE: This code is very similar to the code in HttpNetworkLocationConverter
-                final var uri = new URI(value);
-                final var url = uri.toURL();
-                final var location = new HttpNetworkLocation(NetworkPath.networkPath(uri));
+                var uri = new URI(value);
+                var url = uri.toURL();
+                var location = new HttpNetworkLocation(NetworkPath.networkPath(uri));
                 location.queryParameters(QueryParameters.parse(url.getQuery()));
                 location.reference(url.getRef());
                 return location;
             }
-            catch (final URISyntaxException | MalformedURLException e)
+            catch (URISyntaxException | MalformedURLException e)
             {
                 problem(e, "Bad network location ${debug}", value);
                 return null;
@@ -113,19 +113,19 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
         }
     }
 
-    public HttpNetworkLocation(final NetworkLocation that)
+    public HttpNetworkLocation(NetworkLocation that)
     {
         super(that);
         ensure(that.port().isHttp());
     }
 
-    public HttpNetworkLocation(final NetworkPath path)
+    public HttpNetworkLocation(NetworkPath path)
     {
         super(path);
         ensure(path.port().isHttp());
     }
 
-    public HttpNetworkLocation child(final String child)
+    public HttpNetworkLocation child(String child)
     {
         return withPath(networkPath().withChild(child));
     }
@@ -141,29 +141,29 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
     }
 
     @UmlRelation(label = "creates")
-    public HttpGetResource get(final NetworkAccessConstraints constraints)
+    public HttpGetResource get(NetworkAccessConstraints constraints)
     {
         return new HttpGetResource(this, constraints);
     }
 
-    public HttpGetResource get(final NetworkAccessConstraints constraints, final Initializer<HttpGet> initializer)
+    public HttpGetResource get(NetworkAccessConstraints constraints, Initializer<HttpGet> initializer)
     {
         return new HttpGetResource(this, constraints)
         {
             @Override
-            protected void onInitialize(final HttpGet get)
+            protected void onInitialize(HttpGet get)
             {
                 initializer.initialize(get);
             }
         };
     }
 
-    public HttpGetResource get(final NetworkAccessConstraints constraints, final String contentType)
+    public HttpGetResource get(NetworkAccessConstraints constraints, String contentType)
     {
         return get(constraints, get -> get.setHeader("Accept", contentType));
     }
 
-    public HttpGetResource get(final String contentType)
+    public HttpGetResource get(String contentType)
     {
         return get(NetworkAccessConstraints.DEFAULT, contentType);
     }
@@ -179,23 +179,23 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
         return post(NetworkAccessConstraints.DEFAULT);
     }
 
-    public HttpPostResource post(final NetworkAccessConstraints constraints)
+    public HttpPostResource post(NetworkAccessConstraints constraints)
     {
         return new HttpPostResource(this, constraints);
     }
 
-    public HttpPostResource post(final NetworkAccessConstraints constraints, final String content)
+    public HttpPostResource post(NetworkAccessConstraints constraints, String content)
     {
         return post(constraints, null, content);
     }
 
-    public HttpPostResource post(final NetworkAccessConstraints constraints, final String contentType,
-                                 final String value)
+    public HttpPostResource post(NetworkAccessConstraints constraints, String contentType,
+                                 String value)
     {
         return new HttpPostResource(this, constraints)
         {
             @Override
-            protected void onInitialize(final HttpPost post)
+            protected void onInitialize(HttpPost post)
             {
                 try
                 {
@@ -205,7 +205,7 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
                     }
                     post.setEntity(new StringEntity(value));
                 }
-                catch (final UnsupportedEncodingException e)
+                catch (UnsupportedEncodingException e)
                 {
                     e.printStackTrace();
                 }
@@ -213,30 +213,30 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
         };
     }
 
-    public HttpPostResource post(final String value)
+    public HttpPostResource post(String value)
     {
         return post(NetworkAccessConstraints.DEFAULT, value);
     }
 
-    public HttpPostResource post(final String contentType, final String value)
+    public HttpPostResource post(String contentType, String value)
     {
         return post(NetworkAccessConstraints.DEFAULT, contentType, value);
     }
 
-    public HttpPutResource put(final NetworkAccessConstraints constraints, final String contentType,
-                               final String content)
+    public HttpPutResource put(NetworkAccessConstraints constraints, String contentType,
+                               String content)
     {
         return new HttpPutResource(this, constraints)
         {
             @Override
-            protected void onInitialize(final HttpPut put)
+            protected void onInitialize(HttpPut put)
             {
                 try
                 {
                     put.setHeader("Content-CheckType", contentType);
                     put.setEntity(new StringEntity(content));
                 }
-                catch (final UnsupportedEncodingException e)
+                catch (UnsupportedEncodingException e)
                 {
                     e.printStackTrace();
                 }
@@ -245,7 +245,7 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
     }
 
     @UmlRelation(label = "creates")
-    public HttpPutResource put(final String contentType, final String value)
+    public HttpPutResource put(String contentType, String value)
     {
         return put(NetworkAccessConstraints.DEFAULT, contentType, value);
     }
@@ -257,19 +257,19 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
     }
 
     @Override
-    public HttpNetworkLocation withInterpolatedVariables(final VariableMap<String> variables)
+    public HttpNetworkLocation withInterpolatedVariables(VariableMap<String> variables)
     {
         return new HttpNetworkLocation(super.withInterpolatedVariables(variables));
     }
 
     @Override
-    public HttpNetworkLocation withPath(final NetworkPath path)
+    public HttpNetworkLocation withPath(NetworkPath path)
     {
         return new HttpNetworkLocation(super.withPath(path));
     }
 
     @Override
-    public HttpNetworkLocation withQueryParameters(final QueryParameters queryParameters)
+    public HttpNetworkLocation withQueryParameters(QueryParameters queryParameters)
     {
         return new HttpNetworkLocation(super.withQueryParameters(queryParameters));
     }

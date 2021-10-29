@@ -73,34 +73,34 @@ public class LocalFolder implements FolderService
 
     private final FilePath path;
 
-    public LocalFolder(final FilePath path)
+    public LocalFolder(FilePath path)
     {
         this.path = path;
         file = new java.io.File(this.path.toString());
     }
 
-    public LocalFolder(final java.io.File file)
+    public LocalFolder(java.io.File file)
     {
         this(FilePath.filePath(file));
     }
 
-    public LocalFolder(final LocalFolder that)
+    public LocalFolder(LocalFolder that)
     {
         file = that.file;
         path = that.path;
     }
 
-    public LocalFolder(final String path)
+    public LocalFolder(String path)
     {
         this(FilePath.parseFilePath(path));
     }
 
-    public LocalFolder(final URI uri)
+    public LocalFolder(URI uri)
     {
         this(new java.io.File(uri));
     }
 
-    public LocalFolder(final URL url) throws URISyntaxException
+    public LocalFolder(URL url) throws URISyntaxException
     {
         this(url.toURI());
     }
@@ -121,21 +121,21 @@ public class LocalFolder implements FolderService
         {
             return asUri().toURL();
         }
-        catch (final MalformedURLException e)
+        catch (MalformedURLException e)
         {
             return null;
         }
     }
 
     @Override
-    public boolean chmod(final PosixFilePermission... permissions)
+    public boolean chmod(PosixFilePermission... permissions)
     {
         try
         {
             Files.setPosixFilePermissions(path.asJavaPath(), new HashSet<>(Arrays.asList(permissions)));
             return true;
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             return false;
         }
@@ -144,13 +144,13 @@ public class LocalFolder implements FolderService
     @Override
     public FolderService clear()
     {
-        for (final var folder : folders())
+        for (var folder : folders())
         {
             folder.clear();
             folder.delete();
         }
 
-        for (final var file : files())
+        for (var file : files())
         {
             file.delete();
         }
@@ -220,11 +220,11 @@ public class LocalFolder implements FolderService
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof LocalFolder)
         {
-            final var that = (LocalFolder) object;
+            var that = (LocalFolder) object;
             return path.join().equals(that.path.join());
         }
         return false;
@@ -237,17 +237,17 @@ public class LocalFolder implements FolderService
     }
 
     @Override
-    public LocalFile file(final FileName name)
+    public LocalFile file(FileName name)
     {
         return file(name.name());
     }
 
-    public LocalFile file(final FilePath path)
+    public LocalFile file(FilePath path)
     {
         return file(path.toString());
     }
 
-    public LocalFile file(final String name)
+    public LocalFile file(String name)
     {
         return new LocalFile(this, name);
     }
@@ -261,17 +261,17 @@ public class LocalFolder implements FolderService
     @Override
     public synchronized List<FileService> files()
     {
-        final var files = new ArrayList<FileService>();
+        var files = new ArrayList<FileService>();
         if (exists())
         {
             if (file != null)
             {
-                final var list = file.listFiles();
+                var list = file.listFiles();
                 if (list != null)
                 {
-                    for (final var file : list)
+                    for (var file : list)
                     {
-                        final var path = FilePath.filePath(file).withoutFileScheme();
+                        var path = FilePath.filePath(file).withoutFileScheme();
                         if (!isFolder(path))
                         {
                             files.add(new LocalFile(file));
@@ -284,10 +284,10 @@ public class LocalFolder implements FolderService
     }
 
     @Override
-    public List<FileService> files(final Matcher<FilePath> matcher)
+    public List<FileService> files(Matcher<FilePath> matcher)
     {
-        final List<FileService> files = new ArrayList<>();
-        for (final FileService file : files())
+        List<FileService> files = new ArrayList<>();
+        for (FileService file : files())
         {
             if (matcher.matches(file.path()))
             {
@@ -298,23 +298,23 @@ public class LocalFolder implements FolderService
     }
 
     @Override
-    public LocalFolder folder(final FileName name)
+    public LocalFolder folder(FileName name)
     {
         return new LocalFolder(path.withChild(name.toString()));
     }
 
     @Override
-    public LocalFolder folder(final Folder folder)
+    public LocalFolder folder(Folder folder)
     {
         return new LocalFolder(path.withChild(folder.toString()));
     }
 
-    public LocalFolder folder(final LocalFolder child)
+    public LocalFolder folder(LocalFolder child)
     {
         return folder(child.toString());
     }
 
-    public LocalFolder folder(final String child)
+    public LocalFolder folder(String child)
     {
         return new LocalFolder(path.withChild(child));
     }
@@ -322,13 +322,13 @@ public class LocalFolder implements FolderService
     @Override
     public synchronized List<FolderService> folders()
     {
-        final List<FolderService> folders = new ArrayList<>();
+        List<FolderService> folders = new ArrayList<>();
         if (file != null)
         {
-            final var files = file.listFiles();
+            var files = file.listFiles();
             if (files != null)
             {
-                for (final var file : files)
+                for (var file : files)
                 {
                     if (!file.getName().startsWith(".") && file.isDirectory())
                     {
@@ -341,10 +341,10 @@ public class LocalFolder implements FolderService
     }
 
     @Override
-    public List<FolderService> folders(final Matcher<FilePath> matcher)
+    public List<FolderService> folders(Matcher<FilePath> matcher)
     {
-        final List<FolderService> folders = new ArrayList<>();
-        for (final var folder : folders())
+        List<FolderService> folders = new ArrayList<>();
+        for (var folder : folders())
         {
             if (matcher.matches(folder.path()))
             {
@@ -393,10 +393,10 @@ public class LocalFolder implements FolderService
     }
 
     @Override
-    public List<FileService> nestedFiles(final Matcher<FilePath> matcher)
+    public List<FileService> nestedFiles(Matcher<FilePath> matcher)
     {
-        final var files = files(matcher);
-        for (final var folder : folders())
+        var files = files(matcher);
+        for (var folder : folders())
         {
             files.addAll(folder.nestedFiles(matcher));
         }
@@ -404,10 +404,10 @@ public class LocalFolder implements FolderService
     }
 
     @Override
-    public List<FolderService> nestedFolders(final Matcher<FilePath> matcher)
+    public List<FolderService> nestedFolders(Matcher<FilePath> matcher)
     {
-        final var folders = folders(matcher);
-        for (final var folder : folders())
+        var folders = folders(matcher);
+        for (var folder : folders())
         {
             folders.addAll(folder.nestedFolders(matcher));
         }
@@ -427,7 +427,7 @@ public class LocalFolder implements FolderService
     }
 
     @Override
-    public boolean renameTo(final FolderService that)
+    public boolean renameTo(FolderService that)
     {
         if (isOnSameFileSystem(that))
         {
@@ -450,7 +450,7 @@ public class LocalFolder implements FolderService
     }
 
     @Override
-    public LocalFile temporaryFile(final FileName baseName)
+    public LocalFile temporaryFile(FileName baseName)
     {
         synchronized (temporaryLock)
         {
@@ -468,7 +468,7 @@ public class LocalFolder implements FolderService
     }
 
     @Override
-    public LocalFolder temporaryFolder(final FileName baseName)
+    public LocalFolder temporaryFolder(FileName baseName)
     {
         synchronized (temporaryLock)
         {
@@ -491,7 +491,7 @@ public class LocalFolder implements FolderService
         return path.join();
     }
 
-    private static boolean isFolder(final FilePath path)
+    private static boolean isFolder(FilePath path)
     {
         return new java.io.File(path.join()).isDirectory();
     }

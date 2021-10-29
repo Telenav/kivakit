@@ -39,8 +39,8 @@ public class Sets
     /**
      * @return A copy of the given set
      */
-    public static <Value> Set<Value> copy(final Factory<Set<Value>> factory,
-                                          final Set<Value> set)
+    public static <Value> Set<Value> copy(Factory<Set<Value>> factory,
+                                          Set<Value> set)
     {
         return deepCopy(factory, set, value -> value);
     }
@@ -48,15 +48,15 @@ public class Sets
     /**
      * @return A copy of the given set
      */
-    public static <Value> Set<Value> deepCopy(final Factory<Set<Value>> factory,
-                                              final Set<Value> set,
-                                              final Function<Value, Value> clone)
+    public static <Value> Set<Value> deepCopy(Factory<Set<Value>> factory,
+                                              Set<Value> set,
+                                              Function<Value, Value> clone)
     {
-        final var copy = factory.newInstance();
-        for (final var value : set)
+        var copy = factory.newInstance();
+        for (var value : set)
         {
             Ensure.ensureNotNull(value);
-            final var clonedValue = clone.apply(value);
+            var clonedValue = clone.apply(value);
             Ensure.ensureNotNull(clonedValue);
             copy.add(clonedValue);
         }
@@ -68,25 +68,25 @@ public class Sets
         return Collections.emptySet();
     }
 
-    public static <T> T first(final Set<T> set)
+    public static <T> T first(Set<T> set)
     {
         return set.isEmpty() ? null : set.iterator().next();
     }
 
-    public static <T> Set<T> fromIterable(final Iterable<T> iterable)
+    public static <T> Set<T> fromIterable(Iterable<T> iterable)
     {
-        final Set<T> set = new HashSet<>();
+        Set<T> set = new HashSet<>();
         iterable.forEach(set::add);
         return set;
     }
 
-    public static <T> HashSet<T> hashset(final Collection<T> collection)
+    public static <T> HashSet<T> hashset(Collection<T> collection)
     {
         return new HashSet<>(collection);
     }
 
     @SafeVarargs
-    public static <T> HashSet<T> hashset(final T... values)
+    public static <T> HashSet<T> hashset(T... values)
     {
         return new HashSet<>(Set.of(values));
     }
@@ -96,20 +96,20 @@ public class Sets
         return Collections.newSetFromMap(new IdentityHashMap<>());
     }
 
-    public static <T> Set<T> nonNull(final Set<T> set)
+    public static <T> Set<T> nonNull(Set<T> set)
     {
         return set == null ? empty() : set;
     }
 
     @SafeVarargs
-    public static <T> Set<T> of(final T... list)
+    public static <T> Set<T> of(T... list)
     {
         return new HashSet<>(Arrays.asList(list));
     }
 
-    public static <T> Set<T> union(final Set<T> a, final Set<T> b)
+    public static <T> Set<T> union(Set<T> a, Set<T> b)
     {
-        final var union = new HashSet<T>();
+        var union = new HashSet<T>();
         union.addAll(a);
         union.addAll(b);
         return union;

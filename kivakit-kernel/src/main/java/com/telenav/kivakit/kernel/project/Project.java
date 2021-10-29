@@ -134,11 +134,11 @@ public abstract class Project extends BaseRepeater implements Initializable, Nam
      * {@inheritDoc}
      */
     @Override
-    public final boolean equals(final Object object)
+    public final boolean equals(Object object)
     {
         if (object instanceof Project)
         {
-            final var that = (Project) object;
+            var that = (Project) object;
             return getClass().equals(that.getClass());
         }
         return false;
@@ -234,9 +234,9 @@ public abstract class Project extends BaseRepeater implements Initializable, Nam
     {
         if (properties == null)
         {
-            final var projectProperties = Metadata.of(getClass()).projectProperties();
+            var projectProperties = Metadata.of(getClass()).projectProperties();
 
-            final var properties = JavaVirtualMachine.local().variables();
+            var properties = JavaVirtualMachine.local().variables();
             properties.addAll(VariableMap.of(projectProperties));
             properties.put("kivakit-version", properties.get("project-version"));
             properties.put("version", properties.get("project-version"));
@@ -254,7 +254,7 @@ public abstract class Project extends BaseRepeater implements Initializable, Nam
     /**
      * @return The project property for the given key
      */
-    public String property(final String key)
+    public String property(String key)
     {
         return properties().get(key);
     }
@@ -262,7 +262,7 @@ public abstract class Project extends BaseRepeater implements Initializable, Nam
     @Override
     public String toString()
     {
-        final var builder = new StringBuilder();
+        var builder = new StringBuilder();
         visitDependencies((project, level) -> builder
                 .append(AsciiArt.repeat(level * 2, ' '))
                 .append(project.name())
@@ -275,15 +275,15 @@ public abstract class Project extends BaseRepeater implements Initializable, Nam
      *
      * @param visitor The visitor called for each project
      */
-    public void visitDependencies(final Visitor visitor)
+    public void visitDependencies(Visitor visitor)
     {
         visitDependencies(this, new HashSet<>(), visitor, 0);
     }
 
-    private void visitDependencies(final Project project,
-                                   final Set<Project> visited,
-                                   final Visitor visitor,
-                                   final int level)
+    private void visitDependencies(Project project,
+                                   Set<Project> visited,
+                                   Visitor visitor,
+                                   int level)
     {
         // If we haven't already visited the given project,
         if (!visited.contains(project))
@@ -292,7 +292,7 @@ public abstract class Project extends BaseRepeater implements Initializable, Nam
             visited.add(project);
 
             // then go through each dependency
-            for (final var dependency : dependencies())
+            for (var dependency : dependencies())
             {
                 // and visit it,
                 dependency.visitDependencies(dependency, visited, visitor, level + 1);

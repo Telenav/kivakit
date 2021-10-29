@@ -58,7 +58,7 @@ public interface Receiver
     /**
      * Method that receives a message
      */
-    void onReceive(final Transmittable message);
+    void onReceive(Transmittable message);
 
     /**
      * <b>Not public API</b>
@@ -67,7 +67,7 @@ public interface Receiver
      * If this transceiver is enabled, passes the message to {@link #onReceive(Transmittable)}
      * </p>
      */
-    default <M extends Transmittable> M receive(final M message)
+    default <M extends Transmittable> M receive(M message)
     {
         if (isReceiving())
         {

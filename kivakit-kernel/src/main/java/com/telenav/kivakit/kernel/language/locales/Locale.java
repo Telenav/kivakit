@@ -45,7 +45,7 @@ public class Locale
      * @param language The language spoken in this locale
      * @param country The country
      */
-    public Locale(final LanguageIsoCode language, final CountryIsoCode country)
+    public Locale(LanguageIsoCode language, CountryIsoCode country)
     {
         this.language = language;
         this.country = country;
@@ -54,7 +54,7 @@ public class Locale
     /**
      * @param language The language for this locale throughout the world, for example, World English
      */
-    public Locale(final LanguageIsoCode language)
+    public Locale(LanguageIsoCode language)
     {
         this.language = language;
     }
@@ -78,11 +78,11 @@ public class Locale
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Locale)
         {
-            final var that = (Locale) object;
+            var that = (Locale) object;
             return Objects.equal(language, that.language);
         }
         return false;

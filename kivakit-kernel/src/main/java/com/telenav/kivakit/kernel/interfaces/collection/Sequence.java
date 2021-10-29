@@ -103,9 +103,9 @@ public interface Sequence<Element>
     /**
      * @return True if all elements in this sequence match the given matcher
      */
-    default boolean allMatch(final Matcher<Element> matcher)
+    default boolean allMatch(Matcher<Element> matcher)
     {
-        for (final var element : asIterable())
+        for (var element : asIterable())
         {
             if (!matcher.matches(element))
             {
@@ -118,7 +118,7 @@ public interface Sequence<Element>
     /**
      * @return True if any value in this sequence matches the given matcher
      */
-    default boolean anyMatch(final Matcher<Element> matcher)
+    default boolean anyMatch(Matcher<Element> matcher)
     {
         return find(matcher) != null;
     }
@@ -129,7 +129,7 @@ public interface Sequence<Element>
     default int asHashCode()
     {
         var hash = Hash.SEED;
-        for (final var value : asIterable())
+        for (var value : asIterable())
         {
             hash = hash ^ value.hashCode();
         }
@@ -139,7 +139,7 @@ public interface Sequence<Element>
     /**
      * @return The elements in this list matching the given matcher
      */
-    default Iterable<Element> asIterable(final Matcher<Element> matcher)
+    default Iterable<Element> asIterable(Matcher<Element> matcher)
     {
         return () -> asIterator(matcher);
     }
@@ -163,15 +163,15 @@ public interface Sequence<Element>
     /**
      * @return An {@link Iterator} over elements in this sequence
      */
-    @NotNull Iterator<Element> asIterator(final Matcher<Element> matcher);
+    @NotNull Iterator<Element> asIterator(Matcher<Element> matcher);
 
     /**
      * @return This sequence as a list
      */
     default List<Element> asList()
     {
-        final var list = new ArrayList<Element>();
-        for (final var element : asIterable())
+        var list = new ArrayList<Element>();
+        for (var element : asIterable())
         {
             list.add(element);
         }
@@ -183,8 +183,8 @@ public interface Sequence<Element>
      */
     default Set<Element> asSet()
     {
-        final var set = new HashSet<Element>();
-        for (final var element : asIterable())
+        var set = new HashSet<Element>();
+        for (var element : asIterable())
         {
             set.add(element);
         }
@@ -194,9 +194,9 @@ public interface Sequence<Element>
     /**
      * @return The first value that matches the matcher
      */
-    default Element find(final Matcher<Element> matcher)
+    default Element find(Matcher<Element> matcher)
     {
-        for (final var element : asIterable())
+        for (var element : asIterable())
         {
             if (matcher.matches(element))
             {
@@ -226,10 +226,10 @@ public interface Sequence<Element>
      * @return The index of the first value in this sequence matching the given matcher. If no value in the sequence
      * matches then -1 is returned.
      */
-    default int indexOfFirst(final Matcher<Element> matcher)
+    default int indexOfFirst(Matcher<Element> matcher)
     {
         int index = 0;
-        for (final var element : asIterable())
+        for (var element : asIterable())
         {
             if (matcher.matches(element))
             {
@@ -243,7 +243,7 @@ public interface Sequence<Element>
     /**
      * @return The index of the given value or -1 if none exists
      */
-    default int indexOfFirst(final Element value)
+    default int indexOfFirst(Element value)
     {
         return indexOfFirst(element -> element.equals(value));
     }
@@ -251,10 +251,10 @@ public interface Sequence<Element>
     /**
      * @return True if this sequence object and that sequence have all the same elements
      */
-    default boolean isEqualTo(final Sequence<Element> that)
+    default boolean isEqualTo(Sequence<Element> that)
     {
-        final var thisIterator = asIterator();
-        final var thatIterator = that.asIterator();
+        var thisIterator = asIterator();
+        var thatIterator = that.asIterator();
 
         // While we have a next value,
         while (thisIterator.hasNext())
@@ -267,8 +267,8 @@ public interface Sequence<Element>
             }
 
             // otherwise both sequences have a next element,
-            final var thisElement = thisIterator.next();
-            final var thatElement = thatIterator.next();
+            var thisElement = thisIterator.next();
+            var thatElement = thatIterator.next();
 
             // but if they aren't equal,
             if (!thisElement.equals(thatElement))
@@ -285,7 +285,7 @@ public interface Sequence<Element>
     /**
      * @return The elements in this sequence joined as a string with the given separator
      */
-    default String join(final char separator)
+    default String join(char separator)
     {
         return join(String.valueOf(separator));
     }
@@ -293,7 +293,7 @@ public interface Sequence<Element>
     /**
      * @return The elements in this sequence joined as a string with the given separator
      */
-    default String join(final String separator)
+    default String join(String separator)
     {
         return join(separator, Object::toString);
     }
@@ -302,7 +302,7 @@ public interface Sequence<Element>
      * @return The elements in this sequence joined as a string with the given separator or the default value if this
      * sequence is empty
      */
-    default String join(final String separator, final String defaultValue)
+    default String join(String separator, String defaultValue)
     {
         if (first() == null)
         {
@@ -315,10 +315,10 @@ public interface Sequence<Element>
      * @return The elements in this sequence transformed into strings by the given function and joined together with the
      * given separator
      */
-    default String join(final String separator, final Function<Element, String> toString)
+    default String join(String separator, Function<Element, String> toString)
     {
-        final var builder = new StringBuilder();
-        for (final var value : asIterable())
+        var builder = new StringBuilder();
+        for (var value : asIterable())
         {
             if (builder.length() > 0)
             {
@@ -332,7 +332,7 @@ public interface Sequence<Element>
     /**
      * @return True if no element in this sequence matches the given matcher
      */
-    default boolean noneMatch(final Matcher<Element> matcher)
+    default boolean noneMatch(Matcher<Element> matcher)
     {
         return find(matcher) == null;
     }
@@ -343,9 +343,9 @@ public interface Sequence<Element>
      */
     default ObjectList<Element> tail()
     {
-        final var tail = new ObjectList<Element>();
+        var tail = new ObjectList<Element>();
         int index = 0;
-        for (final var element : asIterable())
+        for (var element : asIterable())
         {
             if (index++ > 0)
             {

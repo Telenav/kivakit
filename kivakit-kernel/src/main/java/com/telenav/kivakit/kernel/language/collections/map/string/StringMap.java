@@ -37,7 +37,7 @@ public class StringMap<T> extends BaseStringMap<T>
         super(Maximum.MAXIMUM, new TreeMap<>());
     }
 
-    public StringMap(final Maximum maximumSize)
+    public StringMap(Maximum maximumSize)
     {
         super(maximumSize, new TreeMap<>());
     }

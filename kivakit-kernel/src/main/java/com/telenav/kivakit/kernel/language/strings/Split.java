@@ -39,7 +39,7 @@ public class Split
     /**
      * @return The sequence of strings resulting from splitting the given text using the given delimiter
      */
-    public static Iterable<String> split(final String text, final char delimiter)
+    public static Iterable<String> split(String text, char delimiter)
     {
         return Iterables.iterable(() -> new Next<>()
         {
@@ -60,14 +60,14 @@ public class Split
                     if (next == -1)
                     {
                         // return the tail and we're done
-                        final var tail = text.substring(pos);
+                        var tail = text.substring(pos);
                         pos = -1;
                         return tail;
                     }
                     else
                     {
                         // Return the value up to the delimiter and advance to the next
-                        final var mid = text.substring(pos, next);
+                        var mid = text.substring(pos, next);
                         pos = next + 1;
                         return mid;
                     }
@@ -80,7 +80,7 @@ public class Split
     /**
      * @return The sequence of strings resulting from splitting the given text using the given delimiter
      */
-    public static Iterable<String> split(final String value, final String delimiter)
+    public static Iterable<String> split(String value, String delimiter)
     {
         return Iterables.iterable(() -> new Next<>()
         {
@@ -101,14 +101,14 @@ public class Split
                     if (next == -1)
                     {
                         // return the tail and we're done
-                        final var tail = value.substring(pos);
+                        var tail = value.substring(pos);
                         pos = -1;
                         return tail;
                     }
                     else
                     {
                         // Return the value up to the delimiter and advance to the next
-                        final var mid = value.substring(pos, next);
+                        var mid = value.substring(pos, next);
                         pos = next + 1;
                         return mid;
                     }
@@ -121,12 +121,12 @@ public class Split
     /**
      * @return The two strings resulting from splitting the given text using the given separator
      */
-    public static String[] splitOnFirst(final String text, final char separator)
+    public static String[] splitOnFirst(String text, char separator)
     {
-        final var index = text.indexOf(separator);
+        var index = text.indexOf(separator);
         if (index >= 0)
         {
-            final var values = new String[2];
+            var values = new String[2];
             values[0] = text.substring(0, index);
             values[1] = text.substring(index + 1);
             return values;

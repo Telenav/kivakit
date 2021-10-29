@@ -37,13 +37,13 @@ public class Activity extends OperationStatusMessage
     {
     }
 
-    public Activity(final String message, final Object... arguments)
+    public Activity(String message, Object... arguments)
     {
         super(message);
         arguments(arguments);
     }
 
-    public Activity(final Throwable cause, final String message, final Object... arguments)
+    public Activity(Throwable cause, String message, Object... arguments)
     {
         super(message + ": " + Message.escape(cause.getMessage()));
         cause(cause);

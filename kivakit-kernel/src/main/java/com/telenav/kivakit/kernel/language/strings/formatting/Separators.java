@@ -53,12 +53,12 @@ public class Separators
         this("[[", "]]", 16);
     }
 
-    public Separators(final String... separators)
+    public Separators(String... separators)
     {
         this.separators = separators;
     }
 
-    public Separators(final String before, final String after, final int levels)
+    public Separators(String before, String after, int levels)
     {
         separators = new String[levels];
         for (var i = 0; i < levels; i++)
@@ -67,7 +67,7 @@ public class Separators
         }
     }
 
-    private Separators(final int nestingLevel, final String[] separators)
+    private Separators(int nestingLevel, String[] separators)
     {
         this.nestingLevel = nestingLevel;
         this.separators = separators;
@@ -78,7 +78,7 @@ public class Separators
         return new Separators(nestingLevel + 1, separators);
     }
 
-    public String child(final int relativeLevel)
+    public String child(int relativeLevel)
     {
         return separators[nestingLevel + relativeLevel];
     }

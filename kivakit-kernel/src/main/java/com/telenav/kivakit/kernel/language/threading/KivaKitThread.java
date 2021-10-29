@@ -138,9 +138,9 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
     /**
      * @return A started thread with the given name that will run the given code at the given frequency.
      */
-    public static KivaKitThread repeat(final String name,
-                                       final Frequency every,
-                                       final Runnable code)
+    public static KivaKitThread repeat(String name,
+                                       Frequency every,
+                                       Runnable code)
     {
         return repeat(LOGGER, name, every, code);
     }
@@ -148,10 +148,10 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
     /**
      * @return A started thread with the given name that will run the given code at the given frequency.
      */
-    public static KivaKitThread repeat(final Listener listener,
-                                       final String name,
-                                       final Frequency every,
-                                       final Runnable code)
+    public static KivaKitThread repeat(Listener listener,
+                                       String name,
+                                       Frequency every,
+                                       Runnable code)
     {
         return run(listener, name, () -> every.cycleLength().loop(listener, code));
     }
@@ -159,8 +159,8 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
     /**
      * @return A started thread with the given name that has been started
      */
-    public static KivaKitThread run(final String name,
-                                    final Runnable code)
+    public static KivaKitThread run(String name,
+                                    Runnable code)
     {
         return run(LOGGER, name, code);
     }
@@ -168,11 +168,11 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
     /**
      * @return A started thread with the given name that has been started
      */
-    public static KivaKitThread run(final Listener listener,
-                                    final String name,
-                                    final Runnable code)
+    public static KivaKitThread run(Listener listener,
+                                    String name,
+                                    Runnable code)
     {
-        final var thread = listener.listenTo(new KivaKitThread(name, code));
+        var thread = listener.listenTo(new KivaKitThread(name, code));
         thread.start();
         return thread;
     }
@@ -236,7 +236,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
      * @param name The thread name suffix
      * @param code The code to run
      */
-    public KivaKitThread(final String name, final Runnable code)
+    public KivaKitThread(String name, Runnable code)
     {
         this(name);
         this.code = code;
@@ -247,7 +247,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
      *
      * @param name The thread name suffix
      */
-    public KivaKitThread(final String name)
+    public KivaKitThread(String name)
     {
         super(name("Kiva-" + name));
         thread = new Thread(this, objectName());
@@ -257,7 +257,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
     /**
      * @param daemon True to make this a daemon thread
      */
-    public KivaKitThread daemon(final boolean daemon)
+    public KivaKitThread daemon(boolean daemon)
     {
         thread.setDaemon(daemon);
         return this;
@@ -275,7 +275,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
     /**
      * Sets an initial delay before the thread's user code starts executing
      */
-    public KivaKitThread initialDelay(final Duration initialDelay)
+    public KivaKitThread initialDelay(Duration initialDelay)
     {
         this.initialDelay = initialDelay;
         return this;
@@ -293,7 +293,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
     /**
      * @return True if this thread is in the given state at the time this method is called.
      */
-    public boolean is(final State state)
+    public boolean is(State state)
     {
         return state().is(state);
     }
@@ -316,7 +316,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
         {
             thread.join();
         }
-        catch (final InterruptedException ignored)
+        catch (InterruptedException ignored)
         {
         }
     }
@@ -358,7 +358,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
             // run the user's code
             onRun();
         }
-        catch (final Throwable e)
+        catch (Throwable e)
         {
             problem(e, "${class} threw exception", getClass());
         }
@@ -386,7 +386,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
                     trace("Starting");
                     thread.start();
                 }
-                catch (final IllegalThreadStateException e)
+                catch (IllegalThreadStateException e)
                 {
                     warning(e, "Thread could not be started");
                     return false;
@@ -426,7 +426,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
      * Attempt to stop this thread, waiting for the maximum specified time for it to exit
      */
     @Override
-    public void stop(final Duration maximumWait)
+    public void stop(Duration maximumWait)
     {
         whileLocked(() ->
         {
@@ -442,7 +442,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
     /**
      * Wait for this thread to achieve the given states
      */
-    public void waitFor(final State state)
+    public void waitFor(State state)
     {
         trace("Wait for $", state);
         state().waitFor(state);
@@ -451,7 +451,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
     /**
      * Wait for this thread to achieve the given states
      */
-    public void waitFor(final State state, final Duration maximumWait)
+    public void waitFor(State state, Duration maximumWait)
     {
         trace("Wait for $", state);
         state().waitFor(state, maximumWait);
@@ -460,7 +460,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
     /**
      * Executes the given code while holding the state machine's reentrant lock
      */
-    public void whileLocked(final Runnable code)
+    public void whileLocked(Runnable code)
     {
         state().whileLocked(code);
     }
@@ -468,7 +468,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
     /**
      * Executes the given code while holding the state machine's reentrant lock
      */
-    public <T> T whileLocked(final Code<T> code)
+    public <T> T whileLocked(Code<T> code)
     {
         return state().whileLocked(code);
     }
@@ -524,7 +524,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
         return thread;
     }
 
-    protected State transition(final State to)
+    protected State transition(State to)
     {
         return state().transitionTo(to);
     }

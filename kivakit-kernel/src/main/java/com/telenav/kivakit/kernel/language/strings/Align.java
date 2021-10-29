@@ -35,12 +35,12 @@ public class Align
     /**
      * Centers the given text to a given length, with a given character used for padding
      */
-    public static String center(final String text, final int length, final char c)
+    public static String center(String text, int length, char c)
     {
         if (length > text.length())
         {
-            final var left = (length - text.length()) / 2;
-            final var right = length - text.length() - left;
+            var left = (length - text.length()) / 2;
+            var right = length - text.length() - left;
             return AsciiArt.repeat(left, c) + text + AsciiArt.repeat(right, c);
         }
         else
@@ -52,7 +52,7 @@ public class Align
     /**
      * Right pads the given text to the given length, with the given character
      */
-    public static String left(final String string, final int length, final char c)
+    public static String left(String string, int length, char c)
     {
         if (string != null && length > string.length())
         {
@@ -67,7 +67,7 @@ public class Align
     /**
      * Left pads the given text to the given length, with the given character
      */
-    public static String right(final String text, final int length, final char c)
+    public static String right(String text, int length, char c)
     {
         if (text != null && length > text.length())
         {

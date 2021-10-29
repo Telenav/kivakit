@@ -39,7 +39,7 @@ public class OperationSucceeded extends OperationLifecycleMessage
         super("OperationSucceeded");
     }
 
-    protected OperationSucceeded(final String message, final Object... arguments)
+    protected OperationSucceeded(String message, Object... arguments)
     {
         super(message, arguments);
     }

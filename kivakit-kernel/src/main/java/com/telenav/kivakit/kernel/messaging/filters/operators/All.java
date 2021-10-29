@@ -23,7 +23,7 @@ import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
 public class All<T> implements Filter<T>
 {
     @Override
-    public boolean accepts(final T value)
+    public boolean accepts(T value)
     {
         return true;
     }

@@ -60,13 +60,13 @@ public class DeploymentSet extends BaseRepeater
      * Loads all deployments in the root package 'deployments' and in any folder specified by
      * KIVAKIT_DEPLOYMENT_FOLDER.
      */
-    public static DeploymentSet load(final Listener listener, final Class<?> relativeTo)
+    public static DeploymentSet load(Listener listener, Class<?> relativeTo)
     {
         // Create an empty set of deployments,
-        final var deployments = listener.listenTo(DeploymentSet.create());
+        var deployments = listener.listenTo(DeploymentSet.create());
 
         // and if there is a root package called 'deployments' in the application,
-        final var settings = Package.of(relativeTo, "deployments");
+        var settings = Package.of(relativeTo, "deployments");
         if (settings != null)
         {
             // then add all the deployments in that package,
@@ -74,7 +74,7 @@ public class DeploymentSet extends BaseRepeater
         }
 
         // and if a deployment folder was specified, and it exists,
-        final var deploymentFolder = PropertyMap.of(JavaVirtualMachine.local().properties())
+        var deploymentFolder = PropertyMap.of(JavaVirtualMachine.local().properties())
                 .asFolder("KIVAKIT_DEPLOYMENT_FOLDER");
         if (deploymentFolder != null && deploymentFolder.exists())
         {
@@ -85,9 +85,9 @@ public class DeploymentSet extends BaseRepeater
         return deployments;
     }
 
-    public static DeploymentSet of(final Deployment deployment, final Deployment... more)
+    public static DeploymentSet of(Deployment deployment, Deployment... more)
     {
-        final var set = new DeploymentSet();
+        var set = new DeploymentSet();
         set.add(deployment);
         set.addAll(Arrays.asList(more));
         return set;
@@ -103,7 +103,7 @@ public class DeploymentSet extends BaseRepeater
     /**
      * Adds the given deployment to this set
      */
-    public void add(final Deployment deployment)
+    public void add(Deployment deployment)
     {
         deployments.add(deployment);
     }
@@ -111,7 +111,7 @@ public class DeploymentSet extends BaseRepeater
     /**
      * Adds all the deployments in the given collection to this set
      */
-    public void addAll(final Collection<Deployment> deployments)
+    public void addAll(Collection<Deployment> deployments)
     {
         this.deployments.addAll(deployments);
     }
@@ -119,16 +119,16 @@ public class DeploymentSet extends BaseRepeater
     /**
      * Adds all the deployments from the sub-folders found in the given folder.
      */
-    public DeploymentSet addDeploymentsIn(final Folder parent)
+    public DeploymentSet addDeploymentsIn(Folder parent)
     {
         // Go through the sub-folders,
-        for (final var folder : parent.folders())
+        for (var folder : parent.folders())
         {
             // get description from deployment metadata,
-            final String description = description(folder.file("Deployment.metadata"));
+            String description = description(folder.file("Deployment.metadata"));
 
             // create a deployment,
-            final var deployment = listenTo(new Deployment(folder.name().name(), description));
+            var deployment = listenTo(new Deployment(folder.name().name(), description));
 
             // and add the configuration information from the sub-folder,
             deployment.registerAllSettingsIn(this, folder);
@@ -149,12 +149,12 @@ public class DeploymentSet extends BaseRepeater
     /**
      * Adds all the deployments from the sub-packages found in the given package.
      */
-    public DeploymentSet addDeploymentsIn(final Package package_)
+    public DeploymentSet addDeploymentsIn(Package package_)
     {
         return addDeploymentsIn(package_.path());
     }
 
-    public DeploymentSet addDeploymentsIn(final Class<?> relativeTo, final String path)
+    public DeploymentSet addDeploymentsIn(Class<?> relativeTo, String path)
     {
         return addDeploymentsIn(PackagePath.parsePackagePath(relativeTo, path));
     }
@@ -162,16 +162,16 @@ public class DeploymentSet extends BaseRepeater
     /**
      * Adds all the deployments from the sub-packages found in the given package.
      */
-    public DeploymentSet addDeploymentsIn(final PackagePath path)
+    public DeploymentSet addDeploymentsIn(PackagePath path)
     {
         // Go through the sub-packages,
-        for (final var subPackage : path.subPackages())
+        for (var subPackage : path.subPackages())
         {
             // get description from deployment metadata,
-            final String description = description(Package.of(subPackage).resource("Deployment.metadata"));
+            String description = description(Package.of(subPackage).resource("Deployment.metadata"));
 
             // create a deployment,
-            final var deployment = listenTo(new Deployment(subPackage.last(), description));
+            var deployment = listenTo(new Deployment(subPackage.last(), description));
 
             // and add the configuration information from the sub-folder,
             deployment.registerAllSettingsIn(this, subPackage);
@@ -185,9 +185,9 @@ public class DeploymentSet extends BaseRepeater
     /**
      * @return The named deployment
      */
-    public Deployment deployment(final String name)
+    public Deployment deployment(String name)
     {
-        for (final var deployment : deployments)
+        for (var deployment : deployments)
         {
             if (deployment.name().equalsIgnoreCase(name))
             {
@@ -202,7 +202,7 @@ public class DeploymentSet extends BaseRepeater
         return deployments;
     }
 
-    public void install(final String name)
+    public void install(String name)
     {
         ensureNotNull(deployment(name)).install();
     }
@@ -217,15 +217,15 @@ public class DeploymentSet extends BaseRepeater
         return deployments.size();
     }
 
-    public SwitchParser.Builder<Deployment> switchParser(final String name)
+    public SwitchParser.Builder<Deployment> switchParser(String name)
     {
         return Deployment.deploymentSwitchParser(this, name);
     }
 
-    private String description(final Resource resource)
+    private String description(Resource resource)
     {
         var description = "'" + resource.fileName().name() + "' deployment";
-        final var deploymentProperties = PropertyMap.load(this, resource);
+        var deploymentProperties = PropertyMap.load(this, resource);
         if (deploymentProperties.containsKey("description"))
         {
             description = deploymentProperties.get("description");

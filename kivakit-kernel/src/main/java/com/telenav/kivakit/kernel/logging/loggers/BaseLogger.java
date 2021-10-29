@@ -60,14 +60,14 @@ public abstract class BaseLogger implements Logger
         this(new LoggerCodeContext());
     }
 
-    protected BaseLogger(final LoggerCodeContext codeContext)
+    protected BaseLogger(LoggerCodeContext codeContext)
     {
         this.codeContext = codeContext;
         addFilter(new LogEntriesWithSeverityGreaterThanOrEqualTo(level()));
     }
 
     @Override
-    public void addFilter(final Filter<LogEntry> filter)
+    public void addFilter(Filter<LogEntry> filter)
     {
         filters.add(filter);
     }
@@ -87,10 +87,10 @@ public abstract class BaseLogger implements Logger
 
     @Override
     @UmlExcludeMember
-    public void flush(final Duration maximumWaitTime)
+    public void flush(Duration maximumWaitTime)
     {
-        final var logs = logs();
-        for (final var log : logs)
+        var logs = logs();
+        for (var log : logs)
         {
             log.flush(maximumWaitTime.divide(logs.size()));
         }
@@ -103,14 +103,14 @@ public abstract class BaseLogger implements Logger
      */
     @Override
     @UmlExcludeMember
-    public void log(final LoggerCodeContext context, final Thread thread, final Message message)
+    public void log(LoggerCodeContext context, Thread thread, Message message)
     {
         if (isTimeToLog(message))
         {
-            final var entry = logEntry(context, thread, message);
+            var entry = logEntry(context, thread, message);
             if (accept(entry))
             {
-                for (final var log : logs())
+                for (var log : logs())
                 {
                     log.log(entry);
                 }
@@ -123,7 +123,7 @@ public abstract class BaseLogger implements Logger
      */
     @Override
     @UmlExcludeMember
-    public void log(final Message message)
+    public void log(Message message)
     {
         log(codeContext, Thread.currentThread(), message);
     }
@@ -135,9 +135,9 @@ public abstract class BaseLogger implements Logger
         return start;
     }
 
-    protected final boolean accept(final LogEntry entry)
+    protected final boolean accept(LogEntry entry)
     {
-        for (final var filter : filters)
+        for (var filter : filters)
         {
             if (filter != null && !filter.accepts(entry))
             {
@@ -148,14 +148,14 @@ public abstract class BaseLogger implements Logger
     }
 
     @UmlExcludeMember
-    protected boolean isTimeToLog(final Message message)
+    protected boolean isTimeToLog(Message message)
     {
         // If the message has a maximum frequency,
-        final var frequency = message.maximumFrequency();
+        var frequency = message.maximumFrequency();
         if (frequency != null)
         {
             // find out when this message was last logged
-            final var time = lastLogTime.get(message.text());
+            var time = lastLogTime.get(message.text());
 
             // and if it has never been logged or it was logged long enough ago,
             if (time == null || time.isOlderThan(frequency.cycleLength()))
@@ -174,7 +174,7 @@ public abstract class BaseLogger implements Logger
     }
 
     @UmlExcludeMember
-    protected LogEntry logEntry(final LoggerCodeContext context, final Thread thread, final Message message)
+    protected LogEntry logEntry(LoggerCodeContext context, Thread thread, Message message)
     {
         return new LogEntry(this, context, thread, message);
     }
@@ -187,10 +187,10 @@ public abstract class BaseLogger implements Logger
         if (level == null)
         {
             level = Severity.NONE;
-            final var levelName = System.getProperty("KIVAKIT_LOG_LEVEL");
+            var levelName = System.getProperty("KIVAKIT_LOG_LEVEL");
             if (levelName != null)
             {
-                final Message message = OperationMessage.of(levelName);
+                Message message = OperationMessage.of(levelName);
                 if (message != null)
                 {
                     level = message.severity();

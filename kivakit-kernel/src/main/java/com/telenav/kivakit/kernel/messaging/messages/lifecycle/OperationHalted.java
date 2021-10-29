@@ -37,14 +37,14 @@ public class OperationHalted extends OperationLifecycleMessage
     {
     }
 
-    public OperationHalted(final String message, final Object... arguments)
+    public OperationHalted(String message, Object... arguments)
     {
         super(message);
         cause(new Throwable("OperationHalted error"));
         arguments(arguments);
     }
 
-    public OperationHalted(final Throwable cause, final String message, final Object... arguments)
+    public OperationHalted(Throwable cause, String message, Object... arguments)
     {
         super(message);
         cause(cause);

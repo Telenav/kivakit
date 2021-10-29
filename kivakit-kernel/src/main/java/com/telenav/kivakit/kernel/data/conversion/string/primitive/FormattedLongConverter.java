@@ -43,7 +43,7 @@ public class FormattedLongConverter extends BaseStringConverter<Long>
      *
      * @param listener The listener to hear any conversion issues
      */
-    public FormattedLongConverter(final Listener listener)
+    public FormattedLongConverter(Listener listener)
     {
         this(listener, true);
     }
@@ -52,7 +52,7 @@ public class FormattedLongConverter extends BaseStringConverter<Long>
      * @param listener The listener to hear any conversion issues
      * @param commas True if the string representation has commas in it
      */
-    public FormattedLongConverter(final Listener listener, final boolean commas)
+    public FormattedLongConverter(Listener listener, boolean commas)
     {
         this(listener, new DecimalFormat(commas ? "###,###" : "#"));
     }
@@ -63,7 +63,7 @@ public class FormattedLongConverter extends BaseStringConverter<Long>
      * @param listener The listener to hear any conversion issues
      * @param format The format to use
      */
-    public FormattedLongConverter(final Listener listener, final DecimalFormat format)
+    public FormattedLongConverter(Listener listener, DecimalFormat format)
     {
         super(listener);
         this.format = format;
@@ -74,17 +74,9 @@ public class FormattedLongConverter extends BaseStringConverter<Long>
      */
     @Override
     @UmlExcludeMember
-    protected Long onToValue(final String value)
+    protected String onToString(Long value)
     {
-        try
-        {
-            return format.parse(value).longValue();
-        }
-        catch (final ParseException e)
-        {
-            problem(e, "Couldn't parse long");
-            return null;
-        }
+        return format.format(value);
     }
 
     /**
@@ -92,8 +84,16 @@ public class FormattedLongConverter extends BaseStringConverter<Long>
      */
     @Override
     @UmlExcludeMember
-    protected String onToString(final Long value)
+    protected Long onToValue(String value)
     {
-        return format.format(value);
+        try
+        {
+            return format.parse(value).longValue();
+        }
+        catch (ParseException e)
+        {
+            problem(e, "Couldn't parse long");
+            return null;
+        }
     }
 }

@@ -79,14 +79,14 @@ public class StringPath extends Path<String>
      * @param separatorPattern The Java regular expression used to split path elements
      * @return A string path for the given string, root pattern and separator pattern
      */
-    public static StringPath parseStringPath(final String path, final String rootPattern, final String separatorPattern)
+    public static StringPath parseStringPath(String path, String rootPattern, String separatorPattern)
     {
         if (rootPattern != null)
         {
-            final var matcher = pattern(rootPattern).matcher(path);
+            var matcher = pattern(rootPattern).matcher(path);
             if (matcher.lookingAt())
             {
-                final var tail = matcher.group("path");
+                var tail = matcher.group("path");
                 return new StringPath(matcher.group("root"), StringList.splitOnPattern(tail, separatorPattern));
             }
         }
@@ -96,7 +96,7 @@ public class StringPath extends Path<String>
     /**
      * @return A string path for the given string and separator pattern
      */
-    public static StringPath parseStringPath(final String path, final String separatorPattern)
+    public static StringPath parseStringPath(String path, String separatorPattern)
     {
         return parseStringPath(path, null, separatorPattern);
     }
@@ -104,7 +104,7 @@ public class StringPath extends Path<String>
     /**
      * @return A path (sans scheme) for the given URI
      */
-    public static StringPath stringPath(final List<String> elements)
+    public static StringPath stringPath(List<String> elements)
     {
         return new StringPath(elements);
     }
@@ -112,14 +112,14 @@ public class StringPath extends Path<String>
     /**
      * @return A path for the given strings
      */
-    public static StringPath stringPath(final String first, final String... rest)
+    public static StringPath stringPath(String first, String... rest)
     {
-        final var list = StringList.stringList();
+        var list = StringList.stringList();
         if (!Strings.isEmpty(first))
         {
             list.add(first);
         }
-        for (final var at : rest)
+        for (var at : rest)
         {
             if (!Strings.isEmpty(at))
             {
@@ -132,7 +132,7 @@ public class StringPath extends Path<String>
     /**
      * @return A path (sans scheme) for the given URI
      */
-    public static StringPath stringPath(final URI uri)
+    public static StringPath stringPath(URI uri)
     {
         return stringPath(java.nio.file.Path.of(uri));
     }
@@ -140,10 +140,10 @@ public class StringPath extends Path<String>
     /**
      * @return A path for the given NIO path
      */
-    public static StringPath stringPath(final java.nio.file.Path path)
+    public static StringPath stringPath(java.nio.file.Path path)
     {
-        final var root = path.getRoot();
-        final var elements = new StringList();
+        var root = path.getRoot();
+        var elements = new StringList();
         for (int i = 0; i < path.getNameCount(); i++)
         {
             elements.add(path.getName(i).toString());
@@ -154,17 +154,17 @@ public class StringPath extends Path<String>
     /** By default, paths are separated by slashes */
     private String separator = "/";
 
-    protected StringPath(final List<String> elements)
+    protected StringPath(List<String> elements)
     {
         this(null, elements);
     }
 
-    protected StringPath(final String root, final List<String> elements)
+    protected StringPath(String root, List<String> elements)
     {
         super(root, substituteSystemVariables(elements));
     }
 
-    protected StringPath(final StringPath path)
+    protected StringPath(StringPath path)
     {
         this(path.rootElement(), path.elements());
         separator = path.separator;
@@ -174,13 +174,13 @@ public class StringPath extends Path<String>
      * @return A contraction of this path as a string. Middle elements are removed until the length is less than the
      * given maximum length.
      */
-    public String asContraction(final int maximumLength)
+    public String asContraction(int maximumLength)
     {
-        final int size = size();
+        int size = size();
         if (size >= 3)
         {
-            final var copy = new StringPath(this);
-            final int middle = size / 2;
+            var copy = new StringPath(this);
+            int middle = size / 2;
             var before = copy.subpath(0, middle);
             var after = copy.subpath(middle + 1, size);
             final var ellipsis = "...";
@@ -227,7 +227,7 @@ public class StringPath extends Path<String>
     /**
      * @return True if this path ends with the given suffix
      */
-    public boolean endsWith(final String suffix)
+    public boolean endsWith(String suffix)
     {
         return asString().endsWith(suffix);
     }
@@ -236,7 +236,7 @@ public class StringPath extends Path<String>
      * {@inheritDoc}
      */
     @Override
-    public StringPath first(final int n)
+    public StringPath first(int n)
     {
         return (StringPath) super.first(n);
     }
@@ -244,11 +244,11 @@ public class StringPath extends Path<String>
     /**
      * @return This path joined by the given separator
      */
-    public final String join(final String separator)
+    public final String join(String separator)
     {
-        final var list = new StringList();
+        var list = new StringList();
         list.addAll(super.elements());
-        final var root = rootElement();
+        var root = rootElement();
         return Strings.notNull(root) + list.join(separator);
     }
 
@@ -264,7 +264,7 @@ public class StringPath extends Path<String>
      * {@inheritDoc}
      */
     @Override
-    public StringPath last(final int n)
+    public StringPath last(int n)
     {
         return (StringPath) super.last(n);
     }
@@ -298,7 +298,7 @@ public class StringPath extends Path<String>
     /**
      * @return True if this path starts with the given prefix
      */
-    public boolean startsWith(final String prefix)
+    public boolean startsWith(String prefix)
     {
         return asString().startsWith(prefix);
     }
@@ -307,7 +307,7 @@ public class StringPath extends Path<String>
      * {@inheritDoc}
      */
     @Override
-    public StringPath subpath(final int start, final int end)
+    public StringPath subpath(int start, int end)
     {
         return (StringPath) super.subpath(start, end);
     }
@@ -325,7 +325,7 @@ public class StringPath extends Path<String>
      * {@inheritDoc}
      */
     @Override
-    public StringPath transformed(final Function<String, String> consumer)
+    public StringPath transformed(Function<String, String> consumer)
     {
         return (StringPath) super.transformed(consumer);
     }
@@ -334,7 +334,7 @@ public class StringPath extends Path<String>
      * {@inheritDoc}
      */
     @Override
-    public StringPath withChild(final Path<String> that)
+    public StringPath withChild(Path<String> that)
     {
         return (StringPath) super.withChild(that);
     }
@@ -343,7 +343,7 @@ public class StringPath extends Path<String>
      * {@inheritDoc}
      */
     @Override
-    public StringPath withChild(final String element)
+    public StringPath withChild(String element)
     {
         return (StringPath) super.withChild(element);
     }
@@ -352,7 +352,7 @@ public class StringPath extends Path<String>
      * {@inheritDoc}
      */
     @Override
-    public StringPath withParent(final String element)
+    public StringPath withParent(String element)
     {
         return (StringPath) super.withParent(element);
     }
@@ -361,7 +361,7 @@ public class StringPath extends Path<String>
      * {@inheritDoc}
      */
     @Override
-    public StringPath withParent(final Path<String> that)
+    public StringPath withParent(Path<String> that)
     {
         return (StringPath) super.withParent(that);
     }
@@ -370,7 +370,7 @@ public class StringPath extends Path<String>
      * {@inheritDoc}
      */
     @Override
-    public StringPath withRoot(final String root)
+    public StringPath withRoot(String root)
     {
         return (StringPath) super.withRoot(root);
     }
@@ -378,9 +378,9 @@ public class StringPath extends Path<String>
     /**
      * @return This string path with the given separator
      */
-    public StringPath withSeparator(final String separator)
+    public StringPath withSeparator(String separator)
     {
-        final var copy = (StringPath) copy();
+        var copy = (StringPath) copy();
         copy.separator = separator;
         return copy;
     }
@@ -407,7 +407,7 @@ public class StringPath extends Path<String>
      * {@inheritDoc}
      */
     @Override
-    public StringPath withoutOptionalPrefix(final Path<String> prefix)
+    public StringPath withoutOptionalPrefix(Path<String> prefix)
     {
         return (StringPath) super.withoutOptionalPrefix(prefix);
     }
@@ -416,7 +416,7 @@ public class StringPath extends Path<String>
      * {@inheritDoc}
      */
     @Override
-    public StringPath withoutOptionalSuffix(final Path<String> suffix)
+    public StringPath withoutOptionalSuffix(Path<String> suffix)
     {
         return (StringPath) super.withoutOptionalSuffix(suffix);
     }
@@ -425,7 +425,7 @@ public class StringPath extends Path<String>
      * {@inheritDoc}
      */
     @Override
-    public StringPath withoutPrefix(final Path<String> prefix)
+    public StringPath withoutPrefix(Path<String> prefix)
     {
         return (StringPath) super.withoutPrefix(prefix);
     }
@@ -443,7 +443,7 @@ public class StringPath extends Path<String>
      * {@inheritDoc}
      */
     @Override
-    public StringPath withoutSuffix(final Path<String> suffix)
+    public StringPath withoutSuffix(Path<String> suffix)
     {
         return (StringPath) super.withoutSuffix(suffix);
     }
@@ -452,12 +452,12 @@ public class StringPath extends Path<String>
      * {@inheritDoc}
      */
     @Override
-    protected Path<String> onCopy(final String root, final List<String> elements)
+    protected Path<String> onCopy(String root, List<String> elements)
     {
         return new StringPath(root, elements);
     }
 
-    private static Pattern pattern(final String rootPattern)
+    private static Pattern pattern(String rootPattern)
     {
         var pattern = patterns.get(rootPattern);
         if (pattern == null)
@@ -468,7 +468,7 @@ public class StringPath extends Path<String>
         return pattern;
     }
 
-    private static List<String> substituteSystemVariables(final List<String> elements)
+    private static List<String> substituteSystemVariables(List<String> elements)
     {
         for (int i = 0; i < elements.size(); i++)
         {

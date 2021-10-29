@@ -37,7 +37,7 @@ public class IntegerConverter extends BaseStringConverter<Integer>
     /**
      * @param listener The listener to hear any conversion issues
      */
-    public IntegerConverter(final Listener listener)
+    public IntegerConverter(Listener listener)
     {
         super(listener);
     }
@@ -47,7 +47,7 @@ public class IntegerConverter extends BaseStringConverter<Integer>
      */
     @Override
     @UmlExcludeMember
-    protected Integer onToValue(final String value)
+    protected Integer onToValue(String value)
     {
         return Integer.parseInt(value);
     }

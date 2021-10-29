@@ -35,7 +35,7 @@ public class StepSuccess extends OperationStatusMessage
 {
     public static final StepSuccess INSTANCE = new StepSuccess();
 
-    public StepSuccess(final String message, final Object... arguments)
+    public StepSuccess(String message, Object... arguments)
     {
         super(message);
         arguments(arguments);

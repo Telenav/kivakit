@@ -51,12 +51,12 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramMessageRepeater.class)
 public class BaseRepeater extends Multicaster implements Repeater
 {
-    public BaseRepeater(final String objectName, final Class<?> classContext)
+    public BaseRepeater(String objectName, Class<?> classContext)
     {
         super(objectName, classContext);
     }
 
-    public BaseRepeater(final Class<?> classContext)
+    public BaseRepeater(Class<?> classContext)
     {
         super(classContext);
     }
@@ -65,21 +65,21 @@ public class BaseRepeater extends Multicaster implements Repeater
     {
     }
 
-    protected BaseRepeater(final String objectName)
+    protected BaseRepeater(String objectName)
     {
         super(objectName);
     }
 
     @Override
-    public void onMessage(final Message message)
+    public void onMessage(Message message)
     {
     }
 
     @Override
-    public void onReceive(final Transmittable message)
+    public void onReceive(Transmittable message)
     {
         onMessage((Message) message);
-        
+
         if (isRepeating())
         {
             transmit(message);

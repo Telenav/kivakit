@@ -39,7 +39,7 @@ public class OutputResource extends BaseWritableResource
 {
     private final OutputStream out;
 
-    public OutputResource(final OutputStream out)
+    public OutputResource(OutputStream out)
     {
         this.out = out;
     }

@@ -43,7 +43,7 @@ public class SecureFtpSettings
 
     private Duration timeout;
 
-    public SecureFtpSettings(final Host host, final UserName userName, final Password password, final Duration timeout)
+    public SecureFtpSettings(Host host, UserName userName, Password password, Duration timeout)
     {
         this.host = host;
         this.userName = userName;
@@ -56,7 +56,7 @@ public class SecureFtpSettings
         return host;
     }
 
-    public void host(final Host host)
+    public void host(Host host)
     {
         this.host = host;
     }
@@ -66,7 +66,7 @@ public class SecureFtpSettings
         return password;
     }
 
-    public void password(final Password password)
+    public void password(Password password)
     {
         this.password = password;
     }
@@ -76,7 +76,7 @@ public class SecureFtpSettings
         return timeout;
     }
 
-    public void timeout(final Duration timeout)
+    public void timeout(Duration timeout)
     {
         this.timeout = timeout;
     }
@@ -86,7 +86,7 @@ public class SecureFtpSettings
         return userName;
     }
 
-    public void username(final UserName username)
+    public void username(UserName username)
     {
         userName = username;
     }

@@ -59,13 +59,13 @@ public class ResourceWriter
 
     private final Charset charset;
 
-    public ResourceWriter(final WritableResource resource)
+    public ResourceWriter(WritableResource resource)
     {
         this.resource = resource;
         charset = null;
     }
 
-    public ResourceWriter(final WritableResource resource, final Charset charset)
+    public ResourceWriter(WritableResource resource, Charset charset)
     {
         this.resource = resource;
         this.charset = charset;
@@ -81,9 +81,9 @@ public class ResourceWriter
         return new PrintWriter(textWriter());
     }
 
-    public void save(final String string)
+    public void save(String string)
     {
-        try (final var out = printWriter())
+        try (var out = printWriter())
         {
             out.print(string);
         }
@@ -91,7 +91,7 @@ public class ResourceWriter
 
     public Writer textWriter()
     {
-        final var out = resource.openForWriting();
+        var out = resource.openForWriting();
         if (charset() == null)
         {
             return new OutputStreamWriter(out);

@@ -48,7 +48,7 @@ public class ArgumentListValidator extends BaseValidator
      * @param parsers The argument parsers to check against
      * @param arguments The arguments to check
      */
-    public ArgumentListValidator(final ArgumentParserList parsers, final ArgumentList arguments)
+    public ArgumentListValidator(ArgumentParserList parsers, ArgumentList arguments)
     {
         this.parsers = parsers;
         this.arguments = arguments;
@@ -63,7 +63,7 @@ public class ArgumentListValidator extends BaseValidator
         var remaining = arguments.size();
 
         // Go through argument parsers
-        for (final var parser : parsers)
+        for (var parser : parsers)
         {
             // and check arguments based on the parser's quantifier.
             switch (parser.quantifier())

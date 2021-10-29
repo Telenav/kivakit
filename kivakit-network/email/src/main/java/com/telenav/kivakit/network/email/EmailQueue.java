@@ -60,7 +60,7 @@ class EmailQueue implements Closeable
         return queue.isEmpty();
     }
 
-    public boolean offer(final Email email, final Duration maximumWait)
+    public boolean offer(Email email, Duration maximumWait)
     {
         if (!closed)
         {
@@ -68,14 +68,14 @@ class EmailQueue implements Closeable
             {
                 return queue.offer(email, maximumWait.asMilliseconds(), TimeUnit.MILLISECONDS);
             }
-            catch (final InterruptedException ignored)
+            catch (InterruptedException ignored)
             {
             }
         }
         return false;
     }
 
-    public void sent(final Email email)
+    public void sent(Email email)
     {
         email.sentAt = Time.now();
     }
@@ -86,7 +86,7 @@ class EmailQueue implements Closeable
         {
             return queue.take();
         }
-        catch (final InterruptedException ignored)
+        catch (InterruptedException ignored)
         {
             return null;
         }

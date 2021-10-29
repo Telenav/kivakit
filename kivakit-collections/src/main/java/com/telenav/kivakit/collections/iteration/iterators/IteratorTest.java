@@ -34,7 +34,7 @@ public class IteratorTest extends CollectionsUnitTest
     @Test
     public void abstractIterableTest()
     {
-        final var iterable = Iterables.iterable(() -> new Next<Integer>()
+        var iterable = Iterables.iterable(() -> new Next<Integer>()
         {
             int i;
 
@@ -58,7 +58,7 @@ public class IteratorTest extends CollectionsUnitTest
     @Test
     public void abstractIteratorTest()
     {
-        final BaseIterator<Integer> iterator = new BaseIterator<>()
+        BaseIterator<Integer> iterator = new BaseIterator<>()
         {
             int i;
 
@@ -81,27 +81,27 @@ public class IteratorTest extends CollectionsUnitTest
     @Test
     public void compoundIteratorTest()
     {
-        final var odd = values(1, 3, 5, 7, 9);
-        final var even = values(2, 4, 6, 8, 10);
-        final var both = new CompoundIterator<Integer>();
+        var odd = values(1, 3, 5, 7, 9);
+        var even = values(2, 4, 6, 8, 10);
+        var both = new CompoundIterator<Integer>();
         both.add(odd.iterator());
         both.add(even.iterator());
-        final var compound = new ObjectList<Integer>(Maximum.MAXIMUM).appendAll(both);
+        var compound = new ObjectList<Integer>(Maximum.MAXIMUM).appendAll(both);
         ensureEqual(values(1, 3, 5, 7, 9, 2, 4, 6, 8, 10), compound);
     }
 
     @Test
     public void deduplicatedIteratorTest()
     {
-        final var values = values(2, 3, 2, 5, 2, 7, 2);
-        final var iterator = new DeduplicatingIterator<>(values.iterator());
-        final BaseList<Integer> deduplicated = new ObjectList<Integer>(Maximum.MAXIMUM).appendAll(iterator);
+        var values = values(2, 3, 2, 5, 2, 7, 2);
+        var iterator = new DeduplicatingIterator<>(values.iterator());
+        BaseList<Integer> deduplicated = new ObjectList<Integer>(Maximum.MAXIMUM).appendAll(iterator);
         ensureEqual(values(2, 3, 5, 7), deduplicated);
     }
 
-    private ObjectList<Integer> values(final Integer... values)
+    private ObjectList<Integer> values(Integer... values)
     {
-        final var list = new ObjectList<Integer>();
+        var list = new ObjectList<Integer>();
         Collections.addAll(list, values);
         return list;
     }

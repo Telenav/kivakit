@@ -39,14 +39,14 @@ public class Method extends Member
     /**
      * @return A {@link Method} instance for the given stack frame
      */
-    public static Method of(final StackTraceElement frame)
+    public static Method of(StackTraceElement frame)
     {
         try
         {
-            final var type = Class.forName(frame.getClassName());
+            var type = Class.forName(frame.getClassName());
             return new Method(type, frame.getMethodName());
         }
-        catch (final Exception ignored)
+        catch (Exception ignored)
         {
         }
         return null;
@@ -58,14 +58,14 @@ public class Method extends Member
 
     private final String name;
 
-    public Method(final Class<?> type, final java.lang.reflect.Method method)
+    public Method(Class<?> type, java.lang.reflect.Method method)
     {
         this.type = ensureNotNull(type);
         this.method = ensureNotNull(method);
-        this.name = method.getName();
+        name = method.getName();
     }
 
-    public Method(final Class<?> type, String name)
+    public Method(Class<?> type, String name)
     {
         this.type = ensureNotNull(type);
         this.name = ensureNotNull(name);

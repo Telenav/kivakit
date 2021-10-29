@@ -59,7 +59,7 @@ public class LocalHost extends Host
         {
             return InetAddress.getLocalHost().getHostName();
         }
-        catch (final UnknownHostException e)
+        catch (UnknownHostException e)
         {
             return fail(e, "Cannot determine local hostname");
         }
@@ -83,23 +83,23 @@ public class LocalHost extends Host
             {
                 return InetAddress.getLocalHost();
             }
-            catch (final UnknownHostException e)
+            catch (UnknownHostException e)
             {
                 fail(e, "Couldn't find localhost interface");
             }
         }
         try
         {
-            final var interfaces = NetworkInterface.getNetworkInterfaces();
+            var interfaces = NetworkInterface.getNetworkInterfaces();
             while (interfaces.hasMoreElements())
             {
-                final var next = interfaces.nextElement();
+                var next = interfaces.nextElement();
                 if (!next.isLoopback() && !next.isVirtual() && next.isUp())
                 {
-                    final var addresses = next.getInetAddresses();
+                    var addresses = next.getInetAddresses();
                     while (addresses.hasMoreElements())
                     {
-                        final var address = addresses.nextElement();
+                        var address = addresses.nextElement();
                         if (address instanceof Inet4Address)
                         {
                             return address;
@@ -108,7 +108,7 @@ public class LocalHost extends Host
                 }
             }
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             return fail(e, "Couldn't find localhost interface");
         }

@@ -79,7 +79,7 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
             return maximumSendRate;
         }
 
-        public void maximumSendRate(final Rate maximumSendRate)
+        public void maximumSendRate(Rate maximumSendRate)
         {
             this.maximumSendRate = maximumSendRate;
         }
@@ -109,7 +109,7 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
         @Override
         protected void onRun()
         {
-            final var email = queue().take();
+            var email = queue().take();
             if (email != null)
             {
                 email.waitForRetry(retryPeriod);
@@ -139,7 +139,7 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
         }
     };
 
-    protected EmailSender(final Configuration configuration)
+    protected EmailSender(Configuration configuration)
     {
         this.configuration = configuration;
     }
@@ -159,7 +159,7 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
         closed = true;
     }
 
-    public void enqueue(final Email email)
+    public void enqueue(Email email)
     {
         if (!closed)
         {
@@ -178,7 +178,7 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
     }
 
     @Override
-    public void flush(final Duration maximumWaitTime)
+    public void flush(Duration maximumWaitTime)
     {
         trace("Flushing queue within ${debug}", maximumWaitTime);
         queueEmpty.waitForCompletion();
@@ -196,19 +196,19 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
         return running;
     }
 
-    public EmailSender maximumRetries(final Maximum maximumRetries)
+    public EmailSender maximumRetries(Maximum maximumRetries)
     {
         this.maximumRetries = maximumRetries;
         return this;
     }
 
-    public EmailSender retryPeriod(final Duration durationBetweenRetries)
+    public EmailSender retryPeriod(Duration durationBetweenRetries)
     {
         retryPeriod = durationBetweenRetries;
         return this;
     }
 
-    public EmailSender sendingOn(final boolean on)
+    public EmailSender sendingOn(boolean on)
     {
         sendingOn = on;
         return this;
@@ -227,7 +227,7 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
     }
 
     @Override
-    public void stop(final Duration maximumWaitTime)
+    public void stop(Duration maximumWaitTime)
     {
         // Don't accept any more entries
         close();
@@ -249,7 +249,7 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
         return queue;
     }
 
-    private boolean send(final Email email)
+    private boolean send(Email email)
     {
         rate.increment();
         if (rate.rate().isFasterThan(configuration.maximumSendRate()))
@@ -265,10 +265,10 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
                 trace("Sending email $", email);
                 if (sendingOn)
                 {
-                    final var session = Session.getDefaultInstance(getMailSessionProperties(), authenticator());
+                    var session = Session.getDefaultInstance(getMailSessionProperties(), authenticator());
                     session.setDebug(debug().isDebugOn());
-                    final var transport = session.getTransport();
-                    final var message = new MimeMessage(session);
+                    var transport = session.getTransport();
+                    var message = new MimeMessage(session);
                     email.composeMessage(message);
                     transport.connect();
                     transport.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
@@ -276,7 +276,7 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
                 }
                 return true;
             }
-            catch (final Exception e)
+            catch (Exception e)
             {
                 problem(e, "Cannot send email");
                 return false;

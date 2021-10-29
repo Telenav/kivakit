@@ -13,14 +13,10 @@ public interface UncheckedMethod
 {
     Logger LOGGER = LoggerFactory.newLogger();
 
-    static UncheckedMethod of(final UncheckedMethod code)
+    static UncheckedMethod of(UncheckedMethod code)
     {
         return code;
     }
 
-    /**
-     * @return The value returned by the checked code
-     * @throws Exception The exception that might be thrown by the code
-     */
-    void run() throws Exception;
+    void run();
 }

@@ -68,17 +68,17 @@ public class AsciiArt
     /**
      * @return The message centered on a line as a banner
      */
-    public static String banner(final String message)
+    public static String banner(String message)
     {
         return Align.center(" " + message + " ", LINE_LENGTH, HORIZONTAL_LINE_CHARACTER);
     }
 
-    public static String bottomLine(final int width)
+    public static String bottomLine(int width)
     {
         return BOTTOM_LEFT_LINE_CHARACTER + line(width - 2) + BOTTOM_RIGHT_LINE_CHARACTER;
     }
 
-    public static String bottomLine(final int extraWidth, String message, final Object... arguments)
+    public static String bottomLine(int extraWidth, String message, Object... arguments)
     {
         message = " " + Message.format(message, arguments) + " ";
         return BOTTOM_LEFT_LINE_CHARACTER + line(4) + message
@@ -86,7 +86,7 @@ public class AsciiArt
                 + BOTTOM_RIGHT_LINE_CHARACTER;
     }
 
-    public static String bottomLine(final String message, final Object... arguments)
+    public static String bottomLine(String message, Object... arguments)
     {
         return bottomLine(0, message, arguments);
     }
@@ -99,14 +99,14 @@ public class AsciiArt
     /**
      * @return A box using the given horizontal and vertical line drawing characters that contains the given message
      */
-    public static String box(final String message, final char horizontal, final char vertical)
+    public static String box(String message, char horizontal, char vertical)
     {
-        final var builder = new StringBuilder();
-        final var width = widestLine(message);
+        var builder = new StringBuilder();
+        var width = widestLine(message);
         builder.append(repeat(width + 6, horizontal));
         builder.append('\n');
-        final var lines = message.split("\n");
-        for (final var line : lines)
+        var lines = message.split("\n");
+        for (var line : lines)
         {
             builder.append(vertical);
             builder.append("  ");
@@ -122,7 +122,7 @@ public class AsciiArt
     /**
      * @return An ASCII art box containing the given message
      */
-    public static String box(final String message, final Object... arguments)
+    public static String box(String message, Object... arguments)
     {
         return box(Message.format(message, arguments),
                 HORIZONTAL_LINE_CHARACTER, VERTICAL_LINE_CHARACTER);
@@ -139,7 +139,7 @@ public class AsciiArt
     /**
      * @return Collection of values as a bulleted list
      */
-    public static String bulleted(final Collection<?> values)
+    public static String bulleted(Collection<?> values)
     {
         return bulleted(1, values);
     }
@@ -147,7 +147,7 @@ public class AsciiArt
     /**
      * @return Collection of values as a bulleted list using the given bullet
      */
-    public static String bulleted(final Collection<?> values, final String bullet)
+    public static String bulleted(Collection<?> values, String bullet)
     {
         return bulleted(1, values, bullet);
     }
@@ -155,7 +155,7 @@ public class AsciiArt
     /**
      * @return Collection of values as an indented bulleted list
      */
-    public static String bulleted(final int indent, final Collection<?> values)
+    public static String bulleted(int indent, Collection<?> values)
     {
         return bulleted(indent, values, bullet());
     }
@@ -163,7 +163,7 @@ public class AsciiArt
     /**
      * @return Collection of values as an indented bulleted list using the given bullet
      */
-    public static String bulleted(final int indent, final Collection<?> values, final String bullet)
+    public static String bulleted(int indent, Collection<?> values, String bullet)
     {
         if (values.isEmpty())
         {
@@ -171,7 +171,7 @@ public class AsciiArt
         }
         else
         {
-            final var prefix = spaces(indent) + bullet + " ";
+            var prefix = spaces(indent) + bullet + " ";
             return prefix + Join.join(values, "\n" + prefix);
         }
     }
@@ -179,7 +179,7 @@ public class AsciiArt
     /**
      * @return The given text clipped at n characters with "[...]" appended if it is longer than n characters
      */
-    public static String clip(final String text, final int n)
+    public static String clip(String text, int n)
     {
         if (text.length() < n)
         {
@@ -200,7 +200,7 @@ public class AsciiArt
     /**
      * @return A line of the given number of characters
      */
-    public static String line(final int length)
+    public static String line(int length)
     {
         return repeat(length, HORIZONTAL_LINE_CHARACTER);
     }
@@ -208,7 +208,7 @@ public class AsciiArt
     /**
      * @return A left-justified line with the given message
      */
-    public static String line(final String message)
+    public static String line(String message)
     {
         return line(4) + " " + message + " " + line(Math.max(4, LINE_LENGTH - 6 - message.length()));
     }
@@ -216,7 +216,7 @@ public class AsciiArt
     /**
      * @return The number of lines in the string
      */
-    public static int lineCount(final String string)
+    public static int lineCount(String string)
     {
         return Strings.occurrences(string, '\n') + 1;
     }
@@ -226,10 +226,10 @@ public class AsciiArt
      * @param c Character to repeat
      * @return Repeated character string
      */
-    public static String repeat(final int times, final char c)
+    public static String repeat(int times, char c)
     {
         Ensure.ensure(times >= 0, "Times cannot be " + times);
-        final var buffer = new char[times];
+        var buffer = new char[times];
         Arrays.fill(buffer, c);
         return new String(buffer);
     }
@@ -239,7 +239,7 @@ public class AsciiArt
      * @param string String to repeat
      * @return Repeated string
      */
-    public static String repeat(final int times, final String string)
+    public static String repeat(int times, String string)
     {
         Ensure.ensure(times >= 0);
         return string.repeat(times);
@@ -248,7 +248,7 @@ public class AsciiArt
     /**
      * @return The given number of spaces
      */
-    public static String spaces(final int count)
+    public static String spaces(int count)
     {
         return repeat(count, ' ');
     }
@@ -256,15 +256,15 @@ public class AsciiArt
     /**
      * @return An ASCII art box with the given title and message
      */
-    public static String textBox(String title, String message, final Object... arguments)
+    public static String textBox(String title, String message, Object... arguments)
     {
         title = title(title);
         message = Message.format(message, arguments);
-        final var width = widestLine(title + "\n" + message) + 4;
-        final var builder = new StringBuilder();
+        var width = widestLine(title + "\n" + message) + 4;
+        var builder = new StringBuilder();
         builder.append(" \n");
         builder.append(TOP_LEFT_LINE_CHARACTER).append(Align.center(title, width - 2, HORIZONTAL_LINE_CHARACTER)).append(TOP_RIGHT_LINE_CHARACTER).append("\n");
-        for (final var line : message.split("\n"))
+        for (var line : message.split("\n"))
         {
             builder.append(VERTICAL_LINE_CHARACTER).append(" ");
             builder.append(Align.left(line, width - 4, ' '));
@@ -277,17 +277,17 @@ public class AsciiArt
     }
 
     @NotNull
-    public static String title(final String title)
+    public static String title(String title)
     {
         return TITLE_LEFT_CHARACTER + " " + title + " " + TITLE_RIGHT_CHARACTER;
     }
 
-    public static String topLine(final String title, final Object... arguments)
+    public static String topLine(String title, Object... arguments)
     {
         return topLine(0, title, arguments);
     }
 
-    public static String topLine(final int extraWidth, String title, final Object... arguments)
+    public static String topLine(int extraWidth, String title, Object... arguments)
     {
         title = title(Message.format(title, arguments));
         return (extraWidth > 0 ? " \n" : "")
@@ -299,11 +299,11 @@ public class AsciiArt
     /**
      * @return The length of the widest line in potentially multi-line text
      */
-    public static int widestLine(final String text)
+    public static int widestLine(String text)
     {
         var width = 0;
-        final var lines = text.split("\n");
-        for (final var line : lines)
+        var lines = text.split("\n");
+        for (var line : lines)
         {
             width = Math.max(width, line.length());
         }

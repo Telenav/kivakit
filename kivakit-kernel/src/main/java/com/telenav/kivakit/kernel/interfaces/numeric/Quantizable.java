@@ -59,7 +59,7 @@ import java.util.Collection;
  * <pre>
  * public static class Converter extends Quantizable.Converter&lt;EdgeIdentifier&gt;
  * {
- *     public Converter(final Listener&lt;Message&gt; listener)
+ *     public Converter( Listener&lt;Message&gt; listener)
  *     {
  *         super(listener, EdgeIdentifier::new);
  *     }
@@ -79,32 +79,32 @@ import java.util.Collection;
 @UmlClassDiagram(diagram = DiagramInterfaceNumeric.class)
 public interface Quantizable extends DoubleQuantizable
 {
-    static Quantizable quantizable(final Integer value)
+    static Quantizable quantizable(Integer value)
     {
         return () -> value;
     }
 
-    static Quantizable quantizable(final Long value)
+    static Quantizable quantizable(Long value)
     {
         return () -> value;
     }
 
-    static int[] toIntArray(final Collection<? extends Quantizable> values)
+    static int[] toIntArray(Collection<? extends Quantizable> values)
     {
-        final var array = new int[values.size()];
+        var array = new int[values.size()];
         var index = 0;
-        for (final Quantizable value : values)
+        for (Quantizable value : values)
         {
             array[index++] = (int) value.quantum();
         }
         return array;
     }
 
-    static long[] toLongArray(final Collection<? extends Quantizable> values)
+    static long[] toLongArray(Collection<? extends Quantizable> values)
     {
-        final var array = new long[values.size()];
+        var array = new long[values.size()];
         var index = 0;
-        for (final Quantizable value : values)
+        for (Quantizable value : values)
         {
             array[index++] = value.quantum();
         }
@@ -121,14 +121,14 @@ public interface Quantizable extends DoubleQuantizable
     {
         private final MapFactory<Long, T> factory;
 
-        public Converter(final Listener listener, final MapFactory<Long, T> factory)
+        public Converter(Listener listener, MapFactory<Long, T> factory)
         {
             super(listener);
             this.factory = factory;
         }
 
         @Override
-        protected T onToValue(final String value)
+        protected T onToValue(String value)
         {
             return factory.newInstance(Long.parseLong(value));
         }
@@ -140,22 +140,22 @@ public interface Quantizable extends DoubleQuantizable
         return quantum();
     }
 
-    default boolean isGreaterThan(final Quantizable that)
+    default boolean isGreaterThan(Quantizable that)
     {
         return quantum() > that.quantum();
     }
 
-    default boolean isGreaterThanOrEqualTo(final Quantizable that)
+    default boolean isGreaterThanOrEqualTo(Quantizable that)
     {
         return quantum() >= that.quantum();
     }
 
-    default boolean isLessThan(final Quantizable that)
+    default boolean isLessThan(Quantizable that)
     {
         return quantum() < that.quantum();
     }
 
-    default boolean isLessThanOrEqualTo(final Quantizable that)
+    default boolean isLessThanOrEqualTo(Quantizable that)
     {
         return quantum() <= that.quantum();
     }

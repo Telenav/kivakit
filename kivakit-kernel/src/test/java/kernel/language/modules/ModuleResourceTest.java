@@ -40,7 +40,7 @@ public class ModuleResourceTest
     @Test
     public void testFileName()
     {
-        final ModuleResource resource = a();
+        ModuleResource resource = a();
         Ensure.ensureEqual(resource.fileNameAsJavaPath(), Path.of("a.txt"));
     }
 
@@ -51,7 +51,7 @@ public class ModuleResourceTest
         {
             Ensure.ensureEqual(a().lastModified(), Time.milliseconds(Files.getLastModifiedTime(packagePath().asJavaPath()).toMillis()));
         }
-        catch (final IOException ignored)
+        catch (IOException ignored)
         {
         }
     }
@@ -75,7 +75,7 @@ public class ModuleResourceTest
         {
             Ensure.ensureEqual(a().size(), Bytes.bytes(Files.size(packagePath().asJavaPath())));
         }
-        catch (final IOException ignored)
+        catch (IOException ignored)
         {
         }
     }
@@ -83,7 +83,7 @@ public class ModuleResourceTest
     @Test
     public void testUri()
     {
-        final var uri = a().uri();
+        var uri = a().uri();
         Ensure.ensureEqual(uri.getScheme(), "file");
         Ensure.ensure(uri.getPath().endsWith("kernel/language/modules/resources/a/a.txt"));
     }

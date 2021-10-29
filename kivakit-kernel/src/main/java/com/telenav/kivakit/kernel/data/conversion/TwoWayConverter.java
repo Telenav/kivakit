@@ -23,12 +23,12 @@ public interface TwoWayConverter<From, To> extends Converter<From, To>
     /**
      * @return A converter that converts from type &lt;To&gt; back to type &lt;From&gt;.
      */
-    default Converter<To, From> unconverter(final Listener listener)
+    default Converter<To, From> unconverter(Listener listener)
     {
         return new BaseConverter<>(listener)
         {
             @Override
-            protected From onConvert(final To to)
+            protected From onConvert(To to)
             {
                 return unconvert(to);
             }

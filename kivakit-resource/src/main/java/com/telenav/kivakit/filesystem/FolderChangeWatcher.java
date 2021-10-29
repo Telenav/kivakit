@@ -45,14 +45,14 @@ public class FolderChangeWatcher extends PeriodicCollectionChangeWatcher<FileSys
 {
     private final Folder folder;
 
-    public FolderChangeWatcher(final Folder folder, final Frequency frequency)
+    public FolderChangeWatcher(Folder folder, Frequency frequency)
     {
         super(frequency);
         this.folder = folder;
     }
 
     @Override
-    protected Time lastModified(final FileSystemObject object)
+    protected Time lastModified(FileSystemObject object)
     {
         return object.lastModified();
     }
@@ -60,10 +60,10 @@ public class FolderChangeWatcher extends PeriodicCollectionChangeWatcher<FileSys
     @Override
     protected Set<FileSystemObject> objects()
     {
-        final Set<FileSystemObject> objects = new HashSet<>();
+        Set<FileSystemObject> objects = new HashSet<>();
         objects.addAll(folder.files());
         objects.addAll(folder.folders());
-        for (final var object : objects)
+        for (var object : objects)
         {
             trace("Watcher sees $ modified at $", object, lastModified(object));
         }

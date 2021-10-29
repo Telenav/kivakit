@@ -68,7 +68,7 @@ public class NullResource extends BaseWritableResource
         return new OutputStream()
         {
             @Override
-            public void write(final int b)
+            public void write(int b)
             {
             }
         };

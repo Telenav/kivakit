@@ -42,7 +42,7 @@ public class FormattedDoubleConverter extends BaseStringConverter<Double>
     /**
      * Constructs a converter with commas and two decimal places
      */
-    public FormattedDoubleConverter(final Listener listener)
+    public FormattedDoubleConverter(Listener listener)
     {
         this(listener, true, 2);
     }
@@ -52,7 +52,7 @@ public class FormattedDoubleConverter extends BaseStringConverter<Double>
      * @param commas True if the string representation has commas in it
      * @param outputPlaces The number of decimal places to include
      */
-    public FormattedDoubleConverter(final Listener listener, final boolean commas, final int outputPlaces)
+    public FormattedDoubleConverter(Listener listener, boolean commas, int outputPlaces)
     {
         this(listener, new DecimalFormat((commas ? "###,###" : "#") + "." + AsciiArt.repeat(outputPlaces, '#')));
     }
@@ -63,7 +63,7 @@ public class FormattedDoubleConverter extends BaseStringConverter<Double>
      * @param listener The listener to hear any conversion issues
      * @param format The format to use
      */
-    public FormattedDoubleConverter(final Listener listener, final DecimalFormat format)
+    public FormattedDoubleConverter(Listener listener, DecimalFormat format)
     {
         super(listener);
         this.format = format;
@@ -75,7 +75,7 @@ public class FormattedDoubleConverter extends BaseStringConverter<Double>
      * @param listener The listener to hear any conversion issues
      * @param outputPlaces The number of decimal places to include
      */
-    public FormattedDoubleConverter(final Listener listener, final int outputPlaces)
+    public FormattedDoubleConverter(Listener listener, int outputPlaces)
     {
         this(listener, true, outputPlaces);
     }
@@ -85,25 +85,7 @@ public class FormattedDoubleConverter extends BaseStringConverter<Double>
      */
     @Override
     @UmlExcludeMember
-    protected Double onToValue(final String value)
-    {
-        try
-        {
-            return format.parse(value).doubleValue();
-        }
-        catch (final ParseException e)
-        {
-            problem(e, "Couldn't parse double");
-            return null;
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @UmlExcludeMember
-    protected String onToString(final Double value)
+    protected String onToString(Double value)
     {
         if (Double.isNaN(value) || Double.isInfinite(value))
         {
@@ -112,6 +94,24 @@ public class FormattedDoubleConverter extends BaseStringConverter<Double>
         else
         {
             return format.format(value);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @UmlExcludeMember
+    protected Double onToValue(String value)
+    {
+        try
+        {
+            return format.parse(value).doubleValue();
+        }
+        catch (ParseException e)
+        {
+            problem(e, "Couldn't parse double");
+            return null;
         }
     }
 }

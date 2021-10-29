@@ -26,13 +26,13 @@ public class SeverityGreaterThanOrEqualTo implements MessageFilter
 {
     private final Severity value;
 
-    public SeverityGreaterThanOrEqualTo(final Severity value)
+    public SeverityGreaterThanOrEqualTo(Severity value)
     {
         this.value = value;
     }
 
     @Override
-    public boolean accepts(final Message value)
+    public boolean accepts(Message value)
     {
         return value.severity().isGreaterThanOrEqualTo(this.value);
     }

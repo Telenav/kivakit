@@ -26,7 +26,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramLanguagePattern.class)
 public final class EnumGroup<T extends Enum<T>> extends Group<T>
 {
-    public EnumGroup(final Class<T> enumeration, final Listener listener)
+    public EnumGroup(Class<T> enumeration, Listener listener)
     {
         super(anyOf(enumeration.getEnumConstants()).caseInsensitive(),
                 new EnumConverter<>(listener, enumeration));

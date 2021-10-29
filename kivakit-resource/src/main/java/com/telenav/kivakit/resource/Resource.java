@@ -107,27 +107,27 @@ public interface Resource extends
         Resourceful,
         UriIdentified
 {
-    static ArgumentParser.Builder<ResourceList> argumentListParser(Listener listener, final String description,
-                                                                   final Extension extension)
+    static ArgumentParser.Builder<ResourceList> argumentListParser(Listener listener, String description,
+                                                                   Extension extension)
     {
         return ArgumentParser.builder(ResourceList.class)
                 .converter(new ResourceList.Converter(listener, extension))
                 .description(description);
     }
 
-    static ArgumentParser.Builder<Resource> argumentParser(final Listener listener, final String description)
+    static ArgumentParser.Builder<Resource> argumentParser(Listener listener, String description)
     {
         return ArgumentParser.builder(Resource.class)
                 .converter(new Resource.Converter(listener))
                 .description(description);
     }
 
-    static ResourceIdentifier identifier(final String identifier)
+    static ResourceIdentifier identifier(String identifier)
     {
         return new ResourceIdentifier(identifier);
     }
 
-    static Resource resolve(final ResourceIdentifier identifier)
+    static Resource resolve(ResourceIdentifier identifier)
     {
         return ResourceResolverServiceLoader.resolve(identifier);
     }
@@ -137,16 +137,16 @@ public interface Resource extends
         return resolve(path.asString());
     }
 
-    static Resource resolve(final String identifier)
+    static Resource resolve(String identifier)
     {
         return resolve(new ResourceIdentifier(identifier));
     }
 
     static SwitchParser.Builder<ResourceList> resourceListSwitchParser(
             Listener listener,
-            final String name,
-            final String description,
-            final Extension extension)
+            String name,
+            String description,
+            Extension extension)
     {
         return SwitchParser.builder(ResourceList.class)
                 .name(name)
@@ -155,9 +155,9 @@ public interface Resource extends
     }
 
     static SwitchParser.Builder<Resource> resourceSwitchParser(
-            final Listener listener,
-            final String name,
-            final String description)
+            Listener listener,
+            String name,
+            String description)
     {
         return SwitchParser.builder(Resource.class)
                 .name(name)
@@ -173,13 +173,13 @@ public interface Resource extends
     @LexakaiJavadoc(complete = true)
     class Converter extends BaseStringConverter<Resource>
     {
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
         }
 
         @Override
-        protected Resource onToValue(final String value)
+        protected Resource onToValue(String value)
         {
             return new ResourceIdentifier(value).resolve();
         }
@@ -248,7 +248,7 @@ public interface Resource extends
     /**
      * @return True if the given resource has the same last modified time and the same size
      */
-    default boolean isSame(final Resource that)
+    default boolean isSame(Resource that)
     {
         assert that != null;
         assert lastModified() != null;
@@ -282,7 +282,7 @@ public interface Resource extends
      * @param destination The file to copy to
      * @param mode Copying semantics
      */
-    default void safeCopyTo(final Folder destination, final CopyMode mode)
+    default void safeCopyTo(Folder destination, CopyMode mode)
     {
         safeCopyTo(destination.file(fileName()), mode, ProgressReporter.NULL);
     }
@@ -293,7 +293,7 @@ public interface Resource extends
      * @param destination The file to copy to
      * @param mode Copying semantics
      */
-    default void safeCopyTo(final Folder destination, final CopyMode mode, final ProgressReporter reporter)
+    default void safeCopyTo(Folder destination, CopyMode mode, ProgressReporter reporter)
     {
         safeCopyTo(destination.file(fileName()), mode, reporter);
     }
@@ -306,7 +306,7 @@ public interface Resource extends
      * @param destination The file to copy to
      * @param mode Copying semantics
      */
-    default void safeCopyTo(final File destination, final CopyMode mode)
+    default void safeCopyTo(File destination, CopyMode mode)
     {
         safeCopyTo(destination, mode, ProgressReporter.NULL);
     }
@@ -320,13 +320,13 @@ public interface Resource extends
      * @param mode Copying semantics
      * @param reporter Progress reporter to call as copy proceeds
      */
-    default void safeCopyTo(final File destination, final CopyMode mode, final ProgressReporter reporter)
+    default void safeCopyTo(File destination, CopyMode mode, ProgressReporter reporter)
     {
         // If there is no destination file or we can overwrite,
         if (mode.canCopy(this, destination))
         {
             // then copy to a temporary file
-            final var temporary = destination.parent().temporaryFile(destination.fileName());
+            var temporary = destination.parent().temporaryFile(destination.fileName());
             copyTo(temporary, mode, reporter);
 
             // remove the destination file

@@ -51,14 +51,14 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramMessageType.class)
 public class FatalProblem extends Problem
 {
-    public FatalProblem(final String message, final Object... arguments)
+    public FatalProblem(String message, Object... arguments)
     {
         super(message);
         cause(new Throwable("Fatal stack trace"));
         arguments(arguments);
     }
 
-    public FatalProblem(final Throwable cause, final String message, final Object... arguments)
+    public FatalProblem(Throwable cause, String message, Object... arguments)
     {
         super(message + ": " + Message.escape(cause.getMessage()));
         cause(cause);
@@ -70,7 +70,7 @@ public class FatalProblem extends Problem
     }
 
     @Override
-    public FatalProblem code(final String code)
+    public FatalProblem code(String code)
     {
         super.code(code);
         return this;

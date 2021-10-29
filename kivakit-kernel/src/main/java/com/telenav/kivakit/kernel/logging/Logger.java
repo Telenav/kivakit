@@ -123,7 +123,7 @@ public interface Logger extends Listener, Filtered<LogEntry>, Flushable
      */
     @Override
     @UmlExcludeMember
-    default void onMessage(final Message message)
+    default void onMessage(Message message)
     {
         log(message);
     }

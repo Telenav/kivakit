@@ -38,7 +38,7 @@ public class Lock extends ReentrantLock
     /**
      * Runs the provided code inside a lock / unlock pair.
      */
-    public void whileLocked(final Runnable code)
+    public void whileLocked(Runnable code)
     {
         lock();
         try
@@ -54,7 +54,7 @@ public class Lock extends ReentrantLock
     /**
      * Runs the provided code inside a lock / unlock pair.
      */
-    public <T> T whileLocked(final Code<T> code)
+    public <T> T whileLocked(Code<T> code)
     {
         lock();
         try

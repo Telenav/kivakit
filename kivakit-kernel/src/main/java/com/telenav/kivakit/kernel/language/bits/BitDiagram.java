@@ -70,7 +70,7 @@ public class BitDiagram
         /**
          * @param diagramCharacter The character for this bit field in the parent bit diagram
          */
-        public BitField(final char diagramCharacter)
+        public BitField(char diagramCharacter)
         {
             this.diagramCharacter = diagramCharacter;
         }
@@ -86,7 +86,7 @@ public class BitDiagram
         /**
          * @return A boolean value for this bitfield extracted from the given value
          */
-        public boolean getBoolean(final long value)
+        public boolean getBoolean(long value)
         {
             return getInt(value) == 1;
         }
@@ -94,7 +94,7 @@ public class BitDiagram
         /**
          * @return A byte for this bitfield extracted from the given value
          */
-        public byte getByte(final long value)
+        public byte getByte(long value)
         {
             return (byte) getLong(value);
         }
@@ -102,7 +102,7 @@ public class BitDiagram
         /**
          * @return An int value for this bitfield extracted from the given value
          */
-        public int getInt(final long value)
+        public int getInt(long value)
         {
             return (int) getLong(value);
         }
@@ -110,7 +110,7 @@ public class BitDiagram
         /**
          * @return A long value for this bitfield extracted from the given value
          */
-        public long getLong(final long value)
+        public long getLong(long value)
         {
             return (value & mask) >>> shift;
         }
@@ -118,7 +118,7 @@ public class BitDiagram
         /**
          * @return A short value for this bitfield extracted from the given value
          */
-        public short getShort(final long value)
+        public short getShort(long value)
         {
             return (short) getLong(value);
         }
@@ -142,7 +142,7 @@ public class BitDiagram
         /**
          * @return The given value with this bit field set to the given source value
          */
-        public int set(final int value, final boolean source)
+        public int set(int value, boolean source)
         {
             return set(value, source ? 1 : 0);
         }
@@ -150,7 +150,7 @@ public class BitDiagram
         /**
          * @return The given value with this bit field set to the given source value
          */
-        public int set(final int value, final int source)
+        public int set(int value, int source)
         {
             return (value & ~(int) mask) | (source << shift);
         }
@@ -158,7 +158,7 @@ public class BitDiagram
         /**
          * @return The given value with this bit field set to the given source value
          */
-        public long set(final long value, final boolean source)
+        public long set(long value, boolean source)
         {
             return set(value, source ? 1 : 0);
         }
@@ -166,7 +166,7 @@ public class BitDiagram
         /**
          * @return The given value with this bit field set to the given source value
          */
-        public long set(final long value, final long source)
+        public long set(long value, long source)
         {
             return (value & ~mask) | (source << shift);
         }
@@ -174,7 +174,7 @@ public class BitDiagram
         /**
          * @return The given value with this bit field set to the given source value
          */
-        public short set(final short value, final boolean source)
+        public short set(short value, boolean source)
         {
             return set(value, (short) (source ? 1 : 0));
         }
@@ -182,7 +182,7 @@ public class BitDiagram
         /**
          * @return The given value with this bit field set to the given source value
          */
-        public short set(final short value, final short source)
+        public short set(short value, short source)
         {
             return (short) ((value & ~(short) mask) | (source << shift));
         }
@@ -205,7 +205,7 @@ public class BitDiagram
     /**
      * @param diagram The bit diagram
      */
-    public BitDiagram(final String diagram)
+    public BitDiagram(String diagram)
     {
         // Remove whitespace from diagram
         this.diagram = diagram.replaceAll(" ", "");
@@ -223,14 +223,14 @@ public class BitDiagram
      * diagram of "AAA BBB", <i>field("A")</i> would return a bit field accessor for the top three bits, the "A"
      * bitfield.
      */
-    public BitField field(final char fieldCharacter)
+    public BitField field(char fieldCharacter)
     {
-        final var field = new BitField(fieldCharacter);
-        final var bits = diagram.replaceAll("" + fieldCharacter, "1").replaceAll("[^1]", "0");
+        var field = new BitField(fieldCharacter);
+        var bits = diagram.replaceAll("" + fieldCharacter, "1").replaceAll("[^1]", "0");
         field.mask = parseBits(bits);
         for (var shift = 0; shift < 64; shift++)
         {
-            final var index = bits.length() - shift - 1;
+            var index = bits.length() - shift - 1;
             if (index < 0)
             {
                 break;
@@ -247,7 +247,7 @@ public class BitDiagram
     @Override
     public String toString()
     {
-        final var result = new StringBuilder();
+        var result = new StringBuilder();
         for (var i = 0; i < diagram.length(); i++)
         {
             result.append(diagram.charAt(i));
@@ -259,7 +259,7 @@ public class BitDiagram
         return result.toString();
     }
 
-    private long parseBits(final String string)
+    private long parseBits(String string)
     {
         var value = 0L;
         for (var i = 0; i < string.length(); i++)

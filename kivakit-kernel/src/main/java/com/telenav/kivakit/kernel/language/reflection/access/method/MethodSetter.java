@@ -33,13 +33,13 @@ public class MethodSetter implements Setter
 {
     private final transient Method method;
 
-    public MethodSetter(final Method method)
+    public MethodSetter(Method method)
     {
         this.method = method;
     }
 
     @Override
-    public <T extends Annotation> T annotation(final Class<T> annotationType)
+    public <T extends Annotation> T annotation(Class<T> annotationType)
     {
         return method.getAnnotation(annotationType);
     }
@@ -51,14 +51,14 @@ public class MethodSetter implements Setter
     }
 
     @Override
-    public Message set(final Object object, final Object value)
+    public Message set(Object object, Object value)
     {
         try
         {
             method.invoke(object, value);
             return StepSuccess.INSTANCE;
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             return new StepFailure("Cannot set ${debug}", this);
         }

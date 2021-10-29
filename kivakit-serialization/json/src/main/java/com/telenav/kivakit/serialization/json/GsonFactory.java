@@ -42,14 +42,14 @@ public abstract class GsonFactory implements Factory<Gson>
 
     private static final ThreadLocal<Boolean> prettyPrinting = ThreadLocal.withInitial(() -> false);
 
-    public static void prettyPrinting(final boolean pretty)
+    public static void prettyPrinting(boolean pretty)
     {
         prettyPrinting.set(pretty);
     }
 
-    public <T> void addSerializer(final GsonBuilder builder,
-                                  final Class<T> type,
-                                  final GsonSerializer<T> serializer)
+    public <T> void addSerializer(GsonBuilder builder,
+                                  Class<T> type,
+                                  GsonSerializer<T> serializer)
     {
         builder.registerTypeAdapter(type, serializer);
     }
@@ -62,7 +62,7 @@ public abstract class GsonFactory implements Factory<Gson>
 
     public GsonBuilder builder()
     {
-        final var builder = new GsonBuilder();
+        var builder = new GsonBuilder();
         if (DEBUG.isDebugOn() || prettyPrinting.get())
         {
             builder.setPrettyPrinting();
@@ -91,14 +91,14 @@ public abstract class GsonFactory implements Factory<Gson>
     }
 
     @MustBeInvokedByOverriders
-    protected void onInitialize(final GsonBuilder builder)
+    protected void onInitialize(GsonBuilder builder)
     {
     }
 
     /**
      * @return A GSON serializer for the given string converter
      */
-    protected <T> StringConverterGsonSerializer<T> serializer(final StringConverter<T> converter)
+    protected <T> StringConverterGsonSerializer<T> serializer(StringConverter<T> converter)
     {
         return new StringConverterGsonSerializer<>(converter);
     }

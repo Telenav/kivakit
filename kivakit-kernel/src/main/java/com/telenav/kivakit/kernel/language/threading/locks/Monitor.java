@@ -39,7 +39,7 @@ public class Monitor
                 wait();
             }
         }
-        catch (final InterruptedException ignored)
+        catch (InterruptedException ignored)
         {
         }
     }

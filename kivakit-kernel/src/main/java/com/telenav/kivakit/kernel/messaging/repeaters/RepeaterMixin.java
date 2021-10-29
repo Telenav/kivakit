@@ -24,7 +24,7 @@ public interface RepeaterMixin extends Repeater, Mixin
      * {@inheritDoc}
      */
     @Override
-    default void addListener(final Listener listener, final Filter<Transmittable> filter)
+    default void addListener(Listener listener, Filter<Transmittable> filter)
     {
         repeater().addListener(listener, filter);
     }
@@ -51,7 +51,7 @@ public interface RepeaterMixin extends Repeater, Mixin
      * {@inheritDoc}
      */
     @Override
-    default void debugCodeContext(final CodeContext context)
+    default void debugCodeContext(CodeContext context)
     {
         repeater().debugCodeContext(context);
     }
@@ -87,7 +87,7 @@ public interface RepeaterMixin extends Repeater, Mixin
      * {@inheritDoc}
      */
     @Override
-    default void messageSource(final Broadcaster source)
+    default void messageSource(Broadcaster source)
     {
         repeater().messageSource(source);
     }
@@ -105,7 +105,7 @@ public interface RepeaterMixin extends Repeater, Mixin
      * {@inheritDoc}
      */
     @Override
-    default void onMessage(final Message message)
+    default void onMessage(Message message)
     {
         repeater().onMessage(message);
     }
@@ -113,7 +113,7 @@ public interface RepeaterMixin extends Repeater, Mixin
     /**
      * {@inheritDoc}
      */
-    default <M extends Transmittable> M receive(final M message)
+    default <M extends Transmittable> M receive(M message)
     {
         return repeater().receive(message);
     }
@@ -122,7 +122,7 @@ public interface RepeaterMixin extends Repeater, Mixin
      * {@inheritDoc}
      */
     @Override
-    default void removeListener(final Listener listener)
+    default void removeListener(Listener listener)
     {
         repeater().removeListener(listener);
     }
@@ -141,7 +141,7 @@ public interface RepeaterMixin extends Repeater, Mixin
      * {@inheritDoc}
      */
     @Override
-    default void transmit(final Message message)
+    default void transmit(Message message)
     {
         repeater().transmit(message);
     }

@@ -51,15 +51,15 @@ class SecureFtpConnector
 
     private ChannelSftp channel;
 
-    public SecureFtpConnector(final NetworkAccessConstraints constraints)
+    public SecureFtpConnector(NetworkAccessConstraints constraints)
     {
     }
 
-    public void connect(final NetworkLocation location)
+    public void connect(NetworkLocation location)
     {
         if (!isConnected())
         {
-            final var jsch = new JSch();
+            var jsch = new JSch();
             try
             {
                 session = jsch.getSession(location.constraints().userName().toString(),
@@ -71,7 +71,7 @@ class SecureFtpConnector
                 channel = (ChannelSftp) session.openChannel("sftp");
                 channel.connect();
             }
-            catch (final JSchException e)
+            catch (JSchException e)
             {
                 safeDisconnect();
                 throw new IllegalStateException("Unable to connect", e);
@@ -95,7 +95,7 @@ class SecureFtpConnector
         session = null;
     }
 
-    public InputStream get(final NetworkLocation location)
+    public InputStream get(NetworkLocation location)
     {
         // Make sure we are connected.
         connect(location);
@@ -104,7 +104,7 @@ class SecureFtpConnector
         {
             return channel.get(location.networkPath().join());
         }
-        catch (final SftpException e)
+        catch (SftpException e)
         {
             throw new IllegalStateException("Unable to retrieve file: " + location.networkPath().join(), e);
         }
@@ -113,17 +113,17 @@ class SecureFtpConnector
     /**
      * Copy directly a file from SFTP to some destination
      */
-    public void get(final NetworkLocation location, final WritableResource destination)
+    public void get(NetworkLocation location, WritableResource destination)
     {
         // Make sure we are connected.
         connect(location);
 
-        final var sourcePath = location.networkPath().join();
+        var sourcePath = location.networkPath().join();
         try
         {
             channel.get(sourcePath, destination.openForWriting());
         }
-        catch (final SftpException e)
+        catch (SftpException e)
         {
             throw new IllegalStateException("Unable to retrieve file: " + sourcePath, e);
         }
@@ -135,7 +135,7 @@ class SecureFtpConnector
     }
 
     @SuppressWarnings({ "unchecked" })
-    public ObjectList<LsEntry> listFiles(final NetworkLocation location)
+    public ObjectList<LsEntry> listFiles(NetworkLocation location)
     {
         // Make sure we are connected.
         connect(location);
@@ -144,7 +144,7 @@ class SecureFtpConnector
         {
             return new ObjectList<LsEntry>().appendAll(channel.ls(location.networkPath().join()));
         }
-        catch (final SftpException e)
+        catch (SftpException e)
         {
             throw new IllegalStateException("Unable to list directory contents: " + location.networkPath().join(),
                     e);

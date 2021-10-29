@@ -24,7 +24,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramLanguagePattern.class)
 public class SimplifiedPattern extends Expression
 {
-    public SimplifiedPattern(final String pattern)
+    public SimplifiedPattern(String pattern)
     {
         super(pattern.replaceAll("\\.", "\\\\.").replaceAll("\\*", ".*"));
     }

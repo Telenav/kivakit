@@ -35,18 +35,18 @@ public class ObjectIdentifier<T>
 
     private final int hashCode;
 
-    public ObjectIdentifier(final T object)
+    public ObjectIdentifier(T object)
     {
         this.object = object;
         hashCode = object.hashCode();
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof ObjectIdentifier)
         {
-            final var that = (ObjectIdentifier<?>) object;
+            var that = (ObjectIdentifier<?>) object;
             return hashCode == that.hashCode && this.object.equals(that.object);
         }
         return false;

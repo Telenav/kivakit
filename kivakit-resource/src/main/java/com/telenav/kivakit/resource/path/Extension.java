@@ -141,7 +141,7 @@ public class Extension implements Named
 
     public static List<Extension> archive()
     {
-        final List<Extension> executable = new ArrayList<>();
+        List<Extension> executable = new ArrayList<>();
         executable.add(JAR);
         executable.add(ZIP);
         executable.add(GZIP);
@@ -150,7 +150,7 @@ public class Extension implements Named
 
     public static List<Extension> executable()
     {
-        final List<Extension> executable = new ArrayList<>();
+        List<Extension> executable = new ArrayList<>();
         executable.add(PYTHON);
         executable.add(SHELL);
         return executable;
@@ -158,7 +158,7 @@ public class Extension implements Named
 
     public static List<Extension> known()
     {
-        final List<Extension> known = new ArrayList<>();
+        List<Extension> known = new ArrayList<>();
         known.add(GZIP);
         known.add(ZIP);
         known.add(PROPERTIES);
@@ -193,7 +193,7 @@ public class Extension implements Named
         return known;
     }
 
-    public static Extension parse(final String value)
+    public static Extension parse(String value)
     {
         if (value.matches("(\\.[A-Za-z]+)+"))
         {
@@ -205,7 +205,7 @@ public class Extension implements Named
 
     private final String extension;
 
-    protected Extension(final String value)
+    protected Extension(String value)
     {
         if (value.startsWith("."))
         {
@@ -237,7 +237,7 @@ public class Extension implements Named
     /**
      * True if the given resource has this extension
      */
-    public boolean ends(final Resource resource)
+    public boolean ends(Resource resource)
     {
         return resource.hasExtension(this);
     }
@@ -245,7 +245,7 @@ public class Extension implements Named
     /**
      * True if the given path has this extension
      */
-    public boolean ends(final FilePath path)
+    public boolean ends(FilePath path)
     {
         return path.extension().equals(this);
     }
@@ -254,17 +254,17 @@ public class Extension implements Named
      * @return True if this extension ends with the given extension. For example the extension ".tar.gz" ends with the
      * extension ".gz"
      */
-    public boolean endsWith(final Extension extension)
+    public boolean endsWith(Extension extension)
     {
         return this.extension.endsWith(extension.extension);
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Extension)
         {
-            final var that = (Extension) object;
+            var that = (Extension) object;
             return extension.equals(that.extension);
         }
         return false;
@@ -275,7 +275,7 @@ public class Extension implements Named
     {
         return file ->
         {
-            final var extension = file.compoundExtension();
+            var extension = file.compoundExtension();
             return extension != null && extension.endsWith(this);
         };
     }

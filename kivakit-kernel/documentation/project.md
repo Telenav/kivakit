@@ -24,7 +24,7 @@ Each such project subclasses _Project_ and overrides its abstract methods:
     {
         public abstract Set<Project> dependencies();
         public abstract void onInitialize();
-        public abstract void onRegister(final Kryo kryo);
+        public abstract void onRegister( Kryo kryo);
     }
 
 ### Dependencies <a name="dependencies"></a> &nbsp; ![](../../documentation/images/dependencies-40.png)

@@ -49,97 +49,97 @@ public class CountMap<T>
         counts = new HashMap<>();
     }
 
-    public CountMap(final Count initialSize)
+    public CountMap(Count initialSize)
     {
         counts = new HashMap<>(initialSize.asInt(), 0.6f);
     }
 
-    public CountMap(final CountMap<T> that)
+    public CountMap(CountMap<T> that)
     {
         counts = new HashMap<>();
         mergeIn(that);
         total = that.total;
     }
 
-    public CountMap<T> add(final T key, final Countable value)
+    public CountMap<T> add(T key, Countable value)
     {
         add(key, value.count().asLong());
         return this;
     }
 
-    public Count add(final T key, final long value)
+    public Count add(T key, long value)
     {
-        final var count = counts.computeIfAbsent(key, ignored -> new MutableCount());
+        var count = counts.computeIfAbsent(key, ignored -> new MutableCount());
         count.plus(value);
         total += value;
         return Count.count(total);
     }
 
-    public List<Map.Entry<T, MutableCount>> ascendingEntries(final Count maximum,
-                                                             final Comparator<Map.Entry<T, MutableCount>> comparator)
+    public List<Map.Entry<T, MutableCount>> ascendingEntries(Count maximum,
+                                                             Comparator<Map.Entry<T, MutableCount>> comparator)
     {
         assert maximum != null;
-        final List<Map.Entry<T, MutableCount>> sorted = new ArrayList<>(counts.entrySet());
+        List<Map.Entry<T, MutableCount>> sorted = new ArrayList<>(counts.entrySet());
         sorted.sort(comparator);
         return sorted.subList(0, Math.min(sorted.size(), maximum.asInt()));
     }
 
-    public CountMap<T> bottom(final Count maximum)
+    public CountMap<T> bottom(Count maximum)
     {
         return bottom(maximum, Map.Entry.comparingByValue());
     }
 
-    public CountMap<T> bottom(final Count maximum, final Comparator<Map.Entry<T, MutableCount>> comparator)
+    public CountMap<T> bottom(Count maximum, Comparator<Map.Entry<T, MutableCount>> comparator)
     {
-        final var bottom = new CountMap<T>();
-        for (final var entry : ascendingEntries(maximum, comparator))
+        var bottom = new CountMap<T>();
+        for (var entry : ascendingEntries(maximum, comparator))
         {
             bottom.add(entry.getKey(), entry.getValue());
         }
         return bottom;
     }
 
-    public boolean contains(final T key)
+    public boolean contains(T key)
     {
         return counts.containsKey(key);
     }
 
-    public Count count(final T key)
+    public Count count(T key)
     {
         return counts.computeIfAbsent(key, ignored -> new MutableCount()).count();
     }
 
-    public CountMap<T> decrement(final T key)
+    public CountMap<T> decrement(T key)
     {
-        final var count = counts.computeIfAbsent(key, ignored -> new MutableCount());
+        var count = counts.computeIfAbsent(key, ignored -> new MutableCount());
         count.decrement();
         total--;
         return this;
     }
 
-    public List<Map.Entry<T, MutableCount>> descendingEntries(final Count maximum,
-                                                              final Comparator<Map.Entry<T, MutableCount>> comparator)
+    public List<Map.Entry<T, MutableCount>> descendingEntries(Count maximum,
+                                                              Comparator<Map.Entry<T, MutableCount>> comparator)
     {
         assert maximum != null;
-        final List<Map.Entry<T, MutableCount>> sorted = new ArrayList<>(counts.entrySet());
+        List<Map.Entry<T, MutableCount>> sorted = new ArrayList<>(counts.entrySet());
         sorted.sort(comparator.reversed());
         return sorted.subList(0, Math.min(sorted.size(), maximum.asInt()));
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof CountMap)
         {
-            final var that = (CountMap<T>) object;
+            var that = (CountMap<T>) object;
             if (counts.size() != that.counts.size())
             {
                 return false;
             }
-            for (final var entry : counts.entrySet())
+            for (var entry : counts.entrySet())
             {
-                final var value = that.counts.get(entry.getKey());
+                var value = that.counts.get(entry.getKey());
                 if (value != null && !value.equals(entry.getValue()))
                 {
                     return false;
@@ -156,9 +156,9 @@ public class CountMap<T>
         return counts.hashCode();
     }
 
-    public CountMap<T> increment(final T key)
+    public CountMap<T> increment(T key)
     {
-        final var count = counts.computeIfAbsent(key, ignored -> new MutableCount());
+        var count = counts.computeIfAbsent(key, ignored -> new MutableCount());
         count.increment();
         total++;
         return this;
@@ -169,9 +169,9 @@ public class CountMap<T>
         return counts.keySet();
     }
 
-    public void mergeIn(final CountMap<T> that)
+    public void mergeIn(CountMap<T> that)
     {
-        for (final var entry : that.counts.entrySet())
+        for (var entry : that.counts.entrySet())
         {
             add(entry.getKey(), entry.getValue());
         }
@@ -181,7 +181,7 @@ public class CountMap<T>
     {
         var minimumCount = Long.MAX_VALUE;
         T minimum = null;
-        for (final var entry : counts.entrySet())
+        for (var entry : counts.entrySet())
         {
             if (entry.getValue().asLong() < minimumCount)
             {
@@ -192,10 +192,10 @@ public class CountMap<T>
         return minimum;
     }
 
-    public CountMap<T> prune(final Count minimum)
+    public CountMap<T> prune(Count minimum)
     {
-        final var counts = new CountMap<T>();
-        for (final var entry : this.counts.entrySet())
+        var counts = new CountMap<T>();
+        for (var entry : this.counts.entrySet())
         {
             if (entry.getValue().asLong() >= minimum.get())
             {
@@ -205,14 +205,14 @@ public class CountMap<T>
         return counts;
     }
 
-    public void remove(final T key)
+    public void remove(T key)
     {
         counts.remove(key);
     }
 
-    public void removeAll(final CountMap<T> map)
+    public void removeAll(CountMap<T> map)
     {
-        for (final T value : map.keySet())
+        for (T value : map.keySet())
         {
             counts.remove(value);
         }
@@ -225,10 +225,10 @@ public class CountMap<T>
 
     public List<T> sortedByDescendingCount()
     {
-        final List<Map.Entry<T, MutableCount>> entries = new ArrayList<>(counts.entrySet());
+        List<Map.Entry<T, MutableCount>> entries = new ArrayList<>(counts.entrySet());
         entries.sort(Map.Entry.comparingByValue());
-        final List<T> sorted = new ArrayList<>();
-        for (final var entry : entries)
+        List<T> sorted = new ArrayList<>();
+        for (var entry : entries)
         {
             sorted.add(entry.getKey());
         }
@@ -241,9 +241,9 @@ public class CountMap<T>
         return sortedKeys((a, b) -> ((Comparable<T>) a).compareTo(b));
     }
 
-    public List<T> sortedKeys(final Comparator<T> comparator)
+    public List<T> sortedKeys(Comparator<T> comparator)
     {
-        final List<T> keys = new ArrayList<>(keySet());
+        List<T> keys = new ArrayList<>(keySet());
         keys.sort(comparator);
         return keys;
     }
@@ -254,25 +254,25 @@ public class CountMap<T>
         return toString(", ");
     }
 
-    public String toString(final String separator)
+    public String toString(String separator)
     {
-        final var list = new StringList();
-        for (final var key : sortedKeys())
+        var list = new StringList();
+        for (var key : sortedKeys())
         {
             list.add(key + " = " + count(key));
         }
         return list.join(separator);
     }
 
-    public CountMap<T> top(final Count maximum)
+    public CountMap<T> top(Count maximum)
     {
         return top(maximum, Map.Entry.comparingByValue());
     }
 
-    public CountMap<T> top(final Count maximum, final Comparator<Map.Entry<T, MutableCount>> comparator)
+    public CountMap<T> top(Count maximum, Comparator<Map.Entry<T, MutableCount>> comparator)
     {
-        final var top = new CountMap<T>();
-        for (final var entry : descendingEntries(maximum, comparator))
+        var top = new CountMap<T>();
+        for (var entry : descendingEntries(maximum, comparator))
         {
             top.add(entry.getKey(), entry.getValue());
         }

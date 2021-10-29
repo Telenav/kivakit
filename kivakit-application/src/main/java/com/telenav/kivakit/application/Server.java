@@ -32,7 +32,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @LexakaiJavadoc(complete = true)
 public abstract class Server extends Application
 {
-    protected Server(final Project project)
+    protected Server(Project project)
     {
         super(project);
     }

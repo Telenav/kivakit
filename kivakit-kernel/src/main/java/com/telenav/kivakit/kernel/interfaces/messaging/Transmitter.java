@@ -60,7 +60,7 @@ public interface Transmitter
     /**
      * Method that transmits a message
      */
-    default void onTransmit(final Transmittable message)
+    default void onTransmit(Transmittable message)
     {
     }
 
@@ -71,7 +71,7 @@ public interface Transmitter
      * If this transmitter is enabled, passes the message to {@link #onTransmit(Transmittable)}
      * </p>
      */
-    default <M extends Transmittable> M transmit(final M message)
+    default <M extends Transmittable> M transmit(M message)
     {
         if (isTransmitting())
         {

@@ -34,7 +34,7 @@ public class StringListTest
     @Test
     public void testAdd()
     {
-        final var list = new StringList();
+        var list = new StringList();
         ensureEqual(0, list.size());
         ensure(list.isEmpty());
         list.add("a");
@@ -45,7 +45,7 @@ public class StringListTest
     @Test
     public void testClear()
     {
-        final var list = list(5);
+        var list = list(5);
         list.clear();
         ensure(list.isEmpty());
         ensureEqual(0, list.size());
@@ -54,7 +54,7 @@ public class StringListTest
     @Test
     public void testJoin()
     {
-        final var list = list("a", "b", "c");
+        var list = list("a", "b", "c");
         ensureEqual("a, b, c", list.join());
         ensureEqual("a::b::c", list.join("::"));
     }
@@ -62,7 +62,7 @@ public class StringListTest
     @Test
     public void testMaximum()
     {
-        final StringList list = new StringList(Maximum._1)
+        StringList list = new StringList(Maximum._1)
         {
             @Override
             protected void onOutOfRoom()
@@ -77,15 +77,15 @@ public class StringListTest
     @Test
     public void testNumbered()
     {
-        final var list = list("a", "b", "c");
-        final var numbered = list.numbered();
+        var list = list("a", "b", "c");
+        var numbered = list.numbered();
         ensureEqual("1. a, 2. b, 3. c", numbered.join());
     }
 
     @Test
     public void testReverse()
     {
-        final var list = list("1", "2", "3");
+        var list = list("1", "2", "3");
         list.reverse();
         ensureEqual("3", list.get(0));
         ensureEqual("2", list.get(1));
@@ -95,7 +95,7 @@ public class StringListTest
     @Test
     public void testSplit()
     {
-        final var list = StringList.split("a,b,c", ",");
+        var list = StringList.split("a,b,c", ",");
         ensureEqual("a, b, c", list.join());
     }
 
@@ -108,9 +108,9 @@ public class StringListTest
         ensureEqual(StringList.stringList("a", "b", "c"), StringList.words(" a  b    c"));
     }
 
-    private StringList list(final int elements)
+    private StringList list(int elements)
     {
-        final var list = new StringList();
+        var list = new StringList();
         for (var i = 0; i < elements; i++)
         {
             list.add("element" + i);
@@ -118,9 +118,9 @@ public class StringListTest
         return list;
     }
 
-    private StringList list(final String... elements)
+    private StringList list(String... elements)
     {
-        final var list = new StringList();
+        var list = new StringList();
         list.addAll(Arrays.asList(elements));
         return list;
     }

@@ -147,7 +147,7 @@ public abstract class BaseList<Element> implements
     /**
      * @param maximumSize The maximum size of this list
      */
-    protected BaseList(final Maximum maximumSize)
+    protected BaseList(Maximum maximumSize)
     {
         this.maximumSize = maximumSize.asInt();
         list = new ArrayList<>();
@@ -157,7 +157,7 @@ public abstract class BaseList<Element> implements
      * @param maximumSize The maximum size of this list
      * @param list The list implementation to use
      */
-    protected BaseList(final Maximum maximumSize, final List<Element> list)
+    protected BaseList(Maximum maximumSize, List<Element> list)
     {
         this.maximumSize = maximumSize.asInt();
         this.list = list;
@@ -175,7 +175,7 @@ public abstract class BaseList<Element> implements
     /**
      * An unbounded list with the given list implementation
      */
-    protected BaseList(final List<Element> list)
+    protected BaseList(List<Element> list)
     {
         this(Maximum.MAXIMUM, list);
     }
@@ -184,7 +184,7 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public void add(final int index, final Element element)
+    public void add(int index, Element element)
     {
         if (checkSizeIncrease(1))
         {
@@ -197,7 +197,7 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public boolean add(final Element element)
+    public boolean add(Element element)
     {
         if (checkSizeIncrease(1))
         {
@@ -211,7 +211,7 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public boolean addAll(final Collection<? extends Element> elements)
+    public boolean addAll(Collection<? extends Element> elements)
     {
         if (checkSizeIncrease(elements.size()))
         {
@@ -225,7 +225,7 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public boolean addAll(final int index, final Collection<? extends Element> collection)
+    public boolean addAll(int index, Collection<? extends Element> collection)
     {
         if (checkSizeIncrease(collection.size()))
         {
@@ -238,7 +238,7 @@ public abstract class BaseList<Element> implements
     /**
      * Adds the given elements to this bounded list
      */
-    public boolean addAll(final Element[] elements)
+    public boolean addAll(Element[] elements)
     {
         if (checkSizeIncrease(elements.length))
         {
@@ -251,7 +251,7 @@ public abstract class BaseList<Element> implements
     /**
      * Adds the given element if it is not null
      */
-    public boolean addIfNotNull(final Element element)
+    public boolean addIfNotNull(Element element)
     {
         if (element != null)
         {
@@ -264,7 +264,7 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public BaseList<Element> append(final Element element)
+    public BaseList<Element> append(Element element)
     {
         add(element);
         return this;
@@ -274,7 +274,7 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public BaseList<Element> appendAll(final Iterable<? extends Element> elements)
+    public BaseList<Element> appendAll(Iterable<? extends Element> elements)
     {
         addAll(elements);
         return this;
@@ -284,7 +284,7 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public BaseList<Element> appendAll(final Iterator<? extends Element> elements)
+    public BaseList<Element> appendAll(Iterator<? extends Element> elements)
     {
         while (elements.hasNext())
         {
@@ -293,7 +293,7 @@ public abstract class BaseList<Element> implements
         return this;
     }
 
-    public BaseList<Element> appendAll(final Element[] elements)
+    public BaseList<Element> appendAll(Element[] elements)
     {
         addAll(elements);
         return this;
@@ -303,15 +303,15 @@ public abstract class BaseList<Element> implements
      * @return This list as an array
      */
     @SuppressWarnings({ "unchecked" })
-    public Element[] asArray(final Class<Element> type)
+    public Element[] asArray(Class<Element> type)
     {
-        final var array = (Element[]) Array.newInstance(type, size());
+        var array = (Element[]) Array.newInstance(type, size());
         toArray(array);
         return array;
     }
 
     @Override
-    public @NotNull Iterator<Element> asIterator(final Matcher<Element> matcher)
+    public @NotNull Iterator<Element> asIterator(Matcher<Element> matcher)
     {
         return new BaseIterator<>()
         {
@@ -322,7 +322,7 @@ public abstract class BaseList<Element> implements
             {
                 while (index < size())
                 {
-                    final var element = get(index++);
+                    var element = get(index++);
                     if (matcher.matches(element))
                     {
                         return element;
@@ -356,7 +356,7 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public String asString(final StringFormat format)
+    public String asString(StringFormat format)
     {
         switch (format.identifier())
         {
@@ -387,7 +387,7 @@ public abstract class BaseList<Element> implements
     /**
      * @return The items in this list in a bulleted ASCII art representation with the given indent
      */
-    public String bulleted(final int indent)
+    public String bulleted(int indent)
     {
         return AsciiArt.bulleted(indent, this);
     }
@@ -407,7 +407,7 @@ public abstract class BaseList<Element> implements
      */
     @SuppressWarnings("unchecked")
     @Override
-    public Method compress(final Method method)
+    public Method compress(Method method)
     {
         if (!isCompressed())
         {
@@ -417,7 +417,7 @@ public abstract class BaseList<Element> implements
                 {
                     array = (Element[]) new Object[size()];
                     var i = 0;
-                    for (final var element : list)
+                    for (var element : list)
                     {
                         array[i++] = element;
                     }
@@ -449,11 +449,11 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public boolean contains(final Object that)
+    public boolean contains(Object that)
     {
         if (compressionMethod() == Method.FREEZE)
         {
-            for (final var element : array)
+            for (var element : array)
             {
                 if (that.equals(element))
                 {
@@ -472,11 +472,11 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public boolean containsAll(final @NotNull Collection<?> collection)
+    public boolean containsAll(@NotNull Collection<?> collection)
     {
         if (compressionMethod() == Method.FREEZE)
         {
-            for (final Object element : collection)
+            for (Object element : collection)
             {
                 if (!contains(element))
                 {
@@ -496,7 +496,7 @@ public abstract class BaseList<Element> implements
      */
     public BaseList<Element> copy()
     {
-        final var copy = newInstance();
+        var copy = newInstance();
         copy.addAll(this);
         return copy;
     }
@@ -504,7 +504,7 @@ public abstract class BaseList<Element> implements
     /**
      * @return True if this list ends with the given list
      */
-    public boolean endsWith(final BaseList<Element> that)
+    public boolean endsWith(BaseList<Element> that)
     {
         return that != null && reversed().startsWith(that.reversed());
     }
@@ -513,11 +513,11 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof List)
         {
-            final var that = (List<?>) object;
+            var that = (List<?>) object;
 
             // The lists are only seen as equal if they have the same objects in
             // the same order.
@@ -539,7 +539,7 @@ public abstract class BaseList<Element> implements
     /**
      * @return The first n elements in this list
      */
-    public BaseList<Element> first(final Count count)
+    public BaseList<Element> first(Count count)
     {
         return first(count.asInt());
     }
@@ -547,9 +547,9 @@ public abstract class BaseList<Element> implements
     /**
      * @return The first n elements in this list
      */
-    public BaseList<Element> first(final int count)
+    public BaseList<Element> first(int count)
     {
-        final var list = newInstance();
+        var list = newInstance();
         for (var i = 0; i < Math.min(count, size()); i++)
         {
             list.add(get(i));
@@ -561,7 +561,7 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public Element get(final int index)
+    public Element get(int index)
     {
         if (compressionMethod() == Method.FREEZE)
         {
@@ -583,7 +583,7 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public int indexOf(final Object element)
+    public int indexOf(Object element)
     {
         if (compressionMethod() == Method.FREEZE)
         {
@@ -619,7 +619,7 @@ public abstract class BaseList<Element> implements
     {
         if (compressionMethod() == Method.FREEZE)
         {
-            final var outer = this;
+            var outer = this;
             return new BaseIterator<>()
             {
                 private int index;
@@ -653,7 +653,7 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public int lastIndexOf(final Object element)
+    public int lastIndexOf(Object element)
     {
         if (compressionMethod() == Method.FREEZE)
         {
@@ -675,9 +675,9 @@ public abstract class BaseList<Element> implements
     /**
      * @return The elements in this list to the left of the index, exclusive
      */
-    public BaseList<Element> leftOf(final int index)
+    public BaseList<Element> leftOf(int index)
     {
-        final var left = newInstance();
+        var left = newInstance();
         for (var i = 0; i < index; i++)
         {
             left.add(get(i));
@@ -696,7 +696,7 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public ListIterator<Element> listIterator(final int index)
+    public ListIterator<Element> listIterator(int index)
     {
         if (compressionMethod() == Method.FREEZE)
         {
@@ -712,10 +712,10 @@ public abstract class BaseList<Element> implements
      * @return This bounded list with all elements mapped by the given mapper to the mapper's target type
      */
     @SuppressWarnings("unchecked")
-    public <Target> BaseList<Target> mapped(final Function<Element, Target> mapper)
+    public <Target> BaseList<Target> mapped(Function<Element, Target> mapper)
     {
-        final var filtered = (BaseList<Target>) newInstance();
-        for (final var element : asIterable())
+        var filtered = (BaseList<Target>) newInstance();
+        for (var element : asIterable())
         {
             filtered.add(mapper.apply(element));
         }
@@ -725,9 +725,9 @@ public abstract class BaseList<Element> implements
     /**
      * @return This bounded list filtered to only the elements that match the given matcher
      */
-    public BaseList<Element> matching(final Matcher<Element> matcher)
+    public BaseList<Element> matching(Matcher<Element> matcher)
     {
-        final var filtered = newInstance();
+        var filtered = newInstance();
         filtered.addAll(asIterable(matcher));
         return filtered;
     }
@@ -743,7 +743,7 @@ public abstract class BaseList<Element> implements
     /**
      * @return This list reversed if reverse is true, or the list itself if it is false
      */
-    public BaseList<Element> maybeReversed(final boolean reverse)
+    public BaseList<Element> maybeReversed(boolean reverse)
     {
         return reverse ? reversed() : this;
     }
@@ -751,7 +751,7 @@ public abstract class BaseList<Element> implements
     @Override
     public BaseList<Element> newInstance()
     {
-        final var instance = onNewInstance();
+        var instance = onNewInstance();
         instance.maximumSize = maximumSize;
         return instance;
     }
@@ -760,7 +760,7 @@ public abstract class BaseList<Element> implements
      * Prepends the given element to the front of this list
      */
     @Override
-    public BaseList<Element> prepend(final Element element)
+    public BaseList<Element> prepend(Element element)
     {
         modify();
         if (isEmpty())
@@ -779,9 +779,9 @@ public abstract class BaseList<Element> implements
      */
     public long[] quantized()
     {
-        final var quantized = new long[size()];
+        var quantized = new long[size()];
         var i = 0;
-        for (final var object : this)
+        for (var object : this)
         {
             quantized[i++] = ((Quantizable) object).quantum();
         }
@@ -792,7 +792,7 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public Element remove(final int index)
+    public Element remove(int index)
     {
         modify();
         return list.remove(index);
@@ -802,7 +802,7 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public boolean remove(final Object element)
+    public boolean remove(Object element)
     {
         modify();
         return list.remove(element);
@@ -813,7 +813,7 @@ public abstract class BaseList<Element> implements
      */
     @SuppressWarnings("NullableProblems")
     @Override
-    public boolean removeAll(final Collection<?> collection)
+    public boolean removeAll(Collection<?> collection)
     {
         modify();
         return list.removeAll(collection);
@@ -837,7 +837,7 @@ public abstract class BaseList<Element> implements
      */
     @SuppressWarnings("NullableProblems")
     @Override
-    public boolean retainAll(final Collection<?> collection)
+    public boolean retainAll(Collection<?> collection)
     {
         modify();
         return list.retainAll(collection);
@@ -856,7 +856,7 @@ public abstract class BaseList<Element> implements
      */
     public BaseList<Element> reversed()
     {
-        final var copy = copy();
+        var copy = copy();
         copy.reverse();
         return copy;
     }
@@ -864,9 +864,9 @@ public abstract class BaseList<Element> implements
     /**
      * @return The elements in this list to the right of the index, exclusive
      */
-    public BaseList<Element> rightOf(final int index)
+    public BaseList<Element> rightOf(int index)
     {
-        final var right = newInstance();
+        var right = newInstance();
         for (var i = index + 1; i < size(); i++)
         {
             right.add(get(i));
@@ -878,7 +878,7 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public Element set(final int index, final Element element)
+    public Element set(int index, Element element)
     {
         modify();
         return list.set(index, element);
@@ -904,7 +904,7 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public void sort(final Comparator<? super Element> comparator)
+    public void sort(Comparator<? super Element> comparator)
     {
         modify();
         list.sort(comparator);
@@ -923,9 +923,9 @@ public abstract class BaseList<Element> implements
     /**
      * @return A copy of this list sorted by the given comparator
      */
-    public BaseList<Element> sorted(final Comparator<Element> comparator)
+    public BaseList<Element> sorted(Comparator<Element> comparator)
     {
-        final var sorted = newInstance();
+        var sorted = newInstance();
         sorted.addAll(this);
         sorted.sort(comparator);
         return sorted;
@@ -934,7 +934,7 @@ public abstract class BaseList<Element> implements
     /**
      * @return True if this list starts with the given list
      */
-    public boolean startsWith(final BaseList<Element> that)
+    public boolean startsWith(BaseList<Element> that)
     {
         if (that == null || that.size() > size())
         {
@@ -957,7 +957,7 @@ public abstract class BaseList<Element> implements
      * {@inheritDoc}
      */
     @Override
-    public List<Element> subList(final int fromIndex, final int toIndex)
+    public List<Element> subList(int fromIndex, int toIndex)
     {
         if (compressionMethod() == Method.FREEZE)
         {
@@ -990,7 +990,7 @@ public abstract class BaseList<Element> implements
      */
     @SuppressWarnings({ "SuspiciousToArrayCall", "SuspiciousSystemArraycopy" })
     @Override
-    public <E> E[] toArray(final E[] array)
+    public <E> E[] toArray(E[] array)
     {
         if (compressionMethod() == Method.FREEZE)
         {
@@ -1017,7 +1017,7 @@ public abstract class BaseList<Element> implements
      */
     public BaseList<Element> uniqued()
     {
-        final var list = newInstance();
+        var list = newInstance();
         list.addAll(asSet());
         return list;
     }
@@ -1025,13 +1025,13 @@ public abstract class BaseList<Element> implements
     /**
      * @return This list without the matching elements
      */
-    public BaseList<Element> without(final Matcher<Element> matcher)
+    public BaseList<Element> without(Matcher<Element> matcher)
     {
-        final var iterator = iterator();
-        final var without = newInstance();
+        var iterator = iterator();
+        var without = newInstance();
         while (iterator.hasNext())
         {
-            final var element = iterator.next();
+            var element = iterator.next();
             if (!matcher.matches(element))
             {
                 without.add(element);
@@ -1043,7 +1043,7 @@ public abstract class BaseList<Element> implements
     /**
      * @return True if the given size increase is acceptable, false if not
      */
-    protected boolean checkSizeIncrease(final int increase)
+    protected boolean checkSizeIncrease(int increase)
     {
         if (size() + increase > maximumSize)
         {
@@ -1083,7 +1083,7 @@ public abstract class BaseList<Element> implements
      * @param value The value
      * @return A string corresponding to the value
      */
-    protected String toString(final Element value)
+    protected String toString(Element value)
     {
         return StringTo.string(value);
     }

@@ -41,7 +41,7 @@ public class ReadWriteLock extends ReentrantReadWriteLock
     /**
      * Runs the provided code inside a lock / unlock pair, allowing the codes to have a return value.
      */
-    public <T> T read(final Source<T> code)
+    public <T> T read(Source<T> code)
     {
         readLock().lock();
         try
@@ -57,7 +57,7 @@ public class ReadWriteLock extends ReentrantReadWriteLock
     /**
      * Runs the provided code inside a lock / unlock pair.
      */
-    public void read(final Runnable code)
+    public void read(Runnable code)
     {
         readLock().lock();
         try
@@ -73,7 +73,7 @@ public class ReadWriteLock extends ReentrantReadWriteLock
     /**
      * Runs the provided code inside a lock / unlock pair, allowing the code to have a return value.
      */
-    public <T> T write(final Source<T> code)
+    public <T> T write(Source<T> code)
     {
         writeLock().lock();
         try
@@ -89,7 +89,7 @@ public class ReadWriteLock extends ReentrantReadWriteLock
     /**
      * Runs the provided code inside a lock / unlock pair.
      */
-    public void write(final Runnable code)
+    public void write(Runnable code)
     {
         writeLock().lock();
         try

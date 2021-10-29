@@ -62,7 +62,7 @@ public class BaseMap<Key, Value> implements Map<Key, Value>
     /**
      * Bounded map
      */
-    public BaseMap(final Maximum maximumSize)
+    public BaseMap(Maximum maximumSize)
     {
         this(maximumSize, new HashMap<>());
     }
@@ -70,7 +70,7 @@ public class BaseMap<Key, Value> implements Map<Key, Value>
     /**
      * A bounded map with the given implementation
      */
-    public BaseMap(final Maximum maximumSize, final Map<Key, Value> map)
+    public BaseMap(Maximum maximumSize, Map<Key, Value> map)
     {
         Ensure.ensure(maximumSize != null);
         this.map = map;
@@ -81,7 +81,7 @@ public class BaseMap<Key, Value> implements Map<Key, Value>
     /**
      * An unbounded map with the given implementation
      */
-    public BaseMap(final Map<Key, Value> map)
+    public BaseMap(Map<Key, Value> map)
     {
         this(Maximum.MAXIMUM, map);
     }
@@ -93,13 +93,13 @@ public class BaseMap<Key, Value> implements Map<Key, Value>
     }
 
     @Override
-    public boolean containsKey(final Object key)
+    public boolean containsKey(Object key)
     {
         return map.containsKey(key);
     }
 
     @Override
-    public boolean containsValue(final Object value)
+    public boolean containsValue(Object value)
     {
         return map.containsValue(value);
     }
@@ -111,7 +111,7 @@ public class BaseMap<Key, Value> implements Map<Key, Value>
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object == this)
         {
@@ -127,18 +127,18 @@ public class BaseMap<Key, Value> implements Map<Key, Value>
     }
 
     @Override
-    public Value get(final Object key)
+    public Value get(Object key)
     {
         return map.get(key);
     }
 
-    public Value get(final Object key, final Value defaultValue)
+    public Value get(Object key, Value defaultValue)
     {
-        final var value = get(key);
+        var value = get(key);
         return value == null ? defaultValue : value;
     }
 
-    public Value getOrCreate(final Key key)
+    public Value getOrCreate(Key key)
     {
         var value = map.get(key);
         if (value == null)
@@ -176,7 +176,7 @@ public class BaseMap<Key, Value> implements Map<Key, Value>
     }
 
     @Override
-    public Value put(final Key key, final Value value)
+    public Value put(Key key, Value value)
     {
         if (checkSize(1))
         {
@@ -186,7 +186,7 @@ public class BaseMap<Key, Value> implements Map<Key, Value>
         return null;
     }
 
-    public Value put(final Key key, final Value value, final Value defaultValue)
+    public Value put(Key key, Value value, Value defaultValue)
     {
         checkNullValue(value);
         checkNullValue(defaultValue);
@@ -194,15 +194,15 @@ public class BaseMap<Key, Value> implements Map<Key, Value>
     }
 
     @Override
-    public void putAll(final Map<? extends Key, ? extends Value> map)
+    public void putAll(Map<? extends Key, ? extends Value> map)
     {
-        for (final Map.Entry<? extends Key, ? extends Value> entry : map.entrySet())
+        for (Map.Entry<? extends Key, ? extends Value> entry : map.entrySet())
         {
             put(entry.getKey(), entry.getValue());
         }
     }
 
-    public void putIfNotNull(final Key key, final Value value)
+    public void putIfNotNull(Key key, Value value)
     {
         if (value != null)
         {
@@ -211,7 +211,7 @@ public class BaseMap<Key, Value> implements Map<Key, Value>
     }
 
     @Override
-    public Value remove(final Object key)
+    public Value remove(Object key)
     {
         return map.remove(key);
     }
@@ -225,8 +225,8 @@ public class BaseMap<Key, Value> implements Map<Key, Value>
     @Override
     public String toString()
     {
-        final var list = new StringList();
-        for (final var entry : entrySet())
+        var list = new StringList();
+        for (var entry : entrySet())
         {
             list.add(entry.getKey() + " = " + entry.getValue());
         }
@@ -239,7 +239,7 @@ public class BaseMap<Key, Value> implements Map<Key, Value>
         return map.values();
     }
 
-    protected boolean checkSize(final int increase)
+    protected boolean checkSize(int increase)
     {
         if (size() + increase > maximumSize().asInt())
         {
@@ -262,12 +262,12 @@ public class BaseMap<Key, Value> implements Map<Key, Value>
         return map;
     }
 
-    protected Value onInitialize(final Key key)
+    protected Value onInitialize(Key key)
     {
         return null;
     }
 
-    private void checkNullValue(final Value value)
+    private void checkNullValue(Value value)
     {
         if (value == null)
         {

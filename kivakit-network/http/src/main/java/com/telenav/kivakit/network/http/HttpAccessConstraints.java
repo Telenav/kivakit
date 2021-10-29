@@ -41,7 +41,7 @@ public class HttpAccessConstraints extends NetworkAccessConstraints
         return httpBasicCredentials;
     }
 
-    public void httpBasicCredentials(final HttpBasicCredentials httpBasicCredentials)
+    public void httpBasicCredentials(HttpBasicCredentials httpBasicCredentials)
     {
         this.httpBasicCredentials = httpBasicCredentials;
     }

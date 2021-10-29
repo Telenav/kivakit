@@ -41,7 +41,7 @@ public interface StringConverter<Value> extends TwoWayConverter<String, Value>
     StringConverter<String> IDENTITY = new BaseStringConverter<>(Listener.none())
     {
         @Override
-        protected String onToValue(final String value)
+        protected String onToValue(String value)
         {
             return value;
         }
@@ -50,7 +50,7 @@ public interface StringConverter<Value> extends TwoWayConverter<String, Value>
     /**
      * @return The given string list with each string converted to an object using this converter
      */
-    default ObjectList<Value> asObjectList(final StringList list)
+    default ObjectList<Value> asObjectList(StringList list)
     {
         return list.asObjectList(this);
     }
@@ -58,7 +58,7 @@ public interface StringConverter<Value> extends TwoWayConverter<String, Value>
     /**
      * @return The given string list with each string converted to an object using this converter
      */
-    default StringList asStringList(final ObjectList<Value> list)
+    default StringList asStringList(ObjectList<Value> list)
     {
         return list.asStringList(this);
     }

@@ -29,10 +29,10 @@ public class CharacterClass extends Pattern
 {
     private final String characters;
 
-    public CharacterClass(final Object... characters)
+    public CharacterClass(Object... characters)
     {
-        final var builder = new StringBuilder();
-        for (final var object : characters)
+        var builder = new StringBuilder();
+        for (var object : characters)
         {
             if (object instanceof String)
             {
@@ -58,13 +58,13 @@ public class CharacterClass extends Pattern
         this.characters = builder.toString();
     }
 
-    public CharacterClass(final String characters)
+    public CharacterClass(String characters)
     {
         this.characters = characters;
     }
 
     @Override
-    public int bind(final int group)
+    public int bind(int group)
     {
         return group;
     }
@@ -80,12 +80,12 @@ public class CharacterClass extends Pattern
         return "[" + characters + "]";
     }
 
-    public CharacterClass with(final Character character)
+    public CharacterClass with(Character character)
     {
         return new CharacterClass(characters + character);
     }
 
-    public CharacterClass with(final LiteralCharacter character)
+    public CharacterClass with(LiteralCharacter character)
     {
         return new CharacterClass(characters + character);
     }
@@ -100,7 +100,7 @@ public class CharacterClass extends Pattern
         return withAlphabetic().withNumeric();
     }
 
-    public CharacterClass withCharacter(final char c)
+    public CharacterClass withCharacter(char c)
     {
         return new CharacterClass(characters + c);
     }
@@ -115,7 +115,7 @@ public class CharacterClass extends Pattern
         return withRange('0', '9');
     }
 
-    public CharacterClass withRange(final char first, final char last)
+    public CharacterClass withRange(char first, char last)
     {
         if (last < first)
         {

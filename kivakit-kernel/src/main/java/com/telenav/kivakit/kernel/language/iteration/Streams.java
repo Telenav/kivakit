@@ -34,17 +34,17 @@ import java.util.stream.StreamSupport;
 @LexakaiJavadoc(complete = true)
 public class Streams
 {
-    public static <T> Stream<T> parallelStream(final Iterable<T> iterable)
+    public static <T> Stream<T> parallelStream(Iterable<T> iterable)
     {
         return StreamSupport.stream(iterable.spliterator(), true);
     }
 
-    public static <T> Stream<T> stream(final Iterable<T> iterable)
+    public static <T> Stream<T> stream(Iterable<T> iterable)
     {
         return StreamSupport.stream(iterable.spliterator(), false);
     }
 
-    public static <T> Stream<T> stream(final Processing processing, final Iterable<T> iterable)
+    public static <T> Stream<T> stream(Processing processing, Iterable<T> iterable)
     {
         switch (processing)
         {

@@ -40,7 +40,7 @@ public class MutableIndex
     {
     }
 
-    public MutableIndex(final int index)
+    public MutableIndex(int index)
     {
         if (index < 0)
         {
@@ -50,7 +50,7 @@ public class MutableIndex
     }
 
     @SuppressWarnings("UnusedReturnValue")
-    public int add(final int that)
+    public int add(int that)
     {
         return index + that;
     }
@@ -61,11 +61,11 @@ public class MutableIndex
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof MutableIndex)
         {
-            final var that = (MutableIndex) object;
+            var that = (MutableIndex) object;
             return index == that.index;
         }
         return false;
@@ -87,12 +87,12 @@ public class MutableIndex
         return index++;
     }
 
-    public void index(final int index)
+    public void index(int index)
     {
         this.index = index;
     }
 
-    public void set(final int index)
+    public void set(int index)
     {
         this.index = index;
     }

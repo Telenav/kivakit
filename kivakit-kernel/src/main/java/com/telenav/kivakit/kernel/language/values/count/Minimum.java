@@ -178,17 +178,17 @@ public class Minimum extends Count
         }
     }
 
-    public static Minimum minimum(final Collection<?> collection)
+    public static Minimum minimum(Collection<?> collection)
     {
         return minimum(collection.size());
     }
 
-    public static Minimum minimum(final Iterable<?> iterable)
+    public static Minimum minimum(Iterable<?> iterable)
     {
         return minimum(iterable.iterator());
     }
 
-    public static Minimum minimum(final Iterator<?> iterator)
+    public static Minimum minimum(Iterator<?> iterator)
     {
         var count = 0;
         while (iterator.hasNext())
@@ -199,7 +199,7 @@ public class Minimum extends Count
         return minimum(count);
     }
 
-    public static Minimum minimum(final long value)
+    public static Minimum minimum(long value)
     {
         // If we have a cached value,
         if (value < CACHE_SIZE)
@@ -219,7 +219,7 @@ public class Minimum extends Count
         return new Minimum(value);
     }
 
-    public static <T> Minimum minimum(final T[] values)
+    public static <T> Minimum minimum(T[] values)
     {
         return minimum(values.length);
     }
@@ -241,19 +241,19 @@ public class Minimum extends Count
     @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<Minimum>
     {
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
         }
 
         @Override
-        protected Minimum onToValue(final String value)
+        protected Minimum onToValue(String value)
         {
             return parse(value);
         }
     }
 
-    protected Minimum(final long count)
+    protected Minimum(long count)
     {
         super(count);
     }
@@ -270,7 +270,7 @@ public class Minimum extends Count
     }
 
     @Override
-    public Minimum ceiling(final int digits)
+    public Minimum ceiling(int digits)
     {
         return (Minimum) super.ceiling(digits);
     }
@@ -282,19 +282,19 @@ public class Minimum extends Count
     }
 
     @Override
-    public Minimum dividedBy(final Count divisor)
+    public Minimum dividedBy(Count divisor)
     {
         return dividedBy(divisor.get());
     }
 
     @Override
-    public Minimum dividedBy(final long divisor)
+    public Minimum dividedBy(long divisor)
     {
         return minimum(Longs.inRange(get() / divisor, 0, Long.MAX_VALUE));
     }
 
     @Override
-    public Minimum floor(final int digits)
+    public Minimum floor(int digits)
     {
         return (Minimum) super.floor(digits);
     }
@@ -306,13 +306,13 @@ public class Minimum extends Count
     }
 
     @Override
-    public Minimum minus(final Count count)
+    public Minimum minus(Count count)
     {
         return (Minimum) super.minus(count);
     }
 
     @Override
-    public Minimum minus(final long count)
+    public Minimum minus(long count)
     {
         return (Minimum) super.minus(count);
     }
@@ -330,19 +330,19 @@ public class Minimum extends Count
     }
 
     @Override
-    public Minimum percent(final Percent percentage)
+    public Minimum percent(Percent percentage)
     {
         return (Minimum) super.percent(percentage);
     }
 
     @Override
-    public Minimum plus(final Count count)
+    public Minimum plus(Count count)
     {
         return plus(count.get());
     }
 
     @Override
-    public Minimum plus(final long count)
+    public Minimum plus(long count)
     {
         return minimum(get() + count);
     }
@@ -360,7 +360,7 @@ public class Minimum extends Count
     }
 
     @Override
-    public Minimum times(final Count count)
+    public Minimum times(Count count)
     {
         if (count.isMaximum() || isMaximum())
         {
@@ -370,25 +370,25 @@ public class Minimum extends Count
     }
 
     @Override
-    public Minimum times(final double multiplier)
+    public Minimum times(double multiplier)
     {
         return (Minimum) super.times(multiplier);
     }
 
     @Override
-    public Minimum times(final long count)
+    public Minimum times(long count)
     {
         return (Minimum) super.times(count);
     }
 
     @Override
-    public Minimum times(final Percent percentage)
+    public Minimum times(Percent percentage)
     {
         return (Minimum) super.times(percentage);
     }
 
     @Override
-    protected Minimum onNewInstance(final long value)
+    protected Minimum onNewInstance(long value)
     {
         return minimum(value);
     }

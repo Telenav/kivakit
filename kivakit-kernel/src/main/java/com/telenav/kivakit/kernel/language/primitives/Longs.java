@@ -36,32 +36,32 @@ public class Longs
     /** Default invalid value */
     public static final long INVALID = Long.MIN_VALUE;
 
-    public static BitCount bitsToRepresent(final long value)
+    public static BitCount bitsToRepresent(long value)
     {
         return BitCount.bitCount(Long.SIZE - Long.numberOfLeadingZeros(value)).maximum(BitCount._1);
     }
 
-    public static long forHighLow(final int high, final int low)
+    public static long forHighLow(int high, int low)
     {
         return (((long) high) << 32) | (low & 0xffff_ffffL);
     }
 
-    public static int high(final long value)
+    public static int high(long value)
     {
         return (int) (value >> 32);
     }
 
-    public static long inRange(final long value, final long min, final long max)
+    public static long inRange(long value, long min, long max)
     {
         return Math.min(Math.max(value, min), max);
     }
 
-    public static int low(final long value)
+    public static int low(long value)
     {
         return (int) value;
     }
 
-    public static long parse(final String string)
+    public static long parse(String string)
     {
         return parse(string, INVALID);
     }
@@ -72,17 +72,17 @@ public class Longs
      *
      * @return An integer value or the specified invalid value if the string is not a valid integer
      */
-    public static long parse(final String string, final long invalid)
+    public static long parse(String string, long invalid)
     {
         if (string != null)
         {
-            final var length = string.length();
+            var length = string.length();
             if (length != 0)
             {
                 var i = 0;
                 var sign = 1;
 
-                final var first = string.charAt(0);
+                var first = string.charAt(0);
                 if (first == '-')
                 {
                     i++;
@@ -92,12 +92,12 @@ public class Longs
                 long value = 0;
                 while (i < length)
                 {
-                    final var character = string.charAt(i++);
+                    var character = string.charAt(i++);
                     if (character == ',')
                     {
                         continue;
                     }
-                    final var digit = character - '0';
+                    var digit = character - '0';
                     if (digit < 0 || digit > 9)
                     {
                         return invalid;
@@ -114,7 +114,7 @@ public class Longs
     /**
      * @return The given hexadecimal value in text as a long
      */
-    public static long parseHex(final String text)
+    public static long parseHex(String text)
     {
         return Long.parseLong(Strip.leading(text, "0x"), 16);
     }
@@ -125,17 +125,17 @@ public class Longs
      *
      * @return A natural number for the string or -1 if the string is not a natural number
      */
-    public static long parseNaturalNumber(final String string)
+    public static long parseNaturalNumber(String string)
     {
         if (string != null)
         {
-            final var length = string.length();
+            var length = string.length();
             if (length > 0)
             {
                 long value = 0;
                 for (var i = 0; i < length; i++)
                 {
-                    final var digit = string.charAt(i) - '0';
+                    var digit = string.charAt(i) - '0';
                     if (digit < 0 || digit > 9)
                     {
                         return -1;
@@ -154,11 +154,11 @@ public class Longs
      * @param searchFor The value to locate
      * @return True if the value contains the search term in the words
      */
-    public static boolean searchWords(long value, final int bits, final int searchFor)
+    public static boolean searchWords(long value, int bits, int searchFor)
     {
         for (var remaining = 64; remaining > 0; remaining -= bits)
         {
-            final var word = (int) (value & 0xffffL);
+            var word = (int) (value & 0xffffL);
             if (word == searchFor)
             {
                 return true;

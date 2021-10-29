@@ -44,7 +44,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 public interface FailureReporter extends Listener
 {
     @Override
-    default void onMessage(final Message message)
+    default void onMessage(Message message)
     {
         report(message);
     }

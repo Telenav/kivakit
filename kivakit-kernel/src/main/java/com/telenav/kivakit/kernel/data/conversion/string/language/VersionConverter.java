@@ -37,7 +37,7 @@ public class VersionConverter extends BaseStringConverter<Version>
     /**
      * @param listener The listener to hear any conversion issues
      */
-    public VersionConverter(final Listener listener)
+    public VersionConverter(Listener listener)
     {
         super(listener);
     }
@@ -46,7 +46,7 @@ public class VersionConverter extends BaseStringConverter<Version>
      * {@inheritDoc}
      */
     @Override
-    protected Version onToValue(final String text)
+    protected Version onToValue(String text)
     {
         return Version.parse(text);
     }

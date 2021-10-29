@@ -37,7 +37,7 @@ public class Stack<T> extends ObjectList<T>
     {
     }
 
-    public Stack(final Maximum maximumSize)
+    public Stack(Maximum maximumSize)
     {
         super(maximumSize);
     }
@@ -53,7 +53,7 @@ public class Stack<T> extends ObjectList<T>
     /**
      * Push the given value onto the top of the stack
      */
-    public void push(final T value)
+    public void push(T value)
     {
         add(value);
     }

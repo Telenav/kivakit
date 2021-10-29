@@ -24,13 +24,13 @@ public class Not<T> implements Filter<T>
 {
     private final Filter<T> filter;
 
-    public Not(final Filter<T> filter)
+    public Not(Filter<T> filter)
     {
         this.filter = filter;
     }
 
     @Override
-    public boolean accepts(final T value)
+    public boolean accepts(T value)
     {
         return !filter.accepts(value);
     }

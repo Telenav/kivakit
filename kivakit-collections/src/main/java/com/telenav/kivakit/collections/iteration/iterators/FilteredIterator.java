@@ -40,7 +40,7 @@ public class FilteredIterator<Element> extends BaseIterator<Element>
 
     private final Matcher<Element> filter;
 
-    public FilteredIterator(final Iterator<Element> iterator, final Matcher<Element> filter)
+    public FilteredIterator(Iterator<Element> iterator, Matcher<Element> filter)
     {
         this.iterator = iterator;
         this.filter = filter;
@@ -51,7 +51,7 @@ public class FilteredIterator<Element> extends BaseIterator<Element>
     {
         while (iterator.hasNext())
         {
-            final var next = iterator.next();
+            var next = iterator.next();
             if (filter.matches(next))
             {
                 return next;

@@ -47,22 +47,22 @@ public class ConcurrentHashSet<Element> implements Set<Element>, Serializable
         members = new ConcurrentHashMap<>();
     }
 
-    public ConcurrentHashSet(final int initialCapacity, final float loadFactor)
+    public ConcurrentHashSet(int initialCapacity, float loadFactor)
     {
         members = new ConcurrentHashMap<>(initialCapacity, loadFactor);
     }
 
     @Override
-    public boolean add(final Element element)
+    public boolean add(Element element)
     {
         return members.put(element, element) != null;
     }
 
     @Override
-    public boolean addAll(final Collection<? extends Element> collection)
+    public boolean addAll(Collection<? extends Element> collection)
     {
         var changed = false;
-        for (final Element object : collection)
+        for (Element object : collection)
         {
             changed = add(object) || changed;
         }
@@ -77,20 +77,20 @@ public class ConcurrentHashSet<Element> implements Set<Element>, Serializable
 
     @Override
     @SuppressWarnings("SuspiciousMethodCalls")
-    public boolean contains(final Object object)
+    public boolean contains(Object object)
     {
         return members.get(object) != null;
     }
 
-    public synchronized boolean containsAdd(final Element object)
+    public synchronized boolean containsAdd(Element object)
     {
-        final var contains = contains(object);
+        var contains = contains(object);
         add(object);
         return contains;
     }
 
     @Override
-    public boolean containsAll(final @NotNull Collection<?> collection)
+    public boolean containsAll(@NotNull Collection<?> collection)
     {
         return members.keySet().containsAll(collection);
     }
@@ -101,7 +101,7 @@ public class ConcurrentHashSet<Element> implements Set<Element>, Serializable
      * @param prototype The object to match against
      * @return Any object in the current set that matches the given object
      */
-    public Element get(final Element prototype)
+    public Element get(Element prototype)
     {
         return members.get(prototype);
     }
@@ -119,16 +119,16 @@ public class ConcurrentHashSet<Element> implements Set<Element>, Serializable
     }
 
     @Override
-    public boolean remove(final Object key)
+    public boolean remove(Object key)
     {
         return members.remove(key) != null;
     }
 
     @Override
-    public boolean removeAll(final Collection<?> collection)
+    public boolean removeAll(Collection<?> collection)
     {
         var changed = false;
-        for (final Object object : collection)
+        for (Object object : collection)
         {
             changed = remove(object) || changed;
         }
@@ -136,7 +136,7 @@ public class ConcurrentHashSet<Element> implements Set<Element>, Serializable
     }
 
     @Override
-    public boolean retainAll(final @NotNull Collection<?> c)
+    public boolean retainAll(@NotNull Collection<?> c)
     {
         return unsupported();
     }
@@ -154,7 +154,7 @@ public class ConcurrentHashSet<Element> implements Set<Element>, Serializable
      * @param prototype The object to match against
      * @return Any matching object after removing it from the set
      */
-    public Element take(final Element prototype)
+    public Element take(Element prototype)
     {
         return members.remove(prototype);
     }
@@ -167,7 +167,7 @@ public class ConcurrentHashSet<Element> implements Set<Element>, Serializable
 
     @SuppressWarnings({ "SuspiciousToArrayCall" })
     @Override
-    public <E> E[] toArray(final E[] array)
+    public <E> E[] toArray(E[] array)
     {
         return members.keySet().toArray(array);
     }

@@ -41,17 +41,17 @@ public abstract class BaseListConverter<T> extends BaseCollectionConverter<Objec
      * @param converter The converter to use for converting each element
      * @param delimiter The delimiter between elements
      */
-    public BaseListConverter(final Listener listener, final StringConverter<T> converter, final String delimiter)
+    public BaseListConverter(Listener listener, StringConverter<T> converter, String delimiter)
     {
         super(listener, delimiter);
         this.converter = converter;
     }
 
     @Override
-    protected ObjectList<T> onConvertToObject(final StringList columns)
+    protected ObjectList<T> onConvertToObject(StringList columns)
     {
-        final var list = new ObjectList<T>(columns.maximumSize());
-        for (final var element : columns)
+        var list = new ObjectList<T>(columns.maximumSize());
+        for (var element : columns)
         {
             list.addIfNotNull(converter.convert(element.trim()));
         }
@@ -59,10 +59,10 @@ public abstract class BaseListConverter<T> extends BaseCollectionConverter<Objec
     }
 
     @Override
-    protected StringList onConvertToStringList(final ObjectList<T> values)
+    protected StringList onConvertToStringList(ObjectList<T> values)
     {
-        final var list = new StringList();
-        for (final var value : values)
+        var list = new StringList();
+        for (var value : values)
         {
             list.addIfNotNull(converter.unconvert(value));
         }

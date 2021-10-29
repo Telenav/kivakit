@@ -49,7 +49,7 @@ public class LineReader extends Multicaster implements Iterable<String>
     /** The handler for reporting progress */
     private final ProgressReporter reporter;
 
-    public LineReader(final ReadableResource resource, final ProgressReporter reporter)
+    public LineReader(ReadableResource resource, ProgressReporter reporter)
     {
         this.resource = resource;
         this.reporter = reporter;
@@ -69,7 +69,7 @@ public class LineReader extends Multicaster implements Iterable<String>
      */
     public StringList lines()
     {
-        final var list = new StringList();
+        var list = new StringList();
         list.addAll(this);
         return list;
     }
@@ -77,15 +77,15 @@ public class LineReader extends Multicaster implements Iterable<String>
     /**
      * Calls the given consumer with each line
      */
-    public void lines(final Consumer<String> consumer)
+    public void lines(Consumer<String> consumer)
     {
-        final var reader = new LineNumberReader(resource.reader(reporter).textReader());
+        var reader = new LineNumberReader(resource.reader(reporter).textReader());
         try
         {
             reporter.start();
             while (true)
             {
-                final var next = reader.readLine();
+                var next = reader.readLine();
                 if (next == null)
                 {
                     reporter.end();
@@ -95,7 +95,7 @@ public class LineReader extends Multicaster implements Iterable<String>
                 consumer.accept(next);
             }
         }
-        catch (final IOException e)
+        catch (IOException e)
         {
             throw new IllegalStateException(
                     "Exception thrown while reading " + resource + " at line " + reader.getLineNumber(), e);
@@ -111,25 +111,25 @@ public class LineReader extends Multicaster implements Iterable<String>
      */
     public Stream<String> stream()
     {
-        final var reader = new LineNumberReader(resource.reader(reporter).textReader());
+        var reader = new LineNumberReader(resource.reader(reporter).textReader());
         try
         {
             reporter.start();
             return reader.lines().peek(line -> reporter.next()).onClose(closer(reader));
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             try
             {
                 reader.close();
             }
-            catch (final IOException ex)
+            catch (IOException ex)
             {
                 try
                 {
                     e.addSuppressed(ex);
                 }
-                catch (final Throwable ignore)
+                catch (Throwable ignore)
                 {
                 }
             }
@@ -141,7 +141,7 @@ public class LineReader extends Multicaster implements Iterable<String>
         }
     }
 
-    private Runnable closer(final Closeable closeable)
+    private Runnable closer(Closeable closeable)
     {
         return () ->
         {
@@ -149,7 +149,7 @@ public class LineReader extends Multicaster implements Iterable<String>
             {
                 closeable.close();
             }
-            catch (final IOException e)
+            catch (IOException e)
             {
                 throw new UncheckedIOException(e);
             }

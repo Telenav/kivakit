@@ -31,7 +31,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramInterfaceCode.class)
 public interface Callback<Value>
 {
-    default void callback(final Value value)
+    default void callback(Value value)
     {
         onCallback(value);
     }

@@ -46,14 +46,14 @@ public class BaseIndexedMap<Key, Value> extends BaseMap<Key, Value> implements I
 {
     private final ObjectList<Value> list;
 
-    public BaseIndexedMap(final Maximum maximumSize)
+    public BaseIndexedMap(Maximum maximumSize)
     {
         super(maximumSize);
         list = new ObjectList<>(maximumSize);
     }
 
     @Override
-    public @NotNull Iterator<Value> asIterator(final Matcher<Value> matcher)
+    public @NotNull Iterator<Value> asIterator(Matcher<Value> matcher)
     {
         return list.asIterator();
     }
@@ -66,12 +66,12 @@ public class BaseIndexedMap<Key, Value> extends BaseMap<Key, Value> implements I
     }
 
     @Override
-    public Value get(final int index)
+    public Value get(int index)
     {
         return list.get(index);
     }
 
-    public int indexOf(final Value value)
+    public int indexOf(Value value)
     {
         return list.indexOf(value);
     }
@@ -83,35 +83,35 @@ public class BaseIndexedMap<Key, Value> extends BaseMap<Key, Value> implements I
     }
 
     @Override
-    public String join(final String separator)
+    public String join(String separator)
     {
         return list.join(separator);
     }
 
     @Override
-    public Value put(final Key key, final Value value)
+    public Value put(Key key, Value value)
     {
         list.add(value);
         return super.put(key, value);
     }
 
     @Override
-    public void putAll(final Map<? extends Key, ? extends Value> map)
+    public void putAll(Map<? extends Key, ? extends Value> map)
     {
-        for (final java.util.Map.Entry<? extends Key, ? extends Value> entry : map.entrySet())
+        for (java.util.Map.Entry<? extends Key, ? extends Value> entry : map.entrySet())
         {
             put(entry.getKey(), entry.getValue());
         }
     }
 
     @Override
-    public Value remove(final Object key)
+    public Value remove(Object key)
     {
         list.remove(get(key));
         return super.remove(key);
     }
 
-    public void sort(final Comparator<Value> comparator)
+    public void sort(Comparator<Value> comparator)
     {
         list.sort(comparator);
     }

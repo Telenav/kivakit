@@ -80,7 +80,7 @@ public class LogEntry implements Triaged
     private transient String formattedEntry;
 
     @UmlExcludeMember
-    public LogEntry(final Logger logger, final LoggerCodeContext context, final Thread thread, final Message message)
+    public LogEntry(Logger logger, LoggerCodeContext context, Thread thread, Message message)
     {
         this.context = message.context();
         if (this.context == null)
@@ -113,7 +113,7 @@ public class LogEntry implements Triaged
         return created;
     }
 
-    public String format(final LogFormatter formatter, final MessageFormatter.Format format)
+    public String format(LogFormatter formatter, MessageFormatter.Format format)
     {
         assert context != null;
         if (formattedEntry != null && Objects.equal(formatter, lastFormatter))
@@ -140,7 +140,7 @@ public class LogEntry implements Triaged
     /**
      *
      */
-    public String formattedMessage(final MessageFormatter.Format format)
+    public String formattedMessage(MessageFormatter.Format format)
     {
         if (formattedMessage == null)
         {

@@ -29,7 +29,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 public class SimpleLogFormatter implements LogFormatter
 {
     @Override
-    public String format(final LogEntry entry, final MessageFormatter.Format format)
+    public String format(LogEntry entry, MessageFormatter.Format format)
     {
         return entry.message().created().utc() + " " + entry.context() + " "
                 + Classes.simpleName(entry.message().getClass()) + " " + entry.threadName() + ": "

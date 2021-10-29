@@ -38,14 +38,14 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
 @LexakaiJavadoc(complete = true)
 public class SecureFtpNetworkLocation extends NetworkLocation
 {
-    public SecureFtpNetworkLocation(final NetworkPath path)
+    public SecureFtpNetworkLocation(NetworkPath path)
     {
         super(path);
         ensure(Protocol.SFTP.equals(path.port().protocol()));
     }
 
     @UmlRelation(label = "creates")
-    public SecureFtpResource resource(final NetworkAccessConstraints constraints)
+    public SecureFtpResource resource(NetworkAccessConstraints constraints)
     {
         return new SecureFtpResource(this, constraints);
     }

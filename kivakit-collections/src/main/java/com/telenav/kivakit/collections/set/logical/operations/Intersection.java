@@ -40,7 +40,7 @@ public class Intersection<T> extends LogicalSet<T>
 
     private final Set<T> smaller;
 
-    public Intersection(final Set<T> a, final Set<T> b)
+    public Intersection(Set<T> a, Set<T> b)
     {
         if (a.size() > b.size())
         {
@@ -55,7 +55,7 @@ public class Intersection<T> extends LogicalSet<T>
     }
 
     @Override
-    public boolean contains(final Object object)
+    public boolean contains(Object object)
     {
         return larger.contains(object) && smaller.contains(object);
     }
@@ -63,7 +63,7 @@ public class Intersection<T> extends LogicalSet<T>
     @Override
     public boolean isEmpty()
     {
-        for (final var object : smaller)
+        for (var object : smaller)
         {
             if (larger.contains(object))
             {
@@ -85,7 +85,7 @@ public class Intersection<T> extends LogicalSet<T>
             {
                 while (smallerIterator.hasNext())
                 {
-                    final var next = smallerIterator.next();
+                    var next = smallerIterator.next();
                     if (larger.contains(next))
                     {
                         return next;
@@ -100,7 +100,7 @@ public class Intersection<T> extends LogicalSet<T>
     public int size()
     {
         var size = 0;
-        for (final var object : smaller)
+        for (var object : smaller)
         {
             if (larger.contains(object))
             {

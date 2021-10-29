@@ -40,13 +40,13 @@ public class ProblemGsonSerializer extends PrimitiveGsonSerializer<Problem, Stri
     }
 
     @Override
-    protected Problem toObject(final String message)
+    protected Problem toObject(String message)
     {
         return new Problem(message);
     }
 
     @Override
-    protected String toPrimitive(final Problem problem)
+    protected String toPrimitive(Problem problem)
     {
         return problem.formatted(format);
     }

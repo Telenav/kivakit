@@ -86,9 +86,9 @@ public class StringList extends ObjectList<String>
     /**
      * @return A string list of the given text repeated the given number of times
      */
-    public static StringList repeat(final String text, final int times)
+    public static StringList repeat(String text, int times)
     {
-        final var list = new StringList();
+        var list = new StringList();
         for (var i = 0; i < times; i++)
         {
             list.add(text);
@@ -100,7 +100,7 @@ public class StringList extends ObjectList<String>
      * @return The list of strings resulting from splitting the given string on a delimiter character. The {@link
      * StringList} is unbounded in size for backwards compatibility.
      */
-    public static StringList split(final String string, final char delimiter)
+    public static StringList split(String string, char delimiter)
     {
         return split(Maximum.MAXIMUM, string, delimiter);
     }
@@ -109,7 +109,7 @@ public class StringList extends ObjectList<String>
      * @return The list of strings resulting from splitting the given string on a delimiter string. The {@link
      * StringList} is unbounded in size for backwards compatibility.
      */
-    public static StringList split(final String string, final String delimiter)
+    public static StringList split(String string, String delimiter)
     {
         return split(Maximum.MAXIMUM, string, delimiter);
     }
@@ -117,17 +117,17 @@ public class StringList extends ObjectList<String>
     /**
      * @return A string list of the given maximum size from the given text split on the given delimiter
      */
-    public static StringList split(final Maximum maximumSize, final String string, final char delimiter)
+    public static StringList split(Maximum maximumSize, String string, char delimiter)
     {
         if (string == null)
         {
             return new StringList(maximumSize);
         }
-        final var strings = new StringList(maximumSize);
+        var strings = new StringList(maximumSize);
         var pos = 0;
         while (true)
         {
-            final var next = string.indexOf(delimiter, pos);
+            var next = string.indexOf(delimiter, pos);
             if (next == -1)
             {
                 strings.add(string.substring(pos));
@@ -145,18 +145,18 @@ public class StringList extends ObjectList<String>
     /**
      * @return A string list of the given maximum size from the given text split on the given delimiter
      */
-    public static StringList split(final Maximum maximumSize, final String text, final String delimiter)
+    public static StringList split(Maximum maximumSize, String text, String delimiter)
     {
         if (text == null)
         {
             return new StringList(maximumSize);
         }
-        final var strings = new StringList(maximumSize);
-        final var delimiterLength = delimiter.length();
+        var strings = new StringList(maximumSize);
+        var delimiterLength = delimiter.length();
         var pos = 0;
         while (true)
         {
-            final var next = text.indexOf(delimiter, pos);
+            var next = text.indexOf(delimiter, pos);
             if (next == -1)
             {
                 strings.add(text.substring(pos));
@@ -174,9 +174,9 @@ public class StringList extends ObjectList<String>
     /**
      * @return A string list split from the given text using a regular expression pattern
      */
-    public static StringList splitOnPattern(final String text, final String pattern)
+    public static StringList splitOnPattern(String text, String pattern)
     {
-        final var list = new StringList();
+        var list = new StringList();
         list.addAll(text.split(pattern));
         return list;
     }
@@ -184,10 +184,10 @@ public class StringList extends ObjectList<String>
     /**
      * @return A list of strings from the given iterable
      */
-    public static <T> StringList stringList(final Iterable<T> values)
+    public static <T> StringList stringList(Iterable<T> values)
     {
-        final var list = new StringList();
-        for (final var value : values)
+        var list = new StringList();
+        for (var value : values)
         {
             list.addIfNotNull(value.toString());
         }
@@ -197,10 +197,10 @@ public class StringList extends ObjectList<String>
     /**
      * @return A list of strings from the given iterable
      */
-    public static <T> StringList stringList(final Iterable<T> values, final StringConverter<T> converter)
+    public static <T> StringList stringList(Iterable<T> values, StringConverter<T> converter)
     {
-        final var list = new StringList();
-        for (final var value : values)
+        var list = new StringList();
+        for (var value : values)
         {
             list.addIfNotNull(converter.unconvert(value));
         }
@@ -210,9 +210,9 @@ public class StringList extends ObjectList<String>
     /**
      * @return The given list of objects with a maximum size
      */
-    public static StringList stringList(final Maximum maximumSize, final String... strings)
+    public static StringList stringList(Maximum maximumSize, String... strings)
     {
-        final var list = new StringList(maximumSize);
+        var list = new StringList(maximumSize);
         list.addAll(Arrays.asList(strings));
         return list;
     }
@@ -220,7 +220,7 @@ public class StringList extends ObjectList<String>
     /**
      * @return The given list of objects
      */
-    public static StringList stringList(final String... strings)
+    public static StringList stringList(String... strings)
     {
         return stringList(Maximum._1024, strings);
     }
@@ -228,12 +228,12 @@ public class StringList extends ObjectList<String>
     /**
      * @return A list of words from the given text with word breaks occurring on whitespace
      */
-    public static StringList words(final String text)
+    public static StringList words(String text)
     {
-        final var list = new StringList();
+        var list = new StringList();
 
         var startOfWord = -1;
-        final var length = text.length();
+        var length = text.length();
         for (int at = 0; at < length; at++)
         {
             switch (text.charAt(at))
@@ -272,12 +272,12 @@ public class StringList extends ObjectList<String>
     @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseListConverter<String>
     {
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener, new IdentityConverter(listener), ",");
         }
 
-        public Converter(final Listener listener, final String delimiter)
+        public Converter(Listener listener, String delimiter)
         {
             super(listener, new IdentityConverter(listener), delimiter);
         }
@@ -288,31 +288,31 @@ public class StringList extends ObjectList<String>
         this(Maximum.MAXIMUM);
     }
 
-    public StringList(final Iterable<?> iterable)
+    public StringList(Iterable<?> iterable)
     {
         this(Maximum.MAXIMUM, iterable);
     }
 
-    public StringList(final Iterator<?> iterator)
+    public StringList(Iterator<?> iterator)
     {
         this(Maximum.MAXIMUM, iterator);
     }
 
-    public StringList(final Maximum maximumSize)
+    public StringList(Maximum maximumSize)
     {
         super(maximumSize);
     }
 
-    public StringList(final Maximum maximumSize, final Iterable<?> iterable)
+    public StringList(Maximum maximumSize, Iterable<?> iterable)
     {
         super(maximumSize);
-        for (final Object object : iterable)
+        for (Object object : iterable)
         {
             add(objectToString(object));
         }
     }
 
-    public StringList(final Maximum maximumSize, final Iterator<?> iterator)
+    public StringList(Maximum maximumSize, Iterator<?> iterator)
     {
         super(maximumSize);
         while (iterator.hasNext())
@@ -321,7 +321,7 @@ public class StringList extends ObjectList<String>
         }
     }
 
-    public StringList(final Maximum maximumSize, final String... strings)
+    public StringList(Maximum maximumSize, String... strings)
     {
         super(maximumSize);
         addAll(Arrays.asList(strings));
@@ -330,32 +330,32 @@ public class StringList extends ObjectList<String>
     /**
      * @return Adds the given formatted message to this string list
      */
-    public StringList add(final String message, final Object... arguments)
+    public StringList add(String message, Object... arguments)
     {
         add(Message.format(message, arguments));
         return this;
     }
 
     @Override
-    public StringList append(final String s)
+    public StringList append(String s)
     {
         return (StringList) super.append(s);
     }
 
     @Override
-    public StringList appendAll(final Iterable<? extends String> objects)
+    public StringList appendAll(Iterable<? extends String> objects)
     {
         return (StringList) super.appendAll(objects);
     }
 
     @Override
-    public StringList appendAll(final Iterator<? extends String> objects)
+    public StringList appendAll(Iterator<? extends String> objects)
     {
         return (StringList) super.appendAll(objects);
     }
 
     @Override
-    public StringList appendAll(final String[] objects)
+    public StringList appendAll(String[] objects)
     {
         return (StringList) super.appendAll(objects);
     }
@@ -363,10 +363,10 @@ public class StringList extends ObjectList<String>
     /**
      * @return This string list as an object list using the given converter
      */
-    public <T> ObjectList<T> asObjectList(final StringConverter<T> converter)
+    public <T> ObjectList<T> asObjectList(StringConverter<T> converter)
     {
-        final var objects = new ObjectList<T>();
-        for (final var string : this)
+        var objects = new ObjectList<T>();
+        for (var string : this)
         {
             objects.add(converter.convert(string));
         }
@@ -383,7 +383,7 @@ public class StringList extends ObjectList<String>
      */
     public VariableMap<String> asVariableMap()
     {
-        final var variables = new VariableMap<String>();
+        var variables = new VariableMap<String>();
         for (var i = 0; i < size(); i += 2)
         {
             if (i + 1 < size())
@@ -408,8 +408,8 @@ public class StringList extends ObjectList<String>
      */
     public StringList doubleQuoted()
     {
-        final var quoted = new StringList(maximumSize());
-        for (final var value : this)
+        var quoted = new StringList(maximumSize());
+        for (var value : this)
         {
             quoted.add("\"" + value + "\"");
         }
@@ -420,7 +420,7 @@ public class StringList extends ObjectList<String>
      * {@inheritDoc}
      */
     @Override
-    public StringList first(final Count count)
+    public StringList first(Count count)
     {
         return (StringList) super.first(count);
     }
@@ -429,7 +429,7 @@ public class StringList extends ObjectList<String>
      * {@inheritDoc}
      */
     @Override
-    public StringList first(final int count)
+    public StringList first(int count)
     {
         return (StringList) super.first(count);
     }
@@ -437,11 +437,11 @@ public class StringList extends ObjectList<String>
     /**
      * @return This string list indented the given number of spaces
      */
-    public StringList indented(final int spaces)
+    public StringList indented(int spaces)
     {
-        final var copy = new StringList();
+        var copy = new StringList();
         var i = 0;
-        for (final var string : this)
+        for (var string : this)
         {
             copy.add((i++ > 0 ? "\n" : "") + AsciiArt.repeat(spaces, ' ') + string);
         }
@@ -452,7 +452,7 @@ public class StringList extends ObjectList<String>
      * {@inheritDoc}
      */
     @Override
-    public StringList leftOf(final int index)
+    public StringList leftOf(int index)
     {
         return (StringList) super.leftOf(index);
     }
@@ -463,7 +463,7 @@ public class StringList extends ObjectList<String>
     public Count longest()
     {
         int count = 0;
-        for (final var at : this)
+        for (var at : this)
         {
             count = Math.max(at.length(), count);
         }
@@ -474,7 +474,7 @@ public class StringList extends ObjectList<String>
      * {@inheritDoc}
      */
     @Override
-    public <To> ObjectList<To> mapped(final Function<String, To> mapper)
+    public <To> ObjectList<To> mapped(Function<String, To> mapper)
     {
         return super.mapped(mapper);
     }
@@ -483,7 +483,7 @@ public class StringList extends ObjectList<String>
      * {@inheritDoc}
      */
     @Override
-    public StringList matching(final Matcher<String> matcher)
+    public StringList matching(Matcher<String> matcher)
     {
         return (StringList) super.matching(matcher);
     }
@@ -492,7 +492,7 @@ public class StringList extends ObjectList<String>
      * {@inheritDoc}
      */
     @Override
-    public StringList maybeReversed(final boolean reverse)
+    public StringList maybeReversed(boolean reverse)
     {
         return (StringList) super.maybeReversed(reverse);
     }
@@ -511,9 +511,9 @@ public class StringList extends ObjectList<String>
      */
     public StringList numbered()
     {
-        final var numbered = newInstance();
+        var numbered = newInstance();
         var number = 1;
-        for (final var value : this)
+        for (var value : this)
         {
             numbered.add(number + ". " + value);
             number++;
@@ -533,10 +533,10 @@ public class StringList extends ObjectList<String>
     /**
      * @return This string list with each element prefixed with the given prefix
      */
-    public StringList prefixedWith(final String prefix)
+    public StringList prefixedWith(String prefix)
     {
-        final var prefixed = newInstance();
-        for (final var string : this)
+        var prefixed = newInstance();
+        for (var string : this)
         {
             prefixed.add(prefix + string);
         }
@@ -547,7 +547,7 @@ public class StringList extends ObjectList<String>
      * {@inheritDoc}
      */
     @Override
-    public StringList prepend(final String element)
+    public StringList prepend(String element)
     {
         return (StringList) super.prepend(element);
     }
@@ -574,7 +574,7 @@ public class StringList extends ObjectList<String>
      * {@inheritDoc}
      */
     @Override
-    public StringList rightOf(final int index)
+    public StringList rightOf(int index)
     {
         return (StringList) super.rightOf(index);
     }
@@ -584,8 +584,8 @@ public class StringList extends ObjectList<String>
      */
     public StringList singleQuoted()
     {
-        final var quoted = newInstance();
-        for (final var value : this)
+        var quoted = newInstance();
+        for (var value : this)
         {
             quoted.add("'" + value + "'");
         }
@@ -605,7 +605,7 @@ public class StringList extends ObjectList<String>
      * {@inheritDoc}
      */
     @Override
-    public StringList sorted(final Comparator<String> comparator)
+    public StringList sorted(Comparator<String> comparator)
     {
         return (StringList) super.sorted(comparator);
     }
@@ -614,7 +614,7 @@ public class StringList extends ObjectList<String>
      * {@inheritDoc}
      */
     @Override
-    public StringList subList(final int start, final int end)
+    public StringList subList(int start, int end)
     {
         return (StringList) super.subList(start, end);
     }
@@ -622,7 +622,7 @@ public class StringList extends ObjectList<String>
     /**
      * @return This list of strings as an ASCII art text box with the given title
      */
-    public String titledBox(final String title, Object... arguments)
+    public String titledBox(String title, Object... arguments)
     {
         return AsciiArt.textBox(Message.format(title, arguments), join("\n"));
     }
@@ -640,12 +640,12 @@ public class StringList extends ObjectList<String>
      * {@inheritDoc}
      */
     @Override
-    public StringList without(final Matcher<String> matcher)
+    public StringList without(Matcher<String> matcher)
     {
         return (StringList) super.without(matcher);
     }
 
-    protected String objectToString(final Object object)
+    protected String objectToString(Object object)
     {
         return StringTo.string(object);
     }

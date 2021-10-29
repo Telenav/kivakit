@@ -55,7 +55,7 @@ public class MessageChecker extends BaseRepeater
     /**
      * Runs the given code and then checks messages received
      */
-    public MessageChecker check(final Runnable code)
+    public MessageChecker check(Runnable code)
     {
         code.run();
         check();
@@ -67,16 +67,16 @@ public class MessageChecker extends BaseRepeater
      */
     public boolean check()
     {
-        final Set<Class<? extends Message>> types = new HashSet<>();
-        for (final var message : messages)
+        Set<Class<? extends Message>> types = new HashSet<>();
+        for (var message : messages)
         {
             types.add(message.getClass());
         }
 
-        for (final var type : types)
+        for (var type : types)
         {
-            final var count = messages.messages(type).size();
-            final var expected = expectedCount.get(type);
+            var count = messages.messages(type).size();
+            var expected = expectedCount.get(type);
             if (expected == null)
             {
                 if (count == 0)
@@ -100,7 +100,7 @@ public class MessageChecker extends BaseRepeater
     /**
      * Registers that one message the given type should be received
      */
-    public MessageChecker expect(final Class<? extends Message> messageClass)
+    public MessageChecker expect(Class<? extends Message> messageClass)
     {
         expect(messageClass, 1);
         return this;
@@ -109,9 +109,9 @@ public class MessageChecker extends BaseRepeater
     /**
      * Registers an expected number of messages of the given class
      */
-    public MessageChecker expect(final Class<? extends Message> messageClass, final int count)
+    public MessageChecker expect(Class<? extends Message> messageClass, int count)
     {
-        final var expected = expectedCount.get(messageClass);
+        var expected = expectedCount.get(messageClass);
         if (expected == null)
         {
             expectedCount.put(messageClass, Count.count(count));
@@ -129,7 +129,7 @@ public class MessageChecker extends BaseRepeater
      * @param message The message
      */
     @Override
-    public void onMessage(final Message message)
+    public void onMessage(Message message)
     {
         messages.add(message);
     }

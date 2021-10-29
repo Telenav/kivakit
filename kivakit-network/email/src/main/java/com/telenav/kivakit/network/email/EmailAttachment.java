@@ -49,7 +49,7 @@ public class EmailAttachment
         return data;
     }
 
-    public EmailAttachment data(final byte[] data)
+    public EmailAttachment data(byte[] data)
     {
         this.data = data;
         return this;
@@ -60,7 +60,7 @@ public class EmailAttachment
         return filename;
     }
 
-    public EmailAttachment filename(final String filename)
+    public EmailAttachment filename(String filename)
     {
         this.filename = filename;
         return this;
@@ -71,7 +71,7 @@ public class EmailAttachment
         return mimeType;
     }
 
-    public EmailAttachment mimeType(final String mimeType)
+    public EmailAttachment mimeType(String mimeType)
     {
         this.mimeType = mimeType;
         return this;
@@ -81,12 +81,12 @@ public class EmailAttachment
     {
         try
         {
-            final var part = new MimeBodyPart();
+            var part = new MimeBodyPart();
             part.setDataHandler(new DataHandler(new ByteArrayDataSource(data, mimeType)));
             part.setFileName(filename);
             return part;
         }
-        catch (final MessagingException e)
+        catch (MessagingException e)
         {
             throw new IllegalStateException("Cannot create body part for attachment " + this, e);
         }

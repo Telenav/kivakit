@@ -31,13 +31,13 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 @LexakaiJavadoc(complete = true)
 public class EmailAddressConverter extends BaseStringConverter<EmailAddress>
 {
-    public EmailAddressConverter(final Listener listener)
+    public EmailAddressConverter(Listener listener)
     {
         super(listener);
     }
 
     @Override
-    protected EmailAddress onToValue(final String value)
+    protected EmailAddress onToValue(String value)
     {
         return EmailAddress.parse(value);
     }

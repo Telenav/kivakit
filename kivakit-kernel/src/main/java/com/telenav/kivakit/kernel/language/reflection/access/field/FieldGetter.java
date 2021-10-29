@@ -34,13 +34,13 @@ public class FieldGetter implements Getter
 
     private final transient java.lang.reflect.Field field;
 
-    public FieldGetter(final java.lang.reflect.Field field)
+    public FieldGetter(java.lang.reflect.Field field)
     {
         this.field = field;
     }
 
     @Override
-    public <T extends Annotation> T annotation(final Class<T> annotationType)
+    public <T extends Annotation> T annotation(Class<T> annotationType)
     {
         return field.getAnnotation(annotationType);
     }
@@ -51,7 +51,7 @@ public class FieldGetter implements Getter
     }
 
     @Override
-    public Object get(final Object object)
+    public Object get(Object object)
     {
         try
         {
@@ -61,7 +61,7 @@ public class FieldGetter implements Getter
             }
             LOGGER.warning("Cannot get ${debug}", this);
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             LOGGER.warning(e, "Cannot get ${debug}", this);
         }

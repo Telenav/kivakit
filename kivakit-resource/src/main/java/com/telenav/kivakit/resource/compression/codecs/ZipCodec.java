@@ -38,13 +38,13 @@ import java.util.zip.ZipOutputStream;
 public class ZipCodec implements Codec
 {
     @Override
-    public OutputStream compressed(final OutputStream out)
+    public OutputStream compressed(OutputStream out)
     {
         return new ZipOutputStream(out);
     }
 
     @Override
-    public InputStream decompressed(final InputStream in)
+    public InputStream decompressed(InputStream in)
     {
         return new ZipInputStream(in);
     }

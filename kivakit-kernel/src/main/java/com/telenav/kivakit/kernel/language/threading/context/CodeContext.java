@@ -36,7 +36,7 @@ public class CodeContext
 {
     private static Source<String> hostResolver = () -> "localhost";
 
-    public static void hostResolver(final Source<String> resolver)
+    public static void hostResolver(Source<String> resolver)
     {
         hostResolver = resolver;
     }
@@ -51,14 +51,14 @@ public class CodeContext
     @KivaKitIncludeProperty
     private final String host = hostResolver.get();
 
-    public CodeContext(final Class<?> type)
+    public CodeContext(Class<?> type)
     {
         this.type = type;
         fullTypeName = type.getName();
         typeName = Classes.simpleName(type);
     }
 
-    public CodeContext(final Method callerOf)
+    public CodeContext(Method callerOf)
     {
         if (callerOf != null)
         {
@@ -68,7 +68,7 @@ public class CodeContext
         }
     }
 
-    public CodeContext(final String locationName)
+    public CodeContext(String locationName)
     {
         type = null;
         fullTypeName = locationName;

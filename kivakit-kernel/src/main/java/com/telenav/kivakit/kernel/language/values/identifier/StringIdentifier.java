@@ -36,7 +36,7 @@ public class StringIdentifier implements Comparable<StringIdentifier>
     @JsonProperty
     private String identifier;
 
-    public StringIdentifier(final String identifier)
+    public StringIdentifier(String identifier)
     {
         this.identifier = identifier;
     }
@@ -51,17 +51,17 @@ public class StringIdentifier implements Comparable<StringIdentifier>
     }
 
     @Override
-    public int compareTo(final StringIdentifier that)
+    public int compareTo(StringIdentifier that)
     {
         return identifier.compareTo(that.identifier);
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof StringIdentifier)
         {
-            final var that = (StringIdentifier) object;
+            var that = (StringIdentifier) object;
             return identifier.equals(that.identifier);
         }
         return false;

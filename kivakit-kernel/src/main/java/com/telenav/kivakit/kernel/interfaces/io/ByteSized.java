@@ -32,12 +32,12 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @LexakaiJavadoc(complete = true)
 public interface ByteSized
 {
-    default boolean isLargerThan(final ByteSized that)
+    default boolean isLargerThan(ByteSized that)
     {
         return sizeInBytes().isGreaterThan(that.sizeInBytes());
     }
 
-    default boolean isSmallerThan(final ByteSized that)
+    default boolean isSmallerThan(ByteSized that)
     {
         return sizeInBytes().isLessThan(that.sizeInBytes());
     }

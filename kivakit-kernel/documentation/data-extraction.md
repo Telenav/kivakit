@@ -30,16 +30,16 @@ allowing extractors to report issues encountered during extraction.
 
     public abstract class BaseExtractor<Value, From> extends BaseRepeater implements Extractor<Value, From>
     {
-        protected BaseExtractor(final Listener listener)
+        protected BaseExtractor( Listener listener)
     
-        public Value extract(final From object)
+        public Value extract( From object)
     
-        public ObjectList<Value> extract(final From[] values)
+        public ObjectList<Value> extract( From[] values)
 
-        public ObjectList<Value> extractList(final Map<String, String> map, final From key)
-        public ObjectList<Value> extractList(final Keyed<String, String> map, final From key)
-        public ObjectList<Value> extractList(final Map<String, String> map, final From key, final String separator)
-        public ObjectList<Value> extractList(final Keyed<String, String> map, final From key, final String separator)
+        public ObjectList<Value> extractList( Map<String, String> map, final From key)
+        public ObjectList<Value> extractList( Keyed<String, String> map, final From key)
+        public ObjectList<Value> extractList( Map<String, String> map, final From key, final String separator)
+        public ObjectList<Value> extractList( Keyed<String, String> map, final From key, final String separator)
 
         public abstract Value onExtract(From object);
     }

@@ -33,13 +33,13 @@ public class FieldSetter implements Setter
 {
     private final transient java.lang.reflect.Field field;
 
-    public FieldSetter(final java.lang.reflect.Field field)
+    public FieldSetter(java.lang.reflect.Field field)
     {
         this.field = field;
     }
 
     @Override
-    public <T extends Annotation> T annotation(final Class<T> annotationType)
+    public <T extends Annotation> T annotation(Class<T> annotationType)
     {
         return field.getAnnotation(annotationType);
     }
@@ -51,7 +51,7 @@ public class FieldSetter implements Setter
     }
 
     @Override
-    public Message set(final Object object, final Object value)
+    public Message set(Object object, Object value)
     {
         try
         {
@@ -65,7 +65,7 @@ public class FieldSetter implements Setter
                 return new StepFailure("Cannot set ${debug}", this);
             }
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             return new StepFailure(e, "Cannot set ${debug}", this);
         }

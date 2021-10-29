@@ -56,9 +56,9 @@ public class JavaVirtualMachineHealth
 
     private final Map<String, Integer> messageType = new ConcurrentHashMap<>();
 
-    public Count count(final String messageType)
+    public Count count(String messageType)
     {
-        final var count = this.messageType.get(messageType);
+        var count = this.messageType.get(messageType);
         return count == null ? Count._0 : Count.count(count);
     }
 
@@ -67,8 +67,8 @@ public class JavaVirtualMachineHealth
     {
         if (lastSnapshot != null)
         {
-            final var elapsed = elapsed();
-            final var elapsedCpuTime = elapsedCpuTime();
+            var elapsed = elapsed();
+            var elapsedCpuTime = elapsedCpuTime();
             return 100.0 * elapsedCpuTime.asMilliseconds() / elapsed.asMilliseconds();
         }
         return 0.0;
@@ -92,10 +92,10 @@ public class JavaVirtualMachineHealth
         return freeMemory;
     }
 
-    public void logEntry(final LogEntry entry)
+    public void logEntry(LogEntry entry)
     {
-        final var messageType = entry.messageType();
-        final var count = this.messageType.getOrDefault(messageType, 0);
+        var messageType = entry.messageType();
+        var count = this.messageType.getOrDefault(messageType, 0);
         this.messageType.put(messageType, count + 1);
     }
 
@@ -153,7 +153,7 @@ public class JavaVirtualMachineHealth
             started = Time.now();
         }
 
-        final var vm = JavaVirtualMachine.local();
+        var vm = JavaVirtualMachine.local();
         freeMemory = vm.freeMemory();
         maximumMemory = vm.maximumMemory();
         totalMemory = vm.totalMemory();

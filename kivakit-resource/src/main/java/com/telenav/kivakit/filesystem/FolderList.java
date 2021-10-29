@@ -48,17 +48,17 @@ import java.util.function.UnaryOperator;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
+@SuppressWarnings("NullableProblems") @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
 @LexakaiJavadoc(complete = true)
 public class FolderList implements List<Folder>
 {
     /**
      * <b>Not public API</b>
      */
-    public static FolderList forVirtual(final List<? extends FolderService> virtualFolders)
+    public static FolderList forVirtual(List<? extends FolderService> virtualFolders)
     {
-        final var folders = new FolderList();
-        for (final FolderService folder : virtualFolders)
+        var folders = new FolderList();
+        for (FolderService folder : virtualFolders)
         {
             folders.add(new Folder(folder));
         }
@@ -73,18 +73,18 @@ public class FolderList implements List<Folder>
     @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<FolderList>
     {
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
         }
 
         @Override
-        protected FolderList onToValue(final String value)
+        protected FolderList onToValue(String value)
         {
-            final var folders = new FolderList();
-            for (final var path : value.split(","))
+            var folders = new FolderList();
+            for (var path : value.split(","))
             {
-                final var folder = Folder.parse(path);
+                var folder = Folder.parse(path);
                 folders.add(folder);
             }
             return folders;
@@ -99,28 +99,28 @@ public class FolderList implements List<Folder>
     }
 
     @Override
-    public boolean add(final Folder folder)
+    public boolean add(Folder folder)
     {
         return folders.add(folder);
     }
 
     @Override
-    public void add(final int index, final Folder folder)
+    public void add(int index, Folder folder)
     {
         folders.add(index, folder);
     }
 
     @Override
-    public boolean addAll(final int index,
-                          @NotNull final Collection<? extends Folder> c)
+    public boolean addAll(int index,
+                          @NotNull Collection<? extends Folder> c)
     {
         return folders.addAll(index, c);
     }
 
     @Override
-    public boolean addAll(final Collection<? extends Folder> collection)
+    public boolean addAll(Collection<? extends Folder> collection)
     {
-        for (final Folder folder : collection)
+        for (Folder folder : collection)
         {
             add(folder);
         }
@@ -139,30 +139,30 @@ public class FolderList implements List<Folder>
     }
 
     @Override
-    public boolean contains(final Object o)
+    public boolean contains(Object o)
     {
         return folders.contains(o);
     }
 
     @Override
-    public boolean containsAll(@NotNull final Collection<?> c)
+    public boolean containsAll(@NotNull Collection<?> c)
     {
         return folders.containsAll(c);
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof FolderList)
         {
-            final FolderList that = (FolderList) object;
+            FolderList that = (FolderList) object;
             return folders.equals(that.folders);
         }
         return false;
     }
 
     @Override
-    public Folder get(final int index)
+    public Folder get(int index)
     {
         return folders.get(index);
     }
@@ -174,7 +174,7 @@ public class FolderList implements List<Folder>
     }
 
     @Override
-    public int indexOf(final Object o)
+    public int indexOf(Object o)
     {
         return folders.indexOf(o);
     }
@@ -193,7 +193,7 @@ public class FolderList implements List<Folder>
     }
 
     @Override
-    public int lastIndexOf(final Object o)
+    public int lastIndexOf(Object o)
     {
         return folders.lastIndexOf(o);
     }
@@ -207,15 +207,15 @@ public class FolderList implements List<Folder>
 
     @NotNull
     @Override
-    public ListIterator<Folder> listIterator(final int index)
+    public ListIterator<Folder> listIterator(int index)
     {
         return folders.listIterator(index);
     }
 
-    public FolderList matching(final Matcher<Folder> matcher)
+    public FolderList matching(Matcher<Folder> matcher)
     {
-        final var folders = new FolderList();
-        for (final var folder : this)
+        var folders = new FolderList();
+        for (var folder : this)
         {
             if (matcher.matches(folder))
             {
@@ -226,37 +226,37 @@ public class FolderList implements List<Folder>
     }
 
     @Override
-    public boolean remove(final Object o)
+    public boolean remove(Object o)
     {
         return folders.remove(o);
     }
 
     @Override
-    public Folder remove(final int index)
+    public Folder remove(int index)
     {
         return folders.remove(index);
     }
 
     @Override
-    public boolean removeAll(@NotNull final Collection<?> c)
+    public boolean removeAll(@NotNull Collection<?> c)
     {
         return folders.removeAll(c);
     }
 
     @Override
-    public void replaceAll(final UnaryOperator<Folder> operator)
+    public void replaceAll(UnaryOperator<Folder> operator)
     {
         folders.replaceAll(operator);
     }
 
     @Override
-    public boolean retainAll(@NotNull final Collection<?> c)
+    public boolean retainAll(@NotNull Collection<?> c)
     {
         return folders.retainAll(c);
     }
 
     @Override
-    public Folder set(final int index, final Folder folder)
+    public Folder set(int index, Folder folder)
     {
         return folders.set(index, folder);
     }
@@ -268,14 +268,14 @@ public class FolderList implements List<Folder>
     }
 
     @Override
-    public void sort(final Comparator<? super Folder> c)
+    public void sort(Comparator<? super Folder> c)
     {
         folders.sort(c);
     }
 
     @NotNull
     @Override
-    public List<Folder> subList(final int fromIndex, final int toIndex)
+    public List<Folder> subList(int fromIndex, int toIndex)
     {
         return folders.subList(fromIndex, toIndex);
     }
@@ -289,7 +289,7 @@ public class FolderList implements List<Folder>
 
     @NotNull
     @Override
-    public <T> T[] toArray(@NotNull final T[] array)
+    public <T> T[] toArray(@NotNull T[] array)
     {
         return folders.toArray(array);
     }

@@ -63,7 +63,7 @@ class Entry
         /**
          * @param type The type of configuration
          */
-        public Identifier(final Class<?> type)
+        public Identifier(Class<?> type)
         {
             this.type = type;
             instance = InstanceIdentifier.SINGLETON;
@@ -73,24 +73,24 @@ class Entry
          * @param type The type of configuration
          * @param instance The instance of the given type
          */
-        public Identifier(final Class<?> type, final InstanceIdentifier instance)
+        public Identifier(Class<?> type, InstanceIdentifier instance)
         {
             this.type = type;
             this.instance = instance;
         }
 
         @Override
-        public int compareTo(final Key that)
+        public int compareTo(Key that)
         {
             return toString().compareTo(that.toString());
         }
 
         @Override
-        public boolean equals(final Object object)
+        public boolean equals(Object object)
         {
             if (object instanceof Identifier)
             {
-                final var that = (Identifier) object;
+                var that = (Identifier) object;
                 return type.equals(that.type) && instance.equals(that.instance);
             }
             return false;
@@ -132,21 +132,21 @@ class Entry
     /** The configuration object itself */
     private final Object object;
 
-    public Entry(final Identifier identifier, final Object object)
+    public Entry(Identifier identifier, Object object)
     {
         ensureNotNull(identifier);
         ensureNotNull(object);
-        
+
         this.identifier = identifier;
         this.object = object;
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Entry)
         {
-            final Entry that = (Entry) object;
+            Entry that = (Entry) object;
             return this.object == that.object;
         }
         return false;

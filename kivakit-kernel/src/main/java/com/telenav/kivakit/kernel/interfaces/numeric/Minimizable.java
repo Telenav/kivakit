@@ -25,7 +25,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * Determines which of two objects is the minimum. For example, the Angle object is {@link Minimizable} and implements
  * this method:
  * <pre>
- *     public Angle minimum(final Angle that) { ... }
+ *     public Angle minimum( Angle that) { ... }
  * </pre>
  *
  * @param <Value> The type of object to compare

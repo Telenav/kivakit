@@ -37,7 +37,7 @@ public class ThrowingListener implements Listener
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
     @Override
-    public void onMessage(final Message message)
+    public void onMessage(Message message)
     {
         switch (message.status())
         {

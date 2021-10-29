@@ -151,7 +151,7 @@ public interface Listener extends Transceiver
     /**
      * Registers this listener with the given broadcaster in being interested in transmitted messages
      */
-    default <T extends Broadcaster> T listenTo(final T broadcaster, final MessageFilter filter)
+    default <T extends Broadcaster> T listenTo(T broadcaster, MessageFilter filter)
     {
         broadcaster.addListener(this, filter);
         return broadcaster;
@@ -160,7 +160,7 @@ public interface Listener extends Transceiver
     /**
      * Registers this listener with the given broadcaster in being interested in transmitted messages
      */
-    default <T extends Broadcaster> T listenTo(final T broadcaster)
+    default <T extends Broadcaster> T listenTo(T broadcaster)
     {
         if (broadcaster != null)
         {
@@ -179,13 +179,13 @@ public interface Listener extends Transceiver
      *
      * @param message The message
      */
-    void onMessage(final Message message);
+    void onMessage(Message message);
 
     /**
      * <b>Not public API</b>
      */
     @UmlExcludeMember
-    default void onReceive(final Transmittable transmittable)
+    default void onReceive(Transmittable transmittable)
     {
         if (transmittable instanceof Message)
         {

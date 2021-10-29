@@ -54,13 +54,13 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramMessageType.class)
 public class Glitch extends OperationStatusMessage
 {
-    public Glitch(final String message, final Object... arguments)
+    public Glitch(String message, Object... arguments)
     {
         super(message);
         arguments(arguments);
     }
 
-    public Glitch(final Throwable cause, final String message, final Object... arguments)
+    public Glitch(Throwable cause, String message, Object... arguments)
     {
         super(message + ": " + Message.escape(cause.getMessage()));
         cause(cause);

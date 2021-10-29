@@ -123,7 +123,7 @@ public class JarLauncher extends BaseRepeater
     /**
      * Adds the given resourced object to this launcher as a potential place to load the JAR file from
      */
-    public JarLauncher addJarSource(final Resourceful resourced)
+    public JarLauncher addJarSource(Resourceful resourced)
     {
         jarSources.add(resourced);
         return this;
@@ -132,7 +132,7 @@ public class JarLauncher extends BaseRepeater
     /**
      * @param arguments The arguments to pass to the launched Java program
      */
-    public JarLauncher arguments(final String... arguments)
+    public JarLauncher arguments(String... arguments)
     {
         programArguments = StringList.stringList(Arrays.asList(arguments));
         return this;
@@ -141,7 +141,7 @@ public class JarLauncher extends BaseRepeater
     /**
      * @param arguments The arguments to pass to the launched Java program
      */
-    public JarLauncher arguments(final StringList arguments)
+    public JarLauncher arguments(StringList arguments)
     {
         programArguments = arguments;
         return this;
@@ -150,7 +150,7 @@ public class JarLauncher extends BaseRepeater
     /**
      * @param debugPort Enables Java debugging on this given port
      */
-    public JarLauncher enableDebuggerOnPort(final int debugPort)
+    public JarLauncher enableDebuggerOnPort(int debugPort)
     {
         this.debugPort = debugPort;
         return this;
@@ -160,7 +160,7 @@ public class JarLauncher extends BaseRepeater
      * @param headless True if the process should run in AWT headless mode, meaning that AWT is not initialized and
      * there is no tray icon shown (even temporarily) for the process
      */
-    public JarLauncher headless(final boolean headless)
+    public JarLauncher headless(boolean headless)
     {
         this.headless = headless;
         return this;
@@ -169,7 +169,7 @@ public class JarLauncher extends BaseRepeater
     /**
      * @param type The type of process to launch
      */
-    public JarLauncher processType(final ProcessType type)
+    public JarLauncher processType(ProcessType type)
     {
         processType = type;
         return this;
@@ -178,7 +178,7 @@ public class JarLauncher extends BaseRepeater
     /**
      * @param redirectTo The type of output redirection to perform
      */
-    public JarLauncher redirectTo(final RedirectTo redirectTo)
+    public JarLauncher redirectTo(RedirectTo redirectTo)
     {
         this.redirectTo = redirectTo;
         return this;
@@ -192,18 +192,18 @@ public class JarLauncher extends BaseRepeater
     public Process run()
     {
         // Go through each possible jar source,
-        for (final var source : jarSources)
+        for (var source : jarSources)
         {
             // get the resource and materialize it to the local host,
-            final var resource = source.resource().materialized(ProgressReporter.NULL);
+            var resource = source.resource().materialized(ProgressReporter.NULL);
             try
             {
                 // get the resource basename,
-                final var base = resource.fileName().withoutExtension(Extension.JAR);
+                var base = resource.fileName().withoutExtension(Extension.JAR);
 
                 // and create the argument list.
-                final var java = OperatingSystem.get().java();
-                final var arguments = new StringList();
+                var java = OperatingSystem.get().java();
+                var arguments = new StringList();
                 arguments.add(java);
                 if (headless)
                 {
@@ -218,11 +218,11 @@ public class JarLauncher extends BaseRepeater
                 arguments.addAll(programArguments);
 
                 // If the process should be detached,
-                final var script = folder().file(base + ".sh");
+                var script = folder().file(base + ".sh");
                 if (processType == DETACHED)
                 {
                     // write the arguments to a shell script,
-                    try (final var out = script.printWriter())
+                    try (var out = script.printWriter())
                     {
                         out.println("#!/bin/bash");
                         out.println("");
@@ -234,7 +234,7 @@ public class JarLauncher extends BaseRepeater
                 }
 
                 // Create a process builder for the script or arguments,
-                final var builder = new ProcessBuilder();
+                var builder = new ProcessBuilder();
                 if (processType == CHILD)
                 {
                     trace("Executing $", arguments.join(" "));
@@ -246,10 +246,10 @@ public class JarLauncher extends BaseRepeater
                 }
 
                 // get this process' identifier
-                final var pid = OperatingSystem.get().processIdentifier();
+                var pid = OperatingSystem.get().processIdentifier();
 
                 // and launch the jar, redirecting output to
-                final var announcement = PropertyMap.create();
+                var announcement = PropertyMap.create();
                 announcement.put("jar", resource.path().toString());
                 announcement.put("arguments", arguments.join(" "));
                 switch (redirectTo)
@@ -260,7 +260,7 @@ public class JarLauncher extends BaseRepeater
                         announcement.put("stdout", "console");
                         announcement.put("stderr", "console");
                         announcement.asStringList().titledBox("Launching Jar");
-                        final var process = builder.start();
+                        var process = builder.start();
                         KivaKitThread.run(this, "RedirectOutputToConsole", () -> Processes.copyStandardOutToConsole(process));
                         KivaKitThread.run(this, "RedirectErrorToConsole", () -> Processes.redirectStandardErrorToConsole(process));
                         return process;
@@ -269,8 +269,8 @@ public class JarLauncher extends BaseRepeater
                     // or to a file.
                     case FILE:
                     {
-                        final var stderr = folder().file(base + "-" + pid + "-stderr.txt");
-                        final var stdout = folder().file(base + "-" + pid + "-stdout.txt");
+                        var stderr = folder().file(base + "-" + pid + "-stderr.txt");
+                        var stdout = folder().file(base + "-" + pid + "-stdout.txt");
                         announcement.put("stdout", stdout.path().toString());
                         announcement.put("stderr", stderr.path().toString());
                         announcement.asStringList().titledBox("Launching Jar");
@@ -284,7 +284,7 @@ public class JarLauncher extends BaseRepeater
                         unsupported("Unsupported redirection");
                 }
             }
-            catch (final IOException e)
+            catch (IOException e)
             {
                 problem(e, "Unable to launch $", resource);
             }

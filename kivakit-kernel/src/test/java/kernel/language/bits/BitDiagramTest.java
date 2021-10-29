@@ -37,7 +37,7 @@ public class BitDiagramTest
     @Test
     public void testExtract()
     {
-        final var value = binary("100110011");
+        var value = binary("100110011");
 
         ensureEqual(9, A.getInt(value));
         ensureEqual(9, B.getInt(value));
@@ -47,14 +47,14 @@ public class BitDiagramTest
     @Test
     public void testSet()
     {
-        final var value = binary("000010010");
-        final var field = binary("0110");
-        final var result = binary("000001100");
+        var value = binary("000010010");
+        var field = binary("0110");
+        var result = binary("000001100");
 
         ensureEqual(result, B.set(value, field));
     }
 
-    private int binary(final String value)
+    private int binary(String value)
     {
         return Integer.parseInt(value, 2);
     }

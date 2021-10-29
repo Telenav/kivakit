@@ -113,12 +113,12 @@ public class Host implements Named, AsString, Comparable<Host>
     public static Host NONE = new Host("None");
 
     public static SwitchParser.Builder<ObjectList<Host>> hostListSwitchParser(
-            final String name, final String description, final String delimiter)
+            String name, String description, String delimiter)
     {
         return listSwitchParser(name, description, new Host.Converter(LOGGER), Host.class, delimiter);
     }
 
-    public static SwitchParser.Builder<Host> hostSwitchParser(final String name, final String description)
+    public static SwitchParser.Builder<Host> hostSwitchParser(String name, String description)
     {
         return builder(Host.class)
                 .name(name)
@@ -136,8 +136,8 @@ public class Host implements Named, AsString, Comparable<Host>
         return Loopback.get();
     }
 
-    public static SwitchParser.Builder<NetworkPath> networkFilePathSwitchParser(final String name,
-                                                                                final String description)
+    public static SwitchParser.Builder<NetworkPath> networkFilePathSwitchParser(String name,
+                                                                                String description)
     {
         return builder(NetworkPath.class)
                 .name(name)
@@ -145,24 +145,24 @@ public class Host implements Named, AsString, Comparable<Host>
                 .description(description);
     }
 
-    public static Host parse(final String name)
+    public static Host parse(String name)
     {
         return new Host(name);
     }
 
-    public static Host parse(final String name, final String description)
+    public static Host parse(String name, String description)
     {
         return new Host(name, description);
     }
 
-    public static SwitchParser.Builder<ObjectList<Port>> portListSwitchParser(final String name,
-                                                                              final String description,
-                                                                              final String delimiter)
+    public static SwitchParser.Builder<ObjectList<Port>> portListSwitchParser(String name,
+                                                                              String description,
+                                                                              String delimiter)
     {
         return listSwitchParser(name, description, new Port.Converter(LOGGER), Port.class, delimiter);
     }
 
-    public static SwitchParser.Builder<Port> portSwitchParser(final String name, final String description)
+    public static SwitchParser.Builder<Port> portSwitchParser(String name, String description)
     {
         return builder(Port.class)
                 .name(name)
@@ -178,13 +178,13 @@ public class Host implements Named, AsString, Comparable<Host>
     @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<Host>
     {
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
         }
 
         @Override
-        protected Host onToValue(final String value)
+        protected Host onToValue(String value)
         {
             return parse(value);
         }
@@ -205,25 +205,25 @@ public class Host implements Named, AsString, Comparable<Host>
     @JsonIgnore
     private String serializedAddress;
 
-    public Host(final InetAddress address, final String description)
+    public Host(InetAddress address, String description)
     {
         address(address);
         this.description = description;
     }
 
-    public Host(final InetAddress address, final String name, final String description)
+    public Host(InetAddress address, String name, String description)
     {
         address(address);
         this.name = name;
         this.description = description;
     }
 
-    protected Host(final String name)
+    protected Host(String name)
     {
         this.name = name;
     }
 
-    protected Host(final String name, final String description)
+    protected Host(String name, String description)
     {
         this.name = name;
         this.description = description;
@@ -246,7 +246,7 @@ public class Host implements Named, AsString, Comparable<Host>
 
     @Override
     @UmlExcludeMember
-    public String asString(final StringFormat format)
+    public String asString(StringFormat format)
     {
         return new ObjectFormatter(this).toString();
     }
@@ -258,7 +258,7 @@ public class Host implements Named, AsString, Comparable<Host>
     }
 
     @Override
-    public int compareTo(final Host that)
+    public int compareTo(Host that)
     {
         return canonicalName().compareTo(that.canonicalName());
     }
@@ -270,11 +270,11 @@ public class Host implements Named, AsString, Comparable<Host>
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Host)
         {
-            final Host that = (Host) object;
+            Host that = (Host) object;
             return address().equals(that.address());
         }
         return false;
@@ -285,7 +285,7 @@ public class Host implements Named, AsString, Comparable<Host>
         return ftp(FTP.defaultPort());
     }
 
-    public Port ftp(final int port)
+    public Port ftp(int port)
     {
         return port(FTP, port);
     }
@@ -301,7 +301,7 @@ public class Host implements Named, AsString, Comparable<Host>
         return hazelcast(HAZELCAST.defaultPort());
     }
 
-    public Port hazelcast(final int port)
+    public Port hazelcast(int port)
     {
         return port(HAZELCAST, port);
     }
@@ -311,7 +311,7 @@ public class Host implements Named, AsString, Comparable<Host>
         return http(HTTP.defaultPort());
     }
 
-    public Port http(final int port)
+    public Port http(int port)
     {
         return port(HTTP, port);
     }
@@ -321,7 +321,7 @@ public class Host implements Named, AsString, Comparable<Host>
         return https(HTTPS.defaultPort());
     }
 
-    public Port https(final int port)
+    public Port https(int port)
     {
         return port(HTTPS, port);
     }
@@ -329,14 +329,14 @@ public class Host implements Named, AsString, Comparable<Host>
     @UmlExcludeMember
     public long identifier()
     {
-        final var address = address().getAddress();
+        var address = address().getAddress();
         if (address.length > 4)
         {
             fail("IPv6 Addresses are not supported");
             return -1;
         }
         var value = 0L;
-        for (final var _byte : address)
+        for (var _byte : address)
         {
             value |= _byte;
             value <<= 8;
@@ -349,7 +349,7 @@ public class Host implements Named, AsString, Comparable<Host>
     {
         if (local == null)
         {
-            final var address = address();
+            var address = address();
             local = address != null && (address.isAnyLocalAddress() || address.isLoopbackAddress());
         }
         return local;
@@ -362,7 +362,7 @@ public class Host implements Named, AsString, Comparable<Host>
         {
             return address() != null;
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             return false;
         }
@@ -375,7 +375,7 @@ public class Host implements Named, AsString, Comparable<Host>
     }
 
     @UmlExcludeMember
-    public Port memcachePort(final int port)
+    public Port memcachePort(int port)
     {
         return port(MEMCACHE, port);
     }
@@ -385,12 +385,12 @@ public class Host implements Named, AsString, Comparable<Host>
         return mongo(MONGO.defaultPort());
     }
 
-    public Port mongo(final int port)
+    public Port mongo(int port)
     {
         return port(MONGO, port);
     }
 
-    public Port mysql(final int port)
+    public Port mysql(int port)
     {
         return port(UNKNOWN, port);
     }
@@ -406,12 +406,12 @@ public class Host implements Named, AsString, Comparable<Host>
         return isLocal() ? "localhost" : name;
     }
 
-    public Port port(final int number)
+    public Port port(int number)
     {
         return port(UNKNOWN, number);
     }
 
-    public Port port(final Protocol protocol, final int number)
+    public Port port(Protocol protocol, int number)
     {
         return new Port(this, protocol, number);
     }
@@ -436,7 +436,7 @@ public class Host implements Named, AsString, Comparable<Host>
         return sftp(SFTP.defaultPort());
     }
 
-    public Port sftp(final int port)
+    public Port sftp(int port)
     {
         return port(SFTP, port);
     }
@@ -444,7 +444,7 @@ public class Host implements Named, AsString, Comparable<Host>
     @Override
     public String toString()
     {
-        final var builder = new StringBuilder();
+        var builder = new StringBuilder();
         builder.append(name());
         if (!name().equals(canonicalName()))
         {
@@ -472,13 +472,13 @@ public class Host implements Named, AsString, Comparable<Host>
         }
     }
 
-    private void address(final InetAddress address)
+    private void address(InetAddress address)
     {
         this.address = address;
         serializedAddress = address.getHostAddress();
     }
 
-    private InetAddress resolve(final String name)
+    private InetAddress resolve(String name)
     {
         try
         {
@@ -487,7 +487,7 @@ public class Host implements Named, AsString, Comparable<Host>
                 return Loopback.get().address();
             }
 
-            final var map = inetAddressForName.get();
+            var map = inetAddressForName.get();
             var address = map.get(name);
             if (address == null)
             {
@@ -499,7 +499,7 @@ public class Host implements Named, AsString, Comparable<Host>
             }
             return address;
         }
-        catch (final UnknownHostException e)
+        catch (UnknownHostException e)
         {
             return null;
         }

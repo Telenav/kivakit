@@ -38,7 +38,7 @@ public class EmailAddress
     /**
      * @return An email address for the given string, or null if the string is not an email address
      */
-    public static EmailAddress parse(final String email)
+    public static EmailAddress parse(String email)
     {
         assert email != null;
 
@@ -57,13 +57,13 @@ public class EmailAddress
     @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<EmailAddress>
     {
-        protected Converter(final Listener listener)
+        protected Converter(Listener listener)
         {
             super(listener);
         }
 
         @Override
-        protected EmailAddress onToValue(final String value)
+        protected EmailAddress onToValue(String value)
         {
             return parse(value);
         }
@@ -71,7 +71,7 @@ public class EmailAddress
 
     private String email;
 
-    protected EmailAddress(final String email)
+    protected EmailAddress(String email)
     {
         this.email = email;
     }
@@ -86,11 +86,11 @@ public class EmailAddress
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof EmailAddress)
         {
-            final var that = (EmailAddress) object;
+            var that = (EmailAddress) object;
             return email.equals(that.email);
         }
         return false;

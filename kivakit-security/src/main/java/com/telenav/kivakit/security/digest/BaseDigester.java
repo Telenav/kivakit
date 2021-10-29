@@ -36,19 +36,19 @@ public abstract class BaseDigester implements Digester
 {
     private final String algorithmName;
 
-    protected BaseDigester(final String algorithmName)
+    protected BaseDigester(String algorithmName)
     {
         this.algorithmName = algorithmName;
     }
 
     @Override
-    public byte[] digest(final byte[] value)
+    public byte[] digest(byte[] value)
     {
         try
         {
             return MessageDigest.getInstance(algorithmName).digest(value);
         }
-        catch (final NoSuchAlgorithmException e)
+        catch (NoSuchAlgorithmException e)
         {
             throw new IllegalStateException("Can't create digest", e);
         }

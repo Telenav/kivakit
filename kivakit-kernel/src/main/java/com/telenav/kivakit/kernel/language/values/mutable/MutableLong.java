@@ -35,17 +35,17 @@ public class MutableLong extends MutableValue<Long>
     {
     }
 
-    public MutableLong(final Long value)
+    public MutableLong(Long value)
     {
         super(value);
     }
 
-    public void maximum(final long value)
+    public void maximum(long value)
     {
         set(Math.max(get(), value));
     }
 
-    public void minimum(final long value)
+    public void minimum(long value)
     {
         set(Math.min(get(), value));
     }

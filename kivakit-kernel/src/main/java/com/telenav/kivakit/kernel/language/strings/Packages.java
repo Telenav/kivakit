@@ -7,11 +7,11 @@ import com.telenav.kivakit.kernel.language.collections.list.StringList;
  */
 public class Packages
 {
-    public static String toPath(final String packagePath)
+    public static String toPath(String packagePath)
     {
-        final var path = new StringList();
-        final var type = new StringList();
-        for (final var at : Split.split(packagePath, '.'))
+        var path = new StringList();
+        var type = new StringList();
+        for (var at : Split.split(packagePath, '.'))
         {
             if (Strings.isLowerCase(at))
             {

@@ -33,7 +33,7 @@ public class SerializationSessionFactory
 {
     private static ThreadLocal<SerializationSessionFactory> local;
 
-    public static void threadLocal(final SerializationSessionFactory factory)
+    public static void threadLocal(SerializationSessionFactory factory)
     {
         local = ThreadLocal.withInitial(() -> factory);
     }
@@ -50,7 +50,7 @@ public class SerializationSessionFactory
     /**
      * @param factory The factory for creating {@link SerializationSession} objects
      */
-    public SerializationSessionFactory(final Factory<SerializationSession> factory)
+    public SerializationSessionFactory(Factory<SerializationSession> factory)
     {
         this.factory = factory;
     }
@@ -58,7 +58,7 @@ public class SerializationSessionFactory
     /**
      * @return A thread-local {@link SerializationSession} object with only the given listener
      */
-    public SerializationSession session(final Listener listener)
+    public SerializationSession session(Listener listener)
     {
         return listener.listenTo(factory.newInstance());
     }

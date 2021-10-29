@@ -86,18 +86,18 @@ public class PropertyFilterSet implements PropertyFilter
      * @param convention The naming convention used for getters and setters
      * @param included Set of fields and properties to include
      */
-    public PropertyFilterSet(final NamingConvention convention, final IncludeProperty... included)
+    public PropertyFilterSet(NamingConvention convention, IncludeProperty... included)
     {
         this.convention = convention;
         this.included = Set.of(included);
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof PropertyFilterSet)
         {
-            final var that = (PropertyFilterSet) object;
+            var that = (PropertyFilterSet) object;
             return getClass().equals(that.getClass());
         }
         return false;
@@ -113,7 +113,7 @@ public class PropertyFilterSet implements PropertyFilter
      * {@inheritDoc}
      */
     @Override
-    public boolean includeAsGetter(final Method method)
+    public boolean includeAsGetter(Method method)
     {
         return isIncluded(method) && isGetter(method);
     }
@@ -122,7 +122,7 @@ public class PropertyFilterSet implements PropertyFilter
      * {@inheritDoc}
      */
     @Override
-    public boolean includeAsSetter(final Method method)
+    public boolean includeAsSetter(Method method)
     {
         return isIncluded(method) && isSetter(method);
     }
@@ -131,7 +131,7 @@ public class PropertyFilterSet implements PropertyFilter
      * {@inheritDoc}
      */
     @Override
-    public boolean includeField(final Field field)
+    public boolean includeField(Field field)
     {
         return isIncluded(field);
     }
@@ -140,7 +140,7 @@ public class PropertyFilterSet implements PropertyFilter
      * {@inheritDoc}
      */
     @Override
-    public String nameForField(final Field field)
+    public String nameForField(Field field)
     {
         return field.getName();
     }
@@ -149,13 +149,13 @@ public class PropertyFilterSet implements PropertyFilter
      * {@inheritDoc}
      */
     @Override
-    public String nameForMethod(final Method method)
+    public String nameForMethod(Method method)
     {
         // If explicit name was provided,
-        final var includeAnnotation = method.getAnnotation(KivaKitIncludeProperty.class);
+        var includeAnnotation = method.getAnnotation(KivaKitIncludeProperty.class);
         if (includeAnnotation != null)
         {
-            final var name = includeAnnotation.name();
+            var name = includeAnnotation.name();
             if (!"".equals(name))
             {
                 // use that name
@@ -164,7 +164,7 @@ public class PropertyFilterSet implements PropertyFilter
         }
 
         // Otherwise, use beans naming conventions, if applicable
-        final var name = method.getName();
+        var name = method.getName();
         if (name.startsWith("is") && name.length() >= 3 && Character.isUpperCase(name.charAt(2)))
         {
             return CaseFormat.decapitalize(name.substring(2));
@@ -179,13 +179,13 @@ public class PropertyFilterSet implements PropertyFilter
     /**
      * @return True if the method is a getter in the filter's {@link NamingConvention}
      */
-    protected boolean isGetter(final Method method)
+    protected boolean isGetter(Method method)
     {
         // If the method takes no parameters and it's not static,
         if (method.getParameterTypes().length == 0)
         {
             // then determine if it's a getter in the given style
-            final var name = method.getName();
+            var name = method.getName();
             switch (convention)
             {
                 case JAVA_BEANS:
@@ -212,7 +212,7 @@ public class PropertyFilterSet implements PropertyFilter
     /**
      * @return True if the field is included under the set of inclusions
      */
-    protected boolean isIncluded(final Field field)
+    protected boolean isIncluded(Field field)
     {
         if (Modifier.isStatic(field.getModifiers()))
         {
@@ -230,7 +230,7 @@ public class PropertyFilterSet implements PropertyFilter
     /**
      * @return True if the field is included under the set of inclusions
      */
-    protected boolean isIncluded(final Method method)
+    protected boolean isIncluded(Method method)
     {
         if (Modifier.isStatic(method.getModifiers()))
         {
@@ -248,7 +248,7 @@ public class PropertyFilterSet implements PropertyFilter
     /**
      * @return True if the method is marked with {@link KivaKitExcludeProperty}
      */
-    protected boolean isKivaKitExcluded(final Method method)
+    protected boolean isKivaKitExcluded(Method method)
     {
         return method.getAnnotation(KivaKitExcludeProperty.class) != null;
     }
@@ -256,7 +256,7 @@ public class PropertyFilterSet implements PropertyFilter
     /**
      * @return True if the field is marked with {@link KivaKitExcludeProperty}
      */
-    protected boolean isKivaKitExcluded(final Field field)
+    protected boolean isKivaKitExcluded(Field field)
     {
         return field.getAnnotation(KivaKitExcludeProperty.class) != null;
     }
@@ -264,7 +264,7 @@ public class PropertyFilterSet implements PropertyFilter
     /**
      * @return True if the field is marked with {@link KivaKitIncludeProperty}
      */
-    protected boolean isKivaKitIncluded(final Field field)
+    protected boolean isKivaKitIncluded(Field field)
     {
         if (!field.isSynthetic() && !java.lang.reflect.Modifier.isStatic(field.getModifiers()))
         {
@@ -280,7 +280,7 @@ public class PropertyFilterSet implements PropertyFilter
     /**
      * @return True if the method is marked with {@link KivaKitIncludeProperty}
      */
-    protected boolean isKivaKitIncluded(final Method method)
+    protected boolean isKivaKitIncluded(Method method)
     {
         if (!method.isSynthetic() && !java.lang.reflect.Modifier.isStatic(method.getModifiers()))
         {
@@ -307,7 +307,7 @@ public class PropertyFilterSet implements PropertyFilter
     /**
      * @return True if the method is a getter in the filter's {@link NamingConvention}
      */
-    protected boolean isSetter(final Method method)
+    protected boolean isSetter(Method method)
     {
         // If the method takes one parameter and it's not static,
         if (method.getParameterTypes().length == 1)

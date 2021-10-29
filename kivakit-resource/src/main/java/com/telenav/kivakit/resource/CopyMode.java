@@ -43,7 +43,7 @@ public enum CopyMode
     /**
      * @return True if the given source can be copied to the given destination
      */
-    public boolean canCopy(final Resource source, final Resource destination)
+    public boolean canCopy(Resource source, Resource destination)
     {
         switch (this)
         {

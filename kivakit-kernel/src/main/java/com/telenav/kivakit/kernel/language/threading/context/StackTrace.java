@@ -30,8 +30,8 @@ public class StackTrace implements Sized
 {
     public static Map<Thread, StackTrace> allThreads()
     {
-        final Map<Thread, StackTrace> traces = new HashMap<>();
-        for (final var entry : Thread.getAllStackTraces().entrySet())
+        Map<Thread, StackTrace> traces = new HashMap<>();
+        for (var entry : Thread.getAllStackTraces().entrySet())
         {
             traces.put(entry.getKey(), new StackTrace(null, entry.getValue()));
         }
@@ -54,7 +54,7 @@ public class StackTrace implements Sized
 
         private String file;
 
-        public Frame(final StackTraceElement element)
+        public Frame(StackTraceElement element)
         {
             type = element.getClassName();
             method = element.getMethodName();
@@ -75,13 +75,13 @@ public class StackTrace implements Sized
         public String simplified()
         {
             // Make type human readable
-            final var type = type();
+            var type = type();
 
             // If the type is not stack trace itself
             if (!type.equals(StackTrace.class.getName()))
             {
                 // return the frame as a simplified string
-                final var context = "(" + file + ":" + line + ")";
+                var context = "(" + file + ":" + line + ")";
                 return "  " + Align.right(context, 40, ' ') + " " + method;
             }
 
@@ -110,18 +110,18 @@ public class StackTrace implements Sized
         this(new Throwable());
     }
 
-    public StackTrace(final String message, final StackTraceElement[] elements)
+    public StackTrace(String message, StackTraceElement[] elements)
     {
         this.message = message;
         frames = new Frame[elements.length];
         var index = 0;
-        for (final var element : elements)
+        for (var element : elements)
         {
             frames[index++] = new Frame(element);
         }
     }
 
-    public StackTrace(final Throwable throwable)
+    public StackTrace(Throwable throwable)
     {
         this(throwable.getMessage(), throwable.getStackTrace());
         if (throwable.getCause() != null)
@@ -145,9 +145,9 @@ public class StackTrace implements Sized
 
     public String toHtmlString()
     {
-        final var builder = new StringBuilder();
+        var builder = new StringBuilder();
         builder.append("<p><b><font color='#808080'>").append(message).append("</font></b></p>");
-        for (final var frame : frames)
+        for (var frame : frames)
         {
             builder.append("&nbsp;&nbsp;at ").append(frame).append("<br/>");
         }
@@ -161,7 +161,7 @@ public class StackTrace implements Sized
     @Override
     public String toString()
     {
-        final var simple = "true".equalsIgnoreCase(System.getProperty("KIVAKIT_SIMPLIFIED_STACK_TRACES"));
+        var simple = "true".equalsIgnoreCase(System.getProperty("KIVAKIT_SIMPLIFIED_STACK_TRACES"));
         return trace(!simple);
     }
 
@@ -175,9 +175,9 @@ public class StackTrace implements Sized
         return message == null ? "" : ": " + message;
     }
 
-    private String trace(final boolean full)
+    private String trace(boolean full)
     {
-        final var builder = new IndentingStringBuilder(IndentingStringBuilder.Style.TEXT, IndentingStringBuilder.Indentation.of(full ? 4 : 2));
+        var builder = new IndentingStringBuilder(IndentingStringBuilder.Style.TEXT, IndentingStringBuilder.Indentation.of(full ? 4 : 2));
         if (full)
         {
             builder.appendLine("Exception in thread \"" + Thread.currentThread().getName() + "\""
@@ -191,9 +191,9 @@ public class StackTrace implements Sized
         final var limit = 60;
         final var include = limit / 2;
         var omitted = false;
-        for (final var frame : frames)
+        for (var frame : frames)
         {
-            final var omit = index > include && index < frames.length - include;
+            var omit = index > include && index < frames.length - include;
             if (omit)
             {
                 if (!omitted)

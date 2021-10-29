@@ -48,7 +48,7 @@ public class Identifier implements Identifiable, LongKeyed, Comparable<Identifie
     @LexakaiJavadoc(complete = true)
     public static class Converter extends Quantizable.Converter<Identifier>
     {
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener, identifier -> identifier == null ? null : new Identifier(identifier));
         }
@@ -56,7 +56,7 @@ public class Identifier implements Identifiable, LongKeyed, Comparable<Identifie
 
     private final long value;
 
-    public Identifier(final long value)
+    public Identifier(long value)
     {
         this.value = value;
     }
@@ -72,17 +72,17 @@ public class Identifier implements Identifiable, LongKeyed, Comparable<Identifie
     }
 
     @Override
-    public int compareTo(final Identifier that)
+    public int compareTo(Identifier that)
     {
         return Long.compare(value, that.value);
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Identifier)
         {
-            final var that = (Identifier) object;
+            var that = (Identifier) object;
             return value == that.value;
         }
         return false;

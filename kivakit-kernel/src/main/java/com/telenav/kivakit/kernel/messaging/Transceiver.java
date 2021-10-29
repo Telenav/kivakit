@@ -122,7 +122,7 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default Announcement announce(final String text, final Object... arguments)
+    default Announcement announce(String text, Object... arguments)
     {
         return receive(new Announcement(text, arguments));
     }
@@ -161,16 +161,16 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      * @param context The context in code
      */
     @UmlExcludeMember
-    default void debugCodeContext(final CodeContext context)
+    default void debugCodeContext(CodeContext context)
     {
     }
 
     /**
      * Throws a formatted {@link FatalProblem} message as an {@link IllegalStateException}
      */
-    default <T> T fatal(final String text, final Object... arguments)
+    default <T> T fatal(String text, Object... arguments)
     {
-        final var problem = new FatalProblem(text, arguments);
+        var problem = new FatalProblem(text, arguments);
         receive(problem);
         problem.throwAsIllegalStateException();
         return null;
@@ -179,9 +179,9 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Throws a formatted {@link FatalProblem} message as an {@link IllegalStateException}
      */
-    default <T> T fatal(final Throwable cause, final String text, final Object... arguments)
+    default <T> T fatal(Throwable cause, String text, Object... arguments)
     {
-        final var problem = new FatalProblem(cause, text, arguments);
+        var problem = new FatalProblem(cause, text, arguments);
         receive(problem);
         problem.throwAsIllegalStateException();
         return null;
@@ -192,7 +192,7 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default Glitch glitch(final Frequency maximumFrequency, final String text, final Object... arguments)
+    default Glitch glitch(Frequency maximumFrequency, String text, Object... arguments)
     {
         return (Glitch) receive(new Glitch(text, arguments).maximumFrequency(maximumFrequency));
     }
@@ -202,8 +202,8 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default Glitch glitch(final Frequency maximumFrequency, final Throwable cause, final String text,
-                          final Object... arguments)
+    default Glitch glitch(Frequency maximumFrequency, Throwable cause, String text,
+                          Object... arguments)
     {
         return (Glitch) receive(new Glitch(cause, text, arguments).maximumFrequency(maximumFrequency));
     }
@@ -213,7 +213,7 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default Glitch glitch(final String text, final Object... arguments)
+    default Glitch glitch(String text, Object... arguments)
     {
         return receive(new Glitch(text, arguments));
     }
@@ -223,7 +223,7 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default Glitch glitch(final Throwable cause, final String text, final Object... arguments)
+    default Glitch glitch(Throwable cause, String text, Object... arguments)
     {
         if (isDebugOn())
         {
@@ -237,7 +237,7 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default OperationHalted halted(final String text, final Object... arguments)
+    default OperationHalted halted(String text, Object... arguments)
     {
         return receive(new OperationHalted(text, arguments));
     }
@@ -247,7 +247,7 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default OperationHalted halted(final Throwable cause, final String text, final Object... arguments)
+    default OperationHalted halted(Throwable cause, String text, Object... arguments)
     {
         return receive(new OperationHalted(cause, text, arguments));
     }
@@ -255,7 +255,7 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Runs the given code if debug is turned on for this {@link Transceiver}
      */
-    default void ifDebug(final Runnable code)
+    default void ifDebug(Runnable code)
     {
         if (isDebugOn())
         {
@@ -266,9 +266,9 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Throws an {@link IllegalArgumentException} with the given formatted message
      */
-    default <T> T illegalArgument(final String message, final Object... arguments)
+    default <T> T illegalArgument(String message, Object... arguments)
     {
-        final var problem = new Problem(message, arguments);
+        var problem = new Problem(message, arguments);
         receive(problem);
         problem.throwAsIllegalArgumentException();
         return null;
@@ -277,9 +277,9 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Throws an {@link IllegalStateException} with the given formatted message
      */
-    default <T> T illegalState(final String message, final Object... arguments)
+    default <T> T illegalState(String message, Object... arguments)
     {
-        final var problem = new Problem(message, arguments);
+        var problem = new Problem(message, arguments);
         receive(problem);
         problem.throwAsIllegalStateException();
         return null;
@@ -288,9 +288,9 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
     /**
      * Throws an {@link IllegalStateException} with the given exception and formatted message
      */
-    default <T> T illegalState(final Throwable e, final String text, final Object... arguments)
+    default <T> T illegalState(Throwable e, String text, Object... arguments)
     {
-        final var problem = new Problem(e, text, arguments);
+        var problem = new Problem(e, text, arguments);
         receive(problem);
         problem.throwAsIllegalStateException();
         return null;
@@ -301,7 +301,7 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default Information information(final String text, final Object... arguments)
+    default Information information(String text, Object... arguments)
     {
         return receive(new Information(text, arguments));
     }
@@ -320,7 +320,7 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default Narration narrate(final String text, final Object... arguments)
+    default Narration narrate(String text, Object... arguments)
     {
         return receive(new Narration(text, arguments));
     }
@@ -329,7 +329,7 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      * {@inheritDoc}
      */
     @Override
-    default void onReceive(final Transmittable message)
+    default void onReceive(Transmittable message)
     {
     }
 
@@ -338,7 +338,7 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default Problem problem(final String text, final Object... arguments)
+    default Problem problem(String text, Object... arguments)
     {
         return receive(new Problem(text, arguments));
     }
@@ -348,7 +348,7 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default Problem problem(final Frequency maximumFrequency, final String text, final Object... arguments)
+    default Problem problem(Frequency maximumFrequency, String text, Object... arguments)
     {
         return (Problem) receive(new Problem(text, arguments).maximumFrequency(maximumFrequency));
     }
@@ -358,8 +358,8 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default Problem problem(final Frequency maximumFrequency, final Throwable cause, final String text,
-                            final Object... arguments)
+    default Problem problem(Frequency maximumFrequency, Throwable cause, String text,
+                            Object... arguments)
     {
         return (Problem) receive(new Problem(cause, text, arguments).maximumFrequency(maximumFrequency));
     }
@@ -369,7 +369,7 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default Problem problem(final Throwable cause, final String text, final Object... arguments)
+    default Problem problem(Throwable cause, String text, Object... arguments)
     {
         return receive(new Problem(cause, text, arguments));
     }
@@ -379,7 +379,7 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default Quibble quibble(final Frequency maximumFrequency, final String text, final Object... arguments)
+    default Quibble quibble(Frequency maximumFrequency, String text, Object... arguments)
     {
         return (Quibble) receive(new Quibble(text, arguments).maximumFrequency(maximumFrequency));
     }
@@ -389,8 +389,8 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default Quibble quibble(final Frequency maximumFrequency, final Throwable cause, final String text,
-                            final Object... arguments)
+    default Quibble quibble(Frequency maximumFrequency, Throwable cause, String text,
+                            Object... arguments)
     {
         return (Quibble) receive(new Quibble(cause, text, arguments).maximumFrequency(maximumFrequency));
     }
@@ -400,7 +400,7 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default Quibble quibble(final String text, final Object... arguments)
+    default Quibble quibble(String text, Object... arguments)
     {
         return receive(new Quibble(text, arguments));
     }
@@ -410,7 +410,7 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default Quibble quibble(final Throwable cause, final String text, final Object... arguments)
+    default Quibble quibble(Throwable cause, String text, Object... arguments)
     {
         if (isDebugOn())
         {
@@ -424,7 +424,7 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default Trace trace(final String text, final Object... arguments)
+    default Trace trace(String text, Object... arguments)
     {
         if (isDebugOn())
         {
@@ -438,7 +438,7 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default Trace trace(final Throwable cause, final String text, final Object... arguments)
+    default Trace trace(Throwable cause, String text, Object... arguments)
     {
         if (isDebugOn())
         {
@@ -452,7 +452,7 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default Trace trace(final Frequency maximumFrequency, final String text, final Object... arguments)
+    default Trace trace(Frequency maximumFrequency, String text, Object... arguments)
     {
         if (isDebugOn())
         {
@@ -466,8 +466,8 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default Trace trace(final Frequency maximumFrequency, final Throwable cause, final String text,
-                        final Object... arguments)
+    default Trace trace(Frequency maximumFrequency, Throwable cause, String text,
+                        Object... arguments)
     {
         if (isDebugOn())
         {
@@ -481,7 +481,7 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default Warning warning(final Frequency maximumFrequency, final String text, final Object... arguments)
+    default Warning warning(Frequency maximumFrequency, String text, Object... arguments)
     {
         return (Warning) receive(new Warning(text, arguments).maximumFrequency(maximumFrequency));
     }
@@ -491,8 +491,8 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default Warning warning(final Frequency maximumFrequency, final Throwable cause, final String text,
-                            final Object... arguments)
+    default Warning warning(Frequency maximumFrequency, Throwable cause, String text,
+                            Object... arguments)
     {
         return (Warning) receive(new Warning(cause, text, arguments).maximumFrequency(maximumFrequency));
     }
@@ -502,7 +502,7 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default Warning warning(final String text, final Object... arguments)
+    default Warning warning(String text, Object... arguments)
     {
         return receive(new Warning(text, arguments));
     }
@@ -512,7 +512,7 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
      *
      * @return The message
      */
-    default Warning warning(final Throwable cause, final String text, final Object... arguments)
+    default Warning warning(Throwable cause, String text, Object... arguments)
     {
         return receive(new Warning(cause, text, arguments));
     }

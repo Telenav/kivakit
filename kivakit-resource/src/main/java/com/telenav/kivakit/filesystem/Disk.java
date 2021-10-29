@@ -41,7 +41,7 @@ public class Disk
     private final DiskService disk;
 
     @UmlExcludeMember
-    public Disk(final DiskService disk)
+    public Disk(DiskService disk)
     {
         this.disk = disk;
     }

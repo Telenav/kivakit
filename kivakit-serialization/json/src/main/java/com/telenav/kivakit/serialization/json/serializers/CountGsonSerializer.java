@@ -29,13 +29,13 @@ public class CountGsonSerializer extends PrimitiveGsonSerializer<Count, Integer>
     }
 
     @Override
-    protected Count toObject(final Integer scalar)
+    protected Count toObject(Integer scalar)
     {
         return Count.count(scalar);
     }
 
     @Override
-    protected Integer toPrimitive(final Count object)
+    protected Integer toPrimitive(Count object)
     {
         return object.asInt();
     }

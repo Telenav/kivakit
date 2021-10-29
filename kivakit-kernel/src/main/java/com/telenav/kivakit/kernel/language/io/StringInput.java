@@ -35,7 +35,7 @@ public class StringInput extends InputStream
 
     private final String toRead;
 
-    public StringInput(final String toRead)
+    public StringInput(String toRead)
     {
         this.toRead = toRead;
     }
@@ -45,7 +45,7 @@ public class StringInput extends InputStream
     {
         if (index < toRead.length())
         {
-            final var result = toRead.charAt(index);
+            var result = toRead.charAt(index);
             index++;
             return result;
         }

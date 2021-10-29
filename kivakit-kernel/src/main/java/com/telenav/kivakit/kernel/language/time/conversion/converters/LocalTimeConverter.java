@@ -34,12 +34,12 @@ import java.time.format.DateTimeFormatter;
 @UmlClassDiagram(diagram = DiagramLanguageTime.class)
 public class LocalTimeConverter extends BaseFormattedLocalTimeConverter
 {
-    public LocalTimeConverter(final Listener listener, final ZoneId zone)
+    public LocalTimeConverter(Listener listener, ZoneId zone)
     {
         super(listener, TimeFormats.KIVAKIT_TIME, zone);
     }
 
-    public LocalTimeConverter(final Listener listener)
+    public LocalTimeConverter(Listener listener)
     {
         super(listener, TimeFormats.KIVAKIT_TIME);
     }
@@ -51,7 +51,7 @@ public class LocalTimeConverter extends BaseFormattedLocalTimeConverter
     }
 
     @Override
-    protected String onToString(final LocalTime value)
+    protected String onToString(LocalTime value)
     {
         return DateTimeFormatter.ofPattern("h.mma").format(value.javaLocalDateTime());
     }

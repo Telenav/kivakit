@@ -53,7 +53,7 @@ public class NameMap<NamedObject extends Named> extends BaseStringMap<NamedObjec
     /**
      * Bounded name map
      */
-    public NameMap(final Maximum maximumSize)
+    public NameMap(Maximum maximumSize)
     {
         super(maximumSize);
     }
@@ -61,7 +61,7 @@ public class NameMap<NamedObject extends Named> extends BaseStringMap<NamedObjec
     /**
      * Bounded name map with initial values
      */
-    public NameMap(final Maximum maximumSize, final Map<String, NamedObject> map)
+    public NameMap(Maximum maximumSize, Map<String, NamedObject> map)
     {
         super(maximumSize, map);
     }
@@ -69,7 +69,7 @@ public class NameMap<NamedObject extends Named> extends BaseStringMap<NamedObjec
     /**
      * Adds the given value by its name, as retrieved from {@link Named#name()}.
      */
-    public void add(final NamedObject value)
+    public void add(NamedObject value)
     {
         Ensure.ensure(value != null);
         Ensure.ensure(value.name() != null);
@@ -86,7 +86,7 @@ public class NameMap<NamedObject extends Named> extends BaseStringMap<NamedObjec
     /**
      * @param caseSensitive True if this map should be case-sensitive
      */
-    public void caseSensitive(final boolean caseSensitive)
+    public void caseSensitive(boolean caseSensitive)
     {
         this.caseSensitive = caseSensitive;
     }
@@ -94,7 +94,7 @@ public class NameMap<NamedObject extends Named> extends BaseStringMap<NamedObjec
     /**
      * @return The object for the given name
      */
-    public final NamedObject get(final String name)
+    public final NamedObject get(String name)
     {
         if (caseSensitive)
         {
@@ -106,13 +106,13 @@ public class NameMap<NamedObject extends Named> extends BaseStringMap<NamedObjec
     /**
      * @return The object for the given name
      */
-    public final NamedObject get(final Name name)
+    public final NamedObject get(Name name)
     {
         return get(name.name());
     }
 
     @Override
-    public NamedObject get(final Object key)
+    public NamedObject get(Object key)
     {
         return get(key.toString());
     }

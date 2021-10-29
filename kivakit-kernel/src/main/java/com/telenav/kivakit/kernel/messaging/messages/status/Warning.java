@@ -50,13 +50,13 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramMessageType.class)
 public class Warning extends OperationStatusMessage
 {
-    public Warning(final String message, final Object... arguments)
+    public Warning(String message, Object... arguments)
     {
         super(message);
         arguments(arguments);
     }
 
-    public Warning(final Throwable cause, final String message, final Object... arguments)
+    public Warning(Throwable cause, String message, Object... arguments)
     {
         super(message + ": " + Message.escape(cause.getMessage()));
         cause(cause);

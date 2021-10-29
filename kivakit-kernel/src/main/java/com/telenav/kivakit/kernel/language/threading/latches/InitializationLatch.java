@@ -36,13 +36,13 @@ public class InitializationLatch
 {
     private CountDownLatch countdown = new CountDownLatch(1);
 
-    public boolean await(final Duration duration)
+    public boolean await(Duration duration)
     {
         try
         {
             return countdown.await(duration.asMilliseconds(), TimeUnit.MILLISECONDS);
         }
-        catch (final InterruptedException ignored)
+        catch (InterruptedException ignored)
         {
         }
         return false;

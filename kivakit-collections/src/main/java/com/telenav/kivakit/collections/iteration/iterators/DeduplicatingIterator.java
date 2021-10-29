@@ -43,7 +43,7 @@ public class DeduplicatingIterator<Element> extends BaseIterator<Element>
 
     private final Set<Element> existing = new HashSet<>();
 
-    public DeduplicatingIterator(final Iterator<Element> iterator)
+    public DeduplicatingIterator(Iterator<Element> iterator)
     {
         this.iterator = iterator;
     }
@@ -53,7 +53,7 @@ public class DeduplicatingIterator<Element> extends BaseIterator<Element>
     {
         if (iterator.hasNext())
         {
-            final var next = iterator.next();
+            var next = iterator.next();
             if (!existing.contains(next))
             {
                 existing.add(next);

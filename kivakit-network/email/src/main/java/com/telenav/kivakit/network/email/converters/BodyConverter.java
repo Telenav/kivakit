@@ -34,15 +34,15 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 @LexakaiJavadoc(complete = true)
 public class BodyConverter extends BaseCollectionConverter<EmailBody>
 {
-    public BodyConverter(final Listener listener)
+    public BodyConverter(Listener listener)
     {
         super(listener, ",");
     }
 
     @Override
-    protected EmailBody onConvertToObject(final StringList columns)
+    protected EmailBody onConvertToObject(StringList columns)
     {
-        final var mimeType = columns.get(0);
+        var mimeType = columns.get(0);
         if (EmailBody.MIME_TYPE.equals(mimeType))
         {
             return new EmailBody(columns.get(1));
@@ -55,9 +55,9 @@ public class BodyConverter extends BaseCollectionConverter<EmailBody>
     }
 
     @Override
-    protected StringList onConvertToStringList(final EmailBody value)
+    protected StringList onConvertToStringList(EmailBody value)
     {
-        final var list = new StringList(Maximum._2);
+        var list = new StringList(Maximum._2);
         list.add(value.mimeType());
         list.add(value.text());
         return list;

@@ -211,10 +211,10 @@ public class LanguageIsoCode extends Name implements Comparable<LanguageIsoCode>
 
     static
     {
-        for (final var locale : java.util.Locale.getAvailableLocales())
+        for (var locale : java.util.Locale.getAvailableLocales())
         {
-            final var iso2Code = locale.getLanguage();
-            final var iso3Code = locale.getISO3Language();
+            var iso2Code = locale.getLanguage();
+            var iso3Code = locale.getISO3Language();
             if (iso2Code.length() == 2 && iso3Code.length() == 3)
             {
                 new LanguageIsoCode(locale.getDisplayLanguage(), iso2Code, iso3Code);
@@ -224,7 +224,7 @@ public class LanguageIsoCode extends Name implements Comparable<LanguageIsoCode>
 
     public static List<LanguageIsoCode> all()
     {
-        final List<LanguageIsoCode> all = new ArrayList<>(forIso2Code.values());
+        List<LanguageIsoCode> all = new ArrayList<>(forIso2Code.values());
         Collections.sort(all);
         return all;
     }
@@ -232,7 +232,7 @@ public class LanguageIsoCode extends Name implements Comparable<LanguageIsoCode>
     /**
      * @return The language for a two character ISO-639-1 code
      */
-    public static LanguageIsoCode forIso2Code(final String code)
+    public static LanguageIsoCode forIso2Code(String code)
     {
         return forIso2Code.get(code.toLowerCase());
     }
@@ -240,7 +240,7 @@ public class LanguageIsoCode extends Name implements Comparable<LanguageIsoCode>
     /**
      * @return The language for a three character ISO-639-2/T language code
      */
-    public static LanguageIsoCode forIso3Code(final String code)
+    public static LanguageIsoCode forIso3Code(String code)
     {
         return forIso3Code.get(code.toLowerCase());
     }
@@ -253,21 +253,21 @@ public class LanguageIsoCode extends Name implements Comparable<LanguageIsoCode>
     @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<LanguageIsoCode>
     {
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
         }
 
         @Override
-        protected LanguageIsoCode onToValue(final String value)
+        protected String onToString(LanguageIsoCode value)
         {
-            return value.length() == 2 ? forIso2Code(value) : forIso3Code(value);
+            return value.iso2Code();
         }
 
         @Override
-        protected String onToString(final LanguageIsoCode value)
+        protected LanguageIsoCode onToValue(String value)
         {
-            return value.iso2Code();
+            return value.length() == 2 ? forIso2Code(value) : forIso3Code(value);
         }
     }
 
@@ -275,7 +275,7 @@ public class LanguageIsoCode extends Name implements Comparable<LanguageIsoCode>
 
     private final String iso3Code;
 
-    private LanguageIsoCode(final String name, final String iso2Code, final String iso3Code)
+    private LanguageIsoCode(String name, String iso2Code, String iso3Code)
     {
         super(name);
 
@@ -290,17 +290,17 @@ public class LanguageIsoCode extends Name implements Comparable<LanguageIsoCode>
     }
 
     @Override
-    public int compareTo(final LanguageIsoCode that)
+    public int compareTo(LanguageIsoCode that)
     {
         return name().compareTo(that.name());
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof LanguageIsoCode)
         {
-            final var that = (LanguageIsoCode) object;
+            var that = (LanguageIsoCode) object;
             return iso2Code.equals(that.iso2Code);
         }
         return false;

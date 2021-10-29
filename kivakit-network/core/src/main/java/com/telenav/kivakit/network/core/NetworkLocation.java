@@ -59,24 +59,24 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
     @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<NetworkLocation>
     {
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
         }
 
         @Override
-        protected NetworkLocation onToValue(final String value)
+        protected NetworkLocation onToValue(String value)
         {
             try
             {
-                final var uri = new URI(value);
-                final var location = new NetworkLocation(NetworkPath.networkPath(uri));
+                var uri = new URI(value);
+                var location = new NetworkLocation(NetworkPath.networkPath(uri));
                 location.queryParameters(new QueryParameters(uri.getQuery()));
-                final var url = uri.toURL();
+                var url = uri.toURL();
                 location.reference(url.getRef());
                 return location;
             }
-            catch (final URISyntaxException | MalformedURLException e)
+            catch (URISyntaxException | MalformedURLException e)
             {
                 problem(e, "Bad network location ${debug}", value);
                 return null;
@@ -98,7 +98,7 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
 
     private String reference;
 
-    public NetworkLocation(final NetworkLocation that)
+    public NetworkLocation(NetworkLocation that)
     {
         port = that.port;
         networkPath = that.networkPath;
@@ -107,7 +107,7 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
         reference = that.reference;
     }
 
-    public NetworkLocation(final NetworkPath networkPath)
+    public NetworkLocation(NetworkPath networkPath)
     {
         checkPath(networkPath);
         this.networkPath = networkPath;
@@ -115,7 +115,7 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
     }
 
     @Override
-    public String asString(final StringFormat format)
+    public String asString(StringFormat format)
     {
         return new ObjectFormatter(this).toString();
     }
@@ -124,18 +124,18 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
     {
         try
         {
-            final var username = constraints == null || constraints.userName() == null ? null : constraints.userName().name();
+            var username = constraints == null || constraints.userName() == null ? null : constraints.userName().name();
             var portNumber = port().number();
             if (protocol().defaultPort() == portNumber)
             {
                 portNumber = -1;
             }
             // Decode path so we avoid double-encoding if the path is already encoded
-            final var path = URLDecoder.decode(networkPath().asStringPath().toString(), StandardCharsets.UTF_8);
+            var path = URLDecoder.decode(networkPath().asStringPath().toString(), StandardCharsets.UTF_8);
             return new URI(protocol().name(), username, host().name(), portNumber, "/" + path,
                     queryParameters == null ? null : queryParameters.toString(), reference);
         }
-        catch (final URISyntaxException e)
+        catch (URISyntaxException e)
         {
             throw new IllegalStateException("Cannot convert " + this + " to URI", e);
         }
@@ -161,14 +161,14 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
             }
             return new URL(protocol().name(), host().address().getHostAddress(), portNumber, "/" + file);
         }
-        catch (final MalformedURLException e)
+        catch (MalformedURLException e)
         {
             throw new IllegalStateException("Cannot convert " + this + " to URL", e);
         }
     }
 
     @Override
-    public int compareTo(final NetworkLocation that)
+    public int compareTo(NetworkLocation that)
     {
         return asUri().compareTo(that.asUri());
     }
@@ -178,17 +178,17 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
         return constraints;
     }
 
-    public void constraints(final NetworkAccessConstraints constraints)
+    public void constraints(NetworkAccessConstraints constraints)
     {
         this.constraints = constraints;
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof NetworkLocation)
         {
-            final var that = (NetworkLocation) object;
+            var that = (NetworkLocation) object;
             return port.equals(that.port) && networkPath.equals(that.networkPath)
                     && Objects.equal(queryParameters, that.queryParameters)
                     && Objects.equal(reference, that.reference) && Objects.equal(constraints.userName(), that.constraints.userName());
@@ -208,7 +208,7 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
         return port().host();
     }
 
-    public boolean isChildOf(final NetworkLocation that)
+    public boolean isChildOf(NetworkLocation that)
     {
         // NOTE: This is not really sufficient, but works for our cases for now
         return toString().startsWith(that.toString());
@@ -238,7 +238,7 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
         return queryParameters;
     }
 
-    public void queryParameters(final QueryParameters queryParameters)
+    public void queryParameters(QueryParameters queryParameters)
     {
         this.queryParameters = queryParameters;
     }
@@ -248,7 +248,7 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
         return reference;
     }
 
-    public void reference(final String fragment)
+    public void reference(String fragment)
     {
         reference = fragment;
     }
@@ -256,7 +256,7 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
     @Override
     public String toString()
     {
-        final var builder = new StringBuilder();
+        var builder = new StringBuilder();
         builder.append(protocol());
         builder.append("://");
         if (constraints != null && constraints.userName() != null)
@@ -285,11 +285,11 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
     }
 
     @UmlExcludeMember
-    public NetworkLocation withInterpolatedVariables(final VariableMap<String> variables)
+    public NetworkLocation withInterpolatedVariables(VariableMap<String> variables)
     {
         // Interpolate variables in path
-        final var formatter = new MessageFormatter();
-        final var interpolatedPath = formatter.format(networkPath().toString(), variables);
+        var formatter = new MessageFormatter();
+        var interpolatedPath = formatter.format(networkPath().toString(), variables);
 
         // Create location with the given path
         var location = withPath(NetworkPath.parseNetworkPath(interpolatedPath));
@@ -298,7 +298,7 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
         if (queryParameters() != null)
         {
             // interpolate variables into query parameter string
-            final var interpolatedQueryParameters = formatter.format(queryParameters().toString(), variables);
+            var interpolatedQueryParameters = formatter.format(queryParameters().toString(), variables);
 
             // and create a new location with the interpolated value
             location = location.withQueryParameters(new QueryParameters(interpolatedQueryParameters));
@@ -306,25 +306,25 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
         return location;
     }
 
-    public NetworkLocation withPath(final NetworkPath path)
+    public NetworkLocation withPath(NetworkPath path)
     {
-        final var location = new NetworkLocation(this);
+        var location = new NetworkLocation(this);
         location.networkPath = path;
         return location;
     }
 
-    public NetworkLocation withQueryParameters(final QueryParameters queryParameters)
+    public NetworkLocation withQueryParameters(QueryParameters queryParameters)
     {
-        final var location = new NetworkLocation(this);
+        var location = new NetworkLocation(this);
         location.queryParameters = queryParameters;
         return location;
     }
 
-    private void checkPath(final NetworkPath path)
+    private void checkPath(NetworkPath path)
     {
         if (path != null)
         {
-            final var pathString = path.toString();
+            var pathString = path.toString();
             if (pathString.indexOf('&') >= 0 || pathString.indexOf('?') >= 0 || pathString.indexOf('#') >= 0)
             {
                 throw new IllegalArgumentException(

@@ -36,7 +36,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * A progress reporter that sends progress messages to a {@link Listener} as an operation proceeds. Progress reporting
  * on an operation is started with {@link #start(String)}. At each step, {@link #next()} or {@link #next(long)} should
- * be called to report progress. When the operation is over {@link #end(String)} should be called.
+ * be called to report progress. When the operation is over {@link #end(String, Object...)} should be called.
  * <p>
  * <b>Example - Broadcasting Progress of an Operation</b>
  * <pre>
@@ -72,12 +72,12 @@ public class Progress extends Multicaster implements ProgressReporter
         return Progress.create(Listener.none());
     }
 
-    public static Progress create(final Listener listener)
+    public static Progress create(Listener listener)
     {
         return create(listener, "items");
     }
 
-    public static Progress create(final Listener listener, final String itemName)
+    public static Progress create(Listener listener, String itemName)
     {
         return create(listener, itemName, null);
     }
@@ -88,24 +88,24 @@ public class Progress extends Multicaster implements ProgressReporter
      * @param steps The number of steps in the operation
      * @return A new progress object
      */
-    public static Progress create(final Listener listener, final String itemName, final Count steps)
+    public static Progress create(Listener listener, String itemName, Count steps)
     {
         return listener.listenTo(new Progress()
                 .withItemName(itemName)
                 .withSteps(steps));
     }
 
-    public static Progress createConcurrent(final Listener listener)
+    public static Progress createConcurrent(Listener listener)
     {
         return createConcurrent(listener, "items");
     }
 
-    public static Progress createConcurrent(final Listener listener, final String itemName)
+    public static Progress createConcurrent(Listener listener, String itemName)
     {
         return createConcurrent(listener, itemName, null);
     }
 
-    public static Progress createConcurrent(final Listener listener, final String itemName, final Count steps)
+    public static Progress createConcurrent(Listener listener, String itemName, Count steps)
     {
         return listener.listenTo(new ConcurrentProgress()
                 .withItemName(itemName)
@@ -134,7 +134,7 @@ public class Progress extends Multicaster implements ProgressReporter
 
     private int lastPercent;
 
-    protected Progress(final Progress that)
+    protected Progress(Progress that)
     {
         super(that);
 
@@ -161,7 +161,7 @@ public class Progress extends Multicaster implements ProgressReporter
     }
 
     @Override
-    public synchronized void end(final String message, Object... arguments)
+    public synchronized void end(String message, Object... arguments)
     {
         if (!ended)
         {
@@ -172,13 +172,13 @@ public class Progress extends Multicaster implements ProgressReporter
         }
     }
 
-    public void feedback(final String message)
+    public void feedback(String message)
     {
         information(phase == null ? message : phase + message);
     }
 
     @Override
-    public Progress listener(final ProgressListener listener)
+    public Progress listener(ProgressListener listener)
     {
         this.listener = listener;
         return this;
@@ -191,7 +191,7 @@ public class Progress extends Multicaster implements ProgressReporter
         // (which is hardly surprising)
 
         // Increase the count;
-        final var at = increment();
+        var at = increment();
 
         // If the count is evenly divided by every,
         if (at % every == 0)
@@ -207,17 +207,17 @@ public class Progress extends Multicaster implements ProgressReporter
         }
     }
 
-    public synchronized void next(final long increase)
+    public synchronized void next(long increase)
     {
-        final var count = increase(increase);
+        var count = increase(increase);
         if (steps > 0 && count >= steps)
         {
             end();
         }
         else
         {
-            final var start = count - increase;
-            final var next = ((start / every) + 1) * every;
+            var start = count - increase;
+            var next = ((start / every) + 1) * every;
             for (var at = next; at <= count; at += every)
             {
                 report(at);
@@ -227,7 +227,7 @@ public class Progress extends Multicaster implements ProgressReporter
     }
 
     @Override
-    public Progress phase(final String phase)
+    public Progress phase(String phase)
     {
         this.phase = phase;
         reset();
@@ -245,7 +245,7 @@ public class Progress extends Multicaster implements ProgressReporter
     }
 
     @Override
-    public Progress start(final String label)
+    public Progress start(String label)
     {
         if (!started)
         {
@@ -262,7 +262,7 @@ public class Progress extends Multicaster implements ProgressReporter
     }
 
     @Override
-    public Progress steps(final Count steps)
+    public Progress steps(Count steps)
     {
         if (steps != null)
         {
@@ -283,25 +283,25 @@ public class Progress extends Multicaster implements ProgressReporter
         return toString(Count.count(at()));
     }
 
-    public Progress withItemName(final String itemName)
+    public Progress withItemName(String itemName)
     {
-        final var progress = newInstance();
+        var progress = newInstance();
         progress.itemName = itemName;
         return progress;
     }
 
-    public Progress withPhase(final String phase)
+    public Progress withPhase(String phase)
     {
-        final var progress = newInstance();
+        var progress = newInstance();
         progress.phase = phase;
         return progress;
     }
 
-    public Progress withSteps(final Count steps)
+    public Progress withSteps(Count steps)
     {
         if (steps != null)
         {
-            final var progress = newInstance();
+            var progress = newInstance();
             progress.steps = steps.get();
             return progress;
         }
@@ -311,12 +311,12 @@ public class Progress extends Multicaster implements ProgressReporter
         }
     }
 
-    protected void at(final long at)
+    protected void at(long at)
     {
         this.at = at;
     }
 
-    protected long increase(final long increase)
+    protected long increase(long increase)
     {
         at += increase;
         return at;
@@ -342,11 +342,11 @@ public class Progress extends Multicaster implements ProgressReporter
         return null;
     }
 
-    private synchronized void report(final long at)
+    private synchronized void report(long at)
     {
         if (!isIndefinite())
         {
-            final var percent = percentComplete();
+            var percent = percentComplete();
             if (percent != null && lastPercent != percent.asInt())
             {
                 if (listener != null)
@@ -391,10 +391,10 @@ public class Progress extends Multicaster implements ProgressReporter
         lastReportedAt = Time.now();
     }
 
-    private String toString(final Count count)
+    private String toString(Count count)
     {
-        final var builder = new StringBuilder();
-        final var commaSeparatedCount = count.toCommaSeparatedString();
+        var builder = new StringBuilder();
+        var commaSeparatedCount = count.toCommaSeparatedString();
         builder.append("  ").append(commaSeparatedCount);
         builder.append(" of ");
         if (steps > 0)
@@ -408,7 +408,7 @@ public class Progress extends Multicaster implements ProgressReporter
         {
             builder.append("?");
         }
-        final var elapsed = Time.milliseconds(start).elapsedSince();
+        var elapsed = Time.milliseconds(start).elapsedSince();
         if (itemName != null)
         {
             builder.append(" ");
@@ -416,7 +416,7 @@ public class Progress extends Multicaster implements ProgressReporter
         }
         builder.append(" in ");
         builder.append(elapsed);
-        final var rate = Rate.perSecond(count.get() / elapsed.asSeconds());
+        var rate = Rate.perSecond(count.get() / elapsed.asSeconds());
         builder.append(" (");
         builder.append(rate);
         builder.append(")");

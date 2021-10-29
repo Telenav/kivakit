@@ -49,13 +49,13 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramMessageType.class)
 public class Trace extends OperationStatusMessage
 {
-    public Trace(final String message, final Object... arguments)
+    public Trace(String message, Object... arguments)
     {
         super(message);
         arguments(arguments);
     }
 
-    public Trace(final Throwable cause, final String message, final Object... arguments)
+    public Trace(Throwable cause, String message, Object... arguments)
     {
         super(message + ": " + cause.getMessage());
         cause(cause);

@@ -45,18 +45,18 @@ public class ConcurrentMutableCount implements Countable, Listener
         this(0);
     }
 
-    public ConcurrentMutableCount(final long count)
+    public ConcurrentMutableCount(long count)
     {
         Ensure.ensure(count >= 0, "Negative count $", count);
         this.count = new AtomicLong(count);
     }
 
-    public long add(final long that)
+    public long add(long that)
     {
         return count.addAndGet(that);
     }
 
-    public long add(final Count that)
+    public long add(Count that)
     {
         return add(that.get());
     }
@@ -89,17 +89,17 @@ public class ConcurrentMutableCount implements Countable, Listener
 
     public long decrement()
     {
-        final var value = count.getAndDecrement();
+        var value = count.getAndDecrement();
         Ensure.ensure(value >= 0);
         return value;
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof ConcurrentMutableCount)
         {
-            final var that = (ConcurrentMutableCount) object;
+            var that = (ConcurrentMutableCount) object;
             return asInt() == that.asInt();
         }
         return false;
@@ -121,12 +121,12 @@ public class ConcurrentMutableCount implements Countable, Listener
         return count.getAndIncrement();
     }
 
-    public boolean isGreaterThan(final ConcurrentMutableCount that)
+    public boolean isGreaterThan(ConcurrentMutableCount that)
     {
         return asInt() > that.asInt();
     }
 
-    public boolean isLessThan(final ConcurrentMutableCount that)
+    public boolean isLessThan(ConcurrentMutableCount that)
     {
         return asInt() < that.asInt();
     }
@@ -137,12 +137,12 @@ public class ConcurrentMutableCount implements Countable, Listener
     }
 
     @Override
-    public void onMessage(final Message message)
+    public void onMessage(Message message)
     {
         increment();
     }
 
-    public Percent percentOf(final Count total)
+    public Percent percentOf(Count total)
     {
         if (total.isZero())
         {
@@ -151,7 +151,7 @@ public class ConcurrentMutableCount implements Countable, Listener
         return Percent.of(asInt() * 100.0 / total.asInt());
     }
 
-    public void set(final long count)
+    public void set(long count)
     {
         this.count.set(count);
     }

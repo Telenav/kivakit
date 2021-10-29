@@ -46,16 +46,16 @@ public class Doubles
      * @param denominator The value to divide y by to get the digits to the right of the decimal place
      * @return The double value
      */
-    public static double fastParse(final String value, final double denominator)
+    public static double fastParse(String value, double denominator)
     {
-        final var index = value.indexOf('.');
+        var index = value.indexOf('.');
         if (index > 0)
         {
             final var invalid = Longs.INVALID;
-            final var major = Longs.parse(value.substring(0, index), invalid);
+            var major = Longs.parse(value.substring(0, index), invalid);
             if (major != invalid)
             {
-                final var minor = Longs.parse(value.substring(index + 1), invalid);
+                var minor = Longs.parse(value.substring(index + 1), invalid);
                 if (minor != invalid)
                 {
                     return major + (minor / denominator);
@@ -68,7 +68,7 @@ public class Doubles
     /**
      * @return The double value formatted with only one decimal place
      */
-    public static String format(final double value)
+    public static String format(double value)
     {
         return String.format("%.1f", value);
     }
@@ -76,30 +76,26 @@ public class Doubles
     /**
      * @return The double value formatted with the given number of decimal places
      */
-    public static String format(final double value, final int decimals)
+    public static String format(double value, int decimals)
     {
         return String.format("%." + decimals + "f", value);
     }
 
-    public static double inRange(final double value, final double min, final double max)
+    public static double inRange(double value, double min, double max)
     {
         if (value < min)
         {
             return min;
         }
-        if (value > max)
-        {
-            return max;
-        }
-        return value;
+        return Math.min(value, max);
     }
 
-    public static boolean isBetween(final double value, final double min, final double max)
+    public static boolean isBetween(double value, double min, double max)
     {
         return value >= min && value <= max;
     }
 
-    public static int rounded(final double value)
+    public static int rounded(double value)
     {
         return (int) (value + 0.5);
     }

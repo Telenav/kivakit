@@ -34,13 +34,13 @@ public class StepFailure extends OperationStatusMessage
 {
     public static final StepFailure INSTANCE = new StepFailure();
 
-    public StepFailure(final String message, final Object... arguments)
+    public StepFailure(String message, Object... arguments)
     {
         super(message);
         arguments(arguments);
     }
 
-    public StepFailure(final Throwable cause, final String message, final Object... arguments)
+    public StepFailure(Throwable cause, String message, Object... arguments)
     {
         super(message + ": " + Message.escape(cause.getMessage()));
         cause(cause);

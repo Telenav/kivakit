@@ -65,27 +65,27 @@ public class Frequency
 
     public static final Frequency CONTINUOUSLY = every(Duration.NONE);
 
-    public static Frequency cyclesPerDay(final int times)
+    public static Frequency cyclesPerDay(int times)
     {
         return every(Duration.ONE_DAY.divide(times));
     }
 
-    public static Frequency cyclesPerHour(final int times)
+    public static Frequency cyclesPerHour(int times)
     {
         return every(Duration.ONE_HOUR.divide(times));
     }
 
-    public static Frequency cyclesPerMinute(final int times)
+    public static Frequency cyclesPerMinute(int times)
     {
         return every(Duration.ONE_MINUTE.divide(times));
     }
 
-    public static Frequency cyclesPerSecond(final int times)
+    public static Frequency cyclesPerSecond(int times)
     {
         return every(Duration.ONE_SECOND.divide(times));
     }
 
-    public static Frequency every(final Duration duration)
+    public static Frequency every(Duration duration)
     {
         return new Frequency(duration);
     }
@@ -99,15 +99,15 @@ public class Frequency
     @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<Frequency>
     {
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
         }
 
         @Override
-        protected Frequency onToValue(final String value)
+        protected Frequency onToValue(String value)
         {
-            final var duration = Duration.parse(value);
+            var duration = Duration.parse(value);
             return duration == null ? null : Frequency.every(duration);
         }
     }
@@ -120,7 +120,7 @@ public class Frequency
     {
         private final Time start;
 
-        public Cycle(final Time start)
+        public Cycle(Time start)
         {
             this.start = start;
         }
@@ -137,11 +137,11 @@ public class Frequency
                 return Duration.NONE;
             }
             // The time since this frequency started
-            final var sinceStart = start.elapsedSince();
+            var sinceStart = start.elapsedSince();
 
             // The elapsed time modulus the duration is how far we are into the
             // current cycle
-            final var intoCurrentCycle = Duration
+            var intoCurrentCycle = Duration
                     .milliseconds(sinceStart.asMilliseconds() % cycleLength.asMilliseconds());
 
             // Find out how long is left until the next cycle
@@ -151,7 +151,7 @@ public class Frequency
 
     private final Duration cycleLength;
 
-    protected Frequency(final Duration cycleLength)
+    protected Frequency(Duration cycleLength)
     {
         if (cycleLength == null)
         {
@@ -172,7 +172,7 @@ public class Frequency
      * @param start The time this frequency object started
      * @return A {@link Cycle} object which provides the wait time until the next cycle
      */
-    public Cycle start(final Time start)
+    public Cycle start(Time start)
     {
         return new Cycle(start);
     }

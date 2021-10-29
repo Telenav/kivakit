@@ -43,18 +43,18 @@ class AudienceMember
     @UmlAggregation
     private final Filter<Transmittable> filter;
 
-    AudienceMember(final Listener listener, final Filter<Transmittable> filter)
+    AudienceMember(Listener listener, Filter<Transmittable> filter)
     {
         this.listener = listener;
         this.filter = filter;
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof AudienceMember)
         {
-            final AudienceMember that = (AudienceMember) object;
+            AudienceMember that = (AudienceMember) object;
             return listener == that.listener;
         }
         return false;
@@ -71,7 +71,7 @@ class AudienceMember
         return listener;
     }
 
-    public void receive(final Transmittable message)
+    public void receive(Transmittable message)
     {
         if (filter.accepts(message))
         {

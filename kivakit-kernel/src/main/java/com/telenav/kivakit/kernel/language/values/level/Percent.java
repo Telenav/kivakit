@@ -66,7 +66,7 @@ public final class Percent implements Comparable<Percent>
 
     public static final Percent _100 = new Percent(100);
 
-    public static Percent of(final double percent)
+    public static Percent of(double percent)
     {
         return new Percent(percent);
     }
@@ -79,13 +79,13 @@ public final class Percent implements Comparable<Percent>
     @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<Percent>
     {
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
         }
 
         @Override
-        protected Percent onToValue(final String value)
+        protected Percent onToValue(String value)
         {
             return new Percent(Double.parseDouble(value.endsWith("%") ? Strip.ending(value, "%") : value));
         }
@@ -93,12 +93,12 @@ public final class Percent implements Comparable<Percent>
 
     private double value;
 
-    protected Percent(final double value)
+    protected Percent(double value)
     {
         this.value = value;
     }
 
-    protected Percent()
+    private Percent()
     {
     }
 
@@ -129,22 +129,22 @@ public final class Percent implements Comparable<Percent>
     }
 
     @Override
-    public int compareTo(@NotNull final Percent that)
+    public int compareTo(@NotNull Percent that)
     {
         return Double.compare(value, that.value);
     }
 
-    public Percent dividedBy(final double divisor)
+    public Percent dividedBy(double divisor)
     {
         return new Percent(value / divisor);
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Percent)
         {
-            final Percent that = (Percent) object;
+            Percent that = (Percent) object;
             return value == that.value;
         }
         return false;
@@ -161,52 +161,52 @@ public final class Percent implements Comparable<Percent>
         return new Percent(100.0 - asZeroToOne());
     }
 
-    public boolean isGreaterThan(final Percent that)
+    public boolean isGreaterThan(Percent that)
     {
         return value > that.value;
     }
 
-    public boolean isGreaterThanOrEqualTo(final Percent that)
+    public boolean isGreaterThanOrEqualTo(Percent that)
     {
         return value >= that.value;
     }
 
-    public boolean isLessThan(final Percent that)
+    public boolean isLessThan(Percent that)
     {
         return value < that.value;
     }
 
-    public boolean isLessThanOrEqualTo(final Percent that)
+    public boolean isLessThanOrEqualTo(Percent that)
     {
         return value <= that.value;
     }
 
-    public Percent minus(final Percent that)
+    public Percent minus(Percent that)
     {
         return new Percent(value - that.value);
     }
 
-    public Percent plus(final Percent that)
+    public Percent plus(Percent that)
     {
         return new Percent(value + that.value);
     }
 
-    public double scale(final double value)
+    public double scale(double value)
     {
         return value * asUnitValue();
     }
 
-    public long scale(final long value)
+    public long scale(long value)
     {
         return (long) (value * asUnitValue());
     }
 
-    public int scale(final int value)
+    public int scale(int value)
     {
         return (int) (value * asUnitValue());
     }
 
-    public Percent times(final double scaleFactor)
+    public Percent times(double scaleFactor)
     {
         return new Percent(value * scaleFactor);
     }

@@ -63,18 +63,18 @@ public class ObjectFormatter
     /** The object to format */
     private final Object object;
 
-    public ObjectFormatter(final Object object)
+    public ObjectFormatter(Object object)
     {
         this(object, PackagePath.TELENAV);
     }
 
-    public ObjectFormatter(final Object object, final PackagePath... include)
+    public ObjectFormatter(Object object, PackagePath... include)
     {
         this.object = object;
         this.include = include;
     }
 
-    public ObjectFormatter filter(final PropertyFilter filter)
+    public ObjectFormatter filter(PropertyFilter filter)
     {
         this.filter = filter;
         return this;
@@ -86,19 +86,19 @@ public class ObjectFormatter
         return toString(ObjectFormatter.Format.SINGLE_LINE);
     }
 
-    public String toString(final Format format)
+    public String toString(Format format)
     {
         if (object == null)
         {
             return "null";
         }
-        final Type<?> type = Type.of(object);
-        final var strings = new StringList(KernelLimits.PROPERTIES_PER_OBJECT);
-        for (final var property : type.properties(filter))
+        Type<?> type = Type.of(object);
+        var strings = new StringList(KernelLimits.PROPERTIES_PER_OBJECT);
+        for (var property : type.properties(filter))
         {
             if (!"class".equals(property.name()))
             {
-                final var getter = property.getter();
+                var getter = property.getter();
                 if (getter != null)
                 {
                     var value = getter.get(object);
@@ -124,7 +124,7 @@ public class ObjectFormatter
         }
         else
         {
-            final var name = type.simpleName();
+            var name = type.simpleName();
             if (format == ObjectFormatter.Format.SINGLE_LINE)
             {
                 return "[" + name + (!strings.isEmpty() ? " " : "") + strings + "]";
@@ -136,12 +136,12 @@ public class ObjectFormatter
         }
     }
 
-    private Object toString(final Getter getter, Object value)
+    private Object toString(Getter getter, Object value)
     {
-        final var annotation = getter.annotation(KivaKitFormatProperty.class);
+        var annotation = getter.annotation(KivaKitFormatProperty.class);
         if (annotation != null)
         {
-            final var formatName = annotation.format();
+            var formatName = annotation.format();
             switch (formatName)
             {
                 case "toString":
@@ -149,7 +149,7 @@ public class ObjectFormatter
 
                 default:
                 {
-                    final var format = StringFormat.of(formatName.toUpperCase());
+                    var format = StringFormat.of(formatName.toUpperCase());
                     Ensure.ensureNotNull(format, "@KivaKitFormatProperty(\"" + format + "\") is not a known format");
                     return ((AsString) value).asString(format);
                 }
@@ -173,14 +173,14 @@ public class ObjectFormatter
         else
         {
             // Get the type object for this value
-            final Type<?> valueType = Type.of(value);
+            Type<?> valueType = Type.of(value);
 
             // If the value doesn't directly implement toString and it's not a
             // system type (something implemented by Java)
             if (!valueType.declaresToString() && !valueType.isSystem())
             {
                 // Go through each package path in our path list
-                for (final var packagePath : include)
+                for (var packagePath : include)
                 {
                     // If the value's class is declared inside this package
                     if (valueType.isInside(packagePath))

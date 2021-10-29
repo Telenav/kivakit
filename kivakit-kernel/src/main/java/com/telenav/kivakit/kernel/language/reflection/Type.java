@@ -76,33 +76,33 @@ public class Type<T> implements Named
     {
         @SuppressWarnings({ "rawtypes", "unchecked" })
         @Override
-        protected Type<?> onInitialize(final Class<?> key)
+        protected Type<?> onInitialize(Class<?> key)
         {
             return new Type(key);
         }
     };
 
     @SuppressWarnings("unchecked")
-    public static <T> Type<T> forClass(final Class<T> type)
+    public static <T> Type<T> forClass(Class<T> type)
     {
         return (Type<T>) types.getOrCreate(ensureNotNull(type));
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> Type<T> forName(final String className)
+    public static <T> Type<T> forName(String className)
     {
         try
         {
             return (Type<T>) forClass(Class.forName(className));
         }
-        catch (final ClassNotFoundException e)
+        catch (ClassNotFoundException e)
         {
             throw new IllegalStateException("Cannot find class " + className, e);
         }
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> Type<T> of(final Object object)
+    public static <T> Type<T> of(Object object)
     {
         ensureNotNull(object);
 
@@ -116,31 +116,31 @@ public class Type<T> implements Named
 
     private Boolean hasToString;
 
-    private Type(final Class<T> type)
+    private Type(Class<T> type)
     {
         this.type = type;
     }
 
     public List<java.lang.reflect.Field> allFields()
     {
-        final List<java.lang.reflect.Field> fields = new ArrayList<>();
+        List<java.lang.reflect.Field> fields = new ArrayList<>();
         for (Type<?> current = this; !current.is(Object.class); current = current.superClass())
         {
             if (current.type != null)
             {
-                final var declaredFields = current.type.getDeclaredFields();
+                var declaredFields = current.type.getDeclaredFields();
                 fields.addAll(Arrays.asList(declaredFields));
             }
         }
         return fields;
     }
 
-    public <A extends Annotation> A annotation(final Class<A> annotationType)
+    public <A extends Annotation> A annotation(Class<A> annotationType)
     {
         return type.getAnnotation(annotationType);
     }
 
-    public <A extends Annotation> A[] annotations(final Class<A> annotationType)
+    public <A extends Annotation> A[] annotations(Class<A> annotationType)
     {
         return type.getAnnotationsByType(annotationType);
     }
@@ -154,13 +154,13 @@ public class Type<T> implements Named
         return null;
     }
 
-    public Constructor<T> constructor(final Class<?>... types)
+    public Constructor<T> constructor(Class<?>... types)
     {
         try
         {
             return type.getConstructor(types);
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             LOGGER.problem(e, "Unable to find constructor");
             return null;
@@ -176,7 +176,7 @@ public class Type<T> implements Named
             {
                 hasToString = type.getDeclaredMethod("toString") != null;
             }
-            catch (final Exception e)
+            catch (Exception e)
             {
                 hasToString = Boolean.FALSE;
             }
@@ -186,8 +186,8 @@ public class Type<T> implements Named
 
     public Set<Enum<?>> enumValues()
     {
-        final var values = new HashSet<Enum<?>>();
-        for (final var value : type.getEnumConstants())
+        var values = new HashSet<Enum<?>>();
+        for (var value : type.getEnumConstants())
         {
             values.add((Enum<?>) value);
         }
@@ -195,19 +195,19 @@ public class Type<T> implements Named
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Type<?>)
         {
-            final Type<?> that = (Type<?>) object;
+            Type<?> that = (Type<?>) object;
             return type.equals(that.type);
         }
         return false;
     }
 
-    public Property field(final String name)
+    public Property field(String name)
     {
-        final var iterator = properties(new NamedField(NamingConvention.KIVAKIT, name)).iterator();
+        var iterator = properties(new NamedField(NamingConvention.KIVAKIT, name)).iterator();
         if (iterator.hasNext())
         {
             return iterator.next();
@@ -215,7 +215,7 @@ public class Type<T> implements Named
         return null;
     }
 
-    public List<java.lang.reflect.Field> fields(final Filter<java.lang.reflect.Field> filter)
+    public List<java.lang.reflect.Field> fields(Filter<java.lang.reflect.Field> filter)
     {
         return allFields().stream().filter(filter::accepts).collect(Collectors.toList());
     }
@@ -225,7 +225,7 @@ public class Type<T> implements Named
         return type.getName();
     }
 
-    public <A extends Annotation> boolean hasAnnotation(final Class<A> annotationType)
+    public <A extends Annotation> boolean hasAnnotation(Class<A> annotationType)
     {
         return annotation(annotationType) != null;
     }
@@ -239,14 +239,14 @@ public class Type<T> implements Named
     public List<Type<?>> interfaces()
     {
         var interfaces = new ArrayList<Type<?>>();
-        for (final var at : type.getInterfaces())
+        for (var at : type.getInterfaces())
         {
             interfaces.add(Type.forClass(at));
         }
         return interfaces;
     }
 
-    public boolean is(final Class<?> type)
+    public boolean is(Class<?> type)
     {
         return this.type.equals(type);
     }
@@ -262,9 +262,9 @@ public class Type<T> implements Named
      * @param that The class to test
      * @return True if this {@link Type} descends from that class
      */
-    public boolean isDescendantOf(final Class<?> that)
+    public boolean isDescendantOf(Class<?> that)
     {
-        return that.isAssignableFrom(this.type);
+        return that.isAssignableFrom(type);
     }
 
     public boolean isEnum()
@@ -272,7 +272,7 @@ public class Type<T> implements Named
         return Enum.class.isAssignableFrom(type);
     }
 
-    public boolean isInside(final PackagePath path)
+    public boolean isInside(PackagePath path)
     {
         return packagePath().startsWith(path);
     }
@@ -287,7 +287,7 @@ public class Type<T> implements Named
         return type.getName().startsWith("java.");
     }
 
-    public Method method(final String methodName)
+    public Method method(String methodName)
     {
         try
         {
@@ -309,17 +309,17 @@ public class Type<T> implements Named
     {
         try
         {
-            final var constructor = type.getConstructor();
+            var constructor = type.getConstructor();
             constructor.setAccessible(true);
             return constructor.newInstance();
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             throw new IllegalStateException("Cannot instantiate " + this, e);
         }
     }
 
-    public T newInstance(final Object... parameters)
+    public T newInstance(Object... parameters)
     {
         try
         {
@@ -331,7 +331,7 @@ public class Type<T> implements Named
             }
             return type.getConstructor(types).newInstance(parameters);
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             throw new IllegalStateException("Couldn't construct " + type + "(" + Arrays.toString(parameters) + ")", e);
         }
@@ -345,7 +345,7 @@ public class Type<T> implements Named
     /**
      * @return Set of properties, where setter methods are preferred to direct field access
      */
-    public ObjectList<Property> properties(final PropertyFilter filter)
+    public ObjectList<Property> properties(PropertyFilter filter)
     {
         // If we haven't reflected on the properties yet
         var properties = propertiesForFilter.get(filter);
@@ -355,7 +355,7 @@ public class Type<T> implements Named
             properties = new NameMap<>(KernelLimits.PROPERTIES_PER_OBJECT, new TreeMap<>());
 
             // and add a property getter/setter for each declared field in this type and all super classes
-            for (final var field : allFields())
+            for (var field : allFields())
             {
                 if (filter.includeField(field))
                 {
@@ -364,7 +364,7 @@ public class Type<T> implements Named
             }
 
             // then add setter properties, overriding any fields
-            for (final var method : type.getMethods())
+            for (var method : type.getMethods())
             {
                 // this is necessary because the Java compiler creates duplicate method objects for
                 // methods inheriting from a generic interface, and the extra synthetic method will
@@ -377,8 +377,8 @@ public class Type<T> implements Named
 
                 if (filter.includeAsGetter(method))
                 {
-                    final var name = filter.nameForMethod(method);
-                    final var property = properties.get(name);
+                    var name = filter.nameForMethod(method);
+                    var property = properties.get(name);
                     if (property == null)
                     {
                         properties.add(new Property(name, new MethodGetter(method), null));
@@ -391,8 +391,8 @@ public class Type<T> implements Named
 
                 if (filter.includeAsSetter(method))
                 {
-                    final var name = filter.nameForMethod(method);
-                    final var property = properties.get(name);
+                    var name = filter.nameForMethod(method);
+                    var property = properties.get(name);
                     if (property == null)
                     {
                         properties.add(new Property(name, null, new MethodSetter(method)));
@@ -409,32 +409,32 @@ public class Type<T> implements Named
         return ObjectList.objectList(properties.values()).sorted();
     }
 
-    public Property property(final String name)
+    public Property property(String name)
     {
         return properties(new NamedMethod(NamingConvention.KIVAKIT, name)).first();
     }
 
-    public List<Field> reachableFields(final Object root, final Filter<java.lang.reflect.Field> filter)
+    public List<Field> reachableFields(Object root, Filter<java.lang.reflect.Field> filter)
     {
         return reachableFields(root, filter, new HashSet<>());
     }
 
-    public List<Object> reachableObjects(final Object root)
+    public List<Object> reachableObjects(Object root)
     {
         return reachableObjects(root, (field) ->
         {
-            final var modifiers = field.getModifiers();
+            var modifiers = field.getModifiers();
             return !Modifier.isStatic(modifiers) && !Modifier.isTransient(modifiers) && !field.getType().isPrimitive();
         });
     }
 
-    public List<Object> reachableObjects(final Object root, final Filter<java.lang.reflect.Field> filter)
+    public List<Object> reachableObjects(Object root, Filter<java.lang.reflect.Field> filter)
     {
-        final List<Object> values = new ArrayList<>();
+        List<Object> values = new ArrayList<>();
 
-        for (final var field : reachableFields(root, filter))
+        for (var field : reachableFields(root, filter))
         {
-            final var value = field.value();
+            var value = field.value();
             if (value != null)
             {
                 values.add(value);
@@ -444,7 +444,7 @@ public class Type<T> implements Named
         return values;
     }
 
-    public List<Object> reachableObjectsImplementing(final Object root, final Class<?> _interface)
+    public List<Object> reachableObjectsImplementing(Object root, Class<?> _interface)
     {
         return reachableObjects(root, field -> _interface.isAssignableFrom(field.getType()));
     }
@@ -467,7 +467,7 @@ public class Type<T> implements Named
         }
         else
         {
-            final Class<? super T> superclass = type.getSuperclass();
+            Class<? super T> superclass = type.getSuperclass();
             return superclass == null ? null : forClass(superclass);
         }
     }
@@ -476,7 +476,7 @@ public class Type<T> implements Named
     {
         var superclasses = new ObjectList<Type<?>>();
 
-        final var superClass = superClass();
+        var superClass = superClass();
         if (superClass != null)
         {
             superclasses.add(superClass);
@@ -489,10 +489,10 @@ public class Type<T> implements Named
     @NotNull
     public ObjectSet<Type<?>> superInterfaces()
     {
-        final var superinterfaces = new ObjectSet<Type<?>>(new LinkedHashSet<>());
+        var superinterfaces = new ObjectSet<Type<?>>(new LinkedHashSet<>());
 
         // Go through each interface of this type,
-        for (final var at : interfaces())
+        for (var at : interfaces())
         {
             // and recursively add any superinterfaces,
             superinterfaces.add(at);
@@ -529,22 +529,22 @@ public class Type<T> implements Named
         return type;
     }
 
-    public VariableMap<Object> variables(final Object object, final PropertyFilter filter)
+    public VariableMap<Object> variables(Object object, PropertyFilter filter)
     {
         return variables(object, filter, null);
     }
 
-    public VariableMap<Object> variables(final Object object, final PropertyFilter filter, final Object nullValue)
+    public VariableMap<Object> variables(Object object, PropertyFilter filter, Object nullValue)
     {
-        final var variables = new VariableMap<>();
-        for (final var property : properties(filter))
+        var variables = new VariableMap<>();
+        for (var property : properties(filter))
         {
             if (!"class".equals(property.name()))
             {
-                final var getter = property.getter();
+                var getter = property.getter();
                 if (getter != null)
                 {
-                    final var value = getter.get(object);
+                    var value = getter.get(object);
                     if (value == null)
                     {
                         if (nullValue != null)
@@ -562,27 +562,27 @@ public class Type<T> implements Named
         return variables;
     }
 
-    private List<Field> reachableFields(final Object root, final Filter<java.lang.reflect.Field> filter,
-                                        final Set<Field> visited)
+    private List<Field> reachableFields(Object root, Filter<java.lang.reflect.Field> filter,
+                                        Set<Field> visited)
     {
-        final List<Field> fields = new ArrayList<>();
+        List<Field> fields = new ArrayList<>();
         if (root != null)
         {
             try
             {
-                final Type<?> type = of(root);
+                Type<?> type = of(root);
                 if (type != null)
                 {
-                    for (final var field : type.allFields())
+                    for (var field : type.allFields())
                     {
                         if (field.getDeclaringClass().getModule().isOpen(field.getDeclaringClass().getPackageName()))
                         {
                             if (filter.accepts(field))
                             {
-                                final var objectField = new Field(root, field);
+                                var objectField = new Field(root, field);
                                 if (!objectField.isPrimitive())
                                 {
-                                    final var value = objectField.value();
+                                    var value = objectField.value();
                                     if (value != null && !visited.contains(objectField))
                                     {
                                         visited.add(objectField);
@@ -595,7 +595,7 @@ public class Type<T> implements Named
                     }
                 }
             }
-            catch (final Exception e)
+            catch (Exception e)
             {
                 LOGGER.problem(e, "Error while finding reachable fields");
             }

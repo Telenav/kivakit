@@ -37,22 +37,22 @@ public class StringToStringMap extends BaseStringMap<String>
         this(Maximum.MAXIMUM);
     }
 
-    public StringToStringMap(final Maximum maximumSize)
+    public StringToStringMap(Maximum maximumSize)
     {
         super(maximumSize);
     }
 
-    public int asInt(final String key)
+    public int asInt(String key)
     {
         return Ints.parse(get(key), Integer.MIN_VALUE);
     }
 
-    public Count count(final String key)
+    public Count count(String key)
     {
         return Count.parse(get(key));
     }
 
-    public String get(final String key)
+    public String get(String key)
     {
         return super.get(key);
     }

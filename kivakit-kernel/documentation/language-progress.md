@@ -34,25 +34,25 @@ The interface looks roughly like this:
     public interface ProgressReporter extends Resettable
     {
         // Configure
-        default ProgressReporter listener(final ProgressListener listener)
-        default ProgressReporter steps(final Count steps)
+        default ProgressReporter listener( ProgressListener listener)
+        default ProgressReporter steps( Count steps)
         default Count steps()
         default boolean isIndefinite()
 
         // Start operation
         default ProgressReporter start()
-        default ProgressReporter start(final String label)
+        default ProgressReporter start( String label)
 
         // Phase
-        default ProgressReporter phase(final String phase)
+        default ProgressReporter phase( String phase)
 
         // Report progress
         void next()
-        default void next(final Count steps)
-        default void next(final int steps)
+        default void next( Count steps)
+        default void next( int steps)
 
         // End operation
-        default void end(final String label)
+        default void end( String label)
         default void end()
     }
 

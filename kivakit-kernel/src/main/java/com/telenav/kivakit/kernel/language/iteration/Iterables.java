@@ -49,17 +49,17 @@ import java.util.Set;
 @UmlClassDiagram(diagram = DiagramLanguageIteration.class)
 public class Iterables
 {
-    public static <T> void addAll(final Iterable<T> iterable, final Collection<? super T> collection)
+    public static <T> void addAll(Iterable<T> iterable, Collection<? super T> collection)
     {
-        for (final var value : iterable)
+        for (var value : iterable)
         {
             collection.add(value);
         }
     }
 
-    public static <T> boolean contains(final Iterable<T> iterable, final T value)
+    public static <T> boolean contains(Iterable<T> iterable, T value)
     {
-        for (final var next : iterable)
+        for (var next : iterable)
         {
             if (next.equals(value))
             {
@@ -69,9 +69,9 @@ public class Iterables
         return false;
     }
 
-    public static <T> boolean containsAny(final Iterable<T> iterable, final Set<T> values)
+    public static <T> boolean containsAny(Iterable<T> iterable, Set<T> values)
     {
-        for (final var next : iterable)
+        for (var next : iterable)
         {
             if (values.contains(next))
             {
@@ -84,7 +84,7 @@ public class Iterables
     /**
      * @return True if the two sequences are equal
      */
-    public static <T> boolean equals(final Iterable<T> a, final Iterable<T> b)
+    public static <T> boolean equals(Iterable<T> a, Iterable<T> b)
     {
         if (a != null && b != null)
         {
@@ -96,12 +96,12 @@ public class Iterables
     /**
      * @return A hash code for the objects in a sequence
      */
-    public static <T> int hashCode(final Iterable<T> iterable)
+    public static <T> int hashCode(Iterable<T> iterable)
     {
         return Iterators.hashCode(iterable.iterator());
     }
 
-    public static boolean isEmpty(final Iterable<?> iterable)
+    public static boolean isEmpty(Iterable<?> iterable)
     {
         if (iterable == null)
         {
@@ -117,7 +117,7 @@ public class Iterables
     /**
      * @return An iterable for the given {@link Next} factory
      */
-    public static <T> Iterable<T> iterable(final Factory<Next<T>> factory)
+    public static <T> Iterable<T> iterable(Factory<Next<T>> factory)
     {
         return new BaseIterable<>()
         {
@@ -133,24 +133,24 @@ public class Iterables
      * @param iterable An iterable
      * @return The number of items in this iterable
      */
-    public static <T> int size(final Iterable<T> iterable)
+    public static <T> int size(Iterable<T> iterable)
     {
         if (iterable instanceof List)
         {
             return ((List<T>) iterable).size();
         }
         var counter = 0;
-        for (final var ignored : iterable)
+        for (var ignored : iterable)
         {
             counter++;
         }
         return counter;
     }
 
-    public static <T> StringList toString(final Iterable<T> iterable)
+    public static <T> StringList toString(Iterable<T> iterable)
     {
-        final var result = new StringList();
-        for (final var value : iterable)
+        var result = new StringList();
+        for (var value : iterable)
         {
             result.add(value.toString());
         }

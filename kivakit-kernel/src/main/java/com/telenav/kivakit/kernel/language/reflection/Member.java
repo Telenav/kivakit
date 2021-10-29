@@ -5,7 +5,7 @@ import java.util.List;
 
 public abstract class Member
 {
-    public <T extends Annotation> T annotation(final Class<T> annotationClass)
+    public <T extends Annotation> T annotation(Class<T> annotationClass)
     {
         return type().annotation(annotationClass);
     }

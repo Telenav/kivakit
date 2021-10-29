@@ -33,13 +33,13 @@ public final class Optional extends Pattern
 {
     private final Pattern pattern;
 
-    public Optional(final Pattern pattern)
+    public Optional(Pattern pattern)
     {
         this.pattern = pattern;
     }
 
     @Override
-    public int bind(final int group)
+    public int bind(int group)
     {
         return pattern.bind(group);
     }

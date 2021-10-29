@@ -45,7 +45,7 @@ import java.util.List;
 @UmlClassDiagram(diagram = DiagramLanguageThread.class)
 public class CallStack
 {
-    public static Method callerOf(final Proximity proximity, final Matching matching, final Class<?> calleeType)
+    public static Method callerOf(Proximity proximity, Matching matching, Class<?> calleeType)
     {
         return callerOf(proximity, matching, calleeType, Matching.EXACT);
     }
@@ -67,17 +67,17 @@ public class CallStack
      * @param ignores Any intermediate classes to ignore
      * @return The class that most recently called the given callee on this thread's execution stack
      */
-    public static Method callerOf(final Proximity proximity,
-                                  final Matching matching,
-                                  final Class<?> calleeType,
-                                  final Matching ignoreMatching,
-                                  final Class<?>... ignores)
+    public static Method callerOf(Proximity proximity,
+                                  Matching matching,
+                                  Class<?> calleeType,
+                                  Matching ignoreMatching,
+                                  Class<?>... ignores)
     {
         // Get call stack
-        final var stack = stack();
+        var stack = stack();
 
         // Find the index of the callee on the stack using the matching rules
-        final var callee = calleeType == null ? 0 : findCallee(matching, proximity, stack, calleeType);
+        var callee = calleeType == null ? 0 : findCallee(matching, proximity, stack, calleeType);
 
         // If we found the callee
         if (callee != -1)
@@ -101,12 +101,12 @@ public class CallStack
         return stack(Thread.currentThread());
     }
 
-    public static List<Method> stack(final Thread thread)
+    public static List<Method> stack(Thread thread)
     {
-        final List<Method> stack = new ArrayList<>();
-        for (final var frame : Thread.currentThread().getStackTrace())
+        List<Method> stack = new ArrayList<>();
+        for (var frame : Thread.currentThread().getStackTrace())
         {
-            final var method = Method.of(frame);
+            var method = Method.of(frame);
             if (method != null)
             {
                 stack.add(method);
@@ -133,17 +133,17 @@ public class CallStack
         IMMEDIATE
     }
 
-    private static int findCallee(final Matching matching,
-                                  final Proximity proximity,
-                                  final List<Method> stack,
-                                  final Class<?> calleeType)
+    private static int findCallee(Matching matching,
+                                  Proximity proximity,
+                                  List<Method> stack,
+                                  Class<?> calleeType)
     {
         var callee = -1;
 
         var index = 0;
-        for (final var method : stack)
+        for (var method : stack)
         {
-            final var matches = matching == Matching.EXACT ? calleeType.equals(method.typeClass()) : calleeType.isAssignableFrom(method.typeClass());
+            var matches = matching == Matching.EXACT ? calleeType.equals(method.typeClass()) : calleeType.isAssignableFrom(method.typeClass());
 
             switch (proximity)
             {
@@ -175,13 +175,13 @@ public class CallStack
         return callee;
     }
 
-    private static boolean shouldIgnore(final Method caller, final Matching matching, final Class<?>... ignores)
+    private static boolean shouldIgnore(Method caller, Matching matching, Class<?>... ignores)
     {
         var ignored = false;
-        final var exact = matching == Matching.EXACT;
+        var exact = matching == Matching.EXACT;
         if (caller != null)
         {
-            for (final var ignore : ignores)
+            for (var ignore : ignores)
             {
                 if ((exact && ignore == caller.typeClass()) || (!exact && ignore.isAssignableFrom(caller.typeClass())))
                 {

@@ -33,7 +33,7 @@ public class SoftReferencedValue<T> extends SoftReference<T> implements Source<T
 {
     private final String name;
 
-    public SoftReferencedValue(final String name, final T value, final ReferenceQueue<T> queue)
+    public SoftReferencedValue(String name, T value, ReferenceQueue<T> queue)
     {
         super(value, queue);
         this.name = name;

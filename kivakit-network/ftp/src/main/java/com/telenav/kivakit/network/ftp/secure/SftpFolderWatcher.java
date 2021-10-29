@@ -63,9 +63,9 @@ public class SftpFolderWatcher extends PeriodicCollectionChangeWatcher<NetworkPa
      * @param credentials The SFTP credentials object
      * @param location The path of the folder to monitor on the SFTP server
      */
-    public SftpFolderWatcher(final Frequency frequency,
-                             final SecureFtpSettings credentials,
-                             final SecureFtpNetworkLocation location)
+    public SftpFolderWatcher(Frequency frequency,
+                             SecureFtpSettings credentials,
+                             SecureFtpNetworkLocation location)
     {
         super(frequency);
         lastModifiedCache = new HashMap<>();
@@ -81,7 +81,7 @@ public class SftpFolderWatcher extends PeriodicCollectionChangeWatcher<NetworkPa
      * @return The time the resource is last modified
      */
     @Override
-    protected Time lastModified(final NetworkPath object)
+    protected Time lastModified(NetworkPath object)
     {
         if (lastModifiedCache.containsKey(object))
         {
@@ -113,7 +113,7 @@ public class SftpFolderWatcher extends PeriodicCollectionChangeWatcher<NetworkPa
     protected Collection<NetworkPath> objects()
     {
         narrate("Checking the SFTP folder ${debug}.", location);
-        final Collection<NetworkPath> result = new ArrayList<>();
+        Collection<NetworkPath> result = new ArrayList<>();
 
         /*
          * The boolean initialized will force the list initial list of values in the watcher to be
@@ -123,18 +123,18 @@ public class SftpFolderWatcher extends PeriodicCollectionChangeWatcher<NetworkPa
         if (initialized)
         {
             lastModifiedCache = new HashMap<>();
-            final var sftp = connector();
+            var sftp = connector();
 
             /*
              * Get all the files from the SFTP server
              */
-            final var path = location.networkPath();
+            var path = location.networkPath();
             try
             {
-                final var files = sftp.listFiles(location);
-                for (final var file : files)
+                var files = sftp.listFiles(location);
+                for (var file : files)
                 {
-                    final var filePath = path.withChild(file.getFilename());
+                    var filePath = path.withChild(file.getFilename());
                     if (!filePath.last().endsWith(".") && !filePath.last().endsWith(".."))
                     {
                         /*
@@ -142,7 +142,7 @@ public class SftpFolderWatcher extends PeriodicCollectionChangeWatcher<NetworkPa
                          */
                         result.add(filePath);
                         lastModifiedCache.remove(filePath);
-                        final var lastModified = getTimeLastModified(file);
+                        var lastModified = getTimeLastModified(file);
                         lastModifiedCache.put(filePath, lastModified);
                     }
                 }
@@ -165,9 +165,9 @@ public class SftpFolderWatcher extends PeriodicCollectionChangeWatcher<NetworkPa
      */
     private SecureFtpConnector connector()
     {
-        final var constraints = new NetworkAccessConstraints();
+        var constraints = new NetworkAccessConstraints();
         constraints.timeout(credentials.timeout());
-        final var location = this.location;
+        var location = this.location;
         location.constraints().userName(credentials.userName());
         location.constraints().password(credentials.password());
         return new SecureFtpConnector(constraints);
@@ -177,7 +177,7 @@ public class SftpFolderWatcher extends PeriodicCollectionChangeWatcher<NetworkPa
      * @param file The SFTP API {@link LsEntry} that represents the file to be considered.
      * @return The last modified time
      */
-    private Time getTimeLastModified(final LsEntry file)
+    private Time getTimeLastModified(LsEntry file)
     {
         return Time.milliseconds(file.getAttrs().getMTime());
     }

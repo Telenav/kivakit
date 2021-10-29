@@ -82,43 +82,43 @@ public class Email implements Validatable
 
     int tries;
 
-    public Email addTo(final EmailAddress address)
+    public Email addTo(EmailAddress address)
     {
         to.add(address);
         return this;
     }
 
-    public Email attach(final EmailAttachment attachment)
+    public Email attach(EmailAttachment attachment)
     {
         attachments.add(attachment);
         return this;
     }
 
-    public Email body(final EmailBody body)
+    public Email body(EmailBody body)
     {
         this.body = body;
         return this;
     }
 
-    public Email from(final EmailAddress from)
+    public Email from(EmailAddress from)
     {
         this.from = from;
         return this;
     }
 
-    public Email sentAt(final Time sentAt)
+    public Email sentAt(Time sentAt)
     {
         this.sentAt = sentAt;
         return this;
     }
 
-    public Email subject(final String subject)
+    public Email subject(String subject)
     {
         this.subject = subject;
         return this;
     }
 
-    public Email to(final Set<EmailAddress> to)
+    public Email to(Set<EmailAddress> to)
     {
         this.to = to;
         return this;
@@ -131,7 +131,7 @@ public class Email implements Validatable
     }
 
     @Override
-    public Validator validator(final ValidationType type)
+    public Validator validator(ValidationType type)
     {
         return new BaseValidator()
         {
@@ -146,7 +146,7 @@ public class Email implements Validatable
         };
     }
 
-    public void waitForRetry(final Duration durationBetweenRetries)
+    public void waitForRetry(Duration durationBetweenRetries)
     {
         if (lastRetry != null)
         {
@@ -156,19 +156,19 @@ public class Email implements Validatable
         tries++;
     }
 
-    void composeMessage(final MimeMessage message) throws Exception
+    void composeMessage(MimeMessage message) throws Exception
     {
 
         message.setSubject(subject);
         message.setFrom(resolve(from));
-        final Multipart multipart = new MimeMultipart();
+        Multipart multipart = new MimeMultipart();
         multipart.addBodyPart(body.bodyPart);
-        for (final var attachment : attachments)
+        for (var attachment : attachments)
         {
             multipart.addBodyPart(attachment.bodyPart());
         }
         message.setContent(multipart);
-        for (final var address : to)
+        for (var address : to)
         {
             message.addRecipient(Message.RecipientType.TO, resolve(address));
         }
@@ -179,11 +179,11 @@ public class Email implements Validatable
         return Count.count(tries);
     }
 
-    private InternetAddress resolve(final EmailAddress email)
+    private InternetAddress resolve(EmailAddress email)
     {
         try
         {
-            final var addresses = InternetAddress.parse(email.email(), true);
+            var addresses = InternetAddress.parse(email.email(), true);
             if (addresses.length == 1)
             {
                 return addresses[0];
@@ -193,7 +193,7 @@ public class Email implements Validatable
                 return illegalState("Cannot parse email address: $", email);
             }
         }
-        catch (final AddressException e)
+        catch (AddressException e)
         {
             return illegalState(e, "Cannot parse email address: $", email);
         }

@@ -38,7 +38,7 @@ public class HttpBasicCredentials
 
     private final UserName username;
 
-    public HttpBasicCredentials(final UserName username, final Password password)
+    public HttpBasicCredentials(UserName username, Password password)
     {
         this.username = username;
         this.password = password;

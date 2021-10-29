@@ -46,7 +46,7 @@ public class InputResource extends BaseReadableResource
     /**
      * @param in The input stream (which can only be read one time)
      */
-    public InputResource(final InputStream in)
+    public InputResource(InputStream in)
     {
         super(ResourcePath.parseUnixResourcePath("/objects/InputResource/" + Integer.toHexString(in.hashCode())));
         this.in = in;

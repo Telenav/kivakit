@@ -54,7 +54,7 @@ public abstract class OperationStatusMessage extends OperationMessage
     {
     }
 
-    protected OperationStatusMessage(final String message, final Object... arguments)
+    protected OperationStatusMessage(String message, Object... arguments)
     {
         super(message);
         arguments(arguments);
@@ -65,7 +65,7 @@ public abstract class OperationStatusMessage extends OperationMessage
         return code;
     }
 
-    public OperationStatusMessage code(final String code)
+    public OperationStatusMessage code(String code)
     {
         this.code = code;
         return this;

@@ -40,26 +40,26 @@ import java.util.zip.GZIPOutputStream;
 public class GzipCodec implements Codec
 {
     @Override
-    public OutputStream compressed(final OutputStream out)
+    public OutputStream compressed(OutputStream out)
     {
         try
         {
             return new GZIPOutputStream(out);
         }
-        catch (final IOException e)
+        catch (IOException e)
         {
             throw new Problem(e, "Cannot open GZIP output stream").asException();
         }
     }
 
     @Override
-    public InputStream decompressed(final InputStream in)
+    public InputStream decompressed(InputStream in)
     {
         try
         {
             return new GZIPInputStream(in);
         }
-        catch (final IOException e)
+        catch (IOException e)
         {
             throw new Problem(e, "Cannot open GZIP input stream").asException();
         }

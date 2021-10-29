@@ -27,19 +27,19 @@ public final class OneOrMore extends Closure
 {
     private final Pattern pattern;
 
-    public OneOrMore(final Pattern pattern)
+    public OneOrMore(Pattern pattern)
     {
         this(pattern, true);
     }
 
-    public OneOrMore(final Pattern pattern, final boolean greedy)
+    public OneOrMore(Pattern pattern, boolean greedy)
     {
         super(greedy);
         this.pattern = pattern;
     }
 
     @Override
-    public int bind(final int group)
+    public int bind(int group)
     {
         return pattern.bind(group);
     }

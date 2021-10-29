@@ -39,13 +39,13 @@ public class RateCalculator
 
     private final Duration resetInterval;
 
-    public RateCalculator(final Duration resetInterval)
+    public RateCalculator(Duration resetInterval)
     {
         this.resetInterval = resetInterval;
         reset();
     }
 
-    public void add(final int count)
+    public void add(int count)
     {
         this.count += count;
     }
@@ -57,8 +57,8 @@ public class RateCalculator
 
     public Rate rate()
     {
-        final var elapsed = start.elapsedSince();
-        final Rate rate;
+        var elapsed = start.elapsedSince();
+        Rate rate;
         if (lastStart != null)
         {
             rate = new Rate(lastCount, resetInterval);

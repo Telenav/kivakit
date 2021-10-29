@@ -41,7 +41,7 @@ public class Subset<T> extends LogicalSet<T>
 
     private final Matcher<T> matcher;
 
-    public Subset(final Set<T> set, final Matcher<T> matcher)
+    public Subset(Set<T> set, Matcher<T> matcher)
     {
         this.set = set;
         this.matcher = matcher;
@@ -49,21 +49,21 @@ public class Subset<T> extends LogicalSet<T>
 
     @Override
     @SuppressWarnings("unchecked")
-    public boolean contains(final Object object)
+    public boolean contains(Object object)
     {
         return set.contains(object) && matcher.matches((T) object);
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Set)
         {
-            final var that = (Set<T>) object;
+            var that = (Set<T>) object;
             if (size() == that.size())
             {
-                for (final var value : this)
+                for (var value : this)
                 {
                     if (!that.contains(value))
                     {
@@ -89,7 +89,7 @@ public class Subset<T> extends LogicalSet<T>
         {
             return true;
         }
-        for (final var member : set)
+        for (var member : set)
         {
             if (matcher.matches(member))
             {
@@ -111,7 +111,7 @@ public class Subset<T> extends LogicalSet<T>
             {
                 while (iterator.hasNext())
                 {
-                    final var next = iterator.next();
+                    var next = iterator.next();
                     if (matcher.matches(next))
                     {
                         return next;
@@ -126,7 +126,7 @@ public class Subset<T> extends LogicalSet<T>
     public int size()
     {
         var size = 0;
-        for (final var member : set)
+        for (var member : set)
         {
             if (matcher.matches(member))
             {

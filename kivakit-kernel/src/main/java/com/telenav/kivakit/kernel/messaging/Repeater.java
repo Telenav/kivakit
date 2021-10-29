@@ -87,7 +87,7 @@ public interface Repeater extends Listener, Broadcaster, Receiver
      */
     @Override
     @MustBeInvokedByOverriders
-    default void onReceive(final Transmittable message)
+    default void onReceive(Transmittable message)
     {
         if (isRepeating())
         {
@@ -103,7 +103,7 @@ public interface Repeater extends Listener, Broadcaster, Receiver
      * </p>
      */
     @Override
-    default <M extends Transmittable> M receive(final M message)
+    default <M extends Transmittable> M receive(M message)
     {
         onReceive(message);
         return message;

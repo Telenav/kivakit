@@ -50,5 +50,5 @@ public interface FileService extends FileSystemObjectService, WritableResource
      * @param that The file to rename to
      * @return True if the file was renamed
      */
-    boolean renameTo(final FileService that);
+    boolean renameTo(FileService that);
 }

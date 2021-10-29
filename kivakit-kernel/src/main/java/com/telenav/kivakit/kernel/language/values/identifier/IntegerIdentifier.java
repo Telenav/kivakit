@@ -43,7 +43,7 @@ public class IntegerIdentifier implements Comparable<IntegerIdentifier>, Identif
     @LexakaiJavadoc(complete = true)
     public static class Converter extends Quantizable.Converter<IntegerIdentifier>
     {
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener, identifier -> identifier == null ? null : new IntegerIdentifier(identifier.intValue()));
         }
@@ -51,7 +51,7 @@ public class IntegerIdentifier implements Comparable<IntegerIdentifier>, Identif
 
     private int value;
 
-    public IntegerIdentifier(final int value)
+    public IntegerIdentifier(int value)
     {
         this.value = value;
     }
@@ -71,17 +71,17 @@ public class IntegerIdentifier implements Comparable<IntegerIdentifier>, Identif
     }
 
     @Override
-    public int compareTo(final IntegerIdentifier that)
+    public int compareTo(IntegerIdentifier that)
     {
         return Integer.compare(value, that.value);
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof IntegerIdentifier)
         {
-            final var that = (IntegerIdentifier) object;
+            var that = (IntegerIdentifier) object;
             return value == that.value;
         }
         return false;
@@ -100,12 +100,12 @@ public class IntegerIdentifier implements Comparable<IntegerIdentifier>, Identif
         return value;
     }
 
-    public boolean isGreaterThan(final IntegerIdentifier identifier)
+    public boolean isGreaterThan(IntegerIdentifier identifier)
     {
         return value > identifier.value;
     }
 
-    public boolean isLessThan(final IntegerIdentifier identifier)
+    public boolean isLessThan(IntegerIdentifier identifier)
     {
         return value < identifier.value;
     }

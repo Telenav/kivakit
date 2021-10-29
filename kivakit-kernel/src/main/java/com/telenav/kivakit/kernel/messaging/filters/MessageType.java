@@ -22,7 +22,7 @@ import com.telenav.kivakit.kernel.messaging.Message;
 
 public class MessageType extends SubClassesOf<Message>
 {
-    public MessageType(final Class<Message> type)
+    public MessageType(Class<Message> type)
     {
         super(type);
     }

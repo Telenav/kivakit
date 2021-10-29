@@ -34,9 +34,9 @@ public class StringTo
     /**
      * @return The lowest bits of the given value as a binary string
      */
-    public static String binary(final int value, int bits)
+    public static String binary(int value, int bits)
     {
-        final var builder = new StringBuilder();
+        var builder = new StringBuilder();
         var mask = 1 << (bits - 1);
         while (bits-- > 0)
         {
@@ -54,7 +54,7 @@ public class StringTo
      * @param object The object
      * @return A debug string for the object
      */
-    public static String debug(final Object object)
+    public static String debug(Object object)
     {
         if (object instanceof AsString)
         {
@@ -66,11 +66,11 @@ public class StringTo
     /**
      * @return The given enum value as a displayable string
      */
-    public static String display(final Enum<?> enumValue)
+    public static String display(Enum<?> enumValue)
     {
-        final var words = StringList.split(enumValue.name(), "_");
-        final var display = new StringList();
-        for (final var word : words)
+        var words = StringList.split(enumValue.name(), "_");
+        var display = new StringList();
+        for (var word : words)
         {
             display.add(CaseFormat.capitalizeOnlyFirstLetter(word.toLowerCase()));
         }
@@ -80,7 +80,7 @@ public class StringTo
     /**
      * @return The given text trivially converted to HTML
      */
-    public static String html(final String text)
+    public static String html(String text)
     {
         return text.replaceAll("\n", "<br/>").replaceAll(" ", "&nbsp;");
     }
@@ -88,7 +88,7 @@ public class StringTo
     /**
      * @return The value as a string or an empty string if it is null
      */
-    public static String nonNullString(final Object value)
+    public static String nonNullString(Object value)
     {
         return value == null ? "" : string(value);
     }
@@ -96,7 +96,7 @@ public class StringTo
     /**
      * @return The given object as a string or the given value if it is null
      */
-    public static String string(final Object object, final String defaultValue)
+    public static String string(Object object, String defaultValue)
     {
         if (object == null)
         {
@@ -108,12 +108,12 @@ public class StringTo
         }
         if (object instanceof Long)
         {
-            final var value = (long) object;
+            var value = (long) object;
             return String.format("%,d", value);
         }
         if (object instanceof Integer)
         {
-            final var value = (int) object;
+            var value = (int) object;
             return String.format("%,d", value);
         }
         return object.toString();
@@ -122,7 +122,7 @@ public class StringTo
     /**
      * @return The given object as a string or "null" if it is null
      */
-    public static String string(final Object object)
+    public static String string(Object object)
     {
         return string(object, "null");
     }

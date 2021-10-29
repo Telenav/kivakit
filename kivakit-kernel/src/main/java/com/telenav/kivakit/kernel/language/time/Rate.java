@@ -57,27 +57,27 @@ public class Rate implements
 {
     public static final Rate MAXIMUM = new Rate(Integer.MAX_VALUE, Duration.milliseconds(1));
 
-    public static Rate perDay(final double count)
+    public static Rate perDay(double count)
     {
         return new Rate(count, Duration.ONE_DAY);
     }
 
-    public static Rate perHour(final double count)
+    public static Rate perHour(double count)
     {
         return new Rate(count, Duration.ONE_HOUR);
     }
 
-    public static Rate perMinute(final double count)
+    public static Rate perMinute(double count)
     {
         return new Rate(count, Duration.ONE_MINUTE);
     }
 
-    public static Rate perSecond(final double count)
+    public static Rate perSecond(double count)
     {
         return new Rate(count, Duration.ONE_SECOND);
     }
 
-    public static Rate perYear(final double count)
+    public static Rate perYear(double count)
     {
         return new Rate(count, Duration.ONE_YEAR);
     }
@@ -86,7 +86,7 @@ public class Rate implements
 
     private final double count;
 
-    public Rate(final double count, final Duration duration)
+    public Rate(double count, Duration duration)
     {
         this.count = count;
         this.duration = duration;
@@ -94,7 +94,7 @@ public class Rate implements
 
     @SuppressWarnings("NullableProblems")
     @Override
-    public int compareTo(final Rate that)
+    public int compareTo(Rate that)
     {
         if (isFasterThan(that))
         {
@@ -119,11 +119,11 @@ public class Rate implements
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Rate)
         {
-            final var that = (Rate) object;
+            var that = (Rate) object;
             return perMinute().count() == that.perMinute().count();
         }
         return false;
@@ -135,24 +135,24 @@ public class Rate implements
         return Double.hashCode(count / duration.asMinutes());
     }
 
-    public boolean isFasterThan(final Rate that)
+    public boolean isFasterThan(Rate that)
     {
         return perMinute().count > that.perMinute().count;
     }
 
-    public boolean isSlowerThan(final Rate that)
+    public boolean isSlowerThan(Rate that)
     {
         return perMinute().count < that.perMinute().count;
     }
 
     @Override
-    public Rate maximum(final Rate that)
+    public Rate maximum(Rate that)
     {
         return isGreaterThan(that) ? this : that;
     }
 
     @Override
-    public Rate minimum(final Rate that)
+    public Rate minimum(Rate that)
     {
         return isGreaterThan(that) ? this : that;
     }
@@ -182,7 +182,7 @@ public class Rate implements
         return new Rate(count / duration.asYears(), Duration.ONE_YEAR);
     }
 
-    public Rate plus(final Rate that)
+    public Rate plus(Rate that)
     {
         return Rate.perDay(perDay().count() + that.perDay().count());
     }
@@ -193,7 +193,7 @@ public class Rate implements
         return (long) perSecond().count();
     }
 
-    public void throttle(final Rate maximumRate)
+    public void throttle(Rate maximumRate)
     {
         if (isFasterThan(maximumRate))
         {
@@ -204,7 +204,7 @@ public class Rate implements
     @Override
     public String toString()
     {
-        final var formatted = String.format(count < 100 ? "%,.1f" : "%,.0f", count);
+        var formatted = String.format(count < 100 ? "%,.1f" : "%,.0f", count);
         if (duration.equals(Duration.ONE_SECOND))
         {
             return formatted + " per second";

@@ -61,16 +61,16 @@ public class Loopback extends Host
     {
         try
         {
-            final var interfaces = NetworkInterface.getNetworkInterfaces();
+            var interfaces = NetworkInterface.getNetworkInterfaces();
             while (interfaces.hasMoreElements())
             {
-                final var i = interfaces.nextElement();
+                var i = interfaces.nextElement();
                 if (i.isLoopback())
                 {
-                    final var addresses = i.getInetAddresses();
+                    var addresses = i.getInetAddresses();
                     while (addresses.hasMoreElements())
                     {
-                        final var address = addresses.nextElement();
+                        var address = addresses.nextElement();
                         if (address instanceof Inet4Address)
                         {
                             return address;
@@ -79,7 +79,7 @@ public class Loopback extends Host
                 }
             }
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             return fail(e, "Couldn't find loopback interface");
         }

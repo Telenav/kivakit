@@ -88,7 +88,7 @@ import java.util.Collection;
  *         .defaultValue(1)
  *         .build();
  *
- *     public static void main(final String[] arguments)
+ *     public static void main( String[] arguments)
  *     {
  *         new Example(new CommandLineParser()
  *             .add(NUMBER)
@@ -96,11 +96,11 @@ import java.util.Collection;
  *             .parse(arguments);
  *     }
  *
- *     public Example(final CommandLine commandLine)
+ *     public Example( CommandLine commandLine)
  *     {
  *         final int multiplier = commandLine.get(MULTIPLIER);
  *         var result = 0;
- *         for (final Argument argument : commandLine)
+ *         for ( Argument argument : commandLine)
  *         {
  *             result += argument.get(NUMBER) * multiplier;
  *         }
@@ -134,7 +134,7 @@ public class CommandLineParser
     /**
      * @param application The application's class
      */
-    public CommandLineParser(final ApplicationMetadata application)
+    public CommandLineParser(ApplicationMetadata application)
     {
         this.application = application;
     }
@@ -142,7 +142,7 @@ public class CommandLineParser
     /**
      * Adds the given argument parser to this command line parser
      */
-    public <T> CommandLineParser add(final ArgumentParser<T> parser)
+    public <T> CommandLineParser add(ArgumentParser<T> parser)
     {
         argumentParsers.add(parser);
         parser.parent(this);
@@ -152,7 +152,7 @@ public class CommandLineParser
     /**
      * Adds the given switch parser to this command line parser
      */
-    public <T> CommandLineParser add(final SwitchParser<T> parser)
+    public <T> CommandLineParser add(SwitchParser<T> parser)
     {
         switchParsers.add(parser);
         parser.parent(this);
@@ -163,9 +163,9 @@ public class CommandLineParser
      * Adds the given argument parsers to this command line parser
      */
     @UmlExcludeMember
-    public CommandLineParser addArgumentParsers(final Collection<ArgumentParser<?>> parsers)
+    public CommandLineParser addArgumentParsers(Collection<ArgumentParser<?>> parsers)
     {
-        for (final var parser : parsers)
+        for (var parser : parsers)
         {
             add(parser);
         }
@@ -176,9 +176,9 @@ public class CommandLineParser
      * Adds the given switch parsers to this command line parser
      */
     @UmlExcludeMember
-    public CommandLineParser addSwitchParsers(final Collection<SwitchParser<?>> parsers)
+    public CommandLineParser addSwitchParsers(Collection<SwitchParser<?>> parsers)
     {
-        for (final var parser : parsers)
+        for (var parser : parsers)
         {
             add(parser);
         }
@@ -192,7 +192,7 @@ public class CommandLineParser
      * @return The parsed command line
      */
     @UmlRelation(label = "creates")
-    public CommandLine parse(final String[] arguments)
+    public CommandLine parse(String[] arguments)
     {
         return new CommandLine(this, arguments);
     }
@@ -200,9 +200,9 @@ public class CommandLineParser
     /**
      * Exits the program displaying the given message and command line help for the user
      */
-    protected void exit(final String message, final Object... arguments)
+    protected void exit(String message, Object... arguments)
     {
-        final var formatted = Message.format(message, arguments);
+        var formatted = Message.format(message, arguments);
         System.err.println(AsciiArt.textBox("COMMAND LINE ERROR(S)", formatted));
         System.err.flush();
         Duration.seconds(0.25).sleep();
@@ -225,13 +225,13 @@ public class CommandLineParser
      * Validates the given list of switches and the given list of arguments, using the available switch parsers and
      * argument parsers.
      */
-    void validate(final SwitchList switches, final ArgumentList arguments)
+    void validate(SwitchList switches, ArgumentList arguments)
     {
         Failure.withReporter(new NullFailureReporter(), () ->
         {
-            final var messages = new MessageList(new AnythingMatcher<>());
+            var messages = new MessageList(new AnythingMatcher<>());
 
-            final var validator = new BaseValidator()
+            var validator = new BaseValidator()
             {
                 @Override
                 protected void onValidate()
@@ -253,11 +253,11 @@ public class CommandLineParser
      */
     private String help()
     {
-        final var kivakitVersion = "\nKivaKit " + KivaKit.get().projectVersion() + " (" + KivaKit.get().build().name() + ")";
-        final var usage = "\n\nUsage: " + application.getClass().getSimpleName() + " " + application.version() + " <switches> <arguments>\n\n";
-        final var description = Wrap.wrapRegion(application.description(), 100).trim() + "\n\n";
-        final var arguments = "Arguments:\n\n" + argumentParsers.help();
-        final var switches = "\n\nSwitches:\n\n" + switchParsers.help();
+        var kivakitVersion = "\nKivaKit " + KivaKit.get().projectVersion() + " (" + KivaKit.get().build().name() + ")";
+        var usage = "\n\nUsage: " + application.getClass().getSimpleName() + " " + application.version() + " <switches> <arguments>\n\n";
+        var description = Wrap.wrapRegion(application.description(), 100).trim() + "\n\n";
+        var arguments = "Arguments:\n\n" + argumentParsers.help();
+        var switches = "\n\nSwitches:\n\n" + switchParsers.help();
 
         return kivakitVersion
                 + usage

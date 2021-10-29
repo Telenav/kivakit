@@ -149,7 +149,7 @@ public class Ensure
     /**
      * @see #ensure(boolean, String, Object...)
      */
-    public static <T> T ensure(final Supplier<Boolean> valid, final String message, final Object... arguments)
+    public static <T> T ensure(Supplier<Boolean> valid, String message, Object... arguments)
     {
         return ensure(valid.get(), message, arguments);
     }
@@ -157,7 +157,7 @@ public class Ensure
     /**
      * @see #ensure(boolean, String, Object...)
      */
-    public static boolean ensure(final boolean condition)
+    public static boolean ensure(boolean condition)
     {
         if (!condition)
         {
@@ -170,7 +170,7 @@ public class Ensure
     /**
      * @see #ensure(boolean, Throwable, String, Object...)
      */
-    public static <T> T ensure(final boolean condition, final String message, final Object... arguments)
+    public static <T> T ensure(boolean condition, String message, Object... arguments)
     {
         return ensure(condition, null, message, arguments);
     }
@@ -179,8 +179,8 @@ public class Ensure
      * If the condition is false (the check is invalid), a {@link EnsureFailure} message is given to the {@link
      * BaseFailureReporter} that message type.
      */
-    public static <T> T ensure(final boolean condition, final Throwable e, final String message,
-                               final Object... arguments)
+    public static <T> T ensure(boolean condition, Throwable e, String message,
+                               Object... arguments)
     {
         if (!condition && !(Failure.reporter(EnsureFailure.class) instanceof NullFailureReporter))
         {
@@ -189,7 +189,7 @@ public class Ensure
         return null;
     }
 
-    public static <T> T ensureEqual(final T given, final T expected)
+    public static <T> T ensureEqual(T given, T expected)
     {
         return ensureEqual(given, expected, "Values $ and $ are not equal", given, expected);
     }
@@ -197,7 +197,7 @@ public class Ensure
     /**
      * Ensures the two objects are equals.
      */
-    public static <T> T ensureEqual(final T given, final T expected, final String message, final Object... arguments)
+    public static <T> T ensureEqual(T given, T expected, String message, Object... arguments)
     {
         // If the given and expected values are non-null,
         if (given != null && expected != null)
@@ -209,8 +209,8 @@ public class Ensure
             ensure(Objects.equal(expected, given), message + " (Expected " + expected + " != given " + given + ")", arguments);
 
             // and that the hash codes match
-            final var givenHashCode = Hash.code(given);
-            final var expectedHashCode = Hash.code(expected);
+            var givenHashCode = Hash.code(given);
+            var expectedHashCode = Hash.code(expected);
             ensure(givenHashCode == expectedHashCode, "${class}: Hash code for $ != $ ", given.getClass(), givenHashCode, expectedHashCode);
         }
         else
@@ -224,42 +224,42 @@ public class Ensure
     /**
      * @see #ensure(boolean, String, Object...)
      */
-    public static boolean ensureFalse(final boolean condition)
+    public static boolean ensureFalse(boolean condition)
     {
         return ensure(!condition);
     }
 
-    public static <T> T ensureNotEqual(final T given, final T expected)
+    public static <T> T ensureNotEqual(T given, T expected)
     {
         ensure(!Objects.equal(given, expected));
         return null;
     }
 
-    public static <T> T ensureNotNull(final T object)
+    public static <T> T ensureNotNull(T object)
     {
         return ensureNotNull(object, "Value cannot be null");
     }
 
-    public static <T> T ensureNotNull(final T object, final String message, final Object... arguments)
+    public static <T> T ensureNotNull(T object, String message, Object... arguments)
     {
         ensure(object != null, message, arguments);
         return object;
     }
 
-    public static <T> T ensureNull(final T object)
+    public static <T> T ensureNull(T object)
     {
         return ensureNull(object, "Value must be null");
     }
 
-    public static <T> T ensureNull(final T object, final String message, final Object... arguments)
+    public static <T> T ensureNull(T object, String message, Object... arguments)
     {
         ensure(object == null, message, arguments);
         return object;
     }
 
-    public static void ensureWithin(final double expected, final double actual, final double maximumDifference)
+    public static void ensureWithin(double expected, double actual, double maximumDifference)
     {
-        final var difference = Math.abs(expected - actual);
+        var difference = Math.abs(expected - actual);
         if (difference > maximumDifference)
         {
             fail("Expected value $ was not within $ of actual value $", expected, maximumDifference, actual);
@@ -271,28 +271,28 @@ public class Ensure
         return fail("Operation failure");
     }
 
-    public static <T> T fail(final Throwable e, final String message, final Object... arguments)
+    public static <T> T fail(Throwable e, String message, Object... arguments)
     {
         return Failure.report(EnsureFailure.class, e, message, arguments);
     }
 
-    public static <T> T fail(final String message, final Object... arguments)
+    public static <T> T fail(String message, Object... arguments)
     {
         fail(null, message, arguments);
         return null;
     }
 
-    public static <T> T illegalArgument(final String message, final Object... arguments)
+    public static <T> T illegalArgument(String message, Object... arguments)
     {
         throw new IllegalArgumentException(format(message, arguments));
     }
 
-    public static <T> T illegalState(final String message, final Object... arguments)
+    public static <T> T illegalState(String message, Object... arguments)
     {
         throw new IllegalStateException(format(message, arguments));
     }
 
-    public static <T> T illegalState(final Throwable e, final String message, final Object... arguments)
+    public static <T> T illegalState(Throwable e, String message, Object... arguments)
     {
         throw new IllegalStateException(format(message, arguments), e);
     }
@@ -307,13 +307,13 @@ public class Ensure
         return unsupported("Unsupported operation");
     }
 
-    public static <T> T unsupported(final String message, final Object... arguments)
+    public static <T> T unsupported(String message, Object... arguments)
     {
         Failure.report(Unsupported.class, message, arguments);
         return null;
     }
 
-    protected void ensureBetween(final double actual, final double low, final double high)
+    protected void ensureBetween(double actual, double low, double high)
     {
         ensure(low < high, "The low boundary $ is higher than the high boundary $", low, high);
         if (actual < low || actual > high)
@@ -322,25 +322,25 @@ public class Ensure
         }
     }
 
-    protected void ensureClose(final Number expected, final Number actual, final int numberOfDecimalsToMatch)
+    protected void ensureClose(Number expected, Number actual, int numberOfDecimalsToMatch)
     {
-        final var roundedExpected = (int) (expected.doubleValue() * Math.pow(10, numberOfDecimalsToMatch))
+        var roundedExpected = (int) (expected.doubleValue() * Math.pow(10, numberOfDecimalsToMatch))
                 / Math.pow(10, numberOfDecimalsToMatch);
-        final var roundedActual = (int) (actual.doubleValue() * Math.pow(10, numberOfDecimalsToMatch))
+        var roundedActual = (int) (actual.doubleValue() * Math.pow(10, numberOfDecimalsToMatch))
                 / Math.pow(10, numberOfDecimalsToMatch);
         ensureWithin(roundedExpected, roundedActual, 0.0);
     }
 
-    private static String format(final String message, final Object[] arguments)
+    private static String format(String message, Object[] arguments)
     {
         return format(null, message, arguments);
     }
 
-    private static String format(final Throwable e, final String message, final Object[] arguments)
+    private static String format(Throwable e, String message, Object[] arguments)
     {
         if (e != null)
         {
-            final var argumentsPlus = new Object[arguments.length + 1];
+            var argumentsPlus = new Object[arguments.length + 1];
             System.arraycopy(arguments, 0, argumentsPlus, 0, arguments.length);
             argumentsPlus[arguments.length] = e;
             return Message.format(message + "\n$", argumentsPlus);
@@ -351,4 +351,3 @@ public class Ensure
         }
     }
 }
-

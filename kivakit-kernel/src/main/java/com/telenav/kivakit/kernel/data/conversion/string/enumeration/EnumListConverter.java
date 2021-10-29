@@ -33,7 +33,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @LexakaiJavadoc(complete = true)
 public class EnumListConverter<T extends Enum<T>> extends BaseListConverter<T>
 {
-    public EnumListConverter(final Listener listener, final Class<T> enumType)
+    public EnumListConverter(Listener listener, Class<T> enumType)
     {
         super(listener, new EnumConverter<>(listener, enumType), DEFAULT_DELIMITER);
     }

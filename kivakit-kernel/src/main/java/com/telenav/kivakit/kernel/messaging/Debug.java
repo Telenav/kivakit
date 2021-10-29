@@ -75,7 +75,6 @@ import java.util.Map;
  * @see SimplifiedPattern
  * @see <a href="https://tinyurl.com/2xycuvph">KivaKit Debugging Documentation</a>
  */
-@SuppressWarnings("UseOfSystemOutOrSystemErr")
 @UmlClassDiagram(diagram = DiagramMessageBroadcaster.class)
 public final class Debug implements Transceiver
 {
@@ -95,7 +94,7 @@ public final class Debug implements Transceiver
         debugging = debugEnableState(Debug.class);
     }
 
-    public static Debug of(final Class<?> type, final Transceiver transceiver)
+    public static Debug of(Class<?> type, Transceiver transceiver)
     {
         synchronized (classToDebug)
         {
@@ -108,7 +107,7 @@ public final class Debug implements Transceiver
         }
     }
 
-    public static void unregister(final Class<?> type)
+    public static void unregister(Class<?> type)
     {
         synchronized (classToDebug)
         {
@@ -122,13 +121,13 @@ public final class Debug implements Transceiver
     /** The listener to send trace messages to */
     private final Transceiver transceiver;
 
-    public Debug(final Transceiver transceiver)
+    public Debug(Transceiver transceiver)
     {
         // The class where debug was constructed is the most immediate caller of the class Debug
         this(CallStack.callerOf(CallStack.Proximity.IMMEDIATE, CallStack.Matching.EXACT, Debug.class).typeClass(), transceiver);
     }
 
-    private Debug(final Class<?> type, final Transceiver transceiver)
+    private Debug(Class<?> type, Transceiver transceiver)
     {
         classToDebug.put(type, this);
         debugOn = (isDebugOn(type) == Boolean.TRUE);
@@ -168,7 +167,7 @@ public final class Debug implements Transceiver
     }
 
     @Override
-    public void onReceive(final Transmittable message)
+    public void onReceive(Transmittable message)
     {
         transceiver.receive(message);
     }
@@ -177,13 +176,13 @@ public final class Debug implements Transceiver
      * @return Boolean.TRUE if the class is enabled by KIVAKIT_DEBUG, Boolean.FALSE if it is explicitly disabled and
      * null if the class is simply available for enabling.
      */
-    private static Boolean debugEnableState(final Class<?> type)
+    private static Boolean debugEnableState(Class<?> type)
     {
         // Debugging is unknown by default
         Boolean enabled = null;
 
         // Get KIVAKIT_DEBUG property
-        final var patternList = property("KIVAKIT_DEBUG");
+        var patternList = property("KIVAKIT_DEBUG");
         if (patternList != null)
         {
             // and go through each pattern in KIVAKIT_DEBUG
@@ -208,7 +207,7 @@ public final class Debug implements Transceiver
 
                 // and for "extends " at the start of the pattern
                 final var extendsPrefix = "extends ";
-                final var checkParents = pattern.startsWith(extendsPrefix);
+                var checkParents = pattern.startsWith(extendsPrefix);
                 if (checkParents)
                 {
                     pattern = pattern.substring(extendsPrefix.length());
@@ -229,7 +228,7 @@ public final class Debug implements Transceiver
      * @return Boolean.TRUE if the class is enabled for debugging, Boolean.FALSE if it is explicitly disabled and null
      * if the class is simply available for enabling.
      */
-    private static boolean isDebugOn(final Class<?> type)
+    private static boolean isDebugOn(Class<?> type)
     {
         // If debugging hasn't been explicitly turned off
         if (debugging != Boolean.FALSE)
@@ -239,9 +238,9 @@ public final class Debug implements Transceiver
             {
                 // show help message
                 initialized = true;
-                final var debug = property("KIVAKIT_DEBUG");
-                final var log = property("KIVAKIT_LOG");
-                final var title = "KivaKit " + KivaKit.get().projectVersion() + " (" + KivaKit.get().build() + ")";
+                var debug = property("KIVAKIT_DEBUG");
+                var log = property("KIVAKIT_LOG");
+                var title = "KivaKit " + KivaKit.get().projectVersion() + " (" + KivaKit.get().build() + ")";
                 LOGGER.information(AsciiArt.textBox(title, "      Logging: https://tinyurl.com/mhc3ss5s\n"
                                 + "    Debugging: https://tinyurl.com/2xycuvph\n"
                                 + "  KIVAKIT_LOG: $\n"
@@ -251,10 +250,10 @@ public final class Debug implements Transceiver
             }
 
             // Get the enable state for the type parameter
-            final var enabled = debugEnableState(type);
+            var enabled = debugEnableState(type);
 
             // and pick a description of the state
-            final String state;
+            String state;
             if (enabled == null)
             {
                 state = "available";
@@ -280,9 +279,9 @@ public final class Debug implements Transceiver
         return false;
     }
 
-    private static boolean matches(final Class<?> type, final String simplifiedPattern, final boolean checkParent)
+    private static boolean matches(Class<?> type, String simplifiedPattern, boolean checkParent)
     {
-        final Pattern pattern = new SimplifiedPattern(simplifiedPattern);
+        Pattern pattern = new SimplifiedPattern(simplifiedPattern);
         if (checkParent)
         {
             for (var at = type; at != null; at = at.getSuperclass())
@@ -301,7 +300,7 @@ public final class Debug implements Transceiver
     }
 
     @SuppressWarnings("SameParameterValue")
-    private static String property(final String key)
+    private static String property(String key)
     {
         var value = System.getProperty(key);
         if (value == null)

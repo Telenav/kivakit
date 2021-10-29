@@ -42,13 +42,13 @@ public class UtcTimeInKivaKitFormatGsonSerializer extends PrimitiveGsonSerialize
     }
 
     @Override
-    protected Time toObject(final String identifier)
+    protected Time toObject(String identifier)
     {
         return new LocalDateTimeConverter(LOGGER, LocalTime.utcTimeZone()).convert(identifier);
     }
 
     @Override
-    protected String toPrimitive(final Time time)
+    protected String toPrimitive(Time time)
     {
         return time.localTime(LocalTime.utcTimeZone()).asDateTimeString();
     }

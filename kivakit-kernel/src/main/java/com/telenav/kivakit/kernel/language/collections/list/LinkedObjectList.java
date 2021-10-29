@@ -54,7 +54,7 @@ public class LinkedObjectList<T> extends AbstractSequentialList<T> implements Co
      */
     @SuppressWarnings("unchecked")
     @Override
-    public Method compress(final Method method)
+    public Method compress(Method method)
     {
         array = (T[]) list.toArray();
         list = null;
@@ -68,7 +68,7 @@ public class LinkedObjectList<T> extends AbstractSequentialList<T> implements Co
     }
 
     @Override
-    public T get(final int index)
+    public T get(int index)
     {
         if (isCompressed())
         {
@@ -90,7 +90,7 @@ public class LinkedObjectList<T> extends AbstractSequentialList<T> implements Co
     }
 
     @Override
-    public ListIterator<T> listIterator(final int index)
+    public ListIterator<T> listIterator(int index)
     {
         if (isCompressed())
         {
@@ -99,7 +99,7 @@ public class LinkedObjectList<T> extends AbstractSequentialList<T> implements Co
                 int at = index;
 
                 @Override
-                public void add(final T e)
+                public void add(T e)
                 {
                     modify();
                     list.add(e);
@@ -148,7 +148,7 @@ public class LinkedObjectList<T> extends AbstractSequentialList<T> implements Co
                 }
 
                 @Override
-                public void set(final T e)
+                public void set(T e)
                 {
                     modify();
                 }
@@ -160,7 +160,7 @@ public class LinkedObjectList<T> extends AbstractSequentialList<T> implements Co
         }
     }
 
-    public Iterator<T> matching(final Matcher<T> matcher)
+    public Iterator<T> matching(Matcher<T> matcher)
     {
         return new BaseIterator<>()
         {
@@ -171,7 +171,7 @@ public class LinkedObjectList<T> extends AbstractSequentialList<T> implements Co
             {
                 while (iterator.hasNext())
                 {
-                    final var next = iterator.next();
+                    var next = iterator.next();
                     if (matcher.matches(next))
                     {
                         return next;
@@ -182,14 +182,14 @@ public class LinkedObjectList<T> extends AbstractSequentialList<T> implements Co
         };
     }
 
-    public Collection<T> remove(final Matcher<T> matcher)
+    public Collection<T> remove(Matcher<T> matcher)
     {
         modify();
-        final List<T> removed = new ArrayList<>();
-        final var iterator = listIterator(0);
+        List<T> removed = new ArrayList<>();
+        var iterator = listIterator(0);
         while (iterator.hasNext())
         {
-            final var next = iterator.next();
+            var next = iterator.next();
             if (matcher.matches(next))
             {
                 iterator.remove();
@@ -200,13 +200,13 @@ public class LinkedObjectList<T> extends AbstractSequentialList<T> implements Co
     }
 
     @SuppressWarnings("SameReturnValue")
-    public boolean replace(final T object, final T replacement)
+    public boolean replace(T object, T replacement)
     {
         modify();
-        final var iterator = listIterator(0);
+        var iterator = listIterator(0);
         while (iterator.hasNext())
         {
-            final var next = iterator.next();
+            var next = iterator.next();
             if (next.equals(object))
             {
                 iterator.set(replacement);

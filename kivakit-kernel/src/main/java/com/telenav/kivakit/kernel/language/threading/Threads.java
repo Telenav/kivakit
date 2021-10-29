@@ -45,7 +45,7 @@ public class Threads
     public static Iterable<Thread> all()
     {
         // Get the root thread group
-        final var rootGroup = rootGroup();
+        var rootGroup = rootGroup();
 
         // Initially expect the larger of 8 or the number of active threads
         var expected = Math.max(8, rootGroup.activeCount());
@@ -65,7 +65,7 @@ public class Threads
         return new ArrayList<>(Arrays.asList(enumerated).subList(0, count));
     }
 
-    public static void await(final ExecutorService executor)
+    public static void await(ExecutorService executor)
     {
         Unchecked.of(() -> executor.awaitTermination(Long.MAX_VALUE, MILLISECONDS)).orNull();
     }
@@ -80,7 +80,7 @@ public class Threads
         return root;
     }
 
-    public static void shutdownAndAwait(final ExecutorService executor)
+    public static void shutdownAndAwait(ExecutorService executor)
     {
         executor.shutdown();
         if (!executor.isShutdown() && !executor.isTerminated())
@@ -89,14 +89,14 @@ public class Threads
         }
     }
 
-    public static ExecutorService threadPool(final String name, final Count threads)
+    public static ExecutorService threadPool(String name, Count threads)
     {
-        final var identifier = new MutableIndex(1);
+        var identifier = new MutableIndex(1);
         return Executors.newFixedThreadPool(threads.asInt(), runnable ->
                 new Thread(runnable, "KivaKit-" + name + "-" + identifier.increment()));
     }
 
-    public static ExecutorService threadPool(final String name)
+    public static ExecutorService threadPool(String name)
     {
         return threadPool(name, JavaVirtualMachine.local().processors());
     }

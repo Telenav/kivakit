@@ -138,7 +138,7 @@ public class KryoTypes implements Named
     public KryoTypes deepCopy()
     {
         // Make a copy of this set
-        final var copy = new KryoTypes();
+        var copy = new KryoTypes();
         copy.merged = merged.copy();
         copy.entries = Maps.deepCopy(LinkedHashMap::new, entries, KryoTypeEntry::new);
         copy.nextIdentifier = nextIdentifier;
@@ -146,11 +146,11 @@ public class KryoTypes implements Named
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof KryoTypes)
         {
-            final KryoTypes that = (KryoTypes) object;
+            KryoTypes that = (KryoTypes) object;
             return entries.equals(that.entries);
         }
         return false;
@@ -159,7 +159,7 @@ public class KryoTypes implements Named
     /**
      * Delimits a group of related registrations
      */
-    public void group(final String name, final Runnable code)
+    public void group(String name, Runnable code)
     {
         // Advance to the next group
         nextGroup();
@@ -177,7 +177,7 @@ public class KryoTypes implements Named
     /**
      * @return The identifier for the given type
      */
-    public int identifier(final Class<?> type)
+    public int identifier(Class<?> type)
     {
         return entries.get(type).identifier();
     }
@@ -185,16 +185,16 @@ public class KryoTypes implements Named
     /**
      * @return A new type set that contains the entries from this type set and those from the given set
      */
-    public KryoTypes mergedWith(final KryoTypes that)
+    public KryoTypes mergedWith(KryoTypes that)
     {
         // Create deep copy of this set,
-        final var merged = deepCopy();
+        var merged = deepCopy();
 
         // set its next identifier to the next set,
         merged.nextKryoTypes();
 
         // then go though the entries in that,
-        for (final var entry : that.entries.values())
+        for (var entry : that.entries.values())
         {
             // check that the entry is not already in the merged set,
             assert !merged.entries.containsValue(entry);
@@ -210,8 +210,8 @@ public class KryoTypes implements Named
             }
         }
 
-        final var thisFirstEntry = Collections.first(entries.values());
-        final var thatFirstEntry = Collections.first(that.entries.values());
+        var thisFirstEntry = Collections.first(entries.values());
+        var thatFirstEntry = Collections.first(that.entries.values());
 
         assert thisFirstEntry != null;
         assert thatFirstEntry != null;
@@ -232,7 +232,7 @@ public class KryoTypes implements Named
      *
      * @param type The type to register
      */
-    public KryoTypes register(final Class<?> type)
+    public KryoTypes register(Class<?> type)
     {
         addEntry(type, null, ++nextIdentifier);
         return this;
@@ -244,7 +244,7 @@ public class KryoTypes implements Named
      * @param type The type to register
      * @param serializer The serializer to use for the given type
      */
-    public KryoTypes register(final Class<?> type, final Serializer<?> serializer)
+    public KryoTypes register(Class<?> type, Serializer<?> serializer)
     {
         addEntry(type, serializer, ++nextIdentifier);
         return this;
@@ -257,7 +257,7 @@ public class KryoTypes implements Named
      * @param serializer The serializer to use for the given type
      * @param identifier The identifier to register
      */
-    public KryoTypes registerDynamic(final Class<?> type, final Serializer<?> serializer, final int identifier)
+    public KryoTypes registerDynamic(Class<?> type, Serializer<?> serializer, int identifier)
     {
         addEntry(type, serializer, DYNAMIC_IDENTIFIER_FIRST + identifier);
         return this;
@@ -282,8 +282,8 @@ public class KryoTypes implements Named
     @Override
     public String toString()
     {
-        final var lines = new StringList();
-        for (final var entry : entries.values())
+        var lines = new StringList();
+        for (var entry : entries.values())
         {
             lines.add(entry.toString());
         }
@@ -299,12 +299,12 @@ public class KryoTypes implements Named
      *
      * @param kryo The kryo serializer to register types with
      */
-    void registerWith(final Kryo kryo)
+    void registerWith(Kryo kryo)
     {
         DEBUG.trace("Registering $", name());
 
         // Go through each entry,
-        for (final var entry : entries.values())
+        for (var entry : entries.values())
         {
             // and register it with kryo,
             DEBUG.trace("Registering $", entry);
@@ -318,13 +318,13 @@ public class KryoTypes implements Named
      * @param type The type to register
      * @param serializer Any type serializer
      */
-    private void addEntry(final Class<?> type, final Serializer<?> serializer, final int identifier)
+    private void addEntry(Class<?> type, Serializer<?> serializer, int identifier)
     {
         // If the identifier is already used,
         if (identifiers.containsKey(identifier))
         {
             // make sure it is a re-registration of the same type
-            final var registeredType = identifiers.get(identifier);
+            var registeredType = identifiers.get(identifier);
             if (!registeredType.equals(type))
             {
                 fail("Identifier $ for ${class} already used by type ${class}", identifier, type, registeredType);
@@ -332,7 +332,7 @@ public class KryoTypes implements Named
         }
 
         // then create the type entry
-        final var entry = new KryoTypeEntry()
+        var entry = new KryoTypeEntry()
                 .type(type)
                 .serializer(serializer)
                 .identifier(identifier);

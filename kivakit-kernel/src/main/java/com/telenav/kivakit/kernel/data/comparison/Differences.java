@@ -45,7 +45,7 @@ public class Differences implements Sized
     /**
      * Adds the description of a difference
      */
-    public void add(final String description)
+    public void add(String description)
     {
         descriptions.add(description);
     }
@@ -53,9 +53,9 @@ public class Differences implements Sized
     /**
      * Adds the given differences to this
      */
-    public void add(final Differences that)
+    public void add(Differences that)
     {
-        for (final var description : that.descriptions)
+        for (var description : that.descriptions)
         {
             add(description);
         }
@@ -66,12 +66,12 @@ public class Differences implements Sized
      *
      * @return True if the values are equal, false if they are not
      */
-    public <T> boolean compare(final String description, final Iterable<T> a, final Iterable<T> b)
+    public <T> boolean compare(String description, Iterable<T> a, Iterable<T> b)
     {
         if (!Iterables.equals(a, b))
         {
-            final var aDescription = a == null ? "null" : new ObjectList<>().appendAll(a);
-            final var bDescription = b == null ? "null" : new ObjectList<>().appendAll(b);
+            var aDescription = a == null ? "null" : new ObjectList<>().appendAll(a);
+            var bDescription = b == null ? "null" : new ObjectList<>().appendAll(b);
 
             add(description + " (" + aDescription + " vs " + bDescription + ")");
 
@@ -85,7 +85,7 @@ public class Differences implements Sized
      *
      * @return True if the values are equal, false if they are not
      */
-    public <T> boolean compare(final String description, final T a, final T b)
+    public <T> boolean compare(String description, T a, T b)
     {
         if (!Objects.equal(a, b))
         {

@@ -28,7 +28,7 @@ public interface ComponentMixin extends Component, Mixin, RepeaterMixin
     }
 
     @Override
-    default void objectName(final String objectName)
+    default void objectName(String objectName)
     {
         component().objectName(objectName);
     }

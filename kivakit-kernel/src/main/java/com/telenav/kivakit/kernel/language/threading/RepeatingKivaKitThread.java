@@ -43,12 +43,12 @@ public class RepeatingKivaKitThread extends KivaKitThread implements Pausable
      * @return A started thread with the given name that will run the given code at the given frequency. Unlike {@link
      * KivaKitThread#repeat}, this thread can be paused and resumed.
      */
-    public static RepeatingKivaKitThread run(final Listener listener,
-                                             final String name,
-                                             final Frequency every,
-                                             final Runnable code)
+    public static RepeatingKivaKitThread run(Listener listener,
+                                             String name,
+                                             Frequency every,
+                                             Runnable code)
     {
-        final var thread = new RepeatingKivaKitThread(listener, name, code).frequency(every);
+        var thread = new RepeatingKivaKitThread(listener, name, code).frequency(every);
         thread.start();
         return thread;
     }
@@ -57,28 +57,28 @@ public class RepeatingKivaKitThread extends KivaKitThread implements Pausable
      * @return A started thread with the given name that will run the given code repeatedly. Unlike {@link
      * KivaKitThread#repeat}, this thread can be paused and resumed.
      */
-    public static RepeatingKivaKitThread run(final Listener listener,
-                                             final String name,
-                                             final Runnable code)
+    public static RepeatingKivaKitThread run(Listener listener,
+                                             String name,
+                                             Runnable code)
     {
         return run(listener, name, Frequency.CONTINUOUSLY, code);
     }
 
     private Frequency frequency;
 
-    public RepeatingKivaKitThread(final Listener listener, final String name, final Runnable code)
+    public RepeatingKivaKitThread(Listener listener, String name, Runnable code)
     {
         super(name, code);
         listener.listenTo(this);
     }
 
-    public RepeatingKivaKitThread(final Listener listener, final String name)
+    public RepeatingKivaKitThread(Listener listener, String name)
     {
         super(name, null);
         listener.listenTo(this);
     }
 
-    public RepeatingKivaKitThread(final Listener listener, final String name, final Frequency frequency)
+    public RepeatingKivaKitThread(Listener listener, String name, Frequency frequency)
     {
         super(name);
         listener.listenTo(this);
@@ -90,7 +90,7 @@ public class RepeatingKivaKitThread extends KivaKitThread implements Pausable
         return frequency;
     }
 
-    public RepeatingKivaKitThread frequency(final Frequency frequency)
+    public RepeatingKivaKitThread frequency(Frequency frequency)
     {
         this.frequency = frequency;
         return this;
@@ -138,7 +138,7 @@ public class RepeatingKivaKitThread extends KivaKitThread implements Pausable
         onRunning();
 
         // and while we are not requested to stop,
-        final var cycle = frequency.start();
+        var cycle = frequency.start();
         while (!is(STOP_REQUESTED))
         {
             // if the thread should be paused
@@ -154,7 +154,7 @@ public class RepeatingKivaKitThread extends KivaKitThread implements Pausable
                 // then run the user's code
                 onRun();
             }
-            catch (final Throwable e)
+            catch (Throwable e)
             {
                 problem(e, "${class} threw exception", getClass());
             }

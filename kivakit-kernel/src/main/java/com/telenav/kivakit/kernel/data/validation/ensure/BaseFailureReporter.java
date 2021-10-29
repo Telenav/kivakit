@@ -38,7 +38,7 @@ public abstract class BaseFailureReporter implements FailureReporter
      */
     @Override
     @UmlExcludeMember
-    public final void onMessage(final Message message)
+    public final void onMessage(Message message)
     {
         report(message);
     }

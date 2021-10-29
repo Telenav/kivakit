@@ -27,7 +27,7 @@ import com.telenav.kivakit.kernel.messaging.MessageFilter;
 public class AllMessages implements MessageFilter
 {
     @Override
-    public boolean accepts(final Transmittable message)
+    public boolean accepts(Transmittable message)
     {
         return true;
     }

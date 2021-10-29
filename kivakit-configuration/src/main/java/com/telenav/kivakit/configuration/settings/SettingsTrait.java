@@ -60,7 +60,7 @@ public interface SettingsTrait
     /**
      * @return True if this set has a settings object of the given type
      */
-    default boolean hasSettings(final Class<?> type)
+    default boolean hasSettings(Class<?> type)
     {
         return lookupSettings(type) != null;
     }
@@ -68,7 +68,7 @@ public interface SettingsTrait
     /**
      * @return True if this set has the specified instance of the settings object specified by the given type
      */
-    default boolean hasSettings(final Class<?> type, final InstanceIdentifier instance)
+    default boolean hasSettings(Class<?> type, InstanceIdentifier instance)
     {
         return lookupSettings(type, instance) != null;
     }
@@ -76,7 +76,7 @@ public interface SettingsTrait
     /**
      * @return True if this set has the specified instance of the settings object specified by the given type
      */
-    default boolean hasSettings(final Class<?> type, final Enum<?> instance)
+    default boolean hasSettings(Class<?> type, Enum<?> instance)
     {
         return hasSettings(type, InstanceIdentifier.of(instance));
     }
@@ -84,7 +84,7 @@ public interface SettingsTrait
     /**
      * @return True if this set has the specified instance of the settings object specified by the given type
      */
-    default boolean hasSettings(final Class<?> type, final String instance)
+    default boolean hasSettings(Class<?> type, String instance)
     {
         return hasSettings(type, InstanceIdentifier.of(instance));
     }
@@ -93,14 +93,14 @@ public interface SettingsTrait
      * @return The settings object of the given type
      */
     @UmlRelation(label = "gets values")
-    default <T> T lookupSettings(final Class<T> type)
+    default <T> T lookupSettings(Class<T> type)
     {
         return settingsRegistry().lookupSettings(type);
     }
 
-    default <T> T lookupSettings(final Class<T> settingsClass,
-                                 final PackagePath defaultSettingsPackage,
-                                 final InstanceIdentifier identifier)
+    default <T> T lookupSettings(Class<T> settingsClass,
+                                 PackagePath defaultSettingsPackage,
+                                 InstanceIdentifier identifier)
     {
         return settingsRegistry().lookupSettings(settingsClass, defaultSettingsPackage, identifier);
     }
@@ -108,7 +108,7 @@ public interface SettingsTrait
     /**
      * @return The settings object for the given type and instance identifier
      */
-    default <T> T lookupSettings(final Class<T> type, final InstanceIdentifier instance)
+    default <T> T lookupSettings(Class<T> type, InstanceIdentifier instance)
     {
         return settingsRegistry().lookupSettings(type, instance);
     }
@@ -116,7 +116,7 @@ public interface SettingsTrait
     /**
      * @return The settings object for the given type and instance identifier
      */
-    default <T> T lookupSettings(final Class<T> type, final Enum<?> instance)
+    default <T> T lookupSettings(Class<T> type, Enum<?> instance)
     {
         return settingsRegistry().lookupSettings(type, InstanceIdentifier.of(instance));
     }
@@ -124,37 +124,37 @@ public interface SettingsTrait
     /**
      * @return The settings object for the given type and instance identifier
      */
-    default <T> T lookupSettings(final Class<T> type, final String instance)
+    default <T> T lookupSettings(Class<T> type, String instance)
     {
         return settingsRegistry().lookupSettings(type, InstanceIdentifier.of(instance));
     }
 
-    default Settings registerAllSettingsIn(final Settings settings)
+    default Settings registerAllSettingsIn(Settings settings)
     {
         return settingsRegistry().registerAllSettingsIn(settings);
     }
 
-    default Settings registerAllSettingsIn(final Listener listener, final Folder folder)
+    default Settings registerAllSettingsIn(Listener listener, Folder folder)
     {
         return settingsRegistry().registerAllSettingsIn(listener.listenTo(new SettingsFolder(folder)));
     }
 
-    default Settings registerAllSettingsIn(final Listener listener, final PackagePath path)
+    default Settings registerAllSettingsIn(Listener listener, PackagePath path)
     {
         return registerAllSettingsIn(listener.listenTo(SettingsPackage.of(path)));
     }
 
-    default Settings registerAllSettingsIn(final Listener listener, final Package package_)
+    default Settings registerAllSettingsIn(Listener listener, Package package_)
     {
         return registerAllSettingsIn(listener.listenTo(SettingsPackage.of(package_)));
     }
 
-    default Settings registerAllSettingsIn(final Listener listener, final Class<?> relativeTo, final String path)
+    default Settings registerAllSettingsIn(Listener listener, Class<?> relativeTo, String path)
     {
         return registerAllSettingsIn(listener, PackagePath.parsePackagePath(relativeTo, path));
     }
 
-    default Settings registerAllSettingsIn(final Listener listener, final Class<?> type)
+    default Settings registerAllSettingsIn(Listener listener, Class<?> type)
     {
         return registerAllSettingsIn(listener, PackagePath.packagePath(type));
     }
@@ -162,7 +162,7 @@ public interface SettingsTrait
     /**
      * Adds the settings objects from the given {@link Deployment} to the settings registry for this component.
      */
-    default Settings registerDeployment(final Deployment deployment)
+    default Settings registerDeployment(Deployment deployment)
     {
         return registerAllSettingsIn(deployment);
     }
@@ -170,7 +170,7 @@ public interface SettingsTrait
     /**
      * @return Add the given settings object to this set
      */
-    default Settings registerSettings(final Object settings)
+    default Settings registerSettings(Object settings)
     {
         return registerSettings(settings, InstanceIdentifier.SINGLETON);
     }
@@ -178,7 +178,7 @@ public interface SettingsTrait
     /**
      * @return Adds the given instance of a settings object to this set
      */
-    default Settings registerSettings(final Object settings, final Enum<?> instance)
+    default Settings registerSettings(Object settings, Enum<?> instance)
     {
         return registerSettings(settings, InstanceIdentifier.of(instance));
     }
@@ -186,7 +186,7 @@ public interface SettingsTrait
     /**
      * @return Adds the given instance of a settings object to this set
      */
-    default Settings registerSettings(final Object settings, final String instance)
+    default Settings registerSettings(Object settings, String instance)
     {
         return registerSettings(settings, InstanceIdentifier.of(instance));
     }
@@ -194,7 +194,7 @@ public interface SettingsTrait
     /**
      * @return Adds the given instance of a settings object to this set
      */
-    default Settings registerSettings(final Object settings, final InstanceIdentifier instance)
+    default Settings registerSettings(Object settings, InstanceIdentifier instance)
     {
         return settingsRegistry().registerSettings(settings, instance);
     }
@@ -202,7 +202,7 @@ public interface SettingsTrait
     /**
      * Convenience method
      */
-    default <T> T requireSettings(final Class<T> type)
+    default <T> T requireSettings(Class<T> type)
     {
         return requireSettings(type, SINGLETON);
     }
@@ -210,7 +210,7 @@ public interface SettingsTrait
     /**
      * Convenience method
      */
-    default <T> T requireSettings(final Class<T> type, final Enum<?> instance)
+    default <T> T requireSettings(Class<T> type, Enum<?> instance)
     {
         return requireSettings(type, InstanceIdentifier.of(instance));
     }
@@ -218,7 +218,7 @@ public interface SettingsTrait
     /**
      * Convenience method
      */
-    default <T> T requireSettings(final Class<T> type, final String instance)
+    default <T> T requireSettings(Class<T> type, String instance)
     {
         return requireSettings(type, InstanceIdentifier.of(instance));
     }
@@ -226,7 +226,7 @@ public interface SettingsTrait
     /**
      * @return The object of the given instance and type, or {@link Ensure#fail()} if there is no such object
      */
-    default <T> T requireSettings(final Class<T> type, final InstanceIdentifier instance)
+    default <T> T requireSettings(Class<T> type, InstanceIdentifier instance)
     {
         return ensureNotNull(lookupSettings(type, instance));
     }

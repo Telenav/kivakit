@@ -53,16 +53,16 @@ public abstract class BaseTextLog extends BaseLog
     @Override
     @UmlExcludeMember
     @MustBeInvokedByOverriders
-    public void configure(final VariableMap<String> properties)
+    public void configure(VariableMap<String> properties)
     {
-        final var formatter = properties.get("formatter");
+        var formatter = properties.get("formatter");
         if (formatter != null)
         {
-            this.format = Format.valueOf(formatter.toUpperCase());
+            format = Format.valueOf(formatter.toUpperCase());
         }
     }
 
-    public void formatter(final LogFormatter formatter)
+    public void formatter(LogFormatter formatter)
     {
         this.formatter = formatter;
     }
@@ -82,7 +82,7 @@ public abstract class BaseTextLog extends BaseLog
         }
     }
 
-    private String format(final LogEntry entry, final MessageFormatter.Format format)
+    private String format(LogEntry entry, MessageFormatter.Format format)
     {
         return entry.format(formatter, format);
     }

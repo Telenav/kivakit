@@ -25,13 +25,13 @@ public class SubClassesOf<T> implements Filter<T>
 {
     private final Class<T> type;
 
-    public SubClassesOf(final Class<T> type)
+    public SubClassesOf(Class<T> type)
     {
         this.type = type;
     }
 
     @Override
-    public boolean accepts(final Object value)
+    public boolean accepts(Object value)
     {
         if (value == null)
         {

@@ -43,7 +43,7 @@ public class LoggerFactory
      *
      * @param factory The logger factory to use
      */
-    public static void factory(final Factory<Logger> factory)
+    public static void factory(Factory<Logger> factory)
     {
         LoggerFactory.factory = factory;
     }

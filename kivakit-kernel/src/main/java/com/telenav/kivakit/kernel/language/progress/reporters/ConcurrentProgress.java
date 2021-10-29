@@ -34,7 +34,7 @@ public class ConcurrentProgress extends Progress
 {
     private final AtomicLong at;
 
-    public ConcurrentProgress(final Progress that)
+    public ConcurrentProgress(Progress that)
     {
         super(that);
         at = new AtomicLong(that.at());
@@ -46,7 +46,7 @@ public class ConcurrentProgress extends Progress
     }
 
     @Override
-    public void at(final long count)
+    public void at(long count)
     {
         at.set(count);
     }
@@ -58,7 +58,7 @@ public class ConcurrentProgress extends Progress
     }
 
     @Override
-    protected long increase(final long increase)
+    protected long increase(long increase)
     {
         return at.addAndGet(increase);
     }

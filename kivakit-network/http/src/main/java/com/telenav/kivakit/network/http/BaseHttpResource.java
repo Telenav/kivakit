@@ -81,7 +81,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource
     /**
      * Constructs a resource accessible via HTTP
      */
-    protected BaseHttpResource(final NetworkLocation networkLocation, final NetworkAccessConstraints constraints)
+    protected BaseHttpResource(NetworkLocation networkLocation, NetworkAccessConstraints constraints)
     {
         super(networkLocation);
         this.networkLocation = networkLocation;
@@ -125,18 +125,18 @@ public abstract class BaseHttpResource extends BaseNetworkResource
     /**
      * @return The value for the given HTTP header field, as determined by an HTTP HEAD request
      */
-    public String httpHeadRequestHeaderField(final String fieldName)
+    public String httpHeadRequestHeaderField(String fieldName)
     {
-        final var client = newClient();
-        final var head = new HttpHead(asUri());
+        var client = newClient();
+        var head = new HttpHead(asUri());
         try
         {
-            final HttpResponse response = client.execute(head);
-            final var value = response.getFirstHeader(fieldName).getValue();
+            HttpResponse response = client.execute(head);
+            var value = response.getFirstHeader(fieldName).getValue();
             EntityUtils.consume(response.getEntity());
             return value;
         }
-        catch (final IOException e)
+        catch (IOException e)
         {
             e.printStackTrace();
         }
@@ -173,10 +173,10 @@ public abstract class BaseHttpResource extends BaseNetworkResource
         {
             executeRequest(newRequest());
 
-            final var entity = response.getEntity();
+            var entity = response.getEntity();
             if (entity != null)
             {
-                final var contentEncoding = entity.getContentEncoding();
+                var contentEncoding = entity.getContentEncoding();
                 if (contentEncoding != null)
                 {
                     this.contentEncoding = contentEncoding.getValue();
@@ -184,7 +184,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource
                 return entity.getContent();
             }
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             illegalState(e, "Can't open input stream");
         }
@@ -226,7 +226,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource
         var client = new DefaultHttpClient();
 
         // Set timeouts
-        final var httpParameters = client.getParams();
+        var httpParameters = client.getParams();
         HttpConnectionParams.setConnectionTimeout(httpParameters,
                 (int) constraints.timeout().asMilliseconds());
         HttpConnectionParams.setSoTimeout(httpParameters, (int) constraints.timeout().asMilliseconds());
@@ -234,8 +234,8 @@ public abstract class BaseHttpResource extends BaseNetworkResource
         // add any credentials
         if (constraints instanceof HttpAccessConstraints)
         {
-            final var httpConstraints = (HttpAccessConstraints) constraints;
-            final var credentials = httpConstraints.httpBasicCredentials();
+            var httpConstraints = (HttpAccessConstraints) constraints;
+            var credentials = httpConstraints.httpBasicCredentials();
             if (credentials != null)
             {
                 client.getCredentialsProvider().setCredentials(
@@ -257,7 +257,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource
      *
      * @param httpRequest The HTTP request to execute
      */
-    private void executeRequest(final HttpUriRequest httpRequest)
+    private void executeRequest(HttpUriRequest httpRequest)
     {
         if (response == null)
         {
@@ -267,7 +267,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource
                 statusCode = response.getStatusLine().getStatusCode();
                 if (responseHeader != null)
                 {
-                    for (final var header : response.getAllHeaders())
+                    for (var header : response.getAllHeaders())
                     {
                         responseHeader.put(header.getName(), header.getValue());
                     }

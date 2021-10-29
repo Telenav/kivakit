@@ -41,23 +41,23 @@ public interface Filter<T> extends Matcher<T>
         return new All<>();
     }
 
-    default Filter<T> and(final Filter<T> b)
+    default Filter<T> and(Filter<T> b)
     {
         return new And<>(this, b);
     }
 
-    default Filter<T> exclude(final Filter<T> b)
+    default Filter<T> exclude(Filter<T> b)
     {
         return and(b.not());
     }
 
-    default Filter<T> include(final Filter<T> b)
+    default Filter<T> include(Filter<T> b)
     {
         return or(b);
     }
 
     @Override
-    default boolean matches(final T value)
+    default boolean matches(T value)
     {
         return accepts(value);
     }
@@ -72,7 +72,7 @@ public interface Filter<T> extends Matcher<T>
         return new Not<>(this);
     }
 
-    default Filter<T> or(final Filter<T> b)
+    default Filter<T> or(Filter<T> b)
     {
         return new Or<>(this, b);
     }

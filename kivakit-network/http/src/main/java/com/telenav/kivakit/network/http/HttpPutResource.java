@@ -34,7 +34,7 @@ import org.apache.http.client.methods.HttpPut;
 @LexakaiJavadoc(complete = true)
 public class HttpPutResource extends BaseHttpResource
 {
-    public HttpPutResource(final NetworkLocation networkLocation, final NetworkAccessConstraints constraints)
+    public HttpPutResource(NetworkLocation networkLocation, NetworkAccessConstraints constraints)
     {
         super(networkLocation, constraints);
     }
@@ -42,7 +42,7 @@ public class HttpPutResource extends BaseHttpResource
     @Override
     protected HttpPut newRequest()
     {
-        final var request = new HttpPut(asUri());
+        var request = new HttpPut(asUri());
         onInitialize(request);
         return request;
     }
@@ -52,7 +52,7 @@ public class HttpPutResource extends BaseHttpResource
      *
      * @param post The post to be sent.
      */
-    protected void onInitialize(final HttpPut post)
+    protected void onInitialize(HttpPut post)
     {
     }
 }

@@ -40,7 +40,7 @@ public enum DayOfWeek
     SATURDAY(java.time.DayOfWeek.SATURDAY),
     SUNDAY(java.time.DayOfWeek.SUNDAY);
 
-    public static DayOfWeek forIsoConstant(final int isoConstant)
+    public static DayOfWeek forIsoConstant(int isoConstant)
     {
         switch (isoConstant)
         {
@@ -63,7 +63,7 @@ public enum DayOfWeek
         }
     }
 
-    public static DayOfWeek forJavaDayOfWeek(final java.time.DayOfWeek dayOfWeek)
+    public static DayOfWeek forJavaDayOfWeek(java.time.DayOfWeek dayOfWeek)
     {
         switch (dayOfWeek)
         {
@@ -88,7 +88,7 @@ public enum DayOfWeek
 
     private final java.time.DayOfWeek internalDayOfWeek;
 
-    DayOfWeek(final java.time.DayOfWeek dayOfWeek)
+    DayOfWeek(java.time.DayOfWeek dayOfWeek)
     {
         internalDayOfWeek = dayOfWeek;
     }

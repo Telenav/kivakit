@@ -128,7 +128,7 @@ public interface Message extends Transmittable, Triaged, AsString, Named
     /**
      * @return The given string with single quotes escaped
      */
-    static String escape(final String text)
+    static String escape(String text)
     {
         return Strings.replaceAll(text, "$", "$$");
     }
@@ -144,7 +144,7 @@ public interface Message extends Transmittable, Triaged, AsString, Named
     /**
      * @return The message text formatted with the given arguments
      */
-    static String format(final String message, final Object... arguments)
+    static String format(String message, Object... arguments)
     {
         return FORMATTER.format(message, arguments);
     }
@@ -155,7 +155,7 @@ public interface Message extends Transmittable, Triaged, AsString, Named
      * @param message The message
      * @param arguments Any arguments to interpolate
      */
-    static void println(final String message, final Object... arguments)
+    static void println(String message, Object... arguments)
     {
         System.out.println(format(message, arguments));
     }
@@ -238,7 +238,7 @@ public interface Message extends Transmittable, Triaged, AsString, Named
         /**
          * @return True if the status is above the given status in terms of negative effect
          */
-        public boolean isWorseThan(final Status minimum)
+        public boolean isWorseThan(Status minimum)
         {
             return ordinal() > minimum.ordinal();
         }
@@ -246,7 +246,7 @@ public interface Message extends Transmittable, Triaged, AsString, Named
         /**
          * @return True if the status is above the given status in terms of negative effect
          */
-        public boolean isWorseThanOrEqualTo(final Status minimum)
+        public boolean isWorseThanOrEqualTo(Status minimum)
         {
             return ordinal() >= minimum.ordinal();
         }
@@ -304,13 +304,13 @@ public interface Message extends Transmittable, Triaged, AsString, Named
     Importance importance();
 
     @UmlExcludeMember
-    default boolean isMoreImportantThan(final Class<? extends Message> type)
+    default boolean isMoreImportantThan(Class<? extends Message> type)
     {
         return importance().isGreaterThan(Importance.importance(type));
     }
 
     @UmlExcludeMember
-    default boolean isMoreImportantThanOrEqualTo(final Class<? extends Message> type)
+    default boolean isMoreImportantThanOrEqualTo(Class<? extends Message> type)
     {
         return importance().isGreaterThanOrEqualTo(Importance.importance(type));
     }
@@ -319,7 +319,7 @@ public interface Message extends Transmittable, Triaged, AsString, Named
      * @return True if the status of this message is worse than the given value
      */
     @UmlExcludeMember
-    default boolean isWorseThan(final Status status)
+    default boolean isWorseThan(Status status)
     {
         return status().isWorseThan(status);
     }
@@ -328,7 +328,7 @@ public interface Message extends Transmittable, Triaged, AsString, Named
      * @return True if the status of this message is worse than the given message
      */
     @UmlExcludeMember
-    default <T extends Message> boolean isWorseThan(final Class<T> message)
+    default <T extends Message> boolean isWorseThan(Class<T> message)
     {
         var instance = (Message) Type.forClass(message).newInstance();
         if (instance != null)
@@ -342,7 +342,7 @@ public interface Message extends Transmittable, Triaged, AsString, Named
      * @return True if the status of this message is worse than the given value
      */
     @UmlExcludeMember
-    default boolean isWorseThanOrEqualTo(final Status status)
+    default boolean isWorseThanOrEqualTo(Status status)
     {
         return status().isWorseThanOrEqualTo(status);
     }
@@ -351,7 +351,7 @@ public interface Message extends Transmittable, Triaged, AsString, Named
      * @return True if the status of this message is worse than the given message
      */
     @UmlExcludeMember
-    default <T extends Message> boolean isWorseThanOrEqualTo(final Class<T> message)
+    default <T extends Message> boolean isWorseThanOrEqualTo(Class<T> message)
     {
         var instance = (Message) Type.forClass(message).newInstance();
         if (instance != null)

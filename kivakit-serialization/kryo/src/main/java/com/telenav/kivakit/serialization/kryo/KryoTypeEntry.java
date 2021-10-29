@@ -49,7 +49,7 @@ class KryoTypeEntry
     {
     }
 
-    KryoTypeEntry(final KryoTypeEntry that)
+    KryoTypeEntry(KryoTypeEntry that)
     {
         type = that.type;
         serializer = that.serializer;
@@ -62,11 +62,11 @@ class KryoTypeEntry
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof KryoTypeEntry)
         {
-            final KryoTypeEntry that = (KryoTypeEntry) object;
+            KryoTypeEntry that = (KryoTypeEntry) object;
             return type.equals(that.type) && identifier == that.identifier;
         }
         return false;
@@ -84,7 +84,7 @@ class KryoTypeEntry
         return Message.format("${class} ($)", type(), identifier());
     }
 
-    KryoTypeEntry identifier(final int identifier)
+    KryoTypeEntry identifier(int identifier)
     {
         this.identifier = identifier;
         return this;
@@ -100,7 +100,7 @@ class KryoTypeEntry
         return identifier < KryoTypes.KRYO_TYPES_SIZE;
     }
 
-    void register(final Kryo kryo)
+    void register(Kryo kryo)
     {
         if (serializer == null)
         {
@@ -117,13 +117,13 @@ class KryoTypeEntry
         return serializer;
     }
 
-    KryoTypeEntry serializer(final Serializer<?> serializer)
+    KryoTypeEntry serializer(Serializer<?> serializer)
     {
         this.serializer = serializer;
         return this;
     }
 
-    KryoTypeEntry type(final Class<?> type)
+    KryoTypeEntry type(Class<?> type)
     {
         this.type = type;
         return this;

@@ -40,13 +40,13 @@ public class IdentitySet<Element> extends AbstractSet<Element>
     private final IdentityHashMap<Element, Boolean> map = new IdentityHashMap<>();
 
     @Override
-    public boolean add(final Element element)
+    public boolean add(Element element)
     {
         return map.put(element, true) != null;
     }
 
     @Override
-    public boolean addAll(final Collection<? extends Element> collection)
+    public boolean addAll(Collection<? extends Element> collection)
     {
         collection.forEach(this::add);
         return true;
@@ -60,7 +60,7 @@ public class IdentitySet<Element> extends AbstractSet<Element>
 
     @Override
     @SuppressWarnings({ "unchecked" })
-    public boolean contains(final Object object)
+    public boolean contains(Object object)
     {
         return map.containsKey((Element) object);
     }
@@ -78,13 +78,13 @@ public class IdentitySet<Element> extends AbstractSet<Element>
     }
 
     @Override
-    public boolean remove(final Object element)
+    public boolean remove(Object element)
     {
         return map.remove(element);
     }
 
     @Override
-    public boolean removeAll(final Collection<?> collection)
+    public boolean removeAll(Collection<?> collection)
     {
         collection.forEach(this::remove);
         return true;

@@ -61,12 +61,12 @@ import static com.telenav.kivakit.kernel.language.strings.formatting.IndentingSt
  * {
  *     private final BaseRepeater&lt;Message&gt; repeater = new BaseRepeater&lt;&gt;();
  *
- *     public void broadcast(final Message message)
+ *     public void broadcast( Message message)
  *     {
  *         this.repeater.broadcast(message);
  *     }
  *
- *     public void addListener(final Listener&lt;Message&gt; listener)
+ *     public void addListener( Listener&lt;Message&gt; listener)
  *     {
  *         this.repeater.addListener(listener);
  *     }
@@ -108,21 +108,21 @@ public class Multicaster implements Broadcaster
 
     private boolean transmitting;
 
-    public Multicaster(final String objectName, final Class<?> debugClassContext)
+    public Multicaster(String objectName, Class<?> debugClassContext)
     {
         this.objectName = objectName;
         this.debugClassContext = debugClassContext;
         debugCodeContext(new CodeContext(debugClassContext));
     }
 
-    public Multicaster(final Class<?> debugClassContext)
+    public Multicaster(Class<?> debugClassContext)
     {
         objectName = Name.synthetic(this);
         this.debugClassContext = debugClassContext;
         debugCodeContext(new CodeContext(debugClassContext));
     }
 
-    protected Multicaster(final String objectName)
+    protected Multicaster(String objectName)
     {
         this.objectName = objectName;
         debugClassContext = getClass();
@@ -136,13 +136,14 @@ public class Multicaster implements Broadcaster
         debugCodeContext(new CodeContext(getClass()));
     }
 
-    protected Multicaster(final Multicaster that)
+    protected Multicaster(Multicaster that)
     {
         objectName = that.objectName;
         source = that.source;
         debugCodeContext = that.debugCodeContext;
         debugClassContext = that.debugClassContext;
         lock = that.lock;
+        transmitting = that.transmitting;
 
         audience.addAll(that.audience);
 
@@ -154,7 +155,7 @@ public class Multicaster implements Broadcaster
      * {@inheritDoc}
      */
     @Override
-    public void addListener(final Listener listener, final Filter<Transmittable> filter)
+    public void addListener(Listener listener, Filter<Transmittable> filter)
     {
         ensure(listener != this, "Cannot listen to yourself");
 
@@ -169,7 +170,7 @@ public class Multicaster implements Broadcaster
         ensureNotNull(listener);
         lock().write(() ->
         {
-            final var receiver = new AudienceMember(listener, filter);
+            var receiver = new AudienceMember(listener, filter);
             if (!audience.contains(receiver))
             {
                 audience.add(receiver);
@@ -199,7 +200,7 @@ public class Multicaster implements Broadcaster
     }
 
     @Override
-    public void debugCodeContext(final CodeContext context)
+    public void debugCodeContext(CodeContext context)
     {
         debugCodeContext = context;
     }
@@ -221,7 +222,7 @@ public class Multicaster implements Broadcaster
     {
         return lock().read(() ->
         {
-            for (final var receiver : audience)
+            for (var receiver : audience)
             {
                 if (!receiver.listener().isDeaf())
                 {
@@ -244,7 +245,7 @@ public class Multicaster implements Broadcaster
     @NotNull
     public StringList listenerChain()
     {
-        final var chain = new StringList();
+        var chain = new StringList();
         for (var at = (Broadcaster) this; at.messageSource() != null; at = at.messageSource())
         {
             chain.append(at.getClass().getSimpleName());
@@ -257,7 +258,7 @@ public class Multicaster implements Broadcaster
      */
     public String listenerTree()
     {
-        final var builder = new IndentingStringBuilder(TEXT, Indentation.of(4));
+        var builder = new IndentingStringBuilder(TEXT, Indentation.of(4));
         listenerTree(builder);
         return builder.toString();
     }
@@ -280,7 +281,7 @@ public class Multicaster implements Broadcaster
     }
 
     @Override
-    public void messageSource(final Broadcaster source)
+    public void messageSource(Broadcaster source)
     {
         this.source = source;
     }
@@ -295,7 +296,7 @@ public class Multicaster implements Broadcaster
      * Removes the given listener from receiving broadcast messages
      */
     @Override
-    public void removeListener(final Listener listener)
+    public void removeListener(Listener listener)
     {
         lock().write(() ->
         {
@@ -307,7 +308,7 @@ public class Multicaster implements Broadcaster
      * {@inheritDoc}
      */
     @Override
-    public <M extends Transmittable> M transmit(final M message)
+    public <M extends Transmittable> M transmit(M message)
     {
         lock().read(() ->
         {
@@ -320,13 +321,13 @@ public class Multicaster implements Broadcaster
                 }
 
                 // then send to members of the audience
-                for (final var member : audience)
+                for (var member : audience)
                 {
                     try
                     {
                         member.receive(message);
                     }
-                    catch (final Exception e)
+                    catch (Exception e)
                     {
                         LOGGER.problem(e, "Listener threw exception");
                     }
@@ -368,13 +369,13 @@ public class Multicaster implements Broadcaster
         }
     }
 
-    private void listenerTree(final IndentingStringBuilder builder)
+    private void listenerTree(IndentingStringBuilder builder)
     {
         lock().read(() ->
         {
             builder.appendLine(objectName());
             builder.indent();
-            for (final var receiver : audience)
+            for (var receiver : audience)
             {
                 if (receiver.listener() instanceof Multicaster)
                 {

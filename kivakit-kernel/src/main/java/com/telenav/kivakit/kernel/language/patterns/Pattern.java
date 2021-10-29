@@ -18,16 +18,12 @@
 
 package com.telenav.kivakit.kernel.language.patterns;
 
+import com.telenav.kivakit.kernel.data.conversion.Converter;
 import com.telenav.kivakit.kernel.data.conversion.string.language.IdentityConverter;
 import com.telenav.kivakit.kernel.data.conversion.string.primitive.BooleanConverter;
 import com.telenav.kivakit.kernel.data.conversion.string.primitive.FloatConverter;
 import com.telenav.kivakit.kernel.data.conversion.string.primitive.IntegerConverter;
-import com.telenav.kivakit.kernel.language.values.count.Maximum;
-import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguagePattern;
-import com.telenav.kivakit.kernel.data.conversion.Converter;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
-import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.kivakit.kernel.language.patterns.character.Character;
 import com.telenav.kivakit.kernel.language.patterns.character.CharacterClass;
 import com.telenav.kivakit.kernel.language.patterns.character.LiteralCharacter;
@@ -37,6 +33,10 @@ import com.telenav.kivakit.kernel.language.patterns.closure.ZeroOrMore;
 import com.telenav.kivakit.kernel.language.patterns.group.Group;
 import com.telenav.kivakit.kernel.language.patterns.logical.Or;
 import com.telenav.kivakit.kernel.language.patterns.logical.Then;
+import com.telenav.kivakit.kernel.language.values.count.Maximum;
+import com.telenav.kivakit.kernel.messaging.Listener;
+import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguagePattern;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.regex.Matcher;
 
@@ -144,12 +144,23 @@ public abstract class Pattern
 
     public static final CharacterClass HEXADECIMAL_CHARACTER = characterClass(DIGIT, range('a', 'f'), range('A', 'F'));
 
+    public static final Pattern HEXADECIMAL_NUMBER = HEXADECIMAL_CHARACTER.oneOrMore();
+
     /**
      * Space
      */
     public static final Pattern WHITESPACE = WHITESPACE_CHARACTER.oneOrMore();
 
     public static final Pattern OPTIONAL_WHITESPACE = WHITESPACE_CHARACTER.zeroOrMore();
+
+    /**
+     * Separators
+     */
+    public static final Pattern COMMA_SEPARATOR = COMMA.withOptionalWhiteSpace();
+
+    public static final Pattern COLON_SEPARATOR = COLON.withOptionalWhiteSpace();
+
+    public static final Pattern SEMICOLON_SEPARATOR = SEMICOLON.withOptionalWhiteSpace();
 
     /**
      * Words
@@ -171,8 +182,6 @@ public abstract class Pattern
 
     public static final Pattern INTEGER = MINUS.optional().then(DIGITS);
 
-    public static final Pattern HEXADECIMAL_NUMBER = HEXADECIMAL_CHARACTER.oneOrMore();
-
     public static final Pattern FLOATING_POINT_NUMBER = MINUS.optional().then(DIGITS.optional())
             .then(DOT.then(DIGITS).optional());
 
@@ -185,28 +194,12 @@ public abstract class Pattern
 
     public static final Pattern ANYTHING_BUT_A_QUOTE = characterClass(QUOTE).inverted();
 
-    public static final Pattern ANYTHING_BUT_A_SINGLE_QUOTE = characterClass(SINGLE_QUOTE).inverted();
-
-    /**
-     * Separators
-     */
-    public static final Pattern COMMA_SEPARATOR = COMMA.withOptionalWhiteSpace();
-
-    public static final Pattern COLON_SEPARATOR = COLON.withOptionalWhiteSpace();
-
-    public static final Pattern SEMICOLON_SEPARATOR = SEMICOLON.withOptionalWhiteSpace();
-
-    /**
-     * XML
-     */
-    public static final Pattern XML_ELEMENT_NAME = expression("[A-Za-z_][A-Za-z0-9_.-]*");
-
-    public static final Pattern XML_ATTRIBUTE_NAME = XML_ELEMENT_NAME;
-
     /**
      * Strings
      */
     public static final Pattern DOUBLE_QUOTED_STRING = QUOTE.then(ANYTHING_BUT_A_QUOTE.zeroOrMore()).then(QUOTE);
+
+    public static final Pattern ANYTHING_BUT_A_SINGLE_QUOTE = characterClass(SINGLE_QUOTE).inverted();
 
     public static final Pattern SINGLE_QUOTED_STRING = SINGLE_QUOTE.then(ANYTHING_BUT_A_SINGLE_QUOTE.zeroOrMore())
             .then(SINGLE_QUOTE);
@@ -217,6 +210,13 @@ public abstract class Pattern
     public static final Pattern OPTIONAL_STRING = STRING.optional();
 
     /**
+     * XML
+     */
+    public static final Pattern XML_ELEMENT_NAME = expression("[A-Za-z_][A-Za-z0-9_.-]*");
+
+    public static final Pattern XML_ATTRIBUTE_NAME = XML_ELEMENT_NAME;
+
+    /**
      * Perl-style variable interpolations
      */
     public static final Pattern VARIABLE_NAME = ALPHABETIC_CHARACTER.with(UNDERSCORE)
@@ -224,42 +224,42 @@ public abstract class Pattern
 
     public static final Pattern PERL_INTERPOLATION = expression("\\$\\{" + VARIABLE_NAME + "\\}");
 
-    public static CharacterClass anyOf(final String characters)
+    public static CharacterClass anyOf(String characters)
     {
         return new CharacterClass(characters);
     }
 
-    public static <T> Expression anyOf(final T[] options)
+    public static <T> Expression anyOf(T[] options)
     {
         return new Expression(new ObjectList<>(Maximum.maximum(options)).appendAll(options).join("|"));
     }
 
-    public static Character character(final char character)
+    public static Character character(char character)
     {
         return new Character(character);
     }
 
-    public static CharacterClass characterClass(final Object... objects)
+    public static CharacterClass characterClass(Object... objects)
     {
         return new CharacterClass(objects);
     }
 
-    public static Expression constant(final String expression)
+    public static Expression constant(String expression)
     {
         return expression(java.util.regex.Pattern.quote(expression));
     }
 
-    public static Expression expression(final String expression)
+    public static Expression expression(String expression)
     {
         return new Expression(expression);
     }
 
-    public static LiteralCharacter literal(final char character)
+    public static LiteralCharacter literal(char character)
     {
         return new LiteralCharacter(character);
     }
 
-    public static CharacterClass range(final char first, final char last)
+    public static CharacterClass range(char first, char last)
     {
         return characterClass().withRange(first, last);
     }
@@ -269,9 +269,9 @@ public abstract class Pattern
      */
     private java.util.regex.Pattern pattern;
 
-    public String afterMatch(final String input)
+    public String afterMatch(String input)
     {
-        final var matcher = matcher(input);
+        var matcher = matcher(input);
         if (matcher.lookingAt())
         {
             return input.substring(matcher.end());
@@ -284,9 +284,9 @@ public abstract class Pattern
      *
      * @param group The capture group number to bind to
      */
-    public abstract int bind(final int group);
+    public abstract int bind(int group);
 
-    public Group<Boolean> booleanGroup(final Listener listener)
+    public Group<Boolean> booleanGroup(Listener listener)
     {
         return group(new BooleanConverter(listener));
     }
@@ -296,32 +296,32 @@ public abstract class Pattern
         return expression("(?i)").then(this).then(expression("(?-i)"));
     }
 
-    public boolean find(final String input)
+    public boolean find(String input)
     {
         return matcher(input).find();
     }
 
-    public Group<Float> floatGroup(final Listener listener)
+    public Group<Float> floatGroup(Listener listener)
     {
         return group(new FloatConverter(listener));
     }
 
-    public <T> Group<T> group(final Converter<String, T> converter)
+    public <T> Group<T> group(Converter<String, T> converter)
     {
         return new Group<>(this, converter);
     }
 
-    public Group<String> group(final Listener listener)
+    public Group<String> group(Listener listener)
     {
         return group(new IdentityConverter(listener));
     }
 
-    public Group<Integer> integerGroup(final Listener listener)
+    public Group<Integer> integerGroup(Listener listener)
     {
         return group(new IntegerConverter(listener));
     }
 
-    public boolean lookingAt(final String input)
+    public boolean lookingAt(String input)
     {
         return matcher(input).lookingAt();
     }
@@ -332,7 +332,7 @@ public abstract class Pattern
      * @param input The input to match against
      * @return The matcher
      */
-    public final Matcher matcher(final CharSequence input)
+    public final Matcher matcher(CharSequence input)
     {
         return matcher(input, 0);
     }
@@ -347,22 +347,22 @@ public abstract class Pattern
      * java.util.regex.Pattern#compile(String, int)})
      * @return The matcher
      */
-    public final Matcher matcher(final CharSequence input, final int flags)
+    public final Matcher matcher(CharSequence input, int flags)
     {
         return compile(flags).matcher(input);
     }
 
-    public final Matcher matcherCaseInsensitive(final CharSequence input)
+    public final Matcher matcherCaseInsensitive(CharSequence input)
     {
         return matcher(input, java.util.regex.Pattern.CASE_INSENSITIVE);
     }
 
-    public boolean matches(final CharSequence input)
+    public boolean matches(CharSequence input)
     {
         return matcher(input).matches();
     }
 
-    public boolean matchesIgnoreCase(final CharSequence input)
+    public boolean matchesIgnoreCase(CharSequence input)
     {
         return matcherCaseInsensitive(input).matches();
     }
@@ -377,12 +377,12 @@ public abstract class Pattern
         return new Optional(this);
     }
 
-    public Pattern or(final Pattern that)
+    public Pattern or(Pattern that)
     {
         return new Or(this, that);
     }
 
-    public Pattern or(final String that)
+    public Pattern or(String that)
     {
         return or(expression(that));
     }
@@ -392,12 +392,12 @@ public abstract class Pattern
         return new Parenthesized(this);
     }
 
-    public Pattern then(final Pattern that)
+    public Pattern then(Pattern that)
     {
         return new Then(this, that);
     }
 
-    public Pattern then(final String that)
+    public Pattern then(String that)
     {
         return then(expression(that));
     }
@@ -426,7 +426,7 @@ public abstract class Pattern
      * @param flags One or more of the standard Java regular expression compile flags (see {@link
      * java.util.regex.Pattern#compile(String, int)})
      */
-    private synchronized java.util.regex.Pattern compile(final int flags)
+    private synchronized java.util.regex.Pattern compile(int flags)
     {
         if (pattern == null)
         {

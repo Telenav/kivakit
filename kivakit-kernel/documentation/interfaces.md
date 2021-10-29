@@ -111,8 +111,8 @@ The Indexable interface looks like this:
     {
         Element get(int index)
 
-        default Element getOrDefault(final int index, final Element defaultValue)
-        default boolean isEqualTo(final Indexable<Element> that)
+        default Element getOrDefault( int index, final Element defaultValue)
+        default boolean isEqualTo( Indexable<Element> that)
         default Element last()
     }
 
@@ -133,26 +133,26 @@ The base interfaces look like this:
 
     public interface Sequence<Element>
     {
-        Iterator<Element> asIterator(final Matcher<Element> matcher)
+        Iterator<Element> asIterator( Matcher<Element> matcher)
 
-        default boolean allMatch(final Matcher<Element> matcher)
-        default boolean anyMatch(final Matcher<Element> matcher)
+        default boolean allMatch( Matcher<Element> matcher)
+        default boolean anyMatch( Matcher<Element> matcher)
         default int asHashCode()
-        default Iterable<Element> asIterable(final Matcher<Element> matcher)
+        default Iterable<Element> asIterable( Matcher<Element> matcher)
         default Iterable<Element> asIterable()
         default Iterator<Element> asIterator()
         default List<Element> asList()
         default Set<Element> asSet()
-        default Element find(final Matcher<Element> matcher)
+        default Element find( Matcher<Element> matcher)
         default Element first()
         default Element head()
-        default int indexOfFirst(final Matcher<Element> matcher)
-        default int indexOfFirst(final Element value)
-        default boolean isEqualTo(final Sequence<Element> that)
-        default String join(final char separator)
-        default String join(final String separator)
-        default String join(final String separator, final Function<Element, String> toString)
-        default boolean noneMatch(final Matcher<Element> matcher)
+        default int indexOfFirst( Matcher<Element> matcher)
+        default int indexOfFirst( Element value)
+        default boolean isEqualTo( Sequence<Element> that)
+        default String join( char separator)
+        default String join( String separator)
+        default String join( String separator, final Function<Element, String> toString)
+        default boolean noneMatch( Matcher<Element> matcher)
         default List<Element> tail()
     }
 

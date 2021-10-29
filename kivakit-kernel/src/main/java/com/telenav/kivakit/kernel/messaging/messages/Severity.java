@@ -52,14 +52,14 @@ public final class Severity extends Level implements Named
 
     public static final Severity CRITICAL = new Severity("Critical", 0.9);
 
-    public static Severity of(final String name)
+    public static Severity of(String name)
     {
         return severities.get(name);
     }
 
     private String name;
 
-    public Severity(final String name, final double severity)
+    public Severity(String name, double severity)
     {
         super(severity);
 
@@ -69,13 +69,13 @@ public final class Severity extends Level implements Named
         severities.put(name, this);
     }
 
-    protected Severity()
+    private Severity()
     {
         super(0.0);
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         // Local fields are not considered
         return super.equals(object);

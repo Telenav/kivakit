@@ -52,7 +52,7 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
 {
     private Matcher<Message> filter;
 
-    public MessageList(final Matcher<Message> filter)
+    public MessageList(Matcher<Message> filter)
     {
         this(Maximum.MAXIMUM, filter);
     }
@@ -62,7 +62,7 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
         this(new All<>());
     }
 
-    public MessageList(final Maximum maximumSize, final Matcher<Message> filter)
+    public MessageList(Maximum maximumSize, Matcher<Message> filter)
     {
         super(maximumSize);
         this.filter = filter;
@@ -71,8 +71,8 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
     @Override
     public MessageList copy()
     {
-        final var copy = (MessageList) super.copy();
-        copy.filter = this.filter;
+        var copy = (MessageList) super.copy();
+        copy.filter = filter;
         return copy;
     }
 
@@ -80,10 +80,10 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
      * {@inheritDoc}
      */
     @Override
-    public Count count(final Message.Status status)
+    public Count count(Message.Status status)
     {
         var count = 0;
-        for (final var message : this)
+        for (var message : this)
         {
             if (message.status() == status)
             {
@@ -97,10 +97,10 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
      * {@inheritDoc}
      */
     @Override
-    public Count count(final Class<? extends Message> type)
+    public Count count(Class<? extends Message> type)
     {
         var count = 0;
-        for (final var message : this)
+        for (var message : this)
         {
             if (type.isAssignableFrom(message.getClass()))
             {
@@ -114,10 +114,10 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
      * {@inheritDoc}
      */
     @Override
-    public Count countWorseThanOrEqualTo(final Message.Status status)
+    public Count countWorseThanOrEqualTo(Message.Status status)
     {
         var count = 0;
-        for (final var message : this)
+        for (var message : this)
         {
             if (message.status().isWorseThanOrEqualTo(status))
             {
@@ -128,16 +128,10 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         // Local fields are not considered
         return super.equals(object);
-    }
-
-    @Override
-    public ObjectList<Message> matching(final Matcher<Message> filter)
-    {
-        return super.matching(filter);
     }
 
     /**
@@ -145,8 +139,8 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
      */
     public StringList formatted()
     {
-        final var messages = new StringList(maximumSize());
-        for (final var message : this)
+        var messages = new StringList(maximumSize());
+        for (var message : this)
         {
             messages.add(message.formatted(MessageFormatter.Format.WITH_EXCEPTION));
         }
@@ -160,14 +154,20 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
         return super.hashCode();
     }
 
+    @Override
+    public ObjectList<Message> matching(Matcher<Message> filter)
+    {
+        return super.matching(filter);
+    }
+
     /**
      * @param type The message type
      * @return The messages of the given type
      */
-    public ObjectList<Message> messages(final Class<? extends Message> type)
+    public ObjectList<Message> messages(Class<? extends Message> type)
     {
-        final var messages = new ObjectList<Message>(maximumSize());
-        for (final var object : this)
+        var messages = new ObjectList<Message>(maximumSize());
+        for (var object : this)
         {
             if (type.isAssignableFrom(object.getClass()))
             {
@@ -183,7 +183,7 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
      * @param message The message to add
      */
     @Override
-    public void onMessage(final Message message)
+    public void onMessage(Message message)
     {
         if (filter.matches(message))
         {
@@ -200,10 +200,10 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
     /**
      * @return Statistics for the given list of operation step types
      */
-    public StringList statistics(final Message.Status... statuses)
+    public StringList statistics(Message.Status... statuses)
     {
-        final var statistics = new StringList();
-        for (final var status : statuses)
+        var statistics = new StringList();
+        for (var status : statuses)
         {
             statistics.append(Align.right(status.name(), 24, ' '))
                     .append(": ").append(count(status).toCommaSeparatedString());
@@ -212,10 +212,10 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
     }
 
     @SafeVarargs
-    public final StringList statisticsByType(final Class<? extends Message>... types)
+    public final StringList statisticsByType(Class<? extends Message>... types)
     {
-        final var statistics = new StringList();
-        for (final var type : types)
+        var statistics = new StringList();
+        for (var type : types)
         {
             statistics.append(Align.right(Classes.simpleName(type), 24, ' '))
                     .append(": ").append(count(type).toCommaSeparatedString());

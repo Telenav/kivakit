@@ -60,9 +60,9 @@ public class FilePathTest extends UnitTest
     @Test
     public void testIterable()
     {
-        final var elements = new String[] { "a", "b", "c" };
+        var elements = new String[] { "a", "b", "c" };
         int i = 0;
-        for (final var element : path("a/b/c"))
+        for (var element : path("a/b/c"))
         {
             ensureEqual(element, elements[i++]);
         }
@@ -117,8 +117,8 @@ public class FilePathTest extends UnitTest
     @Test
     public void testParent()
     {
-        final var path = path("a/b/c");
-        final var parent = path.parent();
+        var path = path("a/b/c");
+        var parent = path.parent();
         ensure(path.startsWith(parent));
         ensureEqual(parent, path("a/b"));
     }
@@ -134,12 +134,12 @@ public class FilePathTest extends UnitTest
     {
         if (OperatingSystem.get().isWindows())
         {
-            final var path = ResourcePath.parseResourcePath("c:\\");
+            var path = ResourcePath.parseResourcePath("c:\\");
             ensure(path.isRoot());
         }
         else
         {
-            final var path = ResourcePath.parseResourcePath("/");
+            var path = ResourcePath.parseResourcePath("/");
             ensure(path.isRoot());
         }
     }
@@ -150,15 +150,15 @@ public class FilePathTest extends UnitTest
         if (OperatingSystem.get().isWindows())
         {
             final var rawPath = "C:\\this\\is\\a\\test\\path";
-            final var path = FilePath.parseFilePath(rawPath);
-            final var root = Folder.parse("C:\\").path().absolute();
-            final var root2 = path.root().absolute();
+            var path = FilePath.parseFilePath(rawPath);
+            var root = Folder.parse("C:\\").path().absolute();
+            var root2 = path.root().absolute();
             ensureEqual(root, root2);
         }
         else
         {
             final var rawPath = "/this/is/a/test/path";
-            final var path = FilePath.parseFilePath(rawPath);
+            var path = FilePath.parseFilePath(rawPath);
             ensureEqual("/", path.root().toString());
         }
     }
@@ -166,7 +166,7 @@ public class FilePathTest extends UnitTest
     @Test
     public void testScheme()
     {
-        final var path = FilePath.parseFilePath("hdfs://192.168.0.1/user/jonathanl/test.txt");
+        var path = FilePath.parseFilePath("hdfs://192.168.0.1/user/jonathanl/test.txt");
         ensureEqual(path.schemes(), StringList.stringList("hdfs"));
     }
 
@@ -220,7 +220,7 @@ public class FilePathTest extends UnitTest
     }
 
     @NotNull
-    private FilePath path(final String path)
+    private FilePath path(String path)
     {
         return FilePath.parseFilePath(path);
     }

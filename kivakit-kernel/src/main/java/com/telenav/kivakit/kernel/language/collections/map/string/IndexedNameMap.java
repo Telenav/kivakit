@@ -35,17 +35,17 @@ public class IndexedNameMap<T extends Named> extends BaseIndexedMap<String, T>
         super(Maximum.MAXIMUM);
     }
 
-    public IndexedNameMap(final Maximum maximumSize)
+    public IndexedNameMap(Maximum maximumSize)
     {
         super(maximumSize);
     }
 
-    public final T forName(final String name)
+    public final T forName(String name)
     {
         return get(name);
     }
 
-    public void put(final T value)
+    public void put(T value)
     {
         put(value.name(), value);
     }

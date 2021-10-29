@@ -46,7 +46,7 @@ public class MappedLazy<Parameter, Value>
     /** The factory to create a new value */
     private final MapFactory<Parameter, Value> factory;
 
-    public MappedLazy(final MapFactory<Parameter, Value> factory)
+    public MappedLazy(MapFactory<Parameter, Value> factory)
     {
         this.factory = factory;
     }
@@ -62,7 +62,7 @@ public class MappedLazy<Parameter, Value>
     /**
      * @return The value
      */
-    public final Value get(final Parameter parameter)
+    public final Value get(Parameter parameter)
     {
         if (value == null)
         {

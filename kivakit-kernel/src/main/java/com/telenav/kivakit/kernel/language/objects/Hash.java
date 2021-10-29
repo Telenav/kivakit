@@ -41,12 +41,12 @@ public class Hash
 
     public static final long KNUTH_SEED = 2654435761L;
 
-    public static int code(final byte[] a)
+    public static int code(byte[] a)
     {
         return code(a, 0, a.length);
     }
 
-    public static int code(final byte[] a, final int start, final int end)
+    public static int code(byte[] a, int start, int end)
     {
         if (a == null)
         {
@@ -56,14 +56,14 @@ public class Hash
         var result = 1;
         for (var i = start; i < end; i++)
         {
-            final var element = a[i];
+            var element = a[i];
             result = 31 * result + Byte.hashCode(element);
         }
 
         return result;
     }
 
-    public static int code(final char[] a, final int start, final int end)
+    public static int code(char[] a, int start, int end)
     {
         if (a == null)
         {
@@ -73,19 +73,19 @@ public class Hash
         var result = 1;
         for (var i = start; i < end; i++)
         {
-            final var element = a[i];
+            var element = a[i];
             result = 31 * result + Character.hashCode(element);
         }
 
         return result;
     }
 
-    public static int code(final int[] a)
+    public static int code(int[] a)
     {
         return code(a, 0, a.length);
     }
 
-    public static int code(final int[] a, final int start, final int end)
+    public static int code(int[] a, int start, int end)
     {
         if (a == null)
         {
@@ -95,14 +95,14 @@ public class Hash
         var result = 1;
         for (var i = start; i < end; i++)
         {
-            final var element = a[i];
+            var element = a[i];
             result = 31 * result + Integer.hashCode(element);
         }
 
         return result;
     }
 
-    public static int code(final Object object)
+    public static int code(Object object)
     {
         if (object instanceof boolean[])
         {
@@ -143,12 +143,12 @@ public class Hash
         return object != null ? object.hashCode() : 0;
     }
 
-    public static int code(final Iterator<Object> objects)
+    public static int code(Iterator<Object> objects)
     {
         var hashCode = 1;
         while (objects.hasNext())
         {
-            final var object = objects.next();
+            var object = objects.next();
             if (object != null)
             {
                 hashCode = hashCode * SEED + code(object);
@@ -157,17 +157,17 @@ public class Hash
         return hashCode;
     }
 
-    public static int code(final long[] a)
+    public static int code(long[] a)
     {
         return code(a, 0, a.length);
     }
 
-    public static int code(final long value)
+    public static int code(long value)
     {
         return (int) (value ^ (value >>> 32));
     }
 
-    public static int code(final long[] a, final int start, final int end)
+    public static int code(long[] a, int start, int end)
     {
         if (a == null)
         {
@@ -177,24 +177,24 @@ public class Hash
         var result = 1;
         for (var i = start; i < end; i++)
         {
-            final var element = a[i];
+            var element = a[i];
             result = 31 * result + Long.hashCode(element);
         }
 
         return result;
     }
 
-    public static int identity(final Object object)
+    public static int identity(Object object)
     {
         return System.identityHashCode(object);
     }
 
-    public static int knuth(final int value)
+    public static int knuth(int value)
     {
         return (int) Math.abs(value * KNUTH_SEED);
     }
 
-    public static int knuth(final long value)
+    public static int knuth(long value)
     {
         return Math.abs(knuth((int) value) ^ knuth((int) (value >>> 32)));
     }
@@ -202,7 +202,7 @@ public class Hash
     /**
      * Warning...
      */
-    public static int many(final Object... objects)
+    public static int many(Object... objects)
     {
         return Arrays.hashCode(objects);
     }

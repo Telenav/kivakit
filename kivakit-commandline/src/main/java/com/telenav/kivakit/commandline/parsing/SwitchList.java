@@ -56,7 +56,7 @@ public class SwitchList implements Iterable<Switch>, PropertyValueSource, AsStri
     /**
      * Adds the given switch to this list
      */
-    public void add(final Switch _switch)
+    public void add(Switch _switch)
     {
         switches.add(_switch);
     }
@@ -73,9 +73,9 @@ public class SwitchList implements Iterable<Switch>, PropertyValueSource, AsStri
     /**
      * @return The switch value for the given switch parser
      */
-    public <T> T get(final SwitchParser<T> parser)
+    public <T> T get(SwitchParser<T> parser)
     {
-        final var _switch = switchForName(parser.name());
+        var _switch = switchForName(parser.name());
         if (_switch != null)
         {
             return _switch.get(parser);
@@ -96,9 +96,9 @@ public class SwitchList implements Iterable<Switch>, PropertyValueSource, AsStri
      * {@inheritDoc}
      */
     @Override
-    public Object valueFor(final Property property)
+    public Object valueFor(Property property)
     {
-        final var _switch = switchForName(property.name());
+        var _switch = switchForName(property.name());
         if (_switch != null)
         {
             return _switch.value();
@@ -109,14 +109,14 @@ public class SwitchList implements Iterable<Switch>, PropertyValueSource, AsStri
     /**
      * @return True if this switch list has a value for the given switch parser
      */
-    boolean has(final SwitchParser<?> parser)
+    boolean has(SwitchParser<?> parser)
     {
         return switchForName(parser.name()) != null;
     }
 
-    private Switch switchForName(final String name)
+    private Switch switchForName(String name)
     {
-        for (final var _switch : switches)
+        for (var _switch : switches)
         {
             if (_switch.name().equalsIgnoreCase(name))
             {

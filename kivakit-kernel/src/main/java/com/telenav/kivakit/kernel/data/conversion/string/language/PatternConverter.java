@@ -39,7 +39,7 @@ public class PatternConverter extends BaseStringConverter<Pattern>
     /**
      * @param listener The listener to hear any conversion issues
      */
-    public PatternConverter(final Listener listener)
+    public PatternConverter(Listener listener)
     {
         super(listener);
     }
@@ -48,7 +48,7 @@ public class PatternConverter extends BaseStringConverter<Pattern>
      * {@inheritDoc}
      */
     @Override
-    protected Pattern onToValue(final String text)
+    protected Pattern onToValue(String text)
     {
         return Pattern.compile(text);
     }

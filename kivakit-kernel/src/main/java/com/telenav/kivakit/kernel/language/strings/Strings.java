@@ -36,11 +36,11 @@ public class Strings
     /**
      * @return True if the given text contains any character in the given set of characters
      */
-    public static boolean containsAnyOf(final String text, final String characters)
+    public static boolean containsAnyOf(String text, String characters)
     {
         for (var i = 0; i < text.length(); i++)
         {
-            final var c = text.charAt(i);
+            var c = text.charAt(i);
             for (var j = 0; j < characters.length(); j++)
             {
                 if (characters.charAt(j) == c)
@@ -55,7 +55,7 @@ public class Strings
     /**
      * @return True if the string a contains b ignoring case differences
      */
-    public static boolean containsIgnoreCase(final String a, final String b)
+    public static boolean containsIgnoreCase(String a, String b)
     {
         return a.toLowerCase().contains(b.toLowerCase());
     }
@@ -63,7 +63,7 @@ public class Strings
     /**
      * @return The number of digits in the given text
      */
-    public static int digits(final String text)
+    public static int digits(String text)
     {
         var digits = 0;
         for (var i = 0; i < text.length(); i++)
@@ -79,7 +79,7 @@ public class Strings
     /**
      * @return The given text with the terminator appended if it doesn't already end in the terminator
      */
-    public static String ensureEndsWith(final String text, final String terminator)
+    public static String ensureEndsWith(String text, String terminator)
     {
         if (text.endsWith(terminator))
         {
@@ -93,7 +93,7 @@ public class Strings
      *
      * @return True if the strings are equal
      */
-    public static boolean equals(final String a, final String b)
+    public static boolean equals(String a, String b)
     {
         if (a == null || b == null)
         {
@@ -105,9 +105,9 @@ public class Strings
     /**
      * @return Group 1 of the first occurrence of pattern in text
      */
-    public static String extract(final String text, final String pattern)
+    public static String extract(String text, String pattern)
     {
-        final var matcher = Pattern.compile(pattern).matcher(text);
+        var matcher = Pattern.compile(pattern).matcher(text);
         if (matcher.find())
         {
             return matcher.group(1);
@@ -118,7 +118,7 @@ public class Strings
     /**
      * @return True if every character in the given text is a byte value
      */
-    public static boolean isAllBytes(final String text)
+    public static boolean isAllBytes(String text)
     {
         for (var i = 0; i < text.length(); i++)
         {
@@ -133,7 +133,7 @@ public class Strings
     /**
      * @return True if every character in the given text is an ASCII value
      */
-    public static boolean isAscii(final String text)
+    public static boolean isAscii(String text)
     {
         for (var i = 0; i < text.length(); i++)
         {
@@ -148,7 +148,7 @@ public class Strings
     /**
      * @return True if the string is null, empty or contains only whitespace
      */
-    public static boolean isEmpty(final String text)
+    public static boolean isEmpty(String text)
     {
         return text == null || text.isEmpty() || text.trim().isEmpty();
     }
@@ -156,7 +156,7 @@ public class Strings
     /**
      * @return True if every character in the given string is an ASCII value
      */
-    public static boolean isExtendedAscii(final String value)
+    public static boolean isExtendedAscii(String value)
     {
         for (var i = 0; i < value.length(); i++)
         {
@@ -171,7 +171,7 @@ public class Strings
     /**
      * @return True if the given text is a Java identifier
      */
-    public static boolean isJavaIdentifier(final String text)
+    public static boolean isJavaIdentifier(String text)
     {
         if (!isEmpty(text))
         {
@@ -191,7 +191,7 @@ public class Strings
         return false;
     }
 
-    public static boolean isLowerCase(final String text)
+    public static boolean isLowerCase(String text)
     {
         return text.equals(text.toLowerCase());
     }
@@ -202,7 +202,7 @@ public class Strings
      * @param string The string to check
      * @return True if it's a number
      */
-    public static boolean isNaturalNumber(final String string)
+    public static boolean isNaturalNumber(String string)
     {
         if (isEmpty(string))
         {
@@ -221,13 +221,13 @@ public class Strings
     /**
      * @return The leading n characters of the given text
      */
-    public static String leading(final String text, final int n)
+    public static String leading(String text, int n)
     {
-        final var length = Math.min(text.length(), n);
+        var length = Math.min(text.length(), n);
         return text.substring(0, length);
     }
 
-    public static String notNull(final String value)
+    public static String notNull(String value)
     {
         return value == null ? "" : value;
     }
@@ -235,7 +235,7 @@ public class Strings
     /**
      * @return The index of the nth instance of the given character in the given text
      */
-    public static int nth(final String text, int n, final char c)
+    public static int nth(String text, int n, char c)
     {
         for (var i = 0; i < text.length(); i++)
         {
@@ -253,7 +253,7 @@ public class Strings
     /**
      * @return The index of the nth instance of the given character in the given text
      */
-    public static int nthCharacter(final String text, int n, final char c)
+    public static int nthCharacter(String text, int n, char c)
     {
         for (var i = 0; i < text.length(); i++)
         {
@@ -271,7 +271,7 @@ public class Strings
     /**
      * @return The number of occurrences of the given character in the given text
      */
-    public static int occurrences(final String text, final char character)
+    public static int occurrences(String text, char character)
     {
         var count = 0;
         for (var i = 0; i < text.length(); i++)
@@ -287,7 +287,7 @@ public class Strings
     /**
      * @return The given text with the given range removed (end is exclusive)
      */
-    public static String remove(final String text, final int start, final int end)
+    public static String remove(String text, int start, int end)
     {
         return text.substring(0, start) + text.substring(end);
     }
@@ -295,12 +295,12 @@ public class Strings
     /**
      * @return The given string with all occurrences of the given character removed
      */
-    public static String removeAll(final String string, final char remove)
+    public static String removeAll(String string, char remove)
     {
-        final var builder = new StringBuilder();
+        var builder = new StringBuilder();
         for (var i = 0; i < string.length(); i++)
         {
-            final var current = string.charAt(i);
+            var current = string.charAt(i);
             if (current != remove)
             {
                 builder.append(current);
@@ -312,7 +312,7 @@ public class Strings
     /**
      * @return The given string with a range of characters replaced by the given replacement
      */
-    public static String replace(final String string, final int start, final int end, final String replacement)
+    public static String replace(String string, int start, int end, String replacement)
     {
         return string.substring(0, start) + replacement + string.substring(end);
     }
@@ -326,7 +326,7 @@ public class Strings
      * @param replaceWith The value to searchFor replaceWith
      * @return The resulting string with searchFor replaced with replaceWith
      */
-    public static String replaceAll(final String s, final String searchFor, String replaceWith)
+    public static String replaceAll(String s, String searchFor, String replaceWith)
     {
         if (s == null)
         {
@@ -359,13 +359,13 @@ public class Strings
             // Allocate a StringBuilder that will hold one replacement
             // with a little extra room.
             var size = s.length();
-            final var replaceWithLength = replaceWith.length();
-            final var searchForLength = searchFor.length();
+            var replaceWithLength = replaceWith.length();
+            var searchForLength = searchFor.length();
             if (replaceWithLength > searchForLength)
             {
                 size += (replaceWithLength - searchForLength);
             }
-            final var builder = new StringBuilder(size + 16);
+            var builder = new StringBuilder(size + 16);
 
             var pos = 0;
             do
@@ -393,7 +393,7 @@ public class Strings
     /**
      * @return True if the given text starts with the given prefix, ignoring case differences
      */
-    public static boolean startsWithIgnoreCase(final String text, final String prefix)
+    public static boolean startsWithIgnoreCase(String text, String prefix)
     {
         return text.startsWith(prefix) || text.toUpperCase().startsWith(prefix.toUpperCase());
     }
@@ -401,16 +401,16 @@ public class Strings
     /**
      * @return The trailing n characters of the given string
      */
-    public static String trailing(final String string, final int n)
+    public static String trailing(String string, int n)
     {
-        final var length = Math.min(string.length(), n);
+        var length = Math.min(string.length(), n);
         return string.substring(string.length() - length);
     }
 
     /**
      * @return The index of the given search string in the given text, starting at the given position
      */
-    private static int search(final CharSequence text, final String searchString, final int position)
+    private static int search(CharSequence text, String searchString, int position)
     {
         if (text instanceof String)
         {

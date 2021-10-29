@@ -47,18 +47,18 @@ public class CompoundIterator<Element> extends BaseIterator<Element>
     }
 
     @SafeVarargs
-    public CompoundIterator(final Iterator<Element> iterator, final Iterator<Element>... iterators)
+    public CompoundIterator(Iterator<Element> iterator, Iterator<Element>... iterators)
     {
         add(iterator);
         Collections.addAll(this.iterators, iterators);
     }
 
-    public void add(final Iterator<Element> iterator)
+    public void add(Iterator<Element> iterator)
     {
         iterators.add(iterator);
     }
 
-    public void addAll(final Collection<Iterator<Element>> iterators)
+    public void addAll(Collection<Iterator<Element>> iterators)
     {
         this.iterators.addAll(iterators);
     }
@@ -68,7 +68,7 @@ public class CompoundIterator<Element> extends BaseIterator<Element>
     {
         if (index < iterators.size())
         {
-            final var iterator = iterators.get(index);
+            var iterator = iterators.get(index);
             if (iterator.hasNext())
             {
                 return iterator.next();

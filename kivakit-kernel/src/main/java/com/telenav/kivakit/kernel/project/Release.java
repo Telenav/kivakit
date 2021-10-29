@@ -41,7 +41,7 @@ public enum Release
     M8(12),
     M9(13);
 
-    public static Release forIdentifier(final int identifier)
+    public static Release forIdentifier(int identifier)
     {
         switch (identifier)
         {
@@ -76,11 +76,11 @@ public enum Release
         }
     }
 
-    public static Release parse(final String value)
+    public static Release parse(String value)
     {
         if (value != null)
         {
-            for (final var type : values())
+            for (var type : values())
             {
                 if (type.name().equalsIgnoreCase(value))
                 {
@@ -97,7 +97,7 @@ public enum Release
 
     private final int identifier;
 
-    Release(final int identifier)
+    Release(int identifier)
     {
         this.identifier = identifier;
     }
@@ -107,12 +107,12 @@ public enum Release
         return identifier;
     }
 
-    public boolean isAfter(final Release that)
+    public boolean isAfter(Release that)
     {
         return ordinal() > that.ordinal();
     }
 
-    public boolean isBefore(final Release that)
+    public boolean isBefore(Release that)
     {
         return ordinal() < that.ordinal();
     }

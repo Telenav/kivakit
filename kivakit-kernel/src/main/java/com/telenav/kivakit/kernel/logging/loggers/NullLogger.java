@@ -45,7 +45,7 @@ import java.util.List;
 public class NullLogger implements Logger
 {
     @Override
-    public void addFilter(final Filter<LogEntry> filter)
+    public void addFilter(Filter<LogEntry> filter)
     {
     }
 
@@ -62,17 +62,17 @@ public class NullLogger implements Logger
     }
 
     @Override
-    public void flush(final Duration maximumWaitTime)
+    public void flush(Duration maximumWaitTime)
     {
     }
 
     @Override
-    public void log(final Message message)
+    public void log(Message message)
     {
     }
 
     @Override
-    public void log(final LoggerCodeContext context, final Thread thread, final Message message)
+    public void log(LoggerCodeContext context, Thread thread, Message message)
     {
     }
 

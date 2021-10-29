@@ -37,12 +37,12 @@ public class SecureHttpGetResource extends HttpGetResource
 {
     private boolean ignoreInvalidCertificates;
 
-    public SecureHttpGetResource(final SecureHttpNetworkLocation location, final NetworkAccessConstraints constraints)
+    public SecureHttpGetResource(SecureHttpNetworkLocation location, NetworkAccessConstraints constraints)
     {
         super(location, constraints);
     }
 
-    public void ignoreInvalidCertificates(final boolean ignore)
+    public void ignoreInvalidCertificates(boolean ignore)
     {
         ignoreInvalidCertificates = ignore;
     }

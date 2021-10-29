@@ -178,12 +178,12 @@ public class Maximum extends Count
         }
     }
 
-    public static Maximum maximum(final Iterable<?> iterable)
+    public static Maximum maximum(Iterable<?> iterable)
     {
         return maximum(iterable.iterator());
     }
 
-    public static Maximum maximum(final Iterator<?> iterator)
+    public static Maximum maximum(Iterator<?> iterator)
     {
         var count = 0;
         while (iterator.hasNext())
@@ -194,7 +194,7 @@ public class Maximum extends Count
         return maximum(count);
     }
 
-    public static Maximum maximum(final long value)
+    public static Maximum maximum(long value)
     {
         // If we have a cached value,
         if (value < CACHE_SIZE)
@@ -214,12 +214,12 @@ public class Maximum extends Count
         return new Maximum(value);
     }
 
-    public static <T> Maximum maximum(final T[] values)
+    public static <T> Maximum maximum(T[] values)
     {
         return maximum(values.length);
     }
 
-    public static Maximum maximum(final Collection<?> collection)
+    public static Maximum maximum(Collection<?> collection)
     {
         return maximum(collection.size());
     }
@@ -241,19 +241,19 @@ public class Maximum extends Count
     @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<Maximum>
     {
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
         }
 
         @Override
-        protected Maximum onToValue(final String value)
+        protected Maximum onToValue(String value)
         {
             return parse(value);
         }
     }
 
-    protected Maximum(final long count)
+    protected Maximum(long count)
     {
         super(count);
     }
@@ -270,7 +270,7 @@ public class Maximum extends Count
     }
 
     @Override
-    public Maximum ceiling(final int digits)
+    public Maximum ceiling(int digits)
     {
         return (Maximum) super.ceiling(digits);
     }
@@ -282,19 +282,19 @@ public class Maximum extends Count
     }
 
     @Override
-    public Maximum dividedBy(final Count divisor)
+    public Maximum dividedBy(Count divisor)
     {
         return dividedBy(divisor.get());
     }
 
     @Override
-    public Maximum dividedBy(final long divisor)
+    public Maximum dividedBy(long divisor)
     {
         return maximum(Longs.inRange(get() / divisor, 0, Long.MAX_VALUE));
     }
 
     @Override
-    public Maximum floor(final int digits)
+    public Maximum floor(int digits)
     {
         return (Maximum) super.floor(digits);
     }
@@ -306,7 +306,7 @@ public class Maximum extends Count
     }
 
     @Override
-    public Maximum maximum(final Count that)
+    public Maximum maximum(Count that)
     {
         if (isGreaterThan(that))
         {
@@ -319,7 +319,7 @@ public class Maximum extends Count
     }
 
     @Override
-    public Maximum minimum(final Count that)
+    public Maximum minimum(Count that)
     {
         if (isLessThan(that))
         {
@@ -332,13 +332,13 @@ public class Maximum extends Count
     }
 
     @Override
-    public Maximum minus(final Count count)
+    public Maximum minus(Count count)
     {
         return (Maximum) super.minus(count);
     }
 
     @Override
-    public Maximum minus(final long count)
+    public Maximum minus(long count)
     {
         return (Maximum) super.minus(count);
     }
@@ -350,19 +350,19 @@ public class Maximum extends Count
     }
 
     @Override
-    public Maximum percent(final Percent percentage)
+    public Maximum percent(Percent percentage)
     {
         return (Maximum) super.percent(percentage);
     }
 
     @Override
-    public Maximum plus(final Count count)
+    public Maximum plus(Count count)
     {
         return plus(count.get());
     }
 
     @Override
-    public Maximum plus(final long count)
+    public Maximum plus(long count)
     {
         return maximum(get() + count);
     }
@@ -380,7 +380,7 @@ public class Maximum extends Count
     }
 
     @Override
-    public Maximum times(final Count count)
+    public Maximum times(Count count)
     {
         if (count.isMaximum() || isMaximum())
         {
@@ -390,25 +390,25 @@ public class Maximum extends Count
     }
 
     @Override
-    public Maximum times(final double multiplier)
+    public Maximum times(double multiplier)
     {
         return (Maximum) super.times(multiplier);
     }
 
     @Override
-    public Maximum times(final long count)
+    public Maximum times(long count)
     {
         return (Maximum) super.times(count);
     }
 
     @Override
-    public Maximum times(final Percent percentage)
+    public Maximum times(Percent percentage)
     {
         return (Maximum) super.times(percentage);
     }
 
     @Override
-    protected Count onNewInstance(final long value)
+    protected Count onNewInstance(long value)
     {
         return maximum(value);
     }

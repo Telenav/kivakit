@@ -42,7 +42,7 @@ public interface RegistryTrait
     /**
      * Convenience method
      */
-    default <T> T lookup(final Class<T> type)
+    default <T> T lookup(Class<T> type)
     {
         return lookup(type, SINGLETON);
     }
@@ -50,7 +50,7 @@ public interface RegistryTrait
     /**
      * Convenience method
      */
-    default <T> T lookup(final Class<T> type, final Enum<?> instance)
+    default <T> T lookup(Class<T> type, Enum<?> instance)
     {
         return lookup(type, InstanceIdentifier.of(instance));
     }
@@ -58,7 +58,7 @@ public interface RegistryTrait
     /**
      * Convenience method
      */
-    default <T> T lookup(final Class<T> type, final String instance)
+    default <T> T lookup(Class<T> type, String instance)
     {
         return lookup(type, InstanceIdentifier.of(instance));
     }
@@ -66,7 +66,7 @@ public interface RegistryTrait
     /**
      * @return Any settings object of the given type and instance
      */
-    default <T> T lookup(final Class<T> type, final InstanceIdentifier instance)
+    default <T> T lookup(Class<T> type, InstanceIdentifier instance)
     {
         return registry().lookup(type, instance);
     }
@@ -74,7 +74,7 @@ public interface RegistryTrait
     /**
      * Registers the given singleton object in the lookup
      */
-    default <T> T register(final T object)
+    default <T> T register(T object)
     {
         for (var at = object.getClass(); at != Object.class; at = at.getSuperclass())
         {
@@ -87,7 +87,7 @@ public interface RegistryTrait
     /**
      * Registers the specified instance of the given object's type in the lookup
      */
-    default <T> T register(final T object, final String instance)
+    default <T> T register(T object, String instance)
     {
         return register(object, InstanceIdentifier.of(instance));
     }
@@ -95,7 +95,7 @@ public interface RegistryTrait
     /**
      * Registers the specified instance of the given object's type in the lookup
      */
-    default <T> T register(final T object, final Enum<?> instance)
+    default <T> T register(T object, Enum<?> instance)
     {
         return register(object, InstanceIdentifier.of(instance));
     }
@@ -103,7 +103,7 @@ public interface RegistryTrait
     /**
      * Registers the specified instance of the given object's type in the lookup
      */
-    default <T> T register(final T object, final InstanceIdentifier instance)
+    default <T> T register(T object, InstanceIdentifier instance)
     {
         return registry().register(object, instance);
     }
@@ -119,7 +119,7 @@ public interface RegistryTrait
     /**
      * Convenience method
      */
-    default <T> T require(final Class<T> type)
+    default <T> T require(Class<T> type)
     {
         return require(type, SINGLETON);
     }
@@ -127,7 +127,7 @@ public interface RegistryTrait
     /**
      * Convenience method
      */
-    default <T> T require(final Class<T> type, final Enum<?> instance)
+    default <T> T require(Class<T> type, Enum<?> instance)
     {
         return require(type, InstanceIdentifier.of(instance));
     }
@@ -135,7 +135,7 @@ public interface RegistryTrait
     /**
      * Convenience method
      */
-    default <T> T require(final Class<T> type, final String instance)
+    default <T> T require(Class<T> type, String instance)
     {
         return require(type, InstanceIdentifier.of(instance));
     }
@@ -143,7 +143,7 @@ public interface RegistryTrait
     /**
      * @return The object of the given instance and type, or {@link Ensure#fail()} if there is no such object
      */
-    default <T> T require(final Class<T> type, final InstanceIdentifier instance)
+    default <T> T require(Class<T> type, InstanceIdentifier instance)
     {
         return registry().require(type, instance);
     }

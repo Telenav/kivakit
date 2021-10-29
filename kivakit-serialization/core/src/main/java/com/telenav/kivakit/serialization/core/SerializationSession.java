@@ -72,7 +72,7 @@ import java.net.Socket;
 @UmlClassDiagram(diagram = DiagramSerializationCore.class)
 public interface SerializationSession extends SerializationSessionReadWrite, Named, Closeable, Flushable, Versioned, Repeater
 {
-    static SerializationSession threadLocal(final Listener listener)
+    static SerializationSession threadLocal(Listener listener)
     {
         return SerializationSessionFactory.threadLocal().session(listener);
     }
@@ -125,10 +125,10 @@ public interface SerializationSession extends SerializationSessionReadWrite, Nam
      * @return Opens the given socket for reading and writing. Version handshaking is performed automatically for {@link
      * Type#SERVER}s and {@link Type#CLIENT}s with the version of the connected endpoint returned to the caller.
      */
-    default Version open(final Type type,
-                         final Version version,
-                         final Socket socket,
-                         final ProgressReporter reporter)
+    default Version open(Type type,
+                         Version version,
+                         Socket socket,
+                         ProgressReporter reporter)
     {
         try
         {
@@ -141,7 +141,7 @@ public interface SerializationSession extends SerializationSessionReadWrite, Nam
                             new ProgressiveOutput(socket.getOutputStream(), reporter)
                     );
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             fatal(e, "Socket connection failed");
             return null;
@@ -153,7 +153,7 @@ public interface SerializationSession extends SerializationSessionReadWrite, Nam
      *
      * @return The version or an exception is thrown
      */
-    default Version open(final Type type, final Version version, final InputStream input)
+    default Version open(Type type, Version version, InputStream input)
     {
         return open(type, version, input, null);
     }
@@ -163,7 +163,7 @@ public interface SerializationSession extends SerializationSessionReadWrite, Nam
      *
      * @return The version or an exception is thrown
      */
-    default Version open(final Type type, final Version version, final OutputStream output)
+    default Version open(Type type, Version version, OutputStream output)
     {
         return open(type, version, null, output);
     }
@@ -174,7 +174,7 @@ public interface SerializationSession extends SerializationSessionReadWrite, Nam
      *
      * @return The resource, client or server version, or an exception
      */
-    Version open(Type type, Version version, final InputStream input, OutputStream output);
+    Version open(Type type, Version version, InputStream input, OutputStream output);
 
     /**
      * @return A versioned object
@@ -184,9 +184,9 @@ public interface SerializationSession extends SerializationSessionReadWrite, Nam
     /**
      * Saves the given versioned object
      */
-    <T> void write(final VersionedObject<T> object);
+    <T> void write(VersionedObject<T> object);
 
-    default <T> void writeAndFlush(final VersionedObject<T> object)
+    default <T> void writeAndFlush(VersionedObject<T> object)
     {
         write(object);
         flush();

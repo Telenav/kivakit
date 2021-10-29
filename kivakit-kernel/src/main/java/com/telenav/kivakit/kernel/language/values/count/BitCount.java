@@ -173,7 +173,7 @@ public class BitCount extends Count
 
     private static BitCount[] cached;
 
-    public static BitCount bitCount(final long count)
+    public static BitCount bitCount(long count)
     {
         Ensure.ensure(count >= 0);
         Ensure.ensure(count <= Integer.MAX_VALUE);
@@ -182,7 +182,7 @@ public class BitCount extends Count
         {
             if (cached == null)
             {
-                final var values = new BitCount[CACHE_SIZE];
+                var values = new BitCount[CACHE_SIZE];
                 for (var i = 0; i < CACHE_SIZE; i++)
                 {
                     values[i] = new BitCount(i);
@@ -194,7 +194,7 @@ public class BitCount extends Count
         return new BitCount(count);
     }
 
-    public static <T> BitCount bitCount(final T[] values)
+    public static <T> BitCount bitCount(T[] values)
     {
         return bitCount(values.length);
     }
@@ -224,12 +224,12 @@ public class BitCount extends Count
         return bitCount(Short.SIZE);
     }
 
-    public static BitCount toRepresent(final long value)
+    public static BitCount toRepresent(long value)
     {
         return new BitCount(Long.SIZE - Long.numberOfLeadingZeros(value));
     }
 
-    protected BitCount(final long bits)
+    protected BitCount(long bits)
     {
         super(bits);
     }
@@ -246,13 +246,13 @@ public class BitCount extends Count
     }
 
     @Override
-    public BitCount dividedBy(final Count divisor)
+    public BitCount dividedBy(Count divisor)
     {
         return dividedBy(divisor.get());
     }
 
     @Override
-    public BitCount dividedBy(final long divisor)
+    public BitCount dividedBy(long divisor)
     {
         return bitCount(get() / divisor);
     }
@@ -271,7 +271,7 @@ public class BitCount extends Count
         return values() - 1;
     }
 
-    public BitCount maximum(final BitCount that)
+    public BitCount maximum(BitCount that)
     {
         if (isGreaterThan(that))
         {
@@ -293,7 +293,7 @@ public class BitCount extends Count
         return asInt() == 64 ? Long.MAX_VALUE : (1L << asInt()) - 1;
     }
 
-    public BitCount minimum(final BitCount that)
+    public BitCount minimum(BitCount that)
     {
         if (isLessThan(that))
         {
@@ -311,12 +311,12 @@ public class BitCount extends Count
     }
 
     @Override
-    public BitCount minus(final long count)
+    public BitCount minus(long count)
     {
         return bitCount(get() - count);
     }
 
-    public BitCount minus(final BitCount count)
+    public BitCount minus(BitCount count)
     {
         if (count.isGreaterThan(this))
         {
@@ -333,13 +333,13 @@ public class BitCount extends Count
     }
 
     @Override
-    public BitCount plus(final Count count)
+    public BitCount plus(Count count)
     {
         return plus(count.get());
     }
 
     @Override
-    public BitCount plus(final long count)
+    public BitCount plus(long count)
     {
         return bitCount(get() + count);
     }
@@ -361,21 +361,21 @@ public class BitCount extends Count
         return bitCount(rounded);
     }
 
-    public BitCount times(final BitCount count)
+    public BitCount times(BitCount count)
     {
         return times(count.get());
     }
 
     @Override
-    public BitCount times(final double multiplier)
+    public BitCount times(double multiplier)
     {
         return bitCount((long) (get() * multiplier));
     }
 
     @Override
-    public BitCount times(final long count)
+    public BitCount times(long count)
     {
-        final var product = get() * count;
+        var product = get() * count;
         if (product < 0)
         {
             return MAXIMUM;
@@ -384,7 +384,7 @@ public class BitCount extends Count
     }
 
     @Override
-    public BitCount times(final Percent percentage)
+    public BitCount times(Percent percentage)
     {
         return times(percentage.asUnitValue());
     }
@@ -398,7 +398,7 @@ public class BitCount extends Count
     }
 
     @Override
-    protected BitCount onNewInstance(final long value)
+    protected BitCount onNewInstance(long value)
     {
         return bitCount(value);
     }

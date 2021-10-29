@@ -58,12 +58,12 @@ public class Port
     /**
      * @return A port object from the given {@link URI}
      */
-    public static Port from(final URI uri)
+    public static Port from(URI uri)
     {
-        final var host = new Host(uri.getHost());
-        final var scheme = uri.getScheme();
-        final var port = uri.getPort();
-        final var protocol = Protocol.forName(scheme);
+        var host = new Host(uri.getHost());
+        var scheme = uri.getScheme();
+        var port = uri.getPort();
+        var protocol = Protocol.forName(scheme);
         return new Port(host, protocol, port);
     }
 
@@ -72,7 +72,7 @@ public class Port
      *
      * @return A port for the given string or null if the string is not a port
      */
-    public static Port parse(final String port)
+    public static Port parse(String port)
     {
         return new Converter(LOGGER).convert(port);
     }
@@ -89,7 +89,7 @@ public class Port
 
         private final IntegerConverter integerConverter;
 
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
             integerConverter = new IntegerConverter(listener);
@@ -97,16 +97,16 @@ public class Port
         }
 
         @Override
-        protected Port onToValue(final String value)
+        protected Port onToValue(String value)
         {
             // It is expected that the port is in the format <host>:<portNumber>. If
             // no <portNumber> is specified then 80 is assumed.
-            final var parts = value.split(":");
-            final var host = hostConverter.convert(parts[0]);
+            var parts = value.split(":");
+            var host = hostConverter.convert(parts[0]);
             var portNumber = 80;
             if (parts.length > 1)
             {
-                final var portInteger = integerConverter.convert(parts[1]);
+                var portInteger = integerConverter.convert(parts[1]);
                 if (portInteger != null)
                 {
                     portNumber = portInteger;
@@ -124,12 +124,12 @@ public class Port
     @LexakaiJavadoc(complete = true)
     public static class ListConverter extends BaseListConverter<Port>
     {
-        public ListConverter(final Listener listener)
+        public ListConverter(Listener listener)
         {
             super(listener, new Converter(listener), ",");
         }
 
-        public ListConverter(final Listener listener, final String delimiter)
+        public ListConverter(Listener listener, String delimiter)
         {
             super(listener, new Converter(listener), delimiter);
         }
@@ -146,19 +146,19 @@ public class Port
     @UmlAggregation(label = "speaks")
     private Protocol protocol;
 
-    public Port(final Host host, final int port)
+    public Port(Host host, int port)
     {
         this(host, Protocol.forPort(port), port);
     }
 
-    public Port(final Host host, final Protocol protocol, final int port)
+    public Port(Host host, Protocol protocol, int port)
     {
         this.host = host;
         this.protocol = protocol == null ? Protocol.UNKNOWN : protocol;
         this.port = port;
     }
 
-    public Port(final InetSocketAddress address, final Protocol protocol, final String hostDescription)
+    public Port(InetSocketAddress address, Protocol protocol, String hostDescription)
     {
         this(new Host(address.getAddress(), hostDescription), protocol, address.getPort());
     }
@@ -184,7 +184,7 @@ public class Port
         {
             return new URI(toString());
         }
-        catch (final URISyntaxException e)
+        catch (URISyntaxException e)
         {
             LOGGER.problem(e, "Unable to convert $ to a URI", this);
             return null;
@@ -200,11 +200,11 @@ public class Port
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Port)
         {
-            final var that = (Port) object;
+            var that = (Port) object;
             return port == that.port && host.equals(that.host);
         }
         return false;
@@ -237,7 +237,7 @@ public class Port
             new ServerSocket(port).close();
             return true;
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             return false;
         }
@@ -270,7 +270,7 @@ public class Port
         {
             return socket().getInputStream();
         }
-        catch (final IOException e)
+        catch (IOException e)
         {
             LOGGER.warning(e, "Unable to open socket $", socket());
         }
@@ -280,7 +280,7 @@ public class Port
     /**
      * @return The {@link NetworkPath} at the given path on this host and port
      */
-    public NetworkPath path(final String path)
+    public NetworkPath path(String path)
     {
         return NetworkPath.networkPath(this, path);
     }
@@ -297,7 +297,7 @@ public class Port
     /**
      * @param protocol The protocol to assign to this port
      */
-    public Port protocol(final Protocol protocol)
+    public Port protocol(Protocol protocol)
     {
         this.protocol = protocol;
         return this;
@@ -318,12 +318,12 @@ public class Port
     {
         try
         {
-            final var socket = new Socket(host.address(), port);
+            var socket = new Socket(host.address(), port);
             socket.setSoTimeout(Integer.MAX_VALUE);
             socket.setKeepAlive(true);
             return socket;
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             throw new IllegalStateException("Can't open socket", e);
         }

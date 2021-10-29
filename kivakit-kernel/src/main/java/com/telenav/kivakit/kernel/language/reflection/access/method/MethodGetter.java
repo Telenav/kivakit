@@ -31,26 +31,26 @@ public class MethodGetter implements Getter
 {
     private final transient Method method;
 
-    public MethodGetter(final Method method)
+    public MethodGetter(Method method)
     {
         this.method = method;
     }
 
     @Override
-    public <T extends Annotation> T annotation(final Class<T> annotationType)
+    public <T extends Annotation> T annotation(Class<T> annotationType)
     {
         return method.getAnnotation(annotationType);
     }
 
     @Override
-    public Object get(final Object object)
+    public Object get(Object object)
     {
         try
         {
             method.setAccessible(true);
             return method.invoke(object);
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             return new Warning("Cannot get ${debug}", this).toString();
         }

@@ -26,13 +26,13 @@ public class SeverityGreaterThan<T extends Triaged> implements Filter<T>
 {
     private final Severity value;
 
-    public SeverityGreaterThan(final Severity value)
+    public SeverityGreaterThan(Severity value)
     {
         this.value = value;
     }
 
     @Override
-    public boolean accepts(final T value)
+    public boolean accepts(T value)
     {
         return value.severity().isGreaterThan(this.value);
     }

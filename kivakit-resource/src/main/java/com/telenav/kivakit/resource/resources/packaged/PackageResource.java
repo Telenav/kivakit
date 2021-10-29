@@ -80,16 +80,16 @@ public class PackageResource extends BaseReadableResource
     /**
      * @return A package resource for the given module resource
      */
-    public static PackageResource of(final ModuleResource resource)
+    public static PackageResource of(ModuleResource resource)
     {
-        final var fileName = FileName.parse(resource.fileNameAsJavaPath().toString());
+        var fileName = FileName.parse(resource.fileNameAsJavaPath().toString());
         return new PackageResource(resource.packagePath(), resource, fileName);
     }
 
     /**
      * @return A package resource for the resource at the given path relative to the given package
      */
-    public static PackageResource of(final PackagePath _package, final String path)
+    public static PackageResource of(PackagePath _package, String path)
     {
         return of(_package, FilePath.parseFilePath(path));
     }
@@ -97,7 +97,7 @@ public class PackageResource extends BaseReadableResource
     /**
      * @return A package resource for the resource at the given path relative to the given class
      */
-    public static PackageResource of(final Class<?> type, final String path)
+    public static PackageResource of(Class<?> type, String path)
     {
         return of(PackagePath.packagePath(type), path);
     }
@@ -105,9 +105,9 @@ public class PackageResource extends BaseReadableResource
     /**
      * @return A package resource for the resource at the given path relative to the given package
      */
-    public static PackageResource of(final PackagePath _package, final FilePath path)
+    public static PackageResource of(PackagePath _package, FilePath path)
     {
-        final var resource = Modules.resource(_package.withChild(path));
+        var resource = Modules.resource(_package.withChild(path));
         if (path.size() == 1)
         {
             return new PackageResource(_package, resource, path.fileName());
@@ -121,9 +121,9 @@ public class PackageResource extends BaseReadableResource
     /**
      * @return A package resource for the resource with the given filename in the given package
      */
-    public static PackageResource of(final PackagePath _package, final FileName name)
+    public static PackageResource of(PackagePath _package, FileName name)
     {
-        final var resource = Modules.resource(_package.withChild(name.name()));
+        var resource = Modules.resource(_package.withChild(name.name()));
         return new PackageResource(_package, resource, name);
     }
 
@@ -140,20 +140,20 @@ public class PackageResource extends BaseReadableResource
         public static final String SCHEME = "classpath:";
 
         @Override
-        public boolean accepts(final ResourceIdentifier identifier)
+        public boolean accepts(ResourceIdentifier identifier)
         {
             return identifier.identifier().startsWith(SCHEME);
         }
 
         @Override
-        public Resource resolve(final ResourceIdentifier identifier)
+        public Resource resolve(ResourceIdentifier identifier)
         {
-            final var filepath = FilePath.parseFilePath(Strip.leading(identifier.identifier(), SCHEME));
-            final var parent = filepath.parent();
+            var filepath = FilePath.parseFilePath(Strip.leading(identifier.identifier(), SCHEME));
+            var parent = filepath.parent();
             if (parent != null)
             {
-                final var _package = PackagePath.packagePath(parent);
-                final var name = filepath.fileName();
+                var _package = PackagePath.packagePath(parent);
+                var name = filepath.fileName();
                 return of(_package, name);
             }
             return null;
@@ -169,7 +169,7 @@ public class PackageResource extends BaseReadableResource
     /** The name of this resource */
     private final FileName name;
 
-    protected PackageResource(final PackagePath _package, final ModuleResource resource, final FileName name)
+    protected PackageResource(PackagePath _package, ModuleResource resource, FileName name)
     {
         this._package = _package;
         this.name = name;
@@ -177,11 +177,11 @@ public class PackageResource extends BaseReadableResource
     }
 
     @Override
-    public boolean equals(Object  object)
+    public boolean equals(Object object)
     {
         if (object instanceof PackageResource)
         {
-            final var that = (PackageResource) object;
+            var that = (PackageResource) object;
             return Objects.equalPairs(_package, that._package, name, that.name);
         }
         return false;
@@ -222,11 +222,11 @@ public class PackageResource extends BaseReadableResource
             }
             else
             {
-                final var path = _package.withRoot("/").join("/") + "/" + name;
+                var path = _package.withRoot("/").join("/") + "/" + name;
                 return _package.resourceStream(path);
             }
         }
-        catch (final IOException e)
+        catch (IOException e)
         {
             return fatal(e, "Unable to open package resource $", this);
         }
@@ -238,7 +238,7 @@ public class PackageResource extends BaseReadableResource
     @Override
     public ResourcePath path()
     {
-        final var _package = resource != null ? resource.packagePath() : this._package;
+        var _package = resource != null ? resource.packagePath() : this._package;
         return ResourcePath.resourcePath(_package).withChild(name.name());
     }
 

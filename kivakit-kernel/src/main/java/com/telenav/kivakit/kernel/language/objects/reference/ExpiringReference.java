@@ -45,7 +45,7 @@ public abstract class ExpiringReference<T>
     /**
      * @param maximumAge Maximum allowable reference age (before a new object is created)
      */
-    protected ExpiringReference(final Duration maximumAge)
+    protected ExpiringReference(Duration maximumAge)
     {
         this.maximumAge = maximumAge;
     }
@@ -71,7 +71,7 @@ public abstract class ExpiringReference<T>
         try
         {
             // Create new object outside synchronized block
-            final var newObject = onNewObject();
+            var newObject = onNewObject();
 
             // If the new object was successfully created,
             if (newObject != null)
@@ -88,7 +88,7 @@ public abstract class ExpiringReference<T>
                 LOGGER.problem("onNewObject() returned null reference");
             }
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             LOGGER.problem(e, "Couldn't create new reference");
         }

@@ -57,19 +57,19 @@ public abstract class BaseSet<Element> implements
 
     protected Maximum maximumSize;
 
-    public BaseSet(final Maximum maximumSize)
+    public BaseSet(Maximum maximumSize)
     {
         this(maximumSize, new HashSet<>());
     }
 
-    public BaseSet(final Maximum maximumSize, final Set<Element> set)
+    public BaseSet(Maximum maximumSize, Set<Element> set)
     {
         this.set = set;
         checkSize(0);
         this.maximumSize = maximumSize;
     }
 
-    public BaseSet(final Set<Element> set)
+    public BaseSet(Set<Element> set)
     {
         this(Maximum.MAXIMUM, set);
     }
@@ -80,7 +80,7 @@ public abstract class BaseSet<Element> implements
     }
 
     @Override
-    public boolean add(final Element element)
+    public boolean add(Element element)
     {
         if (checkSize(1))
         {
@@ -90,10 +90,10 @@ public abstract class BaseSet<Element> implements
     }
 
     @Override
-    public boolean addAll(final Collection<? extends Element> objects)
+    public boolean addAll(Collection<? extends Element> objects)
     {
         var success = true;
-        for (final Element object : objects)
+        for (Element object : objects)
         {
             if (!add(object))
             {
@@ -104,10 +104,10 @@ public abstract class BaseSet<Element> implements
     }
 
     @Override
-    public boolean addAll(final Iterable<? extends Element> objects)
+    public boolean addAll(Iterable<? extends Element> objects)
     {
         var success = true;
-        for (final Element object : objects)
+        for (Element object : objects)
         {
             if (!add(object))
             {
@@ -117,7 +117,7 @@ public abstract class BaseSet<Element> implements
         return success;
     }
 
-    public void addAll(final Element[] objects)
+    public void addAll(Element[] objects)
     {
         for (var object : objects)
         {
@@ -131,14 +131,14 @@ public abstract class BaseSet<Element> implements
     }
 
     @Override
-    public boolean contains(final Object object)
+    public boolean contains(Object object)
     {
         return set.contains(object);
     }
 
     @SuppressWarnings("NullableProblems")
     @Override
-    public boolean containsAll(final Collection<?> collection)
+    public boolean containsAll(Collection<?> collection)
     {
         return set.containsAll(collection);
     }
@@ -157,11 +157,11 @@ public abstract class BaseSet<Element> implements
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Set)
         {
-            final var that = (Set<?>) object;
+            var that = (Set<?>) object;
             return set.equals(that);
         }
         return false;
@@ -190,7 +190,7 @@ public abstract class BaseSet<Element> implements
         return set.iterator();
     }
 
-    public Iterable<Element> matching(final Matcher<Element> matcher)
+    public Iterable<Element> matching(Matcher<Element> matcher)
     {
         return new Matching<>(matcher)
         {
@@ -208,21 +208,21 @@ public abstract class BaseSet<Element> implements
     }
 
     @Override
-    public boolean remove(final Object object)
+    public boolean remove(Object object)
     {
         return set.remove(object);
     }
 
     @SuppressWarnings("NullableProblems")
     @Override
-    public boolean removeAll(final Collection<?> collection)
+    public boolean removeAll(Collection<?> collection)
     {
         return set.removeAll(collection);
     }
 
     @SuppressWarnings("NullableProblems")
     @Override
-    public boolean retainAll(final Collection<?> collection)
+    public boolean retainAll(Collection<?> collection)
     {
         return set.retainAll(collection);
     }
@@ -241,7 +241,7 @@ public abstract class BaseSet<Element> implements
 
     @SuppressWarnings({ "SuspiciousToArrayCall" })
     @Override
-    public <E> E[] toArray(final E[] array)
+    public <E> E[] toArray(E[] array)
     {
         return set.toArray(array);
     }
@@ -259,9 +259,9 @@ public abstract class BaseSet<Element> implements
         return set;
     }
 
-    protected boolean checkSize(final int increase)
+    protected boolean checkSize(int increase)
     {
-        final var maximumSize = maximumSize();
+        var maximumSize = maximumSize();
         if (maximumSize != null && size() + increase > maximumSize.asInt())
         {
             if (!outOfRoom)

@@ -31,20 +31,20 @@ public class Range<T extends Minimizable<T> & Maximizable<T>> implements Ranged<
 
     private final T maximum;
 
-    public Range(final T minimum, final T maximum)
+    public Range(T minimum, T maximum)
     {
         this.minimum = minimum;
         this.maximum = maximum;
     }
 
     @Override
-    public T constrainTo(final T value)
+    public T constrainTo(T value)
     {
         return maximum.minimum(minimum.maximum(value));
     }
 
     @Override
-    public boolean contains(final T value)
+    public boolean contains(T value)
     {
         return false;
     }

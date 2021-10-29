@@ -41,17 +41,17 @@ public class ObjectSet<T> extends BaseSet<T>
         return set;
     }
 
-    public ObjectSet(final Maximum maximumSize)
+    public ObjectSet(Maximum maximumSize)
     {
         super(maximumSize);
     }
 
-    public ObjectSet(final Maximum maximumSize, final Set<T> set)
+    public ObjectSet(Maximum maximumSize, Set<T> set)
     {
         super(maximumSize, set);
     }
 
-    public ObjectSet(final Set<T> set)
+    public ObjectSet(Set<T> set)
     {
         super(Maximum.MAXIMUM, set);
     }
@@ -74,7 +74,7 @@ public class ObjectSet<T> extends BaseSet<T>
     }
 
     @Override
-    public ObjectSet<T> with(final Collection<T> that)
+    public ObjectSet<T> with(Collection<T> that)
     {
         return (ObjectSet<T>) super.with(that);
     }

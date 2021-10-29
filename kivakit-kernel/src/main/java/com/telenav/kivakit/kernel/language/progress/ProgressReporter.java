@@ -48,7 +48,7 @@ public interface ProgressReporter extends Resettable
     /**
      * Report that the operation has ended
      */
-    default void end(final String message, Object... arguments)
+    default void end(String message, Object... arguments)
     {
     }
 
@@ -72,7 +72,7 @@ public interface ProgressReporter extends Resettable
      * Calls a listener with the percent of progress each time it changes. This method is only called if {@link
      * #steps()} is larger than 0.
      */
-    default ProgressReporter listener(final ProgressListener listener)
+    default ProgressReporter listener(ProgressListener listener)
     {
         return this;
     }
@@ -86,7 +86,7 @@ public interface ProgressReporter extends Resettable
     /**
      * Report progress of the given number of steps towards completion
      */
-    default void next(final Count steps)
+    default void next(Count steps)
     {
         next(steps.asInt());
     }
@@ -94,7 +94,7 @@ public interface ProgressReporter extends Resettable
     /**
      * Report progress of the given number of steps towards completion
      */
-    default void next(final int steps)
+    default void next(int steps)
     {
         for (var i = 0L; i < steps; i++)
         {
@@ -105,7 +105,7 @@ public interface ProgressReporter extends Resettable
     /**
      * @param phase The phase of processing the same items multiple times, like "reading", "sorting", "saving"
      */
-    default ProgressReporter phase(final String phase)
+    default ProgressReporter phase(String phase)
     {
         return this;
     }
@@ -122,7 +122,7 @@ public interface ProgressReporter extends Resettable
     /**
      * Report that the operation has begun
      */
-    default ProgressReporter start(final String label)
+    default ProgressReporter start(String label)
     {
         return this;
     }
@@ -130,7 +130,7 @@ public interface ProgressReporter extends Resettable
     /**
      * Sets the number of steps that can be executed, allowing a calculation of absolute progress
      */
-    default ProgressReporter steps(final Count steps)
+    default ProgressReporter steps(Count steps)
     {
         return this;
     }

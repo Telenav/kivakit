@@ -208,7 +208,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         {
             return Folder.parse(new java.io.File(".").getCanonicalPath());
         }
-        catch (final IOException e)
+        catch (IOException e)
         {
             throw new Problem(e, "Can't get working folder").asException();
         }
@@ -219,21 +219,21 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         return userHome().folder("Desktop");
     }
 
-    public static ArgumentParser.Builder<Folder> folderArgumentParser(final String description)
+    public static ArgumentParser.Builder<Folder> folderArgumentParser(String description)
     {
         return ArgumentParser.builder(Folder.class)
                 .converter(new Folder.Converter(LOGGER))
                 .description(description);
     }
 
-    public static ArgumentParser.Builder<FolderList> folderListArgumentParser(final String description)
+    public static ArgumentParser.Builder<FolderList> folderListArgumentParser(String description)
     {
         return ArgumentParser.builder(FolderList.class)
                 .converter(new FolderList.Converter(LOGGER))
                 .description(description);
     }
 
-    public static SwitchParser.Builder<FolderList> folderListSwitchParser(final String name, final String description)
+    public static SwitchParser.Builder<FolderList> folderListSwitchParser(String name, String description)
     {
         return SwitchParser.builder(FolderList.class)
                 .name(name)
@@ -241,7 +241,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
                 .description(description);
     }
 
-    public static SwitchParser.Builder<Folder> folderSwitchParser(final String name, final String description)
+    public static SwitchParser.Builder<Folder> folderSwitchParser(String name, String description)
     {
         return SwitchParser.builder(Folder.class)
                 .name(name)
@@ -254,7 +254,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         return folderSwitchParser("input-folder", "Input folder to process");
     }
 
-    public static boolean isFolder(final FilePath path)
+    public static boolean isFolder(FilePath path)
     {
         return new java.io.File(path.join()).isDirectory();
     }
@@ -271,7 +271,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
 
     public static Folder kivakitHome()
     {
-        final var home = KivaKit.get().homeFolderPath();
+        var home = KivaKit.get().homeFolderPath();
         if (home != null)
         {
             return Folder.of(home);
@@ -284,43 +284,43 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         return kivakitCache().folder("temporary").mkdirs();
     }
 
-    public static Folder kivakitTest(final Class<?> type)
+    public static Folder kivakitTest(Class<?> type)
     {
         return kivakitTemporary().folder("test").folder(type.getSimpleName()).mkdirs();
     }
 
-    public static Folder of(final FileName filename)
+    public static Folder of(FileName filename)
     {
         return parse(filename.name());
     }
 
-    public static Folder of(final Path path)
+    public static Folder of(Path path)
     {
         return parse(path.toString());
     }
 
-    public static Folder of(final FilePath path)
+    public static Folder of(FilePath path)
     {
         return parse(path.toString());
     }
 
-    public static Folder of(final java.io.File file)
+    public static Folder of(java.io.File file)
     {
         return of(file.toPath());
     }
 
-    public static Folder of(final URI uri)
+    public static Folder of(URI uri)
     {
         return of(new java.io.File(uri));
     }
 
-    public static Folder of(final URL url)
+    public static Folder of(URL url)
     {
         try
         {
             return of(url.toURI());
         }
-        catch (final URISyntaxException e)
+        catch (URISyntaxException e)
         {
             LOGGER.problem(e, "Unable to parse URL: $", url);
             return null;
@@ -336,25 +336,25 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
                 .description("Output folder to write to");
     }
 
-    public static Folder parse(final String path)
+    public static Folder parse(String path)
     {
         if (Strings.isEmpty(path))
         {
             return null;
         }
-        final var filePath = FilePath.parseFilePath(path);
+        var filePath = FilePath.parseFilePath(path);
         return filePath == null ? null : new Folder(filePath);
     }
 
     /**
      * @return unique temporary folder per process
      */
-    public static Folder temporaryForProcess(final Type type)
+    public static Folder temporaryForProcess(Type type)
     {
         synchronized (temporaryLock)
         {
-            final var name = "kivakit-process-" + OperatingSystem.get().processIdentifier();
-            final var temporary = kivakitTemporary()
+            var name = "kivakit-process-" + OperatingSystem.get().processIdentifier();
+            var temporary = kivakitTemporary()
                     .folder("processes")
                     .folder(name)
                     .mkdirs();
@@ -410,22 +410,22 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
     {
         private boolean ensureExists;
 
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
         }
 
-        public Converter(final Listener listener, final boolean ensureExists)
+        public Converter(Listener listener, boolean ensureExists)
         {
             super(listener);
             this.ensureExists = ensureExists;
         }
 
         @Override
-        protected Folder onToValue(final String value)
+        protected Folder onToValue(String value)
         {
-            final var path = FilePath.parseFilePath(value);
-            final var folder = new Folder(path);
+            var path = FilePath.parseFilePath(value);
+            var folder = new Folder(path);
             if (ensureExists)
             {
                 folder.ensureExists();
@@ -444,13 +444,13 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
     public static class Resolver implements ResourceFolderResolver
     {
         @Override
-        public boolean accepts(final ResourceFolderIdentifier identifier)
+        public boolean accepts(ResourceFolderIdentifier identifier)
         {
             return Folder.parse(identifier.identifier()) != null;
         }
 
         @Override
-        public ResourceFolder resolve(final ResourceFolderIdentifier identifier)
+        public ResourceFolder resolve(ResourceFolderIdentifier identifier)
         {
             return Folder.parse(identifier.identifier());
         }
@@ -475,7 +475,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
      * <b>Not public API</b>
      */
     @UmlExcludeMember
-    public Folder(final FolderService service)
+    public Folder(FolderService service)
     {
         ensureNotNull(service);
 
@@ -488,7 +488,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
     /**
      * <b>Not public API</b>
      */
-    public Folder(final FilePath path)
+    public Folder(FilePath path)
     {
         this(FileSystemServiceLoader.fileSystem(path).folderService(path));
     }
@@ -509,7 +509,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         {
             return new URI(folder().path().toString());
         }
-        catch (final URISyntaxException e)
+        catch (URISyntaxException e)
         {
             throw new IllegalStateException("Cannot convert " + this + " to URI", e);
         }
@@ -521,19 +521,19 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         {
             return asUri().toURL();
         }
-        catch (final MalformedURLException e)
+        catch (MalformedURLException e)
         {
             return null;
         }
     }
 
     @SuppressWarnings("UnusedReturnValue")
-    public boolean chmod(final PosixFilePermission... permissions)
+    public boolean chmod(PosixFilePermission... permissions)
     {
         return folder().chmod(permissions);
     }
 
-    public void chmodNested(final PosixFilePermission... permissions)
+    public void chmodNested(PosixFilePermission... permissions)
     {
         nestedFolders(new All<>()).forEach(folder -> folder().chmod(permissions));
         nestedFiles(new All<>()).forEach(file -> file.chmod(permissions));
@@ -550,7 +550,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         {
             if (exists())
             {
-                for (final var file : files())
+                for (var file : files())
                 {
                     file.delete();
                     if (file.exists())
@@ -558,14 +558,14 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
                         warning("Unable to remove $", file);
                     }
                 }
-                for (final var folder : folders())
+                for (var folder : folders())
                 {
                     folder.clearAll();
                     folder.delete();
                 }
             }
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             warning("Unable to clear $", this);
         }
@@ -587,7 +587,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
                 delete();
             }
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             warning("Unable to deleteAll on $", this);
         }
@@ -595,7 +595,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
     }
 
     @Override
-    public int compareTo(@NotNull final Folder that)
+    public int compareTo(@NotNull Folder that)
     {
         return name().compareTo(that.name());
     }
@@ -603,22 +603,22 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
     /**
      * Copies all nested files matching the given matcher from this folder to the destination folder.
      */
-    public void copyTo(final Folder destination,
-                       final CopyMode mode,
-                       final Matcher<File> matcher,
-                       final ProgressReporter reporter)
+    public void copyTo(Folder destination,
+                       CopyMode mode,
+                       Matcher<File> matcher,
+                       ProgressReporter reporter)
     {
-        final var start = Time.now();
+        var start = Time.now();
 
         // Ensure the destination folder exists,
         information("Copying $ to $", this, destination);
         destination.ensureExists();
 
         // then for each nested file,
-        for (final var file : nestedFiles(matcher))
+        for (var file : nestedFiles(matcher))
         {
             // make relative target file,
-            final var target = destination.file(file.relativeTo(this));
+            var target = destination.file(file.relativeTo(this));
 
             // and if we can copy to it,
             if (mode.canCopy(file, target))
@@ -634,7 +634,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
     /**
      * Copies all nested files from this folder to the destination folder
      */
-    public void copyTo(final Folder destination, final CopyMode mode, final ProgressReporter reporter)
+    public void copyTo(Folder destination, CopyMode mode, ProgressReporter reporter)
     {
         copyTo(destination, mode, new All<>(), reporter);
     }
@@ -688,11 +688,11 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Folder)
         {
-            final var that = (Folder) object;
+            var that = (Folder) object;
             return path().equals(that.path());
         }
         return false;
@@ -706,12 +706,12 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         return folder().exists();
     }
 
-    public File file(final File file)
+    public File file(File file)
     {
         return file(file.path());
     }
 
-    public File file(final FileName name)
+    public File file(FileName name)
     {
         return new File(folder().file(name));
     }
@@ -721,10 +721,10 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         child = child.withoutRoot();
 
         // Get the filename from the path
-        final var fileName = child.fileName();
+        var fileName = child.fileName();
 
         // and if the parent is empty
-        final var parent = child.parent();
+        var parent = child.parent();
         if (parent.isEmpty())
         {
             // then it's a simple filename.
@@ -737,7 +737,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         }
     }
 
-    public File file(final String path)
+    public File file(String path)
     {
         return file(FilePath.parseFilePath(path));
     }
@@ -747,24 +747,24 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         return files(new All<>());
     }
 
-    public FileList files(final Matcher<File> matcher, final Traversal recurse)
+    public FileList files(Matcher<File> matcher, Traversal recurse)
     {
         return recurse == RECURSE ? nestedFiles(matcher) : files(matcher);
     }
 
-    public FileList files(final String globPattern)
+    public FileList files(String globPattern)
     {
         return files(FileGlobPattern.parse(globPattern));
     }
 
-    public FileList files(final Matcher<File> matcher)
+    public FileList files(Matcher<File> matcher)
     {
-        final var files = new FileList();
+        var files = new FileList();
         if (exists())
         {
-            for (final FileService service : folder().files())
+            for (FileService service : folder().files())
             {
-                final var file = new File(service);
+                var file = new File(service);
                 if (matcher.matches(file))
                 {
                     files.add(file);
@@ -775,23 +775,23 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         return files;
     }
 
-    public FileList files(final Pattern pattern)
+    public FileList files(Pattern pattern)
     {
         return files(value -> pattern.matcher(value.fileName().name()).matches());
     }
 
     @Override
-    public Folder folder(final String child)
+    public Folder folder(String child)
     {
         if (child.equals("."))
         {
             return this;
         }
-        final var childFolder = Folder.parse(child);
+        var childFolder = Folder.parse(child);
         return childFolder == null ? null : folder(childFolder);
     }
 
-    public Folder folder(final FileName child)
+    public Folder folder(FileName child)
     {
         if (child.name().equals("."))
         {
@@ -800,7 +800,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         return new Folder(folder().folder(child));
     }
 
-    public Folder folder(final Folder child)
+    public Folder folder(Folder child)
     {
         if (child.path().isEmpty() || child.path().asString().equals("."))
         {
@@ -809,17 +809,17 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         return new Folder(folder().folder(child));
     }
 
-    public List<Folder> folders(final Matcher<Folder> matcher)
+    public List<Folder> folders(Matcher<Folder> matcher)
     {
         return folders().stream().filter(matcher::matches).collect(Collectors.toList());
     }
 
     public List<Folder> folders()
     {
-        final List<Folder> folders = new ArrayList<>();
+        List<Folder> folders = new ArrayList<>();
         if (service != null)
         {
-            for (final FolderService folder : folder().folders())
+            for (FolderService folder : folder().folders())
             {
                 folders.add(new Folder(folder));
             }
@@ -908,9 +908,9 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
     /**
      * @return Any matching files that are recursively contained in this folder
      */
-    public FileList nestedFiles(final Matcher<File> matcher)
+    public FileList nestedFiles(Matcher<File> matcher)
     {
-        final var files = FileList.forServices(folder().nestedFiles(path -> matcher.matches(path.asFile())));
+        var files = FileList.forServices(folder().nestedFiles(path -> matcher.matches(path.asFile())));
         trace("Nested files in $: $", this, files);
         return files;
     }
@@ -918,9 +918,9 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
     /**
      * @return Any matching folders that are recursively contained in this folder
      */
-    public FolderList nestedFolders(final Matcher<Folder> matcher)
+    public FolderList nestedFolders(Matcher<Folder> matcher)
     {
-        final var folders = FolderList.forVirtual(folder().nestedFolders(path -> matcher.matches(new Folder(path))));
+        var folders = FolderList.forVirtual(folder().nestedFolders(path -> matcher.matches(new Folder(path))));
         trace("Nested folders in $: $", this, folders);
         return folders;
     }
@@ -930,10 +930,10 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         return oldest(new All<>());
     }
 
-    public File oldest(final Matcher<File> matcher)
+    public File oldest(Matcher<File> matcher)
     {
         File oldestFile = null;
-        for (final var file : files())
+        for (var file : files())
         {
             if (matcher.matches(file))
             {
@@ -956,31 +956,31 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         return folder().path();
     }
 
-    public FilePath relativePath(final Folder folder)
+    public FilePath relativePath(Folder folder)
     {
         return absolute().folder().relativePath(folder.absolute().folder());
     }
 
-    public Folder relativeTo(final Folder folder)
+    public Folder relativeTo(Folder folder)
     {
         return new Folder(relativePath(folder));
     }
 
     @SuppressWarnings("UnusedReturnValue")
-    public boolean renameTo(final Folder that)
+    public boolean renameTo(Folder that)
     {
         trace("Renaming $ to $", this, that);
         return folder().renameTo(that.folder());
     }
 
     @Override
-    public Resource resource(final String name)
+    public Resource resource(String name)
     {
         return file(name);
     }
 
     @Override
-    public List<File> resources(final Matcher<? super Resource> matcher)
+    public List<File> resources(Matcher<? super Resource> matcher)
     {
         return files()
                 .stream()
@@ -993,10 +993,10 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         return new Folder(path().root());
     }
 
-    public void safeCopyTo(final Folder destination,
-                           final CopyMode mode,
-                           final Matcher<File> matcher,
-                           final ProgressReporter reporter)
+    public void safeCopyTo(Folder destination,
+                           CopyMode mode,
+                           Matcher<File> matcher,
+                           ProgressReporter reporter)
     {
         if (mode == CopyMode.DO_NOT_OVERWRITE && destination.exists() && !destination.isEmpty())
         {
@@ -1009,10 +1009,10 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
             fail("Can't remove empty destination folder " + destination);
         }
 
-        final var start = Time.now();
+        var start = Time.now();
         information("Safely copying $ to $", this, destination);
-        final var temporary = destination.parent().temporary(FileName.parse("temporary-copy"));
-        for (final var file : nestedFiles(matcher))
+        var temporary = destination.parent().temporary(FileName.parse("temporary-copy"));
+        for (var file : nestedFiles(matcher))
         {
             file.copyTo(temporary.file(file.relativeTo(this)), mode, reporter);
         }
@@ -1021,7 +1021,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
     }
 
     @Override
-    public void safeCopyTo(final Folder destination, final CopyMode mode, final ProgressReporter reporter)
+    public void safeCopyTo(Folder destination, CopyMode mode, ProgressReporter reporter)
     {
         safeCopyTo(destination, mode, new All<>(), reporter);
     }
@@ -1042,7 +1042,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
                     }
                 }
             }
-            catch (final Exception ignored)
+            catch (Exception ignored)
             {
             }
         }));
@@ -1055,7 +1055,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         return folder().sizeInBytes();
     }
 
-    public Folder temporary(final FileName baseName)
+    public Folder temporary(FileName baseName)
     {
         synchronized (temporaryLock)
         {
@@ -1072,12 +1072,12 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         }
     }
 
-    public File temporaryFile(final FileName baseName)
+    public File temporaryFile(FileName baseName)
     {
         return temporaryFile(baseName, Extension.TMP);
     }
 
-    public File temporaryFile(final FileName baseName, final Extension extension)
+    public File temporaryFile(FileName baseName, Extension extension)
     {
         synchronized (temporaryLock)
         {

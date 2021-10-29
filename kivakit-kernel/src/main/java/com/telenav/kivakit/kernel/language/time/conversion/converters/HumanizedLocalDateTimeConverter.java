@@ -59,27 +59,33 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
     /**
      * @param listener The conversion listener
      */
-    public HumanizedLocalDateTimeConverter(final Listener listener)
+    public HumanizedLocalDateTimeConverter(Listener listener)
     {
         super(listener);
     }
 
     @Override
-    protected LocalTime onToValue(final String value)
+    protected String onToString(LocalTime time)
     {
-        final var matcher = HUMANIZED_DATE.matcher(value);
+        return humanizedDate(time) + " " + new LocalTimeConverter(Listener.none(), time.timeZone()).unconvert(time);
+    }
+
+    @Override
+    protected LocalTime onToValue(String value)
+    {
+        var matcher = HUMANIZED_DATE.matcher(value);
         if (matcher.matches())
         {
-            final var localTime = new LocalTimeConverter(Listener.none(), LocalTime.localTimeZone())
+            var localTime = new LocalTimeConverter(Listener.none(), LocalTime.localTimeZone())
                     .convert(matcher.group("time"));
             if (localTime != null)
             {
-                final var yesterday = matcher.group("yesterday");
-                final var today = matcher.group("today");
-                final var day = matcher.group("day");
-                final var date = matcher.group("date");
+                var yesterday = matcher.group("yesterday");
+                var today = matcher.group("today");
+                var day = matcher.group("day");
+                var date = matcher.group("date");
 
-                final var now = LocalTime.now();
+                var now = LocalTime.now();
                 if (today != null)
                 {
                     return localTime.withEpochDay(now.epochDay());
@@ -90,8 +96,8 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
                 }
                 if (day != null)
                 {
-                    final var dayOfWeek = dayOrdinal.get(day.toLowerCase());
-                    final var nowDayOfWeek = now.dayOfWeek().ordinal();
+                    var dayOfWeek = dayOrdinal.get(day.toLowerCase());
+                    var nowDayOfWeek = now.dayOfWeek().ordinal();
                     var daysAgo = nowDayOfWeek - dayOfWeek;
                     if (daysAgo < 0)
                     {
@@ -101,7 +107,7 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
                 }
                 if (date != null)
                 {
-                    final var localDate = new LocalDateConverter(Listener.none()).convert(date);
+                    var localDate = new LocalDateConverter(Listener.none()).convert(date);
                     if (localDate != null)
                     {
                         return localTime.withEpochDay(localDate.epochDay());
@@ -112,17 +118,11 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
         return null;
     }
 
-    @Override
-    protected String onToString(final LocalTime time)
+    private String humanizedDate(LocalTime time)
     {
-        return humanizedDate(time) + " " + new LocalTimeConverter(Listener.none(), time.timeZone()).unconvert(time);
-    }
-
-    private String humanizedDate(final LocalTime time)
-    {
-        final var now = Time.now().localTime();
-        final var nowYear = now.year();
-        final var nowDayOfYear = now.dayOfYear();
+        var now = Time.now().localTime();
+        var nowYear = now.year();
+        var nowDayOfYear = now.dayOfYear();
 
         if (nowYear == time.year())
         {

@@ -34,9 +34,9 @@ public class Processes
     /**
      * @return The output of the given process as a string
      */
-    public static String captureOutput(final Process process)
+    public static String captureOutput(Process process)
     {
-        final var in = process.getInputStream();
+        var in = process.getInputStream();
         try
         {
             return new StringReader(in).readString(ProgressReporter.NULL);
@@ -50,9 +50,9 @@ public class Processes
     /**
      * Redirects the output of the given process to the console
      */
-    public static void copyStandardOutToConsole(final Process process)
+    public static void copyStandardOutToConsole(Process process)
     {
-        final var input = process.getInputStream();
+        var input = process.getInputStream();
         IO.copy(input, System.out, IO.CopyStyle.UNBUFFERED);
         IO.flush(System.out);
     }
@@ -60,9 +60,9 @@ public class Processes
     /**
      * Redirects the output of the given process to the console
      */
-    public static void redirectStandardErrorToConsole(final Process process)
+    public static void redirectStandardErrorToConsole(Process process)
     {
-        final var input = process.getErrorStream();
+        var input = process.getErrorStream();
         IO.copy(input, System.err, IO.CopyStyle.UNBUFFERED);
         IO.flush(System.err);
     }
@@ -70,15 +70,14 @@ public class Processes
     /**
      * Waits for the given process to terminate
      */
-    public static void waitFor(final Process process)
+    public static void waitFor(Process process)
     {
         try
         {
             process.waitFor();
         }
-        catch (final InterruptedException ignored)
+        catch (InterruptedException ignored)
         {
         }
     }
 }
-

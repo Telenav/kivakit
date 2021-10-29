@@ -65,7 +65,7 @@ public class LogServiceLogger extends BaseLogger
     }
 
     @UmlExcludeMember
-    public LogServiceLogger(final LoggerCodeContext context)
+    public LogServiceLogger(LoggerCodeContext context)
     {
         super(context);
     }
@@ -81,15 +81,15 @@ public class LogServiceLogger extends BaseLogger
             loaded = true;
 
             // so get log service descriptors
-            final var descriptors = JavaVirtualMachine.property("KIVAKIT_LOG");
+            var descriptors = JavaVirtualMachine.property("KIVAKIT_LOG");
             if (descriptors != null)
             {
                 // and for each descriptor,
-                final ObjectSet<Log> loadedLogs = new ObjectSet<>();
-                for (final var descriptor : descriptors.split(","))
+                ObjectSet<Log> loadedLogs = new ObjectSet<>();
+                for (var descriptor : descriptors.split(","))
                 {
                     // load and configure the log
-                    final var log = log(descriptor);
+                    var log = log(descriptor);
                     if (log != null)
                     {
                         // and add it to the list
@@ -111,31 +111,31 @@ public class LogServiceLogger extends BaseLogger
         return logs;
     }
 
-    private static Log log(final String descriptor)
+    private static Log log(String descriptor)
     {
         // If the descriptor matches "<log-name> <key>=<value> ..."
-        final var descriptorMatcher = Pattern
+        var descriptorMatcher = Pattern
                 .compile("(?<log>\\w+)\\s*(?<arguments>.*)", Pattern.CASE_INSENSITIVE)
                 .matcher(descriptor);
 
         if (descriptorMatcher.matches())
         {
             // get the log name
-            final var logName = descriptorMatcher.group("log");
+            var logName = descriptorMatcher.group("log");
 
             // and the configuration, if any
-            final VariableMap<String> configuration = new VariableMap<>();
-            final var arguments = descriptorMatcher.group("arguments");
+            VariableMap<String> configuration = new VariableMap<>();
+            var arguments = descriptorMatcher.group("arguments");
             if (!Strings.isEmpty(arguments))
             {
-                final var propertyPattern = Pattern.compile("\\s*(?<key>[\\w+-]+)\\s*=\\s*(?<value>\\S+)\\s*",
+                var propertyPattern = Pattern.compile("\\s*(?<key>[\\w+-]+)\\s*=\\s*(?<value>\\S+)\\s*",
                         Pattern.CASE_INSENSITIVE);
-                final var properties = arguments.split(" ");
-                for (final var property : properties)
+                var properties = arguments.split(" ");
+                for (var property : properties)
                 {
                     if (!Strings.isEmpty(property))
                     {
-                        final var matcher = propertyPattern.matcher(property);
+                        var matcher = propertyPattern.matcher(property);
                         if (matcher.matches())
                         {
                             configuration.put(matcher.group("key"), matcher.group("value"));
@@ -149,10 +149,10 @@ public class LogServiceLogger extends BaseLogger
             }
 
             // load the log as a Java Service
-            final var log = LogServiceLoader.log(logName);
+            var log = LogServiceLoader.log(logName);
 
             // then override if the individual log has a level=<message> identifier
-            final var message = configuration.get("level");
+            var message = configuration.get("level");
             if (message != null)
             {
                 log.level(OperationMessage.of(message).severity());

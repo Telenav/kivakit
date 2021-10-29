@@ -38,7 +38,7 @@ import java.util.List;
 @LexakaiJavadoc(complete = true)
 public class QueryParameters
 {
-    public static QueryParameters parse(final String string)
+    public static QueryParameters parse(String string)
     {
         return new QueryParameters(string);
     }
@@ -49,12 +49,12 @@ public class QueryParameters
 
     private VariableMap<String> map;
 
-    public QueryParameters(final VariableMap<String> map)
+    public QueryParameters(VariableMap<String> map)
     {
         this.map = map;
     }
 
-    protected QueryParameters(final String string)
+    protected QueryParameters(String string)
     {
         this.string = string;
     }
@@ -64,9 +64,9 @@ public class QueryParameters
         if (map == null)
         {
             map = new VariableMap<>();
-            for (final var assignment : StringList.split(Maximum._1_000, string, "&"))
+            for (var assignment : StringList.split(Maximum._1_000, string, "&"))
             {
-                final var split = StringList.split(assignment, "=");
+                var split = StringList.split(assignment, "=");
                 if (split.size() == 2)
                 {
                     map.add(split.get(0), split.get(1));
@@ -77,11 +77,11 @@ public class QueryParameters
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof QueryParameters)
         {
-            final var that = (QueryParameters) object;
+            var that = (QueryParameters) object;
             return asMap().equals(that.asMap());
         }
         return false;
@@ -107,10 +107,10 @@ public class QueryParameters
             {
                 map = asMap();
             }
-            final var assignments = new StringList();
-            final List<String> keys = new ArrayList<>(map.keySet());
+            var assignments = new StringList();
+            List<String> keys = new ArrayList<>(map.keySet());
             Collections.sort(keys);
-            for (final var key : keys)
+            for (var key : keys)
             {
                 assignments.add(key + "=" + map.get(key));
             }

@@ -56,7 +56,7 @@ public class ArgumentList implements Iterable<Argument>, AsString, Sized
     /**
      * Adds an argument to this list
      */
-    public void add(final Argument argument)
+    public void add(Argument argument)
     {
         arguments.add(argument);
     }
@@ -65,10 +65,10 @@ public class ArgumentList implements Iterable<Argument>, AsString, Sized
      * @return All values in this list converted using the given parser
      */
     @UmlExcludeMember
-    public <T> List<T> argumentValues(final ArgumentParser<T> parser)
+    public <T> List<T> argumentValues(ArgumentParser<T> parser)
     {
-        final var arguments = new ArrayList<T>();
-        for (final var argument : this)
+        var arguments = new ArrayList<T>();
+        for (var argument : this)
         {
             arguments.add(argument.get(parser));
         }
@@ -93,7 +93,7 @@ public class ArgumentList implements Iterable<Argument>, AsString, Sized
     /**
      * @return The argument at the given index in this list
      */
-    public Argument get(final int index)
+    public Argument get(int index)
     {
         return arguments.get(index);
     }

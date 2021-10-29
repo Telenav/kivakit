@@ -25,7 +25,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramLanguagePattern.class)
 public final class Character extends Expression
 {
-    public Character(final char pattern)
+    public Character(char pattern)
     {
         super("" + pattern);
     }

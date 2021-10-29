@@ -19,12 +19,12 @@ public class ThreadLocalMap<Key, Value> extends AbstractMap<Key, Value>
     @Override
     public Set<Entry<Key, Value>> entrySet()
     {
-        return this.map.get().entrySet();
+        return map.get().entrySet();
     }
 
     @Override
-    public Value put(final Key key, final Value value)
+    public Value put(Key key, Value value)
     {
-        return this.map.get().put(key, value);
+        return map.get().put(key, value);
     }
 }

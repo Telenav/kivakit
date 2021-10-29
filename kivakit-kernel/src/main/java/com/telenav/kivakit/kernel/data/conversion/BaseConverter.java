@@ -65,7 +65,7 @@ public abstract class BaseConverter<From, To> extends BaseRepeater implements Co
     /** True if this converter allows null values */
     private boolean allowNull;
 
-    protected BaseConverter(final Listener listener)
+    protected BaseConverter(Listener listener)
     {
         listener.listenTo(this);
     }
@@ -73,7 +73,7 @@ public abstract class BaseConverter<From, To> extends BaseRepeater implements Co
     /**
      * @param allowNull True if null values should be converted to null
      */
-    public BaseConverter<From, To> allowNull(final boolean allowNull)
+    public BaseConverter<From, To> allowNull(boolean allowNull)
     {
         this.allowNull = allowNull;
         return this;
@@ -95,7 +95,7 @@ public abstract class BaseConverter<From, To> extends BaseRepeater implements Co
      */
     @Override
     @UmlExcludeMember
-    public final To convert(final From from)
+    public final To convert(From from)
     {
         // If the value is null,
         if (from == null)
@@ -115,7 +115,7 @@ public abstract class BaseConverter<From, To> extends BaseRepeater implements Co
             // Convert any non-null value, returning the result
             return onConvert(from);
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             // and if an exception occurs, broadcast a problem
             problem(problemBroadcastFrequency(), e, "${class}: Cannot convert ${debug}", subclass(), from);

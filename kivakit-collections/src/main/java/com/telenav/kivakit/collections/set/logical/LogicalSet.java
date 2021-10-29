@@ -43,14 +43,14 @@ import java.util.Set;
 public abstract class LogicalSet<Element> implements Set<Element>
 {
     @Override
-    public boolean add(final Element element)
+    public boolean add(Element element)
     {
         unsupported();
         return false;
     }
 
     @Override
-    public boolean addAll(final Collection<? extends Element> collection)
+    public boolean addAll(Collection<? extends Element> collection)
     {
         unsupported();
         return false;
@@ -63,9 +63,9 @@ public abstract class LogicalSet<Element> implements Set<Element>
     }
 
     @Override
-    public boolean containsAll(final Collection<?> collection)
+    public boolean containsAll(Collection<?> collection)
     {
-        for (final Object object : collection)
+        for (Object object : collection)
         {
             if (!contains(object))
             {
@@ -76,21 +76,21 @@ public abstract class LogicalSet<Element> implements Set<Element>
     }
 
     @Override
-    public boolean remove(final Object o)
+    public boolean remove(Object o)
     {
         unsupported();
         return false;
     }
 
     @Override
-    public boolean removeAll(final Collection<?> c)
+    public boolean removeAll(Collection<?> c)
     {
         unsupported();
         return false;
     }
 
     @Override
-    public boolean retainAll(final Collection<?> c)
+    public boolean retainAll(Collection<?> c)
     {
         unsupported();
         return false;
@@ -99,9 +99,9 @@ public abstract class LogicalSet<Element> implements Set<Element>
     @Override
     public Object[] toArray()
     {
-        final var values = new Object[size()];
+        var values = new Object[size()];
         var i = 0;
-        for (final var value : this)
+        for (var value : this)
         {
             values[i++] = value;
         }
@@ -110,10 +110,10 @@ public abstract class LogicalSet<Element> implements Set<Element>
 
     @Override
     @SuppressWarnings({ "unchecked" })
-    public <E> E[] toArray(final E[] array)
+    public <E> E[] toArray(E[] array)
     {
         var i = 0;
-        for (final var value : this)
+        for (var value : this)
         {
             array[i++] = (E) value;
         }

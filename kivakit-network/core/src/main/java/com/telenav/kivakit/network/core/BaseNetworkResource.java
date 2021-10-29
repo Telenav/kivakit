@@ -36,12 +36,12 @@ import java.net.URL;
 @LexakaiJavadoc(complete = true)
 public abstract class BaseNetworkResource extends BaseReadableResource implements NetworkResource
 {
-    protected BaseNetworkResource(final BaseReadableResource that)
+    protected BaseNetworkResource(BaseReadableResource that)
     {
         super(that);
     }
 
-    protected BaseNetworkResource(final NetworkLocation location)
+    protected BaseNetworkResource(NetworkLocation location)
     {
         super(ResourcePath.parseResourcePath(location.toString()));
     }

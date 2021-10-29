@@ -28,14 +28,14 @@ import java.lang.annotation.Annotation;
 @UmlClassDiagram(diagram = DiagramLanguageReflection.class)
 public interface Setter extends Named
 {
-    <T extends Annotation> T annotation(final Class<T> annotationType);
+    <T extends Annotation> T annotation(Class<T> annotationType);
 
     default boolean hasAnnotation(Class<? extends Annotation> annotation)
     {
         return annotation(annotation) != null;
     }
 
-    Message set(final Object object, final Object value);
+    Message set(Object object, Object value);
 
     Class<?> type();
 }

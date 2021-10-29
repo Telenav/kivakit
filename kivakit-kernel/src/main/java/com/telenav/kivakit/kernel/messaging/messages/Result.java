@@ -39,27 +39,27 @@ import static com.telenav.kivakit.kernel.messaging.messages.MessageFormatter.For
 @UmlRelation(label = "failure reason", referent = Message.class)
 public class Result<T>
 {
-    public static <T> Result<T> failed(final Message message)
+    public static <T> Result<T> failed(Message message)
     {
         return new Result<T>().message(message);
     }
 
-    public static <T> Result<T> failed(final Throwable cause, final String message, final Object... arguments)
+    public static <T> Result<T> failed(Throwable cause, String message, Object... arguments)
     {
         return new Result<T>().problem(cause, message, arguments);
     }
 
-    public static <T> Result<T> failed(final String message, final Object... arguments)
+    public static <T> Result<T> failed(String message, Object... arguments)
     {
         return new Result<T>().problem(message, arguments);
     }
 
-    public static <T> Result<T> failed(final Result<?> result, final String message, final Object... arguments)
+    public static <T> Result<T> failed(Result<?> result, String message, Object... arguments)
     {
         return new Result<T>().problem(result + " => " + message, arguments);
     }
 
-    public static <T> Result<T> succeeded(final T value)
+    public static <T> Result<T> succeeded(T value)
     {
         return new Result<T>().set(value);
     }
@@ -97,7 +97,7 @@ public class Result<T>
     /**
      * Assigns the given message as a reason for failure
      */
-    public Result<T> problem(final String message, final Object... arguments)
+    public Result<T> problem(String message, Object... arguments)
     {
         return new Result<T>().message(new Problem(message, arguments));
     }
@@ -105,7 +105,7 @@ public class Result<T>
     /**
      * Assigns the given message as a reason for failure
      */
-    public Result<T> problem(final Throwable cause, final String message, final Object... arguments)
+    public Result<T> problem(Throwable cause, String message, Object... arguments)
     {
         return new Result<T>().message(new Problem(cause, message, arguments));
     }
@@ -113,7 +113,7 @@ public class Result<T>
     /**
      * Sets the given result value
      */
-    public Result<T> set(final T result)
+    public Result<T> set(T result)
     {
         object = result;
         return this;
@@ -142,17 +142,17 @@ public class Result<T>
         return message;
     }
 
-    public Result<T> with(final Result<T> that, final BiFunction<T, T, T> combiner)
+    public Result<T> with(Result<T> that, BiFunction<T, T, T> combiner)
     {
         if (object != null && that.object != null)
         {
-            final var value = combiner.apply(object, that.object);
+            var value = combiner.apply(object, that.object);
             return new Result<T>().set(value);
         }
         return this;
     }
 
-    private Result<T> message(final Message message)
+    private Result<T> message(Message message)
     {
         this.message = message;
         return this;

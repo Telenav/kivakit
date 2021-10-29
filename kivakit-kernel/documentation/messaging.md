@@ -52,7 +52,7 @@ convenient there is a method in _Broadcaster_, _broadcastTo()_ that accomplishes
 
     public interface Listener
     {     
-        void listenTo(final Broadcaster broadcaster);
+        void listenTo( Broadcaster broadcaster);
         void receive(Transmittable message); 
     }
 
@@ -99,4 +99,3 @@ A few messages commonly used in logging include:
 <br/>
 
 ![](../documentation/images/horizontal-line.png)
-

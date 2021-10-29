@@ -42,7 +42,7 @@ public class LookAheadReader extends Reader
 
     private int lookAhead = END_OF_STREAM;
 
-    public LookAheadReader(final Reader in)
+    public LookAheadReader(Reader in)
     {
         // Save the underlying input stream
         this.in = in;
@@ -88,7 +88,7 @@ public class LookAheadReader extends Reader
         {
             in.close();
         }
-        catch (final IOException ignored)
+        catch (IOException ignored)
         {
         }
     }
@@ -138,14 +138,14 @@ public class LookAheadReader extends Reader
         {
             lookAhead = in.read();
         }
-        catch (final IOException e)
+        catch (IOException e)
         {
             throw new IllegalStateException("Cannot read from input", e);
         }
     }
 
     @Override
-    public int read(final char[] buffer, final int offset, final int length)
+    public int read(char[] buffer, int offset, int length)
     {
         var i = offset;
         var count = 0;

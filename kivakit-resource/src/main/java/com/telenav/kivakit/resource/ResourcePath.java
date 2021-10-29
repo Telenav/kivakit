@@ -79,7 +79,7 @@ public class ResourcePath extends StringPath implements UriIdentified
     /**
      * @return A resource path for the given string
      */
-    public static ResourcePath parseResourcePath(final String path)
+    public static ResourcePath parseResourcePath(String path)
     {
         return FilePath.parseFilePath(path);
     }
@@ -101,13 +101,13 @@ public class ResourcePath extends StringPath implements UriIdentified
     /**
      * @return A resource path for the given string path
      */
-    public static ResourcePath resourcePath(final StringPath path)
+    public static ResourcePath resourcePath(StringPath path)
     {
         return new ResourcePath(new StringList(), path.rootElement(), path.elements());
     }
 
-    public static SwitchParser.Builder<ResourcePath> resourcePathSwitchParser(final String name,
-                                                                              final String description)
+    public static SwitchParser.Builder<ResourcePath> resourcePathSwitchParser(String name,
+                                                                              String description)
     {
         return SwitchParser.builder(ResourcePath.class)
                 .name(name)
@@ -123,13 +123,13 @@ public class ResourcePath extends StringPath implements UriIdentified
     @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<ResourcePath>
     {
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
         }
 
         @Override
-        protected ResourcePath onToValue(final String value)
+        protected ResourcePath onToValue(String value)
         {
             return parseResourcePath(value);
         }
@@ -143,7 +143,7 @@ public class ResourcePath extends StringPath implements UriIdentified
      * @param root The root element
      * @param elements The path elements
      */
-    protected ResourcePath(StringList schemes, final String root, final List<String> elements)
+    protected ResourcePath(StringList schemes, String root, List<String> elements)
     {
         super(root, elements);
 
@@ -153,13 +153,13 @@ public class ResourcePath extends StringPath implements UriIdentified
     /**
      * Copy constructor
      */
-    protected ResourcePath(final ResourcePath that)
+    protected ResourcePath(ResourcePath that)
     {
         super(that);
-        this.schemes = that.schemes.copy();
+        schemes = that.schemes.copy();
     }
 
-    protected ResourcePath(StringList schemes, final List<String> elements)
+    protected ResourcePath(StringList schemes, List<String> elements)
     {
         super(elements);
         this.schemes = schemes.copy();
@@ -194,7 +194,7 @@ public class ResourcePath extends StringPath implements UriIdentified
      */
     public FileName fileName()
     {
-        final var last = last();
+        var last = last();
         return last == null ? null : FileName.parse(last);
     }
 
@@ -222,7 +222,7 @@ public class ResourcePath extends StringPath implements UriIdentified
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath last(final int n)
+    public ResourcePath last(int n)
     {
         return (ResourcePath) super.last(n);
     }
@@ -270,7 +270,7 @@ public class ResourcePath extends StringPath implements UriIdentified
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath subpath(final int start, final int end)
+    public ResourcePath subpath(int start, int end)
     {
         return (ResourcePath) super.subpath(start, end);
     }
@@ -279,7 +279,7 @@ public class ResourcePath extends StringPath implements UriIdentified
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath transformed(final Function<String, String> consumer)
+    public ResourcePath transformed(Function<String, String> consumer)
     {
         return (ResourcePath) super.transformed(consumer);
     }
@@ -297,7 +297,7 @@ public class ResourcePath extends StringPath implements UriIdentified
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath withChild(final Path<String> that)
+    public ResourcePath withChild(Path<String> that)
     {
         return (ResourcePath) super.withChild(that);
     }
@@ -306,7 +306,7 @@ public class ResourcePath extends StringPath implements UriIdentified
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath withChild(final String element)
+    public ResourcePath withChild(String element)
     {
         return (ResourcePath) super.withChild(element);
     }
@@ -314,7 +314,7 @@ public class ResourcePath extends StringPath implements UriIdentified
     /**
      * @return This resource path with the given extension
      */
-    public FilePath withExtension(final Extension extension)
+    public FilePath withExtension(Extension extension)
     {
         return (FilePath) withoutLast().withChild(last() + extension);
     }
@@ -323,7 +323,7 @@ public class ResourcePath extends StringPath implements UriIdentified
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath withParent(final String element)
+    public ResourcePath withParent(String element)
     {
         return (ResourcePath) super.withParent(element);
     }
@@ -332,7 +332,7 @@ public class ResourcePath extends StringPath implements UriIdentified
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath withParent(final Path<String> that)
+    public ResourcePath withParent(Path<String> that)
     {
         return (ResourcePath) super.withParent(that);
     }
@@ -341,7 +341,7 @@ public class ResourcePath extends StringPath implements UriIdentified
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath withRoot(final String root)
+    public ResourcePath withRoot(String root)
     {
         return (ResourcePath) super.withRoot(root);
     }
@@ -357,7 +357,7 @@ public class ResourcePath extends StringPath implements UriIdentified
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath withSeparator(final String separator)
+    public ResourcePath withSeparator(String separator)
     {
         return (ResourcePath) super.withSeparator(separator);
     }
@@ -384,7 +384,7 @@ public class ResourcePath extends StringPath implements UriIdentified
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath withoutOptionalPrefix(final Path<String> prefix)
+    public ResourcePath withoutOptionalPrefix(Path<String> prefix)
     {
         return (ResourcePath) super.withoutOptionalPrefix(prefix);
     }
@@ -393,7 +393,7 @@ public class ResourcePath extends StringPath implements UriIdentified
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath withoutOptionalSuffix(final Path<String> suffix)
+    public ResourcePath withoutOptionalSuffix(Path<String> suffix)
     {
         return (ResourcePath) super.withoutOptionalSuffix(suffix);
     }
@@ -402,7 +402,7 @@ public class ResourcePath extends StringPath implements UriIdentified
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath withoutPrefix(final Path<String> prefix)
+    public ResourcePath withoutPrefix(Path<String> prefix)
     {
         return (ResourcePath) super.withoutPrefix(prefix);
     }
@@ -421,7 +421,7 @@ public class ResourcePath extends StringPath implements UriIdentified
      */
     public ResourcePath withoutSchemes()
     {
-        final ResourcePath copy = (ResourcePath) copy();
+        ResourcePath copy = (ResourcePath) copy();
         copy.schemes = new StringList();
         return copy;
     }
@@ -430,7 +430,7 @@ public class ResourcePath extends StringPath implements UriIdentified
      * {@inheritDoc}
      */
     @Override
-    public ResourcePath withoutSuffix(final Path<String> suffix)
+    public ResourcePath withoutSuffix(Path<String> suffix)
     {
         return (ResourcePath) super.withoutSuffix(suffix);
     }
@@ -439,7 +439,7 @@ public class ResourcePath extends StringPath implements UriIdentified
      * {@inheritDoc}
      */
     @Override
-    protected ResourcePath onCopy(final String root, final List<String> elements)
+    protected ResourcePath onCopy(String root, List<String> elements)
     {
         return new ResourcePath(schemes(), root, elements);
     }

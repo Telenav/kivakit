@@ -38,20 +38,20 @@ public class StringConverterGsonSerializer<T> implements GsonSerializer<T>
 {
     private final StringConverter<T> converter;
 
-    public StringConverterGsonSerializer(final StringConverter<T> converter)
+    public StringConverterGsonSerializer(StringConverter<T> converter)
     {
         this.converter = converter;
     }
 
     @Override
-    public T deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context)
+    public T deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
             throws JsonParseException
     {
         return converter.convert(context.deserialize(json, String.class));
     }
 
     @Override
-    public JsonElement serialize(final T value, final Type typeOfSrc, final JsonSerializationContext context)
+    public JsonElement serialize(T value, Type typeOfSrc, JsonSerializationContext context)
     {
         return context.serialize(converter.unconvert(value));
     }

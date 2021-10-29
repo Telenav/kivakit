@@ -283,23 +283,23 @@ public class Count implements
         }
     }
 
-    public static Count count(final Collection<?> collection)
+    public static Count count(Collection<?> collection)
     {
         return count(collection.size());
     }
 
-    public static Count count(final Iterable<?> iterable)
+    public static Count count(Iterable<?> iterable)
     {
         Ensure.ensure(!(iterable instanceof Count));
         return count(iterable.iterator());
     }
 
-    public static Count count(final Iterable<?> iterable, final Count maximum)
+    public static Count count(Iterable<?> iterable, Count maximum)
     {
         return count(iterable.iterator(), maximum);
     }
 
-    public static Count count(final Iterator<?> iterator)
+    public static Count count(Iterator<?> iterator)
     {
         var count = 0L;
         while (iterator.hasNext())
@@ -310,7 +310,7 @@ public class Count implements
         return count(count);
     }
 
-    public static Count count(final Iterator<?> iterator, final Count maximum)
+    public static Count count(Iterator<?> iterator, Count maximum)
     {
         var count = 0L;
         while (iterator.hasNext())
@@ -330,7 +330,7 @@ public class Count implements
         return count((long) value);
     }
 
-    public static Count count(final long value)
+    public static Count count(long value)
     {
         // If we have a cached value,
         if (value < CACHE_SIZE)
@@ -350,12 +350,12 @@ public class Count implements
         return new Count(value);
     }
 
-    public static <T> Count count(final T[] values)
+    public static <T> Count count(T[] values)
     {
         return count(values.length);
     }
 
-    public static void loop(final int times, final Loopable code)
+    public static void loop(int times, Loopable code)
     {
         for (var iteration = 0; iteration < times; iteration++)
         {
@@ -363,9 +363,9 @@ public class Count implements
         }
     }
 
-    public static Count parse(final String value)
+    public static Count parse(String value)
     {
-        final var count = Longs.parse(value, -1);
+        var count = Longs.parse(value, -1);
         return count < 0 ? null : count(count);
     }
 
@@ -377,13 +377,13 @@ public class Count implements
     @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<Count>
     {
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
         }
 
         @Override
-        protected Count onToValue(final String value)
+        protected Count onToValue(String value)
         {
             return parse(value);
         }
@@ -391,7 +391,7 @@ public class Count implements
 
     private long count;
 
-    protected Count(final long count)
+    protected Count(long count)
     {
         if (count < 0)
         {
@@ -445,7 +445,7 @@ public class Count implements
     }
 
     @Override
-    public String asString(final StringFormat format)
+    public String asString(StringFormat format)
     {
         switch (format.identifier())
         {
@@ -462,13 +462,13 @@ public class Count implements
         return Longs.bitsToRepresent(count);
     }
 
-    public Count ceiling(final int digits)
+    public Count ceiling(int digits)
     {
         return onNewInstance((get() + Ints.powerOfTen(digits)) / Ints.powerOfTen(digits) * Ints.powerOfTen(digits));
     }
 
     @Override
-    public int compareTo(final Count that)
+    public int compareTo(Count that)
     {
         return Long.compare(count, that.count);
     }
@@ -484,38 +484,38 @@ public class Count implements
         return minusOne();
     }
 
-    public Count dividedBy(final Count divisor)
+    public Count dividedBy(Count divisor)
     {
         return dividedBy(divisor.get());
     }
 
-    public Count dividedBy(final long divisor)
+    public Count dividedBy(long divisor)
     {
         return onNewInstance(count / divisor);
     }
 
-    public boolean dividesEvenlyBy(final Count value)
+    public boolean dividesEvenlyBy(Count value)
     {
         return get() % value.get() == 0;
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Count)
         {
-            final var that = (Count) object;
+            var that = (Count) object;
             return count == that.count;
         }
         return false;
     }
 
-    public Count floor(final int digits)
+    public Count floor(int digits)
     {
         return onNewInstance(get() / Ints.powerOfTen(digits) * Ints.powerOfTen(digits));
     }
 
-    public void forEachByte(final Consumer<Byte> consumer)
+    public void forEachByte(Consumer<Byte> consumer)
     {
         for (byte i = 0; i < asInt(); i++)
         {
@@ -523,7 +523,7 @@ public class Count implements
         }
     }
 
-    public void forEachInteger(final Consumer<Integer> consumer)
+    public void forEachInteger(Consumer<Integer> consumer)
     {
         for (var i = 0; i < asInt(); i++)
         {
@@ -531,7 +531,7 @@ public class Count implements
         }
     }
 
-    public void forEachLong(final Consumer<Long> consumer)
+    public void forEachLong(Consumer<Long> consumer)
     {
         for (long i = 0; i < get(); i++)
         {
@@ -539,7 +539,7 @@ public class Count implements
         }
     }
 
-    public void forEachShort(final Consumer<Short> consumer)
+    public void forEachShort(Consumer<Short> consumer)
     {
         for (short i = 0; i < asInt(); i++)
         {
@@ -563,27 +563,27 @@ public class Count implements
         return plusOne();
     }
 
-    public boolean isEvenlyDividedBy(final Count that)
+    public boolean isEvenlyDividedBy(Count that)
     {
         return get() % that.get() == 0;
     }
 
-    public boolean isGreaterThan(final Count that)
+    public boolean isGreaterThan(Count that)
     {
         return count > that.count;
     }
 
-    public boolean isGreaterThanOrEqualTo(final Count that)
+    public boolean isGreaterThanOrEqualTo(Count that)
     {
         return count >= that.count;
     }
 
-    public boolean isLessThan(final Count that)
+    public boolean isLessThan(Count that)
     {
         return count < that.count;
     }
 
-    public boolean isLessThanOrEqualTo(final Count that)
+    public boolean isLessThanOrEqualTo(Count that)
     {
         return count <= that.count;
     }
@@ -593,18 +593,18 @@ public class Count implements
         return count == MAXIMUM.get();
     }
 
-    public void loop(final Loopable code)
+    public void loop(Loopable code)
     {
         loop(asInt(), code);
     }
 
-    public void loop(final Runnable code)
+    public void loop(Runnable code)
     {
         loop(asInt(), iteration -> code.run());
     }
 
     @Override
-    public Count maximum(final Count that)
+    public Count maximum(Count that)
     {
         if (count > that.count)
         {
@@ -617,7 +617,7 @@ public class Count implements
     }
 
     @Override
-    public Count minimum(final Count that)
+    public Count minimum(Count that)
     {
         if (count < that.count)
         {
@@ -629,12 +629,12 @@ public class Count implements
         }
     }
 
-    public Count minus(final Count count)
+    public Count minus(Count count)
     {
         return minus(count.get());
     }
 
-    public Count minus(final long count)
+    public Count minus(long count)
     {
         return onNewInstance(this.count - count);
     }
@@ -695,12 +695,12 @@ public class Count implements
         return onNewInstance(Primes.allocationSize(asInt()));
     }
 
-    public Count percent(final Percent percentage)
+    public Count percent(Percent percentage)
     {
         return onNewInstance((long) (count * percentage.asUnitValue()));
     }
 
-    public Percent percentOf(final Count total)
+    public Percent percentOf(Count total)
     {
         if (total.isZero())
         {
@@ -709,12 +709,12 @@ public class Count implements
         return Percent.of(count * 100.0 / total.get());
     }
 
-    public Count plus(final Count count)
+    public Count plus(Count count)
     {
         return plus(count.get());
     }
 
-    public Count plus(final long count)
+    public Count plus(long count)
     {
         return onNewInstance(this.count + count);
     }
@@ -740,19 +740,19 @@ public class Count implements
         return onNewInstance(rounded);
     }
 
-    public Count times(final Count count)
+    public Count times(Count count)
     {
         return times(count.get());
     }
 
-    public Count times(final double multiplier)
+    public Count times(double multiplier)
     {
         return onNewInstance((long) (get() * multiplier));
     }
 
-    public Count times(final long count)
+    public Count times(long count)
     {
-        final var product = this.count * count;
+        var product = this.count * count;
         if (product < 0)
         {
             return MAXIMUM;
@@ -760,7 +760,7 @@ public class Count implements
         return onNewInstance(product);
     }
 
-    public Count times(final Percent percentage)
+    public Count times(Percent percentage)
     {
         return times(percentage.asUnitValue());
     }
@@ -781,7 +781,7 @@ public class Count implements
         return toCommaSeparatedString();
     }
 
-    protected Count onNewInstance(final long value)
+    protected Count onNewInstance(long value)
     {
         return count(value);
     }

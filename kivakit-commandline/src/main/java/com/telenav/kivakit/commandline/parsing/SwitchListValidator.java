@@ -49,7 +49,7 @@ public class SwitchListValidator extends BaseValidator
      * @param parsers The switch parsers to validate against
      * @param switches The switches
      */
-    public SwitchListValidator(final SwitchParserList parsers, final SwitchList switches)
+    public SwitchListValidator(SwitchParserList parsers, SwitchList switches)
     {
         this.parsers = parsers;
         this.switches = switches;
@@ -62,18 +62,18 @@ public class SwitchListValidator extends BaseValidator
     protected void onValidate()
     {
         // Go through switch parsers
-        for (final var parser : parsers)
+        for (var parser : parsers)
         {
             // and report failure if the parser requires the switch but the list doesn't have it.
             problemIf(parser.isRequired() && !switches.has(parser), "Required switch ${debug} not found", parser);
         }
 
         // Go through the switches
-        final var found = new HashMap<String, Boolean>();
-        for (final var _switch : switches)
+        var found = new HashMap<String, Boolean>();
+        for (var _switch : switches)
         {
             // and get the corresponding parser,
-            final var parser = parsers.forName(_switch.name());
+            var parser = parsers.forName(_switch.name());
             if (parser != null)
             {
                 // and if it is invalid or has a duplicate, report failure
@@ -89,4 +89,3 @@ public class SwitchListValidator extends BaseValidator
         }
     }
 }
-

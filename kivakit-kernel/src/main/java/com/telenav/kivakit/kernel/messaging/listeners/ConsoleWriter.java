@@ -36,7 +36,7 @@ public class ConsoleWriter implements Listener
      * {@inheritDoc}
      */
     @Override
-    public void onMessage(final Message message)
+    public void onMessage(Message message)
     {
         switch (message.operationStatus())
         {

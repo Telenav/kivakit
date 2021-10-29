@@ -69,7 +69,7 @@ public abstract class BaseStringConverter<Value> extends BaseConverter<String, V
      * @param listener The conversion listener
      */
     @UmlExcludeMember
-    protected BaseStringConverter(final Listener listener)
+    protected BaseStringConverter(Listener listener)
     {
         super(listener);
     }
@@ -77,7 +77,7 @@ public abstract class BaseStringConverter<Value> extends BaseConverter<String, V
     /**
      * Specifies whether empty (null or "") strings should be allowed (they will convert to null)
      */
-    public BaseStringConverter<Value> allowEmpty(final boolean allowEmpty)
+    public BaseStringConverter<Value> allowEmpty(boolean allowEmpty)
     {
         this.allowEmpty = allowEmpty;
         return this;
@@ -92,7 +92,7 @@ public abstract class BaseStringConverter<Value> extends BaseConverter<String, V
     }
 
     @Override
-    public final Value onConvert(final String string)
+    public final Value onConvert(String string)
     {
         // If we allow null values and our string is null,
         if (allowsNull() && string == null)
@@ -117,7 +117,7 @@ public abstract class BaseStringConverter<Value> extends BaseConverter<String, V
      */
     @Override
     @UmlExcludeMember
-    public final String unconvert(final Value value)
+    public final String unconvert(Value value)
     {
         // If the value is null
         if (value == null)
@@ -141,7 +141,7 @@ public abstract class BaseStringConverter<Value> extends BaseConverter<String, V
             // Call the subclass to convert the value to a string,
             return onToString(value);
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             // and broadcast any exception thrown as a problem
             problem(e, "${class}: Cannot unconvert ${debug}", getClass(), value);
@@ -164,7 +164,7 @@ public abstract class BaseStringConverter<Value> extends BaseConverter<String, V
      * @param value The (guaranteed non-null, non-empty) value
      * @return A string which is by default value.toString() if this method is not overridden
      */
-    protected String onToString(final Value value)
+    protected String onToString(Value value)
     {
         return value.toString();
     }

@@ -100,7 +100,7 @@ public final class PackagePath extends StringPath
 
     public static final PackagePath TELENAV = parsePackagePath("com.telenav");
 
-    public static boolean isPackagePath(final String path)
+    public static boolean isPackagePath(String path)
     {
         return path.matches("(?x) [a-z][a-z0-9_]* ( \\. [a-z][a-z0-9_]* ) *");
     }
@@ -108,7 +108,7 @@ public final class PackagePath extends StringPath
     /**
      * @return A package path for the package that contains the given class
      */
-    public static PackagePath packagePath(final Class<?> type, final StringPath path)
+    public static PackagePath packagePath(Class<?> type, StringPath path)
     {
         return new PackagePath(type, path);
     }
@@ -116,7 +116,7 @@ public final class PackagePath extends StringPath
     /**
      * @return Package path for the given Java path object
      */
-    public static PackagePath packagePath(final StringPath path)
+    public static PackagePath packagePath(StringPath path)
     {
         return new PackagePath(null, path);
     }
@@ -124,7 +124,7 @@ public final class PackagePath extends StringPath
     /**
      * @return A package path for the package that contains the given class
      */
-    public static PackagePath packagePath(final Class<?> type)
+    public static PackagePath packagePath(Class<?> type)
     {
         return packagePath(type, parseStringPath(type.getName(), null, "\\.").withoutLast());
     }
@@ -132,7 +132,7 @@ public final class PackagePath extends StringPath
     /**
      * @return The package path specified by the given path. The path may be separated by either '.' or '/'.
      */
-    public static PackagePath parsePackagePath(final String path)
+    public static PackagePath parsePackagePath(String path)
     {
         return packagePath(path(path));
     }
@@ -140,17 +140,17 @@ public final class PackagePath extends StringPath
     /**
      * @return A package path relative to the package containing the given class
      */
-    public static PackagePath parsePackagePath(final Class<?> type, final String relativePath)
+    public static PackagePath parsePackagePath(Class<?> type, String relativePath)
     {
-        final var parent = parseStringPath(type.getPackageName(), "\\.");
-        final var child = parsePackagePath(relativePath);
+        var parent = parseStringPath(type.getPackageName(), "\\.");
+        var child = parsePackagePath(relativePath);
         return new PackagePath(type, parent.withChild(child));
     }
 
     /** A class where the package is defined */
     private Class<?> packageType;
 
-    protected PackagePath(final Class<?> packageType, final Path<String> path)
+    private PackagePath(Class<?> packageType, Path<String> path)
     {
         super(null, path.elements());
         this.packageType = packageType;
@@ -159,7 +159,7 @@ public final class PackagePath extends StringPath
     /**
      * Copy constructor
      */
-    protected PackagePath(final PackagePath that)
+    private PackagePath(PackagePath that)
     {
         super(that);
         packageType = that.packageType;
@@ -168,7 +168,7 @@ public final class PackagePath extends StringPath
     /**
      * @return True if the given resource is in this package
      */
-    public boolean contains(final ModuleResource resource)
+    public boolean contains(ModuleResource resource)
     {
         return resource.packagePath().equals(this);
     }
@@ -176,22 +176,121 @@ public final class PackagePath extends StringPath
     /**
      * @return True if the given resource is in this package or any sub-package
      */
-    public boolean containsNested(final ModuleResource resource)
+    public boolean containsNested(ModuleResource resource)
     {
         return resource.packagePath().startsWith(this);
+    }
+
+    /**
+     * @return A list of sub packages under this package from the directories in classpath
+     */
+    public Set<PackagePath> directorySubPackages()
+    {
+        // Get the code source for the package type class,
+        var packages = new HashSet<PackagePath>();
+        CodeSource source = packageType().getProtectionDomain().getCodeSource();
+        if (source != null)
+        {
+            try
+            {
+                // and if the location URL ends in "/",
+                URL location = source.getLocation();
+                if (location != null && location.toString().endsWith("/"))
+                {
+                    var filepath = join("/") + "/";
+
+                    var directory = StringPath.stringPath(location.toURI()).withChild(filepath).asJavaPath();
+
+                    if (Files.exists(directory))
+                    {
+                        Files.list(directory)
+                                .filter(Files::isDirectory)
+                                .forEach(path -> packages.add(withChild(path.getFileName().toString())));
+                    }
+                }
+            }
+            catch (Exception ignored)
+            {
+                LOGGER.warning("Exception thrown while searching directory sub packages from $", this);
+            }
+        }
+        return packages;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public PackagePath first(final int n)
+    public PackagePath first(int n)
     {
         return (PackagePath) super.first(n);
     }
 
+    /**
+     * @return A list of sub packages under this package from the jars in classpath
+     */
+    public Set<PackagePath> jarSubPackages()
+    {
+        // Get the code source for the package type class,
+        var packages = new HashSet<PackagePath>();
+        CodeSource source = packageType().getProtectionDomain().getCodeSource();
+        if (source != null)
+        {
+            try
+            {
+                // and if the location URL ends in ".jar",
+                URL location = source.getLocation();
+                if (location != null && location.toString().endsWith(".jar"))
+                {
+                    // then open the jar as a zip input stream,
+                    var urlConnection = location.openConnection();
+                    ZipInputStream zip = new ZipInputStream(urlConnection.getInputStream());
+
+                    // form a file path from the package path,
+                    var filepath = join("/") + "/";
+
+                    // and loop,
+                    while (true)
+                    {
+                        // reading the next entry,
+                        ZipEntry e = zip.getNextEntry();
+
+                        // until we are out.
+                        if (e == null)
+                        {
+                            break;
+                        }
+
+                        // Get the entry's name
+                        String name = e.getName();
+
+                        // and if it is a folder and it starts with the file path for the package,
+                        if (name.endsWith("/") && name.startsWith(filepath))
+                        {
+                            // then strip off the leading filepath,
+                            var suffix = Strip.leading(name, filepath);
+                            suffix = Strip.ending(suffix, "/");
+
+                            // and if we have only a folder name left,
+                            if (!suffix.contains("/") && !suffix.isEmpty())
+                            {
+                                // then the entry is in the package, so add it to the resources list
+                                packages.add(withChild(suffix));
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ignored)
+            {
+                LOGGER.warning("Exception thrown while searching jar sub packages from $", this);
+            }
+        }
+        return packages;
+    }
+
     @Override
-    public StringPath last(final int n)
+    public StringPath last(int n)
     {
         return super.last(n);
     }
@@ -201,7 +300,7 @@ public final class PackagePath extends StringPath
      */
     public List<ModuleResource> nestedResources()
     {
-        final var resources = Modules.resources(this)
+        var resources = Modules.resources(this)
                 .stream()
                 .filter(resource -> parsePackagePath(resource.javaPath().toString()).startsWith(this))
                 .collect(Collectors.toList());
@@ -212,7 +311,7 @@ public final class PackagePath extends StringPath
     /**
      * The named resource in this package or null if it cannot be found
      */
-    public List<ModuleResource> nestedResources(final Matcher<ModuleResource> matcher)
+    public List<ModuleResource> nestedResources(Matcher<ModuleResource> matcher)
     {
         return Modules.nestedResources(this, matcher);
     }
@@ -238,9 +337,9 @@ public final class PackagePath extends StringPath
      * @return The named resource in this package for the given path or null if it cannot be found. The relative path
      * must be separated by slashes, not dots because the filename may contain dots (like "a.txt").
      */
-    public ModuleResource resource(final String relativePath)
+    public ModuleResource resource(String relativePath)
     {
-        final var path = parseStringPath(relativePath, "/", "/");
+        var path = parseStringPath(relativePath, "/", "/");
         Ensure.ensure(path.isRelative());
         return Modules.resource(withChild(path));
     }
@@ -248,7 +347,7 @@ public final class PackagePath extends StringPath
     /**
      * @return An input stream to access the given resource
      */
-    public InputStream resourceStream(final String path)
+    public InputStream resourceStream(String path)
     {
         return packageType.getResourceAsStream(path);
     }
@@ -281,7 +380,7 @@ public final class PackagePath extends StringPath
      */
     public Set<PackagePath> subPackages()
     {
-        final var packages = Modules.allNestedResources(this)
+        var packages = Modules.allNestedResources(this)
                 .stream()
                 .map(resource -> resource.packagePath().withPackageType(packageType))
                 .collect(Collectors.toSet());
@@ -292,107 +391,10 @@ public final class PackagePath extends StringPath
     }
 
     /**
-     * @return A list of sub packages under this package from the jars in classpath
-     */
-    public Set<PackagePath> jarSubPackages() {
-        // Get the code source for the package type class,
-        final var packages = new HashSet<PackagePath>();
-        final CodeSource source = packageType().getProtectionDomain().getCodeSource();
-        if (source != null)
-        {
-            try
-            {
-                // and if the location URL ends in ".jar",
-                final URL location = source.getLocation();
-                if (location != null && location.toString().endsWith(".jar"))
-                {
-                    // then open the jar as a zip input stream,
-                    final var urlConnection = location.openConnection();
-                    final ZipInputStream zip = new ZipInputStream(urlConnection.getInputStream());
-
-                    // form a file path from the package path,
-                    final var filepath = join("/") + "/";
-
-                    // and loop,
-                    while (true)
-                    {
-                        // reading the next entry,
-                        final ZipEntry e = zip.getNextEntry();
-
-                        // until we are out.
-                        if (e == null)
-                        {
-                            break;
-                        }
-
-                        // Get the entry's name
-                        final String name = e.getName();
-
-                        // and if it is a folder and it starts with the file path for the package,
-                        if (name.endsWith("/") && name.startsWith(filepath))
-                        {
-                            // then strip off the leading filepath,
-                            var suffix = Strip.leading(name, filepath);
-                            suffix = Strip.ending(suffix, "/");
-
-                            // and if we have only a folder name left,
-                            if (!suffix.contains("/") && !suffix.isEmpty())
-                            {
-                                // then the entry is in the package, so add it to the resources list
-                                packages.add(withChild(suffix));
-                            }
-                        }
-                    }
-                }
-            }
-            catch (final Exception ignored)
-            {
-                LOGGER.warning("Exception thrown while searching jar sub packages from $", this);
-            }
-        }
-        return packages;
-    }
-
-    /**
-     * @return A list of sub packages under this package from the directories in classpath
-     */
-    public Set<PackagePath> directorySubPackages() {
-        // Get the code source for the package type class,
-        final var packages = new HashSet<PackagePath>();
-        final CodeSource source = packageType().getProtectionDomain().getCodeSource();
-        if (source != null)
-        {
-            try
-            {
-                // and if the location URL ends in "/",
-                final URL location = source.getLocation();
-                if (location != null && location.toString().endsWith("/"))
-                {
-                    final var filepath = join("/") + "/";
-
-                    var directory = StringPath.stringPath(location.toURI()).withChild(filepath).asJavaPath();
-
-                    if (Files.exists(directory))
-                    {
-                        Files.list(directory)
-                                .filter(path -> Files.isDirectory(path))
-                                .forEach(path  -> packages.add(withChild(path.getFileName().toString())));
-                    }
-                }
-            }
-            catch (final Exception ignored)
-            {
-                LOGGER.warning("Exception thrown while searching directory sub packages from $", this);
-            }
-        }
-        return packages;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
-    public PackagePath subpath(final int start, final int end)
+    public PackagePath subpath(int start, int end)
     {
         return (PackagePath) super.subpath(start, end);
     }
@@ -401,7 +403,7 @@ public final class PackagePath extends StringPath
      * {@inheritDoc}
      */
     @Override
-    public PackagePath transformed(final Function<String, String> consumer)
+    public PackagePath transformed(Function<String, String> consumer)
     {
         return (PackagePath) super.transformed(consumer);
     }
@@ -410,7 +412,7 @@ public final class PackagePath extends StringPath
      * {@inheritDoc}
      */
     @Override
-    public PackagePath withChild(final Path<String> that)
+    public PackagePath withChild(Path<String> that)
     {
         return (PackagePath) super.withChild(that);
     }
@@ -419,7 +421,7 @@ public final class PackagePath extends StringPath
      * {@inheritDoc}
      */
     @Override
-    public PackagePath withChild(final String path)
+    public PackagePath withChild(String path)
     {
         return (PackagePath) super.withChild(path(path));
     }
@@ -435,7 +437,7 @@ public final class PackagePath extends StringPath
      * {@inheritDoc}
      */
     @Override
-    public PackagePath withParent(final String path)
+    public PackagePath withParent(String path)
     {
         return (PackagePath) super.withParent(PackagePath.parsePackagePath(path));
     }
@@ -444,7 +446,7 @@ public final class PackagePath extends StringPath
      * {@inheritDoc}
      */
     @Override
-    public PackagePath withParent(final Path<String> that)
+    public PackagePath withParent(Path<String> that)
     {
         return (PackagePath) super.withParent(that);
     }
@@ -453,7 +455,7 @@ public final class PackagePath extends StringPath
      * {@inheritDoc}
      */
     @Override
-    public PackagePath withRoot(final String root)
+    public PackagePath withRoot(String root)
     {
         return (PackagePath) super.withRoot(root);
     }
@@ -462,7 +464,7 @@ public final class PackagePath extends StringPath
      * {@inheritDoc}
      */
     @Override
-    public StringPath withSeparator(final String separator)
+    public StringPath withSeparator(String separator)
     {
         return super.withSeparator(separator);
     }
@@ -489,7 +491,7 @@ public final class PackagePath extends StringPath
      * {@inheritDoc}
      */
     @Override
-    public PackagePath withoutOptionalPrefix(final Path<String> prefix)
+    public PackagePath withoutOptionalPrefix(Path<String> prefix)
     {
         return (PackagePath) super.withoutOptionalPrefix(prefix);
     }
@@ -498,7 +500,7 @@ public final class PackagePath extends StringPath
      * {@inheritDoc}
      */
     @Override
-    public PackagePath withoutOptionalSuffix(final Path<String> suffix)
+    public PackagePath withoutOptionalSuffix(Path<String> suffix)
     {
         return (PackagePath) super.withoutOptionalSuffix(suffix);
     }
@@ -507,7 +509,7 @@ public final class PackagePath extends StringPath
      * {@inheritDoc}
      */
     @Override
-    public PackagePath withoutPrefix(final Path<String> prefix)
+    public PackagePath withoutPrefix(Path<String> prefix)
     {
         return (PackagePath) super.withoutPrefix(prefix);
     }
@@ -525,7 +527,7 @@ public final class PackagePath extends StringPath
      * {@inheritDoc}
      */
     @Override
-    public PackagePath withoutSuffix(final Path<String> suffix)
+    public PackagePath withoutSuffix(Path<String> suffix)
     {
         return (PackagePath) super.withoutSuffix(suffix);
     }
@@ -534,13 +536,13 @@ public final class PackagePath extends StringPath
      * {@inheritDoc}
      */
     @Override
-    protected Path<String> onCopy(final String root, final List<String> elements)
+    protected Path<String> onCopy(String root, List<String> elements)
     {
         return new PackagePath(packageType, new StringPath(root, elements));
     }
 
     @NotNull
-    private static StringPath path(final String path)
+    private static StringPath path(String path)
     {
         if (path.contains("/"))
         {

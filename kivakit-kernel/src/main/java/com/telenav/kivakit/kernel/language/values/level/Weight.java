@@ -31,7 +31,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @LexakaiJavadoc(complete = true)
 public class Weight extends Level
 {
-    public static Weight weight(final double value)
+    public static Weight weight(double value)
     {
         return new Weight(value);
     }
@@ -41,13 +41,13 @@ public class Weight extends Level
         super();
     }
 
-    private Weight(final double value)
+    private Weight(double value)
     {
         super(value);
     }
 
     @Override
-    public Weight divide(final Level that)
+    public Weight divide(Level that)
     {
         return (Weight) super.divide(that);
     }
@@ -59,13 +59,13 @@ public class Weight extends Level
     }
 
     @Override
-    public Weight minus(final Level that)
+    public Weight minus(Level that)
     {
         return (Weight) super.minus(that);
     }
 
     @Override
-    public Weight plus(final Level that)
+    public Weight plus(Level that)
     {
         return (Weight) super.plus(that);
     }
@@ -77,13 +77,13 @@ public class Weight extends Level
     }
 
     @Override
-    public Weight times(final Level that)
+    public Weight times(Level that)
     {
         return (Weight) super.times(that);
     }
 
     @Override
-    protected Level onNewInstance(final double value)
+    protected Level onNewInstance(double value)
     {
         return new Weight(value);
     }

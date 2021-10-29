@@ -18,7 +18,7 @@ public class Nio
 {
     private static final Map<String, FileSystem> filesystemForUri = new HashMap<>();
 
-    public static void close(final FileSystem filesystem)
+    public static void close(FileSystem filesystem)
     {
         for (var key : new HashSet<>(filesystemForUri.keySet()))
         {
@@ -32,7 +32,7 @@ public class Nio
 
     public static List<Path> filesAndFolders(Listener listener, Path path)
     {
-        final var files = new ArrayList<Path>();
+        var files = new ArrayList<Path>();
         try
         {
             try (var stream = Files.newDirectoryStream(path))
@@ -43,7 +43,7 @@ public class Nio
                 }
             }
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             listener.problem(e, "Unable to get list of files in: $", path);
         }

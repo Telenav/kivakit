@@ -28,28 +28,28 @@ public class Console implements Flushable
     }
 
     @Override
-    public void flush(final Duration maximumWaitTime)
+    public void flush(Duration maximumWaitTime)
     {
         NORMAL.stream().flush();
         ERROR.stream().flush();
     }
 
-    public void print(final String text, final Object... arguments)
+    public void print(String text, Object... arguments)
     {
         print(NORMAL, text, arguments);
     }
 
-    public void print(final OutputType output, final String text, final Object... arguments)
+    public void print(OutputType output, String text, Object... arguments)
     {
         output.stream().print(Message.format(text, arguments));
     }
 
-    public void printLine(final OutputType output, final String text, final Object... arguments)
+    public void printLine(OutputType output, String text, Object... arguments)
     {
         output.stream().println(Message.format(text, arguments));
     }
 
-    public void printLine(final String text, final Object... arguments)
+    public void printLine(String text, Object... arguments)
     {
         printLine(NORMAL, text, arguments);
     }

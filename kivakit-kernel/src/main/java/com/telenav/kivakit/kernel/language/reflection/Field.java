@@ -38,14 +38,14 @@ public class Field extends Member
 
     private static final Debug DEBUG = new Debug(LOGGER);
 
-    public static boolean accessible(final java.lang.reflect.Field field)
+    public static boolean accessible(java.lang.reflect.Field field)
     {
         try
         {
             field.setAccessible(true);
             return true;
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             DEBUG.trace("Unable to access field $.$", field.getDeclaringClass(), field.getName());
         }
@@ -56,23 +56,23 @@ public class Field extends Member
 
     private final java.lang.reflect.Field field;
 
-    public Field(final Object object, final java.lang.reflect.Field field)
+    public Field(Object object, java.lang.reflect.Field field)
     {
         this.object = object;
         this.field = field;
     }
 
-    public <T extends Annotation> T annotation(final Class<T> annotationClass)
+    public <T extends Annotation> T annotation(Class<T> annotationClass)
     {
         return field.getAnnotation(annotationClass);
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Field)
         {
-            final var that = (Field) object;
+            var that = (Field) object;
             return this.object == that.object && field.equals(that.field);
         }
         return false;
@@ -137,7 +137,7 @@ public class Field extends Member
                 {
                     return field.get(object);
                 }
-                catch (final IllegalArgumentException | IllegalAccessException e)
+                catch (IllegalArgumentException | IllegalAccessException e)
                 {
                     e.printStackTrace();
                 }

@@ -35,18 +35,18 @@ public class NameMatcher<T extends Named> implements Matcher<T>
 {
     private final String name;
 
-    public NameMatcher(final Named named)
+    public NameMatcher(Named named)
     {
         name = named.name();
     }
 
-    public NameMatcher(final String name)
+    public NameMatcher(String name)
     {
         this.name = name;
     }
 
     @Override
-    public boolean matches(final T value)
+    public boolean matches(T value)
     {
         return value.name().equals(name);
     }

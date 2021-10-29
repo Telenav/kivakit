@@ -49,8 +49,7 @@ public interface NamedObject
     /**
      * Sets the name of this object
      */
-    default void objectName(final String name)
+    default void objectName(String name)
     {
     }
 }
-

@@ -42,7 +42,7 @@ public class Level
 
     public static Level MAXIMUM = ONE;
 
-    public static Level levelForByte(final byte level)
+    public static Level levelForByte(byte level)
     {
         return new Level((double) level / Byte.MAX_VALUE);
     }
@@ -57,20 +57,20 @@ public class Level
     {
         private boolean lenient;
 
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
         }
 
-        public void lenient(final boolean lenient)
+        public void lenient(boolean lenient)
         {
             this.lenient = lenient;
         }
 
         @Override
-        protected Level onToValue(final String value)
+        protected Level onToValue(String value)
         {
-            final var level = Double.parseDouble(value);
+            var level = Double.parseDouble(value);
             if (level >= 0 && level <= 1.0)
             {
                 return new Level(level);
@@ -93,7 +93,7 @@ public class Level
 
     private double value;
 
-    public Level(final double value)
+    public Level(double value)
     {
         Ensure.ensure(value >= 0.0, "Level " + value + " cannot be less than zero");
         Ensure.ensure(value <= 1.0, "Level " + value + " cannot be greater than one");
@@ -124,12 +124,12 @@ public class Level
         return value;
     }
 
-    public int compareTo(final Level that)
+    public int compareTo(Level that)
     {
         return Double.compare(value, that.value);
     }
 
-    public Level divide(final Level that)
+    public Level divide(Level that)
     {
         if (that.value == 0)
         {
@@ -137,17 +137,17 @@ public class Level
         }
         else
         {
-            final var result = value / that.value;
+            var result = value / that.value;
             return result > 1 ? onNewInstance(1.0) : onNewInstance(result);
         }
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Level)
         {
-            final var that = (Level) object;
+            var that = (Level) object;
             return value == that.value;
         }
         return false;
@@ -167,27 +167,27 @@ public class Level
         return onNewInstance(1.0 - asZeroToOne());
     }
 
-    public boolean isClose(final Level that, final double margin)
+    public boolean isClose(Level that, double margin)
     {
         return Math.abs(asZeroToOne() - that.asZeroToOne()) < margin;
     }
 
-    public boolean isGreaterThan(final Level that)
+    public boolean isGreaterThan(Level that)
     {
         return value > that.value;
     }
 
-    public boolean isGreaterThanOrEqualTo(final Level that)
+    public boolean isGreaterThanOrEqualTo(Level that)
     {
         return value >= that.value;
     }
 
-    public boolean isLessThan(final Level that)
+    public boolean isLessThan(Level that)
     {
         return value < that.value;
     }
 
-    public boolean isLessThanOrEqualTo(final Level that)
+    public boolean isLessThanOrEqualTo(Level that)
     {
         return value <= that.value;
     }
@@ -198,7 +198,7 @@ public class Level
         return asZeroToOne() == 0.0;
     }
 
-    public Level minus(final Level that)
+    public Level minus(Level that)
     {
         if (isLessThan(that))
         {
@@ -207,7 +207,7 @@ public class Level
         return onNewInstance(asZeroToOne() - that.asZeroToOne());
     }
 
-    public Level plus(final Level that)
+    public Level plus(Level that)
     {
         return onNewInstance(asZeroToOne() + that.asZeroToOne());
     }
@@ -217,7 +217,7 @@ public class Level
         return onNewInstance(1.0 / value);
     }
 
-    public Level times(final Level that)
+    public Level times(Level that)
     {
         return onNewInstance(value * that.value);
     }
@@ -228,7 +228,7 @@ public class Level
         return Double.toString(value);
     }
 
-    protected Level onNewInstance(final double value)
+    protected Level onNewInstance(double value)
     {
         return new Level(value);
     }

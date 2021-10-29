@@ -25,20 +25,20 @@ public class Failure
     /** Thread-local map from message type to reporter, useful in reporting different messages differently */
     public static ThreadLocal<Map<Class<? extends Message>, FailureReporter>> reporterMap = ThreadLocal.withInitial(HashMap::new);
 
-    public static <T> T report(final Class<? extends Message> type,
-                               final String text,
-                               final Object... arguments)
+    public static <T> T report(Class<? extends Message> type,
+                               String text,
+                               Object... arguments)
     {
         report(type, null, text, arguments);
         return null;
     }
 
-    public static <T> T report(final Class<? extends Message> type,
-                               final Throwable e,
-                               final String text,
-                               final Object... arguments)
+    public static <T> T report(Class<? extends Message> type,
+                               Throwable e,
+                               String text,
+                               Object... arguments)
     {
-        final var message = (OperationMessage) Type.forClass(type).newInstance();
+        var message = (OperationMessage) Type.forClass(type).newInstance();
         message.cause(e);
         message.message(text);
         message.arguments(arguments);
@@ -46,12 +46,12 @@ public class Failure
         return null;
     }
 
-    public static FailureReporter reporter(final Class<? extends Message> type)
+    public static FailureReporter reporter(Class<? extends Message> type)
     {
         return reporterMap.get().computeIfAbsent(type, ignored -> reporterFactory.newInstance(type));
     }
 
-    public static void reporter(final Class<? extends Message> type, final FailureReporter reporter)
+    public static void reporter(Class<? extends Message> type, FailureReporter reporter)
     {
         LOGGER.announce("Validation will report ${class} messages with ${class}", type, reporter.getClass());
         reporterMap.get().put(type, reporter);
@@ -63,7 +63,7 @@ public class Failure
      * because the method clears the thread-local map from message type to reporter and other threads might be using
      * values in the map.
      */
-    public static void reporterFactory(final MapFactory<Class<? extends Message>, FailureReporter> factory)
+    public static void reporterFactory(MapFactory<Class<? extends Message>, FailureReporter> factory)
     {
         // Install the reporter factory
         reporterFactory = factory;
@@ -76,10 +76,10 @@ public class Failure
      * Temporarily sets the validation reporter for {@link EnsureFailure} messages to the given reporter (only for the
      * current thread) while the given code is executed.
      */
-    public static <T> T withReporter(final FailureReporter reporter, final Runnable code)
+    public static <T> T withReporter(FailureReporter reporter, Runnable code)
     {
-        final var reporterMap = Failure.reporterMap.get();
-        final var originalReporter = reporterMap.get(EnsureFailure.class);
+        var reporterMap = Failure.reporterMap.get();
+        var originalReporter = reporterMap.get(EnsureFailure.class);
         reporterMap.put(EnsureFailure.class, reporter);
         try
         {

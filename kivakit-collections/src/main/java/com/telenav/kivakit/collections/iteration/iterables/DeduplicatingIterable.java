@@ -37,7 +37,7 @@ public class DeduplicatingIterable<Element> implements Iterable<Element>
 {
     private final Iterable<Element> iterable;
 
-    public DeduplicatingIterable(final Iterable<Element> iterable)
+    public DeduplicatingIterable(Iterable<Element> iterable)
     {
         this.iterable = iterable;
     }

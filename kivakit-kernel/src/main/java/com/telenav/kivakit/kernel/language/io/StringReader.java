@@ -40,24 +40,24 @@ public class StringReader
 {
     private final Reader in;
 
-    public StringReader(final InputStream in)
+    public StringReader(InputStream in)
     {
         this.in = new InputStreamReader(in);
     }
 
-    public StringReader(final InputStream in, final String encoding)
+    public StringReader(InputStream in, String encoding)
     {
         try
         {
             this.in = new InputStreamReader(in, encoding);
         }
-        catch (final UnsupportedEncodingException e)
+        catch (UnsupportedEncodingException e)
         {
             throw new IllegalStateException("Can't create stream reader", e);
         }
     }
 
-    public StringReader(final Reader in)
+    public StringReader(Reader in)
     {
         this.in = in;
     }
@@ -67,11 +67,11 @@ public class StringReader
         IO.close(in);
     }
 
-    public String readString(final ProgressReporter reporter)
+    public String readString(ProgressReporter reporter)
     {
         try
         {
-            final var buffer = new StringBuilder(2048);
+            var buffer = new StringBuilder(2048);
             int value;
             reporter.start();
             while ((value = in.read()) != -1)
@@ -82,7 +82,7 @@ public class StringReader
             reporter.end();
             return buffer.toString();
         }
-        catch (final IOException e)
+        catch (IOException e)
         {
             throw new IllegalStateException("Couldn't read string", e);
         }

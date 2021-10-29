@@ -38,7 +38,7 @@ public class UtcDateTimeLogFormatter implements LogFormatter
     private final UtcDateTimeConverter converter = new UtcDateTimeConverter(LOGGER);
 
     @Override
-    public String format(final LogEntry entry, final MessageFormatter.Format format)
+    public String format(LogEntry entry, MessageFormatter.Format format)
     {
         return converter.unconvert(entry.message().created().utc()) + " " + entry.context() + " "
                 + Classes.simpleName(entry.message().getClass()) + ": " + entry.formattedMessage();

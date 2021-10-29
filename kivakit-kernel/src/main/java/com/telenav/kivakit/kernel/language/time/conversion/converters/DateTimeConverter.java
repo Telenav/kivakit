@@ -11,14 +11,14 @@ public class DateTimeConverter extends BaseStringConverter<Time>
 {
     private final DateTimeFormatter formatter;
 
-    public DateTimeConverter(final Listener listener, DateTimeFormatter formatter)
+    public DateTimeConverter(Listener listener, DateTimeFormatter formatter)
     {
         super(listener);
         this.formatter = formatter;
     }
 
     @Override
-    protected Time onToValue(final String dateTimeString)
+    protected Time onToValue(String dateTimeString)
     {
         return Time.milliseconds(Instant.from(formatter.parse(dateTimeString)).toEpochMilli());
     }

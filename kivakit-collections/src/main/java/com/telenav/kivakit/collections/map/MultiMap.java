@@ -50,52 +50,52 @@ public class MultiMap<Key, Value> extends BaseMap<Key, ObjectList<Value>>
         this(Maximum.MAXIMUM, Maximum.MAXIMUM);
     }
 
-    public MultiMap(final Maximum maximumKeys, final Maximum maximumValues)
+    public MultiMap(Maximum maximumKeys, Maximum maximumValues)
     {
         super(maximumKeys);
         this.maximumValues = maximumValues;
     }
 
-    public MultiMap(final Maximum maximumKeys, final Maximum maximumValues, final Map<Key, ObjectList<Value>> map)
+    public MultiMap(Maximum maximumKeys, Maximum maximumValues, Map<Key, ObjectList<Value>> map)
     {
         super(maximumKeys, map);
         this.maximumValues = maximumValues;
     }
 
-    public MultiMap(final Map<Key, ObjectList<Value>> map)
+    public MultiMap(Map<Key, ObjectList<Value>> map)
     {
         this(Maximum.MAXIMUM, Maximum.MAXIMUM, map);
     }
 
-    public void add(final Key key, final Value value)
+    public void add(Key key, Value value)
     {
         getOrCreate(key).add(value);
     }
 
-    public void addAll(final Collection<? extends Key> keys, final Value value)
+    public void addAll(Collection<? extends Key> keys, Value value)
     {
-        for (final Key key : keys)
+        for (Key key : keys)
         {
             getOrCreate(key).add(value);
         }
     }
 
-    public void addAll(final Key key, final Collection<? extends Value> value)
+    public void addAll(Key key, Collection<? extends Value> value)
     {
         getOrCreate(key).addAll(value);
     }
 
     public ObjectList<Value> flatValues()
     {
-        final var values = new ObjectList<Value>();
-        for (final List<Value> list : values())
+        var values = new ObjectList<Value>();
+        for (List<Value> list : values())
         {
             values.addAll(list);
         }
         return values;
     }
 
-    public ObjectList<Value> list(final Key key)
+    public ObjectList<Value> list(Key key)
     {
         return computeIfAbsent(key, ignored -> new ObjectList<>());
     }
@@ -103,16 +103,16 @@ public class MultiMap<Key, Value> extends BaseMap<Key, ObjectList<Value>>
     public Count maximumListSize()
     {
         var maximum = 0;
-        for (final List<Value> list : values())
+        for (List<Value> list : values())
         {
             maximum = Math.max(list.size(), maximum);
         }
         return Count.count(maximum);
     }
 
-    public void sort(final Comparator<? super Value> comparator)
+    public void sort(Comparator<? super Value> comparator)
     {
-        for (final var entry : entrySet())
+        for (var entry : entrySet())
         {
             entry.getValue().sort(comparator);
         }
@@ -121,7 +121,7 @@ public class MultiMap<Key, Value> extends BaseMap<Key, ObjectList<Value>>
     public int totalValues()
     {
         var count = 0;
-        for (final List<Value> list : values())
+        for (List<Value> list : values())
         {
             if (list != null)
             {
@@ -132,7 +132,7 @@ public class MultiMap<Key, Value> extends BaseMap<Key, ObjectList<Value>>
     }
 
     @Override
-    protected ObjectList<Value> onInitialize(final Key key)
+    protected ObjectList<Value> onInitialize(Key key)
     {
         return new ObjectList<>(maximumValues);
     }

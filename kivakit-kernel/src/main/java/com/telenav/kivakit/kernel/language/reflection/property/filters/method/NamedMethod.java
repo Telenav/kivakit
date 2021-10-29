@@ -33,18 +33,18 @@ public class NamedMethod extends AllMethods
 {
     private final String name;
 
-    public NamedMethod(NamingConvention convention, final String name)
+    public NamedMethod(NamingConvention convention, String name)
     {
         super(convention);
         this.name = name;
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof NamedMethod)
         {
-            final var that = (NamedMethod) object;
+            var that = (NamedMethod) object;
             return name.equals(that.name);
         }
         return false;
@@ -57,7 +57,7 @@ public class NamedMethod extends AllMethods
     }
 
     @Override
-    public boolean includeAsGetter(final Method method)
+    public boolean includeAsGetter(Method method)
     {
         return super.includeAsGetter(method) && method.getName().equals(name);
     }

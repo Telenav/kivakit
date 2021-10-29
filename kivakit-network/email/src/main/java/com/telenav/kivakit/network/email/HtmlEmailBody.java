@@ -33,7 +33,7 @@ public class HtmlEmailBody extends EmailBody
 {
     public static final String MIME_TYPE = "text/html";
 
-    public HtmlEmailBody(final String text)
+    public HtmlEmailBody(String text)
     {
         super(text);
     }

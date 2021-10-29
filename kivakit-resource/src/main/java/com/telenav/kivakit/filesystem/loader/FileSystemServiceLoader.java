@@ -63,12 +63,12 @@ public class FileSystemServiceLoader
     /**
      * @return The {@link FileSystemService} to use for the given path
      */
-    public static FileSystemService fileSystem(final FilePath path)
+    public static FileSystemService fileSystem(FilePath path)
     {
         assert path != null;
 
         // For each loaded filesystem service
-        for (final var service : services())
+        for (var service : services())
         {
             // if it accepts the path,
             if (service.accepts(path))
@@ -94,7 +94,7 @@ public class FileSystemServiceLoader
         if (services == null)
         {
             services = new ArrayList<>();
-            for (final var service : ServiceLoader.load(FileSystemService.class))
+            for (var service : ServiceLoader.load(FileSystemService.class))
             {
                 DEBUG.trace("Loaded file system '${class}'", service.getClass());
                 services.add(service);

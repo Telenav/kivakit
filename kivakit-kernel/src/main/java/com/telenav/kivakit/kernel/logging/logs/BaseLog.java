@@ -69,7 +69,7 @@ public abstract class BaseLog implements Startable, Stoppable, Log
         isAsynchronous = !Booleans.isTrue(System.getProperty("KIVAKIT_LOG_SYNCHRONOUS"));
     }
 
-    public static void asynchronous(final boolean asynchronous)
+    public static void asynchronous(boolean asynchronous)
     {
         isAsynchronous = asynchronous;
     }
@@ -116,7 +116,7 @@ public abstract class BaseLog implements Startable, Stoppable, Log
         }
     }
 
-    public void addFilter(final Filter<LogEntry> filter)
+    public void addFilter(Filter<LogEntry> filter)
     {
         filters.add(filter);
     }
@@ -139,11 +139,11 @@ public abstract class BaseLog implements Startable, Stoppable, Log
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof BaseLog)
         {
-            final var that = (BaseLog) object;
+            var that = (BaseLog) object;
             return name().equals(that.name());
         }
         return false;
@@ -156,7 +156,7 @@ public abstract class BaseLog implements Startable, Stoppable, Log
     }
 
     @Override
-    public void flush(final Duration maximumWaitTime)
+    public void flush(Duration maximumWaitTime)
     {
         if (thread != null)
         {
@@ -184,7 +184,7 @@ public abstract class BaseLog implements Startable, Stoppable, Log
     }
 
     @Override
-    public void level(final Severity minimum)
+    public void level(Severity minimum)
     {
         if (minimum != null)
         {
@@ -193,7 +193,7 @@ public abstract class BaseLog implements Startable, Stoppable, Log
     }
 
     @Override
-    public final void log(final LogEntry entry)
+    public final void log(LogEntry entry)
     {
         assert entry.context() != null;
         if (!closed && accept(entry))
@@ -210,7 +210,7 @@ public abstract class BaseLog implements Startable, Stoppable, Log
                 {
                     queue.put(entry);
                 }
-                catch (final InterruptedException ignored)
+                catch (InterruptedException ignored)
                 {
                 }
             }
@@ -254,21 +254,21 @@ public abstract class BaseLog implements Startable, Stoppable, Log
                 {
                     try
                     {
-                        final var entry = queue.take();
+                        var entry = queue.take();
                         if (!dispatch(entry))
                         {
                             retry(entry);
                         }
                         checkForEmptyQueue();
                     }
-                    catch (final InterruptedException ignored)
+                    catch (InterruptedException ignored)
                     {
                         checkForEmptyQueue();
                     }
                 }
             }
 
-            private void retry(final LogEntry entry)
+            private void retry(LogEntry entry)
             {
                 // Try a few times to write the failed log entry
                 var success = false;
@@ -289,10 +289,10 @@ public abstract class BaseLog implements Startable, Stoppable, Log
 
                     // and then drain the rest of the queue as failures to
                     // prevent the queue from blocking
-                    final List<LogEntry> failures = new ArrayList<>();
+                    List<LogEntry> failures = new ArrayList<>();
                     queue.drainTo(failures);
                     checkForEmptyQueue();
-                    for (final var failure : failures)
+                    for (var failure : failures)
                     {
                         onLogFailure(failure);
                     }
@@ -307,7 +307,7 @@ public abstract class BaseLog implements Startable, Stoppable, Log
     }
 
     @Override
-    public void stop(final Duration wait)
+    public void stop(Duration wait)
     {
         close();
         flush(wait);
@@ -323,9 +323,9 @@ public abstract class BaseLog implements Startable, Stoppable, Log
         return new ObjectFormatter(this).toString();
     }
 
-    protected final boolean accept(final LogEntry entry)
+    protected final boolean accept(LogEntry entry)
     {
-        for (final var filter : filters)
+        for (var filter : filters)
         {
             if (filter != null && !filter.accepts(entry))
             {
@@ -337,7 +337,7 @@ public abstract class BaseLog implements Startable, Stoppable, Log
 
     protected abstract void onLog(LogEntry entry);
 
-    protected void onLogFailure(final LogEntry entry)
+    protected void onLogFailure(LogEntry entry)
     {
         System.out.println("Failed to log: " + entry);
     }
@@ -364,7 +364,7 @@ public abstract class BaseLog implements Startable, Stoppable, Log
         }
     }
 
-    private boolean dispatch(final LogEntry entry)
+    private boolean dispatch(LogEntry entry)
     {
         if (entry.severity().isGreaterThan(Severity.NONE))
         {
@@ -378,7 +378,7 @@ public abstract class BaseLog implements Startable, Stoppable, Log
         {
             onLog(entry);
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             System.err.println(new Problem(e, "Failed to write log entry").asString());
             success = false;

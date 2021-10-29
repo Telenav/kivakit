@@ -27,7 +27,7 @@ abstract class Closure extends Pattern
 {
     private final boolean greedy;
 
-    protected Closure(final boolean greedy)
+    protected Closure(boolean greedy)
     {
         this.greedy = greedy;
     }

@@ -63,33 +63,33 @@ public class ModuleResource
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    public static ModuleResource moduleResource(final ModuleReference reference, final URI uri)
+    public static ModuleResource moduleResource(ModuleReference reference, URI uri)
     {
-        final var location = reference.location();
+        var location = reference.location();
         if (location.isPresent())
         {
-            final var scheme = uri.getScheme();
+            var scheme = uri.getScheme();
 
             switch (scheme)
             {
                 case "file":
                 {
-                    final var javaPath = Path.of(uri);
+                    var javaPath = Path.of(uri);
                     if (!Files.isDirectory(javaPath))
                     {
-                        final var filepath = StringPath.stringPath(javaPath);
-                        final var folder = StringPath.stringPath(location.get());
-                        final var testFolder = folder.withoutLast().withChild("test-classes");
+                        var filepath = StringPath.stringPath(javaPath);
+                        var folder = StringPath.stringPath(location.get());
+                        var testFolder = folder.withoutLast().withChild("test-classes");
                         if (filepath.startsWith(folder))
                         {
-                            final var relativePath = filepath.withoutPrefix(folder);
-                            final var _package = PackagePath.packagePath(relativePath.withoutLast());
+                            var relativePath = filepath.withoutPrefix(folder);
+                            var _package = PackagePath.packagePath(relativePath.withoutLast());
                             return new ModuleResource(_package, uri);
                         }
                         if (filepath.startsWith(testFolder))
                         {
-                            final var relativePath = filepath.withoutPrefix(testFolder);
-                            final var _package = PackagePath.packagePath(relativePath.withoutLast());
+                            var relativePath = filepath.withoutPrefix(testFolder);
+                            var _package = PackagePath.packagePath(relativePath.withoutLast());
                             return new ModuleResource(_package, uri);
                         }
                     }
@@ -100,7 +100,7 @@ public class ModuleResource
                 case "zip":
                 {
                     Nio.filesystem(LOGGER, uri);
-                    final var _package = PackagePath.packagePath(StringPath.stringPath(uri));
+                    var _package = PackagePath.packagePath(StringPath.stringPath(uri));
                     return new ModuleResource(_package, uri);
                 }
 
@@ -123,17 +123,17 @@ public class ModuleResource
 
     private Time lastModified;
 
-    protected ModuleResource(final PackagePath _package, final URI uri)
+    protected ModuleResource(PackagePath _package, URI uri)
     {
         this._package = _package;
         this.uri = uri;
         try
         {
-            final var path = Path.of(uri);
+            var path = Path.of(uri);
             size = Bytes.bytes(Files.size(path));
             lastModified = Time.milliseconds(Files.getLastModifiedTime(path).toMillis());
         }
-        catch (final IOException ignored)
+        catch (IOException ignored)
         {
         }
     }

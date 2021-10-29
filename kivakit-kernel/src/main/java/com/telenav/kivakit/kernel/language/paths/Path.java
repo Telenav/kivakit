@@ -123,7 +123,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     /**
      * Constructs a rooted path with the given list of elements
      */
-    protected Path(final Element root, final List<Element> elements)
+    protected Path(Element root, List<Element> elements)
     {
         assert elements != null;
         this.root = root;
@@ -133,19 +133,19 @@ public abstract class Path<Element extends Comparable<Element>> implements
     /**
      * Copy constructor
      */
-    protected Path(final Path<Element> that)
+    protected Path(Path<Element> that)
     {
         this(that.root, that.elements);
     }
 
     @Override
-    public int compareTo(final Path<Element> that)
+    public int compareTo(Path<Element> that)
     {
-        final var a = elements();
-        final var b = that.elements();
+        var a = elements();
+        var b = that.elements();
         for (int i = 0; i < Math.min(a.size(), b.size()); i++)
         {
-            final var result = a.get(i).compareTo(b.get(i));
+            var result = a.get(i).compareTo(b.get(i));
             if (result != 0)
             {
                 return result;
@@ -167,7 +167,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
      */
     public Path<Element> emptyPath()
     {
-        final var copy = copy();
+        var copy = copy();
         copy.root = null;
         copy.elements.clear();
         return copy;
@@ -176,18 +176,18 @@ public abstract class Path<Element extends Comparable<Element>> implements
     /**
      * @return True if this path ends with the given suffix
      */
-    public boolean endsWith(final Path<Element> suffix)
+    public boolean endsWith(Path<Element> suffix)
     {
         return elements.endsWith(suffix.elements);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Path)
         {
-            final var that = (Path<Element>) object;
+            var that = (Path<Element>) object;
             return Objects.equalPairs(root, that.root, elements, that.elements);
         }
         return false;
@@ -205,7 +205,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
      * @return A path consisting of the first n elements of this path, or null if there are not that many elements. If
      * the path is absolute, the returned path will also be absolute, with the same root element.
      */
-    public Path<Element> first(final int n)
+    public Path<Element> first(int n)
     {
         if (size() >= n)
         {
@@ -217,7 +217,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     /**
      * @return The element at the given index or null if the index is out of range
      */
-    public Element get(final int index)
+    public Element get(int index)
     {
         if (index >= 0 && index < size())
         {
@@ -275,7 +275,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
      * @return A path consisting of the last n elements of this path, or null if there are not that many elements. The
      * returned path will be relative in all cases.
      */
-    public Path<Element> last(final int n)
+    public Path<Element> last(int n)
     {
         if (size() >= n)
         {
@@ -307,7 +307,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     {
         if (isAbsolute())
         {
-            final var copy = copy();
+            var copy = copy();
             copy.elements.clear();
             return copy;
         }
@@ -334,7 +334,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     /**
      * @return True if this path starts with the given path
      */
-    public boolean startsWith(final Path<Element> prefix)
+    public boolean startsWith(Path<Element> prefix)
     {
         return elements.startsWith(prefix.elements);
     }
@@ -353,7 +353,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
      * is absolute, the subpath will still be absolute with the same root. If the start and end indexes are invalid,
      * null is returned.
      */
-    public Path<Element> subpath(final int start, final int end)
+    public Path<Element> subpath(int start, int end)
     {
         if (start <= end && start >= 0 && end <= size())
         {
@@ -361,7 +361,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
             {
                 return emptyPath();
             }
-            final var copy = copy();
+            var copy = copy();
             copy.elements = ObjectList.objectList(elements.subList(start, end));
             return copy;
         }
@@ -371,12 +371,12 @@ public abstract class Path<Element extends Comparable<Element>> implements
     /**
      * @return A copy of this path with each element transformed by the given function
      */
-    public Path<Element> transformed(final Function<Element, Element> function)
+    public Path<Element> transformed(Function<Element, Element> function)
     {
-        final var elements = new ArrayList<Element>();
-        for (final var element : this)
+        var elements = new ArrayList<Element>();
+        for (var element : this)
         {
-            final var transformed = function.apply(element);
+            var transformed = function.apply(element);
             Ensure.ensure(transformed != null);
             elements.add(transformed);
         }
@@ -386,9 +386,9 @@ public abstract class Path<Element extends Comparable<Element>> implements
     /**
      * @return This path with the given path appended
      */
-    public Path<Element> withChild(final Path<Element> that)
+    public Path<Element> withChild(Path<Element> that)
     {
-        final var copy = copy();
+        var copy = copy();
         copy.elements.appendAll(that.elements);
         return copy;
     }
@@ -396,9 +396,9 @@ public abstract class Path<Element extends Comparable<Element>> implements
     /**
      * @return This path with the given element appended
      */
-    public Path<Element> withChild(final Element element)
+    public Path<Element> withChild(Element element)
     {
-        final var copy = copy();
+        var copy = copy();
         copy.elements.append(element);
         return copy;
     }
@@ -406,9 +406,9 @@ public abstract class Path<Element extends Comparable<Element>> implements
     /**
      * @return This path with the given element prepended
      */
-    public Path<Element> withParent(final Element element)
+    public Path<Element> withParent(Element element)
     {
-        final var copy = copy();
+        var copy = copy();
         copy.elements.prepend(element);
         return copy;
     }
@@ -416,7 +416,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     /**
      * @return This path with the given path prepended
      */
-    public Path<Element> withParent(final Path<Element> that)
+    public Path<Element> withParent(Path<Element> that)
     {
         return that.withChild(this);
     }
@@ -424,9 +424,9 @@ public abstract class Path<Element extends Comparable<Element>> implements
     /**
      * @return This path with the given root element (whether the path is absolute or relative)
      */
-    public Path<Element> withRoot(final Element root)
+    public Path<Element> withRoot(Element root)
     {
-        final var copy = copy();
+        var copy = copy();
         copy.root = root;
         return copy;
     }
@@ -474,9 +474,9 @@ public abstract class Path<Element extends Comparable<Element>> implements
      * @return This path without the given prefix. If this path doesn't start with the prefix, the path is returned
      * unchanged.
      */
-    public Path<Element> withoutOptionalPrefix(final Path<Element> prefix)
+    public Path<Element> withoutOptionalPrefix(Path<Element> prefix)
     {
-        final var without = withoutPrefix(prefix);
+        var without = withoutPrefix(prefix);
         return without == null ? this : without;
     }
 
@@ -484,9 +484,9 @@ public abstract class Path<Element extends Comparable<Element>> implements
      * @return This path without the given suffix. If this path doesn't end with the suffix, the path is returned
      * unchanged.
      */
-    public Path<Element> withoutOptionalSuffix(final Path<Element> suffix)
+    public Path<Element> withoutOptionalSuffix(Path<Element> suffix)
     {
-        final var without = withoutSuffix(suffix);
+        var without = withoutSuffix(suffix);
         return without == null ? this : without;
     }
 
@@ -494,7 +494,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
      * @return This path after the given prefix. If the path doesn't start with the prefix null is returned. If the path
      * is equal to the prefix, a root or empty path is returned for absolute and relative paths respectively.
      */
-    public Path<Element> withoutPrefix(final Path<Element> prefix)
+    public Path<Element> withoutPrefix(Path<Element> prefix)
     {
         if (equals(prefix))
         {
@@ -514,7 +514,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     {
         if (!isRoot())
         {
-            final var copy = copy();
+            var copy = copy();
             copy.root = null;
             return copy;
         }
@@ -526,7 +526,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
      * doesn't start with the prefix null is returned. If the path * is equal to the prefix, a root or empty path is
      * returned for absolute and relative paths respectively.
      */
-    public Path<Element> withoutSuffix(final Path<Element> suffix)
+    public Path<Element> withoutSuffix(Path<Element> suffix)
     {
         if (equals(suffix))
         {

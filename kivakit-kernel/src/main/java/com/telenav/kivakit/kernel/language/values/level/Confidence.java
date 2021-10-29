@@ -42,17 +42,17 @@ public class Confidence extends Level
 
     public static final Confidence NO = new Confidence(0);
 
-    public static Confidence confidence(final double value)
+    public static Confidence confidence(double value)
     {
         return new Confidence(value);
     }
 
-    public static Confidence confidenceForByte(final byte level)
+    public static Confidence confidenceForByte(byte level)
     {
         return new Confidence((double) level / Byte.MAX_VALUE);
     }
 
-    public static Confidence confidenceForInt(final int value)
+    public static Confidence confidenceForInt(int value)
     {
         return new Confidence(value / 255.0);
     }
@@ -65,19 +65,19 @@ public class Confidence extends Level
     @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<Confidence>
     {
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
         }
 
         @Override
-        protected Confidence onToValue(final String value)
+        protected Confidence onToValue(String value)
         {
             return new Confidence(Double.parseDouble(value));
         }
     }
 
-    protected Confidence(final double value)
+    protected Confidence(double value)
     {
         super(value);
     }
@@ -93,7 +93,7 @@ public class Confidence extends Level
     }
 
     @Override
-    public Confidence divide(final Level that)
+    public Confidence divide(Level that)
     {
         return (Confidence) super.divide(that);
     }
@@ -105,13 +105,13 @@ public class Confidence extends Level
     }
 
     @Override
-    public Confidence minus(final Level that)
+    public Confidence minus(Level that)
     {
         return (Confidence) super.minus(that);
     }
 
     @Override
-    public Confidence plus(final Level that)
+    public Confidence plus(Level that)
     {
         return (Confidence) super.plus(that);
     }
@@ -123,7 +123,7 @@ public class Confidence extends Level
     }
 
     @Override
-    public Confidence times(final Level that)
+    public Confidence times(Level that)
     {
         return (Confidence) super.times(that);
     }
@@ -135,7 +135,7 @@ public class Confidence extends Level
     }
 
     @Override
-    protected Confidence onNewInstance(final double value)
+    protected Confidence onNewInstance(double value)
     {
         return new Confidence(value);
     }

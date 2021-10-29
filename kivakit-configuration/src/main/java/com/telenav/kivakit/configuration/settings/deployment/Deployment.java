@@ -110,7 +110,7 @@ import java.io.Serializable;
  *     private Port port;
  *
  *    {@literal @}KivaKitPropertyConverter(Port.Converter.class)
- *     public void port(final Port port)
+ *     public void port( Port port)
  *     {
  *         this.port = port;
  *     }
@@ -159,8 +159,8 @@ public class Deployment extends Settings implements Named, Serializable
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    public static SwitchParser.Builder<Deployment> deploymentSwitchParser(final DeploymentSet deployments,
-                                                                          final String switchName)
+    public static SwitchParser.Builder<Deployment> deploymentSwitchParser(DeploymentSet deployments,
+                                                                          String switchName)
     {
         return SwitchParser.builder(Deployment.class)
                 .name("deployment")
@@ -179,18 +179,18 @@ public class Deployment extends Settings implements Named, Serializable
     {
         private final DeploymentSet deployments;
 
-        public Converter(final Listener listener, final DeploymentSet deployments)
+        public Converter(Listener listener, DeploymentSet deployments)
         {
             super(listener);
             this.deployments = deployments;
         }
 
         @Override
-        protected Deployment onToValue(final String value)
+        protected Deployment onToValue(String value)
         {
             if (value != null)
             {
-                final var deployment = deployments.deployment(value);
+                var deployment = deployments.deployment(value);
                 if (deployment != null)
                 {
                     return deployment;
@@ -211,7 +211,7 @@ public class Deployment extends Settings implements Named, Serializable
      * @param name The name of the deployment, like "osm-team"
      * @param description A description of the deployment
      */
-    public Deployment(final String name, final String description)
+    public Deployment(String name, String description)
     {
         this.name = name;
         this.description = description;
@@ -220,7 +220,7 @@ public class Deployment extends Settings implements Named, Serializable
     /**
      * Adds all of the configurations in the given deployment to this deployment
      */
-    public Deployment addDeployment(final Deployment deployment)
+    public Deployment addDeployment(Deployment deployment)
     {
         super.internalAddAll(deployment);
         return this;
@@ -235,11 +235,11 @@ public class Deployment extends Settings implements Named, Serializable
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Deployment)
         {
-            final var that = (Deployment) object;
+            var that = (Deployment) object;
             return name.equals(that.name);
         }
         return false;
@@ -269,21 +269,21 @@ public class Deployment extends Settings implements Named, Serializable
     }
 
     @Override
-    public Deployment registerAllSettingsIn(final Listener listener, final Folder folder)
+    public Deployment registerAllSettingsIn(Listener listener, Folder folder)
     {
         super.registerAllSettingsIn(listener, folder);
         return this;
     }
 
     @Override
-    public Deployment registerAllSettingsIn(final Listener listener, final PackagePath path)
+    public Deployment registerAllSettingsIn(Listener listener, PackagePath path)
     {
         super.registerAllSettingsIn(listener, path);
         return this;
     }
 
     @Override
-    public Deployment registerAllSettingsIn(final Listener listener, final Class<?> relativeTo, final String path)
+    public Deployment registerAllSettingsIn(Listener listener, Class<?> relativeTo, String path)
     {
         super.registerAllSettingsIn(listener, relativeTo, path);
         return this;
@@ -293,7 +293,7 @@ public class Deployment extends Settings implements Named, Serializable
      * {@inheritDoc}
      */
     @Override
-    public Deployment registerSettings(final Object settings, final InstanceIdentifier instance)
+    public Deployment registerSettings(Object settings, InstanceIdentifier instance)
     {
         return (Deployment) super.registerSettings(settings, instance);
     }
@@ -302,7 +302,7 @@ public class Deployment extends Settings implements Named, Serializable
      * {@inheritDoc}
      */
     @Override
-    public Deployment registerSettings(final Object settings, final Enum<?> instance)
+    public Deployment registerSettings(Object settings, Enum<?> instance)
     {
         return registerSettings(settings, InstanceIdentifier.of(instance));
     }
@@ -311,7 +311,7 @@ public class Deployment extends Settings implements Named, Serializable
      * {@inheritDoc}
      */
     @Override
-    public Deployment registerSettings(final Object settings)
+    public Deployment registerSettings(Object settings)
     {
         assert !(settings instanceof PackagePath) && !(settings instanceof Folder) :
                 "Should have called loadAll with the argument " + settings;

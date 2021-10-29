@@ -94,12 +94,12 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
         path = null;
     }
 
-    protected BaseReadableResource(final ResourcePath path)
+    protected BaseReadableResource(ResourcePath path)
     {
         this.path = path;
     }
 
-    protected BaseReadableResource(final BaseReadableResource that)
+    protected BaseReadableResource(BaseReadableResource that)
     {
         path = that.path;
         codec = that.codec;
@@ -131,7 +131,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
     }
 
     @SuppressWarnings("UnusedReturnValue")
-    public BaseReadableResource codec(final Codec codec)
+    public BaseReadableResource codec(Codec codec)
     {
         this.codec = codec;
         return this;
@@ -141,7 +141,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
      * Copies the data in this resource to the destination.
      */
     @Override
-    public void copyTo(final WritableResource destination, final CopyMode mode, final ProgressReporter reporter)
+    public void copyTo(WritableResource destination, CopyMode mode, ProgressReporter reporter)
     {
         // If we can copy from this resource to the given resource in this mode,
         if (mode.canCopy(this, destination))
@@ -170,7 +170,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
                     trace("Dematerialized ${debug} from local cache", materialized);
                     materialized = null;
                 }
-                catch (final Exception e)
+                catch (Exception e)
                 {
                     LOGGER.warning("Unable to dematerialize $", materialized);
                 }
@@ -199,7 +199,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
             }
             return exists;
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             return false;
         }
@@ -207,7 +207,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
 
     // Ensure the remote resource is locally accessible
     @Override
-    public Resource materialized(final ProgressReporter reporter)
+    public Resource materialized(ProgressReporter reporter)
     {
         synchronized (uniqueIdentifier())
         {
@@ -215,11 +215,11 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
             {
                 if (materialized == null)
                 {
-                    final var cached = cacheFile();
+                    var cached = cacheFile();
                     if (!cached.exists())
                     {
                         cached.parent().ensureExists();
-                        final var start = Time.now();
+                        var start = Time.now();
                         trace("Materializing $ to $", this, cached.path().absolute());
                         safeCopyTo(cached, CopyMode.OVERWRITE, reporter);
                         trace("Materialized ${debug} ($) from ${debug} in ${debug}", cached.path().absolute(),
@@ -234,17 +234,17 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
     }
 
     @Override
-    public InputStream openForReading(final ProgressReporter reporter)
+    public InputStream openForReading(ProgressReporter reporter)
     {
         // Open the input stream,
-        final var in = onOpenForReading();
+        var in = onOpenForReading();
         if (in == null)
         {
             return null;
         }
 
         // add a decompression layer if need be,
-        final var decompressed = codec().decompressed(IO.buffer(in));
+        var decompressed = codec().decompressed(IO.buffer(in));
 
         // and if there is a reporter,
         if (reporter != null)
@@ -272,7 +272,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
         return fileName().toString();
     }
 
-    protected void charset(final Charset charset)
+    protected void charset(Charset charset)
     {
         this.charset = charset;
     }
@@ -287,10 +287,10 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
 
     private String uniqueIdentifier()
     {
-        final var path = path();
+        var path = path();
         if (path instanceof FilePath)
         {
-            final var filepath = (FilePath) path;
+            var filepath = (FilePath) path;
             return filepath.absolute().toString();
         }
         return path().toString();

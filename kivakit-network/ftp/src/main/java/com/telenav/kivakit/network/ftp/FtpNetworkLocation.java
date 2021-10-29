@@ -58,7 +58,7 @@ public class FtpNetworkLocation extends NetworkLocation
     @UmlAggregation(label = "transfers in mode")
     private Mode mode;
 
-    public FtpNetworkLocation(final NetworkPath path)
+    public FtpNetworkLocation(NetworkPath path)
     {
         super(path);
         ensure(Protocol.FTP.equals(path.port().protocol()));
@@ -69,13 +69,13 @@ public class FtpNetworkLocation extends NetworkLocation
         return mode;
     }
 
-    public void mode(final Mode mode)
+    public void mode(Mode mode)
     {
         this.mode = mode;
     }
 
     @UmlRelation(label = "creates")
-    public FtpResource resource(final NetworkAccessConstraints constraints)
+    public FtpResource resource(NetworkAccessConstraints constraints)
     {
         return new FtpResource(this, constraints);
     }

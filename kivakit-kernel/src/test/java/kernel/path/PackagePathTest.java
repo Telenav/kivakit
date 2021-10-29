@@ -68,9 +68,9 @@ public class PackagePathTest
     @Test
     public void testIterable()
     {
-        final var elements = new String[] { "a", "b", "c" };
+        var elements = new String[] { "a", "b", "c" };
         int i = 0;
-        for (final var element : path("a.b.c"))
+        for (var element : path("a.b.c"))
         {
             ensureEqual(element, elements[i++]);
         }
@@ -85,8 +85,8 @@ public class PackagePathTest
     @Test
     public void testParent()
     {
-        final var path = PackagePath.packagePath(PackagePathTest.class);
-        final var parent = path.parent();
+        var path = PackagePath.packagePath(PackagePathTest.class);
+        var parent = path.parent();
         ensure(path.startsWith(parent));
     }
 
@@ -99,14 +99,14 @@ public class PackagePathTest
     @Test
     public void testRoot()
     {
-        final var path = PackagePath.packagePath(PackagePathTest.class);
+        var path = PackagePath.packagePath(PackagePathTest.class);
         ensureFalse(path.isRoot());
     }
 
     @Test
     public void testSeparator()
     {
-        final var path = PackagePath.packagePath(PackagePathTest.class);
+        var path = PackagePath.packagePath(PackagePathTest.class);
         ensureEqual(path.separator(), ".");
     }
 
@@ -147,7 +147,7 @@ public class PackagePathTest
     }
 
     @NotNull
-    private PackagePath path(final String path)
+    private PackagePath path(String path)
     {
         return PackagePath.parsePackagePath(path);
     }

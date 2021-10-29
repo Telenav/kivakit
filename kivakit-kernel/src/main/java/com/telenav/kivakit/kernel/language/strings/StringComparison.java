@@ -39,7 +39,7 @@ public class StringComparison
      *
      * @return Comparison value for the two strings
      */
-    public static int compare(final String a, final String b)
+    public static int compare(String a, String b)
     {
         if (a == null && b == null)
         {
@@ -59,9 +59,9 @@ public class StringComparison
     /**
      * @return The percentage difference between the two strings using the Levenshtein distance algorithm
      */
-    public static Percent levenshteinDifference(final String a, final String b)
+    public static Percent levenshteinDifference(String a, String b)
     {
-        final var lexicalDistance = levenshteinDistance(a, b);
+        var lexicalDistance = levenshteinDistance(a, b);
         if (lexicalDistance == 0)
         {
             return Percent._0;
@@ -78,10 +78,10 @@ public class StringComparison
      * @param target The target String
      * @return The Levenshtein Distance between source and target
      */
-    public static int levenshteinDistance(final String source, final String target)
+    public static int levenshteinDistance(String source, String target)
     {
-        final var sourceLength = source.length();
-        final var targetLength = target.length();
+        var sourceLength = source.length();
+        var targetLength = target.length();
 
         if (sourceLength == 0)
         {
@@ -93,7 +93,7 @@ public class StringComparison
             return sourceLength;
         }
 
-        final var distanceMatrix = new int[sourceLength + 1][targetLength + 1];
+        var distanceMatrix = new int[sourceLength + 1][targetLength + 1];
 
         for (var i = 0; i <= sourceLength; i++)
         {
@@ -107,13 +107,13 @@ public class StringComparison
 
         for (var i = 1; i <= sourceLength; i++)
         {
-            final int s_i = source.charAt(i - 1);
+            int s_i = source.charAt(i - 1);
 
             for (var j = 1; j <= targetLength; j++)
             {
-                final int t_j = target.charAt(j - 1);
+                int t_j = target.charAt(j - 1);
 
-                final int cost;
+                int cost;
                 if (s_i == t_j)
                 {
                     cost = 0;
@@ -135,7 +135,7 @@ public class StringComparison
      * @return The similarity of the two strings
      * @see StringComparison#levenshteinDifference(String, String)
      */
-    public static Percent levenshteinSimilarity(final String a, final String b)
+    public static Percent levenshteinSimilarity(String a, String b)
     {
         return levenshteinDifference(a, b).inverse();
     }
@@ -143,7 +143,7 @@ public class StringComparison
     /**
      * @return The minimum of the three values
      */
-    private static int minimum(final int a, final int b, final int c)
+    private static int minimum(int a, int b, int c)
     {
         return Math.min(a, Math.min(b, c));
     }

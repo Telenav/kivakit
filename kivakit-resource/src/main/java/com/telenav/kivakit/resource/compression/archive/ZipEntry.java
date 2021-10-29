@@ -58,11 +58,8 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
 
     private OutputStream out;
 
-    private final FileSystem filesystem;
-
-    public ZipEntry(final FileSystem filesystem, final Path path)
+    public ZipEntry(FileSystem filesystem, Path path)
     {
-        this.filesystem = filesystem;
         this.path = filesystem.getPath(path.toString());
     }
 
@@ -94,7 +91,7 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
     {
         if (in == null)
         {
-            final var in = Unchecked.of(() -> Files.newInputStream(path)).orNull();
+            var in = Unchecked.of(() -> Files.newInputStream(path)).orNull();
             if (in != null)
             {
                 this.in = IO.buffer(in);
@@ -112,10 +109,10 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
     {
         if (out == null)
         {
-            final OutputStream out;
+            OutputStream out;
             try
             {
-                final var parent = path.getParent();
+                var parent = path.getParent();
                 if (parent != null)
                 {
                     Files.createDirectories(parent);

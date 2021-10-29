@@ -53,12 +53,12 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @LexakaiJavadoc(complete = true)
 public class CriticalAlert extends Alert
 {
-    public CriticalAlert(final String solution, final String message, final Object... arguments)
+    public CriticalAlert(String solution, String message, Object... arguments)
     {
         super(solution, message, arguments);
     }
 
-    public CriticalAlert(final String solution, final Throwable cause, final String message, final Object... arguments)
+    public CriticalAlert(String solution, Throwable cause, String message, Object... arguments)
     {
         super(solution, message + ": " + Message.escape(cause.getMessage()), arguments);
         cause(cause);
@@ -76,7 +76,7 @@ public class CriticalAlert extends Alert
     }
 
     @Override
-    public CriticalAlert solution(final String solution)
+    public CriticalAlert solution(String solution)
     {
         super.solution(solution);
         return this;

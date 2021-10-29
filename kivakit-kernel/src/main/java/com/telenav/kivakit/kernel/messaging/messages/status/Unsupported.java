@@ -31,12 +31,12 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @LexakaiJavadoc(complete = true)
 public class Unsupported extends FatalProblem
 {
-    public Unsupported(final String message, final Object... arguments)
+    public Unsupported(String message, Object... arguments)
     {
         super(message, arguments);
     }
 
-    public Unsupported(final Throwable cause, final String message, final Object... arguments)
+    public Unsupported(Throwable cause, String message, Object... arguments)
     {
         super(cause, message, arguments);
     }

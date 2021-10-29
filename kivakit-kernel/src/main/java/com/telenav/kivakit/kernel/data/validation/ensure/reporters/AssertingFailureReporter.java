@@ -36,7 +36,7 @@ public class AssertingFailureReporter extends BaseFailureReporter
 {
     @Override
     @UmlExcludeMember
-    public void report(final Message message)
+    public void report(Message message)
     {
         assert false : message.description();
     }

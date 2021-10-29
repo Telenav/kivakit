@@ -36,7 +36,7 @@ public abstract class SetDifferencer<Element>
 {
     private final Equality<Element> updateComparator;
 
-    protected SetDifferencer(final Equality<Element> updateComparator)
+    protected SetDifferencer(Equality<Element> updateComparator)
     {
         this.updateComparator = updateComparator;
     }
@@ -48,13 +48,13 @@ public abstract class SetDifferencer<Element>
      * @param beforeSet The set as it used to be
      * @param afterSet The set as it will be
      */
-    public void compare(final Set<Element> beforeSet, final Set<Element> afterSet)
+    public void compare(Set<Element> beforeSet, Set<Element> afterSet)
     {
         // All members of before that are also members of after
-        final var beforeUnionAfter = new ConcurrentHashSet<Element>();
+        var beforeUnionAfter = new ConcurrentHashSet<Element>();
 
         // Go through all objects held before
-        for (final var before : beforeSet)
+        for (var before : beforeSet)
         {
             // If the after set no longer contains the object,
             if (!afterSet.contains(before))
@@ -73,7 +73,7 @@ public abstract class SetDifferencer<Element>
         }
 
         // Go through all objects held after
-        for (final var after : afterSet)
+        for (var after : afterSet)
         {
             // If the before set didn't have the object,
             if (!beforeSet.contains(after))
@@ -86,7 +86,7 @@ public abstract class SetDifferencer<Element>
                 if (updateComparator != null)
                 {
                     // Get the before version of the after object
-                    final var before = beforeUnionAfter.get(after);
+                    var before = beforeUnionAfter.get(after);
 
                     // If they are not identical
                     if (!updateComparator.isEqual(before, after))
@@ -106,7 +106,7 @@ public abstract class SetDifferencer<Element>
     protected abstract void onAdded(Element value);
 
     @SuppressWarnings({ "EmptyMethod" })
-    protected void onNotChanged(final Element oldValue, final Element newValue)
+    protected void onNotChanged(Element oldValue, Element newValue)
     {
     }
 

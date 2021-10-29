@@ -51,13 +51,13 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramMessageType.class)
 public class Problem extends OperationStatusMessage
 {
-    public Problem(final String message, final Object... arguments)
+    public Problem(String message, Object... arguments)
     {
         super(message);
         arguments(arguments);
     }
 
-    public Problem(final Throwable cause, final String message, final Object... arguments)
+    public Problem(Throwable cause, String message, Object... arguments)
     {
         super(message + ": " + Message.escape(cause.getMessage()));
         cause(cause);

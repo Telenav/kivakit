@@ -30,11 +30,11 @@ public class Paths
     /**
      * @return The first element in the given path up to the separator or null if no separator is found
      */
-    public static String head(final String path, final char separator)
+    public static String head(String path, char separator)
     {
         if (path != null)
         {
-            final var index = path.indexOf(separator);
+            var index = path.indexOf(separator);
             if (index >= 0)
             {
                 return path.substring(0, index);
@@ -47,11 +47,11 @@ public class Paths
     /**
      * @return The first element in the given path up to the separator or null if the separator is not found
      */
-    public static String head(final String path, final String separator)
+    public static String head(String path, String separator)
     {
         if (path != null)
         {
-            final var index = path.indexOf(separator);
+            var index = path.indexOf(separator);
             if (index > 0 && index < path.length() - 1)
             {
                 return path.substring(0, index);
@@ -63,7 +63,7 @@ public class Paths
     /**
      * @return The first element in the given path up to the separator or the path itself if the separator is not found
      */
-    public static String optionalHead(final String path, final String separator)
+    public static String optionalHead(String path, String separator)
     {
         return StringTo.string(head(path, separator), path);
     }
@@ -71,7 +71,7 @@ public class Paths
     /**
      * @return The first element in the given path up to the separator or the path itself if no separator is found
      */
-    public static String optionalHead(final String path, final char separator)
+    public static String optionalHead(String path, char separator)
     {
         return StringTo.string(head(path, separator), path);
     }
@@ -79,11 +79,11 @@ public class Paths
     /**
      * @return The last element in the given path up to the separator or the path itself if no separator is found
      */
-    public static String optionalSuffix(final String path, final char separator)
+    public static String optionalSuffix(String path, char separator)
     {
         if (path != null)
         {
-            final var index = path.lastIndexOf(separator);
+            var index = path.lastIndexOf(separator);
             return index == -1 ? path : path.substring(index + 1);
         }
         return null;
@@ -92,11 +92,11 @@ public class Paths
     /**
      * @return All but the first element in the path or null if the separator does not occur
      */
-    public static String tail(final String string, final String separator)
+    public static String tail(String string, String separator)
     {
         if (string != null)
         {
-            final var index = string.indexOf(separator);
+            var index = string.indexOf(separator);
             if (index >= 0 && index < string.length() - 1)
             {
                 return string.substring(index + separator.length());
@@ -108,11 +108,11 @@ public class Paths
     /**
      * @return All but the first element in the path or null if the separator does not occur
      */
-    public static String tail(final String text, final char separator)
+    public static String tail(String text, char separator)
     {
         if (text != null)
         {
-            final var index = text.indexOf(separator);
+            var index = text.indexOf(separator);
             if (index >= 0)
             {
                 return text.substring(index + 1);
@@ -121,7 +121,7 @@ public class Paths
         return null;
     }
 
-    public static String toPackage(final String path)
+    public static String toPackage(String path)
     {
         return path.replaceAll("/", ".");
     }
@@ -129,7 +129,7 @@ public class Paths
     /**
      * @return The last element in the given path up to the separator or the path itself if no separator is found
      */
-    public static String withoutOptionalSuffix(final String path, final char separator)
+    public static String withoutOptionalSuffix(String path, char separator)
     {
         return StringTo.string(withoutSuffix(path, separator), path);
     }
@@ -137,11 +137,11 @@ public class Paths
     /**
      * @return The last element in the given path up to the separator or null if no separator is found
      */
-    public static String withoutSuffix(final String path, final char separator)
+    public static String withoutSuffix(String path, char separator)
     {
         if (path != null)
         {
-            final var index = path.lastIndexOf(separator);
+            var index = path.lastIndexOf(separator);
             if (index >= 0)
             {
                 return path.substring(0, index);

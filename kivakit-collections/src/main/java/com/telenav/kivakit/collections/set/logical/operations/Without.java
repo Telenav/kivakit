@@ -45,14 +45,14 @@ public class Without<T> extends LogicalSet<T>
      * @param set The base set
      * @param without The set whose elements should be excluded from the base set
      */
-    public Without(final Set<T> set, final Set<T> without)
+    public Without(Set<T> set, Set<T> without)
     {
         this.set = set;
         this.without = without;
     }
 
     @Override
-    public boolean contains(final Object object)
+    public boolean contains(Object object)
     {
         return set.contains(object) && !without.contains(object);
     }
@@ -64,7 +64,7 @@ public class Without<T> extends LogicalSet<T>
         {
             return true;
         }
-        for (final var object : set)
+        for (var object : set)
         {
             if (!without.contains(object))
             {
@@ -86,7 +86,7 @@ public class Without<T> extends LogicalSet<T>
             {
                 while (iterator.hasNext())
                 {
-                    final var next = iterator.next();
+                    var next = iterator.next();
                     if (!without.contains(next))
                     {
                         return next;
@@ -101,7 +101,7 @@ public class Without<T> extends LogicalSet<T>
     public int size()
     {
         var size = set.size();
-        for (final var object : without)
+        for (var object : without)
         {
             if (set.contains(object))
             {

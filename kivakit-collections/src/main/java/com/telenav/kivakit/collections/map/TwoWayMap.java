@@ -41,7 +41,7 @@ public class TwoWayMap<Key, Value> extends BaseMap<Key, Value>
         this(Maximum.MAXIMUM);
     }
 
-    public TwoWayMap(final Maximum maximumSize)
+    public TwoWayMap(Maximum maximumSize)
     {
         valueToKey = new LinkedMap<>(maximumSize);
     }
@@ -53,22 +53,22 @@ public class TwoWayMap<Key, Value> extends BaseMap<Key, Value>
         valueToKey.clear();
     }
 
-    public Key key(final Value value)
+    public Key key(Value value)
     {
         return valueToKey.get(value);
     }
 
     @Override
-    public Value put(final Key key, final Value value)
+    public Value put(Key key, Value value)
     {
         valueToKey.put(value, key);
         return super.put(key, value);
     }
 
     @Override
-    public Value remove(final Object key)
+    public Value remove(Object key)
     {
-        final var value = super.remove(key);
+        var value = super.remove(key);
         valueToKey.remove(value);
         return value;
     }

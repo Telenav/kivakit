@@ -12,13 +12,13 @@ public class ExtractionTest
 {
     static class TestExtractor extends BaseExtractor<Integer, String>
     {
-        protected TestExtractor(final Listener listener)
+        protected TestExtractor(Listener listener)
         {
             super(listener);
         }
 
         @Override
-        public Integer onExtract(final String text)
+        public Integer onExtract(String text)
         {
             return Integer.parseInt(text);
         }

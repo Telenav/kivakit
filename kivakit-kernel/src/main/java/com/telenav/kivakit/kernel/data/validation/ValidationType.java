@@ -49,7 +49,7 @@ public class ValidationType extends Name
     public static final ValidationType VALIDATE_ALL = new ValidationType("ALL")
     {
         @Override
-        public boolean shouldValidate(final Class<?> type)
+        public boolean shouldValidate(Class<?> type)
         {
             return true;
         }
@@ -61,20 +61,20 @@ public class ValidationType extends Name
     /**
      * @param name A user-friendly name for this kind of validation
      */
-    public ValidationType(final String name)
+    public ValidationType(String name)
     {
         super(name);
     }
 
     /** Skip validation of the given type of value */
-    public ValidationType exclude(final Class<?> type)
+    public ValidationType exclude(Class<?> type)
     {
         toValidate.remove(type);
         return this;
     }
 
     /** Ensure the given type of value */
-    public ValidationType include(final Class<?> type)
+    public ValidationType include(Class<?> type)
     {
         toValidate.add(type);
         return this;
@@ -83,7 +83,7 @@ public class ValidationType extends Name
     /**
      * @return True if this validation should validate the given type
      */
-    public boolean shouldValidate(final Class<?> type)
+    public boolean shouldValidate(Class<?> type)
     {
         return toValidate.contains(type);
     }

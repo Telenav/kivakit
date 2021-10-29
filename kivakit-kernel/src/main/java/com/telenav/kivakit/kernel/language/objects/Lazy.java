@@ -43,7 +43,7 @@ public class Lazy<Value> implements Loadable, Unloadable
     /**
      * Factory method to create a Lazy object with the given value factory
      */
-    public static <V> Lazy<V> of(final Factory<V> factory)
+    public static <V> Lazy<V> of(Factory<V> factory)
     {
         return new Lazy<>(factory);
     }
@@ -57,7 +57,7 @@ public class Lazy<Value> implements Loadable, Unloadable
     /**
      * @param factory A factory to create values when needed
      */
-    protected Lazy(final Factory<Value> factory)
+    protected Lazy(Factory<Value> factory)
     {
         this.factory = factory;
     }

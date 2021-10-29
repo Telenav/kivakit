@@ -63,7 +63,7 @@ The *AsString* interface looks like this:
 
     public interface AsString
     {
-        default String asString(final StringFormat format)
+        default String asString( StringFormat format)
         {
             switch (format.identifier())
             {

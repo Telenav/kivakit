@@ -71,14 +71,14 @@ public class Modules
     /**
      * @return A list of all {@link ModuleResource}s under the given package
      */
-    public static synchronized List<ModuleResource> allNestedResources(final PackagePath _package)
+    public static synchronized List<ModuleResource> allNestedResources(PackagePath _package)
     {
         DEBUG.trace("Finding all nested resources in $", _package);
         var all = allResourcesUnder.get(_package);
         if (all == null)
         {
             all = new ArrayList<>();
-            for (final var resource : allResources())
+            for (var resource : allResources())
             {
                 if (_package.containsNested(resource))
                 {
@@ -102,21 +102,21 @@ public class Modules
             allResources = new ArrayList<>();
             references().forEach(reference ->
             {
-                final var location = reference.location().orElse(null);
+                var location = reference.location().orElse(null);
                 DEBUG.trace("Looking in $", location);
                 if (location != null && !"jrt".equals(location.getScheme()))
                 {
-                    try (final var reader = reference.open())
+                    try (var reader = reference.open())
                     {
                         reader.list().forEach(path ->
                         {
                             try
                             {
-                                final var optional = reader.find(path);
+                                var optional = reader.find(path);
                                 if (optional.isPresent())
                                 {
-                                    final var uri = optional.get();
-                                    final var resource = ModuleResource.moduleResource(reference, uri);
+                                    var uri = optional.get();
+                                    var resource = ModuleResource.moduleResource(reference, uri);
                                     if (resource != null)
                                     {
                                         DEBUG.trace("Found resource $.$", resource.packagePath(), resource.fileNameAsJavaPath());
@@ -124,13 +124,13 @@ public class Modules
                                     }
                                 }
                             }
-                            catch (final IOException ignored)
+                            catch (IOException ignored)
                             {
                                 LOGGER.warning("Unable to read resource $ in module $", path, reference);
                             }
                         });
                     }
-                    catch (final IOException e)
+                    catch (IOException e)
                     {
                         LOGGER.problem(e, "Unable to read module $", reference);
                     }
@@ -148,8 +148,8 @@ public class Modules
     /**
      * @return A list of {@link ModuleResource}s under the given package that match the given matcher
      */
-    public synchronized static List<ModuleResource> nestedResources(final PackagePath _package,
-                                                                    final Matcher<ModuleResource> matcher)
+    public synchronized static List<ModuleResource> nestedResources(PackagePath _package,
+                                                                    Matcher<ModuleResource> matcher)
     {
         return allNestedResources(_package)
                 .stream()
@@ -160,7 +160,7 @@ public class Modules
     /**
      * @return A list of all {@link ModuleResource}s under the given package
      */
-    public synchronized static List<ModuleResource> nestedResources(final PackagePath _package)
+    public synchronized static List<ModuleResource> nestedResources(PackagePath _package)
     {
         return nestedResources(_package, new AnythingMatcher<>());
     }
@@ -168,23 +168,23 @@ public class Modules
     /**
      * @return A single {@link ModuleResource} for the given path or null if no resource is found
      */
-    public static ModuleResource resource(final StringPath path)
+    public static ModuleResource resource(StringPath path)
     {
         DEBUG.trace("Locating module resource at $", path);
 
         // Go through each resolved module in the module system
-        for (final var reference : references())
+        for (var reference : references())
         {
-            final var location = reference.location().orElse(null);
+            var location = reference.location().orElse(null);
             DEBUG.trace("Looking in $", location);
             if (location != null)
             {
                 if (!"jrt".equals(location.getScheme()))
                 {
-                    try (final var reader = reference.open())
+                    try (var reader = reference.open())
                     {
                         // and if the resource can be found,
-                        final var uri = reader.find(path.join("/")).orElse(null);
+                        var uri = reader.find(path.join("/")).orElse(null);
                         if (uri != null)
                         {
                             // return it
@@ -192,7 +192,7 @@ public class Modules
                             return ModuleResource.moduleResource(reference, uri);
                         }
                     }
-                    catch (final IOException ignored)
+                    catch (IOException ignored)
                     {
                     }
                 }
@@ -204,7 +204,7 @@ public class Modules
     /**
      * @return A list of the {@link ModuleResource}s in the given package (but not any below it)
      */
-    public static List<ModuleResource> resources(final PackagePath _package)
+    public static List<ModuleResource> resources(PackagePath _package)
     {
         return nestedResources(_package, _package::contains);
     }

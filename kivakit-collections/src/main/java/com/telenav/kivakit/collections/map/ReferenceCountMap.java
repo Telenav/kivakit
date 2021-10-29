@@ -39,7 +39,7 @@ public class ReferenceCountMap<Key>
     /**
      * @return The reference count for the given object
      */
-    public Count count(final Key object)
+    public Count count(Key object)
     {
         var count = referenceCount.get(object);
         if (count == null || count.isZero())
@@ -53,7 +53,7 @@ public class ReferenceCountMap<Key>
     /**
      * Sets the count of the given object
      */
-    public void count(final Key object, final Count count)
+    public void count(Key object, Count count)
     {
         referenceCount.put(object, new MutableCount(count.asInt()));
     }
@@ -61,7 +61,7 @@ public class ReferenceCountMap<Key>
     /**
      * Decreases the reference count of the given object
      */
-    public void dereference(final Key object)
+    public void dereference(Key object)
     {
         referenceCount.get(object).decrement();
     }
@@ -69,7 +69,7 @@ public class ReferenceCountMap<Key>
     /**
      * @return True if the given object is referenced
      */
-    public boolean isReferenced(final Key object)
+    public boolean isReferenced(Key object)
     {
         return referenceCount.get(object).asLong() > 0L;
     }
@@ -77,7 +77,7 @@ public class ReferenceCountMap<Key>
     /**
      * Increases the reference count of the given object
      */
-    public void reference(final Key key)
+    public void reference(Key key)
     {
         referenceCount.get(key).increment();
     }

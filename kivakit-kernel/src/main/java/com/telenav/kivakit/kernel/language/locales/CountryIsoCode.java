@@ -532,8 +532,8 @@ public class CountryIsoCode
     /** ISO numeric country code (3 digit) */
     private final int numericCountryCode;
 
-    public CountryIsoCode(final String name, final String alpha2CountryCode, final String alpha3CountryCode,
-                          final int numericCountryCode)
+    public CountryIsoCode(String name, String alpha2CountryCode, String alpha3CountryCode,
+                          int numericCountryCode)
     {
         this.name = name;
         this.alpha2CountryCode = alpha2CountryCode;
@@ -568,11 +568,11 @@ public class CountryIsoCode
      * country name. More detail please refer to https://www.iso.org/iso/country_codes.htm.
      */
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof CountryIsoCode)
         {
-            final var that = (CountryIsoCode) object;
+            var that = (CountryIsoCode) object;
             return alpha2CountryCode.equals(that.alpha2CountryCode);
         }
         return false;

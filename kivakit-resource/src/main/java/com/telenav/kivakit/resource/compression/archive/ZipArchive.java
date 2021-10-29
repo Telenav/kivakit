@@ -110,7 +110,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
     /**
      * @return True if the resource is a zip archive
      */
-    public static boolean is(Listener listener, final File file)
+    public static boolean is(Listener listener, File file)
     {
         if (file.isRemote())
         {
@@ -120,7 +120,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
         {
             if (file.exists())
             {
-                final var zip = open(listener, file, ProgressReporter.NULL, READ);
+                var zip = open(listener, file, ProgressReporter.NULL, READ);
                 if (zip != null)
                 {
                     zip.close();
@@ -131,12 +131,12 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
         return false;
     }
 
-    public static ZipArchive open(Listener listener, final File file, final Mode mode)
+    public static ZipArchive open(Listener listener, File file, Mode mode)
     {
         return open(listener, file, ProgressReporter.NULL, mode);
     }
 
-    public static ZipArchive open(Listener listener, final File file, final ProgressReporter reporter, final Mode mode)
+    public static ZipArchive open(Listener listener, File file, ProgressReporter reporter, Mode mode)
     {
         if (file.isRemote())
         {
@@ -144,10 +144,10 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
         }
         else
         {
-            final var filesystem = filesystem(listener, file, mode);
+            var filesystem = filesystem(listener, file, mode);
             if (filesystem != null)
             {
-                final var zip = new ZipArchive(filesystem, reporter, file);
+                var zip = new ZipArchive(filesystem, reporter, file);
                 if (mode == ZipArchive.Mode.READ)
                 {
                     reporter.steps(zip.sizeInBytes());
@@ -177,12 +177,12 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
 
     private final ProgressReporter reporter;
 
-    public ZipArchive(final FileSystem filesystem, final File file)
+    public ZipArchive(FileSystem filesystem, File file)
     {
         this(filesystem, ProgressReporter.NULL, file);
     }
 
-    public ZipArchive(final FileSystem filesystem, final ProgressReporter reporter, final File file)
+    public ZipArchive(FileSystem filesystem, ProgressReporter reporter, File file)
     {
         this.reporter = reporter;
         assert file != null;
@@ -192,7 +192,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
         this.filesystem = filesystem;
     }
 
-    public void add(final List<File> files)
+    public void add(List<File> files)
     {
         add(files, ProgressReporter.NULL);
     }
@@ -200,9 +200,9 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
     /**
      * Adds the given list of files to this archive, calling the progress reporter as the operation proceeds
      */
-    public void add(final List<File> files, ProgressReporter reporter)
+    public void add(List<File> files, ProgressReporter reporter)
     {
-        for (final var file : files)
+        for (var file : files)
         {
             save(file.fileName().name(), file);
             reporter.next();
@@ -220,10 +220,10 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
     /**
      * @return The entries that match the given pattern
      */
-    public List<ZipEntry> entries(final Pattern compile)
+    public List<ZipEntry> entries(Pattern compile)
     {
-        final var entries = new ArrayList<ZipEntry>();
-        for (final var entry : this)
+        var entries = new ArrayList<ZipEntry>();
+        for (var entry : this)
         {
             if (compile.matcher(entry.path().fileName().name()).matches())
             {
@@ -239,9 +239,9 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
      *
      * @return The entry, if any, for the given name
      */
-    public synchronized ZipEntry entry(final String pathname)
+    public synchronized ZipEntry entry(String pathname)
     {
-        final var path = Unchecked.of(() -> filesystem.getPath(pathname)).orNull();
+        var path = Unchecked.of(() -> filesystem.getPath(pathname)).orNull();
         if (path != null)
         {
             return new ZipEntry(filesystem, path);
@@ -265,7 +265,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
     @Override
     public Iterator<ZipEntry> iterator()
     {
-        final var files = Unchecked.of(() -> Files.walk(filesystem.getPath("/"))).orNull();
+        var files = Unchecked.of(() -> Files.walk(filesystem.getPath("/"))).orNull();
         return files == null ? null : files
                 .filter(path -> !Files.isDirectory(path))
                 .map(path -> new ZipEntry(filesystem, path))
@@ -275,14 +275,14 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
     /**
      * @return The versioned object loaded from the given archive entry using the given serialization
      */
-    public synchronized <T> VersionedObject<T> load(final SerializationSession session, final String entryName)
+    public synchronized <T> VersionedObject<T> load(SerializationSession session, String entryName)
     {
         try
         {
-            final var entry = entry(entryName);
+            var entry = entry(entryName);
             if (entry != null)
             {
-                try (final var input = entry.openForReading(reporter))
+                try (var input = entry.openForReading(reporter))
                 {
                     if (input != null)
                     {
@@ -293,7 +293,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
                 session.close();
             }
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             fail(e, "Unable to load object '$' from $", entryName, this);
         }
@@ -314,11 +314,11 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
      * @param entryName The entry name
      * @param resource The resource to save
      */
-    public ZipArchive save(final String entryName, final Resource resource)
+    public ZipArchive save(String entryName, Resource resource)
     {
         saveEntry(entryName, output ->
         {
-            final var input = resource.openForReading(reporter);
+            var input = resource.openForReading(reporter);
             IO.copy(input, output);
             IO.close(input);
         });
@@ -328,9 +328,9 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
     /**
      * Saves the given object to the zip archive under the given entry name using the given serialization
      */
-    public <T> void save(final SerializationSession session,
-                         final String entryName,
-                         final VersionedObject<T> object)
+    public <T> void save(SerializationSession session,
+                         String entryName,
+                         VersionedObject<T> object)
     {
         saveEntry(entryName, output ->
         {
@@ -349,21 +349,21 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
     /**
      * Saves to the given archive entry, calling the callback with the output stream to write to
      */
-    public void saveEntry(final String entryName, final Callback<OutputStream> onWrite)
+    public void saveEntry(String entryName, Callback<OutputStream> onWrite)
     {
         try
         {
-            final var entry = entry(entryName);
+            var entry = entry(entryName);
             if (entry != null)
             {
-                try (final var output = entry.openForWriting())
+                try (var output = entry.openForWriting())
                 {
                     onWrite.onCallback(output);
                 }
                 entry.close();
             }
         }
-        catch (final IOException e)
+        catch (IOException e)
         {
             fail("Unable to save object to zip entry '$'", entryName);
         }
@@ -372,8 +372,8 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
     @Override
     public Bytes sizeInBytes()
     {
-        final var bytes = new MutableCount();
-        for (final var entry : entries(Pattern.compile(".*")))
+        var bytes = new MutableCount();
+        for (var entry : entries(Pattern.compile(".*")))
         {
             bytes.plus(entry.sizeInBytes());
         }
@@ -386,15 +386,15 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
         return file.path().toString();
     }
 
-    private static FileSystem filesystem(Listener listener, final File file, final Mode mode)
+    private static FileSystem filesystem(Listener listener, File file, Mode mode)
     {
-        final var fileUri = file.asJavaFile().toURI();
-        final var uri = URI.create("jar:" + fileUri);
+        var fileUri = file.asJavaFile().toURI();
+        var uri = URI.create("jar:" + fileUri);
         switch (mode)
         {
             case WRITE:
             {
-                final var environment = new VariableMap<String>();
+                var environment = new VariableMap<String>();
                 environment.put("create", "true");
                 return Unchecked.of(() -> Nio.filesystem(listener, uri, environment)).orNull();
             }
@@ -403,7 +403,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
             {
                 if (file.exists())
                 {
-                    final var filesystem = Unchecked.of(() -> FileSystems.getFileSystem(uri)).orNull();
+                    var filesystem = Unchecked.of(() -> FileSystems.getFileSystem(uri)).orNull();
                     if (filesystem != null)
                     {
                         return filesystem;

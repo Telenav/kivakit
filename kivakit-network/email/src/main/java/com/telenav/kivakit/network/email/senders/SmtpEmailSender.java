@@ -59,7 +59,7 @@ public class SmtpEmailSender extends EmailSender
         }
 
         @KivaKitPropertyConverter(Host.Converter.class)
-        public Configuration host(final Host host)
+        public Configuration host(Host host)
         {
             this.host = host;
             return this;
@@ -71,7 +71,7 @@ public class SmtpEmailSender extends EmailSender
         }
 
         @KivaKitPropertyConverter(PlainTextPassword.Converter.class)
-        public Configuration password(final Password password)
+        public Configuration password(Password password)
         {
             this.password = password;
             return this;
@@ -83,7 +83,7 @@ public class SmtpEmailSender extends EmailSender
         }
 
         @KivaKitPropertyConverter(UserName.Converter.class)
-        public Configuration username(final UserName username)
+        public Configuration username(UserName username)
         {
             this.username = username;
             return this;
@@ -92,7 +92,7 @@ public class SmtpEmailSender extends EmailSender
 
     private final Configuration configuration;
 
-    public SmtpEmailSender(final Configuration configuration)
+    public SmtpEmailSender(Configuration configuration)
     {
         super(configuration);
         this.configuration = configuration;
@@ -101,15 +101,15 @@ public class SmtpEmailSender extends EmailSender
     @Override
     protected Properties getMailSessionProperties()
     {
-        final var properties = new Properties();
+        var properties = new Properties();
         properties.setProperty("mail.transport.protocol", "smtp");
         properties.setProperty("mail.host", configuration.host().name());
-        final var username = configuration.username();
+        var username = configuration.username();
         if (username != null)
         {
             properties.setProperty("mail.user", username.toString());
         }
-        final var password = configuration.password();
+        var password = configuration.password();
         if (password != null)
         {
             properties.setProperty("mail.password", password.toString());

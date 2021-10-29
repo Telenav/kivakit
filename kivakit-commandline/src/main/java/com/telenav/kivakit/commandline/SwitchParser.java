@@ -123,7 +123,7 @@ public class SwitchParser<T> implements Named, Validatable
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    public static Builder<Boolean> booleanSwitchParser(final String name, final String description)
+    public static Builder<Boolean> booleanSwitchParser(String name, String description)
     {
         return builder(Boolean.class)
                 .name(name)
@@ -131,12 +131,12 @@ public class SwitchParser<T> implements Named, Validatable
                 .description(description);
     }
 
-    public static <T> Builder<T> builder(final Class<T> type)
+    public static <T> Builder<T> builder(Class<T> type)
     {
         return new Builder<T>().type(type);
     }
 
-    public static Builder<Bytes> bytesSwitchParser(final String name, final String description)
+    public static Builder<Bytes> bytesSwitchParser(String name, String description)
     {
         return builder(Bytes.class)
                 .name(name)
@@ -144,7 +144,7 @@ public class SwitchParser<T> implements Named, Validatable
                 .description(description);
     }
 
-    public static Builder<Count> countSwitchParser(final String name, final String description)
+    public static Builder<Count> countSwitchParser(String name, String description)
     {
         return builder(Count.class)
                 .name(name)
@@ -152,7 +152,7 @@ public class SwitchParser<T> implements Named, Validatable
                 .description(description);
     }
 
-    public static Builder<Double> doubleSwitchParser(final String name, final String description)
+    public static Builder<Double> doubleSwitchParser(String name, String description)
     {
         return builder(Double.class)
                 .name(name)
@@ -160,18 +160,18 @@ public class SwitchParser<T> implements Named, Validatable
                 .description(description);
     }
 
-    public static <E extends Enum<E>> Builder<E> enumSwitchParser(final String name,
-                                                                  final String description,
-                                                                  final Class<E> type)
+    public static <E extends Enum<E>> Builder<E> enumSwitchParser(String name,
+                                                                  String description,
+                                                                  Class<E> type)
     {
         if (type.isEnum())
         {
-            final var options = new StringList();
-            for (final var option : type.getEnumConstants())
+            var options = new StringList();
+            for (var option : type.getEnumConstants())
             {
                 options.add(CaseFormat.upperUnderscoreToLowerHyphen(option.name()));
             }
-            final var help = description + "\n\n" + options.bulleted(4) + "\n";
+            var help = description + "\n\n" + options.bulleted(4) + "\n";
             return builder(type)
                     .name(name)
                     .converter(new EnumConverter<>(LOGGER, type))
@@ -180,7 +180,7 @@ public class SwitchParser<T> implements Named, Validatable
         return fail("TimeFormat is not an enum");
     }
 
-    public static Builder<Integer> integerSwitchParser(final String name, final String description)
+    public static Builder<Integer> integerSwitchParser(String name, String description)
     {
         return builder(Integer.class)
                 .name(name)
@@ -189,13 +189,13 @@ public class SwitchParser<T> implements Named, Validatable
     }
 
     public static <E> Builder<ObjectList<E>> listSwitchParser(
-            final String name,
-            final String description,
-            final StringConverter<E> elementConverter,
-            final Class<E> elementType,
-            final String delimiter)
+            String name,
+            String description,
+            StringConverter<E> elementConverter,
+            Class<E> elementType,
+            String delimiter)
     {
-        final var builder = new Builder<ObjectList<E>>();
+        var builder = new Builder<ObjectList<E>>();
         builder.type = Type.of(elementType);
         return builder
                 .name(name)
@@ -203,7 +203,7 @@ public class SwitchParser<T> implements Named, Validatable
                 .description(description);
     }
 
-    public static Builder<LocalTime> localDateSwitchParser(final String name, final String description)
+    public static Builder<LocalTime> localDateSwitchParser(String name, String description)
     {
         return builder(LocalTime.class)
                 .name(name)
@@ -211,7 +211,7 @@ public class SwitchParser<T> implements Named, Validatable
                 .converter(new LocalDateConverter(LOGGER));
     }
 
-    public static Builder<LocalTime> localDateTimeSwitchParser(final String name, final String description)
+    public static Builder<LocalTime> localDateTimeSwitchParser(String name, String description)
     {
         return builder(LocalTime.class)
                 .name(name)
@@ -219,7 +219,7 @@ public class SwitchParser<T> implements Named, Validatable
                 .converter(new LocalDateTimeConverter(LOGGER));
     }
 
-    public static Builder<Long> longSwitchParser(final String name, final String description)
+    public static Builder<Long> longSwitchParser(String name, String description)
     {
         return builder(Long.class)
                 .name(name)
@@ -227,7 +227,7 @@ public class SwitchParser<T> implements Named, Validatable
                 .description(description);
     }
 
-    public static Builder<Maximum> maximumSwitchParser(final String name, final String description)
+    public static Builder<Maximum> maximumSwitchParser(String name, String description)
     {
         return builder(Maximum.class)
                 .name(name)
@@ -235,7 +235,7 @@ public class SwitchParser<T> implements Named, Validatable
                 .description(description);
     }
 
-    public static Builder<Minimum> minimumSwitchParser(final String name, final String description)
+    public static Builder<Minimum> minimumSwitchParser(String name, String description)
     {
         return builder(Minimum.class)
                 .name(name)
@@ -243,7 +243,7 @@ public class SwitchParser<T> implements Named, Validatable
                 .description(description);
     }
 
-    public static Builder<Pattern> patternSwitchParser(final String name, final String description)
+    public static Builder<Pattern> patternSwitchParser(String name, String description)
     {
         return builder(Pattern.class)
                 .name(name)
@@ -251,7 +251,7 @@ public class SwitchParser<T> implements Named, Validatable
                 .description(description);
     }
 
-    public static Builder<Percent> percentSwitchParser(final String name, final String description)
+    public static Builder<Percent> percentSwitchParser(String name, String description)
     {
         return builder(Percent.class)
                 .name(name)
@@ -259,10 +259,10 @@ public class SwitchParser<T> implements Named, Validatable
                 .description(description);
     }
 
-    public static <T extends Quantizable> Builder<T> quantizableSwitchParser(final String name,
-                                                                             final String description,
-                                                                             final Class<T> type,
-                                                                             final MapFactory<Long, T> factory)
+    public static <T extends Quantizable> Builder<T> quantizableSwitchParser(String name,
+                                                                             String description,
+                                                                             Class<T> type,
+                                                                             MapFactory<Long, T> factory)
     {
         return builder(type)
                 .name(name)
@@ -271,13 +271,13 @@ public class SwitchParser<T> implements Named, Validatable
     }
 
     public static <E> Builder<ObjectSet<E>> setSwitchParser(
-            final String name,
-            final String description,
-            final StringConverter<E> elementConverter,
-            final Class<E> elementType,
-            final String delimiter)
+            String name,
+            String description,
+            StringConverter<E> elementConverter,
+            Class<E> elementType,
+            String delimiter)
     {
-        final var builder = new Builder<ObjectSet<E>>();
+        var builder = new Builder<ObjectSet<E>>();
         builder.type = Type.of(elementType);
         return builder
                 .name(name)
@@ -285,7 +285,7 @@ public class SwitchParser<T> implements Named, Validatable
                 .description(description);
     }
 
-    public static Builder<String> stringSwitchParser(final String name, final String description)
+    public static Builder<String> stringSwitchParser(String name, String description)
     {
         return builder(String.class)
                 .name(name)
@@ -293,16 +293,16 @@ public class SwitchParser<T> implements Named, Validatable
                 .description(description);
     }
 
-    public static SwitchParser<Count> threadCountSwitchParser(final Count maximum)
+    public static SwitchParser<Count> threadCountSwitchParser(Count maximum)
     {
-        final var defaultThreads = maximum.minimum(JavaVirtualMachine.local().processors());
+        var defaultThreads = maximum.minimum(JavaVirtualMachine.local().processors());
         return countSwitchParser("threads", "Number of threads to use (default is " + defaultThreads + ")")
                 .optional()
                 .defaultValue(defaultThreads)
                 .build();
     }
 
-    public static Builder<Version> versionSwitchParser(final String name, final String description)
+    public static Builder<Version> versionSwitchParser(String name, String description)
     {
         return builder(Version.class)
                 .name(name)
@@ -372,25 +372,25 @@ public class SwitchParser<T> implements Named, Validatable
             return new SwitchParser<>(quantifier, name, type, defaultValue, validValues, converter, description);
         }
 
-        public Builder<T> converter(final Converter<String, T> converter)
+        public Builder<T> converter(Converter<String, T> converter)
         {
             this.converter = converter;
             return this;
         }
 
-        public Builder<T> defaultValue(final T defaultValue)
+        public Builder<T> defaultValue(T defaultValue)
         {
             this.defaultValue = defaultValue;
             return this;
         }
 
-        public Builder<T> description(final String description)
+        public Builder<T> description(String description)
         {
             this.description = description;
             return this;
         }
 
-        public Builder<T> name(final String name)
+        public Builder<T> name(String name)
         {
             this.name = name;
             return this;
@@ -414,13 +414,13 @@ public class SwitchParser<T> implements Named, Validatable
             return this;
         }
 
-        public Builder<T> type(final Class<T> type)
+        public Builder<T> type(Class<T> type)
         {
             this.type = Type.forClass(type);
             return this;
         }
 
-        public Builder<T> validValues(final Set<T> validValues)
+        public Builder<T> validValues(Set<T> validValues)
         {
             this.validValues = validValues;
             return this;
@@ -458,13 +458,13 @@ public class SwitchParser<T> implements Named, Validatable
      * @param description Description of what the switch does
      */
     private SwitchParser(
-            final Quantifier quantifier,
-            final String name,
-            final Type<T> type,
-            final T defaultValue,
-            final Set<T> validValues,
-            final Converter<String, T> converter,
-            final String description)
+            Quantifier quantifier,
+            String name,
+            Type<T> type,
+            T defaultValue,
+            Set<T> validValues,
+            Converter<String, T> converter,
+            String description)
     {
         this.name = name;
         this.quantifier = quantifier;
@@ -488,11 +488,11 @@ public class SwitchParser<T> implements Named, Validatable
      */
     @UmlNotPublicApi
     @UmlRelation(label = "gets")
-    public T get(final Switch _switch)
+    public T get(Switch _switch)
     {
-        final var messages = new ValidationIssues();
+        var messages = new ValidationIssues();
         messages.listenTo(converter);
-        final var value = converter.convert(_switch.value());
+        var value = converter.convert(_switch.value());
         if (messages.isEmpty())
         {
             return value;
@@ -506,7 +506,7 @@ public class SwitchParser<T> implements Named, Validatable
      */
     public String help()
     {
-        final var specifics = new StringList();
+        var specifics = new StringList();
         specifics.add(quantifier.name().toLowerCase());
         if (defaultValue != null)
         {
@@ -552,7 +552,7 @@ public class SwitchParser<T> implements Named, Validatable
      * {@inheritDoc}
      */
     @Override
-    public Validator validator(final ValidationType type)
+    public Validator validator(ValidationType type)
     {
         return new BaseValidator()
         {
@@ -574,7 +574,7 @@ public class SwitchParser<T> implements Named, Validatable
     /**
      * @param parent The parent command-line parser that owns this switch parser
      */
-    void parent(final CommandLineParser parent)
+    void parent(CommandLineParser parent)
     {
         this.parent = parent;
     }

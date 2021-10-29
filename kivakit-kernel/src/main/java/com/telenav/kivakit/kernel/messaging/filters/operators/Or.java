@@ -26,14 +26,14 @@ public class Or<T> implements Filter<T>
 
     private final Filter<T> b;
 
-    public Or(final Filter<T> a, final Filter<T> b)
+    public Or(Filter<T> a, Filter<T> b)
     {
         this.a = a;
         this.b = b;
     }
 
     @Override
-    public boolean accepts(final T value)
+    public boolean accepts(T value)
     {
         return a.accepts(value) || b.accepts(value);
     }

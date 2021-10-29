@@ -71,7 +71,7 @@ public class FtpResource extends BaseNetworkResource
 
         private final InputStream in;
 
-        public FtpInput(final FTPClient client, final InputStream in)
+        public FtpInput(FTPClient client, InputStream in)
         {
             this.client = client;
             this.in = in;
@@ -106,7 +106,7 @@ public class FtpResource extends BaseNetworkResource
 
     private final FTPClient client = new FTPClient();
 
-    public FtpResource(final NetworkLocation location, final NetworkAccessConstraints constraints)
+    public FtpResource(NetworkLocation location, NetworkAccessConstraints constraints)
     {
         super(location);
         if (!location.protocol().equals(Protocol.FTP))
@@ -126,13 +126,13 @@ public class FtpResource extends BaseNetworkResource
     }
 
     @Override
-    public void copyTo(final WritableResource destination, final CopyMode mode, final ProgressReporter reporter)
+    public void copyTo(WritableResource destination, CopyMode mode, ProgressReporter reporter)
     {
         try
         {
-            final var in = new BufferedInputStream(openBinaryFileForReading());
-            final var out = new BufferedOutputStream(destination.openForWriting());
-            final var buffer = new byte[1024];
+            var in = new BufferedInputStream(openBinaryFileForReading());
+            var out = new BufferedOutputStream(destination.openForWriting());
+            var buffer = new byte[1024];
             int readCount;
             reporter.start("Copying " + resource());
             while ((readCount = in.read(buffer)) > 0)
@@ -145,7 +145,7 @@ public class FtpResource extends BaseNetworkResource
             out.close();
             in.close();
         }
-        catch (final IOException e)
+        catch (IOException e)
         {
             illegalState("Unable to download file to " + destination, e);
         }
@@ -164,7 +164,7 @@ public class FtpResource extends BaseNetworkResource
                 client.disconnect();
             }
         }
-        catch (final IOException e)
+        catch (IOException e)
         {
             LOGGER.problem(e, "Unable to close the FTP connection.");
         }
@@ -172,11 +172,11 @@ public class FtpResource extends BaseNetworkResource
 
     public List<FtpResource> files()
     {
-        final List<FtpResource> resources = new ArrayList<>();
-        for (final var file : listFiles(networkLocation.networkPath()))
+        List<FtpResource> resources = new ArrayList<>();
+        for (var file : listFiles(networkLocation.networkPath()))
         {
-            final var path = networkLocation.networkPath().withChild(file.getName());
-            final var location = new FtpNetworkLocation(path);
+            var path = networkLocation.networkPath().withChild(file.getName());
+            var location = new FtpNetworkLocation(path);
             location.constraints(networkLocation.constraints());
             if (networkLocation instanceof FtpNetworkLocation)
             {
@@ -196,17 +196,17 @@ public class FtpResource extends BaseNetworkResource
     /**
      * @return The files present in the given folder.
      */
-    public ObjectList<FTPFile> listFiles(final NetworkPath path)
+    public ObjectList<FTPFile> listFiles(NetworkPath path)
     {
         try
         {
             connect();
-            final var listFiles = client.listFiles(path.join());
-            final var result = new ObjectList<FTPFile>();
+            var listFiles = client.listFiles(path.join());
+            var result = new ObjectList<FTPFile>();
             result.addAll(listFiles);
             return result;
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             return fatal(e, "Unable to list files at $", path);
         }
@@ -231,7 +231,7 @@ public class FtpResource extends BaseNetworkResource
             // Retrieve the file in question.
             return new FtpInput(client, client.retrieveFileStream(networkLocation.networkPath().join()));
         }
-        catch (final IOException e)
+        catch (IOException e)
         {
             return fatal(e, "Unable to transfer files");
         }
@@ -252,7 +252,7 @@ public class FtpResource extends BaseNetworkResource
             // Retrieve the file in question.
             return new FtpInput(client, client.retrieveFileStream(networkLocation.networkPath().join()));
         }
-        catch (final IOException e)
+        catch (IOException e)
         {
             return fatal(e, "Unable to transfer files");
         }
@@ -271,14 +271,14 @@ public class FtpResource extends BaseNetworkResource
     {
         // Connect to the server.
         client.connect(networkLocation.host().address());
-        final var timeoutInMilliseconds = (int) constraints.timeout().asMilliseconds();
+        var timeoutInMilliseconds = (int) constraints.timeout().asMilliseconds();
         client.setConnectTimeout(timeoutInMilliseconds);
         client.setSoTimeout(timeoutInMilliseconds);
         client.setDefaultTimeout(timeoutInMilliseconds);
 
         if (networkLocation instanceof FtpNetworkLocation)
         {
-            final var mode = ((FtpNetworkLocation) networkLocation).mode();
+            var mode = ((FtpNetworkLocation) networkLocation).mode();
             if (FtpNetworkLocation.Mode.Passive.equals(mode))
             {
                 client.enterLocalPassiveMode();

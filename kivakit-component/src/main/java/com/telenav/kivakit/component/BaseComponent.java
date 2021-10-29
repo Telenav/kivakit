@@ -26,9 +26,9 @@ public class BaseComponent extends BaseRepeater implements Component, RegistryTr
      *
      * @param handler The handler to call
      */
-    public void onMessage(final Consumer<Message> handler)
+    public void onMessage(Consumer<Message> handler)
     {
-        final Listener listener = handler::accept;
+        Listener listener = handler::accept;
         listener.listenTo(this);
     }
 }

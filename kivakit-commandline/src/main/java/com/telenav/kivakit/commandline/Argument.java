@@ -38,7 +38,7 @@ public class Argument
     /** The argument's string value */
     private final String value;
 
-    public Argument(final String value)
+    public Argument(String value)
     {
         this.value = value;
     }
@@ -47,9 +47,9 @@ public class Argument
      * @param parser The argument parser
      * @return The value of this argument using the given argument parser
      */
-    public <T> T get(final ArgumentParser<T> parser)
+    public <T> T get(ArgumentParser<T> parser)
     {
-        final var value = parser.get(this);
+        var value = parser.get(this);
         if (value == null)
         {
             parser.parent().exit("Unable to parse argument: " + this.value);

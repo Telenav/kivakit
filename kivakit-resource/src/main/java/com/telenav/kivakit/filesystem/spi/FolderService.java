@@ -82,10 +82,10 @@ public interface FolderService extends FileSystemObjectService
     /**
      * @return The files in this folder that match the matcher
      */
-    default List<FileService> files(final Matcher<FilePath> matcher)
+    default List<FileService> files(Matcher<FilePath> matcher)
     {
-        final List<FileService> files = new ArrayList<>();
-        for (final var file : files())
+        List<FileService> files = new ArrayList<>();
+        for (var file : files())
         {
             if (matcher.matches(file.path()))
             {
@@ -113,10 +113,10 @@ public interface FolderService extends FileSystemObjectService
     /**
      * @return The folders in this folder that match the matcher
      */
-    default List<FolderService> folders(final Matcher<FilePath> matcher)
+    default List<FolderService> folders(Matcher<FilePath> matcher)
     {
-        final List<FolderService> folders = new ArrayList<>();
-        for (final var folder : folders())
+        List<FolderService> folders = new ArrayList<>();
+        for (var folder : folders())
         {
             if (matcher.matches(folder.path()))
             {
@@ -160,18 +160,18 @@ public interface FolderService extends FileSystemObjectService
     /**
      * @return Files in this folder that match the given matcher, recursively
      */
-    List<FileService> nestedFiles(final Matcher<FilePath> matcher);
+    List<FileService> nestedFiles(Matcher<FilePath> matcher);
 
     /**
      * @return Files in this folder that match the given matcher, recursively
      */
-    List<FolderService> nestedFolders(final Matcher<FilePath> matcher);
+    List<FolderService> nestedFolders(Matcher<FilePath> matcher);
 
     /**
      * @param that The folder to rename this folder to
      * @return True if the folder was renamed
      */
-    default boolean renameTo(final FolderService that)
+    default boolean renameTo(FolderService that)
     {
         return unsupported();
     }
@@ -180,7 +180,7 @@ public interface FolderService extends FileSystemObjectService
      * @param baseName Base name of temporary file
      * @return A unique, existing temporary file in this folder
      */
-    default FileService temporaryFile(final FileName baseName)
+    default FileService temporaryFile(FileName baseName)
     {
         return unsupported();
     }
@@ -189,7 +189,7 @@ public interface FolderService extends FileSystemObjectService
      * @param baseName Base name of temporary folder
      * @return A unique, existing temporary folder in this folder
      */
-    default FolderService temporaryFolder(final FileName baseName)
+    default FolderService temporaryFolder(FileName baseName)
     {
         return unsupported();
     }

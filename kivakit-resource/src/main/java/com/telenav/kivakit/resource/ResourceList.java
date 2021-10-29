@@ -61,22 +61,22 @@ public class ResourceList extends ArrayList<Resource>
     {
         private final Extension extension;
 
-        public Converter(final Listener listener, final Extension extension)
+        public Converter(Listener listener, Extension extension)
         {
             super(listener);
             this.extension = extension;
         }
 
         @Override
-        protected ResourceList onToValue(final String value)
+        protected ResourceList onToValue(String value)
         {
-            final var resources = new ResourceList(extension);
-            for (final var path : value.split(","))
+            var resources = new ResourceList(extension);
+            for (var path : value.split(","))
             {
-                final var resource = Resource.resolve(path);
+                var resource = Resource.resolve(path);
                 if (resource instanceof File)
                 {
-                    final var file = (File) resource;
+                    var file = (File) resource;
                     if (file.isFolder())
                     {
                         resources.addAll(file.asFolder().nestedFiles(extension.fileMatcher()));
@@ -102,22 +102,22 @@ public class ResourceList extends ArrayList<Resource>
         extension = null;
     }
 
-    public ResourceList(final Extension extension)
+    public ResourceList(Extension extension)
     {
         this.extension = extension;
     }
 
-    public ResourceList(final Iterable<Resource> resources)
+    public ResourceList(Iterable<Resource> resources)
     {
         extension = null;
-        for (final var resource : resources)
+        for (var resource : resources)
         {
             add(resource);
         }
     }
 
     @Override
-    public void add(final int index, final Resource resource)
+    public void add(int index, Resource resource)
     {
         if (accepts(resource.fileName()))
         {
@@ -126,7 +126,7 @@ public class ResourceList extends ArrayList<Resource>
     }
 
     @Override
-    public boolean add(final Resource resource)
+    public boolean add(Resource resource)
     {
         if (accepts(resource.fileName()))
         {
@@ -136,9 +136,9 @@ public class ResourceList extends ArrayList<Resource>
     }
 
     @Override
-    public boolean addAll(final Collection<? extends Resource> collection)
+    public boolean addAll(Collection<? extends Resource> collection)
     {
-        for (final Resource file : collection)
+        for (Resource file : collection)
         {
             add(file);
         }
@@ -153,7 +153,7 @@ public class ResourceList extends ArrayList<Resource>
     public Resource largest()
     {
         Resource largest = null;
-        for (final var resource : this)
+        for (var resource : this)
         {
             if (largest == null || resource.isLargerThan(largest))
             {
@@ -163,19 +163,19 @@ public class ResourceList extends ArrayList<Resource>
         return largest;
     }
 
-    public ResourceList matching(final Extension extension)
+    public ResourceList matching(Extension extension)
     {
         return matching(resource ->
         {
-            final var fileExtension = resource.compoundExtension();
+            var fileExtension = resource.compoundExtension();
             return fileExtension != null && fileExtension.endsWith(extension);
         });
     }
 
-    public ResourceList matching(final Matcher<Resource> matcher)
+    public ResourceList matching(Matcher<Resource> matcher)
     {
-        final var matches = new ResourceList();
-        for (final var resource : this)
+        var matches = new ResourceList();
+        for (var resource : this)
         {
             if (matcher.matches(resource))
             {
@@ -185,10 +185,10 @@ public class ResourceList extends ArrayList<Resource>
         return matches;
     }
 
-    public ResourceList relativeTo(final Folder folder)
+    public ResourceList relativeTo(Folder folder)
     {
-        final var resources = new ResourceList();
-        for (final var resource : this)
+        var resources = new ResourceList();
+        for (var resource : this)
         {
             resources.add(resource.path().asFile().relativeTo(folder));
         }
@@ -196,7 +196,7 @@ public class ResourceList extends ArrayList<Resource>
     }
 
     @Override
-    public Resource set(final int index, final Resource resource)
+    public Resource set(int index, Resource resource)
     {
         if (accepts(resource.fileName()))
         {
@@ -208,7 +208,7 @@ public class ResourceList extends ArrayList<Resource>
     public Resource smallest()
     {
         Resource smallest = null;
-        for (final var resource : this)
+        for (var resource : this)
         {
             if (smallest == null || resource.isSmallerThan(smallest))
             {
@@ -237,14 +237,14 @@ public class ResourceList extends ArrayList<Resource>
     public Bytes totalSize()
     {
         var bytes = Bytes._0;
-        for (final var resource : this)
+        for (var resource : this)
         {
             bytes = bytes.add(resource.sizeInBytes());
         }
         return bytes;
     }
 
-    private boolean accepts(final FileName name)
+    private boolean accepts(FileName name)
     {
         return extension == null || name.endsWith(extension);
     }

@@ -87,7 +87,7 @@ public class AsStringIndenter
     /**
      * By default, an indenter includes all properties and fields explicitly marked with {@link KivaKitIncludeProperty}
      */
-    public AsStringIndenter(final StringFormat format)
+    public AsStringIndenter(StringFormat format)
     {
         this(format, 0);
     }
@@ -95,7 +95,7 @@ public class AsStringIndenter
     /**
      * By default, an indenter includes all properties and fields explicitly marked with {@link KivaKitIncludeProperty}
      */
-    public AsStringIndenter(final StringFormat format, final int level)
+    public AsStringIndenter(StringFormat format, int level)
     {
         this(format, level, PropertyFilter.kivakitProperties(INCLUDED_FIELDS_AND_METHODS, INCLUDED_FIELDS));
     }
@@ -103,7 +103,7 @@ public class AsStringIndenter
     /**
      * @param filter The filter to determine what properties to include
      */
-    public AsStringIndenter(final StringFormat format, final int level, final PropertyFilter filter)
+    public AsStringIndenter(StringFormat format, int level, PropertyFilter filter)
     {
         this.format = format;
         this.filter = filter;
@@ -123,7 +123,7 @@ public class AsStringIndenter
     /**
      * Adds the given line to the traversal
      */
-    public void add(final String line, final Object... arguments)
+    public void add(String line, Object... arguments)
     {
         indenter.appendLine(Message.format(line, arguments));
     }
@@ -132,7 +132,7 @@ public class AsStringIndenter
      * Recursively formats the given object, including nested {@link Collection}s, fields and methods marked with {@link
      * KivaKitIncludeProperty} and sub-objects implementing {@link AsIndentedString}.
      */
-    public AsStringIndenter asString(final Object object)
+    public AsStringIndenter asString(Object object)
     {
         if (haveVisited(object))
         {
@@ -154,7 +154,7 @@ public class AsStringIndenter
             else if (object instanceof Collection)
             {
                 // add the elements in brackets
-                final var collection = (Collection<?>) object;
+                var collection = (Collection<?>) object;
                 bracketed(collection, object1 -> asString(format));
             }
             // otherwise, if it's an AsIndentedString and we're recursing (to avoid infinite recursion),
@@ -166,19 +166,19 @@ public class AsStringIndenter
             else
             {
                 // and last of all, if we just have a vanilla object, loop through the properties of the object,
-                final var type = Type.of(object);
-                final var properties = type.properties(filter);
+                var type = Type.of(object);
+                var properties = type.properties(filter);
                 if (properties.isEmpty())
                 {
                     labeled(CaseFormat.camelCaseToHyphenated(type.name()), toString(object));
                 }
                 else
                 {
-                    for (final var property : properties)
+                    for (var property : properties)
                     {
                         // get the property value
-                        final var hyphenated = CaseFormat.camelCaseToHyphenated(property.name());
-                        final var value = property.get(object);
+                        var hyphenated = CaseFormat.camelCaseToHyphenated(property.name());
+                        var value = property.get(object);
                         if (value != null)
                         {
                             // and if it's an AsIndentedString,
@@ -208,12 +208,12 @@ public class AsStringIndenter
     /**
      * Calls the consumer for each element int the given collection within indented curly brackets
      */
-    public AsStringIndenter bracketed(final Iterable<?> iterable, final Consumer<Object> consumer)
+    public AsStringIndenter bracketed(Iterable<?> iterable, Consumer<Object> consumer)
     {
         text("{");
         indented(() ->
                 {
-                    for (final var at : iterable)
+                    for (var at : iterable)
                     {
                         consumer.accept(at);
                     }
@@ -226,7 +226,7 @@ public class AsStringIndenter
     /**
      * @return True if it is allowable to recurse on the given object
      */
-    public boolean canExplore(final Object value)
+    public boolean canExplore(Object value)
     {
         return !isLeaf(value) && indentationLevel() < levels.asInt();
     }
@@ -234,7 +234,7 @@ public class AsStringIndenter
     /**
      * @return True if the given object has already been visited
      */
-    public boolean haveVisited(final Object object)
+    public boolean haveVisited(Object object)
     {
         return visited.contains(object);
     }
@@ -247,7 +247,7 @@ public class AsStringIndenter
     /**
      * Adds the given label and then indents what is in the code block
      */
-    public AsStringIndenter indented(final String label, final Runnable code)
+    public AsStringIndenter indented(String label, Runnable code)
     {
         label(label);
         indented(code);
@@ -257,7 +257,7 @@ public class AsStringIndenter
     /**
      * Increases the indent level, executes the given code and then decreases the indent level again
      */
-    public AsStringIndenter indented(final Runnable code)
+    public AsStringIndenter indented(Runnable code)
     {
         try
         {
@@ -271,11 +271,11 @@ public class AsStringIndenter
         return this;
     }
 
-    public boolean isLeaf(final Object object)
+    public boolean isLeaf(Object object)
     {
         if (indentationLevel() > 0)
         {
-            for (final var at : leaves)
+            for (var at : leaves)
             {
                 if (at.isAssignableFrom(object.getClass()))
                 {
@@ -289,7 +289,7 @@ public class AsStringIndenter
     /**
      * Adds the given label on a line by itself
      */
-    public AsStringIndenter label(final String label)
+    public AsStringIndenter label(String label)
     {
         return text(label + ":");
     }
@@ -297,7 +297,7 @@ public class AsStringIndenter
     /**
      * Adds a one-line labeled object
      */
-    public AsStringIndenter labeled(final String label, final Object object)
+    public AsStringIndenter labeled(String label, Object object)
     {
         if (format.isHtml())
         {
@@ -313,7 +313,7 @@ public class AsStringIndenter
     /**
      * @param levels The maximum number of levels of recursion allowed
      */
-    public AsStringIndenter levels(final Maximum levels)
+    public AsStringIndenter levels(Maximum levels)
     {
         this.levels = levels;
         return this;
@@ -322,7 +322,7 @@ public class AsStringIndenter
     /**
      * Designates that given class as a leaf which should not be explored further
      */
-    public AsStringIndenter pruneAt(final Class<?> leaf)
+    public AsStringIndenter pruneAt(Class<?> leaf)
     {
         leaves.add(leaf);
         return this;
@@ -331,7 +331,7 @@ public class AsStringIndenter
     /**
      * Adds the given label on a line by itself
      */
-    public AsStringIndenter text(final String label)
+    public AsStringIndenter text(String label)
     {
         if (format.isHtml())
         {
@@ -363,12 +363,12 @@ public class AsStringIndenter
     /**
      * Marks the given object as visited
      */
-    public void visited(final Object object)
+    public void visited(Object object)
     {
         visited.add(object);
     }
 
-    private String toString(final Object object)
+    private String toString(Object object)
     {
         if (object == null)
         {

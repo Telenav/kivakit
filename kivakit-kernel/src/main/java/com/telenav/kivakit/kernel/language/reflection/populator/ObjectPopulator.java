@@ -40,7 +40,7 @@ public class ObjectPopulator
 
     private final PropertyFilter filter;
 
-    public ObjectPopulator(final Listener listener, final PropertyFilter filter, final PropertyValueSource source)
+    public ObjectPopulator(Listener listener, PropertyFilter filter, PropertyValueSource source)
     {
         this.listener = listener;
         this.filter = filter;
@@ -53,19 +53,19 @@ public class ObjectPopulator
      * @param object The object to populate
      * @return The populated object (for method chaining)
      */
-    public <T> T populate(final T object)
+    public <T> T populate(T object)
     {
         // Go through each property on the object,
-        for (final var property : Type.of(object).properties(filter))
+        for (var property : Type.of(object).properties(filter))
         {
             // get any value for the given property,
-            final var value = source.valueFor(property);
+            var value = source.valueFor(property);
 
             // and if the value is non-null,
             if (value != null)
             {
                 // set the property value,
-                final var message = property.set(listener, object, value);
+                var message = property.set(listener, object, value);
 
                 // and if something went wrong,
                 if (message instanceof Problem)

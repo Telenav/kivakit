@@ -88,9 +88,9 @@ public class Primes
     /**
      * @return A prime allocation size greater than the given size
      */
-    public static long allocationSize(final long size)
+    public static long allocationSize(long size)
     {
-        for (final var allocationSize : SIZES)
+        for (var allocationSize : SIZES)
         {
             if (size <= allocationSize)
             {
@@ -102,17 +102,17 @@ public class Primes
     }
 
     @SuppressWarnings("UseOfSystemOutOrSystemErr")
-    public static void main(final String[] args)
+    public static void main(String[] args)
     {
         // Compute primes from 11 to 100,000,00. Assumption is that no single hashmap will be larger
         // than this size. This isn't an issue because larger maps are split into multiple maps.
 
-        final var primes = new LinkedList<Integer>();
+        var primes = new LinkedList<Integer>();
         for (var i = 11; i < 2_000_000_000; i++)
         {
             if (i % 2 != 0 && i % 3 != 0 && i % 5 != 0 && Ints.isPrime(i))
             {
-                final var spacing = !primes.isEmpty() ? i - primes.getLast() : 0;
+                var spacing = !primes.isEmpty() ? i - primes.getLast() : 0;
                 if ((i < 1_000)
                         || (i < 50_000 && spacing > 1000)
                         || (i < 100_000 && spacing > 5_000)
@@ -132,7 +132,7 @@ public class Primes
             }
         }
         System.out.println(primes.size() + " primes:");
-        for (final var prime : primes)
+        for (var prime : primes)
         {
             System.out.print(Count.count(prime).toCommaSeparatedString().replaceAll(",", "_") + ", ");
         }
@@ -142,7 +142,7 @@ public class Primes
      * @return The smallest "prime power of two" that is larger than the given value. A "prime power of two" is
      * basically the next prime after a power of two.
      */
-    public static int powerOfTwoGreaterThan(final int value)
+    public static int powerOfTwoGreaterThan(int value)
     {
         if (value < primePowersOfTwo[0])
         {

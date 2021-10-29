@@ -32,12 +32,12 @@ import java.time.ZoneId;
 @UmlClassDiagram(diagram = DiagramLanguageTime.class)
 public class LocalDateConverter extends BaseFormattedLocalTimeConverter
 {
-    public LocalDateConverter(final Listener listener, final ZoneId zoneId)
+    public LocalDateConverter(Listener listener, ZoneId zoneId)
     {
         super(listener, TimeFormats.KIVAKIT_DATE, zoneId);
     }
 
-    public LocalDateConverter(final Listener listener)
+    public LocalDateConverter(Listener listener)
     {
         this(listener, ZoneId.of("UTC"));
     }

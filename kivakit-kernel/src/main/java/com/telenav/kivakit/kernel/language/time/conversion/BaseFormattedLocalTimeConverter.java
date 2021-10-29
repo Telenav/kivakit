@@ -39,13 +39,13 @@ import java.time.format.DateTimeFormatter;
 @UmlClassDiagram(diagram = DiagramLanguageTime.class)
 public class BaseFormattedLocalTimeConverter extends BaseFormattedConverter
 {
-    public BaseFormattedLocalTimeConverter(final Listener listener, final DateTimeFormatter formatter)
+    public BaseFormattedLocalTimeConverter(Listener listener, DateTimeFormatter formatter)
     {
         this(listener, formatter, null);
     }
 
-    public BaseFormattedLocalTimeConverter(final Listener listener, final DateTimeFormatter formatter,
-                                           final ZoneId zone)
+    public BaseFormattedLocalTimeConverter(Listener listener, DateTimeFormatter formatter,
+                                           ZoneId zone)
     {
         super(listener, formatter, zone);
     }
@@ -56,15 +56,15 @@ public class BaseFormattedLocalTimeConverter extends BaseFormattedConverter
     }
 
     @Override
-    protected String onToString(final LocalTime value)
+    protected String onToString(LocalTime value)
     {
-        final var timeZone = value.timeZone();
+        var timeZone = value.timeZone();
         return formatter().format(Instant.ofEpochMilli(value.asMilliseconds())
                 .atZone(timeZone)) + (addTimeZone() ? "_" + TimeZones.displayName(timeZone) : "");
     }
 
     @Override
-    protected LocalTime onToValue(final String value)
+    protected LocalTime onToValue(String value)
     {
         zone(zone(value));
         var time = Paths.withoutSuffix(value, '_');
@@ -76,13 +76,13 @@ public class BaseFormattedLocalTimeConverter extends BaseFormattedConverter
     }
 
     @SuppressWarnings("ConstantConditions")
-    private ZoneId zone(final String value)
+    private ZoneId zone(String value)
     {
         if (zone() != null)
         {
             return zone();
         }
-        final var zone = TimeZones.forDisplayName(Paths.optionalSuffix(value, '_'));
+        var zone = TimeZones.forDisplayName(Paths.optionalSuffix(value, '_'));
         if (zone != null)
         {
             return zone;

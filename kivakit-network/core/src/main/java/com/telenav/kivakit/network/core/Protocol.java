@@ -62,7 +62,7 @@ public class Protocol extends Name
     /**
      * @return The protocol with the given name, or null if name doesn't represent a known protocol
      */
-    public static Protocol forName(final String name)
+    public static Protocol forName(String name)
     {
         return nameToProtocol.get(name);
     }
@@ -70,7 +70,7 @@ public class Protocol extends Name
     /**
      * @return The protocol for the given port number
      */
-    public static Protocol forPort(final int port)
+    public static Protocol forPort(int port)
     {
         return portToProtocol.get(port);
     }
@@ -78,7 +78,7 @@ public class Protocol extends Name
     /** The default port for this protocol */
     private int defaultPort;
 
-    public Protocol(final String name, final int defaultPort)
+    public Protocol(String name, int defaultPort)
     {
         super(name);
         this.defaultPort = defaultPort;

@@ -42,13 +42,13 @@ public abstract class BaseCollectionChangeWatcher<T> extends BaseRepeater implem
     private boolean changed;
 
     @Override
-    public void addListener(final CollectionChangeListener<T> listener)
+    public void addListener(CollectionChangeListener<T> listener)
     {
         listeners.add(listener);
     }
 
     @Override
-    public void removeListener(final CollectionChangeListener<T> listener)
+    public void removeListener(CollectionChangeListener<T> listener)
     {
         listeners.remove(listener);
     }
@@ -62,7 +62,7 @@ public abstract class BaseCollectionChangeWatcher<T> extends BaseRepeater implem
             {
                 wait();
             }
-            catch (final InterruptedException ignored)
+            catch (InterruptedException ignored)
             {
             }
         }
@@ -78,30 +78,30 @@ public abstract class BaseCollectionChangeWatcher<T> extends BaseRepeater implem
         notifyAll();
     }
 
-    protected void onAdded(final T value)
+    protected void onAdded(T value)
     {
         trace("An element was added to the collection");
-        for (final var listener : listeners)
+        for (var listener : listeners)
         {
             listener.onAdded(value);
         }
         changed();
     }
 
-    protected void onModified(final T value)
+    protected void onModified(T value)
     {
         trace("The collection was modified");
-        for (final var listener : listeners)
+        for (var listener : listeners)
         {
             listener.onModified(value);
         }
         changed();
     }
 
-    protected void onRemoved(final T value)
+    protected void onRemoved(T value)
     {
         trace("An element was removed from the collection");
-        for (final var listener : listeners)
+        for (var listener : listeners)
         {
             listener.onRemoved(value);
         }

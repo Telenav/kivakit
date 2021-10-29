@@ -93,7 +93,7 @@ public interface Component extends
     class UncheckedVoid implements Unchecked<Void>
     {
         @Override
-        public Void run() throws Exception
+        public Void run()
         {
             return null;
         }

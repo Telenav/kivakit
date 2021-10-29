@@ -37,7 +37,7 @@ public class ThrowingFailureReporter extends BaseFailureReporter
 {
     @Override
     @UmlExcludeMember
-    public void report(final Message message)
+    public void report(Message message)
     {
         throw new ValidationFailure(message.cause(), message.formatted(MessageFormatter.Format.WITH_EXCEPTION));
     }

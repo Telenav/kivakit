@@ -38,7 +38,7 @@ public class ConcurrentObjectMap<Key, Value> extends BaseMap<Key, Value> impleme
     /**
      * A bounded concurrent map
      */
-    public ConcurrentObjectMap(final Maximum maximumSize)
+    public ConcurrentObjectMap(Maximum maximumSize)
     {
         this(maximumSize, new ConcurrentHashMap<>());
     }
@@ -46,7 +46,7 @@ public class ConcurrentObjectMap<Key, Value> extends BaseMap<Key, Value> impleme
     /**
      * A bounded concurrent map with the given implementation
      */
-    public ConcurrentObjectMap(final Maximum maximumSize, final ConcurrentMap<Key, Value> map)
+    public ConcurrentObjectMap(Maximum maximumSize, ConcurrentMap<Key, Value> map)
     {
         super(maximumSize, map);
     }
@@ -62,14 +62,14 @@ public class ConcurrentObjectMap<Key, Value> extends BaseMap<Key, Value> impleme
     /**
      * An unbounded concurrent map with the given implementation
      */
-    protected ConcurrentObjectMap(final ConcurrentMap<Key, Value> map)
+    protected ConcurrentObjectMap(ConcurrentMap<Key, Value> map)
     {
         this(Maximum.MAXIMUM, map);
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public Value getOrCreate(final Object key)
+    public Value getOrCreate(Object key)
     {
         var value = get(key);
         if (value == null)
@@ -77,7 +77,7 @@ public class ConcurrentObjectMap<Key, Value> extends BaseMap<Key, Value> impleme
             value = onInitialize((Key) key);
             if (value != null)
             {
-                final var oldValue = putIfAbsent((Key) key, value);
+                var oldValue = putIfAbsent((Key) key, value);
                 if (oldValue != null)
                 {
                     value = oldValue;
@@ -89,7 +89,7 @@ public class ConcurrentObjectMap<Key, Value> extends BaseMap<Key, Value> impleme
 
     @SuppressWarnings("NullableProblems")
     @Override
-    public Value putIfAbsent(final Key key, final Value value)
+    public Value putIfAbsent(Key key, Value value)
     {
         if (checkSize(1))
         {
@@ -100,21 +100,21 @@ public class ConcurrentObjectMap<Key, Value> extends BaseMap<Key, Value> impleme
 
     @SuppressWarnings("NullableProblems")
     @Override
-    public boolean remove(final Object key, final Object value)
+    public boolean remove(Object key, Object value)
     {
         return concurrentMap().remove(key, value);
     }
 
     @SuppressWarnings("NullableProblems")
     @Override
-    public boolean replace(final Key key, final Value oldValue, final Value newValue)
+    public boolean replace(Key key, Value oldValue, Value newValue)
     {
         return concurrentMap().replace(key, oldValue, newValue);
     }
 
     @SuppressWarnings("NullableProblems")
     @Override
-    public Value replace(final Key key, final Value value)
+    public Value replace(Key key, Value value)
     {
         return concurrentMap().replace(key, value);
     }

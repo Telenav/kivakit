@@ -34,17 +34,17 @@ import java.util.Base64;
 @LexakaiJavadoc(complete = true)
 public class AttachmentConverter extends BaseCollectionConverter<EmailAttachment>
 {
-    public AttachmentConverter(final Listener listener)
+    public AttachmentConverter(Listener listener)
     {
         super(listener, ",");
     }
 
     @Override
-    protected EmailAttachment onConvertToObject(final StringList columns)
+    protected EmailAttachment onConvertToObject(StringList columns)
     {
         if (columns.size() == 3)
         {
-            final var attachment = new EmailAttachment();
+            var attachment = new EmailAttachment();
             attachment.mimeType(columns.get(0));
             attachment.filename(columns.get(1));
             attachment.data(Base64.getEncoder().encode(columns.get(2).getBytes()));
@@ -54,9 +54,9 @@ public class AttachmentConverter extends BaseCollectionConverter<EmailAttachment
     }
 
     @Override
-    protected StringList onConvertToStringList(final EmailAttachment value)
+    protected StringList onConvertToStringList(EmailAttachment value)
     {
-        final var list = new StringList();
+        var list = new StringList();
         list.add(value.mimeType());
         list.add(value.filename());
         list.add(new String(Base64.getDecoder().decode(value.data())));

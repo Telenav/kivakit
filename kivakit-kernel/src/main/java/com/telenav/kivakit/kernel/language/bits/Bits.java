@@ -33,7 +33,7 @@ public class Bits
     /**
      * @return The given number of one bits
      */
-    public static long oneBits(final Count count)
+    public static long oneBits(Count count)
     {
         var one = 1L;
         var value = 0L;

@@ -46,9 +46,9 @@ public interface Addable<T>
     /**
      * @param values A sequence of values to add
      */
-    default boolean addAll(final Iterable<? extends T> values)
+    default boolean addAll(Iterable<? extends T> values)
     {
-        for (final T value : values)
+        for (T value : values)
         {
             if (!add(value))
             {
@@ -61,7 +61,7 @@ public interface Addable<T>
     /**
      * @param values A sequence of values to add
      */
-    default boolean addAll(final Iterator<? extends T> values)
+    default boolean addAll(Iterator<? extends T> values)
     {
         while (values.hasNext())
         {

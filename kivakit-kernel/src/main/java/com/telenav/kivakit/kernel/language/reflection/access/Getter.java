@@ -27,13 +27,13 @@ import java.lang.annotation.Annotation;
 @UmlClassDiagram(diagram = DiagramLanguageReflection.class)
 public interface Getter extends Named
 {
-    <T extends Annotation> T annotation(final Class<T> annotationType);
+    <T extends Annotation> T annotation(Class<T> annotationType);
 
     /**
      * @param object The object to get from
      * @return The object retrieved or null if something went wrong
      */
-    Object get(final Object object);
+    Object get(Object object);
 
     Class<?> type();
 }

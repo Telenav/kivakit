@@ -109,7 +109,7 @@ public class PropertyMap extends VariableMap<String>
         return new PropertyMap();
     }
 
-    public static PropertyMap load(final Listener listener, final Resource resource)
+    public static PropertyMap load(Listener listener, Resource resource)
     {
         if (resource.exists())
         {
@@ -119,25 +119,25 @@ public class PropertyMap extends VariableMap<String>
         return new PropertyMap();
     }
 
-    public static PropertyMap load(final Listener listener, final PackagePath _package, final String path)
+    public static PropertyMap load(Listener listener, PackagePath _package, String path)
     {
         return load(listener, PackageResource.of(_package, FilePath.parseFilePath(path)));
     }
 
-    public static PropertyMap load(final Listener listener, final Class<?> _package, final String path)
+    public static PropertyMap load(Listener listener, Class<?> _package, String path)
     {
         return load(listener, PackagePath.packagePath(_package), path);
     }
 
-    public static PropertyMap localized(final Listener listener, final PackagePath path, final Locale locale)
+    public static PropertyMap localized(Listener listener, PackagePath path, Locale locale)
     {
         return PropertyMap.load(listener, path, locale.path().join("/"));
     }
 
-    public static PropertyMap of(final VariableMap<String> variables)
+    public static PropertyMap of(VariableMap<String> variables)
     {
-        final var map = create();
-        for (final var key : variables.keySet())
+        var map = create();
+        for (var key : variables.keySet())
         {
             map.put(key, variables.get(key));
         }
@@ -150,17 +150,17 @@ public class PropertyMap extends VariableMap<String>
     {
     }
 
-    public void add(final Object object, final PropertyFilter filter)
+    public void add(Object object, PropertyFilter filter)
     {
-        final Type<?> type = Type.of(object);
-        for (final var property : type.properties(filter))
+        Type<?> type = Type.of(object);
+        for (var property : type.properties(filter))
         {
             if (!"class".equals(property.name()))
             {
-                final var getter = property.getter();
+                var getter = property.getter();
                 if (getter != null)
                 {
-                    final var value = getter.get(object);
+                    var value = getter.get(object);
                     if (value != null)
                     {
                         put(property.name(), value.toString());
@@ -173,7 +173,7 @@ public class PropertyMap extends VariableMap<String>
     /**
      * @return The given value as a {@link Folder}
      */
-    public File asFile(final String key)
+    public File asFile(String key)
     {
         return File.parse(get(key));
     }
@@ -181,7 +181,7 @@ public class PropertyMap extends VariableMap<String>
     /**
      * @return The given value as a {@link Folder}
      */
-    public Folder asFolder(final String key)
+    public Folder asFolder(String key)
     {
         return Folder.parse(asPath(key));
     }
@@ -197,7 +197,7 @@ public class PropertyMap extends VariableMap<String>
     /**
      * @return Associate a comment with the given key. The comment will be written out when the property map is saved.
      */
-    public PropertyMap comment(final String key, final String comment)
+    public PropertyMap comment(String key, String comment)
     {
         comments.put(key, comment);
         return this;
@@ -206,8 +206,8 @@ public class PropertyMap extends VariableMap<String>
     @Override
     public PropertyMap copy()
     {
-        final var map = new PropertyMap();
-        for (final var key : keySet())
+        var map = new PropertyMap();
+        for (var key : keySet())
         {
             map.put(key, get(key));
         }
@@ -217,26 +217,26 @@ public class PropertyMap extends VariableMap<String>
     /**
      * @return This property map with all values expanded using the values in the given property map
      */
-    public PropertyMap expandedWith(final VariableMap<String> that)
+    public PropertyMap expandedWith(VariableMap<String> that)
     {
-        final var map = new PropertyMap();
-        for (final var key : keySet())
+        var map = new PropertyMap();
+        for (var key : keySet())
         {
-            final var value = get(key);
+            var value = get(key);
             map.put(key, that.expand(value));
         }
         return map;
     }
 
     @Override
-    public String join(final String separator)
+    public String join(String separator)
     {
-        final var entries = new StringList();
-        final var keys = new ArrayList<>(keySet());
+        var entries = new StringList();
+        var keys = new ArrayList<>(keySet());
         keys.sort(Comparator.naturalOrder());
-        for (final var key : keys)
+        for (var key : keys)
         {
-            final var comment = comments.get(key);
+            var comment = comments.get(key);
             if (comment != null)
             {
                 entries.add("");
@@ -247,14 +247,14 @@ public class PropertyMap extends VariableMap<String>
         return entries.join(separator);
     }
 
-    public void save(final WritableResource resource)
+    public void save(WritableResource resource)
     {
         save(resource.baseName().name(), resource);
     }
 
-    public void save(final String heading, final WritableResource resource)
+    public void save(String heading, WritableResource resource)
     {
-        final var out = resource.printWriter();
+        var out = resource.printWriter();
         out.println(AsciiArt.box(heading, '#', '#'));
         out.println("");
         out.println(this);
@@ -264,21 +264,21 @@ public class PropertyMap extends VariableMap<String>
     /**
      * @return Loads the given properties resource, interpolating system variables into each value
      */
-    private static PropertyMap load(final Resource resource, final ProgressReporter reporter)
+    private static PropertyMap load(Resource resource, ProgressReporter reporter)
     {
-        final var properties = new PropertyMap();
-        final var linePattern = Pattern.compile("(?<key>[^=]*?)\\s*=\\s*(?<value>[^=]*)");
+        var properties = new PropertyMap();
+        var linePattern = Pattern.compile("(?<key>[^=]*?)\\s*=\\s*(?<value>[^=]*)");
         int lineNumber = 1;
-        for (final var line : resource.reader().lines(reporter))
+        for (var line : resource.reader().lines(reporter))
         {
-            final var trimmed = line.trim();
+            var trimmed = line.trim();
             if (!trimmed.isEmpty() && !trimmed.startsWith("#") && !trimmed.startsWith("//"))
             {
-                final var matcher = linePattern.matcher(line);
+                var matcher = linePattern.matcher(line);
                 if (matcher.matches())
                 {
-                    final var key = matcher.group("key");
-                    final var value = matcher.group("value");
+                    var key = matcher.group("key");
+                    var value = matcher.group("value");
                     properties.put(key, value);
                 }
                 else

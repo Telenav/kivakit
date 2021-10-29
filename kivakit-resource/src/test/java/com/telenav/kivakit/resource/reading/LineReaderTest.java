@@ -30,7 +30,7 @@ public class LineReaderTest extends UnitTest
     {
         var i = 1;
         final var resource = PackageResource.of(PackagePath.packagePath(getClass()), "test.txt");
-        for (final String line : resource.reader().linesAsStringList())
+        for ( String line : resource.reader().linesAsStringList())
         {
             ensureEqual(i++, Integer.parseInt(line));
         }

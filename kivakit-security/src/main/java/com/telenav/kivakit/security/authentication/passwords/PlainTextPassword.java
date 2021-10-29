@@ -39,7 +39,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 @LexakaiJavadoc(complete = true)
 public class PlainTextPassword implements Password, AsString
 {
-    public static PlainTextPassword parse(final String password)
+    public static PlainTextPassword parse(String password)
     {
         return new PlainTextPassword(password);
     }
@@ -52,13 +52,13 @@ public class PlainTextPassword implements Password, AsString
     @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<Password>
     {
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
         }
 
         @Override
-        protected Password onToValue(final String value)
+        protected Password onToValue(String value)
         {
             return parse(value);
         }
@@ -66,13 +66,13 @@ public class PlainTextPassword implements Password, AsString
 
     private final String password;
 
-    protected PlainTextPassword(final String password)
+    protected PlainTextPassword(String password)
     {
         this.password = password;
     }
 
     @Override
-    public String asString(final StringFormat format)
+    public String asString(StringFormat format)
     {
         if (password != null)
         {
@@ -82,11 +82,11 @@ public class PlainTextPassword implements Password, AsString
     }
 
     @Override
-    public boolean matches(final Password uncast)
+    public boolean matches(Password uncast)
     {
         if (uncast instanceof PlainTextPassword)
         {
-            final var that = (PlainTextPassword) uncast;
+            var that = (PlainTextPassword) uncast;
             return password.equals(that.password);
         }
         return false;

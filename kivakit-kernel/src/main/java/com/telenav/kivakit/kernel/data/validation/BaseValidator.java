@@ -58,7 +58,7 @@ import java.util.Collection;
  * <p>
  * This is roughly the validation method for Place:
  * <pre>
- * public Validator validator(final ValidationType type)
+ * public Validator validator( ValidationType type)
  * {
  *     return new BaseValidator()
  *     {
@@ -141,15 +141,15 @@ public abstract class BaseValidator implements Validator
      * {@inheritDoc}
      */
     @Override
-    public final boolean validate(final Listener listener)
+    public final boolean validate(Listener listener)
     {
-        final var start = Time.now();
+        var start = Time.now();
 
         // Save the given listener for calls to problem and warning methods,
         this.listener = listener;
 
         // determine if we have re-entered this method on this thread
-        final var reentered = reentrancy.hasReentered();
+        var reentered = reentrancy.hasReentered();
 
         reentrancy.enter();
         try
@@ -162,7 +162,7 @@ public abstract class BaseValidator implements Validator
             }
 
             // Make a copy of the current issues for the thread.
-            final var issues = issues().copy();
+            var issues = issues().copy();
 
             // Next, call the subclass onValidate() method (which may make calls to problem or glitch methods, causing invalidity)
             onValidate();
@@ -195,7 +195,7 @@ public abstract class BaseValidator implements Validator
     /**
      * Records a {@link Glitch} with the given message without broadcasting it
      */
-    protected Glitch addGlitch(final String message, final Object... parameters)
+    protected Glitch addGlitch(String message, Object... parameters)
     {
         return addIfNotNull(new Glitch(message, parameters));
     }
@@ -203,7 +203,7 @@ public abstract class BaseValidator implements Validator
     /**
      * Records a {@link Problem} with the given message without broadcasting it
      */
-    protected Problem addProblem(final String message, final Object... parameters)
+    protected Problem addProblem(String message, Object... parameters)
     {
         return addIfNotNull(new Problem(message, parameters));
     }
@@ -211,7 +211,7 @@ public abstract class BaseValidator implements Validator
     /**
      * Records a {@link Quibble} with the given message without broadcasting it
      */
-    protected Quibble addQuibble(final String message, final Object... parameters)
+    protected Quibble addQuibble(String message, Object... parameters)
     {
         return addIfNotNull(new Quibble(message, parameters));
     }
@@ -219,7 +219,7 @@ public abstract class BaseValidator implements Validator
     /**
      * Records a {@link Warning} with the given message without broadcasting it
      */
-    protected Warning addWarning(final String message, final Object... parameters)
+    protected Warning addWarning(String message, Object... parameters)
     {
         return addIfNotNull(new Warning(message, parameters));
     }
@@ -227,7 +227,7 @@ public abstract class BaseValidator implements Validator
     /**
      * Broadcasts a {@link Glitch} with the given message
      */
-    protected Glitch glitch(final String message, final Object... parameters)
+    protected Glitch glitch(String message, Object... parameters)
     {
         return addIfNotNull(listener.glitch(message, parameters));
     }
@@ -235,7 +235,7 @@ public abstract class BaseValidator implements Validator
     /**
      * Broadcasts a {@link Glitch} with the given message if the invalid parameter is true
      */
-    protected final Glitch glitchIf(final boolean invalid, final String message, final Object... parameters)
+    protected final Glitch glitchIf(boolean invalid, String message, Object... parameters)
     {
         if (invalid)
         {
@@ -247,7 +247,7 @@ public abstract class BaseValidator implements Validator
     /**
      * Broadcasts a {@link OperationHalted} with the given message
      */
-    protected OperationHalted halt(final String message, final Object... parameters)
+    protected OperationHalted halt(String message, Object... parameters)
     {
         return listener.halted(message, parameters);
     }
@@ -257,7 +257,7 @@ public abstract class BaseValidator implements Validator
      *
      * @return True if the collection is null or empty
      */
-    protected final boolean isEmpty(final Collection<?> collection)
+    protected final boolean isEmpty(Collection<?> collection)
     {
         return collection == null || collection.isEmpty();
     }
@@ -267,7 +267,7 @@ public abstract class BaseValidator implements Validator
      *
      * @return True if the value is null or empty
      */
-    protected final boolean isEmpty(final String value)
+    protected final boolean isEmpty(String value)
     {
         return Strings.isEmpty(value);
     }
@@ -277,7 +277,7 @@ public abstract class BaseValidator implements Validator
      *
      * @return True if the count is null or empty
      */
-    protected final boolean isZero(final Count count)
+    protected final boolean isZero(Count count)
     {
         return count == null || count.isZero();
     }
@@ -293,7 +293,7 @@ public abstract class BaseValidator implements Validator
     /**
      * Broadcasts a {@link Problem} with the given message
      */
-    protected Problem problem(final String message, final Object... parameters)
+    protected Problem problem(String message, Object... parameters)
     {
         return addIfNotNull(listener.problem(message, parameters));
     }
@@ -303,7 +303,7 @@ public abstract class BaseValidator implements Validator
      *
      * @return True if there was a problem
      */
-    protected final Problem problemIf(final boolean invalid, final String message, final Object... parameters)
+    protected final Problem problemIf(boolean invalid, String message, Object... parameters)
     {
         if (invalid)
         {
@@ -315,7 +315,7 @@ public abstract class BaseValidator implements Validator
     /**
      * Broadcasts a {@link Quibble} with the given message
      */
-    protected Quibble quibble(final String message, final Object... parameters)
+    protected Quibble quibble(String message, Object... parameters)
     {
         return addIfNotNull(listener.quibble(message, parameters));
     }
@@ -323,7 +323,7 @@ public abstract class BaseValidator implements Validator
     /**
      * Broadcasts a {@link Quibble} with the given message if the invalid parameter is true
      */
-    protected final Quibble quibbleIf(final boolean invalid, final String message, final Object... parameters)
+    protected final Quibble quibbleIf(boolean invalid, String message, Object... parameters)
     {
         if (invalid)
         {
@@ -336,7 +336,7 @@ public abstract class BaseValidator implements Validator
      * Re-enters validation by calling the given validator. Calling the validator's {@link #validate(Listener)} method
      * directly may result in an inconsistent state.
      */
-    protected final void validate(final Validator validator)
+    protected final void validate(Validator validator)
     {
         reentrancy.enter();
         try
@@ -368,7 +368,7 @@ public abstract class BaseValidator implements Validator
     /**
      * Broadcasts a {@link Warning} with the given message
      */
-    protected Warning warning(final String message, final Object... parameters)
+    protected Warning warning(String message, Object... parameters)
     {
         return addIfNotNull(listener.warning(message, parameters));
     }
@@ -376,7 +376,7 @@ public abstract class BaseValidator implements Validator
     /**
      * Broadcasts a {@link Warning} with the given message if the invalid parameter is true
      */
-    protected Warning warningIf(final boolean invalid, final String message, final Object... parameters)
+    protected Warning warningIf(boolean invalid, String message, Object... parameters)
     {
         if (invalid)
         {
@@ -390,7 +390,7 @@ public abstract class BaseValidator implements Validator
         return issues.get();
     }
 
-    private <T extends Message> T addIfNotNull(final T message)
+    private <T extends Message> T addIfNotNull(T message)
     {
         issues().add(message);
         return message;

@@ -75,7 +75,7 @@ public class NetworkPath extends FilePath
     /**
      * @return A network path for the given URI
      */
-    public static NetworkPath networkPath(final URI uri)
+    public static NetworkPath networkPath(URI uri)
     {
         return networkPath(Port.from(uri), uri.getPath());
     }
@@ -83,22 +83,22 @@ public class NetworkPath extends FilePath
     /**
      * @return The given path relative to the given port as a network path
      */
-    public static NetworkPath networkPath(final Port port, final String path)
+    public static NetworkPath networkPath(Port port, String path)
     {
-        final var root = "/" + port + "/";
+        var root = "/" + port + "/";
         return new NetworkPath(port, StringPath.parseStringPath(path, "/", "/").withRoot(root));
     }
 
     /**
      * @return A network path for the given string
      */
-    public static NetworkPath parseNetworkPath(final String path)
+    public static NetworkPath parseNetworkPath(String path)
     {
         try
         {
             return networkPath(new URI(path));
         }
-        catch (final URISyntaxException e)
+        catch (URISyntaxException e)
         {
             return null;
         }
@@ -112,13 +112,13 @@ public class NetworkPath extends FilePath
     @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<NetworkPath>
     {
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
         }
 
         @Override
-        protected NetworkPath onToValue(final String value)
+        protected NetworkPath onToValue(String value)
         {
             return parseNetworkPath(value);
         }
@@ -127,18 +127,18 @@ public class NetworkPath extends FilePath
     /** The port for this network path */
     private final Port port;
 
-    protected NetworkPath(final Port port, final StringPath path)
+    protected NetworkPath(Port port, StringPath path)
     {
         this(port, path.rootElement(), path.elements());
     }
 
-    protected NetworkPath(final Port port, final String root, final List<String> elements)
+    protected NetworkPath(Port port, String root, List<String> elements)
     {
         super(StringList.stringList(port.protocol().name()), root, elements);
         this.port = port;
     }
 
-    protected NetworkPath(final NetworkPath that)
+    protected NetworkPath(NetworkPath that)
     {
         super(that);
         port = that.port;
@@ -171,7 +171,7 @@ public class NetworkPath extends FilePath
         {
             return new URI(port.toString() + "/" + super.toString());
         }
-        catch (final URISyntaxException e)
+        catch (URISyntaxException e)
         {
             LOGGER.problem(e, "Unable to convert $ to a URI", this);
             return null;
@@ -182,7 +182,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath file(final FileName child)
+    public NetworkPath file(FileName child)
     {
         return (NetworkPath) super.file(child);
     }
@@ -227,7 +227,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath subpath(final int start, final int end)
+    public NetworkPath subpath(int start, int end)
     {
         return (NetworkPath) super.subpath(start, end);
     }
@@ -236,7 +236,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath transformed(final Function<String, String> consumer)
+    public NetworkPath transformed(Function<String, String> consumer)
     {
         return (NetworkPath) super.transformed(consumer);
     }
@@ -245,7 +245,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withChild(final String child)
+    public NetworkPath withChild(String child)
     {
         return (NetworkPath) super.withChild(child);
     }
@@ -254,7 +254,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withChild(final Path<String> that)
+    public NetworkPath withChild(Path<String> that)
     {
         return (NetworkPath) super.withChild(that);
     }
@@ -263,7 +263,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withExtension(final Extension extension)
+    public NetworkPath withExtension(Extension extension)
     {
         return (NetworkPath) super.withExtension(extension);
     }
@@ -272,7 +272,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withParent(final String element)
+    public NetworkPath withParent(String element)
     {
         return (NetworkPath) super.withParent(element);
     }
@@ -281,7 +281,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withParent(final Path<String> that)
+    public NetworkPath withParent(Path<String> that)
     {
         return (NetworkPath) super.withParent(that);
     }
@@ -290,7 +290,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withRoot(final String root)
+    public NetworkPath withRoot(String root)
     {
         return (NetworkPath) super.withRoot(root);
     }
@@ -299,7 +299,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withSeparator(final String separator)
+    public NetworkPath withSeparator(String separator)
     {
         return (NetworkPath) super.withSeparator(separator);
     }
@@ -326,7 +326,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withoutOptionalPrefix(final Path<String> prefix)
+    public NetworkPath withoutOptionalPrefix(Path<String> prefix)
     {
         return (NetworkPath) super.withoutOptionalPrefix(prefix);
     }
@@ -335,7 +335,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withoutOptionalSuffix(final Path<String> suffix)
+    public NetworkPath withoutOptionalSuffix(Path<String> suffix)
     {
         return (NetworkPath) super.withoutOptionalSuffix(suffix);
     }
@@ -344,7 +344,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withoutPrefix(final Path<String> prefix)
+    public NetworkPath withoutPrefix(Path<String> prefix)
     {
         return (NetworkPath) super.withoutPrefix(prefix);
     }
@@ -371,7 +371,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    public NetworkPath withoutSuffix(final Path<String> suffix)
+    public NetworkPath withoutSuffix(Path<String> suffix)
     {
         return (NetworkPath) super.withoutSuffix(suffix);
     }
@@ -380,7 +380,7 @@ public class NetworkPath extends FilePath
      * {@inheritDoc}
      */
     @Override
-    protected NetworkPath onCopy(final String root, final List<String> elements)
+    protected NetworkPath onCopy(String root, List<String> elements)
     {
         return new NetworkPath(port(), root, elements);
     }

@@ -43,7 +43,7 @@ public class BatcherTest extends BaseRepeater
         }
 
         @Override
-        protected void onBatch(final Batch objects)
+        protected void onBatch(Batch objects)
         {
             total += objects.size();
             trace("Processed batch of " + objects.size() + ", total = " + total);
@@ -73,9 +73,9 @@ public class BatcherTest extends BaseRepeater
     @Test
     public void testStop()
     {
-        final var batcher = batcher();
+        var batcher = batcher();
         batcher.start(Count._1);
-        final var adder = batcher.adder();
+        var adder = batcher.adder();
         for (var i = 0; i < 1_000; i++)
         {
             adder.add(i);
@@ -93,12 +93,12 @@ public class BatcherTest extends BaseRepeater
                 .withQueueSize(Count._100);
     }
 
-    private void testBatcher(final int totalCount)
+    private void testBatcher(int totalCount)
     {
-        final var batcher = batcher();
+        var batcher = batcher();
         batcher.addListener(this);
         batcher.start(Count._1);
-        final var adder = batcher.adder();
+        var adder = batcher.adder();
         for (var i = 0; i < totalCount; i++)
         {
             adder.add(i);

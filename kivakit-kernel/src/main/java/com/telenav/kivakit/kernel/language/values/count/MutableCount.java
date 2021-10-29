@@ -43,7 +43,7 @@ public class MutableCount implements Countable, Comparable<MutableCount>, Listen
         this(0);
     }
 
-    public MutableCount(final long count)
+    public MutableCount(long count)
     {
         Ensure.ensure(count >= 0, "Negative count $", count);
         this.count = count;
@@ -65,7 +65,7 @@ public class MutableCount implements Countable, Comparable<MutableCount>, Listen
     }
 
     @Override
-    public int compareTo(final MutableCount that)
+    public int compareTo(MutableCount that)
     {
         return (int) (asLong() - that.asLong());
     }
@@ -83,11 +83,11 @@ public class MutableCount implements Countable, Comparable<MutableCount>, Listen
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof MutableCount)
         {
-            final var that = (MutableCount) object;
+            var that = (MutableCount) object;
             return asLong() == that.asLong();
         }
         return false;
@@ -110,12 +110,12 @@ public class MutableCount implements Countable, Comparable<MutableCount>, Listen
         return count++;
     }
 
-    public boolean isGreaterThan(final MutableCount that)
+    public boolean isGreaterThan(MutableCount that)
     {
         return asLong() > that.asLong();
     }
 
-    public boolean isLessThan(final MutableCount that)
+    public boolean isLessThan(MutableCount that)
     {
         return asLong() < that.asLong();
     }
@@ -125,7 +125,7 @@ public class MutableCount implements Countable, Comparable<MutableCount>, Listen
         return asLong() == 0L;
     }
 
-    public long minus(final long that)
+    public long minus(long that)
     {
         count -= that;
         assert count >= 0;
@@ -133,12 +133,12 @@ public class MutableCount implements Countable, Comparable<MutableCount>, Listen
     }
 
     @Override
-    public void onMessage(final Message message)
+    public void onMessage(Message message)
     {
         increment();
     }
 
-    public Percent percentOf(final Count total)
+    public Percent percentOf(Count total)
     {
         if (total.isZero())
         {
@@ -147,19 +147,19 @@ public class MutableCount implements Countable, Comparable<MutableCount>, Listen
         return Percent.of(asLong() * 100.0 / total.asLong());
     }
 
-    public long plus(final long that)
+    public long plus(long that)
     {
         count += that;
         assert count >= 0;
         return count;
     }
 
-    public long plus(final Count that)
+    public long plus(Count that)
     {
         return plus(that.get());
     }
 
-    public void set(final long count)
+    public void set(long count)
     {
         assert count >= 0;
         this.count = count;

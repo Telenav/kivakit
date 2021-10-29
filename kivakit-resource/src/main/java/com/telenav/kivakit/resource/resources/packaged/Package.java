@@ -93,12 +93,12 @@ public class Package implements ResourceFolder
     /**
      * @param _package The path to this package
      */
-    public static Package of(final PackagePath _package)
+    public static Package of(PackagePath _package)
     {
         return new Package(_package);
     }
 
-    public static Package of(final Class<?> _packageType, final String path)
+    public static Package of(Class<?> _packageType, String path)
     {
         return of(PackagePath.parsePackagePath(_packageType, path));
     }
@@ -118,15 +118,15 @@ public class Package implements ResourceFolder
         public static final String SCHEME = "classpath:";
 
         @Override
-        public boolean accepts(final ResourceFolderIdentifier identifier)
+        public boolean accepts(ResourceFolderIdentifier identifier)
         {
             return identifier.identifier().startsWith(SCHEME);
         }
 
         @Override
-        public ResourceFolder resolve(final ResourceFolderIdentifier identifier)
+        public ResourceFolder resolve(ResourceFolderIdentifier identifier)
         {
-            final var filepath = FilePath.parseFilePath(Strip.leading(identifier.identifier(), SCHEME));
+            var filepath = FilePath.parseFilePath(Strip.leading(identifier.identifier(), SCHEME));
             return Package.of(PackagePath.packagePath(filepath));
         }
     }
@@ -134,32 +134,32 @@ public class Package implements ResourceFolder
     /** The path to this package */
     private final PackagePath package_;
 
-    protected Package(final PackagePath _package)
+    protected Package(PackagePath _package)
     {
-        this.package_ = _package;
+        package_ = _package;
     }
 
     /**
      * @return The named sub-package under this one
      */
-    public Package child(final String name)
+    public Package child(String name)
     {
         return new Package(package_.withChild(name));
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Package)
         {
-            final Package that = (Package) object;
+            Package that = (Package) object;
             return path().equals(that.path());
         }
         return false;
     }
 
     @Override
-    public Package folder(final String path)
+    public Package folder(String path)
     {
         return child(path);
     }
@@ -185,7 +185,7 @@ public class Package implements ResourceFolder
     /**
      * @return A localized property map for the given locale
      */
-    public PropertyMap localizedProperties(Listener listener, final Locale locale)
+    public PropertyMap localizedProperties(Listener listener, Locale locale)
     {
         return PropertyMap.localized(listener, path(), locale);
     }
@@ -195,7 +195,7 @@ public class Package implements ResourceFolder
      */
     public Package parent()
     {
-        final var parent = package_.withoutLast();
+        var parent = package_.withoutLast();
         return parent == null ? null : new Package(parent);
     }
 
@@ -211,14 +211,14 @@ public class Package implements ResourceFolder
      * @return The resource in this package with the given name
      */
     @Override
-    public PackageResource resource(final String name)
+    public PackageResource resource(String name)
     {
         if (name.contains("/"))
         {
-            final var path = FilePath.parseFilePath(name);
+            var path = FilePath.parseFilePath(name);
             return folder(path.withoutLast().toString()).resource(path.last());
         }
-        for (final var resource : resources())
+        for (var resource : resources())
         {
             if (resource.fileName().name().equals(name))
             {
@@ -232,16 +232,16 @@ public class Package implements ResourceFolder
      * @return The resources in this package folder
      */
     @Override
-    public List<PackageResource> resources(final Matcher<? super Resource> matcher)
+    public List<PackageResource> resources(Matcher<? super Resource> matcher)
     {
-        final var resources = package_
+        var resources = package_
                 .resources()
                 .stream()
                 .map(PackageResource::of)
                 .filter(matcher)
                 .collect(Collectors.toList());
 
-        final var existing = new HashSet<>(resources);
+        var existing = new HashSet<>(resources);
         Consumer<PackageResource> addDeduplicated = resource ->
         {
             if (!existing.contains(resource))
@@ -282,20 +282,20 @@ public class Package implements ResourceFolder
      *
      * @return Any package resources that can be found in the directory classpath (if any) containing this class
      */
-    private List<PackageResource> directoryResources(final Matcher<? super PackageResource> matcher)
+    private List<PackageResource> directoryResources(Matcher<? super PackageResource> matcher)
     {
         // Get the code source for the package type class,
-        final var resources = new ArrayList<PackageResource>();
-        final CodeSource source = package_.packageType().getProtectionDomain().getCodeSource();
+        var resources = new ArrayList<PackageResource>();
+        CodeSource source = package_.packageType().getProtectionDomain().getCodeSource();
         if (source != null)
         {
             try
             {
                 // and if the location URL ends in "/",
-                final URL location = source.getLocation();
+                URL location = source.getLocation();
                 if (location != null && location.toString().endsWith("/"))
                 {
-                    final var filepath = package_.join("/") + "/";
+                    var filepath = package_.join("/") + "/";
                     var directory = Folder.of(location.toURI()).folder(filepath);
                     if (directory.exists())
                     {
@@ -310,7 +310,7 @@ public class Package implements ResourceFolder
                     }
                 }
             }
-            catch (final Exception ignored)
+            catch (Exception ignored)
             {
                 LOGGER.warning("Exception thrown while loading directory resources from $", package_);
             }
@@ -324,31 +324,31 @@ public class Package implements ResourceFolder
      *
      * @return Any package resources that can be found in the jar (if any) containing this class
      */
-    private List<PackageResource> jarResources(final Matcher<? super PackageResource> matcher)
+    private List<PackageResource> jarResources(Matcher<? super PackageResource> matcher)
     {
         // Get the code source for the package type class,
-        final var resources = new ArrayList<PackageResource>();
-        final CodeSource source = package_.packageType().getProtectionDomain().getCodeSource();
+        var resources = new ArrayList<PackageResource>();
+        CodeSource source = package_.packageType().getProtectionDomain().getCodeSource();
         if (source != null)
         {
             try
             {
                 // and if the location URL ends in ".jar",
-                final URL location = source.getLocation();
+                URL location = source.getLocation();
                 if (location != null && location.toString().endsWith(".jar"))
                 {
                     // then open the jar as a zip input stream,
-                    final var urlConnection = location.openConnection();
-                    final ZipInputStream zip = new ZipInputStream(urlConnection.getInputStream());
+                    var urlConnection = location.openConnection();
+                    ZipInputStream zip = new ZipInputStream(urlConnection.getInputStream());
 
                     // form a file path from the package path,
-                    final var filepath = package_.join("/") + "/";
+                    var filepath = package_.join("/") + "/";
 
                     // and loop,
                     while (true)
                     {
                         // reading the next entry,
-                        final ZipEntry e = zip.getNextEntry();
+                        ZipEntry e = zip.getNextEntry();
 
                         // until we are out.
                         if (e == null)
@@ -357,17 +357,17 @@ public class Package implements ResourceFolder
                         }
 
                         // Get the entry's name
-                        final String name = e.getName();
+                        String name = e.getName();
                         // and if it is not a folder and it starts with the file path for the package,
                         if (!name.endsWith("/") && name.startsWith(filepath))
                         {
                             // then strip off the leading filepath,
-                            final var suffix = Strip.leading(name, filepath);
+                            var suffix = Strip.leading(name, filepath);
                             // and if we have only a filename left,
                             if (!suffix.contains("/"))
                             {
                                 // then the entry is in the package, so add it to the resources list
-                                final var resource = PackageResource.of(package_, name.substring(filepath.length()));
+                                var resource = PackageResource.of(package_, name.substring(filepath.length()));
                                 if (matcher.matches(resource))
                                 {
                                     resources.add(resource);
@@ -377,7 +377,7 @@ public class Package implements ResourceFolder
                     }
                 }
             }
-            catch (final Exception ignored)
+            catch (Exception ignored)
             {
                 LOGGER.warning("Exception thrown while loading jar resources from $", package_);
             }

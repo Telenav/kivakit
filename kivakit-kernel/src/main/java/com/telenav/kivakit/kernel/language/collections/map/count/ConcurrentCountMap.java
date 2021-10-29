@@ -47,19 +47,19 @@ public class ConcurrentCountMap<Key>
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    private static final Pattern KEY_VALUE = Pattern.compile("(?:key\\w+)\\s*=\\s*(?:count\\w+)");
+    private static final Pattern KEY_VALUE = Pattern.compile("key\\w+\\s*=\\s*count\\w+");
 
-    public static <T> ConcurrentCountMap<T> parse(final Factory<ConcurrentCountMap<T>> mapFactory,
-                                                  final MapFactory<String, T> keyFactory, final String text)
+    public static <T> ConcurrentCountMap<T> parse(Factory<ConcurrentCountMap<T>> mapFactory,
+                                                  MapFactory<String, T> keyFactory, String text)
     {
-        final var map = mapFactory.newInstance();
-        for (final var entry : text.split(",\\s*"))
+        var map = mapFactory.newInstance();
+        for (var entry : text.split(",\\s*"))
         {
-            final var matcher = KEY_VALUE.matcher(entry);
+            var matcher = KEY_VALUE.matcher(entry);
             if (matcher.matches())
             {
-                final var key = keyFactory.newInstance(matcher.group("key"));
-                final var count = Count.parse(matcher.group("count"));
+                var key = keyFactory.newInstance(matcher.group("key"));
+                var count = Count.parse(matcher.group("count"));
                 if (key != null && count != null)
                 {
                     map.add(key, count);
@@ -73,21 +73,21 @@ public class ConcurrentCountMap<Key>
 
     private final ConcurrentHashMap<Key, AtomicLong> counts = new ConcurrentHashMap<>();
 
-    public ConcurrentCountMap<Key> add(final Key key, final Count value)
+    public ConcurrentCountMap<Key> add(Key key, Count value)
     {
         add(key, value.get());
         return this;
     }
 
-    public ConcurrentCountMap<Key> add(final Key key, final Countable value)
+    public ConcurrentCountMap<Key> add(Key key, Countable value)
     {
         add(key, value.count());
         return this;
     }
 
-    public Count add(final Key key, final long value)
+    public Count add(Key key, long value)
     {
-        final var total = get(key).addAndGet(value);
+        var total = get(key).addAndGet(value);
         if (total < 0)
         {
             LOGGER.warning("Adding $ to count caused long overflow", value);
@@ -96,46 +96,46 @@ public class ConcurrentCountMap<Key>
         return Count.count(total);
     }
 
-    public boolean contains(final Key key)
+    public boolean contains(Key key)
     {
         return counts.containsKey(key);
     }
 
-    public Count count(final Key key)
+    public Count count(Key key)
     {
         return Count.count(get(key).get());
     }
 
-    public ConcurrentCountMap<Key> decrement(final Key key)
+    public ConcurrentCountMap<Key> decrement(Key key)
     {
         get(key).decrementAndGet();
         total.decrementAndGet();
         return this;
     }
 
-    public List<Map.Entry<Key, AtomicLong>> descendingEntries(final Count maximum,
-                                                              final Comparator<Map.Entry<Key, AtomicLong>> comparator)
+    public List<Map.Entry<Key, AtomicLong>> descendingEntries(Count maximum,
+                                                              Comparator<Map.Entry<Key, AtomicLong>> comparator)
     {
         assert maximum != null;
-        final List<Map.Entry<Key, AtomicLong>> sorted = new ArrayList<>(counts.entrySet());
+        List<Map.Entry<Key, AtomicLong>> sorted = new ArrayList<>(counts.entrySet());
         sorted.sort(comparator.reversed());
         return sorted.subList(0, Math.min(sorted.size(), maximum.asInt()));
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof ConcurrentCountMap)
         {
-            final var that = (ConcurrentCountMap<Key>) object;
+            var that = (ConcurrentCountMap<Key>) object;
             if (counts.size() != that.counts.size())
             {
                 return false;
             }
-            for (final var entry : counts.entrySet())
+            for (var entry : counts.entrySet())
             {
-                final var value = that.counts.get(entry.getKey());
+                var value = that.counts.get(entry.getKey());
                 if (value != null && value.get() != entry.getValue().get())
                 {
                     return false;
@@ -152,7 +152,7 @@ public class ConcurrentCountMap<Key>
         return counts.hashCode();
     }
 
-    public ConcurrentCountMap<Key> increment(final Key key)
+    public ConcurrentCountMap<Key> increment(Key key)
     {
         if (get(key).getAndIncrement() == Long.MAX_VALUE)
         {
@@ -167,9 +167,9 @@ public class ConcurrentCountMap<Key>
         return counts.keySet();
     }
 
-    public void mergeIn(final ConcurrentCountMap<Key> that)
+    public void mergeIn(ConcurrentCountMap<Key> that)
     {
-        for (final var entry : that.counts.entrySet())
+        for (var entry : that.counts.entrySet())
         {
             add(entry.getKey(), entry.getValue().get());
         }
@@ -179,7 +179,7 @@ public class ConcurrentCountMap<Key>
     {
         var minimumCount = Long.MAX_VALUE;
         Key minimum = null;
-        for (final var entry : counts.entrySet())
+        for (var entry : counts.entrySet())
         {
             if (entry.getValue().get() < minimumCount)
             {
@@ -190,10 +190,10 @@ public class ConcurrentCountMap<Key>
         return minimum;
     }
 
-    public ConcurrentCountMap<Key> prune(final Count minimum)
+    public ConcurrentCountMap<Key> prune(Count minimum)
     {
-        final var counts = new ConcurrentCountMap<Key>();
-        for (final var entry : this.counts.entrySet())
+        var counts = new ConcurrentCountMap<Key>();
+        for (var entry : this.counts.entrySet())
         {
             if (entry.getValue().get() >= minimum.get())
             {
@@ -203,7 +203,7 @@ public class ConcurrentCountMap<Key>
         return counts;
     }
 
-    public void remove(final Key key)
+    public void remove(Key key)
     {
         counts.remove(key);
     }
@@ -215,10 +215,10 @@ public class ConcurrentCountMap<Key>
 
     public List<Key> sortedByDescendingCount()
     {
-        final List<Map.Entry<Key, AtomicLong>> entries = new ArrayList<>(counts.entrySet());
+        List<Map.Entry<Key, AtomicLong>> entries = new ArrayList<>(counts.entrySet());
         entries.sort(Comparator.comparingLong(entry -> entry.getValue().get()));
-        final List<Key> sorted = new ArrayList<>();
-        for (final var entry : entries)
+        List<Key> sorted = new ArrayList<>();
+        for (var entry : entries)
         {
             sorted.add(entry.getKey());
         }
@@ -231,9 +231,9 @@ public class ConcurrentCountMap<Key>
         return sortedKeys((a, b) -> ((Comparable<Key>) a).compareTo(b));
     }
 
-    public List<Key> sortedKeys(final Comparator<Key> comparator)
+    public List<Key> sortedKeys(Comparator<Key> comparator)
     {
-        final List<Key> keys = new ArrayList<>(keySet());
+        List<Key> keys = new ArrayList<>(keySet());
         keys.sort(comparator);
         return keys;
     }
@@ -244,25 +244,25 @@ public class ConcurrentCountMap<Key>
         return toString(", ");
     }
 
-    public String toString(final String separator)
+    public String toString(String separator)
     {
-        final var list = new StringList();
-        for (final var key : sortedKeys())
+        var list = new StringList();
+        for (var key : sortedKeys())
         {
             list.add(key + " = " + count(key));
         }
         return list.join(separator);
     }
 
-    public ConcurrentCountMap<Key> top(final Count maximum)
+    public ConcurrentCountMap<Key> top(Count maximum)
     {
         return top(maximum, Comparator.comparingLong(entry -> entry.getValue().get()));
     }
 
-    public ConcurrentCountMap<Key> top(final Count maximum, final Comparator<Map.Entry<Key, AtomicLong>> comparator)
+    public ConcurrentCountMap<Key> top(Count maximum, Comparator<Map.Entry<Key, AtomicLong>> comparator)
     {
-        final var top = new ConcurrentCountMap<Key>();
-        for (final var entry : descendingEntries(maximum, comparator))
+        var top = new ConcurrentCountMap<Key>();
+        for (var entry : descendingEntries(maximum, comparator))
         {
             top.add(entry.getKey(), entry.getValue().get());
         }
@@ -274,7 +274,7 @@ public class ConcurrentCountMap<Key>
         return total.get();
     }
 
-    private AtomicLong get(final Key key)
+    private AtomicLong get(Key key)
     {
         var count = counts.get(key);
         if (count == null)

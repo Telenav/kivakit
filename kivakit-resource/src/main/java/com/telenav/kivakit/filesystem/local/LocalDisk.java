@@ -37,7 +37,7 @@ public class LocalDisk implements DiskService
 {
     private final LocalFolder root;
 
-    public LocalDisk(final LocalFolder folder)
+    public LocalDisk(LocalFolder folder)
     {
         // Go up the folder hierarchy until we find a partition mount point
         var at = folder;

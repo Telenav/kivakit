@@ -26,14 +26,14 @@ public class And<T> implements Filter<T>
 
     private final Filter<T> b;
 
-    public And(final Filter<T> a, final Filter<T> b)
+    public And(Filter<T> a, Filter<T> b)
     {
         this.a = a;
         this.b = b;
     }
 
     @Override
-    public boolean accepts(final T value)
+    public boolean accepts(T value)
     {
         return a.accepts(value) && b.accepts(value);
     }

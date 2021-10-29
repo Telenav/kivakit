@@ -99,12 +99,12 @@ public class FileName implements Named, Comparable<FileName>
         return parse(LocalTime.now().asDateString());
     }
 
-    public static FileName date(final LocalTime time)
+    public static FileName date(LocalTime time)
     {
         return parse(new LocalDateConverter(LOGGER).unconvert(time));
     }
 
-    public static FileName date(final LocalTime time, final ZoneId zone)
+    public static FileName date(LocalTime time, ZoneId zone)
     {
         return parse(new LocalDateConverter(LOGGER, zone).unconvert(time));
     }
@@ -114,44 +114,44 @@ public class FileName implements Named, Comparable<FileName>
         return dateTime(LocalTime.now());
     }
 
-    public static FileName dateTime(final LocalTime time)
+    public static FileName dateTime(LocalTime time)
     {
         return parse(new LocalDateTimeConverter(LOGGER).unconvert(time));
     }
 
-    public static FileName dateTime(final LocalTime time, final ZoneId zone)
+    public static FileName dateTime(LocalTime time, ZoneId zone)
     {
         return parse(new LocalDateTimeConverter(LOGGER, zone).unconvert(time));
     }
 
-    public static FileName parse(final String name)
+    public static FileName parse(String name)
     {
         return new FileName(name);
     }
 
-    public static LocalTime parseDateTime(final String dateTime)
+    public static LocalTime parseDateTime(String dateTime)
     {
         return new LocalDateTimeConverter(LOGGER).convert(dateTime);
     }
 
-    public static LocalTime parseDateTime(final String dateTime, final ZoneId zone)
+    public static LocalTime parseDateTime(String dateTime, ZoneId zone)
     {
         return new LocalDateTimeConverter(LOGGER, zone).convert(dateTime);
     }
 
-    public static FileName time(final LocalTime time)
+    public static FileName time(LocalTime time)
     {
         return parse(new LocalTimeConverter(LOGGER, time.timeZone()).unconvert(time));
     }
 
-    public static FileName time(final LocalTime time, final ZoneId zone)
+    public static FileName time(LocalTime time, ZoneId zone)
     {
         return parse(new LocalTimeConverter(LOGGER, zone).unconvert(time));
     }
 
     private final String name;
 
-    protected FileName(final String name)
+    protected FileName(String name)
     {
         this.name = normalize(name);
     }
@@ -171,7 +171,7 @@ public class FileName implements Named, Comparable<FileName>
     {
         if (name().contains("."))
         {
-            final var before = Paths.optionalHead(name(), '.');
+            var before = Paths.optionalHead(name(), '.');
             if (before != null)
             {
                 return parse(before);
@@ -181,7 +181,7 @@ public class FileName implements Named, Comparable<FileName>
     }
 
     @Override
-    public int compareTo(final FileName that)
+    public int compareTo(FileName that)
     {
         return name().compareTo(that.name());
     }
@@ -193,7 +193,7 @@ public class FileName implements Named, Comparable<FileName>
     {
         if (name().contains("."))
         {
-            final var after = Paths.tail(name(), '.');
+            var after = Paths.tail(name(), '.');
             if (after != null)
             {
                 return new Extension(after);
@@ -205,26 +205,26 @@ public class FileName implements Named, Comparable<FileName>
     /**
      * @return True if this filename ends with the given extension
      */
-    public boolean endsWith(final Extension extension)
+    public boolean endsWith(Extension extension)
     {
-        final var compoundExtension = compoundExtension();
+        var compoundExtension = compoundExtension();
         return compoundExtension != null && compoundExtension.endsWith(extension);
     }
 
     /**
      * @return True if this filename ends with the given suffix
      */
-    public boolean endsWith(final String suffix)
+    public boolean endsWith(String suffix)
     {
         return name().endsWith(suffix);
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof FileName)
         {
-            final var that = (FileName) object;
+            var that = (FileName) object;
             return name.equals(that.name);
         }
         return false;
@@ -269,9 +269,9 @@ public class FileName implements Named, Comparable<FileName>
      * @return This file name parsed as a {@link LocalTime} object using the KivaKit DATE_TIME format
      * ("yyyy.MM.dd_h.mma").
      */
-    public LocalTime localDateTime(final Listener listener)
+    public LocalTime localDateTime(Listener listener)
     {
-        final LocalTime time;
+        LocalTime time;
         if ((time = new LocalDateTimeConverter(listener).convert(name())) != null)
         {
             return time;
@@ -290,7 +290,7 @@ public class FileName implements Named, Comparable<FileName>
     /**
      * @return True if this filename matches the given {@link Pattern}
      */
-    public boolean matches(final Pattern pattern)
+    public boolean matches(Pattern pattern)
     {
         return pattern.matcher(name()).matches();
     }
@@ -315,7 +315,7 @@ public class FileName implements Named, Comparable<FileName>
     /**
      * @return This filename with the given prefix
      */
-    public FileName prefixedWith(final String prefix)
+    public FileName prefixedWith(String prefix)
     {
         return parse(prefix + name);
     }
@@ -323,7 +323,7 @@ public class FileName implements Named, Comparable<FileName>
     /**
      * @return True if this filename starts with the given prefix
      */
-    public boolean startsWith(final String prefix)
+    public boolean startsWith(String prefix)
     {
         return name().startsWith(prefix);
     }
@@ -353,7 +353,7 @@ public class FileName implements Named, Comparable<FileName>
     /**
      * @return This filename with the given extension added
      */
-    public FileName withExtension(final Extension extension)
+    public FileName withExtension(Extension extension)
     {
         return parse(name() + extension);
     }
@@ -361,7 +361,7 @@ public class FileName implements Named, Comparable<FileName>
     /**
      * @return This filename with the given suffix
      */
-    public FileName withSuffix(final String suffix)
+    public FileName withSuffix(String suffix)
     {
         return parse(name + suffix);
     }
@@ -371,7 +371,7 @@ public class FileName implements Named, Comparable<FileName>
      */
     public FileName withoutCompoundExtension()
     {
-        final var extension = extension();
+        var extension = extension();
         if (extension != null)
         {
             return parse(Paths.optionalHead(name(), '.'));
@@ -384,10 +384,10 @@ public class FileName implements Named, Comparable<FileName>
      */
     public FileName withoutExtension()
     {
-        final var extension = extension();
+        var extension = extension();
         if (extension != null)
         {
-            final var before = Paths.optionalHead(name(), '.');
+            var before = Paths.optionalHead(name(), '.');
             if (before != null)
             {
                 return parse(before);
@@ -399,7 +399,7 @@ public class FileName implements Named, Comparable<FileName>
     /**
      * @return This filename without the given extension if it ends in that extension
      */
-    public FileName withoutExtension(final Extension extension)
+    public FileName withoutExtension(Extension extension)
     {
         if (name().endsWith(extension.toString()))
         {
@@ -418,7 +418,7 @@ public class FileName implements Named, Comparable<FileName>
         do
         {
             removedOne = false;
-            for (final var extension : Extension.known())
+            for (var extension : Extension.known())
             {
                 if (name.endsWith(extension))
                 {
@@ -431,7 +431,7 @@ public class FileName implements Named, Comparable<FileName>
         return name;
     }
 
-    private String normalize(final String name)
+    private String normalize(String name)
     {
         return Strings.removeAll(name, '\'').replaceAll("[,:; ]", "_").replace('/', '-');
     }

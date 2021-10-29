@@ -57,9 +57,9 @@ public class ResourcePathTest extends UnitTest
     @Test
     public void testIterable()
     {
-        final var elements = new String[] { "a", "b", "c" };
+        var elements = new String[] { "a", "b", "c" };
         int i = 0;
-        for (final var element : path("a/b/c"))
+        for (var element : path("a/b/c"))
         {
             ensureEqual(element, elements[i++]);
         }
@@ -88,8 +88,8 @@ public class ResourcePathTest extends UnitTest
     @Test
     public void testParent()
     {
-        final var path = path("a/b/c");
-        final var parent = path.parent();
+        var path = path("a/b/c");
+        var parent = path.parent();
         ensure(path.startsWith(parent));
         ensureEqual(parent, path("a/b"));
     }
@@ -105,12 +105,12 @@ public class ResourcePathTest extends UnitTest
     {
         if (OperatingSystem.get().isWindows())
         {
-            final var path = ResourcePath.parseResourcePath("c:\\");
+            var path = ResourcePath.parseResourcePath("c:\\");
             ensure(path.isRoot());
         }
         else
         {
-            final var path = ResourcePath.parseResourcePath("/");
+            var path = ResourcePath.parseResourcePath("/");
             ensure(path.isRoot());
         }
     }
@@ -165,7 +165,7 @@ public class ResourcePathTest extends UnitTest
     }
 
     @NotNull
-    private ResourcePath path(final String path)
+    private ResourcePath path(String path)
     {
         return ResourcePath.parseResourcePath(path);
     }

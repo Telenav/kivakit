@@ -128,90 +128,90 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
 
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    public static Duration days(final double days)
+    public static Duration days(double days)
     {
         return hours(24.0 * days);
     }
 
-    public static Duration days(final int days)
+    public static Duration days(int days)
     {
         return hours(24 * days);
     }
 
-    public static Duration hours(final double hours)
+    public static Duration hours(double hours)
     {
         return minutes(60.0 * hours);
     }
 
-    public static Duration hours(final int hours)
+    public static Duration hours(int hours)
     {
         return minutes(60 * hours);
     }
 
-    public static Duration milliseconds(final double milliseconds)
+    public static Duration milliseconds(double milliseconds)
     {
         return milliseconds((long) milliseconds);
     }
 
-    public static Duration milliseconds(final long milliseconds)
+    public static Duration milliseconds(long milliseconds)
     {
         return new Duration(milliseconds, Range.POSITIVE_ONLY);
     }
 
-    public static Duration minutes(final double minutes)
+    public static Duration minutes(double minutes)
     {
         return seconds(60.0 * minutes);
     }
 
-    public static Duration minutes(final int minutes)
+    public static Duration minutes(int minutes)
     {
         return seconds(60 * minutes);
     }
 
-    public static Duration nanoseconds(final long nanoseconds)
+    public static Duration nanoseconds(long nanoseconds)
     {
         return new Duration(nanoseconds / 1_000_000L, Range.POSITIVE_ONLY);
     }
 
-    public static Duration parse(final String string)
+    public static Duration parse(String string)
     {
         return new Converter(LOGGER).convert(string);
     }
 
-    public static void profile(final Listener listener, final String message, final Runnable code)
+    public static void profile(Listener listener, String message, Runnable code)
     {
         listener.receive(new Information("$ took $", message, profile(code)));
     }
 
-    public static Duration profile(final Runnable code)
+    public static Duration profile(Runnable code)
     {
-        final var start = Time.now();
+        var start = Time.now();
         code.run();
         return start.elapsedSince();
     }
 
-    public static Duration seconds(final double seconds)
+    public static Duration seconds(double seconds)
     {
         return milliseconds(seconds * 1000.0);
     }
 
-    public static Duration seconds(final int seconds)
+    public static Duration seconds(int seconds)
     {
         return milliseconds(seconds * 1000L);
     }
 
     public static Duration untilNextSecond()
     {
-        final var now = Time.now();
+        var now = Time.now();
         return now.roundUp(ONE_SECOND).minus(now);
     }
 
-    public static Duration weeks(final double scalar)
+    public static Duration weeks(double scalar)
     {
         return days(7 * scalar);
     }
 
-    public static Duration years(final double scalar)
+    public static Duration years(double scalar)
     {
         return weeks(WEEKS_PER_YEAR * scalar);
     }
@@ -242,7 +242,7 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
         private final Pattern PATTERN = Pattern.compile(
                 "(?<quantity>[0-9]+([.,][0-9]+)?)(\\s+|-|_)(?<units>millisecond|second|minute|hour|day|week|year)s?", Pattern.CASE_INSENSITIVE);
 
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
         }
@@ -251,13 +251,13 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
          * {@inheritDoc}
          */
         @Override
-        protected Duration onToValue(final String value)
+        protected Duration onToValue(String value)
         {
-            final var matcher = PATTERN.matcher(value);
+            var matcher = PATTERN.matcher(value);
             if (matcher.matches())
             {
-                final var quantity = Double.parseDouble(matcher.group("quantity"));
-                final var units = matcher.group("units");
+                var quantity = Double.parseDouble(matcher.group("quantity"));
+                var units = matcher.group("units");
                 if ("millisecond".equalsIgnoreCase(units))
                 {
                     return milliseconds(quantity);
@@ -310,16 +310,16 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
     {
         private final LongConverter longConverter;
 
-        public MillisecondsConverter(final Listener listener)
+        public MillisecondsConverter(Listener listener)
         {
             super(listener);
             longConverter = new LongConverter(listener);
         }
 
         @Override
-        protected Duration onToValue(final String value)
+        protected Duration onToValue(String value)
         {
-            final var milliseconds = longConverter.convert(value);
+            var milliseconds = longConverter.convert(value);
             return milliseconds == null ? null : milliseconds(milliseconds);
         }
     }
@@ -332,15 +332,15 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
     @LexakaiJavadoc(complete = true)
     public static class SecondsConverter extends BaseStringConverter<Duration>
     {
-        public SecondsConverter(final Listener listener)
+        public SecondsConverter(Listener listener)
         {
             super(listener);
         }
 
         @Override
-        protected Duration onToValue(final String value)
+        protected Duration onToValue(String value)
         {
-            final var seconds = Double.parseDouble(value);
+            var seconds = Double.parseDouble(value);
             if (seconds >= 0)
             {
                 return seconds(seconds);
@@ -364,7 +364,7 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
      *
      * @param milliseconds Number of milliseconds in this <code>Duration</code>
      */
-    protected Duration(final long milliseconds, final Range range)
+    protected Duration(long milliseconds, Range range)
     {
         if (range == Range.POSITIVE_ONLY && milliseconds < 0)
         {
@@ -376,7 +376,7 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
     /**
      * @return The sum of this duration and that one, but never a negative value.
      */
-    public Duration add(final Duration that)
+    public Duration add(Duration that)
     {
         return add(that, Range.POSITIVE_ONLY);
     }
@@ -384,9 +384,9 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
     /**
      * @return The sum of this duration and that duration, but restricted to the given range
      */
-    public Duration add(final Duration that, final Range range)
+    public Duration add(Duration that, Range range)
     {
-        final var sum = asMilliseconds() + that.asMilliseconds();
+        var sum = asMilliseconds() + that.asMilliseconds();
         if (range == Range.POSITIVE_ONLY && sum < 0)
         {
             return NONE;
@@ -394,9 +394,9 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
         return new Duration(sum, range);
     }
 
-    public void after(final Callback<Timer> onTimer)
+    public void after(Callback<Timer> onTimer)
     {
-        final var timer = new Timer();
+        var timer = new Timer();
         timer.schedule(new TimerTask()
         {
             @Override
@@ -466,13 +466,13 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
     }
 
     @Override
-    public String asString(final StringFormat format)
+    public String asString(StringFormat format)
     {
         switch (format.identifier())
         {
             case USER_LABEL_IDENTIFIER:
             {
-                final String dateFormatPattern;
+                String dateFormatPattern;
                 if (asHours() > 1.0)
                 {
                     dateFormatPattern = "H:mm:ss";
@@ -489,9 +489,9 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
                 {
                     dateFormatPattern = "S'ms'";
                 }
-                final SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatPattern);
+                SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatPattern);
                 dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
-                final Date date = new Date(asMilliseconds());
+                Date date = new Date(asMilliseconds());
                 return dateFormat.format(date);
             }
 
@@ -524,25 +524,25 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
         return asWeeks() / WEEKS_PER_YEAR;
     }
 
-    public boolean await(final Condition condition)
+    public boolean await(Condition condition)
     {
         try
         {
             return condition.await(milliseconds, TimeUnit.MILLISECONDS);
         }
-        catch (final InterruptedException ignored)
+        catch (InterruptedException ignored)
         {
         }
         return false;
     }
 
     @Override
-    public int compareTo(final Duration that)
+    public int compareTo(Duration that)
     {
         return Long.compare(asMilliseconds(), that.asMilliseconds());
     }
 
-    public Duration difference(final Duration that)
+    public Duration difference(Duration that)
     {
         if (isGreaterThan(that))
         {
@@ -554,30 +554,30 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
         }
     }
 
-    public double divide(final Duration that)
+    public double divide(Duration that)
     {
         return (double) milliseconds / that.milliseconds;
     }
 
-    public Duration divide(final int divisor)
+    public Duration divide(int divisor)
     {
         return milliseconds(milliseconds / divisor);
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Duration)
         {
-            final var that = (Duration) object;
+            var that = (Duration) object;
             return milliseconds == that.milliseconds;
         }
         return false;
     }
 
-    public void every(final Callback<Timer> onTimer)
+    public void every(Callback<Timer> onTimer)
     {
-        final var timer = new Timer();
+        var timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask()
         {
             @Override
@@ -595,13 +595,13 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
     public String fromStartOfWeekModuloWeekLength()
     {
         // There are 10080 minutes in a week
-        final var duration = (int) Math.floor(asMinutes() % 10080);
+        var duration = (int) Math.floor(asMinutes() % 10080);
         // There are 1440 minutes in a day
-        final var days = duration / (1440);
-        final var hoursRest = duration % 1440;
+        var days = duration / (1440);
+        var hoursRest = duration % 1440;
         // There are 60 minutes in an hour
-        final var hours = hoursRest / 60;
-        final var minutes = hoursRest % 60;
+        var hours = hoursRest / 60;
+        var minutes = hoursRest % 60;
         // Ex. "TUESDAY, 15:32"
         return DayOfWeek.forIsoConstant(days).toString() + ", "
                 + (String.valueOf(hours).length() == 2 ? hours : ("0" + hours)) + ":"
@@ -614,27 +614,27 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
         return Long.toString(milliseconds).hashCode();
     }
 
-    public boolean isApproximately(final Duration that, final Duration within)
+    public boolean isApproximately(Duration that, Duration within)
     {
         return difference(that).isLessThanOrEqualTo(within);
     }
 
-    public boolean isGreaterThan(final Duration that)
+    public boolean isGreaterThan(Duration that)
     {
         return milliseconds > that.milliseconds;
     }
 
-    public boolean isGreaterThanOrEqualTo(final Duration that)
+    public boolean isGreaterThanOrEqualTo(Duration that)
     {
         return milliseconds >= that.milliseconds;
     }
 
-    public boolean isLessThan(final Duration that)
+    public boolean isLessThan(Duration that)
     {
         return milliseconds < that.milliseconds;
     }
 
-    public boolean isLessThanOrEqualTo(final Duration that)
+    public boolean isLessThanOrEqualTo(Duration that)
     {
         return milliseconds <= that.milliseconds;
     }
@@ -649,13 +649,13 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
         return !isNone();
     }
 
-    public Duration longer(final Percent percentage)
+    public Duration longer(Percent percentage)
     {
         return milliseconds(milliseconds * (1.0 + percentage.asUnitValue()));
     }
 
     @SuppressWarnings("InfiniteLoopStatement")
-    public void loop(final Listener listener, final Runnable runnable)
+    public void loop(Listener listener, Runnable runnable)
     {
         while (true)
         {
@@ -663,7 +663,7 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
             {
                 runnable.run();
             }
-            catch (final Throwable e)
+            catch (Throwable e)
             {
                 listener.problem(e, "Loop threw exception");
             }
@@ -671,12 +671,12 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
         }
     }
 
-    public Duration maximum(final Duration that)
+    public Duration maximum(Duration that)
     {
         return isGreaterThan(that) ? this : that;
     }
 
-    public Duration minimum(final Duration that)
+    public Duration minimum(Duration that)
     {
         return isLessThan(that) ? this : that;
     }
@@ -684,7 +684,7 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
     /**
      * @return This duration minus that duration, but never a negative value
      */
-    public Duration minus(final Duration that)
+    public Duration minus(Duration that)
     {
         return minus(that, Range.POSITIVE_ONLY);
     }
@@ -692,7 +692,7 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
     /**
      * @return This duration minus that duration, but restricted to the given range
      */
-    public Duration minus(final Duration that, final Range range)
+    public Duration minus(Duration that, Range range)
     {
         if (range == Range.POSITIVE_ONLY)
         {
@@ -704,7 +704,7 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
         return new Duration(asMilliseconds() - that.asMilliseconds(), range);
     }
 
-    public Duration modulus(final Duration that)
+    public Duration modulus(Duration that)
     {
         return milliseconds(milliseconds % that.milliseconds);
     }
@@ -714,12 +714,12 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
         return hours(Math.round(asHours()));
     }
 
-    public Percent percentageOf(final Duration that)
+    public Percent percentageOf(Duration that)
     {
         return Percent.of(100.0 * milliseconds / that.milliseconds);
     }
 
-    public Duration plus(final Duration that)
+    public Duration plus(Duration that)
     {
         return milliseconds(milliseconds + that.milliseconds);
     }
@@ -730,7 +730,7 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
         return milliseconds;
     }
 
-    public Duration shorter(final Percent percentage)
+    public Duration shorter(Percent percentage)
     {
         return milliseconds(milliseconds * (1.0 - percentage.asUnitValue()));
     }
@@ -746,14 +746,14 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
             {
                 Thread.sleep(milliseconds);
             }
-            catch (final InterruptedException e)
+            catch (InterruptedException e)
             {
                 // Ignored
             }
         }
     }
 
-    public Duration times(final double multiplier)
+    public Duration times(double multiplier)
     {
         return milliseconds(milliseconds * multiplier);
     }
@@ -810,20 +810,20 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
      * @return True if the thread waited, false if it was interrupted
      */
     @SuppressWarnings({ "UnusedReturnValue", "SynchronizationOnLocalVariableOrMethodParameter" })
-    public boolean wait(final Object monitor)
+    public boolean wait(Object monitor)
     {
         synchronized (monitor)
         {
             try
             {
-                final var milliseconds = asMilliseconds();
+                var milliseconds = asMilliseconds();
                 if (milliseconds > 0)
                 {
                     monitor.wait(milliseconds);
                 }
                 return true;
             }
-            catch (final InterruptedException e)
+            catch (InterruptedException e)
             {
                 return false;
             }
@@ -837,7 +837,7 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
      * @param units the units to apply singular or plural suffix to
      * @return a <code>String</code> representation
      */
-    private String unitString(final double value, final String units)
+    private String unitString(double value, String units)
     {
         return new FormattedDoubleConverter(LOGGER).unconvert(value) + " " + units + (value > 1.0 ? "s" : "");
     }

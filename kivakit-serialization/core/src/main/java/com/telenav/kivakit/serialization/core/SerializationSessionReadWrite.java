@@ -49,13 +49,13 @@ public interface SerializationSessionReadWrite
 
     <Element> ObjectList<Element> readList();
 
-    <Element> ObjectList<Element> readList(final Class<Element> type);
+    <Element> ObjectList<Element> readList(Class<Element> type);
 
     long readLong();
 
     <Key, Value> ObjectMap<Key, Value> readMap();
 
-    <Type> Type readObject(final Class<Type> type);
+    <Type> Type readObject(Class<Type> type);
 
     short readShort();
 
@@ -75,19 +75,19 @@ public interface SerializationSessionReadWrite
 
     void writeInt(int value);
 
-    <Element> void writeList(final List<Element> list);
+    <Element> void writeList(List<Element> list);
 
-    <Element> void writeList(final List<Element> list, final Class<Element> type);
+    <Element> void writeList(List<Element> list, Class<Element> type);
 
     void writeLong(long value);
 
-    <Key, Value> void writeMap(final Map<Key, Value> map);
+    <Key, Value> void writeMap(Map<Key, Value> map);
 
-    void writeObject(final Object object);
+    void writeObject(Object object);
 
     void writeShort(short value);
 
     void writeString(String value);
 
-    void writeVersion(final Version version);
+    void writeVersion(Version version);
 }

@@ -41,7 +41,7 @@ public class Union<T> extends LogicalSet<T>
 
     private final Set<T> smaller;
 
-    public Union(final Set<T> a, final Set<T> b)
+    public Union(Set<T> a, Set<T> b)
     {
         if (a.size() > b.size())
         {
@@ -56,20 +56,20 @@ public class Union<T> extends LogicalSet<T>
     }
 
     @Override
-    public boolean contains(final Object object)
+    public boolean contains(Object object)
     {
         return larger.contains(object) || smaller.contains(object);
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Set)
         {
-            final var that = (Set<?>) object;
+            var that = (Set<?>) object;
             if (size() == that.size())
             {
-                for (final Object value : this)
+                for (Object value : this)
                 {
                     if (!that.contains(value))
                     {
@@ -115,7 +115,7 @@ public class Union<T> extends LogicalSet<T>
                 // Then we iterate through all the members of the smaller set,
                 while (smallerIterator.hasNext())
                 {
-                    final var next = smallerIterator.next();
+                    var next = smallerIterator.next();
 
                     // excluding any values that were returned from the larger set
                     if (!larger.contains(next))
@@ -132,7 +132,7 @@ public class Union<T> extends LogicalSet<T>
     public int size()
     {
         var size = larger.size();
-        for (final var object : smaller)
+        for (var object : smaller)
         {
             if (!larger.contains(object))
             {

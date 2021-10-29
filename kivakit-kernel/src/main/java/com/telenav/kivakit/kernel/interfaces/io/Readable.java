@@ -61,10 +61,10 @@ public interface Readable extends ByteSized
      * @param reporter A progress reporter that is called for each byte that is read
      * @return The input stream to read from
      */
-    default InputStream openForReading(final ProgressReporter reporter)
+    default InputStream openForReading(ProgressReporter reporter)
     {
         // Get the size of this resource
-        final var size = sizeInBytes();
+        var size = sizeInBytes();
         if (size != null)
         {
             // and set the number of steps so the progress reporter can report

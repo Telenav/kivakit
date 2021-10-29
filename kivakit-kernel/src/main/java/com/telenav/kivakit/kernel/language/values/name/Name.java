@@ -53,7 +53,7 @@ public class Name implements Named, StringSource
      *
      * @return A lowercase hyphenated name for the given object
      */
-    public static String of(final Object object)
+    public static String of(Object object)
     {
         String name = null;
         if (object instanceof NamedObject)
@@ -71,7 +71,7 @@ public class Name implements Named, StringSource
         return name;
     }
 
-    public static String synthetic(final Object object)
+    public static String synthetic(Object object)
     {
         return "synthetic:" + CaseFormat.camelCaseToHyphenated(object.getClass().getSimpleName())
                 + ":" + Ints.toHex(System.identityHashCode(object));
@@ -80,7 +80,7 @@ public class Name implements Named, StringSource
     @JsonProperty
     private String name;
 
-    public Name(final String name)
+    public Name(String name)
     {
         this.name = name;
     }
@@ -90,11 +90,11 @@ public class Name implements Named, StringSource
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Name)
         {
-            final var that = (Name) object;
+            var that = (Name) object;
             return name.equals(that.name);
         }
         return false;

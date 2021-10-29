@@ -44,7 +44,7 @@ public class FileCache extends BaseRepeater
     /**
      * @param cacheFolder The cache folder where files should be stored
      */
-    public FileCache(final Folder cacheFolder)
+    public FileCache(Folder cacheFolder)
     {
         this.cacheFolder = cacheFolder.mkdirs();
 
@@ -57,7 +57,7 @@ public class FileCache extends BaseRepeater
      * @param resource The resource to add to the cache
      * @param mode How the resource should be copied
      */
-    public File add(final Resource resource, final CopyMode mode)
+    public File add(Resource resource, CopyMode mode)
     {
         return add(resource, mode, ProgressReporter.NULL);
     }
@@ -69,7 +69,7 @@ public class FileCache extends BaseRepeater
      * @param mode How the resource should be copied
      * @param reporter The progress reporter to call as the file is being copied into the cache
      */
-    public File add(final Resource resource, final CopyMode mode, final ProgressReporter reporter)
+    public File add(Resource resource, CopyMode mode, ProgressReporter reporter)
     {
         return addAs(resource, resource.fileName(), mode, reporter);
     }
@@ -81,7 +81,7 @@ public class FileCache extends BaseRepeater
      * @param filename The name of the file to write to in this cache
      * @param mode How the resource should be copied
      */
-    public File addAs(final Resource resource, final FileName filename, final CopyMode mode)
+    public File addAs(Resource resource, FileName filename, CopyMode mode)
     {
         return addAs(resource, filename, mode, ProgressReporter.NULL);
     }
@@ -94,12 +94,12 @@ public class FileCache extends BaseRepeater
      * @param mode How the resource should be copied
      * @param reporter The progress reporter to call as the file is being copied into the cache
      */
-    public File addAs(final Resource resource,
-                      final FileName filename,
-                      final CopyMode mode,
-                      final ProgressReporter reporter)
+    public File addAs(Resource resource,
+                      FileName filename,
+                      CopyMode mode,
+                      ProgressReporter reporter)
     {
-        final var file = file(filename);
+        var file = file(filename);
         if (!file.exists())
         {
             resource.safeCopyTo(file, mode, reporter);
@@ -110,7 +110,7 @@ public class FileCache extends BaseRepeater
     /**
      * @return The given file in this cache
      */
-    public File file(final FileName name)
+    public File file(FileName name)
     {
         return cacheFolder.file(name);
     }
@@ -118,7 +118,7 @@ public class FileCache extends BaseRepeater
     /**
      * @return A sub-folder in the cache folder with the given name
      */
-    public Folder folder(final String name)
+    public Folder folder(String name)
     {
         return cacheFolder.folder(name);
     }
@@ -126,7 +126,7 @@ public class FileCache extends BaseRepeater
     public void startPruner()
     {
         // Start folder pruner
-        final var pruner = new FolderPruner(cacheFolder, EVERY_30_SECONDS);
+        var pruner = new FolderPruner(cacheFolder, EVERY_30_SECONDS);
         pruner.minimumUsableDiskSpace(Percent.of(10));
         pruner.minimumAge(Duration.days(30));
         pruner.start();

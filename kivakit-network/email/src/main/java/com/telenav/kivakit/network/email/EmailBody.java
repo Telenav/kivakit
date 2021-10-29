@@ -43,14 +43,14 @@ public class EmailBody
 
     private final String text;
 
-    public EmailBody(final String text)
+    public EmailBody(String text)
     {
         this.text = text;
         try
         {
             bodyPart.setContent(text(), mimeType());
         }
-        catch (final MessagingException e)
+        catch (MessagingException e)
         {
             throw new Problem(e, "Can't create body").asException();
         }

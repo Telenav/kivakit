@@ -38,7 +38,7 @@ public class SecureHttpPostResource extends HttpPostResource
 {
     private boolean ignoreInvalidCertificates;
 
-    public SecureHttpPostResource(final NetworkLocation networkLocation, final NetworkAccessConstraints constraints)
+    public SecureHttpPostResource(NetworkLocation networkLocation, NetworkAccessConstraints constraints)
     {
         super(networkLocation, constraints);
         if (!(networkLocation instanceof SecureHttpNetworkLocation))
@@ -48,7 +48,7 @@ public class SecureHttpPostResource extends HttpPostResource
         }
     }
 
-    public void ignoreInvalidCertificates(final boolean ignore)
+    public void ignoreInvalidCertificates(boolean ignore)
     {
         ignoreInvalidCertificates = ignore;
     }

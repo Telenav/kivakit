@@ -44,9 +44,9 @@ public class LogServiceLoader
     @UmlAggregation(label = "loads")
     private static List<Log> logs;
 
-    public static Log log(final String name)
+    public static Log log(String name)
     {
-        for (final var log : logs())
+        for (var log : logs())
         {
             if (log.name().equalsIgnoreCase(name))
             {
@@ -62,7 +62,7 @@ public class LogServiceLoader
         {
             logs = new ArrayList<>();
             logs.add(new ConsoleLog());
-            for (final var service : ServiceLoader.load(Log.class))
+            for (var service : ServiceLoader.load(Log.class))
             {
                 LOGGER.announce("Log '${class}' is available", service.getClass());
                 logs.add(service);

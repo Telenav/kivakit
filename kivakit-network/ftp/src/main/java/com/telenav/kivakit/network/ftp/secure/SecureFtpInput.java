@@ -42,10 +42,10 @@ import java.io.InputStream;
 @LexakaiJavadoc(complete = true)
 class SecureFtpInput extends InputStream
 {
-    protected static SecureFtpInput forConnectorAndLocation(final SecureFtpConnector connector,
-                                                            final NetworkLocation networkLocation)
+    protected static SecureFtpInput forConnectorAndLocation(SecureFtpConnector connector,
+                                                            NetworkLocation networkLocation)
     {
-        final InputStream in = new BufferedInputStream(connector.get(networkLocation),
+        InputStream in = new BufferedInputStream(connector.get(networkLocation),
                 (int) getBufferSize().asBytes());
         return new SecureFtpInput(connector, in);
     }
@@ -68,7 +68,7 @@ class SecureFtpInput extends InputStream
 
     private final InputStream in;
 
-    private SecureFtpInput(final SecureFtpConnector connector, final InputStream in)
+    private SecureFtpInput(SecureFtpConnector connector, InputStream in)
     {
         this.connector = connector;
         this.in = in;

@@ -25,7 +25,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * Determines which of two objects is the maximum. For example, the Angle object is {@link Maximizable} and implements
  * this method:
  * <pre>
- *     public Angle maximum(final Angle that) { ... }
+ *     public Angle maximum( Angle that) { ... }
  * </pre>
  *
  * @param <Value> The type of object to compare

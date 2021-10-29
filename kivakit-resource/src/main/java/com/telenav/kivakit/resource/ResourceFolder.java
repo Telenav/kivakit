@@ -40,17 +40,17 @@ import static com.telenav.kivakit.resource.CopyMode.OVERWRITE;
  */
 public interface ResourceFolder extends UriIdentified
 {
-    static ResourceFolderIdentifier identifier(final String identifier)
+    static ResourceFolderIdentifier identifier(String identifier)
     {
         return new ResourceFolderIdentifier(identifier);
     }
 
-    static ResourceFolder resolve(final String identifier)
+    static ResourceFolder resolve(String identifier)
     {
         return resolve(new ResourceFolderIdentifier(identifier));
     }
 
-    static ResourceFolder resolve(final ResourceFolderIdentifier identifier)
+    static ResourceFolder resolve(ResourceFolderIdentifier identifier)
     {
         return ResourceFolderResolverServiceLoader.resolve(identifier);
     }
@@ -63,13 +63,13 @@ public interface ResourceFolder extends UriIdentified
     @LexakaiJavadoc(complete = true)
     class Converter extends BaseStringConverter<ResourceFolder>
     {
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
         }
 
         @Override
-        protected ResourceFolder onToValue(final String value)
+        protected ResourceFolder onToValue(String value)
         {
             return new ResourceFolderIdentifier(value).resolve();
         }
@@ -89,14 +89,14 @@ public interface ResourceFolder extends UriIdentified
         return materializeTo(Folder.temporaryForProcess(NORMAL));
     }
 
-    default Folder materializeTo(final Folder folder)
+    default Folder materializeTo(Folder folder)
     {
         if (!isMaterialized())
         {
             folder.mkdirs().clearAll();
-            for (final var resource : resources())
+            for (var resource : resources())
             {
-                final var destination = folder.file(resource.fileName());
+                var destination = folder.file(resource.fileName());
                 resource.safeCopyTo(destination, OVERWRITE);
             }
         }
@@ -111,7 +111,7 @@ public interface ResourceFolder extends UriIdentified
     /**
      * @return The resources in this folder matching the given matcher
      */
-    List<? extends Resource> resources(final Matcher<? super Resource> matcher);
+    List<? extends Resource> resources(Matcher<? super Resource> matcher);
 
     /**
      * @return The resources in this folder
@@ -124,11 +124,11 @@ public interface ResourceFolder extends UriIdentified
     /**
      * Copy the resources in this package to the given folder
      */
-    default void safeCopyTo(final Folder folder, final CopyMode mode, final ProgressReporter reporter)
+    default void safeCopyTo(Folder folder, CopyMode mode, ProgressReporter reporter)
     {
-        for (final var at : resources())
+        for (var at : resources())
         {
-            final var destination = folder.mkdirs().file(at.fileName());
+            var destination = folder.mkdirs().file(at.fileName());
             if (mode.canCopy(at, destination))
             {
                 at.safeCopyTo(destination, mode, reporter);

@@ -29,7 +29,7 @@ public interface Unchecked<Value>
 {
     Logger LOGGER = LoggerFactory.newLogger();
 
-    static <T> Unchecked<T> of(final Unchecked<T> code)
+    static <T> Unchecked<T> of(Unchecked<T> code)
     {
         return code;
     }
@@ -37,13 +37,13 @@ public interface Unchecked<Value>
     /**
      * @return The value returned by the code, or a default value if an exception is thrown
      */
-    default Value or(final Source<Value> defaultValue)
+    default Value or(Source<Value> defaultValue)
     {
         try
         {
             return run();
         }
-        catch (final Exception ignored)
+        catch (Exception ignored)
         {
             return defaultValue.get();
         }
@@ -56,14 +56,14 @@ public interface Unchecked<Value>
      * @param arguments Arguments to interpolate into the message
      * @return The value returned by the code, or the given default value if an exception is thrown
      */
-    default Value orDefault(final Listener listener, final Value defaultValue, final String message,
-                            final Object... arguments)
+    default Value orDefault(Listener listener, Value defaultValue, String message,
+                            Object... arguments)
     {
         try
         {
             return run();
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             listener.warning(e, message, arguments);
             return defaultValue;
@@ -73,13 +73,13 @@ public interface Unchecked<Value>
     /**
      * @return The value returned by the code, or a default value if an exception is thrown
      */
-    default Value orDefault(final Value defaultValue)
+    default Value orDefault(Value defaultValue)
     {
         try
         {
             return run();
         }
-        catch (final Exception ignored)
+        catch (Exception ignored)
         {
             return defaultValue;
         }
@@ -91,7 +91,7 @@ public interface Unchecked<Value>
      * @param arguments Arguments to interpolate into the message
      * @return The value returned by the code, or the given default value if an exception is thrown
      */
-    default Value orDefault(final Value defaultValue, final String message, final Object... arguments)
+    default Value orDefault(Value defaultValue, String message, Object... arguments)
     {
         return orDefault(LOGGER, defaultValue, message, arguments);
     }

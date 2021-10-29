@@ -44,7 +44,7 @@ public class Join
     /**
      * @return The given collection of values as comma separated text
      */
-    public static <T> String join(final Collection<T> values)
+    public static <T> String join(Collection<T> values)
     {
         return join(values, ", ");
     }
@@ -53,8 +53,8 @@ public class Join
      * @return The given collection of values as text converted by the given function and separated by the given
      * separator
      */
-    public static <T> String join(final Collection<T> values, final Function<T, String> toString,
-                                  final String separator)
+    public static <T> String join(Collection<T> values, Function<T, String> toString,
+                                  String separator)
     {
         return values.stream().map(toString).collect(Collectors.joining(separator));
     }
@@ -62,12 +62,12 @@ public class Join
     /**
      * @return The given collection of values separated by the given separator
      */
-    public static <T> String join(final Collection<T> values, final String separator)
+    public static <T> String join(Collection<T> values, String separator)
     {
         return join(values, separator, new BaseConverter<>(LOGGER)
         {
             @Override
-            protected String onConvert(final T value)
+            protected String onConvert(T value)
             {
                 return StringTo.string(value);
             }
@@ -77,13 +77,13 @@ public class Join
     /**
      * @return The given collection of values converted using the given converter and separated by the given separator
      */
-    public static <T> String join(final Collection<T> values,
-                                  final String separator,
-                                  final Converter<T, String> converter)
+    public static <T> String join(Collection<T> values,
+                                  String separator,
+                                  Converter<T, String> converter)
     {
-        final var builder = new StringBuilder();
+        var builder = new StringBuilder();
         var first = true;
-        for (final var value : values)
+        for (var value : values)
         {
             if (!first)
             {

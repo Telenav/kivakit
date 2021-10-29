@@ -34,7 +34,7 @@ import java.util.Base64;
 @LexakaiJavadoc(complete = true)
 public class DigestPassword extends PlainTextPassword
 {
-    public DigestPassword(final String password)
+    public DigestPassword(String password)
     {
         super(Base64.getEncoder().encodeToString(password.getBytes()));
     }

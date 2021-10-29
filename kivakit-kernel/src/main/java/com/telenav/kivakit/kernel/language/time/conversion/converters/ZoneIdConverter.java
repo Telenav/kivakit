@@ -10,13 +10,13 @@ public class ZoneIdConverter extends BaseStringConverter<ZoneId>
     /**
      * @param listener The conversion listener
      */
-    public ZoneIdConverter(final Listener listener)
+    public ZoneIdConverter(Listener listener)
     {
         super(listener);
     }
 
     @Override
-    protected ZoneId onToValue(final String value)
+    protected ZoneId onToValue(String value)
     {
         return ZoneId.of(value);
     }

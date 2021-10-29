@@ -36,12 +36,12 @@ public interface Digester
      * @param value The value to create a digest of
      * @return The digest
      */
-    byte[] digest(final byte[] value);
+    byte[] digest(byte[] value);
 
     /**
      * @return A message digest of the given string
      */
-    default byte[] digest(final String value)
+    default byte[] digest(String value)
     {
         return digest(value.getBytes());
     }

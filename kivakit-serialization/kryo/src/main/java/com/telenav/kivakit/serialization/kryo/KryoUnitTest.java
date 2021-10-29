@@ -49,18 +49,18 @@ public class KryoUnitTest extends UnitTest
         return new CoreKernelKryoTypes();
     }
 
-    protected void serializationTest(final Object object)
+    protected void serializationTest(Object object)
     {
         if (!isQuickTest())
         {
             trace("before serialization = $", object);
 
-            final var version = Version.parse("1.0");
-            final var data = new ByteArrayOutputStream();
+            var version = Version.parse("1.0");
+            var data = new ByteArrayOutputStream();
 
             {
-                final var session = session();
-                try (final var output = data)
+                var session = session();
+                try (var output = data)
                 {
                     session.open(SerializationSession.Type.RESOURCE, KivaKit.get().projectVersion(), output);
                     for (var index = 0; index < 3; index++)
@@ -69,26 +69,26 @@ public class KryoUnitTest extends UnitTest
                     }
                     IO.close(session);
                 }
-                catch (final IOException e)
+                catch (IOException e)
                 {
                     e.printStackTrace();
                 }
             }
 
             {
-                final var session = session();
-                try (final var input = new ByteArrayInputStream(data.toByteArray()))
+                var session = session();
+                try (var input = new ByteArrayInputStream(data.toByteArray()))
                 {
                     Ensure.ensureEqual(session.open(SerializationSession.Type.RESOURCE, KivaKit.get().projectVersion(), input), KivaKit.get().projectVersion());
                     for (var index = 0; index < 3; index++)
                     {
-                        final var deserialized = session.read();
+                        var deserialized = session.read();
                         trace("version $ after deserialization = $", deserialized.version(), deserialized.get());
                         ensureEqual(deserialized.version(), version);
                         ensureEqual(deserialized.get(), object);
                     }
                 }
-                catch (final IOException e)
+                catch (IOException e)
                 {
                     e.printStackTrace();
                 }

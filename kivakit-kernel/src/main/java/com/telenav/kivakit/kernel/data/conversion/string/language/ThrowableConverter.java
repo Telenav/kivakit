@@ -37,7 +37,7 @@ public class ThrowableConverter extends BaseStringConverter<Throwable>
     /**
      * @param listener The listener to hear any conversion issues
      */
-    public ThrowableConverter(final Listener listener)
+    public ThrowableConverter(Listener listener)
     {
         super(listener);
     }
@@ -46,20 +46,11 @@ public class ThrowableConverter extends BaseStringConverter<Throwable>
      * {@inheritDoc}
      */
     @Override
-    protected Throwable onToValue(final String value)
-    {
-        return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected String onToString(final Throwable throwable)
+    protected String onToString(Throwable throwable)
     {
         if (throwable != null)
         {
-            final List<Throwable> causes = new ArrayList<>();
+            List<Throwable> causes = new ArrayList<>();
             var cause = throwable;
             causes.add(cause);
             while ((cause.getCause() != null) && (cause != cause.getCause()))
@@ -67,9 +58,9 @@ public class ThrowableConverter extends BaseStringConverter<Throwable>
                 cause = cause.getCause();
                 causes.add(cause);
             }
-            final var builder = new StringBuilder(256);
+            var builder = new StringBuilder(256);
             // First print the last cause
-            final var length = causes.size() - 1;
+            var length = causes.size() - 1;
             cause = causes.get(length);
             if (throwable instanceof RuntimeException)
             {
@@ -97,17 +88,26 @@ public class ThrowableConverter extends BaseStringConverter<Throwable>
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected Throwable onToValue(String value)
+    {
+        return null;
+    }
+
+    /**
      * Outputs the {@link Throwable} and its stack trace to the builder. To make output more readable, sun.reflect.
      * packages are filtered out.
      */
-    private void outputThrowable(final Throwable cause, final StringBuilder builder)
+    private void outputThrowable(Throwable cause, StringBuilder builder)
     {
         builder.append(cause);
         builder.append("\n");
-        final var trace = cause.getStackTrace();
+        var trace = cause.getStackTrace();
         for (var i = 0; i < trace.length; i++)
         {
-            final var traceString = trace[i].toString();
+            var traceString = trace[i].toString();
             if (!(traceString.startsWith("sun.reflect.") && (i > 1)))
             {
                 builder.append("     at ");

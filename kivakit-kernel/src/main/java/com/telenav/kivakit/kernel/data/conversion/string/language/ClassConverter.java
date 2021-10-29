@@ -37,7 +37,7 @@ public class ClassConverter extends BaseStringConverter<Class<?>>
     /**
      * @param listener The listener to hear any conversion issues
      */
-    public ClassConverter(final Listener listener)
+    public ClassConverter(Listener listener)
     {
         super(listener);
     }
@@ -46,13 +46,13 @@ public class ClassConverter extends BaseStringConverter<Class<?>>
      * {@inheritDoc}
      */
     @Override
-    protected Class<?> onToValue(final String value)
+    protected Class<?> onToValue(String value)
     {
         try
         {
             return Class.forName(value);
         }
-        catch (final ClassNotFoundException e)
+        catch (ClassNotFoundException e)
         {
             throw new Problem(e, "Cannot find class ${debug}", value).asException();
         }

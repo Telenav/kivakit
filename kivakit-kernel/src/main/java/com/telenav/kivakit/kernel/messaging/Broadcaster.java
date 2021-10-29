@@ -59,12 +59,12 @@ public interface Broadcaster extends Transceiver
      *
      * @param listener Listener to broadcast to. Implementations should ignore null listeners.
      */
-    void addListener(final Listener listener, Filter<Transmittable> filter);
+    void addListener(Listener listener, Filter<Transmittable> filter);
 
     /**
      * Adds a listener to this broadcaster that wants to receive future messages.
      */
-    default void addListener(final Listener listener)
+    default void addListener(Listener listener)
     {
         addListener(listener, new All<>());
     }
@@ -93,7 +93,7 @@ public interface Broadcaster extends Transceiver
      * A broadcaster handles a message by transmitting it
      */
     @Override
-    default void onReceive(final Transmittable message)
+    default void onReceive(Transmittable message)
     {
         transmit(message);
     }
@@ -101,21 +101,21 @@ public interface Broadcaster extends Transceiver
     /**
      * Allows subclass to transmit message to listeners
      */
-    default void onTransmit(final Transmittable message)
+    default void onTransmit(Transmittable message)
     {
     }
 
     /**
      * Allows subclass to process a message after it is transmitted
      */
-    default void onTransmitted(final Transmittable message)
+    default void onTransmitted(Transmittable message)
     {
     }
 
     /**
      * Allows subclass to process a message before it is transmitted
      */
-    default void onTransmitting(final Transmittable message)
+    default void onTransmitting(Transmittable message)
     {
     }
 
@@ -141,7 +141,7 @@ public interface Broadcaster extends Transceiver
      * </p>
      */
     @Override
-    default <M extends Transmittable> M transmit(final M message)
+    default <M extends Transmittable> M transmit(M message)
     {
         onTransmitting(message);
         onTransmit(message);
@@ -157,7 +157,7 @@ public interface Broadcaster extends Transceiver
      * Broadcasts the given message to any listeners in the audience of this broadcaster
      * </p>
      */
-    default void transmit(final Message message)
+    default void transmit(Message message)
     {
         transmit((Transmittable) message);
     }
@@ -171,7 +171,7 @@ public interface Broadcaster extends Transceiver
      *
      * @param messages The messages to broadcast
      */
-    default void transmitAll(final Iterable<Transmittable> messages)
+    default void transmitAll(Iterable<Transmittable> messages)
     {
         messages.forEach(this::transmit);
     }

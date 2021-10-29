@@ -88,7 +88,7 @@ public class FilePath extends ResourcePath
     /**
      * @return A file path for the given URI
      */
-    public static FilePath filePath(final URI uri)
+    public static FilePath filePath(URI uri)
     {
         // If there is a scheme,
         var scheme = uri.getScheme();
@@ -136,7 +136,7 @@ public class FilePath extends ResourcePath
     /**
      * @return A file path for the given {@link java.io.File}
      */
-    public static FilePath filePath(final java.io.File file)
+    public static FilePath filePath(java.io.File file)
     {
         return filePath(file.toPath()).withoutFileScheme();
     }
@@ -144,7 +144,7 @@ public class FilePath extends ResourcePath
     /**
      * @return A file path for the given {@link java.nio.file.Path}
      */
-    public static FilePath filePath(final java.nio.file.Path path)
+    public static FilePath filePath(java.nio.file.Path path)
     {
         return filePath(path.toUri());
     }
@@ -152,9 +152,9 @@ public class FilePath extends ResourcePath
     /**
      * @return A file path with only the given filename
      */
-    public static FilePath filePath(final FileName name)
+    public static FilePath filePath(FileName name)
     {
-        final var list = new ArrayList<String>();
+        var list = new ArrayList<String>();
         list.add(name.name());
         return new FilePath(null, null, list);
     }
@@ -162,7 +162,7 @@ public class FilePath extends ResourcePath
     /**
      * @return A file path for the given string path
      */
-    public static FilePath filePath(final StringPath path)
+    public static FilePath filePath(StringPath path)
     {
         return new FilePath(null, path);
     }
@@ -170,7 +170,7 @@ public class FilePath extends ResourcePath
     /**
      * @return A file path for the given string
      */
-    public static FilePath parseFilePath(final String path)
+    public static FilePath parseFilePath(String path)
     {
         if (path.isBlank())
         {
@@ -187,7 +187,7 @@ public class FilePath extends ResourcePath
         {
             return filePath(URI.create(path)).withoutFileScheme();
         }
-        catch (final Exception ignored)
+        catch (Exception ignored)
         {
             return fail("Unable to parse file path: " + path);
         }
@@ -201,13 +201,13 @@ public class FilePath extends ResourcePath
     @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<FilePath>
     {
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
         }
 
         @Override
-        protected FilePath onToValue(final String value)
+        protected FilePath onToValue(String value)
         {
             return parseFilePath(value);
         }
@@ -216,7 +216,7 @@ public class FilePath extends ResourcePath
     /**
      * Copy constructor
      */
-    protected FilePath(final FilePath that)
+    protected FilePath(FilePath that)
     {
         super(that);
     }
@@ -224,7 +224,7 @@ public class FilePath extends ResourcePath
     /**
      * Construct with scheme
      */
-    protected FilePath(final StringList schemes, final String root, final List<String> elements)
+    protected FilePath(StringList schemes, String root, List<String> elements)
     {
         super(schemes, root, elements);
     }
@@ -232,7 +232,7 @@ public class FilePath extends ResourcePath
     /**
      * Construct with scheme
      */
-    protected FilePath(final StringList schemes, final StringPath path)
+    protected FilePath(StringList schemes, StringPath path)
     {
         super(schemes, path.rootElement(), path.elements());
     }
@@ -292,8 +292,8 @@ public class FilePath extends ResourcePath
         {
             if (OperatingSystem.get().isWindows())
             {
-                final var pattern = Pattern.compile("(?<drive>[A-Za-z]):\\\\");
-                final var matcher = pattern.matcher(rootElement());
+                var pattern = Pattern.compile("(?<drive>[A-Za-z]):\\\\");
+                var matcher = pattern.matcher(rootElement());
                 if (matcher.lookingAt())
                 {
                     return "/" + matcher.group("drive") + "/" + join("/");
@@ -315,7 +315,7 @@ public class FilePath extends ResourcePath
     /**
      * @return This file path with the given filename appended
      */
-    public FilePath file(final FileName child)
+    public FilePath file(FileName child)
     {
         return withChild(child.name());
     }
@@ -324,7 +324,7 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath first(final int n)
+    public FilePath first(int n)
     {
         return (FilePath) super.first(n);
     }
@@ -353,7 +353,7 @@ public class FilePath extends ResourcePath
     }
 
     @Override
-    public FilePath last(final int n)
+    public FilePath last(int n)
     {
         return (FilePath) super.last(n);
     }
@@ -411,7 +411,7 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath subpath(final int start, final int end)
+    public FilePath subpath(int start, int end)
     {
         return (FilePath) super.subpath(start, end);
     }
@@ -426,7 +426,7 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath transformed(final Function<String, String> consumer)
+    public FilePath transformed(Function<String, String> consumer)
     {
         return (FilePath) super.transformed(consumer);
     }
@@ -435,7 +435,7 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath withChild(final String child)
+    public FilePath withChild(String child)
     {
         return (FilePath) super.withChild(child);
     }
@@ -444,7 +444,7 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath withChild(final Path<String> that)
+    public FilePath withChild(Path<String> that)
     {
         return (FilePath) super.withChild(that);
     }
@@ -453,7 +453,7 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath withParent(final String element)
+    public FilePath withParent(String element)
     {
         return (FilePath) super.withParent(element);
     }
@@ -462,7 +462,7 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath withParent(final Path<String> that)
+    public FilePath withParent(Path<String> that)
     {
         return (FilePath) super.withParent(that);
     }
@@ -476,7 +476,7 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath withRoot(final String root)
+    public FilePath withRoot(String root)
     {
         return (FilePath) super.withRoot(root);
     }
@@ -490,7 +490,7 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath withSeparator(final String separator)
+    public FilePath withSeparator(String separator)
     {
         return (FilePath) super.withSeparator(separator);
     }
@@ -529,7 +529,7 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath withoutOptionalPrefix(final Path<String> prefix)
+    public FilePath withoutOptionalPrefix(Path<String> prefix)
     {
         return (FilePath) super.withoutOptionalPrefix(prefix);
     }
@@ -538,7 +538,7 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath withoutOptionalSuffix(final Path<String> suffix)
+    public FilePath withoutOptionalSuffix(Path<String> suffix)
     {
         return (FilePath) super.withoutOptionalSuffix(suffix);
     }
@@ -547,7 +547,7 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath withoutPrefix(final Path<String> prefix)
+    public FilePath withoutPrefix(Path<String> prefix)
     {
         return (FilePath) super.withoutPrefix(prefix);
     }
@@ -578,7 +578,7 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    public FilePath withoutSuffix(final Path<String> suffix)
+    public FilePath withoutSuffix(Path<String> suffix)
     {
         return (FilePath) super.withoutSuffix(suffix);
     }
@@ -587,13 +587,13 @@ public class FilePath extends ResourcePath
      * {@inheritDoc}
      */
     @Override
-    protected FilePath onCopy(final String root, final List<String> elements)
+    protected FilePath onCopy(String root, List<String> elements)
     {
         return new FilePath(schemes(), root, elements);
     }
 
     @Nullable
-    private static String authority(final URI uri)
+    private static String authority(URI uri)
     {
         // Get the host and port of the URI
         var host = uri.getHost();
@@ -623,7 +623,7 @@ public class FilePath extends ResourcePath
     }
 
     @NotNull
-    private static FilePath simpleFilePath(final URI uri)
+    private static FilePath simpleFilePath(URI uri)
     {
         // There's no scheme, so get the URI's simple path
         var path = uri.getPath();

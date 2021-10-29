@@ -29,7 +29,7 @@ numbers is used to construct a regular expression that matches geographic rectan
 This regular expression is combined with a pattern matching commas and one matching colons to produce  
 the composite pattern:
 
-    public static Group<Rectangle> parser(final Listener listener)
+    public static Group<Rectangle> parser( Listener listener)
     {
         return Pattern(Pattern.FLOATING_POINT_NUMBER
                         .then(Pattern.COMMA)

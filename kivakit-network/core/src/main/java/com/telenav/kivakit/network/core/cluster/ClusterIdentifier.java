@@ -29,7 +29,7 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 @LexakaiJavadoc(complete = true)
 public class ClusterIdentifier extends StringIdentifier
 {
-    public ClusterIdentifier(final String identifier)
+    public ClusterIdentifier(String identifier)
     {
         super(identifier);
     }

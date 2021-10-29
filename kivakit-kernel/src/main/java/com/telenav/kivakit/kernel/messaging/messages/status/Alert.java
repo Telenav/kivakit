@@ -53,7 +53,7 @@ public class Alert extends OperationStatusMessage
 {
     private String solution = "No solution provided";
 
-    public Alert(final String message, final Object... arguments)
+    public Alert(String message, Object... arguments)
     {
         super(message);
         cause(new Throwable());
@@ -65,7 +65,7 @@ public class Alert extends OperationStatusMessage
     }
 
     @Override
-    public String formatted(final MessageFormatter.Format format)
+    public String formatted(MessageFormatter.Format format)
     {
         return super.formatted(format) + "\nProposed Solution: " + solution();
     }
@@ -76,7 +76,7 @@ public class Alert extends OperationStatusMessage
         return Severity.HIGH;
     }
 
-    public Alert solution(final String solution)
+    public Alert solution(String solution)
     {
         this.solution = solution;
         return this;

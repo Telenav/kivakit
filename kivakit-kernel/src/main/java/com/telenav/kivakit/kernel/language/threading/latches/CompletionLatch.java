@@ -51,7 +51,7 @@ public class CompletionLatch
         this(Count._1);
     }
 
-    public CompletionLatch(final Count threads)
+    public CompletionLatch(Count threads)
     {
         this.threads = threads;
         reset();
@@ -73,13 +73,13 @@ public class CompletionLatch
     }
 
     @UmlRelation(label = "waits until")
-    public WakeState waitForCompletion(final Duration duration)
+    public WakeState waitForCompletion(Duration duration)
     {
         try
         {
             return countdown.await(duration.asMilliseconds(), TimeUnit.MILLISECONDS) ? WakeState.COMPLETED : WakeState.TIMED_OUT;
         }
-        catch (final InterruptedException ignored)
+        catch (InterruptedException ignored)
         {
             return WakeState.INTERRUPTED;
         }

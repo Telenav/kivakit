@@ -49,7 +49,7 @@ public class Build implements Named
     /**
      * @return Build information for the given project
      */
-    public static Build build(final Class<?> project)
+    public static Build build(Class<?> project)
     {
         return new Build(Metadata.of(project));
     }
@@ -61,7 +61,7 @@ public class Build implements Named
     {
     }
 
-    private Build(final Metadata metadata)
+    private Build(Metadata metadata)
     {
         this.metadata = metadata;
     }
@@ -118,7 +118,7 @@ public class Build implements Named
     /**
      * @return The project property for the given key
      */
-    public String property(final String key)
+    public String property(String key)
     {
         return properties().get(key);
     }

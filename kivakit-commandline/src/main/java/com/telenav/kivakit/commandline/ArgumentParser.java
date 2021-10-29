@@ -76,7 +76,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  * command line will be converted from a string to a {@link Version} object with {@link VersionConverter}. Many classes
  * in KivaKit provide string converters, which makes it an easy job to construct argument parsers.
  * <pre>
- * public static SwitchParser.Builder&lt;Version&gt; argumentParser(final String description)
+ * public static SwitchParser.Builder&lt;Version&gt; argumentParser( String description)
  * {
  *     return SwitchParser.builder(Version.class)
  *         .converter(new Version.Converter(listener))
@@ -98,40 +98,40 @@ public class ArgumentParser<T>
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    public static Builder<Boolean> booleanArgumentParser(final String description)
+    public static Builder<Boolean> booleanArgumentParser(String description)
     {
         return builder(Boolean.class)
                 .converter(new BooleanConverter(LOGGER))
                 .description(description);
     }
 
-    public static <T> Builder<T> builder(final Class<T> type)
+    public static <T> Builder<T> builder(Class<T> type)
     {
         return new Builder<T>().type(type);
     }
 
-    public static Builder<Integer> integerArgumentParser(final String description)
+    public static Builder<Integer> integerArgumentParser(String description)
     {
         return builder(Integer.class)
                 .converter(new IntegerConverter(LOGGER))
                 .description(description);
     }
 
-    public static Builder<Long> longArgumentParser(final String description)
+    public static Builder<Long> longArgumentParser(String description)
     {
         return builder(Long.class)
                 .converter(new LongConverter(LOGGER))
                 .description(description);
     }
 
-    public static Builder<String> stringArgumentParser(final String description)
+    public static Builder<String> stringArgumentParser(String description)
     {
         return builder(String.class)
                 .converter(new IdentityConverter(LOGGER))
                 .description(description);
     }
 
-    public static Builder<Version> versionArgumentParser(final String description)
+    public static Builder<Version> versionArgumentParser(String description)
     {
         return builder(Version.class)
                 .converter(new VersionConverter(LOGGER))
@@ -188,13 +188,13 @@ public class ArgumentParser<T>
             return new ArgumentParser<>(quantifier, type, converter, description);
         }
 
-        public Builder<T> converter(final Converter<String, T> converter)
+        public Builder<T> converter(Converter<String, T> converter)
         {
             this.converter = converter;
             return this;
         }
 
-        public Builder<T> description(final String description)
+        public Builder<T> description(String description)
         {
             this.description = description;
             return this;
@@ -224,7 +224,7 @@ public class ArgumentParser<T>
             return this;
         }
 
-        public Builder<T> type(final Class<T> type)
+        public Builder<T> type(Class<T> type)
         {
             this.type = Type.forClass(type);
             return this;
@@ -271,10 +271,10 @@ public class ArgumentParser<T>
      * @param description The human readable description of the argument
      */
     private ArgumentParser(
-            final Quantifier quantifier,
-            final Type<T> type,
-            final Converter<String, T> converter,
-            final String description)
+            Quantifier quantifier,
+            Type<T> type,
+            Converter<String, T> converter,
+            String description)
     {
         this.quantifier = quantifier;
         this.converter = converter;
@@ -282,7 +282,7 @@ public class ArgumentParser<T>
         this.description = description;
     }
 
-    public boolean canParse(final String argument)
+    public boolean canParse(String argument)
     {
         return converter.withoutTransmitting(() -> converter.convert(argument) != null);
     }
@@ -346,7 +346,7 @@ public class ArgumentParser<T>
      * @return The value of this argument
      */
     @UmlRelation(label = "gets")
-    T get(final Argument argument)
+    T get(Argument argument)
     {
         return converter.convert(argument.value());
     }
@@ -356,7 +356,7 @@ public class ArgumentParser<T>
         return parent;
     }
 
-    void parent(final CommandLineParser parent)
+    void parent(CommandLineParser parent)
     {
         this.parent = parent;
     }

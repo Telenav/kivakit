@@ -42,7 +42,7 @@ public class SettingsFolder extends Settings
     /**
      * @param folder The folder containing .properties files specifying configuration objects
      */
-    public static SettingsFolder of(final Folder folder)
+    public static SettingsFolder of(Folder folder)
     {
         return new SettingsFolder(folder);
     }
@@ -52,7 +52,7 @@ public class SettingsFolder extends Settings
     /**
      * @param folder The folder containing .properties files specifying configuration objects
      */
-    protected SettingsFolder(final Folder folder)
+    protected SettingsFolder(Folder folder)
     {
         this.folder = folder;
     }
@@ -70,10 +70,10 @@ public class SettingsFolder extends Settings
     @UmlExcludeMember
     protected Set<Entry> onLoad()
     {
-        final Set<Entry> entries = new HashSet<>();
+        Set<Entry> entries = new HashSet<>();
 
         // Go through properties files in the folder
-        for (final var file : folder.files().matching(Extension.PROPERTIES.fileMatcher()))
+        for (var file : folder.files().matching(Extension.PROPERTIES.fileMatcher()))
         {
             // and add a configuration entry for each file
             entries.add(internalLoadConfiguration(file));

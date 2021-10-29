@@ -33,9 +33,9 @@ public class PackageFolderTest extends UnitTest
     {
         if (!isQuickTest())
         {
-            final var folder = new Package(PackagePath.packagePath(getClass()));
+            var folder = new Package(PackagePath.packagePath(getClass()));
             int textFiles = 0;
-            for (final var ignored : folder.resources(Extension.TXT::ends))
+            for (var ignored : folder.resources(Extension.TXT::ends))
             {
                 textFiles++;
             }

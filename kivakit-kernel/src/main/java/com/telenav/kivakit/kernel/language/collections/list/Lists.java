@@ -31,7 +31,7 @@ import java.util.List;
 public class Lists
 {
     @SafeVarargs
-    public static <T> ArrayList<T> arrayList(final T... objects)
+    public static <T> ArrayList<T> arrayList(T... objects)
     {
         return new ArrayList<>(List.of(objects));
     }

@@ -26,13 +26,13 @@ public class LoggersInPackage implements Filter<LogEntry>
 {
     private final PackagePath path;
 
-    public LoggersInPackage(final PackagePath path)
+    public LoggersInPackage(PackagePath path)
     {
         this.path = path;
     }
 
     @Override
-    public boolean accepts(final LogEntry value)
+    public boolean accepts(LogEntry value)
     {
         return value.context().packagePath().startsWith(path);
     }

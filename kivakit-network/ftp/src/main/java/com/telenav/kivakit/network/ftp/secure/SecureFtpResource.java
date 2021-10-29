@@ -50,7 +50,7 @@ public class SecureFtpResource extends BaseNetworkResource
     @UmlAggregation(label = "accesses")
     private final NetworkLocation location;
 
-    public SecureFtpResource(final NetworkLocation location, final NetworkAccessConstraints constraints)
+    public SecureFtpResource(NetworkLocation location, NetworkAccessConstraints constraints)
     {
         super(location);
         if (!(location instanceof SecureFtpNetworkLocation))
@@ -70,7 +70,7 @@ public class SecureFtpResource extends BaseNetworkResource
      * Copy this resource to the disk
      */
     @Override
-    public void copyTo(final WritableResource destination, final CopyMode mode, final ProgressReporter reporter)
+    public void copyTo(WritableResource destination, CopyMode mode, ProgressReporter reporter)
     {
         try
         {

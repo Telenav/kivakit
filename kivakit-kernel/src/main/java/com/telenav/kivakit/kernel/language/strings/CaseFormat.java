@@ -44,7 +44,7 @@ public class CaseFormat
     /**
      * "WebServer -&gt; "web-server" and "webServer -&gt; "web-server"
      */
-    public static String camelCaseToHyphenated(final String text)
+    public static String camelCaseToHyphenated(String text)
     {
         assert text != null;
 
@@ -54,7 +54,7 @@ public class CaseFormat
     /**
      * "webServer" -&gt; "WebServer"
      */
-    public static String capitalize(final String text)
+    public static String capitalize(String text)
     {
         if (text.length() >= 1)
         {
@@ -66,7 +66,7 @@ public class CaseFormat
     /**
      * "webServer" -&gt; "Webserver"
      */
-    public static String capitalizeOnlyFirstLetter(final String text)
+    public static String capitalizeOnlyFirstLetter(String text)
     {
         if (text != null && text.length() >= 1)
         {
@@ -78,7 +78,7 @@ public class CaseFormat
     /**
      * "WebServer" -&gt; "webServer"
      */
-    public static String decapitalize(final String text)
+    public static String decapitalize(String text)
     {
         if (text.length() >= 1)
         {
@@ -92,7 +92,7 @@ public class CaseFormat
      *
      * @return The simple name of the given type in hyphenated form
      */
-    public static String hyphenatedName(final Class<?> type)
+    public static String hyphenatedName(Class<?> type)
     {
         return camelCaseToHyphenated(type.getSimpleName());
     }
@@ -100,11 +100,11 @@ public class CaseFormat
     /**
      * "web-server" -&gt; "webServer"
      */
-    public static String hyphenatedToCamel(final String string)
+    public static String hyphenatedToCamel(String string)
     {
         if (string.contains("-"))
         {
-            final Matcher matcher = Pattern.compile("-[a-zA-Z]").matcher(string);
+            Matcher matcher = Pattern.compile("-[a-zA-Z]").matcher(string);
             return matcher.replaceAll(result -> result.group().substring(1).toUpperCase());
         }
         return string;
@@ -113,7 +113,7 @@ public class CaseFormat
     /**
      * @return True if the text starts with an uppercase letter or non-letter, false otherwise
      */
-    public static boolean isCapitalized(final String text)
+    public static boolean isCapitalized(String text)
     {
         if (text != null && !text.isEmpty())
         {
@@ -125,12 +125,12 @@ public class CaseFormat
     /**
      * @return True if the given text contains a hyphen
      */
-    public static boolean isHyphenated(final String text)
+    public static boolean isHyphenated(String text)
     {
         return text.contains("-");
     }
 
-    public static boolean isLowercase(final String text)
+    public static boolean isLowercase(String text)
     {
         return text.equals(text.toLowerCase());
     }
@@ -138,7 +138,7 @@ public class CaseFormat
     /**
      * "web-server" -&gt; "WEB_SERVER"
      */
-    public static String lowerHyphenToUpperUnderscore(final String string)
+    public static String lowerHyphenToUpperUnderscore(String string)
     {
         return string.replaceAll("-", "_").toUpperCase();
     }
@@ -146,7 +146,7 @@ public class CaseFormat
     /**
      * "WEB_SERVER" -&gt; "web-server"
      */
-    public static String upperUnderscoreToLowerHyphen(final String string)
+    public static String upperUnderscoreToLowerHyphen(String string)
     {
         if (!string.contains("-"))
         {

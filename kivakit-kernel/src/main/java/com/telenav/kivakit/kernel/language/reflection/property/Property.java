@@ -53,7 +53,7 @@ public class Property implements Named, Comparable<Property>
 
     private transient Setter setter;
 
-    public Property(final String name, final Getter getter, final Setter setter)
+    public Property(String name, Getter getter, Setter setter)
     {
         Ensure.ensure(name != null);
         Ensure.ensure(getter != null || setter != null);
@@ -64,7 +64,7 @@ public class Property implements Named, Comparable<Property>
         this.setter = setter;
     }
 
-    public Message clear(final Object object)
+    public Message clear(Object object)
     {
         if (setter != null)
         {
@@ -77,17 +77,17 @@ public class Property implements Named, Comparable<Property>
     }
 
     @Override
-    public int compareTo(final Property that)
+    public int compareTo(Property that)
     {
         return name.compareTo(that.name);
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Property)
         {
-            final var that = (Property) object;
+            var that = (Property) object;
             return name.equals(that.name);
         }
         return false;
@@ -107,7 +107,7 @@ public class Property implements Named, Comparable<Property>
      * @param object The object to get from
      * @return The object retrieved or an instance of {@link Message} if something went wrong
      */
-    public Object get(final Object object)
+    public Object get(Object object)
     {
         if (getter != null && object != null)
         {
@@ -121,7 +121,7 @@ public class Property implements Named, Comparable<Property>
         return getter;
     }
 
-    public void getter(final Getter getter)
+    public void getter(Getter getter)
     {
         this.getter = getter;
     }
@@ -132,7 +132,7 @@ public class Property implements Named, Comparable<Property>
         return Hash.many(name);
     }
 
-    public boolean isNull(final Object object)
+    public boolean isNull(Object object)
     {
         return get(object) == null;
     }
@@ -169,7 +169,7 @@ public class Property implements Named, Comparable<Property>
     }
 
     @SuppressWarnings({ "unchecked" })
-    public Message set(final Listener listener, final Object object, Object value)
+    public Message set(Listener listener, Object object, Object value)
     {
         if (value != null)
         {
@@ -177,14 +177,14 @@ public class Property implements Named, Comparable<Property>
             if (!canAssign(value.getClass(), type().type()))
             {
                 // convert the value
-                final var converter = converter(listener);
+                var converter = converter(listener);
                 if (converter == null)
                 {
                     return new Problem("$: Cannot find type converter", this);
                 }
                 else
                 {
-                    final var convertedValue = converter.convert(value);
+                    var convertedValue = converter.convert(value);
                     if (convertedValue == null)
                     {
                         return new Problem("$: Cannot convert ${debug} to ${debug}", this, value.getClass(), type());
@@ -219,7 +219,7 @@ public class Property implements Named, Comparable<Property>
         return setter;
     }
 
-    public void setter(final Setter setter)
+    public void setter(Setter setter)
     {
         this.setter = setter;
     }
@@ -244,16 +244,16 @@ public class Property implements Named, Comparable<Property>
     }
 
     @SuppressWarnings("rawtypes")
-    Converter converter(final Listener listener)
+    Converter converter(Listener listener)
     {
-        final var converter = setter.annotation(KivaKitPropertyConverter.class);
+        var converter = setter.annotation(KivaKitPropertyConverter.class);
         if (converter != null)
         {
             try
             {
                 return converter.value().getConstructor(Listener.class).newInstance(listener);
             }
-            catch (final Exception e)
+            catch (Exception e)
             {
                 throw new IllegalStateException("Couldn't construct converter " + converter.value(), e);
             }
@@ -261,7 +261,7 @@ public class Property implements Named, Comparable<Property>
         return null;
     }
 
-    private boolean canAssign(final Class<?> from, final Class<?> to)
+    private boolean canAssign(Class<?> from, Class<?> to)
     {
         if (to.isAssignableFrom(from))
         {

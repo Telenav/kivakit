@@ -50,7 +50,7 @@ public class ConfidenceTest
             Confidence.confidence(2);
             fail("Should throw");
         }
-        catch (final ValidationFailure ignored)
+        catch ( ValidationFailure ignored)
         {
         }
         try
@@ -58,7 +58,7 @@ public class ConfidenceTest
             Confidence.confidence(-1);
             fail("Should throw");
         }
-        catch (final ValidationFailure ignored)
+        catch ( ValidationFailure ignored)
         {
         }
         Confidence.confidence(1);

@@ -32,13 +32,13 @@ import java.lang.reflect.Field;
 @LexakaiJavadoc(complete = true)
 class ArchivedFields extends AllFields
 {
-    public ArchivedFields(final NamingConvention convention)
+    public ArchivedFields(NamingConvention convention)
     {
         super(convention);
     }
 
     @Override
-    public boolean includeField(final Field field)
+    public boolean includeField(Field field)
     {
         return field.getAnnotation(KivaKitArchivedField.class) != null;
     }

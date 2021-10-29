@@ -70,7 +70,7 @@ public class FolderPruner
     /** True if this pruner is running */
     private volatile boolean running;
 
-    public FolderPruner(final Folder folder, final Frequency frequency)
+    public FolderPruner(Folder folder, Frequency frequency)
     {
         thread = new RepeatingKivaKitThread(LOGGER, getClass().getSimpleName(), frequency)
         {
@@ -80,14 +80,14 @@ public class FolderPruner
                 try
                 {
                     // Get files that we could delete, sorted from oldest to newest
-                    final var files = folder.nestedFiles(matcher());
+                    var files = folder.nestedFiles(matcher());
                     files.sortedOldestToNewest();
 
                     // Determine size of all removable files
                     var size = files.totalSize();
 
                     // For each file we can remove
-                    for (final var file : files)
+                    for (var file : files)
                     {
                         // If we're low on disk or we're exceeding the folder capacity
                         if (folder.disk().percentUsable().isLessThan(minimumUsableDiskSpace())
@@ -98,14 +98,14 @@ public class FolderPruner
                             {
                                 // then remove the file and adjust the folder size
                                 onFileRemoved(file);
-                                final var length = file.sizeInBytes();
+                                var length = file.sizeInBytes();
                                 file.delete();
                                 size = size.minus(length);
                             }
                         }
                     }
                 }
-                catch (final Exception e)
+                catch (Exception e)
                 {
                     LOGGER.problem(e, "Folder pruner threw exception");
                 }
@@ -115,7 +115,7 @@ public class FolderPruner
         thread.addListener(LOGGER);
     }
 
-    public void capacity(final Bytes capacity)
+    public void capacity(Bytes capacity)
     {
         this.capacity = capacity;
     }
@@ -125,17 +125,17 @@ public class FolderPruner
         return running;
     }
 
-    public void matcher(final Matcher<File> matcher)
+    public void matcher(Matcher<File> matcher)
     {
         this.matcher = matcher;
     }
 
-    public void minimumAge(final Duration minimumAge)
+    public void minimumAge(Duration minimumAge)
     {
         this.minimumAge = minimumAge;
     }
 
-    public void minimumUsableDiskSpace(final Percent minimumUsableDiskSpace)
+    public void minimumUsableDiskSpace(Percent minimumUsableDiskSpace)
     {
         this.minimumUsableDiskSpace = minimumUsableDiskSpace;
     }
@@ -146,7 +146,7 @@ public class FolderPruner
         running = true;
     }
 
-    public void stop(final Duration maximumWaitTime)
+    public void stop(Duration maximumWaitTime)
     {
         thread.stop(maximumWaitTime);
         running = false;
@@ -156,7 +156,7 @@ public class FolderPruner
      * Allows subclass to determine the file age (because it may want to infer the date of the file from the filename or
      * some other source instead of using the OS time)
      */
-    protected Duration age(final File file)
+    protected Duration age(File file)
     {
         return file.lastModified().elapsedSince();
     }
@@ -167,7 +167,7 @@ public class FolderPruner
      * @return True if the candidate file can be removed
      */
     @SuppressWarnings({ "SameReturnValue" })
-    protected boolean canRemove(final File candidate, final FileList files)
+    protected boolean canRemove(File candidate, FileList files)
     {
         return true;
     }
@@ -192,7 +192,7 @@ public class FolderPruner
         return minimumUsableDiskSpace;
     }
 
-    protected void onFileRemoved(final File file)
+    protected void onFileRemoved(File file)
     {
         LOGGER.warning("FolderPruner removing $", file);
     }

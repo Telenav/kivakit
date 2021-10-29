@@ -40,7 +40,7 @@ public class ServerSettings
     }
 
     @KivaKitPropertyConverter(IntegerConverter.class)
-    public void port(final int port)
+    public void port(int port)
     {
         this.port = port;
     }
@@ -51,7 +51,7 @@ public class ServerSettings
     }
 
     @KivaKitPropertyConverter(Duration.Converter.class)
-    public void timeout(final Duration timeout)
+    public void timeout(Duration timeout)
     {
         this.timeout = timeout;
     }

@@ -49,13 +49,13 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramMessageType.class)
 public class Quibble extends OperationStatusMessage
 {
-    public Quibble(final String message, final Object... arguments)
+    public Quibble(String message, Object... arguments)
     {
         super(message);
         arguments(arguments);
     }
 
-    public Quibble(final Throwable cause, final String message, final Object... arguments)
+    public Quibble(Throwable cause, String message, Object... arguments)
     {
         super(message + ": " + Message.escape(cause.getMessage()));
         cause(cause);

@@ -51,7 +51,7 @@ public class TimeFormats
 
     public static final DateTimeFormatter KIVAKIT_DATE_TIME_MILLISECONDS = builder("yyyy.MM.dd_h.mm.ss.SSSa").toFormatter();
 
-    private static DateTimeFormatterBuilder builder(final String pattern)
+    private static DateTimeFormatterBuilder builder(String pattern)
     {
         return new DateTimeFormatterBuilder()
                 .parseCaseInsensitive()

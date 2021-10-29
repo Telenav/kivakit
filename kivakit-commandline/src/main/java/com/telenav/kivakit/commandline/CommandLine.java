@@ -96,7 +96,7 @@ public class CommandLine implements AsString, Iterable<Argument>
      * @param arguments The argument list as passed to the CommandLineApplication constructor (and originating from the
      * standard Java main() entry point for command-line applications).
      */
-    public CommandLine(final CommandLineParser parser, final String[] arguments)
+    public CommandLine(CommandLineParser parser, String[] arguments)
     {
         // Save command line parser
         this.parser = parser;
@@ -109,13 +109,13 @@ public class CommandLine implements AsString, Iterable<Argument>
 
         // Loop through arguments, assigning switches to the switch list and arguments to the
         // argument list
-        for (final var argument : arguments)
+        for (var argument : arguments)
         {
             // If the argument starts with a dash, it must be a switch
             if (argument.startsWith("-"))
             {
                 // Ensure the form of the switch argument
-                final var matcher = switchPattern.matcher(argument);
+                var matcher = switchPattern.matcher(argument);
 
                 // If it's a valid switch,
                 if (matcher.matches())
@@ -144,7 +144,7 @@ public class CommandLine implements AsString, Iterable<Argument>
      * A programmatic way to add a switch
      */
     @UmlExcludeMember
-    public void addSwitch(final String name, final String value)
+    public void addSwitch(String name, String value)
     {
         switches.add(new Switch(name, value));
     }
@@ -153,7 +153,7 @@ public class CommandLine implements AsString, Iterable<Argument>
      * @return The non-switch argument at the given index parsed using the given argument parser
      */
     @UmlRelation(label = "gets arguments")
-    public <T> T argument(final int index, final ArgumentParser<T> parser)
+    public <T> T argument(int index, ArgumentParser<T> parser)
     {
         return arguments().get(index).get(parser);
     }
@@ -161,7 +161,7 @@ public class CommandLine implements AsString, Iterable<Argument>
     /**
      * @return The first non-switch argument parsed using the given argument parser
      */
-    public <T> T argument(final ArgumentParser<T> parser)
+    public <T> T argument(ArgumentParser<T> parser)
     {
         return argument(0, parser);
     }
@@ -170,10 +170,10 @@ public class CommandLine implements AsString, Iterable<Argument>
      * @return The list of all arguments retrieved using the given parser. Note that this implies that all arguments are
      * of the same type.
      */
-    public <T> List<T> arguments(final ArgumentParser<T> parser)
+    public <T> List<T> arguments(ArgumentParser<T> parser)
     {
-        final var arguments = new ArrayList<T>();
-        for (final var argument : arguments())
+        var arguments = new ArrayList<T>();
+        for (var argument : arguments())
         {
             arguments.add(argument.get(parser));
         }
@@ -195,12 +195,12 @@ public class CommandLine implements AsString, Iterable<Argument>
     @UmlExcludeMember
     public String[] asArgumentArray()
     {
-        final var strings = new StringList(KernelLimits.COMMAND_LINE_ARGUMENTS.plus(KernelLimits.COMMAND_LINE_SWITCHES));
-        for (final var _switch : switches)
+        var strings = new StringList(KernelLimits.COMMAND_LINE_ARGUMENTS.plus(KernelLimits.COMMAND_LINE_SWITCHES));
+        for (var _switch : switches)
         {
             strings.add(_switch.toString());
         }
-        for (final var argument : arguments)
+        for (var argument : arguments)
         {
             strings.add(argument.toString());
         }
@@ -209,7 +209,7 @@ public class CommandLine implements AsString, Iterable<Argument>
 
     @Override
     @UmlExcludeMember
-    public String asString(final StringFormat format)
+    public String asString(StringFormat format)
     {
         switch (format.identifier())
         {
@@ -224,7 +224,7 @@ public class CommandLine implements AsString, Iterable<Argument>
     /**
      * Exits the application with the given error message and help for the user.
      */
-    public void exit(final String error, final Object... arguments)
+    public void exit(String error, Object... arguments)
     {
         parser.exit(Message.format(AsciiArt.spaces(4) + AsciiArt.bullet() + " " + error, arguments));
     }
@@ -233,10 +233,10 @@ public class CommandLine implements AsString, Iterable<Argument>
      * @return The value of any switch on this command line for the given switch parser
      */
     @UmlRelation(label = "gets switches")
-    public <T> T get(final SwitchParser<T> parser)
+    public <T> T get(SwitchParser<T> parser)
     {
         // Get the value for the given parser,
-        final var value = switches.get(parser);
+        var value = switches.get(parser);
 
         // and if there is no value, but it's required,
         if (value == null && parser.isRequired())
@@ -266,9 +266,9 @@ public class CommandLine implements AsString, Iterable<Argument>
      * @return The value for the given switch parser, or if the switch does not exist on this command line, the default
      * value instead.
      */
-    public <T> T get(final SwitchParser<T> parser, final T defaultValue)
+    public <T> T get(SwitchParser<T> parser, T defaultValue)
     {
-        final var value = switches.get(parser);
+        var value = switches.get(parser);
         if (value == null)
         {
             return defaultValue;
@@ -279,7 +279,7 @@ public class CommandLine implements AsString, Iterable<Argument>
     /**
      * @return True if this command line has a value for the given switch parser
      */
-    public <T> boolean has(final SwitchParser<T> parser)
+    public <T> boolean has(SwitchParser<T> parser)
     {
         return get(parser) != null;
     }

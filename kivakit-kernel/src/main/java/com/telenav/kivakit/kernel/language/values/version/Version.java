@@ -96,7 +96,7 @@ public class Version
     /**
      * @return A version for the given major and minor values, as in 8.0
      */
-    public static Version of(final int major, final int minor)
+    public static Version of(int major, int minor)
     {
         return of(major, minor, NO_PATCH);
     }
@@ -104,7 +104,7 @@ public class Version
     /**
      * @return A version for the given major, minor and patch values, as in 8.0.1
      */
-    public static Version of(final int major, final int minor, final int patch)
+    public static Version of(int major, int minor, int patch)
     {
         return of(major, minor, patch, null, false);
     }
@@ -112,11 +112,11 @@ public class Version
     /**
      * @return A version for the given major, minor, patch and release values, as in 8.0.1-Beta
      */
-    public static Version of(final int major,
-                             final int minor,
-                             final int patch,
-                             final Release release,
-                             final boolean snapshot)
+    public static Version of(int major,
+                             int minor,
+                             int patch,
+                             Release release,
+                             boolean snapshot)
     {
         return new Version(major, minor, patch, release, snapshot);
     }
@@ -125,24 +125,24 @@ public class Version
      * @return The given text, of the form [major].[minor](.[revision)?(-release)?, parsed as a {@link Version} object,
      * or null if the text is not of that form.
      */
-    public static Version parse(final String text)
+    public static Version parse(String text)
     {
         // If the text matches the version pattern,
-        final var matcher = PATTERN.matcher(text);
+        var matcher = PATTERN.matcher(text);
         if (matcher.matches())
         {
             // Extract the required major and minor versions
-            final var major = Integer.parseInt(matcher.group("major"));
-            final var minor = Integer.parseInt(matcher.group("minor"));
+            var major = Integer.parseInt(matcher.group("major"));
+            var minor = Integer.parseInt(matcher.group("minor"));
 
             // then get the patch group and convert it to a number or NO_PATCH if there is none
-            final var patch = matcher.group("patch");
-            final var patchNumber = patch == null ? NO_PATCH : Integer.parseInt(patch);
+            var patch = matcher.group("patch");
+            var patchNumber = patch == null ? NO_PATCH : Integer.parseInt(patch);
 
             // and the release name or null if there is none
-            final var releaseName = matcher.group("release");
-            final var release = releaseName == null ? null : Release.parse(releaseName);
-            final var snapshot = "SNAPSHOT".equalsIgnoreCase(matcher.group("snapshot"));
+            var releaseName = matcher.group("release");
+            var release = releaseName == null ? null : Release.parse(releaseName);
+            var snapshot = "SNAPSHOT".equalsIgnoreCase(matcher.group("snapshot"));
 
             // and finally, construct the version object
             return of(major, minor, patchNumber, release, snapshot);
@@ -161,7 +161,7 @@ public class Version
 
     private boolean snapshot;
 
-    protected Version(final int major, final int minor, final int patch, final Release release, final boolean snapshot)
+    protected Version(int major, int minor, int patch, Release release, boolean snapshot)
     {
         this.minor = (byte) minor;
         this.major = (byte) major;
@@ -175,11 +175,11 @@ public class Version
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Version)
         {
-            final var that = (Version) object;
+            var that = (Version) object;
             return major == that.major
                     && minor == that.minor
                     && patch == that.patch
@@ -204,7 +204,7 @@ public class Version
         return Objects.hash(major, minor, patch, release);
     }
 
-    public boolean isNewerThan(final Version that)
+    public boolean isNewerThan(Version that)
     {
         if (major == that.major)
         {
@@ -230,17 +230,17 @@ public class Version
         }
     }
 
-    public boolean isNewerThanOrEqualTo(final Version that)
+    public boolean isNewerThanOrEqualTo(Version that)
     {
         return equals(that) || isNewerThan(that);
     }
 
-    public boolean isOlderThan(final Version that)
+    public boolean isOlderThan(Version that)
     {
         return !equals(that) && !isNewerThan(that);
     }
 
-    public boolean isOlderThanOrEqualTo(final Version that)
+    public boolean isOlderThanOrEqualTo(Version that)
     {
         return equals(that) || isOlderThan(that);
     }
@@ -260,12 +260,12 @@ public class Version
         return minor;
     }
 
-    public Version newer(final Version that)
+    public Version newer(Version that)
     {
         return isNewerThan(that) ? this : that;
     }
 
-    public Version older(final Version that)
+    public Version older(Version that)
     {
         return isOlderThan(that) ? this : that;
     }

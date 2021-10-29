@@ -38,7 +38,7 @@ public class Objects
 
     private static final Map<Class<?>, ClassIdentityMap> classToIdentityMap = new HashMap<>();
 
-    public static boolean equal(final Object a, final Object b)
+    public static boolean equal(Object a, Object b)
     {
         if (a == b)
         {
@@ -88,7 +88,7 @@ public class Objects
     }
 
     @SuppressWarnings("StringEquality")
-    public static boolean equalIgnoringCase(final String a, final String b)
+    public static boolean equalIgnoringCase(String a, String b)
     {
         if (a == b)
         {
@@ -101,7 +101,7 @@ public class Objects
         return false;
     }
 
-    public static boolean equalPairs(final Object... objects)
+    public static boolean equalPairs(Object... objects)
     {
         if (objects.length % 2 != 0)
         {
@@ -130,7 +130,7 @@ public class Objects
      * separate sequence of objects that have been allocated, starting at identity 1. For example, StringList ≡1,
      * ObjectList ≡1, StringList ≡2, etc... This makes is easier to track objects when debug tracing.
      */
-    public static synchronized String identityOf(final Object object)
+    public static synchronized String identityOf(Object object)
     {
         // This can only be used under debug mode because the identity map will keep every object in
         // it from being garbage collected, requiring large amounts of RAM.
@@ -146,9 +146,9 @@ public class Objects
         return "";
     }
 
-    public static boolean isAnyNull(final Object... objects)
+    public static boolean isAnyNull(Object... objects)
     {
-        for (final var object : objects)
+        for (var object : objects)
         {
             if (object == null)
             {
@@ -158,24 +158,24 @@ public class Objects
         return false;
     }
 
-    public static boolean isNotNull(final Object object)
+    public static boolean isNotNull(Object object)
     {
         return object != null;
     }
 
-    public static boolean isNull(final Object object)
+    public static boolean isNull(Object object)
     {
         return object == null;
     }
 
-    public static boolean isPrimitiveWrapper(final Object object)
+    public static boolean isPrimitiveWrapper(Object object)
     {
         return object instanceof Long || object instanceof Integer || object instanceof Short
                 || object instanceof Character || object instanceof Byte || object instanceof Boolean
                 || object instanceof Double || object instanceof Float;
     }
 
-    public static <Value> Value notNullOr(final Value value, final Value defaultValue)
+    public static <Value> Value notNullOr(Value value, Value defaultValue)
     {
         return (value != null) ? value : defaultValue;
     }
@@ -183,7 +183,7 @@ public class Objects
     /**
      * @return The rough size of the primitive object or array in bytes
      */
-    public static Bytes primitiveSize(final Object object)
+    public static Bytes primitiveSize(Object object)
     {
         if (object == null)
         {
@@ -191,8 +191,8 @@ public class Objects
         }
         if (object.getClass().isArray())
         {
-            final var elementType = object.getClass().getComponentType();
-            final long length = Array.getLength(object);
+            var elementType = object.getClass().getComponentType();
+            long length = Array.getLength(object);
             if (elementType.isPrimitive())
             {
                 if (elementType.equals(Byte.TYPE))
@@ -240,7 +240,7 @@ public class Objects
          */
         private int nextIdentity = 1;
 
-        public int identityOf(final Object object)
+        public int identityOf(Object object)
         {
             return identityForObject.computeIfAbsent(object, (o) -> nextIdentity++);
         }

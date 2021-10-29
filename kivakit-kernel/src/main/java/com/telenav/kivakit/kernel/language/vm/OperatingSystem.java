@@ -52,7 +52,7 @@ public class OperatingSystem implements Named
         if (variables == null)
         {
             variables = new VariableMap<>();
-            for (final var key : System.getenv().keySet())
+            for (var key : System.getenv().keySet())
             {
                 variables.put(key, System.getenv(key));
             }
@@ -60,20 +60,20 @@ public class OperatingSystem implements Named
         return variables;
     }
 
-    public String exec(final File folder, final String... command)
+    public String exec(File folder, String... command)
     {
         try
         {
-            final var builder = new ProcessBuilder();
+            var builder = new ProcessBuilder();
             builder.command(command);
             builder.directory(folder);
             builder.redirectErrorStream(true);
-            final var process = builder.start();
-            final var output = Processes.captureOutput(process);
+            var process = builder.start();
+            var output = Processes.captureOutput(process);
             Processes.waitFor(process);
             return output;
         }
-        catch (final IOException e)
+        catch (IOException e)
         {
             LOGGER.warning(e, "OperationFailed reading output of child process");
         }
@@ -126,7 +126,7 @@ public class OperatingSystem implements Named
         return System.getProperty("os.arch");
     }
 
-    public String property(final String variable)
+    public String property(String variable)
     {
         var value = System.getProperty(variable);
         if (value == null)

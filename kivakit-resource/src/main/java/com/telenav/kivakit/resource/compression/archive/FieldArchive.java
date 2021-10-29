@@ -101,7 +101,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
 
         private final Property field;
 
-        public ObjectField(final Object object, final Property field)
+        public ObjectField(Object object, Property field)
         {
             this.object = object;
             this.field = field;
@@ -118,10 +118,10 @@ public class FieldArchive extends BaseRepeater implements Closeable
             return field.toString();
         }
 
-        boolean saveObject(final SerializationSession session, final String entryName)
+        boolean saveObject(SerializationSession session, String entryName)
         {
-            final var outer = FieldArchive.this;
-            final var value = field.get(object);
+            var outer = FieldArchive.this;
+            var value = field.get(object);
             if (value != null)
             {
                 zip().save(session, entryName, new VersionedObject<>(outer.version, value));
@@ -156,10 +156,10 @@ public class FieldArchive extends BaseRepeater implements Closeable
      * @param file A field archive resource
      * @param mode The mode of access to this archive
      */
-    public FieldArchive(final File file,
-                        final SerializationSessionFactory sessionFactory,
-                        final ProgressReporter reporter,
-                        final ZipArchive.Mode mode)
+    public FieldArchive(File file,
+                        SerializationSessionFactory sessionFactory,
+                        ProgressReporter reporter,
+                        ZipArchive.Mode mode)
     {
         this.file = file;
         this.reporter = reporter;
@@ -187,7 +187,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
     /**
      * Loads a versioned object from the zip entry named "[object-name].[field-name]"
      */
-    public <T> VersionedObject<T> load(final NamedObject object, final String fieldName)
+    public <T> VersionedObject<T> load(NamedObject object, String fieldName)
     {
         return zip().load(session(), entryName(object, fieldName));
     }
@@ -200,15 +200,15 @@ public class FieldArchive extends BaseRepeater implements Closeable
      * @return The value of the field after attempting to load
      */
     @SuppressWarnings({ "ConstantConditions", "unchecked" })
-    public synchronized <T> T loadFieldOf(final NamedObject object, final String fieldName)
+    public synchronized <T> T loadFieldOf(NamedObject object, String fieldName)
     {
         // Get the field
-        final Type<?> type = Type.of(object);
-        final var field = type.field(CaseFormat.hyphenatedToCamel(fieldName));
+        Type<?> type = Type.of(object);
+        var field = type.field(CaseFormat.hyphenatedToCamel(fieldName));
         ensure(field != null, "Cannot find field '$' in $", fieldName, type);
 
         // and to load object with object scoped name "[object-name].[field-name]"
-        final var versionedObject = load(object, fieldName);
+        var versionedObject = load(object, fieldName);
         Object value = null;
         if (versionedObject != null)
         {
@@ -221,7 +221,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
             try
             {
                 // set the field to that value
-                final var message = field.setter().set(object, value);
+                var message = field.setter().set(object, value);
                 if (message.status().failed())
                 {
                     transmit(message);
@@ -230,7 +230,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
                 // and return it.
                 return (T) value;
             }
-            catch (final Exception e)
+            catch (Exception e)
             {
                 throw new RuntimeException("Unable to set field " + entryName(object, fieldName), e);
             }
@@ -246,7 +246,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
      * @return True if all fields were loaded
      */
     @SuppressWarnings({ "UnusedReturnValue", "ConstantConditions" })
-    public synchronized boolean loadFieldsOf(final NamedObject... objects)
+    public synchronized boolean loadFieldsOf(NamedObject... objects)
     {
         ensure(objects != null);
         ensure(objects.length > 0);
@@ -254,11 +254,11 @@ public class FieldArchive extends BaseRepeater implements Closeable
         var success = true;
 
         // Go through the objects,
-        for (final var object : objects)
+        for (var object : objects)
         {
             // and for each archived field
-            final Type<?> type = Type.of(object);
-            for (final var field : type.properties(new ArchivedFields(NamingConvention.KIVAKIT)).sorted())
+            Type<?> type = Type.of(object);
+            for (var field : type.properties(new ArchivedFields(NamingConvention.KIVAKIT)).sorted())
             {
                 // if it is not lazy,
                 if (!field.getter().annotation(KivaKitArchivedField.class).lazy())
@@ -288,9 +288,9 @@ public class FieldArchive extends BaseRepeater implements Closeable
     /**
      * Saves the given versioned object to the entry with the given name
      */
-    public synchronized <T> void save(final String fieldName, final VersionedObject<T> object)
+    public synchronized <T> void save(String fieldName, VersionedObject<T> object)
     {
-        try (final var session = session())
+        try (var session = session())
         {
             zip().save(session, CaseFormat.camelCaseToHyphenated(fieldName), object);
         }
@@ -300,15 +300,15 @@ public class FieldArchive extends BaseRepeater implements Closeable
      * Saves the fields of the given object to this archive with the given version
      */
     @SuppressWarnings("ConstantConditions")
-    public synchronized void saveFieldsOf(final NamedObject object, final Version version)
+    public synchronized void saveFieldsOf(NamedObject object, Version version)
     {
         ensure(object != null);
 
         this.version = version;
 
-        try (final var session = session())
+        try (var session = session())
         {
-            for (final var field : Type.of(object).properties(new ArchivedFields(NamingConvention.KIVAKIT)).sorted())
+            for (var field : Type.of(object).properties(new ArchivedFields(NamingConvention.KIVAKIT)).sorted())
             {
                 try
                 {
@@ -317,7 +317,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
                         trace("Saved field $", field.name());
                     }
                 }
-                catch (final Exception e)
+                catch (Exception e)
                 {
                     warning(e, "Unable to save field $", field.name());
                 }
@@ -342,7 +342,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
     /**
      * Saves the given archive version
      */
-    public void version(final Version version)
+    public void version(Version version)
     {
         save("version", new VersionedObject<>(version));
     }
@@ -355,7 +355,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
     {
         if (version == null)
         {
-            final var version = zip().load(session(), "version");
+            var version = zip().load(session(), "version");
             if (version != null)
             {
                 this.version = (Version) version.get();
@@ -377,7 +377,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
         return zip;
     }
 
-    private String entryName(final NamedObject object, final String fieldName)
+    private String entryName(NamedObject object, String fieldName)
     {
         return object.objectName() + "." + CaseFormat.camelCaseToHyphenated(fieldName);
     }

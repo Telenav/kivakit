@@ -48,7 +48,7 @@ public interface Indexable<Element> extends Sized, Sequence<Element>
     /**
      * @return The value at the given index or the default value if that index does not exist
      */
-    default Element getOrDefault(final int index, final Element defaultValue)
+    default Element getOrDefault(int index, Element defaultValue)
     {
         return index < size() ? get(index) : defaultValue;
     }
@@ -56,7 +56,7 @@ public interface Indexable<Element> extends Sized, Sequence<Element>
     /**
      * @return True if this indexable object and that indexable object have all the same values
      */
-    default boolean isEqualTo(final Indexable<Element> that)
+    default boolean isEqualTo(Indexable<Element> that)
     {
         if (size() == that.size())
         {

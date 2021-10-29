@@ -54,7 +54,7 @@ public class SwitchParserList implements Iterable<SwitchParser<?>>
      *
      * @param parser The parser
      */
-    public void add(final SwitchParser<?> parser)
+    public void add(SwitchParser<?> parser)
     {
         parsers.put(parser);
     }
@@ -62,7 +62,7 @@ public class SwitchParserList implements Iterable<SwitchParser<?>>
     /**
      * @return The switch parser with the given name
      */
-    public SwitchParser<?> forName(final String name)
+    public SwitchParser<?> forName(String name)
     {
         return parsers.forName(name);
     }
@@ -72,11 +72,11 @@ public class SwitchParserList implements Iterable<SwitchParser<?>>
      */
     public String help()
     {
-        final var descriptions = new StringList(KernelLimits.COMMAND_LINE_SWITCHES);
+        var descriptions = new StringList(KernelLimits.COMMAND_LINE_SWITCHES);
         parsers.sort(Comparator.comparing(SwitchParser::name));
 
         int required = 0;
-        for (final var parser : parsers)
+        for (var parser : parsers)
         {
             if (parser.isRequired())
             {
@@ -90,7 +90,7 @@ public class SwitchParserList implements Iterable<SwitchParser<?>>
         }
 
         int optional = 0;
-        for (final var parser : parsers)
+        for (var parser : parsers)
         {
             if (!parser.isRequired())
             {

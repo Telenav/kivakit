@@ -33,7 +33,7 @@ public interface Ranged<Value extends Minimizable<Value> & Maximizable<Value>> e
     /**
      * @return The given value constrained to this range
      */
-    Value constrainTo(final Value value);
+    Value constrainTo(Value value);
 
     /**
      * @return The maximum value of this range

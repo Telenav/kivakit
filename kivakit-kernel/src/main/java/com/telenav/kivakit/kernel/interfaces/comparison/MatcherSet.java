@@ -41,7 +41,7 @@ public class MatcherSet<T> implements Matcher<T>
 {
     private final Set<Matcher<T>> matchers = new HashSet<>();
 
-    public MatcherSet<T> add(final Matcher<T> matcher)
+    public MatcherSet<T> add(Matcher<T> matcher)
     {
         matchers.add(matcher);
         return this;
@@ -51,7 +51,7 @@ public class MatcherSet<T> implements Matcher<T>
     {
         return value ->
         {
-            for (final Matcher<T> matcher : matchers)
+            for (Matcher<T> matcher : matchers)
             {
                 if (!matcher.matches(value))
                 {
@@ -66,7 +66,7 @@ public class MatcherSet<T> implements Matcher<T>
     {
         return value ->
         {
-            for (final Matcher<T> matcher : matchers)
+            for (Matcher<T> matcher : matchers)
             {
                 if (matcher.matches(value))
                 {
@@ -78,7 +78,7 @@ public class MatcherSet<T> implements Matcher<T>
     }
 
     @Override
-    public boolean matches(final T value)
+    public boolean matches(T value)
     {
         return anyMatches().matches(value);
     }
@@ -87,7 +87,7 @@ public class MatcherSet<T> implements Matcher<T>
     {
         return value ->
         {
-            for (final Matcher<T> matcher : matchers)
+            for (Matcher<T> matcher : matchers)
             {
                 if (matcher.matches(value))
                 {

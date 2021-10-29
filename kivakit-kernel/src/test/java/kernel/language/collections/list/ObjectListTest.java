@@ -34,7 +34,7 @@ public class ObjectListTest
     @Test
     public void testAdd()
     {
-        final var list = ObjectList.objectList(1, 2, 3, 4, 5);
+        var list = ObjectList.objectList(1, 2, 3, 4, 5);
         list.add(9);
         ensureEqual(list, ObjectList.objectList(1, 2, 3, 4, 5, 9));
     }
@@ -68,10 +68,10 @@ public class ObjectListTest
     @Test
     public void testEndsWith()
     {
-        final var list = createList(0, 4);
-        final var validEnd = createList(3, 4);
-        final var invalidEnd1 = createList(1, 3);
-        final var invalidEnd2 = createList(0, 5);
+        var list = createList(0, 4);
+        var validEnd = createList(3, 4);
+        var invalidEnd1 = createList(1, 3);
+        var invalidEnd2 = createList(0, 5);
 
         Assert.assertTrue(list.endsWith(list));
         Assert.assertTrue(list.endsWith(validEnd));
@@ -177,7 +177,7 @@ public class ObjectListTest
     {
         ensureEqual(ObjectList.objectList(1, 2, 3, 4, 5).partition(Count._2), ObjectList.objectList(ObjectList.objectList(1, 2, 3), ObjectList.objectList(4, 5)));
 
-        final var list = createList(0, 10);
+        var list = createList(0, 10);
         ensure(list.partition(Count._3).size() == 3);
         ensure(list.partition(Count._4).size() == 4);
         ensure(list.partition(Count._5).size() == 5);
@@ -199,7 +199,7 @@ public class ObjectListTest
     @Test
     public void testRemoveLast()
     {
-        final var list = ObjectList.objectList(1, 2, 3, 4, 5);
+        var list = ObjectList.objectList(1, 2, 3, 4, 5);
         var removed = list.removeLast();
         ensureEqual(removed, 5);
         ensureEqual(list, ObjectList.objectList(1, 2, 3, 4));
@@ -222,7 +222,7 @@ public class ObjectListTest
     @Test
     public void testSet()
     {
-        final var list = ObjectList.objectList(1, 2, 3, 4, 5);
+        var list = ObjectList.objectList(1, 2, 3, 4, 5);
         list.set(0, 9);
         ensureEqual(list, ObjectList.objectList(9, 2, 3, 4, 5));
         list.set(2, 9);
@@ -249,10 +249,10 @@ public class ObjectListTest
     @Test
     public void testStartsWith()
     {
-        final var list = createList(0, 4);
-        final var validStart = createList(0, 2);
-        final var invalidStart1 = createList(1, 4);
-        final var invalidStart2 = createList(0, 5);
+        var list = createList(0, 4);
+        var validStart = createList(0, 2);
+        var invalidStart1 = createList(1, 4);
+        var invalidStart2 = createList(0, 5);
 
         Assert.assertTrue(list.startsWith(list));
         Assert.assertTrue(list.startsWith(validStart));
@@ -276,7 +276,7 @@ public class ObjectListTest
     @Test
     public void testWith()
     {
-        final var list = createList(0, 4);
+        var list = createList(0, 4);
         ensureEqual(list.with(5), createList(0, 5));
     }
 
@@ -287,9 +287,9 @@ public class ObjectListTest
         ensureEqual(ObjectList.objectList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9).without(value -> value % 2 == 0), ObjectList.objectList(1, 3, 5, 7, 9));
     }
 
-    private ObjectList<Integer> createList(final int firstValue, final int lastValue)
+    private ObjectList<Integer> createList(int firstValue, int lastValue)
     {
-        final var list = new ObjectList<Integer>();
+        var list = new ObjectList<Integer>();
         for (var i = firstValue; i <= lastValue; i++)
         {
             list.add(i);

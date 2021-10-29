@@ -33,7 +33,7 @@ public class ByteSizedOutput extends OutputStream implements ByteSized
 
     private final OutputStream out;
 
-    public ByteSizedOutput(final OutputStream out)
+    public ByteSizedOutput(OutputStream out)
     {
         this.out = out;
     }
@@ -57,21 +57,21 @@ public class ByteSizedOutput extends OutputStream implements ByteSized
     }
 
     @Override
-    public void write(final byte[] b) throws IOException
+    public void write(byte[] b) throws IOException
     {
         out.write(b);
         size += b.length;
     }
 
     @Override
-    public void write(final byte[] b, final int off, final int length) throws IOException
+    public void write(byte[] b, int off, int length) throws IOException
     {
         out.write(b, off, length);
         size += length;
     }
 
     @Override
-    public void write(final int b) throws IOException
+    public void write(int b) throws IOException
     {
         out.write(b);
         size++;

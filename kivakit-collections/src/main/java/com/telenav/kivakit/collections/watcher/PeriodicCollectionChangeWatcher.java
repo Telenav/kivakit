@@ -48,7 +48,7 @@ public abstract class PeriodicCollectionChangeWatcher<T> extends BaseCollectionC
 
     private boolean running;
 
-    protected PeriodicCollectionChangeWatcher(final Frequency frequency)
+    protected PeriodicCollectionChangeWatcher(Frequency frequency)
     {
         this.frequency = frequency;
     }
@@ -56,10 +56,10 @@ public abstract class PeriodicCollectionChangeWatcher<T> extends BaseCollectionC
     public void compare()
     {
         // Get new set of objects
-        final var newObjects = objects();
+        var newObjects = objects();
 
         // For each old object,
-        for (final var object : objects)
+        for (var object : objects)
         {
             // if the new objects don't contain it,
             if (!newObjects.contains(object))
@@ -71,7 +71,7 @@ public abstract class PeriodicCollectionChangeWatcher<T> extends BaseCollectionC
         }
 
         // For each new object,
-        for (final var object : newObjects)
+        for (var object : newObjects)
         {
             // if it's not in the current set
             if (!objects.contains(object))
@@ -84,8 +84,8 @@ public abstract class PeriodicCollectionChangeWatcher<T> extends BaseCollectionC
             {
                 // If it wasn't just added and the last modified time is after the current last
                 // modified time
-                final var lastModified = lastModified(object);
-                final var previousLastModified = this.previousLastModified.get(object);
+                var lastModified = lastModified(object);
+                var previousLastModified = this.previousLastModified.get(object);
                 if (previousLastModified != null && lastModified.isAfter(previousLastModified))
                 {
                     // it was modified
@@ -115,7 +115,7 @@ public abstract class PeriodicCollectionChangeWatcher<T> extends BaseCollectionC
             {
                 compare();
             }
-            catch (final Exception ignored)
+            catch (Exception ignored)
             {
             }
             frequency.cycleLength().sleep();
@@ -128,7 +128,7 @@ public abstract class PeriodicCollectionChangeWatcher<T> extends BaseCollectionC
         if (!running)
         {
             objects = objects();
-            for (final var object : objects)
+            for (var object : objects)
             {
                 previousLastModified.put(object, lastModified(object));
             }

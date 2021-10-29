@@ -97,7 +97,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  * <pre>
  * public static class MyApplication extends Application
  * {
- *     public static void main(final String[] arguments)
+ *     public static void main( String[] arguments)
  *     {
  *         new MyApplication().run(arguments);
  *     }
@@ -194,7 +194,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
     @LexakaiJavadoc(complete = true)
     public static class Identifier extends StringIdentifier
     {
-        public Identifier(final String identifier)
+        public Identifier(String identifier)
         {
             super(identifier);
         }
@@ -230,7 +230,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
     /**
      * @param projects One or more projects to initialize
      */
-    protected Application(final Project... projects)
+    protected Application(Project... projects)
     {
         register(this);
 
@@ -255,7 +255,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
     /**
      * @return The non-switch argument at the given index parsed using the given argument parser
      */
-    public <T> T argument(final int index, final ArgumentParser<T> parser)
+    public <T> T argument(int index, ArgumentParser<T> parser)
     {
         return commandLine.argument(index, parser);
     }
@@ -263,7 +263,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
     /**
      * @return The first non-switch argument parsed using the given argument parser
      */
-    public <T> T argument(final ArgumentParser<T> parser)
+    public <T> T argument(ArgumentParser<T> parser)
     {
         return commandLine.argument(parser);
     }
@@ -304,9 +304,9 @@ public abstract class Application extends BaseComponent implements Named, Applic
     /**
      * @return This command line in a text box intended for user feedback when starting an application
      */
-    public String commandLineDescription(final String title)
+    public String commandLineDescription(String title)
     {
-        final var box = new StringList();
+        var box = new StringList();
         int number = 1;
 
         if (!argumentList().isEmpty())
@@ -314,7 +314,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
             box.add("");
             box.add("Arguments:");
             box.add("");
-            for (final var argument : argumentList())
+            for (var argument : argumentList())
             {
                 box.add(AsciiArt.repeat(4, ' ') + "$. $", number++, argument.value());
             }
@@ -324,10 +324,10 @@ public abstract class Application extends BaseComponent implements Named, Applic
             box.add("");
             box.add("Switches:");
             box.add("");
-            final var sorted = new ArrayList<>(internalSwitchParsers());
+            var sorted = new ArrayList<>(internalSwitchParsers());
             sorted.sort(Comparator.comparing(SwitchParser::name));
-            final var width = new StringList(sorted).longest().asInt();
-            for (final var switchParser : sorted)
+            var width = new StringList(sorted).longest().asInt();
+            for (var switchParser : sorted)
             {
                 box.add("   $ = $", Align.right(switchParser.name(), width, ' '),
                         get(switchParser) == null ? "N/A" : get(switchParser));
@@ -352,7 +352,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
      * @param message The message
      * @param arguments Arguments to interpolate into the message
      */
-    public void exit(final String message, final Object... arguments)
+    public void exit(String message, Object... arguments)
     {
         commandLine.exit(message, arguments);
     }
@@ -361,7 +361,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
      * @return The value for the command line switch parsed by the given switch parser, if any
      */
 
-    public <T> T get(final SwitchParser<T> parser)
+    public <T> T get(SwitchParser<T> parser)
     {
         return commandLine.get(parser);
     }
@@ -370,7 +370,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
      * @return The value for the command line switch parsed by given switch parser or the default value if the switch
      * does not exist
      */
-    public <T> T get(final SwitchParser<T> parser, final T defaultValue)
+    public <T> T get(SwitchParser<T> parser, T defaultValue)
     {
         return commandLine.get(parser, defaultValue);
     }
@@ -378,7 +378,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
     /**
      * @return True if this application has a value for the command line switch parsed by the given parser
      */
-    public <T> boolean has(final SwitchParser<T> parser)
+    public <T> boolean has(SwitchParser<T> parser)
     {
         return commandLine.has(parser);
     }
@@ -389,7 +389,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
         return new Identifier(Classes.simpleName(getClass()));
     }
 
-    public PropertyMap localizedProperties(final Locale locale)
+    public PropertyMap localizedProperties(Locale locale)
     {
         return PropertyMap.localized(this, packagePath(), locale);
     }
@@ -430,7 +430,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
      *
      * @param arguments Command line arguments to parse
      */
-    public final void run(final String[] arguments)
+    public final void run(String[] arguments)
     {
         state.transitionTo(INITIALIZING);
 
@@ -444,21 +444,21 @@ public abstract class Application extends BaseComponent implements Named, Applic
         deployments = DeploymentSet.load(this, getClass());
 
         // then through arguments
-        final var argumentList = new StringList();
-        for (final var argument : arguments)
+        var argumentList = new StringList();
+        for (var argument : arguments)
         {
             // and if the argument is -switches=[resource]
             if (argument.startsWith("-switches="))
             {
                 // then load properties from the resource
-                final var resourceIdentifier = Strip.leading(argument, "-switches=");
-                final var resource = Resource.resolve(resourceIdentifier);
-                final var properties = PropertyMap.load(this, resource);
+                var resourceIdentifier = Strip.leading(argument, "-switches=");
+                var resource = Resource.resolve(resourceIdentifier);
+                var properties = PropertyMap.load(this, resource);
 
                 // and add those properties to the argument list
-                for (final var key : properties.keySet())
+                for (var key : properties.keySet())
                 {
-                    final var value = properties.get(key);
+                    var value = properties.get(key);
                     argumentList.add(key + "=" + value);
                 }
             }
@@ -501,14 +501,14 @@ public abstract class Application extends BaseComponent implements Named, Applic
             onRun();
             state.transitionTo(STOPPING);
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             problem(e, "Application $ failed with exception", name());
         }
 
         BaseLog.logs().forEach(BaseLog::flush);
 
-        for (final var log : BaseLog.logs())
+        for (var log : BaseLog.logs())
         {
             if (log.messageCounts().size() > 0)
             {
@@ -631,7 +631,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
     @UmlExcludeMember
     private void configureLogging()
     {
-        final var filter = get(QUIET)
+        var filter = get(QUIET)
                 ? new SeverityGreaterThanOrEqualTo(new Glitch().severity())
                 : new AllMessages();
 
@@ -640,7 +640,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
 
     private Set<SwitchParser<?>> internalSwitchParsers()
     {
-        final var parsers = new HashSet<SwitchParser<?>>();
+        var parsers = new HashSet<SwitchParser<?>>();
 
         if (!ignoreDeployments() && !deployments.isEmpty() && DEPLOYMENT == null)
         {

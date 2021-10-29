@@ -34,7 +34,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @LexakaiJavadoc(complete = true)
 public class UserName extends Name
 {
-    public static UserName parse(final String name)
+    public static UserName parse(String name)
     {
         return new UserName(name);
     }
@@ -47,19 +47,19 @@ public class UserName extends Name
     @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<UserName>
     {
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
         }
 
         @Override
-        protected UserName onToValue(final String value)
+        protected UserName onToValue(String value)
         {
             return parse(value);
         }
     }
 
-    protected UserName(final String name)
+    protected UserName(String name)
     {
         super(name);
     }

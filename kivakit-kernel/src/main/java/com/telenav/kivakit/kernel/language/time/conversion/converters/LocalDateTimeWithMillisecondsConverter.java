@@ -32,12 +32,12 @@ import java.time.ZoneId;
 @UmlClassDiagram(diagram = DiagramLanguageTime.class)
 public class LocalDateTimeWithMillisecondsConverter extends BaseFormattedLocalTimeConverter
 {
-    public LocalDateTimeWithMillisecondsConverter(final Listener listener)
+    public LocalDateTimeWithMillisecondsConverter(Listener listener)
     {
         super(listener, TimeFormats.KIVAKIT_DATE_TIME_MILLISECONDS);
     }
 
-    public LocalDateTimeWithMillisecondsConverter(final Listener listener, final ZoneId zone)
+    public LocalDateTimeWithMillisecondsConverter(Listener listener, ZoneId zone)
     {
         super(listener, TimeFormats.KIVAKIT_DATE_TIME_MILLISECONDS, zone);
     }

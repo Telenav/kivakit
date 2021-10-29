@@ -54,12 +54,12 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
     {
     }
 
-    protected BaseWritableResource(final BaseWritableResource that)
+    protected BaseWritableResource(BaseWritableResource that)
     {
         super(that);
     }
 
-    protected BaseWritableResource(final ResourcePath path)
+    protected BaseWritableResource(ResourcePath path)
     {
         super(path);
     }
@@ -69,7 +69,7 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
      *
      * @param source The resource to copy from
      */
-    public void copyFrom(final Resource source, final CopyMode mode, final ProgressReporter reporter)
+    public void copyFrom(Resource source, CopyMode mode, ProgressReporter reporter)
     {
         source.copyTo(this, mode, reporter);
     }
@@ -96,9 +96,9 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
      *
      * @param text The text to print
      */
-    public Resource print(final String text)
+    public Resource print(String text)
     {
-        try (final var out = printWriter())
+        try (var out = printWriter())
         {
             out.print(text);
         }
@@ -110,7 +110,7 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
      *
      * @param text The text to print
      */
-    public Resource println(final String text)
+    public Resource println(String text)
     {
         print(text + "\n");
         return this;
@@ -119,9 +119,9 @@ public abstract class BaseWritableResource extends BaseReadableResource implemen
     /**
      * Saves the given input stream into this file
      */
-    public void save(final InputStream in, final ProgressReporter reporter)
+    public void save(InputStream in, ProgressReporter reporter)
     {
-        final var out = openForWriting(reporter);
+        var out = openForWriting(reporter);
         IO.copyAndClose(in, out);
         IO.close(out);
     }

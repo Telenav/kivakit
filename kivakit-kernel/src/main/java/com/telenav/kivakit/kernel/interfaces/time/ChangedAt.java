@@ -32,12 +32,12 @@ public interface ChangedAt
         return unsupported("Cannot retrieve last modified time from: ${class}", getClass());
     }
 
-    default boolean wasChangedAfter(final ChangedAt that)
+    default boolean wasChangedAfter(ChangedAt that)
     {
         return lastModified().isAfter(that.lastModified());
     }
 
-    default boolean wasChangedBefore(final ChangedAt that)
+    default boolean wasChangedBefore(ChangedAt that)
     {
         return lastModified().isBefore(that.lastModified());
     }

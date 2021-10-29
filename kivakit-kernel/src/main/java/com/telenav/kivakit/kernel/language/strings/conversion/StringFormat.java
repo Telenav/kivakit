@@ -82,12 +82,12 @@ public class StringFormat extends StringIdentifier implements Named
     /** Suitable for output to a log, like "[Object x = 9, y = 10]" */
     public static StringFormat LOG = new StringFormat(LOG_IDENTIFIER);
 
-    public static StringFormat of(final String identifier)
+    public static StringFormat of(String identifier)
     {
         return identifiers.get(identifier);
     }
 
-    public StringFormat(final String identifier)
+    public StringFormat(String identifier)
     {
         super(identifier);
         identifiers.add(this);

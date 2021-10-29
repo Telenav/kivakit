@@ -39,7 +39,7 @@ import static com.telenav.kivakit.network.core.Protocol.HTTPS;
 @LexakaiJavadoc(complete = true)
 public class SecureHttpNetworkLocation extends HttpNetworkLocation
 {
-    public SecureHttpNetworkLocation(final NetworkPath path)
+    public SecureHttpNetworkLocation(NetworkPath path)
     {
         super(path);
         ensure(HTTPS.equals(path.port().protocol()));

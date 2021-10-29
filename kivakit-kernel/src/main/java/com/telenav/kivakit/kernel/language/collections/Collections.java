@@ -31,13 +31,13 @@ import java.util.Set;
  */
 public class Collections
 {
-    public static <T> T first(final Collection<T> collection)
+    public static <T> T first(Collection<T> collection)
     {
-        final var iterator = collection.iterator();
+        var iterator = collection.iterator();
         return iterator.hasNext() ? iterator.next() : null;
     }
 
-    public static <T> void repeatedAdd(final Collection<T> collection, final T value, final int times)
+    public static <T> void repeatedAdd(Collection<T> collection, T value, int times)
     {
         for (var index = 0; index < times; index++)
         {
@@ -45,19 +45,19 @@ public class Collections
         }
     }
 
-    public static <T extends Comparable<T>> List<T> sorted(final Collection<T> collection)
+    public static <T extends Comparable<T>> List<T> sorted(Collection<T> collection)
     {
-        final var list = new ArrayList<>(collection == null ? Set.of() : collection);
+        var list = new ArrayList<>(collection == null ? Set.of() : collection);
         java.util.Collections.sort(list);
         return list;
     }
 
-    public <T> List<T> toList(final Collection<T> collection)
+    public <T> List<T> toList(Collection<T> collection)
     {
         return new ArrayList<>(collection);
     }
 
-    public <T> Set<T> toSet(final Collection<T> collection)
+    public <T> Set<T> toSet(Collection<T> collection)
     {
         return new HashSet<>(collection);
     }

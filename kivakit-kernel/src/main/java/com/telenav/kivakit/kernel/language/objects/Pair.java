@@ -31,7 +31,7 @@ public class Pair<T> implements Iterable<T>
 
     private final T b;
 
-    public Pair(final T a, final T b)
+    public Pair(T a, T b)
     {
         this.a = a;
         this.b = b;

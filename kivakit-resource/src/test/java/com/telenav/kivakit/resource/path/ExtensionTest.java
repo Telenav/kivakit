@@ -27,7 +27,7 @@ public class ExtensionTest extends UnitTest
     public void testKnown()
     {
         Extension previous = null;
-        for (final Extension extension : Extension.known())
+        for (Extension extension : Extension.known())
         {
             if (previous != null)
             {

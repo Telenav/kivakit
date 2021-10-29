@@ -69,10 +69,10 @@ public class FileList implements List<File>, Countable
      * <b>Not public API</b>
      */
     @UmlExcludeMember
-    public static FileList forServices(final List<? extends FileService> virtualFiles)
+    public static FileList forServices(List<? extends FileService> virtualFiles)
     {
-        final var files = new FileList();
-        for (final FileService file : virtualFiles)
+        var files = new FileList();
+        for (FileService file : virtualFiles)
         {
             files.add(new File(file));
         }
@@ -89,19 +89,19 @@ public class FileList implements List<File>, Countable
     {
         private final Extension extension;
 
-        public Converter(final Listener listener, final Extension extension)
+        public Converter(Listener listener, Extension extension)
         {
             super(listener);
             this.extension = extension;
         }
 
         @Override
-        protected FileList onToValue(final String value)
+        protected FileList onToValue(String value)
         {
-            final var files = new FileList();
-            for (final var path : value.split(","))
+            var files = new FileList();
+            for (var path : value.split(","))
             {
-                final var file = File.parse(path);
+                var file = File.parse(path);
                 if (file.isFolder())
                 {
                     files.addAll(file.asFolder().nestedFiles(extension.fileMatcher()));
@@ -129,31 +129,31 @@ public class FileList implements List<File>, Countable
     {
     }
 
-    FileList(final FileList that)
+    FileList(FileList that)
     {
         files.addAll(that.files);
     }
 
     @Override
-    public boolean add(final File file)
+    public boolean add(File file)
     {
         return files.add(file);
     }
 
     @Override
-    public void add(final int index, final File file)
+    public void add(int index, File file)
     {
         files.add(index, file);
     }
 
     @Override
-    public boolean addAll(@NotNull final Collection<? extends File> c)
+    public boolean addAll(@NotNull Collection<? extends File> c)
     {
         return files.addAll(c);
     }
 
     @Override
-    public boolean addAll(final int index, @NotNull final Collection<? extends File> c)
+    public boolean addAll(int index, @NotNull Collection<? extends File> c)
     {
         return files.addAll(index, c);
     }
@@ -161,7 +161,7 @@ public class FileList implements List<File>, Countable
     @UmlExcludeMember
     public List<java.io.File> asJavaFiles()
     {
-        final var files = new ArrayList<java.io.File>();
+        var files = new ArrayList<java.io.File>();
         forEach(file -> files.add(file.asJavaFile()));
         return files;
     }
@@ -178,13 +178,13 @@ public class FileList implements List<File>, Countable
     }
 
     @Override
-    public boolean contains(final Object o)
+    public boolean contains(Object o)
     {
         return false;
     }
 
     @Override
-    public boolean containsAll(@NotNull final Collection<?> c)
+    public boolean containsAll(@NotNull Collection<?> c)
     {
         return files.containsAll(c);
     }
@@ -196,11 +196,11 @@ public class FileList implements List<File>, Countable
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof FileList)
         {
-            final FileList that = (FileList) object;
+            FileList that = (FileList) object;
             return files.equals(that.files);
         }
         return false;
@@ -212,7 +212,7 @@ public class FileList implements List<File>, Countable
     }
 
     @Override
-    public File get(final int index)
+    public File get(int index)
     {
         return files.get(index);
     }
@@ -224,7 +224,7 @@ public class FileList implements List<File>, Countable
     }
 
     @Override
-    public int indexOf(final Object o)
+    public int indexOf(Object o)
     {
         return files.indexOf(o);
     }
@@ -245,7 +245,7 @@ public class FileList implements List<File>, Countable
     public File largest()
     {
         File largest = null;
-        for (final var file : this)
+        for (var file : this)
         {
             if (largest == null || file.isLargerThan(largest))
             {
@@ -256,7 +256,7 @@ public class FileList implements List<File>, Countable
     }
 
     @Override
-    public int lastIndexOf(final Object o)
+    public int lastIndexOf(Object o)
     {
         return files.lastIndexOf(o);
     }
@@ -270,15 +270,15 @@ public class FileList implements List<File>, Countable
 
     @NotNull
     @Override
-    public ListIterator<File> listIterator(final int index)
+    public ListIterator<File> listIterator(int index)
     {
         return files.listIterator(index);
     }
 
-    public FileList matching(final Matcher<File> matcher)
+    public FileList matching(Matcher<File> matcher)
     {
-        final var files = new FileList();
-        for (final var file : this)
+        var files = new FileList();
+        for (var file : this)
         {
             if (matcher.matches(file))
             {
@@ -289,31 +289,31 @@ public class FileList implements List<File>, Countable
     }
 
     @Override
-    public boolean remove(final Object o)
+    public boolean remove(Object o)
     {
         return files.remove(o);
     }
 
     @Override
-    public File remove(final int index)
+    public File remove(int index)
     {
         return files.remove(index);
     }
 
     @Override
-    public boolean removeAll(@NotNull final Collection<?> c)
+    public boolean removeAll(@NotNull Collection<?> c)
     {
         return files.removeAll(c);
     }
 
     @Override
-    public boolean retainAll(@NotNull final Collection<?> c)
+    public boolean retainAll(@NotNull Collection<?> c)
     {
         return files.retainAll(c);
     }
 
     @Override
-    public File set(final int index, final File file)
+    public File set(int index, File file)
     {
         return files.set(index, file);
     }
@@ -327,7 +327,7 @@ public class FileList implements List<File>, Countable
     public File smallest()
     {
         File smallest = null;
-        for (final var file : this)
+        for (var file : this)
         {
             if (smallest == null || file.isSmallerThan(smallest))
             {
@@ -339,7 +339,7 @@ public class FileList implements List<File>, Countable
 
     public FileList sortedLargestToSmallest()
     {
-        final var sorted = new FileList(this);
+        var sorted = new FileList(this);
         sorted.files.sort((a, b) ->
         {
             if (a.isLargerThan(b))
@@ -358,7 +358,7 @@ public class FileList implements List<File>, Countable
     @SuppressWarnings("UnusedReturnValue")
     public FileList sortedOldestToNewest()
     {
-        final var sorted = new FileList(this);
+        var sorted = new FileList(this);
         sorted.files.sort((a, b) ->
         {
             if (a.isOlderThan(b))
@@ -376,7 +376,7 @@ public class FileList implements List<File>, Countable
 
     @NotNull
     @Override
-    public List<File> subList(final int fromIndex, final int toIndex)
+    public List<File> subList(int fromIndex, int toIndex)
     {
         return files.subList(fromIndex, toIndex);
     }
@@ -390,7 +390,7 @@ public class FileList implements List<File>, Countable
 
     @NotNull
     @Override
-    public <T> T[] toArray(@NotNull final T[] a)
+    public <T> T[] toArray(@NotNull T[] a)
     {
         return Ensure.unsupported();
     }
@@ -398,7 +398,7 @@ public class FileList implements List<File>, Countable
     public Bytes totalSize()
     {
         var bytes = Bytes._0;
-        for (final var file : this)
+        for (var file : this)
         {
             bytes = bytes.add(file.sizeInBytes());
         }

@@ -26,12 +26,12 @@ class MixinState
      * already exist.
      */
     @SuppressWarnings("unchecked")
-    public static synchronized <T> T get(final Object attachTo,
-                                         final Class<? extends Mixin> mixinType,
-                                         final Factory<T> factory)
+    public static synchronized <T> T get(Object attachTo,
+                                         Class<? extends Mixin> mixinType,
+                                         Factory<T> factory)
     {
         // Create a composite key (to allow multiple traits on an object),
-        final var key = new MixinKey(attachTo, mixinType);
+        var key = new MixinKey(attachTo, mixinType);
 
         // get any current value for the mixin,
         var value = (T) values.get(key);
@@ -62,18 +62,18 @@ class MixinState
 
         private final Class<? extends Mixin> mixinType;
 
-        public MixinKey(final Object attachTo, final Class<? extends Mixin> mixinType)
+        public MixinKey(Object attachTo, Class<? extends Mixin> mixinType)
         {
             this.attachTo = attachTo;
             this.mixinType = mixinType;
         }
 
         @Override
-        public boolean equals(final Object uncast)
+        public boolean equals(Object uncast)
         {
             if (uncast instanceof MixinKey)
             {
-                final MixinKey that = (MixinKey) uncast;
+                MixinKey that = (MixinKey) uncast;
                 return attachTo == that.attachTo && mixinType == that.mixinType;
             }
             return false;

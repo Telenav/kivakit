@@ -37,7 +37,7 @@ public class LongConverter extends BaseStringConverter<Long>
     /**
      * @param listener The listener to hear any conversion issues
      */
-    public LongConverter(final Listener listener)
+    public LongConverter(Listener listener)
     {
         super(listener);
     }
@@ -47,7 +47,7 @@ public class LongConverter extends BaseStringConverter<Long>
      */
     @Override
     @UmlExcludeMember
-    protected Long onToValue(final String value)
+    protected Long onToValue(String value)
     {
         return Long.parseLong(value);
     }

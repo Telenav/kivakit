@@ -50,7 +50,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @LexakaiJavadoc(complete = true)
 public class Narration extends OperationStatusMessage
 {
-    public Narration(final String message, final Object... arguments)
+    public Narration(String message, Object... arguments)
     {
         super(message);
         arguments(arguments);

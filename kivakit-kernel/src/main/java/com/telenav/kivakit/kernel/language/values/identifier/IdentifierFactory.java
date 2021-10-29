@@ -39,7 +39,7 @@ public class IdentifierFactory implements Factory<Identifier>
         this(0);
     }
 
-    public IdentifierFactory(final long base)
+    public IdentifierFactory(long base)
     {
         next = new AtomicLong(base);
     }

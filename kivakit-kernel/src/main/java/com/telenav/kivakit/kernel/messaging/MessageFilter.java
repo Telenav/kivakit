@@ -32,7 +32,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 public interface MessageFilter extends Filter<Transmittable>
 {
     @Override
-    default boolean accepts(final Transmittable message)
+    default boolean accepts(Transmittable message)
     {
         if (message instanceof Message)
         {
@@ -41,7 +41,7 @@ public interface MessageFilter extends Filter<Transmittable>
         return false;
     }
 
-    default boolean accepts(final Message message)
+    default boolean accepts(Message message)
     {
         return false;
     }

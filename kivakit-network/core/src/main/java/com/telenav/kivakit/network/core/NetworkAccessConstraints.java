@@ -58,7 +58,7 @@ public class NetworkAccessConstraints implements Validatable
         return password;
     }
 
-    public void password(final Password password)
+    public void password(Password password)
     {
         this.password = password;
     }
@@ -69,7 +69,7 @@ public class NetworkAccessConstraints implements Validatable
         return timeout;
     }
 
-    public NetworkAccessConstraints timeout(final Duration timeout)
+    public NetworkAccessConstraints timeout(Duration timeout)
     {
         this.timeout = timeout;
         return this;
@@ -81,7 +81,7 @@ public class NetworkAccessConstraints implements Validatable
         return new ObjectFormatter(this).toString();
     }
 
-    public void userName(final UserName userName)
+    public void userName(UserName userName)
     {
         this.userName = userName;
     }
@@ -93,7 +93,7 @@ public class NetworkAccessConstraints implements Validatable
     }
 
     @Override
-    public Validator validator(final ValidationType type)
+    public Validator validator(ValidationType type)
     {
         return new BaseValidator()
         {

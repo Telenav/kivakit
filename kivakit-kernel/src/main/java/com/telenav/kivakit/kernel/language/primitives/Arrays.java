@@ -32,12 +32,12 @@ public class Arrays
     /**
      * Reverses the elements in the given array
      */
-    public static long[] reverse(final long[] elements)
+    public static long[] reverse(long[] elements)
     {
         for (var i = 0; i < elements.length / 2; i++)
         {
-            final var opposite = elements.length - 1 - i;
-            final var temp = elements[i];
+            var opposite = elements.length - 1 - i;
+            var temp = elements[i];
             elements[i] = elements[opposite];
             elements[opposite] = temp;
         }
@@ -47,11 +47,11 @@ public class Arrays
     /**
      * Reverses the elements in the given array
      */
-    public static int[] reverse(final int[] elements)
+    public static int[] reverse(int[] elements)
     {
         for (var i = 0; i < elements.length / 2; i++)
         {
-            final var temp = elements[i];
+            var temp = elements[i];
             elements[i] = elements[elements.length - i - 1];
             elements[elements.length - i - 1] = temp;
         }
@@ -61,11 +61,11 @@ public class Arrays
     /**
      * Reverses the values in the given range of indexes
      */
-    public static void reverseRange(final long[] array, final int fromIndex, final int toIndex)
+    public static void reverseRange(long[] array, int fromIndex, int toIndex)
     {
         for (int i = fromIndex, j = toIndex - 1; i < j; i++, j--)
         {
-            final long temporary = array[i];
+            long temporary = array[i];
             array[i] = array[j];
             array[j] = temporary;
         }

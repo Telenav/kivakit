@@ -57,14 +57,14 @@ public class ArgumentParserList implements Iterable<ArgumentParser<?>>
      *
      * @param parser The argument parser to add
      */
-    public boolean add(final ArgumentParser<?> parser)
+    public boolean add(ArgumentParser<?> parser)
     {
         // If the argument parser specifies an argument that's allowed multiple times,
         if (parser.isAllowedMultipleTimes())
         {
             // check each parser in the list to make sure we don't already have such
             // an argument specified (only one is allowed)
-            for (final var current : parsers)
+            for (var current : parsers)
             {
                 if (current.isAllowedMultipleTimes())
                 {
@@ -82,7 +82,7 @@ public class ArgumentParserList implements Iterable<ArgumentParser<?>>
      */
     public String help()
     {
-        final var descriptions = new StringList();
+        var descriptions = new StringList();
         if (parsers.isEmpty())
         {
             descriptions.add("<none>");
@@ -90,7 +90,7 @@ public class ArgumentParserList implements Iterable<ArgumentParser<?>>
         }
         else
         {
-            for (final var parser : parsers)
+            for (var parser : parsers)
             {
                 descriptions.add(parser.help());
             }

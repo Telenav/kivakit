@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 @UmlClassDiagram(diagram = DiagramLanguageTime.class)
 public class UtcDateTimeConverter extends BaseFormattedLocalTimeConverter
 {
-    public UtcDateTimeConverter(final Listener listener)
+    public UtcDateTimeConverter(Listener listener)
     {
         super(listener, DateTimeFormatter.ISO_LOCAL_DATE_TIME, ZoneId.of("UTC"));
     }

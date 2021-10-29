@@ -49,7 +49,7 @@ public class ResourceSection extends BaseReadableResource
      * @param startOffset The start offset, inclusive
      * @param endOffset The end offset, exclusive
      */
-    public ResourceSection(final Resource parent, final long startOffset, final long endOffset)
+    public ResourceSection(Resource parent, long startOffset, long endOffset)
     {
         super(parent.path());
         this.parent = parent;
@@ -64,7 +64,7 @@ public class ResourceSection extends BaseReadableResource
     @Override
     public InputStream onOpenForReading()
     {
-        final InputStream in = parent.openForReading();
+        InputStream in = parent.openForReading();
         IO.skip(in, startOffset);
         return new InputStream()
         {

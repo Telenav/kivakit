@@ -29,14 +29,14 @@ public final class Or extends Pattern
 
     private final Pattern b;
 
-    public Or(final Pattern a, final Pattern b)
+    public Or(Pattern a, Pattern b)
     {
         this.a = a;
         this.b = b;
     }
 
     @Override
-    public int bind(final int group)
+    public int bind(int group)
     {
         return b.bind(a.bind(group));
     }

@@ -41,13 +41,13 @@ public class LocalTimeGsonSerializer extends PrimitiveGsonSerializer<LocalTime, 
     }
 
     @Override
-    protected LocalTime toObject(final String text)
+    protected LocalTime toObject(String text)
     {
         return new LocalDateTimeConverter(LOGGER, LocalTime.localTimeZone()).convert(text);
     }
 
     @Override
-    protected String toPrimitive(final LocalTime time)
+    protected String toPrimitive(LocalTime time)
     {
         return time.utc().toString();
     }

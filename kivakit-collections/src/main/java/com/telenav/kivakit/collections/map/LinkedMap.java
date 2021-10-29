@@ -35,7 +35,7 @@ import java.util.LinkedHashMap;
 @LexakaiJavadoc(complete = true)
 public class LinkedMap<Key, Value> extends BaseMap<Key, Value>
 {
-    public LinkedMap(final Maximum maximumSize)
+    public LinkedMap(Maximum maximumSize)
     {
         super(maximumSize, new LinkedHashMap<>());
         checkSize(0);

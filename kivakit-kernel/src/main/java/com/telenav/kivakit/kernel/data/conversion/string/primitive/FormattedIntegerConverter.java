@@ -43,7 +43,7 @@ public class FormattedIntegerConverter extends BaseStringConverter<Integer>
      *
      * @param listener The listener to hear any conversion issues
      */
-    public FormattedIntegerConverter(final Listener listener)
+    public FormattedIntegerConverter(Listener listener)
     {
         this(listener, true);
     }
@@ -52,7 +52,7 @@ public class FormattedIntegerConverter extends BaseStringConverter<Integer>
      * @param listener The listener to hear any conversion issues
      * @param commas True if the string representation has commas in it
      */
-    public FormattedIntegerConverter(final Listener listener, final boolean commas)
+    public FormattedIntegerConverter(Listener listener, boolean commas)
     {
         this(listener, new DecimalFormat(commas ? "###,###" : "#"));
     }
@@ -63,7 +63,7 @@ public class FormattedIntegerConverter extends BaseStringConverter<Integer>
      * @param listener The listener to hear any conversion issues
      * @param format The format to use
      */
-    public FormattedIntegerConverter(final Listener listener, final DecimalFormat format)
+    public FormattedIntegerConverter(Listener listener, DecimalFormat format)
     {
         super(listener);
         this.format = format;
@@ -74,17 +74,9 @@ public class FormattedIntegerConverter extends BaseStringConverter<Integer>
      */
     @Override
     @UmlExcludeMember
-    protected Integer onToValue(final String value)
+    protected String onToString(Integer value)
     {
-        try
-        {
-            return format.parse(value).intValue();
-        }
-        catch (final ParseException e)
-        {
-            problem(e, "Couldn't parse integer");
-            return null;
-        }
+        return format.format(value);
     }
 
     /**
@@ -92,8 +84,16 @@ public class FormattedIntegerConverter extends BaseStringConverter<Integer>
      */
     @Override
     @UmlExcludeMember
-    protected String onToString(final Integer value)
+    protected Integer onToValue(String value)
     {
-        return format.format(value);
+        try
+        {
+            return format.parse(value).intValue();
+        }
+        catch (ParseException e)
+        {
+            problem(e, "Couldn't parse integer");
+            return null;
+        }
     }
 }

@@ -39,7 +39,7 @@ public class Strip
      * @param ending The ending to strip off
      * @return The stripped string or the original string if the ending did not exist
      */
-    public static String ending(final String text, final String ending)
+    public static String ending(String text, String ending)
     {
         if (text == null)
         {
@@ -52,8 +52,8 @@ public class Strip
         {
             return text;
         }
-        final var endingLength = ending.length();
-        final var stringLength = text.length();
+        var endingLength = ending.length();
+        var stringLength = text.length();
 
         // When the length of the ending string is larger
         // than the original string, the original string is returned.
@@ -61,8 +61,8 @@ public class Strip
         {
             return text;
         }
-        final var index = text.lastIndexOf(ending);
-        final var endpos = stringLength - endingLength;
+        var index = text.lastIndexOf(ending);
+        var endpos = stringLength - endingLength;
 
         if (index == endpos)
         {
@@ -75,7 +75,7 @@ public class Strip
     /**
      * @return The text with the leading string stripped if it exists
      */
-    public static String leading(final String text, final String leading)
+    public static String leading(String text, String leading)
     {
         if (text.startsWith(leading))
         {
@@ -84,14 +84,14 @@ public class Strip
         return text;
     }
 
-    public static String packagePrefix(final String type)
+    public static String packagePrefix(String type)
     {
         return StringList.split(type, '.').matching(at -> !Strings.isLowerCase(at)).join(".");
     }
 
-    public static String quotes(final String text)
+    public static String quotes(String text)
     {
-        final var substring = text.substring(1, text.length() - 1);
+        var substring = text.substring(1, text.length() - 1);
         if (text.startsWith("\"") && text.endsWith(("\"")))
         {
             return substring;
@@ -106,7 +106,7 @@ public class Strip
     /**
      * @return The text with the trailing string stripped if it exists
      */
-    public static String trailing(final String text, final String trailer)
+    public static String trailing(String text, String trailer)
     {
         if (text.endsWith(trailer))
         {

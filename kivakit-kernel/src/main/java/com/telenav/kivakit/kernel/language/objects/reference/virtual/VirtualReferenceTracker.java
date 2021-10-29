@@ -53,7 +53,7 @@ public class VirtualReferenceTracker<T> extends BaseRepeater
     /** Reference queue for notifications that soft and weak references have been collected */
     private final ReferenceQueue<T> queue = new ReferenceQueue<>();
 
-    public VirtualReferenceTracker(final Bytes maximum, final VirtualReferenceType type)
+    public VirtualReferenceTracker(Bytes maximum, VirtualReferenceType type)
     {
         this.maximum = Ensure.ensureNotNull(maximum);
         this.type = Ensure.ensureNotNull(type);
@@ -65,16 +65,16 @@ public class VirtualReferenceTracker<T> extends BaseRepeater
         if (DEBUG_GARBAGE_COLLECTION)
         {
             // Show any references that get garbage collected
-            final var thread = new Thread(() ->
+            var thread = new Thread(() ->
             {
                 while (true)
                 {
                     try
                     {
-                        final var unreferenced = queue.remove();
+                        var unreferenced = queue.remove();
                         trace("Garbage collected $", ((Named) unreferenced).name());
                     }
-                    catch (final InterruptedException ignored)
+                    catch (InterruptedException ignored)
                     {
                     }
                 }
@@ -85,7 +85,7 @@ public class VirtualReferenceTracker<T> extends BaseRepeater
         }
     }
 
-    synchronized void onLoaded(final VirtualReference<T> reference)
+    synchronized void onLoaded(VirtualReference<T> reference)
     {
         assert reference != null : "Reference must not be null";
 
@@ -102,7 +102,7 @@ public class VirtualReferenceTracker<T> extends BaseRepeater
             trace("Total of $ exceeds maximum of $: $", total, maximum, new ArrayList<>(loaded));
 
             // soften the reference that we loaded the longest ago
-            final var oldest = loaded.removeFirst();
+            var oldest = loaded.removeFirst();
             trace("Softening $", oldest.name());
             oldest.soften();
 

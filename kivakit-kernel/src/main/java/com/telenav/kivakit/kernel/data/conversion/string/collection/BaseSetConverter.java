@@ -26,12 +26,11 @@ import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataConversion
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collections;
-import java.util.Set;
 
 /**
  * Converts between sets of objects and comma delimited strings. The string list returned by {@link
- * #onConvertToStringList(Set)} will be sorted unless {@link #sort(StringList)} is overridden to provide a different
- * sorting or no sorting.
+ * #onConvertToStringList(ObjectSet)} will be sorted unless {@link #sort(StringList)} is overridden to provide a
+ * different sorting or no sorting.
  *
  * @author jonathanl (shibo)
  */
@@ -40,17 +39,17 @@ public abstract class BaseSetConverter<T> extends BaseCollectionConverter<Object
 {
     private final StringConverter<T> converter;
 
-    public BaseSetConverter(final Listener listener, final StringConverter<T> converter, final String delimiter)
+    public BaseSetConverter(Listener listener, StringConverter<T> converter, String delimiter)
     {
         super(listener, delimiter);
         this.converter = converter;
     }
 
     @Override
-    protected ObjectSet<T> onConvertToObject(final StringList columns)
+    protected ObjectSet<T> onConvertToObject(StringList columns)
     {
-        final var set = new ObjectSet<T>();
-        for (final var element : columns)
+        var set = new ObjectSet<T>();
+        for (var element : columns)
         {
             set.add(converter.convert(element.trim()));
         }
@@ -58,10 +57,10 @@ public abstract class BaseSetConverter<T> extends BaseCollectionConverter<Object
     }
 
     @Override
-    protected StringList onConvertToStringList(final ObjectSet<T> value)
+    protected StringList onConvertToStringList(ObjectSet<T> value)
     {
-        final var list = new StringList();
-        for (final var element : value)
+        var list = new StringList();
+        for (var element : value)
         {
             list.add(converter.unconvert(element));
         }
@@ -69,7 +68,7 @@ public abstract class BaseSetConverter<T> extends BaseCollectionConverter<Object
         return list;
     }
 
-    protected void sort(final StringList list)
+    protected void sort(StringList list)
     {
         Collections.sort(list);
     }

@@ -168,7 +168,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  *     private Port port;
  *
  *    {@literal @}KivaKitPropertyConverter(Port.Converter.class)
- *     public void port(final Port port)
+ *     public void port( Port port)
  *     {
  *         this.port = port;
  *     }
@@ -271,7 +271,7 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
     /**
      * @return The settings registry for the given object (the global settings registry by default)
      */
-    public static synchronized Settings of(final Object object)
+    public static synchronized Settings of(Object object)
     {
         return global.get();
     }
@@ -330,9 +330,9 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
      * settings if it is not found there.
      */
     @Override
-    public <T> T lookupSettings(final Class<T> settingsClass,
-                                final PackagePath defaultSettingsPackage,
-                                final InstanceIdentifier identifier)
+    public <T> T lookupSettings(Class<T> settingsClass,
+                                PackagePath defaultSettingsPackage,
+                                InstanceIdentifier identifier)
     {
         // Load any settings overrides from KIVAKIT_SETTINGS_FOLDERS
         loadSystemPropertyOverrides();
@@ -345,7 +345,7 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
         {
             // then load the default settings
             DEBUG.trace("Installing default settings from $", defaultSettingsPackage);
-            final var defaultSettings = LOGGER.listenTo(SettingsPackage.of(defaultSettingsPackage));
+            var defaultSettings = LOGGER.listenTo(SettingsPackage.of(defaultSettingsPackage));
             defaultSettings.install();
 
             // and try again,
@@ -359,13 +359,13 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
      * @return The settings object for the given type and instance identifier
      */
     @Override
-    public <T> T lookupSettings(final Class<T> type, final InstanceIdentifier instance)
+    public <T> T lookupSettings(Class<T> type, InstanceIdentifier instance)
     {
         return settings(new Entry.Identifier(type, instance));
     }
 
     @Override
-    public Settings registerAllSettingsIn(final Settings settings)
+    public Settings registerAllSettingsIn(Settings settings)
     {
         internalAddAll(settings);
         return this;
@@ -375,7 +375,7 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
      * @return Adds the given instance of a settings object to this set
      */
     @Override
-    public synchronized Settings registerSettings(final Object settings, final InstanceIdentifier instance)
+    public synchronized Settings registerSettings(Object settings, InstanceIdentifier instance)
     {
         // If a client tries to register a deployment this way,
         if (settings instanceof Deployment)
@@ -398,8 +398,8 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
     @Override
     public String toString()
     {
-        final var strings = new StringList();
-        for (final var at : asSet())
+        var strings = new StringList();
+        for (var at : asSet())
         {
             strings.add(at.toString());
         }
@@ -414,7 +414,7 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
      * </p>
      */
     @UmlExcludeMember
-    protected void internalAdd(final Entry entry)
+    protected void internalAdd(Entry entry)
     {
         assert entry != null;
 
@@ -425,7 +425,7 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
             registry().register(entry.object(), entry.identifier().instance());
 
             // then walk up the class hierarchy of the configuration object,
-            final var instance = entry.identifier().instance();
+            var instance = entry.identifier().instance();
             for (var at = (Class<?>) entry.object().getClass(); !at.equals(Object.class); at = at.getSuperclass())
             {
                 // adding the configuration object for each superclass.
@@ -442,7 +442,7 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
      * </p>
      */
     @UmlExcludeMember
-    protected void internalAddAll(final Settings that)
+    protected void internalAddAll(Settings that)
     {
         lock.write(() -> that.asSet().forEach(this::internalAdd));
     }
@@ -457,27 +457,27 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
      * package)
      */
     @UmlExcludeMember
-    protected Entry internalLoadConfiguration(final Resource resource)
+    protected Entry internalLoadConfiguration(Resource resource)
     {
         // Load the given properties
         trace("Loading configuration from $", resource);
-        final var properties = PropertyMap.load(this, resource);
+        var properties = PropertyMap.load(this, resource);
         try
         {
             // then get the configuration class to instantiate,
-            final var configurationClassName = properties.get("class");
+            var configurationClassName = properties.get("class");
             ensureNotNull(configurationClassName, "Missing class property in $", resource);
-            final var configurationClass = Class.forName(configurationClassName);
+            var configurationClass = Class.forName(configurationClassName);
             ensureNotNull(configurationClass, "Unable to load class $ specified in $", configurationClass, resource);
             trace("Configuration class: $", configurationClass.getSimpleName());
 
             // and the name of which identifier of the class to configure (if any)
-            final var configurationInstance = properties.get("instance");
-            final var identifier = configurationInstance != null ? InstanceIdentifier.of(configurationInstance) : InstanceIdentifier.SINGLETON;
+            var configurationInstance = properties.get("instance");
+            var identifier = configurationInstance != null ? InstanceIdentifier.of(configurationInstance) : InstanceIdentifier.SINGLETON;
             trace("Configuration identifier: $", identifier);
 
             // then create the configuration object and populate it using the converter framework
-            final var configuration = properties.asObject(this, configurationClass);
+            var configuration = properties.asObject(this, configurationClass);
             if (configuration != null)
             {
                 trace("Loaded configuration: $", configuration);
@@ -490,7 +490,7 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
                 return fail("Unable to load configuration object from $", resource);
             }
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             return fail(e, "Unable to load properties from $", resource);
         }
@@ -523,7 +523,7 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
             trace("Loading configurations from $", name());
             lock.write(() ->
             {
-                final var entries = onLoad();
+                var entries = onLoad();
                 entries.forEach(this::internalAdd);
                 loaded = true;
             });
@@ -536,13 +536,13 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
     private void loadSystemPropertyOverrides()
     {
         // Go through each path specified by the KIVAKIT_SETTINGS_FOLDERS environment variable
-        final var settingsFolders = OperatingSystem.get().property("KIVAKIT_SETTINGS_FOLDERS");
+        var settingsFolders = OperatingSystem.get().property("KIVAKIT_SETTINGS_FOLDERS");
         if (settingsFolders != null)
         {
-            for (final var path : settingsFolders.split(",\\s*"))
+            for (var path : settingsFolders.split(",\\s*"))
             {
                 // and install
-                final var folder = Folder.parse(path);
+                var folder = Folder.parse(path);
                 if (folder != null)
                 {
                     LOGGER.listenTo(new SettingsFolder(folder)).install();
@@ -564,14 +564,14 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
      * @return The configuration for the given identifier
      */
     @SuppressWarnings("unchecked")
-    private <T> T settings(final Entry.Identifier identifier)
+    private <T> T settings(Entry.Identifier identifier)
     {
         return lock.read(() ->
         {
             T settings = (T) registry().lookup(identifier.type(), identifier.instance());
             if (settings == null)
             {
-                final var entry = entries.get(identifier);
+                var entry = entries.get(identifier);
                 if (entry != null)
                 {
                     settings = entry.object();

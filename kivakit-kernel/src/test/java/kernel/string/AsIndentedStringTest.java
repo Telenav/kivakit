@@ -33,6 +33,21 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureEqu
 @SuppressWarnings("unused")
 public class AsIndentedStringTest implements AsIndentedString
 {
+    static class Bar implements AsIndentedString
+    {
+        @KivaKitIncludeProperty
+        private final int y = 5;
+
+        @KivaKitIncludeProperty
+        private final int z = 7;
+
+        @Override
+        public String toString()
+        {
+            return "Bar";
+        }
+    }
+
     static class Foo implements AsIndentedString
     {
         @KivaKitIncludeProperty
@@ -48,21 +63,6 @@ public class AsIndentedStringTest implements AsIndentedString
         public String toString()
         {
             return "Foo";
-        }
-    }
-
-    static class Bar implements AsIndentedString
-    {
-        @KivaKitIncludeProperty
-        private final int y = 5;
-
-        @KivaKitIncludeProperty
-        private final int z = 7;
-
-        @Override
-        public String toString()
-        {
-            return "Bar";
         }
     }
 

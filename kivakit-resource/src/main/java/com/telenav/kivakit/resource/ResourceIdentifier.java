@@ -36,7 +36,7 @@ public class ResourceIdentifier
 {
     private final String identifier;
 
-    public ResourceIdentifier(final String identifier)
+    public ResourceIdentifier(String identifier)
     {
         this.identifier = identifier;
     }

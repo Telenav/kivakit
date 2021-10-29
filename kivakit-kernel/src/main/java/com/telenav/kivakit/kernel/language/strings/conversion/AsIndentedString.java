@@ -19,8 +19,8 @@
 package com.telenav.kivakit.kernel.language.strings.conversion;
 
 import com.telenav.kivakit.kernel.language.reflection.Type;
-import com.telenav.kivakit.kernel.language.reflection.property.Property;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.kernel.language.reflection.property.Property;
 import com.telenav.kivakit.kernel.language.values.count.Maximum;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -51,9 +51,9 @@ public interface AsIndentedString extends AsString
      * {@inheritDoc}
      */
     @Override
-    default String asString(final StringFormat format)
+    default String asString(StringFormat format)
     {
-        final var indenter = new AsStringIndenter(format);
+        var indenter = new AsStringIndenter(format);
         indenter.levels(Maximum._8);
         asString(format, indenter);
         return indenter.toString();
@@ -64,7 +64,7 @@ public interface AsIndentedString extends AsString
      *
      * @param indenter Information about the traversal in progress
      */
-    default AsStringIndenter asString(final StringFormat format, final AsStringIndenter indenter)
+    default AsStringIndenter asString(StringFormat format, AsStringIndenter indenter)
     {
         indenter.asString(this);
         return indenter;

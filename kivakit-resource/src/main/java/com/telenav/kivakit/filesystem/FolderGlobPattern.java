@@ -39,7 +39,7 @@ public class FolderGlobPattern implements Matcher<Folder>
     }
 
     @Override
-    public boolean matches(final Folder file)
+    public boolean matches(Folder file)
     {
         return pattern.matcher(file.path().asString()).matches();
     }

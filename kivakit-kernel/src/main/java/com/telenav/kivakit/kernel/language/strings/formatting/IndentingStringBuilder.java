@@ -54,14 +54,14 @@ public class IndentingStringBuilder
 
     public static class Indentation
     {
-        public static Indentation of(final int spaces)
+        public static Indentation of(int spaces)
         {
             return new Indentation(spaces);
         }
 
         private final int spaces;
 
-        protected Indentation(final int spaces)
+        protected Indentation(int spaces)
         {
             this.spaces = spaces;
         }
@@ -83,26 +83,26 @@ public class IndentingStringBuilder
     /**
      * @param indentation The number of spaces per indentation level
      */
-    public IndentingStringBuilder(final Style style, final Indentation indentation)
+    public IndentingStringBuilder(Style style, Indentation indentation)
     {
         this.style = style;
         this.indentation = indentation;
     }
 
-    public void appendLine(final String value)
+    public void appendLine(String value)
     {
         lines.append(AsciiArt.repeat(level * indentation.asInt(), " ") + value);
     }
 
-    public void appendLines(final String value)
+    public void appendLines(String value)
     {
-        for (final var line : Split.split(value, '\n'))
+        for (var line : Split.split(value, '\n'))
         {
             appendLine(line);
         }
     }
 
-    public boolean containsLine(final String line)
+    public boolean containsLine(String line)
     {
         return lines.contains(line);
     }
@@ -123,7 +123,7 @@ public class IndentingStringBuilder
         return level > 0;
     }
 
-    public void level(final int level)
+    public void level(int level)
     {
         Ensure.ensure(level >= 0);
         this.level = level;

@@ -46,7 +46,7 @@ public interface Appendable<T>
     /**
      * @param values A sequence of values to add
      */
-    default Appendable<T> appendAll(final Iterator<? extends T> values)
+    default Appendable<T> appendAll(Iterator<? extends T> values)
     {
         while (values.hasNext())
         {
@@ -58,9 +58,9 @@ public interface Appendable<T>
     /**
      * @param values A sequence of values to add
      */
-    default Appendable<T> appendAll(final Iterable<? extends T> values)
+    default Appendable<T> appendAll(Iterable<? extends T> values)
     {
-        for (final T value : values)
+        for (T value : values)
         {
             append(value);
         }

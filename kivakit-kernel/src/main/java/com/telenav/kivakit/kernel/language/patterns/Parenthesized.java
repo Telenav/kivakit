@@ -26,13 +26,13 @@ public final class Parenthesized extends Pattern
 {
     private final Pattern pattern;
 
-    public Parenthesized(final Pattern pattern)
+    public Parenthesized(Pattern pattern)
     {
         this.pattern = pattern;
     }
 
     @Override
-    public int bind(final int group)
+    public int bind(int group)
     {
         return pattern.bind(group);
     }

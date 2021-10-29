@@ -42,12 +42,12 @@ public class LoggerCodeContext extends CodeContext
         super(CallStack.callerOf(IMMEDIATE, SUBCLASS, Logger.class, EXACT, LoggerFactory.class));
     }
 
-    public LoggerCodeContext(final Method callerOf)
+    public LoggerCodeContext(Method callerOf)
     {
         super(callerOf);
     }
 
-    public LoggerCodeContext(final String locationName)
+    public LoggerCodeContext(String locationName)
     {
         super(locationName);
     }

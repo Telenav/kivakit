@@ -44,7 +44,7 @@ public class Switch extends Argument implements Named
      * @param name The name of the switch
      * @param value The switch's value
      */
-    public Switch(final String name, final String value)
+    public Switch(String name, String value)
     {
         super(value);
         this.name = name;
@@ -54,11 +54,11 @@ public class Switch extends Argument implements Named
      * {@inheritDoc}
      */
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof Switch)
         {
-            final var that = (Switch) object;
+            var that = (Switch) object;
             return name.equals(that.name);
         }
         return false;
@@ -67,7 +67,7 @@ public class Switch extends Argument implements Named
     /**
      * @return The typed value of this switch converted using the given switch parser
      */
-    public <T> T get(final SwitchParser<T> parser)
+    public <T> T get(SwitchParser<T> parser)
     {
         return parser.get(this);
     }

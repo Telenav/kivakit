@@ -37,11 +37,11 @@ public class Wrap
     /**
      * @return The given text wrapped at the given width
      */
-    public static String wrap(final String text, final int width)
+    public static String wrap(String text, int width)
     {
-        final var wrapped = new StringBuilder();
+        var wrapped = new StringBuilder();
         int position = 0;
-        for (final var word : StringList.words(text))
+        for (var word : StringList.words(text))
         {
             if (position + word.length() > width)
             {
@@ -57,9 +57,9 @@ public class Wrap
     /**
      * @return The given string with all text between [wrap] and [end] markers wrapped.
      */
-    public static String wrapRegion(final String text, final int width)
+    public static String wrapRegion(String text, int width)
     {
-        final var matcher = Pattern.compile("\\[wrap](.*?)\\[end]", Pattern.DOTALL).matcher(text);
+        var matcher = Pattern.compile("\\[wrap](.*?)\\[end]", Pattern.DOTALL).matcher(text);
         return matcher.replaceAll(result -> wrap(result.group(1), width));
     }
 }

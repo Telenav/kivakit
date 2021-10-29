@@ -39,14 +39,14 @@ public class UnitTestWatcher extends TestWatcher
     @UmlAggregation(label = "watches for failures in")
     private final UnitTest test;
 
-    public UnitTestWatcher(final UnitTest test)
+    public UnitTestWatcher(UnitTest test)
     {
         this.test = test;
     }
 
     @SuppressWarnings("UseOfSystemOutOrSystemErr")
     @Override
-    protected void failed(final Throwable e, final Description description)
+    protected void failed(Throwable e, Description description)
     {
         // If the test that failed is a random test,
         if (test.isRandomTest())

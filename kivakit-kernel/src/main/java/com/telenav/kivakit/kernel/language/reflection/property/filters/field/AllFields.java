@@ -39,19 +39,19 @@ public class AllFields extends PropertyFilterSet
     }
 
     @Override
-    public boolean includeAsGetter(final Method method)
+    public boolean includeAsGetter(Method method)
     {
         return false;
     }
 
     @Override
-    public boolean includeAsSetter(final Method method)
+    public boolean includeAsSetter(Method method)
     {
         return false;
     }
 
     @Override
-    public boolean includeField(final Field field)
+    public boolean includeField(Field field)
     {
         return !Modifier.isStatic(field.getModifiers());
     }

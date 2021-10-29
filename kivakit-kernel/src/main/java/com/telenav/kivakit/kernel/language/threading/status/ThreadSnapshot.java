@@ -64,9 +64,9 @@ public class ThreadSnapshot
         return cpuTime(Thread.currentThread());
     }
 
-    public Duration cpuTime(final Thread thread)
+    public Duration cpuTime(Thread thread)
     {
-        for (final var status : threads)
+        for (var status : threads)
         {
             if (status.identifier == thread.getId())
             {
@@ -90,7 +90,7 @@ public class ThreadSnapshot
     public Duration totalCpuTime()
     {
         var milliseconds = 0L;
-        for (final var thread : threads)
+        for (var thread : threads)
         {
             milliseconds += thread.cpuTime().asMilliseconds();
         }
@@ -102,16 +102,16 @@ public class ThreadSnapshot
      */
     public ThreadSnapshot update()
     {
-        final var threads = new ArrayList<ThreadStatus>();
-        final ThreadMXBean management = ManagementFactory.getThreadMXBean();
-        for (final Long identifier : management.getAllThreadIds())
+        var threads = new ArrayList<ThreadStatus>();
+        ThreadMXBean management = ManagementFactory.getThreadMXBean();
+        for (Long identifier : management.getAllThreadIds())
         {
             if (identifier != null)
             {
-                final var information = management.getThreadInfo(identifier);
+                var information = management.getThreadInfo(identifier);
                 if (information != null)
                 {
-                    final var status = new ThreadStatus();
+                    var status = new ThreadStatus();
                     status.cpuTime = Duration.milliseconds(management.getThreadCpuTime(identifier) / 1_000_000L);
                     status.isDaemon = information.isDaemon();
                     status.name = information.getThreadName();

@@ -34,7 +34,7 @@ public class LimitedInput extends InputStream
 
     private long read;
 
-    public LimitedInput(final InputStream in, final Bytes limit)
+    public LimitedInput(InputStream in, Bytes limit)
     {
         this.in = in;
         this.limit = limit;

@@ -40,7 +40,7 @@ public class SingletonIterator<Element> implements Iterator<Element>
 
     private boolean iterated;
 
-    public SingletonIterator(final Element element)
+    public SingletonIterator(Element element)
     {
         this.element = element;
     }

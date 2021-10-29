@@ -52,7 +52,7 @@ public abstract class BaseIterator<T> implements Iterator<T>
     /**
      * @param filter The filter to apply to this sequence
      */
-    public BaseIterator<T> filter(final Matcher<T> filter)
+    public BaseIterator<T> filter(Matcher<T> filter)
     {
         this.filter = filter;
         return this;
@@ -75,7 +75,7 @@ public abstract class BaseIterator<T> implements Iterator<T>
     {
         // If the next was already fetched by hasNext(), we return that. If
         // not, we call findNext() to locate the next value,
-        final var next = this.next != null ? this.next : findNext();
+        var next = this.next != null ? this.next : findNext();
 
         // throw an exception if we're out of elements,
         if (next == null)
@@ -102,7 +102,7 @@ public abstract class BaseIterator<T> implements Iterator<T>
         while (true)
         {
             // Get the next value
-            final var next = onNext();
+            var next = onNext();
 
             // and return null if there is no next
             if (next == null)

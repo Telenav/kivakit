@@ -113,6 +113,40 @@ public class Batcher<Element> extends BaseRepeater
     }
 
     /**
+     * A batch of elements for processing
+     */
+    @LexakaiJavadoc(complete = true)
+    public class Batch extends ArrayList<Element>
+    {
+        boolean isFull()
+        {
+            return size() >= batchSize || batchFullPredicate.test(this);
+        }
+
+        /**
+         * Processes this batch of elements
+         */
+        void process()
+        {
+            var outer = Batcher.this;
+            if (!isEmpty())
+            {
+                try
+                {
+                    var start = Time.now();
+                    trace("$: Processing $ element batch ${hex}", outer.name, size(), hashCode());
+                    onBatch(this);
+                    trace("$: Processed $ items in $", outer.name, size(), start.elapsedSince());
+                }
+                catch (Exception e)
+                {
+                    problem(e, "$: Unable to process batch", outer.name);
+                }
+            }
+        }
+    }
+
+    /**
      * Adds elements to a batch and enqueues the batch when it is full before starting a new one. Note that this design
      * is better than adding to a single batch in the {@link Batcher} because that batch data structure would have to be
      * shared among threads and therefore it would have to be synchronized. Having each thread add elements to its own
@@ -127,9 +161,9 @@ public class Batcher<Element> extends BaseRepeater
          * Adds the given item to a batch and enqueues the batch if it is full
          */
         @Override
-        public boolean add(final Element item)
+        public boolean add(Element item)
         {
-            final var outer = Batcher.this;
+            var outer = Batcher.this;
 
             assert !outer.state.is(State.STOPPING);
             assert !outer.state.is(State.STOPPED);
@@ -155,52 +189,18 @@ public class Batcher<Element> extends BaseRepeater
             if (batch != null && !batch.isEmpty())
             {
                 // put it in the queue
-                final var outer = Batcher.this;
+                var outer = Batcher.this;
                 trace("$: Enqueueing batch of $ items", name, batch.size());
                 try
                 {
                     outer.queue.put(batch);
                 }
-                catch (final InterruptedException ignored)
+                catch (InterruptedException ignored)
                 {
                 }
 
                 // and start a new batch
                 batch = new Batch();
-            }
-        }
-    }
-
-    /**
-     * A batch of elements for processing
-     */
-    @LexakaiJavadoc(complete = true)
-    public class Batch extends ArrayList<Element>
-    {
-        boolean isFull()
-        {
-            return size() >= Batcher.this.batchSize || batchFullPredicate.test(this);
-        }
-
-        /**
-         * Processes this batch of elements
-         */
-        void process()
-        {
-            final var outer = Batcher.this;
-            if (!isEmpty())
-            {
-                try
-                {
-                    final var start = Time.now();
-                    trace("$: Processing $ element batch ${hex}", outer.name, size(), hashCode());
-                    onBatch(this);
-                    trace("$: Processed $ items in $", outer.name, size(), start.elapsedSince());
-                }
-                catch (final Exception e)
-                {
-                    problem(e, "$: Unable to process batch", outer.name);
-                }
             }
         }
     }
@@ -236,16 +236,16 @@ public class Batcher<Element> extends BaseRepeater
     {
     }
 
-    protected Batcher(final Batcher<Element> that)
+    protected Batcher(Batcher<Element> that)
     {
-        this.name = that.name;
-        this.batchSize = that.batchSize;
-        this.queueSize = that.queueSize;
-        this.queue = that.queue;
-        this.consumer = that.consumer;
-        this.executor = that.executor;
-        this.state = that.state;
-        this.batchFullPredicate = that.batchFullPredicate;
+        name = that.name;
+        batchSize = that.batchSize;
+        queueSize = that.queueSize;
+        queue = that.queue;
+        consumer = that.consumer;
+        executor = that.executor;
+        state = that.state;
+        batchFullPredicate = that.batchFullPredicate;
     }
 
     /**
@@ -253,7 +253,7 @@ public class Batcher<Element> extends BaseRepeater
      */
     public synchronized BatchAdder adder()
     {
-        final var adder = new BatchAdder();
+        var adder = new BatchAdder();
         adders.add(adder);
         return adder;
     }
@@ -261,7 +261,7 @@ public class Batcher<Element> extends BaseRepeater
     /**
      * Starts this batcher with the given number of worker threads
      */
-    public synchronized void start(final Count workers)
+    public synchronized void start(Count workers)
     {
         ensure(!state.is(State.STOPPED), "Cannot restart a batcher, create a new one instead");
 
@@ -275,7 +275,7 @@ public class Batcher<Element> extends BaseRepeater
             executor = Threads.threadPool(name + "-Batcher", workers);
 
             // start a job for each worker,
-            final var outer = this;
+            var outer = this;
             workers.loop(() -> executor.submit(() ->
             {
                 // and loop until we are asked to stop,
@@ -300,24 +300,24 @@ public class Batcher<Element> extends BaseRepeater
         {
             // shut down the executor, interrupting waiting threads and waiting for them to exit,
             trace("$: Stopping", name);
-            final var pending = executor.shutdownNow();
+            var pending = executor.shutdownNow();
             Threads.await(executor);
             trace("$: Stopped", name);
 
             // then run any tasks that never started executing,
-            for (final var task : pending)
+            for (var task : pending)
             {
                 task.run();
             }
 
             // add any remaining items to the queue,
-            for (final var adder : adders)
+            for (var adder : adders)
             {
                 adder.enqueue();
             }
 
             // and process any remaining batches
-            final var remaining = new ArrayList<Batch>();
+            var remaining = new ArrayList<Batch>();
             queue.drainTo(remaining);
             assert queue.isEmpty();
 
@@ -325,7 +325,7 @@ public class Batcher<Element> extends BaseRepeater
             queue = null;
 
             trace("$: Processing $ remaining batches", name, remaining.size());
-            for (final var batch : remaining)
+            for (var batch : remaining)
             {
                 batch.process();
             }
@@ -334,37 +334,37 @@ public class Batcher<Element> extends BaseRepeater
         }
     }
 
-    public Batcher<Element> withBatchFullPredicate(final Predicate<Batch> predicate)
+    public Batcher<Element> withBatchFullPredicate(Predicate<Batch> predicate)
     {
-        final var copy = copy();
+        var copy = copy();
         copy.batchFullPredicate = predicate;
         return copy;
     }
 
-    public Batcher<Element> withBatchSize(final Count size)
+    public Batcher<Element> withBatchSize(Count size)
     {
-        final var copy = copy();
+        var copy = copy();
         copy.batchSize = size.asInt();
         return copy;
     }
 
-    public Batcher<Element> withConsumer(final Consumer<Batch> consumer)
+    public Batcher<Element> withConsumer(Consumer<Batch> consumer)
     {
-        final var copy = copy();
+        var copy = copy();
         copy.consumer = consumer;
         return copy;
     }
 
-    public Batcher<Element> withName(final String name)
+    public Batcher<Element> withName(String name)
     {
-        final var copy = copy();
+        var copy = copy();
         copy.name = name;
         return copy;
     }
 
-    public Batcher<Element> withQueueSize(final Count size)
+    public Batcher<Element> withQueueSize(Count size)
     {
-        final var copy = copy();
+        var copy = copy();
         copy.queueSize = size.asInt();
         return copy;
     }
@@ -377,7 +377,7 @@ public class Batcher<Element> extends BaseRepeater
     /**
      * @param batch The batch for the subclass to process
      */
-    protected void onBatch(final Batch batch)
+    protected void onBatch(Batch batch)
     {
         consumer.accept(batch);
     }

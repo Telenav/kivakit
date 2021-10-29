@@ -38,13 +38,13 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * <pre>
  * public class LaneCountExtractor extends BaseExtractor&lt;Count, PbfWay&gt;
  * {
- *     public LaneCountExtractor(final Listener listener)
+ *     public LaneCountExtractor( Listener listener)
  *     {
  *         super(listener);
  *         this(listener, "lanes");
  *     }
  *
- *     public Count onExtract(final PbfWay way)
+ *     public Count onExtract( PbfWay way)
  *     {
  *         Count laneCount;
  *

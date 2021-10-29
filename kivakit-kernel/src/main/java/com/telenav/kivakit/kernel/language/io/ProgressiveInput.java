@@ -40,13 +40,13 @@ public class ProgressiveInput extends InputStream
 
     private final ProgressReporter reporter;
 
-    public ProgressiveInput(final InputStream input, final ProgressReporter reporter)
+    public ProgressiveInput(InputStream input, ProgressReporter reporter)
     {
         this.input = input;
         this.reporter = reporter;
     }
 
-    public ProgressiveInput(final InputStream input)
+    public ProgressiveInput(InputStream input)
     {
         this(input, Progress.create());
     }
@@ -65,9 +65,9 @@ public class ProgressiveInput extends InputStream
     }
 
     @Override
-    public int read(final byte[] bytes, final int offset, final int length) throws IOException
+    public int read(byte[] bytes, int offset, int length) throws IOException
     {
-        final var read = input.read(bytes, offset, length);
+        var read = input.read(bytes, offset, length);
         if (read > 0)
         {
             reporter.next(read);
@@ -76,9 +76,9 @@ public class ProgressiveInput extends InputStream
     }
 
     @Override
-    public int read(final byte[] bytes) throws IOException
+    public int read(byte[] bytes) throws IOException
     {
-        final var read = input.read(bytes);
+        var read = input.read(bytes);
         if (read > 0)
         {
             reporter.next(read);
@@ -89,7 +89,7 @@ public class ProgressiveInput extends InputStream
     @Override
     public int read() throws IOException
     {
-        final var read = input.read();
+        var read = input.read();
         if (read > 0)
         {
             reporter.next();
@@ -105,7 +105,7 @@ public class ProgressiveInput extends InputStream
         {
             super.reset();
         }
-        catch (final IOException ignored)
+        catch (IOException ignored)
         {
         }
     }

@@ -33,18 +33,18 @@ public class NamedField extends AllFields
 {
     private final String name;
 
-    public NamedField(NamingConvention convention, final String name)
+    public NamedField(NamingConvention convention, String name)
     {
         super(convention);
         this.name = name;
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof NamedField)
         {
-            final var that = (NamedField) object;
+            var that = (NamedField) object;
             return name.equals(that.name);
         }
         return false;
@@ -57,7 +57,7 @@ public class NamedField extends AllFields
     }
 
     @Override
-    public boolean includeField(final Field field)
+    public boolean includeField(Field field)
     {
         return field.getName().equals(name);
     }

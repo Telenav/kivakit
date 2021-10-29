@@ -30,7 +30,7 @@ public class Indent
     /**
      * @return The given text indented by the given number of spaces
      */
-    public static String by(final int spaces, final String text)
+    public static String by(int spaces, String text)
     {
         return with(AsciiArt.repeat(spaces, ' '), text);
     }
@@ -38,7 +38,7 @@ public class Indent
     /**
      * @return The given text indented with the given indentation string
      */
-    public static String with(final String indentation, final String text)
+    public static String with(String indentation, String text)
     {
         return (text.startsWith("\n") ? "" : indentation) + text.replaceAll("\n", "\n" + indentation);
     }

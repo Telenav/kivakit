@@ -26,14 +26,14 @@ public class LogEntriesWithSeverityGreaterThanOrEqualTo implements Filter<LogEnt
 {
     private final Severity severity;
 
-    public LogEntriesWithSeverityGreaterThanOrEqualTo(final Severity severity)
+    public LogEntriesWithSeverityGreaterThanOrEqualTo(Severity severity)
     {
         assert severity != null;
         this.severity = severity;
     }
 
     @Override
-    public boolean accepts(final LogEntry entry)
+    public boolean accepts(LogEntry entry)
     {
         return entry.message().severity().isGreaterThanOrEqualTo(severity);
     }

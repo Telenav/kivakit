@@ -83,7 +83,7 @@ public final class KryoSerializationSession extends BaseRepeater implements Name
     /**
      * @return The session for the given kryo object, used by {@link KryoSerializer}.
      */
-    static KryoSerializationSession session(final Kryo kryo)
+    static KryoSerializationSession session(Kryo kryo)
     {
         return kryoToSession.get(kryo);
     }
@@ -106,7 +106,7 @@ public final class KryoSerializationSession extends BaseRepeater implements Name
     /**
      * @param types The kryo types to register for this session
      */
-    public KryoSerializationSession(final KryoTypes types)
+    public KryoSerializationSession(KryoTypes types)
     {
         this.types = types;
 
@@ -121,7 +121,7 @@ public final class KryoSerializationSession extends BaseRepeater implements Name
     }
 
     @Override
-    public void flush(final Duration maximumWaitTime)
+    public void flush(Duration maximumWaitTime)
     {
         if (isWriting())
         {
@@ -172,10 +172,10 @@ public final class KryoSerializationSession extends BaseRepeater implements Name
      * {@inheritDoc}
      */
     @Override
-    public Version open(final Type type,
-                        final Version version,
-                        final InputStream input,
-                        final OutputStream output)
+    public Version open(Type type,
+                        Version version,
+                        InputStream input,
+                        OutputStream output)
     {
         trace("Opening serialization session: type = $, version = $, kryoTypes = $", type, version, kryoTypes().name());
 
@@ -222,7 +222,7 @@ public final class KryoSerializationSession extends BaseRepeater implements Name
                 case SERVER:
                 {
                     // read the client's version,
-                    final var clientVersion = startReading(input);
+                    var clientVersion = startReading(input);
 
                     // send our version to the client
                     startWriting(output, version);
@@ -235,7 +235,7 @@ public final class KryoSerializationSession extends BaseRepeater implements Name
                     return fail("Unsupported session type: $", type);
             }
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             return fail(e, "Unable to open $ serialization session for $ $",
                     type, input != null ? "READ" : "", output != null ? "WRITE" : "");
@@ -250,13 +250,13 @@ public final class KryoSerializationSession extends BaseRepeater implements Name
     {
         try
         {
-            final var version = readVersion();
+            var version = readVersion();
             trace("Read version $", version);
-            final T object = readClassAndObject();
+            T object = readClassAndObject();
             trace("Read $", object);
             return new VersionedObject<>(version, object);
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             fatal(e, "Unable to read object");
         }
@@ -314,8 +314,8 @@ public final class KryoSerializationSession extends BaseRepeater implements Name
     @SuppressWarnings("unchecked")
     public <Element> ObjectList<Element> readList()
     {
-        final int size = readInt();
-        final var list = new ObjectList<Element>();
+        int size = readInt();
+        var list = new ObjectList<Element>();
         for (var i = 0; i < size; i++)
         {
             list.add((Element) kryo.readClassAndObject(input));
@@ -324,10 +324,10 @@ public final class KryoSerializationSession extends BaseRepeater implements Name
     }
 
     @Override
-    public <Element> ObjectList<Element> readList(final Class<Element> type)
+    public <Element> ObjectList<Element> readList(Class<Element> type)
     {
-        final var size = readInt();
-        final var list = new ObjectList<Element>();
+        var size = readInt();
+        var list = new ObjectList<Element>();
         for (var i = 0; i < size; i++)
         {
             list.add(kryo.readObject(input, type));
@@ -345,18 +345,18 @@ public final class KryoSerializationSession extends BaseRepeater implements Name
     @SuppressWarnings("unchecked")
     public <Key, Value> ObjectMap<Key, Value> readMap()
     {
-        final var map = new ObjectMap<Key, Value>();
+        var map = new ObjectMap<Key, Value>();
         for (var i = 0; i < readInt(); i++)
         {
-            final var key = (Key) kryo.readClassAndObject(input);
-            final var value = (Value) kryo.readClassAndObject(input);
+            var key = (Key) kryo.readClassAndObject(input);
+            var value = (Value) kryo.readClassAndObject(input);
             map.put(key, value);
         }
         return map;
     }
 
     @Override
-    public <T> T readObject(final Class<T> type)
+    public <T> T readObject(Class<T> type)
     {
         return kryo.readObject(input, type);
     }
@@ -380,7 +380,7 @@ public final class KryoSerializationSession extends BaseRepeater implements Name
     }
 
     @SuppressWarnings("unchecked")
-    public <T> Serializer<? extends T> serializer(final Class<T> type)
+    public <T> Serializer<? extends T> serializer(Class<T> type)
     {
         return kryo.getRegistration(type).getSerializer();
     }
@@ -403,86 +403,86 @@ public final class KryoSerializationSession extends BaseRepeater implements Name
      * {@inheritDoc}
      */
     @Override
-    public <T> void write(final VersionedObject<T> object)
+    public <T> void write(VersionedObject<T> object)
     {
         try
         {
             writeVersion(object.version());
             kryo.writeClassAndObject(output, object.get());
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             fatal(e, "Unable to write $", object);
         }
     }
 
     @Override
-    public void writeBoolean(final boolean value)
+    public void writeBoolean(boolean value)
     {
         kryo.writeObject(output, value);
     }
 
     @Override
-    public void writeByte(final byte value)
+    public void writeByte(byte value)
     {
         kryo.writeObject(output, value);
     }
 
     @Override
-    public void writeChar(final char value)
+    public void writeChar(char value)
     {
         kryo.writeObject(output, value);
     }
 
     @Override
-    public void writeDouble(final double value)
+    public void writeDouble(double value)
     {
         kryo.writeObject(output, value);
     }
 
     @Override
-    public void writeFloat(final float value)
+    public void writeFloat(float value)
     {
         kryo.writeObject(output, value);
     }
 
     @Override
-    public void writeInt(final int value)
+    public void writeInt(int value)
     {
         kryo.writeObject(output, value);
     }
 
     @Override
-    public <Element> void writeList(final List<Element> list)
+    public <Element> void writeList(List<Element> list)
     {
         writeInt(list.size());
-        for (final var element : list)
+        for (var element : list)
         {
             kryo.writeClassAndObject(output, element);
         }
     }
 
     @Override
-    public <Element> void writeList(final List<Element> list, final Class<Element> type)
+    public <Element> void writeList(List<Element> list, Class<Element> type)
     {
         writeInt(list.size());
-        for (final var element : list)
+        for (var element : list)
         {
             kryo.writeObject(output, element);
         }
     }
 
     @Override
-    public void writeLong(final long value)
+    public void writeLong(long value)
     {
         kryo.writeObject(output, value);
     }
 
     @Override
-    public <Key, Value> void writeMap(final Map<Key, Value> map)
+    public <Key, Value> void writeMap(Map<Key, Value> map)
     {
         writeInt(map.size());
-        for (final var key : map.keySet())
+        for (var key : map.keySet())
         {
             kryo.writeClassAndObject(output, key);
             kryo.writeClassAndObject(output, map.get(key));
@@ -490,38 +490,38 @@ public final class KryoSerializationSession extends BaseRepeater implements Name
     }
 
     @Override
-    public void writeObject(final Object object)
+    public void writeObject(Object object)
     {
         kryo.writeObject(output, object);
     }
 
     @Override
-    public void writeShort(final short value)
+    public void writeShort(short value)
     {
         kryo.writeObject(output, value);
     }
 
     @Override
-    public void writeString(final String value)
+    public void writeString(String value)
     {
         kryo.writeObject(output, value);
     }
 
     @Override
-    public void writeVersion(final Version version)
+    public void writeVersion(Version version)
     {
         writeObject(version);
     }
 
-    private Version startReading(final InputStream input)
+    private Version startReading(InputStream input)
     {
         assert input != null;
 
         this.input = new Input(input);
         trace("Starting to read at $", this.input.total());
-        final var version = readVersion();
+        var version = readVersion();
         version(version);
-        final var name = readString();
+        var name = readString();
         if (!name.equals(kryoTypes().name()))
         {
             fail("Input stream kryo types $ != session kryo types $", name, kryoTypes().name());
@@ -529,7 +529,7 @@ public final class KryoSerializationSession extends BaseRepeater implements Name
         return version;
     }
 
-    private void startWriting(final OutputStream output, final Version version)
+    private void startWriting(OutputStream output, Version version)
     {
         assert output != null;
 
@@ -541,7 +541,7 @@ public final class KryoSerializationSession extends BaseRepeater implements Name
         flush();
     }
 
-    private void version(final Version version)
+    private void version(Version version)
     {
         this.version = version;
         KryoSerializer.version(version);

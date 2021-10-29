@@ -35,13 +35,13 @@ public class VersionedObject<T> implements NamedObject, Versioned
 
     private final T object;
 
-    public VersionedObject(final Version version, final T object)
+    public VersionedObject(Version version, T object)
     {
         this.version = version;
         this.object = object;
     }
 
-    public VersionedObject(final T object)
+    public VersionedObject(T object)
     {
         this(KivaKit.get().projectVersion(), object);
     }

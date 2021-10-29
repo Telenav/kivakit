@@ -39,37 +39,37 @@ public class Ints
     /** Default invalid value */
     public static final int INVALID = Integer.MIN_VALUE;
 
-    public static BitCount bitsToRepresent(final int value)
+    public static BitCount bitsToRepresent(int value)
     {
         return BitCount.bitCount(Integer.SIZE - Integer.numberOfLeadingZeros(value));
     }
 
-    public static int digits(final int value)
+    public static int digits(int value)
     {
         return (int) (Math.log10(value) + 1);
     }
 
-    public static int forHighLow(final int high, final int low)
+    public static int forHighLow(int high, int low)
     {
         return high << 16 | low;
     }
 
-    public static int high(final int value)
+    public static int high(int value)
     {
         return value >> 16;
     }
 
-    public static int inRange(final int value, final int min, final int max)
+    public static int inRange(int value, int min, int max)
     {
         return Math.min(Math.max(value, min), max);
     }
 
-    public static boolean isBetween(final int value, final int low, final int high)
+    public static boolean isBetween(int value, int low, int high)
     {
         return value >= low && value <= high;
     }
 
-    public static boolean isPrime(final long n)
+    public static boolean isPrime(long n)
     {
         if (n % 2 == 1)
         {
@@ -85,7 +85,7 @@ public class Ints
         return false;
     }
 
-    public static int low(final int value)
+    public static int low(int value)
     {
         return value & 0xffff;
     }
@@ -93,7 +93,7 @@ public class Ints
     /**
      * @return An integer value or {@link #INVALID} if the string is not a valid integer
      */
-    public static int parse(final String string)
+    public static int parse(String string)
     {
         return parse(string, INVALID);
     }
@@ -104,7 +104,7 @@ public class Ints
      *
      * @return An integer value or the specified invalid value if the string is not a valid integer
      */
-    public static int parse(final String string, final int invalidValue)
+    public static int parse(String string, int invalidValue)
     {
         return (int) Longs.parse(string, invalidValue);
     }
@@ -115,33 +115,33 @@ public class Ints
      *
      * @return A natural number for the string or -1 if the string is not a natural number
      */
-    public static int parseNaturalNumber(final String string)
+    public static int parseNaturalNumber(String string)
     {
-        final var number = Longs.parseNaturalNumber(string);
+        var number = Longs.parseNaturalNumber(string);
         return number < 0 ? INVALID : (int) number;
     }
 
     /**
      * @return 10^power for values of power up to 32
      */
-    public static int powerOfTen(final int power)
+    public static int powerOfTen(int power)
     {
         assert power >= 0;
         return POWERS_OF_10[power];
     }
 
-    public static int quantized(final int value, final int quantum)
+    public static int quantized(int value, int quantum)
     {
-        final var quanta = (value + quantum / 2) / quantum;
+        var quanta = (value + quantum / 2) / quantum;
         return quantum * quanta;
     }
 
-    public static int rounded(final double value)
+    public static int rounded(double value)
     {
         return (int) (value + 0.5);
     }
 
-    public static int signExtend(final int value, final int bits)
+    public static int signExtend(int value, int bits)
     {
         if (bits == 32)
         {
@@ -156,7 +156,7 @@ public class Ints
     /**
      * Converts the given value to a hexadecimal string usable as a web color.
      */
-    public static String toHex(final int value)
+    public static String toHex(int value)
     {
         return Integer.toHexString(value);
     }
@@ -164,7 +164,7 @@ public class Ints
     /**
      * Converts the given value to a hexadecimal string usable as a web color.
      */
-    public static String toHex(final int value, final int minimumLength)
+    public static String toHex(int value, int minimumLength)
     {
         return Align.right(toHex(value), minimumLength, '0');
     }

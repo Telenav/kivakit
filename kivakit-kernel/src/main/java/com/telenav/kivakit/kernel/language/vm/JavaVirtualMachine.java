@@ -80,7 +80,7 @@ public class JavaVirtualMachine
         assert ASSERTIONS_ENABLED = true;
     }
 
-    public static void agentmain(final String arguments, final Instrumentation instrumentation)
+    public static void agentmain(String arguments, Instrumentation instrumentation)
     {
         DEBUG.get().trace("Instrumentation is available");
         local().instrumentation(instrumentation);
@@ -91,7 +91,7 @@ public class JavaVirtualMachine
         return ASSERTIONS_ENABLED;
     }
 
-    public static boolean isPropertyTrue(final String key)
+    public static boolean isPropertyTrue(String key)
     {
         return Booleans.isTrue(property(key));
     }
@@ -102,17 +102,17 @@ public class JavaVirtualMachine
     }
 
     @SuppressWarnings("EmptyMethod")
-    public static void main(final String[] args)
+    public static void main(String[] args)
     {
     }
 
-    public static void premain(final String arguments, final Instrumentation instrumentation)
+    public static void premain(String arguments, Instrumentation instrumentation)
     {
         DEBUG.get().trace("Instrumentation is available");
         local().instrumentation(instrumentation);
     }
 
-    public static String property(final String key)
+    public static String property(String key)
     {
         var value = System.getProperty(key);
         if (value == null)
@@ -122,9 +122,9 @@ public class JavaVirtualMachine
         return value;
     }
 
-    public static String property(final String key, final String defaultValue)
+    public static String property(String key, String defaultValue)
     {
-        final var value = property(key);
+        var value = property(key);
         return value == null ? defaultValue : value;
     }
 
@@ -169,15 +169,15 @@ public class JavaVirtualMachine
     {
     }
 
-    public void dumpHeap(final Path path)
+    public void dumpHeap(Path path)
     {
-        final var processIdentifier = ProcessHandle.current().pid();
+        var processIdentifier = ProcessHandle.current().pid();
         try
         {
-            final var process = Runtime.getRuntime().exec("jmap -dump:live,file=" + path + " " + processIdentifier);
+            var process = Runtime.getRuntime().exec("jmap -dump:live,file=" + path + " " + processIdentifier);
             process.waitFor();
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             LOGGER.problem(e, "Unable to dump heap");
         }
@@ -216,7 +216,7 @@ public class JavaVirtualMachine
             // Show virtual machines available if we're debugging
             if (DEBUG.get().isDebugOn())
             {
-                for (final var descriptor : VirtualMachine.list())
+                for (var descriptor : VirtualMachine.list())
                 {
                     LOGGER.information(descriptor.toString());
                 }
@@ -230,7 +230,7 @@ public class JavaVirtualMachine
             }
             if (agentJar == null)
             {
-                final var kivakitHome = KivaKit.get().homeFolderPath();
+                var kivakitHome = KivaKit.get().homeFolderPath();
                 if (kivakitHome != null)
                 {
                     agentJar = kivakitHome + "/tools/agent/kivakit-agent.jar";
@@ -246,16 +246,16 @@ public class JavaVirtualMachine
             }
             try
             {
-                final var name = ManagementFactory.getRuntimeMXBean().getName();
-                final var pid = name.substring(0, name.indexOf('@'));
+                var name = ManagementFactory.getRuntimeMXBean().getName();
+                var pid = name.substring(0, name.indexOf('@'));
                 LOGGER.information("Attaching agent to process $", pid);
-                final var vm = VirtualMachine.attach(pid);
+                var vm = VirtualMachine.attach(pid);
                 vm.loadAgent(agentJar);
                 vm.detach();
                 DEBUG.get().trace("Successfully instrumented virtual machine");
                 return true;
             }
-            catch (final Exception e)
+            catch (Exception e)
             {
                 //noinspection SpellCheckingInspection
                 LOGGER.warning(e, "Unable to instrument VM. Ensure that you defined this system property: -Djdk.attach.allowAttachSelf=true");
@@ -266,7 +266,7 @@ public class JavaVirtualMachine
         return true;
     }
 
-    public void instrumentation(final Instrumentation instrumentation)
+    public void instrumentation(Instrumentation instrumentation)
     {
         this.instrumentation = instrumentation;
     }
@@ -296,8 +296,8 @@ public class JavaVirtualMachine
         if (variables == null)
         {
             variables = new VariableMap<>();
-            final var properties = System.getProperties();
-            for (final var key : properties.keySet())
+            var properties = System.getProperties();
+            for (var key : properties.keySet())
             {
                 variables.put(key.toString(), properties.getProperty(key.toString()));
             }
@@ -305,7 +305,7 @@ public class JavaVirtualMachine
         return variables;
     }
 
-    public Bytes sizeOf(final Object object)
+    public Bytes sizeOf(Object object)
     {
         instrument();
         if (isInstrumented())
@@ -315,7 +315,7 @@ public class JavaVirtualMachine
         return null;
     }
 
-    public Bytes sizeOfObjectGraph(final Object object)
+    public Bytes sizeOfObjectGraph(Object object)
     {
         return sizeOfObjectGraph(object, "size", Bytes.megabytes(1));
     }
@@ -330,15 +330,15 @@ public class JavaVirtualMachine
      * computing object size, call {@link #sizeOfObjectGraph(Object)} instead of this method.
      * @return The recursive size of the object using JVM instrumentation
      */
-    public Bytes sizeOfObjectGraph(final Object object, final String prefix, final Bytes minimumSizeToDebugTrace)
+    public Bytes sizeOfObjectGraph(Object object, String prefix, Bytes minimumSizeToDebugTrace)
     {
         DEBUG.get().trace("$:", prefix);
-        final Type<?> type = Type.of(object);
-        final var isTree = type.type().isAnnotationPresent(KivaKitNonCyclicObjectGraph.class);
+        Type<?> type = Type.of(object);
+        var isTree = type.type().isAnnotationPresent(KivaKitNonCyclicObjectGraph.class);
         return sizeOfObject(object, isTree ? null : Sets.identitySet(), prefix, minimumSizeToDebugTrace, false, 0);
     }
 
-    public Bytes sizeOfPrimitive(final Object value)
+    public Bytes sizeOfPrimitive(Object value)
     {
         if (!Objects.isPrimitiveWrapper(value))
         {
@@ -380,7 +380,7 @@ public class JavaVirtualMachine
         return Bytes.bytes(size);
     }
 
-    public Bytes sizeOfPrimitiveType(final Class<?> type)
+    public Bytes sizeOfPrimitiveType(Class<?> type)
     {
         var bytes = 0;
         if (type == Long.TYPE)
@@ -443,16 +443,16 @@ public class JavaVirtualMachine
         return Bytes.bytes(Runtime.getRuntime().totalMemory());
     }
 
-    public Bytes traceSizeChange(final Listener listener, final String operation, final Object root,
-                                 final Bytes minimumDebugTraceSize, final Runnable runnable)
+    public Bytes traceSizeChange(Listener listener, String operation, Object root,
+                                 Bytes minimumDebugTraceSize, Runnable runnable)
     {
         if (JavaVirtualMachine.local().isInstrumented())
         {
-            final var start = Time.now();
+            var start = Time.now();
             listener.information("Running '$' on '$'", operation, Name.of(root));
-            final var before = JavaVirtualMachine.local().sizeOfObjectGraph(root, operation + ".before", minimumDebugTraceSize);
+            var before = JavaVirtualMachine.local().sizeOfObjectGraph(root, operation + ".before", minimumDebugTraceSize);
             runnable.run();
-            final var after = JavaVirtualMachine.local().sizeOfObjectGraph(root, operation + ".after", minimumDebugTraceSize);
+            var after = JavaVirtualMachine.local().sizeOfObjectGraph(root, operation + ".after", minimumDebugTraceSize);
             if (before != null && after != null)
             {
                 listener.information("Operation '$' changed size of $ $ from $ to $", operation, root.getClass().getSimpleName(),
@@ -478,9 +478,9 @@ public class JavaVirtualMachine
         return properties().addAll(OperatingSystem.get().environmentVariables());
     }
 
-    private Bytes sizeOfField(final Object object, final java.lang.reflect.Field field, final Set<Object> visited,
-                              final String prefix,
-                              final Bytes minimumSizeToDebugTrace, final boolean excludeFromTracing, final int level)
+    private Bytes sizeOfField(Object object, java.lang.reflect.Field field, Set<Object> visited,
+                              String prefix,
+                              Bytes minimumSizeToDebugTrace, boolean excludeFromTracing, int level)
     {
         if (!isInstrumented() || object == null)
         {
@@ -495,7 +495,7 @@ public class JavaVirtualMachine
                 {
                     try
                     {
-                        final var value = field.get(object);
+                        var value = field.get(object);
                         if (value != null && !field.isAnnotationPresent(KivaKitExcludeFromSizeOf.class))
                         {
                             if (visited == null || !visited.contains(value))
@@ -504,7 +504,7 @@ public class JavaVirtualMachine
                                 {
                                     visited.add(value);
                                 }
-                                final var child = prefix + "." + field.getName();
+                                var child = prefix + "." + field.getName();
                                 if (value.getClass().isArray())
                                 {
                                     if (value.getClass().getComponentType().isPrimitive())
@@ -513,13 +513,13 @@ public class JavaVirtualMachine
                                     }
                                     else
                                     {
-                                        final var length = Array.getLength(value);
+                                        var length = Array.getLength(value);
                                         for (var i = 0; i < length; i++)
                                         {
-                                            final var element = Array.get(value, i);
+                                            var element = Array.get(value, i);
                                             if (element != null)
                                             {
-                                                final var sizeOf = sizeOfObject(element, visited, child + "[" + i + "]",
+                                                var sizeOf = sizeOfObject(element, visited, child + "[" + i + "]",
                                                         minimumSizeToDebugTrace, excludeFromTracing, level + 1);
                                                 if (sizeOf != null)
                                                 {
@@ -537,7 +537,7 @@ public class JavaVirtualMachine
                                     }
                                     else
                                     {
-                                        final var sizeOf = sizeOfObject(value, visited, child, minimumSizeToDebugTrace,
+                                        var sizeOf = sizeOfObject(value, visited, child, minimumSizeToDebugTrace,
                                                 excludeFromTracing, level + 1);
                                         if (sizeOf != null)
                                         {
@@ -548,7 +548,7 @@ public class JavaVirtualMachine
                             }
                         }
                     }
-                    catch (final IllegalArgumentException | IllegalAccessException e)
+                    catch (IllegalArgumentException | IllegalAccessException e)
                     {
                         LOGGER.warning(e, "Unable to determine size of field $", field);
                     }
@@ -558,8 +558,8 @@ public class JavaVirtualMachine
         return size;
     }
 
-    private Bytes sizeOfObject(final Object object, final Set<Object> visited, final String prefix,
-                               final Bytes minimumSizeToDebugTrace, boolean excludeFromTracing, final int level)
+    private Bytes sizeOfObject(Object object, Set<Object> visited, String prefix,
+                               Bytes minimumSizeToDebugTrace, boolean excludeFromTracing, int level)
     {
         instrument();
         if (isInstrumented() && object != null)
@@ -571,16 +571,16 @@ public class JavaVirtualMachine
                 {
                     visited.add(object);
                 }
-                final Type<?> type = Type.of(object);
+                Type<?> type = Type.of(object);
                 excludeFromTracing = excludeFromTracing
                         || type.type().isAnnotationPresent(KivaKitExcludeFromSizeOfDebugTracing.class);
                 if (!type.type().isAnnotationPresent(KivaKitExcludeFromSizeOf.class))
                 {
-                    for (final var field : type.allFields())
+                    for (var field : type.allFields())
                     {
                         excludeFromTracing = excludeFromTracing
                                 || field.isAnnotationPresent(KivaKitExcludeFromSizeOfDebugTracing.class);
-                        final var sizeOf = sizeOfField(object, field, visited, prefix, minimumSizeToDebugTrace,
+                        var sizeOf = sizeOfField(object, field, visited, prefix, minimumSizeToDebugTrace,
                                 excludeFromTracing, level);
                         if (sizeOf != null)
                         {

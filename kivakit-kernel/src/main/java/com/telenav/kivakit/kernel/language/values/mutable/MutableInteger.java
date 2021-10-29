@@ -36,17 +36,17 @@ public class MutableInteger extends MutableValue<Integer>
     {
     }
 
-    public MutableInteger(final Integer value)
+    public MutableInteger(Integer value)
     {
         super(value);
     }
 
-    public void maximum(final int value)
+    public void maximum(int value)
     {
         set(Math.max(get(), value));
     }
 
-    public void minimum(final int value)
+    public void minimum(int value)
     {
         set(Math.min(get(), value));
     }

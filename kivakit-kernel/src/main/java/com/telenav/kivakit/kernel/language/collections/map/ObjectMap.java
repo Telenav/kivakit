@@ -31,18 +31,18 @@ public class ObjectMap<Key, Value> extends BaseMap<Key, Value>
     {
     }
 
-    public ObjectMap(final Maximum maximumSize)
+    public ObjectMap(Maximum maximumSize)
     {
         super(maximumSize);
     }
 
-    public ObjectMap(final Maximum maximumSize,
-                     final Map<Key, Value> map)
+    public ObjectMap(Maximum maximumSize,
+                     Map<Key, Value> map)
     {
         super(maximumSize, map);
     }
 
-    public ObjectMap(final Map<Key, Value> map)
+    public ObjectMap(Map<Key, Value> map)
     {
         super(map);
     }

@@ -68,12 +68,12 @@ public interface ReadableResource extends Readable
      *
      * @param destination The destination to write to
      */
-    void copyTo(final WritableResource destination, final CopyMode mode, ProgressReporter reporter);
+    void copyTo(WritableResource destination, CopyMode mode, ProgressReporter reporter);
 
     /**
      * @return A reader with convenient methods for reading from the resource
      */
-    default ResourceReader reader(final ProgressReporter reporter)
+    default ResourceReader reader(ProgressReporter reporter)
     {
         return new ResourceReader(resource(), reporter, charset());
     }
@@ -89,7 +89,7 @@ public interface ReadableResource extends Readable
     /**
      *
      */
-    default ResourceReader reader(final ProgressReporter reporter, final Charset charset)
+    default ResourceReader reader(ProgressReporter reporter, Charset charset)
     {
         return new ResourceReader(resource(), reporter, charset);
     }

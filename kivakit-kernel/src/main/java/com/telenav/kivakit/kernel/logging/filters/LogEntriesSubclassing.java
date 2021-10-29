@@ -29,15 +29,15 @@ public class LogEntriesSubclassing implements Filter<LogEntry>
     private final Class<? extends Message>[] types;
 
     @SafeVarargs
-    public LogEntriesSubclassing(final Class<? extends Message>... types)
+    public LogEntriesSubclassing(Class<? extends Message>... types)
     {
         this.types = types;
     }
 
     @Override
-    public boolean accepts(final LogEntry value)
+    public boolean accepts(LogEntry value)
     {
-        for (final var type : types)
+        for (var type : types)
         {
             if (type.isAssignableFrom(value.message().getClass()))
             {
@@ -50,8 +50,8 @@ public class LogEntriesSubclassing implements Filter<LogEntry>
     @Override
     public String toString()
     {
-        final var names = new StringList();
-        for (final var type : types)
+        var names = new StringList();
+        for (var type : types)
         {
             names.add(Classes.simpleName(type));
         }

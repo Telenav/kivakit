@@ -55,91 +55,91 @@ class DebugKryo extends Kryo
 
     private final Listener listener;
 
-    public DebugKryo(final Listener listener)
+    public DebugKryo(Listener listener)
     {
         this.listener = listener;
         DEBUG = new Debug(listener);
     }
 
     @Override
-    public Registration readClass(final Input input)
+    public Registration readClass(Input input)
     {
         return read(input, () -> super.readClass(input));
     }
 
     @Override
-    public Object readClassAndObject(final Input input)
+    public Object readClassAndObject(Input input)
     {
         return read(input, () -> super.readClassAndObject(input));
     }
 
     @Override
-    public <T> T readObject(final Input input, final Class<T> type)
+    public <T> T readObject(Input input, Class<T> type)
     {
         return read(input, () -> super.readObject(input, type));
     }
 
     @Override
-    public <T> T readObject(final Input input, final Class<T> type, final Serializer serializer)
+    public <T> T readObject(Input input, Class<T> type, Serializer serializer)
     {
         return read(input, () -> super.readObject(input, type, serializer));
     }
 
     @Override
-    public <T> T readObjectOrNull(final Input input, final Class<T> type)
+    public <T> T readObjectOrNull(Input input, Class<T> type)
     {
         return read(input, () -> super.readObjectOrNull(input, type));
     }
 
     @Override
-    public <T> T readObjectOrNull(final Input input, final Class<T> type, final Serializer serializer)
+    public <T> T readObjectOrNull(Input input, Class<T> type, Serializer serializer)
     {
         return read(input, () -> super.readObjectOrNull(input, type, serializer));
     }
 
     @Override
-    public Registration writeClass(final Output output, final Class type)
+    public Registration writeClass(Output output, Class type)
     {
         return write(type, output, () -> super.writeClass(output, type));
     }
 
     @Override
-    public void writeClassAndObject(final Output output, final Object object)
+    public void writeClassAndObject(Output output, Object object)
     {
         write(object, output, () -> super.writeClassAndObject(output, object));
     }
 
     @Override
-    public void writeObject(final Output output, final Object object)
+    public void writeObject(Output output, Object object)
     {
         write(object, output, () -> super.writeObject(output, object));
     }
 
     @Override
-    public void writeObject(final Output output, final Object object, final Serializer serializer)
+    public void writeObject(Output output, Object object, Serializer serializer)
     {
         write(object, output, () -> super.writeObject(output, object, serializer));
     }
 
     @Override
-    public void writeObjectOrNull(final Output output, final Object object, final Class type)
+    public void writeObjectOrNull(Output output, Object object, Class type)
     {
         write(object, output, () -> super.writeObjectOrNull(output, object, type));
     }
 
     @Override
-    public void writeObjectOrNull(final Output output, final Object object, final Serializer serializer)
+    public void writeObjectOrNull(Output output, Object object, Serializer serializer)
     {
         write(object, output, () -> super.writeObjectOrNull(output, object, serializer));
     }
 
-    private <T> T read(final Input input, final Supplier<T> code)
+    private <T> T read(Input input, Supplier<T> code)
     {
         trace(true);
         try
         {
-            final var position = input.total();
-            final T value = code.get();
+            var position = input.total();
+            T value = code.get();
             listener.trace("Read at $: $", position, value);
             return value;
         }
@@ -149,7 +149,7 @@ class DebugKryo extends Kryo
         }
     }
 
-    private void trace(final boolean on)
+    private void trace(boolean on)
     {
         if (DEBUG.isDebugOn() && TRACE)
         {
@@ -164,7 +164,7 @@ class DebugKryo extends Kryo
         }
     }
 
-    private <T> T write(final Object object, final Output output, final Supplier<T> code)
+    private <T> T write(Object object, Output output, Supplier<T> code)
     {
         trace(true);
         try
@@ -178,7 +178,7 @@ class DebugKryo extends Kryo
         }
     }
 
-    private void write(final Object object, final Output output, final Runnable code)
+    private void write(Object object, Output output, Runnable code)
     {
         trace(true);
         try

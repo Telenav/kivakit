@@ -97,10 +97,10 @@ public abstract class OperationMessage implements Named, Message
         }
     }
 
-    public static OperationMessage of(final String name)
+    public static OperationMessage of(String name)
     {
         initialize();
-        
+
         return messages.get(name);
     }
 
@@ -120,7 +120,7 @@ public abstract class OperationMessage implements Named, Message
 
     private CodeContext context;
 
-    protected OperationMessage(final String message)
+    protected OperationMessage(String message)
     {
         this.message = message;
         messages().add(this);
@@ -137,7 +137,7 @@ public abstract class OperationMessage implements Named, Message
         return arguments;
     }
 
-    public void arguments(final Object[] arguments)
+    public void arguments(Object[] arguments)
     {
         this.arguments = arguments;
     }
@@ -149,7 +149,7 @@ public abstract class OperationMessage implements Named, Message
     }
 
     @Override
-    public String asString(final StringFormat format)
+    public String asString(StringFormat format)
     {
         switch (format.identifier())
         {
@@ -164,7 +164,7 @@ public abstract class OperationMessage implements Named, Message
         return cause;
     }
 
-    public final OperationMessage cause(final Throwable cause)
+    public final OperationMessage cause(Throwable cause)
     {
         this.cause = cause;
         return this;
@@ -176,7 +176,7 @@ public abstract class OperationMessage implements Named, Message
         return context;
     }
 
-    public void context(final CodeContext context)
+    public void context(CodeContext context)
     {
         if (this.context == null)
         {
@@ -190,7 +190,7 @@ public abstract class OperationMessage implements Named, Message
         return created;
     }
 
-    public void created(final Time created)
+    public void created(Time created)
     {
         this.created = created;
     }
@@ -208,7 +208,7 @@ public abstract class OperationMessage implements Named, Message
      * @return The fully formatted message including stack trace information
      */
     @Override
-    public String formatted(final MessageFormatter.Format format)
+    public String formatted(MessageFormatter.Format format)
     {
         if (formattedMessage == null)
         {
@@ -223,7 +223,7 @@ public abstract class OperationMessage implements Named, Message
                     formattedMessage = Message.format(message, arguments);
                     if (format == WITH_EXCEPTION)
                     {
-                        final var cause = cause();
+                        var cause = cause();
                         if (cause != null)
                         {
                             formattedMessage += "\n" + stackTrace().toString();
@@ -251,13 +251,13 @@ public abstract class OperationMessage implements Named, Message
         return maximumFrequency;
     }
 
-    public OperationMessage maximumFrequency(final Frequency maximumFrequency)
+    public OperationMessage maximumFrequency(Frequency maximumFrequency)
     {
         this.maximumFrequency = maximumFrequency;
         return this;
     }
 
-    public void message(final String message)
+    public void message(String message)
     {
         this.message = message;
     }
@@ -273,7 +273,7 @@ public abstract class OperationMessage implements Named, Message
     {
         if (stackTrace == null)
         {
-            final var cause = cause();
+            var cause = cause();
             if (cause != null)
             {
                 stackTrace = new StackTrace(cause);
@@ -282,7 +282,7 @@ public abstract class OperationMessage implements Named, Message
         return stackTrace;
     }
 
-    public OperationMessage stackTrace(final StackTrace stackTrace)
+    public OperationMessage stackTrace(StackTrace stackTrace)
     {
         this.stackTrace = stackTrace;
         return this;

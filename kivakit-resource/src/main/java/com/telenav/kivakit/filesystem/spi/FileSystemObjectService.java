@@ -107,10 +107,10 @@ public interface FileSystemObjectService extends ByteSized, ChangedAt, CreatedAt
      */
     boolean isFolder();
 
-    default boolean isOnSameFileSystem(final FileSystemObjectService that)
+    default boolean isOnSameFileSystem(FileSystemObjectService that)
     {
-        final var thisService = FileSystemServiceLoader.fileSystem(path());
-        final var thatService = FileSystemServiceLoader.fileSystem(that.path());
+        var thisService = FileSystemServiceLoader.fileSystem(path());
+        var thatService = FileSystemServiceLoader.fileSystem(that.path());
         return thisService.getClass().equals(thatService.getClass());
     }
 
@@ -133,10 +133,10 @@ public interface FileSystemObjectService extends ByteSized, ChangedAt, CreatedAt
     @Override
     FilePath path();
 
-    default FilePath relativePath(final FolderService folder)
+    default FilePath relativePath(FolderService folder)
     {
-        final var fullName = Strings.ensureEndsWith(path().toString().replace("\\", "/"), "/");
-        final var folderName = Strings.ensureEndsWith(folder.path().toString().replace("\\", "/"), "/");
+        var fullName = Strings.ensureEndsWith(path().toString().replace("\\", "/"), "/");
+        var folderName = Strings.ensureEndsWith(folder.path().toString().replace("\\", "/"), "/");
         if (fullName.startsWith(folderName))
         {
             return FilePath.parseFilePath(fullName.substring(folderName.length()));

@@ -38,7 +38,7 @@ public class NullListener implements Listener
     }
 
     @Override
-    public void onMessage(final Message message)
+    public void onMessage(Message message)
     {
     }
 }

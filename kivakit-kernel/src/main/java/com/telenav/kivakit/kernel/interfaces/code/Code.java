@@ -26,12 +26,12 @@ package com.telenav.kivakit.kernel.interfaces.code;
 @FunctionalInterface
 public interface Code<Value>
 {
-    static <T> Code<T> of(final Code<T> code)
+    static <T> Code<T> of(Code<T> code)
     {
         return code;
     }
 
-    static <T> Code<T> of(final Runnable code)
+    static <T> Code<T> of(Runnable code)
     {
         return of(() ->
         {

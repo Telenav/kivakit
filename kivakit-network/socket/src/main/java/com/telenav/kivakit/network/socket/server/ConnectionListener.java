@@ -47,34 +47,35 @@ public class ConnectionListener extends BaseRepeater
 
     private final ExecutorService executor = Threads.threadPool("Listener");
 
-    public ConnectionListener(final int port)
+    public ConnectionListener(int port)
     {
         this(port, Maximum.MAXIMUM);
     }
 
-    public ConnectionListener(final int port, final Maximum retries)
+    public ConnectionListener(int port, Maximum retries)
     {
         this.port = port;
         this.retries = retries.asInt();
     }
 
-    public void listen(final Consumer<Socket> listener)
+    public void listen(Consumer<Socket> listener)
     {
-        final var outer = this;
+        var outer = this;
         KivaKitThread.run(this, "ConnectionListener", () ->
         {
             int bindFailures = 0;
             while (bindFailures < retries)
             {
                 trace("Creating server socket on port $", port());
-                try (final var serverSocket = new ServerSocket(port()))
+                try (var serverSocket = new ServerSocket(port()))
                 {
+                    //noinspection InfiniteLoopStatement
                     while (true)
                     {
                         try
                         {
                             announce("Waiting for connections");
-                            final var socket = serverSocket.accept();
+                            var socket = serverSocket.accept();
                             if (socket != null)
                             {
                                 trace("Accepted connection on $", socket);
@@ -87,13 +88,13 @@ public class ConnectionListener extends BaseRepeater
                                 warning("Connection failed");
                             }
                         }
-                        catch (final Exception e)
+                        catch (Exception e)
                         {
                             warning(e, "Exception thrown while waiting for client connections");
                         }
                     }
                 }
-                catch (final Exception e)
+                catch (Exception e)
                 {
                     if (e instanceof BindException)
                     {

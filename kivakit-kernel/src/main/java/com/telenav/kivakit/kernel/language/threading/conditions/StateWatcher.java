@@ -71,12 +71,12 @@ public final class StateWatcher<State>
     private class Waiter
     {
         /** The predicate that must be satisfied */
-        Predicate<State> predicate;
+        final Predicate<State> predicate;
 
         /** The condition variable to wait on and signal */
-        Condition condition;
+        final Condition condition;
 
-        private Waiter(final Predicate<State> predicate, final Condition condition)
+        private Waiter(Predicate<State> predicate, Condition condition)
         {
             this.predicate = predicate;
             this.condition = condition;
@@ -92,7 +92,7 @@ public final class StateWatcher<State>
     /** The most recently reported state */
     private State current;
 
-    public StateWatcher(final State current)
+    public StateWatcher(State current)
     {
         this.current = current;
     }
@@ -100,7 +100,7 @@ public final class StateWatcher<State>
     /**
      * Signals any waiters if the state they are waiting for has arrived
      */
-    public void signal(final State state)
+    public void signal(State state)
     {
         whileLocked(() ->
         {
@@ -108,7 +108,7 @@ public final class StateWatcher<State>
             current = state;
 
             // go through the waiters
-            for (final var watcher : waiters)
+            for (var watcher : waiters)
             {
                 // and if the reported value satisfies the watcher's predicate,
                 if (watcher.predicate.test(state))
@@ -125,7 +125,7 @@ public final class StateWatcher<State>
      *
      * @see #waitFor(Predicate, Duration)
      */
-    public WakeState waitFor(final Predicate<State> predicate)
+    public WakeState waitFor(Predicate<State> predicate)
     {
         return waitFor(predicate, Duration.MAXIMUM);
     }
@@ -136,8 +136,8 @@ public final class StateWatcher<State>
      * @param maximumWaitTime The maximum amount of time to wait before giving up ensure that the wait condition is
      * satisfied.
      */
-    public WakeState waitFor(final Predicate<State> predicate,
-                             final Duration maximumWaitTime)
+    public WakeState waitFor(Predicate<State> predicate,
+                             Duration maximumWaitTime)
     {
         return whileLocked(() ->
         {
@@ -149,7 +149,7 @@ public final class StateWatcher<State>
             }
 
             // otherwise, add ourselves as a waiter,
-            final var waiter = new Waiter(predicate, lock.newCondition());
+            var waiter = new Waiter(predicate, lock.newCondition());
             waiters.add(waiter);
 
             try
@@ -164,7 +164,7 @@ public final class StateWatcher<State>
                     return COMPLETED;
                 }
             }
-            catch (final InterruptedException e)
+            catch (InterruptedException e)
             {
                 return INTERRUPTED;
             }
@@ -177,7 +177,7 @@ public final class StateWatcher<State>
      * @param desired The desired state
      * @param maximumWaitTime The maximum amount of time to wait
      */
-    public WakeState waitFor(final State desired, final Duration maximumWaitTime)
+    public WakeState waitFor(State desired, Duration maximumWaitTime)
     {
         return waitFor(desired::equals, maximumWaitTime);
     }
@@ -185,7 +185,7 @@ public final class StateWatcher<State>
     /**
      * Wait forever for the desired state
      */
-    public WakeState waitFor(final State desired)
+    public WakeState waitFor(State desired)
     {
         return waitFor(desired, Duration.MAXIMUM);
     }
@@ -193,7 +193,7 @@ public final class StateWatcher<State>
     /**
      * Executes the given code while holding this object's reentrant lock
      */
-    public void whileLocked(final Runnable code)
+    public void whileLocked(Runnable code)
     {
         lock.whileLocked(code);
     }
@@ -201,7 +201,7 @@ public final class StateWatcher<State>
     /**
      * Executes the given code while holding this object's reentrant lock
      */
-    public <T> T whileLocked(final Code<T> code)
+    public <T> T whileLocked(Code<T> code)
     {
         return lock.whileLocked(code);
     }

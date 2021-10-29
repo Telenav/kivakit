@@ -30,12 +30,12 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramDataValidationEnsure.class)
 public class EnsureFailure extends Problem
 {
-    public EnsureFailure(final String message, final Object... arguments)
+    public EnsureFailure(String message, Object... arguments)
     {
         super(message, arguments);
     }
 
-    public EnsureFailure(final Throwable cause, final String message, final Object... arguments)
+    public EnsureFailure(Throwable cause, String message, Object... arguments)
     {
         super(cause, message, arguments);
     }

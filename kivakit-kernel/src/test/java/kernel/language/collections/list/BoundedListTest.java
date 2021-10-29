@@ -34,11 +34,11 @@ public class BoundedListTest
     public void testAdd()
     {
         // First make sure that we can add an element to a list with room.
-        final BaseList<Integer> list = getPopulatedList(100, 99);
+        BaseList<Integer> list = getPopulatedList(100, 99);
         list.add(11);
 
         // Now make sure we can't add anything to a full list.
-        final int size = list.size();
+        int size = list.size();
         list.add(22);
         ensureEqual(size, list.size());
 
@@ -50,14 +50,14 @@ public class BoundedListTest
     @Test
     public void testAddAll()
     {
-        final BaseList<Integer> list = getPopulatedList(100, 75);
-        final List<Integer> listToAdd = getPopulatedList(25, 25);
+        BaseList<Integer> list = getPopulatedList(100, 75);
+        List<Integer> listToAdd = getPopulatedList(25, 25);
 
         // We should be able to add the list once.
         list.addAll(listToAdd);
 
         // We should not be able to add it again though.
-        final int size = list.size();
+        int size = list.size();
         list.addAll(listToAdd);
         ensureEqual(size, list.size());
     }
@@ -67,12 +67,12 @@ public class BoundedListTest
     {
         // First make sure that we can add an element to a list with room and
         // then verify that the value was set.
-        final BaseList<Integer> list = getPopulatedList(100, 99);
+        BaseList<Integer> list = getPopulatedList(100, 99);
         list.add(25, 11);
         Assert.assertEquals(Integer.valueOf(11), list.get(25));
 
         // Now make sure we can't add anything to a full list.
-        final int size = list.size();
+        int size = list.size();
         list.add(25, 22);
         ensureEqual(size, list.size());
 
@@ -81,9 +81,9 @@ public class BoundedListTest
         list.add(12, 33);
     }
 
-    private BaseList<Integer> getPopulatedList(final int maximumSize, final int currentLevel)
+    private BaseList<Integer> getPopulatedList(int maximumSize, int currentLevel)
     {
-        final ObjectList<Integer> list = new ObjectList<>(Maximum.maximum(maximumSize))
+        ObjectList<Integer> list = new ObjectList<>(Maximum.maximum(maximumSize))
         {
             @Override
             protected void onOutOfRoom()

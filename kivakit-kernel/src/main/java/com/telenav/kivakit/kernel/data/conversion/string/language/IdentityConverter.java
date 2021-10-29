@@ -34,7 +34,7 @@ public class IdentityConverter extends BaseStringConverter<String>
     /**
      * @param listener The listener to hear any conversion issues
      */
-    public IdentityConverter(final Listener listener)
+    public IdentityConverter(Listener listener)
     {
         super(listener);
     }
@@ -43,7 +43,7 @@ public class IdentityConverter extends BaseStringConverter<String>
      * {@inheritDoc}
      */
     @Override
-    protected String onToValue(final String value)
+    protected String onToValue(String value)
     {
         return value;
     }

@@ -40,14 +40,14 @@ public class KivaKitShutdownHook
 
     static
     {
-        final var shutdown = new Thread(() ->
+        var shutdown = new Thread(() ->
         {
-            final List<KivaKitShutdownHook> copy;
+            List<KivaKitShutdownHook> copy;
             synchronized (queue)
             {
                 copy = new ArrayList<>(queue);
             }
-            for (final var hook : copy)
+            for (var hook : copy)
             {
                 hook.execute();
             }
@@ -56,7 +56,7 @@ public class KivaKitShutdownHook
         Runtime.getRuntime().addShutdownHook(shutdown);
     }
 
-    public static void register(final Order order, final Runnable code)
+    public static void register(Order order, Runnable code)
     {
         new KivaKitShutdownHook(order, code);
     }
@@ -77,7 +77,7 @@ public class KivaKitShutdownHook
 
     private final Runnable code;
 
-    private KivaKitShutdownHook(final Order order, final Runnable code)
+    private KivaKitShutdownHook(Order order, Runnable code)
     {
         synchronized (queue)
         {

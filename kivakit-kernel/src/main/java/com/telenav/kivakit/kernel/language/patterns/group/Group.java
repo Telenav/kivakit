@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.kernel.language.patterns.group;
 
+import com.telenav.kivakit.kernel.data.conversion.Converter;
 import com.telenav.kivakit.kernel.language.patterns.Pattern;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguagePattern;
-import com.telenav.kivakit.kernel.data.conversion.Converter;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.regex.Matcher;
@@ -49,7 +49,7 @@ public class Group<T> extends Pattern
      *
      * @param pattern MetaPattern to capture
      */
-    public Group(final Pattern pattern, final Converter<String, T> converter)
+    public Group(Pattern pattern, Converter<String, T> converter)
     {
         this.pattern = pattern;
         this.converter = converter;
@@ -61,7 +61,7 @@ public class Group<T> extends Pattern
      * @param group The group to bind to
      */
     @Override
-    public int bind(final int group)
+    public int bind(int group)
     {
         if (this.group == -1)
         {
@@ -85,9 +85,9 @@ public class Group<T> extends Pattern
      * @param matcher The matcher from which to retrieve this Group's group
      * @return The captured characters
      */
-    public final T get(final Matcher matcher, final T defaultValue)
+    public final T get(Matcher matcher, T defaultValue)
     {
-        final var value = value(matcher);
+        var value = value(matcher);
         return value == null ? defaultValue : converter.convert(value);
     }
 
@@ -97,9 +97,9 @@ public class Group<T> extends Pattern
      * @param matcher The matcher from which to retrieve this Group's group
      * @return The captured characters
      */
-    public final T get(final Matcher matcher)
+    public final T get(Matcher matcher)
     {
-        final var value = value(matcher);
+        var value = value(matcher);
         return value == null ? null : converter.convert(value);
     }
 
@@ -109,7 +109,7 @@ public class Group<T> extends Pattern
         return "(" + pattern + ")";
     }
 
-    private String value(final Matcher matcher)
+    private String value(Matcher matcher)
     {
         if (group == -1)
         {

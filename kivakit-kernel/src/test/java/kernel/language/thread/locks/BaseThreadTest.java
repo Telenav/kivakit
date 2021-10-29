@@ -41,7 +41,7 @@ public abstract class BaseThreadTest
                 onRun();
                 break;
             }
-            catch (final Exception e)
+            catch ( Exception e)
             {
                 if (retries++ > 10)
                 {
@@ -53,29 +53,29 @@ public abstract class BaseThreadTest
         }
     }
 
-    protected void accurateSleep(final Duration minimum, final Duration maximum)
+    protected void accurateSleep( Duration minimum, final Duration maximum)
     {
         final var start = Time.now();
         minimum.sleep();
         Ensure.ensure(start.elapsedSince().isLessThanOrEqualTo(maximum));
     }
 
-    protected void ensureElapsedGreaterThan(final Duration minimum)
+    protected void ensureElapsedGreaterThan( Duration minimum)
     {
         ensureElapsedGreaterThan(start, minimum);
     }
 
-    protected void ensureElapsedGreaterThan(final Time start, final Duration minimum)
+    protected void ensureElapsedGreaterThan( Time start, final Duration minimum)
     {
         Ensure.ensure(start.elapsedSince().isGreaterThan(minimum));
     }
 
-    protected void ensureElapsedLessThan(final Duration maximum)
+    protected void ensureElapsedLessThan( Duration maximum)
     {
         ensureElapsedLessThan(start, maximum);
     }
 
-    protected void ensureElapsedLessThan(final Time start, final Duration maximum)
+    protected void ensureElapsedLessThan( Time start, final Duration maximum)
     {
         Ensure.ensure(start.elapsedSince().isLessThan(maximum));
     }

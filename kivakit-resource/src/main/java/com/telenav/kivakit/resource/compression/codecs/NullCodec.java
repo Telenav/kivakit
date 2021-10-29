@@ -36,13 +36,13 @@ import java.io.OutputStream;
 public class NullCodec implements Codec
 {
     @Override
-    public OutputStream compressed(final OutputStream out)
+    public OutputStream compressed(OutputStream out)
     {
         return out;
     }
 
     @Override
-    public InputStream decompressed(final InputStream in)
+    public InputStream decompressed(InputStream in)
     {
         return in;
     }

@@ -33,8 +33,8 @@ public class Maps
     /**
      * @return A copy of the given map
      */
-    public static <Key, Value> Map<Key, Value> copy(final Factory<Map<Key, Value>> factory,
-                                                    final Map<Key, Value> map)
+    public static <Key, Value> Map<Key, Value> copy(Factory<Map<Key, Value>> factory,
+                                                    Map<Key, Value> map)
     {
         return deepCopy(factory, map, value -> value);
     }
@@ -42,8 +42,8 @@ public class Maps
     /**
      * @return A copy of the given map
      */
-    public static <Key, Value> Map<Key, Value> deepCopy(final Map<Key, Value> map,
-                                                        final Function<Value, Value> clone)
+    public static <Key, Value> Map<Key, Value> deepCopy(Map<Key, Value> map,
+                                                        Function<Value, Value> clone)
     {
         return deepCopy(HashMap::new, map, clone);
     }
@@ -51,16 +51,16 @@ public class Maps
     /**
      * @return A copy of the given map
      */
-    public static <Key, Value> Map<Key, Value> deepCopy(final Factory<Map<Key, Value>> factory,
-                                                        final Map<Key, Value> map,
-                                                        final Function<Value, Value> clone)
+    public static <Key, Value> Map<Key, Value> deepCopy(Factory<Map<Key, Value>> factory,
+                                                        Map<Key, Value> map,
+                                                        Function<Value, Value> clone)
     {
-        final var copy = factory.newInstance();
-        for (final var key : map.keySet())
+        var copy = factory.newInstance();
+        for (var key : map.keySet())
         {
-            final var value = map.get(key);
+            var value = map.get(key);
             Ensure.ensureNotNull(value);
-            final var clonedValue = clone.apply(value);
+            var clonedValue = clone.apply(value);
             Ensure.ensureNotNull(clonedValue);
             copy.put(key, clonedValue);
         }

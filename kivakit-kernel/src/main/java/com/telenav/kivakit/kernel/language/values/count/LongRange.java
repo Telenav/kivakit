@@ -32,7 +32,7 @@ public class LongRange implements Contains<Long>
 
     private long maximum;
 
-    public LongRange(final long minimum, final long maximum)
+    public LongRange(long minimum, long maximum)
     {
         this.minimum = minimum;
         this.maximum = maximum;
@@ -50,12 +50,12 @@ public class LongRange implements Contains<Long>
     }
 
     @Override
-    public boolean contains(final Long value)
+    public boolean contains(Long value)
     {
         return value >= minimum && value <= maximum;
     }
 
-    public Long maximum(final Long that)
+    public Long maximum(Long that)
     {
         return Math.max(maximum, that);
     }
@@ -65,7 +65,7 @@ public class LongRange implements Contains<Long>
         return maximum;
     }
 
-    public Long minimum(final Long that)
+    public Long minimum(Long that)
     {
         return Math.min(minimum, that);
     }

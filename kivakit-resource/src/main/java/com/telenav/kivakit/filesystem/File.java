@@ -149,24 +149,24 @@ public class File extends BaseWritableResource implements FileSystemObject
 
     private static long temporaryFileNumber = System.currentTimeMillis();
 
-    public static ArgumentParser.Builder<File> fileArgumentParser(final String description)
+    public static ArgumentParser.Builder<File> fileArgumentParser(String description)
     {
         return ArgumentParser.builder(File.class)
                 .converter(new File.Converter(LOGGER))
                 .description(description);
     }
 
-    public static ArgumentParser.Builder<FileList> fileListArgumentParser(final String description,
-                                                                          final Extension extension)
+    public static ArgumentParser.Builder<FileList> fileListArgumentParser(String description,
+                                                                          Extension extension)
     {
         return ArgumentParser.builder(FileList.class)
                 .converter(new FileList.Converter(LOGGER, extension))
                 .description(description);
     }
 
-    public static SwitchParser.Builder<FileList> fileListSwitchParser(final String name,
-                                                                      final String description,
-                                                                      final Extension extension)
+    public static SwitchParser.Builder<FileList> fileListSwitchParser(String name,
+                                                                      String description,
+                                                                      Extension extension)
     {
         return SwitchParser.builder(FileList.class)
                 .name(name)
@@ -174,7 +174,7 @@ public class File extends BaseWritableResource implements FileSystemObject
                 .description(description);
     }
 
-    public static SwitchParser.Builder<FilePath> filePathSwitchParser(final String name, final String description)
+    public static SwitchParser.Builder<FilePath> filePathSwitchParser(String name, String description)
     {
         return SwitchParser.builder(FilePath.class)
                 .name(name)
@@ -182,7 +182,7 @@ public class File extends BaseWritableResource implements FileSystemObject
                 .description(description);
     }
 
-    public static SwitchParser.Builder<File> fileSwitchParser(final String name, final String description)
+    public static SwitchParser.Builder<File> fileSwitchParser(String name, String description)
     {
         return SwitchParser.builder(File.class)
                 .name(name)
@@ -195,7 +195,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         return fileSwitchParser("input", "The input file to process");
     }
 
-    public static File of(final URI uri)
+    public static File of(URI uri)
     {
         // Ensure our many preconditions
         if (!uri.isAbsolute())
@@ -206,7 +206,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         {
             Ensure.illegalArgument("URI is not hierarchical");
         }
-        final var scheme = uri.getScheme();
+        var scheme = uri.getScheme();
         if (!"file".equalsIgnoreCase(scheme))
         {
             Ensure.illegalArgument("URI scheme is not \"file\"");
@@ -232,12 +232,12 @@ public class File extends BaseWritableResource implements FileSystemObject
         return new File(FileSystemServiceLoader.fileSystem(FilePath.parseFilePath(path)).fileService(FilePath.parseFilePath(path)));
     }
 
-    public static File of(final java.io.File file)
+    public static File of(java.io.File file)
     {
         return parse(file.getAbsolutePath());
     }
 
-    public static File of(final FilePath path)
+    public static File of(FilePath path)
     {
         return new File(FileSystemServiceLoader.fileSystem(path).fileService(path));
     }
@@ -247,12 +247,12 @@ public class File extends BaseWritableResource implements FileSystemObject
         return fileSwitchParser("output", "The output file to target");
     }
 
-    public static File parse(final String path, VariableMap<String> variables)
+    public static File parse(String path, VariableMap<String> variables)
     {
         return parse(variables.expand(path));
     }
 
-    public static File parse(final String path)
+    public static File parse(String path)
     {
         // If there is a KivaKit scheme, like "s3", "hdfs" or "java",
         var scheme = Paths.head(path, ":");
@@ -262,7 +262,7 @@ public class File extends BaseWritableResource implements FileSystemObject
             var filePath = FilePath.parseFilePath(Paths.tail(path, ":"));
 
             // then prepend the KivaKit scheme to the list of schemes in the parsed FilePath,
-            final var schemes = filePath.schemes().copy().prepend(scheme);
+            var schemes = filePath.schemes().copy().prepend(scheme);
 
             // and create the file.
             return File.of(filePath.withSchemes(schemes));
@@ -271,7 +271,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         return File.of(FilePath.parseFilePath(path));
     }
 
-    public static synchronized File temporary(final Extension extension)
+    public static synchronized File temporary(Extension extension)
     {
         return Folder.kivakitTemporary().file("temp-" + temporaryFileNumber++ + extension);
     }
@@ -284,13 +284,13 @@ public class File extends BaseWritableResource implements FileSystemObject
     @LexakaiJavadoc(complete = true)
     public static class Converter extends BaseStringConverter<File>
     {
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
         }
 
         @Override
-        protected File onToValue(final String value)
+        protected File onToValue(String value)
         {
             return File.parse(value);
         }
@@ -306,7 +306,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     public static class Resolver implements ResourceResolver
     {
         @Override
-        public boolean accepts(final ResourceIdentifier identifier)
+        public boolean accepts(ResourceIdentifier identifier)
         {
             if (identifier.identifier().startsWith("classpath:"))
             {
@@ -316,7 +316,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         }
 
         @Override
-        public Resource resolve(final ResourceIdentifier identifier)
+        public Resource resolve(ResourceIdentifier identifier)
         {
             return File.parse(identifier.identifier());
         }
@@ -329,7 +329,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      * <b>Not public API</b>
      */
     @UmlExcludeMember
-    File(final FileService file)
+    File(FileService file)
     {
         service = file;
     }
@@ -338,7 +338,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      * <b>Not public API</b>
      */
     @UmlExcludeMember
-    private File(final File that)
+    private File(File that)
     {
         super(that);
         service = that.service;
@@ -380,7 +380,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      * @return True if permissions were successfully changed
      */
     @SuppressWarnings("UnusedReturnValue")
-    public boolean chmod(final PosixFilePermission... permissions)
+    public boolean chmod(PosixFilePermission... permissions)
     {
         return service.chmod(permissions);
     }
@@ -441,11 +441,11 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof File)
         {
-            final var that = (File) object;
+            var that = (File) object;
             return path().equals(that.path());
         }
         return false;
@@ -485,7 +485,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     /**
      * @return True if this file is newer than the given file
      */
-    public boolean isNewerThan(final File that)
+    public boolean isNewerThan(File that)
     {
         return service.lastModified().isAfter(that.service.lastModified());
     }
@@ -506,7 +506,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     /**
      * @return True if this file is older than the given file
      */
-    public boolean isOlderThan(final File that)
+    public boolean isOlderThan(File that)
     {
         return service.lastModified().isBefore(that.service.lastModified());
     }
@@ -549,7 +549,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     @Override
     public Time lastModified()
     {
-        final var lastModified = service.lastModified();
+        var lastModified = service.lastModified();
         trace("Last modified time of $ is $", this, lastModified);
         return lastModified;
     }
@@ -558,7 +558,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      * Sets the last modified timestamp on this file
      */
     @Override
-    public boolean lastModified(final Time modified)
+    public boolean lastModified(Time modified)
     {
         return service.lastModified(modified);
     }
@@ -572,12 +572,12 @@ public class File extends BaseWritableResource implements FileSystemObject
      * @return This file, or if it is remote, a file on the local filesystem that has the contents of this file
      */
     @Override
-    public File materialized(final ProgressReporter reporter)
+    public File materialized(ProgressReporter reporter)
     {
         if (service.isRemote())
         {
             trace("Materializing $", this);
-            final var resource = service.materialized(reporter);
+            var resource = service.materialized(reporter);
             if (resource instanceof File)
             {
                 return (File) resource;
@@ -633,13 +633,13 @@ public class File extends BaseWritableResource implements FileSystemObject
     }
 
     @Override
-    public File print(final String text)
+    public File print(String text)
     {
         return (File) super.print(text);
     }
 
     @Override
-    public File println(final String text)
+    public File println(String text)
     {
         return (File) super.println(text);
     }
@@ -647,7 +647,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     /**
      * @return This file with a path relative to the given folder
      */
-    public File relativeTo(final Folder folder)
+    public File relativeTo(Folder folder)
     {
         return File.of(service.relativePath(folder.service()));
     }
@@ -658,7 +658,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      * @return True if this file was renamed to the given file
      */
     @SuppressWarnings("UnusedReturnValue")
-    public boolean renameTo(final File that)
+    public boolean renameTo(File that)
     {
         trace("Rename $ to $", this, that);
         return service.renameTo(that.service);
@@ -678,7 +678,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      * file in the same folder. If the copy operation is successful, the destination file is then removed and the
      * temporary file is renamed to the destination file's name.
      */
-    public void safeCopyFrom(final Resource resource, final CopyMode mode, final ProgressReporter reporter)
+    public void safeCopyFrom(Resource resource, CopyMode mode, ProgressReporter reporter)
     {
         resource.safeCopyTo(this, mode, reporter);
     }
@@ -701,9 +701,9 @@ public class File extends BaseWritableResource implements FileSystemObject
     /**
      * @return This file with the given basename (but the same path and extension)
      */
-    public File withBaseName(final String name)
+    public File withBaseName(String name)
     {
-        final var file = File.of(path().parent().withChild(name));
+        var file = File.of(path().parent().withChild(name));
         if (extension() != null)
         {
             return file.withExtension(extension());
@@ -714,9 +714,9 @@ public class File extends BaseWritableResource implements FileSystemObject
     /**
      * @return This file with the given {@link Charset}
      */
-    public File withCharset(final Charset charset)
+    public File withCharset(Charset charset)
     {
-        final var file = new File(this);
+        var file = new File(this);
         file.charset(charset);
         return file;
     }
@@ -724,9 +724,9 @@ public class File extends BaseWritableResource implements FileSystemObject
     /**
      * @return This file with the given compression / decompression codec
      */
-    public File withCodec(final Codec codec)
+    public File withCodec(Codec codec)
     {
-        final var file = new File(this);
+        var file = new File(this);
         file.codec(codec);
         return file;
     }
@@ -734,7 +734,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     /**
      * @return This file with the given extension
      */
-    public File withExtension(final Extension extension)
+    public File withExtension(Extension extension)
     {
         return File.parse(path().toString() + extension);
     }
@@ -745,14 +745,14 @@ public class File extends BaseWritableResource implements FileSystemObject
     @UmlExcludeMember
     public File withoutCompoundExtension()
     {
-        final var extension = extension();
+        var extension = extension();
         if (extension != null)
         {
-            final var pathString = path().toString();
+            var pathString = path().toString();
             var dot = -1;
             for (var index = pathString.length() - 1; index > 0; index--)
             {
-                final var c = pathString.charAt(index);
+                var c = pathString.charAt(index);
                 if (c == '.')
                 {
                     dot = index;
@@ -775,10 +775,10 @@ public class File extends BaseWritableResource implements FileSystemObject
      */
     public File withoutExtension()
     {
-        final var extension = extension();
+        var extension = extension();
         if (extension != null)
         {
-            final var withoutExtension = Paths.withoutOptionalSuffix(path().toString(), '.');
+            var withoutExtension = Paths.withoutOptionalSuffix(path().toString(), '.');
             return File.parse(withoutExtension);
         }
         return this;
@@ -795,7 +795,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         do
         {
             removedOne = false;
-            for (final var extension : Extension.known())
+            for (var extension : Extension.known())
             {
                 if (file.fileName().endsWith(extension))
                 {

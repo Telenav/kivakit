@@ -61,28 +61,28 @@ public class FieldArchiveTest extends KryoUnitTest
     @Test
     public void testSaveAndLoad()
     {
-        final var file = Folder.kivakitTest(getClass()).file("field-archive-test.zip");
+        var file = Folder.kivakitTest(getClass()).file("field-archive-test.zip");
 
-        final var sessionFactory = sessionFactory();
+        var sessionFactory = sessionFactory();
 
-        try (final var archive = listenTo(new FieldArchive(file, sessionFactory, ProgressReporter.NULL, ZipArchive.Mode.WRITE)))
+        try (var archive = listenTo(new FieldArchive(file, sessionFactory, ProgressReporter.NULL, ZipArchive.Mode.WRITE)))
         {
-            final var test = new TestClass();
+            var test = new TestClass();
             archive.saveFieldsOf(test, Version.parse("1.0"));
         }
 
-        try (final var archive = listenTo(new FieldArchive(file, sessionFactory, ProgressReporter.NULL, ZipArchive.Mode.READ)))
+        try (var archive = listenTo(new FieldArchive(file, sessionFactory, ProgressReporter.NULL, ZipArchive.Mode.READ)))
         {
-            final var test = new TestClass();
+            var test = new TestClass();
             archive.loadFieldOf(test, "x");
             ensureEqual(test.x, "this is a test of the emergency broadcasting system");
             archive.loadFieldOf(test, "y");
             ensureEqual(test.y, 5);
         }
 
-        try (final var archive = listenTo(new FieldArchive(file, sessionFactory, ProgressReporter.NULL, ZipArchive.Mode.READ)))
+        try (var archive = listenTo(new FieldArchive(file, sessionFactory, ProgressReporter.NULL, ZipArchive.Mode.READ)))
         {
-            final var test = new TestClass();
+            var test = new TestClass();
             archive.loadFieldsOf(test);
             ensureEqual(test.x, "this is a test of the emergency broadcasting system");
             ensureEqual(test.y, 5);

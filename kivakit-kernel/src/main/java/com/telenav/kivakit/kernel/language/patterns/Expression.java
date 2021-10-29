@@ -26,13 +26,13 @@ public class Expression extends Pattern
 {
     private final java.util.regex.Pattern pattern;
 
-    public Expression(final String pattern)
+    public Expression(String pattern)
     {
         this.pattern = java.util.regex.Pattern.compile(pattern);
     }
 
     @Override
-    public int bind(final int group)
+    public int bind(int group)
     {
         return group;
     }

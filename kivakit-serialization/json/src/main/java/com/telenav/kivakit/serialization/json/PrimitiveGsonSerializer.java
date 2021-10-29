@@ -36,23 +36,23 @@ public abstract class PrimitiveGsonSerializer<T, Primitive> implements GsonSeria
 {
     private final Class<Primitive> type;
 
-    protected PrimitiveGsonSerializer(final Class<Primitive> type)
+    protected PrimitiveGsonSerializer(Class<Primitive> type)
     {
         this.type = type;
     }
 
     @Override
-    public T deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context)
+    public T deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
             throws JsonParseException
     {
-        final Primitive primitive = context.deserialize(json, type);
+        Primitive primitive = context.deserialize(json, type);
         return toObject(primitive);
     }
 
     @Override
-    public JsonElement serialize(final T value, final Type typeOfSrc, final JsonSerializationContext context)
+    public JsonElement serialize(T value, Type typeOfSrc, JsonSerializationContext context)
     {
-        final var primitive = toPrimitive(value);
+        var primitive = toPrimitive(value);
         return context.serialize(primitive);
     }
 

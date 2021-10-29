@@ -2,7 +2,7 @@ Issues:
 
 1. When the BaseRepeater received message from another BaseRepeater, not handle the message
    but transmit to listener directly
-    default void receive(final Transmittable message)
+    default void receive( Transmittable message)
     {
         transmit(message);
     }

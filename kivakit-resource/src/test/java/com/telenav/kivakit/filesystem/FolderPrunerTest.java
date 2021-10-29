@@ -42,7 +42,7 @@ public class FolderPrunerTest extends UnitTest
         final FolderPruner pruner = new FolderPruner(folder, Duration.milliseconds(1).asFrequency())
         {
             @Override
-            protected void onFileRemoved(final File file)
+            protected void onFileRemoved( File file)
             {
                 removed.completed();
             }
@@ -78,7 +78,7 @@ public class FolderPrunerTest extends UnitTest
             final FolderPruner pruner = new FolderPruner(folder, Duration.milliseconds(25).asFrequency())
             {
                 @Override
-                protected void onFileRemoved(final File file)
+                protected void onFileRemoved( File file)
                 {
                 }
             };
@@ -91,7 +91,7 @@ public class FolderPrunerTest extends UnitTest
         }
     }
 
-    private Folder folder(final String name)
+    private Folder folder( String name)
     {
         final var folder = Folder.kivakitTest(getClass()).folder(name);
         folder.mkdirs();

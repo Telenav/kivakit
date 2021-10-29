@@ -40,17 +40,17 @@ public class ConcurrentMutableValue<T>
     {
     }
 
-    public ConcurrentMutableValue(final T value)
+    public ConcurrentMutableValue(T value)
     {
         this.value.set(value);
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof ConcurrentMutableValue)
         {
-            final var that = (ConcurrentMutableValue<?>) object;
+            var that = (ConcurrentMutableValue<?>) object;
             return value.get().equals(that.value.get());
         }
         return false;
@@ -67,12 +67,12 @@ public class ConcurrentMutableValue<T>
         return value.hashCode();
     }
 
-    public void set(final T value)
+    public void set(T value)
     {
         this.value.set(value);
     }
 
-    public void update(final Function<T, T> updater)
+    public void update(Function<T, T> updater)
     {
         value.getAndUpdate(updater::apply);
     }

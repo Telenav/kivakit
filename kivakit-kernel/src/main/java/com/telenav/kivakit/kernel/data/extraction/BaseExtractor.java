@@ -39,7 +39,7 @@ public abstract class BaseExtractor<Value, From> extends BaseRepeater implements
     /**
      * @param listener The listener to hear any conversion issues
      */
-    protected BaseExtractor(final Listener listener)
+    protected BaseExtractor(Listener listener)
     {
         addListener(listener);
     }
@@ -49,13 +49,13 @@ public abstract class BaseExtractor<Value, From> extends BaseRepeater implements
      */
     @Override
     @UmlExcludeMember
-    public Value extract(final From object)
+    public Value extract(From object)
     {
         try
         {
             return onExtract(object);
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             problem(e, "Extractor threw exception");
             return null;
@@ -65,10 +65,10 @@ public abstract class BaseExtractor<Value, From> extends BaseRepeater implements
     /**
      * @return A list of values extracted from the given array of objects
      */
-    public ObjectList<Value> extract(final From[] values)
+    public ObjectList<Value> extract(From[] values)
     {
-        final var extracted = new ObjectList<Value>();
-        for (final var value : values)
+        var extracted = new ObjectList<Value>();
+        for (var value : values)
         {
             extracted.add(extract(value));
         }
@@ -79,10 +79,10 @@ public abstract class BaseExtractor<Value, From> extends BaseRepeater implements
      * @return A list of values extracted from the given array of objects
      */
     @SuppressWarnings("unchecked")
-    public ObjectList<Value> extract(final StringList values)
+    public ObjectList<Value> extract(StringList values)
     {
-        final var extracted = new ObjectList<Value>();
-        for (final var value : values)
+        var extracted = new ObjectList<Value>();
+        for (var value : values)
         {
             extracted.add(extract((From) value));
         }

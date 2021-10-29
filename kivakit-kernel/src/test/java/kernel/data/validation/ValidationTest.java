@@ -21,13 +21,13 @@ public class ValidationTest
     {
         private final int rounds;
 
-        public LaserCannon(final int rounds)
+        public LaserCannon(int rounds)
         {
             this.rounds = rounds;
         }
 
         @Override
-        public Validator validator(final ValidationType type)
+        public Validator validator(ValidationType type)
         {
             return new BaseValidator()
             {
@@ -46,14 +46,14 @@ public class ValidationTest
 
         private final int laserCannons;
 
-        public Spaceship(final String name, final int laserCannons)
+        public Spaceship(String name, int laserCannons)
         {
             this.name = name;
             this.laserCannons = laserCannons;
         }
 
         @Override
-        public Validator validator(final ValidationType type)
+        public Validator validator(ValidationType type)
         {
             return new BaseValidator()
             {
@@ -75,7 +75,7 @@ public class ValidationTest
 
         private final LaserCannon cannon;
 
-        public Turret(Listener listener, final String name, final LaserCannon cannon)
+        public Turret(Listener listener, String name, LaserCannon cannon)
         {
             this.listener = listener;
             this.name = name;
@@ -83,7 +83,7 @@ public class ValidationTest
         }
 
         @Override
-        public Validator validator(final ValidationType type)
+        public Validator validator(ValidationType type)
         {
             return new BaseValidator()
             {

@@ -40,9 +40,9 @@ public class BaseFormattedConverter extends BaseStringConverter<LocalTime>
     /** The local time zone */
     private ZoneId zone;
 
-    public BaseFormattedConverter(final Listener listener,
-                                  final DateTimeFormatter formatter,
-                                  final ZoneId zone)
+    public BaseFormattedConverter(Listener listener,
+                                  DateTimeFormatter formatter,
+                                  ZoneId zone)
     {
         super(listener);
         this.zone = zone;
@@ -54,7 +54,7 @@ public class BaseFormattedConverter extends BaseStringConverter<LocalTime>
         return formatter.withZone(zone);
     }
 
-    public void formatter(final DateTimeFormatter formatter)
+    public void formatter(DateTimeFormatter formatter)
     {
         this.formatter = formatter;
     }
@@ -64,22 +64,22 @@ public class BaseFormattedConverter extends BaseStringConverter<LocalTime>
         return zone;
     }
 
-    public void zone(final ZoneId zone)
+    public void zone(ZoneId zone)
     {
         this.zone = zone;
     }
 
     @Override
-    protected String onToString(final LocalTime value)
+    protected String onToString(LocalTime value)
     {
         return formatter().format(value.javaLocalDateTime());
     }
 
     @Override
-    protected LocalTime onToValue(final String value)
+    protected LocalTime onToValue(String value)
     {
-        final var parsed = formatter().parse(value);
-        final var time = Instant.from(parsed);
+        var parsed = formatter().parse(value);
+        var time = Instant.from(parsed);
         return LocalTime.milliseconds(zone, time.toEpochMilli());
     }
 }

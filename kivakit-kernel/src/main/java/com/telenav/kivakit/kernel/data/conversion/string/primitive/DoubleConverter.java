@@ -35,7 +35,7 @@ public class DoubleConverter extends BaseStringConverter<Double>
     /**
      * @param listener The listener to hear any conversion issues
      */
-    public DoubleConverter(final Listener listener)
+    public DoubleConverter(Listener listener)
     {
         super(listener);
     }
@@ -45,17 +45,7 @@ public class DoubleConverter extends BaseStringConverter<Double>
      */
     @Override
     @UmlExcludeMember
-    protected Double onToValue(final String value)
-    {
-        return Double.valueOf(value);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    @UmlExcludeMember
-    protected String onToString(final Double value)
+    protected String onToString(Double value)
     {
         if (Double.isNaN(value) || Double.isInfinite(value))
         {
@@ -65,5 +55,15 @@ public class DoubleConverter extends BaseStringConverter<Double>
         {
             return value.toString();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @UmlExcludeMember
+    protected Double onToValue(String value)
+    {
+        return Double.valueOf(value);
     }
 }

@@ -33,7 +33,7 @@ public class WeakReferencedValue<T> extends WeakReference<T> implements Source<T
 {
     private final String name;
 
-    public WeakReferencedValue(final String name, final T value, final ReferenceQueue<T> queue)
+    public WeakReferencedValue(String name, T value, ReferenceQueue<T> queue)
     {
         super(value, queue);
         this.name = name;

@@ -46,12 +46,12 @@ public class SettingsPackage extends Settings
 {
     private static final Map<PackagePath, SettingsPackage> packages = new HashMap<>();
 
-    public static SettingsPackage of(final Package _package)
+    public static SettingsPackage of(Package _package)
     {
         return of(_package.path());
     }
 
-    public static SettingsPackage of(final PackagePath path)
+    public static SettingsPackage of(PackagePath path)
     {
         return packages.computeIfAbsent(path, ignored -> new SettingsPackage(path));
     }
@@ -62,7 +62,7 @@ public class SettingsPackage extends Settings
     /**
      * @param path The path to the package where the configurations are stored
      */
-    protected SettingsPackage(final PackagePath path)
+    protected SettingsPackage(PackagePath path)
     {
         this.path = path;
     }
@@ -81,13 +81,13 @@ public class SettingsPackage extends Settings
     protected Set<Entry> onLoad()
     {
         // Go through .properties files in the package
-        final var _package = Package.of(path);
+        var _package = Package.of(path);
         trace("Loading resources from $", _package);
-        final Set<Entry> entries = new HashSet<>();
-        for (final var resource : _package.resources(Extension.PROPERTIES::ends))
+        Set<Entry> entries = new HashSet<>();
+        for (var resource : _package.resources(Extension.PROPERTIES::ends))
         {
             // load the properties file
-            final var configuration = internalLoadConfiguration(resource);
+            var configuration = internalLoadConfiguration(resource);
             if (configuration != null)
             {
                 // and add the configuration

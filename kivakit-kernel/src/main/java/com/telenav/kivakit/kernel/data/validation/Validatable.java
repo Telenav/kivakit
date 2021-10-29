@@ -54,7 +54,7 @@ public interface Validatable
      *
      * @see Validator#validate(Listener)
      */
-    default boolean isValid(final Listener listener)
+    default boolean isValid(Listener listener)
     {
         return validator().validate(listener);
     }

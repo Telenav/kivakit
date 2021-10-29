@@ -76,7 +76,7 @@ public interface ResourcePathed extends UriIdentified
     /**
      * @return True if this resource ends with the given extension
      */
-    default boolean hasExtension(final Extension extension)
+    default boolean hasExtension(Extension extension)
     {
         return fileName().endsWith(extension);
     }

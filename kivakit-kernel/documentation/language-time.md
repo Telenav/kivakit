@@ -129,7 +129,7 @@ line parsing.
         .required()
         .build();
 
-    public static void main(final String[] arguments)
+    public static void main( String[] arguments)
     { 
         CommandLine commandLine = new CommandLineParser.add(DATA_DATE).parser(arguments);
         LocalTime dataDate = commandLIne.get(DATA_DATE);
@@ -138,5 +138,3 @@ line parsing.
 <br/>
 
 ![](../documentation/images/horizontal-line.png)
-
-

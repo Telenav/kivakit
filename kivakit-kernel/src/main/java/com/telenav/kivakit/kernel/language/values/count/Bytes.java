@@ -90,82 +90,82 @@ public final class Bytes extends Count implements ByteSized
 
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    public static Bytes bytes(final double bytes)
+    public static Bytes bytes(double bytes)
     {
         return new Bytes((long) bytes);
     }
 
-    public static Bytes bytes(final long bytes)
+    public static Bytes bytes(long bytes)
     {
         return new Bytes(bytes);
     }
 
-    public static Bytes bytes(final Count count)
+    public static Bytes bytes(Count count)
     {
         return bytes(count.get());
     }
 
-    public static Bytes gigabytes(final double gigabytes)
+    public static Bytes gigabytes(double gigabytes)
     {
         return megabytes(gigabytes * 1024.0);
     }
 
-    public static Bytes gigabytes(final long gigabytes)
+    public static Bytes gigabytes(long gigabytes)
     {
         return megabytes(gigabytes * 1024);
     }
 
-    public static Bytes kilobytes(final double kilobytes)
+    public static Bytes kilobytes(double kilobytes)
     {
         return bytes(kilobytes * 1024.0);
     }
 
-    public static Bytes kilobytes(final long kilobytes)
+    public static Bytes kilobytes(long kilobytes)
     {
         return bytes(kilobytes * 1024);
     }
 
-    public static Bytes megabytes(final double megabytes)
+    public static Bytes megabytes(double megabytes)
     {
         return kilobytes(megabytes * 1024.0);
     }
 
-    public static Bytes megabytes(final long megabytes)
+    public static Bytes megabytes(long megabytes)
     {
         return kilobytes(megabytes * 1024);
     }
 
-    public static Bytes parse(final String bytes)
+    public static Bytes parse(String bytes)
     {
         return parse(LOGGER, bytes);
     }
 
-    public static Bytes parse(final Listener listener, final String bytes)
+    public static Bytes parse(Listener listener, String bytes)
     {
         return new Converter(listener).convert(bytes);
     }
 
-    public static void reverse(final byte[] array)
+    public static void reverse(byte[] array)
     {
         reverse(array, 0, array.length);
     }
 
-    public static void reverse(final byte[] array, final int fromIndex, final int toIndex)
+    public static void reverse(byte[] array, int fromIndex, int toIndex)
     {
         for (int i = fromIndex, j = toIndex - 1; i < j; i++, j--)
         {
-            final byte temporary = array[i];
+            byte temporary = array[i];
             array[i] = array[j];
             array[j] = temporary;
         }
     }
 
-    public static Bytes terabytes(final double terabytes)
+    public static Bytes terabytes(double terabytes)
     {
         return gigabytes(terabytes * 1024.0);
     }
 
-    public static Bytes terabytes(final long terabytes)
+    public static Bytes terabytes(long terabytes)
     {
         return gigabytes(terabytes * 1024);
     }
@@ -190,24 +190,24 @@ public final class Bytes extends Count implements ByteSized
         private static final Pattern PATTERN = Pattern.compile("([0-9]+([.,][0-9]+)?)\\s*(|K|M|G|T)B?",
                 Pattern.CASE_INSENSITIVE);
 
-        public Converter(final Listener listener)
+        public Converter(Listener listener)
         {
             super(listener);
         }
 
         @Override
-        protected Bytes onToValue(final String value)
+        protected Bytes onToValue(String value)
         {
-            final var matcher = PATTERN.matcher(value);
+            var matcher = PATTERN.matcher(value);
 
             // Valid input?
             if (matcher.matches())
             {
                 // Get double precision value
-                final var scalar = Double.parseDouble(Strings.replaceAll(matcher.group(1), ",", ""));
+                var scalar = Double.parseDouble(Strings.replaceAll(matcher.group(1), ",", ""));
 
                 // Get units specified
-                final var units = matcher.group(3);
+                var units = matcher.group(3);
 
                 if ("".equalsIgnoreCase(units))
                 {
@@ -243,7 +243,7 @@ public final class Bytes extends Count implements ByteSized
         }
     }
 
-    protected Bytes()
+    private Bytes()
     {
     }
 
@@ -252,12 +252,12 @@ public final class Bytes extends Count implements ByteSized
      *
      * @param bytes Number of bytes
      */
-    protected Bytes(final long bytes)
+    private Bytes(long bytes)
     {
         super(bytes);
     }
 
-    public Bytes add(final Bytes that)
+    public Bytes add(Bytes that)
     {
         return bytes(asBytes() + that.asBytes());
     }
@@ -319,13 +319,13 @@ public final class Bytes extends Count implements ByteSized
     }
 
     @Override
-    public Bytes dividedBy(final Count divisor)
+    public Bytes dividedBy(Count divisor)
     {
         return (Bytes) super.dividedBy(divisor);
     }
 
     @Override
-    public Bytes dividedBy(final long divisor)
+    public Bytes dividedBy(long divisor)
     {
         return (Bytes) super.dividedBy(divisor);
     }
@@ -343,7 +343,7 @@ public final class Bytes extends Count implements ByteSized
      * @return <code>true</code> if this <code>Bytes</code> is greater than the given
      * <code>Bytes</code> instance
      */
-    public boolean isGreaterThan(final Bytes that)
+    public boolean isGreaterThan(Bytes that)
     {
         if (this == that || that == null)
         {
@@ -359,7 +359,7 @@ public final class Bytes extends Count implements ByteSized
      * @return <code>true</code> if this <code>Bytes</code> is greater than the given
      * <code>Bytes</code> instance
      */
-    public boolean isGreaterThanOrEqualTo(final Bytes that)
+    public boolean isGreaterThanOrEqualTo(Bytes that)
     {
         if (that == null)
         {
@@ -375,7 +375,7 @@ public final class Bytes extends Count implements ByteSized
      * @return <code>true</code> if this <code>Bytes</code> is greater than the given
      * <code>Bytes</code> instance
      */
-    public boolean isLessThan(final Bytes that)
+    public boolean isLessThan(Bytes that)
     {
         if (this == that || that == null)
         {
@@ -384,7 +384,7 @@ public final class Bytes extends Count implements ByteSized
         return asBytes() < that.asBytes();
     }
 
-    public boolean isLessThanOrEqualTo(final Bytes that)
+    public boolean isLessThanOrEqualTo(Bytes that)
     {
         if (that == null)
         {
@@ -400,40 +400,40 @@ public final class Bytes extends Count implements ByteSized
     }
 
     @Override
-    public Bytes maximum(final Count that)
+    public Bytes maximum(Count that)
     {
         return (Bytes) super.maximum(that);
     }
 
-    public Bytes maximum(final Bytes that)
+    public Bytes maximum(Bytes that)
     {
         return isGreaterThan(that) ? this : that;
     }
 
     @Override
-    public Bytes minimum(final Count that)
+    public Bytes minimum(Count that)
     {
         return (Bytes) super.minimum(that);
     }
 
-    public Bytes minimum(final Bytes that)
+    public Bytes minimum(Bytes that)
     {
         return isLessThan(that) ? this : that;
     }
 
     @Override
-    public Bytes minus(final Count count)
+    public Bytes minus(Count count)
     {
         return (Bytes) super.minus(count);
     }
 
     @Override
-    public Bytes minus(final long count)
+    public Bytes minus(long count)
     {
         return (Bytes) super.minus(count);
     }
 
-    public Bytes minus(final Bytes that)
+    public Bytes minus(Bytes that)
     {
         return bytes(asBytes() - that.asBytes());
     }
@@ -445,24 +445,24 @@ public final class Bytes extends Count implements ByteSized
     }
 
     @Override
-    public Bytes percent(final Percent percentage)
+    public Bytes percent(Percent percentage)
     {
         return bytes(asBytes() * percentage.asUnitValue());
     }
 
-    public Percent percentOf(final Bytes that)
+    public Percent percentOf(Bytes that)
     {
         return Percent.of((double) asBytes() / that.asBytes() * 100.0);
     }
 
     @Override
-    public Bytes plus(final long count)
+    public Bytes plus(long count)
     {
         return bytes(asBytes() + count);
     }
 
     @Override
-    public Bytes plus(final Count count)
+    public Bytes plus(Count count)
     {
         return (Bytes) super.plus(count);
     }
@@ -486,21 +486,21 @@ public final class Bytes extends Count implements ByteSized
     }
 
     @Override
-    public Bytes times(final Count count)
+    public Bytes times(Count count)
     {
         return times(count.get());
     }
 
     @Override
-    public Bytes times(final double value)
+    public Bytes times(double value)
     {
         return bytes(asBytes() * value);
     }
 
     @Override
-    public Bytes times(final long bytes)
+    public Bytes times(long bytes)
     {
-        final var product = get() * bytes;
+        var product = get() * bytes;
         if (product < 0)
         {
             return MAXIMUM;
@@ -509,7 +509,7 @@ public final class Bytes extends Count implements ByteSized
     }
 
     @Override
-    public Bytes times(final Percent percentage)
+    public Bytes times(Percent percentage)
     {
         return (Bytes) super.times(percentage);
     }
@@ -548,7 +548,7 @@ public final class Bytes extends Count implements ByteSized
      * @param units The units
      * @return The formatted string
      */
-    private String unitString(final double value, final String units)
+    private String unitString(double value, String units)
     {
         return Doubles.format(value, 1) + units;
     }

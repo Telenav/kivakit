@@ -69,7 +69,7 @@ public class ResourceReader implements StringSource
 
     private final ProgressReporter reporter;
 
-    public ResourceReader(final Resource resource, final ProgressReporter reporter, final Charset charset)
+    public ResourceReader(Resource resource, ProgressReporter reporter, Charset charset)
     {
         this.reporter = reporter;
         assert resource != null;
@@ -82,7 +82,7 @@ public class ResourceReader implements StringSource
      */
     public byte[] bytes()
     {
-        final var in = open();
+        var in = open();
         try
         {
             return IO.readBytes(in);
@@ -93,7 +93,7 @@ public class ResourceReader implements StringSource
         }
     }
 
-    public Iterable<String> lines(final ProgressReporter reporter)
+    public Iterable<String> lines(ProgressReporter reporter)
     {
         return new LineReader(resource, reporter);
     }
@@ -114,9 +114,9 @@ public class ResourceReader implements StringSource
     /**
      * @return The lines in the resource being read
      */
-    public StringList linesAsStringList(final ProgressReporter reporter)
+    public StringList linesAsStringList(ProgressReporter reporter)
     {
-        final var list = new StringList();
+        var list = new StringList();
         list.addAll(lines(reporter));
         return list;
     }
@@ -125,7 +125,7 @@ public class ResourceReader implements StringSource
      * @return The lines in the resource being read as a list of objects created by converting each line to an object
      * using the given converter.
      */
-    public <T> List<T> objectList(final Converter<String, T> converter, final ProgressReporter reporter)
+    public <T> List<T> objectList(Converter<String, T> converter, ProgressReporter reporter)
     {
         return (List<T>) addObjectsTo(new ArrayList<>(), converter, reporter);
     }
@@ -134,7 +134,7 @@ public class ResourceReader implements StringSource
      * @return The lines in the resource being read as a set of objects created by converting each line to an object
      * using the given converter.
      */
-    public <T> Set<T> objectSet(final Converter<String, T> converter, final ProgressReporter reporter)
+    public <T> Set<T> objectSet(Converter<String, T> converter, ProgressReporter reporter)
     {
         return (Set<T>) addObjectsTo(new HashSet<>(), converter, reporter);
     }
@@ -143,7 +143,7 @@ public class ResourceReader implements StringSource
      * @return The lines in the resource being read as a {@link Iterable} of objects created by converting each line to
      * an object using the given converter.
      */
-    public <T> Iterable<T> objects(final Converter<String, T> converter, final ProgressReporter reporter)
+    public <T> Iterable<T> objects(Converter<String, T> converter, ProgressReporter reporter)
     {
         return Iterables.iterable(() -> new Next<>()
         {
@@ -170,11 +170,11 @@ public class ResourceReader implements StringSource
         return string(ProgressReporter.NULL);
     }
 
-    public String string(final ProgressReporter reporter)
+    public String string(ProgressReporter reporter)
     {
         if (value == null)
         {
-            final var reader = new StringReader(textReader());
+            var reader = new StringReader(textReader());
             try
             {
                 value = reader.readString(reporter);
@@ -189,7 +189,7 @@ public class ResourceReader implements StringSource
 
     public Reader textReader()
     {
-        final var in = open();
+        var in = open();
         if (in != null)
         {
             if (charset == null)
@@ -219,8 +219,8 @@ public class ResourceReader implements StringSource
      *
      * @return The collection that was passed in
      */
-    private <T> Collection<T> addObjectsTo(final Collection<T> collection, final Converter<String, T> converter,
-                                           final ProgressReporter reporter)
+    private <T> Collection<T> addObjectsTo(Collection<T> collection, Converter<String, T> converter,
+                                           ProgressReporter reporter)
     {
         lines(reporter).forEach(line -> collection.add(converter.convert(line)));
         return collection;
@@ -228,7 +228,7 @@ public class ResourceReader implements StringSource
 
     private InputStream open()
     {
-        final var size = resource.sizeInBytes();
+        var size = resource.sizeInBytes();
         if (size != null)
         {
             reporter.steps(size);

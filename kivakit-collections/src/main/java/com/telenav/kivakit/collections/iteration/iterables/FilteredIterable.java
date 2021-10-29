@@ -42,7 +42,7 @@ public class FilteredIterable<Element> extends BaseIterable<Element>
 
     private final Iterable<Element> iterable;
 
-    public FilteredIterable(final Iterable<Element> iterable, final Matcher<Element> filter)
+    public FilteredIterable(Iterable<Element> iterable, Matcher<Element> filter)
     {
         this.iterable = iterable;
         this.filter = filter;
@@ -60,7 +60,7 @@ public class FilteredIterable<Element> extends BaseIterable<Element>
             {
                 while (iterator.hasNext())
                 {
-                    final var next = iterator.next();
+                    var next = iterator.next();
                     if (filter.matches(next))
                     {
                         return next;

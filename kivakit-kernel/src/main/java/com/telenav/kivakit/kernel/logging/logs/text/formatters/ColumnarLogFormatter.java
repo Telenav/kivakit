@@ -65,17 +65,17 @@ public class ColumnarLogFormatter implements LogFormatter
 
         private final Layout layout;
 
-        private Column(final int minimumWidth, final int maximumWidth, final Layout layout)
+        private Column(int minimumWidth, int maximumWidth, Layout layout)
         {
             this.maximumWidth = maximumWidth;
             width = minimumWidth;
             this.layout = layout;
         }
 
-        private StringList format(final String value)
+        private StringList format(String value)
         {
-            final var rows = new StringList();
-            for (final var line : StringList.split(value, "\n"))
+            var rows = new StringList();
+            for (var line : StringList.split(value, "\n"))
             {
                 rows.addAll(formatLine(line));
             }
@@ -84,10 +84,10 @@ public class ColumnarLogFormatter implements LogFormatter
 
         private StringList formatLine(String value)
         {
-            final var rows = new StringList();
-            while (!"" .equals(value))
+            var rows = new StringList();
+            while (!"".equals(value))
             {
-                final var width = value.length();
+                var width = value.length();
                 if (width < this.width)
                 {
                     rows.add(value + AsciiArt.repeat(this.width - width, ' '));
@@ -140,10 +140,10 @@ public class ColumnarLogFormatter implements LogFormatter
 
         private final List<StringList> output = new ArrayList<>();
 
-        private void add(final Column column, final String value)
+        private void add(Column column, String value)
         {
             columns.add(column);
-            final var rows = column.format(value);
+            var rows = column.format(value);
             if (value.contains("${nowrap}"))
             {
                 output.add(new StringList(Maximum._1, Strings.replaceAll(rows.join(""), "${nowrap}", "")));
@@ -160,7 +160,7 @@ public class ColumnarLogFormatter implements LogFormatter
 
         private String format()
         {
-            final var builder = new StringBuilder();
+            var builder = new StringBuilder();
             for (var row = 0; row < maximumRows; row++)
             {
                 builder.append("| ");
@@ -206,13 +206,13 @@ public class ColumnarLogFormatter implements LogFormatter
     private final Time start = Time.now();
 
     @Override
-    public String format(final LogEntry entry, final MessageFormatter.Format format)
+    public String format(LogEntry entry, MessageFormatter.Format format)
     {
         // Create line output
-        final var line = new LineOutput();
+        var line = new LineOutput();
 
         // Add each column and its content
-        final var message = entry.message();
+        var message = entry.message();
         line.add(sequenceNumberColumn, String.valueOf(entry.sequenceNumber()));
         if (DURATION)
         {

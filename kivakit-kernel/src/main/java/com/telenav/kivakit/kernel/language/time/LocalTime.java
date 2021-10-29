@@ -51,9 +51,9 @@ public class LocalTime extends Time
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    public static LocalTime from(final ZoneId zone, final LocalDateTime dateTime)
+    public static LocalTime from(ZoneId zone, LocalDateTime dateTime)
     {
-        final var milliseconds = dateTime.atZone(zone).toInstant().toEpochMilli();
+        var milliseconds = dateTime.atZone(zone).toInstant().toEpochMilli();
         return of(zone, milliseconds(milliseconds));
     }
 
@@ -62,7 +62,7 @@ public class LocalTime extends Time
         return ZoneId.systemDefault();
     }
 
-    public static LocalTime milliseconds(final ZoneId zone, final long milliseconds)
+    public static LocalTime milliseconds(ZoneId zone, long milliseconds)
     {
         return new LocalTime(zone, milliseconds);
     }
@@ -72,30 +72,30 @@ public class LocalTime extends Time
         return Time.now().localTime();
     }
 
-    public static LocalTime of(final ZoneId zone, final LocalDateTime time)
+    public static LocalTime of(ZoneId zone, LocalDateTime time)
     {
-        final var zoned = time.atZone(zone);
+        var zoned = time.atZone(zone);
         return milliseconds(zone, zoned.toInstant().toEpochMilli());
     }
 
-    public static LocalTime of(final ZoneId zone, final Time time)
+    public static LocalTime of(ZoneId zone, Time time)
     {
         return milliseconds(zone, time.asMilliseconds());
     }
 
-    public static LocalTime of(final ZoneId zone, final int year, final int month, final int dayOfMonth,
-                               final int hour, final int minute, final int second, final Meridiem ampm)
+    public static LocalTime of(ZoneId zone, int year, int month, int dayOfMonth,
+                               int hour, int minute, int second, Meridiem ampm)
     {
         return of(zone, LocalDateTime.of(year, month, dayOfMonth,
                 ampm == Meridiem.AM ? hour : hour + 12, minute, second));
     }
 
-    public static LocalTime parseDateTime(final String text)
+    public static LocalTime parseDateTime(String text)
     {
         return new LocalDateTimeConverter(Listener.none(), localTimeZone()).convert(text);
     }
 
-    public static LocalTime seconds(final ZoneId zone, final long seconds)
+    public static LocalTime seconds(ZoneId zone, long seconds)
     {
         return new LocalTime(zone, seconds * 1_000);
     }
@@ -111,7 +111,7 @@ public class LocalTime extends Time
     {
     }
 
-    protected LocalTime(final ZoneId zone, final long milliseconds)
+    protected LocalTime(ZoneId zone, long milliseconds)
     {
         super(milliseconds);
         timeZone = zone;
@@ -121,7 +121,7 @@ public class LocalTime extends Time
      * Constructor that takes a number of milliseconds since January 1st 1970, and a TimeZone to represent a snapshot of
      * local time at a specific timezone.
      */
-    protected LocalTime(final ZoneId zone, final Time time)
+    protected LocalTime(ZoneId zone, Time time)
     {
         this(zone, time.asMilliseconds());
     }
@@ -131,7 +131,7 @@ public class LocalTime extends Time
         return asDateString(timeZone());
     }
 
-    public String asDateString(final ZoneId zone)
+    public String asDateString(ZoneId zone)
     {
         return new LocalDateConverter(Listener.none(), zone).unconvert(this);
     }
@@ -141,7 +141,7 @@ public class LocalTime extends Time
         return asDateTimeString(timeZone());
     }
 
-    public String asDateTimeString(final ZoneId zone)
+    public String asDateTimeString(ZoneId zone)
     {
         return new LocalDateTimeConverter(Listener.none(), zone).unconvert(this);
     }
@@ -151,7 +151,7 @@ public class LocalTime extends Time
         return asTimeString(timeZone());
     }
 
-    public String asTimeString(final ZoneId zone)
+    public String asTimeString(ZoneId zone)
     {
         return new LocalTimeConverter(Listener.none(), zone).unconvert(this);
     }
@@ -191,11 +191,11 @@ public class LocalTime extends Time
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof LocalTime)
         {
-            final var that = (LocalTime) object;
+            var that = (LocalTime) object;
             return asZonedMilliseconds() == that.asZonedMilliseconds();
         }
         return false;
@@ -246,7 +246,7 @@ public class LocalTime extends Time
         return ZonedDateTime.ofInstant(asInstant(), timeZone);
     }
 
-    public ZonedDateTime javaZonedDateTime(final ZoneOffset offset)
+    public ZonedDateTime javaZonedDateTime(ZoneOffset offset)
     {
         return ZonedDateTime.ofInstant(asInstant(), ZoneId.ofOffset("", offset));
     }
@@ -261,20 +261,20 @@ public class LocalTime extends Time
      */
     public int meridiemHour()
     {
-        final var hour = hour();
+        var hour = hour();
         return hour > 12 ? hour - 12 : hour;
     }
 
     @Override
-    public LocalTime minus(final Duration duration)
+    public LocalTime minus(Duration duration)
     {
         return of(timeZone(), super.minus(duration));
     }
 
     @Override
-    public Duration minus(final Time time)
+    public Duration minus(Time time)
     {
-        final var localTime = milliseconds(timeZone(), super.minus(time).asMilliseconds());
+        var localTime = milliseconds(timeZone(), super.minus(time).asMilliseconds());
         return Duration.milliseconds(localTime.asMilliseconds());
     }
 
@@ -305,7 +305,7 @@ public class LocalTime extends Time
     }
 
     @Override
-    public LocalTime plus(final Duration duration)
+    public LocalTime plus(Duration duration)
     {
         return of(timeZone(), super.plus(duration));
     }
@@ -375,34 +375,34 @@ public class LocalTime extends Time
         return javaLocalDateTime().getDayOfYear() / 7;
     }
 
-    public LocalTime withDayOfWeek(final int day)
+    public LocalTime withDayOfWeek(int day)
     {
         return from(timeZone(), javaLocalDateTime().with(DAY_OF_WEEK, day));
     }
 
-    public LocalTime withDayOfYear(final int dayOfYear)
+    public LocalTime withDayOfYear(int dayOfYear)
     {
         return from(timeZone(), javaLocalDateTime().with(DAY_OF_YEAR, dayOfYear));
     }
 
-    public LocalTime withEpochDay(final int day)
+    public LocalTime withEpochDay(int day)
     {
         return from(timeZone(), javaLocalDateTime().with(EPOCH_DAY, day));
     }
 
-    public LocalTime withHourOfDay(final int hour)
+    public LocalTime withHourOfDay(int hour)
     {
         return from(timeZone(), javaLocalDateTime().with(HOUR_OF_DAY, hour));
     }
 
-    public LocalTime withHourOfMeridiem(final int hour, final Meridiem meridiem)
+    public LocalTime withHourOfMeridiem(int hour, Meridiem meridiem)
     {
         return from(timeZone(), javaLocalDateTime()
                 .with(HOUR_OF_AMPM, hour)
                 .with(AMPM_OF_DAY, meridiem.ordinal()));
     }
 
-    public LocalTime withMinuteOfHour(final int minute)
+    public LocalTime withMinuteOfHour(int minute)
     {
         return from(timeZone(), javaLocalDateTime().with(MINUTE_OF_HOUR, minute));
     }

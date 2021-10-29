@@ -66,7 +66,7 @@ public class ObjectList<Element> extends BaseList<Element>
 {
     public static <T> ObjectList<T> create()
     {
-        return new ObjectList<T>();
+        return new ObjectList<>();
     }
 
     /**
@@ -77,7 +77,7 @@ public class ObjectList<Element> extends BaseList<Element>
         return new ObjectList<>(Maximum._0);
     }
 
-    public static <T> ObjectList<T> forArray(final T[] objects)
+    public static <T> ObjectList<T> forArray(T[] objects)
     {
         var list = new ObjectList<T>();
         list.addAll(objects);
@@ -87,7 +87,7 @@ public class ObjectList<Element> extends BaseList<Element>
     /**
      * @return A list of objects from the given iterable
      */
-    public static <T> ObjectList<T> objectList(final Iterable<T> values)
+    public static <T> ObjectList<T> objectList(Iterable<T> values)
     {
         return new ObjectList<T>().appendAll(values);
     }
@@ -95,10 +95,10 @@ public class ObjectList<Element> extends BaseList<Element>
     /**
      * @return A list of elements from the given integers created using the given map factory
      */
-    public static <T> ObjectList<T> objectList(final Iterable<Quantizable> values, final LongMapFactory<T> factory)
+    public static <T> ObjectList<T> objectList(Iterable<Quantizable> values, LongMapFactory<T> factory)
     {
-        final var objects = new ObjectList<T>();
-        for (final var value : values)
+        var objects = new ObjectList<T>();
+        for (var value : values)
         {
             objects.add(factory.newInstance(value.quantum()));
         }
@@ -109,9 +109,9 @@ public class ObjectList<Element> extends BaseList<Element>
      * @return The given list of objects with a maximum size
      */
     @SafeVarargs
-    public static <T> ObjectList<T> objectList(final Maximum maximumSize, final T... objects)
+    public static <T> ObjectList<T> objectList(Maximum maximumSize, T... objects)
     {
-        final var list = new ObjectList<T>(maximumSize);
+        var list = new ObjectList<T>(maximumSize);
         list.addAll(Arrays.asList(objects));
         return list;
     }
@@ -120,7 +120,7 @@ public class ObjectList<Element> extends BaseList<Element>
      * @return The given list of objects
      */
     @SafeVarargs
-    public static <T> ObjectList<T> objectList(final T... objects)
+    public static <T> ObjectList<T> objectList(T... objects)
     {
         return objectList(Maximum._1024, objects);
     }
@@ -128,10 +128,10 @@ public class ObjectList<Element> extends BaseList<Element>
     /**
      * @return A list of elements from the given integers created using the given map factory
      */
-    public static <T> ObjectList<T> objectListFromInts(final IntMapFactory<T> factory, final int... values)
+    public static <T> ObjectList<T> objectListFromInts(IntMapFactory<T> factory, int... values)
     {
-        final var objects = new ObjectList<T>();
-        for (final var value : values)
+        var objects = new ObjectList<T>();
+        for (var value : values)
         {
             objects.add(factory.newInstance(value));
         }
@@ -141,10 +141,10 @@ public class ObjectList<Element> extends BaseList<Element>
     /**
      * @return A list of elements from the given integers created using the given map factory
      */
-    public static <T> ObjectList<T> objectListFromLongs(final LongMapFactory<T> factory, final long... values)
+    public static <T> ObjectList<T> objectListFromLongs(LongMapFactory<T> factory, long... values)
     {
-        final var objects = new ObjectList<T>();
-        for (final var value : values)
+        var objects = new ObjectList<T>();
+        for (var value : values)
         {
             objects.add(factory.newInstance(value));
         }
@@ -162,7 +162,7 @@ public class ObjectList<Element> extends BaseList<Element>
     /**
      * An list of objects with the given upper bound
      */
-    public ObjectList(final Maximum maximumSize)
+    public ObjectList(Maximum maximumSize)
     {
         super(maximumSize);
     }
@@ -170,7 +170,7 @@ public class ObjectList<Element> extends BaseList<Element>
     /**
      * An list of objects with the given upper bound
      */
-    public ObjectList(final List<Element> list)
+    public ObjectList(List<Element> list)
     {
         super(list);
     }
@@ -179,7 +179,7 @@ public class ObjectList<Element> extends BaseList<Element>
      * {@inheritDoc}
      */
     @Override
-    public ObjectList<Element> append(final Element element)
+    public ObjectList<Element> append(Element element)
     {
         super.append(element);
         return this;
@@ -189,7 +189,7 @@ public class ObjectList<Element> extends BaseList<Element>
      * {@inheritDoc}
      */
     @Override
-    public ObjectList<Element> appendAll(final Iterable<? extends Element> objects)
+    public ObjectList<Element> appendAll(Iterable<? extends Element> objects)
     {
         super.appendAll(objects);
         return this;
@@ -199,7 +199,7 @@ public class ObjectList<Element> extends BaseList<Element>
      * {@inheritDoc}
      */
     @Override
-    public ObjectList<Element> appendAll(final Iterator<? extends Element> objects)
+    public ObjectList<Element> appendAll(Iterator<? extends Element> objects)
     {
         super.appendAll(objects);
         return this;
@@ -209,7 +209,7 @@ public class ObjectList<Element> extends BaseList<Element>
      * {@inheritDoc}
      */
     @Override
-    public ObjectList<Element> appendAll(final Element[] objects)
+    public ObjectList<Element> appendAll(Element[] objects)
     {
         super.appendAll(objects);
         return this;
@@ -221,7 +221,7 @@ public class ObjectList<Element> extends BaseList<Element>
         return StringList.stringList(this);
     }
 
-    public StringList asStringList(final StringConverter<Element> converter)
+    public StringList asStringList(StringConverter<Element> converter)
     {
         return StringList.stringList(this);
     }
@@ -233,37 +233,37 @@ public class ObjectList<Element> extends BaseList<Element>
     }
 
     @Override
-    public ObjectList<Element> first(final Count count)
+    public ObjectList<Element> first(Count count)
     {
         return (ObjectList<Element>) super.first(count);
     }
 
     @Override
-    public ObjectList<Element> first(final int count)
+    public ObjectList<Element> first(int count)
     {
         return (ObjectList<Element>) super.first(count);
     }
 
     @Override
-    public ObjectList<Element> leftOf(final int index)
+    public ObjectList<Element> leftOf(int index)
     {
         return (ObjectList<Element>) super.leftOf(index);
     }
 
     @Override
-    public <To> ObjectList<To> mapped(final Function<Element, To> mapper)
+    public <To> ObjectList<To> mapped(Function<Element, To> mapper)
     {
         return (ObjectList<To>) super.mapped(mapper);
     }
 
     @Override
-    public ObjectList<Element> matching(final Matcher<Element> matcher)
+    public ObjectList<Element> matching(Matcher<Element> matcher)
     {
         return (ObjectList<Element>) super.matching(matcher);
     }
 
     @Override
-    public ObjectList<Element> maybeReversed(final boolean reverse)
+    public ObjectList<Element> maybeReversed(boolean reverse)
     {
         return (ObjectList<Element>) super.maybeReversed(reverse);
     }
@@ -277,13 +277,13 @@ public class ObjectList<Element> extends BaseList<Element>
     /**
      * @return This object list partitioned in to n object lists
      */
-    public ObjectList<ObjectList<Element>> partition(final Count partitions)
+    public ObjectList<ObjectList<Element>> partition(Count partitions)
     {
-        final var lists = new ObjectList<ObjectList<Element>>(maximumSize());
+        var lists = new ObjectList<ObjectList<Element>>(maximumSize());
         var i = 0;
         var list = -1;
-        final var every = (int) Math.round((double) size() / (double) partitions.asInt());
-        for (final var object : this)
+        var every = (int) Math.round((double) size() / (double) partitions.asInt());
+        for (var object : this)
         {
             if (i++ % every == 0 && list < partitions.asInt() - 1)
             {
@@ -296,7 +296,7 @@ public class ObjectList<Element> extends BaseList<Element>
     }
 
     @Override
-    public ObjectList<Element> prepend(final Element element)
+    public ObjectList<Element> prepend(Element element)
     {
         return (ObjectList<Element>) super.prepend(element);
     }
@@ -308,7 +308,7 @@ public class ObjectList<Element> extends BaseList<Element>
     }
 
     @Override
-    public ObjectList<Element> rightOf(final int index)
+    public ObjectList<Element> rightOf(int index)
     {
         return (ObjectList<Element>) super.rightOf(index);
     }
@@ -320,7 +320,7 @@ public class ObjectList<Element> extends BaseList<Element>
     }
 
     @Override
-    public ObjectList<Element> sorted(final Comparator<Element> comparator)
+    public ObjectList<Element> sorted(Comparator<Element> comparator)
     {
         return (ObjectList<Element>) super.sorted(comparator);
     }
@@ -341,7 +341,7 @@ public class ObjectList<Element> extends BaseList<Element>
     }
 
     @Override
-    public ObjectList<Element> without(final Matcher<Element> matcher)
+    public ObjectList<Element> without(Matcher<Element> matcher)
     {
         return (ObjectList<Element>) super.without(matcher);
     }

@@ -29,7 +29,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramDataFailureReporter.class)
 public class ValidationFailure extends RuntimeException
 {
-    public ValidationFailure(final Throwable cause, final String message)
+    public ValidationFailure(Throwable cause, String message)
     {
         super(message, cause);
     }

@@ -40,12 +40,12 @@ public class ProgressiveOutput extends OutputStream
 
     private final ProgressReporter reporter;
 
-    public ProgressiveOutput(final OutputStream output)
+    public ProgressiveOutput(OutputStream output)
     {
         this(output, Progress.create());
     }
 
-    public ProgressiveOutput(final OutputStream output, final ProgressReporter reporter)
+    public ProgressiveOutput(OutputStream output, ProgressReporter reporter)
     {
         this.output = output;
         this.reporter = reporter;
@@ -64,19 +64,19 @@ public class ProgressiveOutput extends OutputStream
     }
 
     @Override
-    public void write(final byte[] bytes, final int offset, final int length) throws IOException
+    public void write(byte[] bytes, int offset, int length) throws IOException
     {
         output.write(bytes, offset, length);
     }
 
     @Override
-    public void write(final byte[] bytes) throws IOException
+    public void write(byte[] bytes) throws IOException
     {
         output.write(bytes);
     }
 
     @Override
-    public void write(final int _byte) throws IOException
+    public void write(int _byte) throws IOException
     {
         reporter.next();
         output.write(_byte);

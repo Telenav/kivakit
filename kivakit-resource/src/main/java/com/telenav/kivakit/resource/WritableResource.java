@@ -61,7 +61,7 @@ public interface WritableResource extends Resource, Writable
     /**
      * @return A {@link ResourceWriter} for writing to this resource with the given {@link Charset}
      */
-    default ResourceWriter writer(final Charset charset)
+    default ResourceWriter writer(Charset charset)
     {
         return new ResourceWriter(this, charset);
     }

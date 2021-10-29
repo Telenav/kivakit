@@ -116,7 +116,7 @@ public class MessageFormatter
      * @param arguments The arguments to use in formatting
      * @return The formatted message
      */
-    public String format(final String message, final Object... arguments)
+    public String format(String message, Object... arguments)
     {
         return formatArray(message, arguments);
     }
@@ -128,7 +128,7 @@ public class MessageFormatter
      * @param arguments The arguments to use in formatting
      * @return The formatted message
      */
-    public String formatArray(final String message, final Object[] arguments)
+    public String formatArray(String message, Object[] arguments)
     {
         try
         {
@@ -144,7 +144,7 @@ public class MessageFormatter
                     map = (VariableMap<?>) arguments[0];
                 }
             }
-            final var builder = new StringBuilder();
+            var builder = new StringBuilder();
             var current = 0;
             var argumentIndex = 0;
             int start;
@@ -157,7 +157,7 @@ public class MessageFormatter
                 if (start >= 0)
                 {
                     // get the next character, if we can
-                    final char next;
+                    char next;
                     if (start + 1 < message.length())
                     {
                         next = message.charAt(start + 1);
@@ -174,8 +174,8 @@ public class MessageFormatter
                         continue;
                     }
 
-                    final int close;
-                    final String command;
+                    int close;
+                    String command;
                     if (next == '{')
                     {
                         // ${x} format (hopefully)
@@ -206,7 +206,7 @@ public class MessageFormatter
                     if (map != null)
                     {
                         // add the value from the map
-                        final var value = map.get(command);
+                        var value = map.get(command);
                         if (value == null)
                         {
                             return "No key '" + command + "' in: " + message;
@@ -269,7 +269,7 @@ public class MessageFormatter
 
                             case "class":
                             {
-                                final var cast = cast(arguments[argumentIndex++], Class.class);
+                                var cast = cast(arguments[argumentIndex++], Class.class);
                                 if (cast == null)
                                 {
                                     return "Expected parameter of type '" + Class.class + "' for 'class'";
@@ -280,7 +280,7 @@ public class MessageFormatter
 
                             case "flag":
                             {
-                                final var cast = cast(arguments[argumentIndex++], Boolean.class);
+                                var cast = cast(arguments[argumentIndex++], Boolean.class);
                                 if (cast == null)
                                 {
                                     return "Expected parameter of type '" + Boolean.class + "' for 'flag'";
@@ -291,7 +291,7 @@ public class MessageFormatter
 
                             case "name":
                             {
-                                final var named = cast(arguments[argumentIndex++], Named.class);
+                                var named = cast(arguments[argumentIndex++], Named.class);
                                 if (named == null)
                                 {
                                     return "Expected parameter of type '" + Named.class + "' for 'name'";
@@ -309,7 +309,7 @@ public class MessageFormatter
                             default:
                                 try
                                 {
-                                    final var position = Integer.parseInt(command);
+                                    var position = Integer.parseInt(command);
                                     if (position >= 0 && position <= arguments.length - 1)
                                     {
                                         builder.append(StringTo.string(arguments[position]));
@@ -319,7 +319,7 @@ public class MessageFormatter
                                         return "Cannot interpolate argument " + position + " into: " + message;
                                     }
                                 }
-                                catch (final NumberFormatException e)
+                                catch (NumberFormatException e)
                                 {
                                     return "Unrecognized interpolation '" + command + "' in: " + message;
                                 }
@@ -345,7 +345,7 @@ public class MessageFormatter
             // Return the final, interpolated string
             return builder.toString();
         }
-        catch (final Throwable e)
+        catch (Throwable e)
         {
             // We can't use the logging facility here because we may be formatting a log message
             var cause = e.getMessage();
@@ -362,7 +362,7 @@ public class MessageFormatter
     }
 
     @SuppressWarnings({ "unchecked" })
-    private <T> T cast(final Object object, final Class<T> type)
+    private <T> T cast(Object object, Class<T> type)
     {
         if (type.isAssignableFrom(object.getClass()))
         {

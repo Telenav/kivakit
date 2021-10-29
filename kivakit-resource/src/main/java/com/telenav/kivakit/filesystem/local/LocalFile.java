@@ -52,36 +52,36 @@ import java.util.HashSet;
 @LexakaiJavadoc(complete = true)
 public class LocalFile extends BaseWritableResource implements FileService
 {
-    public static boolean isFile(final FilePath path)
+    public static boolean isFile(FilePath path)
     {
         return new java.io.File(path.join()).isFile();
     }
 
     private final java.io.File file;
 
-    public LocalFile(final FilePath path)
+    public LocalFile(FilePath path)
     {
         super(path.withoutFileScheme());
         file = new java.io.File(path.join());
     }
 
-    public LocalFile(final java.io.File file)
+    public LocalFile(java.io.File file)
     {
         this(FilePath.filePath(file));
     }
 
-    public LocalFile(final LocalFile that)
+    public LocalFile(LocalFile that)
     {
         super(that);
         file = that.file;
     }
 
-    public LocalFile(final LocalFolder folder, final String name)
+    public LocalFile(LocalFolder folder, String name)
     {
         this(folder.path().withChild(name));
     }
 
-    public LocalFile(final String path)
+    public LocalFile(String path)
     {
         this(FilePath.parseFilePath(path));
     }
@@ -93,14 +93,14 @@ public class LocalFile extends BaseWritableResource implements FileService
     }
 
     @Override
-    public boolean chmod(final PosixFilePermission... permissions)
+    public boolean chmod(PosixFilePermission... permissions)
     {
         try
         {
             Files.setPosixFilePermissions(path().asJavaPath(), new HashSet<>(Arrays.asList(permissions)));
             return true;
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             return false;
         }
@@ -111,7 +111,7 @@ public class LocalFile extends BaseWritableResource implements FileService
     {
         try
         {
-            final FileTime creationTime = (FileTime) Files.getAttribute(path().asJavaPath(), "creationTime");
+            FileTime creationTime = (FileTime) Files.getAttribute(path().asJavaPath(), "creationTime");
             return Time.milliseconds(creationTime.toMillis());
         }
         catch (IOException e)
@@ -141,11 +141,11 @@ public class LocalFile extends BaseWritableResource implements FileService
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof LocalFile)
         {
-            final var that = (LocalFile) object;
+            var that = (LocalFile) object;
             return file.equals(that.file);
         }
         return false;
@@ -197,7 +197,7 @@ public class LocalFile extends BaseWritableResource implements FileService
     }
 
     @Override
-    public boolean lastModified(final Time time)
+    public boolean lastModified(Time time)
     {
         return file.setLastModified(time.asMilliseconds());
     }
@@ -209,7 +209,7 @@ public class LocalFile extends BaseWritableResource implements FileService
         {
             return new FileInputStream(file);
         }
-        catch (final FileNotFoundException e)
+        catch (FileNotFoundException e)
         {
             return fatal(e, "Couldn't open file for reading: " + this);
         }
@@ -222,7 +222,7 @@ public class LocalFile extends BaseWritableResource implements FileService
         {
             return new FileOutputStream(file);
         }
-        catch (final FileNotFoundException e)
+        catch (FileNotFoundException e)
         {
             return fatal(e, "Couldn't open file for writing: " + file);
         }
@@ -241,7 +241,7 @@ public class LocalFile extends BaseWritableResource implements FileService
     }
 
     @Override
-    public boolean renameTo(final FileService file)
+    public boolean renameTo(FileService file)
     {
         if (isOnSameFileSystem(file))
         {

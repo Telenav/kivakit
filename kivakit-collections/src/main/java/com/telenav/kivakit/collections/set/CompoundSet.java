@@ -49,26 +49,26 @@ public class CompoundSet<Element> implements Set<Element>
     }
 
     @SafeVarargs
-    public CompoundSet(final Set<Element> set, final Set<Element>... sets)
+    public CompoundSet(Set<Element> set, Set<Element>... sets)
     {
         add(set);
         Collections.addAll(this.sets, sets);
     }
 
-    public void add(final Set<Element> set)
+    public void add(Set<Element> set)
     {
         sets.add(Collections.unmodifiableSet(set));
     }
 
     @Override
-    public boolean add(final Element e)
+    public boolean add(Element e)
     {
         return unsupported();
     }
 
     @SuppressWarnings("NullableProblems")
     @Override
-    public boolean addAll(final Collection<? extends Element> c)
+    public boolean addAll(Collection<? extends Element> c)
     {
         return unsupported();
     }
@@ -80,9 +80,9 @@ public class CompoundSet<Element> implements Set<Element>
     }
 
     @Override
-    public boolean contains(final Object object)
+    public boolean contains(Object object)
     {
-        for (final var set : sets)
+        for (var set : sets)
         {
             if (set.contains(object))
             {
@@ -93,9 +93,9 @@ public class CompoundSet<Element> implements Set<Element>
     }
 
     @Override
-    public boolean containsAll(final Collection<?> collection)
+    public boolean containsAll(Collection<?> collection)
     {
-        for (final Object object : collection)
+        for (Object object : collection)
         {
             if (!contains(object))
             {
@@ -108,7 +108,7 @@ public class CompoundSet<Element> implements Set<Element>
     @Override
     public boolean isEmpty()
     {
-        for (final var set : sets)
+        for (var set : sets)
         {
             if (!set.isEmpty())
             {
@@ -121,15 +121,15 @@ public class CompoundSet<Element> implements Set<Element>
     @Override
     public Iterator<Element> iterator()
     {
-        final var iterator = new CompoundIterator<Element>();
-        for (final var set : sets)
+        var iterator = new CompoundIterator<Element>();
+        for (var set : sets)
         {
             iterator.add(set.iterator());
         }
         return iterator;
     }
 
-    public Iterable<Element> matching(final Matcher<Element> matcher)
+    public Iterable<Element> matching(Matcher<Element> matcher)
     {
         return new Matching<>(matcher)
         {
@@ -142,21 +142,21 @@ public class CompoundSet<Element> implements Set<Element>
     }
 
     @Override
-    public boolean remove(final Object o)
+    public boolean remove(Object o)
     {
         return unsupported();
     }
 
     @SuppressWarnings("NullableProblems")
     @Override
-    public boolean removeAll(final Collection<?> c)
+    public boolean removeAll(Collection<?> c)
     {
         return unsupported();
     }
 
     @SuppressWarnings("NullableProblems")
     @Override
-    public boolean retainAll(final Collection<?> c)
+    public boolean retainAll(Collection<?> c)
     {
         return unsupported();
     }
@@ -165,7 +165,7 @@ public class CompoundSet<Element> implements Set<Element>
     public int size()
     {
         var size = 0;
-        for (final var set : sets)
+        for (var set : sets)
         {
             size += set.size();
         }
@@ -179,7 +179,7 @@ public class CompoundSet<Element> implements Set<Element>
     }
 
     @Override
-    public <E> E[] toArray(final E[] a)
+    public <E> E[] toArray(E[] a)
     {
         return unsupported();
     }

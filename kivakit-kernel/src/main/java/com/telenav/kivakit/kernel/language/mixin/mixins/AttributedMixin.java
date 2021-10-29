@@ -11,12 +11,12 @@ import java.util.HashMap;
  */
 public interface AttributedMixin<Key, Value> extends Mixin
 {
-    default Value attribute(final Key key)
+    default Value attribute(Key key)
     {
         return map().get(key);
     }
 
-    default Value attribute(final Key key, final Value value)
+    default Value attribute(Key key, Value value)
     {
         return map().put(key, value);
     }

@@ -39,17 +39,17 @@ public class MutableValue<T>
     {
     }
 
-    public MutableValue(final T value)
+    public MutableValue(T value)
     {
         this.value = value;
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof MutableValue)
         {
-            final var that = (MutableValue<?>) object;
+            var that = (MutableValue<?>) object;
             return value.equals(that.value);
         }
         return false;
@@ -66,12 +66,12 @@ public class MutableValue<T>
         return value.hashCode();
     }
 
-    public void set(final T value)
+    public void set(T value)
     {
         this.value = value;
     }
 
-    public void update(final Function<T, T> updater)
+    public void update(Function<T, T> updater)
     {
         value = updater.apply(value);
     }

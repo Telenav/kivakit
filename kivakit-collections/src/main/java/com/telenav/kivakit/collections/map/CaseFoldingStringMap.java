@@ -34,7 +34,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
 @UmlClassDiagram(diagram = DiagramMap.class)
 public class CaseFoldingStringMap<Element> extends StringMap<Element>
 {
-    public CaseFoldingStringMap(final Maximum maximumSize)
+    public CaseFoldingStringMap(Maximum maximumSize)
     {
         super(maximumSize);
     }
@@ -45,7 +45,7 @@ public class CaseFoldingStringMap<Element> extends StringMap<Element>
     }
 
     @Override
-    public Element get(final Object key)
+    public Element get(Object key)
     {
         if (key == null)
         {
@@ -59,7 +59,7 @@ public class CaseFoldingStringMap<Element> extends StringMap<Element>
     }
 
     @Override
-    public Element put(final String key, final Element value)
+    public Element put(String key, Element value)
     {
         return super.put(key.toLowerCase(), value);
     }

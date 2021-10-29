@@ -29,7 +29,7 @@ public class HardReferencedValue<T> implements Source<T>
 {
     private final T value;
 
-    public HardReferencedValue(final T value)
+    public HardReferencedValue(T value)
     {
         this.value = value;
     }

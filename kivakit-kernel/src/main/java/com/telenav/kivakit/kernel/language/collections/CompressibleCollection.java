@@ -49,25 +49,25 @@ public interface CompressibleCollection
      */
     static Bytes compressReachableObjects
     (
-            final Listener listener,
-            final Object root,
-            final Method method,
-            final Receiver receiver
+            Listener listener,
+            Object root,
+            Method method,
+            Receiver receiver
     )
     {
         return JavaVirtualMachine.local().traceSizeChange(listener, "compress", root, Bytes.megabytes(1), () ->
         {
             // Go through all reachable sub-objects
-            final var values = Type.of(root).reachableObjectsImplementing(root, CompressibleCollection.class);
-            final Map<Object, Boolean> compressed = new IdentityHashMap<>();
-            for (final var value : values)
+            var values = Type.of(root).reachableObjectsImplementing(root, CompressibleCollection.class);
+            Map<Object, Boolean> compressed = new IdentityHashMap<>();
+            for (var value : values)
             {
                 // and if we haven't already compressed it and it can be compressed,
                 if (compressed.get(value) != Boolean.TRUE)
                 {
                     // compress it using the given method,
-                    final var compressible = (CompressibleCollection) value;
-                    final var methodUsed = compressible.compress(method);
+                    var compressible = (CompressibleCollection) value;
+                    var methodUsed = compressible.compress(method);
                     assert methodUsed != null;
                     if (methodUsed != Method.NONE)
                     {
@@ -123,13 +123,13 @@ public interface CompressibleCollection
         /** The method of compression */
         Method method;
 
-        public CompressionEvent(final CompressibleCollection object, final Method method)
+        public CompressionEvent(CompressibleCollection object, Method method)
         {
             this.object = object;
             this.method = method;
         }
 
-        public void method(final Method method)
+        public void method(Method method)
         {
             this.method = method;
         }

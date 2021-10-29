@@ -200,7 +200,7 @@ public class StringsTest
             ensureEqual("", AsciiArt.repeat(-1, "*"));
             fail("Should have thrown AssertionError");
         }
-        catch (final ValidationFailure e)
+        catch ( ValidationFailure e)
         {
             // expected
         }
@@ -211,7 +211,7 @@ public class StringsTest
             ensureEqual("", AsciiArt.repeat(-1, "hello"));
             fail("Should have thrown AssertionError");
         }
-        catch (final ValidationFailure e)
+        catch ( ValidationFailure e)
         {
             // expected
         }

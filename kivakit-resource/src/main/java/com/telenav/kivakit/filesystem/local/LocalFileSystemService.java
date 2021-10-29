@@ -49,7 +49,7 @@ import java.nio.file.Paths;
 public class LocalFileSystemService implements FileSystemService
 {
     @Override
-    public boolean accepts(final FilePath path)
+    public boolean accepts(FilePath path)
     {
         if (path.schemes().equals(StringList.stringList("file")))
         {
@@ -66,31 +66,31 @@ public class LocalFileSystemService implements FileSystemService
             Paths.get(path.toString());
             return true;
         }
-        catch (final InvalidPathException e)
+        catch (InvalidPathException e)
         {
             return false;
         }
     }
 
     @Override
-    public DiskService diskService(final FilePath path)
+    public DiskService diskService(FilePath path)
     {
         return new LocalDisk(new LocalFolder(normalize(path)));
     }
 
     @Override
-    public FileService fileService(final FilePath path)
+    public FileService fileService(FilePath path)
     {
         return new LocalFile(normalize(path));
     }
 
     @Override
-    public FolderService folderService(final FilePath path)
+    public FolderService folderService(FilePath path)
     {
         return new LocalFolder(normalize(path));
     }
 
-    private FilePath normalize(final FilePath path)
+    private FilePath normalize(FilePath path)
     {
         if (path.startsWith("~"))
         {

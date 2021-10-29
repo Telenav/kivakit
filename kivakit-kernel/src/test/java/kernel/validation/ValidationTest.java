@@ -30,13 +30,13 @@ public class ValidationTest
     {
         final int x;
 
-        public A(final int x)
+        public A(int x)
         {
             this.x = x;
         }
 
         @Override
-        public Validator validator(final ValidationType type)
+        public Validator validator(ValidationType type)
         {
             return new BaseValidator()
             {
@@ -49,7 +49,7 @@ public class ValidationTest
                         problemIf(x == 0, "x cannot be zero");
                         Assert.fail("Should have thrown an exception");
                     }
-                    catch (final AssertionError ignored)
+                    catch (AssertionError ignored)
                     {
                     }
                 }
