@@ -28,7 +28,7 @@ public class CountMapTest
     @Test
     public void test()
     {
-        final var count1 = new CountMap<String>();
+        var count1 = new CountMap<String>();
         count1.increment("foo");
         ensureEqual(1, count1.count("foo").asInt());
         count1.increment("foo");
@@ -37,7 +37,7 @@ public class CountMapTest
         ensureEqual(1, count1.count("bar").asInt());
         ensureEqual(3L, count1.total());
 
-        final var count2 = new CountMap<String>();
+        var count2 = new CountMap<String>();
         count2.increment("foo");
         ensureEqual(1, count2.count("foo").asInt());
         count2.increment("foo");
@@ -46,7 +46,7 @@ public class CountMapTest
         ensureEqual(2, count2.count("foo").asInt());
         ensureEqual(4L, count1.total());
 
-        final var count3 = new CountMap<String>();
+        var count3 = new CountMap<String>();
         count3.mergeIn(count1);
         count3.mergeIn(count2);
         count1.increment("bar");
@@ -61,7 +61,7 @@ public class CountMapTest
         ensureEqual(2L, count2.total());
         ensureEqual(6L, count3.total());
 
-        final var count4 = new CountMap<String>();
+        var count4 = new CountMap<String>();
         count4.mergeIn(count3);
         count4.mergeIn(count3);
         ensureEqual(12L, count4.total());

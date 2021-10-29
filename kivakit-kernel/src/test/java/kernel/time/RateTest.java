@@ -29,7 +29,7 @@ public class RateTest
     @Test
     public void test()
     {
-        final var rate = Rate.perSecond(1);
+        var rate = Rate.perSecond(1);
         ensureEqual(1.0, rate.count());
         ensureEqual(60.0, rate.perMinute().count());
         ensureEqual(3600.0, rate.perHour().count());

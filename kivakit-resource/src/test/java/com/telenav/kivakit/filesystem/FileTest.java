@@ -31,7 +31,7 @@ public class FileTest extends UnitTest
     @Test
     public void testFactory()
     {
-        final var temp = File.temporary(Extension.TXT);
+        var temp = File.temporary(Extension.TXT);
         temp.writer().save("hello");
         ensureEqual("hello", File.parse(temp.toString()).reader().string());
         temp.delete();
@@ -47,9 +47,9 @@ public class FileTest extends UnitTest
     @Test
     public void testWithVariables()
     {
-        final var variables = new VariableMap<String>();
+        var variables = new VariableMap<String>();
         variables.add("garply", "baz");
-        final var test = File.parse("foo/bar/${garply}/banana.txt", variables);
+        var test = File.parse("foo/bar/${garply}/banana.txt", variables);
         ensureEqual(File.parse("foo/bar/baz/banana.txt"), test);
     }
 

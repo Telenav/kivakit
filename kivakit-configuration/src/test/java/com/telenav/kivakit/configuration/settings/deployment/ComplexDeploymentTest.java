@@ -92,11 +92,11 @@ public class ComplexDeploymentTest extends UnitTest
     {
         new Development().install();
 
-        final var server1 = Settings.of(this).requireSettings(ServerSettings.class, SERVER1);
+        var server1 = Settings.of(this).requireSettings(ServerSettings.class, SERVER1);
         ensureEqual(9001, server1.port());
         ensureEqual(Duration.ONE_MINUTE, server1.timeout());
 
-        final var server2 = Settings.of(this).requireSettings(ServerSettings.class, SERVER2);
+        var server2 = Settings.of(this).requireSettings(ServerSettings.class, SERVER2);
         ensureEqual(9002, server2.port());
         ensureEqual(Duration.ONE_MINUTE, server2.timeout());
     }

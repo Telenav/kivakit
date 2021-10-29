@@ -30,7 +30,7 @@ public class IndentingStringBuilderTest
     @Test
     public void test()
     {
-        final var builder = new IndentingStringBuilder(TEXT, Indentation.of(2));
+        var builder = new IndentingStringBuilder(TEXT, Indentation.of(2));
         builder.appendLine("<a>");
         builder.indent();
         builder.appendLine("<b>");

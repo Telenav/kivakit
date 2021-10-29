@@ -38,20 +38,20 @@ public class EmailTest extends UnitTest
     @SuppressWarnings("resource")
     public void test()
     {
-        final var shibo = EmailAddress.parse("jonathanl@telenav.com");
+        var shibo = EmailAddress.parse("jonathanl@telenav.com");
 
-        final var email = new Email()
+        var email = new Email()
                 .from(shibo)
                 .subject("testing")
                 .addTo(shibo)
                 .body(new EmailBody("this is a test"));
 
-        final var configuration = new SmtpEmailSender.Configuration()
+        var configuration = new SmtpEmailSender.Configuration()
                 .host(Host.local())
                 .username(UserName.parse(""))
                 .password(PlainTextPassword.parse(""));
 
-        final var sender = new SmtpEmailSender(configuration).sendingOn(false);
+        var sender = new SmtpEmailSender(configuration).sendingOn(false);
         sender.start();
         sender.enqueue(email);
         sender.stop();

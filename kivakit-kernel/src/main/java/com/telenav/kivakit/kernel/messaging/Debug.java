@@ -206,7 +206,7 @@ public final class Debug implements Transceiver
                 }
 
                 // and for "extends " at the start of the pattern
-                final var extendsPrefix = "extends ";
+                var extendsPrefix = "extends ";
                 var checkParents = pattern.startsWith(extendsPrefix);
                 if (checkParents)
                 {

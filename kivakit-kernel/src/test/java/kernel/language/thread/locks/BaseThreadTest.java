@@ -55,7 +55,7 @@ public abstract class BaseThreadTest
 
     protected void accurateSleep( Duration minimum, final Duration maximum)
     {
-        final var start = Time.now();
+        var start = Time.now();
         minimum.sleep();
         Ensure.ensure(start.elapsedSince().isLessThanOrEqualTo(maximum));
     }

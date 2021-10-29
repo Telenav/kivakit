@@ -185,7 +185,7 @@ public class AsciiArt
         {
             return text;
         }
-        final var suffix = " [...]";
+        var suffix = " [...]";
         return Strings.leading(text, n - suffix.length()) + suffix;
     }
 

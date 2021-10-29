@@ -41,11 +41,11 @@ public class IsoTimeLogFormatterTest
         final Information message = new Information("This is a test");
         message.created(Time.milliseconds(1468309671357L));
 
-        final var logger = new LogServiceLogger();
-        final var entry = new LogEntry(logger, context, Thread.currentThread(), message);
+        var logger = new LogServiceLogger();
+        var entry = new LogEntry(logger, context, Thread.currentThread(), message);
 
         final String actual = new UtcDateTimeLogFormatter().format(entry, MessageFormatter.Format.WITH_EXCEPTION);
-        final var expected = "2016-07-12T07:47:51.357_UTC Here Information: This is a test";
+        var expected = "2016-07-12T07:47:51.357_UTC Here Information: This is a test";
         ensureEqual(expected, actual);
     }
 }

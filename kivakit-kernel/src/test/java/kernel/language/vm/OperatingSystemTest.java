@@ -28,7 +28,7 @@ public class OperatingSystemTest
     @Test
     public void test()
     {
-        final var os = OperatingSystem.get();
+        var os = OperatingSystem.get();
         ensure(os.isMac() || os.isUnix() || os.isWindows());
     }
 }

@@ -86,14 +86,14 @@ public class ConverterTest
     @Test
     public void testCountConverter()
     {
-        final var converter = new Count.Converter(LOGGER);
+        var converter = new Count.Converter(LOGGER);
         ensureEqual(1000, Objects.requireNonNull(converter.convert("1,000")).asInt());
     }
 
     @Test
     public void testEnumConverter()
     {
-        final EnumConverter<Type> converter = new EnumConverter<>(LOGGER, Type.class);
+        EnumConverter<Type> converter = new EnumConverter<>(LOGGER, Type.class);
 
         ensureEqual(A, converter.convert("A"));
         ensureEqual("A", converter.unconvert(A));

@@ -34,8 +34,8 @@ public class TimeTest
     @Test
     public void testBeforeAfter()
     {
-        final var now = Time.now();
-        final var later = now.plus(Duration.ONE_SECOND);
+        var now = Time.now();
+        var later = now.plus(Duration.ONE_SECOND);
         ensure(now.isBefore(later));
         ensure(now.isAtOrBefore(later));
         ensure(now.isAtOrBefore(now));
@@ -47,8 +47,8 @@ public class TimeTest
     @Test
     public void testMinimumMaximum()
     {
-        final var now = Time.now();
-        final var later = now.plus(Duration.ONE_SECOND);
+        var now = Time.now();
+        var later = now.plus(Duration.ONE_SECOND);
         ensureEqual(now, now.minimum(later));
         ensureEqual(later, now.maximum(later));
         ensureEqual(now, later.minimum(now));
@@ -58,8 +58,8 @@ public class TimeTest
     @Test
     public void testRoundDown()
     {
-        final var now = Time.now();
-        final var thisSecond = now.roundDown(Duration.ONE_SECOND);
+        var now = Time.now();
+        var thisSecond = now.roundDown(Duration.ONE_SECOND);
         ensure(thisSecond.isAtOrBefore(now));
     }
 
@@ -73,8 +73,8 @@ public class TimeTest
     @Test
     public void testSubtract()
     {
-        final var now = Time.now();
-        final var later = now.plus(Duration.ONE_SECOND);
+        var now = Time.now();
+        var later = now.plus(Duration.ONE_SECOND);
         ensureEqual(Duration.ONE_SECOND, later.minus(now));
     }
 }

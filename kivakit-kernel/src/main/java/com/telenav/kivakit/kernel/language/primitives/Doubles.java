@@ -51,7 +51,7 @@ public class Doubles
         var index = value.indexOf('.');
         if (index > 0)
         {
-            final var invalid = Longs.INVALID;
+            var invalid = Longs.INVALID;
             var major = Longs.parse(value.substring(0, index), invalid);
             if (major != invalid)
             {

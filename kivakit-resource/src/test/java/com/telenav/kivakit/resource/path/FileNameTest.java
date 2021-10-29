@@ -36,10 +36,10 @@ public class FileNameTest extends UnitTest
     @Test
     public void localTimeTest()
     {
-        final var now = Time.now();
-        final var local = now.localTime();
+        var now = Time.now();
+        var local = now.localTime();
         trace("local = ${debug}", local);
-        final var utc = now.utc();
+        var utc = now.utc();
         trace("utx = ${debug}", utc);
         ensureEqual(local.asMilliseconds(), utc.asMilliseconds());
     }
@@ -47,14 +47,14 @@ public class FileNameTest extends UnitTest
     @Test
     public void timeFieldsTest()
     {
-        final var timeZone = ZoneId.of("America/Los_Angeles");
+        var timeZone = ZoneId.of("America/Los_Angeles");
         trace("TimeZone:  ${debug}", timeZone.toString());
 
-        final var localTime = LocalTime.milliseconds(timeZone, 1344025281123L);
+        var localTime = LocalTime.milliseconds(timeZone, 1344025281123L);
         trace("LocalTime: ${debug}", localTime.asMilliseconds());
 
-        final var localMillisecondsConverter = new LocalDateTimeWithMillisecondsConverter(this);
-        final var timeRepresentation = localMillisecondsConverter.unconvert(localTime);
+        var localMillisecondsConverter = new LocalDateTimeWithMillisecondsConverter(this);
+        var timeRepresentation = localMillisecondsConverter.unconvert(localTime);
         trace("Time Representation: ${debug}", timeRepresentation);
 
         trace("Hour of day:     ${debug}", localTime.hourOfDay());
@@ -77,10 +77,10 @@ public class FileNameTest extends UnitTest
         /*
           Test time
          */
-        final var timeZone = ZoneId.of("America/Los_Angeles");
+        var timeZone = ZoneId.of("America/Los_Angeles");
         trace("TimeZone:  ${debug}", timeZone.toString());
 
-        final var localTime = LocalTime.milliseconds(timeZone, 1344025281123L);
+        var localTime = LocalTime.milliseconds(timeZone, 1344025281123L);
         trace("LocalTime: ${debug}", localTime.asMilliseconds());
 
         final Time time = localTime.utc();
@@ -89,8 +89,8 @@ public class FileNameTest extends UnitTest
         /*
           Converters
          */
-        final var millisecondsConverter = new LocalDateTimeWithMillisecondsConverter(new ThrowingListener());
-        final var secondsConverter = new LocalDateTimeWithSecondsConverter(new ThrowingListener());
+        var millisecondsConverter = new LocalDateTimeWithMillisecondsConverter(new ThrowingListener());
+        var secondsConverter = new LocalDateTimeWithSecondsConverter(new ThrowingListener());
 
         String timeRepresentation;
 

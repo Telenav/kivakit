@@ -30,19 +30,19 @@ public class FolderPrunerTest extends UnitTest
     @Test
     public void testCapacity()
     {
-        final var folder = folder("folder-capacity-test");
+        var folder = folder("folder-capacity-test");
 
         // Save file abc
-        final var file1 = folder.file("abc");
+        var file1 = folder.file("abc");
         file1.writer().save("abc");
         ensure(file1.exists());
 
         // Start folder pruner
-        final var removed = new CompletionLatch();
-        final FolderPruner pruner = new FolderPruner(folder, Duration.milliseconds(1).asFrequency())
+        var removed = new CompletionLatch();
+        FolderPruner pruner = new FolderPruner(folder, Duration.milliseconds(1).asFrequency())
         {
             @Override
-            protected void onFileRemoved( File file)
+            protected void onFileRemoved(File file)
             {
                 removed.completed();
             }
@@ -55,7 +55,7 @@ public class FolderPrunerTest extends UnitTest
         ensure(file1.exists());
 
         // Save file def
-        final var file2 = folder.file("def");
+        var file2 = folder.file("def");
         file2.writer().save("def");
 
         // Wait for a file to get removed
@@ -72,13 +72,13 @@ public class FolderPrunerTest extends UnitTest
     {
         if (!isQuickTest())
         {
-            final var folder = folder("disk-space-test");
-            final var file = folder.file("temp1");
+            var folder = folder("disk-space-test");
+            var file = folder.file("temp1");
             file.writer().save("test");
-            final FolderPruner pruner = new FolderPruner(folder, Duration.milliseconds(25).asFrequency())
+            FolderPruner pruner = new FolderPruner(folder, Duration.milliseconds(25).asFrequency())
             {
                 @Override
-                protected void onFileRemoved( File file)
+                protected void onFileRemoved(File file)
                 {
                 }
             };
@@ -91,9 +91,9 @@ public class FolderPrunerTest extends UnitTest
         }
     }
 
-    private Folder folder( String name)
+    private Folder folder(String name)
     {
-        final var folder = Folder.kivakitTest(getClass()).folder(name);
+        var folder = Folder.kivakitTest(getClass()).folder(name);
         folder.mkdirs();
         folder.clearAll();
         return folder;

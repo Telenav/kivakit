@@ -38,8 +38,8 @@ public class KivaKitThreadTest
     @Test
     public void testInitialDelay()
     {
-        final var executedAt = new ConcurrentMutableValue<Time>();
-        final KivaKitThread thread = LOGGER.listenTo(new KivaKitThread("Test")
+        var executedAt = new ConcurrentMutableValue<Time>();
+        KivaKitThread thread = LOGGER.listenTo(new KivaKitThread("Test")
         {
             @Override
             protected void onRun()
@@ -61,8 +61,8 @@ public class KivaKitThreadTest
     @Test
     public void testOnExecute()
     {
-        final var executed = new MutableValue<Boolean>();
-        final KivaKitThread thread = new KivaKitThread("test")
+        var executed = new MutableValue<Boolean>();
+        KivaKitThread thread = new KivaKitThread("test")
         {
             @Override
             protected void onRun()
@@ -79,9 +79,9 @@ public class KivaKitThreadTest
     @Test
     public void testOnXXX()
     {
-        final var at = new MutableValue<Integer>();
+        var at = new MutableValue<Integer>();
         at.set(0);
-        final KivaKitThread thread = new KivaKitThread("test")
+        KivaKitThread thread = new KivaKitThread("test")
         {
             @Override
             protected void onRan()

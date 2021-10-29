@@ -28,7 +28,7 @@ public class VariableMapTest
     @Test
     public void test()
     {
-        final var map = new VariableMap<String>();
+        var map = new VariableMap<String>();
         map.add("a", "2");
         map.add("b", "two");
         ensureEqual("2 = two", map.expand("${a} = ${b}"));

@@ -34,9 +34,9 @@ public class MessageListTest
     @Test
     public void test()
     {
-        final var list = new MessageList(new AnythingMatcher<>());
-        final Repeater repeater = new BaseRepeater(getClass());
-        final var count = new MutableCount();
+        var list = new MessageList(new AnythingMatcher<>());
+        Repeater repeater = new BaseRepeater(getClass());
+        var count = new MutableCount();
         list.listenTo(repeater);
         repeater.addListener(message -> count.increment());
         ensureEqual(0L, count.asLong());

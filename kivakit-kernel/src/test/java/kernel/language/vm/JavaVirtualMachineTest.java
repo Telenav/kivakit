@@ -34,7 +34,7 @@ public class JavaVirtualMachineTest
     @Test
     public void test()
     {
-        final var vm = JavaVirtualMachine.local();
+        var vm = JavaVirtualMachine.local();
         ensure(vm.freeMemory().isGreaterThan(Bytes._0));
         ensure(vm.freeMemory().isLessThan(vm.maximumMemory()));
         ensure(vm.usedMemory().isGreaterThan(Bytes._0));
@@ -44,11 +44,11 @@ public class JavaVirtualMachineTest
     @Ignore
     public void testSizeOf()
     {
-        final var vm = JavaVirtualMachine.local();
+        var vm = JavaVirtualMachine.local();
         ensureEqual(Bytes.bytes(4), vm.sizeOfPrimitive(4));
         ensureEqual(Bytes.bytes(8), vm.sizeOfPrimitive(4L));
         ensureEqual(Bytes.bytes(8), vm.sizeOfPrimitive(4.0));
-        final var sizeOfTenThousandIntegers = vm.sizeOf(new int[10_000]);
+        var sizeOfTenThousandIntegers = vm.sizeOf(new int[10_000]);
         if (sizeOfTenThousandIntegers != null)
         {
             ensure(sizeOfTenThousandIntegers.isGreaterThanOrEqualTo(Bytes.bytes(4 * 10_000)));
@@ -59,13 +59,13 @@ public class JavaVirtualMachineTest
     @Ignore
     public void testSizeOfGraph()
     {
-        final var vm = JavaVirtualMachine.local();
+        var vm = JavaVirtualMachine.local();
         final Set<Integer> set = new HashSet<>();
         for (var i = 0; i < 100; i++)
         {
             set.add(i);
         }
-        final var size = vm.sizeOfObjectGraph(set, "test", Bytes._0);
+        var size = vm.sizeOfObjectGraph(set, "test", Bytes._0);
         if (size != null)
         {
             ensure(size.isGreaterThan(Bytes.bytes(100 * 50)));

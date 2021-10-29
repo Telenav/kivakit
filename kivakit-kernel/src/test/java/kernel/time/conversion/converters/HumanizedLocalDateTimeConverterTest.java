@@ -34,11 +34,11 @@ public class HumanizedLocalDateTimeConverterTest
     @Test
     public void convert()
     {
-        final var converter = new HumanizedLocalDateTimeConverter(LOGGER);
+        var converter = new HumanizedLocalDateTimeConverter(LOGGER);
 
-        final var now = LocalTime.now();
+        var now = LocalTime.now();
 
-        final var expected = now.startOfDay().withHourOfMeridiem(6, PM).withMinuteOfHour(15);
+        var expected = now.startOfDay().withHourOfMeridiem(6, PM).withMinuteOfHour(15);
         ensureEqual(converter.convert("Today 6.15pm"), expected);
         ensureEqual(converter.unconvert(expected), "Today 6.15PM");
     }

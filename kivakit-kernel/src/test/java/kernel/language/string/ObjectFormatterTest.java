@@ -53,7 +53,7 @@ public class ObjectFormatterTest
     @Test
     public void test()
     {
-        final var beanString = "[ObjectFormatterTest.Bean y = 7]";
+        var beanString = "[ObjectFormatterTest.Bean y = 7]";
         Assert.assertEquals(beanString, new ObjectFormatter(bean).toString());
         Assert.assertEquals("[ObjectFormatterTest bean = " + beanString + "]", new ObjectFormatter(this).toString());
     }

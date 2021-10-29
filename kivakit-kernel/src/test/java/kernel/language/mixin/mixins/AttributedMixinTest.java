@@ -18,8 +18,8 @@ public class AttributedMixinTest
     @Test
     public void test()
     {
-        final var a = new A();
-        final var b = new B();
+        var a = new A();
+        var b = new B();
 
         a.attribute("name", "This is object A");
         b.attribute("name", "This is object B");

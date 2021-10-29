@@ -30,7 +30,7 @@ public class LookAheadReaderTest extends UnitTest
     @Test
     public void test() throws IOException
     {
-        final var reader = new LookAheadReader(new StringReader("xyz<XML"));
+        var reader = new LookAheadReader(new StringReader("xyz<XML"));
         while (reader.current() != '<')
         {
             reader.next();

@@ -37,9 +37,9 @@ public class LocalDateConverterTest
     @Test
     public void convert()
     {
-        final var converter = new LocalDateConverter(LOGGER, LocalTime.utcTimeZone());
+        var converter = new LocalDateConverter(LOGGER, LocalTime.utcTimeZone());
 
-        final var time = converter.convert("2011.07.06");
+        var time = converter.convert("2011.07.06");
 
         // Using https://www.epochconverter.com/ midnight of that date UTC time
         // was converted to milliseconds.

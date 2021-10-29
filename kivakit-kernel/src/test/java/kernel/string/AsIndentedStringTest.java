@@ -75,7 +75,7 @@ public class AsIndentedStringTest implements AsIndentedString
     @Test
     public void test()
     {
-        final var foo = new Foo();
+        var foo = new Foo();
         ensureEqual(
                 "bar:\n" +
                         "  y: 5\n" +
@@ -87,7 +87,7 @@ public class AsIndentedStringTest implements AsIndentedString
     @Test
     public void testPrune()
     {
-        final var indenter = new AsStringIndenter(StringFormat.TEXT)
+        var indenter = new AsStringIndenter(StringFormat.TEXT)
                 .levels(Maximum._4)
                 .pruneAt(Bar.class);
         asString(StringFormat.TEXT, indenter);

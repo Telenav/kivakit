@@ -56,7 +56,7 @@ public class KivaKit extends Project
      */
     public Path cacheFolderPath()
     {
-        final var version = projectVersion();
+        var version = projectVersion();
         if (version != null)
         {
             return Path.of(System.getProperty("user.home"), ".kivakit", version.toString());
@@ -75,7 +75,7 @@ public class KivaKit extends Project
      */
     public Path homeFolderPath()
     {
-        final var home = JavaVirtualMachine.property("KIVAKIT_HOME");
+        var home = JavaVirtualMachine.property("KIVAKIT_HOME");
         if (home == null)
         {
             return null;

@@ -77,7 +77,7 @@ public class FilePathTest extends UnitTest
             var path = FilePath.parseFilePath(rawPath);
             ensureEqual(rawPath, path.join());
 
-            final var rawPathWithTrailingBackslash = "C:\\this\\is\\a\\test\\path\\";
+            var rawPathWithTrailingBackslash = "C:\\this\\is\\a\\test\\path\\";
             path = FilePath.parseFilePath(rawPathWithTrailingBackslash);
             ensureEqual(rawPath, path.join());
 
@@ -91,7 +91,7 @@ public class FilePathTest extends UnitTest
             var path = FilePath.parseFilePath(rawPath);
             ensureEqual(path.join(), rawPath);
 
-            final var rawPathWithTrailingBackslash = "/this/is/a/test/path/";
+            var rawPathWithTrailingBackslash = "/this/is/a/test/path/";
             path = FilePath.parseFilePath(rawPathWithTrailingBackslash);
             ensureEqual(rawPath, path.join());
 
@@ -149,7 +149,7 @@ public class FilePathTest extends UnitTest
     {
         if (OperatingSystem.get().isWindows())
         {
-            final var rawPath = "C:\\this\\is\\a\\test\\path";
+            var rawPath = "C:\\this\\is\\a\\test\\path";
             var path = FilePath.parseFilePath(rawPath);
             var root = Folder.parse("C:\\").path().absolute();
             var root2 = path.root().absolute();
@@ -157,7 +157,7 @@ public class FilePathTest extends UnitTest
         }
         else
         {
-            final var rawPath = "/this/is/a/test/path";
+            var rawPath = "/this/is/a/test/path";
             var path = FilePath.parseFilePath(rawPath);
             ensureEqual("/", path.root().toString());
         }

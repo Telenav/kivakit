@@ -26,8 +26,8 @@ public class NetworkPathTest extends UnitTest
     @Test
     public void test()
     {
-        final var port = Host.local().http(8080);
-        final var path = port.path("/foo/bar");
+        var port = Host.local().http(8080);
+        var path = port.path("/foo/bar");
         ensureEqual("/", path.separator());
         ensure(path.isAbsolute());
     }

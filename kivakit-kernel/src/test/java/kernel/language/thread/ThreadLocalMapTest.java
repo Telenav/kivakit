@@ -12,9 +12,9 @@ public class ThreadLocalMapTest
     @Test
     public void test()
     {
-        final var map = new ThreadLocalMap<Integer, Integer>();
-        final var workers = Count._8;
-        final var executor = Threads.threadPool("TestPool", workers);
+        var map = new ThreadLocalMap<Integer, Integer>();
+        var workers = Count._8;
+        var executor = Threads.threadPool("TestPool", workers);
         workers.loop(() -> executor.submit(() ->
         {
             for (var i = 0; i < 100_000; i++)

@@ -188,8 +188,8 @@ public class StackTrace implements Sized
             builder.appendLine(Align.right("(" + exceptionType + ")", 40, ' '));
         }
         var index = 0;
-        final var limit = 60;
-        final var include = limit / 2;
+        var limit = 60;
+        var include = limit / 2;
         var omitted = false;
         for (var frame : frames)
         {

@@ -41,7 +41,7 @@ public class PackageResourceTest
     @Test
     public void testPath()
     {
-        final var fullPath = a().path();
+        var fullPath = a().path();
         ensureEqual(fullPath.join("/"), "com/telenav/kivakit/resource/resources/packaged/a.txt");
     }
 

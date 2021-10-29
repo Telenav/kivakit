@@ -26,9 +26,9 @@ public class IntersectionTest extends SetOperationTest
     @Test
     public void test()
     {
-        final var a = set(1, 2, 3);
-        final var b = set(2, 3, 4);
-        final var intersection = new Intersection<>(a, b);
+        var a = set(1, 2, 3);
+        var b = set(2, 3, 4);
+        var intersection = new Intersection<>(a, b);
         ensureEqual(2, intersection.size());
         ensureFalse(intersection.isEmpty());
         ensure(intersection.contains(3));

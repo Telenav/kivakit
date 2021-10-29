@@ -31,7 +31,7 @@ public class MutableCountTest
     @Test
     public void test()
     {
-        final var count = new MutableCount();
+        var count = new MutableCount();
         ensureEqual(0L, count.asLong());
         ensureEqual(Count._0, count.count());
         count.increment();

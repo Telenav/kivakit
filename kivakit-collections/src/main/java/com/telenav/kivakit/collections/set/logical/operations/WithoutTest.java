@@ -26,9 +26,9 @@ public class WithoutTest extends SetOperationTest
     @Test
     public void test()
     {
-        final var a = set(1, 2, 3);
-        final var b = set(2, 3, 4);
-        final var without = new Without<>(a, b);
+        var a = set(1, 2, 3);
+        var b = set(2, 3, 4);
+        var without = new Without<>(a, b);
         ensureEqual(1, without.size());
         ensureFalse(without.isEmpty());
         ensure(without.contains(1));

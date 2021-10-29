@@ -28,7 +28,7 @@ public class ObjectIdentifierTest
     @Test
     public void test()
     {
-        final var oid = new ObjectIdentifier<>("foo");
+        var oid = new ObjectIdentifier<>("foo");
         ensureEqual(new ObjectIdentifier<>("foo"), oid);
         ensureEqual("foo".hashCode(), oid.hashCode());
         ensureEqual("foo", oid.object());

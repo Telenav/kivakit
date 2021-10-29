@@ -28,7 +28,7 @@ public class PlainTextPasswordTest extends UnitTest
     @Test
     public void test()
     {
-        final var password = new PlainTextPassword("passw0rd");
+        var password = new PlainTextPassword("passw0rd");
         ensure(password.matches(new PlainTextPassword("passw0rd")));
         ensureFalse(password.matches(new PlainTextPassword("password")));
     }
@@ -36,7 +36,7 @@ public class PlainTextPasswordTest extends UnitTest
     @Test
     public void testToString()
     {
-        final var password = new PlainTextPassword("This*is8hi");
+        var password = new PlainTextPassword("This*is8hi");
         Assert.assertEquals(password.toString(), "This*is8hi");
         Assert.assertEquals(password.asString(), "**********");
     }

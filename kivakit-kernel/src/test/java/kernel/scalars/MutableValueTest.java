@@ -30,7 +30,7 @@ public class MutableValueTest
     @Test
     public void test()
     {
-        final var value = new MutableValue<Integer>();
+        var value = new MutableValue<Integer>();
         value.set(5);
         ensureEqual(5, value.get());
         ensure(value.equals(value));

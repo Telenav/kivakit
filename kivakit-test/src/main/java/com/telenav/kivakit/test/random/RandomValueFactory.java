@@ -100,7 +100,7 @@ public class RandomValueFactory
     @SuppressWarnings("SpellCheckingInspection")
     public char newAsciiChar()
     {
-        final var alphabet = "abcdefghijklmonpqrstuvwxyz";
+        var alphabet = "abcdefghijklmonpqrstuvwxyz";
         return alphabet.charAt(newInt(0, alphabet.length()));
     }
 

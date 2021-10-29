@@ -183,7 +183,7 @@ public class StringPath extends Path<String>
             int middle = size / 2;
             var before = copy.subpath(0, middle);
             var after = copy.subpath(middle + 1, size);
-            final var ellipsis = "...";
+            var ellipsis = "...";
             while (before.join().length() + after.join().length() + ellipsis.length() + 2 > maximumLength)
             {
                 if (before.size() >= after.size())

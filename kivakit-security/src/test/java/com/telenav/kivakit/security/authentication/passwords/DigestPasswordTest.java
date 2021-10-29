@@ -27,7 +27,7 @@ public class DigestPasswordTest extends UnitTest
     @Test
     public void test()
     {
-        final var password = new DigestPassword("passw0rd");
+        var password = new DigestPassword("passw0rd");
         ensure(password.matches(new DigestPassword("passw0rd")));
         ensureFalse(password.matches(new DigestPassword("password")));
     }

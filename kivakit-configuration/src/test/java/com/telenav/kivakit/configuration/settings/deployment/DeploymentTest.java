@@ -32,7 +32,7 @@ public class DeploymentTest extends UnitTest
         {
             super("china", "test china deployment");
 
-            final var settings = new ServerSettings();
+            var settings = new ServerSettings();
             settings.timeout(Duration.ONE_MINUTE);
             settings.port(9090);
 
@@ -46,7 +46,7 @@ public class DeploymentTest extends UnitTest
         {
             super("development", "test development deployment");
 
-            final var settings = new ServerSettings();
+            var settings = new ServerSettings();
             settings.timeout(Duration.ONE_MINUTE);
             settings.port(8080);
 
@@ -60,7 +60,7 @@ public class DeploymentTest extends UnitTest
         {
             super("production", "test production deployment");
 
-            final var settings = new ServerSettings();
+            var settings = new ServerSettings();
             settings.timeout(Duration.ONE_MINUTE);
             settings.port(80);
 
@@ -73,7 +73,7 @@ public class DeploymentTest extends UnitTest
     {
         new China().install();
 
-        final var settings = Settings.of(this).requireSettings(ServerSettings.class);
+        var settings = Settings.of(this).requireSettings(ServerSettings.class);
         ensureEqual(settings.port(), 9090);
         ensureEqual(settings.timeout(), Duration.ONE_MINUTE);
     }
@@ -83,7 +83,7 @@ public class DeploymentTest extends UnitTest
     {
         new Development().install();
 
-        final var settings = Settings.of(this).requireSettings(ServerSettings.class);
+        var settings = Settings.of(this).requireSettings(ServerSettings.class);
         ensureEqual(8080, settings.port());
         ensureEqual(Duration.ONE_MINUTE, settings.timeout());
     }
@@ -93,7 +93,7 @@ public class DeploymentTest extends UnitTest
     {
         new Production().install();
 
-        final var settings = Settings.of(this).requireSettings(ServerSettings.class);
+        var settings = Settings.of(this).requireSettings(ServerSettings.class);
         ensureEqual(80, settings.port());
         ensureEqual(Duration.ONE_MINUTE, settings.timeout());
     }

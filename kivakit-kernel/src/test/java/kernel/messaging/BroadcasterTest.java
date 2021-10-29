@@ -29,8 +29,8 @@ public class BroadcasterTest
     @Test
     public void test()
     {
-        final var broadcaster = new Multicaster("test", getClass());
-        final var count = new MutableCount();
+        var broadcaster = new Multicaster("test", getClass());
+        var count = new MutableCount();
         broadcaster.addListener(message -> count.increment());
         ensureEqual(0L, count.asLong());
         broadcaster.information("Test");

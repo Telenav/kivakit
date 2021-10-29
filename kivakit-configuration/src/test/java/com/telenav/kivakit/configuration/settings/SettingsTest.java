@@ -38,7 +38,7 @@ public class SettingsTest extends UnitTest
         // Configure
         {
             // Script or startup code creates configuration
-            final var server = new ServerSettings();
+            var server = new ServerSettings();
             server.timeout(Duration.ONE_MINUTE);
             server.port(9000);
 
@@ -52,7 +52,7 @@ public class SettingsTest extends UnitTest
         // Get configuration
         {
             // Client code, possibly in a library class, later retrieves the configuration
-            final var server = Settings.of(this).requireSettings(ServerSettings.class);
+            var server = Settings.of(this).requireSettings(ServerSettings.class);
             ensureEqual(Duration.ONE_MINUTE, server.timeout());
             ensureEqual(9000, server.port());
         }
@@ -61,12 +61,12 @@ public class SettingsTest extends UnitTest
     @Test
     public void testMultipleInstances()
     {
-        final var settings = globalSettings();
+        var settings = globalSettings();
 
         // Configure
         {
             // Script or startup code creates configuration
-            final var server1 = new ServerSettings();
+            var server1 = new ServerSettings();
             server1.timeout(Duration.ONE_MINUTE);
             server1.port(8080);
 
@@ -74,7 +74,7 @@ public class SettingsTest extends UnitTest
             settings.registerSettings(server1, SERVER1);
 
             // Script can register a second configuration of the same class
-            final var server2 = new ServerSettings();
+            var server2 = new ServerSettings();
             server2.timeout(Duration.ONE_MINUTE);
             server2.port(80);
 
@@ -88,11 +88,11 @@ public class SettingsTest extends UnitTest
         // Get configuration
         {
             // Client code can then retrieve both configurations
-            final var server1 = Settings.of(this).requireSettings(ServerSettings.class, SERVER1);
+            var server1 = Settings.of(this).requireSettings(ServerSettings.class, SERVER1);
             ensureEqual(Duration.ONE_MINUTE, server1.timeout());
             ensureEqual(8080, server1.port());
 
-            final var server2 = Settings.of(this).requireSettings(ServerSettings.class, SERVER2);
+            var server2 = Settings.of(this).requireSettings(ServerSettings.class, SERVER2);
             ensureEqual(Duration.ONE_MINUTE, server2.timeout());
             ensureEqual(80, server2.port());
         }
@@ -101,7 +101,7 @@ public class SettingsTest extends UnitTest
     @Test
     public void testPropertiesFile()
     {
-        final var settings = globalSettings();
+        var settings = globalSettings();
 
         // Configure
         {
@@ -115,7 +115,7 @@ public class SettingsTest extends UnitTest
         // Get configuration
         {
             // Client code, possibly in a library class, later retrieves the configuration
-            final var configuration = Settings.of(this).requireSettings(ServerSettings.class);
+            var configuration = Settings.of(this).requireSettings(ServerSettings.class);
             ensureEqual(Duration.ONE_MINUTE, configuration.timeout());
             ensureEqual(7000, configuration.port());
         }
@@ -124,7 +124,7 @@ public class SettingsTest extends UnitTest
     @NotNull
     private Settings globalSettings()
     {
-        final var global = Settings.of(this);
+        var global = Settings.of(this);
         global.clear();
         global.clearListeners();
         global.addListener(this);

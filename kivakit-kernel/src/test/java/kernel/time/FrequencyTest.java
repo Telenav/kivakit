@@ -31,9 +31,9 @@ public class FrequencyTest
     @Test
     public void test()
     {
-        final Frequency frequency = Frequency.EVERY_10_SECONDS;
-        final var now = Time.now();
-        final Cycle cycle = frequency.start(now);
+        Frequency frequency = Frequency.EVERY_10_SECONDS;
+        var now = Time.now();
+        Cycle cycle = frequency.start(now);
         ensureWithin(Duration.seconds(10).asSeconds(), cycle.waitTimeBeforeNextCycle().asSeconds(), 1.0);
         ensureWithin(now.plus(Duration.seconds(10)).asSeconds(), cycle.next().asSeconds(), 1.0);
     }

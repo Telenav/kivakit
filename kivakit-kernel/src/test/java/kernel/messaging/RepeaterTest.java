@@ -31,8 +31,8 @@ public class RepeaterTest
     @Test
     public void test()
     {
-        final Repeater repeater = new BaseRepeater(getClass());
-        final var count = new MutableCount();
+        Repeater repeater = new BaseRepeater(getClass());
+        var count = new MutableCount();
         repeater.addListener(message -> count.increment());
         ensureEqual(0L, count.asLong());
         repeater.receive(new Information("Test"));

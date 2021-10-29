@@ -26,7 +26,7 @@ public class Sha1DigesterTest extends UnitTest
     @Test
     public void test()
     {
-        final var digester = new Sha1Digester();
+        var digester = new Sha1Digester();
         final byte[] digest = digester.digest("this is a test of the emergency broadcasting system".getBytes());
         ensureEqual(20, digest.length);
     }
