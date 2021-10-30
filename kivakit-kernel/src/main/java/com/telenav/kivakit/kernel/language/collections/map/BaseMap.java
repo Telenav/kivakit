@@ -202,12 +202,14 @@ public class BaseMap<Key, Value> implements Map<Key, Value>
         }
     }
 
-    public void putIfNotNull(Key key, Value value)
+    public boolean putIfNotNull(Key key, Value value)
     {
-        if (value != null)
+        if (key != null && value != null)
         {
             put(key, value);
+            return true;
         }
+        return false;
     }
 
     @Override
