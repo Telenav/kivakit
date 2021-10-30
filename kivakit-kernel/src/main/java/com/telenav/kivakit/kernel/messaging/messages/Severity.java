@@ -52,7 +52,7 @@ public final class Severity extends Level implements Named
 
     public static final Severity CRITICAL = new Severity("Critical", 0.9);
 
-    public static Severity of(String name)
+    public static Severity parseSeverity(String name)
     {
         return severities.get(name);
     }

@@ -85,6 +85,16 @@ public class MultiMap<Key, Value> extends BaseMap<Key, ObjectList<Value>>
         getOrCreate(key).addAll(value);
     }
 
+    public boolean addIfNotNull(Key key, Value value)
+    {
+        if (key != null && value != null)
+        {
+            add(key, value);
+            return true;
+        }
+        return false;
+    }
+
     public ObjectList<Value> flatValues()
     {
         var values = new ObjectList<Value>();
