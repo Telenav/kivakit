@@ -1,7 +1,7 @@
 package com.telenav.kivakit.kernel.language.traits;
 
 import com.telenav.kivakit.kernel.interfaces.code.Unchecked;
-import com.telenav.kivakit.kernel.interfaces.code.UncheckedMethod;
+import com.telenav.kivakit.kernel.interfaces.code.UncheckedVoid;
 import com.telenav.kivakit.kernel.messaging.Broadcaster;
 
 public interface TryTrait extends Broadcaster
@@ -19,7 +19,7 @@ public interface TryTrait extends Broadcaster
         }
     }
 
-    default void tryCatch(UncheckedMethod code, String message, Object... arguments)
+    default void tryCatch(UncheckedVoid code, String message, Object... arguments)
     {
         try
         {
@@ -56,7 +56,7 @@ public interface TryTrait extends Broadcaster
         }
     }
 
-    default void tryFinally(UncheckedMethod code, Runnable after)
+    default void tryFinally(UncheckedVoid code, Runnable after)
     {
         try
         {

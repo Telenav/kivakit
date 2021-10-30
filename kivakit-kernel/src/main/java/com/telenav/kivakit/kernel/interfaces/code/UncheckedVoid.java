@@ -9,14 +9,14 @@ import com.telenav.kivakit.kernel.logging.LoggerFactory;
  * @author jonathanl (shibo)
  */
 @FunctionalInterface
-public interface UncheckedMethod
+public interface UncheckedVoid
 {
     Logger LOGGER = LoggerFactory.newLogger();
 
-    static UncheckedMethod of(UncheckedMethod code)
+    static UncheckedVoid of(UncheckedVoid code)
     {
         return code;
     }
 
-    void run();
+    void run() throws Exception;
 }

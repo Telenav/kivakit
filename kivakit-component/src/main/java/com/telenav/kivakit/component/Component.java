@@ -6,7 +6,6 @@ import com.telenav.kivakit.configuration.settings.Settings;
 import com.telenav.kivakit.configuration.settings.SettingsTrait;
 import com.telenav.kivakit.configuration.settings.deployment.Deployment;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.kernel.interfaces.code.Unchecked;
 import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.language.paths.PackagePathTrait;
 import com.telenav.kivakit.kernel.language.traits.TryTrait;
@@ -90,12 +89,4 @@ public interface Component extends
         TryTrait,
         ResourceTrait
 {
-    class UncheckedVoid implements Unchecked<Void>
-    {
-        @Override
-        public Void run()
-        {
-            return null;
-        }
-    }
 }

@@ -155,7 +155,6 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  * @see SwitchParser
  * @see ArgumentParser
  */
-@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramApplication.class)
 @LexakaiJavadoc(complete = true)
 public abstract class Application extends BaseComponent implements Named, ApplicationMetadata
@@ -452,7 +451,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
             {
                 // then load properties from the resource
                 var resourceIdentifier = Strip.leading(argument, "-switches=");
-                var resource = Resource.resolve(resourceIdentifier);
+                var resource = Resource.resolve(this, resourceIdentifier);
                 var properties = PropertyMap.load(this, resource);
 
                 // and add those properties to the argument list
