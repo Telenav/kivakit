@@ -28,6 +28,7 @@ import com.telenav.kivakit.kernel.language.strings.Strings;
 import com.telenav.kivakit.kernel.language.strings.Strip;
 import com.telenav.kivakit.kernel.language.vm.OperatingSystem;
 import com.telenav.kivakit.kernel.messaging.Listener;
+import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourcePath;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -66,7 +67,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  * <p><b>Parsing</b></p>
  *
  * <ul>
- *     <li>{@link #parseFilePath(String)} - The given string as a file path</li>
+ *     <li>{@link #parseFilePath(String, Object...)} - The given string as a file path</li>
  * </ul>
  *
  * <p><b>Factories</b></p>
@@ -146,7 +147,7 @@ public class FilePath extends ResourcePath
      */
     public static FilePath filePath(java.nio.file.Path path)
     {
-        return filePath(path.toUri());
+        return filePath(path.toUri()).withoutFileScheme();
     }
 
     /**
@@ -164,20 +165,22 @@ public class FilePath extends ResourcePath
      */
     public static FilePath filePath(StringPath path)
     {
-        return new FilePath(null, path);
+        return new FilePath(StringList.stringList(), path);
     }
 
     /**
      * @return A file path for the given string
      */
-    public static FilePath parseFilePath(String path)
+    public static FilePath parseFilePath(String path, Object... arguments)
     {
         if (path.isBlank())
         {
             return empty();
         }
 
-        if (path.contains("\\${"))
+        path = Message.format(path, arguments);
+
+        if (path.contains("${"))
         {
             var elements = StringList.split(path, "/");
             return filePath(StringPath.stringPath(elements)).withoutFileScheme();
@@ -481,6 +484,11 @@ public class FilePath extends ResourcePath
         return (FilePath) super.withRoot(root);
     }
 
+    public FilePath withScheme(String scheme)
+    {
+        return withSchemes(StringList.stringList(scheme));
+    }
+
     public FilePath withSchemes(StringList scheme)
     {
         return (FilePath) super.withSchemes(scheme);
@@ -581,6 +589,15 @@ public class FilePath extends ResourcePath
     public FilePath withoutSuffix(Path<String> suffix)
     {
         return (FilePath) super.withoutSuffix(suffix);
+    }
+
+    public FilePath withoutTrailingSlash()
+    {
+        if (last().equals(""))
+        {
+            return first(size() - 1);
+        }
+        return this;
     }
 
     /**

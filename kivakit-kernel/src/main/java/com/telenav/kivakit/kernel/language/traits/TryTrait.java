@@ -14,8 +14,20 @@ public interface TryTrait extends Broadcaster
         }
         catch (Exception e)
         {
-            problem(message, arguments);
+            problem(e, message, arguments);
             return null;
+        }
+    }
+
+    default void tryCatch(UncheckedMethod code, String message, Object... arguments)
+    {
+        try
+        {
+            code.run();
+        }
+        catch (Exception e)
+        {
+            problem(e, message, arguments);
         }
     }
 

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.project;
 
-import com.telenav.cactus.build.metadata.Metadata;
+import com.telenav.cactus.build.metadata.BuildMetadata;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.language.primitives.Ints;
@@ -51,17 +51,17 @@ public class Build implements Named
      */
     public static Build build(Class<?> project)
     {
-        return new Build(Metadata.of(project));
+        return new Build(BuildMetadata.of(project));
     }
 
     /** The metadata for this build */
-    private Metadata metadata;
+    private BuildMetadata metadata;
 
     protected Build()
     {
     }
 
-    private Build(Metadata metadata)
+    private Build(final BuildMetadata metadata)
     {
         this.metadata = metadata;
     }
@@ -79,7 +79,7 @@ public class Build implements Named
      */
     public int epochDay()
     {
-        return Metadata.KIVAKIT_EPOCH_DAY + number();
+        return BuildMetadata.KIVAKIT_EPOCH_DAY + number();
     }
 
     /**

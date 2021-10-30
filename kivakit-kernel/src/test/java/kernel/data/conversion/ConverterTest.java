@@ -150,17 +150,17 @@ public class ConverterTest
     @Test
     public void testVersionConverter()
     {
-        ensureEqual(new VersionConverter(LOGGER).convert("3.0"), Version.parse("3.0"));
-        ensureEqual(new VersionConverter(LOGGER).convert("3.0.1"), Version.parse("3.0.1"));
-        ensureEqual(new VersionConverter(LOGGER).convert("3.0.1-alpha"), Version.parse("3.0.1-alpha"));
-        ensureEqual(new VersionConverter(LOGGER).convert("3.0.1-alpha-SNAPSHOT"), Version.parse("3.0.1-alpha-SNAPSHOT"));
-        ensureEqual(new VersionConverter(LOGGER).convert("3.0.1-beta"), Version.parse("3.0.1-beta"));
-        ensureEqual(new VersionConverter(LOGGER).convert("3.0.1-beta-SNAPSHOT"), Version.parse("3.0.1-beta-SNAPSHOT"));
-        ensureEqual(new VersionConverter(LOGGER).convert("3.0.1-rc"), Version.parse("3.0.1-rc"));
-        ensureEqual(new VersionConverter(LOGGER).convert("3.0.1-rc-SNAPSHOT"), Version.parse("3.0.1-rc-SNAPSHOT"));
-        ensureEqual(new VersionConverter(LOGGER).convert("3.0.1-final"), Version.parse("3.0.1-final"));
-        ensureEqual(new VersionConverter(LOGGER).convert("3.0.1-final-SNAPSHOT"), Version.parse("3.0.1-final-SNAPSHOT"));
-        ensureEqual(new VersionConverter(LOGGER).convert("3.0.1-m1"), Version.parse("3.0.1-m1"));
-        ensureEqual(new VersionConverter(LOGGER).convert("3.0-SNAPSHOT"), Version.parse("3.0-SNAPSHOT"));
+        ensureEqual(new VersionConverter(LOGGER).convert("3.0"), Version.parse(LOGGER, "3.0"));
+        ensureEqual(new VersionConverter(LOGGER).convert("3.0.1"), Version.parse(LOGGER, "3.0.1"));
+        ensureEqual(new VersionConverter(LOGGER).convert("3.0.1-alpha"), Version.parse(LOGGER, "3.0.1-alpha"));
+        ensureEqual(new VersionConverter(LOGGER).convert("3.0.1-alpha-SNAPSHOT"), Version.parse(LOGGER, "3.0.1-alpha-SNAPSHOT"));
+        ensureEqual(new VersionConverter(LOGGER).convert("3.0.1-beta"), Version.parse(LOGGER, "3.0.1-beta"));
+        ensureEqual(new VersionConverter(LOGGER).convert("3.0.1-beta-SNAPSHOT"), Version.parse(LOGGER, "3.0.1-beta-SNAPSHOT"));
+        ensureEqual(new VersionConverter(LOGGER).convert("3.0.1-rc"), Version.parse(LOGGER, "3.0.1-rc"));
+        ensureEqual(new VersionConverter(LOGGER).convert("3.0.1-rc-SNAPSHOT"), Version.parse(LOGGER, "3.0.1-rc-SNAPSHOT"));
+        ensureEqual(new VersionConverter(LOGGER).convert("3.0.1-final"), Version.parse(LOGGER, "3.0.1-final"));
+        ensureEqual(new VersionConverter(LOGGER).convert("3.0.1-final-SNAPSHOT"), Version.parse(LOGGER, "3.0.1-final-SNAPSHOT"));
+        ensureEqual(new VersionConverter(LOGGER).convert("3.0.1-m1"), Version.parse(LOGGER, "3.0.1-m1"));
+        ensureEqual(new VersionConverter(LOGGER).convert("3.0-SNAPSHOT"), Version.parse(LOGGER, "3.0-SNAPSHOT"));
     }
 }

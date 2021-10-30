@@ -20,8 +20,9 @@ package com.telenav.kivakit.kernel.interfaces.comparison;
 
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramInterfaceComparison;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.HashSet;
+import java.util.IdentityHashMap;
 import java.util.Set;
 
 /**
@@ -39,11 +40,11 @@ import java.util.Set;
 @UmlClassDiagram(diagram = DiagramInterfaceComparison.class)
 public class MatcherSet<T> implements Matcher<T>
 {
-    private final Set<Matcher<T>> matchers = new HashSet<>();
+    private final IdentityHashMap<Matcher<T>, Boolean> matchers = new IdentityHashMap<>();
 
-    public MatcherSet<T> add(Matcher<T> matcher)
+    public MatcherSet<T> add(final Matcher<T> matcher)
     {
-        matchers.add(matcher);
+        matchers.put(matcher, true);
         return this;
     }
 
@@ -51,7 +52,7 @@ public class MatcherSet<T> implements Matcher<T>
     {
         return value ->
         {
-            for (Matcher<T> matcher : matchers)
+            for (final Matcher<T> matcher : matchers())
             {
                 if (!matcher.matches(value))
                 {
@@ -66,7 +67,7 @@ public class MatcherSet<T> implements Matcher<T>
     {
         return value ->
         {
-            for (Matcher<T> matcher : matchers)
+            for (final Matcher<T> matcher : matchers())
             {
                 if (matcher.matches(value))
                 {
@@ -77,8 +78,15 @@ public class MatcherSet<T> implements Matcher<T>
         };
     }
 
+    public MatcherSet<T> copy()
+    {
+        var copy = new MatcherSet<T>();
+        copy.matchers.putAll(matchers);
+        return copy;
+    }
+
     @Override
-    public boolean matches(T value)
+    public boolean matches(final T value)
     {
         return anyMatches().matches(value);
     }
@@ -87,7 +95,7 @@ public class MatcherSet<T> implements Matcher<T>
     {
         return value ->
         {
-            for (Matcher<T> matcher : matchers)
+            for (final Matcher<T> matcher : matchers())
             {
                 if (matcher.matches(value))
                 {
@@ -96,5 +104,11 @@ public class MatcherSet<T> implements Matcher<T>
             }
             return true;
         };
+    }
+
+    @NotNull
+    private Set<Matcher<T>> matchers()
+    {
+        return matchers.keySet();
     }
 }

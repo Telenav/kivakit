@@ -25,6 +25,8 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import static com.telenav.kivakit.network.core.NetworkAccessConstraints.DEFAULT;
+
 /**
  * A resource accessed by HTTPS GET at the given network location using the given access constraints.
  *
@@ -42,7 +44,12 @@ public class SecureHttpGetResource extends HttpGetResource
         super(location, constraints);
     }
 
-    public void ignoreInvalidCertificates(boolean ignore)
+    public SecureHttpGetResource(final SecureHttpNetworkLocation location)
+    {
+        super(location, DEFAULT);
+    }
+
+    public void ignoreInvalidCertificates(final boolean ignore)
     {
         ignoreInvalidCertificates = ignore;
     }

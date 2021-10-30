@@ -43,6 +43,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 /**
  * A base implementation of the {@link Resource} interface. Adds the following methods:
@@ -179,6 +180,17 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
     }
 
     @Override
+    public boolean equals(final Object object)
+    {
+        if (object instanceof BaseReadableResource)
+        {
+            BaseReadableResource that = (BaseReadableResource) object;
+            return this.path.equals(that.path);
+        }
+        return false;
+    }
+
+    @Override
     public boolean exists()
     {
         try
@@ -203,6 +215,12 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
         {
             return false;
         }
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(path);
     }
 
     // Ensure the remote resource is locally accessible

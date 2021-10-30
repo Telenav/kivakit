@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.values.version;
 
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.Release;
 
 import java.util.Objects;
@@ -32,8 +33,8 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
  * <p><b>Parsing</b></p>
  *
  * <p>
- * Versions can be created by parsing a {@link String} with {@link #parse(String)} as well as by using the of() factory
- * methods, passing in major, minor, patch and release values.
+ * Versions can be created by parsing a {@link String} with {@link #parse(Listener, String)} as well as by using the
+ * of() factory methods, passing in major, minor, patch and release values.
  * </p>
  *
  * <p><b>Information</b></p>
@@ -125,7 +126,7 @@ public class Version
      * @return The given text, of the form [major].[minor](.[revision)?(-release)?, parsed as a {@link Version} object,
      * or null if the text is not of that form.
      */
-    public static Version parse(String text)
+    public static Version parse(Listener listener, String text)
     {
         // If the text matches the version pattern,
         var matcher = PATTERN.matcher(text);
@@ -148,6 +149,7 @@ public class Version
             return of(major, minor, patchNumber, release, snapshot);
         }
 
+        listener.problem("Could not parse version: $", text);
         return null;
     }
 

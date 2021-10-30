@@ -79,11 +79,21 @@ public class Registry implements RegistryTrait
     private static final Registry GLOBAL = new Registry();
 
     /**
+     * NOTE: This method should only be called from static methods
+     *
+     * @return The global registry
+     */
+    public static Registry global()
+    {
+        return GLOBAL;
+    }
+
+    /**
      * @return The lookup for the given object
      */
     public static Registry of(Object object)
     {
-        return GLOBAL;
+        return global();
     }
 
     /** Map from class and instance to type for multi-instance objects */

@@ -31,12 +31,11 @@ import java.util.Map;
  * A bounded map from string to value which supports variable interpolation into a string via {@link #expand(String)}.
  * For example, a {@link VariableMap} of {@link Integer}s might have the entries "x=9" and "y=3" in it. In this case,
  * interpolate("${x} = ${y}") would yield the string "9 = 3". An example use of this class can be found in
- * File.withVariables( VariableMap&lt;?&gt; variables), which substitutes the name of the file with values from the
+ * File.withVariables(VariableMap&lt;?&gt; variables), which substitutes the name of the file with values from the
  * variable map.
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("unchecked")
 @UmlClassDiagram(diagram = DiagramLanguageCollectionsMap.class)
 public class VariableMap<Value> extends BaseStringMap<Value>
 {
@@ -105,7 +104,7 @@ public class VariableMap<Value> extends BaseStringMap<Value>
      */
     public VariableMap<String> doubleQuoted()
     {
-        var quoted = new VariableMap<String>();
+        var quoted = newStringMap();
         for (var key : keySet())
         {
             quoted.add("\"" + key + "\"", "\"" + get(key) + "\"");
@@ -189,8 +188,8 @@ public class VariableMap<Value> extends BaseStringMap<Value>
      */
     public VariableMap<String> expanded()
     {
-        var expanded = new VariableMap<String>();
-        for (var key : new HashSet<>(keySet()))
+        final var expanded = newStringMap();
+        for (final var key : new HashSet<>(keySet()))
         {
             var value = get(key);
             expanded.put(key, expand(value.toString()));
@@ -203,15 +202,20 @@ public class VariableMap<Value> extends BaseStringMap<Value>
      */
     public VariableMap<String> withQuotedValues()
     {
-        var quoted = new VariableMap<String>();
-        for (var key : keySet())
+        final var quoted = newStringMap();
+        for (final var key : keySet())
         {
             quoted.add(key, "'" + get(key) + "'");
         }
         return quoted;
     }
 
-    private boolean isVariableCharacter(char character)
+    protected VariableMap<String> newStringMap()
+    {
+        return new VariableMap<>();
+    }
+
+    private boolean isVariableCharacter(final char character)
     {
         return Character.isLetterOrDigit(character) || character == '.' || character == '_' || character == '-';
     }

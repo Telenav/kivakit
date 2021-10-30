@@ -300,6 +300,16 @@ public abstract class Path<Element extends Comparable<Element>> implements
         return withoutLast();
     }
 
+    public Element pop()
+    {
+        return elements.pop();
+    }
+
+    public void push(Element element)
+    {
+        elements.push(element);
+    }
+
     /**
      * @return The root path if this path is absolute or null if it is relative
      */
@@ -466,6 +476,10 @@ public abstract class Path<Element extends Comparable<Element>> implements
                 return isAbsolute() ? root() : emptyPath();
 
             default:
+                if ("".equals(last()))
+                {
+                    return subpath(0, size() - 2);
+                }
                 return subpath(0, size() - 1);
         }
     }
@@ -542,7 +556,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     /**
      * @return A copy of this path
      */
-    protected Path<Element> copy()
+    protected final Path<Element> copy()
     {
         return onCopy(root, elements);
     }

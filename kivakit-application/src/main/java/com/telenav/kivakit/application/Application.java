@@ -97,7 +97,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  * <pre>
  * public static class MyApplication extends Application
  * {
- *     public static void main( String[] arguments)
+ *     public static void main(String[] arguments)
  *     {
  *         new MyApplication().run(arguments);
  *     }

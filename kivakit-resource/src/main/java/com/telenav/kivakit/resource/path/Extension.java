@@ -139,6 +139,12 @@ public class Extension implements Named
 
     public static final Extension CLASS = parse(".class");
 
+    public static final Extension XML = parse(".xml");
+
+    public static final Extension MD5 = parse(".md5");
+
+    public static final Extension SHA1 = parse(".sha1");
+
     public static List<Extension> archive()
     {
         List<Extension> executable = new ArrayList<>();
@@ -195,7 +201,7 @@ public class Extension implements Named
 
     public static Extension parse(String value)
     {
-        if (value.matches("(\\.[A-Za-z]+)+"))
+        if (value.matches("(\\.[A-Za-z0-9]+)+"))
         {
             return new Extension(value);
         }
@@ -311,6 +317,11 @@ public class Extension implements Named
     public String toString()
     {
         return "." + extension;
+    }
+
+    public Extension withExtension(Extension extension)
+    {
+        return new Extension(this.extension + extension);
     }
 
     Count length()

@@ -56,7 +56,6 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -83,7 +82,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  * <p><b>Factory Methods</b></p>
  *
  * <ul>
- *     <li>{@link #parse(String)} - A folder for the given string</li>
+ *     <li>{@link #parse(String, Object...)} - A folder for the given string</li>
  *     <li>{@link #of(URI)} - A folder for the given URI</li>
  *     <li>{@link #of(URL)} - A folder for the given URL</li>
  *     <li>{@link #of(java.io.File)} - A folder for the given Java file</li>
@@ -140,7 +139,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  *     <li>{@link #relativePath(Folder)} - The relative of this path with respect to the given folder</li>
  *     <li>{@link #root()} - The root folder of this folder</li>
  *     <li>{@link #file(File)} - The given file relative to this folder</li>
- *     <li>{@link #file(String)} - The file with the given name in this folder</li>
+ *     <li>{@link #file(String, Object...)} - The file with the given name in this folder</li>
  *     <li>{@link #file(FileName)} - The file with the given name in this folder</li>
  *     <li>{@link #file(FilePath)} - The file with the given relative path to this folder</li>
  *     <li>{@link #folder(Folder)} - The folder relative to this folder</li>
@@ -336,13 +335,13 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
                 .description("Output folder to write to");
     }
 
-    public static Folder parse(String path)
+    public static Folder parse(String path, Object... arguments)
     {
         if (Strings.isEmpty(path))
         {
             return null;
         }
-        var filePath = FilePath.parseFilePath(path);
+        final var filePath = FilePath.parseFilePath(path, arguments);
         return filePath == null ? null : new Folder(filePath);
     }
 
@@ -507,11 +506,16 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
     {
         try
         {
-            return new URI(folder().path().toString());
+            var path = path();
+            if (!path.hasScheme())
+            {
+                path = path.withScheme("file");
+            }
+            return new URI(Strings.ensureEndsWith(path.toString(), "/"));
         }
-        catch (URISyntaxException e)
+        catch (final Exception e)
         {
-            throw new IllegalStateException("Cannot convert " + this + " to URI", e);
+            throw problem(e, "Cannot convert to URI: $", this).asException();
         }
     }
 
@@ -519,11 +523,11 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
     {
         try
         {
-            return asUri().toURL();
+            return withTrailingSlash().asUri().toURL();
         }
-        catch (MalformedURLException e)
+        catch (final Exception e)
         {
-            return null;
+            throw problem(e, "Folder could not be converted to a URL: $", this).asException();
         }
     }
 
@@ -737,9 +741,9 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         }
     }
 
-    public File file(String path)
+    public File file(final String path, Object... arguments)
     {
-        return file(FilePath.parseFilePath(path));
+        return file(FilePath.parseFilePath(path, arguments));
     }
 
     public FileList files()
@@ -827,6 +831,11 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         Collections.sort(folders);
         trace("Folders in $: $", this, folders);
         return folders;
+    }
+
+    public boolean hasTrailingSlash()
+    {
+        return "".equals(last().toString());
     }
 
     @Override
@@ -1110,6 +1119,15 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
     public URI uri()
     {
         return path().uri();
+    }
+
+    public Folder withTrailingSlash()
+    {
+        if (hasTrailingSlash())
+        {
+            return this;
+        }
+        return new Folder(path().withChild(""));
     }
 
     FolderService service()

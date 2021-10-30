@@ -10,6 +10,8 @@ import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
+import java.util.List;
+
 /**
  * A stateful {@link Mixin} that can be used when a class can't extend {@link BaseRepeater} to implement the {@link
  * Repeater} interface.
@@ -36,6 +38,14 @@ public interface RepeaterMixin extends Repeater, Mixin
     default void clearListeners()
     {
         repeater().clearListeners();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    default void copyListeners(Broadcaster broadcaster)
+    {
+        repeater().copyListeners(broadcaster);
     }
 
     /**
@@ -81,6 +91,15 @@ public interface RepeaterMixin extends Repeater, Mixin
     default boolean isTransmitting()
     {
         return repeater().isTransmitting();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    default List<Listener> listeners()
+    {
+        return repeater().listeners();
     }
 
     /**

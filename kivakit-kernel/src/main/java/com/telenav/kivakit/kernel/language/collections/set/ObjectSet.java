@@ -61,6 +61,15 @@ public class ObjectSet<T> extends BaseSet<T>
         this(Maximum.MAXIMUM);
     }
 
+    public ObjectSet<T> addIfNotNull(T object)
+    {
+        if (object != null)
+        {
+            add(object);
+        }
+        return this;
+    }
+
     @Override
     public ObjectSet<T> copy()
     {

@@ -756,6 +756,11 @@ public abstract class BaseList<Element> implements
         return instance;
     }
 
+    public Element pop()
+    {
+        return removeLast();
+    }
+
     /**
      * Prepends the given element to the front of this list
      */
@@ -772,6 +777,11 @@ public abstract class BaseList<Element> implements
             add(0, element);
         }
         return this;
+    }
+
+    public void push(Element element)
+    {
+        append(element);
     }
 
     /**
