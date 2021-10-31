@@ -82,11 +82,11 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  * <p><b>Factory Methods</b></p>
  *
  * <ul>
- *     <li>{@link #parse(String, Object...)} - A folder for the given string</li>
- *     <li>{@link #of(URI)} - A folder for the given URI</li>
- *     <li>{@link #of(URL)} - A folder for the given URL</li>
- *     <li>{@link #of(java.io.File)} - A folder for the given Java file</li>
- *     <li>{@link #of(Path)} - A folder for the given NIO path</li>
+ *     <li>{@link #parse(Listener, String)} - A folder for the given string</li>
+ *     <li>{@link #from(URI)} - A folder for the given URI</li>
+ *     <li>{@link #from(URL)} - A folder for the given URL</li>
+ *     <li>{@link #from(java.io.File)} - A folder for the given Java file</li>
+ *     <li>{@link #from(Path)} - A folder for the given NIO path</li>
  * </ul>
  *
  * <p><b>Locations</b></p>
@@ -144,7 +144,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  *     <li>{@link #file(FilePath)} - The file with the given relative path to this folder</li>
  *     <li>{@link #folder(Folder)} - The folder relative to this folder</li>
  *     <li>{@link #folder(String)} - The folder with the given name in this folder</li>
- *     <li>{@link #of(FileName)} - The folder in this folder with the given filename </li>
+ *     <li>{@link #from(FileName)} - The folder in this folder with the given filename </li>
  *     <li>{@link #Folder(FilePath)} - The folder with the given relative path to this folder</li>
  * </ul>
  *
@@ -205,7 +205,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
     {
         try
         {
-            return Folder.parse(new java.io.File(".").getCanonicalPath());
+            return Folder.parse(LOGGER, new java.io.File(".").getCanonicalPath());
         }
         catch (IOException e)
         {
@@ -218,39 +218,43 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         return userHome().folder("Desktop");
     }
 
-    public static ArgumentParser.Builder<Folder> folderArgumentParser(String description)
+    public static ArgumentParser.Builder<Folder> folderArgumentParser(Listener listener,
+                                                                      String description)
     {
         return ArgumentParser.builder(Folder.class)
-                .converter(new Folder.Converter(LOGGER))
+                .converter(new Folder.Converter(listener))
                 .description(description);
     }
 
-    public static ArgumentParser.Builder<FolderList> folderListArgumentParser(String description)
+    public static ArgumentParser.Builder<FolderList> folderListArgumentParser(Listener listener,
+                                                                              String description)
     {
         return ArgumentParser.builder(FolderList.class)
-                .converter(new FolderList.Converter(LOGGER))
+                .converter(new FolderList.Converter(listener))
                 .description(description);
     }
 
-    public static SwitchParser.Builder<FolderList> folderListSwitchParser(String name, String description)
+    public static SwitchParser.Builder<FolderList> folderListSwitchParser(Listener listener,
+                                                                          String name, String description)
     {
         return SwitchParser.builder(FolderList.class)
                 .name(name)
-                .converter(new FolderList.Converter(LOGGER))
+                .converter(new FolderList.Converter(listener))
                 .description(description);
     }
 
-    public static SwitchParser.Builder<Folder> folderSwitchParser(String name, String description)
+    public static SwitchParser.Builder<Folder> folderSwitchParser(Listener listener,
+                                                                  String name, String description)
     {
         return SwitchParser.builder(Folder.class)
                 .name(name)
-                .converter(new Folder.Converter(LOGGER))
+                .converter(new Folder.Converter(listener))
                 .description(description);
     }
 
-    public static SwitchParser.Builder<Folder> inputFolderSwitchParser()
+    public static SwitchParser.Builder<Folder> inputFolderSwitchParser(Listener listener)
     {
-        return folderSwitchParser("input-folder", "Input folder to process");
+        return folderSwitchParser(listener, "input-folder", "Input folder to process");
     }
 
     public static boolean isFolder(FilePath path)
@@ -260,7 +264,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
 
     public static Folder kivakitCache()
     {
-        return Folder.of(KivaKit.get().cacheFolderPath()).mkdirs();
+        return Folder.from(KivaKit.get().cacheFolderPath()).mkdirs();
     }
 
     public static Folder kivakitExtensionsHome()
@@ -273,7 +277,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         var home = KivaKit.get().homeFolderPath();
         if (home != null)
         {
-            return Folder.of(home);
+            return Folder.from(home);
         }
         return fail("Cannot find KivaKit home folder");
     }
@@ -288,36 +292,36 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         return kivakitTemporary().folder("test").folder(type.getSimpleName()).mkdirs();
     }
 
-    public static Folder of(FileName filename)
+    public static Folder from(FileName filename)
     {
-        return parse(filename.name());
+        return parse(LOGGER, filename.name());
     }
 
-    public static Folder of(Path path)
+    public static Folder from(Path path)
     {
-        return parse(path.toString());
+        return parse(LOGGER, path.toString());
     }
 
-    public static Folder of(FilePath path)
+    public static Folder from(FilePath path)
     {
-        return parse(path.toString());
+        return parse(LOGGER, path.toString());
     }
 
-    public static Folder of(java.io.File file)
+    public static Folder from(java.io.File file)
     {
-        return of(file.toPath());
+        return from(file.toPath());
     }
 
-    public static Folder of(URI uri)
+    public static Folder from(URI uri)
     {
-        return of(new java.io.File(uri));
+        return from(new java.io.File(uri));
     }
 
-    public static Folder of(URL url)
+    public static Folder from(URL url)
     {
         try
         {
-            return of(url.toURI());
+            return from(url.toURI());
         }
         catch (URISyntaxException e)
         {
@@ -327,21 +331,21 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
     }
 
     // Note that this switch parser ensures that the folder exists
-    public static SwitchParser.Builder<Folder> outputFolderSwitchParser()
+    public static SwitchParser.Builder<Folder> outputFolderSwitchParser(Listener listener)
     {
         return SwitchParser.builder(Folder.class)
                 .name("output-folder")
-                .converter(new Folder.Converter(LOGGER, true))
+                .converter(new Folder.Converter(listener, true))
                 .description("Output folder to write to");
     }
 
-    public static Folder parse(String path, Object... arguments)
+    public static Folder parse(Listener listener, String path)
     {
         if (Strings.isEmpty(path))
         {
             return null;
         }
-        final var filePath = FilePath.parseFilePath(path, arguments);
+        var filePath = FilePath.parseFilePath(listener, path);
         return filePath == null ? null : new Folder(filePath);
     }
 
@@ -376,7 +380,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
 
     public static Folder userHome()
     {
-        return Folder.parse(System.getProperty("user.home"));
+        return Folder.parse(LOGGER, System.getProperty("user.home"));
     }
 
     /**
@@ -423,7 +427,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         @Override
         protected Folder onToValue(String value)
         {
-            var path = FilePath.parseFilePath(value);
+            var path = FilePath.parseFilePath(this, value);
             var folder = new Folder(path);
             if (ensureExists)
             {
@@ -445,13 +449,13 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         @Override
         public boolean accepts(ResourceFolderIdentifier identifier)
         {
-            return Folder.parse(identifier.identifier()) != null;
+            return Folder.parse(this, identifier.identifier()) != null;
         }
 
         @Override
         public ResourceFolder resolve(ResourceFolderIdentifier identifier)
         {
-            return Folder.parse(identifier.identifier());
+            return Folder.parse(this, identifier.identifier());
         }
     }
 
@@ -743,7 +747,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
 
     public File file(final String path, Object... arguments)
     {
-        return file(FilePath.parseFilePath(path, arguments));
+        return file(FilePath.parseFilePath(this, path, arguments));
     }
 
     public FileList files()
@@ -758,7 +762,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
 
     public FileList files(String globPattern)
     {
-        return files(FileGlobPattern.parse(globPattern));
+        return files(FileGlobPattern.parse(this, globPattern));
     }
 
     public FileList files(Matcher<File> matcher)
@@ -791,7 +795,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         {
             return this;
         }
-        var childFolder = Folder.parse(child);
+        var childFolder = Folder.parse(this, child);
         return childFolder == null ? null : folder(childFolder);
     }
 
@@ -885,7 +889,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
 
     public Folder last()
     {
-        return Folder.parse(path().last());
+        return Folder.parse(this, path().last());
     }
 
     @Override
@@ -1020,7 +1024,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
 
         var start = Time.now();
         information("Safely copying $ to $", this, destination);
-        var temporary = destination.parent().temporary(FileName.parse("temporary-copy"));
+        var temporary = destination.parent().temporary(FileName.parse(this, "temporary-copy"));
         for (var file : nestedFiles(matcher))
         {
             file.copyTo(temporary.file(file.relativeTo(this)), mode, reporter);

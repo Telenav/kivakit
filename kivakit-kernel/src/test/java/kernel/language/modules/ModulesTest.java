@@ -21,6 +21,8 @@ package kernel.language.modules;
 import com.telenav.kivakit.kernel.language.modules.Modules;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.kernel.logging.Logger;
+import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import org.junit.Test;
 
 import java.nio.file.Path;
@@ -36,11 +38,13 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
 @SuppressWarnings("ConstantConditions")
 public class ModulesTest
 {
+    private static final Logger LOGGER = LoggerFactory.newLogger();
+
     @Test
     public void testAllNestedResources()
     {
-        var a = PackagePath.parsePackagePath(getClass(), "resources.a");
-        var resources = Modules.allNestedResources(a);
+        var a = PackagePath.parsePackagePath(LOGGER, getClass(), "resources.a");
+        var resources = Modules.allNestedResources(LOGGER, a);
         ensureEqual(resources.size(), 2);
         var filenames = new HashSet<Path>();
         filenames.add(resources.get(0).fileNameAsJavaPath());
@@ -54,8 +58,8 @@ public class ModulesTest
     @Test
     public void testNestedResources()
     {
-        var a = PackagePath.parsePackagePath(getClass(), "resources.a");
-        var resources = Modules.nestedResources(a, resource -> resource.fileNameAsJavaPath().equals(Path.of("b.txt")));
+        var a = PackagePath.parsePackagePath(LOGGER, getClass(), "resources.a");
+        var resources = Modules.nestedResources(LOGGER, a, resource -> resource.fileNameAsJavaPath().equals(Path.of("b.txt")));
         ensureEqual(resources.size(), 1);
         ensureEqual(resources.get(0).fileNameAsJavaPath(), Path.of("b.txt"));
         ensure(resources.get(0).size().isGreaterThan(Bytes._0));
@@ -66,7 +70,7 @@ public class ModulesTest
     {
         var _package = PackagePath.packagePath(getClass());
         var path = _package.withChild("resources/a/a.txt");
-        var resource = Modules.resource(path);
+        var resource = Modules.resource(LOGGER, path);
         ensureNotNull(resource);
         ensureEqual(resource.fileNameAsJavaPath(), Path.of("a.txt"));
         ensureEqual(resource.packagePath(), _package.withChild("resources").withChild("a"));
@@ -76,8 +80,8 @@ public class ModulesTest
     @Test
     public void testResources()
     {
-        var a = PackagePath.parsePackagePath(getClass(), "resources.a");
-        var resources = Modules.resources(a);
+        var a = PackagePath.parsePackagePath(LOGGER, getClass(), "resources.a");
+        var resources = Modules.resources(LOGGER, a);
         ensureEqual(resources.size(), 1);
         ensureEqual(resources.get(0).fileNameAsJavaPath(), Path.of("a.txt"));
         ensure(resources.get(0).size().isGreaterThan(Bytes._0));

@@ -19,6 +19,8 @@
 package kernel.path;
 
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
+import com.telenav.kivakit.kernel.logging.Logger;
+import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 
@@ -28,6 +30,8 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureFal
 
 public class PackagePathTest
 {
+    private static final Logger LOGGER = LoggerFactory.newLogger();
+
     @Test
     public void testAppend()
     {
@@ -149,6 +153,6 @@ public class PackagePathTest
     @NotNull
     private PackagePath path(String path)
     {
-        return PackagePath.parsePackagePath(path);
+        return PackagePath.parsePackagePath(LOGGER, path);
     }
 }

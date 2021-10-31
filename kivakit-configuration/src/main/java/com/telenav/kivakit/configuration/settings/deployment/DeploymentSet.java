@@ -51,22 +51,18 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
 @UmlClassDiagram(diagram = DiagramConfiguration.class)
 public class DeploymentSet extends BaseRepeater
 {
-    public static DeploymentSet create()
-    {
-        return new DeploymentSet();
-    }
-
     /**
      * Loads all deployments in the root package 'deployments' and in any folder specified by
      * KIVAKIT_DEPLOYMENT_FOLDER.
      */
+    @SuppressWarnings("ConstantConditions")
     public static DeploymentSet load(Listener listener, Class<?> relativeTo)
     {
         // Create an empty set of deployments,
-        var deployments = listener.listenTo(DeploymentSet.create());
+        var deployments = listener.listenTo(new DeploymentSet());
 
         // and if there is a root package called 'deployments' in the application,
-        var settings = Package.of(relativeTo, "deployments");
+        var settings = Package.packageFrom(listener, relativeTo, "deployments");
         if (settings != null)
         {
             // then add all the deployments in that package,
@@ -74,7 +70,7 @@ public class DeploymentSet extends BaseRepeater
         }
 
         // and if a deployment folder was specified, and it exists,
-        var deploymentFolder = PropertyMap.of(JavaVirtualMachine.local().properties())
+        var deploymentFolder = PropertyMap.propertyMap(JavaVirtualMachine.local().properties())
                 .asFolder("KIVAKIT_DEPLOYMENT_FOLDER");
         if (deploymentFolder != null && deploymentFolder.exists())
         {
@@ -156,7 +152,7 @@ public class DeploymentSet extends BaseRepeater
 
     public DeploymentSet addDeploymentsIn(Class<?> relativeTo, String path)
     {
-        return addDeploymentsIn(PackagePath.parsePackagePath(relativeTo, path));
+        return addDeploymentsIn(PackagePath.parsePackagePath(this, relativeTo, path));
     }
 
     /**
@@ -168,7 +164,7 @@ public class DeploymentSet extends BaseRepeater
         for (var subPackage : path.subPackages())
         {
             // get description from deployment metadata,
-            String description = description(Package.of(subPackage).resource("Deployment.metadata"));
+            String description = description(Package.packageFrom(subPackage).resource("Deployment.metadata"));
 
             // create a deployment,
             var deployment = listenTo(new Deployment(subPackage.last(), description));
@@ -219,7 +215,7 @@ public class DeploymentSet extends BaseRepeater
 
     public SwitchParser.Builder<Deployment> switchParser(String name)
     {
-        return Deployment.deploymentSwitchParser(this, name);
+        return Deployment.deploymentSwitchParser(this, this, name);
     }
 
     private String description(Resource resource)

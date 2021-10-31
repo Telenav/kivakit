@@ -58,8 +58,8 @@ import java.util.function.Function;
  * <p><b>Parsing</b></p>
  *
  * <ul>
- *     <li>{@link #parseResourcePath(String)} - The given string as a resource path</li>
- *     <li>{@link #parseUnixResourcePath(String)} - The given string as a slash-separated UNIX resource path</li>
+ *     <li>{@link #parseResourcePath(Listener listener, String)} - The given string as a resource path</li>
+ *     <li>{@link #parseUnixResourcePath(Listener listener, String)} - The given string as a slash-separated UNIX resource path</li>
  * </ul>
  *
  * <p><b>Factories</b></p>
@@ -79,15 +79,15 @@ public class ResourcePath extends StringPath implements UriIdentified
     /**
      * @return A resource path for the given string
      */
-    public static ResourcePath parseResourcePath(String path)
+    public static ResourcePath parseResourcePath(Listener listener, String path)
     {
-        return FilePath.parseFilePath(path);
+        return FilePath.parseFilePath(listener, path);
     }
 
     /**
      * @return A UNIX-style resource path for the given string
      */
-    public static ResourcePath parseUnixResourcePath(String path)
+    public static ResourcePath parseUnixResourcePath(Listener listener, String path)
     {
         String root = null;
         if (path.startsWith("/"))
@@ -106,12 +106,13 @@ public class ResourcePath extends StringPath implements UriIdentified
         return new ResourcePath(new StringList(), path.rootElement(), path.elements());
     }
 
-    public static SwitchParser.Builder<ResourcePath> resourcePathSwitchParser(String name,
+    public static SwitchParser.Builder<ResourcePath> resourcePathSwitchParser(Listener listener,
+                                                                              String name,
                                                                               String description)
     {
         return SwitchParser.builder(ResourcePath.class)
                 .name(name)
-                .converter(new ResourcePath.Converter(LOGGER))
+                .converter(new ResourcePath.Converter(listener))
                 .description(description);
     }
 
@@ -131,7 +132,7 @@ public class ResourcePath extends StringPath implements UriIdentified
         @Override
         protected ResourcePath onToValue(String value)
         {
-            return parseResourcePath(value);
+            return parseResourcePath(this, value);
         }
     }
 
@@ -147,7 +148,14 @@ public class ResourcePath extends StringPath implements UriIdentified
     {
         super(root, elements);
 
-        this.schemes = schemes.copy();
+        if (schemes != null)
+        {
+            this.schemes = schemes.copy();
+        }
+        else
+        {
+            this.schemes = new StringList();
+        }
     }
 
     /**
@@ -170,7 +178,7 @@ public class ResourcePath extends StringPath implements UriIdentified
      */
     public File asFile()
     {
-        return File.parse(asString());
+        return File.parse(LOGGER, asString());
     }
 
     /**
@@ -178,7 +186,7 @@ public class ResourcePath extends StringPath implements UriIdentified
      */
     public FilePath asFilePath()
     {
-        return FilePath.parseFilePath(asString());
+        return FilePath.parseFilePath(LOGGER, asString());
     }
 
     /**
@@ -195,7 +203,7 @@ public class ResourcePath extends StringPath implements UriIdentified
     public FileName fileName()
     {
         var last = last();
-        return last == null ? null : FileName.parse(last);
+        return last == null ? null : FileName.parse(LOGGER, last);
     }
 
     /**

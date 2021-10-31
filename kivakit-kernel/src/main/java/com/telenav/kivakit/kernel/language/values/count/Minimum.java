@@ -224,7 +224,7 @@ public class Minimum extends Count
         return minimum(values.length);
     }
 
-    public static Minimum parse(String value)
+    public static Minimum parse(Listener listener, String value)
     {
         if (value.indexOf(',') > 0)
         {
@@ -249,7 +249,7 @@ public class Minimum extends Count
         @Override
         protected Minimum onToValue(String value)
         {
-            return parse(value);
+            return parse(this, value);
         }
     }
 

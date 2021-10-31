@@ -30,6 +30,8 @@ import com.telenav.kivakit.kernel.language.strings.CaseFormat;
 import com.telenav.kivakit.kernel.language.strings.Strip;
 import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.language.values.count.Maximum;
+import com.telenav.kivakit.kernel.logging.Logger;
+import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageCollectionsMap;
@@ -50,6 +52,8 @@ import static com.telenav.kivakit.kernel.language.reflection.property.IncludePro
 @UmlClassDiagram(diagram = DiagramLanguageCollectionsMap.class)
 public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implements PropertyValueSource
 {
+    private static final Logger LOGGER = LoggerFactory.newLogger();
+
     protected BaseStringMap(Maximum maximumSize)
     {
         super(maximumSize);
@@ -65,7 +69,7 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
      */
     public Count asCount(String key)
     {
-        return Count.parse(asString(key));
+        return Count.parseCount(LOGGER, asString(key));
     }
 
     /**

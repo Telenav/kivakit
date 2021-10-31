@@ -22,6 +22,7 @@ import com.telenav.kivakit.kernel.KivaKit;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.language.strings.Strings;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguagePath;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -54,8 +55,8 @@ import java.util.regex.Pattern;
  * <p><b>Parsing</b></p>
  *
  * <ul>
- *     <li>{@link #parseStringPath(String, String)} - A string path for the given string and separator</li>
- *     <li>{@link #parseStringPath(String, String, String)} - A string for the given root pattern, string and separator</li>
+ *     <li>{@link #parseStringPath(Listener listener, String, String)} - A string path for the given string and separator</li>
+ *     <li>{@link #parseStringPath(Listener listener, String, String, String)} - A string for the given root pattern, string and separator</li>
  * </ul>
  *
  * <p><b>Factories</b></p>
@@ -79,7 +80,10 @@ public class StringPath extends Path<String>
      * @param separatorPattern The Java regular expression used to split path elements
      * @return A string path for the given string, root pattern and separator pattern
      */
-    public static StringPath parseStringPath(String path, String rootPattern, String separatorPattern)
+    public static StringPath parseStringPath(Listener listener,
+                                             String path,
+                                             String rootPattern,
+                                             String separatorPattern)
     {
         if (rootPattern != null)
         {
@@ -96,9 +100,9 @@ public class StringPath extends Path<String>
     /**
      * @return A string path for the given string and separator pattern
      */
-    public static StringPath parseStringPath(String path, String separatorPattern)
+    public static StringPath parseStringPath(Listener listener, String path, String separatorPattern)
     {
-        return parseStringPath(path, null, separatorPattern);
+        return parseStringPath(listener, path, null, separatorPattern);
     }
 
     /**

@@ -20,6 +20,7 @@ package com.telenav.kivakit.kernel.language.primitives;
 
 import com.telenav.kivakit.kernel.language.strings.Align;
 import com.telenav.kivakit.kernel.language.values.count.BitCount;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguagePrimitive;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -93,9 +94,24 @@ public class Ints
     /**
      * @return An integer value or {@link #INVALID} if the string is not a valid integer
      */
-    public static int parse(String string)
+    public static int parse(Listener listener, String text)
     {
-        return parse(string, INVALID);
+        try
+        {
+            return Integer.parseInt(text);
+        }
+        catch (Exception e)
+        {
+            throw listener.problem(e, "Invalid integer: $", text).asException();
+        }
+    }
+
+    /**
+     * @return An integer value or {@link #INVALID} if the string is not a valid integer
+     */
+    public static int parseFast(String text)
+    {
+        return parseFast(text, INVALID);
     }
 
     /**
@@ -104,9 +120,9 @@ public class Ints
      *
      * @return An integer value or the specified invalid value if the string is not a valid integer
      */
-    public static int parse(String string, int invalidValue)
+    public static int parseFast(String text, int invalidValue)
     {
-        return (int) Longs.parse(string, invalidValue);
+        return (int) Longs.parseFast(text, invalidValue);
     }
 
     /**
@@ -117,7 +133,7 @@ public class Ints
      */
     public static int parseNaturalNumber(String string)
     {
-        var number = Longs.parseNaturalNumber(string);
+        var number = Longs.parseFastNaturalNumber(string);
         return number < 0 ? INVALID : (int) number;
     }
 

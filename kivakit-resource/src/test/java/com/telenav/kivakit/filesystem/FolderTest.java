@@ -38,7 +38,7 @@ public class FolderTest extends UnitTest
     @Test
     public void testAsAbsolute()
     {
-        Folder foo = Folder.parse("~/foo");
+        Folder foo = Folder.parse(this, "~/foo");
         assert foo != null;
         ensureEqual(Folder.userHome().folder("foo"), foo.absolute());
     }
@@ -75,7 +75,7 @@ public class FolderTest extends UnitTest
         folder.file("a.txt").print("A");
         Duration.untilNextSecond().sleep();
         folder.file("b.txt").print("B");
-        ensureEqual(FileName.parse("a.txt"), folder.oldest().fileName());
+        ensureEqual(FileName.parse(this, "a.txt"), folder.oldest().fileName());
     }
 
     @Test

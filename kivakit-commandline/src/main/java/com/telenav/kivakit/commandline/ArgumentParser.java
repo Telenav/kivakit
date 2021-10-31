@@ -28,8 +28,7 @@ import com.telenav.kivakit.kernel.data.conversion.string.primitive.IntegerConver
 import com.telenav.kivakit.kernel.data.conversion.string.primitive.LongConverter;
 import com.telenav.kivakit.kernel.language.reflection.Type;
 import com.telenav.kivakit.kernel.language.values.version.Version;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -47,11 +46,11 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  * <p>
  * Several argument parsers can be created with static methods:
  * <ul>
- *     <li>{@link #booleanArgumentParser(String)} - An argument that can be true or false</li>
- *     <li>{@link #integerArgumentParser(String)} - An integer argument</li>
- *     <li>{@link #longArgumentParser(String)} - A long argument</li>
- *     <li>{@link #stringArgumentParser(String)} - A string argument</li>
- *     <li>{@link #stringArgumentParser(String)} - A string argument</li>
+ *     <li>{@link #booleanArgumentParser(Listener listener, String)} - An argument that can be true or false</li>
+ *     <li>{@link #integerArgumentParser(Listener listener, String)} - An integer argument</li>
+ *     <li>{@link #longArgumentParser(Listener listener, String)} - A long argument</li>
+ *     <li>{@link #stringArgumentParser(Listener listener, String)} - A string argument</li>
+ *     <li>{@link #stringArgumentParser(Listener listener, String)} - A string argument</li>
  * </ul>
  *
  * <p><b>Parser Builders</b></p>
@@ -76,7 +75,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  * command line will be converted from a string to a {@link Version} object with {@link VersionConverter}. Many classes
  * in KivaKit provide string converters, which makes it an easy job to construct argument parsers.
  * <pre>
- * public static SwitchParser.Builder&lt;Version&gt; argumentParser( String description)
+ * public static SwitchParser.Builder&lt;Version&gt; argumentParser(Listener listener, String description)
  * {
  *     return SwitchParser.builder(Version.class)
  *         .converter(new Version.Converter(listener))
@@ -96,12 +95,10 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
 @UmlClassDiagram(diagram = DiagramCommandLine.class, includeMembers = false)
 public class ArgumentParser<T>
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
-    public static Builder<Boolean> booleanArgumentParser(String description)
+    public static Builder<Boolean> booleanArgumentParser(Listener listener, String description)
     {
         return builder(Boolean.class)
-                .converter(new BooleanConverter(LOGGER))
+                .converter(new BooleanConverter(listener))
                 .description(description);
     }
 
@@ -110,31 +107,31 @@ public class ArgumentParser<T>
         return new Builder<T>().type(type);
     }
 
-    public static Builder<Integer> integerArgumentParser(String description)
+    public static Builder<Integer> integerArgumentParser(Listener listener, String description)
     {
         return builder(Integer.class)
-                .converter(new IntegerConverter(LOGGER))
+                .converter(new IntegerConverter(listener))
                 .description(description);
     }
 
-    public static Builder<Long> longArgumentParser(String description)
+    public static Builder<Long> longArgumentParser(Listener listener, String description)
     {
         return builder(Long.class)
-                .converter(new LongConverter(LOGGER))
+                .converter(new LongConverter(listener))
                 .description(description);
     }
 
-    public static Builder<String> stringArgumentParser(String description)
+    public static Builder<String> stringArgumentParser(Listener listener, String description)
     {
         return builder(String.class)
-                .converter(new IdentityConverter(LOGGER))
+                .converter(new IdentityConverter(listener))
                 .description(description);
     }
 
-    public static Builder<Version> versionArgumentParser(String description)
+    public static Builder<Version> versionArgumentParser(Listener listener, String description)
     {
         return builder(Version.class)
-                .converter(new VersionConverter(LOGGER))
+                .converter(new VersionConverter(listener))
                 .description(description);
     }
 

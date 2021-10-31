@@ -26,6 +26,8 @@ import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludePro
 import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
+import com.telenav.kivakit.kernel.logging.Logger;
+import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
 import com.telenav.kivakit.network.core.project.lexakai.diagrams.DiagramNetworkLocation;
@@ -51,6 +53,8 @@ import java.nio.charset.StandardCharsets;
 @LexakaiJavadoc(complete = true)
 public class NetworkLocation implements AsString, Comparable<NetworkLocation>
 {
+    private static final Logger LOGGER = LoggerFactory.newLogger();
+
     /**
      * Converts to and from a {@link NetworkLocation}
      *
@@ -70,7 +74,7 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
             try
             {
                 var uri = new URI(value);
-                var location = new NetworkLocation(NetworkPath.networkPath(uri));
+                var location = new NetworkLocation(NetworkPath.networkPath(this, uri));
                 location.queryParameters(new QueryParameters(uri.getQuery()));
                 var url = uri.toURL();
                 location.reference(url.getRef());
@@ -292,7 +296,7 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
         var interpolatedPath = formatter.format(networkPath().toString(), variables);
 
         // Create location with the given path
-        var location = withPath(NetworkPath.parseNetworkPath(interpolatedPath));
+        var location = withPath(NetworkPath.parseNetworkPath(LOGGER, interpolatedPath));
 
         // If there are any query parameters,
         if (queryParameters() != null)

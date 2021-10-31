@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.time;
 
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageTime;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -53,8 +54,14 @@ public class TimeZones
         return zone.getDisplayName(TextStyle.SHORT, Locale.getDefault());
     }
 
-    public static ZoneId forDisplayName(String displayName)
+    public static ZoneId parseDisplayName(Listener listener, String displayName)
     {
-        return ZoneId.of(shortToLong.get(displayName));
+        var zoneId = shortToLong.get(displayName);
+        if (zoneId != null)
+        {
+            return ZoneId.of(zoneId);
+        }
+        listener.problem("Invalid zone display name: $", displayName);
+        return null;
     }
 }

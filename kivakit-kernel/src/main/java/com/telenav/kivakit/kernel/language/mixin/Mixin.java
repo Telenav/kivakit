@@ -31,6 +31,6 @@ public interface Mixin
      */
     default <T> T state(Class<? extends Mixin> type, Factory<T> factory)
     {
-        return MixinState.get(this, type, factory);
+        return MixinState.state(this, type, factory);
     }
 }

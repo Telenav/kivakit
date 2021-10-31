@@ -19,6 +19,7 @@
 package com.telenav.kivakit.resource.resources.other;
 
 import com.telenav.kivakit.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourceType;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
@@ -39,7 +40,7 @@ public class NullResource extends BaseWritableResource
 {
     public NullResource()
     {
-        super(ResourcePath.parseUnixResourcePath("/objects/NullResource"));
+        super(ResourcePath.parseUnixResourcePath(Listener.none(), "/objects/NullResource"));
     }
 
     @Override

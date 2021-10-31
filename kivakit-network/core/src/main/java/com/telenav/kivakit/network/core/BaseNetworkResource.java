@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.network.core;
 
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.network.core.project.lexakai.diagrams.DiagramNetworkLocation;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;
@@ -43,7 +44,7 @@ public abstract class BaseNetworkResource extends BaseReadableResource implement
 
     protected BaseNetworkResource(NetworkLocation location)
     {
-        super(ResourcePath.parseResourcePath(location.toString()));
+        super(ResourcePath.parseResourcePath(Listener.console(), location.toString()));
     }
 
     public URI asUri()

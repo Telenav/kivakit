@@ -38,7 +38,7 @@ public class EmailAddress
     /**
      * @return An email address for the given string, or null if the string is not an email address
      */
-    public static EmailAddress parse(String email)
+    public static EmailAddress parse(Listener listener, String email)
     {
         assert email != null;
 
@@ -46,6 +46,7 @@ public class EmailAddress
         {
             return new EmailAddress(email);
         }
+        listener.warning("Invalid email address: $", email);
         return null;
     }
 
@@ -65,7 +66,7 @@ public class EmailAddress
         @Override
         protected EmailAddress onToValue(String value)
         {
-            return parse(value);
+            return parse(this, value);
         }
     }
 

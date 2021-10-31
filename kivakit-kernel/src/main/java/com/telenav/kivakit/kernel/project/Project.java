@@ -128,7 +128,7 @@ public abstract class Project extends BaseRepeater implements Initializable, Nam
     @UmlRelation(label = "depends on")
     public ObjectSet<Project> dependencies()
     {
-        return ObjectSet.empty();
+        return ObjectSet.emptyObjectSet();
     }
 
     /**
@@ -193,7 +193,7 @@ public abstract class Project extends BaseRepeater implements Initializable, Nam
      */
     public final Version kivakitVersion()
     {
-        return KivaKit.get().projectVersion();
+        return Version.parse(this, property("kivakit-version"));
     }
 
     /**

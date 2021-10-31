@@ -21,6 +21,8 @@ package com.telenav.kivakit.kernel.language.collections.map.string;
 import com.telenav.kivakit.kernel.language.primitives.Ints;
 import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.language.values.count.Maximum;
+import com.telenav.kivakit.kernel.logging.Logger;
+import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageCollectionsMap;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -32,6 +34,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramLanguageCollectionsMap.class)
 public class StringToStringMap extends BaseStringMap<String>
 {
+    private static final Logger LOGGER = LoggerFactory.newLogger();
+
     public StringToStringMap()
     {
         this(Maximum.MAXIMUM);
@@ -44,12 +48,12 @@ public class StringToStringMap extends BaseStringMap<String>
 
     public int asInt(String key)
     {
-        return Ints.parse(get(key), Integer.MIN_VALUE);
+        return Ints.parseFast(get(key), Integer.MIN_VALUE);
     }
 
     public Count count(String key)
     {
-        return Count.parse(get(key));
+        return Count.parseCount(LOGGER, get(key));
     }
 
     public String get(String key)

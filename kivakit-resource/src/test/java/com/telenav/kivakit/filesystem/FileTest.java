@@ -33,14 +33,14 @@ public class FileTest extends UnitTest
     {
         var temp = File.temporary(Extension.TXT);
         temp.writer().save("hello");
-        ensureEqual("hello", File.parse(temp.toString()).reader().string());
+        ensureEqual("hello", File.parse(this, temp.toString()).reader().string());
         temp.delete();
     }
 
     @Test
     public void testFileFromURI() throws URISyntaxException
     {
-        final Resource resource = File.of(FileTest.class.getResource("FileTest.class").toURI());
+        Resource resource = File.file(this, FileTest.class.getResource("FileTest.class").toURI());
         ensureEqual("FileTest.class", resource.fileName().toString());
     }
 
@@ -49,37 +49,37 @@ public class FileTest extends UnitTest
     {
         var variables = new VariableMap<String>();
         variables.add("garply", "baz");
-        var test = File.parse("foo/bar/${garply}/banana.txt", variables);
-        ensureEqual(File.parse("foo/bar/baz/banana.txt"), test);
+        var test = File.parse(this, "foo/bar/${garply}/banana.txt", variables);
+        ensureEqual(File.parse(this, "foo/bar/baz/banana.txt"), test);
     }
 
     @Test
     public void testWithoutCompoundExtension()
     {
-        ensureEqual(Folder.parse(".").file("World"), File.parse("./World.osm.pbf").withoutCompoundExtension());
-        ensureEqual("World", File.parse("World.osm.pbf").withoutCompoundExtension().toString());
-        ensureEqual("World", File.parse("World").withoutCompoundExtension().toString());
-        ensureEqual("World", File.parse("World.txt").withoutCompoundExtension().toString());
-        ensureEqual(File.parse("/home/users/jonathanl/World"),
-                File.parse("/home/users/jonathanl/World.txt").withoutCompoundExtension());
-        ensureEqual(File.parse("/home/users/jonathanl/World"),
-                File.parse("/home/users/jonathanl/World.osm.pbf").withoutCompoundExtension());
+        ensureEqual(Folder.parse(this, ".").file("World"), File.parse(this, "./World.osm.pbf").withoutCompoundExtension());
+        ensureEqual("World", File.parse(this, "World.osm.pbf").withoutCompoundExtension().toString());
+        ensureEqual("World", File.parse(this, "World").withoutCompoundExtension().toString());
+        ensureEqual("World", File.parse(this, "World.txt").withoutCompoundExtension().toString());
+        ensureEqual(File.parse(this, "/home/users/jonathanl/World"),
+                File.parse(this, "/home/users/jonathanl/World.txt").withoutCompoundExtension());
+        ensureEqual(File.parse(this, "/home/users/jonathanl/World"),
+                File.parse(this, "/home/users/jonathanl/World.osm.pbf").withoutCompoundExtension());
     }
 
     @Test
     public void testWithoutKnownExtension()
     {
-        ensureEqual(File.parse("a"), File.parse("a.txt").withoutKnownExtensions());
-        ensureEqual(File.parse("a"), File.parse("a.txt.gz").withoutKnownExtensions());
-        ensureEqual(File.parse("a"), File.parse("a.osm.pbf").withoutKnownExtensions());
-        ensureEqual(File.parse("a"), File.parse("a.osm").withoutKnownExtensions());
-        ensureEqual(File.parse("a"), File.parse("a.pbf").withoutKnownExtensions());
-        ensureEqual(File.parse("a.unknown"), File.parse("a.unknown").withoutKnownExtensions());
-        ensureEqual(File.parse("a.b.c"), File.parse("a.b.c.txt").withoutKnownExtensions());
-        ensureEqual(File.parse("a.b.c"), File.parse("a.b.c.txt.gz").withoutKnownExtensions());
-        ensureEqual(File.parse("a.b.c"), File.parse("a.b.c.osm.pbf").withoutKnownExtensions());
-        ensureEqual(File.parse("a.b.c"), File.parse("a.b.c.osm").withoutKnownExtensions());
-        ensureEqual(File.parse("a.b.c"), File.parse("a.b.c.pbf").withoutKnownExtensions());
-        ensureEqual(File.parse("a.b.c.unknown"), File.parse("a.b.c.unknown").withoutKnownExtensions());
+        ensureEqual(File.parse(this, "a"), File.parse(this, "a.txt").withoutKnownExtensions());
+        ensureEqual(File.parse(this, "a"), File.parse(this, "a.txt.gz").withoutKnownExtensions());
+        ensureEqual(File.parse(this, "a"), File.parse(this, "a.osm.pbf").withoutKnownExtensions());
+        ensureEqual(File.parse(this, "a"), File.parse(this, "a.osm").withoutKnownExtensions());
+        ensureEqual(File.parse(this, "a"), File.parse(this, "a.pbf").withoutKnownExtensions());
+        ensureEqual(File.parse(this, "a.unknown"), File.parse(this, "a.unknown").withoutKnownExtensions());
+        ensureEqual(File.parse(this, "a.b.c"), File.parse(this, "a.b.c.txt").withoutKnownExtensions());
+        ensureEqual(File.parse(this, "a.b.c"), File.parse(this, "a.b.c.txt.gz").withoutKnownExtensions());
+        ensureEqual(File.parse(this, "a.b.c"), File.parse(this, "a.b.c.osm.pbf").withoutKnownExtensions());
+        ensureEqual(File.parse(this, "a.b.c"), File.parse(this, "a.b.c.osm").withoutKnownExtensions());
+        ensureEqual(File.parse(this, "a.b.c"), File.parse(this, "a.b.c.pbf").withoutKnownExtensions());
+        ensureEqual(File.parse(this, "a.b.c.unknown"), File.parse(this, "a.b.c.unknown").withoutKnownExtensions());
     }
 }

@@ -20,6 +20,7 @@ package com.telenav.kivakit.kernel.language.primitives;
 
 import com.telenav.kivakit.kernel.language.strings.Strip;
 import com.telenav.kivakit.kernel.language.values.count.BitCount;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguagePrimitive;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -61,9 +62,9 @@ public class Longs
         return (int) value;
     }
 
-    public static long parse(String string)
+    public static long parseFast(String string)
     {
-        return parse(string, INVALID);
+        return parseFast(string, INVALID);
     }
 
     /**
@@ -72,7 +73,7 @@ public class Longs
      *
      * @return An integer value or the specified invalid value if the string is not a valid integer
      */
-    public static long parse(String string, long invalid)
+    public static long parseFast(String string, long invalid)
     {
         if (string != null)
         {
@@ -114,9 +115,31 @@ public class Longs
     /**
      * @return The given hexadecimal value in text as a long
      */
-    public static long parseHex(String text)
+    public static long parseHex(Listener listener, String text)
     {
-        return Long.parseLong(Strip.leading(text, "0x"), 16);
+        try
+        {
+            return Long.parseLong(Strip.leading(text, "0x"), 16);
+        }
+        catch (Exception e)
+        {
+            throw listener.problem(e, "Invalid hexadecimal number: ", text).asException();
+        }
+    }
+
+    /**
+     * @return The given hexadecimal value in text as a long
+     */
+    public static long parseLong(Listener listener, String text)
+    {
+        try
+        {
+            return Long.parseLong(text);
+        }
+        catch (Exception e)
+        {
+            throw listener.problem(e, "Invalid long value: ", text).asException();
+        }
     }
 
     /**
@@ -125,7 +148,7 @@ public class Longs
      *
      * @return A natural number for the string or -1 if the string is not a natural number
      */
-    public static long parseNaturalNumber(String string)
+    public static long parseFastNaturalNumber(String string)
     {
         if (string != null)
         {

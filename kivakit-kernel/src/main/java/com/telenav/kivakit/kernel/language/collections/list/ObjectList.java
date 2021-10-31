@@ -64,11 +64,6 @@ import java.util.function.Function;
 @UmlClassDiagram(diagram = DiagramLanguageCollectionsList.class)
 public class ObjectList<Element> extends BaseList<Element>
 {
-    public static <T> ObjectList<T> create()
-    {
-        return new ObjectList<>();
-    }
-
     /**
      * @return An empty object list
      */
@@ -77,7 +72,7 @@ public class ObjectList<Element> extends BaseList<Element>
         return new ObjectList<>(Maximum._0);
     }
 
-    public static <T> ObjectList<T> forArray(T[] objects)
+    public static <T> ObjectList<T> objectListFromArray(T[] objects)
     {
         var list = new ObjectList<T>();
         list.addAll(objects);

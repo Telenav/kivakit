@@ -81,7 +81,7 @@ public class SettingsPackage extends Settings
     protected Set<Entry> onLoad()
     {
         // Go through .properties files in the package
-        var _package = Package.of(path);
+        var _package = Package.packageFrom(path);
         trace("Loading resources from $", _package);
         Set<Entry> entries = new HashSet<>();
         for (var resource : _package.resources(Extension.PROPERTIES::ends))

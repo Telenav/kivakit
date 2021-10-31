@@ -39,7 +39,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 @LexakaiJavadoc(complete = true)
 public class PlainTextPassword implements Password, AsString
 {
-    public static PlainTextPassword parse(String password)
+    public static PlainTextPassword parse(Listener listener, String password)
     {
         return new PlainTextPassword(password);
     }
@@ -60,7 +60,7 @@ public class PlainTextPassword implements Password, AsString
         @Override
         protected Password onToValue(String value)
         {
-            return parse(value);
+            return parse(this, value);
         }
     }
 

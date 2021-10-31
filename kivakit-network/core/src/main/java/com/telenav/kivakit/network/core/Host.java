@@ -30,8 +30,6 @@ import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
 import com.telenav.kivakit.kernel.language.time.Duration;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.network.core.project.lexakai.diagrams.DiagramPort;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -98,8 +96,6 @@ import static com.telenav.kivakit.network.core.Protocol.UNKNOWN;
 @LexakaiJavadoc(complete = true)
 public class Host implements Named, AsString, Comparable<Host>
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     private static final ExpiringReference<Map<String, InetAddress>> inetAddressForName =
             new ExpiringReference<>(Duration.minutes(5))
             {
@@ -113,16 +109,16 @@ public class Host implements Named, AsString, Comparable<Host>
     public static Host NONE = new Host("None");
 
     public static SwitchParser.Builder<ObjectList<Host>> hostListSwitchParser(
-            String name, String description, String delimiter)
+            Listener listener, String name, String description, String delimiter)
     {
-        return listSwitchParser(name, description, new Host.Converter(LOGGER), Host.class, delimiter);
+        return listSwitchParser(listener, name, description, new Host.Converter(listener), Host.class, delimiter);
     }
 
-    public static SwitchParser.Builder<Host> hostSwitchParser(String name, String description)
+    public static SwitchParser.Builder<Host> hostSwitchParser(Listener listener, String name, String description)
     {
         return builder(Host.class)
                 .name(name)
-                .converter(new Host.Converter(LOGGER))
+                .converter(new Host.Converter(listener))
                 .description(description);
     }
 
@@ -136,37 +132,39 @@ public class Host implements Named, AsString, Comparable<Host>
         return Loopback.get();
     }
 
-    public static SwitchParser.Builder<NetworkPath> networkFilePathSwitchParser(String name,
+    public static SwitchParser.Builder<NetworkPath> networkFilePathSwitchParser(Listener listener,
+                                                                                String name,
                                                                                 String description)
     {
         return builder(NetworkPath.class)
                 .name(name)
-                .converter(new NetworkPath.Converter(LOGGER))
+                .converter(new NetworkPath.Converter(listener))
                 .description(description);
     }
 
-    public static Host parse(String name)
+    public static Host parse(Listener listener, String name)
     {
         return new Host(name);
     }
 
-    public static Host parse(String name, String description)
+    public static Host parse(Listener listener, String name, String description)
     {
         return new Host(name, description);
     }
 
-    public static SwitchParser.Builder<ObjectList<Port>> portListSwitchParser(String name,
+    public static SwitchParser.Builder<ObjectList<Port>> portListSwitchParser(Listener listener,
+                                                                              String name,
                                                                               String description,
                                                                               String delimiter)
     {
-        return listSwitchParser(name, description, new Port.Converter(LOGGER), Port.class, delimiter);
+        return listSwitchParser(listener, name, description, new Port.Converter(listener), Port.class, delimiter);
     }
 
-    public static SwitchParser.Builder<Port> portSwitchParser(String name, String description)
+    public static SwitchParser.Builder<Port> portSwitchParser(Listener listener, String name, String description)
     {
         return builder(Port.class)
                 .name(name)
-                .converter(new Port.Converter(LOGGER))
+                .converter(new Port.Converter(listener))
                 .description(description);
     }
 
@@ -186,7 +184,7 @@ public class Host implements Named, AsString, Comparable<Host>
         @Override
         protected Host onToValue(String value)
         {
-            return parse(value);
+            return parse(this, value);
         }
     }
 

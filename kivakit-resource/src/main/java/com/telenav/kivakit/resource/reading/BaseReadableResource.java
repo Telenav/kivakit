@@ -300,7 +300,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
         // Flatten path being cached into a long filename by turning all file system meta characters
         // into underscores.
         // For example, "a/b/c.txt" becomes "a_b_c.txt"
-        return File.parse(cacheFolder.get() + "/" + path().toString().replaceAll("[/:]", "_"));
+        return File.parse(this, cacheFolder.get() + "/" + path().toString().replaceAll("[/:]", "_"));
     }
 
     private String uniqueIdentifier()

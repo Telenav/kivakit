@@ -33,13 +33,13 @@ public class IntsTest
     {
         for (int i = -100_000; i < 100_000; i++)
         {
-            ensureEqual(Ints.parse("" + i, -1), i);
+            ensureEqual(Ints.parseFast("" + i, -1), i);
         }
-        ensureEqual(Ints.parse(null, -1), -1);
-        ensureEqual(Ints.parse("", -1), -1);
-        ensureEqual(Ints.parse("99", -1), 99);
-        ensureEqual(Ints.parse("99", -1), 99);
-        ensureEqual(Ints.parse("abc", -1), -1);
+        ensureEqual(Ints.parseFast(null, -1), -1);
+        ensureEqual(Ints.parseFast("", -1), -1);
+        ensureEqual(Ints.parseFast("99", -1), 99);
+        ensureEqual(Ints.parseFast("99", -1), 99);
+        ensureEqual(Ints.parseFast("abc", -1), -1);
 
         ensureEqual(Ints.parseNaturalNumber(null), Ints.INVALID);
         ensureEqual(Ints.parseNaturalNumber(""), Ints.INVALID);

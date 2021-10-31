@@ -42,8 +42,6 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
-
 /**
  * An abstraction for a path on any kind of filesystem or file-related data source.
  *
@@ -67,7 +65,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  * <p><b>Parsing</b></p>
  *
  * <ul>
- *     <li>{@link #parseFilePath(String, Object...)} - The given string as a file path</li>
+ *     <li>{@link #parseFilePath(Listener listener, String, Object...)} - The given string as a file path</li>
  * </ul>
  *
  * <p><b>Factories</b></p>
@@ -171,7 +169,7 @@ public class FilePath extends ResourcePath
     /**
      * @return A file path for the given string
      */
-    public static FilePath parseFilePath(String path, Object... arguments)
+    public static FilePath parseFilePath(Listener listener, String path, Object... arguments)
     {
         if (path.isBlank())
         {
@@ -192,7 +190,7 @@ public class FilePath extends ResourcePath
         }
         catch (Exception ignored)
         {
-            return fail("Unable to parse file path: " + path);
+            throw listener.problem("Unable to parse file path: " + path).asException();
         }
     }
 
@@ -212,7 +210,7 @@ public class FilePath extends ResourcePath
         @Override
         protected FilePath onToValue(String value)
         {
-            return parseFilePath(value);
+            return parseFilePath(this, value);
         }
     }
 
@@ -264,7 +262,7 @@ public class FilePath extends ResourcePath
     @Override
     public File asFile()
     {
-        return File.of(this);
+        return File.file(this);
     }
 
     /**
@@ -472,7 +470,7 @@ public class FilePath extends ResourcePath
 
     public FilePath withPrefix(String prefix)
     {
-        return parseFilePath(prefix + this);
+        return parseFilePath(Listener.none(), prefix + this);
     }
 
     /**
@@ -562,7 +560,7 @@ public class FilePath extends ResourcePath
 
     public FilePath withoutPrefix(String prefix)
     {
-        return parseFilePath(Strip.leading(toString(), prefix));
+        return parseFilePath(Listener.none(), Strip.leading(toString(), prefix));
     }
 
     /**

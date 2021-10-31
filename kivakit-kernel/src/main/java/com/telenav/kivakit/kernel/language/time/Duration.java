@@ -27,8 +27,6 @@ import com.telenav.kivakit.kernel.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.language.values.level.Percent;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.messages.status.Information;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageTime;
@@ -126,8 +124,6 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
     /** Constant for one year. */
     public static final Duration ONE_YEAR = years(1);
 
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     public static Duration days(double days)
     {
         return hours(24.0 * days);
@@ -173,9 +169,9 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
         return new Duration(nanoseconds / 1_000_000L, Range.POSITIVE_ONLY);
     }
 
-    public static Duration parse(String string)
+    public static Duration parse(Listener listener, String string)
     {
-        return new Converter(LOGGER).convert(string);
+        return new Converter(listener).convert(string);
     }
 
     public static void profile(Listener listener, String message, Runnable code)
@@ -839,6 +835,6 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
      */
     private String unitString(double value, String units)
     {
-        return new FormattedDoubleConverter(LOGGER).unconvert(value) + " " + units + (value > 1.0 ? "s" : "");
+        return new FormattedDoubleConverter(Listener.none()).unconvert(value) + " " + units + (value > 1.0 ? "s" : "");
     }
 }

@@ -56,8 +56,7 @@ import com.telenav.kivakit.kernel.language.values.count.Minimum;
 import com.telenav.kivakit.kernel.language.values.level.Percent;
 import com.telenav.kivakit.kernel.language.values.version.Version;
 import com.telenav.kivakit.kernel.language.vm.JavaVirtualMachine;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -101,11 +100,11 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  * command line will be converted from a string to a {@link Version} object with {@link VersionConverter}. Many classes
  * in KivaKit provide string converters, which makes it an easy job to construct switch parsers.
  * <pre>
- * public static Builder&lt;Version&gt; switchParser(String name, String description)
+ * public static Builder&lt;Version&gt; switchParser(Listener listener, String name, String description)
  * {
  *     return builder(Version.class)
  *         .name(name)
- *         .converter(new Version.Converter(LOGGER))
+ *         .converter(new Version.Converter(listener))
  *         .description(description);
  * }
  * </pre>
@@ -121,13 +120,11 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
 @UmlExcludeSuperTypes
 public class SwitchParser<T> implements Named, Validatable
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
-    public static Builder<Boolean> booleanSwitchParser(String name, String description)
+    public static Builder<Boolean> booleanSwitchParser(Listener listener, String name, String description)
     {
         return builder(Boolean.class)
                 .name(name)
-                .converter(new BooleanConverter(LOGGER))
+                .converter(new BooleanConverter(listener))
                 .description(description);
     }
 
@@ -136,31 +133,32 @@ public class SwitchParser<T> implements Named, Validatable
         return new Builder<T>().type(type);
     }
 
-    public static Builder<Bytes> bytesSwitchParser(String name, String description)
+    public static Builder<Bytes> bytesSwitchParser(Listener listener, String name, String description)
     {
         return builder(Bytes.class)
                 .name(name)
-                .converter(new Bytes.Converter(LOGGER))
+                .converter(new Bytes.Converter(listener))
                 .description(description);
     }
 
-    public static Builder<Count> countSwitchParser(String name, String description)
+    public static Builder<Count> countSwitchParser(Listener listener, String name, String description)
     {
         return builder(Count.class)
                 .name(name)
-                .converter(new Count.Converter(LOGGER))
+                .converter(new Count.Converter(listener))
                 .description(description);
     }
 
-    public static Builder<Double> doubleSwitchParser(String name, String description)
+    public static Builder<Double> doubleSwitchParser(Listener listener, String name, String description)
     {
         return builder(Double.class)
                 .name(name)
-                .converter(new DoubleConverter(LOGGER))
+                .converter(new DoubleConverter(listener))
                 .description(description);
     }
 
-    public static <E extends Enum<E>> Builder<E> enumSwitchParser(String name,
+    public static <E extends Enum<E>> Builder<E> enumSwitchParser(Listener listener,
+                                                                  String name,
                                                                   String description,
                                                                   Class<E> type)
     {
@@ -174,21 +172,22 @@ public class SwitchParser<T> implements Named, Validatable
             var help = description + "\n\n" + options.bulleted(4) + "\n";
             return builder(type)
                     .name(name)
-                    .converter(new EnumConverter<>(LOGGER, type))
+                    .converter(new EnumConverter<>(listener, type))
                     .description(help);
         }
         return fail("TimeFormat is not an enum");
     }
 
-    public static Builder<Integer> integerSwitchParser(String name, String description)
+    public static Builder<Integer> integerSwitchParser(Listener listener, String name, String description)
     {
         return builder(Integer.class)
                 .name(name)
-                .converter(new IntegerConverter(LOGGER))
+                .converter(new IntegerConverter(listener))
                 .description(description);
     }
 
     public static <E> Builder<ObjectList<E>> listSwitchParser(
+            Listener listener,
             String name,
             String description,
             StringConverter<E> elementConverter,
@@ -199,67 +198,68 @@ public class SwitchParser<T> implements Named, Validatable
         builder.type = Type.of(elementType);
         return builder
                 .name(name)
-                .converter(new BaseListConverter<>(LOGGER, elementConverter, delimiter) {})
+                .converter(new BaseListConverter<>(listener, elementConverter, delimiter) {})
                 .description(description);
     }
 
-    public static Builder<LocalTime> localDateSwitchParser(String name, String description)
+    public static Builder<LocalTime> localDateSwitchParser(Listener listener, String name, String description)
     {
         return builder(LocalTime.class)
                 .name(name)
                 .description(description)
-                .converter(new LocalDateConverter(LOGGER));
+                .converter(new LocalDateConverter(listener));
     }
 
-    public static Builder<LocalTime> localDateTimeSwitchParser(String name, String description)
+    public static Builder<LocalTime> localDateTimeSwitchParser(Listener listener, String name, String description)
     {
         return builder(LocalTime.class)
                 .name(name)
                 .description(description)
-                .converter(new LocalDateTimeConverter(LOGGER));
+                .converter(new LocalDateTimeConverter(listener));
     }
 
-    public static Builder<Long> longSwitchParser(String name, String description)
+    public static Builder<Long> longSwitchParser(Listener listener, String name, String description)
     {
         return builder(Long.class)
                 .name(name)
-                .converter(new LongConverter(LOGGER))
+                .converter(new LongConverter(listener))
                 .description(description);
     }
 
-    public static Builder<Maximum> maximumSwitchParser(String name, String description)
+    public static Builder<Maximum> maximumSwitchParser(Listener listener, String name, String description)
     {
         return builder(Maximum.class)
                 .name(name)
-                .converter(new Maximum.Converter(LOGGER))
+                .converter(new Maximum.Converter(listener))
                 .description(description);
     }
 
-    public static Builder<Minimum> minimumSwitchParser(String name, String description)
+    public static Builder<Minimum> minimumSwitchParser(Listener listener, String name, String description)
     {
         return builder(Minimum.class)
                 .name(name)
-                .converter(new Minimum.Converter(LOGGER))
+                .converter(new Minimum.Converter(listener))
                 .description(description);
     }
 
-    public static Builder<Pattern> patternSwitchParser(String name, String description)
+    public static Builder<Pattern> patternSwitchParser(Listener listener, String name, String description)
     {
         return builder(Pattern.class)
                 .name(name)
-                .converter(new PatternConverter(LOGGER))
+                .converter(new PatternConverter(listener))
                 .description(description);
     }
 
-    public static Builder<Percent> percentSwitchParser(String name, String description)
+    public static Builder<Percent> percentSwitchParser(Listener listener, String name, String description)
     {
         return builder(Percent.class)
                 .name(name)
-                .converter(new Percent.Converter(LOGGER))
+                .converter(new Percent.Converter(listener))
                 .description(description);
     }
 
-    public static <T extends Quantizable> Builder<T> quantizableSwitchParser(String name,
+    public static <T extends Quantizable> Builder<T> quantizableSwitchParser(Listener listener,
+                                                                             String name,
                                                                              String description,
                                                                              Class<T> type,
                                                                              MapFactory<Long, T> factory)
@@ -267,10 +267,11 @@ public class SwitchParser<T> implements Named, Validatable
         return builder(type)
                 .name(name)
                 .description(description)
-                .converter(new Quantizable.Converter<>(LOGGER, factory));
+                .converter(new Quantizable.Converter<>(listener, factory));
     }
 
     public static <E> Builder<ObjectSet<E>> setSwitchParser(
+            Listener listener,
             String name,
             String description,
             StringConverter<E> elementConverter,
@@ -281,32 +282,32 @@ public class SwitchParser<T> implements Named, Validatable
         builder.type = Type.of(elementType);
         return builder
                 .name(name)
-                .converter(new BaseSetConverter<>(LOGGER, elementConverter, delimiter) {})
+                .converter(new BaseSetConverter<>(listener, elementConverter, delimiter) {})
                 .description(description);
     }
 
-    public static Builder<String> stringSwitchParser(String name, String description)
+    public static Builder<String> stringSwitchParser(Listener listener, String name, String description)
     {
         return builder(String.class)
                 .name(name)
-                .converter(new IdentityConverter(LOGGER))
+                .converter(new IdentityConverter(listener))
                 .description(description);
     }
 
-    public static SwitchParser<Count> threadCountSwitchParser(Count maximum)
+    public static SwitchParser<Count> threadCountSwitchParser(Listener listener, Count maximum)
     {
         var defaultThreads = maximum.minimum(JavaVirtualMachine.local().processors());
-        return countSwitchParser("threads", "Number of threads to use (default is " + defaultThreads + ")")
+        return countSwitchParser(listener, "threads", "Number of threads to use (default is " + defaultThreads + ")")
                 .optional()
                 .defaultValue(defaultThreads)
                 .build();
     }
 
-    public static Builder<Version> versionSwitchParser(String name, String description)
+    public static Builder<Version> versionSwitchParser(Listener listener, String name, String description)
     {
         return builder(Version.class)
                 .name(name)
-                .converter(new VersionConverter(LOGGER))
+                .converter(new VersionConverter(listener))
                 .description(description);
     }
 

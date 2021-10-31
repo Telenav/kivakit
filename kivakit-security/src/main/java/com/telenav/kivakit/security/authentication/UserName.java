@@ -34,7 +34,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @LexakaiJavadoc(complete = true)
 public class UserName extends Name
 {
-    public static UserName parse(String name)
+    public static UserName parse(Listener listener, String name)
     {
         return new UserName(name);
     }
@@ -55,7 +55,7 @@ public class UserName extends Name
         @Override
         protected UserName onToValue(String value)
         {
-            return parse(value);
+            return parse(this, value);
         }
     }
 

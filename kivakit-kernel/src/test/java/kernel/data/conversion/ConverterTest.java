@@ -111,7 +111,7 @@ public class ConverterTest
     @Test
     public void testEnumSetConverter()
     {
-        ensureEqual(new EnumSetConverter<>(LOGGER, Type.class).convert("A, B, B, A"), ObjectSet.of(A, B, B, A));
+        ensureEqual(new EnumSetConverter<>(LOGGER, Type.class).convert("A, B, B, A"), ObjectSet.objectSet(A, B, B, A));
     }
 
     @Test

@@ -21,6 +21,7 @@ package com.telenav.kivakit.resource.spi;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Debug;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.resource.ResourceFolderIdentifier;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourceService;
@@ -32,13 +33,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ServiceLoader;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
-
 /**
- * {@link #resolve(ResourceFolderIdentifier)} iterates through implementations of the {@link ResourceFolderResolver}
- * interface provided by Java's {@link ServiceLoader} and resolves {@link ResourceFolderIdentifier}s by calling {@link
- * ResourceFolderResolver#accepts(ResourceFolderIdentifier)} until it reaches a resolver that recognizes the identifier.
- * It then returns the resolved resource with {@link ResourceFolderResolver#resolve(ResourceFolderIdentifier)}.
+ * {@link #resolve(Listener listener, ResourceFolderIdentifier)} iterates through implementations of the {@link
+ * ResourceFolderResolver} interface provided by Java's {@link ServiceLoader} and resolves {@link
+ * ResourceFolderIdentifier}s by calling {@link ResourceFolderResolver#accepts(ResourceFolderIdentifier)} until it
+ * reaches a resolver that recognizes the identifier. It then returns the resolved resource with {@link
+ * ResourceFolderResolver#resolve(ResourceFolderIdentifier)}.
  *
  * @author jonathanl (shibo)
  */
@@ -53,9 +53,9 @@ public class ResourceFolderResolverServiceLoader
     @UmlAggregation
     private static List<ResourceFolderResolver> resolvers;
 
-    public static ResourceFolder resolve(ResourceFolderIdentifier identifier)
+    public static ResourceFolder resolve(Listener listener, ResourceFolderIdentifier identifier)
     {
-        for (var factory : resolvers())
+        for (var factory : resolvers(listener))
         {
             if (factory.accepts(identifier))
             {
@@ -63,17 +63,17 @@ public class ResourceFolderResolverServiceLoader
             }
         }
 
-        return fail("Invalid resource identifier '$'", identifier);
+        throw listener.problem("Invalid resource identifier '$'", identifier).asException();
     }
 
-    private static synchronized List<ResourceFolderResolver> resolvers()
+    private static synchronized List<ResourceFolderResolver> resolvers(Listener listener)
     {
         if (resolvers == null)
         {
             resolvers = new ArrayList<>();
             for (var resolver : ServiceLoader.load(ResourceFolderResolver.class))
             {
-                DEBUG.trace("Loaded resource factory '${class}'", resolver.getClass());
+                listener.trace("Loaded resource factory '${class}'", resolver.getClass());
                 resolvers.add(resolver);
             }
         }

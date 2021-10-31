@@ -21,6 +21,7 @@ package com.telenav.kivakit.network.core;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.language.values.count.Maximum;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.network.core.project.lexakai.diagrams.DiagramNetworkLocation;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -38,7 +39,7 @@ import java.util.List;
 @LexakaiJavadoc(complete = true)
 public class QueryParameters
 {
-    public static QueryParameters parse(String string)
+    public static QueryParameters parse(Listener listener, String string)
     {
         return new QueryParameters(string);
     }

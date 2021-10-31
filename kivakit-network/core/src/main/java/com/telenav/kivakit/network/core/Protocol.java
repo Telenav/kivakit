@@ -20,6 +20,7 @@ package com.telenav.kivakit.network.core;
 
 import com.telenav.kivakit.kernel.language.collections.map.string.NameMap;
 import com.telenav.kivakit.kernel.language.values.name.Name;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.network.core.project.lexakai.diagrams.DiagramPort;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -62,7 +63,7 @@ public class Protocol extends Name
     /**
      * @return The protocol with the given name, or null if name doesn't represent a known protocol
      */
-    public static Protocol forName(String name)
+    public static Protocol parse(Listener listener, String name)
     {
         return nameToProtocol.get(name);
     }

@@ -22,7 +22,6 @@ import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
-import com.telenav.kivakit.kernel.language.values.count.Bytes;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemFile;
@@ -33,7 +32,6 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -73,7 +71,7 @@ public class FileList extends ObjectList<File>
     public static FileList forServices(final List<? extends FileService> virtualFiles)
     {
         final var files = new FileList();
-        for (final FileService file : virtualFiles)
+        for (final var file : virtualFiles)
         {
             files.add(new File(file));
         }
@@ -90,19 +88,19 @@ public class FileList extends ObjectList<File>
     {
         private final Extension extension;
 
-        public Converter(final Listener listener, final Extension extension)
+        public Converter(Listener listener, Extension extension)
         {
             super(listener);
             this.extension = extension;
         }
 
         @Override
-        protected FileList onToValue(final String value)
+        protected FileList onToValue(String value)
         {
-            final var files = new FileList();
-            for (final var path : value.split(","))
+            var files = new FileList();
+            for (var path : value.split(","))
             {
-                final var file = File.parse(path);
+                var file = File.parse(this, path);
                 if (file.isFolder())
                 {
                     files.addAll(file.asFolder().nestedFiles(extension.fileMatcher()));
@@ -127,7 +125,7 @@ public class FileList extends ObjectList<File>
     {
     }
 
-    FileList(final FileList that)
+    FileList(FileList that)
     {
         addAll(that);
     }
@@ -135,7 +133,7 @@ public class FileList extends ObjectList<File>
     @UmlExcludeMember
     public List<java.io.File> asJavaFiles()
     {
-        final var files = new ArrayList<java.io.File>();
+        var files = new ArrayList<java.io.File>();
         forEach(file -> files.add(file.asJavaFile()));
         return files;
     }
@@ -172,7 +170,7 @@ public class FileList extends ObjectList<File>
     public File largest()
     {
         File largest = null;
-        for (final var file : this)
+        for (var file : this)
         {
             if (largest == null || file.isLargerThan(largest))
             {
@@ -198,7 +196,7 @@ public class FileList extends ObjectList<File>
     public File smallest()
     {
         File smallest = null;
-        for (final var file : this)
+        for (var file : this)
         {
             if (smallest == null || file.isSmallerThan(smallest))
             {
@@ -210,7 +208,7 @@ public class FileList extends ObjectList<File>
 
     public FileList sortedLargestToSmallest()
     {
-        final var sorted = new FileList(this);
+        var sorted = new FileList(this);
         sorted.sort((a, b) ->
         {
             if (a.isLargerThan(b))
@@ -229,7 +227,7 @@ public class FileList extends ObjectList<File>
     @SuppressWarnings("UnusedReturnValue")
     public FileList sortedOldestToNewest()
     {
-        final var sorted = new FileList(this);
+        var sorted = new FileList(this);
         sorted.sort((a, b) ->
         {
             if (a.isOlderThan(b))
@@ -248,7 +246,7 @@ public class FileList extends ObjectList<File>
     public Bytes totalSize()
     {
         var bytes = Bytes._0;
-        for (final var file : this)
+        for (var file : this)
         {
             bytes = bytes.add(file.sizeInBytes());
         }
