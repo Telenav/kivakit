@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.resource;
 
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourceService;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -28,7 +29,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * accepts this identifier. It then returns the resource, as resolved by the service provider.
  *
  * @author jonathanl (shibo)
- * @see Resource#resolve(String)
+ * @see Resource#resolve(Listener, String)
  */
 @UmlClassDiagram(diagram = DiagramResourceService.class)
 @LexakaiJavadoc(complete = true)
@@ -48,7 +49,7 @@ public class ResourceIdentifier
 
     public Resource resolve()
     {
-        return Resource.resolve(this);
+        return Resource.resolve(Listener.console(), this);
     }
 
     @Override
