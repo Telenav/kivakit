@@ -19,8 +19,6 @@
 package com.telenav.kivakit.kernel.language.collections.map.count;
 
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.interfaces.factory.Factory;
-import com.telenav.kivakit.kernel.interfaces.factory.MapFactory;
 import com.telenav.kivakit.kernel.interfaces.numeric.Countable;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.values.count.Count;
@@ -48,26 +46,6 @@ public class ConcurrentCountMap<Key>
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
     private static final Pattern KEY_VALUE = Pattern.compile("key\\w+\\s*=\\s*count\\w+");
-
-    public static <T> ConcurrentCountMap<T> parse(Factory<ConcurrentCountMap<T>> mapFactory,
-                                                  MapFactory<String, T> keyFactory, String text)
-    {
-        var map = mapFactory.newInstance();
-        for (var entry : text.split(",\\s*"))
-        {
-            var matcher = KEY_VALUE.matcher(entry);
-            if (matcher.matches())
-            {
-                var key = keyFactory.newInstance(matcher.group("key"));
-                var count = Count.parse(matcher.group("count"));
-                if (key != null && count != null)
-                {
-                    map.add(key, count);
-                }
-            }
-        }
-        return map;
-    }
 
     private final AtomicLong total = new AtomicLong();
 

@@ -27,6 +27,7 @@ import com.telenav.kivakit.kernel.language.strings.Strip;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Debug;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguagePath;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
@@ -66,8 +67,8 @@ import java.util.zip.ZipInputStream;
  *
  * <ul>
  *     <li>{@link #isPackagePath(String)} - True if the given string can be parsed as a package path</li>
- *     <li>{@link #parsePackagePath(String)} - The specified package path, separated by either '/' or '.'</li>
- *     <li>{@link #parsePackagePath(Class, String)} - The specified package path, relative to the given class and separated by either '/' or '.'</li>
+ *     <li>{@link #parsePackagePath(Listener listener, String)} - The specified package path, separated by either '/' or '.'</li>
+ *     <li>{@link #parsePackagePath(Listener listener, Class, String)} - The specified package path, relative to the given class and separated by either '/' or '.'</li>
  * </ul>
  *
  * <p><b>Factories</b></p>
@@ -98,7 +99,7 @@ public final class PackagePath extends StringPath
 
     private static final Debug DEBUG = new Debug(LOGGER);
 
-    public static final PackagePath TELENAV = parsePackagePath("com.telenav");
+    public static final PackagePath TELENAV = parsePackagePath(Listener.none(), "com.telenav");
 
     public static boolean isPackagePath(String path)
     {
@@ -126,13 +127,13 @@ public final class PackagePath extends StringPath
      */
     public static PackagePath packagePath(Class<?> type)
     {
-        return packagePath(type, parseStringPath(type.getName(), null, "\\.").withoutLast());
+        return packagePath(type, parseStringPath(LOGGER, type.getName(), null, "\\.").withoutLast());
     }
 
     /**
      * @return The package path specified by the given path. The path may be separated by either '.' or '/'.
      */
-    public static PackagePath parsePackagePath(String path)
+    public static PackagePath parsePackagePath(Listener listener, String path)
     {
         return packagePath(path(path));
     }
@@ -140,10 +141,10 @@ public final class PackagePath extends StringPath
     /**
      * @return A package path relative to the package containing the given class
      */
-    public static PackagePath parsePackagePath(Class<?> type, String relativePath)
+    public static PackagePath parsePackagePath(Listener listener, Class<?> type, String relativePath)
     {
-        var parent = parseStringPath(type.getPackageName(), "\\.");
-        var child = parsePackagePath(relativePath);
+        var parent = parseStringPath(listener, type.getPackageName(), "\\.");
+        var child = parsePackagePath(listener, relativePath);
         return new PackagePath(type, parent.withChild(child));
     }
 
@@ -300,9 +301,9 @@ public final class PackagePath extends StringPath
      */
     public List<ModuleResource> nestedResources()
     {
-        var resources = Modules.resources(this)
+        var resources = Modules.resources(LOGGER, this)
                 .stream()
-                .filter(resource -> parsePackagePath(resource.javaPath().toString()).startsWith(this))
+                .filter(resource -> parsePackagePath(LOGGER, resource.javaPath().toString()).startsWith(this))
                 .collect(Collectors.toList());
         DEBUG.trace("Found nested resources:\n$", ObjectList.objectList(resources).join("\n"));
         return resources;
@@ -313,7 +314,7 @@ public final class PackagePath extends StringPath
      */
     public List<ModuleResource> nestedResources(Matcher<ModuleResource> matcher)
     {
-        return Modules.nestedResources(this, matcher);
+        return Modules.nestedResources(LOGGER, this, matcher);
     }
 
     /**
@@ -339,9 +340,9 @@ public final class PackagePath extends StringPath
      */
     public ModuleResource resource(String relativePath)
     {
-        var path = parseStringPath(relativePath, "/", "/");
+        var path = parseStringPath(LOGGER, relativePath, "/", "/");
         Ensure.ensure(path.isRelative());
-        return Modules.resource(withChild(path));
+        return Modules.resource(LOGGER, withChild(path));
     }
 
     /**
@@ -357,7 +358,7 @@ public final class PackagePath extends StringPath
      */
     public List<ModuleResource> resources()
     {
-        return Modules.resources(this);
+        return Modules.resources(LOGGER, this);
     }
 
     @Override
@@ -380,7 +381,7 @@ public final class PackagePath extends StringPath
      */
     public Set<PackagePath> subPackages()
     {
-        var packages = Modules.allNestedResources(this)
+        var packages = Modules.allNestedResources(LOGGER, this)
                 .stream()
                 .map(resource -> resource.packagePath().withPackageType(packageType))
                 .collect(Collectors.toSet());
@@ -439,7 +440,7 @@ public final class PackagePath extends StringPath
     @Override
     public PackagePath withParent(String path)
     {
-        return (PackagePath) super.withParent(PackagePath.parsePackagePath(path));
+        return (PackagePath) super.withParent(PackagePath.parsePackagePath(LOGGER, path));
     }
 
     /**
@@ -546,8 +547,8 @@ public final class PackagePath extends StringPath
     {
         if (path.contains("/"))
         {
-            return parseStringPath(path, "/");
+            return parseStringPath(LOGGER, path, "/");
         }
-        return parseStringPath(path, "\\.");
+        return parseStringPath(LOGGER, path, "\\.");
     }
 }

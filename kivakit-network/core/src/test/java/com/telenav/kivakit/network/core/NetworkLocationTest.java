@@ -29,7 +29,7 @@ public class NetworkLocationTest extends UnitTest
     @Test
     public void test() throws MalformedURLException
     {
-        var location = new NetworkLocation(Host.loopback().http().path("/foo"));
+        var location = new NetworkLocation(Host.loopback().http().path(this, "/foo"));
         ensureEqual(Host.loopback(), location.host());
         ensureEqual(80, location.port().number());
         ensureEqual(location.toString(), "http://localhost/foo");

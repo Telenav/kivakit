@@ -74,29 +74,29 @@ public class FilePathTest extends UnitTest
         if (OperatingSystem.get().isWindows())
         {
             var rawPath = "C:\\this\\is\\a\\test\\path";
-            var path = FilePath.parseFilePath(rawPath);
+            var path = FilePath.parseFilePath(this, rawPath);
             ensureEqual(rawPath, path.join());
 
             var rawPathWithTrailingBackslash = "C:\\this\\is\\a\\test\\path\\";
-            path = FilePath.parseFilePath(rawPathWithTrailingBackslash);
+            path = FilePath.parseFilePath(this, rawPathWithTrailingBackslash);
             ensureEqual(rawPath, path.join());
 
             rawPath = "C:";
-            path = FilePath.parseFilePath(rawPath);
+            path = FilePath.parseFilePath(this, rawPath);
             ensureEqual(rawPath, path.join());
         }
         else
         {
             var rawPath = "/this/is/a/test/path";
-            var path = FilePath.parseFilePath(rawPath);
+            var path = FilePath.parseFilePath(this, rawPath);
             ensureEqual(path.join(), rawPath);
 
             var rawPathWithTrailingBackslash = "/this/is/a/test/path/";
-            path = FilePath.parseFilePath(rawPathWithTrailingBackslash);
+            path = FilePath.parseFilePath(this, rawPathWithTrailingBackslash);
             ensureEqual(rawPath, path.join());
 
             rawPath = "/";
-            path = FilePath.parseFilePath(rawPath);
+            path = FilePath.parseFilePath(this, rawPath);
             ensureEqual(rawPath, path.join());
         }
     }
@@ -134,12 +134,12 @@ public class FilePathTest extends UnitTest
     {
         if (OperatingSystem.get().isWindows())
         {
-            var path = ResourcePath.parseResourcePath("c:\\");
+            var path = ResourcePath.parseResourcePath(this, "c:\\");
             ensure(path.isRoot());
         }
         else
         {
-            var path = ResourcePath.parseResourcePath("/");
+            var path = ResourcePath.parseResourcePath(this, "/");
             ensure(path.isRoot());
         }
     }
@@ -150,15 +150,15 @@ public class FilePathTest extends UnitTest
         if (OperatingSystem.get().isWindows())
         {
             var rawPath = "C:\\this\\is\\a\\test\\path";
-            var path = FilePath.parseFilePath(rawPath);
-            var root = Folder.parse("C:\\").path().absolute();
+            var path = FilePath.parseFilePath(this, rawPath);
+            var root = Folder.parse(this, "C:\\").path().absolute();
             var root2 = path.root().absolute();
             ensureEqual(root, root2);
         }
         else
         {
             var rawPath = "/this/is/a/test/path";
-            var path = FilePath.parseFilePath(rawPath);
+            var path = FilePath.parseFilePath(this, rawPath);
             ensureEqual("/", path.root().toString());
         }
     }
@@ -166,7 +166,7 @@ public class FilePathTest extends UnitTest
     @Test
     public void testScheme()
     {
-        var path = FilePath.parseFilePath("hdfs://192.168.0.1/user/jonathanl/test.txt");
+        var path = FilePath.parseFilePath(this, "hdfs://192.168.0.1/user/jonathanl/test.txt");
         ensureEqual(path.schemes(), StringList.stringList("hdfs"));
     }
 
@@ -222,6 +222,6 @@ public class FilePathTest extends UnitTest
     @NotNull
     private FilePath path(String path)
     {
-        return FilePath.parseFilePath(path);
+        return FilePath.parseFilePath(this, path);
     }
 }

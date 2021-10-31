@@ -24,6 +24,8 @@ import com.telenav.kivakit.kernel.language.modules.Modules;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.kernel.logging.Logger;
+import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import org.jetbrains.annotations.Nullable;
 import org.junit.Test;
 
@@ -37,6 +39,8 @@ import java.nio.file.Path;
 @SuppressWarnings("ConstantConditions")
 public class ModuleResourceTest
 {
+    private static final Logger LOGGER = LoggerFactory.newLogger();
+
     @Test
     public void testFileName()
     {
@@ -59,7 +63,7 @@ public class ModuleResourceTest
     @Test
     public void testPackagePath()
     {
-        Ensure.ensureEqual(a().packagePath(), PackagePath.parsePackagePath(getClass(), "resources/a"));
+        Ensure.ensureEqual(a().packagePath(), PackagePath.parsePackagePath(LOGGER, getClass(), "resources/a"));
     }
 
     @Test
@@ -91,7 +95,7 @@ public class ModuleResourceTest
     @Nullable
     private ModuleResource a()
     {
-        return Modules.resource(packagePath().withChild("resources/a/a.txt"));
+        return Modules.resource(LOGGER, packagePath().withChild("resources/a/a.txt"));
     }
 
     private PackagePath packagePath()

@@ -66,7 +66,7 @@ public class BaseFormattedLocalTimeConverter extends BaseFormattedConverter
     @Override
     protected LocalTime onToValue(String value)
     {
-        zone(zone(value));
+        zone(zone(this, value));
         var time = Paths.withoutSuffix(value, '_');
         if (time == null)
         {
@@ -76,13 +76,13 @@ public class BaseFormattedLocalTimeConverter extends BaseFormattedConverter
     }
 
     @SuppressWarnings("ConstantConditions")
-    private ZoneId zone(String value)
+    private ZoneId zone(Listener listener, String value)
     {
         if (zone() != null)
         {
             return zone();
         }
-        var zone = TimeZones.forDisplayName(Paths.optionalSuffix(value, '_'));
+        var zone = TimeZones.parseDisplayName(listener, Paths.optionalSuffix(value, '_'));
         if (zone != null)
         {
             return zone;

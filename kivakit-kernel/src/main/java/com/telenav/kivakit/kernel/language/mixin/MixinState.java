@@ -19,22 +19,22 @@ import java.util.concurrent.ConcurrentHashMap;
 @LexakaiJavadoc(complete = true)
 class MixinState
 {
-    private static final Map<MixinKey, Object> values = new ConcurrentHashMap<>();
+    private static final Map<MixinKey, Object> state = new ConcurrentHashMap<>();
 
     /**
      * @return Gets a value for the given mixin of the given object, creating a new value with the factory if it doesn't
      * already exist.
      */
     @SuppressWarnings("unchecked")
-    public static synchronized <T> T get(Object attachTo,
-                                         Class<? extends Mixin> mixinType,
-                                         Factory<T> factory)
+    public static synchronized <T> T state(Object attachTo,
+                                           Class<? extends Mixin> mixinType,
+                                           Factory<T> factory)
     {
         // Create a composite key (to allow multiple traits on an object),
         var key = new MixinKey(attachTo, mixinType);
 
         // get any current value for the mixin,
-        var value = (T) values.get(key);
+        var value = (T) state.get(key);
 
         // and if none exists,
         if (value == null)
@@ -47,7 +47,7 @@ class MixinState
             }
 
             // and store that.
-            values.put(key, value);
+            state.put(key, value);
         }
 
         return value;

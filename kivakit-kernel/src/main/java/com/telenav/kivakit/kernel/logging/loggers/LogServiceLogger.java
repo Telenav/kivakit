@@ -26,6 +26,7 @@ import com.telenav.kivakit.kernel.language.vm.JavaVirtualMachine;
 import com.telenav.kivakit.kernel.logging.Log;
 import com.telenav.kivakit.kernel.logging.LoggerCodeContext;
 import com.telenav.kivakit.kernel.logging.logs.text.ConsoleLog;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.messages.OperationMessage;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLogging;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -54,7 +55,7 @@ public class LogServiceLogger extends BaseLogger
 {
     /** List of logs to log to, initially just a console log, unless logs are specified with KIVAKIT_LOG */
     @UmlAggregation(label = "logs to")
-    private static ObjectSet<Log> logs = ObjectSet.of(new ConsoleLog());
+    private static ObjectSet<Log> logs = ObjectSet.objectSet(new ConsoleLog());
 
     private static boolean loaded;
 
@@ -155,7 +156,7 @@ public class LogServiceLogger extends BaseLogger
             var message = configuration.get("level");
             if (message != null)
             {
-                log.level(OperationMessage.of(message).severity());
+                log.level(OperationMessage.parse(Listener.console(), message).severity());
             }
 
             // and then let the log configure itself with the remaining properties

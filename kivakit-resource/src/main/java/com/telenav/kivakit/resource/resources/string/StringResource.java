@@ -20,6 +20,7 @@ package com.telenav.kivakit.resource.resources.string;
 
 import com.telenav.kivakit.kernel.language.io.StringInput;
 import com.telenav.kivakit.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.ReadableResource;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourceType;
@@ -43,7 +44,7 @@ public class StringResource extends BaseReadableResource
 
     public StringResource(String value)
     {
-        this(ResourcePath.parseUnixResourcePath("/objects/String@" + Integer.toHexString(value.hashCode())), value);
+        this(ResourcePath.parseUnixResourcePath(Listener.console(), "/objects/String@" + Integer.toHexString(value.hashCode())), value);
     }
 
     public StringResource(ResourcePath path, String value)

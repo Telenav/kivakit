@@ -1,6 +1,7 @@
 package com.telenav.kivakit.filesystem;
 
 import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
+import com.telenav.kivakit.kernel.messaging.Listener;
 
 import java.util.regex.Pattern;
 
@@ -21,7 +22,7 @@ public class FolderGlobPattern implements Matcher<Folder>
     /**
      * @return A matcher for the given glob pattern
      */
-    public static FolderGlobPattern parse(String pattern)
+    public static FolderGlobPattern parse(Listener listener, String pattern)
     {
         pattern = pattern.replaceAll("\\*\\*/", "(.*?/)*")
                 .replaceAll("\\*", ".*")

@@ -78,7 +78,7 @@ public interface SettingsTrait
      */
     default boolean hasSettings(Class<?> type, Enum<?> instance)
     {
-        return hasSettings(type, InstanceIdentifier.of(instance));
+        return hasSettings(type, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     /**
@@ -86,7 +86,7 @@ public interface SettingsTrait
      */
     default boolean hasSettings(Class<?> type, String instance)
     {
-        return hasSettings(type, InstanceIdentifier.of(instance));
+        return hasSettings(type, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     /**
@@ -118,7 +118,7 @@ public interface SettingsTrait
      */
     default <T> T lookupSettings(Class<T> type, Enum<?> instance)
     {
-        return settingsRegistry().lookupSettings(type, InstanceIdentifier.of(instance));
+        return settingsRegistry().lookupSettings(type, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     /**
@@ -126,7 +126,7 @@ public interface SettingsTrait
      */
     default <T> T lookupSettings(Class<T> type, String instance)
     {
-        return settingsRegistry().lookupSettings(type, InstanceIdentifier.of(instance));
+        return settingsRegistry().lookupSettings(type, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     default Settings registerAllSettingsIn(Settings settings)
@@ -151,7 +151,7 @@ public interface SettingsTrait
 
     default Settings registerAllSettingsIn(Listener listener, Class<?> relativeTo, String path)
     {
-        return registerAllSettingsIn(listener, PackagePath.parsePackagePath(relativeTo, path));
+        return registerAllSettingsIn(listener, PackagePath.parsePackagePath(listener, relativeTo, path));
     }
 
     default Settings registerAllSettingsIn(Listener listener, Class<?> type)
@@ -180,7 +180,7 @@ public interface SettingsTrait
      */
     default Settings registerSettings(Object settings, Enum<?> instance)
     {
-        return registerSettings(settings, InstanceIdentifier.of(instance));
+        return registerSettings(settings, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     /**
@@ -188,7 +188,7 @@ public interface SettingsTrait
      */
     default Settings registerSettings(Object settings, String instance)
     {
-        return registerSettings(settings, InstanceIdentifier.of(instance));
+        return registerSettings(settings, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     /**
@@ -212,7 +212,7 @@ public interface SettingsTrait
      */
     default <T> T requireSettings(Class<T> type, Enum<?> instance)
     {
-        return requireSettings(type, InstanceIdentifier.of(instance));
+        return requireSettings(type, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     /**
@@ -220,7 +220,7 @@ public interface SettingsTrait
      */
     default <T> T requireSettings(Class<T> type, String instance)
     {
-        return requireSettings(type, InstanceIdentifier.of(instance));
+        return requireSettings(type, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     /**

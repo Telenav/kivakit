@@ -20,6 +20,7 @@ package com.telenav.kivakit.kernel.messaging.messages;
 
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.values.level.Level;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessaging;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -52,9 +53,9 @@ public final class Severity extends Level implements Named
 
     public static final Severity CRITICAL = new Severity("Critical", 0.9);
 
-    public static Severity parseSeverity(String name)
+    public static Severity parseSeverity(Listener listener, String name)
     {
-        return severities.get(name);
+        return listener.problemIfNull(severities.get(name), "Invalid severity: $", name);
     }
 
     private String name;

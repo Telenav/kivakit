@@ -25,8 +25,6 @@ import com.telenav.kivakit.kernel.data.conversion.string.collection.BaseListConv
 import com.telenav.kivakit.kernel.data.conversion.string.primitive.IntegerConverter;
 import com.telenav.kivakit.kernel.language.objects.Hash;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.network.core.project.lexakai.diagrams.DiagramPort;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -53,8 +51,6 @@ import static com.telenav.kivakit.network.core.Protocol.HTTPS;
 @UmlClassDiagram(diagram = DiagramPort.class)
 public class Port
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     /**
      * @return A port object from the given {@link URI}
      */
@@ -63,7 +59,7 @@ public class Port
         var host = new Host(uri.getHost());
         var scheme = uri.getScheme();
         var port = uri.getPort();
-        var protocol = Protocol.forName(scheme);
+        var protocol = Protocol.parse(Listener.console(), scheme);
         return new Port(host, protocol, port);
     }
 
@@ -72,9 +68,9 @@ public class Port
      *
      * @return A port for the given string or null if the string is not a port
      */
-    public static Port parse(String port)
+    public static Port parse(Listener listener, String port)
     {
-        return new Converter(LOGGER).convert(port);
+        return new Converter(listener).convert(port);
     }
 
     /**
@@ -178,7 +174,7 @@ public class Port
     /**
      * @return The URI for this port
      */
-    public URI asUri()
+    public URI asUri(Listener listener)
     {
         try
         {
@@ -186,7 +182,7 @@ public class Port
         }
         catch (URISyntaxException e)
         {
-            LOGGER.problem(e, "Unable to convert $ to a URI", this);
+            listener.problem(e, "Unable to convert $ to a URI", this);
             return null;
         }
     }
@@ -264,7 +260,7 @@ public class Port
     /**
      * @return A socket input stream for this port
      */
-    public InputStream open()
+    public InputStream open(Listener listener)
     {
         try
         {
@@ -272,7 +268,7 @@ public class Port
         }
         catch (IOException e)
         {
-            LOGGER.warning(e, "Unable to open socket $", socket());
+            listener.warning(e, "Unable to open socket $", socket());
         }
         return null;
     }
@@ -280,9 +276,9 @@ public class Port
     /**
      * @return The {@link NetworkPath} at the given path on this host and port
      */
-    public NetworkPath path(String path)
+    public NetworkPath path(Listener listener, String path)
     {
-        return NetworkPath.networkPath(this, path);
+        return NetworkPath.networkPath(listener, this, path);
     }
 
     /**

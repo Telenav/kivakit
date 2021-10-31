@@ -25,8 +25,7 @@ import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludePro
 import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
 import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.language.values.count.Bytes;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageModules;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -61,9 +60,7 @@ import java.nio.file.Path;
 @UmlClassDiagram(diagram = DiagramLanguageModules.class)
 public class ModuleResource
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
-    public static ModuleResource moduleResource(ModuleReference reference, URI uri)
+    public static ModuleResource moduleResource(Listener listener, ModuleReference reference, URI uri)
     {
         var location = reference.location();
         if (location.isPresent())
@@ -99,7 +96,7 @@ public class ModuleResource
                 case "jar":
                 case "zip":
                 {
-                    Nio.filesystem(LOGGER, uri);
+                    Nio.filesystem(listener, uri);
                     var _package = PackagePath.packagePath(StringPath.stringPath(uri));
                     return new ModuleResource(_package, uri);
                 }
@@ -108,7 +105,7 @@ public class ModuleResource
                     break;
 
                 default:
-                    LOGGER.warning("Unknown scheme $", scheme);
+                    listener.warning("Unknown scheme $", scheme);
                     break;
             }
         }

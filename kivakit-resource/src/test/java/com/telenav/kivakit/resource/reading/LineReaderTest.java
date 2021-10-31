@@ -29,8 +29,8 @@ public class LineReaderTest extends UnitTest
     public void test()
     {
         var i = 1;
-        var resource = PackageResource.of(PackagePath.packagePath(getClass()), "test.txt");
-        for ( String line : resource.reader().linesAsStringList())
+        var resource = PackageResource.packageResource(this, PackagePath.packagePath(getClass()), "test.txt");
+        for (String line : resource.reader().linesAsStringList())
         {
             ensureEqual(i++, Integer.parseInt(line));
         }

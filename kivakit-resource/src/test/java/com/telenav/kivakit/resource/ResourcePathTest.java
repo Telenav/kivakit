@@ -105,12 +105,12 @@ public class ResourcePathTest extends UnitTest
     {
         if (OperatingSystem.get().isWindows())
         {
-            var path = ResourcePath.parseResourcePath("c:\\");
+            var path = ResourcePath.parseResourcePath(this, "c:\\");
             ensure(path.isRoot());
         }
         else
         {
-            var path = ResourcePath.parseResourcePath("/");
+            var path = ResourcePath.parseResourcePath(this, "/");
             ensure(path.isRoot());
         }
     }
@@ -167,6 +167,6 @@ public class ResourcePathTest extends UnitTest
     @NotNull
     private ResourcePath path(String path)
     {
-        return ResourcePath.parseResourcePath(path);
+        return ResourcePath.parseResourcePath(this, path);
     }
 }

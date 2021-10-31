@@ -23,8 +23,6 @@ import com.telenav.kivakit.kernel.interfaces.io.ByteSized;
 import com.telenav.kivakit.kernel.language.primitives.Doubles;
 import com.telenav.kivakit.kernel.language.strings.Strings;
 import com.telenav.kivakit.kernel.language.values.level.Percent;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageValue;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -88,8 +86,6 @@ public final class Bytes extends Count implements ByteSized
     /** Maximum bytes value */
     public static final Bytes MAXIMUM = bytes(Long.MAX_VALUE);
 
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     public static Bytes bytes(double bytes)
     {
         return new Bytes((long) bytes);
@@ -133,11 +129,6 @@ public final class Bytes extends Count implements ByteSized
     public static Bytes megabytes(long megabytes)
     {
         return kilobytes(megabytes * 1024);
-    }
-
-    public static Bytes parse(String bytes)
-    {
-        return parse(LOGGER, bytes);
     }
 
     public static Bytes parse(Listener listener, String bytes)

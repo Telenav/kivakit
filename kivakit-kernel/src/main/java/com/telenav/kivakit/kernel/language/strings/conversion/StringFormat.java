@@ -21,6 +21,7 @@ package com.telenav.kivakit.kernel.language.strings.conversion;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.map.string.NameMap;
 import com.telenav.kivakit.kernel.language.values.identifier.StringIdentifier;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramInterfaceString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
@@ -82,9 +83,14 @@ public class StringFormat extends StringIdentifier implements Named
     /** Suitable for output to a log, like "[Object x = 9, y = 10]" */
     public static StringFormat LOG = new StringFormat(LOG_IDENTIFIER);
 
-    public static StringFormat of(String identifier)
+    public static StringFormat parse(Listener listener, String identifier)
     {
-        return identifiers.get(identifier);
+        var format = identifiers.get(identifier);
+        if (format == null)
+        {
+            listener.warning("Invalid format: $", identifier);
+        }
+        return format;
     }
 
     public StringFormat(String identifier)

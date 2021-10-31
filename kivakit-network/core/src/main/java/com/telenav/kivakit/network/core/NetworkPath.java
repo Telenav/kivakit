@@ -54,14 +54,14 @@ import java.util.function.Function;
  * <p><b>Path Parsing Methods</b></p>
  *
  * <ul>
- *     <li>{@link #parseNetworkPath(String)} - The given string as a network path</li>
+ *     <li>{@link #parseNetworkPath(Listener, String)} - The given string as a network path</li>
  * </ul>
  *
  * <p><b>Path Factory Methods</b></p>
  *
  * <ul>
- *     <li>{@link #networkPath(URI)} - A network path for the given URI</li>
- *     <li>{@link #networkPath(Port, String)} - The given port (including host and protocol) and path as a network path</li>
+ *     <li>{@link #networkPath(Listener, URI)} - A network path for the given URI</li>
+ *     <li>{@link #networkPath(Listener, Port, String)} - The given port (including host and protocol) and path as a network path</li>
  * </ul>
  *
  * @author jonathanl (shibo)
@@ -75,31 +75,32 @@ public class NetworkPath extends FilePath
     /**
      * @return A network path for the given URI
      */
-    public static NetworkPath networkPath(URI uri)
+    public static NetworkPath networkPath(Listener listener, URI uri)
     {
-        return networkPath(Port.from(uri), uri.getPath());
+        return networkPath(listener, Port.from(uri), uri.getPath());
     }
 
     /**
      * @return The given path relative to the given port as a network path
      */
-    public static NetworkPath networkPath(Port port, String path)
+    public static NetworkPath networkPath(Listener listener, Port port, String path)
     {
         var root = "/" + port + "/";
-        return new NetworkPath(port, StringPath.parseStringPath(path, "/", "/").withRoot(root));
+        return new NetworkPath(port, StringPath.parseStringPath(listener, path, "/", "/").withRoot(root));
     }
 
     /**
      * @return A network path for the given string
      */
-    public static NetworkPath parseNetworkPath(String path)
+    public static NetworkPath parseNetworkPath(Listener listener, String path)
     {
         try
         {
-            return networkPath(new URI(path));
+            return networkPath(listener, new URI(path));
         }
         catch (URISyntaxException e)
         {
+            listener.problem("Invalid network path: $", path);
             return null;
         }
     }
@@ -120,7 +121,7 @@ public class NetworkPath extends FilePath
         @Override
         protected NetworkPath onToValue(String value)
         {
-            return parseNetworkPath(value);
+            return parseNetworkPath(this, value);
         }
     }
 

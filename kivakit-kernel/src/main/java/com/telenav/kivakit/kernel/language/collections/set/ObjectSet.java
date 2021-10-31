@@ -28,13 +28,13 @@ import java.util.Set;
  */
 public class ObjectSet<T> extends BaseSet<T>
 {
-    public static <T> ObjectSet<T> empty()
+    public static <T> ObjectSet<T> emptyObjectSet()
     {
-        return of();
+        return objectSet();
     }
 
     @SafeVarargs
-    public static <T> ObjectSet<T> of(T... objects)
+    public static <T> ObjectSet<T> objectSet(T... objects)
     {
         var set = new ObjectSet<T>();
         set.addAll(objects);

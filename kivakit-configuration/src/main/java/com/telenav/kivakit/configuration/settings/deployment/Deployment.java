@@ -26,8 +26,6 @@ import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -157,15 +155,14 @@ import java.io.Serializable;
 @UmlClassDiagram(diagram = DiagramConfiguration.class, excludeSuperTypes = { Serializable.class })
 public class Deployment extends Settings implements Named, Serializable
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
-    public static SwitchParser.Builder<Deployment> deploymentSwitchParser(DeploymentSet deployments,
+    public static SwitchParser.Builder<Deployment> deploymentSwitchParser(Listener listener,
+                                                                          DeploymentSet deployments,
                                                                           String switchName)
     {
         return SwitchParser.builder(Deployment.class)
                 .name("deployment")
                 .validValues(deployments.deployments())
-                .converter(new Deployment.Converter(LOGGER, deployments))
+                .converter(new Deployment.Converter(listener, deployments))
                 .description("The deployment configuration to run");
     }
 
@@ -304,7 +301,7 @@ public class Deployment extends Settings implements Named, Serializable
     @Override
     public Deployment registerSettings(Object settings, Enum<?> instance)
     {
-        return registerSettings(settings, InstanceIdentifier.of(instance));
+        return registerSettings(settings, InstanceIdentifier.instanceIdentifier(instance));
     }
 
     /**

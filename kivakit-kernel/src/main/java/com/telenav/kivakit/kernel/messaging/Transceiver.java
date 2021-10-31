@@ -374,6 +374,15 @@ public interface Transceiver extends NamedObject, Receiver, Transmitter
         return receive(new Problem(cause, text, arguments));
     }
 
+    default <T> T problemIfNull(T value, String text, Object... arguments)
+    {
+        if (value == null)
+        {
+            problem(text, arguments);
+        }
+        return value;
+    }
+
     /**
      * Sends a formatted {@link Quibble} message to this {@link Transceiver}
      *

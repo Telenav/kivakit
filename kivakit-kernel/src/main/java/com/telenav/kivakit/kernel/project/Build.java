@@ -23,6 +23,8 @@ import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.language.primitives.Ints;
 import com.telenav.kivakit.kernel.language.time.LocalTime;
+import com.telenav.kivakit.kernel.logging.Logger;
+import com.telenav.kivakit.kernel.logging.LoggerFactory;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -46,6 +48,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class Build implements Named
 {
+    private static final Logger LOGGER = LoggerFactory.newLogger();
+
     /**
      * @return Build information for the given project
      */
@@ -104,7 +108,7 @@ public class Build implements Named
      */
     public int number()
     {
-        return Ints.parse(property("build-number"));
+        return Ints.parseFast(property("build-number"));
     }
 
     /**
@@ -112,7 +116,7 @@ public class Build implements Named
      */
     public VariableMap<String> properties()
     {
-        return VariableMap.of(metadata.buildProperties());
+        return VariableMap.variableMap(metadata.buildProperties());
     }
 
     /**

@@ -22,6 +22,9 @@ import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.values.count.Count;
+import com.telenav.kivakit.kernel.logging.Logger;
+import com.telenav.kivakit.kernel.logging.LoggerFactory;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.compression.Codec;
 import com.telenav.kivakit.resource.compression.codecs.GzipCodec;
@@ -35,14 +38,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
-
 /**
  * A {@link FileName} extension, such as ".txt" or ".jar".
  *
  * <p>
- * Common extensions are provided as static constants. An extension can also be constructed with {@link #parse(String)},
- * with or without a dot prefix:
+ * Common extensions are provided as static constants. An extension can also be constructed with {@link #parse(Listener
+ * listener, String)}, with or without a dot prefix:
  * </p>
  *
  * <pre>
@@ -84,47 +85,49 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
 @LexakaiJavadoc(complete = true)
 public class Extension implements Named
 {
+    private static final Logger LOGGER = LoggerFactory.newLogger();
+
     // Archives
-    public static final Extension GZIP = parse(".gz");
+    public static final Extension GZIP = parse(LOGGER, ".gz");
 
-    public static final Extension ZIP = parse(".zip");
+    public static final Extension ZIP = parse(LOGGER, ".zip");
 
-    public static final Extension JAR = parse(".jar");
+    public static final Extension JAR = parse(LOGGER, ".jar");
 
-    public static final Extension KRYO = parse(".kryo");
+    public static final Extension KRYO = parse(LOGGER, ".kryo");
 
     // Executable files
-    public static final Extension PYTHON = parse(".py");
+    public static final Extension PYTHON = parse(LOGGER, ".py");
 
-    public static final Extension SHELL = parse(".sh");
+    public static final Extension SHELL = parse(LOGGER, ".sh");
 
     // General file formats
-    public static final Extension PROPERTIES = parse(".properties");
+    public static final Extension PROPERTIES = parse(LOGGER, ".properties");
 
-    public static final Extension TXT = parse(".txt");
+    public static final Extension TXT = parse(LOGGER, ".txt");
 
-    public static final Extension CSV = parse(".csv");
+    public static final Extension CSV = parse(LOGGER, ".csv");
 
-    public static final Extension PNG = parse(".png");
+    public static final Extension PNG = parse(LOGGER, ".png");
 
-    public static final Extension TMP = parse(".tmp");
+    public static final Extension TMP = parse(LOGGER, ".tmp");
 
     // Map file formats
-    public static final Extension TXD = parse(".txd");
+    public static final Extension TXD = parse(LOGGER, ".txd");
 
-    public static final Extension GRAPH = parse(".graph");
+    public static final Extension GRAPH = parse(LOGGER, ".graph");
 
-    public static final Extension PBF = parse(".pbf");
+    public static final Extension PBF = parse(LOGGER, ".pbf");
 
-    public static final Extension OSM = parse(".osm");
+    public static final Extension OSM = parse(LOGGER, ".osm");
 
-    public static final Extension OSM_PBF = parse(".osm.pbf");
+    public static final Extension OSM_PBF = parse(LOGGER, ".osm.pbf");
 
-    public static final Extension POLY = parse(".poly");
+    public static final Extension POLY = parse(LOGGER, ".poly");
 
-    public static final Extension GEOJSON = parse(".geojson");
+    public static final Extension GEOJSON = parse(LOGGER, ".geojson");
 
-    public static final Extension OSMPP = parse(".osmpp");
+    public static final Extension OSMPP = parse(LOGGER, ".osmpp");
 
     // Compressed formats
     public static final Extension TXT_GZIP = TXT.gzipped();
@@ -133,11 +136,11 @@ public class Extension implements Named
 
     public static final Extension GRAPH_GZIP = GRAPH.gzipped();
 
-    public static final Extension JAVA = parse(".java");
+    public static final Extension JAVA = parse(LOGGER, ".java");
 
-    public static final Extension POM = parse(".pom");
+    public static final Extension POM = parse(LOGGER, ".pom");
 
-    public static final Extension CLASS = parse(".class");
+    public static final Extension CLASS = parse(LOGGER, ".class");
 
     public static List<Extension> archive()
     {
@@ -193,14 +196,13 @@ public class Extension implements Named
         return known;
     }
 
-    public static Extension parse(String value)
+    public static Extension parse(Listener listener, String value)
     {
         if (value.matches("(\\.[A-Za-z]+)+"))
         {
             return new Extension(value);
         }
-        fail("Cannot parse $", value);
-        throw new IllegalStateException();
+        throw listener.problem("Cannot parse $", value).asException();
     }
 
     private final String extension;

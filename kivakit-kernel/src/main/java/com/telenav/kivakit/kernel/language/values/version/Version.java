@@ -18,6 +18,8 @@
 
 package com.telenav.kivakit.kernel.language.values.version;
 
+import com.telenav.kivakit.kernel.language.primitives.Ints;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.Release;
 
 import java.util.Objects;
@@ -32,8 +34,8 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
  * <p><b>Parsing</b></p>
  *
  * <p>
- * Versions can be created by parsing a {@link String} with {@link #parse(String)} as well as by using the of() factory
- * methods, passing in major, minor, patch and release values.
+ * Versions can be created by parsing a {@link String} with {@link #parse(Listener listener, String)} as well as by
+ * using the of() factory methods, passing in major, minor, patch and release values.
  * </p>
  *
  * <p><b>Information</b></p>
@@ -125,23 +127,23 @@ public class Version
      * @return The given text, of the form [major].[minor](.[revision)?(-release)?, parsed as a {@link Version} object,
      * or null if the text is not of that form.
      */
-    public static Version parse(String text)
+    public static Version parse(Listener listener, String text)
     {
         // If the text matches the version pattern,
         var matcher = PATTERN.matcher(text);
         if (matcher.matches())
         {
             // Extract the required major and minor versions
-            var major = Integer.parseInt(matcher.group("major"));
-            var minor = Integer.parseInt(matcher.group("minor"));
+            var major = Ints.parse(listener, matcher.group("major"));
+            var minor = Ints.parse(listener, matcher.group("minor"));
 
             // then get the patch group and convert it to a number or NO_PATCH if there is none
             var patch = matcher.group("patch");
-            var patchNumber = patch == null ? NO_PATCH : Integer.parseInt(patch);
+            var patchNumber = patch == null ? NO_PATCH : Ints.parse(listener, patch);
 
             // and the release name or null if there is none
             var releaseName = matcher.group("release");
-            var release = releaseName == null ? null : Release.parse(releaseName);
+            var release = releaseName == null ? null : Release.parse(listener, releaseName);
             var snapshot = "SNAPSHOT".equalsIgnoreCase(matcher.group("snapshot"));
 
             // and finally, construct the version object

@@ -57,7 +57,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
  * <ul>
  *     <li>{@link #get()} - A {@link HttpGetResource} with default content type and access constraints</li>
  *     <li>{@link #get(String)} - A {@link HttpGetResource} with the given content type</li>
- *     <li>{@link #get(NetworkAccessConstraints)} - A {@link HttpGetResource}  with the given access contraints</li>
+ *     <li>{@link #get(NetworkAccessConstraints)} - A {@link HttpGetResource}  with the given access constraints</li>
  *     <li>{@link #get(NetworkAccessConstraints, String)} - A {@link HttpGetResource} with the given content type and access constraints</li>
  *     <li>{@link #post()} - A {@link HttpPostResource} with default content type and access constraints</li>
  *     <li>{@link #post(String)} - A {@link HttpPostResource} with the given value to post</li>
@@ -100,8 +100,8 @@ public class HttpNetworkLocation extends NetworkLocation implements Resourceful
                 // NOTE: This code is very similar to the code in HttpNetworkLocationConverter
                 var uri = new URI(value);
                 var url = uri.toURL();
-                var location = new HttpNetworkLocation(NetworkPath.networkPath(uri));
-                location.queryParameters(QueryParameters.parse(url.getQuery()));
+                var location = new HttpNetworkLocation(NetworkPath.networkPath(this, uri));
+                location.queryParameters(QueryParameters.parse(this, url.getQuery()));
                 location.reference(url.getRef());
                 return location;
             }

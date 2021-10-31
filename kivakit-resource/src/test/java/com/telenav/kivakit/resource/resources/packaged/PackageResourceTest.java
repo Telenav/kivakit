@@ -21,16 +21,14 @@ package com.telenav.kivakit.resource.resources.packaged;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.test.UnitTest;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
-
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureEqual;
 
 /**
  * @author jonathanl (shibo)
  */
-public class PackageResourceTest
+public class PackageResourceTest extends UnitTest
 {
     @Test
     public void testLastModified()
@@ -67,11 +65,11 @@ public class PackageResourceTest
 
     private PackageResource a()
     {
-        return PackageResource.of(_package(), "a.txt");
+        return PackageResource.packageResource(this, _package(), "a.txt");
     }
 
     private PackageResource b()
     {
-        return PackageResource.of(_package(), "b.txt");
+        return PackageResource.packageResource(this, _package(), "b.txt");
     }
 }

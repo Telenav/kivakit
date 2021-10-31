@@ -24,6 +24,7 @@ import com.telenav.kivakit.kernel.interfaces.time.ChangedAt;
 import com.telenav.kivakit.kernel.interfaces.time.CreatedAt;
 import com.telenav.kivakit.kernel.interfaces.time.Modifiable;
 import com.telenav.kivakit.kernel.language.strings.Strings;
+import com.telenav.kivakit.kernel.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.resource.path.FilePath;
 import com.telenav.kivakit.resource.path.ResourcePathed;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemService;
@@ -55,7 +56,13 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.unsupport
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 @UmlExcludeSuperTypes(ResourcePathed.class)
 @LexakaiJavadoc(complete = true)
-public interface FileSystemObjectService extends ByteSized, ChangedAt, CreatedAt, Modifiable, ResourcePathed
+public interface FileSystemObjectService extends
+        RepeaterMixin,
+        ByteSized,
+        ChangedAt,
+        CreatedAt,
+        Modifiable,
+        ResourcePathed
 {
     /**
      * @return True if the permissions were changed
@@ -139,11 +146,11 @@ public interface FileSystemObjectService extends ByteSized, ChangedAt, CreatedAt
         var folderName = Strings.ensureEndsWith(folder.path().toString().replace("\\", "/"), "/");
         if (fullName.startsWith(folderName))
         {
-            return FilePath.parseFilePath(fullName.substring(folderName.length()));
+            return FilePath.parseFilePath(this, fullName.substring(folderName.length()));
         }
         else
         {
-            return FilePath.parseFilePath(fullName);
+            return FilePath.parseFilePath(this, fullName);
         }
     }
 

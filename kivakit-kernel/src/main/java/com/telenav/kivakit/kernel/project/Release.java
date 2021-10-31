@@ -19,6 +19,7 @@
 package com.telenav.kivakit.kernel.project;
 
 import com.telenav.kivakit.kernel.language.values.version.Version;
+import com.telenav.kivakit.kernel.messaging.Listener;
 
 /**
  * The release for a particular {@link Version}. For example "alpha", "beta" or "final".
@@ -76,7 +77,7 @@ public enum Release
         }
     }
 
-    public static Release parse(String value)
+    public static Release parse(Listener listener, String value)
     {
         if (value != null)
         {
@@ -92,7 +93,7 @@ public enum Release
         {
             return null;
         }
-        throw new IllegalArgumentException();
+        throw listener.problem("Invalid release: " + value).asException();
     }
 
     private final int identifier;

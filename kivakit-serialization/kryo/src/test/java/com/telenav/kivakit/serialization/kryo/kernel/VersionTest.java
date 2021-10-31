@@ -30,9 +30,9 @@ public class VersionTest extends KryoUnitTest
     @Test
     public void testSerialization()
     {
-        serializationTest(Version.parse("6.0.0-snapshot"));
-        serializationTest(Version.parse("18.3.4-rc"));
-        serializationTest(Version.parse("4.0.9-m1"));
-        serializationTest(Version.parse("4.0"));
+        serializationTest(Version.parse(this, "6.0.0-snapshot"));
+        serializationTest(Version.parse(this, "18.3.4-rc"));
+        serializationTest(Version.parse(this, "4.0.9-m1"));
+        serializationTest(Version.parse(this, "4.0"));
     }
 }

@@ -19,6 +19,7 @@
 package com.telenav.kivakit.resource.resources.streamed;
 
 import com.telenav.kivakit.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.ReadableResource;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourceType;
@@ -48,7 +49,7 @@ public class InputResource extends BaseReadableResource
      */
     public InputResource(InputStream in)
     {
-        super(ResourcePath.parseUnixResourcePath("/objects/InputResource/" + Integer.toHexString(in.hashCode())));
+        super(ResourcePath.parseUnixResourcePath(Listener.console(), "/objects/InputResource/" + Integer.toHexString(in.hashCode())));
         this.in = in;
     }
 

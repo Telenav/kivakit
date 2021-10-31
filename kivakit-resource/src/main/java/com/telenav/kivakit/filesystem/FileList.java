@@ -101,7 +101,7 @@ public class FileList implements List<File>, Countable
             var files = new FileList();
             for (var path : value.split(","))
             {
-                var file = File.parse(path);
+                var file = File.parse(this, path);
                 if (file.isFolder())
                 {
                     files.addAll(file.asFolder().nestedFiles(extension.fileMatcher()));

@@ -18,7 +18,6 @@
 
 package com.telenav.kivakit.kernel.language.types;
 
-import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.kernel.language.strings.Paths;
 import com.telenav.kivakit.kernel.messaging.Listener;
 
@@ -80,7 +79,7 @@ public class Classes
                 || Double.TYPE.equals(type) || Float.TYPE.equals(type);
     }
 
-    public static InputStream openResource(Class<?> base, String path)
+    public static InputStream openResource(Listener listener, Class<?> base, String path)
     {
         var in = base.getResourceAsStream(path);
         if (in == null)
@@ -99,22 +98,26 @@ public class Classes
         {
             in = Classes.class.getResourceAsStream(path);
         }
+        if (in == null)
+        {
+            listener.problem("Unable to open resource $:$", base.getSimpleName(), path);
+        }
         return in;
     }
 
-    public static URI resourceUri(Class<?> base, String path)
+    public static URI resourceUri(Listener listener, Class<?> base, String path)
     {
         try
         {
-            return resourceUrl(base, path).toURI();
+            return resourceUrl(listener, base, path).toURI();
         }
         catch (URISyntaxException e)
         {
-            return Ensure.fail(e, "Unable to get URI for $:$", base, path);
+            throw listener.problem(e, "Unable to get URI for $:$", base, path).asException();
         }
     }
 
-    public static URL resourceUrl(Class<?> base, String path)
+    public static URL resourceUrl(Listener listener, Class<?> base, String path)
     {
         var resource = base.getResource(path);
         if (resource == null)
@@ -127,7 +130,7 @@ public class Classes
         }
         if (resource == null)
         {
-            Ensure.illegalArgument("Unable to find resource: ${class}:$", base, path);
+            throw listener.problem("Unable to find resource: ${class}:$", base, path).asException();
         }
         return resource;
     }

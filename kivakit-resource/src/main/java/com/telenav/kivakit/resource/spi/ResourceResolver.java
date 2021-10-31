@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.resource.spi;
 
+import com.telenav.kivakit.kernel.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolderIdentifier;
 import com.telenav.kivakit.resource.ResourceIdentifier;
@@ -38,7 +39,7 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 @UmlClassDiagram(diagram = DiagramResourceService.class)
 @UmlRelation(label = "parses", referent = ResourceFolderIdentifier.class)
 @LexakaiJavadoc(complete = true)
-public interface ResourceResolver
+public interface ResourceResolver extends RepeaterMixin
 {
     /**
      * @return True if this resource factory understands the given resource identifier

@@ -52,10 +52,10 @@ public class Doubles
         if (index > 0)
         {
             var invalid = Longs.INVALID;
-            var major = Longs.parse(value.substring(0, index), invalid);
+            var major = Longs.parseFast(value.substring(0, index), invalid);
             if (major != invalid)
             {
-                var minor = Longs.parse(value.substring(index + 1), invalid);
+                var minor = Longs.parseFast(value.substring(index + 1), invalid);
                 if (minor != invalid)
                 {
                     return major + (minor / denominator);

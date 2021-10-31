@@ -363,9 +363,9 @@ public class Count implements
         }
     }
 
-    public static Count parse(String value)
+    public static Count parseCount(Listener listener, String value)
     {
-        var count = Longs.parse(value, -1);
+        var count = Longs.parseFast(value, -1);
         return count < 0 ? null : count(count);
     }
 
@@ -385,7 +385,7 @@ public class Count implements
         @Override
         protected Count onToValue(String value)
         {
-            return parse(value);
+            return parseCount(this, value);
         }
     }
 

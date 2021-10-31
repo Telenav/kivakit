@@ -21,6 +21,7 @@ package com.telenav.kivakit.kernel.language.values.count;
 import com.telenav.kivakit.kernel.language.strings.Strings;
 import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.kernel.language.values.level.Percent;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageValue;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -216,7 +217,7 @@ public class Estimate extends Count implements AsString
         return estimate(values.length);
     }
 
-    public static Estimate parse(String value)
+    public static Estimate parse(Listener listener, String value)
     {
         if (value.indexOf(',') > 0)
         {

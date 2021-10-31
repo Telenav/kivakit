@@ -19,6 +19,8 @@
 package kernel.path;
 
 import com.telenav.kivakit.kernel.language.paths.StringPath;
+import com.telenav.kivakit.kernel.logging.Logger;
+import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import org.junit.Test;
 
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureEqual;
@@ -26,6 +28,8 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureEqu
 @SuppressWarnings("SameParameterValue")
 public class StringPathTest
 {
+    private static final Logger LOGGER = LoggerFactory.newLogger();
+
     @Test
     public void testParse()
     {
@@ -39,21 +43,21 @@ public class StringPathTest
 
         // Absolute paths
         ensureEqual("/a/b", absoluteSlashPath("/a/b").toString());
-        ensureEqual(":a:b", StringPath.parseStringPath(":a:b", ":", ":").withSeparator(":").toString());
+        ensureEqual(":a:b", StringPath.parseStringPath(LOGGER, ":a:b", ":", ":").withSeparator(":").toString());
     }
 
     private StringPath absoluteSlashPath(String path)
     {
-        return StringPath.parseStringPath(path, "/", "/");
+        return StringPath.parseStringPath(LOGGER, path, "/", "/");
     }
 
     private StringPath dotPath(String path)
     {
-        return StringPath.parseStringPath(path, "\\.");
+        return StringPath.parseStringPath(LOGGER, path, "\\.");
     }
 
     private StringPath slashPath(String path)
     {
-        return StringPath.parseStringPath(path, "/");
+        return StringPath.parseStringPath(LOGGER, path, "/");
     }
 }

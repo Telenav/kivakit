@@ -43,7 +43,7 @@ public class VariableMap<Value> extends BaseStringMap<Value>
     /**
      * @return A string variable map for the given string-to-string map
      */
-    public static VariableMap<String> of(Map<String, String> that)
+    public static VariableMap<String> variableMap(Map<String, String> that)
     {
         var copy = new VariableMap<String>();
         for (var key : that.keySet())

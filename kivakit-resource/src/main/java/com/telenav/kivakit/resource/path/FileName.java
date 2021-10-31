@@ -43,7 +43,7 @@ import java.util.regex.Pattern;
  *
  * <p>
  * File names can be created with various factory methods, including methods that produce valid filenames for dates and
- * times as well as the general method {@link #parse(String)}.
+ * times as well as the general method {@link #parse(Listener listener, String)}.
  * </p>
  *
  * <ul>
@@ -96,17 +96,17 @@ public class FileName implements Named, Comparable<FileName>
 
     public static FileName date()
     {
-        return parse(LocalTime.now().asDateString());
+        return parse(LOGGER, LocalTime.now().asDateString());
     }
 
     public static FileName date(LocalTime time)
     {
-        return parse(new LocalDateConverter(LOGGER).unconvert(time));
+        return parse(LOGGER, new LocalDateConverter(LOGGER).unconvert(time));
     }
 
     public static FileName date(LocalTime time, ZoneId zone)
     {
-        return parse(new LocalDateConverter(LOGGER, zone).unconvert(time));
+        return parse(LOGGER, new LocalDateConverter(LOGGER, zone).unconvert(time));
     }
 
     public static FileName dateTime()
@@ -116,37 +116,37 @@ public class FileName implements Named, Comparable<FileName>
 
     public static FileName dateTime(LocalTime time)
     {
-        return parse(new LocalDateTimeConverter(LOGGER).unconvert(time));
+        return parse(LOGGER, new LocalDateTimeConverter(LOGGER).unconvert(time));
     }
 
     public static FileName dateTime(LocalTime time, ZoneId zone)
     {
-        return parse(new LocalDateTimeConverter(LOGGER, zone).unconvert(time));
+        return parse(LOGGER, new LocalDateTimeConverter(LOGGER, zone).unconvert(time));
     }
 
-    public static FileName parse(String name)
+    public static FileName parse(Listener listener, String name)
     {
         return new FileName(name);
     }
 
-    public static LocalTime parseDateTime(String dateTime)
+    public static LocalTime parseDateTime(Listener listener, String dateTime)
     {
-        return new LocalDateTimeConverter(LOGGER).convert(dateTime);
+        return new LocalDateTimeConverter(listener).convert(dateTime);
     }
 
-    public static LocalTime parseDateTime(String dateTime, ZoneId zone)
+    public static LocalTime parseDateTime(Listener listener, String dateTime, ZoneId zone)
     {
-        return new LocalDateTimeConverter(LOGGER, zone).convert(dateTime);
+        return new LocalDateTimeConverter(listener, zone).convert(dateTime);
     }
 
     public static FileName time(LocalTime time)
     {
-        return parse(new LocalTimeConverter(LOGGER, time.timeZone()).unconvert(time));
+        return parse(LOGGER, new LocalTimeConverter(LOGGER, time.timeZone()).unconvert(time));
     }
 
     public static FileName time(LocalTime time, ZoneId zone)
     {
-        return parse(new LocalTimeConverter(LOGGER, zone).unconvert(time));
+        return parse(LOGGER, new LocalTimeConverter(LOGGER, zone).unconvert(time));
     }
 
     private final String name;
@@ -174,7 +174,7 @@ public class FileName implements Named, Comparable<FileName>
             var before = Paths.optionalHead(name(), '.');
             if (before != null)
             {
-                return parse(before);
+                return parse(LOGGER, before);
             }
         }
         return this;
@@ -309,7 +309,7 @@ public class FileName implements Named, Comparable<FileName>
      */
     public FileName normalized()
     {
-        return parse(FilePath.filePath(this).normalized().toString());
+        return parse(LOGGER, FilePath.filePath(this).normalized().toString());
     }
 
     /**
@@ -317,7 +317,7 @@ public class FileName implements Named, Comparable<FileName>
      */
     public FileName prefixedWith(String prefix)
     {
-        return parse(prefix + name);
+        return parse(LOGGER, prefix + name);
     }
 
     /**
@@ -333,7 +333,7 @@ public class FileName implements Named, Comparable<FileName>
      */
     public FileName toLowerCase()
     {
-        return parse(name().toLowerCase());
+        return parse(LOGGER, name().toLowerCase());
     }
 
     @Override
@@ -347,7 +347,7 @@ public class FileName implements Named, Comparable<FileName>
      */
     public FileName toUpperCase()
     {
-        return parse(name().toUpperCase());
+        return parse(LOGGER, name().toUpperCase());
     }
 
     /**
@@ -355,7 +355,7 @@ public class FileName implements Named, Comparable<FileName>
      */
     public FileName withExtension(Extension extension)
     {
-        return parse(name() + extension);
+        return parse(LOGGER, name() + extension);
     }
 
     /**
@@ -363,7 +363,7 @@ public class FileName implements Named, Comparable<FileName>
      */
     public FileName withSuffix(String suffix)
     {
-        return parse(name + suffix);
+        return parse(LOGGER, name + suffix);
     }
 
     /**
@@ -374,7 +374,7 @@ public class FileName implements Named, Comparable<FileName>
         var extension = extension();
         if (extension != null)
         {
-            return parse(Paths.optionalHead(name(), '.'));
+            return parse(LOGGER, Paths.optionalHead(name(), '.'));
         }
         return this;
     }
@@ -390,7 +390,7 @@ public class FileName implements Named, Comparable<FileName>
             var before = Paths.optionalHead(name(), '.');
             if (before != null)
             {
-                return parse(before);
+                return parse(LOGGER, before);
             }
         }
         return this;
@@ -403,7 +403,7 @@ public class FileName implements Named, Comparable<FileName>
     {
         if (name().endsWith(extension.toString()))
         {
-            return parse(Strip.trailing(name(), extension.toString()));
+            return parse(LOGGER, Strip.trailing(name(), extension.toString()));
         }
         return this;
     }
@@ -422,7 +422,7 @@ public class FileName implements Named, Comparable<FileName>
             {
                 if (name.endsWith(extension))
                 {
-                    name = parse(Strip.ending(name.toString(), extension.toString()));
+                    name = parse(LOGGER, Strip.ending(name.toString(), extension.toString()));
                     removedOne = true;
                 }
             }

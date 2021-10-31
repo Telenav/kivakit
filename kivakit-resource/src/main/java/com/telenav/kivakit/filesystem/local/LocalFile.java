@@ -23,6 +23,7 @@ import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.filesystem.spi.FolderService;
 import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.path.FilePath;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemService;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
@@ -83,7 +84,7 @@ public class LocalFile extends BaseWritableResource implements FileService
 
     public LocalFile(String path)
     {
-        this(FilePath.parseFilePath(path));
+        this(FilePath.parseFilePath(Listener.console(), path));
     }
 
     @Override

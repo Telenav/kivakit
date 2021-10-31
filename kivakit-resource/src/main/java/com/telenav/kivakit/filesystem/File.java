@@ -69,10 +69,10 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
  * Files can be created with several static factory methods, including:
  *
  * <ul>
- *     <li>{@link #parse(String)}</li>
- *     <li>{@link #of(URI)}</li>
- *     <li>{@link #of(FilePath)}</li>
- *     <li>{@link #of(java.io.File)}</li>
+ *     <li>{@link #parse(Listener listener, String)}</li>
+ *     <li>{@link #file(URI)}</li>
+ *     <li>{@link #file(FilePath)}</li>
+ *     <li>{@link #file(java.io.File)}</li>
  * </ul>
  *
  * <p>
@@ -149,14 +149,15 @@ public class File extends BaseWritableResource implements FileSystemObject
 
     private static long temporaryFileNumber = System.currentTimeMillis();
 
-    public static ArgumentParser.Builder<File> fileArgumentParser(String description)
+    public static ArgumentParser.Builder<File> fileArgumentParser(Listener listener, String description)
     {
         return ArgumentParser.builder(File.class)
                 .converter(new File.Converter(LOGGER))
                 .description(description);
     }
 
-    public static ArgumentParser.Builder<FileList> fileListArgumentParser(String description,
+    public static ArgumentParser.Builder<FileList> fileListArgumentParser(Listener listener,
+                                                                          String description,
                                                                           Extension extension)
     {
         return ArgumentParser.builder(FileList.class)
@@ -164,7 +165,8 @@ public class File extends BaseWritableResource implements FileSystemObject
                 .description(description);
     }
 
-    public static SwitchParser.Builder<FileList> fileListSwitchParser(String name,
+    public static SwitchParser.Builder<FileList> fileListSwitchParser(Listener listener,
+                                                                      String name,
                                                                       String description,
                                                                       Extension extension)
     {
@@ -174,7 +176,9 @@ public class File extends BaseWritableResource implements FileSystemObject
                 .description(description);
     }
 
-    public static SwitchParser.Builder<FilePath> filePathSwitchParser(String name, String description)
+    public static SwitchParser.Builder<FilePath> filePathSwitchParser(Listener listener,
+                                                                      String name,
+                                                                      String description)
     {
         return SwitchParser.builder(FilePath.class)
                 .name(name)
@@ -182,7 +186,9 @@ public class File extends BaseWritableResource implements FileSystemObject
                 .description(description);
     }
 
-    public static SwitchParser.Builder<File> fileSwitchParser(String name, String description)
+    public static SwitchParser.Builder<File> fileSwitchParser(Listener listener,
+                                                              String name,
+                                                              String description)
     {
         return SwitchParser.builder(File.class)
                 .name(name)
@@ -190,12 +196,12 @@ public class File extends BaseWritableResource implements FileSystemObject
                 .description(description);
     }
 
-    public static SwitchParser.Builder<File> inputFileSwitchParser()
+    public static SwitchParser.Builder<File> inputFileSwitchParser(Listener listener)
     {
-        return fileSwitchParser("input", "The input file to process");
+        return fileSwitchParser(listener, "input", "The input file to process");
     }
 
-    public static File of(URI uri)
+    public static File file(Listener listener, URI uri)
     {
         // Ensure our many preconditions
         if (!uri.isAbsolute())
@@ -229,46 +235,48 @@ public class File extends BaseWritableResource implements FileSystemObject
             Ensure.illegalArgument("URI path component is empty");
         }
         path = path.replaceFirst("^/", "");
-        return new File(FileSystemServiceLoader.fileSystem(FilePath.parseFilePath(path)).fileService(FilePath.parseFilePath(path)));
+        return new File(FileSystemServiceLoader
+                .fileSystem(FilePath.parseFilePath(listener, path))
+                .fileService(FilePath.parseFilePath(listener, path)));
     }
 
-    public static File of(java.io.File file)
+    public static File file(java.io.File file)
     {
-        return parse(file.getAbsolutePath());
+        return parse(Listener.none(), file.getAbsolutePath());
     }
 
-    public static File of(FilePath path)
+    public static File file(FilePath path)
     {
         return new File(FileSystemServiceLoader.fileSystem(path).fileService(path));
     }
 
-    public static SwitchParser.Builder<File> outputFile()
+    public static SwitchParser.Builder<File> outputFile(Listener listener)
     {
-        return fileSwitchParser("output", "The output file to target");
+        return fileSwitchParser(listener, "output", "The output file to target");
     }
 
-    public static File parse(String path, VariableMap<String> variables)
+    public static File parse(Listener listener, String path, VariableMap<String> variables)
     {
-        return parse(variables.expand(path));
+        return parse(listener, variables.expand(path));
     }
 
-    public static File parse(String path)
+    public static File parse(Listener listener, String path)
     {
         // If there is a KivaKit scheme, like "s3", "hdfs" or "java",
         var scheme = Paths.head(path, ":");
         if (scheme != null)
         {
             // parse the rest of the path into a FilePath,
-            var filePath = FilePath.parseFilePath(Paths.tail(path, ":"));
+            var filePath = FilePath.parseFilePath(listener, Paths.tail(path, ":"));
 
             // then prepend the KivaKit scheme to the list of schemes in the parsed FilePath,
             var schemes = filePath.schemes().copy().prepend(scheme);
 
             // and create the file.
-            return File.of(filePath.withSchemes(schemes));
+            return File.file(filePath.withSchemes(schemes));
         }
 
-        return File.of(FilePath.parseFilePath(path));
+        return File.file(FilePath.parseFilePath(listener, path));
     }
 
     public static synchronized File temporary(Extension extension)
@@ -292,7 +300,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         @Override
         protected File onToValue(String value)
         {
-            return File.parse(value);
+            return File.parse(this, value);
         }
     }
 
@@ -312,13 +320,13 @@ public class File extends BaseWritableResource implements FileSystemObject
             {
                 return false;
             }
-            return FileSystemServiceLoader.fileSystem(FilePath.parseFilePath(identifier.identifier())) != null;
+            return FileSystemServiceLoader.fileSystem(FilePath.parseFilePath(this, identifier.identifier())) != null;
         }
 
         @Override
         public Resource resolve(ResourceIdentifier identifier)
         {
-            return File.parse(identifier.identifier());
+            return File.parse(this, identifier.identifier());
         }
     }
 
@@ -349,7 +357,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      */
     public File absolute()
     {
-        return File.of(path().absolute());
+        return File.file(path().absolute());
     }
 
     public Duration age()
@@ -600,7 +608,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      */
     public File normalized()
     {
-        return File.of(service.path().normalized());
+        return File.file(service.path().normalized());
     }
 
     @Override
@@ -649,7 +657,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      */
     public File relativeTo(Folder folder)
     {
-        return File.of(service.relativePath(folder.service()));
+        return File.file(service.relativePath(folder.service()));
     }
 
     /**
@@ -703,7 +711,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      */
     public File withBaseName(String name)
     {
-        var file = File.of(path().parent().withChild(name));
+        var file = File.file(path().parent().withChild(name));
         if (extension() != null)
         {
             return file.withExtension(extension());
@@ -736,7 +744,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      */
     public File withExtension(Extension extension)
     {
-        return File.parse(path().toString() + extension);
+        return File.parse(this, path().toString() + extension);
     }
 
     /**
@@ -764,7 +772,7 @@ public class File extends BaseWritableResource implements FileSystemObject
             }
             if (dot > 0)
             {
-                return File.parse(pathString.substring(0, dot));
+                return File.parse(this, pathString.substring(0, dot));
             }
         }
         return this;
@@ -779,7 +787,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         if (extension != null)
         {
             var withoutExtension = Paths.withoutOptionalSuffix(path().toString(), '.');
-            return File.parse(withoutExtension);
+            return File.parse(this, withoutExtension);
         }
         return this;
     }
@@ -799,7 +807,7 @@ public class File extends BaseWritableResource implements FileSystemObject
             {
                 if (file.fileName().endsWith(extension))
                 {
-                    file = File.parse(Strip.ending(path().toString(), extension.toString()));
+                    file = File.parse(this, Strip.ending(path().toString(), extension.toString()));
                     removedOne = true;
                 }
             }
@@ -817,7 +825,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         var file = this;
         while (file.exists())
         {
-            file = File.parse(withoutExtension() + "-" + count + extension());
+            file = File.parse(this, withoutExtension() + "-" + count + extension());
             count++;
         }
         return file;

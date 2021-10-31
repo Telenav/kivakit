@@ -136,9 +136,9 @@ public interface Message extends Transmittable, Triaged, AsString, Named
     /**
      * @return The message with the given simple name (Problem, Warning, etc)
      */
-    static Message forName(String name)
+    static Message parseMessageName(Listener listener, String name)
     {
-        return OperationMessage.forName(name);
+        return OperationMessage.parse(listener, name);
     }
 
     /**

@@ -31,6 +31,8 @@ import com.telenav.kivakit.kernel.language.reflection.populator.ObjectPopulator;
 import com.telenav.kivakit.kernel.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.kernel.language.strings.AsciiArt;
 import com.telenav.kivakit.kernel.language.values.count.Count;
+import com.telenav.kivakit.kernel.logging.Logger;
+import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.WritableResource;
@@ -57,7 +59,7 @@ import java.util.regex.Pattern;
  *
  * <ul>
  *     <li>{@link #create()} - Creates an empty property map</li>
- *     <li>{@link #of(VariableMap)} - Creates a property map from the given variable map</li>
+ *     <li>{@link #propertyMap(VariableMap)} - Creates a property map from the given variable map</li>
  *     <li>{@link #load(Listener, Resource)} - Loads property map from the given resource</li>
  *     <li>{@link #localized(Listener, PackagePath, Locale)} - Loads a property map from the given package with a relative path
  *      from the given {@link Locale} of the form "locales/[language-name](/[country-name])?.</li>
@@ -101,6 +103,8 @@ import java.util.regex.Pattern;
 @LexakaiJavadoc(complete = true)
 public class PropertyMap extends VariableMap<String>
 {
+    private static final Logger LOGGER = LoggerFactory.newLogger();
+
     /**
      * @return An empty property map
      */
@@ -121,7 +125,7 @@ public class PropertyMap extends VariableMap<String>
 
     public static PropertyMap load(Listener listener, PackagePath _package, String path)
     {
-        return load(listener, PackageResource.of(_package, FilePath.parseFilePath(path)));
+        return load(listener, PackageResource.packageResource(_package, FilePath.parseFilePath(listener, path)));
     }
 
     public static PropertyMap load(Listener listener, Class<?> _package, String path)
@@ -134,7 +138,7 @@ public class PropertyMap extends VariableMap<String>
         return PropertyMap.load(listener, path, locale.path().join("/"));
     }
 
-    public static PropertyMap of(VariableMap<String> variables)
+    public static PropertyMap propertyMap(VariableMap<String> variables)
     {
         var map = create();
         for (var key : variables.keySet())
@@ -175,7 +179,7 @@ public class PropertyMap extends VariableMap<String>
      */
     public File asFile(String key)
     {
-        return File.parse(get(key));
+        return File.parse(LOGGER, get(key));
     }
 
     /**
@@ -183,7 +187,7 @@ public class PropertyMap extends VariableMap<String>
      */
     public Folder asFolder(String key)
     {
-        return Folder.parse(asPath(key));
+        return Folder.parse(LOGGER, asPath(key));
     }
 
     /**

@@ -27,11 +27,11 @@ public class FileSystemTest extends UnitTest
     @Test
     public void testFilePath()
     {
-        ensureEqual(FilePath.parseFilePath("TestFile1.txt").absolute(), FilePath.parseFilePath("TestFile1.txt").absolute());
+        ensureEqual(FilePath.parseFilePath(this, "TestFile1.txt").absolute(), FilePath.parseFilePath(this, "TestFile1.txt").absolute());
 
-        var filePath1 = FilePath.parseFilePath("TestFile1.txt");
-        var filePath1a = FilePath.parseFilePath("TestFile1.txt");
-        var filePath2 = FilePath.parseFilePath("TestFile2.txt");
+        var filePath1 = FilePath.parseFilePath(this, "TestFile1.txt");
+        var filePath1a = FilePath.parseFilePath(this, "TestFile1.txt");
+        var filePath2 = FilePath.parseFilePath(this, "TestFile2.txt");
         var directoryName = "newdirectory";
         var fileName = "TestFile3.txt";
 
@@ -39,9 +39,9 @@ public class FileSystemTest extends UnitTest
         ensure(filePath1.equals(filePath1a));
         ensureFalse(filePath1.equals(filePath2));
 
-        var filePath3 = FilePath.parseFilePath(directoryName).withChild(fileName);
+        var filePath3 = FilePath.parseFilePath(this, directoryName).withChild(fileName);
         ensureEqual(filePath3.toString(), directoryName + filePath1.separator() + fileName);
 
-        ensure(FilePath.parseFilePath(fileName).absolute().toString().endsWith(FilePath.parseFilePath(fileName).separator() + fileName));
+        ensure(FilePath.parseFilePath(this, fileName).absolute().toString().endsWith(FilePath.parseFilePath(this, fileName).separator() + fileName));
     }
 }

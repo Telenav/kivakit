@@ -45,14 +45,14 @@ public interface ResourceFolder extends UriIdentified
         return new ResourceFolderIdentifier(identifier);
     }
 
-    static ResourceFolder resolve(String identifier)
+    static ResourceFolder resolve(Listener listener, String identifier)
     {
-        return resolve(new ResourceFolderIdentifier(identifier));
+        return resolve(listener, new ResourceFolderIdentifier(identifier));
     }
 
-    static ResourceFolder resolve(ResourceFolderIdentifier identifier)
+    static ResourceFolder resolve(Listener listener, ResourceFolderIdentifier identifier)
     {
-        return ResourceFolderResolverServiceLoader.resolve(identifier);
+        return ResourceFolderResolverServiceLoader.resolve(listener, identifier);
     }
 
     /**
@@ -71,7 +71,7 @@ public interface ResourceFolder extends UriIdentified
         @Override
         protected ResourceFolder onToValue(String value)
         {
-            return new ResourceFolderIdentifier(value).resolve();
+            return new ResourceFolderIdentifier(value).resolve(this);
         }
     }
 

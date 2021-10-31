@@ -473,7 +473,7 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
 
             // and the name of which identifier of the class to configure (if any)
             var configurationInstance = properties.get("instance");
-            var identifier = configurationInstance != null ? InstanceIdentifier.of(configurationInstance) : InstanceIdentifier.SINGLETON;
+            var identifier = configurationInstance != null ? InstanceIdentifier.instanceIdentifier(configurationInstance) : InstanceIdentifier.SINGLETON;
             trace("Configuration identifier: $", identifier);
 
             // then create the configuration object and populate it using the converter framework
@@ -542,7 +542,7 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
             for (var path : settingsFolders.split(",\\s*"))
             {
                 // and install
-                var folder = Folder.parse(path);
+                var folder = Folder.parse(LOGGER, path);
                 if (folder != null)
                 {
                     LOGGER.listenTo(new SettingsFolder(folder)).install();

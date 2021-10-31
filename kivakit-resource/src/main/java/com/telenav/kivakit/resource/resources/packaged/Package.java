@@ -59,9 +59,10 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  * An abstraction for locating and copying {@link Resource}s in Java packages.
  *
  * <p>
- * A package object can be constructed with {@link #of(PackagePath)} or {@link #of(Class, String)}. It implements the
- * {@link ResourceFolder} interface because it contains resources, just as {@link Folder} does. This means, of course,
- * that methods that accept {@link ResourceFolder} can accept either {@link Folder}s or {@link Package}s.
+ * A package object can be constructed with {@link #packageFrom(PackagePath)} or {@link #packageFrom(Listener listener,
+ * Class, String)}. It implements the {@link ResourceFolder} interface because it contains resources, just as {@link
+ * Folder} does. This means, of course, that methods that accept {@link ResourceFolder} can accept either {@link
+ * Folder}s or {@link Package}s.
  * </p>
  *
  * <p><b>Hierarchy</b></p>
@@ -93,14 +94,14 @@ public class Package implements ResourceFolder
     /**
      * @param _package The path to this package
      */
-    public static Package of(PackagePath _package)
+    public static Package packageFrom(PackagePath _package)
     {
         return new Package(_package);
     }
 
-    public static Package of(Class<?> _packageType, String path)
+    public static Package packageFrom(Listener listener, Class<?> _packageType, String path)
     {
-        return of(PackagePath.parsePackagePath(_packageType, path));
+        return packageFrom(PackagePath.parsePackagePath(listener, _packageType, path));
     }
 
     /**
@@ -126,8 +127,8 @@ public class Package implements ResourceFolder
         @Override
         public ResourceFolder resolve(ResourceFolderIdentifier identifier)
         {
-            var filepath = FilePath.parseFilePath(Strip.leading(identifier.identifier(), SCHEME));
-            return Package.of(PackagePath.packagePath(filepath));
+            var filepath = FilePath.parseFilePath(LOGGER, Strip.leading(identifier.identifier(), SCHEME));
+            return Package.packageFrom(PackagePath.packagePath(filepath));
         }
     }
 
@@ -215,7 +216,7 @@ public class Package implements ResourceFolder
     {
         if (name.contains("/"))
         {
-            var path = FilePath.parseFilePath(name);
+            var path = FilePath.parseFilePath(LOGGER, name);
             return folder(path.withoutLast().toString()).resource(path.last());
         }
         for (var resource : resources())
@@ -237,7 +238,7 @@ public class Package implements ResourceFolder
         var resources = package_
                 .resources()
                 .stream()
-                .map(PackageResource::of)
+                .map(PackageResource::packageResource)
                 .filter(matcher)
                 .collect(Collectors.toList());
 
@@ -268,7 +269,7 @@ public class Package implements ResourceFolder
     {
         try
         {
-            return Classes.resourceUri(package_.packageType(), package_.join("/"));
+            return Classes.resourceUri(LOGGER, package_.packageType(), package_.join("/"));
         }
         catch (IllegalArgumentException ignored)
         {
@@ -296,12 +297,12 @@ public class Package implements ResourceFolder
                 if (location != null && location.toString().endsWith("/"))
                 {
                     var filepath = package_.join("/") + "/";
-                    var directory = Folder.of(location.toURI()).folder(filepath);
+                    var directory = Folder.from(location.toURI()).folder(filepath);
                     if (directory.exists())
                     {
                         for (var file : directory.files())
                         {
-                            var resource = PackageResource.of(package_, file.fileName().name());
+                            var resource = PackageResource.packageResource(LOGGER, package_, file.fileName().name());
                             if (matcher.matches(resource))
                             {
                                 resources.add(resource);
@@ -367,7 +368,7 @@ public class Package implements ResourceFolder
                             if (!suffix.contains("/"))
                             {
                                 // then the entry is in the package, so add it to the resources list
-                                var resource = PackageResource.of(package_, name.substring(filepath.length()));
+                                var resource = PackageResource.packageResource(LOGGER, package_, name.substring(filepath.length()));
                                 if (matcher.matches(resource))
                                 {
                                     resources.add(resource);

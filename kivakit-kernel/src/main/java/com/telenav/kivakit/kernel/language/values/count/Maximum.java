@@ -224,7 +224,7 @@ public class Maximum extends Count
         return maximum(collection.size());
     }
 
-    public static Maximum parse(String value)
+    public static Maximum parseMaximum(Listener listener, String value)
     {
         if (value.indexOf(',') > 0)
         {
@@ -249,7 +249,7 @@ public class Maximum extends Count
         @Override
         protected Maximum onToValue(String value)
         {
-            return parse(value);
+            return parseMaximum(this, value);
         }
     }
 

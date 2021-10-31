@@ -38,7 +38,7 @@ public class EmailTest extends UnitTest
     @SuppressWarnings("resource")
     public void test()
     {
-        var shibo = EmailAddress.parse("jonathanl@telenav.com");
+        var shibo = EmailAddress.parse(this, "jonathanl@telenav.com");
 
         var email = new Email()
                 .from(shibo)
@@ -48,8 +48,8 @@ public class EmailTest extends UnitTest
 
         var configuration = new SmtpEmailSender.Configuration()
                 .host(Host.local())
-                .username(UserName.parse(""))
-                .password(PlainTextPassword.parse(""));
+                .username(UserName.parse(this, ""))
+                .password(PlainTextPassword.parse(this, ""));
 
         var sender = new SmtpEmailSender(configuration).sendingOn(false);
         sender.start();

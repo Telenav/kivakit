@@ -27,6 +27,9 @@ import com.telenav.kivakit.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.kernel.language.strings.Strip;
 import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.kernel.logging.Logger;
+import com.telenav.kivakit.kernel.logging.LoggerFactory;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.ResourcePath;
@@ -50,11 +53,11 @@ import java.net.URI;
  * methods:
  *
  * <ul>
- *     <li>{@link #of(ModuleResource)}</li>
- *     <li>{@link #of(Class, String)}</li>
- *     <li>{@link #of(PackagePath, String)}</li>
- *     <li>{@link #of(PackagePath, FileName)}</li>
- *     <li>{@link #of(PackagePath, FilePath)}</li>
+ *     <li>{@link #packageResource(ModuleResource)}</li>
+ *     <li>{@link #packageResource(Listener listener, Class, String)}</li>
+ *     <li>{@link #packageResource(Listener listener, PackagePath, String)}</li>
+ *     <li>{@link #packageResource(PackagePath, FileName)}</li>
+ *     <li>{@link #packageResource(PackagePath, FilePath)}</li>
  * </ul>
  * <p>
  * They can also be retrieved from a (KivaKit) {@link Package} with these methods:
@@ -77,37 +80,39 @@ import java.net.URI;
 @LexakaiJavadoc(complete = true)
 public class PackageResource extends BaseReadableResource
 {
+    private static final Logger LOGGER = LoggerFactory.newLogger();
+
     /**
      * @return A package resource for the given module resource
      */
-    public static PackageResource of(ModuleResource resource)
+    public static PackageResource packageResource(ModuleResource resource)
     {
-        var fileName = FileName.parse(resource.fileNameAsJavaPath().toString());
+        var fileName = FileName.parse(LOGGER, resource.fileNameAsJavaPath().toString());
         return new PackageResource(resource.packagePath(), resource, fileName);
     }
 
     /**
      * @return A package resource for the resource at the given path relative to the given package
      */
-    public static PackageResource of(PackagePath _package, String path)
+    public static PackageResource packageResource(Listener listener, PackagePath _package, String path)
     {
-        return of(_package, FilePath.parseFilePath(path));
+        return packageResource(_package, FilePath.parseFilePath(listener, path));
     }
 
     /**
      * @return A package resource for the resource at the given path relative to the given class
      */
-    public static PackageResource of(Class<?> type, String path)
+    public static PackageResource packageResource(Listener listener, Class<?> type, String path)
     {
-        return of(PackagePath.packagePath(type), path);
+        return packageResource(listener, PackagePath.packagePath(type), path);
     }
 
     /**
      * @return A package resource for the resource at the given path relative to the given package
      */
-    public static PackageResource of(PackagePath _package, FilePath path)
+    public static PackageResource packageResource(PackagePath _package, FilePath path)
     {
-        var resource = Modules.resource(_package.withChild(path));
+        var resource = Modules.resource(LOGGER, _package.withChild(path));
         if (path.size() == 1)
         {
             return new PackageResource(_package, resource, path.fileName());
@@ -121,9 +126,9 @@ public class PackageResource extends BaseReadableResource
     /**
      * @return A package resource for the resource with the given filename in the given package
      */
-    public static PackageResource of(PackagePath _package, FileName name)
+    public static PackageResource packageResource(PackagePath _package, FileName name)
     {
-        var resource = Modules.resource(_package.withChild(name.name()));
+        var resource = Modules.resource(LOGGER, _package.withChild(name.name()));
         return new PackageResource(_package, resource, name);
     }
 
@@ -148,13 +153,13 @@ public class PackageResource extends BaseReadableResource
         @Override
         public Resource resolve(ResourceIdentifier identifier)
         {
-            var filepath = FilePath.parseFilePath(Strip.leading(identifier.identifier(), SCHEME));
+            var filepath = FilePath.parseFilePath(this, Strip.leading(identifier.identifier(), SCHEME));
             var parent = filepath.parent();
             if (parent != null)
             {
                 var _package = PackagePath.packagePath(parent);
                 var name = filepath.fileName();
-                return of(_package, name);
+                return packageResource(_package, name);
             }
             return null;
         }

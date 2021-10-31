@@ -127,7 +127,7 @@ public abstract class Project extends BaseRepeater implements Initializable, Nam
     @UmlRelation(label = "depends on")
     public ObjectSet<Project> dependencies()
     {
-        return ObjectSet.empty();
+        return ObjectSet.emptyObjectSet();
     }
 
     /**
@@ -192,7 +192,7 @@ public abstract class Project extends BaseRepeater implements Initializable, Nam
      */
     public final Version kivakitVersion()
     {
-        return Version.parse(property("kivakit-version"));
+        return Version.parse(this, property("kivakit-version"));
     }
 
     /**
@@ -224,7 +224,7 @@ public abstract class Project extends BaseRepeater implements Initializable, Nam
      */
     public Version projectVersion()
     {
-        return Version.parse(property("project-version"));
+        return Version.parse(this, property("project-version"));
     }
 
     /**
@@ -237,7 +237,7 @@ public abstract class Project extends BaseRepeater implements Initializable, Nam
             var projectProperties = Metadata.of(getClass()).projectProperties();
 
             var properties = JavaVirtualMachine.local().variables();
-            properties.addAll(VariableMap.of(projectProperties));
+            properties.addAll(VariableMap.variableMap(projectProperties));
             properties.put("kivakit-version", properties.get("project-version"));
             properties.put("version", properties.get("project-version"));
             properties.putIfNotNull("build-name", build().name());

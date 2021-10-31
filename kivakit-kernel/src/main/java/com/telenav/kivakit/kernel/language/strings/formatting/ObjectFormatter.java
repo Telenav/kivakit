@@ -28,6 +28,7 @@ import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludePro
 import com.telenav.kivakit.kernel.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.KernelLimits;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -149,7 +150,8 @@ public class ObjectFormatter
 
                 default:
                 {
-                    var format = StringFormat.of(formatName.toUpperCase());
+                    var listener = (object instanceof Listener) ? (Listener) object : Listener.console();
+                    var format = StringFormat.parse(listener, formatName.toUpperCase());
                     Ensure.ensureNotNull(format, "@KivaKitFormatProperty(\"" + format + "\") is not a known format");
                     return ((AsString) value).asString(format);
                 }

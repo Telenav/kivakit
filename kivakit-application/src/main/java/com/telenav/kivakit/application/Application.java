@@ -217,7 +217,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
 
     @UmlExcludeMember
     protected final SwitchParser<Boolean> QUIET =
-            booleanSwitchParser("quiet", "Minimize output")
+            booleanSwitchParser(this, "quiet", "Minimize output")
                     .optional()
                     .defaultValue(false)
                     .build();
@@ -246,7 +246,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
                 @Override
                 public ObjectSet<Project> dependencies()
                 {
-                    return ObjectSet.of(projects);
+                    return ObjectSet.objectSet(projects);
                 }
             };
         }
@@ -405,7 +405,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
 
     public PropertyMap properties()
     {
-        return PropertyMap.of(project().properties());
+        return PropertyMap.propertyMap(project().properties());
     }
 
     public void ready()
@@ -620,7 +620,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
      */
     protected ObjectSet<SwitchParser<?>> switchParsers()
     {
-        return ObjectSet.of();
+        return ObjectSet.objectSet();
     }
 
     /**
