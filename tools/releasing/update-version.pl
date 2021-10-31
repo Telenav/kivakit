@@ -93,13 +93,18 @@ sub process_file {
 #
 # Update the root pom
 #
-sub update_root_pom {
+sub update_root {
     my $path = "$root/pom.xml";
     my $text = read_file($path);
     $text =~ s!<version>(?<version>.*?)</version>!<version>$new_version</version>!;
     $text =~ s!<kivakit.version>(?<version>.*?)</kivakit.version>!<kivakit.version>$new_version</kivakit.version>!;
     write_file($path, $text);
     print "Updated root pom.xml\n";
+    $path = "$root/project.properties";
+    $text = read_file($path);
+    $text =~ s!project-version.*!project-version = $new_version!g;
+    write_file($path, $text);
+    print "Updated root project.properties\n";
 }
 
 #
@@ -111,4 +116,4 @@ find(\&process_file, $root);
 #
 # Update the root pom
 #
-update_root_pom();
+update_root();

@@ -5,7 +5,7 @@
 This section documents how to release a new version of KivaKit, step by step.
 
 In the text below *\[kivakit-version\]* refers to a [semantic versioning](https://semver.org) identifier, such
-as 2.1.7 or 1.1.0-SNAPSHOT-beta.
+as 2.1.7 or 1.1.0-beta.
 
 KivaKit adheres to the standard [Git Flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) branching model.
 
@@ -36,14 +36,7 @@ This script does the following:
 2. Updates *$KIVAKIT_HOME/project.properties* file
 3. Updates the version of all pom.xml files to *[kivakit-version]*
 
-Next, repeat the same process for kivakit-extensions and kivakit-examples, if those projects also need to be released:
-
-    kivakit-extensions-release-start.sh [kivakit-version]
-    kivakit-extensions-release-update-version.sh [kivakit-version]
-    kivakit-examples-release-start.sh [kivakit-version]
-    kivakit-examples-release-update-version.sh [kivakit-version]
-
-Finally, search for and replace any stray version numbers from the previous revision and restart your terminal program to ensure environment variables are updated.
+Search for and replace any stray version numbers from the previous revision and restart your terminal program to ensure environment variables are updated.
 
 ### 2. Preparing the Release &nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
@@ -78,6 +71,7 @@ To publish code flowers for the build:
 
 1. On the command line:  
 
+        mkdir -p $KIVAKIT_WORKSPACE/kivakit-assets/docs/$KIVAKIT_VERSION/codeflowers
         cd $KIVAKIT_WORKSPACE/kivakit-assets/docs/$KIVAKIT_VERSION/codeflowers
         
 1. Copy the *codeflowers* folder from a previous build into this folder
