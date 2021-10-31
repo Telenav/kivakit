@@ -32,8 +32,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ServiceLoader;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
-
 /**
  * {@link #resolve(Listener, ResourceIdentifier)} iterates through implementations of the {@link ResourceResolver}
  * interface provided by Java's {@link ServiceLoader} and resolves {@link ResourceIdentifier}s by calling {@link
@@ -52,7 +50,7 @@ public class ResourceResolverServiceLoader
     @UmlAggregation
     private static List<ResourceResolver> resolvers;
 
-    public static Resource resolve(Listener listener, final ResourceIdentifier identifier)
+    public static Resource resolve(Listener listener, ResourceIdentifier identifier)
     {
         for (var resolver : resolvers())
         {
@@ -62,7 +60,7 @@ public class ResourceResolverServiceLoader
             }
         }
 
-        return fail("Invalid resource identifier '$'", identifier);
+        throw listener.problem("Invalid resource identifier '$'", identifier).asException();
     }
 
     private static synchronized List<ResourceResolver> resolvers()

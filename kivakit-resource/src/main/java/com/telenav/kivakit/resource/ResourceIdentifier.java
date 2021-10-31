@@ -25,11 +25,11 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
  * An arbitrary string that identifies a resource. This might be a path or package name or some other identifier that
- * can be resolved into a resource. The {@link #resolve()} method searches resource service providers to find one that
+ * can be resolved into a resource. The {@link #resolve(Listener)} method searches resource service providers to find one that
  * accepts this identifier. It then returns the resource, as resolved by the service provider.
  *
  * @author jonathanl (shibo)
- * @see Resource#resolve(String)
+ * @see Resource#resolve(Listener, String)
  */
 @UmlClassDiagram(diagram = DiagramResourceService.class)
 @LexakaiJavadoc(complete = true)

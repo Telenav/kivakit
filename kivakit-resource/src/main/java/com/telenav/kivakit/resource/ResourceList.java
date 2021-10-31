@@ -73,7 +73,7 @@ public class ResourceList extends ArrayList<Resource>
             var resources = new ResourceList(extension);
             for (var path : value.split(","))
             {
-                final var resource = Resource.resolve(this, path);
+                var resource = Resource.resolve(this, path);
                 if (resource instanceof File)
                 {
                     var file = (File) resource;
@@ -138,7 +138,7 @@ public class ResourceList extends ArrayList<Resource>
     @Override
     public boolean addAll(Collection<? extends Resource> collection)
     {
-        for (final var file : collection)
+        for (var file : collection)
         {
             add(file);
         }
