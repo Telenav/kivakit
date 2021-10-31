@@ -106,6 +106,9 @@ public class Extension implements Named
 
     public static final Extension TXT = parse(LOGGER, ".txt");
 
+    // Compressed formats
+    public static final Extension TXT_GZIP = TXT.gzipped();
+
     public static final Extension CSV = parse(LOGGER, ".csv");
 
     public static final Extension PNG = parse(LOGGER, ".png");
@@ -115,7 +118,11 @@ public class Extension implements Named
     // Map file formats
     public static final Extension TXD = parse(LOGGER, ".txd");
 
+    public static final Extension TXD_GZIP = TXD.gzipped();
+
     public static final Extension GRAPH = parse(LOGGER, ".graph");
+
+    public static final Extension GRAPH_GZIP = GRAPH.gzipped();
 
     public static final Extension PBF = parse(LOGGER, ".pbf");
 
@@ -129,24 +136,17 @@ public class Extension implements Named
 
     public static final Extension OSMPP = parse(LOGGER, ".osmpp");
 
-    // Compressed formats
-    public static final Extension TXT_GZIP = TXT.gzipped();
-
-    public static final Extension TXD_GZIP = TXD.gzipped();
-
-    public static final Extension GRAPH_GZIP = GRAPH.gzipped();
-
     public static final Extension JAVA = parse(LOGGER, ".java");
 
     public static final Extension POM = parse(LOGGER, ".pom");
 
     public static final Extension CLASS = parse(LOGGER, ".class");
 
-    public static final Extension XML = parse(".xml");
+    public static final Extension XML = parse(LOGGER, ".xml");
 
-    public static final Extension MD5 = parse(".md5");
+    public static final Extension MD5 = parse(LOGGER, ".md5");
 
-    public static final Extension SHA1 = parse(".sha1");
+    public static final Extension SHA1 = parse(LOGGER, ".sha1");
 
     public static List<Extension> archive()
     {

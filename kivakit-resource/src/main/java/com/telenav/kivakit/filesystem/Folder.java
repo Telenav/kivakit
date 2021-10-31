@@ -35,6 +35,7 @@ import com.telenav.kivakit.kernel.language.vm.OperatingSystem;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Listener;
+import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.filters.operators.All;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
@@ -82,7 +83,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  * <p><b>Factory Methods</b></p>
  *
  * <ul>
- *     <li>{@link #parse(Listener, String)} - A folder for the given string</li>
+ *     <li>{@link #parse(Listener, String, Object...)} - A folder for the given string</li>
  *     <li>{@link #from(URI)} - A folder for the given URI</li>
  *     <li>{@link #from(URL)} - A folder for the given URL</li>
  *     <li>{@link #from(java.io.File)} - A folder for the given Java file</li>
@@ -252,6 +253,39 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
                 .description(description);
     }
 
+    public static Folder from(FileName filename)
+    {
+        return parse(LOGGER, filename.name());
+    }
+
+    public static Folder from(Path path)
+    {
+        return parse(LOGGER, path.toString());
+    }
+
+    public static Folder from(java.io.File file)
+    {
+        return from(file.toPath());
+    }
+
+    public static Folder from(URI uri)
+    {
+        return from(new java.io.File(uri));
+    }
+
+    public static Folder from(URL url)
+    {
+        try
+        {
+            return from(url.toURI());
+        }
+        catch (URISyntaxException e)
+        {
+            LOGGER.problem(e, "Unable to parse URL: $", url);
+            return null;
+        }
+    }
+
     public static SwitchParser.Builder<Folder> inputFolderSwitchParser(Listener listener)
     {
         return folderSwitchParser(listener, "input-folder", "Input folder to process");
@@ -292,42 +326,9 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         return kivakitTemporary().folder("test").folder(type.getSimpleName()).mkdirs();
     }
 
-    public static Folder from(FileName filename)
-    {
-        return parse(LOGGER, filename.name());
-    }
-
-    public static Folder from(Path path)
+    public static Folder of(FilePath path)
     {
         return parse(LOGGER, path.toString());
-    }
-
-    public static Folder from(FilePath path)
-    {
-        return parse(LOGGER, path.toString());
-    }
-
-    public static Folder from(java.io.File file)
-    {
-        return from(file.toPath());
-    }
-
-    public static Folder from(URI uri)
-    {
-        return from(new java.io.File(uri));
-    }
-
-    public static Folder from(URL url)
-    {
-        try
-        {
-            return from(url.toURI());
-        }
-        catch (URISyntaxException e)
-        {
-            LOGGER.problem(e, "Unable to parse URL: $", url);
-            return null;
-        }
     }
 
     // Note that this switch parser ensures that the folder exists
@@ -339,12 +340,13 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
                 .description("Output folder to write to");
     }
 
-    public static Folder parse(Listener listener, String path)
+    public static Folder parse(Listener listener, String path, Object... arguments)
     {
         if (Strings.isEmpty(path))
         {
             return null;
         }
+        path = Message.format(path, arguments);
         var filePath = FilePath.parseFilePath(listener, path);
         return filePath == null ? null : new Folder(filePath);
     }
@@ -517,7 +519,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
             }
             return new URI(Strings.ensureEndsWith(path.toString(), "/"));
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             throw problem(e, "Cannot convert to URI: $", this).asException();
         }
@@ -529,7 +531,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         {
             return withTrailingSlash().asUri().toURL();
         }
-        catch (final Exception e)
+        catch (Exception e)
         {
             throw problem(e, "Folder could not be converted to a URL: $", this).asException();
         }
@@ -745,7 +747,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         }
     }
 
-    public File file(final String path, Object... arguments)
+    public File file(String path, Object... arguments)
     {
         return file(FilePath.parseFilePath(this, path, arguments));
     }

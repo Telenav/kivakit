@@ -30,7 +30,7 @@ public class ObjectSet<T> extends BaseSet<T>
 {
     public static <T> ObjectSet<T> emptyObjectSet()
     {
-        return objectSet();
+        return new ObjectSet<>();
     }
 
     @SafeVarargs

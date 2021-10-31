@@ -62,6 +62,21 @@ public class Longs
         return (int) value;
     }
 
+    /**
+     * @return The given hexadecimal value in text as a long
+     */
+    public static long parse(Listener listener, String text)
+    {
+        try
+        {
+            return Long.parseLong(text);
+        }
+        catch (Exception e)
+        {
+            throw listener.problem(e, "Invalid long value: ", text).asException();
+        }
+    }
+
     public static long parseFast(String string)
     {
         return parseFast(string, INVALID);
@@ -113,36 +128,6 @@ public class Longs
     }
 
     /**
-     * @return The given hexadecimal value in text as a long
-     */
-    public static long parseHex(Listener listener, String text)
-    {
-        try
-        {
-            return Long.parseLong(Strip.leading(text, "0x"), 16);
-        }
-        catch (Exception e)
-        {
-            throw listener.problem(e, "Invalid hexadecimal number: ", text).asException();
-        }
-    }
-
-    /**
-     * @return The given hexadecimal value in text as a long
-     */
-    public static long parseLong(Listener listener, String text)
-    {
-        try
-        {
-            return Long.parseLong(text);
-        }
-        catch (Exception e)
-        {
-            throw listener.problem(e, "Invalid long value: ", text).asException();
-        }
-    }
-
-    /**
      * Yes, it turns out that {@link Integer#parseInt(String)} is a major hotspot due to the fact that it throws a
      * {@link NumberFormatException} instead of returning a signal value.
      *
@@ -169,6 +154,21 @@ public class Longs
             }
         }
         return INVALID;
+    }
+
+    /**
+     * @return The given hexadecimal value in text as a long
+     */
+    public static long parseHex(Listener listener, String text)
+    {
+        try
+        {
+            return Long.parseLong(Strip.leading(text, "0x"), 16);
+        }
+        catch (Exception e)
+        {
+            throw listener.problem(e, "Invalid hexadecimal number: ", text).asException();
+        }
     }
 
     /**

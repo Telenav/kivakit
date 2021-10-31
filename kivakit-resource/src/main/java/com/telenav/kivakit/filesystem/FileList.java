@@ -22,6 +22,7 @@ import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
+import com.telenav.kivakit.kernel.language.values.count.Bytes;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemFile;
@@ -32,6 +33,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -68,10 +70,10 @@ public class FileList extends ObjectList<File>
      * <b>Not public API</b>
      */
     @UmlExcludeMember
-    public static FileList forServices(final List<? extends FileService> virtualFiles)
+    public static FileList forServices(List<? extends FileService> virtualFiles)
     {
-        final var files = new FileList();
-        for (final var file : virtualFiles)
+        var files = new FileList();
+        for (var file : virtualFiles)
         {
             files.add(new File(file));
         }
@@ -138,6 +140,7 @@ public class FileList extends ObjectList<File>
         return files;
     }
 
+    @Override
     public Set<File> asSet()
     {
         return new HashSet<>(this);
@@ -180,10 +183,11 @@ public class FileList extends ObjectList<File>
         return largest;
     }
 
-    public FileList matching(final Matcher<File> matcher)
+    @Override
+    public FileList matching(Matcher<File> matcher)
     {
-        final var files = new FileList();
-        for (final var file : this)
+        var files = new FileList();
+        for (var file : this)
         {
             if (matcher.matches(file))
             {
