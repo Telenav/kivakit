@@ -74,12 +74,14 @@ public class VariableMap<Value> extends BaseStringMap<Value>
         return this;
     }
 
+    @SuppressWarnings("unchecked")
     public VariableMap<Value> addAll(Object object, PropertyFilter filter)
     {
         addAll((VariableMap<Value>) Type.of(object).variables(object, filter));
         return this;
     }
 
+    @SuppressWarnings("unchecked")
     public VariableMap<Value> addAll(Object object, PropertyFilter filter, Value nullValue)
     {
         addAll((VariableMap<Value>) Type.of(object).variables(object, filter, nullValue));
@@ -188,8 +190,8 @@ public class VariableMap<Value> extends BaseStringMap<Value>
      */
     public VariableMap<String> expanded()
     {
-        final var expanded = newStringMap();
-        for (final var key : new HashSet<>(keySet()))
+        var expanded = newStringMap();
+        for (var key : new HashSet<>(keySet()))
         {
             var value = get(key);
             expanded.put(key, expand(value.toString()));
@@ -202,8 +204,8 @@ public class VariableMap<Value> extends BaseStringMap<Value>
      */
     public VariableMap<String> withQuotedValues()
     {
-        final var quoted = newStringMap();
-        for (final var key : keySet())
+        var quoted = newStringMap();
+        for (var key : keySet())
         {
             quoted.add(key, "'" + get(key) + "'");
         }
@@ -215,7 +217,7 @@ public class VariableMap<Value> extends BaseStringMap<Value>
         return new VariableMap<>();
     }
 
-    private boolean isVariableCharacter(final char character)
+    private boolean isVariableCharacter(char character)
     {
         return Character.isLetterOrDigit(character) || character == '.' || character == '_' || character == '-';
     }
