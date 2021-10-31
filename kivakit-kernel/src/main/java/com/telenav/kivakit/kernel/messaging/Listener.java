@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.logging.Logger;
+import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.listeners.ConsoleWriter;
 import com.telenav.kivakit.kernel.messaging.listeners.NullListener;
 import com.telenav.kivakit.kernel.messaging.listeners.ThrowingListener;
@@ -115,11 +116,30 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 public interface Listener extends Transceiver
 {
     /**
+     * <b>Not public API</b>
+     *
+     * <p>
+     * Generic logger instance returned by {@link #logger()}.
+     * </p>
+     */
+    Logger LOGGER = LoggerFactory.newLogger();
+
+    /**
      * @return A listener that does nothing with messages. Useful only when you want to discard output from something
      */
     static Listener console()
     {
         return new ConsoleWriter();
+    }
+
+    /**
+     * @return A logger instance for use in contexts where it is too awkward to implement or pass in a {@link Listener}.
+     * For example, some trivial classes and static methods may need to report problems, but are not important enough to
+     * justify the complexity of reporting those problems an external listener.
+     */
+    static Listener logger()
+    {
+        return LOGGER;
     }
 
     /**
@@ -184,6 +204,7 @@ public interface Listener extends Transceiver
     /**
      * <b>Not public API</b>
      */
+    @Override
     @UmlExcludeMember
     default void onReceive(Transmittable transmittable)
     {
