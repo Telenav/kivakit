@@ -27,6 +27,8 @@ import com.telenav.kivakit.kernel.messaging.broadcasters.Multicaster;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageRepeater;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
+
 /**
  * A multicasting repeater which repeats all the messages it receives to a set of listeners. A base repeater is a
  * convenient way of implementing the {@link Repeater} interface by extension.
@@ -54,20 +56,29 @@ public class BaseRepeater extends Multicaster implements Repeater
     public BaseRepeater(String objectName, Class<?> classContext)
     {
         super(objectName, classContext);
+        checkInheritance();
     }
 
     public BaseRepeater(Class<?> classContext)
     {
         super(classContext);
+        checkInheritance();
     }
 
     protected BaseRepeater()
     {
+        checkInheritance();
     }
 
     protected BaseRepeater(String objectName)
     {
         super(objectName);
+        checkInheritance();
+    }
+
+    private void checkInheritance()
+    {
+        ensure(!(this instanceof RepeaterMixin), "A class extending BaseRepeater cannot also have a RepeaterMixin");
     }
 
     @Override

@@ -324,8 +324,8 @@ public class File extends BaseWritableResource implements FileSystemObject
         }
 
         @Override
-        public Resource resolve(final Listener listener,
-                                final ResourceIdentifier identifier)
+        public Resource resolve(Listener listener,
+                                ResourceIdentifier identifier)
         {
             return File.parse(this, identifier.identifier());
         }
@@ -658,7 +658,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      */
     public File relativeTo(Folder folder)
     {
-        return File.file(service.relativePath(folder.service()));
+        return File.file(service.relativePath(folder.service()).withoutTrailingSlash());
     }
 
     /**

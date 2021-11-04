@@ -24,7 +24,7 @@ import com.telenav.kivakit.kernel.interfaces.time.ChangedAt;
 import com.telenav.kivakit.kernel.interfaces.time.CreatedAt;
 import com.telenav.kivakit.kernel.interfaces.time.Modifiable;
 import com.telenav.kivakit.kernel.language.strings.Strings;
-import com.telenav.kivakit.kernel.messaging.repeaters.RepeaterMixin;
+import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.resource.path.FilePath;
 import com.telenav.kivakit.resource.path.ResourcePathed;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemService;
@@ -57,7 +57,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.unsupport
 @UmlExcludeSuperTypes(ResourcePathed.class)
 @LexakaiJavadoc(complete = true)
 public interface FileSystemObjectService extends
-        RepeaterMixin,
+        Repeater,
         ByteSized,
         ChangedAt,
         CreatedAt,

@@ -25,9 +25,8 @@ import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.language.threading.locks.Monitor;
 import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.language.values.count.Bytes;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Listener;
+import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.resource.path.FileName;
 import com.telenav.kivakit.resource.path.FilePath;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemService;
@@ -58,10 +57,8 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 @UmlNotPublicApi
 @LexakaiJavadoc(complete = true)
-public class LocalFolder implements FolderService
+public class LocalFolder extends BaseRepeater implements FolderService
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     // Monitor for serializing the creation of temporary files
     private static final Monitor temporaryLock = new Monitor();
 
@@ -169,7 +166,7 @@ public class LocalFolder implements FolderService
         }
         catch (IOException e)
         {
-            LOGGER.problem(e, "Unable to determine file creation time: $", path());
+            problem(e, "Unable to determine file creation time: $", path());
             return null;
         }
     }
@@ -188,7 +185,7 @@ public class LocalFolder implements FolderService
                 {
                     if (exists())
                     {
-                        LOGGER.warning("Couldn't delete folder ${debug}", this);
+                        warning("Couldn't delete folder ${debug}", this);
                     }
                 }
                 else

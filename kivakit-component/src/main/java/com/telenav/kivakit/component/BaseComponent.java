@@ -4,7 +4,6 @@ import com.telenav.kivakit.configuration.lookup.Registry;
 import com.telenav.kivakit.configuration.lookup.RegistryTrait;
 import com.telenav.kivakit.configuration.settings.Settings;
 import com.telenav.kivakit.configuration.settings.SettingsTrait;
-import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 
@@ -28,7 +27,6 @@ public class BaseComponent extends BaseRepeater implements Component, RegistryTr
      */
     public void onMessage(Consumer<Message> handler)
     {
-        Listener listener = handler::accept;
-        listener.listenTo(this);
+        addListener(handler::accept);
     }
 }
