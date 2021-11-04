@@ -85,7 +85,7 @@ To publish code flowers for the build:
 
 To ensure that the build will be accepted on Maven Central, run:
 
-    kivakit-build.sh deploy-local.sh
+    kivakit-build.sh deploy-local
 
 #### 2.6 Commit Changes
 
