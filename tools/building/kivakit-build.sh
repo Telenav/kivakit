@@ -11,15 +11,10 @@ source library-functions.sh
 source library-build.sh
 source kivakit-projects.sh
 
-cd "$KIVAKIT_HOME"/superpom
-mvn --batch-mode --no-transfer-progress clean install
-
-export ALLOW_CLEANING=true
-
 for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
 
-    build "$project_home" "$@"
+    bash kivakit-prebuild.sh
 
-    export ALLOW_CLEANING=false
+    build "$project_home" "$@"
 
 done

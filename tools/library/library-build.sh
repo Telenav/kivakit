@@ -40,6 +40,8 @@ usage() {
     echo " "
     echo "       clean-all - prompt to remove cached and temporary files and kivakit artifacts from ~/.m2"
     echo " "
+    echo " clean-sparkling - prompt to remove entire .m2 repository and all cached and temporary files"
+    echo " "
     echo "           debug - turn maven debug mode on"
     echo " "
     echo "     debug-tests - stop in debugger on surefire tests"
@@ -55,8 +57,6 @@ usage() {
     echo "           quiet - build with minimal output"
     echo " "
     echo " single-threaded - build with only one thread"
-    echo " "
-    echo "       sparkling - prompt to remove entire .m2 repository and all cached and temporary files"
     echo " "
     echo "           tests - run all tests"
     echo " "
@@ -165,12 +165,16 @@ build() {
             BUILD_ARGUMENTS="$BUILD_ARGUMENTS -Pattach-jars"
             ;;
 
+        "clean")
+            PRE_BUILD_SCRIPT="kivakit-clean.sh"
+            ;;
+
         "clean-all")
             PRE_BUILD_SCRIPT="kivakit-clean-all.sh"
             ;;
 
-        "clean")
-            PRE_BUILD_SCRIPT="kivakit-clean.sh"
+        "clean-sparkling")
+            PRE_BUILD_SCRIPT="kivakit-clean-sparkling.sh"
             ;;
 
         "debug")
@@ -225,10 +229,6 @@ build() {
 
         "single-threaded")
             THREADS=1
-            ;;
-
-        "sparkling")
-            PRE_BUILD_SCRIPT="kivakit-clean-sparkling.sh"
             ;;
 
         "tests") ;;
