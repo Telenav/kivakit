@@ -11,10 +11,14 @@ source library-functions.sh
 source library-build.sh
 source kivakit-projects.sh
 
+export ALLOW_CLEANING=true
+
 for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
 
     bash kivakit-prebuild.sh
 
     build "$project_home" "$@"
+
+    export ALLOW_CLEANING=false
 
 done

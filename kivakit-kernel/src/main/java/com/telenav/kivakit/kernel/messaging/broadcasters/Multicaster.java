@@ -106,7 +106,7 @@ public class Multicaster implements Broadcaster
 
     private transient Broadcaster source;
 
-    private boolean transmitting;
+    private transient boolean transmitting;
 
     public Multicaster(String objectName, Class<?> debugClassContext)
     {
