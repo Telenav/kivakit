@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.telenav.kivakit</groupId>
     <artifactId>superpom</artifactId>
-    <version>1.1.1-SNAPSHOT</version>
+    <version>1.1.1</version>
     <packaging>pom</packaging>
 
     <!-- Project -->
@@ -104,8 +104,8 @@
         <maven-protobuf-plugin.version>0.6.1</maven-protobuf-plugin.version>
         <maven-os-plugin.version>1.6.1</maven-os-plugin.version>
 
-        <cactus.version>${kivakit.version}</cactus.version>
-        <cactus.download.version>1.1.0</cactus.download.version>
+        <cactus.version>1.1.0</cactus.version>
+        <cactus.download.version>${cactus.version}</cactus.download.version>
         <cactus.downloads.folder>${user.home}/.cactus-build/downloads</cactus.downloads.folder>
         <cactus.url>https://repo1.maven.org/maven2/com/telenav/cactus/cactus-build-metadata/${cactus.download.version}/cactus-build-metadata-${cactus.download.version}.jar</cactus.url>
         <cactus.jar>${cactus.downloads.folder}/cactus-build-metadata-${cactus.download.version}.jar</cactus.jar>
@@ -130,7 +130,7 @@
 
         <!-- KivaKit Version -->
 
-        <kivakit.version>1.1.1-SNAPSHOT</kivakit.version>
+        <kivakit.version>1.1.1</kivakit.version>
 
         <!-- Parsing -->
         <antlr.version>4.7.2</antlr.version>
@@ -488,7 +488,7 @@
                         <doclint>none</doclint>
                         <nohelp>true</nohelp>
                         <reportOutputDirectory>${env.KIVAKIT_ASSETS_HOME}/docs/${env.KIVAKIT_VERSION}/javadoc</reportOutputDirectory>
-                        <destDir>${project.name}</destDir>
+                        <destDir>${project.artifactId}</destDir>
                         <additionalOptions>-notimestamp --show-module-contents all --show-packages all --show-types private</additionalOptions>
                     </configuration>
                     <executions>

@@ -64,48 +64,38 @@ showVersion() {
 
 clean_cache() {
 
-    if [[ "$ALLOW_CLEANING" == "true" ]]; then
+    cache=$1
 
-        cache=$1
+    if [ -d "$cache" ]; then
 
-        if [ -d "$cache" ]; then
-            read -p "┋ Remove ALL cached files in $cache (y/n)? " -n 1 -r
-            echo "┋ "
-            if [[ $REPLY =~ ^[Yy]$ ]]; then
-                rm -rf "$cache"
-            fi
+        if yes_no "┋ Remove ALL cached files in $cache"; then
+
+            rm -rf "$cache"
+
         fi
-
     fi
 }
 
 clean_maven_repository() {
 
-    if [[ "$ALLOW_CLEANING" == "true" ]]; then
+    project_home=$1
+    name=$(basename -- "$project_home")
 
-        project_home=$1
-        name=$(basename -- "$project_home")
+    if yes_no "┋ Remove all $name artifacts from $HOME/.m2/repository"; then
 
-        if yes_no "Remove all $name artifacts from $HOME/.m2/repository"; then
-
-            rm -rf "$HOME/.m2/repository/com/telenav/$name"
-
-        fi
+        rm -rf "$HOME/.m2/repository/com/telenav/$name"
 
     fi
 }
 
 remove_maven_repository() {
 
-    if [[ "$ALLOW_CLEANING" == "true" ]]; then
+    if [ -d "$HOME/.m2/repository" ]; then
 
-        if [ -d "$HOME/.m2/repository" ]; then
+        if yes_no "┋ Remove ALL artifacts in $HOME/.m2/repository"; then
 
-            if yes_no "Remove ALL artifacts in $HOME/.m2/repository"; then
+            rm -rf "$HOME/.m2/repository"
 
-                rm -rf "$HOME/.m2/repository"
-
-            fi
         fi
     fi
 }
@@ -114,13 +104,10 @@ clean_temporary_files() {
 
     project_home=$1
 
-    if [[ "$ALLOW_CLEANING" == "true" ]]; then
+    if yes_no "┋ Remove temporary files (.DS_Store, .metadata, .classpath, .project, *.hprof, *~) from $project_home tree"; then
 
-        if yes_no "Remove temporary files (.DS_Store, .metadata, .classpath, .project, *.hprof, *~) from $project_home tree"; then
+        find "$project_home" \( -name \.DS_Store -o -name \.metadata -o -name \.classpath -o -name \.project -o -name \*\.hprof -o -name \*~ \) | xargs rm
 
-            find "$project_home" \( -name \.DS_Store -o -name \.metadata -o -name \.classpath -o -name \.project -o -name \*\.hprof -o -name \*~ \) | xargs rm
-
-        fi
     fi
 }
 

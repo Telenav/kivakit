@@ -22,9 +22,9 @@ usage() {
     echo " "
     echo "         compile - compile and shade (no tests)"
     echo " "
-    echo "    deploy-ossrh - clean-all, compile, run tests, attach jars, build javadoc, sign artifacts and deploy to OSSRH"
+    echo "    deploy-ossrh - clean-sparkling, compile, run tests, attach jars, build javadoc, sign artifacts and deploy to OSSRH"
     echo " "
-    echo "    deploy-local - clean-all, compile, run tests, attach jars, build javadoc, sign artifacts and deploy to local Maven repository"
+    echo "    deploy-local - clean-sparkling, compile, run tests, attach jars, build javadoc, sign artifacts and deploy to local Maven repository"
     echo " "
     echo "           tools - compile, shade, run tests, build tools"
     echo " "
@@ -103,16 +103,16 @@ build() {
 
     "deploy-ossrh")
         JAVADOC=true
-        export NO_PROMPT=true
         BUILD_ARGUMENTS="clean deploy"
-        BUILD_MODIFIERS=(multi-threaded clean-all tests attach-jars sign-artifacts ${@:3})
+        BUILD_MODIFIERS=(multi-threaded clean-sparkling tests attach-jars sign-artifacts ${@:3})
+        RUN_POSTBUILD_SCRIPT=true
         ;;
 
     "deploy-local")
         JAVADOC=true
-        export NO_PROMPT=true
         BUILD_ARGUMENTS="clean install"
-        BUILD_MODIFIERS=(multi-threaded clean-all tests attach-jars sign-artifacts ${@:3})
+        BUILD_MODIFIERS=(multi-threaded clean-sparkling tests attach-jars sign-artifacts ${@:3})
+        RUN_POSTBUILD_SCRIPT=true
         ;;
 
     "javadoc")
@@ -166,15 +166,15 @@ build() {
             ;;
 
         "clean")
-            PRE_BUILD_SCRIPT="kivakit-clean.sh"
+            CLEAN_SCRIPT="kivakit-clean.sh"
             ;;
 
         "clean-all")
-            PRE_BUILD_SCRIPT="kivakit-clean-all.sh"
+            CLEAN_SCRIPT="kivakit-clean-all.sh"
             ;;
 
         "clean-sparkling")
-            PRE_BUILD_SCRIPT="kivakit-clean-sparkling.sh"
+            CLEAN_SCRIPT="kivakit-clean-sparkling.sh"
             ;;
 
         "debug")
@@ -190,8 +190,10 @@ build() {
             ;;
 
         "javadoc")
-            if [ ! -z "$JAVADOC" ]; then
+            if [ -n "$JAVADOC" ]; then
+
                 BUILD_ARGUMENTS="$BUILD_ARGUMENTS javadoc:aggregate"
+
             fi
             ;;
 
@@ -265,7 +267,7 @@ build() {
 
     fi
 
-    if [ ! -z "$KIVAKIT_BUILD_NAME" ]; then
+    if [ -n "$KIVAKIT_BUILD_NAME" ]; then
         KIVAKIT_BUILD_NAME=" ($KIVAKIT_BUILD_DATE $KIVAKIT_BUILD_NAME)"
     fi
 
@@ -282,11 +284,23 @@ build() {
 
         if [ -z "$DRY_RUN" ]; then
 
-            $PRE_BUILD_SCRIPT
-
             cd "$BUILD_FOLDER"
 
-            bash "${KIVAKIT_HOME}/tools/library/install-merged-jars.sh"
+            if [ -z "$CLEANED" ]; then
+
+                bash "$CLEAN_SCRIPT"
+
+                CLEANED=true
+
+            fi
+
+            if [ -z "$PREBUILT" ]; then
+
+                bash "$PREBUILD_SCRIPT"
+
+                PREBUILT=true
+
+            fi
 
             # shellcheck disable=SC2086
             "$M2_HOME"/bin/mvn --no-transfer-progress -DKIVAKIT_DEBUG="$KIVAKIT_DEBUG" $SWITCHES $BUILD_ARGUMENTS 2>&1 | $FILTER_OUT "illegal reflective access\|denied in a future release\|please consider reporting"
@@ -295,10 +309,6 @@ build() {
 
                 echo "Unable to build $PROJECT_NAME."
                 exit 1
-
-            else
-
-                $POST_BUILD_SCRIPT
 
             fi
 
