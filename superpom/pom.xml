@@ -126,6 +126,7 @@
         <jakarta.activation.version>2.0.0</jakarta.activation.version>
         <java.mail.version>1.6.2</java.mail.version>
         <java.activation.version>1.2.0</java.activation.version>
+        <javax.servlet.api.version>3.1.0</javax.servlet.api.version>
 
         <!-- KivaKit Version -->
 
@@ -190,6 +191,7 @@
         <swagger.webjar.version>3.51.2</swagger.webjar.version>
         <httpclient.version>4.5.13</httpclient.version>
         <jakarta.ws.rs.version>2.1.6</jakarta.ws.rs.version>
+        <jakarta.servlet.api.version>5.0.0</jakarta.servlet.api.version>
 
         <!-- XML -->
 
@@ -471,9 +473,6 @@
                             <testQuick>${testQuick}</testQuick>
                         </systemPropertyVariables>
                         <argLine>
-                            --add-opens org.junit.platform.commons/org.junit.platform.commons.logging=ALL-UNNAMED
-                            --add-opens org.junit.platform.commons/org.junit.platform.commons.util=ALL-UNNAMED
-                            --illegal-access=permit
                             -Xmx2g
                         </argLine>
                     </configuration>
@@ -732,6 +731,11 @@
                 <groupId>com.sun.activation</groupId>
                 <artifactId>javax.activation</artifactId>
                 <version>${java.activation.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>${javax.servlet.api.version}</version>
             </dependency>
 
             <!-- Jersey -->
@@ -1041,6 +1045,10 @@
                         <artifactId>*</artifactId>
                     </exclusion>
                     <exclusion>
+                        <groupId>javax.servlet</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                    <exclusion>
                         <groupId>com.sun.activation</groupId>
                         <artifactId>*</artifactId>
                     </exclusion>
@@ -1126,6 +1134,11 @@
 
                 </exclusions>
 
+            </dependency>
+            <dependency>
+                <groupId>jakarta.servlet</groupId>
+                <artifactId>jakarta.servlet-api</artifactId>
+                <version>${jakarta.servlet.api.version}</version>
             </dependency>
 
             <!-- Mail -->
@@ -1349,11 +1362,6 @@
                 <version>${slf4j.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${guava.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons.lang3.version}</version>
@@ -1382,6 +1390,17 @@
                 <groupId>log4j</groupId>
                 <artifactId>log4j</artifactId>
                 <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.google.code.findbugs</groupId>
+                        <artifactId>jsr305</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <!-- Web -->
@@ -1468,6 +1487,7 @@
             </dependency>
 
         </dependencies>
+
     </dependencyManagement>
 
 </project>

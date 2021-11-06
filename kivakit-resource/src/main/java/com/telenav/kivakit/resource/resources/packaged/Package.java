@@ -109,8 +109,8 @@ public class Package implements ResourceFolder
      * the form of {@link Package}s).
      *
      * @author jonathanl (shibo)
-     * @see Resource#resolve(String)
-     * @see Resource#resolve(ResourceIdentifier)
+     * @see Resource#resolve(Listener, String)
+     * @see Resource#resolve(Listener, ResourceIdentifier)
      */
     @UmlClassDiagram(diagram = DiagramResourceService.class)
     @LexakaiJavadoc(complete = true)
