@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.telenav.kivakit</groupId>
     <artifactId>superpom</artifactId>
-    <version>1.1.1-SNAPSHOT</version>
+    <version>1.1.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <!-- Project -->
@@ -130,7 +130,7 @@
 
         <!-- KivaKit Version -->
 
-        <kivakit.version>1.1.1-SNAPSHOT</kivakit.version>
+        <kivakit.version>1.1.2-SNAPSHOT</kivakit.version>
 
         <!-- Parsing -->
         <antlr.version>4.7.2</antlr.version>

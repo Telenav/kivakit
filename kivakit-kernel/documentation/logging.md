@@ -219,7 +219,7 @@ The other properties give additional examples.
 
     -DKIVAKIT_LOG="Console,File level=Warning file=~/log.txt rollover=daily maximum-size=100M,Server level=Quibble"
 
-    -DKIVAKIT_LOG="Server level=Warning maximum-entries=1.1.1-SNAPSHOT,Email level=CriticalAlert subject=Alert from=jonathanl@telenav.com to=jonathanl@telenav.com host=smtp.telenav.com username=jonathanl@telenav.com password=shibo"
+    -DKIVAKIT_LOG="Server level=Warning maximum-entries=1.1.2-SNAPSHOT,Email level=CriticalAlert subject=Alert from=jonathanl@telenav.com to=jonathanl@telenav.com host=smtp.telenav.com username=jonathanl@telenav.com password=shibo"
 
 ### Creating New Logs <a name="creating-new-logs"></a>
 
