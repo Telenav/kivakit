@@ -1,6 +1,18 @@
 ![](https://www.kivakit.org/images/horizontal-line.png)
 
-## Version 1.1.2-SNAPSHOT (2021.08.27) "plutonium snake"
+## Version 1.1.1 (2021.11.05) "plutonium panda"
+
+### added 
+
+* [Add .proto output files to kivakit-microservice GRPC service](https://github.com/Telenav/kivakit/issues/89)
+
+### fixed
+
+ * [Division microservice example is broken #87](https://github.com/Telenav/kivakit/issues/87)
+ * [Broken listener chain due to inheritance from mixin and base component #86](https://github.com/Telenav/kivakit/issues/86)
+ * [Documentation links are broken in kivakit 1.1.0 #88](https://github.com/Telenav/kivakit/issues/88)
+
+## Version 1.1.0 (2021.08.27) "plutonium snake"
 
 ### added
 
@@ -31,7 +43,7 @@
 
 ![](https://www.kivakit.org/images/horizontal-line.png)
 
-## Version 1.1.2-SNAPSHOT (2021.08.27) "puffy mouse"
+## Version 1.1.1 (2021.08.27) "puffy mouse"
 
 Initial release of KivaKit.
 

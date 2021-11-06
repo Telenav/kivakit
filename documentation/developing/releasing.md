@@ -5,7 +5,7 @@
 This section documents how to release a new version of KivaKit, step by step.
 
 In the text below *\[kivakit-version\]* refers to a [semantic versioning](https://semver.org) identifier, such
-as 2.1.7 or 1.1.2-SNAPSHOT-beta.
+as 2.1.7 or 1.1.1-beta.
 
 KivaKit adheres to the standard [Git Flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) branching model.
 
@@ -47,51 +47,35 @@ Once the release branch has been created, several steps need to be performed man
 1. Update references to cactus-build version in pom.xml files
 2. Double check for stray references to the previous version in pom.xml files
 
-#### 2.2 Building the Release
+#### 2.2 Updating Code Flowers
 
-In order to ensure that the build will work on the build server, it is a good idea to completely clean out your maven repository and cache folders by building the project completely from scratch:
+To update code flowers for the release
 
-    kivakit-build.sh all sparkling
-
-This will remove (after prompting) the following before building:
-
-1. Maven repository *~/.m2*
-2. KivaKit cache folder *~/.kivakit/\[kivakit-version\]*
-3. Temporary files, logs, etc. in the source tree
-
-#### 2.3 Building the Documentation
-
-The following command will build Javadoc, UML diagrams and update project README.md indexes.
-
-    kivakit-build-documentation.sh
-
-#### 2.4 Updating Code Flowers
-
-To publish code flowers for the build:
-
-1. On the command line:  
+1. On the command line, execute:  
 
         mkdir -p $KIVAKIT_WORKSPACE/kivakit-assets/docs/$KIVAKIT_VERSION/codeflowers
         cd $KIVAKIT_WORKSPACE/kivakit-assets/docs/$KIVAKIT_VERSION/codeflowers
         
 1. Copy the *codeflowers* folder from a previous build into this folder
-1. Inside the *codeflowers* folder:
+1. Inside the *codeflowers* folder, execute:
 
         ./kivakit-build-codeflowers.sh
         
 1. Open *site/index.html* in an editor and insert the &lt;option&gt; HTML code that was output by the build process.
 
-#### 2.5 Check Deployment Build
+#### 2.3 Check Build
 
 To ensure that the build will be accepted on Maven Central, run:
 
     kivakit-build.sh deploy-local
+    
+This will build all kivakit artifacts from scratch, including Javadoc and Lexakai documentation.
 
 #### 2.6 Commit Changes
 
 Commit any changes to the release branch.
 
-### 3. Finishing and Publishing the Release Branch &nbsp;  <img src="https://www.kivakit.org/images/stars-32.png" srcset="https://www.kivakit.org/images/stars-32-2x.png 2x"/>
+### 3. Publishing the Release &nbsp;  <img src="https://www.kivakit.org/images/stars-32.png" srcset="https://www.kivakit.org/images/stars-32-2x.png 2x"/>
 
 The release is finished and merged into master with another script that uses git flow:
 

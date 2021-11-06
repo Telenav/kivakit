@@ -70,7 +70,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
  *
  * <ul>
  *     <li>{@link #parse(Listener listener, String)}</li>
- *     <li>{@link #file(URI)}</li>
+ *     <li>{@link #file(Listener, URI)}</li>
  *     <li>{@link #file(FilePath)}</li>
  *     <li>{@link #file(java.io.File)}</li>
  * </ul>
