@@ -1,6 +1,6 @@
 ![](https://www.kivakit.org/images/horizontal-line.png)
 
-## Version 1.1.1 (2021.11.05) "plutonium panda"
+## Version 1.1.2-SNAPSHOT (2021.11.05) "plutonium panda"
 
 ### added 
 
@@ -43,7 +43,7 @@
 
 ![](https://www.kivakit.org/images/horizontal-line.png)
 
-## Version 1.1.1 (2021.08.27) "puffy mouse"
+## Version 1.1.2-SNAPSHOT (2021.08.27) "puffy mouse"
 
 Initial release of KivaKit.
 

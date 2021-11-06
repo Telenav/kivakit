@@ -12,14 +12,14 @@
     <parent>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>superpom</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
         <relativePath>superpom/pom.xml</relativePath>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.telenav.kivakit</groupId>
     <artifactId>kivakit</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <!-- Project -->
