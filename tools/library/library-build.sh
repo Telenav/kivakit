@@ -286,7 +286,7 @@ build() {
 
             cd "$BUILD_FOLDER"
 
-            if [ -z "$CLEANED" ]; then
+            if [ -z "$CLEANED" ] && [ -n "$CLEAN_SCRIPT" ]; then
 
                 bash "$CLEAN_SCRIPT"
 
@@ -294,7 +294,7 @@ build() {
 
             fi
 
-            if [ -z "$PREBUILT" ]; then
+            if [ -z "$PREBUILT" ] && [ -n "$PREBUILD_SCRIPT" ]; then
 
                 bash "$PREBUILD_SCRIPT"
 

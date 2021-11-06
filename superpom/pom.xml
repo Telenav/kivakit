@@ -16,7 +16,6 @@
 
     <!-- Project -->
 
-    <name>KivaKit Super POM</name>
     <description>The KivaKit super POM is used by all Telenav Open Source projects that depend directly or indirectly on KivaKit to help ensure consistent builds.</description>
     <url>https://www.telenav.com/</url>
     <inceptionYear>2011</inceptionYear>
@@ -177,7 +176,7 @@
         <guava.version>29.0-jre</guava.version>
         <htrace.version>4.2.0-incubating</htrace.version>
         <log4j.version>1.2.17</log4j.version>
-        <slf4j.version>1.7.25</slf4j.version>
+        <slf4j.version>2.0.0-alpha5</slf4j.version>
         <yourkit.version>8.0.1</yourkit.version>
         <classgraph.version>4.8.102</classgraph.version>
 
@@ -185,12 +184,12 @@
 
         <jetty.version>9.4.36.v20210114</jetty.version>
         <jersey.version>2.33</jersey.version>
-        <wicket.version>9.2.0</wicket.version>
+        <wicket.version>9.6.0</wicket.version>
+        <wicket.jquery.version>9.5.0</wicket.jquery.version>
         <swagger.version>2.1.10</swagger.version>
         <swagger.webjar.version>3.51.2</swagger.webjar.version>
         <httpclient.version>4.5.13</httpclient.version>
         <jakarta.ws.rs.version>2.1.6</jakarta.ws.rs.version>
-        <wicket-jquery.version>8.8.0</wicket-jquery.version>
 
         <!-- XML -->
 
@@ -471,7 +470,12 @@
                         <systemPropertyVariables>
                             <testQuick>${testQuick}</testQuick>
                         </systemPropertyVariables>
-                        <argLine>-Xmx2g</argLine>
+                        <argLine>
+                            --add-opens org.junit.platform.commons/org.junit.platform.commons.logging=ALL-UNNAMED
+                            --add-opens org.junit.platform.commons/org.junit.platform.commons.util=ALL-UNNAMED
+                            --illegal-access=permit
+                            -Xmx2g
+                        </argLine>
                     </configuration>
                 </plugin>
 
@@ -483,12 +487,12 @@
                     <version>${maven-javadoc-plugin.version}</version>
                     <configuration>
                         <show>public</show>
-                        <source>8</source>
+                        <source>11</source>
                         <detectJavaApiLink>false</detectJavaApiLink>
                         <doclint>none</doclint>
                         <nohelp>true</nohelp>
                         <reportOutputDirectory>${env.KIVAKIT_ASSETS_HOME}/docs/${env.KIVAKIT_VERSION}/javadoc</reportOutputDirectory>
-                        <destDir>${project.artifactId}</destDir>
+                        <destDir>${project.name}</destDir>
                         <additionalOptions>-notimestamp --show-module-contents all --show-packages all --show-types private</additionalOptions>
                     </configuration>
                     <executions>
@@ -1330,6 +1334,21 @@
                 <version>${slf4j.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-ext</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
@@ -1390,12 +1409,12 @@
             <dependency>
                 <groupId>com.googlecode.wicket-jquery-ui</groupId>
                 <artifactId>wicket-jquery-ui</artifactId>
-                <version>${wicket.version}</version>
+                <version>${wicket.jquery.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.googlecode.wicket-jquery-ui</groupId>
                 <artifactId>wicket-jquery-ui-core</artifactId>
-                <version>${wicket.version}</version>
+                <version>${wicket.jquery.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.danekja</groupId>

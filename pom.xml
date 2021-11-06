@@ -24,7 +24,6 @@
 
     <!-- Project -->
 
-    <name>KivaKit</name>
     <description>KivaKit is a collection of easy-to-use, integrated mini-frameworks for developing Java software.</description>
     <url>https://www.kivakit.org</url>
     <inceptionYear>2011</inceptionYear>
