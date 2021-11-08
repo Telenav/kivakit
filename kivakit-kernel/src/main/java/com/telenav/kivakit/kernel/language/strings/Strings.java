@@ -77,6 +77,14 @@ public class Strings
     }
 
     /**
+     * @return The given string in double quotes
+     */
+    public static String doubleQuoted(String string)
+    {
+        return "\"" + string + "\"";
+    }
+
+    /**
      * @return The given text with the terminator appended if it doesn't already end in the terminator
      */
     public static String ensureEndsWith(String text, String terminator)
