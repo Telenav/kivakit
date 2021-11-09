@@ -19,15 +19,17 @@ public interface TryTrait extends Broadcaster
         }
     }
 
-    default void tryCatch(UncheckedVoid code, String message, Object... arguments)
+    default boolean tryCatch(UncheckedVoid code, String message, Object... arguments)
     {
         try
         {
             code.run();
+            return true;
         }
         catch (Exception e)
         {
             problem(e, message, arguments);
+            return false;
         }
     }
 

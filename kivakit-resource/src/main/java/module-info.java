@@ -38,6 +38,7 @@ open module kivakit.resource
     requires transitive kivakit.serialization.core;
     requires transitive kivakit.collections;
     requires kivakit.test;
+    requires java.prefs;
 
     // Module exports
     exports com.telenav.kivakit.filesystem.spi;

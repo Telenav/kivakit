@@ -236,18 +236,18 @@ public abstract class Application extends BaseComponent implements Named, Applic
         instance = this;
         if (projects.length == 1)
         {
-            project = ensureNotNull(projects[0]);
+            project = listenTo(ensureNotNull(projects[0]));
         }
         else
         {
-            project = new Project()
+            project = listenTo(new Project()
             {
                 @Override
                 public ObjectSet<Project> dependencies()
                 {
                     return ObjectSet.objectSet(projects);
                 }
-            };
+            });
         }
     }
 

@@ -28,6 +28,7 @@ import com.telenav.kivakit.kernel.messaging.Listener;
  */
 public enum Release
 {
+    SNAPSHOT(-1),
     ALPHA(1),
     BETA(2),
     RC(3),
