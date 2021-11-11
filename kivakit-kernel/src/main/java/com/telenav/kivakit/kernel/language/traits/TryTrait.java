@@ -90,4 +90,20 @@ public interface TryTrait extends Broadcaster
             after.run();
         }
     }
+
+    default void tryFinallyThrow(UncheckedVoid code, Runnable after)
+    {
+        try
+        {
+            code.run();
+        }
+        catch (Exception e)
+        {
+            throw problem(e, "Code threw exception").asException();
+        }
+        finally
+        {
+            after.run();
+        }
+    }
 }

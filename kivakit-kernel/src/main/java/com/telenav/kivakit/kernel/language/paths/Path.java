@@ -155,6 +155,14 @@ public abstract class Path<Element extends Comparable<Element>> implements
     }
 
     /**
+     * @return A copy of this path
+     */
+    public Path<Element> copy()
+    {
+        return onCopy(root, elements);
+    }
+
+    /**
      * @return The elements in this path as a list
      */
     public List<Element> elements()
@@ -551,14 +559,6 @@ public abstract class Path<Element extends Comparable<Element>> implements
             return subpath(0, size() - suffix.size());
         }
         return null;
-    }
-
-    /**
-     * @return A copy of this path
-     */
-    protected final Path<Element> copy()
-    {
-        return onCopy(root, elements);
     }
 
     /**

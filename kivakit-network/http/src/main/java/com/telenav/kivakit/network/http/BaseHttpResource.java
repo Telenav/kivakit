@@ -116,12 +116,12 @@ public abstract class BaseHttpResource extends BaseNetworkResource
     }
 
     @Override
-    public boolean equals(final Object object)
+    public boolean equals(Object object)
     {
         if (object instanceof BaseHttpResource)
         {
             BaseHttpResource that = (BaseHttpResource) object;
-            return this.networkLocation.equals(that.networkLocation);
+            return networkLocation.equals(that.networkLocation);
         }
         return false;
     }
@@ -191,22 +191,26 @@ public abstract class BaseHttpResource extends BaseNetworkResource
         {
             executeRequest(newRequest());
 
-            var entity = response.getEntity();
-            if (entity != null)
+            if (status().isOkay())
             {
-                var contentEncoding = entity.getContentEncoding();
-                if (contentEncoding != null)
+                var entity = response.getEntity();
+                if (entity != null)
                 {
-                    this.contentEncoding = contentEncoding.getValue();
+                    var contentEncoding = entity.getContentEncoding();
+                    if (contentEncoding != null)
+                    {
+                        this.contentEncoding = contentEncoding.getValue();
+                    }
+                    return entity.getContent();
                 }
-                return entity.getContent();
             }
         }
         catch (Exception e)
         {
-            illegalState(e, "Can't open input stream");
+            throw problem(e, "Cannot open: $", this).asException();
         }
-        return null;
+
+        throw problem("Cannot open: $", this).asException();
     }
 
     /**

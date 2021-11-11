@@ -376,12 +376,22 @@ public abstract class BaseList<Element> implements
         return new StringList(maximumSize(), this);
     }
 
+    public String bracketed()
+    {
+        return bracketed(4);
+    }
+
+    public String bracketed(int indent)
+    {
+        return "\n{\n" + bulleted(indent) + "\n}";
+    }
+
     /**
      * @return The items in this list in a bulleted ASCII art representation
      */
     public String bulleted()
     {
-        return AsciiArt.bulleted(this);
+        return bulleted(4);
     }
 
     /**
