@@ -203,14 +203,20 @@ public abstract class BaseHttpResource extends BaseNetworkResource
                     }
                     return entity.getContent();
                 }
+                else
+                {
+                    throw problem("No entity found for: $", this).asException();
+                }
+            }
+            else
+            {
+                throw problem("Request failed (HTTP status code $): $", status(), this).asException();
             }
         }
         catch (Exception e)
         {
             throw problem(e, "Cannot open: $", this).asException();
         }
-
-        throw problem("Cannot open: $", this).asException();
     }
 
     /**
