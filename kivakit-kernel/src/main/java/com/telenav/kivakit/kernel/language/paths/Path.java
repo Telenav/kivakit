@@ -556,7 +556,7 @@ public abstract class Path<Element extends Comparable<Element>> implements
     /**
      * @return A copy of this path
      */
-    protected final Path<Element> copy()
+    protected Path<Element> copy()
     {
         return onCopy(root, elements);
     }
