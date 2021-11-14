@@ -13,15 +13,28 @@ KivaKit adheres to the standard [Git Flow](https://www.atlassian.com/git/tutoria
 
 Before building KivaKit, cactus-build must be released. The version number should always be in sync with KivaKit.
 
-1. Run cactus-release-start.sh [kivakit-version]
-2. Run cactus-release-update-version.sh [kivakit-version]
-3. Run cactus-build.sh
-4. Run cactus-build-documentation.sh
-5. Run cactus-build.sh deploy-local
-6. Double check the release branch
-7. Run cactus-release-finish.sh [kivakit-version]
-8. Run cactus-build.sh deploy-ossrh
-9. Sign into OSSRH and release to Maven Central
+1. Execute the command:  
+
+       cactus-release.sh [version]
+
+   The *cactus-release.sh* script will execute this sequence of scripts:
+
+   * *cactus-release-start.sh* [version]
+   * *cactus-release-update-version.sh* [version]
+   * *cactus-build.sh*
+   * *cactus-build-documentation.sh*
+   * *cactus-build.sh* deploy-local
+
+   If one of these script fails, you can continue the release process by running the remaining scripts by hand.
+
+
+2. Double check the release branch
+3. Execute the commands:
+
+       cactus-release-finish.sh [version]
+       cactus-build.sh deploy-ossrh
+
+4. Sign into OSSRH and release to Maven Central
 
 ### 1. Creating the Release Branch <img src="https://www.kivakit.org/images/branch-32.png" srcset="https://www.kivakit.org/images/branch-32-2x.png 2x"/>
 
