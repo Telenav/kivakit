@@ -36,7 +36,7 @@ Before building KivaKit, cactus-build must be released.
        cactus-release-finish.sh [version]
        cactus-build.sh deploy-ossrh
 
-4. Sign into OSSRH and release to Maven Central
+4. Sign into [OSSRH](https://s01.oss.sonatype.org) and release to Maven Central
 
 ### 1. Creating the Release Branch <img src="https://www.kivakit.org/images/branch-32.png" srcset="https://www.kivakit.org/images/branch-32-2x.png 2x"/>
 
