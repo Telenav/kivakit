@@ -11,19 +11,21 @@ KivaKit adheres to the standard [Git Flow](https://www.atlassian.com/git/tutoria
 
 ### 0. Releasing Cactus Build
 
-Before building KivaKit, cactus-build must be released. The version number should always be in sync with KivaKit.
+Before building KivaKit, cactus-build must be released. 
+
+> The version number of cactus-build must always be in sync with KivaKit
 
 1. Execute the command:  
 
-       cactus-release.sh [version]
+       cactus-release.sh [kivakit-version]
 
    The *cactus-release.sh* script will execute this sequence of scripts:
 
-   * *cactus-release-start.sh* [version]
-   * *cactus-release-update-version.sh* [version]
-   * *cactus-build.sh*
-   * *cactus-build-documentation.sh*
-   * *cactus-build.sh* deploy-local
+   * cactus-release-start.sh *[kivakit-version]*
+   * cactus-release-update-version.sh *[kivakit-version]*
+   * cactus-build.sh
+   * cactus-build-documentation.sh
+   * cactus-build.sh *deploy-local*
 
    If one of these script fails, you can continue the release process by running the remaining scripts by hand.
 
