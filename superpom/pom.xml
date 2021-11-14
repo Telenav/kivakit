@@ -13,6 +13,7 @@
     <artifactId>superpom</artifactId>
     <version>1.1.2-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <name>superpom</name>
 
     <!-- Project -->
 
@@ -35,6 +36,46 @@
         </license>
 
     </licenses>
+
+    <!-- Contributors -->
+
+    <developers>
+
+        <developer>
+            <id>jonathanl</id>
+            <name>Jonathan Locke (Luo Shibo)</name>
+            <email>jonathanl@telenav.com</email>
+            <organization>Telenav</organization>
+            <organizationUrl>https://www.telenav.com/</organizationUrl>
+            <roles>
+                <role>lead</role>
+                <role>administrator</role>
+            </roles>
+        </developer>
+
+        <developer>
+            <id>haifeng</id>
+            <name>Haifeng Zhu</name>
+            <email>hfzhu@telenav.com</email>
+            <organization>Telenav</organization>
+            <organizationUrl>https://www.telenav.com/</organizationUrl>
+            <roles>
+                <role>developer</role>
+                <role>administrator</role>
+            </roles>
+        </developer>
+
+    </developers>
+
+    <!-- Source Code -->
+
+    <scm>
+
+        <connection>scm:git:https://Telenav/kivakit.git</connection>
+        <developerConnection>scm:git:https://Telenav/kivakit.git</developerConnection>
+        <url>https://Telenav/kivakit.git</url>
+
+    </scm>
 
     <!-- Publishing -->
 

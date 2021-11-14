@@ -134,14 +134,6 @@ public interface Message extends Transmittable, Triaged, AsString, Named
     }
 
     /**
-     * @return The message with the given simple name (Problem, Warning, etc)
-     */
-    static Message parseMessageName(Listener listener, String name)
-    {
-        return OperationMessage.parse(listener, name);
-    }
-
-    /**
      * @return The message text formatted with the given arguments
      */
     static String format(String message, Object... arguments)
@@ -151,6 +143,14 @@ public interface Message extends Transmittable, Triaged, AsString, Named
             return FORMATTER.format(message, arguments);
         }
         return message;
+    }
+
+    /**
+     * @return The message with the given simple name (Problem, Warning, etc)
+     */
+    static Message parseMessageName(Listener listener, String name)
+    {
+        return OperationMessage.parse(listener, name);
     }
 
     /**
@@ -275,6 +275,15 @@ public interface Message extends Transmittable, Triaged, AsString, Named
      * @return Any cause or null if none
      */
     Throwable cause();
+
+    /**
+     * <b>Not public API</b>
+     *
+     * <p>
+     * Sets the cause for this message
+     * </p>
+     */
+    Message cause(Throwable cause);
 
     /**
      * @return The context where this message was created

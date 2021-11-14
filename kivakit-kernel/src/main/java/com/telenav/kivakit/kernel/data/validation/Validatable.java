@@ -60,6 +60,8 @@ public interface Validatable
     }
 
     /**
+     * Gets the {@link Validator} for this validatable.
+     *
      * @return A validator for full validation, if any. Although it cannot be final, this method should not be
      * overridden. Instead, override {@link #validator(ValidationType)}
      */

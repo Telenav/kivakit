@@ -46,6 +46,7 @@ import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
 import com.telenav.kivakit.kernel.language.reflection.Type;
 import com.telenav.kivakit.kernel.language.strings.CaseFormat;
+import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.kernel.language.time.LocalTime;
 import com.telenav.kivakit.kernel.language.time.conversion.converters.LocalDateConverter;
 import com.telenav.kivakit.kernel.language.time.conversion.converters.LocalDateTimeConverter;
@@ -155,6 +156,14 @@ public class SwitchParser<T> implements Named, Validatable
                 .name(name)
                 .converter(new DoubleConverter(listener))
                 .description(description);
+    }
+
+    public static Builder<Duration> durationSwitchParser(Listener listener, String name, String description)
+    {
+        return builder(Duration.class)
+                .name(name)
+                .description(description)
+                .converter(new Duration.Converter(listener));
     }
 
     public static <E extends Enum<E>> Builder<E> enumSwitchParser(Listener listener,

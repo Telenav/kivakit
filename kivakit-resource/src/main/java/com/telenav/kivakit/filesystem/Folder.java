@@ -25,11 +25,13 @@ import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.filesystem.spi.FolderService;
 import com.telenav.kivakit.kernel.KivaKit;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
+import com.telenav.kivakit.kernel.interfaces.code.UncheckedVoid;
 import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.kernel.language.strings.Strings;
 import com.telenav.kivakit.kernel.language.threading.locks.Monitor;
 import com.telenav.kivakit.kernel.language.time.Time;
+import com.telenav.kivakit.kernel.language.traits.TryTrait;
 import com.telenav.kivakit.kernel.language.values.count.Bytes;
 import com.telenav.kivakit.kernel.language.vm.OperatingSystem;
 import com.telenav.kivakit.kernel.logging.Logger;
@@ -63,8 +65,10 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.attribute.PosixFilePermission;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.prefs.Preferences;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -190,7 +194,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  */
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
 @LexakaiJavadoc(complete = true)
-public class Folder extends BaseRepeater implements FileSystemObject, Comparable<Folder>, ResourceFolder
+public class Folder extends BaseRepeater implements FileSystemObject, Comparable<Folder>, ResourceFolder, TryTrait
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
@@ -837,6 +841,30 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         Collections.sort(folders);
         trace("Folders in $: $", this, folders);
         return folders;
+    }
+
+    /**
+     * @return True if the given folder has changed since the last time this method was called
+     */
+    public boolean hasChanged()
+    {
+        // Get the preferences node for this folder and from that, the previous folder digest,
+        var node = Preferences.userNodeForPackage(getClass()).node("kivakit-folder:" + path().toString());
+        var previousDigest = node.getByteArray("digest", null);
+
+        // then create and save a new digest,
+        var digest = nestedFiles().digest();
+        node.putByteArray("digest", digest);
+        if (tryCatch(UncheckedVoid.of(node::flush), "Failed to flush preferences"))
+        {
+            // and if there is a previous digest,
+            if (previousDigest != null)
+            {
+                // and return true if the digests are not equal.
+                return !Arrays.equals(digest, previousDigest);
+            }
+        }
+        return true;
     }
 
     public boolean hasTrailingSlash()
