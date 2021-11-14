@@ -229,6 +229,15 @@ public class StringPath extends Path<String>
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public StringPath copy()
+    {
+        return (StringPath) super.copy();
+    }
+
+    /**
      * @return True if this path ends with the given suffix
      */
     public boolean endsWith(String suffix)

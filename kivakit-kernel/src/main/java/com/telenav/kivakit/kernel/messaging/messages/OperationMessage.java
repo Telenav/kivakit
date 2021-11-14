@@ -76,13 +76,6 @@ public abstract class OperationMessage implements Named, Message
     /** This flag can be helpful in detecting infinite recursion of message formatting */
     private static final boolean DETECT_REENTRANCY = false;
 
-    public static Message parse(Listener listener, String name)
-    {
-        initialize();
-
-        return listener.problemIfNull(messages.get(name), "Invalid message name: $", name);
-    }
-
     public static <T extends Message> T newInstance(Listener listener,
                                                     Class<T> type,
                                                     String message,
@@ -97,6 +90,13 @@ public abstract class OperationMessage implements Named, Message
             listener.problem(e, "Unable to create instance: $", type);
             return null;
         }
+    }
+
+    public static Message parse(Listener listener, String name)
+    {
+        initialize();
+
+        return listener.problemIfNull(messages.get(name), "Invalid message name: $", name);
     }
 
     private transient String message;
@@ -138,9 +138,9 @@ public abstract class OperationMessage implements Named, Message
     }
 
     @Override
-    public RuntimeException asException()
+    public MessageException asException()
     {
-        return new IllegalStateException(formatted(WITH_EXCEPTION), cause());
+        return new MessageException(this);
     }
 
     @Override

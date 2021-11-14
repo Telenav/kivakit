@@ -19,15 +19,17 @@ public interface TryTrait extends Broadcaster
         }
     }
 
-    default void tryCatch(UncheckedVoid code, String message, Object... arguments)
+    default boolean tryCatch(UncheckedVoid code, String message, Object... arguments)
     {
         try
         {
             code.run();
+            return true;
         }
         catch (Exception e)
         {
             problem(e, message, arguments);
+            return false;
         }
     }
 
@@ -82,6 +84,22 @@ public interface TryTrait extends Broadcaster
         {
             problem(e, "Code threw exception");
             return null;
+        }
+        finally
+        {
+            after.run();
+        }
+    }
+
+    default void tryFinallyThrow(UncheckedVoid code, Runnable after)
+    {
+        try
+        {
+            code.run();
+        }
+        catch (Exception e)
+        {
+            throw problem(e, "Code threw exception").asException();
         }
         finally
         {

@@ -92,7 +92,7 @@ public class LocalTime extends Time
 
     public static LocalTime parseDateTime(String text)
     {
-        return new LocalDateTimeConverter(Listener.none(), localTimeZone()).convert(text);
+        return new LocalDateTimeConverter(Listener.none()).convert(text);
     }
 
     public static LocalTime seconds(ZoneId zone, long seconds)

@@ -150,7 +150,7 @@ public class PropertyMap extends VariableMap<String>
 
     private final Map<String, String> comments = new HashMap<>();
 
-    protected PropertyMap()
+    public PropertyMap()
     {
     }
 

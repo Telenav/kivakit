@@ -8,6 +8,7 @@ import com.telenav.kivakit.configuration.settings.deployment.Deployment;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.language.paths.PackagePathTrait;
+import com.telenav.kivakit.kernel.language.traits.LanguageTrait;
 import com.telenav.kivakit.kernel.language.traits.TryTrait;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Repeater;
@@ -87,6 +88,7 @@ public interface Component extends
         RegistryTrait,
         PackagePathTrait,
         TryTrait,
+        LanguageTrait,
         ResourceTrait
 {
 }

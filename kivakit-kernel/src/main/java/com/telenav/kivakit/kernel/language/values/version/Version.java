@@ -78,18 +78,20 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
  */
 public class Version
 {
-    /** Value for no revision */
+    /** Value for no patch revision */
     public static final int NO_PATCH = -1;
 
-    /** Pattern to match versions of the form [major].[minor](.[revision)?(-release)? */
+    /** Value for no minor revision */
+    public static final int NO_MINOR = -1;
+
+    /** Pattern to match versions of the form [major](.[minor])?(.[revision)?(-release)?(-SNAPSHOT)? */
     private static final Pattern PATTERN;
 
     static
     {
         PATTERN = Pattern.compile("(?x) "
                 + "(?<major> \\d+)"
-                + "\\."
-                + "(?<minor> \\d+)"
+                + "(\\. (?<minor> \\d+))?"
                 + "(\\. (?<patch> \\d+))?"
                 + "(- (?<release> \\w+))??"
                 + "(- (?<snapshot> SNAPSHOT))?", CASE_INSENSITIVE);
@@ -101,6 +103,14 @@ public class Version
     public static Version of(int major, int minor)
     {
         return of(major, minor, NO_PATCH);
+    }
+
+    /**
+     * @return A version for the given major and minor values, as in 8.0
+     */
+    public static Version of(int major)
+    {
+        return of(major, NO_MINOR);
     }
 
     /**
@@ -135,7 +145,8 @@ public class Version
         {
             // Extract the required major and minor versions
             var major = Ints.parse(listener, matcher.group("major"));
-            var minor = Ints.parse(listener, matcher.group("minor"));
+            var minor = matcher.group("minor");
+            var minorVersion = minor == null ? NO_MINOR : Ints.parse(listener, minor);
 
             // then get the patch group and convert it to a number or NO_PATCH if there is none
             var patch = matcher.group("patch");
@@ -147,7 +158,7 @@ public class Version
             var snapshot = "SNAPSHOT".equalsIgnoreCase(matcher.group("snapshot"));
 
             // and finally, construct the version object
-            return of(major, minor, patchNumber, release, snapshot);
+            return of(major, minorVersion, patchNumber, release, snapshot);
         }
 
         listener.problem("Could not parse version: $", text);
@@ -189,6 +200,11 @@ public class Version
                     && release == that.release;
         }
         return false;
+    }
+
+    public boolean hasMinorVersion()
+    {
+        return patch != NO_MINOR;
     }
 
     public boolean hasPatch()
@@ -289,7 +305,8 @@ public class Version
     @Override
     public String toString()
     {
-        return major + "." + minor
+        return major
+                + (minor == NO_MINOR ? "" : "." + minor)
                 + (patch == NO_PATCH ? "" : "." + patch)
                 + (release == null ? "" : "-" + release.name().toLowerCase())
                 + (snapshot ? "-SNAPSHOT" : "");

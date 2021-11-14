@@ -37,6 +37,9 @@ public enum WakeState
     /** Waiting timed out */
     TIMED_OUT,
 
-    /** The awaited condition was completed */
-    COMPLETED
+    /** The awaited operation completed */
+    COMPLETED,
+
+    /** The awaited operation failed due to an exception */
+    TERMINATED,
 }

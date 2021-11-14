@@ -195,7 +195,7 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
             var that = (NetworkLocation) object;
             return port.equals(that.port) && networkPath.equals(that.networkPath)
                     && Objects.equal(queryParameters, that.queryParameters)
-                    && Objects.equal(reference, that.reference) && Objects.equal(constraints.userName(), that.constraints.userName());
+                    && Objects.equal(reference, that.reference);
         }
         return false;
     }
@@ -203,7 +203,7 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
     @Override
     public int hashCode()
     {
-        return Hash.many(port, networkPath, queryParameters, reference, constraints);
+        return Hash.many(port, networkPath, queryParameters, reference);
     }
 
     @KivaKitIncludeProperty
