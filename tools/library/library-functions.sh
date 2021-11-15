@@ -155,11 +155,20 @@ require_folder() {
 
 ################ GIT ################################################################################################
 
-git_flow_release_start() {
 
+git_flow_release_start()
+{
     project_home=$1
     project_name=$(basename "$project_home")
     version=$2
+
+    echo " "
+    echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Creating Release Branch  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
+    echo "┋"
+    echo "┋  Creating $project_name git flow branch release/$version"
+    echo "┋"
+    echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
+    echo " "
 
     # Check out the develop branch
     cd "$project_home"
@@ -171,24 +180,17 @@ git_flow_release_start() {
     # switch to the release branch
     git checkout release/"$version"
 
-    # and update its version
-    bash "$project_name"-update-version.sh "$version"
-
     echo " "
     echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Branch Created  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
     echo "┋"
-    echo "┋  VERSION: $version"
-    echo "┋"
-    echo "┋  1. A new release branch 'release/$version' has been created using git flow."
-    echo "┋  2. POM files and other version-related information in this branch has been updated to $version."
-    echo "┋  3. When the release branch is FULLY READY, run the release finish script to merge the branch into master."
+    echo "┋  Created $project_name git flow branch release/$version"
     echo "┋"
     echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
     echo " "
 }
 
-git_flow_release_finish() {
-
+git_flow_release_finish()
+{
     project_home=$1
     version=$2
 

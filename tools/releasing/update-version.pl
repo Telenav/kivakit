@@ -108,12 +108,27 @@ sub update_root {
 }
 
 #
+# Update the superpom
+#
+sub update_superpom {
+    my $path = "$root/superpom/pom.xml";
+    if (-e $path) {
+        my $text = read_file($path);
+        $text =~ s!<cactus.version>(?<version>.*?)</cactus.version>!<cactus.version>$new_version</cactus.version>!;
+        $text =~ s!<kivakit.version>(?<version>.*?)</kivakit.version>!<kivakit.version>$new_version</kivakit.version>!;
+        write_file($path, $text);
+        print "Updated superpom/pom.xml\n";
+    }
+}
+
+#
 # Process all files in the project
 #
 chdir $root;
 find(\&process_file, $root);
 
 #
-# Update the root pom
+# Update the root pom and superpom
 #
 update_root();
+update_superpom();
