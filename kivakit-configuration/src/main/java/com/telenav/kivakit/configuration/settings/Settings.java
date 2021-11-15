@@ -38,8 +38,6 @@ import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Debug;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.resources.other.PropertyMap;
 import com.telenav.kivakit.resource.resources.packaged.Package;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
@@ -51,7 +49,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
 
 /**
@@ -269,15 +266,23 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
             }));
 
     /**
-     * @return The settings registry for the given object (the global settings registry by default)
+     * @return The global settings object
      */
-    public static synchronized Settings of(Object object)
+    public static Settings global()
     {
         return global.get();
     }
 
+    /**
+     * @return The settings registry for the given object (the global settings registry by default)
+     */
+    public static synchronized Settings of(Object object)
+    {
+        return global();
+    }
+
     /** Map to get settings entries by identifier */
-    private final Map<Entry.Identifier, Entry> entries = new HashMap<>();
+    private final Map<SettingsObject.Identifier, SettingsObject> entries = new HashMap<>();
 
     /** True if the settings in this registry are loaded */
     private boolean loaded;
@@ -310,8 +315,8 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
     }
 
     /**
-     * @return An iterator over the underlying settings {@link Object}s in this set (i.e., not the {@link Entry}
-     * objects)
+     * @return An iterator over the underlying settings {@link Object}s in this set (i.e., not the {@link
+     * SettingsObject} objects)
      */
     @NotNull
     @Override
@@ -320,7 +325,7 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
     {
         return asSet()
                 .stream()
-                .map(Entry::object)
+                .map(SettingsObject::object)
                 .collect(Collectors.toSet())
                 .iterator();
     }
@@ -361,7 +366,7 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
     @Override
     public <T> T lookupSettings(Class<T> type, InstanceIdentifier instance)
     {
-        return settings(new Entry.Identifier(type, instance));
+        return settings(new SettingsObject.Identifier(type, instance));
     }
 
     @Override
@@ -390,7 +395,7 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
             return fail("To add a Settings object, call addAll()");
         }
 
-        internalAdd(new Entry(new Entry.Identifier(settings.getClass(), instance), settings));
+        internalAdd(new SettingsObject(new SettingsObject.Identifier(settings.getClass(), instance), settings));
 
         return this;
     }
@@ -414,7 +419,7 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
      * </p>
      */
     @UmlExcludeMember
-    protected void internalAdd(Entry entry)
+    protected void internalAdd(SettingsObject entry)
     {
         assert entry != null;
 
@@ -429,7 +434,7 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
             for (var at = (Class<?>) entry.object().getClass(); !at.equals(Object.class); at = at.getSuperclass())
             {
                 // adding the configuration object for each superclass.
-                entries.put(new Entry.Identifier(at, instance), entry);
+                entries.put(new SettingsObject.Identifier(at, instance), entry);
             }
         });
     }
@@ -448,65 +453,16 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
     }
 
     /**
-     * <b>Not public API</b>
-     * <p>
-     * Loads a configuration from the given properties resource. Note that when this method is called by a subclass
-     * implementing {@link #onLoad()}, it will already hold a write lock.
-     *
-     * @return A configuration loaded from the given properties resource (could be a file in a folder or a resource in a
-     * package)
-     */
-    @UmlExcludeMember
-    protected Entry internalLoadConfiguration(Resource resource)
-    {
-        // Load the given properties
-        trace("Loading configuration from $", resource);
-        var properties = PropertyMap.load(this, resource);
-        try
-        {
-            // then get the configuration class to instantiate,
-            var configurationClassName = properties.get("class");
-            ensureNotNull(configurationClassName, "Missing class property in $", resource);
-            var configurationClass = Class.forName(configurationClassName);
-            ensureNotNull(configurationClass, "Unable to load class $ specified in $", configurationClass, resource);
-            trace("Configuration class: $", configurationClass.getSimpleName());
-
-            // and the name of which identifier of the class to configure (if any)
-            var configurationInstance = properties.get("instance");
-            var identifier = configurationInstance != null ? InstanceIdentifier.instanceIdentifier(configurationInstance) : InstanceIdentifier.SINGLETON;
-            trace("Configuration identifier: $", identifier);
-
-            // then create the configuration object and populate it using the converter framework
-            var configuration = properties.asObject(this, configurationClass);
-            if (configuration != null)
-            {
-                trace("Loaded configuration: $", configuration);
-
-                // and return the configuration set entry for the fully loaded configuration object
-                return new Entry(new Entry.Identifier(configurationClass, identifier), configuration);
-            }
-            else
-            {
-                return fail("Unable to load configuration object from $", resource);
-            }
-        }
-        catch (Exception e)
-        {
-            return fail(e, "Unable to load properties from $", resource);
-        }
-    }
-
-    /**
      * @return The set of loaded settings entries
      */
     @UmlExcludeMember
-    protected Set<Entry> onLoad()
+    protected Set<SettingsObject> onLoad()
     {
         return Set.of();
     }
 
-    /** Gets a <b>copy</b> of the {@link Entry} objects in this set, loading them if need be */
-    private Set<Entry> asSet()
+    /** Gets a <b>copy</b> of the {@link SettingsObject} objects in this set, loading them if need be */
+    private Set<SettingsObject> asSet()
     {
         return lock.write(() ->
         {
@@ -545,7 +501,7 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
                 var folder = Folder.parse(LOGGER, path);
                 if (folder != null)
                 {
-                    LOGGER.listenTo(new SettingsFolder(folder)).install();
+                    LOGGER.listenTo(SettingsFolder.of(folder)).install();
                 }
                 else
                 {
@@ -564,7 +520,7 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
      * @return The configuration for the given identifier
      */
     @SuppressWarnings("unchecked")
-    private <T> T settings(Entry.Identifier identifier)
+    private <T> T settings(SettingsObject.Identifier identifier)
     {
         return lock.read(() ->
         {

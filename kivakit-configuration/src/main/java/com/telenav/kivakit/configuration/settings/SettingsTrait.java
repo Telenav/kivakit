@@ -136,7 +136,7 @@ public interface SettingsTrait
 
     default Settings registerAllSettingsIn(Listener listener, Folder folder)
     {
-        return settingsRegistry().registerAllSettingsIn(listener.listenTo(new SettingsFolder(folder)));
+        return settingsRegistry().registerAllSettingsIn(listener.listenTo(SettingsFolder.of(folder)));
     }
 
     default Settings registerAllSettingsIn(Listener listener, PackagePath path)

@@ -29,28 +29,36 @@ import java.security.Key;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
 
 /**
- * <b>Not public API</b>
+ * <b>Service Provider API</b>
+ *
  * <p>
- * A settings object with an identifier. Used as a data structure internally.
+ * A settings object with a unique type and instance identifier. The {@link Settings} class stores {@link
+ * SettingsObject}s in a {@link SettingsStore}.
+ * </p>
  *
  * @author jonathanl (shibo)
+ * @see Settings
+ * @see SettingsStore
  */
 @UmlNotPublicApi
 @UmlExcludeType(Comparable.class)
 @UmlExcludeType
-class Entry
+public class SettingsObject
 {
     /**
-     * <b>Not public API</b>
+     * <b>Service Provider API</b>
+     *
      * <p>
-     * Identifies a configuration by class and {@link InstanceIdentifier}.
+     * A compound key that identifies a settings object by {@link Class} and {@link InstanceIdentifier}. The instance
+     * identifier is required when there more than one instance of a settings object needs to be stored.
+     * </p>
      *
      * @author jonathanl (shibo)
      */
     @UmlNotPublicApi
     @UmlExcludeType(Comparable.class)
     @UmlExcludeType
-    static class Identifier implements Comparable<Key>
+    public static class Identifier implements Comparable<Key>
     {
         /** The type of settings object */
         @UmlAggregation
@@ -61,7 +69,7 @@ class Entry
         private final InstanceIdentifier instance;
 
         /**
-         * @param type The type of configuration
+         * @param type The type of settings object
          */
         public Identifier(Class<?> type)
         {
@@ -70,7 +78,7 @@ class Entry
         }
 
         /**
-         * @param type The type of configuration
+         * @param type The type of settings object
          * @param instance The instance of the given type
          */
         public Identifier(Class<?> type, InstanceIdentifier instance)
@@ -103,7 +111,7 @@ class Entry
         }
 
         /**
-         * @return The instance of this configuration, if any
+         * @return The instance of this settings object, if any
          */
         public InstanceIdentifier instance()
         {
@@ -117,7 +125,7 @@ class Entry
         }
 
         /**
-         * @return The type of configuration
+         * @return The type of settings object
          */
         public Class<?> type()
         {
@@ -125,14 +133,14 @@ class Entry
         }
     }
 
-    /** Identifier of configuration */
+    /** Compound key that uniquely identifies the <i>object</i> */
     @UmlAggregation
     private final Identifier identifier;
 
     /** The configuration object itself */
     private final Object object;
 
-    public Entry(Identifier identifier, Object object)
+    public SettingsObject(Identifier identifier, Object object)
     {
         ensureNotNull(identifier);
         ensureNotNull(object);
@@ -144,9 +152,9 @@ class Entry
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof Entry)
+        if (object instanceof SettingsObject)
         {
-            Entry that = (Entry) object;
+            SettingsObject that = (SettingsObject) object;
             return this.object == that.object;
         }
         return false;

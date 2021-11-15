@@ -30,19 +30,29 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.unsupported;
+
 /**
- * A set of configuration objects stored in a package. The package contains a set of .properties files that are used to
- * instantiate and populate the configuration objects.
+ * <p>
+ * A Java package containing {@link SettingsObject}s.
+ * </p>
  *
  * <p>
- * <i>See the superclass {@link Settings} for details on how this works.</i>
+ * A {@link SettingsPackage} can be created with {@link #of(Package)} or {@link #of(PackagePath)}. The specified package
+ * should contain a set of .properties files, each of which can be used to instantiate and populate a settings object.
+ * <i>See {@link Settings} for details on how this works.</i>
  * </p>
  *
  * @author jonathanl (shibo)
+ * @see Settings
+ * @see SettingsStore
+ * @see SettingsObject
+ * @see Package
+ * @see PackagePath
  */
 @SuppressWarnings("ClassEscapesDefinedScope")
 @UmlClassDiagram(diagram = DiagramConfiguration.class)
-public class SettingsPackage extends Settings
+public class SettingsPackage extends BaseSettingsStore
 {
     private static final Map<PackagePath, SettingsPackage> packages = new HashMap<>();
 
@@ -68,9 +78,9 @@ public class SettingsPackage extends Settings
     }
 
     @Override
-    public String name()
+    public boolean isReadOnly()
     {
-        return "[ConfigurationPackage package = " + path + "]";
+        return true;
     }
 
     /**
@@ -78,16 +88,16 @@ public class SettingsPackage extends Settings
      */
     @Override
     @UmlExcludeMember
-    protected Set<Entry> onLoad()
+    public Set<SettingsObject> load()
     {
         // Go through .properties files in the package
         var _package = Package.packageFrom(path);
         trace("Loading resources from $", _package);
-        Set<Entry> entries = new HashSet<>();
+        Set<SettingsObject> entries = new HashSet<>();
         for (var resource : _package.resources(Extension.PROPERTIES::ends))
         {
             // load the properties file
-            var configuration = internalLoadConfiguration(resource);
+            var configuration = loadFromProperties(resource);
             if (configuration != null)
             {
                 // and add the configuration
@@ -96,5 +106,17 @@ public class SettingsPackage extends Settings
         }
         trace("Loaded $ resources", entries.size());
         return entries;
+    }
+
+    @Override
+    public String name()
+    {
+        return "[SettingsPackage package = " + path + "]";
+    }
+
+    @Override
+    public void save(Set<SettingsObject> objects)
+    {
+        unsupported();
     }
 }

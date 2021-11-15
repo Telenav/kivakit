@@ -27,17 +27,28 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.unsupported;
+
 /**
- * A set of configuration objects stored in a folder. The folder contains a set of .properties files that are used to
- * instantiate and populate the configuration objects.
  * <p>
- * <i>See the superclass {@link Settings} for details on how this works.</i>
+ * A folder containing {@link SettingsObject}s.
+ * </p>
+ *
+ * <p>
+ * A {@link SettingsFolder} can be created with {@link #of(Folder)}. The specified folder should contain a set of
+ * .properties files, each of which can be used to instantiate and populate a settings object.
+ * <i>See {@link Settings} for details on how this works.</i>
+ * </p>
  *
  * @author jonathanl (shibo)
+ * @see Settings
+ * @see SettingsStore
+ * @see SettingsObject
+ * @see Folder
  */
 @SuppressWarnings("ClassEscapesDefinedScope")
 @UmlClassDiagram(diagram = DiagramConfiguration.class)
-public class SettingsFolder extends Settings
+public class SettingsFolder extends BaseSettingsStore
 {
     /**
      * @param folder The folder containing .properties files specifying configuration objects
@@ -58,9 +69,9 @@ public class SettingsFolder extends Settings
     }
 
     @Override
-    public String name()
+    public boolean isReadOnly()
     {
-        return "[ConfigurationFolder folder = " + folder.path() + "]";
+        return true;
     }
 
     /**
@@ -68,17 +79,29 @@ public class SettingsFolder extends Settings
      */
     @Override
     @UmlExcludeMember
-    protected Set<Entry> onLoad()
+    public Set<SettingsObject> load()
     {
-        Set<Entry> entries = new HashSet<>();
+        Set<SettingsObject> entries = new HashSet<>();
 
         // Go through properties files in the folder
         for (var file : folder.files().matching(Extension.PROPERTIES.fileMatcher()))
         {
             // and add a configuration entry for each file
-            entries.add(internalLoadConfiguration(file));
+            entries.add(loadFromProperties(file));
         }
 
         return entries;
+    }
+
+    @Override
+    public String name()
+    {
+        return "[ConfigurationFolder folder = " + folder.path() + "]";
+    }
+
+    @Override
+    public void save(Set<SettingsObject> objects)
+    {
+        unsupported();
     }
 }
