@@ -5,7 +5,7 @@
 This section documents how to release a new version of KivaKit, step by step.
 
 In the text below *\[kivakit-version\]* refers to a [semantic versioning](https://semver.org) identifier, such
-as 2.1.7 or 1.1.2-SNAPSHOT-beta.
+as 2.1.7 or 1.1.2-beta.
 
 KivaKit adheres to the standard [Git Flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) branching model.
 
@@ -25,10 +25,9 @@ Before building KivaKit, cactus-build must be released. The version number shoul
 
 ### 1. Creating the Release Branch <img src="https://www.kivakit.org/images/branch-32.png" srcset="https://www.kivakit.org/images/branch-32-2x.png 2x"/>
 
-Start a new release branch with the following commands:
+Start a new release branch with the following command:
 
     kivakit-release-start.sh [kivakit-version]
-    kivakit-release-update-version.sh [kivakit-version]
 
 This script does the following:
 
@@ -36,16 +35,17 @@ This script does the following:
 2. Updates *$KIVAKIT_HOME/project.properties* file
 3. Updates the version of all pom.xml files to *[kivakit-version]*
 
-Search for and replace any stray version numbers from the previous revision and restart your terminal program to ensure environment variables are updated.
+Search for and replace any stray version numbers from the previous revision.
+ 
+> Quit and restart your terminal program (not just the shell window) to ensure your environment variables are updated.
 
 ### 2. Preparing the Release &nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
 Once the release branch has been created, several steps need to be performed manually to prepare the branch for publication.
 
-#### 2.1 Prepare the Release Branch
+#### 2.1 Preparing the Release Branch
 
-1. Update references to cactus-build version in pom.xml files
-2. Double check for stray references to the previous version in pom.xml files
+Double check for stray references to the previous version in pom.xml files
 
 #### 2.2 Updating Code Flowers
 
@@ -53,8 +53,7 @@ To update code flowers for the release
 
 1. On the command line, execute:  
 
-        mkdir -p $KIVAKIT_WORKSPACE/kivakit-assets/docs/$KIVAKIT_VERSION/codeflowers
-        cd $KIVAKIT_WORKSPACE/kivakit-assets/docs/$KIVAKIT_VERSION/codeflowers
+        mkdir -p $KIVAKIT_WORKSPACE/kivakit-assets/docs/$KIVAKIT_VERSION
         
 1. Copy the *codeflowers* folder from a previous build into this folder
 1. Inside the *codeflowers* folder, execute:
@@ -63,17 +62,21 @@ To update code flowers for the release
         
 1. Open *site/index.html* in an editor and insert the &lt;option&gt; HTML code that was output by the build process.
 
-#### 2.3 Check Build
+#### 2.3 Checking the Build
 
 To ensure that the build will be accepted on Maven Central, run:
 
     kivakit-build.sh deploy-local
     
-This will build all kivakit artifacts from scratch, including Javadoc and Lexakai documentation.
+This will build all kivakit artifacts from scratch (answer 'y' to the prompt to remove all artifacts), including Javadoc and Lexakai documentation.
 
-#### 2.6 Commit Changes
+#### 2.4 Updating the Change Log
 
-Commit any changes to the release branch.
+Examine the git history log and update the change-log.md file with any important changes in the release.
+
+#### 2.5 Committing Final Changes
+
+Commit any remaining changes to the release branch.
 
 ### 3. Publishing the Release &nbsp;  <img src="https://www.kivakit.org/images/stars-32.png" srcset="https://www.kivakit.org/images/stars-32-2x.png 2x"/>
 

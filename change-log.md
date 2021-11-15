@@ -1,6 +1,31 @@
 ![](https://www.kivakit.org/images/horizontal-line.png)
 
-## Version 1.1.2-SNAPSHOT (2021.11.05) "plutonium panda"
+## Version 1.1.2 (2021.11.14) "plutonium seal"
+
+### added
+
+ * Added LanguageTrait for common language-related extensions
+ * Added Strings.doubleQuoted(String)
+ * Added Folder.hasChanged() using an MD5 hash stored in Java Preferences
+ * Added BaseList.bracketed() method
+ * Added TryTrait.tryFinallyThrow()
+ * Added MessageException, created when OperationMessage.asException() is called
+ * Added SwitchParser.durationSwitchParser()
+ * Added WakeState.TERMINATED
+ * Documentation improvements
+
+### changes
+
+ * TryTrait.tryCatch() now returns a boolean
+ * Version class no longer requires a minor version
+
+### fixed
+
+ * Application should listen to projects
+ * BaseHttpResource doesn't check HTTP status correctly
+ * HttpNetworkLocation query parameter handling fails when there are no parameters
+
+## Version 1.1.1 (2021.11.05) "plutonium panda"
 
 ### added 
 
@@ -43,7 +68,7 @@
 
 ![](https://www.kivakit.org/images/horizontal-line.png)
 
-## Version 1.1.2-SNAPSHOT (2021.08.27) "puffy mouse"
+## Version 1.1.2 (2021.08.27) "puffy mouse"
 
 Initial release of KivaKit.
 
