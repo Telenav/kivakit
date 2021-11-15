@@ -224,7 +224,7 @@
 
         <!-- Web -->
 
-        <jetty.version>9.4.36.v20210114</jetty.version>
+        <jetty.version>9.4.44.v20210927</jetty.version>
         <jersey.version>2.33</jersey.version>
         <wicket.version>9.6.0</wicket.version>
         <wicket.jquery.version>9.5.0</wicket.jquery.version>
