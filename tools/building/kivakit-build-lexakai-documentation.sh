@@ -19,7 +19,7 @@ echo "┋"
 echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
 echo " "
 
-for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
+for project_home in "${KIVAKIT_PROJECT_HOMES[@]:1}"; do
 
     project_name=$(project_name "$project_home")
 
