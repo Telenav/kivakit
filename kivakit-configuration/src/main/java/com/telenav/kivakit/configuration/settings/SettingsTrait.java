@@ -11,11 +11,14 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
 
 /**
  * <p>
- * A stateless trait for accessing the {@link Settings} for the implementing component. Includes methods to look up,
- * register and require settings objects. When there is more than one settings object of a given type, an {@link
- * InstanceIdentifier} can be given to distinguish between instances. Convenience methods are provided to create
- * instance identifiers for {@link Enum}s and {@link String}s. The Component interface in kivakit-component uses this
- * trait to add easy access to registry methods to all components.
+ * A stateless trait for accessing the {@link Settings} for the implementing component.
+ * </p>
+ *
+ * <p>
+ * Includes methods to look up, register and require settings objects. When there is more than one settings object of a
+ * given type, an {@link InstanceIdentifier} can be given to distinguish between instances. Convenience methods allow
+ * {@link Enum}s to be used as identifiers as well. The <i>Component</i>> interface in <i>kivakit-component</i> uses
+ * this trait to add easy access to settings objects to all components.
  * </p>
  *
  * <p><b>Register methods</b></p>
@@ -88,10 +91,15 @@ public interface SettingsTrait extends Repeater
         return settingsRegistry().lookupSettings(type);
     }
 
+    /**
+     * @return The settings object for the given class and instance identifier. If the settings object can't be found,
+     * the given default settings package is searched.
+     */
     default <T> T lookupSettings(Class<T> settingsClass,
-                                 InstanceIdentifier identifier, PackagePath defaultSettingsPackage)
+                                 InstanceIdentifier instance,
+                                 PackagePath defaultSettingsPackage)
     {
-        return settingsRegistry().lookupSettings(settingsClass, identifier, defaultSettingsPackage);
+        return settingsRegistry().lookupSettings(settingsClass, instance, defaultSettingsPackage);
     }
 
     /**

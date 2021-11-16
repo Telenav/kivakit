@@ -2,6 +2,7 @@ open module kivakit.configuration
 {
     // KivaKit
     requires transitive kivakit.resource;
+    requires transitive kivakit.serialization.json;
     requires kivakit.test;
 
     // Module exports

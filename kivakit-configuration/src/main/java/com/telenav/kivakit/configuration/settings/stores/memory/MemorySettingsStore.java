@@ -6,8 +6,8 @@ import com.telenav.kivakit.configuration.settings.SettingsStore;
 
 import java.util.Set;
 
-import static com.telenav.kivakit.configuration.settings.SettingsStore.Access.ADD;
-import static com.telenav.kivakit.configuration.settings.SettingsStore.Access.CLEAR;
+import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.ADD;
+import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.CLEAR;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.unsupported;
 
 /**
@@ -23,7 +23,7 @@ public class MemorySettingsStore extends BaseSettingsStore
      * {@inheritDoc}
      */
     @Override
-    public Set<Access> access()
+    public Set<AccessMode> accessModes()
     {
         return Set.of(ADD, CLEAR);
     }

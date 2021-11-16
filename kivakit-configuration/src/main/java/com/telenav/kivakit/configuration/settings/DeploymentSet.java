@@ -149,6 +149,9 @@ public class DeploymentSet extends BaseRepeater
         return addDeploymentsIn(package_.path());
     }
 
+    /**
+     * Adds all the deployments in the given package-relative path
+     */
     public DeploymentSet addDeploymentsIn(Class<?> relativeTo, String path)
     {
         return addDeploymentsIn(PackagePath.parsePackagePath(this, relativeTo, path));

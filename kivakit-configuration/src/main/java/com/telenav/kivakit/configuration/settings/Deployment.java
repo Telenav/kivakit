@@ -52,9 +52,15 @@ import java.util.Objects;
  * </p>
  *
  * <p>
- * For example, an application might specify a deployment with the command line switch "-deployment=production". The
- * settings objects in the "production" {@link Deployment} will be installed into the global settings registry. At a
- * later point, the application can look up those objects with {@link SettingsTrait#lookupSettings(Class)} and {@link
+ * An application can then specify a deployment with the command line switch:
+ * </p>
+ *
+ * <pre>
+ * -deployment=production</pre>
+ *
+ * <p>
+ * Here, settings objects in the "production" {@link Deployment} will be installed into the global settings registry. At
+ * a later point, the application can look up those objects with {@link SettingsTrait#lookupSettings(Class)} and {@link
  * SettingsTrait#lookupSettings(Class, InstanceIdentifier)}, both of which are provided by the <i>Component</i> class in
  * the <i>kivakit-component</i> project.
  * </p>
@@ -62,8 +68,8 @@ import java.util.Objects;
  * <p><b>Example</b></p>
  *
  * <p>
- * The application below loads a set of deployments, each of which is a set of <i>.properties</i> resources in a
- * sub-package of the "deployments" package next to the Demo class:
+ * The <i>Demo</i> application here loads a set of deployments, each of which is a set of <i>.properties</i> resources
+ * in a sub-package of the "deployments" package next to the Demo class:
  * <pre>
  * Demo.class
  * deployments/
@@ -76,8 +82,8 @@ import java.util.Objects;
  *
  * <p>
  * It does this by using a {@link SwitchParser} from <i>kivakit-application</i> to allow the user to select a deployment
- * from the command line. The deployment is automatically installed in the global {@link Settings}, where settings
- * objects can easily be located in the code. The usage for this application then, is:
+ * from the command line. The deployment is automatically installed in the global {@link Settings} registry, and these
+ * settings objects can easily be located in the code. The usage for the <i>Demo</i> application then, is:
  * </p>
  *
  * <pre>

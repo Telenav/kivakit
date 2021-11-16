@@ -23,18 +23,19 @@ import com.telenav.kivakit.configuration.settings.Settings;
 import com.telenav.kivakit.configuration.settings.SettingsObject;
 import com.telenav.kivakit.configuration.settings.SettingsStore;
 import com.telenav.kivakit.filesystem.Folder;
+import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
 import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import java.util.HashSet;
 import java.util.Set;
 
-import static com.telenav.kivakit.configuration.settings.SettingsStore.Access.ADD;
-import static com.telenav.kivakit.configuration.settings.SettingsStore.Access.CLEAR;
-import static com.telenav.kivakit.configuration.settings.SettingsStore.Access.LOAD;
+import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.ADD;
+import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.CLEAR;
+import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.LOAD;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.resource.path.Extension.JSON;
+import static com.telenav.kivakit.resource.path.Extension.PROPERTIES;
 
 /**
  * <p>
@@ -77,7 +78,7 @@ public class FolderSettingsStore extends BaseResourceSettingsStore
     }
 
     @Override
-    public Set<Access> access()
+    public Set<AccessMode> accessModes()
     {
         return Set.of(ADD, CLEAR, LOAD);
     }
@@ -95,16 +96,23 @@ public class FolderSettingsStore extends BaseResourceSettingsStore
     @UmlExcludeMember
     public Set<SettingsObject> onLoad()
     {
-        Set<SettingsObject> entries = new HashSet<>();
+        var objects = new ObjectSet<SettingsObject>();
 
-        // Go through properties files in the folder
-        for (var file : folder.files().matching(Extension.PROPERTIES.fileMatcher()))
+        // Go through .properties files in the folder
+        for (var at : folder.files().matching(PROPERTIES.fileMatcher()))
         {
-            // and add a configuration entry for each file
-            entries.add(loadFromProperties(file));
+            // and add a settings objects for each file
+            objects.addIfNotNull(loadFromProperties(at));
         }
 
-        return entries;
+        // Go through .json files in the folder
+        for (var at : folder.files().matching(JSON.fileMatcher()))
+        {
+            // and add a settings objects for each file
+            objects.addIfNotNull(loadFromJson(at));
+        }
+
+        return objects;
     }
 
     @Override

@@ -42,20 +42,22 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  * <p><b>Settings</b></p>
  *
  * <p>
- * The global {@link Settings} registry is returned by {@link #global()} and it is the default registry returned by
- * {@link #of(Object)}. It is normally the central point of settings registration and lookup for an application. The
- * global settings registry allows settings objects to be easily queried from client code anywhere. Convenient access to
+ * The global {@link Settings} registry is returned by {@link #global()}, and it is the default registry returned by
+ * {@link #of(Object)}. The global settings registry is normally the central point of settings registration and lookup
+ * for an application. It allows settings objects to be easily queried from client code anywhere. Convenient access to
  * the global settings registry is provided by {@link SettingsTrait}, and by the <i>Component</i> class in
- * <i>kivakit-component</i>. A component can have its own settings registry (not a common use case) by overriding the
- * {@link SettingsTrait#settingsRegistry()} method (which returns the global settings registry by default).
+ * <i>kivakit-component</i>, which implements {@link SettingsTrait}. A component can have its own settings registry
+ * (not a common use case) by overriding the {@link SettingsTrait#settingsRegistry()} method (which returns the global
+ * settings registry by default).
  * </p>
  *
  * <p><b>How Settings are Registered</b></p>
  *
  * <p>
  * A component can easily register settings objects with the {@link SettingsTrait} <i>registerSettings*()</i> methods.
- * In particular, they can be added from a {@link SettingsStore} with {@link #registerSettingsIn(SettingsStore)}. A
- * typical way for a component to add a store of settings is something like:
+ * In particular, they can be registered from a {@link SettingsStore} with the method {@link
+ * #registerSettingsIn(SettingsStore)}. A typical way for a component to register the settings objects in a {@link
+ * SettingsStore} is something like:
  * </p>
  * <pre>
  * registerSettingsIn(PackageSettingsStore.of(package));</pre>
@@ -71,10 +73,13 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  * </ol>
  *
  * <p>
- * This makes it possible to look up an interface implementation by specifying looking up the interface class.
- * For example:
+ * This makes it possible to look up an interface implementation using the implemented interface. For example:
+ * </p>
+ *
  * <pre>
  * var driver = requireSettings(DatabaseDriverSettings.class);</pre>
+ *
+ * <p>
  * might return an instance of <i>QuantumDatabaseDriverSettings.</i> This is the same pattern used in the global
  * object {@link Registry}, to which settings objects are also added.
  * </p>

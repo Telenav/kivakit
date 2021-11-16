@@ -22,22 +22,23 @@ import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfigu
 import com.telenav.kivakit.configuration.settings.Settings;
 import com.telenav.kivakit.configuration.settings.SettingsObject;
 import com.telenav.kivakit.configuration.settings.SettingsStore;
+import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.kivakit.resource.resources.packaged.Package;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import static com.telenav.kivakit.configuration.settings.SettingsStore.Access.ADD;
-import static com.telenav.kivakit.configuration.settings.SettingsStore.Access.CLEAR;
-import static com.telenav.kivakit.configuration.settings.SettingsStore.Access.LOAD;
+import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.ADD;
+import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.CLEAR;
+import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.LOAD;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.resource.path.Extension.JSON;
+import static com.telenav.kivakit.resource.path.Extension.PROPERTIES;
 
 /**
  * <p>
@@ -92,7 +93,7 @@ public class PackageSettingsStore extends BaseResourceSettingsStore
     }
 
     @Override
-    public Set<Access> access()
+    public Set<AccessMode> accessModes()
     {
         return Set.of(ADD, CLEAR, LOAD);
     }
@@ -110,22 +111,27 @@ public class PackageSettingsStore extends BaseResourceSettingsStore
     @UmlExcludeMember
     public Set<SettingsObject> onLoad()
     {
-        // Go through .properties files in the package
         var _package = Package.packageFrom(path);
-        trace("Loading resources from $", _package);
-        Set<SettingsObject> entries = new HashSet<>();
-        for (var resource : _package.resources(Extension.PROPERTIES::ends))
+        trace("Loading settings objects from $", _package);
+
+        var objects = new ObjectSet<SettingsObject>();
+
+        // Go through .properties files in the package
+        for (var at : _package.resources(PROPERTIES::ends))
         {
             // load the properties file
-            var configuration = loadFromProperties(resource);
-            if (configuration != null)
-            {
-                // and add the configuration
-                entries.add(configuration);
-            }
+            objects.addIfNotNull(loadFromProperties(at));
         }
-        trace("Loaded $ resources", entries.size());
-        return entries;
+
+        // Go through .json files in the package
+        for (var at : _package.resources(JSON::ends))
+        {
+            // and add the object for the resource
+            objects.addIfNotNull(loadFromJson(at));
+        }
+
+        trace("Loaded $ settings objects", objects.size());
+        return objects;
     }
 
     @Override

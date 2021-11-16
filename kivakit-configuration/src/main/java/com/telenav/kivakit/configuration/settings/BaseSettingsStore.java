@@ -1,6 +1,7 @@
 package com.telenav.kivakit.configuration.settings;
 
 import com.telenav.kivakit.configuration.lookup.Registry;
+import com.telenav.kivakit.configuration.settings.stores.memory.MemorySettingsStore;
 import com.telenav.kivakit.configuration.settings.stores.resource.FolderSettingsStore;
 import com.telenav.kivakit.configuration.settings.stores.resource.PackageSettingsStore;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
@@ -15,10 +16,10 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import static com.telenav.kivakit.configuration.settings.SettingsStore.Access.ADD;
-import static com.telenav.kivakit.configuration.settings.SettingsStore.Access.CLEAR;
-import static com.telenav.kivakit.configuration.settings.SettingsStore.Access.LOAD;
-import static com.telenav.kivakit.configuration.settings.SettingsStore.Access.SAVE;
+import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.ADD;
+import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.CLEAR;
+import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.LOAD;
+import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.SAVE;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
 
@@ -35,6 +36,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  *     <li>{@link Deployment} - Loads settings for a particular application or server deployment</li>
  *     <li>{@link FolderSettingsStore} - Loads settings from <i>.properties</i> files</li>
  *     <li>{@link PackageSettingsStore} - Loads settings from <i>.properties</i> package resources</li>
+ *     <li>{@link MemorySettingsStore} - A store of non-persistent settings objects in memory</li>
  * </ul>
  *
  * <p>
@@ -47,22 +49,24 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  * <p>
  * {@link SettingsStore} providers inherit several useful methods and implementations from this base class:
  * <ul>
- *     <li>{@link #iterator()} - Iterates through each settings {@link Object} in this store</li>
  *     <li>{@link #add(SettingsObject)} - Adds the given object to the store's in-memory index (but not to any persistent storage)</li>
+ *     <li>{@link #all()} - The set of objects in this store. If the store is loadable, {@link #load()} is called before returning the set</li>
  *     <li>{@link #clear()} - Clears this store's in-memory index</li>
+ *     <li>{@link #iterator()} - Iterates through each settings {@link Object} in this store</li>
  *     <li>{@link #load()} - Lazy-loads objects from persistent storage by calling {@link #onLoad()} and then adds them to the in-memory index</li>
  *     <li>{@link #lookup(SettingsObject.Identifier)} - Looks up the object for the given identifier in the store's index</li>
  *     <li>{@link #save(SettingsObject)} - Saves the given settings object to persistent storage by calling {@link #onSave(SettingsObject)}</li>
  * </ul>
+ *
  * <p>
  * Providers must override these methods (although some may be unsupported methods):
+ * </p>
  *
  * <ul>
- *     <li>{@link #access()} - Specifies the kinds of access that the store supports</li>
+ *     <li>{@link #accessModes()} - Specifies the kinds of access that the store supports</li>
  *     <li>{@link #onLoad()} - Loads settings objects from persistent storage</li>
  *     <li>{@link #onSave(SettingsObject)} - Saves the settings object to persistent storage</li>
  * </ul>
- * </p>
  *
  * @author jonathanl (shibo)
  * @see SettingsStore
@@ -106,11 +110,11 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
                 // add the interfaces of the object,
                 for (var in : at.getInterfaces())
                 {
-                    internalAdd(new SettingsObject(in, instance, object));
+                    internalAdd(new SettingsObject(in, instance, object.object()));
                 }
 
                 // and the class itself.
-                internalAdd(new SettingsObject(at, instance, object));
+                internalAdd(new SettingsObject(at, instance, object.object()));
             }
             return true;
         });

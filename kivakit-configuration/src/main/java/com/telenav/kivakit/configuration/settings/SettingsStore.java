@@ -15,8 +15,9 @@ import java.util.Set;
  * <p><b>Loading and Saving</b></p>
  *
  * <p>
- * {@link SettingsObject}s can be loaded from a settings store with {@link #load()}. If the method {@link #access()}
- * returns {@link Access#SAVE}, then {@link #save(SettingsObject)} can be used to save a settings object.
+ * If the method {@link #supports(AccessMode)} returns true for {@link AccessMode#LOAD}, then settings can be loaded
+ * with {@link #load()}. If the the store supports {@link AccessMode#SAVE}, then {@link #save(SettingsObject)} can be
+ * used to save a settings object.
  * </p>
  *
  * <p><b>Hash/Equals Contract</b></p>
@@ -31,7 +32,10 @@ import java.util.Set;
  */
 public interface SettingsStore extends Repeater, Named, Iterable<Object>
 {
-    enum Access
+    /**
+     * Settings store access capabilities
+     */
+    enum AccessMode
     {
         /** Can add objects to in-memory index */
         ADD,
@@ -47,18 +51,18 @@ public interface SettingsStore extends Repeater, Named, Iterable<Object>
     }
 
     /**
-     * @return The types of access this store supports
+     * @return The access modes this store supports
      */
-    Set<Access> access();
+    Set<AccessMode> accessModes();
 
     /**
-     * Add the given object to the in-memory index of this settings store. This will not add the object to the
+     * Add the given object to the in-memory index of this settings store. This will <i>not</i>> add the object to the
      * underlying persistent store. To do that, call {@link #save(SettingsObject)}.
      */
     boolean add(SettingsObject object);
 
     /**
-     * Adds all {@link SettingsObject}s in the given store
+     * Adds all {@link SettingsObject}s to this store's in-memory index via {@link #add(SettingsObject)}.
      */
     default boolean addAll(SettingsStore store)
     {
@@ -67,12 +71,13 @@ public interface SettingsStore extends Repeater, Named, Iterable<Object>
     }
 
     /**
-     * @return All objects in this store's index
+     * @return All objects in this store's in-memory index. If the store supports loading and it has not yet been
+     * loaded, {@link #load()} will be called first.
      */
     Set<SettingsObject> all();
 
     /**
-     * @return True if this settings store was cleared
+     * @return True if the in-memory index of this store was cleared
      */
     boolean clear();
 
@@ -85,7 +90,7 @@ public interface SettingsStore extends Repeater, Named, Iterable<Object>
     }
 
     /**
-     * @return A set of {@link SettingsObject} instances
+     * @return The set of {@link SettingsObject} instances in this store
      */
     Set<SettingsObject> load();
 
@@ -99,8 +104,8 @@ public interface SettingsStore extends Repeater, Named, Iterable<Object>
     /**
      * @return True if this store supports the given type of access
      */
-    default boolean supports(Access access)
+    default boolean supports(AccessMode accessMode)
     {
-        return access().contains(access);
+        return accessModes().contains(accessMode);
     }
 }

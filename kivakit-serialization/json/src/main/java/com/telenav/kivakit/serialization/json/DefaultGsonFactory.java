@@ -16,48 +16,38 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.configuration.settings;
+package com.telenav.kivakit.serialization.json;
 
-import com.telenav.kivakit.kernel.data.conversion.string.primitive.IntegerConverter;
-import com.telenav.kivakit.kernel.language.reflection.populator.KivaKitPropertyConverter;
+import com.google.gson.GsonBuilder;
 import com.telenav.kivakit.kernel.language.time.Duration;
+import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
+import com.telenav.kivakit.kernel.messaging.repeaters.RepeaterMixin;
+import com.telenav.kivakit.serialization.json.serializers.ProblemGsonSerializer;
+
+import static com.telenav.kivakit.kernel.messaging.messages.MessageFormatter.Format.WITHOUT_EXCEPTION;
 
 /**
- * Java Bean with string conversion methods for each property to allow storage of this settings object in a JSON file
+ * Factory for GSON serializers
  *
  * @author jonathanl (shibo)
  */
-public class ServerSettings
+public class DefaultGsonFactory extends GsonFactory implements RepeaterMixin
 {
-    private int port;
-
-    private Duration timeout;
-
-    public int port()
+    @Override
+    protected void onAddSerializers(GsonBuilder builder)
     {
-        return port;
-    }
+        super.onAddSerializers(builder);
 
-    @KivaKitPropertyConverter(IntegerConverter.class)
-    public void port(int port)
-    {
-        this.port = port;
-    }
-
-    public Duration timeout()
-    {
-        return timeout;
-    }
-
-    @KivaKitPropertyConverter(Duration.Converter.class)
-    public void timeout(Duration timeout)
-    {
-        this.timeout = timeout;
+        addSerializer(builder, Problem.class, new ProblemGsonSerializer(WITHOUT_EXCEPTION));
+        addSerializer(builder, Duration.class, serializer(new Duration.Converter(this)));
     }
 
     @Override
-    public String toString()
+    protected void onInitialize(GsonBuilder builder)
     {
-        return "[ServerSettings timeout = " + timeout + ", port = " + port + "]";
+        super.onInitialize(builder);
+
+        builder.disableHtmlEscaping();
+        builder.setPrettyPrinting();
     }
 }
