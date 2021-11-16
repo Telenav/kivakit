@@ -129,9 +129,21 @@ public class Registry implements RegistryTrait
         return object;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public <T> T require(Class<T> type, InstanceIdentifier instance)
     {
         return ensureNotNull(lookup(type, instance));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void unregister(Object object, InstanceIdentifier instance)
+    {
+        registered.remove(instance.key(object.getClass()));
     }
 }

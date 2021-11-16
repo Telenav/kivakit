@@ -147,4 +147,36 @@ public interface RegistryTrait
     {
         return registry().require(type, instance);
     }
+
+    /**
+     * Unregisters the given object
+     */
+    default void unregister(Object object)
+    {
+        unregister(object, SINGLETON);
+    }
+
+    /**
+     * Unregisters the given instance of the given object
+     */
+    default void unregister(Object object, InstanceIdentifier instance)
+    {
+        registry().unregister(object, instance);
+    }
+
+    /**
+     * Unregisters the given instance of the given object
+     */
+    default void unregister(Object object, Enum<?> instance)
+    {
+        unregister(object, InstanceIdentifier.instanceIdentifier(instance));
+    }
+
+    /**
+     * Unregisters the given instance of the given object
+     */
+    default void unregister(Object object, String instance)
+    {
+        unregister(object, InstanceIdentifier.instanceIdentifier(instance));
+    }
 }

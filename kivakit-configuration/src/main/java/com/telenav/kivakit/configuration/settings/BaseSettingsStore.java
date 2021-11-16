@@ -19,6 +19,7 @@ import java.util.Set;
 import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.ADD;
 import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.CLEAR;
 import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.LOAD;
+import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.REMOVE;
 import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.SAVE;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
@@ -110,11 +111,11 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
                 // add the interfaces of the object,
                 for (var in : at.getInterfaces())
                 {
-                    internalAdd(new SettingsObject(in, instance, object.object()));
+                    internalPut(new SettingsObject(in, instance, object.object()));
                 }
 
                 // and the class itself.
-                internalAdd(new SettingsObject(at, instance, object.object()));
+                internalPut(new SettingsObject(at, instance, object.object()));
             }
             return true;
         });
@@ -204,6 +205,18 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
      * {@inheritDoc}
      */
     @Override
+    public boolean remove(SettingsObject object)
+    {
+        ensure(supports(REMOVE));
+
+        lock.write(() -> objects.remove(object.identifier()));
+        return true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean save(SettingsObject object)
     {
         ensure(supports(SAVE));
@@ -227,7 +240,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
      */
     protected abstract boolean onSave(SettingsObject object);
 
-    private void internalAdd(SettingsObject settings)
+    private void internalPut(SettingsObject settings)
     {
         lock.write(() -> objects.put(settings.identifier(), settings));
     }

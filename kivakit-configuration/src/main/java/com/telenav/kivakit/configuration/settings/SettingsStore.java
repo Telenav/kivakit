@@ -40,6 +40,9 @@ public interface SettingsStore extends Repeater, Named, Iterable<Object>
         /** Can add objects to in-memory index */
         ADD,
 
+        /** Can remove objects from the in-memory index */
+        REMOVE,
+
         /** Can clear loaded and added objects from in-memory index */
         CLEAR,
 
@@ -93,6 +96,11 @@ public interface SettingsStore extends Repeater, Named, Iterable<Object>
      * @return The set of {@link SettingsObject} instances in this store
      */
     Set<SettingsObject> load();
+
+    /**
+     * @return True if the given setting object was removed from the in-memory index of this store
+     */
+    boolean remove(SettingsObject object);
 
     /**
      * Saves the given settings object to this store

@@ -1,6 +1,12 @@
 ![](https://www.kivakit.org/images/horizontal-line.png)
 
-## Version 1.1.3-SNAPSHOT (2021.11.14) "plutonium seal"
+## Version 1.1.4 (2021.11.??)
+
+### added
+
+ * Added backwards-compatible support for JSON settings and SettingsStore SPI
+
+## Version 1.1.3 (2021.11.14) "plutonium seal"
 
 ### added
 

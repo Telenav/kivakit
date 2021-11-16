@@ -857,6 +857,11 @@
             </dependency>
             <dependency>
                 <groupId>com.telenav.kivakit</groupId>
+                <artifactId>kivakit-settings-stores-zookeeper</artifactId>
+                <version>${kivakit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.telenav.kivakit</groupId>
                 <artifactId>kivakit-microservice</artifactId>
                 <version>${kivakit.version}</version>
             </dependency>
