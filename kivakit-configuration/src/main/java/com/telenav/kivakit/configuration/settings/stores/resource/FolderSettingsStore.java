@@ -16,10 +16,14 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.configuration.settings;
+package com.telenav.kivakit.configuration.settings.stores.resource;
 
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfiguration;
+import com.telenav.kivakit.configuration.settings.Settings;
+import com.telenav.kivakit.configuration.settings.SettingsObject;
+import com.telenav.kivakit.configuration.settings.SettingsStore;
 import com.telenav.kivakit.filesystem.Folder;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
@@ -27,51 +31,61 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.telenav.kivakit.configuration.settings.SettingsStore.Access.ADD;
+import static com.telenav.kivakit.configuration.settings.SettingsStore.Access.CLEAR;
+import static com.telenav.kivakit.configuration.settings.SettingsStore.Access.LOAD;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.unsupported;
 
 /**
  * <p>
- * A folder containing {@link SettingsObject}s.
+ * A folder containing settings objects defined by <i>.properties</i> files.
  * </p>
  *
  * <p>
- * A {@link SettingsFolder} can be created with {@link #of(Folder)}. The specified folder should contain a set of
- * .properties files, each of which can be used to instantiate and populate a settings object.
- * <i>See {@link Settings} for details on how this works.</i>
+ * A {@link FolderSettingsStore} can be created with {@link #of(Folder)}. The specified folder must contain a set of
+ * <i>.properties</i> files, each of which can be used to instantiate and populate a single settings object.
+ * <i>See {@link BaseResourceSettingsStore} for details on how this works.</i>
  * </p>
  *
  * @author jonathanl (shibo)
+ * @see BaseResourceSettingsStore
  * @see Settings
  * @see SettingsStore
  * @see SettingsObject
  * @see Folder
  */
-@SuppressWarnings("ClassEscapesDefinedScope")
 @UmlClassDiagram(diagram = DiagramConfiguration.class)
-public class SettingsFolder extends BaseSettingsStore
+public class FolderSettingsStore extends BaseResourceSettingsStore
 {
     /**
-     * @param folder The folder containing .properties files specifying configuration objects
+     * @param folder The folder containing .properties files specifying settings objects
      */
-    public static SettingsFolder of(Folder folder)
+    public static FolderSettingsStore of(Listener listener, Folder folder)
     {
-        return new SettingsFolder(folder);
+        return listener.listenTo(new FolderSettingsStore(folder));
     }
 
+    /** The folder containing .properties files defining settings objects */
     private final Folder folder;
 
     /**
-     * @param folder The folder containing .properties files specifying configuration objects
+     * @param folder The folder containing .properties files specifying settings objects
      */
-    protected SettingsFolder(Folder folder)
+    protected FolderSettingsStore(Folder folder)
     {
         this.folder = folder;
     }
 
     @Override
-    public boolean isReadOnly()
+    public Set<Access> access()
     {
-        return true;
+        return Set.of(ADD, CLEAR, LOAD);
+    }
+
+    @Override
+    public String name()
+    {
+        return "[FolderSettingsStore folder = " + folder.path() + "]";
     }
 
     /**
@@ -79,7 +93,7 @@ public class SettingsFolder extends BaseSettingsStore
      */
     @Override
     @UmlExcludeMember
-    public Set<SettingsObject> load()
+    public Set<SettingsObject> onLoad()
     {
         Set<SettingsObject> entries = new HashSet<>();
 
@@ -94,14 +108,8 @@ public class SettingsFolder extends BaseSettingsStore
     }
 
     @Override
-    public String name()
+    public boolean onSave(SettingsObject object)
     {
-        return "[ConfigurationFolder folder = " + folder.path() + "]";
-    }
-
-    @Override
-    public void save(Set<SettingsObject> objects)
-    {
-        unsupported();
+        return unsupported();
     }
 }

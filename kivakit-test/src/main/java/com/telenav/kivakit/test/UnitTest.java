@@ -27,9 +27,9 @@ import com.telenav.kivakit.kernel.language.primitives.Booleans;
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.language.vm.OperatingSystem;
-import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.listeners.ConsoleWriter;
+import com.telenav.kivakit.kernel.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.test.project.lexakai.diagrams.DiagramTest;
 import com.telenav.kivakit.test.random.RandomValueFactory;
 import com.telenav.kivakit.test.reporters.JUnitFailureReporter;
@@ -60,7 +60,7 @@ import java.util.function.Predicate;
 @UmlClassDiagram(diagram = DiagramTest.class)
 @UmlRelation(label = "uses", referent = RandomValueFactory.class)
 @UmlRelation(label = "reports validation failures with", referent = JUnitFailureReporter.class)
-public abstract class UnitTest extends TestWatcher implements Listener
+public abstract class UnitTest extends TestWatcher implements RepeaterMixin
 {
     private static boolean quickTest;
 

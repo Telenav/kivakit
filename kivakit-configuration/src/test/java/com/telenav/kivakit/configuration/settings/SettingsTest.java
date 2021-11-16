@@ -19,6 +19,8 @@
 package com.telenav.kivakit.configuration.settings;
 
 import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
+import com.telenav.kivakit.configuration.settings.stores.resource.PackageSettingsStore;
+import com.telenav.kivakit.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.test.UnitTest;
 import org.jetbrains.annotations.NotNull;
@@ -43,7 +45,7 @@ public class SettingsTest extends UnitTest
             server.port(9000);
 
             // and adds it to global configuration set
-            Settings.of(this).registerSettings(server);
+            Settings.of(this).registerSettingsObject(server);
 
             // Dump the set to the console
             trace("test: " + settings);
@@ -71,7 +73,7 @@ public class SettingsTest extends UnitTest
             server1.port(8080);
 
             // and adds it to the global configuration set with the given enum key
-            settings.registerSettings(server1, SERVER1);
+            settings.registerSettingsObject(server1, SERVER1);
 
             // Script can register a second configuration of the same class
             var server2 = new ServerSettings();
@@ -79,7 +81,7 @@ public class SettingsTest extends UnitTest
             server2.port(80);
 
             // under a different key
-            settings.registerSettings(server2, SERVER2);
+            settings.registerSettingsObject(server2, SERVER2);
 
             // Dump the global configuration set to the console
             trace("testMultipleInstances: " + settings);
@@ -106,7 +108,7 @@ public class SettingsTest extends UnitTest
         // Configure
         {
             // Add all properties files in this package to the global set
-            settings.registerAllSettingsIn(this, getClass());
+            settings.registerSettingsIn(PackageSettingsStore.of(this, PackagePath.packagePath(getClass())));
 
             // Dump the set to the console
             trace("testPropertiesFile: " + settings);

@@ -140,6 +140,11 @@ public class SettingsObject
     /** The configuration object itself */
     private final Object object;
 
+    public SettingsObject(Class<?> type, InstanceIdentifier identifier, Object object)
+    {
+        this(new Identifier(type, identifier), object);
+    }
+
     public SettingsObject(Identifier identifier, Object object)
     {
         ensureNotNull(identifier);

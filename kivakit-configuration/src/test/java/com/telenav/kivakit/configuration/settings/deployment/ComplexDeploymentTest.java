@@ -19,8 +19,10 @@
 package com.telenav.kivakit.configuration.settings.deployment;
 
 import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
+import com.telenav.kivakit.configuration.settings.Deployment;
 import com.telenav.kivakit.configuration.settings.ServerSettings;
 import com.telenav.kivakit.configuration.settings.Settings;
+import com.telenav.kivakit.configuration.settings.SettingsTrait;
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.test.UnitTest;
 import org.junit.Test;
@@ -31,23 +33,23 @@ public class ComplexDeploymentTest extends UnitTest
 
     private static final InstanceIdentifier SERVER2 = InstanceIdentifier.instanceIdentifier("SERVER2");
 
-    public static class Development extends Deployment
+    public static class Development extends Deployment implements SettingsTrait
     {
         public Development()
         {
             super("development", "test development deployment");
-            registerSettings(new Server1(), SERVER1);
-            registerSettings(new Server2(), SERVER2);
+            registerSettingsObject(new Server1(), SERVER1);
+            registerSettingsObject(new Server2(), SERVER2);
         }
     }
 
-    public static class Production extends Deployment
+    public static class Production extends Deployment implements SettingsTrait
     {
         public Production()
         {
             super("production", "test production deployment");
-            registerSettings(new Server3(), SERVER1);
-            registerSettings(new Server4(), SERVER2);
+            registerSettingsObject(new Server3(), SERVER1);
+            registerSettingsObject(new Server4(), SERVER2);
         }
     }
 
@@ -90,7 +92,7 @@ public class ComplexDeploymentTest extends UnitTest
     @Test
     public void testDevelopment()
     {
-        new Development().install();
+        Settings.global().registerSettingsIn(new Development());
 
         var server1 = Settings.of(this).requireSettings(ServerSettings.class, SERVER1);
         ensureEqual(9001, server1.port());

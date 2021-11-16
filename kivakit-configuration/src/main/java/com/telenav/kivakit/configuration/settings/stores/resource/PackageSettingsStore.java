@@ -16,10 +16,14 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.configuration.settings;
+package com.telenav.kivakit.configuration.settings.stores.resource;
 
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfiguration;
+import com.telenav.kivakit.configuration.settings.Settings;
+import com.telenav.kivakit.configuration.settings.SettingsObject;
+import com.telenav.kivakit.configuration.settings.SettingsStore;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
+import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.kivakit.resource.resources.packaged.Package;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -30,40 +34,50 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import static com.telenav.kivakit.configuration.settings.SettingsStore.Access.ADD;
+import static com.telenav.kivakit.configuration.settings.SettingsStore.Access.CLEAR;
+import static com.telenav.kivakit.configuration.settings.SettingsStore.Access.LOAD;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.unsupported;
 
 /**
  * <p>
- * A Java package containing {@link SettingsObject}s.
+ * A Java package containing settings objects defined by <i>.properties</i> resources.
  * </p>
  *
  * <p>
- * A {@link SettingsPackage} can be created with {@link #of(Package)} or {@link #of(PackagePath)}. The specified package
- * should contain a set of .properties files, each of which can be used to instantiate and populate a settings object.
- * <i>See {@link Settings} for details on how this works.</i>
+ * A {@link PackageSettingsStore} can be created with {@link #of(Listener, Package)} or {@link #of(Listener,
+ * PackagePath)}. The specified package should contain a set of .properties files, each of which can be used to
+ * instantiate and populate a settings object.
+ * <i>See {@link BaseResourceSettingsStore} for details on how this works.</i>
  * </p>
  *
  * @author jonathanl (shibo)
+ * @see BaseResourceSettingsStore
  * @see Settings
  * @see SettingsStore
  * @see SettingsObject
  * @see Package
  * @see PackagePath
  */
-@SuppressWarnings("ClassEscapesDefinedScope")
 @UmlClassDiagram(diagram = DiagramConfiguration.class)
-public class SettingsPackage extends BaseSettingsStore
+public class PackageSettingsStore extends BaseResourceSettingsStore
 {
-    private static final Map<PackagePath, SettingsPackage> packages = new HashMap<>();
+    private static final Map<PackagePath, PackageSettingsStore> packages = new HashMap<>();
 
-    public static SettingsPackage of(Package _package)
+    /**
+     * @return A {@link PackageSettingsStore} for the given {@link Package}
+     */
+    public static PackageSettingsStore of(Listener listener, Package _package)
     {
-        return of(_package.path());
+        return of(listener, _package.path());
     }
 
-    public static SettingsPackage of(PackagePath path)
+    /**
+     * @return A {@link PackageSettingsStore} for the given {@link PackagePath}
+     */
+    public static PackageSettingsStore of(Listener listener, PackagePath path)
     {
-        return packages.computeIfAbsent(path, ignored -> new SettingsPackage(path));
+        return listener.listenTo(packages.computeIfAbsent(path, ignored -> new PackageSettingsStore(path)));
     }
 
     /** The path of this configuration package */
@@ -72,15 +86,21 @@ public class SettingsPackage extends BaseSettingsStore
     /**
      * @param path The path to the package where the configurations are stored
      */
-    protected SettingsPackage(PackagePath path)
+    protected PackageSettingsStore(PackagePath path)
     {
         this.path = path;
     }
 
     @Override
-    public boolean isReadOnly()
+    public Set<Access> access()
     {
-        return true;
+        return Set.of(ADD, CLEAR, LOAD);
+    }
+
+    @Override
+    public String name()
+    {
+        return "[PackageSettingsStore package = " + path + "]";
     }
 
     /**
@@ -88,7 +108,7 @@ public class SettingsPackage extends BaseSettingsStore
      */
     @Override
     @UmlExcludeMember
-    public Set<SettingsObject> load()
+    public Set<SettingsObject> onLoad()
     {
         // Go through .properties files in the package
         var _package = Package.packageFrom(path);
@@ -109,14 +129,8 @@ public class SettingsPackage extends BaseSettingsStore
     }
 
     @Override
-    public String name()
+    public boolean onSave(SettingsObject object)
     {
-        return "[SettingsPackage package = " + path + "]";
-    }
-
-    @Override
-    public void save(Set<SettingsObject> objects)
-    {
-        unsupported();
+        return unsupported();
     }
 }
