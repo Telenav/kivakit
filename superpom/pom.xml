@@ -485,6 +485,7 @@
                     <version>${maven-compiler-plugin.version}</version>
                     <configuration>
                         <source>${java.version}</source>
+                        <target>${java.version}</target>
                         <release>${java.version}</release>
                         <compilerArgs>
                             <compilerArg>-Xlint:unchecked</compilerArg>
