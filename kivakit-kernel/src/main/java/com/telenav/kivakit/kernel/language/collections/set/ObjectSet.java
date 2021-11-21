@@ -41,6 +41,13 @@ public class ObjectSet<T> extends BaseSet<T>
         return set;
     }
 
+    public static <T> ObjectSet<T> objectSet(Collection<T> objects)
+    {
+        var set = new ObjectSet<T>();
+        set.addAll(objects);
+        return set;
+    }
+
     public ObjectSet(Maximum maximumSize)
     {
         super(maximumSize);

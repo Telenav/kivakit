@@ -5,6 +5,7 @@ import com.telenav.kivakit.configuration.settings.stores.memory.MemorySettingsSt
 import com.telenav.kivakit.configuration.settings.stores.resource.FolderSettingsStore;
 import com.telenav.kivakit.configuration.settings.stores.resource.PackageSettingsStore;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
+import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
 import com.telenav.kivakit.kernel.language.threading.locks.ReadWriteLock;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
@@ -111,11 +112,11 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
                 // add the interfaces of the object,
                 for (var in : at.getInterfaces())
                 {
-                    internalPut(new SettingsObject(in, instance, object.object()));
+                    internalPut(new SettingsObject(instance, in, object.object()));
                 }
 
                 // and the class itself.
-                internalPut(new SettingsObject(at, instance, object.object()));
+                internalPut(new SettingsObject(instance, at, object.object()));
             }
             return true;
         });
@@ -125,10 +126,10 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
      * Gets a <b>copy</b> of the {@link SettingsObject}s in this store, loading them if need be
      */
     @Override
-    public Set<SettingsObject> all()
+    public ObjectSet<SettingsObject> all()
     {
         maybeLoad();
-        return lock.write(() -> new HashSet<>(objects.values()));
+        return lock.write(() -> ObjectSet.objectSet(objects.values()));
     }
 
     /**

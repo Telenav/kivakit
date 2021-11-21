@@ -30,9 +30,9 @@ import org.junit.Test;
 
 public class SettingsTest extends UnitTest
 {
-    private static final InstanceIdentifier SERVER1 = InstanceIdentifier.instanceIdentifier("SERVER1");
+    private static final InstanceIdentifier SERVER1 = InstanceIdentifier.of("SERVER1");
 
-    private static final InstanceIdentifier SERVER2 = InstanceIdentifier.instanceIdentifier("SERVER2");
+    private static final InstanceIdentifier SERVER2 = InstanceIdentifier.of("SERVER2");
 
     @Test
     public void test()

@@ -150,14 +150,14 @@ public abstract class BaseResourceSettingsStore extends BaseSettingsStore implem
                 var instance = SINGLETON;
                 if (instanceMatcher.find())
                 {
-                    instance = InstanceIdentifier.instanceIdentifier(instanceMatcher.group("instance"));
+                    instance = InstanceIdentifier.of(instanceMatcher.group("instance"));
                 }
 
                 // convert the json to an object,
                 var object = gson.fromJson(json, type);
 
                 // and return the object
-                return new SettingsObject(type, instance, object);
+                return new SettingsObject(object, instance);
             }
             else
             {
@@ -194,7 +194,7 @@ public abstract class BaseResourceSettingsStore extends BaseSettingsStore implem
 
             // and the instance identifier (if any),
             var instance = properties.get("instance");
-            var identifier = instance != null ? InstanceIdentifier.instanceIdentifier(instance) : SINGLETON;
+            var identifier = instance != null ? InstanceIdentifier.of(instance) : SINGLETON;
             trace("Settings identifier: $", identifier);
 
             // then create the settings object and populate it using the converter framework
@@ -204,7 +204,7 @@ public abstract class BaseResourceSettingsStore extends BaseSettingsStore implem
                 trace("Loaded settings: $", settings);
 
                 // and return the settings set entry for the fully loaded settings object
-                return new SettingsObject(type, identifier, settings);
+                return new SettingsObject(settings, type, identifier);
             }
             else
             {

@@ -146,7 +146,7 @@ public class Settings extends MemorySettingsStore implements SettingsTrait
     /**
      * @return The settings registry for the given object (the global settings registry by default)
      */
-    public static synchronized Settings of(Object object)
+    public static synchronized Settings of(Object ignored)
     {
         return global();
     }
@@ -215,7 +215,7 @@ public class Settings extends MemorySettingsStore implements SettingsTrait
             return fail("To register a Deployment or other SettingsStore, call registerSettingsIn(SettingsStore)");
         }
 
-        add(new SettingsObject(settings.getClass(), instance, settings));
+        add(new SettingsObject(settings, settings.getClass(), instance));
 
         return this;
     }

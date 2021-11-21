@@ -1,6 +1,7 @@
 package com.telenav.kivakit.configuration.settings;
 
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
+import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 
 import java.util.Set;
@@ -10,6 +11,11 @@ import java.util.Set;
  *
  * <p>
  * A store of {@link SettingsObject}s.
+ * </p>
+ *
+ * <p>
+ * <i>NOTE: This store object should not be accessed directly by user code. Instead, use
+ * {@link SettingsTrait}.</i>
  * </p>
  *
  * <p><b>Loading and Saving</b></p>
@@ -33,7 +39,13 @@ import java.util.Set;
 public interface SettingsStore extends Repeater, Named, Iterable<Object>
 {
     /**
+     * <p>
+     * <b>Service Provider API</b>
+     * </p>
+     *
+     * <p>
      * Settings store access capabilities
+     * </p>
      */
     enum AccessMode
     {
@@ -54,17 +66,23 @@ public interface SettingsStore extends Repeater, Named, Iterable<Object>
     }
 
     /**
+     * <b>Service Provider API</b>
+     *
      * @return The access modes this store supports
      */
     Set<AccessMode> accessModes();
 
     /**
+     * <b>Service Provider API</b>
+     * <p>
      * Add the given object to the in-memory index of this settings store. This will <i>not</i>> add the object to the
      * underlying persistent store. To do that, call {@link #save(SettingsObject)}.
      */
     boolean add(SettingsObject object);
 
     /**
+     * <b>Service Provider API</b>
+     * <p>
      * Adds all {@link SettingsObject}s to this store's in-memory index via {@link #add(SettingsObject)}.
      */
     default boolean addAll(SettingsStore store)
@@ -74,42 +92,46 @@ public interface SettingsStore extends Repeater, Named, Iterable<Object>
     }
 
     /**
+     * <b>Service Provider API</b>
+     *
      * @return All objects in this store's in-memory index. If the store supports loading and it has not yet been
      * loaded, {@link #load()} will be called first.
      */
-    Set<SettingsObject> all();
+    ObjectSet<SettingsObject> all();
 
     /**
+     * <b>Service Provider API</b>
+     *
      * @return True if the in-memory index of this store was cleared
      */
     boolean clear();
 
     /**
-     * @return True if this store is empty
-     */
-    default boolean isEmpty()
-    {
-        return all().isEmpty();
-    }
-
-    /**
+     * <b>Service Provider API</b>
+     *
      * @return The set of {@link SettingsObject} instances in this store
      */
     Set<SettingsObject> load();
 
     /**
+     * <b>Service Provider API</b>
+     *
      * @return True if the given setting object was removed from the in-memory index of this store
      */
     boolean remove(SettingsObject object);
 
     /**
-     * Saves the given settings object to this store
+     * <b>Service Provider API</b>
+     * <p>
+     * Saves the given settings object to this store, and adds it to the in-memory index
      *
      * @param object The objects to save
      */
     boolean save(SettingsObject object);
 
     /**
+     * <b>Service Provider API</b>
+     *
      * @return True if this store supports the given type of access
      */
     default boolean supports(AccessMode accessMode)

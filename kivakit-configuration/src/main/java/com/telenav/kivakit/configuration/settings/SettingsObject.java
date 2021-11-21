@@ -26,6 +26,7 @@ import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
 import java.security.Key;
 
+import static com.telenav.kivakit.configuration.lookup.InstanceIdentifier.SINGLETON;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
 
 /**
@@ -74,7 +75,7 @@ public class SettingsObject
         public Identifier(Class<?> type)
         {
             this.type = type;
-            instance = InstanceIdentifier.SINGLETON;
+            instance = SINGLETON;
         }
 
         /**
@@ -140,17 +141,22 @@ public class SettingsObject
     /** The configuration object itself */
     private final Object object;
 
-    public SettingsObject(Class<?> type, InstanceIdentifier identifier, Object object)
+    public SettingsObject(Object object)
     {
-        this(new Identifier(type, identifier), object);
+        this(object, SINGLETON);
     }
 
-    public SettingsObject(Identifier identifier, Object object)
+    public SettingsObject(Object object, InstanceIdentifier identifier)
+    {
+        this(object, object.getClass(), identifier);
+    }
+
+    public SettingsObject(Object object, Class<?> type, InstanceIdentifier identifier)
     {
         ensureNotNull(identifier);
         ensureNotNull(object);
 
-        this.identifier = identifier;
+        this.identifier = new Identifier(type, identifier);
         this.object = object;
     }
 

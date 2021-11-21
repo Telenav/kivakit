@@ -52,7 +52,7 @@ public interface RegistryTrait
      */
     default <T> T lookup(Class<T> type, Enum<?> instance)
     {
-        return lookup(type, InstanceIdentifier.instanceIdentifier(instance));
+        return lookup(type, InstanceIdentifier.of(instance));
     }
 
     /**
@@ -60,7 +60,7 @@ public interface RegistryTrait
      */
     default <T> T lookup(Class<T> type, String instance)
     {
-        return lookup(type, InstanceIdentifier.instanceIdentifier(instance));
+        return lookup(type, InstanceIdentifier.of(instance));
     }
 
     /**
@@ -89,7 +89,7 @@ public interface RegistryTrait
      */
     default <T> T register(T object, String instance)
     {
-        return register(object, InstanceIdentifier.instanceIdentifier(instance));
+        return register(object, InstanceIdentifier.of(instance));
     }
 
     /**
@@ -97,7 +97,7 @@ public interface RegistryTrait
      */
     default <T> T register(T object, Enum<?> instance)
     {
-        return register(object, InstanceIdentifier.instanceIdentifier(instance));
+        return register(object, InstanceIdentifier.of(instance));
     }
 
     /**
@@ -129,7 +129,7 @@ public interface RegistryTrait
      */
     default <T> T require(Class<T> type, Enum<?> instance)
     {
-        return require(type, InstanceIdentifier.instanceIdentifier(instance));
+        return require(type, InstanceIdentifier.of(instance));
     }
 
     /**
@@ -137,7 +137,7 @@ public interface RegistryTrait
      */
     default <T> T require(Class<T> type, String instance)
     {
-        return require(type, InstanceIdentifier.instanceIdentifier(instance));
+        return require(type, InstanceIdentifier.of(instance));
     }
 
     /**
@@ -169,7 +169,7 @@ public interface RegistryTrait
      */
     default void unregister(Object object, Enum<?> instance)
     {
-        unregister(object, InstanceIdentifier.instanceIdentifier(instance));
+        unregister(object, InstanceIdentifier.of(instance));
     }
 
     /**
@@ -177,6 +177,6 @@ public interface RegistryTrait
      */
     default void unregister(Object object, String instance)
     {
-        unregister(object, InstanceIdentifier.instanceIdentifier(instance));
+        unregister(object, InstanceIdentifier.of(instance));
     }
 }

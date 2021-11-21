@@ -2,6 +2,7 @@ package com.telenav.kivakit.configuration.settings;
 
 import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
+import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -51,6 +52,14 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
 public interface SettingsTrait extends Repeater
 {
     /**
+     * @return True if all settings were cleared
+     */
+    default boolean clearSettings()
+    {
+        return settingsRegistry().clear();
+    }
+
+    /**
      * @return True if this set has a settings object of the given type
      */
     default boolean hasSettings(Class<?> type)
@@ -71,7 +80,7 @@ public interface SettingsTrait extends Repeater
      */
     default boolean hasSettings(Class<?> type, Enum<?> instance)
     {
-        return hasSettings(type, InstanceIdentifier.instanceIdentifier(instance));
+        return hasSettings(type, InstanceIdentifier.of(instance));
     }
 
     /**
@@ -79,7 +88,7 @@ public interface SettingsTrait extends Repeater
      */
     default boolean hasSettings(Class<?> type, String instance)
     {
-        return hasSettings(type, InstanceIdentifier.instanceIdentifier(instance));
+        return hasSettings(type, InstanceIdentifier.of(instance));
     }
 
     /**
@@ -115,12 +124,12 @@ public interface SettingsTrait extends Repeater
      */
     default <T> T lookupSettings(Class<T> type, Enum<?> instance)
     {
-        return settingsRegistry().lookupSettings(type, InstanceIdentifier.instanceIdentifier(instance));
+        return settingsRegistry().lookupSettings(type, InstanceIdentifier.of(instance));
     }
 
     default <T> T lookupSettings(Class<T> type, String instance)
     {
-        return settingsRegistry().lookupSettings(type, InstanceIdentifier.instanceIdentifier(instance));
+        return settingsRegistry().lookupSettings(type, InstanceIdentifier.of(instance));
     }
 
     /**
@@ -144,7 +153,7 @@ public interface SettingsTrait extends Repeater
      */
     default Settings registerSettingsObject(Object settings, Enum<?> instance)
     {
-        return registerSettingsObject(settings, InstanceIdentifier.instanceIdentifier(instance));
+        return registerSettingsObject(settings, InstanceIdentifier.of(instance));
     }
 
     /**
@@ -152,7 +161,7 @@ public interface SettingsTrait extends Repeater
      */
     default Settings registerSettingsObject(Object settings, String instance)
     {
-        return registerSettingsObject(settings, InstanceIdentifier.instanceIdentifier(instance));
+        return registerSettingsObject(settings, InstanceIdentifier.of(instance));
     }
 
     /**
@@ -176,7 +185,7 @@ public interface SettingsTrait extends Repeater
      */
     default <T> T requireSettings(Class<T> type, Enum<?> instance)
     {
-        return requireSettings(type, InstanceIdentifier.instanceIdentifier(instance));
+        return requireSettings(type, InstanceIdentifier.of(instance));
     }
 
     /**
@@ -184,7 +193,7 @@ public interface SettingsTrait extends Repeater
      */
     default <T> T requireSettings(Class<T> type, String instance)
     {
-        return requireSettings(type, InstanceIdentifier.instanceIdentifier(instance));
+        return requireSettings(type, InstanceIdentifier.of(instance));
     }
 
     /**
@@ -193,6 +202,65 @@ public interface SettingsTrait extends Repeater
     default <T> T requireSettings(Class<T> type, InstanceIdentifier instance)
     {
         return ensureNotNull(lookupSettings(type, instance));
+    }
+
+    /**
+     * Saves the given instance of the given object to the given settings store
+     *
+     * @param store The store to save to
+     * @param object The object
+     * @param instance Which instance of the object
+     * @return True if the object was saved
+     */
+    default boolean saveSettingsTo(SettingsStore store, Object object, InstanceIdentifier instance)
+    {
+        return store.save(new SettingsObject(object, object.getClass(), instance));
+    }
+
+    /**
+     * Saves the given instance of the given object to the given settings store
+     *
+     * @param store The store to save to
+     * @param object The object
+     * @param instance Which instance of the object
+     * @return True if the object was saved
+     */
+    default boolean saveSettingsTo(SettingsStore store, Object object, Enum<?> instance)
+    {
+        return store.save(new SettingsObject(object, object.getClass(), InstanceIdentifier.of(instance)));
+    }
+
+    /**
+     * Saves the given instance of the given object to the given settings store
+     *
+     * @param store The store to save to
+     * @param object The object
+     * @param instance Which instance of the object
+     * @return True if the object was saved
+     */
+    default boolean saveSettingsTo(SettingsStore store, Object object, String instance)
+    {
+        return store.save(new SettingsObject(object, object.getClass(), InstanceIdentifier.of(instance)));
+    }
+
+    /**
+     * Saves the given object to the given settings store
+     *
+     * @param store The store to save to
+     * @param object The object
+     * @return True if the object was saved
+     */
+    default boolean saveSettingsTo(SettingsStore store, Object object)
+    {
+        return saveSettingsTo(store, object, SINGLETON);
+    }
+
+    /**
+     * @return The settings in the given store
+     */
+    default ObjectSet<SettingsObject> settingsIn(SettingsStore store)
+    {
+        return store.all();
     }
 
     default Settings settingsRegistry()
