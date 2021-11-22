@@ -25,6 +25,7 @@ import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.language.locales.Locale;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
+import com.telenav.kivakit.kernel.language.primitives.Booleans;
 import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.kernel.language.reflection.Type;
 import com.telenav.kivakit.kernel.language.reflection.populator.ObjectPopulator;
@@ -172,6 +173,11 @@ public class PropertyMap extends VariableMap<String>
                 }
             }
         }
+    }
+
+    public boolean asBoolean(String key)
+    {
+        return Booleans.isTrue(get(key));
     }
 
     /**
