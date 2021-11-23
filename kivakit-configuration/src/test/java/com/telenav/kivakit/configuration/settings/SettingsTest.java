@@ -64,7 +64,7 @@ public class SettingsTest extends UnitTest
     {
         var settings = globalSettings();
 
-        Registry.global().register(new DefaultGsonFactory());
+        Registry.global().register(new DefaultGsonFactory(this));
 
         // Configure
         {
@@ -86,7 +86,7 @@ public class SettingsTest extends UnitTest
     {
         var settings = globalSettings();
 
-        Registry.global().register(new DefaultGsonFactory());
+        Registry.global().register(new DefaultGsonFactory(this));
 
         // Configure
         {
@@ -125,7 +125,7 @@ public class SettingsTest extends UnitTest
     {
         var settings = globalSettings();
 
-        Registry.global().register(new DefaultGsonFactory());
+        Registry.global().register(new DefaultGsonFactory(this));
 
         // Configure
         {
@@ -146,7 +146,7 @@ public class SettingsTest extends UnitTest
     private Settings globalSettings()
     {
         var global = Settings.of(this);
-        global.clear();
+        global.unload();
         global.clearListeners();
         global.addListener(this);
         return global;

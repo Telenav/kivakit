@@ -39,7 +39,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 public class InstanceIdentifier extends StringIdentifier
 {
     /** Identifies the one and only instance of a singleton */
-    public static final InstanceIdentifier SINGLETON = InstanceIdentifier.of("[SINGLETON]");
+    public static final InstanceIdentifier SINGLETON = InstanceIdentifier.of("SINGLETON");
 
     public static InstanceIdentifier of(Class<?> value)
     {

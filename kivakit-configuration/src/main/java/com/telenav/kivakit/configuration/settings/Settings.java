@@ -32,6 +32,7 @@ import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.LOAD;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
 
 /**
@@ -198,6 +199,10 @@ public class Settings extends MemorySettingsStore implements SettingsTrait
     @Override
     public Settings registerSettingsIn(SettingsStore settings)
     {
+        if (settings.supports(LOAD))
+        {
+            settings.load();
+        }
         addAll(settings);
         return this;
     }

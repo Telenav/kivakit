@@ -19,6 +19,7 @@
 package com.telenav.kivakit.kernel.project;
 
 import com.telenav.cactus.build.metadata.BuildMetadata;
+import com.telenav.kivakit.kernel.KivaKit;
 import com.telenav.kivakit.kernel.interfaces.lifecycle.Initializable;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
@@ -192,7 +193,7 @@ public abstract class Project extends BaseRepeater implements Initializable, Nam
      */
     public final Version kivakitVersion()
     {
-        return Version.parse(this, property("kivakit-version"));
+        return KivaKit.get().projectVersion();
     }
 
     /**

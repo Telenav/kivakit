@@ -56,7 +56,7 @@ public interface SettingsStore extends Repeater, Named, Iterable<Object>
         REMOVE,
 
         /** Can clear loaded and added objects from in-memory index */
-        CLEAR,
+        UNLOAD,
 
         /** Can load objects from persistent storage */
         LOAD,
@@ -102,13 +102,6 @@ public interface SettingsStore extends Repeater, Named, Iterable<Object>
     /**
      * <b>Service Provider API</b>
      *
-     * @return True if the in-memory index of this store was cleared
-     */
-    boolean clear();
-
-    /**
-     * <b>Service Provider API</b>
-     *
      * @return The set of {@link SettingsObject} instances in this store
      */
     Set<SettingsObject> load();
@@ -138,4 +131,11 @@ public interface SettingsStore extends Repeater, Named, Iterable<Object>
     {
         return accessModes().contains(accessMode);
     }
+
+    /**
+     * <b>Service Provider API</b>
+     *
+     * @return True if the in-memory index of this store was cleared
+     */
+    boolean unload();
 }

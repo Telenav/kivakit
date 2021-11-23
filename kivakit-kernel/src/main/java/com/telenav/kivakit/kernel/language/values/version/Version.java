@@ -25,6 +25,7 @@ import com.telenav.kivakit.kernel.project.Release;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
 import static java.util.regex.Pattern.CASE_INSENSITIVE;
 
 /**
@@ -186,6 +187,26 @@ public class Version
 
     protected Version()
     {
+    }
+
+    /**
+     * @return This version as a double. For example, if major is 1 and minor is 9, the return value will be 1.9.
+     */
+    public double asDouble()
+    {
+        if (minor < 10)
+        {
+            return major + (minor * .1);
+        }
+        else if (minor < 100)
+        {
+            return major + (minor * .01);
+        }
+        else
+        {
+            fail("Cannot convert to double: $", this);
+            return -1;
+        }
     }
 
     @Override

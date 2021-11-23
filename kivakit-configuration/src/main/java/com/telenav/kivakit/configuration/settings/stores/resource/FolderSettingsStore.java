@@ -31,9 +31,9 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import java.util.Set;
 
 import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.ADD;
-import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.CLEAR;
 import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.LOAD;
 import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.REMOVE;
+import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.UNLOAD;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.resource.path.Extension.JSON;
 import static com.telenav.kivakit.resource.path.Extension.PROPERTIES;
@@ -81,7 +81,7 @@ public class FolderSettingsStore extends BaseResourceSettingsStore
     @Override
     public Set<AccessMode> accessModes()
     {
-        return Set.of(ADD, REMOVE, CLEAR, LOAD);
+        return Set.of(ADD, REMOVE, UNLOAD, LOAD);
     }
 
     @Override
@@ -118,6 +118,12 @@ public class FolderSettingsStore extends BaseResourceSettingsStore
 
     @Override
     public boolean onSave(SettingsObject object)
+    {
+        return unsupported();
+    }
+
+    @Override
+    protected boolean onRemove(SettingsObject object)
     {
         return unsupported();
     }

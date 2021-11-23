@@ -18,10 +18,10 @@ import java.util.Map;
 import java.util.Set;
 
 import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.ADD;
-import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.CLEAR;
 import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.LOAD;
 import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.REMOVE;
 import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.SAVE;
+import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.UNLOAD;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
 
@@ -53,7 +53,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  * <ul>
  *     <li>{@link #add(SettingsObject)} - Adds the given object to the store's in-memory index (but not to any persistent storage)</li>
  *     <li>{@link #all()} - The set of objects in this store. If the store is loadable, {@link #load()} is called before returning the set</li>
- *     <li>{@link #clear()} - Clears this store's in-memory index</li>
+ *     <li>{@link #unload()} - Clears this store's in-memory index</li>
  *     <li>{@link #iterator()} - Iterates through each settings {@link Object} in this store</li>
  *     <li>{@link #load()} - Lazy-loads objects from persistent storage by calling {@link #onLoad()} and then adds them to the in-memory index</li>
  *     <li>{@link #lookup(SettingsObject.Identifier)} - Looks up the object for the given identifier in the store's index</li>
@@ -94,29 +94,29 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
      */
     @Override
     @UmlExcludeMember
-    public boolean add(SettingsObject object)
+    public boolean add(SettingsObject settings)
     {
         ensure(supports(ADD));
-        ensureNotNull(object);
+        ensureNotNull(settings);
 
         // Obtain a write lock,
         return lock.write(() ->
         {
             // add the object to the global lookup registry
-            Registry.of(this).register(object.object(), object.identifier().instance());
+            Registry.of(this).register(settings.object(), settings.identifier().instance());
 
             // then walk up the class hierarchy of the object,
-            var instance = object.identifier().instance();
-            for (var at = (Class<?>) object.object().getClass(); !at.equals(Object.class); at = at.getSuperclass())
+            var instance = settings.identifier().instance();
+            for (var at = (Class<?>) settings.object().getClass(); !at.equals(Object.class); at = at.getSuperclass())
             {
                 // add the interfaces of the object,
                 for (var in : at.getInterfaces())
                 {
-                    internalPut(new SettingsObject(object.object(), in, instance));
+                    internalPut(new SettingsObject(settings.object(), in, instance));
                 }
 
                 // and the class itself.
-                internalPut(new SettingsObject(object.object(), at, instance));
+                internalPut(new SettingsObject(settings.object(), at, instance));
             }
             return true;
         });
@@ -130,17 +130,6 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
     {
         maybeLoad();
         return lock.write(() -> ObjectSet.objectSet(objects.values()));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean clear()
-    {
-        ensure(supports(CLEAR));
-        lock.write(objects::clear);
-        return true;
     }
 
     @NotNull
@@ -188,17 +177,17 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
         return lock.read(() ->
         {
             // First try the global object registry,
-            T settings = (T) Registry.of(this).lookup(identifier.type(), identifier.instance());
-            if (settings == null)
+            T object = (T) Registry.of(this).lookup(identifier.type(), identifier.instance());
+            if (object == null)
             {
                 // and try the index.
-                var object = objects.get(identifier);
-                if (object != null)
+                var settings = objects.get(identifier);
+                if (settings != null)
                 {
-                    settings = object.object();
+                    object = settings.object();
                 }
             }
-            return settings;
+            return object;
         });
     }
 
@@ -210,7 +199,11 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
     {
         ensure(supports(REMOVE));
 
-        lock.write(() -> objects.remove(object.identifier()));
+        lock.write(() ->
+        {
+            objects.remove(object.identifier());
+            onRemove(object);
+        });
         return true;
     }
 
@@ -221,8 +214,12 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
     public boolean save(SettingsObject object)
     {
         ensure(supports(SAVE));
-        add(object);
-        return onSave(object);
+
+        return lock.write(() ->
+        {
+            add(object);
+            return onSave(object);
+        });
     }
 
     @Override
@@ -232,9 +229,31 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean unload()
+    {
+        ensure(supports(UNLOAD));
+
+        lock.write(() ->
+        {
+            objects.clear();
+            loaded = false;
+        });
+
+        return true;
+    }
+
+    /**
      * @return All settings objects in this store
      */
     protected abstract Set<SettingsObject> onLoad();
+
+    /**
+     * @return True if the given object was removed from persistent storage
+     */
+    protected abstract boolean onRemove(SettingsObject object);
 
     /**
      * @return True if the given object was saved to persistent storage

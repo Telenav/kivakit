@@ -52,14 +52,6 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
 public interface SettingsTrait extends Repeater
 {
     /**
-     * @return True if all settings were cleared
-     */
-    default boolean clearSettings()
-    {
-        return settingsRegistry().clear();
-    }
-
-    /**
      * @return True if this set has a settings object of the given type
      */
     default boolean hasSettings(Class<?> type)
@@ -266,5 +258,13 @@ public interface SettingsTrait extends Repeater
     default Settings settingsRegistry()
     {
         return Settings.of(this);
+    }
+
+    /**
+     * @return True if all settings were cleared
+     */
+    default boolean unloadSettings()
+    {
+        return settingsRegistry().unload();
     }
 }

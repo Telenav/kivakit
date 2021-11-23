@@ -19,7 +19,9 @@
 package com.telenav.kivakit.configuration.settings;
 
 import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
+import com.telenav.kivakit.configuration.lookup.RegistryTrait;
 import com.telenav.kivakit.kernel.language.objects.Hash;
+import com.telenav.kivakit.serialization.json.GsonFactory;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeType;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
@@ -44,7 +46,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
 @UmlNotPublicApi
 @UmlExcludeType(Comparable.class)
 @UmlExcludeType
-public class SettingsObject
+public class SettingsObject implements RegistryTrait
 {
     /**
      * <b>Service Provider API</b>
@@ -158,6 +160,11 @@ public class SettingsObject
 
         this.identifier = new Identifier(type, identifier);
         this.object = object;
+    }
+
+    public String asJson()
+    {
+        return require(GsonFactory.class).gson().toJson(object);
     }
 
     @Override

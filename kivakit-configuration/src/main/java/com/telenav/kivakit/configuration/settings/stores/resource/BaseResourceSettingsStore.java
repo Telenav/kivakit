@@ -131,7 +131,7 @@ public abstract class BaseResourceSettingsStore extends BaseSettingsStore implem
         ensure(resource.extension().equals(Extension.JSON));
 
         // Get GsonFactory from global registry,
-        var gson = require(GsonFactory.class).get();
+        var gson = require(GsonFactory.class).gson();
 
         // load JSON from resource,
         var json = resource.string();
