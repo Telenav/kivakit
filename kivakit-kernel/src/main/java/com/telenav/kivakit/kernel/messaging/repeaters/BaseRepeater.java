@@ -76,11 +76,6 @@ public class BaseRepeater extends Multicaster implements Repeater
         checkInheritance();
     }
 
-    private void checkInheritance()
-    {
-        ensure(!(this instanceof RepeaterMixin), "A class extending BaseRepeater cannot also have a RepeaterMixin");
-    }
-
     @Override
     public void onMessage(Message message)
     {
@@ -95,5 +90,10 @@ public class BaseRepeater extends Multicaster implements Repeater
         {
             transmit(message);
         }
+    }
+
+    private void checkInheritance()
+    {
+        ensure(!(this instanceof RepeaterMixin), "A class extending BaseRepeater cannot also have a RepeaterMixin");
     }
 }

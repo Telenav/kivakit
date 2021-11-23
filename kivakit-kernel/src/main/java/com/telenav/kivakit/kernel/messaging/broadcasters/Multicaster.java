@@ -23,6 +23,7 @@ import com.telenav.kivakit.kernel.interfaces.code.Code;
 import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
 import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
+import com.telenav.kivakit.kernel.language.mixin.Mixins;
 import com.telenav.kivakit.kernel.language.strings.formatting.IndentingStringBuilder;
 import com.telenav.kivakit.kernel.language.threading.context.CodeContext;
 import com.telenav.kivakit.kernel.language.threading.locks.ReadWriteLock;
@@ -61,12 +62,12 @@ import static com.telenav.kivakit.kernel.language.strings.formatting.IndentingSt
  * {
  *     private final BaseRepeater&lt;Message&gt; repeater = new BaseRepeater&lt;&gt;();
  *
- *     public void broadcast( Message message)
+ *     public void broadcast(Message message)
  *     {
  *         this.repeater.broadcast(message);
  *     }
  *
- *     public void addListener( Listener&lt;Message&gt; listener)
+ *     public void addListener(Listener&lt;Message&gt; listener)
  *     {
  *         this.repeater.addListener(listener);
  *     }
@@ -159,10 +160,10 @@ public class Multicaster implements Broadcaster
     {
         ensure(listener != this, "Cannot listen to yourself");
 
-        // If the listener to this multicaster is also a multicaster,
+        // If the listener to this multicaster is a broadcaster,
         if (listener instanceof Broadcaster)
         {
-            // then we are the parent of that multicaster. This information is used to provide the listener
+            // then we are the parent of that broadcaster. This information is used to provide the listener
             // chain when it doesn't terminate correctly.
             ((Broadcaster) listener).messageSource(this);
         }
@@ -248,7 +249,12 @@ public class Multicaster implements Broadcaster
         var chain = new StringList();
         for (var at = (Broadcaster) this; at.messageSource() != null; at = at.messageSource())
         {
-            chain.append(at.getClass().getSimpleName());
+            var owner = Mixins.owner(at);
+            if (owner != null)
+            {
+                at = (Broadcaster) owner;
+            }
+            chain.append(at.getClass().getSimpleName() + (at.listeners().isEmpty() ? " [no listener]" : ""));
         }
         return chain;
     }
@@ -266,6 +272,7 @@ public class Multicaster implements Broadcaster
     /**
      * @return The listener or listener chain
      */
+    @Override
     public List<Listener> listeners()
     {
         return lock().read(() -> audience
@@ -346,7 +353,6 @@ public class Multicaster implements Broadcaster
                 if (!JavaVirtualMachine.isPropertyTrue("KIVAKIT_IGNORE_MISSING_LISTENERS"))
                 {
                     LOGGER.warning("Broken listener chain:\n$", listenerChain()
-                            .append(getClass().getSimpleName() + " [no listener]")
                             .numbered()
                             .indented(4)
                             .join("\n"));
@@ -356,6 +362,7 @@ public class Multicaster implements Broadcaster
         return message;
     }
 
+    @Override
     public <T> T withoutTransmitting(Code<T> code)
     {
         transmitting = false;

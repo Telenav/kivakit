@@ -214,7 +214,7 @@ public interface SettingsTrait extends Repeater
      */
     default boolean saveSettingsTo(SettingsStore store, Object object, InstanceIdentifier instance)
     {
-        return store.save(new SettingsObject(object, object.getClass(), instance));
+        return store.save(new SettingsObject(object, instance));
     }
 
     /**
@@ -227,7 +227,7 @@ public interface SettingsTrait extends Repeater
      */
     default boolean saveSettingsTo(SettingsStore store, Object object, Enum<?> instance)
     {
-        return store.save(new SettingsObject(object, object.getClass(), InstanceIdentifier.of(instance)));
+        return saveSettingsTo(store, object, InstanceIdentifier.of(instance));
     }
 
     /**
@@ -240,7 +240,7 @@ public interface SettingsTrait extends Repeater
      */
     default boolean saveSettingsTo(SettingsStore store, Object object, String instance)
     {
-        return store.save(new SettingsObject(object, object.getClass(), InstanceIdentifier.of(instance)));
+        return saveSettingsTo(store, object, InstanceIdentifier.of(instance));
     }
 
     /**

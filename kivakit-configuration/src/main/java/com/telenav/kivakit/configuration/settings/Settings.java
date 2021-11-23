@@ -215,7 +215,7 @@ public class Settings extends MemorySettingsStore implements SettingsTrait
             return fail("To register a Deployment or other SettingsStore, call registerSettingsIn(SettingsStore)");
         }
 
-        add(new SettingsObject(settings, settings.getClass(), instance));
+        add(new SettingsObject(settings, instance));
 
         return this;
     }

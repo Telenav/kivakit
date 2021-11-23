@@ -18,7 +18,7 @@ public interface ComponentMixin extends Component, Mixin, RepeaterMixin
      */
     default BaseComponent component()
     {
-        return state(ComponentMixin.class, BaseComponent::new);
+        return mixin(ComponentMixin.class, BaseComponent::new);
     }
 
     @Override

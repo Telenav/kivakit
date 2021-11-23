@@ -23,6 +23,6 @@ public interface AttributedMixin<Key, Value> extends Mixin
 
     default HashMap<Key, Value> map()
     {
-        return state(AttributedMixin.class, HashMap::new);
+        return mixin(AttributedMixin.class, HashMap::new);
     }
 }

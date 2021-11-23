@@ -27,6 +27,8 @@ import com.telenav.kivakit.kernel.language.primitives.Booleans;
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.language.vm.OperatingSystem;
+import com.telenav.kivakit.kernel.logging.Logger;
+import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.listeners.ConsoleWriter;
 import com.telenav.kivakit.kernel.messaging.repeaters.RepeaterMixin;
@@ -64,6 +66,8 @@ public abstract class UnitTest extends TestWatcher implements RepeaterMixin
 {
     private static boolean quickTest;
 
+    private static final Logger LOGGER = LoggerFactory.newLogger();
+
     @BeforeClass
     public static void testSetup()
     {
@@ -94,6 +98,11 @@ public abstract class UnitTest extends TestWatcher implements RepeaterMixin
     private final ThreadLocal<Object> randomValueFactory = new ThreadLocal<>();
 
     private final ThreadLocal<Integer> index = new ThreadLocal<>();
+
+    public UnitTest()
+    {
+        LOGGER.listenTo(this);
+    }
 
     public boolean isRandomTest()
     {

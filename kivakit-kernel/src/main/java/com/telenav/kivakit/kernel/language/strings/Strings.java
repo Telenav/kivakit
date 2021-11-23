@@ -227,6 +227,21 @@ public class Strings
     }
 
     /**
+     * @return True if the given value is one of the given options
+     */
+    public static boolean isOneOf(String value, String... options)
+    {
+        for (var at : options)
+        {
+            if (at.equals(value))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * @return The leading n characters of the given text
      */
     public static String leading(String text, int n)

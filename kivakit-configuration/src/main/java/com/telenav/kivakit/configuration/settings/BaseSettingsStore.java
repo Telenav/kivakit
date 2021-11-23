@@ -112,11 +112,11 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
                 // add the interfaces of the object,
                 for (var in : at.getInterfaces())
                 {
-                    internalPut(new SettingsObject(instance, in, object.object()));
+                    internalPut(new SettingsObject(object.object(), in, instance));
                 }
 
                 // and the class itself.
-                internalPut(new SettingsObject(instance, at, object.object()));
+                internalPut(new SettingsObject(object.object(), at, instance));
             }
             return true;
         });

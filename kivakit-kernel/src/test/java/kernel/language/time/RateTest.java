@@ -16,35 +16,27 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package kernel.time.conversion.converters;
+package kernel.language.time;
 
-import com.telenav.kivakit.kernel.language.time.LocalTime;
-import com.telenav.kivakit.kernel.language.time.conversion.converters.LocalDateConverter;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
+import com.telenav.kivakit.kernel.language.time.Rate;
 import org.junit.Test;
-
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureEqual;
 
-public class LocalDateConverterTest
+public class RateTest
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     @Test
-    public void convert()
+    public void test()
     {
-        var converter = new LocalDateConverter(LOGGER, LocalTime.utcTimeZone());
-
-        var time = converter.convert("2011.07.06");
-
-        // Using https://www.epochconverter.com/ midnight of that date UTC time
-        // was converted to milliseconds.
-        ensure(time != null);
-        assert time != null;
-        ensureEqual(ChronoUnit.MILLIS.between(Instant.EPOCH, time.startOfDay().asInstant()), 1309910400000L);
+        var rate = Rate.perSecond(1);
+        ensureEqual(1.0, rate.count());
+        ensureEqual(60.0, rate.perMinute().count());
+        ensureEqual(3600.0, rate.perHour().count());
+        ensureEqual(24 * 3600.0, rate.perDay().count());
+        ensureEqual(Rate.perMinute(60.0), rate);
+        ensure(rate.compareTo(Rate.perSecond(2)) < 0);
+        ensure(rate.isSlowerThan(Rate.perSecond(2)));
+        ensure(rate.isFasterThan(Rate.perSecond(0.5)));
     }
 }

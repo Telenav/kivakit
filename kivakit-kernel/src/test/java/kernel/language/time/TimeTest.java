@@ -16,7 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package kernel.time;
+package kernel.language.time;
 
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.kernel.language.time.Time;
@@ -66,7 +66,7 @@ public class TimeTest
     @Test
     public void testStartOfToday()
     {
-        final Time startOfToday = Time.now().localTime().startOfDay();
+        Time startOfToday = Time.now().localTime().startOfDay();
         ensure(Time.now().minus(startOfToday).isLessThanOrEqualTo(Duration.ONE_DAY));
     }
 
