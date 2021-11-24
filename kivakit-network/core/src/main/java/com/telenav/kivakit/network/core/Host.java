@@ -454,14 +454,33 @@ public class Host implements Named, AsString, Comparable<Host>
     @UmlExcludeMember
     protected InetAddress onResolveAddress()
     {
-        try
+        if (rawAddress != null)
         {
-            return InetAddress.getByAddress(rawAddress);
+            try
+            {
+                return InetAddress.getByAddress(rawAddress);
+            }
+            catch (UnknownHostException e)
+            {
+                LOGGER.problem(e, "Can't resolve address: $", rawAddress);
+                return null;
+            }
         }
-        catch (UnknownHostException e)
+        else if (name != null)
         {
-            LOGGER.problem(e, "Can't resolve address: $", rawAddress);
-            return null;
+            try
+            {
+                return InetAddress.getByName(name);
+            }
+            catch (UnknownHostException e)
+            {
+                LOGGER.problem(e, "Can't resolve address: $", name);
+                return null;
+            }
+        }
+        else
+        {
+            return fail();
         }
     }
 
