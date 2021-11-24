@@ -126,7 +126,7 @@ public class DeploymentSet extends BaseRepeater
             var deployment = listenTo(new Deployment(folder.name().name(), description));
 
             // and add the configuration information from the sub-folder,
-            deployment.addAll(FolderSettingsStore.of(this, folder));
+            deployment.indexAll(FolderSettingsStore.of(this, folder));
 
             // assert that the deployment has not already been added,
             assert !deployments.contains(deployment);
@@ -172,7 +172,7 @@ public class DeploymentSet extends BaseRepeater
             var deployment = listenTo(new Deployment(subPackage.last(), description));
 
             // and add the configuration information from the sub-folder,
-            deployment.addAll(PackageSettingsStore.of(this, subPackage));
+            deployment.indexAll(PackageSettingsStore.of(this, subPackage));
 
             // add it to this set of deployments.
             deployments.add(deployment);

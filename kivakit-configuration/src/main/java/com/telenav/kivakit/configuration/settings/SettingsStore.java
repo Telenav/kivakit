@@ -74,17 +74,6 @@ public interface SettingsStore extends Repeater, Named, Iterable<Object>
 
     /**
      * <b>Service Provider API</b>
-     * <p>
-     * Adds all {@link SettingsObject}s to this store's in-memory index via {@link #index(SettingsObject)}.
-     */
-    default boolean addAll(SettingsStore store)
-    {
-        store.indexedSettingsObjects().forEach(this::index);
-        return true;
-    }
-
-    /**
-     * <b>Service Provider API</b>
      *
      * @return True if the given setting object was removed from the in-memory index of this store
      */
@@ -100,11 +89,22 @@ public interface SettingsStore extends Repeater, Named, Iterable<Object>
 
     /**
      * <b>Service Provider API</b>
+     * <p>
+     * Adds all {@link SettingsObject}s to this store's in-memory index via {@link #index(SettingsObject)}.
+     */
+    default boolean indexAll(SettingsStore store)
+    {
+        store.indexed().forEach(this::index);
+        return true;
+    }
+
+    /**
+     * <b>Service Provider API</b>
      *
      * @return All objects in this store's in-memory index. If the store supports loading and it has not yet been
      * loaded, {@link #load()} will be called first.
      */
-    ObjectSet<SettingsObject> indexedSettingsObjects();
+    ObjectSet<SettingsObject> indexed();
 
     /**
      * <b>Service Provider API</b>
@@ -112,6 +112,13 @@ public interface SettingsStore extends Repeater, Named, Iterable<Object>
      * @return The set of {@link SettingsObject} instances in this store
      */
     Set<SettingsObject> load();
+
+    /**
+     * A settings store to propagate changes to
+     *
+     * @param store The store that should be updated when this store changes
+     */
+    void propagateChangesTo(SettingsStore store);
 
     /**
      * <b>Service Provider API</b>
@@ -131,6 +138,14 @@ public interface SettingsStore extends Repeater, Named, Iterable<Object>
     {
         return accessModes().contains(accessMode);
     }
+
+    /**
+     * <b>Service Provider API</b>
+     * <p>
+     * Removes the given object from the in-memory index of this settings store. This will <i>not</i>> add the object to
+     * the underlying persistent store. To do that, call {@link #save(SettingsObject)}.
+     */
+    boolean unindex(SettingsObject object);
 
     /**
      * <b>Service Provider API</b>

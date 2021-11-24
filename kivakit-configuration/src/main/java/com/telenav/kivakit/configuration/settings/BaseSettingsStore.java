@@ -1,6 +1,7 @@
 package com.telenav.kivakit.configuration.settings;
 
 import com.telenav.kivakit.configuration.lookup.Registry;
+import com.telenav.kivakit.configuration.lookup.RegistryTrait;
 import com.telenav.kivakit.configuration.settings.stores.memory.MemorySettingsStore;
 import com.telenav.kivakit.configuration.settings.stores.resource.FolderSettingsStore;
 import com.telenav.kivakit.configuration.settings.stores.resource.PackageSettingsStore;
@@ -51,7 +52,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  * {@link SettingsStore} providers inherit several useful methods and implementations from this base class:
  * <ul>
  *     <li>{@link #index(SettingsObject)} - Adds the given object to the store's in-memory index (but not to any persistent storage)</li>
- *     <li>{@link #indexedSettingsObjects()} - The set of objects in this store. If the store is loadable, {@link #load()} is called before returning the set</li>
+ *     <li>{@link #indexed()} - The set of objects in this store. If the store is loadable, {@link #load()} is called before returning the set</li>
  *     <li>{@link #unload()} - Clears this store's in-memory index</li>
  *     <li>{@link #iterator()} - Iterates through each settings {@link Object} in this store</li>
  *     <li>{@link #load()} - Lazy-loads objects from persistent storage by calling {@link #onLoad()} and then adds them to the in-memory index</li>
@@ -67,6 +68,8 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  *     <li>{@link #accessModes()} - Specifies the kinds of access that the store supports</li>
  *     <li>{@link #onLoad()} - Loads settings objects from persistent storage</li>
  *     <li>{@link #onSave(SettingsObject)} - Saves the settings object to persistent storage</li>
+ *     <li>{@link #onDelete(SettingsObject)} = Deleted the given settings object from persistent storage</li>
+ *     <li>{@link #onUnload()} - Unloads all settings from this store (but does not remove them from persistent storage)</li>
  * </ul>
  *
  * @author jonathanl (shibo)
@@ -75,7 +78,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  * @see FolderSettingsStore
  * @see PackageSettingsStore
  */
-public abstract class BaseSettingsStore extends BaseRepeater implements SettingsStore
+public abstract class BaseSettingsStore extends BaseRepeater implements SettingsStore, RegistryTrait
 {
     /** Map to get settings entries by identifier */
     private final Map<SettingsObject.Identifier, SettingsObject> objects = new HashMap<>();
@@ -85,6 +88,9 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
 
     /** True if settings have been loaded into this store */
     private boolean loaded;
+
+    /** Store to propagate changes to */
+    private SettingsStore propagateChangesTo;
 
     /**
      * {@inheritDoc}
@@ -96,8 +102,8 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
 
         lock.write(() ->
         {
-            objects.remove(object.identifier());
             onDelete(object);
+            unindex(object);
         });
         return true;
     }
@@ -114,11 +120,11 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
         ensure(supports(INDEX));
         ensureNotNull(settings);
 
-        // Obtain a write lock,
+        // Lock for writing,
         return lock.write(() ->
         {
             // add the object to the global lookup registry
-            Registry.of(this).register(settings.object(), settings.identifier().instance());
+            register(settings.object(), settings.identifier().instance());
 
             // then walk up the class hierarchy of the object,
             var instance = settings.identifier().instance();
@@ -141,7 +147,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
      * Gets a <b>copy</b> of the {@link SettingsObject}s indexed in this store, loading them if need be
      */
     @Override
-    public ObjectSet<SettingsObject> indexedSettingsObjects()
+    public ObjectSet<SettingsObject> indexed()
     {
         maybeLoad();
         return lock.write(() -> ObjectSet.objectSet(objects.values()));
@@ -152,7 +158,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
     public Iterator<Object> iterator()
     {
         maybeLoad();
-        return indexedSettingsObjects()
+        return indexed()
                 .stream()
                 .map(SettingsObject::object)
                 .iterator();
@@ -192,7 +198,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
         return lock.read(() ->
         {
             // First try the global object registry,
-            T object = (T) Registry.of(this).lookup(identifier.type(), identifier.instance());
+            T object = (T) lookup(identifier.type(), identifier.instance());
             if (object == null)
             {
                 // and try the index.
@@ -204,6 +210,17 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
             }
             return object;
         });
+    }
+
+    public SettingsStore propagateChangesTo()
+    {
+        return propagateChangesTo;
+    }
+
+    @Override
+    public void propagateChangesTo(final SettingsStore store)
+    {
+        propagateChangesTo = store;
     }
 
     /**
@@ -225,6 +242,41 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
     public String toString()
     {
         return name();
+    }
+
+    /**
+     * Adds the given settings object to the in-memory index for this store. The object (from {@link
+     * SettingsObject#object()}) is indexed under its class and all implemented interfaces. It is also indexed under all
+     * superclasses and superinterfaces.
+     */
+    @Override
+    @UmlExcludeMember
+    public boolean unindex(SettingsObject settings)
+    {
+        ensure(supports(INDEX));
+        ensureNotNull(settings);
+
+        // Obtain a write lock,
+        return lock.write(() ->
+        {
+            // add the object to the global lookup registry
+            unregister(settings.object(), settings.identifier().instance());
+
+            // then walk up the class hierarchy of the object,
+            var instance = settings.identifier().instance();
+            for (var at = (Class<?>) settings.object().getClass(); !at.equals(Object.class); at = at.getSuperclass())
+            {
+                // add the interfaces of the object,
+                for (var in : at.getInterfaces())
+                {
+                    internalRemove(new SettingsObject(settings.object(), in, instance));
+                }
+
+                // and the class itself.
+                internalPut(new SettingsObject(settings.object(), at, instance));
+            }
+            return true;
+        });
     }
 
     /**
@@ -272,10 +324,17 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
         lock.write(() -> objects.put(settings.identifier(), settings));
     }
 
+    private void internalRemove(SettingsObject settings)
+    {
+        lock.write(() -> objects.remove(settings.identifier()));
+    }
+
     private void maybeLoad()
     {
+        // If we can load this store,
         if (supports(LOAD))
         {
+            // load it.
             load();
         }
     }

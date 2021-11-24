@@ -199,11 +199,19 @@ public class Settings extends MemorySettingsStore implements SettingsTrait
     @Override
     public Settings registerSettingsIn(SettingsStore settings)
     {
+        // If we can load the settings store,
         if (settings.supports(LOAD))
         {
+            // load it,
             settings.load();
+
+            // and propagate any future changes to this store.
+            settings.propagateChangesTo(this);
         }
-        addAll(settings);
+
+        // Index the settings objects in the given store.
+        indexAll(settings);
+        
         return this;
     }
 
@@ -240,7 +248,7 @@ public class Settings extends MemorySettingsStore implements SettingsTrait
                 var folder = Folder.parse(this, path);
                 if (folder != null)
                 {
-                    addAll(FolderSettingsStore.of(this, folder));
+                    indexAll(FolderSettingsStore.of(this, folder));
                 }
                 else
                 {
