@@ -4,7 +4,6 @@ import com.telenav.kivakit.configuration.lookup.Registry;
 import com.telenav.kivakit.configuration.settings.stores.memory.MemorySettingsStore;
 import com.telenav.kivakit.configuration.settings.stores.resource.FolderSettingsStore;
 import com.telenav.kivakit.configuration.settings.stores.resource.PackageSettingsStore;
-import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
 import com.telenav.kivakit.kernel.language.threading.locks.ReadWriteLock;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
@@ -52,7 +51,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  * {@link SettingsStore} providers inherit several useful methods and implementations from this base class:
  * <ul>
  *     <li>{@link #index(SettingsObject)} - Adds the given object to the store's in-memory index (but not to any persistent storage)</li>
- *     <li>{@link #indexed()} - The set of objects in this store. If the store is loadable, {@link #load()} is called before returning the set</li>
+ *     <li>{@link #indexedSettingsObjects()} - The set of objects in this store. If the store is loadable, {@link #load()} is called before returning the set</li>
  *     <li>{@link #unload()} - Clears this store's in-memory index</li>
  *     <li>{@link #iterator()} - Iterates through each settings {@link Object} in this store</li>
  *     <li>{@link #load()} - Lazy-loads objects from persistent storage by calling {@link #onLoad()} and then adds them to the in-memory index</li>
@@ -142,7 +141,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
      * Gets a <b>copy</b> of the {@link SettingsObject}s indexed in this store, loading them if need be
      */
     @Override
-    public ObjectSet<SettingsObject> indexed()
+    public ObjectSet<SettingsObject> indexedSettingsObjects()
     {
         maybeLoad();
         return lock.write(() -> ObjectSet.objectSet(objects.values()));
@@ -153,7 +152,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
     public Iterator<Object> iterator()
     {
         maybeLoad();
-        return indexed()
+        return indexedSettingsObjects()
                 .stream()
                 .map(SettingsObject::object)
                 .iterator();
@@ -225,7 +224,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
     @Override
     public String toString()
     {
-        return new StringList(indexed()).titledBox(name());
+        return name();
     }
 
     /**

@@ -233,6 +233,7 @@ public class DefaultGsonFactory extends BaseRepeater implements GsonFactory
         return instance;
     }
 
+    @Override
     public DefaultGsonFactory withDateFormat(String dateFormat)
     {
         var copy = copy();
@@ -240,11 +241,13 @@ public class DefaultGsonFactory extends BaseRepeater implements GsonFactory
         return copy;
     }
 
+    @Override
     public <T> DefaultGsonFactory withDeserializer(Class<T> type, JsonDeserializer<T> serializer)
     {
         return withAdapter(type, serializer);
     }
 
+    @Override
     public <T> DefaultGsonFactory withExclusionStrategy(ExclusionStrategy strategy)
     {
         var copy = copy();
@@ -252,6 +255,7 @@ public class DefaultGsonFactory extends BaseRepeater implements GsonFactory
         return copy;
     }
 
+    @Override
     public DefaultGsonFactory withHtmlEscaping(boolean escape)
     {
         var copy = copy();
@@ -259,6 +263,7 @@ public class DefaultGsonFactory extends BaseRepeater implements GsonFactory
         return copy;
     }
 
+    @Override
     public DefaultGsonFactory withPrettyPrinting(boolean prettyPrinting)
     {
         var copy = copy();
@@ -266,6 +271,7 @@ public class DefaultGsonFactory extends BaseRepeater implements GsonFactory
         return copy;
     }
 
+    @Override
     public DefaultGsonFactory withRequireExposeAnnotation(boolean require)
     {
         var copy = copy();
@@ -273,12 +279,14 @@ public class DefaultGsonFactory extends BaseRepeater implements GsonFactory
         return copy;
     }
 
+    @Override
     public <T, Serialization extends JsonSerializer<T> & JsonDeserializer<T>> DefaultGsonFactory withSerialization(
             Class<T> type, Serialization serialization)
     {
         return withAdapter(type, serialization);
     }
 
+    @Override
     public DefaultGsonFactory withSerializeNulls(boolean serializeNulls)
     {
         var copy = copy();
@@ -286,16 +294,19 @@ public class DefaultGsonFactory extends BaseRepeater implements GsonFactory
         return copy;
     }
 
+    @Override
     public <T> DefaultGsonFactory withSerializer(Class<T> type, JsonSerializer<? extends T> serializer)
     {
         return withAdapter(type, serializer);
     }
 
+    @Override
     public DefaultGsonFactory withTypeAdapterFactory(Class<?> type, TypeAdapterFactory factory)
     {
         return withAdapter(type, factory);
     }
 
+    @Override
     public DefaultGsonFactory withVersion(Version version)
     {
         var copy = copy();

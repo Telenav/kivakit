@@ -156,6 +156,10 @@
         <moditect-maven-plugin.version>1.0.0.RC1</moditect-maven-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <!-- Cluster -->
+
+        <zookeeper.version>3.5.6</zookeeper.version>
+
         <!-- File Systems -->
 
         <hdfs.version>3.3.0</hdfs.version>
@@ -600,6 +604,24 @@
                 <artifactId>cactus-build-metadata</artifactId>
                 <version>${cactus.version}</version>
             </dependency>
+
+            <!-- Cluster -->
+
+            <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+            <version>${zookeeper.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-servlet</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>io.netty</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
             <!-- FTP -->
 

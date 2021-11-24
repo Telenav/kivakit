@@ -79,7 +79,7 @@ public interface SettingsStore extends Repeater, Named, Iterable<Object>
      */
     default boolean addAll(SettingsStore store)
     {
-        store.indexed().forEach(this::index);
+        store.indexedSettingsObjects().forEach(this::index);
         return true;
     }
 
@@ -104,7 +104,7 @@ public interface SettingsStore extends Repeater, Named, Iterable<Object>
      * @return All objects in this store's in-memory index. If the store supports loading and it has not yet been
      * loaded, {@link #load()} will be called first.
      */
-    ObjectSet<SettingsObject> indexed();
+    ObjectSet<SettingsObject> indexedSettingsObjects();
 
     /**
      * <b>Service Provider API</b>

@@ -27,6 +27,7 @@ import com.telenav.kivakit.kernel.language.mixin.Mixins;
 import com.telenav.kivakit.kernel.language.strings.formatting.IndentingStringBuilder;
 import com.telenav.kivakit.kernel.language.threading.context.CodeContext;
 import com.telenav.kivakit.kernel.language.threading.locks.ReadWriteLock;
+import com.telenav.kivakit.kernel.language.types.Classes;
 import com.telenav.kivakit.kernel.language.values.name.Name;
 import com.telenav.kivakit.kernel.language.vm.JavaVirtualMachine;
 import com.telenav.kivakit.kernel.logging.Logger;
@@ -254,7 +255,7 @@ public class Multicaster implements Broadcaster
             {
                 at = (Broadcaster) owner;
             }
-            chain.append(at.getClass().getSimpleName() + (at.listeners().isEmpty() ? " [no listener]" : ""));
+            chain.append(Classes.simpleName(at.getClass()) + (at.listeners().isEmpty() ? " [no listener]" : ""));
         }
         return chain;
     }

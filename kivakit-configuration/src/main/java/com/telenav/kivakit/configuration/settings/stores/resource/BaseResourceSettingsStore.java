@@ -9,6 +9,7 @@ import com.telenav.kivakit.configuration.settings.SettingsStore;
 import com.telenav.kivakit.kernel.language.reflection.populator.KivaKitPropertyConverter;
 import com.telenav.kivakit.kernel.language.reflection.populator.ObjectPopulator;
 import com.telenav.kivakit.kernel.language.types.Classes;
+import com.telenav.kivakit.kernel.messaging.Broadcaster;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.kivakit.resource.resources.other.PropertyMap;
@@ -199,6 +200,10 @@ public abstract class BaseResourceSettingsStore extends BaseSettingsStore implem
 
             // then create the settings object and populate it using the converter framework
             var settings = properties.asObject(this, type);
+            if (settings instanceof Broadcaster)
+            {
+                listenTo((Broadcaster) settings);
+            }
             if (settings != null)
             {
                 trace("Loaded settings: $", settings);

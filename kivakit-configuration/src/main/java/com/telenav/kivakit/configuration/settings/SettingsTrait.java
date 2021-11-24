@@ -252,7 +252,7 @@ public interface SettingsTrait extends Repeater
      */
     default ObjectSet<SettingsObject> settingsIn(SettingsStore store)
     {
-        return store.indexed();
+        return store.indexedSettingsObjects();
     }
 
     default Settings settingsRegistry()
