@@ -50,10 +50,10 @@ public interface SettingsStore extends Repeater, Named, Iterable<Object>
     enum AccessMode
     {
         /** Can add objects to in-memory index */
-        ADD,
+        INDEX,
 
         /** Can remove objects from the in-memory index */
-        REMOVE,
+        DELETE,
 
         /** Can clear loaded and added objects from in-memory index */
         UNLOAD,
@@ -75,21 +75,28 @@ public interface SettingsStore extends Repeater, Named, Iterable<Object>
     /**
      * <b>Service Provider API</b>
      * <p>
-     * Add the given object to the in-memory index of this settings store. This will <i>not</i>> add the object to the
-     * underlying persistent store. To do that, call {@link #save(SettingsObject)}.
+     * Adds all {@link SettingsObject}s to this store's in-memory index via {@link #index(SettingsObject)}.
      */
-    boolean add(SettingsObject object);
+    default boolean addAll(SettingsStore store)
+    {
+        store.indexed().forEach(this::index);
+        return true;
+    }
+
+    /**
+     * <b>Service Provider API</b>
+     *
+     * @return True if the given setting object was removed from the in-memory index of this store
+     */
+    boolean delete(SettingsObject object);
 
     /**
      * <b>Service Provider API</b>
      * <p>
-     * Adds all {@link SettingsObject}s to this store's in-memory index via {@link #add(SettingsObject)}.
+     * Add the given object to the in-memory index of this settings store. This will <i>not</i>> add the object to the
+     * underlying persistent store. To do that, call {@link #save(SettingsObject)}.
      */
-    default boolean addAll(SettingsStore store)
-    {
-        store.all().forEach(this::add);
-        return true;
-    }
+    boolean index(SettingsObject object);
 
     /**
      * <b>Service Provider API</b>
@@ -97,7 +104,7 @@ public interface SettingsStore extends Repeater, Named, Iterable<Object>
      * @return All objects in this store's in-memory index. If the store supports loading and it has not yet been
      * loaded, {@link #load()} will be called first.
      */
-    ObjectSet<SettingsObject> all();
+    ObjectSet<SettingsObject> indexed();
 
     /**
      * <b>Service Provider API</b>
@@ -105,13 +112,6 @@ public interface SettingsStore extends Repeater, Named, Iterable<Object>
      * @return The set of {@link SettingsObject} instances in this store
      */
     Set<SettingsObject> load();
-
-    /**
-     * <b>Service Provider API</b>
-     *
-     * @return True if the given setting object was removed from the in-memory index of this store
-     */
-    boolean remove(SettingsObject object);
 
     /**
      * <b>Service Provider API</b>

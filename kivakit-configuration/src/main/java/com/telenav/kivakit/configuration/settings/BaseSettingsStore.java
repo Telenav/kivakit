@@ -17,9 +17,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.ADD;
+import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.DELETE;
+import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.INDEX;
 import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.LOAD;
-import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.REMOVE;
 import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.SAVE;
 import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.UNLOAD;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
@@ -51,8 +51,8 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  * <p>
  * {@link SettingsStore} providers inherit several useful methods and implementations from this base class:
  * <ul>
- *     <li>{@link #add(SettingsObject)} - Adds the given object to the store's in-memory index (but not to any persistent storage)</li>
- *     <li>{@link #all()} - The set of objects in this store. If the store is loadable, {@link #load()} is called before returning the set</li>
+ *     <li>{@link #index(SettingsObject)} - Adds the given object to the store's in-memory index (but not to any persistent storage)</li>
+ *     <li>{@link #indexed()} - The set of objects in this store. If the store is loadable, {@link #load()} is called before returning the set</li>
  *     <li>{@link #unload()} - Clears this store's in-memory index</li>
  *     <li>{@link #iterator()} - Iterates through each settings {@link Object} in this store</li>
  *     <li>{@link #load()} - Lazy-loads objects from persistent storage by calling {@link #onLoad()} and then adds them to the in-memory index</li>
@@ -88,15 +88,31 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
     private boolean loaded;
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean delete(SettingsObject object)
+    {
+        ensure(supports(DELETE));
+
+        lock.write(() ->
+        {
+            objects.remove(object.identifier());
+            onDelete(object);
+        });
+        return true;
+    }
+
+    /**
      * Adds the given settings object to the in-memory index for this store. The object (from {@link
      * SettingsObject#object()}) is indexed under its class and all implemented interfaces. It is also indexed under all
      * superclasses and superinterfaces.
      */
     @Override
     @UmlExcludeMember
-    public boolean add(SettingsObject settings)
+    public boolean index(SettingsObject settings)
     {
-        ensure(supports(ADD));
+        ensure(supports(INDEX));
         ensureNotNull(settings);
 
         // Obtain a write lock,
@@ -123,10 +139,10 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
     }
 
     /**
-     * Gets a <b>copy</b> of the {@link SettingsObject}s in this store, loading them if need be
+     * Gets a <b>copy</b> of the {@link SettingsObject}s indexed in this store, loading them if need be
      */
     @Override
-    public ObjectSet<SettingsObject> all()
+    public ObjectSet<SettingsObject> indexed()
     {
         maybeLoad();
         return lock.write(() -> ObjectSet.objectSet(objects.values()));
@@ -137,7 +153,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
     public Iterator<Object> iterator()
     {
         maybeLoad();
-        return all()
+        return indexed()
                 .stream()
                 .map(SettingsObject::object)
                 .iterator();
@@ -157,7 +173,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
         {
             // load settings by calling the subclass.
             trace("Loading settings from $", name());
-            lock.write(() -> onLoad().forEach(this::add));
+            lock.write(() -> onLoad().forEach(this::index));
             loaded = true;
         }
 
@@ -195,29 +211,13 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
      * {@inheritDoc}
      */
     @Override
-    public boolean remove(SettingsObject object)
-    {
-        ensure(supports(REMOVE));
-
-        lock.write(() ->
-        {
-            objects.remove(object.identifier());
-            onRemove(object);
-        });
-        return true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public boolean save(SettingsObject object)
     {
         ensure(supports(SAVE));
 
         return lock.write(() ->
         {
-            add(object);
+            index(object);
             return onSave(object);
         });
     }
@@ -225,7 +225,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
     @Override
     public String toString()
     {
-        return new StringList(all()).titledBox(name());
+        return new StringList(indexed()).titledBox(name());
     }
 
     /**
@@ -239,6 +239,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
         lock.write(() ->
         {
             objects.clear();
+            onUnload();
             loaded = false;
         });
 
@@ -246,19 +247,26 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
     }
 
     /**
+     * @return True if the given object was removed from persistent storage
+     */
+    protected abstract boolean onDelete(SettingsObject object);
+
+    /**
      * @return All settings objects in this store
      */
     protected abstract Set<SettingsObject> onLoad();
 
     /**
-     * @return True if the given object was removed from persistent storage
-     */
-    protected abstract boolean onRemove(SettingsObject object);
-
-    /**
      * @return True if the given object was saved to persistent storage
      */
     protected abstract boolean onSave(SettingsObject object);
+
+    /**
+     * Called when this store is unloaded
+     */
+    protected void onUnload()
+    {
+    }
 
     private void internalPut(SettingsObject settings)
     {
