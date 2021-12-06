@@ -1,12 +1,12 @@
 #!/bin/bash
 
-cd "${KIVAKIT_EXTENSIONS_HOME}/kivakit-merged/"
+cd "${KIVAKIT_EXTENSIONS_HOME}/kivakit-merged/" || exit
 
 if [ ! -e "${HOME}/.m2/repository/com/telenav/kivakit/kivakit-merged-grpc/${KIVAKIT_VERSION}/kivakit-merged-grpc-${KIVAKIT-VERSION}.jar" ]; then
 
     echo "Installing GRPC merged JAR"
 
-    cd "${KIVAKIT_EXTENSIONS_HOME}/kivakit-merged/kivakit-merged-grpc"
+    cd "${KIVAKIT_EXTENSIONS_HOME}/kivakit-merged/grpc" || exit
     mvn --batch-mode clean install
 
 fi
@@ -15,7 +15,7 @@ if [ ! -e "${HOME}/.m2/repository/com/telenav/kivakit/kivakit-merged-protostuff/
 
     echo "Installing Protostuff merged JAR"
 
-    cd "${KIVAKIT_EXTENSIONS_HOME}/kivakit-merged/kivakit-merged-protostuff"
+    cd "${KIVAKIT_EXTENSIONS_HOME}/kivakit-merged/protostuff" || exit
     mvn --batch-mode clean install
 
 fi
@@ -24,7 +24,7 @@ if [ ! -e "${HOME}/.m2/repository/com/telenav/kivakit/kivakit-merged-prometheus/
 
     echo "Installing Prometheus merged JAR"
 
-    cd "${KIVAKIT_EXTENSIONS_HOME}/kivakit-merged/kivakit-merged-prometheus"
+    cd "${KIVAKIT_EXTENSIONS_HOME}/kivakit-merged/prometheus" || exit
     mvn --batch-mode clean install
 
 fi
@@ -33,7 +33,7 @@ if [ ! -e "${HOME}/.m2/repository/com/telenav/kivakit/kivakit-merged-zookeeper/$
 
     echo "Installing Zookeeper merged JAR"
 
-    cd "${KIVAKIT_EXTENSIONS_HOME}/kivakit-merged/kivakit-merged-zookeeper"
+    cd "${KIVAKIT_EXTENSIONS_HOME}/kivakit-merged/zookeeper" || exit
     mvn --batch-mode clean install
 
 fi
