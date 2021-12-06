@@ -615,13 +615,13 @@ public class File extends BaseWritableResource implements FileSystemObject
     @Override
     public InputStream onOpenForReading()
     {
-        return service.openForReading();
+        return service.onOpenForReading();
     }
 
     @Override
     public OutputStream onOpenForWriting()
     {
-        return service.openForWriting();
+        return service.onOpenForWriting();
     }
 
     /**
