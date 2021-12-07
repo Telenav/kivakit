@@ -298,16 +298,22 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
     }
 
     /**
+     * Called when a settings object is deleted
+     *
      * @return True if the given object was removed from persistent storage
      */
     protected abstract boolean onDelete(SettingsObject object);
 
     /**
+     * Called to load settings objects for this store, if this store is loadable
+     *
      * @return All settings objects in this store
      */
     protected abstract Set<SettingsObject> onLoad();
 
     /**
+     * Called to save a settings object, if this store supports saving
+     *
      * @return True if the given object was saved to persistent storage
      */
     protected abstract boolean onSave(SettingsObject object);
