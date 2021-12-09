@@ -33,7 +33,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramLanguageThread.class)
 public class ReentrancyTracker
 {
-    private static final ThreadLocal<Integer> level = ThreadLocal.withInitial(() -> 0);
+    private final ThreadLocal<Integer> level = ThreadLocal.withInitial(() -> 0);
 
     /**
      * Enters a block of potentially reentrant code
