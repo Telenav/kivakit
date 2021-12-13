@@ -21,241 +21,109 @@ package com.telenav.kivakit.configuration.settings;
 import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
 import com.telenav.kivakit.configuration.lookup.Registry;
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfiguration;
-import com.telenav.kivakit.configuration.settings.deployment.Deployment;
-import com.telenav.kivakit.configuration.settings.deployment.DeploymentSet;
+import com.telenav.kivakit.configuration.settings.stores.memory.MemorySettingsStore;
+import com.telenav.kivakit.configuration.settings.stores.resource.FolderSettingsStore;
+import com.telenav.kivakit.configuration.settings.stores.resource.PackageSettingsStore;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.kernel.interfaces.naming.Named;
-import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.collections.set.Sets;
 import com.telenav.kivakit.kernel.language.objects.Lazy;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
-import com.telenav.kivakit.kernel.language.reflection.populator.KivaKitPropertyConverter;
-import com.telenav.kivakit.kernel.language.reflection.populator.ObjectPopulator;
-import com.telenav.kivakit.kernel.language.threading.locks.ReadWriteLock;
 import com.telenav.kivakit.kernel.language.vm.OperatingSystem;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.kernel.messaging.Debug;
-import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.resources.other.PropertyMap;
-import com.telenav.kivakit.resource.resources.packaged.Package;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
-import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.configuration.settings.SettingsStore.AccessMode.LOAD;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
 
 /**
  * <p>
- * A registry of (untyped) user-defined settings {@link Object}s.
+ * A lookup registry of user-defined settings {@link Object}s.
  * </p>
  *
+ * <p><b>Settings</b></p>
+ *
  * <p>
- * This class is the base class for {@link SettingsFolder} and {@link SettingsPackage}, which load settings information
- * from <i>.properties</i> files in folders and packages, respectively. Settings objects are loaded when they are
- * requested, and each <i>.properties</i> resource describes <i>just one settings object</i>. This means that a settings
- * folder or package will often have more than one <i>.properties</i> resource in it, such as:
+ * The global {@link Settings} registry is returned by {@link #global()}, and it is the default registry returned by
+ * {@link #of(Object)}. The global settings registry is normally the central point of settings registration and lookup
+ * for an application. It allows settings objects to be easily queried from client code anywhere. Convenient access to
+ * the global settings registry is provided by {@link SettingsTrait}, and by the <i>Component</i> class in
+ * <i>kivakit-component</i>, which implements {@link SettingsTrait}. A component can have its own settings registry
+ * (not a common use case) by overriding the {@link SettingsTrait#settingsRegistry()} method (which returns the global
+ * settings registry by default).
+ * </p>
+ *
+ * <p><b>How Settings are Registered</b></p>
+ *
+ * <p>
+ * A component can easily register settings objects with the {@link SettingsTrait} <i>registerSettings*()</i> methods.
+ * In particular, they can be registered from a {@link SettingsStore} with the method {@link
+ * #registerSettingsIn(SettingsStore)}. A typical way for a component to register the settings objects in a {@link
+ * SettingsStore} is something like:
+ * </p>
+ * <pre>
+ * registerSettingsIn(PackageSettingsStore.of(package));</pre>
+ *
+ * <p>
+ * Settings that are loaded from stores or explicitly added with registration methods are indexed in the store under
+ * multiple keys:
+ * <ol>
+ *     <li>The settings class</li>
+ *     <li>The settings class interfaces</li>
+ *     <li>All superclasses</li>
+ *     <li>All superinterfaces</li>
+ * </ol>
+ *
+ * <p>
+ * This makes it possible to look up an interface implementation using the implemented interface. For example:
  * </p>
  *
  * <pre>
- * settings
- *  |── DatabaseSettings.properties
- *  ├── WebSettings.properties
- *  └── HdfsSettings.properties
- * </pre>
+ * var driver = requireSettings(DatabaseDriverSettings.class);</pre>
  *
  * <p>
- * This class is also the base class for {@link Deployment}, which holds settings objects relevant to a particular
- * application or server deployment. Deployments are the most common use case for settings registries and typically they
- * should be all that is required by an application. See {@link Deployment} for detailed usage examples.
+ * might return an instance of <i>QuantumDatabaseDriverSettings.</i> This is the same pattern used in the global
+ * object {@link Registry}, to which settings objects are also added.
  * </p>
  *
- * <p><b>Global Settings</b></p>
+ * <p><b>The Easiest Way to Register Settings</b></p>
  *
  * <p>
- * The global {@link Settings} registry is the default registry returned by {@link #of(Object)}, and it is normally the
- * central point of registration for an application. The global settings registry allows settings objects to be easily
- * queried from client code anywhere.
- * <p>
- *
- * <p><b>Component Settings</b></p>
- *
- * <p>
- * A component can also have its own settings registry. This can be retrieved with {@link Settings#of(Object)}, which
- * returns the global registry by default. The <i>Application</i> object uses {@link Settings#of(Object)} by default to
- * access application's settings registry.
+ * Note that the easiest way to register settings is to use the Application class' built-in <i>-deployment</i> switch.
+ * This switch is present by default (although it can be turned off by overriding Application.ignoreDeployments()) and
+ * will automatically load and register settings using the names of the sub-packages present in the
+ * <i>deployments</i> package next to your application class.
  * </p>
  *
- * <p><b>SettingsTrait</b></p>
+ * <p><b>How Settings are Looked Up</b></p>
  *
  * <p>
- * The {@link SettingsTrait} interface provides a set of default convenience methods that can be added to any class. The
- * Component interface in kivakit-component extends {@link SettingsTrait} to provide easy access to settings methods to
- * all components.
- * </p>
- *
- * <p><b>How Settings Are Located</b></p>
- *
- * <p>
- * The settings*() methods can be used to locate settings objects. All settings objects are registered in the global
- * lookup {@link Registry}, where they can be found with Registry.require*() methods. Before checking the settings
- * registry, the settings*() methods consult the global lookup registry first. This allows settings to be overridden
- * with a {@link Deployment}s or using a command line variable, as described below. If the required settings object is
- * not already registered, all settings objects are loaded from the specified package to provide a default object. Then,
- * the lookup is retried and the result is returned.
- * </p>
- *
- * <p><b>Overriding Settings from the Command Line</b></p>
- *
- * <p>
- * Settings can be overridden from the command line by specifying a comma-separated folder list using
- * KIVAKIT_SETTINGS_FOLDERS environment variable. All settings from each folder in the list will be loaded and will
- * override the default settings that might otherwise be used.
- * </p>
- *
- * <pre>
- * java -DKIVAKIT_SETTINGS_FOLDERS=my-settings-folder [...]
- * </pre>
- *
- * <p><b>Locating Configurations with the Global Registry</b></p>
- *
- * <p>
- * For convenience, each settings object is added to the global lookup. This allows clients to easily look up settings
- * objects and not depend on where they came from. For example:
- * </p>
- * <pre>
- * var serverSettings = Registry.lookup(ServerSettings.class)
- * </pre>
- *
- * <p><b>Properties File Format</b></p>
- *
- * <p>
- * Properties files are of this general form:
- * </p>
- *
- * <p><i>Server1.properties</i></p>
- *
- * <pre>
- * class=com.telenav.navigation.my.application.Server$Configuration
- * instance=SERVER1
- * port=aws.amazon.com:7001
- * </pre>
- *
- * <p>
- * Here, the "class" key designates a class to instantiate (note that the nested class has to be indicated with '$'
- * rather than '.' here). The object that is created from this class is populated with the property values by using
- * {@link ObjectPopulator}, which automatically converts each property value into an object using the converter
- * framework. To do this, properties in the settings object are tagged with {@link KivaKitPropertyConverter} indicating
- * which converter the {@link ObjectPopulator} should use to convert a string value in the properties file to the
- * corresponding object. For example, in this case the property converter for the settings class above is Port.Converter
- * and the port property is converted to a Port object:
- * </p>
- *
- * <p><i>Server.Configuration Class</i></p>
- *
- * <pre>
- * public class Configuration
- * {
- *     private Port port;
- *
- *    {@literal @}KivaKitPropertyConverter(Port.Converter.class)
- *     public void port( Port port)
- *     {
- *         this.port = port;
- *     }
- *
- *    [...]
- * }
- * </pre>
- *
- * <p>
- * The key "instance" designates which instance of settings object the *.properties* file refers to (in the event that
- * more than one object of the same type is registered with the same registry).
- * </p>
- *
- * <p><b>Settings Registry Instances</b></p>
- *
- * <p>
- * The methods above under <i>Global Settings</i> will typically be enough for most applications. However, for more
- * complex requirements, it is possible to work with individual settings registry instances. Settings objects can be
- * registered with a {@link Settings} registry instance using these methods:
- * </p>
- *
- * <ul>
- *     <li>{@link #registerSettings(Object)} - Registers the given user-defined settings object</li>
- *     <li>{@link #registerSettings(Object, Enum)} - Registers the given instance of the given user-defined settings object</li>
- *     <li>{@link #registerSettings(Object, InstanceIdentifier)} - Registers the given instance of the given user-defined settings object</li>
- *     <li>{@link #registerAllSettingsIn(Settings)} - Adds the objects in the given settings registry to this registry</li>
- *     <li>{@link #registerAllSettingsIn(Listener, Folder)} - Registers all the settings objects defined by .properties files in the given folder</li>
- *     <li>{@link #registerAllSettingsIn(Listener, Package)} - Registers all the settings objects defined by .properties files in the given package</li>
- *     <li>{@link #registerAllSettingsIn(Listener, Class, String)} - Adds the package of .properties files at the given path relative to the given class</li>
- *     <li>{@link #registerAllSettingsIn(Listener, Folder)} - Adds the folder of .properties files</li>
- *     <li>{@link #install()} - Installs the contents of this {@link Settings} into the global settings registry</li>
- * </ul>
- * <p>
- * Settings from a settings registry instance can be added to the global settings registry with {@link Settings#install()}.
- * The install method is used in {@link Deployment} to install the settings objects for a server deployment in the
- * global settings registry. See {@link Deployment} for a detailed example of how this works.
- * </p>
- *
- * <p>
- * Configuration objects are loaded transparently by using the {@link Deployment}, {@link SettingsFolder}
- * and {@link SettingsPackage} subclasses of this class. For example:
- * </p>
- *
- * <pre>
- * ConfigurationFolder.of(new Folder("development")).forEach(System.out::println);
- * </pre>
- *
- * <p>
- * Settings objects can then be queried by class, and with an optional {@link Enum} or {@link InstanceIdentifier}
- * specifier in cases where more than one settings object of a given class is in use. The <i>settings()</i> overloaded
- * methods return a settings object or null if no settings object can be found. The <i>requireSettings()</i> methods throw
- * an exception if no settings object can be found for the given arguments:
- * </p>
- *
- * <ul>
- *     <li>{@link #hasSettings(Class)} - Determines if a settings object of the given type exists</li>
- *     <li>{@link #hasSettings(Class, Enum)} - Determines if the specified instance of given settings object type exists</li>
- *     <li>{@link #hasSettings(Class, String)} - Determines if the specified instance of given settings object type exists</li>
- *     <li>{@link #hasSettings(Class, InstanceIdentifier)} - Determines if the specified instance of given settings object type exists</li>
- *     <li>{@link #settingsRegistry()} - All settings objects</li>
- *     <li>{@link #lookupSettings(Class)} - Gets the settings object of the given type</li>
- *     <li>{@link #lookupSettings(Class, InstanceIdentifier)} - Gets the specified instance of the settings object with the given type</li>
- *     <li>{@link #lookupSettings(Class, Enum)} - Gets the specified instance of the settings object with the given type</li>
- * </ul>
- *
- * <p><b>Loading Configurations as DeploymentSets</b></p>
- *
- * <p>
- * In most cases, it will not be necessary to manually add settings objects to a settings registry. They can be
- * automatically loaded and added by using the {@link Deployment} and {@link DeploymentSet} classes and occasionally
- * with {@link SettingsPackage} and {@link SettingsFolder}. To understand how to load and use collections of settings
- * objects called deployments in an Application, see {@link Deployment}.
+ * The <i>lookupSettings*()</i> and <i>requireSettings*()</i> methods provided by {@link SettingsTrait} can be used to locate settings
+ * objects from any Component (see the <i>kivakit-component</i> project). Settings are located according to this
+ * series of steps:
+ * <ol>
+ *     <li>Look for the object in the resources in the (comma separated) sequence of folders specified by KIVAKIT_SETTINGS_FOLDERS</i>
+ *     <li>Look for the object in the global lookup {@link Registry}</li>
+ *     <li>Look for the object in the (usually global) {@link Settings}</li>
+ * </ol>
+ * This sequence allows the command line, and explicit registration of an object, to override any settings loaded from
+ * deployments or other settings stores. Note that if you use <i>require(Class)</i> instead of <i>requireSettings(Class)</i>,
+ * the specified class will be looked up and found in the global {@link Registry}, and the steps above will not be followed.
+ * This means that it will not be possible to override the location of settings from the command line. The same applies
+ * to the <i>lookup(Class)</i> and <i>lookupSettings(Class)</i> methods.
  * </p>
  *
  * @author jonathanl (shibo)
  * @see SettingsTrait
+ * @see Registry
  * @see Deployment
- * @see SettingsFolder
- * @see SettingsPackage
+ * @see MemorySettingsStore
+ * @see FolderSettingsStore
+ * @see PackageSettingsStore
  */
-@SuppressWarnings("ClassEscapesDefinedScope")
 @UmlClassDiagram(diagram = DiagramConfiguration.class)
-public class Settings extends BaseRepeater implements SettingsTrait, Named, Iterable<Object>
+public class Settings extends MemorySettingsStore implements SettingsTrait
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
-
-    private static final Debug DEBUG = new Debug(LOGGER);
 
     /** The global settings */
     private static final Lazy<Settings> global = Lazy.of(() ->
@@ -264,65 +132,24 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
                 @Override
                 public String name()
                 {
-                    return "[Global]";
+                    return "[Global Settings]";
                 }
             }));
 
     /**
-     * @return The settings registry for the given object (the global settings registry by default)
+     * @return The global settings object
      */
-    public static synchronized Settings of(Object object)
+    public static Settings global()
     {
         return global.get();
     }
 
-    /** Map to get settings entries by identifier */
-    private final Map<Entry.Identifier, Entry> entries = new HashMap<>();
-
-    /** True if the settings in this registry are loaded */
-    private boolean loaded;
-
-    /** Lock for accessing settings entries */
-    private final ReadWriteLock lock = new ReadWriteLock();
-
-    /** True if this registry has been installed with install() */
-    private boolean installed;
-
     /**
-     * Clears this set of settings objects
+     * @return The settings registry for the given object (the global settings registry by default)
      */
-    public void clear()
+    public static synchronized Settings of(Object ignored)
     {
-        lock.write(entries::clear);
-    }
-
-    /**
-     * Installs the settings objects in this registry into the global {@link Settings} registry
-     */
-    public synchronized Settings install()
-    {
-        if (!installed)
-        {
-            installed = true;
-            global.get().registerAllSettingsIn(this);
-        }
-        return this;
-    }
-
-    /**
-     * @return An iterator over the underlying settings {@link Object}s in this set (i.e., not the {@link Entry}
-     * objects)
-     */
-    @NotNull
-    @Override
-    @UmlExcludeMember
-    public Iterator<Object> iterator()
-    {
-        return asSet()
-                .stream()
-                .map(Entry::object)
-                .collect(Collectors.toSet())
-                .iterator();
+        return global();
     }
 
     /**
@@ -330,26 +157,31 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
      * settings if it is not found there.
      */
     @Override
-    public <T> T lookupSettings(Class<T> settingsClass,
-                                PackagePath defaultSettingsPackage,
-                                InstanceIdentifier identifier)
+    public <T> T lookupSettings(Class<T> type,
+                                InstanceIdentifier instance,
+                                PackagePath defaultSettingsPackage)
     {
-        // Load any settings overrides from KIVAKIT_SETTINGS_FOLDERS
+        // First load any settings overrides from KIVAKIT_SETTINGS_FOLDERS,
         loadSystemPropertyOverrides();
 
-        // then look in the global lookup for the settings
-        var settings = registry().lookup(settingsClass, identifier);
+        // then look in the global object registry for the settings object,
+        var settings = Registry.of(this).lookup(type, instance);
 
-        // If settings still have not been defined
+        // and if settings still have not been explicitly defined,
         if (settings == null)
         {
-            // then load the default settings
-            DEBUG.trace("Installing default settings from $", defaultSettingsPackage);
-            var defaultSettings = LOGGER.listenTo(SettingsPackage.of(defaultSettingsPackage));
-            defaultSettings.install();
+            // then search settings objects in this store,
+            settings = lookup(new SettingsObject.Identifier(type, instance));
 
-            // and try again,
-            settings = registry().lookup(settingsClass);
+            // and if the settings are still not found and a default settings package was specified,
+            if (settings == null && defaultSettingsPackage != null)
+            {
+                // then load any default settings from the specified package
+                trace("Loading default settings from $", defaultSettingsPackage);
+                var store = PackageSettingsStore.of(this, defaultSettingsPackage);
+                registerSettingsIn(store);
+                settings = store.lookup(new SettingsObject.Identifier(type, instance));
+            }
         }
 
         return settings;
@@ -361,13 +193,25 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
     @Override
     public <T> T lookupSettings(Class<T> type, InstanceIdentifier instance)
     {
-        return settings(new Entry.Identifier(type, instance));
+        return lookupSettings(type, instance, null);
     }
 
     @Override
-    public Settings registerAllSettingsIn(Settings settings)
+    public Settings registerSettingsIn(SettingsStore settings)
     {
-        internalAddAll(settings);
+        // If we can load the settings store,
+        if (settings.supports(LOAD))
+        {
+            // load it,
+            settings.load();
+
+            // and propagate any future changes to this store.
+            settings.propagateChangesTo(this);
+        }
+
+        // Index the settings objects in the given store.
+        indexAll(settings);
+        
         return this;
     }
 
@@ -375,159 +219,18 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
      * @return Adds the given instance of a settings object to this set
      */
     @Override
-    public synchronized Settings registerSettings(Object settings, InstanceIdentifier instance)
+    public synchronized Settings registerSettingsObject(Object settings, InstanceIdentifier instance)
     {
-        // If a client tries to register a deployment this way,
-        if (settings instanceof Deployment)
+        // If a client tries to register a deployment or other settings store this way,
+        if (settings instanceof SettingsStore)
         {
-            // then tell them to call registerAll(),
-            return fail("To register a Deployment, call registerAll()");
-        }
-        // and if they try to register a Settings object this way,
-        else if (settings instanceof Settings)
-        {
-            // tell them to call registerAll().
-            return fail("To add a Settings object, call addAll()");
+            // then tell them to call registerSettingsIn(),
+            return fail("To register a Deployment or other SettingsStore, call registerSettingsIn(SettingsStore)");
         }
 
-        internalAdd(new Entry(new Entry.Identifier(settings.getClass(), instance), settings));
+        index(new SettingsObject(settings, instance));
 
         return this;
-    }
-
-    @Override
-    public String toString()
-    {
-        var strings = new StringList();
-        for (var at : asSet())
-        {
-            strings.add(at.toString());
-        }
-        return strings.join("\n");
-    }
-
-    /**
-     * <b>Not public API</b>
-     *
-     * <p>
-     * Adds the given settings entry to this registry
-     * </p>
-     */
-    @UmlExcludeMember
-    protected void internalAdd(Entry entry)
-    {
-        assert entry != null;
-
-        // Obtain a write lock,
-        lock.write(() ->
-        {
-            // add the entry to the global lookup registry
-            registry().register(entry.object(), entry.identifier().instance());
-
-            // then walk up the class hierarchy of the configuration object,
-            var instance = entry.identifier().instance();
-            for (var at = (Class<?>) entry.object().getClass(); !at.equals(Object.class); at = at.getSuperclass())
-            {
-                // adding the configuration object for each superclass.
-                entries.put(new Entry.Identifier(at, instance), entry);
-            }
-        });
-    }
-
-    /**
-     * <b>Not public API</b>
-     *
-     * <p>
-     * Adds each settings object in the given registry to this registry
-     * </p>
-     */
-    @UmlExcludeMember
-    protected void internalAddAll(Settings that)
-    {
-        lock.write(() -> that.asSet().forEach(this::internalAdd));
-    }
-
-    /**
-     * <b>Not public API</b>
-     * <p>
-     * Loads a configuration from the given properties resource. Note that when this method is called by a subclass
-     * implementing {@link #onLoad()}, it will already hold a write lock.
-     *
-     * @return A configuration loaded from the given properties resource (could be a file in a folder or a resource in a
-     * package)
-     */
-    @UmlExcludeMember
-    protected Entry internalLoadConfiguration(Resource resource)
-    {
-        // Load the given properties
-        trace("Loading configuration from $", resource);
-        var properties = PropertyMap.load(this, resource);
-        try
-        {
-            // then get the configuration class to instantiate,
-            var configurationClassName = properties.get("class");
-            ensureNotNull(configurationClassName, "Missing class property in $", resource);
-            var configurationClass = Class.forName(configurationClassName);
-            ensureNotNull(configurationClass, "Unable to load class $ specified in $", configurationClass, resource);
-            trace("Configuration class: $", configurationClass.getSimpleName());
-
-            // and the name of which identifier of the class to configure (if any)
-            var configurationInstance = properties.get("instance");
-            var identifier = configurationInstance != null ? InstanceIdentifier.instanceIdentifier(configurationInstance) : InstanceIdentifier.SINGLETON;
-            trace("Configuration identifier: $", identifier);
-
-            // then create the configuration object and populate it using the converter framework
-            var configuration = properties.asObject(this, configurationClass);
-            if (configuration != null)
-            {
-                trace("Loaded configuration: $", configuration);
-
-                // and return the configuration set entry for the fully loaded configuration object
-                return new Entry(new Entry.Identifier(configurationClass, identifier), configuration);
-            }
-            else
-            {
-                return fail("Unable to load configuration object from $", resource);
-            }
-        }
-        catch (Exception e)
-        {
-            return fail(e, "Unable to load properties from $", resource);
-        }
-    }
-
-    /**
-     * @return The set of loaded settings entries
-     */
-    @UmlExcludeMember
-    protected Set<Entry> onLoad()
-    {
-        return Set.of();
-    }
-
-    /** Gets a <b>copy</b> of the {@link Entry} objects in this set, loading them if need be */
-    private Set<Entry> asSet()
-    {
-        return lock.write(() ->
-        {
-            load();
-            return Sets.hashset(entries.values());
-        });
-    }
-
-    /** Loads configurations if not already loaded */
-    private void load()
-    {
-        if (!loaded)
-        {
-            trace("Loading configurations from $", name());
-            lock.write(() ->
-            {
-                var entries = onLoad();
-                entries.forEach(this::internalAdd);
-                loaded = true;
-            });
-        }
     }
 
     /**
@@ -542,10 +245,10 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
             for (var path : settingsFolders.split(",\\s*"))
             {
                 // and install
-                var folder = Folder.parse(LOGGER, path);
+                var folder = Folder.parse(this, path);
                 if (folder != null)
                 {
-                    LOGGER.listenTo(new SettingsFolder(folder)).install();
+                    indexAll(FolderSettingsStore.of(this, folder));
                 }
                 else
                 {
@@ -553,31 +256,5 @@ public class Settings extends BaseRepeater implements SettingsTrait, Named, Iter
                 }
             }
         }
-    }
-
-    private Registry registry()
-    {
-        return Registry.of(this);
-    }
-
-    /**
-     * @return The configuration for the given identifier
-     */
-    @SuppressWarnings("unchecked")
-    private <T> T settings(Entry.Identifier identifier)
-    {
-        return lock.read(() ->
-        {
-            T settings = (T) registry().lookup(identifier.type(), identifier.instance());
-            if (settings == null)
-            {
-                var entry = entries.get(identifier);
-                if (entry != null)
-                {
-                    settings = entry.object();
-                }
-            }
-            return settings;
-        });
     }
 }

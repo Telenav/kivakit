@@ -9,11 +9,13 @@
          xsi:schemaLocation = "http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
+
+    <name>superpom</name>
     <groupId>com.telenav.kivakit</groupId>
     <artifactId>superpom</artifactId>
     <version>1.1.3-SNAPSHOT</version>
+
     <packaging>pom</packaging>
-    <name>superpom</name>
 
     <!-- Project -->
 
@@ -156,6 +158,10 @@
         <moditect-maven-plugin.version>1.0.0.RC1</moditect-maven-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <!-- Cluster -->
+
+        <zookeeper.version>3.5.6</zookeeper.version>
+
         <!-- File Systems -->
 
         <hdfs.version>3.3.0</hdfs.version>
@@ -173,6 +179,12 @@
 
         <kivakit.version>1.1.3-SNAPSHOT</kivakit.version>
 
+        <!-- Merged JARs -->
+        <kivakit.merged.grpc.version>${kivakit.version}</kivakit.merged.grpc.version>
+        <kivakit.merged.zookeeper.version>${kivakit.version}</kivakit.merged.zookeeper.version>
+        <kivakit.merged.prometheus.version>${kivakit.version}</kivakit.merged.prometheus.version>
+        <kivakit.merged.protostuff.version>${kivakit.version}</kivakit.merged.protostuff.version>
+
         <!-- Parsing -->
         <antlr.version>4.7.2</antlr.version>
 
@@ -181,9 +193,6 @@
         <protobuf.version>3.18.1</protobuf.version>
         <gson.version>2.8.0</gson.version>
         <jettison.version>1.1</jettison.version>
-        <kivakit.grpc.merged.version>${kivakit.version}</kivakit.grpc.merged.version>
-        <kivakit.prometheus.merged.version>${kivakit.version}</kivakit.prometheus.merged.version>
-        <kivakit.protostuff.merged.version>${kivakit.version}</kivakit.protostuff.merged.version>
         <protostuff.version>1.1.6</protostuff.version>
 
         <!-- Serialization -->
@@ -485,6 +494,7 @@
                     <version>${maven-compiler-plugin.version}</version>
                     <configuration>
                         <source>${java.version}</source>
+                        <target>${java.version}</target>
                         <release>${java.version}</release>
                         <compilerArgs>
                             <compilerArg>-Xlint:unchecked</compilerArg>
@@ -598,6 +608,29 @@
                 <groupId>com.telenav.cactus</groupId>
                 <artifactId>cactus-build-metadata</artifactId>
                 <version>${cactus.version}</version>
+            </dependency>
+
+            <!-- Cluster -->
+
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>${zookeeper.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-servlet</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>io.netty</groupId>
+                        <artifactId>*</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper-jute</artifactId>
+                <version>${zookeeper.version}</version>
             </dependency>
 
             <!-- FTP -->
@@ -853,6 +886,11 @@
             <dependency>
                 <groupId>com.telenav.kivakit</groupId>
                 <artifactId>kivakit-application</artifactId>
+                <version>${kivakit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.telenav.kivakit</groupId>
+                <artifactId>kivakit-settings-stores-zookeeper</artifactId>
                 <version>${kivakit.version}</version>
             </dependency>
             <dependency>
@@ -1196,6 +1234,29 @@
                 </exclusions>
             </dependency>
 
+            <!-- Merged JARs -->
+
+            <dependency>
+                <groupId>com.telenav.kivakit</groupId>
+                <artifactId>kivakit-merged-protostuff</artifactId>
+                <version>${kivakit.merged.protostuff.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.telenav.kivakit</groupId>
+                <artifactId>kivakit-merged-grpc</artifactId>
+                <version>${kivakit.merged.grpc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.telenav.kivakit</groupId>
+                <artifactId>kivakit-merged-prometheus</artifactId>
+                <version>1.1.3-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.telenav.kivakit</groupId>
+                <artifactId>kivakit-merged-zookeeper</artifactId>
+                <version>1.1.3-SNAPSHOT</version>
+            </dependency>
+
             <!-- Parsing -->
 
             <dependency>
@@ -1210,27 +1271,6 @@
                 <groupId>com.google.protobuf</groupId>
                 <artifactId>protobuf-java</artifactId>
                 <version>${protobuf.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.telenav.kivakit</groupId>
-                <artifactId>kivakit-protostuff-merged</artifactId>
-                <version>${kivakit.protostuff.merged.version}</version>
-            </dependency>
-
-            <!-- GRPC -->
-
-            <dependency>
-                <groupId>com.telenav.kivakit</groupId>
-                <artifactId>kivakit-grpc-merged</artifactId>
-                <version>${kivakit.grpc.merged.version}</version>
-            </dependency>
-
-            <!-- Prometheus -->
-
-            <dependency>
-                <groupId>com.telenav.kivakit</groupId>
-                <artifactId>kivakit-prometheus-merged</artifactId>
-                <version>${kivakit.prometheus.merged.version}</version>
             </dependency>
 
             <!-- S3 -->

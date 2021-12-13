@@ -30,6 +30,8 @@ import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
 import com.telenav.kivakit.kernel.language.time.Duration;
+import com.telenav.kivakit.kernel.logging.Logger;
+import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.network.core.project.lexakai.diagrams.DiagramPort;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -96,6 +98,8 @@ import static com.telenav.kivakit.network.core.Protocol.UNKNOWN;
 @LexakaiJavadoc(complete = true)
 public class Host implements Named, AsString, Comparable<Host>
 {
+    private static final Logger LOGGER = LoggerFactory.newLogger();
+
     private static final ExpiringReference<Map<String, InetAddress>> inetAddressForName =
             new ExpiringReference<>(Duration.minutes(5))
             {
@@ -201,7 +205,7 @@ public class Host implements Named, AsString, Comparable<Host>
     private transient InetAddress address;
 
     @JsonIgnore
-    private String serializedAddress;
+    private byte[] rawAddress;
 
     public Host(InetAddress address, String description)
     {
@@ -265,6 +269,11 @@ public class Host implements Named, AsString, Comparable<Host>
     public String description()
     {
         return description;
+    }
+
+    public String dnsName()
+    {
+        return address().getHostName();
     }
 
     @Override
@@ -414,21 +423,6 @@ public class Host implements Named, AsString, Comparable<Host>
         return new Port(this, protocol, number);
     }
 
-    public void resolveAddress()
-    {
-        // If the name is 'localhost' or 127.0.0.1
-        if (name.equals("localhost") || name.equals("127.0.0.1"))
-        {
-            // then the address is the loopback
-            address = Loopback.get().address();
-        }
-        else
-        {
-            // otherwise, let the subclass resolve the host address
-            address = onResolveAddress();
-        }
-    }
-
     public Port sftp()
     {
         return sftp(SFTP.defaultPort());
@@ -460,20 +454,40 @@ public class Host implements Named, AsString, Comparable<Host>
     @UmlExcludeMember
     protected InetAddress onResolveAddress()
     {
-        if (serializedAddress != null)
+        if (rawAddress != null)
         {
-            return resolve(serializedAddress);
+            try
+            {
+                return InetAddress.getByAddress(rawAddress);
+            }
+            catch (UnknownHostException e)
+            {
+                LOGGER.problem(e, "Can't resolve address: $", rawAddress);
+                return null;
+            }
+        }
+        else if (name != null)
+        {
+            try
+            {
+                return InetAddress.getByName(name);
+            }
+            catch (UnknownHostException e)
+            {
+                LOGGER.problem(e, "Can't resolve address: $", name);
+                return null;
+            }
         }
         else
         {
-            return resolve(name);
+            return fail();
         }
     }
 
     private void address(InetAddress address)
     {
         this.address = address;
-        serializedAddress = address.getHostAddress();
+        rawAddress = address.getAddress();
     }
 
     private InetAddress resolve(String name)
@@ -500,6 +514,31 @@ public class Host implements Named, AsString, Comparable<Host>
         catch (UnknownHostException e)
         {
             return null;
+        }
+    }
+
+    private void resolveAddress()
+    {
+        // If the name is 'localhost' or 127.0.0.1
+        if (name.equals("localhost"))
+        {
+            try
+            {
+                address = InetAddress.getLocalHost();
+            }
+            catch (UnknownHostException ignored)
+            {
+            }
+        }
+        else if (name.equals("127.0.0.1"))
+        {
+            // then the address is the loopback
+            address = Loopback.get().address();
+        }
+        else
+        {
+            // otherwise, let the subclass resolve the host address
+            address = onResolveAddress();
         }
     }
 }

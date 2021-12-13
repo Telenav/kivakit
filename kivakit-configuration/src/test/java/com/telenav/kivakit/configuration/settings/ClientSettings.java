@@ -23,11 +23,12 @@ import com.telenav.kivakit.kernel.language.reflection.populator.KivaKitPropertyC
 import com.telenav.kivakit.kernel.language.time.Duration;
 
 /**
- * Java Bean with string conversion methods for each property to allow storage of this settings object in a JSON file
+ * Configuration Java Bean with string conversion methods for each property to allow storage of this configuration in a
+ * property file.
  *
  * @author jonathanl (shibo)
  */
-public class ServerSettings
+public class ClientSettings
 {
     private int port;
 
@@ -58,6 +59,6 @@ public class ServerSettings
     @Override
     public String toString()
     {
-        return "[ServerSettings timeout = " + timeout + ", port = " + port + "]";
+        return "[ClientSettings timeout = " + timeout + ", port = " + port + "]";
     }
 }

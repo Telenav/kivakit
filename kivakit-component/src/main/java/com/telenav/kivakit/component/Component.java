@@ -2,9 +2,9 @@ package com.telenav.kivakit.component;
 
 import com.telenav.kivakit.configuration.lookup.Registry;
 import com.telenav.kivakit.configuration.lookup.RegistryTrait;
+import com.telenav.kivakit.configuration.settings.Deployment;
 import com.telenav.kivakit.configuration.settings.Settings;
 import com.telenav.kivakit.configuration.settings.SettingsTrait;
-import com.telenav.kivakit.configuration.settings.deployment.Deployment;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.language.paths.PackagePathTrait;
@@ -49,7 +49,7 @@ import com.telenav.kivakit.resource.resources.packaged.Package;
  *     <li>{@link #requireSettings(Class, Enum)} - Gets the settings object of the given instance or fails</li>
  *     <li>{@link #requireSettings(Class, String)} - Gets the settings object of the given instance or fails</li>
  *     <li>{@link #registerDeployment(Deployment)} - Adds the settings objects for the given deployment</li>
- *     <li>{@link #registerSettings(Object)}  - Adds the given settings object</li>
+ *     <li>{@link #registerSettingsObject(Object)}  - Adds the given settings object</li>
  *     <li>{@link #registerAllSettingsIn(Settings)} - Adds the settings objects in the given settings registry</li>
  *     <li>{@link #registerAllSettingsIn(Listener, Folder)} - Adds settings objects from the given folder</li>
  *     <li>{@link #registerAllSettingsIn(Listener, Package)} - Adds settings objects from the given package</li>

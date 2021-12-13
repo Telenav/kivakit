@@ -16,17 +16,18 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package kernel.time;
+package kernel.language.time;
 
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.kernel.language.values.level.Percent;
+import com.telenav.kivakit.kernel.messaging.repeaters.RepeaterMixin;
 import org.junit.Test;
 
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureEqual;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureFalse;
 
-public class DurationTest
+public class DurationTest implements RepeaterMixin
 {
     @Test
     public void testAdd()
@@ -51,6 +52,32 @@ public class DurationTest
         ensureEqual(1.0, Duration.minutes(60).asHours());
         ensureEqual(1.0, Duration.hours(24).asDays());
         ensureEqual(1.0, Duration.days(7).asWeeks());
+    }
+
+    @Test
+    public void testConvert()
+    {
+        var converter = new Duration.Converter(this);
+
+        ensureEqual(converter.convert("5 days"), Duration.days(5));
+        ensureEqual(converter.convert("1 day"), Duration.days(1));
+        ensureEqual(converter.convert("5d"), Duration.days(5));
+
+        ensureEqual(converter.convert("5 hours"), Duration.hours(5));
+        ensureEqual(converter.convert("1 hour"), Duration.hours(1));
+        ensureEqual(converter.convert("5h"), Duration.hours(5));
+
+        ensureEqual(converter.convert("5 minutes"), Duration.minutes(5));
+        ensureEqual(converter.convert("1 minute"), Duration.minutes(1));
+        ensureEqual(converter.convert("5m"), Duration.minutes(5));
+
+        ensureEqual(converter.convert("5 seconds"), Duration.seconds(5));
+        ensureEqual(converter.convert("1 second"), Duration.seconds(1));
+        ensureEqual(converter.convert("5s"), Duration.seconds(5));
+
+        ensureEqual(converter.convert("5 milliseconds"), Duration.milliseconds(5));
+        ensureEqual(converter.convert("1 millisecond"), Duration.milliseconds(1));
+        ensureEqual(converter.convert("5ms"), Duration.milliseconds(5));
     }
 
     @Test

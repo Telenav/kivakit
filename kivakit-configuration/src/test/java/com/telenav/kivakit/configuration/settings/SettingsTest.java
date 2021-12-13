@@ -19,16 +19,20 @@
 package com.telenav.kivakit.configuration.settings;
 
 import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
+import com.telenav.kivakit.configuration.lookup.Registry;
+import com.telenav.kivakit.configuration.settings.stores.resource.PackageSettingsStore;
+import com.telenav.kivakit.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.kernel.language.time.Duration;
+import com.telenav.kivakit.serialization.json.DefaultGsonFactory;
 import com.telenav.kivakit.test.UnitTest;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 
 public class SettingsTest extends UnitTest
 {
-    private static final InstanceIdentifier SERVER1 = InstanceIdentifier.instanceIdentifier("SERVER1");
+    private static final InstanceIdentifier SERVER1 = InstanceIdentifier.of("SERVER1");
 
-    private static final InstanceIdentifier SERVER2 = InstanceIdentifier.instanceIdentifier("SERVER2");
+    private static final InstanceIdentifier SERVER2 = InstanceIdentifier.of("SERVER2");
 
     @Test
     public void test()
@@ -43,10 +47,7 @@ public class SettingsTest extends UnitTest
             server.port(9000);
 
             // and adds it to global configuration set
-            Settings.of(this).registerSettings(server);
-
-            // Dump the set to the console
-            trace("test: " + settings);
+            Settings.of(this).registerSettingsObject(server);
         }
 
         // Get configuration
@@ -59,35 +60,56 @@ public class SettingsTest extends UnitTest
     }
 
     @Test
+    public void testJson()
+    {
+        var settings = globalSettings();
+
+        Registry.global().register(new DefaultGsonFactory(this));
+
+        // Configure
+        {
+            // Add all properties files in this package to the global set
+            settings.registerSettingsIn(PackageSettingsStore.of(this, PackagePath.packagePath(getClass())));
+        }
+
+        // Get configuration
+        {
+            // Client code can then retrieve both settings
+            var server1 = settings.requireSettings(ClientSettings.class, "banana");
+            ensureEqual(Duration.seconds(6), server1.timeout());
+            ensureEqual(9999, server1.port());
+        }
+    }
+
+    @Test
     public void testMultipleInstances()
     {
         var settings = globalSettings();
 
+        Registry.global().register(new DefaultGsonFactory(this));
+
         // Configure
         {
-            // Script or startup code creates configuration
+            // Script or startup code creates settings
             var server1 = new ServerSettings();
             server1.timeout(Duration.ONE_MINUTE);
             server1.port(8080);
 
-            // and adds it to the global configuration set with the given enum key
-            settings.registerSettings(server1, SERVER1);
+            // and adds it to the global settings set with the given enum key
+            settings.registerSettingsObject(server1, SERVER1);
 
-            // Script can register a second configuration of the same class
+            // Script can register a second settings of the same class
             var server2 = new ServerSettings();
             server2.timeout(Duration.ONE_MINUTE);
             server2.port(80);
 
             // under a different key
-            settings.registerSettings(server2, SERVER2);
-
-            // Dump the global configuration set to the console
-            trace("testMultipleInstances: " + settings);
+            settings.registerSettingsObject(server2, SERVER2);
         }
 
-        // Get configuration
+        // Get settings
         {
-            // Client code can then retrieve both configurations
+            // Client code can then retrieve both settings
             var server1 = Settings.of(this).requireSettings(ServerSettings.class, SERVER1);
             ensureEqual(Duration.ONE_MINUTE, server1.timeout());
             ensureEqual(8080, server1.port());
@@ -99,25 +121,24 @@ public class SettingsTest extends UnitTest
     }
 
     @Test
-    public void testPropertiesFile()
+    public void testProperties()
     {
         var settings = globalSettings();
+
+        Registry.global().register(new DefaultGsonFactory(this));
 
         // Configure
         {
             // Add all properties files in this package to the global set
-            settings.registerAllSettingsIn(this, getClass());
-
-            // Dump the set to the console
-            trace("testPropertiesFile: " + settings);
+            settings.registerSettingsIn(PackageSettingsStore.of(this, PackagePath.packagePath(getClass())));
         }
 
-        // Get configuration
+        // Get settings
         {
-            // Client code, possibly in a library class, later retrieves the configuration
-            var configuration = Settings.of(this).requireSettings(ServerSettings.class);
-            ensureEqual(Duration.ONE_MINUTE, configuration.timeout());
-            ensureEqual(7000, configuration.port());
+            // Client code, possibly in a library class, later retrieves the settings
+            var serverSettings = Settings.of(this).requireSettings(ServerSettings.class);
+            ensureEqual(Duration.ONE_MINUTE, serverSettings.timeout());
+            ensureEqual(7000, serverSettings.port());
         }
     }
 
@@ -125,7 +146,7 @@ public class SettingsTest extends UnitTest
     private Settings globalSettings()
     {
         var global = Settings.of(this);
-        global.clear();
+        global.unload();
         global.clearListeners();
         global.addListener(this);
         return global;

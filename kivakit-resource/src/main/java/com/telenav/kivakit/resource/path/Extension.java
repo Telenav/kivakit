@@ -87,66 +87,63 @@ public class Extension implements Named
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    // Archives
-    public static final Extension GZIP = parse(LOGGER, ".gz");
-
-    public static final Extension ZIP = parse(LOGGER, ".zip");
-
-    public static final Extension JAR = parse(LOGGER, ".jar");
-
-    public static final Extension KRYO = parse(LOGGER, ".kryo");
-
-    // Executable files
-    public static final Extension PYTHON = parse(LOGGER, ".py");
-
-    public static final Extension SHELL = parse(LOGGER, ".sh");
-
-    // General file formats
-    public static final Extension PROPERTIES = parse(LOGGER, ".properties");
-
-    public static final Extension TXT = parse(LOGGER, ".txt");
-
-    // Compressed formats
-    public static final Extension TXT_GZIP = TXT.gzipped();
+    public static final Extension CLASS = parse(LOGGER, ".class");
 
     public static final Extension CSV = parse(LOGGER, ".csv");
 
-    public static final Extension PNG = parse(LOGGER, ".png");
-
-    public static final Extension TMP = parse(LOGGER, ".tmp");
-
-    // Map file formats
-    public static final Extension TXD = parse(LOGGER, ".txd");
-
-    public static final Extension TXD_GZIP = TXD.gzipped();
+    public static final Extension GEOJSON = parse(LOGGER, ".geojson");
 
     public static final Extension GRAPH = parse(LOGGER, ".graph");
 
     public static final Extension GRAPH_GZIP = GRAPH.gzipped();
 
-    public static final Extension PBF = parse(LOGGER, ".pbf");
+    public static final Extension GZIP = parse(LOGGER, ".gz");
 
-    public static final Extension OSM = parse(LOGGER, ".osm");
-
-    public static final Extension OSM_PBF = parse(LOGGER, ".osm.pbf");
-
-    public static final Extension POLY = parse(LOGGER, ".poly");
-
-    public static final Extension GEOJSON = parse(LOGGER, ".geojson");
-
-    public static final Extension OSMPP = parse(LOGGER, ".osmpp");
+    public static final Extension JAR = parse(LOGGER, ".jar");
 
     public static final Extension JAVA = parse(LOGGER, ".java");
 
-    public static final Extension POM = parse(LOGGER, ".pom");
+    public static final Extension JSON = parse(LOGGER, ".json");
 
-    public static final Extension CLASS = parse(LOGGER, ".class");
-
-    public static final Extension XML = parse(LOGGER, ".xml");
+    public static final Extension KRYO = parse(LOGGER, ".kryo");
 
     public static final Extension MD5 = parse(LOGGER, ".md5");
 
+    public static final Extension OSM = parse(LOGGER, ".osm");
+
+    public static final Extension OSMPP = parse(LOGGER, ".osmpp");
+
+    public static final Extension OSM_PBF = parse(LOGGER, ".osm.pbf");
+
+    public static final Extension PBF = parse(LOGGER, ".pbf");
+
+    public static final Extension PNG = parse(LOGGER, ".png");
+
+    public static final Extension POLY = parse(LOGGER, ".poly");
+
+    public static final Extension POM = parse(LOGGER, ".pom");
+
+    public static final Extension PROPERTIES = parse(LOGGER, ".properties");
+
+    public static final Extension PYTHON = parse(LOGGER, ".py");
+
     public static final Extension SHA1 = parse(LOGGER, ".sha1");
+
+    public static final Extension SHELL = parse(LOGGER, ".sh");
+
+    public static final Extension TMP = parse(LOGGER, ".tmp");
+
+    public static final Extension TXD = parse(LOGGER, ".txd");
+
+    public static final Extension TXD_GZIP = TXD.gzipped();
+
+    public static final Extension TXT = parse(LOGGER, ".txt");
+
+    public static final Extension TXT_GZIP = TXT.gzipped();
+
+    public static final Extension XML = parse(LOGGER, ".xml");
+
+    public static final Extension ZIP = parse(LOGGER, ".zip");
 
     public static List<Extension> archive()
     {

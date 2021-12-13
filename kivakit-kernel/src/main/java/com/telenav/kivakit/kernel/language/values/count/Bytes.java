@@ -96,6 +96,21 @@ public final class Bytes extends Count implements ByteSized
         return new Bytes(bytes);
     }
 
+    public static Bytes bytes(long[] array)
+    {
+        return new Bytes(array.length * 8L);
+    }
+
+    public static Bytes bytes(int[] array)
+    {
+        return new Bytes(array.length * 4L);
+    }
+
+    public static Bytes bytes(byte[] array)
+    {
+        return new Bytes(array.length);
+    }
+
     public static Bytes bytes(Count count)
     {
         return bytes(count.get());

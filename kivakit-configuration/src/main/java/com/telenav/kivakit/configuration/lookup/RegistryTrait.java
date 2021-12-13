@@ -52,7 +52,7 @@ public interface RegistryTrait
      */
     default <T> T lookup(Class<T> type, Enum<?> instance)
     {
-        return lookup(type, InstanceIdentifier.instanceIdentifier(instance));
+        return lookup(type, InstanceIdentifier.of(instance));
     }
 
     /**
@@ -60,7 +60,7 @@ public interface RegistryTrait
      */
     default <T> T lookup(Class<T> type, String instance)
     {
-        return lookup(type, InstanceIdentifier.instanceIdentifier(instance));
+        return lookup(type, InstanceIdentifier.of(instance));
     }
 
     /**
@@ -89,7 +89,7 @@ public interface RegistryTrait
      */
     default <T> T register(T object, String instance)
     {
-        return register(object, InstanceIdentifier.instanceIdentifier(instance));
+        return register(object, InstanceIdentifier.of(instance));
     }
 
     /**
@@ -97,7 +97,7 @@ public interface RegistryTrait
      */
     default <T> T register(T object, Enum<?> instance)
     {
-        return register(object, InstanceIdentifier.instanceIdentifier(instance));
+        return register(object, InstanceIdentifier.of(instance));
     }
 
     /**
@@ -129,7 +129,7 @@ public interface RegistryTrait
      */
     default <T> T require(Class<T> type, Enum<?> instance)
     {
-        return require(type, InstanceIdentifier.instanceIdentifier(instance));
+        return require(type, InstanceIdentifier.of(instance));
     }
 
     /**
@@ -137,7 +137,7 @@ public interface RegistryTrait
      */
     default <T> T require(Class<T> type, String instance)
     {
-        return require(type, InstanceIdentifier.instanceIdentifier(instance));
+        return require(type, InstanceIdentifier.of(instance));
     }
 
     /**
@@ -146,5 +146,37 @@ public interface RegistryTrait
     default <T> T require(Class<T> type, InstanceIdentifier instance)
     {
         return registry().require(type, instance);
+    }
+
+    /**
+     * Unregisters the given object
+     */
+    default void unregister(Object object)
+    {
+        unregister(object, SINGLETON);
+    }
+
+    /**
+     * Unregisters the given instance of the given object
+     */
+    default void unregister(Object object, InstanceIdentifier instance)
+    {
+        registry().unregister(object, instance);
+    }
+
+    /**
+     * Unregisters the given instance of the given object
+     */
+    default void unregister(Object object, Enum<?> instance)
+    {
+        unregister(object, InstanceIdentifier.of(instance));
+    }
+
+    /**
+     * Unregisters the given instance of the given object
+     */
+    default void unregister(Object object, String instance)
+    {
+        unregister(object, InstanceIdentifier.of(instance));
     }
 }

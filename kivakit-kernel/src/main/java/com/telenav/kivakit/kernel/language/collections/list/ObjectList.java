@@ -23,8 +23,10 @@ import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.interfaces.factory.IntMapFactory;
 import com.telenav.kivakit.kernel.interfaces.factory.LongMapFactory;
 import com.telenav.kivakit.kernel.interfaces.numeric.Quantizable;
+import com.telenav.kivakit.kernel.language.strings.AsciiArt;
 import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.language.values.count.Maximum;
+import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageCollectionsList;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -72,13 +74,6 @@ public class ObjectList<Element> extends BaseList<Element>
         return new ObjectList<>(Maximum._0);
     }
 
-    public static <T> ObjectList<T> objectListFromArray(T[] objects)
-    {
-        var list = new ObjectList<T>();
-        list.addAll(objects);
-        return list;
-    }
-
     /**
      * @return A list of objects from the given iterable
      */
@@ -118,6 +113,13 @@ public class ObjectList<Element> extends BaseList<Element>
     public static <T> ObjectList<T> objectList(T... objects)
     {
         return objectList(Maximum._1024, objects);
+    }
+
+    public static <T> ObjectList<T> objectListFromArray(T[] objects)
+    {
+        var list = new ObjectList<T>();
+        list.addAll(objects);
+        return list;
     }
 
     /**
@@ -320,6 +322,18 @@ public class ObjectList<Element> extends BaseList<Element>
         return (ObjectList<Element>) super.sorted(comparator);
     }
 
+    /**
+     * @return This list of objects as an ASCII art text box with the given title
+     */
+    public String titledBox(String title, Object... arguments)
+    {
+        return AsciiArt.textBox(Message.format(title, arguments), join("\n"));
+    }
+
+    /**
+     * Creates a list containing the unique objects in this list
+     * @return The unique objects
+     */
     @Override
     public ObjectList<Element> uniqued()
     {

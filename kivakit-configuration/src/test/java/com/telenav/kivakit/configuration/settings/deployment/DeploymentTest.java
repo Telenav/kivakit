@@ -18,15 +18,17 @@
 
 package com.telenav.kivakit.configuration.settings.deployment;
 
+import com.telenav.kivakit.configuration.settings.Deployment;
 import com.telenav.kivakit.configuration.settings.ServerSettings;
 import com.telenav.kivakit.configuration.settings.Settings;
+import com.telenav.kivakit.configuration.settings.SettingsTrait;
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.test.UnitTest;
 import org.junit.Test;
 
-public class DeploymentTest extends UnitTest
+public class DeploymentTest extends UnitTest implements SettingsTrait
 {
-    public static class China extends Deployment
+    public static class China extends Deployment implements SettingsTrait
     {
         public China()
         {
@@ -36,11 +38,11 @@ public class DeploymentTest extends UnitTest
             settings.timeout(Duration.ONE_MINUTE);
             settings.port(9090);
 
-            registerSettings(settings);
+            registerSettingsObject(settings);
         }
     }
 
-    public static class Development extends Deployment
+    public static class Development extends Deployment implements SettingsTrait
     {
         public Development()
         {
@@ -50,11 +52,11 @@ public class DeploymentTest extends UnitTest
             settings.timeout(Duration.ONE_MINUTE);
             settings.port(8080);
 
-            registerSettings(settings);
+            registerSettingsObject(settings);
         }
     }
 
-    public static class Production extends Deployment
+    public static class Production extends Deployment implements SettingsTrait
     {
         public Production()
         {
@@ -64,14 +66,14 @@ public class DeploymentTest extends UnitTest
             settings.timeout(Duration.ONE_MINUTE);
             settings.port(80);
 
-            registerSettings(settings);
+            registerSettingsObject(settings);
         }
     }
 
     @Test
     public void testChina()
     {
-        new China().install();
+        registerSettingsIn(new China());
 
         var settings = Settings.of(this).requireSettings(ServerSettings.class);
         ensureEqual(settings.port(), 9090);
@@ -81,7 +83,7 @@ public class DeploymentTest extends UnitTest
     @Test
     public void testDevelopment()
     {
-        new Development().install();
+        registerSettingsIn(new Development());
 
         var settings = Settings.of(this).requireSettings(ServerSettings.class);
         ensureEqual(8080, settings.port());
@@ -91,7 +93,7 @@ public class DeploymentTest extends UnitTest
     @Test
     public void testProduction()
     {
-        new Production().install();
+        registerSettingsIn(new Production());
 
         var settings = Settings.of(this).requireSettings(ServerSettings.class);
         ensureEqual(80, settings.port());

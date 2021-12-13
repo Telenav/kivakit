@@ -43,6 +43,7 @@ public interface RepeaterMixin extends Repeater, Mixin
     /**
      * {@inheritDoc}
      */
+    @Override
     default void copyListeners(Broadcaster broadcaster)
     {
         repeater().copyListeners(broadcaster);
@@ -132,6 +133,7 @@ public interface RepeaterMixin extends Repeater, Mixin
     /**
      * {@inheritDoc}
      */
+    @Override
     default <M extends Transmittable> M receive(M message)
     {
         return repeater().receive(message);
@@ -153,7 +155,7 @@ public interface RepeaterMixin extends Repeater, Mixin
      */
     default Repeater repeater()
     {
-        return state(RepeaterMixin.class, BaseRepeater::new);
+        return mixin(RepeaterMixin.class, BaseRepeater::new);
     }
 
     /**

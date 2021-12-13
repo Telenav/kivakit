@@ -36,6 +36,11 @@ public class InitializationLatch
 {
     private CountDownLatch countdown = new CountDownLatch(1);
 
+    public boolean await()
+    {
+        return await(Duration.MAXIMUM);
+    }
+
     public boolean await(Duration duration)
     {
         try

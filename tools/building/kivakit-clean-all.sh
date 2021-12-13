@@ -16,5 +16,8 @@ for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
 
 done
 
+bash kivakit-clean-merged-jars.sh
+
 bash kivakit-clean.sh
+
 

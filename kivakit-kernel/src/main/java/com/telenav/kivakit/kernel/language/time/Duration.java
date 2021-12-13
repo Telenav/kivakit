@@ -42,9 +42,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.regex.Pattern;
 
+import static com.telenav.kivakit.kernel.language.strings.Strings.isOneOf;
 import static com.telenav.kivakit.kernel.language.strings.conversion.StringFormat.PROGRAMMATIC_IDENTIFIER;
 import static com.telenav.kivakit.kernel.language.strings.conversion.StringFormat.USER_LABEL_IDENTIFIER;
 import static com.telenav.kivakit.kernel.language.strings.conversion.StringFormat.USER_MULTILINE_IDENTIFIER;
+import static java.util.regex.Pattern.CASE_INSENSITIVE;
 
 /**
  * A <code>Duration</code> is an immutable length of time stored as a number of milliseconds. Various factory and
@@ -236,7 +238,9 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
     {
         /** Pattern to match strings */
         private final Pattern PATTERN = Pattern.compile(
-                "(?<quantity>[0-9]+([.,][0-9]+)?)(\\s+|-|_)(?<units>millisecond|second|minute|hour|day|week|year)s?", Pattern.CASE_INSENSITIVE);
+                "(?x) (?<quantity> [0-9]+ ([.,] [0-9]+)?) "
+                        + "(\\s+ | - | _)?"
+                        + "(?<units> d | h | m | s | ms | ((millisecond | second | minute | hour | day | week | year) s?))", CASE_INSENSITIVE);
 
         public Converter(Listener listener)
         {
@@ -254,31 +258,31 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
             {
                 var quantity = Double.parseDouble(matcher.group("quantity"));
                 var units = matcher.group("units");
-                if ("millisecond".equalsIgnoreCase(units))
+                if (isOneOf(units, "milliseconds", "millisecond", "ms"))
                 {
                     return milliseconds(quantity);
                 }
-                else if ("second".equalsIgnoreCase(units))
+                else if (isOneOf(units, "seconds", "second", "s"))
                 {
                     return seconds(quantity);
                 }
-                else if ("minute".equalsIgnoreCase(units))
+                else if (isOneOf(units, "minutes", "minute", "m"))
                 {
                     return minutes(quantity);
                 }
-                else if ("hour".equalsIgnoreCase(units))
+                else if (isOneOf(units, "hours", "hour", "h"))
                 {
                     return hours(quantity);
                 }
-                else if ("day".equalsIgnoreCase(units))
+                else if (isOneOf(units, "days", "day", "d"))
                 {
                     return days(quantity);
                 }
-                else if ("week".equalsIgnoreCase(units))
+                else if (isOneOf(units, "weeks", "week"))
                 {
                     return weeks(quantity);
                 }
-                else if ("year".equalsIgnoreCase(units))
+                else if (isOneOf(units, "years", "year"))
                 {
                     return years(quantity);
                 }

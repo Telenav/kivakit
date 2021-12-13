@@ -27,8 +27,8 @@ import com.telenav.kivakit.commandline.CommandLineParser;
 import com.telenav.kivakit.commandline.Quantifier;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.component.BaseComponent;
-import com.telenav.kivakit.configuration.settings.deployment.Deployment;
-import com.telenav.kivakit.configuration.settings.deployment.DeploymentSet;
+import com.telenav.kivakit.configuration.settings.Deployment;
+import com.telenav.kivakit.configuration.settings.DeploymentSet;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
@@ -482,7 +482,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
         if (!ignoreDeployments() && !deployments.isEmpty() && has(DEPLOYMENT))
         {
             // install it in the global settings registry.
-            get(DEPLOYMENT).install();
+            registerSettingsIn(get(DEPLOYMENT));
         }
 
         // Initialize this application's project

@@ -6,7 +6,7 @@ if [ -z "$PREBUILT" ]; then
 
         echo "Installing Cactus"
 
-        cd "$CACTUS_HOME"
+        cd "$CACTUS_HOME" || exit
         mvn --batch-mode clean install
     fi
 
@@ -14,12 +14,12 @@ if [ -z "$PREBUILT" ]; then
 
         echo "Installing KivaKit Superpom"
 
-        cd "$KIVAKIT_HOME"/superpom
+        cd "$KIVAKIT_HOME"/superpom || exit
         mvn --batch-mode --no-transfer-progress clean install
 
     fi
 
-    bash "${KIVAKIT_HOME}/tools/library/install-merged-jars.sh"
+    bash "${KIVAKIT_HOME}/tools/library/kivakit-install-merged-jars.sh"
 
     export PREBUILT=true
 

@@ -16,11 +16,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.configuration.settings.deployment;
+package com.telenav.kivakit.configuration.settings;
 
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfiguration;
-import com.telenav.kivakit.configuration.settings.Settings;
+import com.telenav.kivakit.configuration.settings.stores.resource.FolderSettingsStore;
+import com.telenav.kivakit.configuration.settings.stores.resource.PackageSettingsStore;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.kernel.language.vm.JavaVirtualMachine;
@@ -37,12 +38,10 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
-
 /**
- * A set of {@link Deployment} objects, each being a set of configuration objects. Deployments can be added to the set
- * from a folder with {@link #addDeploymentsIn(Folder)}. A switch parser to select a deployment from the command line
- * can be retrieved with SwitchParser.deployment(DeploymentSet).
+ * A set of {@link Deployment} objects, each being a set of settings objects. Deployments can be added to the set from a
+ * folder with {@link #addDeploymentsIn(Folder)}. A switch parser to select a deployment from the command line can be
+ * retrieved with SwitchParser.deployment(DeploymentSet).
  *
  * @author jonathanl (shibo)
  * @see Deployment
@@ -81,9 +80,9 @@ public class DeploymentSet extends BaseRepeater
         return deployments;
     }
 
-    public static DeploymentSet of(Deployment deployment, Deployment... more)
+    public static DeploymentSet of(Listener listener, Deployment deployment, Deployment... more)
     {
-        var set = new DeploymentSet();
+        var set = listener.listenTo(new DeploymentSet());
         set.add(deployment);
         set.addAll(Arrays.asList(more));
         return set;
@@ -127,7 +126,7 @@ public class DeploymentSet extends BaseRepeater
             var deployment = listenTo(new Deployment(folder.name().name(), description));
 
             // and add the configuration information from the sub-folder,
-            deployment.registerAllSettingsIn(this, folder);
+            deployment.indexAll(FolderSettingsStore.of(this, folder));
 
             // assert that the deployment has not already been added,
             assert !deployments.contains(deployment);
@@ -150,6 +149,9 @@ public class DeploymentSet extends BaseRepeater
         return addDeploymentsIn(package_.path());
     }
 
+    /**
+     * Adds all the deployments in the given package-relative path
+     */
     public DeploymentSet addDeploymentsIn(Class<?> relativeTo, String path)
     {
         return addDeploymentsIn(PackagePath.parsePackagePath(this, relativeTo, path));
@@ -170,7 +172,7 @@ public class DeploymentSet extends BaseRepeater
             var deployment = listenTo(new Deployment(subPackage.last(), description));
 
             // and add the configuration information from the sub-folder,
-            deployment.registerAllSettingsIn(this, subPackage);
+            deployment.indexAll(PackageSettingsStore.of(this, subPackage));
 
             // add it to this set of deployments.
             deployments.add(deployment);
@@ -193,26 +195,34 @@ public class DeploymentSet extends BaseRepeater
         return null;
     }
 
+    /**
+     * @return The deployments in this set
+     */
     public Set<Deployment> deployments()
     {
         return deployments;
     }
 
-    public void install(String name)
-    {
-        ensureNotNull(deployment(name)).install();
-    }
-
+    /**
+     * @return True if this deployment set is empty
+     */
     public boolean isEmpty()
     {
         return deployments.isEmpty();
     }
 
+    /**
+     * @return The number of deployments in this set
+     */
     public int size()
     {
         return deployments.size();
     }
 
+    /**
+     * @param name The name of the switch
+     * @return A switch parser with the given switch name that chooses among the deployments in this set
+     */
     public SwitchParser.Builder<Deployment> switchParser(String name)
     {
         return Deployment.deploymentSwitchParser(this, this, name);
