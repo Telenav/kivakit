@@ -130,6 +130,16 @@ public interface SettingsStore extends Repeater, Named, Iterable<Object>
     boolean save(SettingsObject object);
 
     /**
+     * Saves the objects from the given settings store into this one
+     *
+     * @param that The settings store to retrieve objects from
+     */
+    default void saveAllFrom(SettingsStore that)
+    {
+        that.indexed().forEach(this::save);
+    }
+
+    /**
      * <b>Service Provider API</b>
      *
      * @return True if this store supports the given type of access

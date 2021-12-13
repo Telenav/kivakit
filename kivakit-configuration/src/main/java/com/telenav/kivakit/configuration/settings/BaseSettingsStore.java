@@ -150,6 +150,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
     public ObjectSet<SettingsObject> indexed()
     {
         maybeLoad();
+
         return lock.write(() -> ObjectSet.objectSet(objects.values()));
     }
 
@@ -177,12 +178,23 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
         if (!loaded)
         {
             // load settings by calling the subclass.
-            trace("Loading settings from $", name());
+            trace("Loading settings from: $", name());
             lock.write(() -> onLoad().forEach(this::index));
             loaded = true;
         }
 
         return lock.read(() -> new HashSet<>(objects.values()));
+    }
+
+    /**
+     * <p><b>ServiceProvider API</b></p>
+     *
+     * Forces this settings store to reload
+     */
+    public void forceLoad()
+    {
+        unload();
+        load();
     }
 
     /**
@@ -195,6 +207,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
     public <T> T lookup(SettingsObject.Identifier identifier)
     {
         maybeLoad();
+
         return lock.read(() ->
         {
             // First try the global object registry,

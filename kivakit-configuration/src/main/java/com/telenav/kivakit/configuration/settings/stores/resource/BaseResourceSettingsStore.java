@@ -182,7 +182,7 @@ public abstract class BaseResourceSettingsStore extends BaseSettingsStore implem
         ensure(resource.extension().equals(PROPERTIES));
 
         // Load the given properties
-        trace("Loading settings from $", resource);
+        trace("Loading settings from: $", resource);
         var properties = PropertyMap.load(this, resource);
         try
         {
