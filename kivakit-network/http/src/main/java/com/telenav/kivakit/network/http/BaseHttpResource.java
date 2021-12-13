@@ -19,6 +19,7 @@
 package com.telenav.kivakit.network.http;
 
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
+import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.network.core.BaseNetworkResource;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
@@ -205,17 +206,17 @@ public abstract class BaseHttpResource extends BaseNetworkResource
                 }
                 else
                 {
-                    throw problem("No entity found for: $", this).asException();
+                    throw new Problem("No entity found for: $", this).asException();
                 }
             }
             else
             {
-                throw problem("Request failed (HTTP status code $): $", status(), this).asException();
+                throw new Problem("Request failed (HTTP status code $): $", status(), this).asException();
             }
         }
         catch (Exception e)
         {
-            throw problem(e, "Cannot open: $", this).asException();
+            throw new Problem(e, "Cannot open: $", this).asException();
         }
     }
 
