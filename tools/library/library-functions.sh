@@ -14,6 +14,7 @@ property_value() {
     file=$1
     key=$2
 
+    # shellcheck disable=SC2002
     cat "$file" | grep "$key" | cut -d'=' -f2 | xargs echo
 }
 
@@ -23,6 +24,7 @@ project_version() {
     project_properties=$project_home/project.properties
 
     # shellcheck disable=SC2046
+    # shellcheck disable=SC2005
     echo $(property_value "$project_properties" project-version)
 }
 
@@ -31,6 +33,7 @@ project_name() {
     project_home=$1
 
     # shellcheck disable=SC2046
+    # shellcheck disable=SC2005
     echo $(basename -- "$project_home")
 }
 
@@ -106,6 +109,7 @@ clean_temporary_files() {
 
     if yes_no "┋ Remove temporary files (.DS_Store, .metadata, .classpath, .project, *.hprof, *~) from $project_home tree"; then
 
+        # shellcheck disable=SC2038
         find "$project_home" \( -name \.DS_Store -o -name \.metadata -o -name \.classpath -o -name \.project -o -name \*\.hprof -o -name \*~ \) | xargs rm
 
     fi
@@ -116,6 +120,7 @@ clean_temporary_files() {
 script() {
 
     # shellcheck disable=SC2046
+    # shellcheck disable=SC2005
     echo $(basename -- "$0")
 
 }
@@ -171,7 +176,7 @@ git_flow_release_start()
     echo " "
 
     # Check out the develop branch
-    cd "$project_home"
+    cd "$project_home" || exit
     git checkout develop
 
     # then start a new release branch
@@ -194,7 +199,7 @@ git_flow_release_finish()
     project_home=$1
     version=$2
 
-    cd "$project_home"
+    cd "$project_home" || exit
 
     git checkout master
     git merge release/"$version"
@@ -220,7 +225,7 @@ git_flow_feature_start() {
 
     if yes_no "Start '$feature_name' branch of $project_home"; then
 
-        cd "$project_home"
+        cd "$project_home" || exit
         git-flow feature start "$feature_name"
 
     fi
@@ -232,7 +237,7 @@ git_flow_feature_finish() {
     feature_name=$2
 
     if yes_no "Finish '$feature_name' branch of $project_home"; then
-        cd "$project_home"
+        cd "$project_home" || exit
         git-flow feature finish "$feature_name"
     fi
 }
@@ -244,7 +249,7 @@ git_flow_hotfix_start() {
 
     if yes_no "Start '$feature_name' branch of $project_home"; then
 
-        cd "$project_home"
+        cd "$project_home" || exit
         git-flow hotfix start "$feature_name"
 
     fi
@@ -256,7 +261,7 @@ git_flow_hotfix_finish() {
     feature_name=$2
 
     if yes_no "Finish '$feature_name' branch of $project_home"; then
-        cd "$project_home"
+        cd "$project_home" || exit
         git-flow hotfix finish "$feature_name"
     fi
 }
@@ -298,10 +303,12 @@ source_project_profile() {
     project_profile="$HOME/.${project_name}-profile"
 
     if test -e "$common_profile"; then
+        # shellcheck disable=SC1090
         source "$common_profile"
     fi
 
     if test -e "$project_profile"; then
+        # shellcheck disable=SC1090
         source "$project_profile"
     fi
 }
@@ -313,6 +320,7 @@ system_variable() {
     temporary="$TMPDIR/export.txt"
 
     echo "export $variable=\"$value\"" >"$temporary"
+    # shellcheck disable=SC1090
     source "$temporary"
 
     if is_mac; then

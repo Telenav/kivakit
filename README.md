@@ -22,7 +22,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit 1.1.3-SNAPSHOT &nbsp;&nbsp; <img src="https://www.kivakit.org/images/kivakit-64.png" srcset="https://www.kivakit.org/images/kivakit-64-2x.png 2x"/>
+# kivakit 1.2.0 &nbsp;&nbsp; <img src="https://www.kivakit.org/images/kivakit-64.png" srcset="https://www.kivakit.org/images/kivakit-64-2x.png 2x"/>
 
 KivaKit is a set of integrated Java mini-frameworks that are potentially needed by any application or server.
 
@@ -138,8 +138,8 @@ The [**kivakit-examples**](https://github.com/Telenav/kivakit-examples) project 
 
 ### Reference <a name = "reference"></a>&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-[**Javadoc**](https://www.kivakit.org/1.1.3-SNAPSHOT/javadoc/kivakit)  
-[**CodeFlowers**](https://www.kivakit.org/1.1.3-SNAPSHOT/codeflowers/site/index.html)  
+[**Javadoc**](https://www.kivakit.org/1.2.0/javadoc/kivakit)  
+[**CodeFlowers**](https://www.kivakit.org/1.2.0/codeflowers/site/index.html)  
 [**System Properties**](documentation/developing/system-properties.md)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
@@ -192,7 +192,7 @@ The [**kivakit-examples**](https://github.com/Telenav/kivakit-examples) project 
  &nbsp; &nbsp; [**kivakit-security**](kivakit-security/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-100-96.png" srcset="https://www.kivakit.org/images/meter-100-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-serialization-core**](kivakit-serialization/core/README.md)  
-&nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
+&nbsp; <img src="https://www.kivakit.org/images/meter-70-96.png" srcset="https://www.kivakit.org/images/meter-70-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-serialization-json**](kivakit-serialization/json/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-serialization-kryo**](kivakit-serialization/kryo/README.md)  

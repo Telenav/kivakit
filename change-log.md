@@ -1,6 +1,6 @@
 ![](https://www.kivakit.org/images/horizontal-line.png)
 
-## Version 1.2.0 (2021.12.14) "plutonium bongos"
+## Version 1.2.0 (2021.12.14) "plutonium goldfish"
 
 ### added
 

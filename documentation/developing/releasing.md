@@ -5,7 +5,7 @@
 This section documents how to release a new version of KivaKit, step by step.
 
 In the text below *\[kivakit-version\]* refers to a [semantic versioning](https://semver.org) identifier, such
-as 2.1.7 or 1.1.3-SNAPSHOT-beta.
+as 2.1.7 or 1.2.0-beta.
 
 KivaKit adheres to the standard [Git Flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) branching model.
 
