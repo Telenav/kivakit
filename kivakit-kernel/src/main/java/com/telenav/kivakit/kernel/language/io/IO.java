@@ -302,7 +302,7 @@ public class IO
 
     public static String string(InputStream in)
     {
-        return string(new InputStreamReader(in));
+        return string(new InputStreamReader(buffer(in)));
     }
 
     public static String string(Reader in)
