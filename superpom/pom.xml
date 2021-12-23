@@ -219,14 +219,14 @@
         <!-- Utility -->
 
         <commons.collections.version>3.2.2</commons.collections.version>
-        <commons.compress.version>1.18</commons.compress.version>
+        <commons.compress.version>1.21</commons.compress.version>
         <commons.lang3.version>3.7</commons.lang3.version>
         <commons.net.version>3.0.1</commons.net.version>
         <commons.math.version>2.1</commons.math.version>
         <beanutils.version>1.8.3</beanutils.version>
-        <guava.version>29.0-jre</guava.version>
+        <guava.version>31.0.1-jre</guava.version>
         <htrace.version>4.2.0-incubating</htrace.version>
-        <log4j.version>1.2.17</log4j.version>
+        <log4j.version>2.17.0</log4j.version>
         <slf4j.version>2.0.0-alpha5</slf4j.version>
         <yourkit.version>8.0.1</yourkit.version>
         <classgraph.version>4.8.102</classgraph.version>
@@ -1468,9 +1468,26 @@
                 <version>${classgraph.version}</version>
             </dependency>
             <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
                 <version>${log4j.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.osgi</groupId>
+                        <artifactId>org.osgi.core</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-1.2-api</artifactId>
+                <version>${log4j.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.osgi</groupId>
+                        <artifactId>org.osgi.core</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
