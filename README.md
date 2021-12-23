@@ -24,7 +24,7 @@
 
 # kivakit 1.2.1 &nbsp;&nbsp; <img src="https://www.kivakit.org/images/kivakit-64.png" srcset="https://www.kivakit.org/images/kivakit-64-2x.png 2x"/>
 
-KivaKit is a set of integrated Java mini-frameworks that are potentially needed by any application or server.
+KivaKit (KEE-vah-KIT) is a set of integrated Java mini-frameworks that are potentially needed by any application or server.
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
