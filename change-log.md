@@ -1,6 +1,29 @@
 ![](https://www.kivakit.org/images/horizontal-line.png)
 
-## Version 1.2.1-SNAPSHOT (2021.12.14) "plutonium goldfish"
+## Version 1.2.2 (2021.12.22) "plutonium banana"
+
+### lambdas
+
+ * Added *MicroserviceLambdaService* with Lambda mounting
+
+### scripts
+
+ * Added tagging to gitflow finish scripts
+
+### documentation
+
+ * Microservices mini-framework diagram
+ * Updated documentation for 
+
+### security
+
+ * Updated log4j to 2.17.0
+ * Updated guava to 31.0.1-jre
+ * Updated commons-compress to 1.21
+
+![](https://www.kivakit.org/images/horizontal-line.png)
+
+## Version 1.2.1 (2021.12.14) "plutonium goldfish"
 
 ### added
 
