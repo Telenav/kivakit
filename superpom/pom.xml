@@ -167,6 +167,8 @@
         <hdfs.version>3.3.0</hdfs.version>
         <s3.version>2.17.31</s3.version>
         <github.api.version>1.132</github.api.version>
+        <ow2.asm.version>8.0.1</ow2.asm.version>
+        <ow2.ow2.version>1.5.1</ow2.ow2.version>
 
         <!-- Java -->
 
@@ -201,6 +203,7 @@
         <kryo.serializers.version>0.45</kryo.serializers.version>
         <jdk.serializable.functional.version>1.9.0</jdk.serializable.functional.version>
         <objenesis.version>3.2</objenesis.version>
+        <json.smart.version>2.4.2</json.smart.version>
 
         <!-- SSH -->
 
@@ -1301,6 +1304,12 @@
                 <groupId>com.esotericsoftware</groupId>
                 <artifactId>kryo</artifactId>
                 <version>${kryo.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.ow2</groupId>
+                        <artifactId>asm</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>de.javakaffee</groupId>
@@ -1312,6 +1321,16 @@
                         <artifactId>kryo</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.ow2.asm</groupId>
+                <artifactId>asm</artifactId>
+                <version>${ow2.asm.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.minidev</groupId>
+                <artifactId>json-smart</artifactId>
+                <version>${json.smart.version}</version>
             </dependency>
 
             <!-- SSH -->
