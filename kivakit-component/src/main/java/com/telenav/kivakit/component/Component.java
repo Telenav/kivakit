@@ -4,6 +4,7 @@ import com.telenav.kivakit.configuration.lookup.Registry;
 import com.telenav.kivakit.configuration.lookup.RegistryTrait;
 import com.telenav.kivakit.configuration.settings.Deployment;
 import com.telenav.kivakit.configuration.settings.Settings;
+import com.telenav.kivakit.configuration.settings.SettingsStore;
 import com.telenav.kivakit.configuration.settings.SettingsTrait;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
@@ -44,16 +45,11 @@ import com.telenav.kivakit.resource.resources.packaged.Package;
  *     <li>{@link #settingsRegistry()} - Retrieves the {@link Settings} registry for this component</li>
  *     <li>{@link #lookupSettings(Class)} - A settings object of the specified class or null if none exists</li>
  *     <li>{@link #lookupSettings(Class, Enum)} - Get any given instance of the given settings object type</li>
- *     <li>{@link #lookupSettings(Class, String)} - Get any given instance of the given settings object type</li>
  *     <li>{@link #requireSettings(Class)} - Gets the given settings object or fails</li>
  *     <li>{@link #requireSettings(Class, Enum)} - Gets the settings object of the given instance or fails</li>
- *     <li>{@link #requireSettings(Class, String)} - Gets the settings object of the given instance or fails</li>
- *     <li>{@link #registerDeployment(Deployment)} - Adds the settings objects for the given deployment</li>
  *     <li>{@link #registerSettingsObject(Object)}  - Adds the given settings object</li>
- *     <li>{@link #registerAllSettingsIn(Settings)} - Adds the settings objects in the given settings registry</li>
- *     <li>{@link #registerAllSettingsIn(Listener, Folder)} - Adds settings objects from the given folder</li>
- *     <li>{@link #registerAllSettingsIn(Listener, Package)} - Adds settings objects from the given package</li>
- *     <li>{@link #registerAllSettingsIn(Listener, Class, String)} - Adds settings object from the package relative to the given class</li>
+ *     <li>{@link #registerSettingsObject(Object, Enum)} - Adds the given settings object</li>
+ *     <li>{@link #registerSettingsIn(SettingsStore)} - Adds settings objects from the given settings store</li>
  * </ul>
  *
  * <p><b>Object Lookup Registry</b></p>
