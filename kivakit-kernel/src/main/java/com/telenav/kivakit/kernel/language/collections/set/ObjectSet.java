@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.collections.set;
 
+import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.language.values.count.Maximum;
 
 import java.util.Collection;
@@ -81,6 +82,12 @@ public class ObjectSet<T> extends BaseSet<T>
     public ObjectSet<T> copy()
     {
         return (ObjectSet<T>) super.copy();
+    }
+
+    @Override
+    public ObjectSet<T> matching(final Matcher<T> matcher)
+    {
+        return (ObjectSet<T>) super.matching(matcher);
     }
 
     @Override
