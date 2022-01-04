@@ -31,6 +31,7 @@ import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageCollec
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -167,9 +168,9 @@ public class ObjectList<Element> extends BaseList<Element>
     /**
      * An list of objects with the given upper bound
      */
-    public ObjectList(List<Element> list)
+    public ObjectList(Collection<Element> collection)
     {
-        super(list);
+        super(collection);
     }
 
     /**

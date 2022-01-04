@@ -132,11 +132,11 @@ public abstract class BaseList<Element> implements
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    /** Initial list implementation while mutable */
-    private List<Element> list;
-
     /** Array store when frozen */
     private Element[] array;
+
+    /** Initial list implementation while mutable */
+    private List<Element> list;
 
     /** The maximum size of this bounded list */
     private int maximumSize;
@@ -149,18 +149,24 @@ public abstract class BaseList<Element> implements
      */
     protected BaseList(Maximum maximumSize)
     {
-        this.maximumSize = maximumSize.asInt();
-        list = new ArrayList<>();
+        this(maximumSize, new ArrayList<>());
     }
 
     /**
      * @param maximumSize The maximum size of this list
      * @param list The list implementation to use
      */
-    protected BaseList(Maximum maximumSize, List<Element> list)
+    protected BaseList(Maximum maximumSize, Collection<Element> list)
     {
         this.maximumSize = maximumSize.asInt();
-        this.list = list;
+        if (list instanceof List)
+        {
+            this.list = (List<Element>) list;
+        }
+        else
+        {
+            this.list = new ArrayList<>(list);
+        }
         checkSizeIncrease(0);
     }
 
@@ -175,9 +181,9 @@ public abstract class BaseList<Element> implements
     /**
      * An unbounded list with the given list implementation
      */
-    protected BaseList(List<Element> list)
+    protected BaseList(Collection<Element> collection)
     {
-        this(Maximum.MAXIMUM, list);
+        this(Maximum.MAXIMUM, collection);
     }
 
     /**
@@ -315,8 +321,6 @@ public abstract class BaseList<Element> implements
     {
         return new BaseIterator<>()
         {
-            int index = 0;
-
             @Override
             protected Element onNext()
             {
@@ -330,6 +334,8 @@ public abstract class BaseList<Element> implements
                 }
                 return null;
             }
+
+            int index = 0;
         };
     }
 
@@ -338,8 +344,6 @@ public abstract class BaseList<Element> implements
     {
         return new BaseIterator<>()
         {
-            int index = 0;
-
             @Override
             protected Element onNext()
             {
@@ -349,6 +353,8 @@ public abstract class BaseList<Element> implements
                 }
                 return null;
             }
+
+            int index = 0;
         };
     }
 
