@@ -26,7 +26,9 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * An object (usually some sort of collection or store of values) which has a size.
+ * An object (usually some sort of collection or store of values) which has a {@link #size()}. The object can be {@link
+ * #isEmpty()} if the size is zero or {@link #isNonEmpty()} if the size is non-zero. The size can also be accessed as
+ * {@link Count} with the {@link #count()} method.
  *
  * @author jonathanl (shibo)
  */
@@ -35,6 +37,11 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @LexakaiJavadoc(complete = true)
 public interface Sized extends Countable
 {
+    /**
+     * The size of this object as a {@link Count}
+     *
+     * @return This object's size as a {@link Count}
+     */
     @Override
     default Count count()
     {
@@ -42,7 +49,9 @@ public interface Sized extends Countable
     }
 
     /**
-     * @return True if the size is zero
+     * Returns true if the {@link #size()} of this object is zero
+     *
+     * @return True if this object has a {@link #size()} of zero
      */
     @JsonIgnore
     default boolean isEmpty()
@@ -50,6 +59,11 @@ public interface Sized extends Countable
         return size() == 0;
     }
 
+    /**
+     * Returns true if the size of this object is non-zero.
+     *
+     * @return True if this object has a non-zero {@link #size()}
+     */
     @JsonIgnore
     default boolean isNonEmpty()
     {
@@ -57,7 +71,9 @@ public interface Sized extends Countable
     }
 
     /**
-     * @return The size of the object
+     * Gets the size of this object
+     *
+     * @return The size of this object
      */
     int size();
 }

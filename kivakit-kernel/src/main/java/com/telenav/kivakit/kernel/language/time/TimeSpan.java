@@ -7,9 +7,10 @@ public class TimeSpan
         return new TimeSpan(Time.START_OF_UNIX_TIME, Time.MAXIMUM);
     }
 
-    public static TimeSpan of(Time start, Time end)
+    public static TimeSpan future(Duration duration)
     {
-        return new TimeSpan(start, end);
+        var now = Time.now();
+        return of(now, now.plus(duration));
     }
 
     public static TimeSpan of(Time start, Duration duration)
@@ -17,9 +18,20 @@ public class TimeSpan
         return new TimeSpan(start, start.plus(duration));
     }
 
-    private final Time start;
+    public static TimeSpan of(Time start, Time end)
+    {
+        return new TimeSpan(start, end);
+    }
+
+    public static TimeSpan past(Duration duration)
+    {
+        var now = Time.now();
+        return of(now.minus(duration), now);
+    }
 
     private final Time end;
+
+    private final Time start;
 
     protected TimeSpan(Time start, Time end)
     {

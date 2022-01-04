@@ -19,6 +19,7 @@
 package com.telenav.kivakit.kernel.language.collections.set;
 
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
+import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.interfaces.factory.Factory;
 
 import java.util.Arrays;
@@ -28,6 +29,7 @@ import java.util.HashSet;
 import java.util.IdentityHashMap;
 import java.util.Set;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Set utility methods.
@@ -94,6 +96,13 @@ public class Sets
     public static <T> Set<T> identitySet()
     {
         return Collections.newSetFromMap(new IdentityHashMap<>());
+    }
+
+    public static <T> Set<T> matching(Set<T> values, Matcher<T> matcher)
+    {
+        return values.stream()
+                .filter(matcher)
+                .collect(Collectors.toSet());
     }
 
     public static <T> Set<T> nonNull(Set<T> set)

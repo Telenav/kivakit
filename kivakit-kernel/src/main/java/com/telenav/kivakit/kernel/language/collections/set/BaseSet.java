@@ -29,6 +29,7 @@ import com.telenav.kivakit.kernel.language.values.count.Maximum;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -36,7 +37,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * A set with a maximum size. Adds the methods {@link #matching(Matcher)} and {@link #first()} to the usual {@link Set}
+ * A set with a maximum size. Adds the methods {@link #matchingAsIterable(Matcher)} and {@link #first()} to the usual {@link Set}
  * operations.
  *
  * @author jonathanl (shibo)
@@ -51,11 +52,9 @@ public abstract class BaseSet<Element> implements
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    private final Set<Element> set;
-
     private boolean outOfRoom;
 
-    protected Maximum maximumSize;
+    private final Set<Element> set;
 
     public BaseSet(Maximum maximumSize)
     {
@@ -125,6 +124,17 @@ public abstract class BaseSet<Element> implements
         }
     }
 
+    public void addAllMatching(Collection<Element> values, Matcher<Element> matcher)
+    {
+        values.forEach(at ->
+        {
+            if (matcher.matches(at))
+            {
+                add(at);
+            }
+        });
+    }
+
     @Override
     public void clear()
     {
@@ -190,7 +200,7 @@ public abstract class BaseSet<Element> implements
         return set.iterator();
     }
 
-    public Iterable<Element> matching(Matcher<Element> matcher)
+    public Iterable<Element> matchingAsIterable(Matcher<Element> matcher)
     {
         return new Matching<>(matcher)
         {
@@ -200,6 +210,13 @@ public abstract class BaseSet<Element> implements
                 return set.iterator();
             }
         };
+    }
+
+    public BaseSet<Element> matching(Matcher<Element> matcher)
+    {
+        var matches = newInstance();
+        matches.addAllMatching(this, matcher);
+        return matches;
     }
 
     public Count maximumSize()
@@ -241,7 +258,7 @@ public abstract class BaseSet<Element> implements
 
     @SuppressWarnings({ "SuspiciousToArrayCall" })
     @Override
-    public <E> E[] toArray(E[] array)
+    public <E> E[] toArray(E @NotNull [] array)
     {
         return set.toArray(array);
     }
@@ -279,4 +296,6 @@ public abstract class BaseSet<Element> implements
         }
         return true;
     }
+
+    protected Maximum maximumSize;
 }

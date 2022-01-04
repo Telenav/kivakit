@@ -36,12 +36,20 @@ public interface Initializable
         onInitialize();
     }
 
+    /**
+     * Initializes the given object by calling {@link #initialize()} on it
+     *
+     * @return The initialized object
+     */
     default <T extends Initializable> T initialize(T object)
     {
         object.initialize();
         return object;
     }
 
+    /**
+     * Called by {@link #initialize()} to initialize this object
+     */
     default void onInitialize()
     {
     }
