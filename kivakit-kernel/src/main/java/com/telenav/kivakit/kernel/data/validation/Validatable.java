@@ -71,6 +71,8 @@ public interface Validatable
     }
 
     /**
+     * Produces a validator of the given type to validate this object
+     *
      * @param type The type of validation to perform
      * @return A {@link Validator} instance
      */
