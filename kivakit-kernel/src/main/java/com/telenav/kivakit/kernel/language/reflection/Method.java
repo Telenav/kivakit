@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.reflection;
 
+import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -52,11 +53,11 @@ public class Method extends Member
         return null;
     }
 
-    private final Class<?> type;
-
     private java.lang.reflect.Method method;
 
     private final String name;
+
+    private final Class<?> type;
 
     public Method(Class<?> type, java.lang.reflect.Method method)
     {
@@ -69,6 +70,20 @@ public class Method extends Member
     {
         this.type = ensureNotNull(type);
         this.name = ensureNotNull(name);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T> List<Type<T>> arrayElementType()
+    {
+        if (method.getReturnType().isArray())
+        {
+            var list = new ObjectList<Type<T>>();
+            list.add(Type.forClass((Class<T>) method.getReturnType().getComponentType()));
+            return list;
+        }
+
+        return null;
     }
 
     @SuppressWarnings("unchecked")

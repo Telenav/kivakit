@@ -34,7 +34,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
-import java.util.List;
 import java.util.function.Function;
 
 /**
@@ -120,6 +119,16 @@ public class ObjectList<Element> extends BaseList<Element>
     {
         var list = new ObjectList<T>();
         list.addAll(objects);
+        return list;
+    }
+
+    public static ObjectList<Long> objectListFromArray(long[] objects)
+    {
+        var list = new ObjectList<Long>();
+        for (var at : objects)
+        {
+            list.add(at);
+        }
         return list;
     }
 
@@ -333,6 +342,7 @@ public class ObjectList<Element> extends BaseList<Element>
 
     /**
      * Creates a list containing the unique objects in this list
+     *
      * @return The unique objects
      */
     @Override
