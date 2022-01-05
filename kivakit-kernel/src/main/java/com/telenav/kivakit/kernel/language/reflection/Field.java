@@ -30,6 +30,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
 @UmlClassDiagram(diagram = DiagramLanguageReflection.class)
 public class Field extends Member
@@ -52,9 +53,9 @@ public class Field extends Member
         return false;
     }
 
-    private final Object object;
-
     private final java.lang.reflect.Field field;
+
+    private final Object object;
 
     public Field(Object object, java.lang.reflect.Field field)
     {
@@ -78,12 +79,26 @@ public class Field extends Member
         return false;
     }
 
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T> List<Type<T>> arrayElementType()
+    {
+        if (field.getType().isArray())
+        {
+            var list = new ObjectList<Type<T>>();
+            list.add(Type.forClass((Class<T>) field.getType().getComponentType()));
+            return list;
+        }
+
+        return null;
+    }
+
     @SuppressWarnings("unchecked")
     public <T> ObjectList<Type<T>> genericTypeParameters()
     {
-        var list = new ObjectList<Type<T>>();
         if (field.getGenericType() instanceof ParameterizedType)
         {
+            var list = new ObjectList<Type<T>>();
             var genericType = (ParameterizedType) field.getGenericType();
             for (var at : genericType.getActualTypeArguments())
             {
@@ -92,8 +107,10 @@ public class Field extends Member
                     list.add(Type.forClass((Class<T>) at));
                 }
             }
+            return list;
         }
-        return list;
+
+        return null;
     }
 
     @Override
