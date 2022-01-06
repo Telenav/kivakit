@@ -4,10 +4,13 @@ import com.telenav.kivakit.configuration.lookup.Registry;
 import com.telenav.kivakit.configuration.lookup.RegistryTrait;
 import com.telenav.kivakit.configuration.settings.Settings;
 import com.telenav.kivakit.configuration.settings.SettingsTrait;
+import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 
 import java.util.function.Consumer;
+
+import static com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter.Format.MULTILINE;
 
 /**
  * Base class for KivaKit components. Provides easy access to object registration and lookup (see {@link Registry}) as
@@ -28,5 +31,11 @@ public class BaseComponent extends BaseRepeater implements Component, RegistryTr
     public void onMessage(Consumer<Message> handler)
     {
         addListener(handler::accept);
+    }
+
+    @Override
+    public String toString()
+    {
+        return new ObjectFormatter(this).toString(MULTILINE);
     }
 }

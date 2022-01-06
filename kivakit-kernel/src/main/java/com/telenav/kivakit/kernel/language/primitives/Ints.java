@@ -65,7 +65,12 @@ public class Ints
         return Math.min(Math.max(value, min), max);
     }
 
-    public static boolean isBetween(int value, int low, int high)
+    public static boolean isBetweenExclusive(int value, int low, int high)
+    {
+        return value > low && value < high;
+    }
+
+    public static boolean isBetweenInclusive(int value, int low, int high)
     {
         return value >= low && value <= high;
     }

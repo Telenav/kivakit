@@ -19,6 +19,7 @@
 package com.telenav.kivakit.kernel.data.validation;
 
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
+import com.telenav.kivakit.kernel.language.primitives.Ints;
 import com.telenav.kivakit.kernel.language.strings.Strings;
 import com.telenav.kivakit.kernel.language.threading.status.ReentrancyTracker;
 import com.telenav.kivakit.kernel.language.time.Time;
@@ -327,6 +328,11 @@ public abstract class BaseValidator implements Validator
             return problem(message, parameters);
         }
         return null;
+    }
+
+    protected void problemIfNotValueInRangeInclusive(int value, String name, int minimum, int maximum)
+    {
+        problemIf(!Ints.isBetweenInclusive(value, minimum, maximum), "Invalid " + name);
     }
 
     protected final Problem problemIfNull(Object object, String message, Object... parameters)

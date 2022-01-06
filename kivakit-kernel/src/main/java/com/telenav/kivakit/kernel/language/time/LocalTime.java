@@ -211,7 +211,7 @@ public class LocalTime extends Time
     }
 
     /**
-     * @return The hour of day from 1 to 12
+     * @return The hour of day from 0 to 11
      */
     public int hour()
     {
@@ -219,11 +219,16 @@ public class LocalTime extends Time
     }
 
     /**
-     * @return The hour of day from 1 to 24
+     * @return The hour of day from 0 to 23
      */
     public int hourOfDay()
     {
         return javaLocalDateTime().get(HOUR_OF_DAY);
+    }
+
+    public int hourOfWeek()
+    {
+        return dayOfWeek().asIsoConstant() * 24 + hourOfDay();
     }
 
     public String humanizedDateTime()

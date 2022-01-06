@@ -176,42 +176,42 @@ public class DayOfWeekTest
     @Test
     public void getJodaTimeConstant1()
     {
-        ensureEqual(1, DayOfWeek.MONDAY.jodaTimeConstant());
+        ensureEqual(1, DayOfWeek.MONDAY.asJavaConstant());
     }
 
     @Test
     public void getJodaTimeConstant2()
     {
-        ensureEqual(2, DayOfWeek.TUESDAY.jodaTimeConstant());
+        ensureEqual(2, DayOfWeek.TUESDAY.asJavaConstant());
     }
 
     @Test
     public void getJodaTimeConstant3()
     {
-        ensureEqual(3, DayOfWeek.WEDNESDAY.jodaTimeConstant());
+        ensureEqual(3, DayOfWeek.WEDNESDAY.asJavaConstant());
     }
 
     @Test
     public void getJodaTimeConstant4()
     {
-        ensureEqual(4, DayOfWeek.THURSDAY.jodaTimeConstant());
+        ensureEqual(4, DayOfWeek.THURSDAY.asJavaConstant());
     }
 
     @Test
     public void getJodaTimeConstant5()
     {
-        ensureEqual(5, DayOfWeek.FRIDAY.jodaTimeConstant());
+        ensureEqual(5, DayOfWeek.FRIDAY.asJavaConstant());
     }
 
     @Test
     public void getJodaTimeConstant6()
     {
-        ensureEqual(6, DayOfWeek.SATURDAY.jodaTimeConstant());
+        ensureEqual(6, DayOfWeek.SATURDAY.asJavaConstant());
     }
 
     @Test
     public void getJodaTimeConstant7()
     {
-        ensureEqual(7, DayOfWeek.SUNDAY.jodaTimeConstant());
+        ensureEqual(7, DayOfWeek.SUNDAY.asJavaConstant());
     }
 }

@@ -54,6 +54,24 @@ public class TimeZones
         return zone.getDisplayName(TextStyle.SHORT, Locale.getDefault());
     }
 
+    public static boolean isUtc(ZoneId zone)
+    {
+        return zone.getId().equals("UTC") || zone.getId().equals("GMT") || zone.getId().equals(("UT"));
+    }
+
+    public static boolean isValidZoneId(String identifier)
+    {
+        try
+        {
+            var ignored = ZoneId.of(identifier);
+            return true;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
+
     public static ZoneId parseDisplayName(Listener listener, String displayName)
     {
         var zoneId = shortToLong.get(displayName);
