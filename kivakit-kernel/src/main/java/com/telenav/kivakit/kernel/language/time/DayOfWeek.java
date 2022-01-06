@@ -120,7 +120,7 @@ public enum DayOfWeek
         }
     }
 
-    public int jodaTimeConstant()
+    public int asJavaConstant()
     {
         return asIsoConstant() + 1;
     }

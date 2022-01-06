@@ -237,21 +237,6 @@ public class Time implements Quantizable
         return elapsed.minus(elapsedSince());
     }
 
-    public LocalTime localTime()
-    {
-        return new LocalTime(LocalTime.localTimeZone(), this);
-    }
-
-    public LocalTime localTime(String zone)
-    {
-        return new LocalTime(ZoneId.of(zone), this);
-    }
-
-    public LocalTime localTime(ZoneId zone)
-    {
-        return new LocalTime(zone, this);
-    }
-
     public Time maximum(Time that)
     {
         return isAfter(that) ? this : that;
@@ -314,6 +299,21 @@ public class Time implements Quantizable
     public Time roundUp(Duration unit)
     {
         return roundDown(unit).plus(unit);
+    }
+
+    public LocalTime localTime()
+    {
+        return new LocalTime(LocalTime.localTimeZone(), this);
+    }
+
+    public LocalTime localTime(String zone)
+    {
+        return new LocalTime(ZoneId.of(zone), this);
+    }
+
+    public LocalTime localTime(ZoneId zone)
+    {
+        return new LocalTime(zone, this);
     }
 
     @Override
