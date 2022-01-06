@@ -360,6 +360,7 @@ public class Multicaster implements Broadcaster
                 }
             }
         });
+
         return message;
     }
 

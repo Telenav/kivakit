@@ -162,8 +162,8 @@ public interface RepeaterMixin extends Repeater, Mixin
      * {@inheritDoc}
      */
     @Override
-    default void transmit(Message message)
+    default <T extends Message> T transmit(T message)
     {
-        repeater().transmit(message);
+        return repeater().transmit(message);
     }
 }

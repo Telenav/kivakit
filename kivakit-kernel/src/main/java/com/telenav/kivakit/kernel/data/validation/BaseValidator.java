@@ -122,6 +122,20 @@ public abstract class BaseValidator implements Validator
     private Listener listener;
 
     /**
+     * Any parent validator for chaining
+     */
+    private Validator parent;
+
+    public BaseValidator()
+    {
+    }
+
+    public BaseValidator(final Validator parent)
+    {
+        this.parent = parent;
+    }
+
+    /**
      * @return True if the validation in progress is invalid
      */
     public boolean isInvalid()
@@ -163,6 +177,9 @@ public abstract class BaseValidator implements Validator
 
             // Make a copy of the current issues for the thread.
             var issues = issues().copy();
+
+            // Validate any parent
+            validateParent();
 
             // Next, call the subclass onValidate() method (which may make calls to problem or glitch methods, causing invalidity)
             onValidate();
@@ -312,6 +329,11 @@ public abstract class BaseValidator implements Validator
         return null;
     }
 
+    protected final Problem problemIfNull(Object object, String message, Object... parameters)
+    {
+        return problemIf(object == null, message, parameters);
+    }
+
     /**
      * Broadcasts a {@link Quibble} with the given message
      */
@@ -336,17 +358,32 @@ public abstract class BaseValidator implements Validator
      * Re-enters validation by calling the given validator. Calling the validator's {@link #validate(Listener)} method
      * directly may result in an inconsistent state.
      */
-    protected final void validate(Validator validator)
+    protected final boolean validate(Validator validator)
     {
         reentrancy.enter();
         try
         {
-            validator.validate(listener);
+            return validator.validate(listener);
         }
         finally
         {
             reentrancy.exit();
         }
+    }
+
+    /**
+     * Validates the given {@link Validatable} using the given type of validation
+     *
+     * @param validatable The object to validate
+     * @param type The type of validation to apply
+     */
+    protected boolean validate(Validatable validatable, ValidationType type)
+    {
+        if (validatable != null)
+        {
+            return validate(validatable.validator(type));
+        }
+        return false;
     }
 
     /**
@@ -394,5 +431,16 @@ public abstract class BaseValidator implements Validator
     {
         issues().add(message);
         return message;
+    }
+
+    /**
+     * Validates any parent {@link Validatable} passed to the constructor
+     */
+    private void validateParent()
+    {
+        if (parent != null)
+        {
+            parent.validate(listener);
+        }
     }
 }

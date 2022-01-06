@@ -172,9 +172,10 @@ public interface Broadcaster extends Transceiver
      * Broadcasts the given message to any listeners in the audience of this broadcaster
      * </p>
      */
-    default void transmit(Message message)
+    default <T extends Message> T transmit(T message)
     {
         transmit((Transmittable) message);
+        return message;
     }
 
     /**
