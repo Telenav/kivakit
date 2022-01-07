@@ -60,7 +60,7 @@ public class BaseFormattedLocalTimeConverter extends BaseFormattedConverter
     {
         var timeZone = value.timeZone();
         return formatter().format(Instant.ofEpochMilli(value.asMilliseconds())
-                .atZone(timeZone)) + (addTimeZone() ? "_" + TimeZones.displayName(timeZone) : "");
+                .atZone(timeZone)) + (addTimeZone() ? "_" + TimeZones.shortDisplayName(timeZone) : "");
     }
 
     @Override
@@ -82,7 +82,7 @@ public class BaseFormattedLocalTimeConverter extends BaseFormattedConverter
         {
             return zone();
         }
-        var zone = TimeZones.parseDisplayName(listener, Paths.optionalSuffix(value, '_'));
+        var zone = TimeZones.parseShortDisplayName(listener, Paths.optionalSuffix(value, '_'));
         if (zone != null)
         {
             return zone;
