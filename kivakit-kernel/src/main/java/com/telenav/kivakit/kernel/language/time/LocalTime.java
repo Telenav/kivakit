@@ -363,7 +363,7 @@ public class LocalTime extends Time
                 + "_" + String.format("%02d", hour())
                 + "." + String.format("%02d", minute())
                 + meridiem()
-                + "_" + TimeZones.displayName(timeZone);
+                + "_" + TimeZones.shortDisplayName(timeZone);
     }
 
     @Override

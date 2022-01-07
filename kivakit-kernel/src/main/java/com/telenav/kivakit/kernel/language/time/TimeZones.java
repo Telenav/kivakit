@@ -38,48 +38,94 @@ import java.util.Map;
 @LexakaiJavadoc(complete = true)
 public class TimeZones
 {
-    private static final Map<String, String> shortToLong = new HashMap<>();
+    /** Map from a short display name (PST) to its zone id (America/Los Angeles) */
+    private static final Map<String, String> shortDisplayNameToZoneId = new HashMap<>();
 
     static
     {
         for (var zone : ZoneId.getAvailableZoneIds())
         {
             var zoneId = ZoneId.of(zone);
-            shortToLong.put(displayName(zoneId), zone);
+            shortDisplayNameToZoneId.put(shortDisplayName(zoneId), zone);
         }
     }
 
-    public static String displayName(ZoneId zone)
-    {
-        return zone.getDisplayName(TextStyle.SHORT, Locale.getDefault());
-    }
-
+    /**
+     * @return True if the given zone id represents UTC time
+     */
     public static boolean isUtc(ZoneId zone)
     {
         return zone.getId().equals("UTC") || zone.getId().equals("GMT") || zone.getId().equals(("UT"));
     }
 
-    public static boolean isValidZoneId(String identifier)
+    /**
+     * @return True if the given identifier is a valid short display name (PST)
+     */
+    public static boolean isValidShortDisplayName(String identifier)
     {
-        try
-        {
-            var ignored = ZoneId.of(identifier);
-            return true;
-        }
-        catch (Exception e)
-        {
-            return false;
-        }
+        return parseShortDisplayName(Listener.none(), identifier) != null;
     }
 
-    public static ZoneId parseDisplayName(Listener listener, String displayName)
+    /**
+     * @return True if the given identifier is a valid zone id (America/Los Angeles)
+     */
+    public static boolean isValidZoneId(String identifier)
     {
-        var zoneId = shortToLong.get(displayName);
+        return parseZoneId(Listener.none(), identifier) != null;
+    }
+
+    /**
+     * @return The zone id (America/Los Angeles) for the given short display name (PST), or null if there is none
+     */
+    public static ZoneId parseShortDisplayName(Listener listener, String displayName)
+    {
+        var zoneId = shortDisplayNameToZoneId.get(displayName);
         if (zoneId != null)
         {
             return ZoneId.of(zoneId);
         }
-        listener.problem("Invalid zone display name: $", displayName);
+        listener.problem("Invalid zone display name (PST): $", displayName);
         return null;
+    }
+
+    /**
+     * @return The zone id (America/Los Angeles) for the given identifier, or null if there is none
+     */
+    public static ZoneId parseZoneId(Listener listener, String identifier)
+    {
+        try
+        {
+            return ZoneId.of(identifier);
+        }
+        catch (Exception e)
+        {
+            listener.problem("Invalid zone identifier (America/Los Angeles): $", identifier);
+            return null;
+        }
+    }
+
+    /**
+     * @return The zone id for the given identifier (America/Los Angeles, or PST), or null if there is none
+     */
+    public static ZoneId parseZoneIdOrDisplayName(Listener listener, String identifier)
+    {
+        var zone = parseShortDisplayName(Listener.none(), identifier);
+        if (zone == null)
+        {
+            zone = parseZoneId(Listener.none(), identifier);
+        }
+        if (zone == null)
+        {
+            listener.problem("Not a valid zone identifier (America/Los Angeles) or short display name (PST): $", identifier);
+        }
+        return zone;
+    }
+
+    /**
+     * @return The short display name (PST) for the given zone id (America/Los Angeles)
+     */
+    public static String shortDisplayName(ZoneId zone)
+    {
+        return zone.getDisplayName(TextStyle.SHORT, Locale.getDefault());
     }
 }
