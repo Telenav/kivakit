@@ -32,10 +32,4 @@ public class BaseComponent extends BaseRepeater implements Component, RegistryTr
     {
         addListener(handler::accept);
     }
-
-    @Override
-    public String toString()
-    {
-        return new ObjectFormatter(this).toString(MULTILINE);
-    }
 }

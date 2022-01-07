@@ -369,7 +369,15 @@ public abstract class BaseValidator implements Validator
         reentrancy.enter();
         try
         {
-            return validator.validate(listener);
+            if (validator != null)
+            {
+                return validator.validate(listener);
+            }
+            else
+            {
+                problem("Null validator");
+                return false;
+            }
         }
         finally
         {
@@ -389,7 +397,11 @@ public abstract class BaseValidator implements Validator
         {
             return validate(validatable.validator(type));
         }
-        return false;
+        else
+        {
+            problem("Null validatable");
+            return false;
+        }
     }
 
     /**
