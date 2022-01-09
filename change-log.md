@@ -39,7 +39,7 @@
 
 ### security
 
- * Upgraded log4j to 2.17.0
+ * Upgraded log4j to 2.17.1
  * Upgraded guava to 31.0.1-jre
  * Upgraded commons-compress to 1.21
  * Upgraded ow2.asm to 8.0.1
