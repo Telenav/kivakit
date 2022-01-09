@@ -1,29 +1,83 @@
-![](https://www.kivakit.org/images/horizontal-line.png)
 
-## Version 1.2.2 (2021.12.22) "plutonium banana"
 
-### lambdas
+# KivaKit Change Log
 
- * Added *MicroserviceLambdaService* with Lambda mounting
+-----------------------------------------------------------------------------------------------------------------------
+
+## Version 1.2.2 (2022.01.09) "mango marmot"
+
+### collections
+
+ * Added BaseSet.addAllMatching(Collection, Matcher)
+ * Added ObjectSet.matching(Matcher)
+ * Added Sets.matching(Set, Matcher)
+ * Improved BaseList constructor
+ * Added ObjectList.objectListFromArray(long[] objects)
+
+### documentation
+
+ * Microservices mini-framework diagram
+ * Javadoc improvements and fixes
+ * Documented TimeZones methods
+
+### microservices
+
+ * Fixed error serialization issue
+ * Fixed message capturing issues
+ * Added MicroserviceRestPath.version()
+ * Added MicroserviceRestService.mount(Version, String path, HttpMethod, Class<Request)
+ * Added support for Swagger tags
+ * Fixed handling of arrays in Swagger
+
+### primitives
+
+ * Changed Ints.isBetween() -> isBetweenExclusive(), isBetweenInclusive()
+
+### reflection
+
+ * Added Member.arrayElementType()
+
+### security
+
+ * Upgraded log4j to 2.17.0
+ * Upgraded guava to 31.0.1-jre
+ * Upgraded commons-compress to 1.21
+ * Upgraded ow2.asm to 8.0.1
+ * Upgraded ow2.ow2 to 1.5.1
 
 ### scripts
 
  * Added tagging to gitflow finish scripts
 
-### documentation
+### time
+ 
+ * Added LocalTime.hourOfWeek()
+ * Added TimeSpan.future(Duration)
+ * Added TimeSpan.past(Duration)
+ * Changed DayOfWeek.jodaTimeConstant() -> asJavaConstant()
+ * Added TimeZones.isUtc(ZoneId)
+ * Added TimeZones.isValidShortDisplayName(String)
+ * Added TimeZones.parseShortDisplayName(Listener, String)
+ * Added TimeZones.parseZoneId(Listener, String)
+ * Added TimeZones.parseZoneIdOrDisplayName(Listener, String)
+ * Changed TimeZones.displayName(ZoneId) -> shortDisplayName(ZoneId)
 
- * Microservices mini-framework diagram
- * Updated documentation for 
+### validation
 
-### security
+ * Added validator parent chaining
+ * Added validate(Validatable, ValidationType) method
+ * Fixed issue with null Validatables and Validators
 
- * Updated log4j to 2.17.0
- * Updated guava to 31.0.1-jre
- * Updated commons-compress to 1.21
 
-![](https://www.kivakit.org/images/horizontal-line.png)
 
-## Version 1.2.2-SNAPSHOT (2021.12.14) "plutonium goldfish"
+
+-----------------------------------------------------------------------------------------------------------------------
+
+## Version 1.2.1 (2021.12.14) "plutonium goldfish"
+
+### lambdas
+
+ * Added *MicroserviceLambdaService* with Lambda mounting
 
 ### added
 
@@ -84,8 +138,11 @@
 ### security
 
  * Upgraded Jetty to 9.4.44
+ 
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+
+
+-----------------------------------------------------------------------------------------------------------------------
 
 ## Version 1.1.3 (2021.11.14) "plutonium seal"
 
@@ -112,7 +169,10 @@
  * BaseHttpResource doesn't check HTTP status correctly
  * HttpNetworkLocation query parameter handling fails when there are no parameters
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+
+
+
+-----------------------------------------------------------------------------------------------------------------------
 
 ## Version 1.1.1 (2021.11.05) "plutonium panda"
 
@@ -126,7 +186,10 @@
  * [Broken listener chain due to inheritance from mixin and base component #86](https://github.com/Telenav/kivakit/issues/86)
  * [Documentation links are broken in kivakit 1.1.0 #88](https://github.com/Telenav/kivakit/issues/88)
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+
+
+
+-----------------------------------------------------------------------------------------------------------------------
 
 ## Version 1.1.0 (2021.08.27) "plutonium snake"
 
@@ -157,11 +220,12 @@
 * Fixes to build and deployment scripts
 * Many small bug fixes
 
-![](https://www.kivakit.org/images/horizontal-line.png)
+
+
+
+-----------------------------------------------------------------------------------------------------------------------
 
 ## Version 1.0.3 (2021.08.27) "puffy mouse"
 
 Initial release of KivaKit.
-
-![](https://www.kivakit.org/images/horizontal-line.png)
 
