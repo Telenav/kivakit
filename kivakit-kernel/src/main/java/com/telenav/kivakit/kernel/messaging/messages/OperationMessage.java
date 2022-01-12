@@ -99,21 +99,21 @@ public abstract class OperationMessage implements Named, Message
         return listener.problemIfNull(messages.get(name), "Invalid message name: $", name);
     }
 
-    private transient String message;
-
     private transient Object[] arguments;
 
     private transient Throwable cause;
+
+    private CodeContext context;
 
     private Time created = Time.now();
 
     private String formattedMessage;
 
-    private StackTrace stackTrace;
-
     private Frequency maximumFrequency;
 
-    private CodeContext context;
+    private transient String message;
+
+    private StackTrace stackTrace;
 
     protected OperationMessage(String message)
     {
@@ -209,7 +209,7 @@ public abstract class OperationMessage implements Named, Message
         {
             try
             {
-                if (reentrancy.enter() && DETECT_REENTRANCY)
+                if (!reentrancy.enter() && DETECT_REENTRANCY)
                 {
                     formattedMessage = "Re-entrant message formatting detected. This could result in infinite recursion: '" + message + "'";
                 }

@@ -38,15 +38,15 @@ public class ReentrancyTracker
     /**
      * Enters a block of potentially reentrant code
      *
-     * @return True if the following code has already been entered. Reentrancy can also be checked with {@link
+     * @return True if the following code has not yet been entered. Reentrancy can also be checked with {@link
      * #hasReentered()}.
      */
     public boolean enter()
     {
         try
         {
-            // Return true if we've reentered
-            return level.get() > 0;
+            // Return true if we have not reentered
+            return level.get() == 0;
         }
         finally
         {

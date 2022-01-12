@@ -80,17 +80,20 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  */
 public abstract class BaseSettingsStore extends BaseRepeater implements SettingsStore, RegistryTrait
 {
-    /** Map to get settings entries by identifier */
-    private final Map<SettingsObject.Identifier, SettingsObject> objects = new HashMap<>();
+    /** True if settings have been loaded into this store */
+    private boolean loaded;
 
     /** Lock for accessing settings entries */
     private final ReadWriteLock lock = new ReadWriteLock();
 
-    /** True if settings have been loaded into this store */
-    private boolean loaded;
+    /** Map to get settings entries by identifier */
+    private final Map<SettingsObject.Identifier, SettingsObject> objects = new HashMap<>();
 
     /** Store to propagate changes to */
     private SettingsStore propagateChangesTo;
+
+    /** True while this store is reloading */
+    private boolean reloading;
 
     /**
      * {@inheritDoc}
@@ -187,17 +190,6 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
     }
 
     /**
-     * <p><b>ServiceProvider API</b></p>
-     *
-     * Forces this settings store to reload
-     */
-    public void forceLoad()
-    {
-        unload();
-        load();
-    }
-
-    /**
      * Looks up the settings object for the given identifier. First looks in the global object {@link Registry}, then
      * looks at the objects in this store's index.
      *
@@ -231,9 +223,25 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
     }
 
     @Override
-    public void propagateChangesTo(final SettingsStore store)
+    public void propagateChangesTo(SettingsStore store)
     {
         propagateChangesTo = store;
+    }
+
+    /**
+     * <p><b>ServiceProvider API</b></p>
+     * <p>
+     * Forces this settings store to reload
+     */
+    public void reload()
+    {
+        if (!reloading)
+        {
+            reloading = true;
+            unload();
+            load();
+            reloading = false;
+        }
     }
 
     /**
