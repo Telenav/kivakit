@@ -4,7 +4,7 @@
 
 -----------------------------------------------------------------------------------------------------------------------
 
-## Version 1.2.2 (2022.01.09) "mango marmot"
+## Version 1.2.2 (2022.01.13) "mango duckling"
 
 ### collections
 
@@ -28,6 +28,17 @@
  * Added MicroserviceRestService.mount(Version, String path, HttpMethod, Class<Request)
  * Added support for Swagger tags
  * Fixed handling of arrays in Swagger
+
+### clustering
+
+ * Changed BaseSettingsStore.forceLoad() -> reload(), prevent reentrancy to reload()
+ * Excluded reentrancy of BaseSettingsStore.reload()
+ * Fixed issues in MicroserviceCluster tracking, allowing Zookeeper to go up or down without errors
+ * Changed return value of ReentrancyTracker.enter() to be true if the code can be entered (no reentrancy)
+ * Added MicroserviceCluster.leader() method
+ * Added Microservice.leader() convenience method
+ * Optimized reloads of member data in MicroserviceCluster
+ * Changed ZookeeperSettingsStore.readSettings() -> loadSettings()
 
 ### primitives
 
