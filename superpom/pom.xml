@@ -146,7 +146,7 @@
         <maven-protobuf-plugin.version>0.6.1</maven-protobuf-plugin.version>
         <maven-os-plugin.version>1.6.1</maven-os-plugin.version>
 
-        <cactus.version>1.2.1</cactus.version>
+        <cactus.version>1.2.2</cactus.version>
         <cactus.download.version>${cactus.version}</cactus.download.version>
         <cactus.downloads.folder>${user.home}/.cactus-build/downloads</cactus.downloads.folder>
         <cactus.url>https://repo1.maven.org/maven2/com/telenav/cactus/cactus-build-metadata/${cactus.download.version}/cactus-build-metadata-${cactus.download.version}.jar</cactus.url>
