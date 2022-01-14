@@ -77,9 +77,8 @@ KivaKit extends the JDK to provide quick and easy solutions to common everyday s
 
 KivaKit is composed of a number of nested sub-projects that are Java 11+ modules. These modules address different areas of concern in developing Java applications. The resources below will help you to get started.
 
-<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
-
 <a name = "about"></a>
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
 ### About KivaKit 
 
