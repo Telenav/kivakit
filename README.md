@@ -50,16 +50,15 @@ KivaKit (KEE-vah-KIT) is a set of integrated Java mini-frameworks that are poten
 
 [**Welcome!**](#welcome)  
 [**About KivaKit**](#about-kivakit)  
-[**Example Code**](https://github.com/Telenav/kivakit-examples)  
 [**Building KivaKit**](#building-kivakit)  
+[**Downloads**](#downloads)  
+[**Reference**](#reference)  
 [**Working on KivaKit**](#working-on-kivakit)  
 [**Project Resources**](#project-resources)  
-[**Downloads**](#downloads)  
-[**Building KivaKit**](documentation/build/building.md)  
-[**Reference**](#reference)  
 [**Projects**](#projects)  
 [**Javadoc Coverage**](#javadoc-coverage)  
-[**Change Log**](change-log.md)
+[**Change Log**](change-log.md)  
+[**Java 11+**](documentation/overview/java-migration-notes.md)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
@@ -121,6 +120,10 @@ KivaKit helps you to:
 [**CodeFlowers**](https://www.kivakit.org/1.2.3-SNAPSHOT/codeflowers/site/index.html)  
 [**System Properties**](documentation/reference/system-properties.md)
 
+### Working on KivaKit <a name = "working-on-kivakit"></a> &nbsp; <img src="https://www.kivakit.org/images/toolbox-32.png" srcset="https://www.kivakit.org/images/toolbox-32-2x.png 2x"/>
+
+[**Development Process**](documentation/developing/index.md)  
+[**Open Source Process**](documentation/open-source/open-source-process.md)  
 
 ### Project Resources <a name = "project-resources"></a> &nbsp; <img src="https://www.kivakit.org/images/water-32.png" srcset="https://www.kivakit.org/images/water-32-2x.png 2x"/>
 
@@ -140,12 +143,6 @@ KivaKit helps you to:
 | *Chat* | [Zulip](https://kivakit.zulip.com) |
 | *Twitter* | [@OpenKivaKit](https://twitter.com/openkivakit) |
 | *Issues* | [GitHub Issues](https://github.com/Telenav/kivakit/issues) |
-
-
-### Working on KivaKit <a name = "working-on-kivakit"></a> &nbsp; <img src="https://www.kivakit.org/images/toolbox-32.png" srcset="https://www.kivakit.org/images/toolbox-32-2x.png 2x"/>
-
-[**Development Process**](documentation/developing/index.md)  
-[**Open Source Process**](documentation/open-source/open-source-process.md)  
 
 
 [//]: # (end-user-text)
@@ -209,7 +206,7 @@ KivaKit helps you to:
 
 [**Issues**](https://github.com/Telenav/kivakit/issues) |
 [**Change Log**](change-log.md) |
-[**Java Migration Notes**](documentation/overview/java-migration-notes.md)
+[**Java 11+ Migration Notes**](documentation/overview/java-migration-notes.md)
 
 [//]: # (end-user-text)
 
