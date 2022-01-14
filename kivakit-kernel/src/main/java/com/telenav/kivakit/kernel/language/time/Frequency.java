@@ -136,6 +136,7 @@ public class Frequency
             {
                 return Duration.NONE;
             }
+            
             // The time since this frequency started
             var sinceStart = start.elapsedSince();
 
