@@ -4,7 +4,23 @@
 
 -----------------------------------------------------------------------------------------------------------------------
 
-## Version 1.2.3-SNAPSHOT (2022.01.13) "mango duckling"
+## Version 1.2.3 (2022.01.??) "mango ???"
+
+### messaging
+
+ * Added MessageAlarm APi and EmailMessageAlarm
+
+### documentation
+
+ * Improved landing pages
+
+### security
+
+ * Upgraded protobuf to 3.18.2
+
+-----------------------------------------------------------------------------------------------------------------------
+
+## Version 1.2.2 (2022.01.13) "mango duckling"
 
 ### collections
 
