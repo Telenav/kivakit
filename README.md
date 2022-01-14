@@ -79,7 +79,9 @@ KivaKit is composed of a number of nested sub-projects that are Java 11+ modules
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
-### Project Summary <a name = "about"></a>
+<a name = "about"></a>
+
+### About KivaKit 
 
 KivaKit is designed for use in everyday software development. KivaKit APIs work together through a set of common interfaces and components to provide a consistent and powerful development experience. Documentation and examples are provided, but much of KivaKit's functionality can also be discovered with class searching and autocomplete, because it was designed to be used in that way.
 
