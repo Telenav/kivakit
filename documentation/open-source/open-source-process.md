@@ -48,7 +48,7 @@ Source Software Repository Hosting (OSSRH)* snapshot repository by adding this t
 
 Contributions of bug fixes and improvements from developers in the form of pull requests (PRs) don't
 require any special setup, other than the setup required to [*develop for
-KivaKit*](../developing/setup.md).
+KivaKit*](../developing/developer-setup.md).
 
 #### Administrators
 

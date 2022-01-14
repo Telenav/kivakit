@@ -9,8 +9,8 @@ fi
 
 ################ PROJECT ################################################################################################
 
-property_value() {
-
+property_value()
+{
     file=$1
     key=$2
 
@@ -18,8 +18,8 @@ property_value() {
     cat "$file" | grep "$key" | cut -d'=' -f2 | xargs echo
 }
 
-project_version() {
-
+project_version()
+{
     project_home=$1
     project_properties=$project_home/project.properties
 
@@ -28,8 +28,8 @@ project_version() {
     echo $(property_value "$project_properties" project-version)
 }
 
-project_name() {
-
+project_name()
+{
     project_home=$1
 
     # shellcheck disable=SC2046
@@ -37,8 +37,8 @@ project_name() {
     echo $(basename -- "$project_home")
 }
 
-project_build() {
-
+project_build()
+{
     project_home=$1
 
     build_properties=$project_home/build.properties
@@ -49,13 +49,15 @@ project_build() {
         build_number=$(property_value "$build_properties" build-number)
         build_date=$(property_value "$build_properties" build-date)
 
-        echo "build #$build_number on $build_date '$build_name'"
+        branch_name=$(git_branch_name "$project_home")
+
+        echo "$branch_name build #$build_number \"$build_name\" on $build_date"
 
     fi
 }
 
-showVersion() {
-
+showVersion()
+{
     project_home=$1
     project_name=$(project_name "$project_home")
     project_version=$(project_version "$project_home")
@@ -192,6 +194,14 @@ git_flow_release_start()
     echo "┋"
     echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
     echo " "
+}
+
+git_branch_name()
+{
+    project_home=$1
+    cd "$project_home" || exit
+    branch_name=$(git rev-parse --abbrev-ref HEAD)
+    echo "$branch_name"
 }
 
 git_flow_release_finish()

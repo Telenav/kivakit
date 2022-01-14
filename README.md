@@ -39,17 +39,28 @@ KivaKit (KEE-vah-KIT) is a set of integrated Java mini-frameworks that are poten
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
+### Quick Start <a name = "quick-start"></a>&nbsp; <img src="https://www.kivakit.org/images/rocket-32.png" srcset="https://www.kivakit.org/images/rocket-32-2x.png 2x"/>
+
+[**Tutorial Articles**](https://state-of-the-art.org/)  
+[**Documentation**](https://github.com/Telenav/kivakit#readme)  
+[**Example Code**](https://github.com/Telenav/kivakit-examples)  
+[**Published Releases**](https://repo1.maven.org/maven2/com/telenav/kivakit/)  
+
 ### Index <a name = "index"></a>
 
 [**Welcome!**](#welcome)  
 [**Summary**](#summary)  
-[**Examples**](#examples)  
+[**Example Code**](#examples)  
+[**Building KivaKit**](#building-kivakit)  
+[**Working on KivaKit**](#working-on-kivakit)  
 [**Project Resources**](#project-resources)  
 [**Quick Start**](#quick-start)  
 [**Downloads**](#downloads)  
+[**Building KivaKit**](documentation/build/building.md)  
 [**Reference**](#reference)  
 [**Projects**](#projects)  
-[**Javadoc Coverage**](#javadoc-coverage)
+[**Javadoc Coverage**](#javadoc-coverage)  
+[**Change Log**](change-log.md)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
@@ -90,22 +101,26 @@ KivaKit helps you to:
 - *Convert* arguments, switches and textual data into objects
 - *Validate, serialize and log* data of all kinds
 
-### Examples <a name = "examples"></a>
-
-The [**kivakit-examples**](https://github.com/Telenav/kivakit-examples) project contains useful, working examples of use cases for KivaKit.
-
-
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Quick Start <a name = "quick-start"></a>&nbsp; <img src="https://www.kivakit.org/images/rocket-32.png" srcset="https://www.kivakit.org/images/rocket-32-2x.png 2x"/>
+### Building KivaKit <a name = "building-kivakit"></a> &nbsp; <img src="https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/gears-32-2x.png 2x"/>
 
-[**KivaKit Blog Articles**](https://state-of-the-art.org/)  
-[**Setup**](documentation/overview/setup.md)  
-[**Building**](documentation/overview/building.md)  
-[**Developing**](documentation/developing/index.md)  
-[**Open Source**](documentation/open-source/howto.md)
+[**Build Setup**](documentation/build/build-setup.md)  
+[**Building**](documentation/build/building.md)  
 
-<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
+### Downloads <a name = "downloads"></a>&nbsp; <img src="https://www.kivakit.org/images/down-arrow-32.png" srcset="https://www.kivakit.org/images/down-arrow-32-2x.png 2x"/>
+
+[**Java 11**](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)  
+[**Maven**](https://maven.apache.org/download.cgi)  
+[**IntelliJ**](https://www.jetbrains.com/idea/download/)
+
+
+### Reference <a name = "reference"></a>&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
+
+[**Javadoc**](https://www.kivakit.org/1.2.3-SNAPSHOT/javadoc/kivakit)  
+[**CodeFlowers**](https://www.kivakit.org/1.2.3-SNAPSHOT/codeflowers/site/index.html)  
+[**System Properties**](documentation/reference/system-properties.md)
+
 
 ### Project Resources <a name = "project-resources"></a> &nbsp; <img src="https://www.kivakit.org/images/water-32.png" srcset="https://www.kivakit.org/images/water-32-2x.png 2x"/>
 
@@ -126,23 +141,12 @@ The [**kivakit-examples**](https://github.com/Telenav/kivakit-examples) project 
 | *Twitter* | [@OpenKivaKit](https://twitter.com/openkivakit) |
 | *Issues* | [GitHub Issues](https://github.com/Telenav/kivakit/issues) |
 
-<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
-### Downloads <a name = "downloads"></a>&nbsp; <img src="https://www.kivakit.org/images/down-arrow-32.png" srcset="https://www.kivakit.org/images/down-arrow-32-2x.png 2x"/>
+### Working on KivaKit <a name = "working-on-kivakit"></a> &nbsp; <img src="https://www.kivakit.org/images/toolbox-32.png" srcset="https://www.kivakit.org/images/toolbox-32-2x.png 2x"/>
 
-[**Java 11**](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)  
-[**Maven**](https://maven.apache.org/download.cgi)  
-[**IntelliJ**](https://www.jetbrains.com/idea/download/)
+[**Development Process**](documentation/developing/index.md)  
+[**Open Source Process**](documentation/open-source/open-source-process.md)  
 
-<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
-
-### Reference <a name = "reference"></a>&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
-
-[**Javadoc**](https://www.kivakit.org/1.2.3-SNAPSHOT/javadoc/kivakit)  
-[**CodeFlowers**](https://www.kivakit.org/1.2.3-SNAPSHOT/codeflowers/site/index.html)  
-[**System Properties**](documentation/developing/system-properties.md)
-
-<img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 [//]: # (end-user-text)
 

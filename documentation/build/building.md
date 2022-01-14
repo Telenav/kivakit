@@ -4,11 +4,15 @@
 
 ### Building KivaKit
 
-KivaKit can be built in [IntelliJ](https://www.jetbrains.com/idea/download/) or from the command line with Maven or the convenient scripts below.
+KivaKit can be built by following these steps:
+
+1. Follow the KivaKit [build setup instructions](build-setup.md)  
+        **NOTE**: Until this setup process has been followed, KivaKit projects will not build or work correctly 
+2. Build KivaKit with *kivakit-build.sh*
+3. Import the repositories kivakit and kivakit-extensions into [IntelliJ](https://www.jetbrains.com/idea/download/) as modules, and choose "Rebuild Project" from the "Build" menu.
 
 ### Key Build Scripts
 
-Once you have completed the [Setup](setup.md) process, it is easy to build projects from the command line with **kivakit-build.sh**.
 
 | Script | Purpose |
 |--------|---------|
