@@ -114,6 +114,7 @@ open module kivakit.kernel
     exports com.telenav.kivakit.kernel.logging.logs.text;
     exports com.telenav.kivakit.kernel.logging.logs;
     exports com.telenav.kivakit.kernel.logging;
+    exports com.telenav.kivakit.kernel.messaging.alarms;
     exports com.telenav.kivakit.kernel.messaging.broadcasters;
     exports com.telenav.kivakit.kernel.messaging.filters.operators;
     exports com.telenav.kivakit.kernel.messaging.filters;
