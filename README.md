@@ -41,6 +41,7 @@ KivaKit (KEE-vah-KIT) is a set of integrated Java mini-frameworks that are poten
 
 ### Quick Start <a name = "quick-start"></a>&nbsp; <img src="https://www.kivakit.org/images/rocket-32.png" srcset="https://www.kivakit.org/images/rocket-32-2x.png 2x"/>
 
+[**About KivaKit**](#about)  
 [**Tutorial Articles**](https://state-of-the-art.org/)  
 [**Documentation**](https://github.com/Telenav/kivakit#readme)  
 [**Example Code**](https://github.com/Telenav/kivakit-examples)  
@@ -78,7 +79,7 @@ KivaKit is composed of a number of nested sub-projects that are Java 11+ modules
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
-### Summary <a name = "summary"></a>
+### Project Summary <a name = "about"></a>
 
 KivaKit is designed for use in everyday software development. KivaKit APIs work together through a set of common interfaces and components to provide a consistent and powerful development experience. Documentation and examples are provided, but much of KivaKit's functionality can also be discovered with class searching and autocomplete, because it was designed to be used in that way.
 
