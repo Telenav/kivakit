@@ -49,7 +49,7 @@ KivaKit (KEE-vah-KIT) is a set of integrated Java mini-frameworks that are poten
 ### Index <a name = "index"></a>
 
 [**Welcome!**](#welcome)  
-[**Summary**](#summary)  
+[**About KivaKit**](#about-kivakit)  
 [**Example Code**](#examples)  
 [**Building KivaKit**](#building-kivakit)  
 [**Working on KivaKit**](#working-on-kivakit)  
