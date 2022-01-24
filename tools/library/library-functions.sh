@@ -51,7 +51,7 @@ project_build()
 
         branch_name=$(git_branch_name "$project_home")
 
-        echo "$branch_name build #$build_number \"$build_name\" on $build_date"
+        echo "$branch_name build #$build_number ($build_name) on $build_date"
 
     fi
 }
