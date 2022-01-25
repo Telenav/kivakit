@@ -129,7 +129,7 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 echo " "
 
 cd "$KIVAKIT_HOME" || exit
-kivakit-build.sh setup
+kivakit-build.sh setup "$1"
 
 echo " "
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Setup Complete"

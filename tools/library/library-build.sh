@@ -189,6 +189,10 @@ build() {
             addSwitch "-P dmg"
             ;;
 
+        "docker")
+            addSwitch "-P docker"
+            ;;
+
         "javadoc")
             if [ -n "$JAVADOC" ]; then
 

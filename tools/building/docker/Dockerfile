@@ -62,7 +62,7 @@ RUN date +setup-time=%Y.%m.%d-%I.%M%p > ${KIVAKIT_HOME}/setup.properties
 
 COPY profile $HOME/.profile
 
-RUN bash -c "source $HOME/.profile && $KIVAKIT_HOME/setup/setup.sh"
+RUN bash -c "source $HOME/.profile && $KIVAKIT_HOME/setup/setup.sh docker"
 
 COPY entrypoint.sh $HOME/entrypoint.sh
 RUN chmod +x $HOME/entrypoint.sh
