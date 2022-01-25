@@ -9,4 +9,14 @@ workspace=$1
 
 require_variable workspace "$help"
 
-export KIVAKIT_WORKSPACE="$workspace" && bash -i
+if [ "$workspace" = "host" ]; then
+    workspace="/host/workspace"
+elif [ "$workspace" = "container" ]; then
+    workspace="/root/workspace"
+else
+    usage "$help"
+fi
+
+export KIVAKIT_WORKSPACE="$workspace"
+
+source ~/.profile

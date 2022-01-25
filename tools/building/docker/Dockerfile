@@ -14,7 +14,7 @@ ENV JAVA_HOME="$DEVELOPER/jdk-17.0.2"
 ENV KIVAKIT_VERSION=${ENV_KIVAKIT_VERSION}
 ENV KIVAKIT_WORKSPACE=$HOME/workspace
 ENV KIVAKIT_HOME="${KIVAKIT_WORKSPACE}/kivakit"
-ENV PATH=$PATH:/usr/bin:/bin:$DEVELOPER/protoc/bin:$M2_HOME/bin:$JAVA_HOME/bin
+ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/bin:$DEVELOPER/protoc/bin:$M2_HOME/bin:$JAVA_HOME/bin
 
 RUN mkdir -p $DEVELOPER && \
     mkdir -p $JAVA_HOME && \
