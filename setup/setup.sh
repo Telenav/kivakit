@@ -128,7 +128,7 @@ echo " "
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Building Projects"
 echo " "
 
-cd "$KIVAKIT_HOME"
+cd "$KIVAKIT_HOME" || exit
 kivakit-build.sh setup
 
 echo " "
