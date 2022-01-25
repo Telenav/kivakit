@@ -10,13 +10,15 @@
 source library-functions.sh
 source kivakit-projects.sh
 
-help="[version]"
+help="[branch]"
 
-version=$1
+branch=$1
 
-require_variable version "$help"
+require_variable branch "$help"
 
-git_flow_release_finish "$CACTUS_HOME" "$version"
-git_flow_release_finish "$KIVAKIT_HOME" "$version"
-git_flow_release_finish "$KIVAKIT_EXAMPLES_HOME" "$version"
-git_flow_release_finish "$KIVAKIT_EXTENSIONS_HOME" "$version"
+for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
+
+    cd "$project_home" && echo "Updating $project_home" && git checkout "$branch"
+
+done
+

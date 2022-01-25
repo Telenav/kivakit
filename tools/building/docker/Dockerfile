@@ -1,30 +1,62 @@
 
-FROM openjdk:17-alpine
+FROM ubuntu
 
-ARG KIVAKIT_VERSION
+# Get KivaKit version
+
+ARG ENV_KIVAKIT_VERSION
+
+# Locations
 
 ENV HOME=/root
-ENV JAVA_HOME="/opt/openjdk-17"
-ENV M2_HOME="$HOME/apache-maven-3.8.4"
-
-ENV KIVAKIT_VERSION=${KIVAKIT_VERSION}
+ENV DEVELOPER=$HOME/developer
+ENV M2_HOME="$DEVELOPER/apache-maven-3.8.4"
+ENV JAVA_HOME="$DEVELOPER/jdk-17.0.2"
+ENV KIVAKIT_VERSION=${ENV_KIVAKIT_VERSION}
 ENV KIVAKIT_WORKSPACE=$HOME/workspace
 ENV KIVAKIT_HOME="${KIVAKIT_WORKSPACE}/kivakit"
+ENV PATH=$PATH:/usr/bin:/bin:$DEVELOPER/protoc/bin:$M2_HOME/bin:$JAVA_HOME/bin
 
-RUN mkdir -p $KIVAKIT_HOME
+RUN mkdir -p $DEVELOPER && \
+    mkdir -p $JAVA_HOME && \
+    mkdir -p $M2_HOME && \
+    mkdir -p $KIVAKIT_HOME
 
-ENV PATH=$PATH:/usr/bin
+# Install OS tools
 
-RUN apk update
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && \
+    apt-get install -y git perl wget unzip emacs git-flow
 
-RUN apk add git git-flow bash perl grep
+# Install Java
 
-RUN cd "$HOME" && \
-    wget https://dlcdn.apache.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz && \
-    tar xvf apache-maven-3.8.4-bin.tar.gz
+RUN cd "$DEVELOPER" && \
+    wget --no-verbose https://download.java.net/java/GA/jdk17.0.2/dfd4a8d0985749f896bed50d7138ee7f/8/GPL/openjdk-17.0.2_linux-x64_bin.tar.gz && \
+    tar xvf openjdk-17.0.2_linux-x64_bin.tar.gz && \
+    rm openjdk-17.0.2_linux-x64_bin.tar.gz
 
-RUN cd "$KIVAKIT_WORKSPACE" && git clone https://github.com/Telenav/kivakit.git
-RUN cd "$KIVAKIT_HOME" && git checkout develop
+# Install protoc
+
+RUN cd $DEVELOPER && \
+    wget --no-verbose https://github.com/protocolbuffers/protobuf/releases/download/v3.15.8/protoc-3.15.8-linux-x86_64.zip && \
+    unzip protoc-3.15.8-linux-x86_64.zip -d $DEVELOPER/protoc && \
+    ln -s $DEVELOPER/protoc/bin/protoc /usr/bin/protoc && \
+    rm protoc-3.15.8-linux-x86_64.zip
+
+# Install maven
+
+RUN cd "$DEVELOPER" && \
+    wget --no-verbose https://dlcdn.apache.org/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.tar.gz && \
+    tar xvf apache-maven-3.8.4-bin.tar.gz && \
+    rm apache-maven-3.8.4-bin.tar.gz
+
+# Clone kivakit:develop
+
+RUN cd "$KIVAKIT_WORKSPACE" && \
+    git clone https://github.com/Telenav/kivakit.git && \
+    cd "$KIVAKIT_HOME" && \
+    git checkout develop
+
+# Prepare to setup
 
 RUN date +setup-time=%Y.%m.%d-%I.%M%p > ${KIVAKIT_HOME}/setup.properties
 
