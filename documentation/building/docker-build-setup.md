@@ -9,7 +9,7 @@ Building KivaKit in Docker is a snap:
 1. [Install docker](https://docs.docker.com/get-docker/)
 2. In a shell window on your host:
 
-       docker -it jonathanlocke/kivakit:[version]
+       docker run -it jonathanlocke/kivakit:[version]
 
    The [KivaKit Docker build environment image]( https://hub.docker.com/repository/docker/jonathanlocke/kivakit) of the specified version will launch with the *develop* branch checked out. The source code can be built with:
 
