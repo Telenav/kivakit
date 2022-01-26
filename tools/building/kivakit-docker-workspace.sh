@@ -2,20 +2,35 @@
 
 source library-functions.sh
 
-help="[host|container]"
+help="[host|docker]"
 
-workspace=$1
+WORKSPACE=$1
 
-require_variable workspace "$help"
+require_variable WORKSPACE "$help"
 
-if [ "$workspace" = "host" ]; then
-    workspace="/host/workspace"
-elif [ "$workspace" = "container" ]; then
-    workspace="/root/workspace"
+rm "$HOME"/.m2
+rm "$HOME"/.kivakit
+
+if [ "$WORKSPACE" = "host" ]; then
+
+    WORKSPACE="/host/workspace"
+
+    ln -s /host/.m2 "$HOME"/.m2
+    ln -s /host/.kivakit "$HOME"/.kivakit
+
+elif [ "$WORKSPACE" = "docker" ]; then
+
+    WORKSPACE="/root/workspace"
+
+    ln -s "$DEVELOPER"/.m2 "$HOME"/.m2
+    ln -s "$DEVELOPER"/.kivakit "$HOME"/.kivakit
+
 else
+
     usage "$help"
+
 fi
 
-export KIVAKIT_WORKSPACE="$workspace"
+export KIVAKIT_WORKSPACE="$WORKSPACE"
 
 source ~/.profile

@@ -19,7 +19,11 @@ ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/bin:$DEVE
 RUN mkdir -p $DEVELOPER && \
     mkdir -p $JAVA_HOME && \
     mkdir -p $M2_HOME && \
-    mkdir -p $KIVAKIT_HOME
+    mkdir -p $KIVAKIT_HOME && \
+    mkdir -p $DEVELOPER/.m2 && \
+    mkdir -p $DEVELOPER/.kivakit && \
+    ln -s $DEVELOPER/.m2 $HOME/.m2 && \
+    ln -s $DEVELOPER/.kivakit $HOME/.kivakit
 
 # Install OS tools
 
