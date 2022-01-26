@@ -1,6 +1,6 @@
 # KivaKit - Docker Build Setup   <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
-<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
+Docker makes it quick and easy to build KivaKit in any environment, without setup hassles.
 
 ### Building KivaKit in Docker
 
