@@ -1,7 +1,6 @@
 #!/bin/bash
 
 source library-functions.sh
-source kivakit-projects.sh
 
 help="[host|container]"
 

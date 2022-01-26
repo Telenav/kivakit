@@ -64,6 +64,6 @@ COPY profile $HOME/.profile
 
 RUN bash -c "source $HOME/.profile && $KIVAKIT_HOME/setup/setup.sh docker"
 
-COPY entrypoint.sh $HOME/entrypoint.sh
-RUN chmod +x $HOME/entrypoint.sh
-ENTRYPOINT $HOME/entrypoint.sh
+COPY kivakit-entrypoint.sh $HOME/entrypoint.sh
+RUN chmod +x $HOME/kivakit-entrypoint.sh
+ENTRYPOINT $HOME/kivakit-entrypoint.sh
