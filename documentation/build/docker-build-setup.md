@@ -2,7 +2,7 @@
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
-## Building KivaKit in Docker
+### Building KivaKit in Docker
 
 Building KivaKit in Docker is a snap:
 
@@ -33,7 +33,7 @@ Building KivaKit in Docker is a snap:
    >
    > For convenience, the script *kivakit-docker-run.sh* launches docker with this volume mounted.
 
-## KivaKit Scripts
+### KivaKit Scripts
 
 | KivaKit Script                                    | Purpose                                      |
 |---------------------------------------------------|----------------------------------------------|

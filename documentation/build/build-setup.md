@@ -2,7 +2,7 @@
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
-## Setting Up to Build KivaKit
+### Setting Up to Build KivaKit
 
 Whether you plan to use KivaKit or help to develop it, this page will help you get rolling in 3 easy steps.
 
