@@ -44,7 +44,7 @@ KivaKit (KEE-vah-KIT) is a set of integrated Java mini-frameworks that are poten
 [**About KivaKit**](#about)  
 [**Tutorial Articles**](https://state-of-the-art.org/)  
 [**Example Code**](https://github.com/Telenav/kivakit-examples)  
-[**Published Releases**](https://repo1.maven.org/maven2/com/telenav/kivakit/)  
+[**Published Releases**](https://repo1.maven.org/maven2/com/telenav/kivakit/)
 
 ### Index <a name = "index"></a>
 
@@ -77,7 +77,7 @@ KivaKit is composed of a number of nested sub-projects that are Java 11+ modules
 <a name = "about"></a>
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
-### About KivaKit 
+### About KivaKit
 
 KivaKit is designed for use in everyday software development. KivaKit APIs work together through a set of common interfaces and components to provide a consistent and powerful development experience. Documentation and examples are provided, but much of KivaKit's functionality can also be discovered with class searching and autocomplete, because it was designed to be used in that way.
 
@@ -104,15 +104,15 @@ KivaKit helps you to:
 
 ### Building KivaKit <a name = "building-kivakit"></a> &nbsp; <img src="https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/gears-32-2x.png 2x"/>
 
+[**Docker Build Setup**](documentation/build/docker-build-setup.md)  
 [**Build Setup**](documentation/build/build-setup.md)  
-[**Building**](documentation/build/building.md)  
+[**Building**](documentation/build/building.md)
 
 ### Downloads <a name = "downloads"></a>&nbsp; <img src="https://www.kivakit.org/images/down-arrow-32.png" srcset="https://www.kivakit.org/images/down-arrow-32-2x.png 2x"/>
 
 [**Java 11**](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)  
 [**Maven**](https://maven.apache.org/download.cgi)  
 [**IntelliJ**](https://www.jetbrains.com/idea/download/)
-
 
 ### Reference <a name = "reference"></a>&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
@@ -123,7 +123,7 @@ KivaKit helps you to:
 ### Working on KivaKit <a name = "working-on-kivakit"></a> &nbsp; <img src="https://www.kivakit.org/images/toolbox-32.png" srcset="https://www.kivakit.org/images/toolbox-32-2x.png 2x"/>
 
 [**Development Process**](documentation/developing/index.md)  
-[**Open Source Process**](documentation/open-source/open-source-process.md)  
+[**Open Source Process**](documentation/open-source/open-source-process.md)
 
 ### Project Resources <a name = "project-resources"></a> &nbsp; <img src="https://www.kivakit.org/images/water-32.png" srcset="https://www.kivakit.org/images/water-32-2x.png 2x"/>
 
@@ -144,7 +144,6 @@ KivaKit helps you to:
 | *Twitter* | [@OpenKivaKit](https://twitter.com/openkivakit) |
 | *Issues* | [GitHub Issues](https://github.com/Telenav/kivakit/issues) |
 
-
 [//]: # (end-user-text)
 
 ### Projects <a name = "projects"></a> &nbsp; <img src="https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/gears-32-2x.png 2x"/>
@@ -159,46 +158,46 @@ KivaKit helps you to:
 [**kivakit-resource**](kivakit-resource/README.md)  
 [**kivakit-security**](kivakit-security/README.md)  
 [**kivakit-serialization**](kivakit-serialization/README.md)  
-[**kivakit-test**](kivakit-test/README.md)  
+[**kivakit-test**](kivakit-test/README.md)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; <img src="https://www.kivakit.org/images/bargraph-32.png" srcset="https://www.kivakit.org/images/bargraph-32-2x.png 2x"/>
 
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-application**](kivakit-application/README.md)  
+&nbsp; &nbsp; [**kivakit-application**](kivakit-application/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-collections**](kivakit-collections/README.md)  
+&nbsp; &nbsp; [**kivakit-collections**](kivakit-collections/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-commandline**](kivakit-commandline/README.md)  
+&nbsp; &nbsp; [**kivakit-commandline**](kivakit-commandline/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-component**](kivakit-component/README.md)  
+&nbsp; &nbsp; [**kivakit-component**](kivakit-component/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-configuration**](kivakit-configuration/README.md)  
+&nbsp; &nbsp; [**kivakit-configuration**](kivakit-configuration/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-70-96.png" srcset="https://www.kivakit.org/images/meter-70-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-kernel**](kivakit-kernel/README.md)  
+&nbsp; &nbsp; [**kivakit-kernel**](kivakit-kernel/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-network-core**](kivakit-network/core/README.md)  
+&nbsp; &nbsp; [**kivakit-network-core**](kivakit-network/core/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-network-email**](kivakit-network/email/README.md)  
+&nbsp; &nbsp; [**kivakit-network-email**](kivakit-network/email/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-network-ftp**](kivakit-network/ftp/README.md)  
+&nbsp; &nbsp; [**kivakit-network-ftp**](kivakit-network/ftp/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-network-http**](kivakit-network/http/README.md)  
+&nbsp; &nbsp; [**kivakit-network-http**](kivakit-network/http/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-network-socket**](kivakit-network/socket/README.md)  
+&nbsp; &nbsp; [**kivakit-network-socket**](kivakit-network/socket/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-resource**](kivakit-resource/README.md)  
+&nbsp; &nbsp; [**kivakit-resource**](kivakit-resource/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-security**](kivakit-security/README.md)  
+&nbsp; &nbsp; [**kivakit-security**](kivakit-security/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-100-96.png" srcset="https://www.kivakit.org/images/meter-100-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-serialization-core**](kivakit-serialization/core/README.md)  
+&nbsp; &nbsp; [**kivakit-serialization-core**](kivakit-serialization/core/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-70-96.png" srcset="https://www.kivakit.org/images/meter-70-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-serialization-json**](kivakit-serialization/json/README.md)  
+&nbsp; &nbsp; [**kivakit-serialization-json**](kivakit-serialization/json/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-serialization-kryo**](kivakit-serialization/kryo/README.md)  
+&nbsp; &nbsp; [**kivakit-serialization-kryo**](kivakit-serialization/kryo/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-test**](kivakit-test/README.md)
+&nbsp; &nbsp; [**kivakit-test**](kivakit-test/README.md)
 
 [//]: # (start-user-text)
 

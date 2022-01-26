@@ -6,6 +6,8 @@
 
 Whether you plan to use KivaKit or help to develop it, this page will help you get rolling in 3 easy steps.
 
+> [Build KivaKit anywhere *fast* with Docker](docker-build-setup.md)
+
 ### Prerequisites
 
 You will need these products, or compatible products, set up to begin:
@@ -16,11 +18,11 @@ You will need these products, or compatible products, set up to begin:
        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
        brew install git-flow
 
-2. [Open JDK Java 16](https://adoptopenjdk.net/?variant=openjdk16&jvmVariant=hotspot) 
+2. [Open JDK Java 16](https://adoptopenjdk.net/?variant=openjdk16&jvmVariant=hotspot)
 
    > **IMPORTANT NOTE**: At this time, even though KivaKit targets Java 11 bytecode, it is not possible to build KivaKit under Java 11 due to a bug in the compiler ([JDK-8254557](https://bugs.openjdk.java.net/browse/JDK-8254557)). It is also not possible to build KivaKit's documentation under Java 12 due to a bug in Javadoc ([JDK-8212233](https://bugs.openjdk.java.net/browse/JDK-8212233)). Therefore, until these fixes are back-ported to Java 11, it is recommended to build KivaKit with **Java 16**, where both of these bugs have been fixed.
-   >
-   > 
+>
+>
 
 3. Latest [Maven](https://maven.apache.org/download.cgi)
 
