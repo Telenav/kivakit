@@ -8,4 +8,4 @@ docker build \
     --progress=plain \
     --no-cache \
     --build-arg ENV_KIVAKIT_VERSION="$KIVAKIT_VERSION" \
-    -t kivakit-"$LOWERCASE_VERSION" .
+    -t "jonathanlocke/kivakit:$LOWERCASE_VERSION" .
