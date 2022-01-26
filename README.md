@@ -104,9 +104,9 @@ KivaKit helps you to:
 
 ### Building KivaKit <a name = "building-kivakit"></a> &nbsp; <img src="https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/gears-32-2x.png 2x"/>
 
-[**Docker Build Setup**](documentation/build/docker-build-setup.md)  
-[**Build Setup**](documentation/build/build-setup.md)  
-[**Building**](documentation/build/building.md)
+[**Building**](documentation/build/building.md)  
+[**Docker Build**](documentation/build/docker-build-setup.md)  
+[**Build Setup**](documentation/build/build-setup.md)
 
 ### Downloads <a name = "downloads"></a>&nbsp; <img src="https://www.kivakit.org/images/down-arrow-32.png" srcset="https://www.kivakit.org/images/down-arrow-32-2x.png 2x"/>
 

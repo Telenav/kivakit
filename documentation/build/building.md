@@ -6,13 +6,11 @@
 
 KivaKit can be built by following these steps:
 
-1. Follow the KivaKit [build setup instructions](build-setup.md)  
-        **NOTE**: Until this setup process has been followed, KivaKit projects will not build or work correctly 
+1. Follow the [KivaKit build setup instructions](build-setup.md) or launch a [KivaKit Docker build environment](docker-build-setup.md)
 2. Build KivaKit with *kivakit-build.sh*
 3. Import the repositories kivakit and kivakit-extensions into [IntelliJ](https://www.jetbrains.com/idea/download/) as modules, and choose "Rebuild Project" from the "Build" menu.
 
 ### Key Build Scripts
-
 
 | Script | Purpose |
 |--------|---------|
