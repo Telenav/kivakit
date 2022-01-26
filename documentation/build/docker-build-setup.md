@@ -4,16 +4,20 @@
 
 ## Building KivaKit in Docker
 
-To build KivaKit in Docker:
+Building KivaKit in Docker is a snap:
 
 1. [Install docker](https://docs.docker.com/get-docker/)
 2. In a shell window on your host:
 
        docker -it jonathanlocke/kivakit:[version]
 
-   The KivaKit build container will launch with the develop branch of the given *version* of source code installed. The source code can be updated as desired with git. The scripts *kivakit-git-pull.sh* and *kivakit-git-checkout.sh* conveniently operate on all kivakit repositories.
+   The [KivaKit Docker build environment image]( https://hub.docker.com/repository/docker/jonathanlocke/kivakit) of the specified version will launch with the *develop* branch checked out. The source code can be built with:
 
-4. Use the scripts below to build KivaKit on your host or in the Docker container. To switch your build workspace from the container (/root/workspace) to your host (/host/workspace), execute the command:
+       kivakit-build.sh
+
+   and updated as desired with git. The scripts *kivakit-git-pull.sh* and *kivakit-git-checkout.sh* conveniently operate across all kivakit repositories.
+
+3. Use the scripts in the table below to build KivaKit on your host or in the Docker container. To switch your build workspace from the container (/root/workspace) to your host (/host/workspace), execute the command:
 
        kivakit-docker-workspace.sh host
 
