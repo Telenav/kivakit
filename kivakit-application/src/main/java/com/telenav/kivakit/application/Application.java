@@ -29,6 +29,7 @@ import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.configuration.settings.Deployment;
 import com.telenav.kivakit.configuration.settings.DeploymentSet;
+import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
@@ -328,8 +329,13 @@ public abstract class Application extends BaseComponent implements Named, Applic
             var width = new StringList(sorted).longest().asInt();
             for (var switchParser : sorted)
             {
+                var value = get(switchParser);
+                if (value instanceof Folder)
+                {
+                    value = ((Folder)value).path().asContraction(80);
+                }
                 box.add("   $ = $", Align.right(switchParser.name(), width, ' '),
-                        get(switchParser) == null ? "N/A" : get(switchParser));
+                        value == null ? "N/A" : value);
             }
         }
         box.add("");

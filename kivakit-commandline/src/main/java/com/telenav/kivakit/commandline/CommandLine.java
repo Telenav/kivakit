@@ -252,7 +252,7 @@ public class CommandLine implements AsString, Iterable<Argument>
             exit("Value for " + parser.name() + " must be one of: " + parser.validValues());
         }
 
-        // otherwise if there is no value,
+        // otherwise, if there is no value,
         if (value == null)
         {
             // choose the parser's default value, if any.
