@@ -72,7 +72,7 @@ echo " "
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Building Projects"
 echo " "
 
-cd "$KIVAKIT_KIVAKIT_WORKSPACE"/kivakit || exit
+cd "$KIVAKIT_WORKSPACE"/kivakit || exit
 kivakit-build.sh setup "$1"
 
 echo " "
