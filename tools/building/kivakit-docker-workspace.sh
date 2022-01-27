@@ -33,4 +33,6 @@ fi
 
 export KIVAKIT_WORKSPACE="$WORKSPACE"
 
-source ~/.profile
+source "$HOME/.profile"
+
+$SHELL

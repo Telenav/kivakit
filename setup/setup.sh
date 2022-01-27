@@ -29,7 +29,7 @@ fi
 # Ensure that KivaKit is on the develop branch
 #
 
-cd "$KIVAKIT_WORKSPACE"/kivakit
+cd "$KIVAKIT_WORKSPACE"/kivakit || exit
 
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 
@@ -62,7 +62,7 @@ fi
 # Setup required repositories
 #
 
-bash setup-repositories.sh
+"$KIVAKIT_WORKSPACE"/kivakit/setup/setup-repositories.sh
 
 #
 # Build
@@ -72,7 +72,7 @@ echo " "
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Building Projects"
 echo " "
 
-cd "$KIVAKIT_HOME" || exit
+cd "$KIVAKIT_KIVAKIT_WORKSPACE"/kivakit || exit
 kivakit-build.sh setup "$1"
 
 echo " "
