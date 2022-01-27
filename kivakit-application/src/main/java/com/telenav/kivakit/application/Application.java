@@ -498,11 +498,14 @@ public abstract class Application extends BaseComponent implements Named, Applic
             // Run the application's code
             state.transitionTo(RUNNING);
             onRun();
-            state.transitionTo(STOPPING);
         }
         catch (Exception e)
         {
             problem(e, "Application $ failed with exception", name());
+        }
+        finally
+        {
+            state.transitionTo(STOPPING);
         }
 
         BaseLog.logs().forEach(BaseLog::flush);

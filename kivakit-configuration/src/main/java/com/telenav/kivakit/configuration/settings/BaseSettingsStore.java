@@ -126,9 +126,6 @@ public abstract class BaseSettingsStore extends BaseRepeater implements Settings
         // Lock for writing,
         return lock.write(() ->
         {
-            // add the object to the global lookup registry
-            register(settings.object(), settings.identifier().instance());
-
             // then walk up the class hierarchy of the object,
             var instance = settings.identifier().instance();
             for (var at = (Class<?>) settings.object().getClass(); !at.equals(Object.class); at = at.getSuperclass())

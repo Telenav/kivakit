@@ -197,21 +197,24 @@ public class Settings extends MemorySettingsStore implements SettingsTrait
     }
 
     @Override
-    public Settings registerSettingsIn(SettingsStore settings)
+    public Settings registerSettingsIn(SettingsStore store)
     {
         // If we can load the settings store,
-        if (settings.supports(LOAD))
+        if (store.supports(LOAD))
         {
             // load it,
-            settings.load();
+            store.load();
 
             // and propagate any future changes to this store.
-            settings.propagateChangesTo(this);
+            store.propagateChangesTo(this);
         }
 
-        // Index the settings objects in the given store.
-        indexAll(settings);
-        
+        // Index the settings objects in the given store,
+        indexAll(store);
+
+        // and register the settings objects in the global object registry.
+        registerAll(store);
+
         return this;
     }
 
@@ -228,7 +231,11 @@ public class Settings extends MemorySettingsStore implements SettingsTrait
             return fail("To register a Deployment or other SettingsStore, call registerSettingsIn(SettingsStore)");
         }
 
+        // otherwise, index the object in the settings store,
         index(new SettingsObject(settings, instance));
+
+        // add the object to the global lookup registry.
+        register(settings, instance);
 
         return this;
     }

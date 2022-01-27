@@ -146,4 +146,10 @@ public class Registry implements RegistryTrait
     {
         registered.remove(instance.key(object.getClass()));
     }
+
+    @Override
+    public void unregisterAll()
+    {
+        registered.clear();
+    }
 }

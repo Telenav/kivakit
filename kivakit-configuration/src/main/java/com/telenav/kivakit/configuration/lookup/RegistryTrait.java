@@ -179,4 +179,12 @@ public interface RegistryTrait
     {
         unregister(object, InstanceIdentifier.of(instance));
     }
+
+    /**
+     * Remove all entries from this registry
+     */
+    default void unregisterAll()
+    {
+        registry().unregisterAll();
+    }
 }

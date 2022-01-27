@@ -1,5 +1,6 @@
 package com.telenav.kivakit.configuration.settings;
 
+import com.telenav.kivakit.configuration.lookup.RegistryTrait;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
 import com.telenav.kivakit.kernel.messaging.Repeater;
@@ -36,7 +37,7 @@ import java.util.Set;
  *
  * @author jonathanl (shibo)
  */
-public interface SettingsStore extends Repeater, Named, Iterable<Object>
+public interface SettingsStore extends RegistryTrait, Repeater, Named, Iterable<Object>
 {
     /**
      * <p>
@@ -119,6 +120,17 @@ public interface SettingsStore extends Repeater, Named, Iterable<Object>
      * @param store The store that should be updated when this store changes
      */
     void propagateChangesTo(SettingsStore store);
+
+    /**
+     * <b>Service Provider API</b>
+     * <p>
+     * Adds all {@link SettingsObject}s to the global registry.
+     */
+    default boolean registerAll(SettingsStore store)
+    {
+        store.indexed().forEach(at -> register(at.object(), at.identifier().instance()));
+        return true;
+    }
 
     /**
      * <b>Service Provider API</b>
