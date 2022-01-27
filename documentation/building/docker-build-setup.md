@@ -18,7 +18,7 @@ Building KivaKit in Docker is a snap:
        mkdir -p $KIVAKIT_WORKSPACE 
        cd $KIVAKIT_WORKSPACE
        git clone --branch develop https://github.com/Telenav/kivakit.git
-       bash $KIVAKIT_WORKSPACE/setup/setup-repositories.sh
+       bash $KIVAKIT_WORKSPACE/kivakit/setup/setup-repositories.sh
 
 
 3. Next, launch the KivaKit build environment. If you have a local build set up, you can use the *kivakit-docker-run.sh* script. If you don't have a local build, set this variable to an image tag from [Docker Hub](https://hub.docker.com/repository/docker/jonathanlocke/kivakit):
