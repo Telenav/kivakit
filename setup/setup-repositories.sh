@@ -16,7 +16,7 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 echo " "
 
 mkdir -p "$KIVAKIT_WORKSPACE"
-cd "$KIVAKIT_WORKSPACE"
+cd "$KIVAKIT_WORKSPACE" || exit
 
 git clone https://github.com/Telenav/cactus-build-assets.git
 git clone https://github.com/Telenav/cactus-build.git
@@ -41,7 +41,7 @@ initialize() {
     project_home=$1
     branch=$2
 
-    cd "$project_home"
+    cd "$project_home" || exit
     echo " "
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━┫ Initializing $(pwd)"
     echo " "
