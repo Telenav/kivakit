@@ -23,6 +23,7 @@ git clone https://github.com/Telenav/cactus-build.git
 
 git clone https://github.com/Telenav/lexakai-annotations.git
 
+git clone --quiet https://github.com/Telenav/kivakit.git
 git clone --depth 1 https://github.com/Telenav/kivakit-assets.git
 git clone https://github.com/Telenav/kivakit-extensions.git
 git clone https://github.com/Telenav/kivakit-examples.git
