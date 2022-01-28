@@ -8,7 +8,7 @@ Docker makes it quick and easy to build KivaKit in any environment, without soft
 
 Building KivaKit in Docker is a snap:
 
-1. [Install Docker](https://docs.docker.com/get-docker/)
+1. Install [Docker Desktop](https://docs.docker.com/get-docker/) and ensure that your home folder can be shared under Settings / Resources / File Sharing
 
 
 2. If you have not already [set up a local build environment](host-build-environment.md) that you would prefer to use, check out a fresh set of KivaKit repositories by pasting this into a terminal window:
