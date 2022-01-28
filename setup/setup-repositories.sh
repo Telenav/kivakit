@@ -15,7 +15,7 @@ echo " "
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Cloning Repositories"
 echo " "
 
-mkdir -p "$KIVAKIT_WORKSPACE"
+mkdir -p "$KIVAKIT_WORKSPACE" > /dev/null 2>&1
 cd "$KIVAKIT_WORKSPACE" || exit
 
 git clone https://github.com/Telenav/cactus-build-assets.git
@@ -23,7 +23,7 @@ git clone https://github.com/Telenav/cactus-build.git
 
 git clone https://github.com/Telenav/lexakai-annotations.git
 
-git clone --quiet https://github.com/Telenav/kivakit.git
+[ ! -d "KIVAKIT_WORKSPACE/kivakit" ] && git clone https://github.com/Telenav/kivakit.git
 git clone --depth 1 https://github.com/Telenav/kivakit-assets.git
 git clone https://github.com/Telenav/kivakit-extensions.git
 git clone https://github.com/Telenav/kivakit-examples.git

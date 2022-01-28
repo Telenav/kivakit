@@ -62,6 +62,10 @@ fi
 # Setup required repositories
 #
 
+echo " "
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Setting Up Repositories"
+echo " "
+
 "$KIVAKIT_WORKSPACE"/kivakit/setup/setup-repositories.sh
 
 #
