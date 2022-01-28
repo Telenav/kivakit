@@ -2,11 +2,13 @@
 
 Docker makes it quick and easy to build KivaKit in any environment, without software setup hassles.
 
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
+
 ### Building KivaKit in Docker
 
 Building KivaKit in Docker is a snap:
 
-1. [Install Docker](https://docs.docker.com/get-docker/)
+1. Install [Docker Desktop](https://docs.docker.com/get-docker/) and ensure that your home folder can be shared under Settings / Resources / File Sharing
 
 
 2. If you have not already [set up a local build environment](host-build-environment.md) that you would prefer to use, check out a fresh set of KivaKit repositories by pasting this into a terminal window:
@@ -60,6 +62,8 @@ Building KivaKit in Docker is a snap:
     * KIVAKIT_WORKSPACE => /root/workspace
     * /root/.m2 => /root/developer/.m2
     * /root/.kivakit => /root/developer/.kivakit
+
+<img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
 ### KivaKit Build Scripts
 
