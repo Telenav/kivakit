@@ -1,12 +1,14 @@
-# KivaKit - Build Setup   <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
+# KivaKit - Local Host Build Setup   <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
 ### Setting Up to Build KivaKit
 
-Whether you plan to use KivaKit or help to develop it, this page will help you get rolling in 3 easy steps.
+Whether you plan to use KivaKit or help to develop it, the easiest way to build KivaKit is to use the KivaKit Docker build environment:
 
-> [Build KivaKit anywhere *fast* with Docker](docker-build-setup.md)
+> [Build KivaKit anywhere *fast* in the Docker build environment](docker-build-environment.md)
+
+If you want to set up a build environment on your host instead, this page will help you get a build rolling in 3 easy steps.
 
 ### Prerequisites
 
@@ -139,7 +141,7 @@ Congratulations! You're set up and ready to build or help to develop KivaKit.
 
 ### Next Steps &nbsp; &nbsp;  <img src="https://www.kivakit.org/images/footprints-32.png" srcset="https://www.kivakit.org/images/footprints-32-2x.png 2x"/>
 
-[I want to build KivaKit](building.md)
+[I want to build KivaKit](index.md)
 
 [I want to work on KivaKit](../developing/index.md)
 

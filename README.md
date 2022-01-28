@@ -44,7 +44,8 @@ KivaKit (KEE-vah-KIT) is a set of integrated Java mini-frameworks that are poten
 [**About KivaKit**](#about)  
 [**Tutorial Articles**](https://state-of-the-art.org/)  
 [**Example Code**](https://github.com/Telenav/kivakit-examples)  
-[**Published Releases**](https://repo1.maven.org/maven2/com/telenav/kivakit/)
+[**Published Releases**](https://repo1.maven.org/maven2/com/telenav/kivakit/)  
+[**Docker Build Environment**](documentation/building/docker-build-environment.md)
 
 ### Index <a name = "index"></a>
 
@@ -104,9 +105,9 @@ KivaKit helps you to:
 
 ### Building KivaKit <a name = "building-kivakit"></a> &nbsp; <img src="https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/gears-32-2x.png 2x"/>
 
-[**Building**](documentation/building/building.md)  
-[**Docker Build**](documentation/building/docker-build-setup.md)  
-[**Build Setup**](documentation/building/build-setup.md)
+[**Building**](documentation/building/index.md)  
+[**Docker Build Environment**](documentation/building/docker-build-environment.md)  
+[**Host Build Environment**](documentation/building/host-build-environment.md)
 
 ### Downloads <a name = "downloads"></a>&nbsp; <img src="https://www.kivakit.org/images/down-arrow-32.png" srcset="https://www.kivakit.org/images/down-arrow-32-2x.png 2x"/>
 
@@ -123,7 +124,7 @@ KivaKit helps you to:
 ### Working on KivaKit <a name = "working-on-kivakit"></a> &nbsp; <img src="https://www.kivakit.org/images/toolbox-32.png" srcset="https://www.kivakit.org/images/toolbox-32-2x.png 2x"/>
 
 [**Development Process**](documentation/developing/index.md)  
-[**Open Source Process**](documentation/open-source/open-source-process.md)
+[**Open Source Process**](documentation/developing/open-source-process.md)
 
 ### Project Resources <a name = "project-resources"></a> &nbsp; <img src="https://www.kivakit.org/images/water-32.png" srcset="https://www.kivakit.org/images/water-32-2x.png 2x"/>
 

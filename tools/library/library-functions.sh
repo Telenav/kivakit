@@ -62,7 +62,7 @@ showVersion()
     project_name=$(project_name "$project_home")
     project_version=$(project_version "$project_home")
 
-    echo -e "${ATTENTION}$project_name $project_version $(project_build "$project_home")${NORMAL}"
+    echo -e "${ATTENTION}$project_name $project_version $(project_build "$project_home") from ${project_home}${NORMAL}"
 }
 
 ################ CLEAN ################################################################################################

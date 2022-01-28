@@ -2,11 +2,15 @@
 
 cd "$KIVAKIT_HOME"/tools/building/docker || exit
 
-IMAGE_VERSION=$(echo "$KIVAKIT_VERSION" | tr '[:upper:]' '[:lower:]')
+if [ "$1" = "" ]; then
+    IMAGE_VERSION=$(echo "$KIVAKIT_VERSION" | tr '[:upper:]' '[:lower:]')
+else
+    IMAGE_VERSION=$(echo "$1" | tr '[:upper:]' '[:lower:]')
+fi
 
-docker build \
-    --progress=plain \
-    --no-cache \
-    --build-arg ENV_KIVAKIT_VERSION="$KIVAKIT_VERSION" \
-    --tag "jonathanlocke/kivakit:$IMAGE_VERSION" \
-    .
+docker run \
+    --volume "$KIVAKIT_WORKSPACE:/host/workspace" \
+    --volume "$HOME/.m2:/host/.m2" \
+    --volume "$HOME/.kivakit:/host/.kivakit" \
+    --interactive --tty "jonathanlocke/kivakit:$IMAGE_VERSION" \
+    /bin/bash
