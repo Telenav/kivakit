@@ -1,102 +1,117 @@
-
-
 # KivaKit Change Log
 
 -----------------------------------------------------------------------------------------------------------------------
 
-## Version 1.2.3 (2022.01.??) "mango ???"
-
-### messaging
-
- * Added MessageAlarm APi and EmailMessageAlarm
-
-### documentation
-
- * Improved landing pages
+## Version 1.3.0 (2022.01.30) "mango ???"
 
 ### security
 
- * Upgraded protobuf to 3.18.2
+* Upgraded protobuf to 3.18.2
+
+### documentation
+
+* Improved landing pages, documentation structure
+
+### build
+
+* Added docker build environment
+* Added setup-repositories.sh
+
+### dependencies
+
+* Downgraded JUnit to 4.13.2
+
+### microservices
+
+* Microservice.onCreateWebApplication() -> onNewWebApplication()
+* Fix problem where Zookeeper connection errors could cause early termination
+* Add ready() signal after web server starts
+* Fix MicroserviceCluster.join() so it won't attempt to join if there are no Zookeeper settings
+
+### applications and settings
+
+* Added code to handle exceptions thrown in onRun()
+* Added Registry/RegistryTrait.unregisterAll()
+* Fixed object registration bug in BaseSettingsStore, Settings
+* Added SettingsStore.registerAllIn()
+* Show contraction of folder when displaying command line
+
+### messaging
+
+* Added MessageAlarm API and EmailMessageAlarm
+
+### utility
+
+* Objects/LanguageTrait.notNullOr() -> ifNullDefault()
+* Added LanguageTrait.ifNonNullApply(), isNonNullOr(), isFalseOr()
 
 -----------------------------------------------------------------------------------------------------------------------
 
 ## Version 1.2.2 (2022.01.13) "mango duckling"
 
-### collections
+### security
 
- * Added BaseSet.addAllMatching(Collection, Matcher)
- * Added ObjectSet.matching(Matcher)
- * Added Sets.matching(Set, Matcher)
- * Improved BaseList constructor
- * Added ObjectList.objectListFromArray(long[] objects)
+* Upgraded log4j to 2.17.1
+* Upgraded guava to 31.0.1-jre
+* Upgraded commons-compress to 1.21
+* Upgraded ow2.asm to 8.0.1
+* Upgraded ow2.ow2 to 1.5.1
 
 ### documentation
 
- * Microservices mini-framework diagram
- * Javadoc improvements and fixes
- * Documented TimeZones methods
+* Microservices mini-framework diagram
+* Javadoc improvements and fixes
+* Documented TimeZones methods
+
+### source control
+
+* Added tagging to gitflow finish scripts
 
 ### microservices
 
- * Fixed error serialization issue
- * Fixed message capturing issues
- * Added MicroserviceRestPath.version()
- * Added MicroserviceRestService.mount(Version, String path, HttpMethod, Class<Request)
- * Added support for Swagger tags
- * Fixed handling of arrays in Swagger
+* Fixed error serialization issue
+* Fixed message capturing issues
+* Added MicroserviceRestPath.version()
+* Added MicroserviceRestService.mount(Version, String path, HttpMethod, Class<Request)
+* Added support for Swagger tags
+* Fixed handling of arrays in Swagger
 
 ### clustering
 
- * Changed BaseSettingsStore.forceLoad() -> reload(), prevent reentrancy to reload()
- * Excluded reentrancy of BaseSettingsStore.reload()
- * Fixed issues in MicroserviceCluster tracking, allowing Zookeeper to go up or down without errors
- * Changed return value of ReentrancyTracker.enter() to be true if the code can be entered (no reentrancy)
- * Added MicroserviceCluster.leader() method
- * Added Microservice.leader() convenience method
- * Optimized reloads of member data in MicroserviceCluster
- * Changed ZookeeperSettingsStore.readSettings() -> loadSettings()
+* Changed BaseSettingsStore.forceLoad() -> reload(), prevent reentrancy to reload()
+* Excluded reentrancy of BaseSettingsStore.reload()
+* Fixed issues in MicroserviceCluster tracking, allowing Zookeeper to go up or down without errors
+* Changed return value of ReentrancyTracker.enter() to be true if the code can be entered (no reentrancy)
+* Added MicroserviceCluster.leader() method
+* Added Microservice.leader() convenience method
+* Optimized reloads of member data in MicroserviceCluster
+* Changed ZookeeperSettingsStore.readSettings() -> loadSettings()
 
-### primitives
+### collections
 
- * Changed Ints.isBetween() -> isBetweenExclusive(), isBetweenInclusive()
+* Added BaseSet.addAllMatching(Collection, Matcher)
+* Added ObjectSet.matching(Matcher)
+* Added Sets.matching(Set, Matcher)
+* Improved BaseList constructor
+* Added ObjectList.objectListFromArray(long[] objects)
 
-### reflection
+### utility
 
- * Added Member.arrayElementType()
-
-### security
-
- * Upgraded log4j to 2.17.1
- * Upgraded guava to 31.0.1-jre
- * Upgraded commons-compress to 1.21
- * Upgraded ow2.asm to 8.0.1
- * Upgraded ow2.ow2 to 1.5.1
-
-### scripts
-
- * Added tagging to gitflow finish scripts
-
-### time
- 
- * Added LocalTime.hourOfWeek()
- * Added TimeSpan.future(Duration)
- * Added TimeSpan.past(Duration)
- * Changed DayOfWeek.jodaTimeConstant() -> asJavaConstant()
- * Added TimeZones.isUtc(ZoneId)
- * Added TimeZones.isValidShortDisplayName(String)
- * Added TimeZones.parseShortDisplayName(Listener, String)
- * Added TimeZones.parseZoneId(Listener, String)
- * Added TimeZones.parseZoneIdOrDisplayName(Listener, String)
- * Changed TimeZones.displayName(ZoneId) -> shortDisplayName(ZoneId)
-
-### validation
-
- * Added validator parent chaining
- * Added validate(Validatable, ValidationType) method
- * Fixed issue with null Validatables and Validators
-
-
-
+* Changed Ints.isBetween() -> isBetweenExclusive(), isBetweenInclusive()
+* Added Member.arrayElementType()
+* Added validator parent chaining
+* Added validate(Validatable, ValidationType) method
+* Fixed issue with null Validatables and Validators
+* Added LocalTime.hourOfWeek()
+* Added TimeSpan.future(Duration)
+* Added TimeSpan.past(Duration)
+* Changed DayOfWeek.jodaTimeConstant() -> asJavaConstant()
+* Added TimeZones.isUtc(ZoneId)
+* Added TimeZones.isValidShortDisplayName(String)
+* Added TimeZones.parseShortDisplayName(Listener, String)
+* Added TimeZones.parseZoneId(Listener, String)
+* Added TimeZones.parseZoneIdOrDisplayName(Listener, String)
+* Changed TimeZones.displayName(ZoneId) -> shortDisplayName(ZoneId)
 
 -----------------------------------------------------------------------------------------------------------------------
 
@@ -104,70 +119,67 @@
 
 ### lambdas
 
- * Added *MicroserviceLambdaService* with Lambda mounting
+* Added *MicroserviceLambdaService* with Lambda mounting
 
 ### added
 
- * **Settings**
-   * Added backwards-compatible support for JSON settings
-   * Added SettingsStore SPI, changed names of some classes
-     * Settings -> MemorySettingsStore
-     * FolderSettings -> FolderSettingsStore
-     * PackageSettings -> PackageSettingsStore
-   * Added SettingsTrait
- * **Zookeeper**
-   * ZookeeperSettingsStore
-   * ZookeeperConnection
-   * ZookeeperChangeListener
- * **Clustering**
-   * MicroserviceCluster
-   * MicroserviceClusterMember
-   * Microservice.allowedLambdaRequests()
-   * Microservice.onJoin()
-   * Microservice.onLeave()
- * **Serialization**
-   * Added GsonFactorySource, DefaultGsonFactory
- * **Mixins**
-   * Added mapping from mixin back to the owning object
- * **New Members**
-   * Strings.isOneOf(String, String...), Strings.doubleQuoted(String)
-   * Version.asDouble()
-   * Host.dnsName()
-   * PropertyMap.asBoolean(String key)
-   * Bytes.bytes(long[]), Bytes.bytes(int[]), Bytes.bytes(int[])
-   * LanguageTrait.isTrueOr(boolean, String message, Object... arguments)
-   * LanguageTrait.isNonNullOr(Object, String message, Object... arguments)
-   * Path.copy(), StringPath.copy()
-   * WaitState.TERMINATED
-   * SwitchParser.durationSwitchParser(...)
-   * Registry.unregister(), RegistryTrait.unregister()
-   * JettyMicroservletRequest.hasBody()
- * **XML**
-   * Added StaxReader, StaxPath
- * **AWS Lambda**
-   * Added LambdaRequestHandler
+* **Settings**
+    * Added backwards-compatible support for JSON settings
+    * Added SettingsStore SPI, changed names of some classes
+        * Settings -> MemorySettingsStore
+        * FolderSettings -> FolderSettingsStore
+        * PackageSettings -> PackageSettingsStore
+    * Added SettingsTrait
+* **Zookeeper**
+    * ZookeeperSettingsStore
+    * ZookeeperConnection
+    * ZookeeperChangeListener
+* **Clustering**
+    * MicroserviceCluster
+    * MicroserviceClusterMember
+    * Microservice.allowedLambdaRequests()
+    * Microservice.onJoin()
+    * Microservice.onLeave()
+* **Serialization**
+    * Added GsonFactorySource, DefaultGsonFactory
+* **Mixins**
+    * Added mapping from mixin back to the owning object
+* **New Members**
+    * Strings.isOneOf(String, String...), Strings.doubleQuoted(String)
+    * Version.asDouble()
+    * Host.dnsName()
+    * PropertyMap.asBoolean(String key)
+    * Bytes.bytes(long[]), Bytes.bytes(int[]), Bytes.bytes(int[])
+    * LanguageTrait.isTrueOr(boolean, String message, Object... arguments)
+    * LanguageTrait.isNonNullOr(Object, String message, Object... arguments)
+    * Path.copy(), StringPath.copy()
+    * WaitState.TERMINATED
+    * SwitchParser.durationSwitchParser(...)
+    * Registry.unregister(), RegistryTrait.unregister()
+    * JettyMicroservletRequest.hasBody()
+* **XML**
+    * Added StaxReader, StaxPath
+* **AWS Lambda**
+    * Added LambdaRequestHandler
 
 ### improved
 
- * Host address resolution
- * Added check for classes that extend BaseRepeater and also have a RepeaterMixin
- * Merged jars build and scripts
- * Broken listener chain diagnostics
- * Documentation
+* Host address resolution
+* Added check for classes that extend BaseRepeater and also have a RepeaterMixin
+* Merged jars build and scripts
+* Broken listener chain diagnostics
+* Documentation
 
 ### fixed
 
- * Fixed status code check in BaseHttpResource
- * Fixed query parameter parsing bug in HttpNetworkLocation
- * Fixed bug in JettyMicroservletFilter so POSTed body is only read if it exists
- * Fixes to S3 filesystem
+* Fixed status code check in BaseHttpResource
+* Fixed query parameter parsing bug in HttpNetworkLocation
+* Fixed bug in JettyMicroservletFilter so POSTed body is only read if it exists
+* Fixes to S3 filesystem
 
 ### security
 
- * Upgraded Jetty to 9.4.44
- 
-
-
+* Upgraded Jetty to 9.4.44
 
 -----------------------------------------------------------------------------------------------------------------------
 
@@ -175,46 +187,40 @@
 
 ### added
 
- * Added LanguageTrait for common language-related extensions
- * Added Strings.doubleQuoted(String)
- * Added Folder.hasChanged() using an MD5 hash stored in Java Preferences
- * Added BaseList.bracketed() method
- * Added TryTrait.tryFinallyThrow()
- * Added MessageException, created when OperationMessage.asException() is called
- * Added SwitchParser.durationSwitchParser()
- * Added WakeState.TERMINATED
- * Documentation improvements
+* Added LanguageTrait for common language-related extensions
+* Added Strings.doubleQuoted(String)
+* Added Folder.hasChanged() using an MD5 hash stored in Java Preferences
+* Added BaseList.bracketed() method
+* Added TryTrait.tryFinallyThrow()
+* Added MessageException, created when OperationMessage.asException() is called
+* Added SwitchParser.durationSwitchParser()
+* Added WakeState.TERMINATED
+* Documentation improvements
 
 ### changes
 
- * TryTrait.tryCatch() now returns a boolean
- * Version class no longer requires a minor version
+* TryTrait.tryCatch() now returns a boolean
+* Version class no longer requires a minor version
 
 ### fixed
 
- * Application should listen to projects
- * BaseHttpResource doesn't check HTTP status correctly
- * HttpNetworkLocation query parameter handling fails when there are no parameters
-
-
-
+* Application should listen to projects
+* BaseHttpResource doesn't check HTTP status correctly
+* HttpNetworkLocation query parameter handling fails when there are no parameters
 
 -----------------------------------------------------------------------------------------------------------------------
 
 ## Version 1.1.1 (2021.11.05) "plutonium panda"
 
-### added 
+### added
 
 * [Add .proto output files to kivakit-microservice GRPC service](https://github.com/Telenav/kivakit/issues/89)
 
 ### fixed
 
- * [Division microservice example is broken #87](https://github.com/Telenav/kivakit/issues/87)
- * [Broken listener chain due to inheritance from mixin and base component #86](https://github.com/Telenav/kivakit/issues/86)
- * [Documentation links are broken in kivakit 1.1.0 #88](https://github.com/Telenav/kivakit/issues/88)
-
-
-
+* [Division microservice example is broken #87](https://github.com/Telenav/kivakit/issues/87)
+* [Broken listener chain due to inheritance from mixin and base component #86](https://github.com/Telenav/kivakit/issues/86)
+* [Documentation links are broken in kivakit 1.1.0 #88](https://github.com/Telenav/kivakit/issues/88)
 
 -----------------------------------------------------------------------------------------------------------------------
 
@@ -222,20 +228,19 @@
 
 ### added
 
-* New mini-frameworks  
-  * *kivakit-microservices* - Jetty, REST, GRPC, Swagger microservices  
-  * *kivakit-metrics* - Metrics collection  
-  * *kivakit-metrics-prometheus* - Prometheus metrics provider
-  * *kivakit-filesystems-java* - Java FileSystem provider
-  * *kivakit-data-formats-xml* - StaxReader to improve use of java.xml.stream API
+* New mini-frameworks
+    * *kivakit-microservices* - Jetty, REST, GRPC, Swagger microservices
+    * *kivakit-metrics* - Metrics collection
+    * *kivakit-metrics-prometheus* - Prometheus metrics provider
+    * *kivakit-filesystems-java* - Java FileSystem provider
+    * *kivakit-data-formats-xml* - StaxReader to improve use of java.xml.stream API
 
 ### updated
 
 * Refactoring to improve naming and packaging
 * Added and improved documentation
-* Static methods returning broadcasting components now take a Listener as the first argument.
-  This prevents callers from accidentally forgetting to *listenTo()* the component.
-* Maven pom files now inherit from a "superpom" 
+* Static methods returning broadcasting components now take a Listener as the first argument. This prevents callers from accidentally forgetting to *listenTo()* the component.
+* Maven pom files now inherit from a "superpom"
 * Divided Component interface into traits:
     * RegistryTrait
     * SettingsTrait
@@ -246,9 +251,6 @@
 
 * Fixes to build and deployment scripts
 * Many small bug fixes
-
-
-
 
 -----------------------------------------------------------------------------------------------------------------------
 

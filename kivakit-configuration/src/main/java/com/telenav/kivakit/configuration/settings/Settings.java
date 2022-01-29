@@ -213,7 +213,7 @@ public class Settings extends MemorySettingsStore implements SettingsTrait
         indexAll(store);
 
         // and register the settings objects in the global object registry.
-        registerAll(store);
+        registerAllIn(store);
 
         return this;
     }

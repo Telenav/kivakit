@@ -126,7 +126,7 @@ public interface SettingsStore extends RegistryTrait, Repeater, Named, Iterable<
      * <p>
      * Adds all {@link SettingsObject}s to the global registry.
      */
-    default boolean registerAll(SettingsStore store)
+    default boolean registerAllIn(SettingsStore store)
     {
         store.indexed().forEach(at -> register(at.object(), at.identifier().instance()));
         return true;
