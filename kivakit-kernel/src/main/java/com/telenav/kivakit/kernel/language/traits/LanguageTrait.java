@@ -12,8 +12,8 @@ import java.util.function.Function;
  * <p><b>Functions</b></p>
  *
  * <ul>
- *     <li>applyIfNonNull - Null-safe version of Function.apply()</li>
- *     <li>nonNullOr - The given value if it is non-null, the default value otherwise.</li>
+ *     <li>ifNonNullApply - Null-safe version of Function.apply()</li>
+ *     <li>ifNullDefault - The given value if it is non-null, the default value otherwise.</li>
  * </ul>
  *
  * <p><b>Messaging</b></p>
@@ -70,9 +70,21 @@ public interface LanguageTrait extends Broadcaster
      * @param value The value to check for null
      * @param function The function to apply if the value is non-null
      */
-    default <In, Out> Out applyIfNonNull(In value, Function<In, Out> function)
+    default <In, Out> Out ifNonNullApply(In value, Function<In, Out> function)
     {
         return value == null ? null : function.apply(value);
+    }
+
+    /**
+     * Returns the given value, but if the value is null, returns the defaultValue instead.
+     *
+     * @param value The provided value
+     * @param defaultValue The default value to return if the value provided is null
+     * @return The given value if it is non-null, the default value otherwise.
+     */
+    default <T> T ifNullDefault(T value, T defaultValue)
+    {
+        return Objects.nonNullOr(value, defaultValue);
     }
 
     /**
@@ -126,17 +138,5 @@ public interface LanguageTrait extends Broadcaster
             problem(message, arguments);
         }
         return value;
-    }
-
-    /**
-     * Returns the given value, but if the value is null, returns the defaultValue instead.
-     *
-     * @param value The provided value
-     * @param defaultValue The default value to return if the value provided is null
-     * @return The given value if it is non-null, the default value otherwise.
-     */
-    default <T> T nonNullOr(T value, T defaultValue)
-    {
-        return Objects.nonNullOr(value, defaultValue);
     }
 }

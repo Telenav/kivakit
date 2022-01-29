@@ -18,10 +18,14 @@
 
 package com.telenav.kivakit.kernel.messaging.listeners;
 
+import com.telenav.kivakit.kernel.language.vm.Console;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageListenerType;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.kernel.language.vm.Console.OutputType.ERROR;
+import static com.telenav.kivakit.kernel.language.vm.Console.OutputType.NORMAL;
 
 /**
  * Writes messages to the console. Messages that represent success are written to {@link System#out}, while messages
@@ -32,6 +36,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramMessageListenerType.class)
 public class ConsoleWriter implements Listener
 {
+    private final Console console = new Console();
+
     /**
      * {@inheritDoc}
      */
@@ -42,16 +48,18 @@ public class ConsoleWriter implements Listener
         {
             case FAILED:
             case HALTED:
-                System.err.println(message.asString());
+                console.print(ERROR, message.asString());
                 return;
         }
+        
         switch (message.status())
         {
             case FAILED:
             case PROBLEM:
-                System.err.println(message.asString());
+                console.print(ERROR, message.asString());
                 return;
         }
-        System.out.println(message);
+
+        console.print(NORMAL, message.asString());
     }
 }

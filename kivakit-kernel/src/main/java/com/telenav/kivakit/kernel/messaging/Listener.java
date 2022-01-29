@@ -125,7 +125,7 @@ public interface Listener extends Transceiver
     Logger LOGGER = LoggerFactory.newLogger();
 
     /**
-     * @return A listener that does nothing with messages. Useful only when you want to discard output from something
+     * @return A listener that writes the messages it hears to the console
      */
     static Listener console()
     {
