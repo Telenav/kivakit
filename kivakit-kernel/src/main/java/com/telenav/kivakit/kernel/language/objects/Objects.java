@@ -175,7 +175,7 @@ public class Objects
                 || object instanceof Double || object instanceof Float;
     }
 
-    public static <Value> Value notNullOr(Value value, Value defaultValue)
+    public static <Value> Value nonNullOr(Value value, Value defaultValue)
     {
         return (value != null) ? value : defaultValue;
     }
