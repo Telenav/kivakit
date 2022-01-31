@@ -2,7 +2,11 @@
 
 -----------------------------------------------------------------------------------------------------------------------
 
-## Version 1.3.0 (2022.01.30) "mango ???"
+## Version 1.3.0 (2022.01.31) "mango beachball"
+
+### todo
+
+ * Debug AWS Lambda request handling for 1.3.1 release
 
 ### security
 
@@ -27,6 +31,10 @@
 * Fix problem where Zookeeper connection errors could cause early termination
 * Add ready() signal after web server starts
 * Fix MicroserviceCluster.join() so it won't attempt to join if there are no Zookeeper settings
+* Add prepare() method so response can be prepared outside its constructor
+* MicroservletRequestHandler.request() -> respond(), onRequest() -> onRespond()
+* MicroservletRequestHandler.onRequestStatistics -> onRequestHandlingStatistics
+* MicroservletRequestStatistics -> MicroservletRequestHandlingStatistics
 
 ### applications and settings
 

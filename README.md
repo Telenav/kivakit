@@ -125,25 +125,26 @@ KivaKit helps you to:
 
 [**Development Process**](documentation/developing/index.md)  
 [**Open Source Process**](documentation/developing/open-source-process.md)
+[**Releasing KivaKit**](documentation/developing/releasing.md)
 
 ### Project Resources <a name = "project-resources"></a> &nbsp; <img src="https://www.kivakit.org/images/water-32.png" srcset="https://www.kivakit.org/images/water-32-2x.png 2x"/>
 
-| Resource     |     Description                   |
-|--------------|-----------------------------------|
-| *Project Name* | KivaKit |
-| *Summary* | A collection of mini-frameworks that extend and simplify the JDK and other common APIs |
-| *License* | <a href="https://apache.org"><img valign="middle" src="https://www.kivakit.org/images/feather.png" srcset="https://www.kivakit.org/images/feather-2x.png 2x"/></a> &nbsp; [Apache License, Version 2.0](LICENSE) |
-| *Related Projects* | [kivakit-examples](https://github.com/Telenav/kivakit-examples), [kivakit-extensions](https://github.com/Telenav/kivakit) |
-| *Javadoc Coverage* |  <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/> |
-| *Setup* | [Step-by-step setup instructions](https://github.com/Telenav/kivakit/blob/master/documentation/overview/setup.md)
-| *GitHub* | [GitHub project home page](https://github.com/Telenav/kivakit) |
-| *Code* | `git clone https://github.com/Telenav/kivakit.git` |
-| *Project Lead* | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
-| *Administrator* | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com) |
-| *Email* | [kivakit@telenav.com](mailto:kivakit@telenav.com) |
-| *Chat* | [Zulip](https://kivakit.zulip.com) |
-| *Twitter* | [@OpenKivaKit](https://twitter.com/openkivakit) |
-| *Issues* | [GitHub Issues](https://github.com/Telenav/kivakit/issues) |
+| Resource           | Description                                                                                                                                                                                                      |
+|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| *Project Name*     | KivaKit                                                                                                                                                                                                          |
+| *Summary*          | A collection of mini-frameworks that extend and simplify the JDK and other common APIs                                                                                                                           |
+| *License*          | <a href="https://apache.org"><img valign="middle" src="https://www.kivakit.org/images/feather.png" srcset="https://www.kivakit.org/images/feather-2x.png 2x"/></a> &nbsp; [Apache License, Version 2.0](LICENSE) |
+| *Related Projects* | [kivakit-examples](https://github.com/Telenav/kivakit-examples), [kivakit-extensions](https://github.com/Telenav/kivakit)                                                                                        |
+| *Javadoc Coverage* | <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>                                                                                        |
+| *Setup*            | [Step-by-step setup instructions](https://github.com/Telenav/kivakit/blob/master/documentation/overview/setup.md)                                                                                                |
+| *GitHub*           | [GitHub project home page](https://github.com/Telenav/kivakit)                                                                                                                                                   |
+| *Code*             | `git clone https://github.com/Telenav/kivakit.git`                                                                                                                                                               |
+| *Project Lead*     | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                                                          |
+| *Administrator*    | Jonathan Locke (Luo, Shibo) <br/> [jonathanl@telenav.com](mailto:jonathanl@telenav.com)                                                                                                                          |
+| *Email*            | [kivakit@telenav.com](mailto:kivakit@telenav.com)                                                                                                                                                                |
+| *Chat*             | [Zulip](https://kivakit.zulip.com)                                                                                                                                                                               |
+| *Twitter*          | [@OpenKivaKit](https://twitter.com/openkivakit)                                                                                                                                                                  |
+| *Issues*           | [GitHub Issues](https://github.com/Telenav/kivakit/issues)                                                                                                                                                       |
 
 [//]: # (end-user-text)
 
