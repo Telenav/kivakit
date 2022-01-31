@@ -51,9 +51,9 @@ KivaKit (KEE-vah-KIT) is a set of integrated Java mini-frameworks that are poten
 
 [**Welcome!**](#welcome)  
 [**About KivaKit**](#about-kivakit)  
-[**Building KivaKit**](#building-kivakit)  
 [**Downloads**](#downloads)  
 [**Reference**](#reference)  
+[**Building KivaKit**](#building-kivakit)  
 [**Working on KivaKit**](#working-on-kivakit)  
 [**Project Resources**](#project-resources)  
 [**Projects**](#projects)  
@@ -124,7 +124,7 @@ KivaKit helps you to:
 ### Working on KivaKit <a name = "working-on-kivakit"></a> &nbsp; <img src="https://www.kivakit.org/images/toolbox-32.png" srcset="https://www.kivakit.org/images/toolbox-32-2x.png 2x"/>
 
 [**Development Process**](documentation/developing/index.md)  
-[**Open Source Process**](documentation/developing/open-source-process.md)
+[**Open Source Process**](documentation/developing/open-source-process.md)  
 [**Releasing KivaKit**](documentation/developing/releasing.md)
 
 ### Project Resources <a name = "project-resources"></a> &nbsp; <img src="https://www.kivakit.org/images/water-32.png" srcset="https://www.kivakit.org/images/water-32-2x.png 2x"/>
