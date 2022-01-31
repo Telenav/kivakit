@@ -20,14 +20,14 @@ This module defines KivaKit lightweight components.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/dependencies-32.png" srcset="https://www.kivakit.org/images/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.3.0/lexakai/kivakit/kivakit-component/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.3.1-SNAPSHOT/lexakai/kivakit-component//documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-component</artifactId>
-        <version>1.3.0</version>
+        <version>1.3.1-SNAPSHOT</version>
     </dependency>
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
@@ -48,7 +48,7 @@ None
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
-[*com.telenav.kivakit.component*](https://www.kivakit.org/1.3.0/lexakai/kivakit/kivakit-component/documentation/diagrams/com.telenav.kivakit.component.svg)
+[*com.telenav.kivakit.component*](https://www.kivakit.org/1.3.1-SNAPSHOT/lexakai/kivakit-component//documentation/diagrams/com.telenav.kivakit.component.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
@@ -63,13 +63,13 @@ Javadoc coverage for this project is 80.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*BaseComponent*](https://www.kivakit.org/1.3.0/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/BaseComponent.html) |  |  
-| [*Component*](https://www.kivakit.org/1.3.0/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/Component.html) | Object Lookup Registry |  
+| [*BaseComponent*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc//kivakit.component/com/telenav/kivakit/component/BaseComponent.html) |  |  
+| [*Component*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc//kivakit.component/com/telenav/kivakit/component/Component.html) | Object Lookup Registry |  
 | | Packaging Methods |  
 | | Settings Registry Methods |  
-| [*ComponentFunction*](https://www.kivakit.org/1.3.0/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/ComponentFunction.html) |  |  
-| [*ComponentMixin*](https://www.kivakit.org/1.3.0/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/ComponentMixin.html) |  |  
-| [*ComponentSupplier*](https://www.kivakit.org/1.3.0/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/ComponentSupplier.html) |  |  
+| [*ComponentFunction*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc//kivakit.component/com/telenav/kivakit/component/ComponentFunction.html) |  |  
+| [*ComponentMixin*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc//kivakit.component/com/telenav/kivakit/component/ComponentMixin.html) |  |  
+| [*ComponentSupplier*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc//kivakit.component/com/telenav/kivakit/component/ComponentSupplier.html) |  |  
 
 [//]: # (start-user-text)
 

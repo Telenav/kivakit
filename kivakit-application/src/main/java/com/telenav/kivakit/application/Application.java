@@ -30,6 +30,7 @@ import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.configuration.settings.Deployment;
 import com.telenav.kivakit.configuration.settings.DeploymentSet;
 import com.telenav.kivakit.filesystem.Folder;
+import com.telenav.kivakit.kernel.KivaKit;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
@@ -204,26 +205,19 @@ public abstract class Application extends BaseComponent implements Named, Applic
         }
     }
 
-    /** The project that this application uses */
-    @UmlAggregation(label = "initializes and uses")
-    private Project project;
+    /** Switch parser to specify deployment settings */
+    private SwitchParser<Deployment> DEPLOYMENT;
 
     /** The parsed command line for this application */
     @UmlAggregation
     private CommandLine commandLine;
 
-    /** Switch parser to specify deployment settings */
-    private SwitchParser<Deployment> DEPLOYMENT;
-
-    @UmlExcludeMember
-    protected final SwitchParser<Boolean> QUIET =
-            booleanSwitchParser(this, "quiet", "Minimize output")
-                    .optional()
-                    .defaultValue(false)
-                    .build();
-
     /** Set of deployments for the application, if any */
     private DeploymentSet deployments;
+
+    /** The project that this application uses */
+    @UmlAggregation(label = "initializes and uses")
+    private Project project;
 
     private final StateMachine<State> state = new StateMachine<>(CREATED);
 
@@ -332,7 +326,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
                 var value = get(switchParser);
                 if (value instanceof Folder)
                 {
-                    value = ((Folder)value).path().asContraction(80);
+                    value = ((Folder) value).path().asContraction(80);
                 }
                 box.add("   $ = $", Align.right(switchParser.name(), width, ' '),
                         value == null ? "N/A" : value);
@@ -497,7 +491,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
         onProjectInitialized();
 
         announce("Project: $", project.name());
-        announce("Application: " + name());
+        announce("Application: " + name() + " (" + KivaKit.get().projectVersion() + ")");
 
         try
         {
@@ -665,4 +659,11 @@ public abstract class Application extends BaseComponent implements Named, Applic
 
         return parsers;
     }
+
+    @UmlExcludeMember
+    protected final SwitchParser<Boolean> QUIET =
+            booleanSwitchParser(this, "quiet", "Minimize output")
+                    .optional()
+                    .defaultValue(false)
+                    .build();
 }

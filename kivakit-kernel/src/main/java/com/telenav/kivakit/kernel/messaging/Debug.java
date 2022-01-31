@@ -240,7 +240,8 @@ public final class Debug implements Transceiver
                 initialized = true;
                 var debug = property("KIVAKIT_DEBUG");
                 var log = property("KIVAKIT_LOG");
-                var title = "KivaKit " + KivaKit.get().projectVersion() + " (" + KivaKit.get().build() + ")";
+                var kivakitVersion = property("KIVAKIT_VERSION");
+                var title = "KivaKit " + kivakitVersion + " (" + KivaKit.get().build() + ")";
                 LOGGER.information(AsciiArt.textBox(title, "      Logging: https://tinyurl.com/mhc3ss5s\n"
                                 + "    Debugging: https://tinyurl.com/2xycuvph\n"
                                 + "  KIVAKIT_LOG: $\n"

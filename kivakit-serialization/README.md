@@ -28,20 +28,20 @@ This module provides an abstraction for serialization.
 
 ### Projects <a name = "projects"></a> &nbsp; <img src="https://www.kivakit.org/images/gears-32.png" srcset="https://www.kivakit.org/images/gears-32-2x.png 2x"/>
 
-[**kivakit-serialization-core**](core/README.md)  
-[**kivakit-serialization-json**](json/README.md)  
-[**kivakit-serialization-kryo**](kryo/README.md)  
+[**kivakit-serialization-core-**](null/README.md)  
+[**kivakit-serialization-json-**](null/README.md)  
+[**kivakit-serialization-kryo-**](null/README.md)  
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; <img src="https://www.kivakit.org/images/bargraph-32.png" srcset="https://www.kivakit.org/images/bargraph-32-2x.png 2x"/>
 
 &nbsp; <img src="https://www.kivakit.org/images/meter-100-96.png" srcset="https://www.kivakit.org/images/meter-100-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-serialization-core**](core/README.md)  
+ &nbsp; &nbsp; [**kivakit-serialization-core-**](core//README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-70-96.png" srcset="https://www.kivakit.org/images/meter-70-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-serialization-json**](json/README.md)  
+ &nbsp; &nbsp; [**kivakit-serialization-json-**](json//README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-serialization-kryo**](kryo/README.md)
+ &nbsp; &nbsp; [**kivakit-serialization-kryo-**](kryo//README.md)
 
 [//]: # (start-user-text)
 

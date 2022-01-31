@@ -13,7 +13,7 @@
     <name>superpom</name>
     <groupId>com.telenav.kivakit</groupId>
     <artifactId>superpom</artifactId>
-    <version>1.3.0</version>
+    <version>1.3.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
@@ -152,7 +152,7 @@
         <cactus.url>https://repo1.maven.org/maven2/com/telenav/cactus/cactus-build-metadata/${cactus.download.version}/cactus-build-metadata-${cactus.download.version}.jar</cactus.url>
         <cactus.jar>${cactus.downloads.folder}/cactus-build-metadata-${cactus.download.version}.jar</cactus.jar>
 
-        <lexakai.version>1.0.1</lexakai.version>
+        <lexakai.version>1.0.3</lexakai.version>
         <lexakai.annotations.version>1.0.0</lexakai.annotations.version>
         <nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
         <moditect-maven-plugin.version>1.0.0.RC1</moditect-maven-plugin.version>
@@ -179,7 +179,7 @@
 
         <!-- KivaKit Version -->
 
-        <kivakit.version>1.3.0</kivakit.version>
+        <kivakit.version>1.3.1-SNAPSHOT</kivakit.version>
 
         <!-- Merged JARs -->
         <kivakit.merged.grpc.version>${kivakit.version}</kivakit.merged.grpc.version>
@@ -1252,12 +1252,12 @@
             <dependency>
                 <groupId>com.telenav.kivakit</groupId>
                 <artifactId>kivakit-merged-prometheus</artifactId>
-                <version>1.3.0</version>
+                <version>1.3.1-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.telenav.kivakit</groupId>
                 <artifactId>kivakit-merged-zookeeper</artifactId>
-                <version>1.3.0</version>
+                <version>1.3.1-SNAPSHOT</version>
             </dependency>
 
             <!-- Parsing -->
