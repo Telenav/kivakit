@@ -28,6 +28,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.io.File;
 import java.io.IOException;
 
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
+
 /**
  * An abstraction of features of the underlying OS through Java interfaces.
  *
@@ -97,7 +99,7 @@ public class OperatingSystem implements Named
 
     public String java()
     {
-        return javaHome() + "/bin/java";
+        return ensureNotNull(javaHome()) + "/bin/java";
     }
 
     public String javaHome()

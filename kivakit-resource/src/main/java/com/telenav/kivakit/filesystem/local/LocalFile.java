@@ -79,7 +79,7 @@ public class LocalFile extends BaseWritableResource implements FileService
 
     public LocalFile(LocalFolder folder, String name)
     {
-        this(folder.path().withChild(name));
+        this(folder.path().withoutTrailingSlash().withChild(name));
     }
 
     public LocalFile(String path)

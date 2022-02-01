@@ -28,6 +28,28 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 public class Paths
 {
     /**
+     * Concatenates a series of paths, ensuring that only a single slash exists between the two. If any tail path is
+     * empty (null or ""), it is simply ignored.
+     *
+     * @param head The start of the path path
+     * @param tails The tails to concatenate to the path
+     * @return The concatenated path
+     */
+    public static String concatenate(String head, String... tails)
+    {
+        var concatenated = new StringBuilder(Strip.trailing(head, "/"));
+        for (var tail : tails)
+        {
+            var next = Strip.trailing(Strip.leading(tail, "/"), "/");
+            if (!Strings.isEmpty(next))
+            {
+                concatenated.append("/").append(next);
+            }
+        }
+        return concatenated.toString();
+    }
+
+    /**
      * @return The first element in the given path up to the separator or null if no separator is found
      */
     public static String head(String path, char separator)

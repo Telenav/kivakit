@@ -336,6 +336,17 @@ public class FilePath extends ResourcePath
     }
 
     /**
+     * Determines if this path has a trailing slash. A trailing slash is represented by having a final path component
+     * that is empty ("").
+     *
+     * @return True if the last component of this path is the empty string.
+     */
+    public boolean hasTrailingSlash()
+    {
+        return size() > 0 && "".equals(get(size() - 1));
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -357,6 +368,21 @@ public class FilePath extends ResourcePath
     public FilePath last(int n)
     {
         return (FilePath) super.last(n);
+    }
+
+    /**
+     * @return The last component of this path
+     */
+    public String last()
+    {
+        // If this path has a trailing slash, it has a final empty component,
+        if (hasTrailingSlash())
+        {
+            // so we get the component before the empty one at the end.
+            return get(size() - 2);
+        }
+
+        return super.last();
     }
 
     /**
@@ -438,6 +464,10 @@ public class FilePath extends ResourcePath
     @Override
     public FilePath withChild(String child)
     {
+        if (hasTrailingSlash())
+        {
+            return withoutTrailingSlash().withChild(child);
+        }
         return (FilePath) super.withChild(child);
     }
 
@@ -499,6 +529,18 @@ public class FilePath extends ResourcePath
     public FilePath withSeparator(String separator)
     {
         return (FilePath) super.withSeparator(separator);
+    }
+
+    /**
+     * @return This path with a trailing slash
+     */
+    public FilePath withTrailingSlash()
+    {
+        if (!hasTrailingSlash())
+        {
+            return withTrailingSlash();
+        }
+        return this;
     }
 
     /**
@@ -589,9 +631,12 @@ public class FilePath extends ResourcePath
         return (FilePath) super.withoutSuffix(suffix);
     }
 
+    /**
+     * @return This path without any trailing slash, which is represented by a final component that is empty ("")
+     */
     public FilePath withoutTrailingSlash()
     {
-        if (last().equals(""))
+        if (hasTrailingSlash())
         {
             return first(size() - 1);
         }

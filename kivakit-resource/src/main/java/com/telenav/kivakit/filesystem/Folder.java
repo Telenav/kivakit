@@ -465,12 +465,12 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         }
     }
 
+    private FilePath path;
+
     @UmlAggregation(label = "delegates to")
     private transient FolderService service;
 
     private Type type = Type.NORMAL;
-
-    private FilePath path;
 
     /**
      * <b>Not public API</b>
@@ -502,9 +502,12 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         this(FileSystemServiceLoader.fileSystem(path).folderService(path));
     }
 
+    /**
+     * This folder as an absolute path with a trailing slash on it
+     */
     public Folder absolute()
     {
-        return new Folder(path().absolute());
+        return new Folder(path().absolute()).withTrailingSlash();
     }
 
     public java.io.File asJavaFile()
@@ -869,7 +872,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
 
     public boolean hasTrailingSlash()
     {
-        return "".equals(last().toString());
+        return path().hasTrailingSlash();
     }
 
     @Override
@@ -919,7 +922,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
 
     public Folder last()
     {
-        return Folder.parse(this, path().last());
+        return Folder.parse(withoutTrailingSlash(), path().last());
     }
 
     @Override
@@ -1162,6 +1165,15 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
             return this;
         }
         return new Folder(path().withChild(""));
+    }
+
+    public Folder withoutTrailingSlash()
+    {
+        if (hasTrailingSlash())
+        {
+            return new Folder(path().withoutTrailingSlash());
+        }
+        return this;
     }
 
     FolderService service()
