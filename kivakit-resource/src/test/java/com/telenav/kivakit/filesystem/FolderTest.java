@@ -40,7 +40,7 @@ public class FolderTest extends UnitTest
     {
         Folder foo = Folder.parse(this, "~/foo");
         assert foo != null;
-        ensureEqual(Folder.userHome().folder("foo"), foo.absolute());
+        ensureEqual(Folder.userHome().folder("foo").withTrailingSlash(), foo.absolute());
     }
 
     @Test
