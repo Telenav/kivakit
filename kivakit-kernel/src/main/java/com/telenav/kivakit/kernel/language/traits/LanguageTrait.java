@@ -1,10 +1,13 @@
 package com.telenav.kivakit.kernel.language.traits;
 
+import com.telenav.kivakit.kernel.data.validation.Validatable;
 import com.telenav.kivakit.kernel.language.objects.Objects;
-import com.telenav.kivakit.kernel.messaging.Broadcaster;
+import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
 
 import java.util.function.Function;
+
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
 
 /**
  * Contains methods that substitute-for, or extend Java language features.
@@ -55,7 +58,7 @@ import java.util.function.Function;
  *
  * @author jonathanl (shibo)
  */
-public interface LanguageTrait extends Broadcaster
+public interface LanguageTrait extends Repeater
 {
     /**
      * <p>
@@ -138,5 +141,24 @@ public interface LanguageTrait extends Broadcaster
             problem(message, arguments);
         }
         return value;
+    }
+
+    /**
+     * If the given {@link Validatable} object is valid, returns true. Otherwise, broadcasts the given message as a
+     * Problem and returns false.
+     *
+     * @param validatable The object to validate
+     * @param message The message to broadcast if the object is not valid
+     * @param arguments Arguments to the message
+     * @return True if the {@link Validatable} is valid
+     */
+    default boolean isValidOr(Validatable validatable, String message, Object... arguments)
+    {
+        if (!ensureNotNull(validatable).isValid(this))
+        {
+            problem(message, arguments);
+            return false;
+        }
+        return true;
     }
 }
