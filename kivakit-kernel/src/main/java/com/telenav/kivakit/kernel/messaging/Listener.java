@@ -26,7 +26,7 @@ import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.listeners.ConsoleWriter;
 import com.telenav.kivakit.kernel.messaging.listeners.NullListener;
 import com.telenav.kivakit.kernel.messaging.listeners.ThrowingListener;
-import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataFailureReporter;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLogging;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageBroadcaster;
@@ -48,41 +48,29 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  * <p><b>Convenience Methods and Logging</b></p>
  *
  * <p>
- * A number of convenience methods in the {@link Transceiver} superinterface make it easy to transmit specific common
- * messages to listeners. These convenience methods are particularly useful in logging because {@link Logger}s are
- * {@link Listener}s which log the messages they receive. For example:
+ * A number of convenience methods in the {@link Transceiver} superinterface make it easy to transmit common messages to
+ * listeners. For example, {@link #problem(String, Object...)} is inherited by {@link Broadcaster}s, {@link Repeater}s
+ * and Components, making it easy to transmit {@link Problem} messages:
  * </p>
  *
  * <pre>
- * private static final Logger LOGGER = LoggerFactory.newLogger();
- *
- *     [...]
- *
- * LOGGER.warning("Unable to read $", file);
- * </pre>
+ * problem("Unable to read $", file);</pre>
  *
  * <p><b>Repeater Chains</b></p>
  *
  * <p>
- * These convenience methods are even easier to access when an object implements {@link Repeater} by extending {@link
- * BaseRepeater}. In the example below, EmployeeLoader is a {@link Repeater} which transmits a warning to all of its
- * registered listeners. The PayrollProcessor class is also a {@link Repeater} which listens to messages transmitted by
- * the EmployeeLoader and re-transmits them to its own listeners. Clients of the PayrollProcessor can listen to it in
- * turn and they will receive the warning transmitted EmployeeLoader, when it is repeated by the PayrollProcessor. This
- * pattern creates a chain of repeaters that terminates in one or more listeners. The final listener is often, but not
- * always a logger. The base Application class in kivakit-application, for example, is a {@link Repeater} which logs the
- * messages it receives by default.
- * </p>
- * <p>
- * <b>Repeater Example</b>
- * </p>
+ * In the example below, EmployeeLoader is a {@link Repeater} which transmits a warning to all of its registered
+ * listeners. The PayrollProcessor class is also a {@link Repeater} which listens to messages transmitted by the
+ * EmployeeLoader and re-transmits them to its own listeners. Clients of the PayrollProcessor can listen to it in turn
+ * and they will receive the {@link Problem} transmitted EmployeeLoader, when it is repeated by the PayrollProcessor.
+ *
  * <pre>
  * class EmployeeLoader extends BaseRepeater
  * {
  *
  *     [...]
  *
- *     warning("Unable to load $", employee);
+ *     problem("Unable to load $", employee);
  *
  *     [...]
  * }
@@ -98,9 +86,16 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  *
  * }
  *
- * var processor = LOGGER.listenTo(new PayrollProcessor());
+ * var processor = LOGGER.listenTo(new PayrollProcessor());</pre>
  *
- * </pre>
+ * <p>
+ * This pattern creates a chain of repeaters that terminates in one or more listeners. The final listener is often, but
+ * not always a {@link Logger}:
+ * </p>
+ *
+ * <p>
+ * &nbsp;&nbsp;&nbsp;&nbsp;<b>EmployeeLoader ==> PayrollProcessor ==> Logger</b>
+ * </p>
  *
  * @author jonathanl (shibo)
  * @see Broadcaster
