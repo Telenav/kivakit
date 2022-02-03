@@ -30,11 +30,11 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  * <p><b>Function Examples</b></p>
  *
  * <pre>
- * applyIfNonNull(null, String::toLowerCase)   ==>   null
- * applyIfNonNull("JL", String::toLowerCase)   ==>   "jl"
+ * ifNonNullApply(null, String::toLowerCase)   ==>   null
+ * ifNonNullApply("JL", String::toLowerCase)   ==>   "jl"
  *
- * nonNullOr(5, -1)     ==>   5
- * nonNullOr(null, 5)   ==>   5</pre>
+ * ifNullDefault(5, -1)     ==>   5
+ * ifNullDefault(null, 5)   ==>   5</pre>
  *
  * <p><b>Messaging Examples</b></p>
  *
