@@ -1,6 +1,7 @@
 package com.telenav.kivakit.kernel.language.traits;
 
 import com.telenav.kivakit.kernel.data.validation.Validatable;
+import com.telenav.kivakit.kernel.language.functions.Functions;
 import com.telenav.kivakit.kernel.language.objects.Objects;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
@@ -75,7 +76,7 @@ public interface LanguageTrait extends Repeater
      */
     default <In, Out> Out ifNonNullApply(In value, Function<In, Out> function)
     {
-        return value == null ? null : function.apply(value);
+        return Functions.apply(value, function);
     }
 
     /**

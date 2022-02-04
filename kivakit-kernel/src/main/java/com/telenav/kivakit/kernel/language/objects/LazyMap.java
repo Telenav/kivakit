@@ -22,57 +22,73 @@ import com.telenav.kivakit.kernel.interfaces.factory.MapFactory;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageObject;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
- * A lazy-initializing value whose factory takes a parameter. Given a {@link MapFactory} that creates a value for a
- * parameter, only creates the object when {@link #get(Parameter)} is called. After that the value is cached and {@link
- * #get(Parameter)} will return the same value. {@link #clear()} can be used to clear the value and force it to be
- * re-created in the future.
+ * A lazy-initializing map.
+ *
  * <p>
- * <b>Example</b>
+ * Given a {@link MapFactory} that creates values for keys, lazy-creates map entries when {@link #get(Key)} is called.
+ * After that the value is cached in the map and {@link #get(Key)} will return the same value. {@link #clear()} can be
+ * used to clear the map, and {@link #remove(Key)} can be used to remove the value for a particular key.
+ * </p>
+ *
+ * <p><b>Example</b></p>
+ *
  * <pre>
- *  private static final MapLazy&lt;Type, Session&gt; singleton =
- *      new MapLazy&lt;&gt;(Session::new);
- * </pre>
+ *  LazyMap&lt;Identifier, Session&gt; session = MapLazy.of(Session::new);
+ *
+ *     [...]
+ *
+ *  session.get(identifier);</pre>
  *
  * @param <Value> The type of value to create
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageObject.class)
-public class MappedLazy<Parameter, Value>
+public class LazyMap<Key, Value>
 {
-    /** The value, or null if it doesn't exist */
-    private Value value;
+    /**
+     * @return A {@link LazyMap} for the given {@link MapFactory}.
+     */
+    public static <Key, Value> LazyMap<Key, Value> of(MapFactory<Key, Value> factory)
+    {
+        return new LazyMap<>(factory);
+    }
 
     /** The factory to create a new value */
-    private final MapFactory<Parameter, Value> factory;
+    private final MapFactory<Key, Value> factory;
 
-    public MappedLazy(MapFactory<Parameter, Value> factory)
+    /** The value, or null if it doesn't exist */
+    private final Map<Key, Value> map = new HashMap<>();
+
+    protected LazyMap(MapFactory<Key, Value> factory)
     {
         this.factory = factory;
     }
 
     /**
-     * Clears the value so it must be recreated
+     * Clears this map
      */
     public void clear()
     {
-        value = null;
+        map.clear();
     }
 
     /**
      * @return The value
      */
-    public final Value get(Parameter parameter)
+    public final Value get(Key key)
     {
-        if (value == null)
-        {
-            value = factory.newInstance(parameter);
-        }
-        return value;
+        return map.computeIfAbsent(key, factory::newInstance);
     }
 
-    public boolean has()
+    /**
+     * Clears the value for the given key
+     */
+    public void remove(Key key)
     {
-        return value != null;
+        map.remove(key);
     }
 }

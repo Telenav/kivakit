@@ -6,10 +6,6 @@ public class Functions
 {
     public static <Input, Output> Output apply(Input value, Function<Input, Output> function)
     {
-        if (value != null)
-        {
-            return function.apply(value);
-        }
-        return null;
+        return value != null ? function.apply(value) : null;
     }
 }
