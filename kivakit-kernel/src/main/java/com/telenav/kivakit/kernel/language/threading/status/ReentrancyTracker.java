@@ -21,47 +21,70 @@ package com.telenav.kivakit.kernel.language.threading.status;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageThread;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.kernel.language.threading.status.ReentrancyTracker.Reentrancy.ENTERED;
+import static com.telenav.kivakit.kernel.language.threading.status.ReentrancyTracker.Reentrancy.EXITED;
+import static com.telenav.kivakit.kernel.language.threading.status.ReentrancyTracker.Reentrancy.EXITED_REENTRY;
+import static com.telenav.kivakit.kernel.language.threading.status.ReentrancyTracker.Reentrancy.REENTERED;
+
 /**
- * Checks code for reentrancy. Calling {@link #enter()} and {@link #exit()} (usually in a try / finally block to ensure
- * consistency) marks a section of code as potentially reentrant. Code within this section can call {@link
- * #hasReentered()} to determine if the code is being executed a second time through direct or indirect recursion. This
- * checking mechanism is implemented with a {@link ThreadLocal}, so there are no thread synchronization issues to be
- * concerned about.
+ * Checks a section of code for reentrancy.
+ *
+ * <p>
+ * Calling {@link #enter()} and {@link #exit()} (usually in a try / finally block to ensure consistency) marks a section
+ * of code as potentially reentrant. If {@link #enter()} returns {@link Reentrancy#ENTERED}, the code section is being
+ * entered for the first time. If it returns {@link Reentrancy#REENTERED}, then the code section is being reentered
+ * recursively. In the same way, {@link #exit()} returns {@link Reentrancy#EXITED} if the code section is being exited
+ * for the last time, and {@link Reentrancy#EXITED_REENTRY} otherwise. Within the code section, {@link #hasReentered()}
+ * will return true if the code is being executed a second time through direct or indirect recursion.
+ * </p>
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageThread.class)
 public class ReentrancyTracker
 {
+    public enum Reentrancy
+    {
+        ENTERED,
+        REENTERED,
+        EXITED_REENTRY,
+        EXITED;
+    }
+
     private final ThreadLocal<Integer> level = ThreadLocal.withInitial(() -> 0);
 
     /**
-     * Enters a block of potentially reentrant code
+     * Enters a block of reentrant code.
      *
-     * @return True if the following code has not yet been entered. Reentrancy can also be checked with {@link
-     * #hasReentered()}.
+     * @return True if the code section can be entered because it has not yet been entered. Reentrancy can also be
+     * checked with {@link #hasReentered()}.
      */
-    public boolean enter()
+    public Reentrancy enter()
     {
         try
         {
-            // Return true if we have not reentered
-            return level.get() == 0;
+            // Return true if we have not reentered,
+            return level.get() == 0 ? ENTERED : REENTERED;
         }
         finally
         {
-            // Enter the code block
+            // and enter the code block.
             level.set(level.get() + 1);
         }
     }
 
     /**
-     * Exits a block of potentially re-entrant code
+     * Exits a block of re-entrant code.
+     *
+     * @return True if the code is exiting for the last time.
      */
-    public void exit()
+    public Reentrancy exit()
     {
-        // Exit the code block
+        // Exit the code block,
         level.set(level.get() - 1);
+
+        // and return true if we are exiting the code for the last time.
+        return level.get() == 0 ? EXITED : EXITED_REENTRY;
     }
 
     /**

@@ -22,8 +22,8 @@ import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.kernel.language.primitives.Ints;
 import com.telenav.kivakit.kernel.language.strings.Strings;
 import com.telenav.kivakit.kernel.language.threading.status.ReentrancyTracker;
-import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.language.values.count.Count;
+import com.telenav.kivakit.kernel.language.values.name.Name;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
@@ -36,6 +36,9 @@ import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataValidation
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
+
+import static com.telenav.kivakit.kernel.language.threading.status.ReentrancyTracker.Reentrancy.ENTERED;
+import static com.telenav.kivakit.kernel.language.threading.status.ReentrancyTracker.Reentrancy.REENTERED;
 
 /**
  * A base implementation of {@link Validator} that provides convenience methods for reporting validation issues:
@@ -158,35 +161,37 @@ public abstract class BaseValidator implements Validator
     @Override
     public final boolean validate(Listener listener)
     {
-        var start = Time.now();
-
-        // Save the given listener for calls to problem and warning methods,
-        this.listener = listener;
-
-        // determine if we have re-entered this method on this thread
-        var reentered = reentrancy.hasReentered();
-
-        reentrancy.enter();
         try
         {
-            // and we HAVE NOT reentered due to a sub-validation, we're just starting to validate, so we
-            if (!reentered)
+            // Enter this method,
+            var reentrancy = BaseValidator.reentrancy.enter();
+
+            // and if we are entering for the first time,
+            if (reentrancy == ENTERED)
             {
-                // initialize the statistics for the thread.
+                // clear the issues for this thread.
                 issues().clear();
             }
 
-            // Make a copy of the current issues for the thread.
-            var issues = issues().copy();
+            // Save the listener parameter for reporting issues during validation.
+            this.listener = listener;
 
-            // Validate any parent
+            // Make a copy of the thread's issues before validating,
+            var issuesBeforeValidation = issues().copy();
+
+            // then validate any parents,
             validateParent();
 
-            // Next, call the subclass onValidate() method (which may make calls to problem or glitch methods, causing invalidity)
+            // and call the subclass onValidate() method (which may make calls to problem or glitch methods, causing invalidity).
             onValidate();
 
-            // and if we haven't re-entered, we're done with the top-level validation,
-            if (!reentered)
+            // Count the number of problems, glitches and warnings that occurred during validation.
+            var problems = issues().count(Problem.class);
+            var glitches = issues().count(Glitch.class);
+            var warnings = issues().count(Warning.class);
+
+            // If we have not reentered the method, we're done validating,
+            if (reentrancy != REENTERED)
             {
                 // so we reset the listener for cleanliness,
                 this.listener = null;
@@ -194,18 +199,19 @@ public abstract class BaseValidator implements Validator
                 // and if a validation report is desired,
                 if (validationReport())
                 {
-                    // we output a short summary of the validation results
-                    listener.information("Validated $ in $ ($ problems, $ glitches, $ warnings)", validationTarget(),
-                            start.elapsedSince(), issues.count(Problem.class), issues.count(Glitch.class), issues.count(Warning.class));
+                    // we broadcast a short summary of the validation results.
+                    listener.information("Validated $ ($ problems, $ glitches, $ warnings)",
+                            Name.of(validationTarget()), problems, glitches, warnings);
                 }
             }
 
-            // and finally, we're valid if the validation didn't change the number of problems or glitches
-            return issues.count(Problem.class).equals(issues().count(Problem.class))
-                    && issues.count(Glitch.class).equals(issues().count(Glitch.class));
+            // Finally, we're valid at this level of reentrancy if validation didn't change the number of problems or glitches.
+            return issuesBeforeValidation.count(Problem.class).equals(problems) &&
+                    issuesBeforeValidation.count(Glitch.class).equals(glitches);
         }
         finally
         {
+            // Exit one level of reentrancy.
             reentrancy.exit();
         }
     }

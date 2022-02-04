@@ -13,15 +13,15 @@ public interface AttributedMixin<Key, Value> extends Mixin
 {
     default Value attribute(Key key)
     {
-        return map().get(key);
+        return attributes().get(key);
     }
 
     default Value attribute(Key key, Value value)
     {
-        return map().put(key, value);
+        return attributes().put(key, value);
     }
 
-    default HashMap<Key, Value> map()
+    default HashMap<Key, Value> attributes()
     {
         return mixin(AttributedMixin.class, HashMap::new);
     }

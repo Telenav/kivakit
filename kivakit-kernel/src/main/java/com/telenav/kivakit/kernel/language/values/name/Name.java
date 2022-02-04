@@ -73,7 +73,7 @@ public class Name implements Named, StringSource
 
     public static String synthetic(Object object)
     {
-        return "synthetic:" + CaseFormat.camelCaseToHyphenated(object.getClass().getSimpleName())
+        return "object:" + CaseFormat.camelCaseToHyphenated(object.getClass().getSimpleName())
                 + ":" + Ints.toHex(System.identityHashCode(object));
     }
 

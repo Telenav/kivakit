@@ -46,6 +46,7 @@ import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageType;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
+import static com.telenav.kivakit.kernel.language.threading.status.ReentrancyTracker.Reentrancy.REENTERED;
 import static com.telenav.kivakit.kernel.messaging.messages.MessageFormatter.Format.WITH_EXCEPTION;
 
 /**
@@ -209,7 +210,7 @@ public abstract class OperationMessage implements Named, Message
         {
             try
             {
-                if (!reentrancy.enter() && DETECT_REENTRANCY)
+                if (reentrancy.enter() == REENTERED && DETECT_REENTRANCY)
                 {
                     formattedMessage = "Re-entrant message formatting detected. This could result in infinite recursion: '" + message + "'";
                 }
