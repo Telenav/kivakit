@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.strings.formatting;
 
+import com.telenav.kivakit.kernel.KernelLimits;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
@@ -29,7 +30,6 @@ import com.telenav.kivakit.kernel.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.kivakit.kernel.KernelLimits;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

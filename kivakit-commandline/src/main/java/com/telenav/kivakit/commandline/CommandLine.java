@@ -20,6 +20,7 @@ package com.telenav.kivakit.commandline;
 
 import com.telenav.kivakit.commandline.parsing.SwitchList;
 import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramCommandLine;
+import com.telenav.kivakit.kernel.KernelLimits;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.language.strings.AsciiArt;
@@ -27,7 +28,6 @@ import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
 import com.telenav.kivakit.kernel.messaging.Message;
-import com.telenav.kivakit.kernel.KernelLimits;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.UmlNote;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -81,15 +81,15 @@ public class CommandLine implements AsString, Iterable<Argument>
     @UmlAggregation
     private final ArgumentList arguments;
 
+    @UmlRelation(label = "parses with")
+    private final CommandLineParser parser;
+
     /**
      * The switch arguments
      */
     @KivaKitIncludeProperty
     @UmlAggregation
     private final SwitchList switches;
-
-    @UmlRelation(label = "parses with")
-    private final CommandLineParser parser;
 
     /**
      * @param parser The command line parser

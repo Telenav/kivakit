@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.reflection;
 
+import com.telenav.kivakit.kernel.KernelLimits;
 import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
@@ -39,7 +40,6 @@ import com.telenav.kivakit.kernel.language.types.Classes;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Message;
-import com.telenav.kivakit.kernel.KernelLimits;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
@@ -109,12 +109,12 @@ public class Type<T> implements Named
         return (Type<T>) forClass(object.getClass());
     }
 
+    private Boolean hasToString;
+
     /** Properties stored by name */
     private final Map<PropertyFilter, NameMap<Property>> propertiesForFilter = new IdentityHashMap<>();
 
     private final Class<T> type;
-
-    private Boolean hasToString;
 
     private Type(Class<T> type)
     {
