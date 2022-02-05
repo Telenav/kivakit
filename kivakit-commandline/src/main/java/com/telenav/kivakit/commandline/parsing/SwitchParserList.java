@@ -23,7 +23,7 @@ import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramCommandLi
 import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramValidation;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.collections.map.string.IndexedNameMap;
-import com.telenav.kivakit.kernel.project.KernelLimits;
+import com.telenav.kivakit.kernel.KernelLimits;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;

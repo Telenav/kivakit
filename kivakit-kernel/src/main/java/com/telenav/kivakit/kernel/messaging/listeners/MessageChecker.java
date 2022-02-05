@@ -25,7 +25,7 @@ import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.kernel.project.KernelLimits;
+import com.telenav.kivakit.kernel.KernelLimits;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageListenerType;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

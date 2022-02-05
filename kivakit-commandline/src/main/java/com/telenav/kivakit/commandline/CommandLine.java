@@ -27,7 +27,7 @@ import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
 import com.telenav.kivakit.kernel.messaging.Message;
-import com.telenav.kivakit.kernel.project.KernelLimits;
+import com.telenav.kivakit.kernel.KernelLimits;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.UmlNote;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;

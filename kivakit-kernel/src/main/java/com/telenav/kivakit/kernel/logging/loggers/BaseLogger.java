@@ -33,7 +33,7 @@ import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.messages.OperationMessage;
 import com.telenav.kivakit.kernel.messaging.messages.Severity;
-import com.telenav.kivakit.kernel.project.KernelLimits;
+import com.telenav.kivakit.kernel.KernelLimits;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLogging;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
