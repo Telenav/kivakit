@@ -523,6 +523,7 @@ The following significant classes are undocumented:
 | | Messaging |  
 | | Functions |  
 | [*Lazy*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/objects/Lazy.html) |  |  
+| [*LazyMap*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/objects/LazyMap.html) | Example |  
 | [*Level*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/values/level/Level.html) |  |  
 | [*Level.Converter*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/values/level/Level.Converter.html) |  |  
 | [*LimitedInput*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/io/LimitedInput.html) |  |  
@@ -564,7 +565,6 @@ The following significant classes are undocumented:
 | [*LookAheadReader*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/io/LookAheadReader.html) |  |  
 | [*Loopable*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/interfaces/code/Loopable.html) |  |  
 | [*MapFactory*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/interfaces/factory/MapFactory.html) |  |  
-| [*MappedLazy*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/objects/MappedLazy.html) |  |  
 | [*Maps*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/collections/map/Maps.html) |  |  
 | [*Matcher*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/interfaces/comparison/Matcher.html) |  |  
 | [*MatcherSet*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/interfaces/comparison/MatcherSet.html) |  |  
@@ -652,7 +652,6 @@ The following significant classes are undocumented:
 | [*PackagePath*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/paths/PackagePath.html) | Parsing |  
 | | Factories |  
 | | Examples |  
-| [*PackagePathTrait*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/paths/PackagePathTrait.html) |  |  
 | [*Packages*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/strings/Packages.html) |  |  
 | [*Pair*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/objects/Pair.html) |  |  
 | [*Parenthesized*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/patterns/Parenthesized.html) |  |  
@@ -698,6 +697,7 @@ The following significant classes are undocumented:
 | [*Readable*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/interfaces/io/Readable.html) |  |  
 | [*Receiver*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/interfaces/messaging/Receiver.html) |  |  
 | [*ReentrancyTracker*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/threading/status/ReentrancyTracker.html) |  |  
+| [*ReentrancyTracker.Reentrancy*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/language/threading/status/ReentrancyTracker.Reentrancy.html) |  |  
 | [*Release*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/project/Release.html) |  |  
 | [*Repeater*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/messaging/Repeater.html) |  |  
 | [*RepeaterMixin*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.kernel/com/telenav/kivakit/kernel/messaging/repeaters/RepeaterMixin.html) |  |  

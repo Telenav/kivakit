@@ -1,27 +1,35 @@
 package com.telenav.kivakit.component;
 
+import com.telenav.kivakit.component.project.lexakai.diagrams.DiagramComponent;
 import com.telenav.kivakit.configuration.lookup.Registry;
 import com.telenav.kivakit.configuration.lookup.RegistryTrait;
-import com.telenav.kivakit.configuration.settings.Deployment;
 import com.telenav.kivakit.configuration.settings.Settings;
 import com.telenav.kivakit.configuration.settings.SettingsStore;
 import com.telenav.kivakit.configuration.settings.SettingsTrait;
-import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
-import com.telenav.kivakit.kernel.language.paths.PackagePathTrait;
 import com.telenav.kivakit.kernel.language.traits.LanguageTrait;
 import com.telenav.kivakit.kernel.language.traits.TryTrait;
-import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Repeater;
+import com.telenav.kivakit.resource.PackageTrait;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.ResourceTrait;
 import com.telenav.kivakit.resource.resources.packaged.Package;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * Interface to KivaKit component functionality, including easy access to settings (see {@link Settings}) and object
- * registries (see {@link Registry}).
+ * A composite interface providing functionality to components.
  *
- * <p><b>Packaging Methods</b></p>
+ * <p><b>Sub-Interfaces</b></p>
+ *
+ * <ul>
+ *     <li>{@link Repeater} - Message broadcasting, listening and repeating</li>
+ *     <li>{@link RegistryTrait} - Service {@link Registry} access</li>
+ *     <li>{@link SettingsTrait} - Component settings</li>
+ *     <li>{@link LanguageTrait} - Enhancements that reduce language verbosity</li>
+ *     <li>{@link PackageTrait} - Access to packages and packaged resources</li>
+ *     <li>{@link NamedObject} - Object naming</li>
+ * </ul>
+ *
+ * <p><b>Packaging</b></p>
  *
  * <p>
  * Classes implementing this interface are provided with easy access to packages and package resources relative to the
@@ -75,16 +83,15 @@ import com.telenav.kivakit.resource.resources.packaged.Package;
  * @see SettingsTrait
  * @see RegistryTrait
  * @see TryTrait
- * @see ResourceTrait
+ * @see PackageTrait
  */
+@UmlClassDiagram(diagram = DiagramComponent.class)
 public interface Component extends
         Repeater,
-        NamedObject,
-        SettingsTrait,
         RegistryTrait,
-        PackagePathTrait,
-        TryTrait,
+        SettingsTrait,
         LanguageTrait,
-        ResourceTrait
+        PackageTrait,
+        NamedObject
 {
 }

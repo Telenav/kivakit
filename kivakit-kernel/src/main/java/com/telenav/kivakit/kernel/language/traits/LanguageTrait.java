@@ -59,7 +59,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  *
  * @author jonathanl (shibo)
  */
-public interface LanguageTrait extends Repeater
+public interface LanguageTrait extends TryTrait, Repeater
 {
     /**
      * <p>

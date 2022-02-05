@@ -16,20 +16,13 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.kernel.language.paths;
+package com.telenav.kivakit.component.project.lexakai.diagrams;
 
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.diagrams.UmlDiagramIdentifier;
 
 /**
- * An object that has a {@link PackagePath}
- *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
-public interface PackagePathTrait
+public class DiagramComponent implements UmlDiagramIdentifier
 {
-    default PackagePath packagePath()
-    {
-        return PackagePath.packagePath(getClass());
-    }
 }

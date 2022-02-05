@@ -12,7 +12,7 @@ This module defines KivaKit lightweight components.
 
 ### Index
 
-
+[**Component Interface Composition**](#component-interface-composition)  
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
@@ -34,7 +34,16 @@ This module defines KivaKit lightweight components.
 
 [//]: # (start-user-text)
 
+### Component Interface Composition <a name = "component-interface-composition"></a>
 
+| Sub-Interface   | Purpose                                       |
+|-----------------|-----------------------------------------------|
+| *Repeater*      | Message broadcasting, listening and repeating |
+| *RegistryTrait* | Service registry access                       |
+| *SettingsTrait* | Component settings                            |
+| *LanguageTrait* | Enhancements that reduce language verbosity   |
+| *PackageTrait*  | Access to packages and packaged resources     |
+| *NamedObject*   | Component naming                              |
 
 [//]: # (end-user-text)
 
@@ -42,7 +51,7 @@ This module defines KivaKit lightweight components.
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-40.png" srcset="https://www.kivakit.org/images/diagram-40-2x.png 2x"/>
 
-None
+[*Component, BaseComponent and ComponentMixin*](https://www.kivakit.org/1.3.1-SNAPSHOT/lexakai/kivakit/kivakit-component/documentation/diagrams/diagram-component.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
@@ -65,7 +74,8 @@ Javadoc coverage for this project is 80.0%.
 |---|---|
 | [*BaseComponent*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/BaseComponent.html) |  |  
 | [*Component*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/Component.html) | Object Lookup Registry |  
-| | Packaging Methods |  
+| | Packaging |  
+| | Sub-Interfaces |  
 | | Settings Registry Methods |  
 | [*ComponentFunction*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/ComponentFunction.html) |  |  
 | [*ComponentMixin*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/ComponentMixin.html) |  |  

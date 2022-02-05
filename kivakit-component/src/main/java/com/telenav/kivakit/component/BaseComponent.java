@@ -1,11 +1,11 @@
 package com.telenav.kivakit.component;
 
+import com.telenav.kivakit.component.project.lexakai.diagrams.DiagramComponent;
 import com.telenav.kivakit.configuration.lookup.Registry;
-import com.telenav.kivakit.configuration.lookup.RegistryTrait;
 import com.telenav.kivakit.configuration.settings.Settings;
-import com.telenav.kivakit.configuration.settings.SettingsTrait;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.function.Consumer;
 
@@ -18,10 +18,8 @@ import java.util.function.Consumer;
  * @see Registry
  * @see Settings
  */
-public class BaseComponent extends BaseRepeater implements
-        Component,
-        RegistryTrait,
-        SettingsTrait
+@UmlClassDiagram(diagram = DiagramComponent.class)
+public class BaseComponent extends BaseRepeater implements Component
 {
     /**
      * Call the consumer with any messages this component hears

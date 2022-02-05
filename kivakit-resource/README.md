@@ -351,6 +351,7 @@ Javadoc coverage for this project is 86.4%.
 | [*Package.Resolver*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/packaged/Package.Resolver.html) |  |  
 | [*PackageResource*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/packaged/PackageResource.html) |  |  
 | [*PackageResource.Resolver*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/packaged/PackageResource.Resolver.html) |  |  
+| [*PackageTrait*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/PackageTrait.html) |  |  
 | [*Packaged*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/packaged/Packaged.html) |  |  
 | [*PropertyMap*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/other/PropertyMap.html) | Conversions |  
 | | Creating and Loading Property Maps |  
@@ -380,7 +381,6 @@ Javadoc coverage for this project is 86.4%.
 | [*ResourceResolver*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/spi/ResourceResolver.html) |  |  
 | [*ResourceResolverServiceLoader*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/spi/ResourceResolverServiceLoader.html) |  |  
 | [*ResourceSection*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/other/ResourceSection.html) |  |  
-| [*ResourceTrait*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/ResourceTrait.html) |  |  
 | [*ResourceWriter*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/writing/ResourceWriter.html) | Writers |  
 | | Saving |  
 | [*Resourceful*](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/Resourceful.html) |  |  
