@@ -50,11 +50,11 @@ public class Lazy<Value> implements Loadable, Unloadable
         return new Lazy<>(factory);
     }
 
-    /** The value, or null if it doesn't exist */
-    private Value value;
-
     /** The factory to create a new value */
     private final Factory<Value> factory;
+
+    /** The value, or null if it doesn't exist */
+    private Value value;
 
     /**
      * @param factory A factory to create values when needed
