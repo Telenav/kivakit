@@ -34,6 +34,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *  private static Lazy&lt;EdgeAttributes&gt; singleton = Lazy.of(EdgeAttributes::new);
  * </pre>
  *
+ * <b>NOTE:</b> This class is not thread-safe.
+ *
  * @param <Value> The type of value to create
  * @author jonathanl (shibo)
  */
@@ -73,7 +75,7 @@ public class Lazy<Value> implements Loadable, Unloadable
     /**
      * @return The value
      */
-    public synchronized final Value get()
+    public final Value get()
     {
         load();
         return value;
