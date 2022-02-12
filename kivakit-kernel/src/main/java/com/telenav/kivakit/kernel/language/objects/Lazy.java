@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.kernel.language.objects;
 
+import com.telenav.kivakit.kernel.interfaces.collection.Clearable;
 import com.telenav.kivakit.kernel.interfaces.factory.Factory;
-import com.telenav.kivakit.kernel.interfaces.loading.Loadable;
-import com.telenav.kivakit.kernel.interfaces.loading.Unloadable;
+import com.telenav.kivakit.kernel.interfaces.value.Source;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageObject;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -28,19 +28,19 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * A lazy-initializing value. Given a factory that creates a value, only creates the object when {@link #get()} is
  * called. After that the value is cached and {@link #get()} will return the same value. {@link #clear()} can be used to
  * clear the value and force it to be re-created in the future.
- * <p>
- * <b>Example</b>
+ *
+ * <p><b>Example</b></p>
+ *
  * <pre>
  *  private static Lazy&lt;EdgeAttributes&gt; singleton = Lazy.of(EdgeAttributes::new);
  * </pre>
  *
- * <b>NOTE:</b> This class is not thread-safe.
- *
  * @param <Value> The type of value to create
  * @author jonathanl (shibo)
+ * @author Sergiy Yevtushenko
  */
 @UmlClassDiagram(diagram = DiagramLanguageObject.class)
-public class Lazy<Value> implements Loadable, Unloadable
+public class Lazy<Value> implements Clearable
 {
     /**
      * Factory method to create a Lazy object with the given value factory
@@ -53,11 +53,14 @@ public class Lazy<Value> implements Loadable, Unloadable
     /** The factory to create a new value */
     private final Factory<Value> factory;
 
-    /** The value, or null if it doesn't exist */
-    private Value value;
+    /** A reference to the initialize method */
+    private final Source<Value> initializeMethod = this::initialize;
+
+    /** A reference to the method that currently returns a value */
+    private volatile Source<Value> valueSource = initializeMethod;
 
     /**
-     * @param factory A factory to create values when needed
+     * @param factory A factory to create values whenever needed
      */
     protected Lazy(Factory<Value> factory)
     {
@@ -65,39 +68,33 @@ public class Lazy<Value> implements Loadable, Unloadable
     }
 
     /**
-     * Clears the value so it must be recreated
+     * Clears this lazy value. It will be recreated by the factory if {@link #get()} is called.
      */
-    public void clear()
+    public synchronized void clear()
     {
-        value = null;
+        valueSource = this::initialize;
     }
 
     /**
-     * @return The value
+     * @return The lazy-loaded value
      */
     public final Value get()
     {
-        load();
-        return value;
+        return valueSource.get();
     }
 
-    public boolean has()
+    public final boolean has()
     {
-        return value != null;
+        return get() != null;
     }
 
-    @Override
-    public void load()
+    private synchronized Value initialize()
     {
-        if (value == null)
+        if (valueSource == initializeMethod)
         {
-            value = factory.newInstance();
+            valueSource = factory::newInstance;
         }
-    }
 
-    @Override
-    public void unload()
-    {
-        clear();
+        return get();
     }
 }

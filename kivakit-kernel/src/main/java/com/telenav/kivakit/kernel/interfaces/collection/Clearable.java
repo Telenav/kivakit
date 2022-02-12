@@ -16,25 +16,14 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.kernel.interfaces.value;
-
-import com.telenav.kivakit.kernel.interfaces.factory.Factory;
-import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramInterfaceValue;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
-
-import java.util.function.Supplier;
+package com.telenav.kivakit.kernel.interfaces.collection;
 
 /**
- * A source of values.
+ * Interface to an object that can be cleared
  *
- * @param <Value> The object type
  * @author jonathanl (shibo)
- * @see Factory
  */
-@FunctionalInterface
-@UmlClassDiagram(diagram = DiagramInterfaceValue.class)
-@LexakaiJavadoc(complete = true)
-public interface Source<Value> extends Supplier<Value>
+public interface Clearable
 {
+    void clear();
 }
