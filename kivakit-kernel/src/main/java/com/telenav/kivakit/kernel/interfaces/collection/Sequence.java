@@ -191,6 +191,11 @@ public interface Sequence<Element>
         return set;
     }
 
+    default Element find(Class<? extends Element> type)
+    {
+        return find(at -> type.isAssignableFrom(at.getClass()));
+    }
+
     /**
      * @return The first value that matches the matcher
      */

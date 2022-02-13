@@ -100,6 +100,11 @@ public abstract class OperationMessage implements Named, Message
         return listener.problemIfNull(messages.get(name), "Invalid message name: $", name);
     }
 
+    public static Message of(Class<? extends Message> type)
+    {
+        return parse(Listener.throwing(), type.getSimpleName());
+    }
+
     private transient Object[] arguments;
 
     private transient Throwable cause;

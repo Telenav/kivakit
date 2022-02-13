@@ -22,6 +22,8 @@ import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramInterfaceFunct
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.util.function.Predicate;
+
 /**
  * A boolean functional interface that returns true or false for a given value.
  *
@@ -30,10 +32,13 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramInterfaceFunction.class)
 @LexakaiJavadoc(complete = true)
-public interface BooleanFunction<Value>
+public interface BooleanFunction<Value> extends Predicate<Value>
 {
     /**
      * @return True if the value evaluates to true
      */
-    boolean isTrue(Value value);
+    default boolean isTrue(Value value)
+    {
+        return test(value);
+    }
 }

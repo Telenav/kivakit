@@ -20,6 +20,7 @@ package com.telenav.kivakit.kernel.messaging.messages;
 
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.messaging.Message;
+import com.telenav.kivakit.kernel.messaging.listeners.MessageList;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessaging;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -27,36 +28,38 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import java.util.function.BiFunction;
 
-import static com.telenav.kivakit.kernel.messaging.messages.MessageFormatter.Format.WITH_EXCEPTION;
+import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
 
 /**
- * A return value that contains an object OR a {@link Message} indicating that something went wrong. Success messages
- * should not be returned with this object as the {@link #failed()} method only tests for the existence of any message.
+ * Represents the result of an operation, containing any failure messages in {@link MessageList}. If there are no
+ * failure messages, the result is successful and {@link #get()} provides the value of the operation.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessaging.class)
 @UmlRelation(label = "failure reason", referent = Message.class)
-public class Result<T>
+public class Result<T> extends MessageList
 {
     public static <T> Result<T> failed(Message message)
     {
-        return new Result<T>().message(message);
+        var result = new Result<T>();
+        result.receive(message);
+        return result;
     }
 
     public static <T> Result<T> failed(Throwable cause, String message, Object... arguments)
     {
-        return new Result<T>().problem(cause, message, arguments);
+        return failed(new Problem(cause, message, arguments));
     }
 
     public static <T> Result<T> failed(String message, Object... arguments)
     {
-        return new Result<T>().problem(message, arguments);
+        return failed(new Problem(message, arguments));
     }
 
     public static <T> Result<T> failed(Result<?> result, String message, Object... arguments)
     {
-        return new Result<T>().problem(result + " => " + message, arguments);
+        return failed(new Problem(result + " => " + message, arguments));
     }
 
     public static <T> Result<T> succeeded(T value)
@@ -64,18 +67,7 @@ public class Result<T>
         return new Result<T>().set(value);
     }
 
-    private T object;
-
-    private Message message;
-
-    /**
-     * @return True if this result represents failure. Call {@link #why()} to find out the reason.
-     */
-    @KivaKitIncludeProperty
-    public boolean failed()
-    {
-        return message != null;
-    }
+    private T value;
 
     /**
      * @return If {@link #succeeded()} returns true, this method returns the result object
@@ -83,7 +75,7 @@ public class Result<T>
     @KivaKitIncludeProperty
     public T get()
     {
-        return object;
+        return value;
     }
 
     /**
@@ -91,23 +83,22 @@ public class Result<T>
      */
     public boolean has()
     {
-        return object != null;
+        return value != null;
     }
 
     /**
-     * Assigns the given message as a reason for failure
+     * @return True if this result has a value and succeeded, or does not have a value and failed. False otherwise.
      */
-    public Result<T> problem(String message, Object... arguments)
+    public boolean isValid()
     {
-        return new Result<T>().message(new Problem(message, arguments));
+        return has() ^ failed();
     }
 
-    /**
-     * Assigns the given message as a reason for failure
-     */
-    public Result<T> problem(Throwable cause, String message, Object... arguments)
+    @Override
+    public void onMessage(final Message message)
     {
-        return new Result<T>().message(new Problem(cause, message, arguments));
+        super.onMessage(message);
+        ensure(isValid());
     }
 
     /**
@@ -115,7 +106,8 @@ public class Result<T>
      */
     public Result<T> set(T result)
     {
-        object = result;
+        value = result;
+        ensure(isValid());
         return this;
     }
 
@@ -130,31 +122,16 @@ public class Result<T>
     @Override
     public String toString()
     {
-        return succeeded() ? "Succeeded: " + object : message.formatted(WITH_EXCEPTION);
-    }
-
-    /**
-     * @return If {@link #failed()} is true, this method returns a message that explains why the failure occurred
-     */
-    @KivaKitIncludeProperty
-    public Message why()
-    {
-        return message;
+        return succeeded() ? "Succeeded: " + value : "Failed: " + asString();
     }
 
     public Result<T> with(Result<T> that, BiFunction<T, T, T> combiner)
     {
-        if (object != null && that.object != null)
+        if (value != null && that.value != null)
         {
-            var value = combiner.apply(object, that.object);
+            var value = combiner.apply(this.value, that.value);
             return new Result<T>().set(value);
         }
-        return this;
-    }
-
-    private Result<T> message(Message message)
-    {
-        this.message = message;
         return this;
     }
 }

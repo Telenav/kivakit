@@ -233,6 +233,11 @@ public class ObjectList<Element> extends BaseList<Element>
         return StringList.stringList(this);
     }
 
+    /**
+     * Returns a copy of this list
+     *
+     * @return The copy
+     */
     @Override
     public ObjectList<Element> copy()
     {
@@ -263,6 +268,12 @@ public class ObjectList<Element> extends BaseList<Element>
         return (ObjectList<To>) super.mapped(mapper);
     }
 
+    /**
+     * Returns a new list containing the elements in this list that match the given matcher.
+     *
+     * @param matcher The matcher to use
+     * @return The list of elements matching the matcher
+     */
     @Override
     public ObjectList<Element> matching(Matcher<Element> matcher)
     {
@@ -275,6 +286,11 @@ public class ObjectList<Element> extends BaseList<Element>
         return (ObjectList<Element>) super.maybeReversed(reverse);
     }
 
+    /**
+     * Creates an empty new list. Subclasses can return a subclass list type.
+     *
+     * @return The new list
+     */
     @Override
     public ObjectList<Element> onNewInstance()
     {

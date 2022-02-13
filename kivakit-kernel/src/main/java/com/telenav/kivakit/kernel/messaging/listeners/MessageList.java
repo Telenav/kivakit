@@ -22,9 +22,6 @@ import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
 import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.strings.Align;
-import com.telenav.kivakit.kernel.language.strings.Plural;
-import com.telenav.kivakit.kernel.language.types.Classes;
 import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.language.values.count.Maximum;
 import com.telenav.kivakit.kernel.messaging.Broadcaster;
@@ -37,13 +34,21 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
  * A list of messages that listens for and adds incoming messages. Only messages that are accepted by a {@link Matcher}
- * (or {@link Filter} subclass) are added. The list of messages can be rebroadcast with {@link
- * Broadcaster#transmitAll(Iterable)} and they can be counted with {@link #count(Message.Status)} and {@link
- * #count(Class)}. The method {@link #countWorseThanOrEqualTo(Message.Status)} gives a count of all messages that are at
- * least as bad or worse than the given message status value. For example, <i>countWorseThanOrEqualTo(Status.PROBLEM)</i>.
- * A filtered list of messages can be retrieved with {@link #matching(Matcher)} and a {@link StringList} of formatted
- * messages with {@link #formatted()}. Statistics can be retrieved for types of messages and for message statuses with
- * {@link #statisticsByType(Class[])} and {@link #statistics(Message.Status...)}, respectively.
+ * (or {@link Filter} subclass) are added.
+ *
+ * <p><b>List Methods</b></p>
+ *
+ * <p>
+ * This list of messages can be rebroadcast with {@link Broadcaster#transmitAll(Iterable)}. A filtered list of messages
+ * can be retrieved with {@link #matching(Matcher)} and a {@link StringList} of formatted messages with {@link
+ * #formatted()}.
+ * </p>
+ *
+ * <p><b>Superinterface Methods</b></p>
+ *
+ * <p>
+ * The superinterface {@link MessageCounter} provides methods that count messages and collect statistics.
+ * </p>
  *
  * @author jonathanl (shibo)
  */
@@ -69,6 +74,9 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
         this.filter = filter;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MessageList copy()
     {
@@ -128,6 +136,9 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
         return Count.count(count);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object object)
     {
@@ -148,6 +159,9 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
         return messages;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode()
     {
@@ -155,6 +169,9 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
         return super.hashCode();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ObjectList<Message> matching(Matcher<Message> filter)
     {
@@ -192,35 +209,12 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MessageList onNewInstance()
     {
         return new MessageList(filter);
-    }
-
-    /**
-     * @return Statistics for the given list of operation step types
-     */
-    public StringList statistics(Message.Status... statuses)
-    {
-        var statistics = new StringList();
-        for (var status : statuses)
-        {
-            statistics.append(Align.right(status.name(), 24, ' '))
-                    .append(": ").append(count(status).toCommaSeparatedString());
-        }
-        return statistics;
-    }
-
-    @SafeVarargs
-    public final StringList statisticsByType(Class<? extends Message>... types)
-    {
-        var statistics = new StringList();
-        for (var type : types)
-        {
-            statistics.append(Align.right(Plural.pluralize(Classes.simpleName(type)), 24, ' ')
-                    + ": " + count(type).toCommaSeparatedString());
-        }
-        return statistics;
     }
 }
