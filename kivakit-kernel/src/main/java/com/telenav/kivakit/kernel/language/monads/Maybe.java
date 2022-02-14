@@ -158,6 +158,12 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
         return false;
     }
 
+    /**
+     * Maps this value to another type if a value is present, otherwise returns {@link #empty()}.
+     *
+     * @param mapper The mapping function
+     * @return The mapped value or empty
+     */
     @SuppressWarnings("unchecked")
     public <Mapped> Maybe<Mapped> flatMap(Function<? super Value, ? extends Maybe<? extends Mapped>> mapper)
     {
@@ -177,14 +183,24 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
         return Objects.hashCode(value);
     }
 
+    /**
+     * Returns an {@link ElseFunction} allowing for branching
+     */
     public ElseFunction<Runnable, ElseFunction<Consumer<Value>, Void>> ifEmpty()
     {
         return curry(ifEmptyFunction());
     }
 
+    /**
+     * If a value is present and the predicate is false when applied to the value, returns this, otherwise returns
+     * {@link #empty()}
+     *
+     * @param predicate The predicate to test the value
+     * @return This value or {@link #empty()}
+     */
     public Maybe<Value> ifFalse(BooleanFunction<Value> predicate)
     {
-        return value != null && ensureNotNull(predicate).test(value)
+        return isPresent() && ensureNotNull(predicate).test(value)
                 ? empty()
                 : this;
     }
@@ -204,6 +220,9 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
         return this;
     }
 
+    /**
+     * Returns an {@link ElseFunction} allowing for branching
+     */
     public ElseFunction<Consumer<Value>, ElseFunction<Runnable, Void>> ifPresent()
     {
         return curry(ifPresentFunction());
@@ -253,6 +272,12 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
         return value == null;
     }
 
+    /**
+     * Maps this value to another type if a value is present, otherwise returns {@link #empty()}.
+     *
+     * @param mapper The mapping function
+     * @return The mapped value or empty
+     */
     public <Output> Maybe<Output> map(Function<? super Value, ? extends Output> mapper)
     {
         return isEmpty()
@@ -260,8 +285,14 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
                 : maybe(ensureNotNull(mapper).apply(value));
     }
 
+    /**
+     * If there is a value present, returns this, otherwise returns the maybe provided by the given {@link Source}
+     *
+     * @param source A source of a {@link Maybe} if there is no value present
+     * @return This value or the value produced by the given source
+     */
     @SuppressWarnings("unchecked")
-    public Maybe<Value> or(Source<? extends Maybe<? extends Value>> supplier)
+    public Maybe<Value> or(Source<? extends Maybe<? extends Value>> source)
     {
         if (isPresent())
         {
@@ -269,20 +300,37 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
         }
         else
         {
-            return (Maybe<Value>) ensureNotNull(ensureNotNull(supplier).get());
+            return (Maybe<Value>) ensureNotNull(ensureNotNull(source).get());
         }
     }
 
+    /**
+     * If there is a value present, returns it, otherwise returns the given default value
+     *
+     * @param defaultValue The default value to return if there is no value
+     * @return The value
+     */
     public Value orDefault(Value defaultValue)
     {
         return isPresent() ? value : defaultValue;
     }
 
+    /**
+     * If there is a value present, returns it, otherwise returns the given default value
+     *
+     * @param defaultValue The default value to return if there is no value
+     * @return The value
+     */
     public Value orDefault(Source<Value> defaultValue)
     {
         return isPresent() ? value : defaultValue.get();
     }
 
+    /**
+     * Broadcasts a problem and returns null if there is no value, otherwise returns the value
+     *
+     * @return A value or null
+     */
     public Value orProblem(String message, Object... arguments)
     {
         if (isEmpty())
@@ -294,11 +342,23 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
         return value;
     }
 
+    /**
+     * Throws an exception if there is no value, otherwise returns the value
+     *
+     * @return The value
+     */
     public Value orThrow()
     {
         return orThrow("No value present");
     }
 
+    /**
+     * Throws an exception if there is no value, otherwise returns the value
+     *
+     * @param message The exception message
+     * @param arguments The message arguments
+     * @return The value
+     */
     public Value orThrow(String message, Object... arguments)
     {
         if (isEmpty())
