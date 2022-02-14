@@ -18,7 +18,9 @@
 
 package com.telenav.kivakit.kernel.messaging.messages;
 
+import com.telenav.kivakit.kernel.interfaces.code.Code;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.kernel.messaging.Broadcaster;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.listeners.MessageList;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
@@ -67,7 +69,19 @@ public class Result<T> extends MessageList
         return new Result<T>().set(value);
     }
 
+    private Broadcaster broadcaster;
+
     private T value;
+
+    public Result()
+    {
+    }
+
+    public Result(Broadcaster broadcaster)
+    {
+        listenTo(broadcaster);
+        this.broadcaster = broadcaster;
+    }
 
     /**
      * @return If {@link #succeeded()} returns true, this method returns the result object
@@ -76,6 +90,45 @@ public class Result<T> extends MessageList
     public T get()
     {
         return value;
+    }
+
+    /**
+     * If this result succeeded, returns the value from {@link #get()}. If it failed, broadcasts a {@link Problem}
+     * message and returns null.
+     *
+     * @return The value of this result or null if this result failed
+     */
+    public T getOrProblem(String message, Object... arguments)
+    {
+        if (failed())
+        {
+            problem(message, arguments);
+            return null;
+        }
+        else
+        {
+            return get();
+        }
+    }
+
+    /**
+     * If this result succeeded, returns the value from {@link #get()}. If it failed, throws an {@link
+     * IllegalStateException}.
+     *
+     * @return The value of this result
+     * @throws IllegalStateException Details of this failed result
+     */
+    public T getOrThrow()
+    {
+        if (failed())
+        {
+            super.ifFailedThrow();
+            return null;
+        }
+        else
+        {
+            return get();
+        }
     }
 
     /**
@@ -94,11 +147,38 @@ public class Result<T> extends MessageList
         return has() ^ failed();
     }
 
-    @Override
-    public void onMessage(final Message message)
+    /**
+     * If this result failed, runs the given {@link Code}, capturing any messages and result of the call. If the code
+     * succeeds, returns the result, otherwise returns this result.
+     *
+     * @return The {@link Result} of the call
+     */
+    public Result<T> or(Code<T> code)
     {
-        super.onMessage(message);
-        ensure(isValid());
+        // If this result failed,
+        if (failed())
+        {
+            // don't listen to the broadcaster further,
+            broadcaster.removeListener(this);
+
+            // create a new result to listens to it,
+            var result = new Result<T>(broadcaster);
+
+            try
+            {
+                // call the code and store any result,
+                result.set(code.run());
+            }
+            catch (Exception e)
+            {
+                // and if the code throws an exception, store that as a problem.
+                problem(e, "Failed");
+            }
+
+            return result;
+        }
+
+        return this;
     }
 
     /**
@@ -107,7 +187,9 @@ public class Result<T> extends MessageList
     public Result<T> set(T result)
     {
         value = result;
+
         ensure(isValid());
+
         return this;
     }
 
@@ -122,7 +204,7 @@ public class Result<T> extends MessageList
     @Override
     public String toString()
     {
-        return succeeded() ? "Succeeded: " + value : "Failed: " + asString();
+        return succeeded() ? "Succeeded: " + value : "Failed:\n\n" + bulleted(4);
     }
 
     public Result<T> with(Result<T> that, BiFunction<T, T, T> combiner)

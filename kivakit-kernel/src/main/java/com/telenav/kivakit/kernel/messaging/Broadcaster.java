@@ -21,16 +21,12 @@ package com.telenav.kivakit.kernel.messaging;
 import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
 import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.messaging.filters.operators.All;
-import com.telenav.kivakit.kernel.messaging.messages.Result;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageBroadcaster;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageRepeater;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import java.util.List;
-import java.util.concurrent.Callable;
-
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
 
 /**
  * Broadcasts a message to zero or more listeners via {@link #transmit(Transmittable)}. Listeners can be added with
@@ -73,28 +69,6 @@ public interface Broadcaster extends Transceiver
     default void addListener(Listener listener)
     {
         addListener(listener, new All<>());
-    }
-
-    /**
-     * Runs the given {@link Callable} code, capturing any messages and result of the call.
-     *
-     * @return The {@link Result} of the call
-     */
-    default <T> Result<T> run(Callable<T> code)
-    {
-        var result = new Result<T>();
-        result.listenTo(this);
-
-        try
-        {
-            result.set(code.call());
-        }
-        catch (Exception e)
-        {
-            result.problem(e, "Failed");
-        }
-
-        return result;
     }
 
     /**

@@ -27,6 +27,7 @@ import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.messages.OperationMessage;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
+import com.telenav.kivakit.kernel.messaging.messages.status.Quibble;
 import com.telenav.kivakit.kernel.messaging.messages.status.Warning;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataValidation;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageListenerType;
@@ -134,6 +135,19 @@ public interface MessageCounter extends Listener
     }
 
     /**
+     * If the counted message represent failure, as determined by {@link #failed()}, throws an {@link
+     * IllegalStateException} with the statistics for messages.
+     */
+    @SuppressWarnings("unchecked")
+    default void ifFailedThrow()
+    {
+        if (failed())
+        {
+            throw new IllegalStateException("Failed:\n\n" + statistics(Problem.class, Quibble.class, Warning.class).bulleted(2));
+        }
+    }
+
+    /**
      * Returns the counts of each message with the given statuses
      *
      * @return Statistics for the given list of operation step types
@@ -161,8 +175,12 @@ public interface MessageCounter extends Listener
         var statistics = new StringList();
         for (var type : types)
         {
-            statistics.append(Align.right(Plural.pluralize(Classes.simpleName(type)), 24, ' ')
-                    + ": " + count(type).toCommaSeparatedString());
+            var count = count(type);
+            if (count != null)
+            {
+                statistics.append(Align.right(Plural.pluralize(Classes.simpleName(type)), 24, ' ')
+                        + ": " + count.toCommaSeparatedString());
+            }
         }
         return statistics;
     }
