@@ -64,6 +64,7 @@ open module kivakit.kernel
     exports com.telenav.kivakit.kernel.language.matchers;
     exports com.telenav.kivakit.kernel.language.math;
     exports com.telenav.kivakit.kernel.language.modules;
+    exports com.telenav.kivakit.kernel.language.monads;
     exports com.telenav.kivakit.kernel.language.objects.reference.virtual.types;
     exports com.telenav.kivakit.kernel.language.objects.reference.virtual;
     exports com.telenav.kivakit.kernel.language.objects.reference;

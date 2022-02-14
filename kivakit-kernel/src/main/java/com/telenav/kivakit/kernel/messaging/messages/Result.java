@@ -19,6 +19,11 @@
 package com.telenav.kivakit.kernel.messaging.messages;
 
 import com.telenav.kivakit.kernel.interfaces.code.Code;
+import com.telenav.kivakit.kernel.interfaces.function.BooleanFunction;
+import com.telenav.kivakit.kernel.interfaces.value.Source;
+import com.telenav.kivakit.kernel.language.monads.ElseFunction;
+import com.telenav.kivakit.kernel.language.monads.Maybe;
+import com.telenav.kivakit.kernel.language.objects.Hash;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.messaging.Broadcaster;
 import com.telenav.kivakit.kernel.messaging.Message;
@@ -28,19 +33,23 @@ import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessaging;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
+import java.util.Objects;
 import java.util.function.BiFunction;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
+import static com.telenav.kivakit.kernel.language.monads.Maybe.maybe;
 
 /**
  * Represents the result of an operation, containing any failure messages in {@link MessageList}. If there are no
- * failure messages, the result is successful and {@link #get()} provides the value of the operation.
+ * failure messages, the operation was successful and {@link #value()} provides the value of the operation.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramMessaging.class)
 @UmlRelation(label = "failure reason", referent = Message.class)
-public class Result<T> extends MessageList
+public class Result<Value> extends MessageList
 {
     public static <T> Result<T> failed(Message message)
     {
@@ -71,7 +80,7 @@ public class Result<T> extends MessageList
 
     private Broadcaster broadcaster;
 
-    private T value;
+    private Maybe<Value> value;
 
     public Result()
     {
@@ -80,16 +89,62 @@ public class Result<T> extends MessageList
     public Result(Broadcaster broadcaster)
     {
         listenTo(broadcaster);
+
         this.broadcaster = broadcaster;
     }
 
     /**
-     * @return If {@link #succeeded()} returns true, this method returns the result object
+     * <i>Delegates to {@link Maybe}</i>
+     */
+    public Maybe<Value> apply(Maybe<Value> that, BiFunction<Value, Value, Value> function)
+    {
+        return value.apply(function, that);
+    }
+
+    /**
+     * <i>Delegates to {@link Maybe}</i>
+     */
+    public Maybe<Value> apply(Function<Value, Value> function)
+    {
+        return value.apply(function);
+    }
+
+    /**
+     * <i>Delegates to {@link Maybe}</i>
+     */
+    public Stream<Value> asStream()
+    {
+        return value.asStream();
+    }
+
+    /**
+     * <i>Delegates to {@link Maybe}</i>
+     */
+    public boolean equals(Object object)
+    {
+        if (object instanceof Result)
+        {
+            var that = (Result<?>) object;
+            return Objects.equals(value, that.value);
+        }
+        return false;
+    }
+
+    /**
+     * <i>Delegates to {@link Maybe}</i>
+     */
+    public <Mapped> Maybe<Mapped> flatMap(Function<? super Value, ? extends Maybe<? extends Mapped>> mapper)
+    {
+        return value.flatMap(mapper);
+    }
+
+    /**
+     * @return The value for this result, or null if there is none
      */
     @KivaKitIncludeProperty
-    public T get()
+    public Value get()
     {
-        return value;
+        return value.get();
     }
 
     /**
@@ -98,16 +153,16 @@ public class Result<T> extends MessageList
      *
      * @return The value of this result or null if this result failed
      */
-    public T getOrProblem(String message, Object... arguments)
+    public Maybe<Value> getOrProblem(String message, Object... arguments)
     {
         if (failed())
         {
             problem(message, arguments);
-            return null;
+            return Maybe.empty();
         }
         else
         {
-            return get();
+            return value();
         }
     }
 
@@ -118,7 +173,7 @@ public class Result<T> extends MessageList
      * @return The value of this result
      * @throws IllegalStateException Details of this failed result
      */
-    public T getOrThrow()
+    public Maybe<Value> getOrThrow()
     {
         if (failed())
         {
@@ -127,7 +182,7 @@ public class Result<T> extends MessageList
         }
         else
         {
-            return get();
+            return value();
         }
     }
 
@@ -140,6 +195,72 @@ public class Result<T> extends MessageList
     }
 
     /**
+     * <i>Delegates to {@link Maybe}</i>
+     */
+    @Override
+    public int hashCode()
+    {
+        return Hash.code(value);
+    }
+
+    /**
+     * <i>Delegates to {@link Maybe}</i>
+     */
+    public Maybe<Value> ifFalse(BooleanFunction<Value> predicate)
+    {
+        return value.ifFalse(predicate);
+    }
+
+    /**
+     * <i>Delegates to {@link Maybe}</i>
+     */
+    public Maybe<Value> ifNonEmptyOr(Consumer<Value> consumer, Runnable runnable)
+    {
+        return value.ifPresentOr(consumer, runnable);
+    }
+
+    /**
+     * <i>Delegates to {@link Maybe}</i>
+     */
+    public ElseFunction<Runnable, ElseFunction<Consumer<Value>, Void>> ifNull()
+    {
+        return value.ifEmpty();
+    }
+
+    /**
+     * <i>Delegates to {@link Maybe}</i>
+     */
+    public Maybe<Value> ifPresent(Consumer<Value> consumer)
+    {
+        return value.ifPresent(consumer);
+    }
+
+    /**
+     * <i>Delegates to {@link Maybe}</i>
+     */
+    public ElseFunction<Consumer<Value>, ElseFunction<Runnable, Void>> ifPresent()
+    {
+        return value.ifPresent();
+    }
+
+    /**
+     * <i>Delegates to {@link Maybe}</i>
+     */
+    public Maybe<Value> ifTrue(BooleanFunction<Value> predicate)
+    {
+        return value.ifTrue(predicate);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isEmpty()
+    {
+        return value.isEmpty();
+    }
+
+    /**
      * @return True if this result has a value and succeeded, or does not have a value and failed. False otherwise.
      */
     public boolean isValid()
@@ -148,12 +269,20 @@ public class Result<T> extends MessageList
     }
 
     /**
+     * <i>Delegates to {@link Maybe}</i>
+     */
+    public <Output> Maybe<Output> map(Function<? super Value, ? extends Output> mapper)
+    {
+        return value.map(mapper);
+    }
+
+    /**
      * If this result failed, runs the given {@link Code}, capturing any messages and result of the call. If the code
      * succeeds, returns the result, otherwise returns this result.
      *
      * @return The {@link Result} of the call
      */
-    public Result<T> or(Code<T> code)
+    public Result<Value> or(Code<Value> code)
     {
         // If this result failed,
         if (failed())
@@ -162,7 +291,7 @@ public class Result<T> extends MessageList
             broadcaster.removeListener(this);
 
             // create a new result to listens to it,
-            var result = new Result<T>(broadcaster);
+            var result = new Result<Value>(broadcaster);
 
             try
             {
@@ -182,13 +311,67 @@ public class Result<T> extends MessageList
     }
 
     /**
+     * <i>Delegates to {@link Maybe}</i>
+     */
+    public Maybe<Value> or(Source<? extends Maybe<? extends Value>> supplier)
+    {
+        return value.or(supplier);
+    }
+
+    /**
+     * <i>Delegates to {@link Maybe}</i>
+     */
+    public Value orElse(Value defaultValue)
+    {
+        return value.orDefault(defaultValue);
+    }
+
+    /**
+     * <i>Delegates to {@link Maybe}</i>
+     */
+    public Value orElse(Source<Value> defaultValue)
+    {
+        return value.orDefault(defaultValue);
+    }
+
+    /**
+     * <i>Delegates to {@link Maybe}</i>
+     */
+    public Value orElseProblem(String message, Object... arguments)
+    {
+        return value.orProblem(message, arguments);
+    }
+
+    /**
+     * <i>Delegates to {@link Maybe}</i>
+     */
+    public Value orElseThrow()
+    {
+        return value.orThrow();
+    }
+
+    /**
+     * <i>Delegates to {@link Maybe}</i>
+     */
+    public Value orElseThrow(String message, Object... arguments)
+    {
+        return value.orThrow(message, arguments);
+    }
+
+    /**
      * Sets the given result value
      */
-    public Result<T> set(T result)
+    public Result<Value> set(Value result)
+    {
+        return set(maybe(result));
+    }
+
+    /**
+     * Sets the given result value
+     */
+    public Result<Value> set(Maybe<Value> result)
     {
         value = result;
-
-        ensure(isValid());
 
         return this;
     }
@@ -207,13 +390,13 @@ public class Result<T> extends MessageList
         return succeeded() ? "Succeeded: " + value : "Failed:\n\n" + bulleted(4);
     }
 
-    public Result<T> with(Result<T> that, BiFunction<T, T, T> combiner)
+    /**
+     * Returns this result's value as a {@link Maybe}.
+     *
+     * @return The {@link Maybe} object containing any value for this result
+     */
+    public Maybe<Value> value()
     {
-        if (value != null && that.value != null)
-        {
-            var value = combiner.apply(this.value, that.value);
-            return new Result<T>().set(value);
-        }
-        return this;
+        return value;
     }
 }

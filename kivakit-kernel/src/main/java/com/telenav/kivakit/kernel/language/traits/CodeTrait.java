@@ -9,7 +9,7 @@ import com.telenav.kivakit.kernel.messaging.messages.Result;
  *
  * @author jonathanl (shibo)
  */
-public interface OperationTrait extends Repeater
+public interface CodeTrait extends Repeater
 {
     /**
      * Returns the result of executing the given {@link Code}. Captures any value or any failure messages that result

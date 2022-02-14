@@ -8,7 +8,7 @@ import com.telenav.kivakit.configuration.settings.SettingsStore;
 import com.telenav.kivakit.configuration.settings.SettingsTrait;
 import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.language.traits.LanguageTrait;
-import com.telenav.kivakit.kernel.language.traits.OperationTrait;
+import com.telenav.kivakit.kernel.language.traits.CodeTrait;
 import com.telenav.kivakit.kernel.language.traits.TryTrait;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.resource.PackageTrait;
@@ -92,7 +92,7 @@ public interface Component extends
         RegistryTrait,
         SettingsTrait,
         LanguageTrait,
-        OperationTrait,
+        CodeTrait,
         PackageTrait,
         NamedObject
 {

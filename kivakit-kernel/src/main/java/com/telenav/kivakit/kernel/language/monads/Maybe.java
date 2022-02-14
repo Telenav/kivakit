@@ -12,7 +12,6 @@ import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
@@ -21,6 +20,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  * A substitute for {@link Optional} that adds functionality and integrates with {@link Repeater}
  *
  * <p><b>Creating</b></p>
+ *
  * <p>
  * A {@link Maybe} can be constructed in three ways:
  *
@@ -35,7 +35,34 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  * <ul>
  *     <li>{@link #isPresent()} - Returns true if this maybe has a non-null value</li>
  *     <li>{@link #isEmpty()} - Returns true if this maybe has a null value</li>
+ *     <li>{@link #asStream()} - Converts this value to a stream with zero or one element(s)</li>
+ *     <li>{@link #get()} - A value or null</li>
+ *     <li>{@link #orDefault(Object)} - Returns this value, or the default value</li>
+ *     <li>{@link #orDefault(Source)} - Returns this value, or the default value</li>
+ *     <li>{@link #orProblem(String, Object[])} - Returns this value or broadcasts a problem if this value is not present</li>
+ *     <li>{@link #orThrow(String, Object...)} - Returns this value or throws an exception</li>
+ *     <li>{@link #orThrow()}- Returns this value or throws an exception</li>
+ * </ul>
  *
+ * <p><b>Functions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #apply(Function)} - Returns the result of applying the given function to this value</li>
+ *     <li>{@link #apply(BiFunction, Maybe)} - Returns the result of applying the given two-argument function to this value and the given value</li>
+ *     <li>{@link #flatMap(Function)} - Applies the given function to this value</li>
+ *     <li>{@link #map(Function)} - Applies the given function to this value</li>
+ * </ul>
+ *
+ * <p><b>Conditionals</b></p>
+ *
+ * <ul>
+ *     <li>{@link #ifFalse(BooleanFunction)} - Applies the given function to this value, returning this value if it is false, or {@link #empty()} if it is true</li>
+ *     <li>{@link #ifTrue(BooleanFunction)} - Applies the given function to this value, returning this value if it is true, or {@link #empty()} if it is false</li>
+ *     <li>{@link #ifPresent(Consumer)} - Calls the given consumer if a value is present</li>
+ *     <li>{@link #ifPresentOr(Consumer, Runnable)} - Calls the given consumer if a value is present, otherwise calls the given code</li>
+ *     <li>{@link #or(Source)} - If a value is present, returns this value, otherwise returns the {@link Maybe} supplied by the given {@link Source}</li>
+ *     <li>{@link #ifPresent()} - Permits branching, by returning a curried {@link ElseFunction} with a branch for accepting a value and a branch for running code</li>
+ *     <li>{@link #ifEmpty()} - Permits branching, by returning a curried {@link ElseFunction} with a branch for running code and a branch for accepting a value</li>
  * </ul>
  *
  * @author jonathanl (shibo)
@@ -79,6 +106,48 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
         this.value = value;
     }
 
+    /**
+     * Applies the given function to this value and the given value, if both values are present, returning a new value.
+     *
+     * @param function The combining function
+     * @param that The value to apply with this one
+     * @return The combination of this value and the given value, if both values are non-null, otherwise, returns {@link
+     * #empty()}.
+     */
+    public Maybe<Value> apply(BiFunction<Value, Value, Value> function, Maybe<Value> that)
+    {
+        if (isPresent() && that.isPresent())
+        {
+            return maybe(function.apply(value, that.value));
+        }
+        return empty();
+    }
+
+    /**
+     * Applies the given function to this value, if it is present
+     *
+     * @param function The function to apply
+     * @return The value produced by the given function when applied to this value
+     */
+    public Maybe<Value> apply(Function<Value, Value> function)
+    {
+        if (isPresent())
+        {
+            return maybe(function.apply(value));
+        }
+        return empty();
+    }
+
+    /**
+     * If this value is not null, returns the value as a {@link Stream}, otherwise returns an empty {@link Stream}.
+     *
+     * @return This value as a {@link Stream}
+     */
+    public Stream<Value> asStream()
+    {
+        return isPresent() ? Stream.of(value) : Stream.empty();
+    }
+
     public boolean equals(Object object)
     {
         if (object instanceof Maybe)
@@ -97,10 +166,20 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
                 : ensureNotNull((Maybe<Mapped>) mapper.apply(value));
     }
 
+    public Value get()
+    {
+        return value;
+    }
+
     @Override
     public int hashCode()
     {
         return Objects.hashCode(value);
+    }
+
+    public ElseFunction<Runnable, ElseFunction<Consumer<Value>, Void>> ifEmpty()
+    {
+        return curry(ifEmptyFunction());
     }
 
     public Maybe<Value> ifFalse(BooleanFunction<Value> predicate)
@@ -110,7 +189,34 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
                 : this;
     }
 
-    public Maybe<Value> ifNonEmptyOr(Consumer<Value> consumer, Runnable runnable)
+    /**
+     * If this value is not null, calls the given consumer with the value
+     *
+     * @param consumer The consumer for any non-null value
+     * @return This {@link Maybe} for chaining
+     */
+    public Maybe<Value> ifPresent(Consumer<Value> consumer)
+    {
+        if (isPresent())
+        {
+            consumer.accept(value);
+        }
+        return this;
+    }
+
+    public ElseFunction<Consumer<Value>, ElseFunction<Runnable, Void>> ifPresent()
+    {
+        return curry(ifPresentFunction());
+    }
+
+    /**
+     * If a value is present, calls the given consumer, otherwise runs the given block of code
+     *
+     * @param consumer The consumer to call
+     * @param runnable The code to run
+     * @return This value for chaining
+     */
+    public Maybe<Value> ifPresentOr(Consumer<Value> consumer, Runnable runnable)
     {
         if (isPresent())
         {
@@ -122,57 +228,6 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
         }
 
         return this;
-    }
-
-    /**
-     * If this value is not null, calls the given consumer with the value
-     *
-     * @param consumer The consumer for any non-null value
-     * @return This {@link Maybe} for chaining
-     */
-    public Maybe<Value> ifNonNull(Consumer<Value> consumer)
-    {
-        if (isPresent())
-        {
-            consumer.accept(value);
-        }
-        return this;
-    }
-
-    /**
-     * If this value is not null, calls the given consumer with the value. If it is null, calls the source to get a
-     * value, then calls the consumer if that value is not null.
-     *
-     * @param consumer The consumer for any non-null value
-     * @param source An alternate value source if this value is null
-     * @return This value for chaining
-     */
-    public Maybe<Value> ifNonNull(Consumer<Value> consumer, Source<Value> source)
-    {
-        if (isPresent())
-        {
-            consumer.accept(value);
-        }
-        else
-        {
-            var value = source.get();
-            if (value != null)
-            {
-                consumer.accept(value);
-            }
-        }
-
-        return this;
-    }
-
-    public ElseFunction<Consumer<Value>, ElseFunction<Runnable, Void>> ifNonNull()
-    {
-        return curry(ifPresentFunction());
-    }
-
-    public ElseFunction<Runnable, ElseFunction<Consumer<Value>, Void>> ifNull()
-    {
-        return curry(ifEmptyFunction());
     }
 
     /**
@@ -206,7 +261,7 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
     }
 
     @SuppressWarnings("unchecked")
-    public Maybe<Value> or(Supplier<? extends Maybe<? extends Value>> supplier)
+    public Maybe<Value> or(Source<? extends Maybe<? extends Value>> supplier)
     {
         if (isPresent())
         {
@@ -218,17 +273,17 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
         }
     }
 
-    public Value orElse(Value defaultValue)
+    public Value orDefault(Value defaultValue)
     {
         return isPresent() ? value : defaultValue;
     }
 
-    public Value orElse(Source<Value> defaultValue)
+    public Value orDefault(Source<Value> defaultValue)
     {
         return isPresent() ? value : defaultValue.get();
     }
 
-    public Value orElseProblem(String message, Object... arguments)
+    public Value orProblem(String message, Object... arguments)
     {
         if (isEmpty())
         {
@@ -239,28 +294,18 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
         return value;
     }
 
-    public Value orElseThrow()
+    public Value orThrow()
     {
-        return orElseThrow("No value present");
+        return orThrow("No value present");
     }
 
-    public Value orElseThrow(String message, Object... arguments)
+    public Value orThrow(String message, Object... arguments)
     {
         if (isEmpty())
         {
             new Problem(message, arguments).throwAsIllegalStateException();
         }
         return value;
-    }
-
-    /**
-     * If this value is not null, returns the value as a {@link Stream}, otherwise returns an empty {@link Stream}.
-     *
-     * @return This value as a {@link Stream}
-     */
-    public Stream<Value> stream()
-    {
-        return isPresent() ? Stream.of(value) : Stream.empty();
     }
 
     public String toString()
