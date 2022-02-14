@@ -12,12 +12,12 @@ import com.telenav.kivakit.kernel.messaging.messages.Result;
 public interface OperationTrait extends Repeater
 {
     /**
-     * Runs the given {@link Code}. Captures any value or any failure messages that result from the call and returns a
-     * {@link Result}.
+     * Returns the result of executing the given {@link Code}. Captures any value or any failure messages that result
+     * from the call and returns a {@link Result}.
      *
      * @return The {@link Result} of the call
      */
-    default <T> Result<T> run(Code<T> code)
+    default <T> Result<T> result(Code<T> code)
     {
         // Create an empty result that captures messages from this object,
         var result = new Result<T>(this);

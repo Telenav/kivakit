@@ -14,7 +14,7 @@ public class ResultTest extends BaseRepeater implements OperationTrait
     {
         try
         {
-            ensureEqual(run(this::maybe)
+            ensureEqual(result(this::maybe)
                     .or(this::failure)
                     .getOrThrow(), 7);
         }
