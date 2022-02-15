@@ -124,6 +124,23 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
     }
 
     /**
+     * Applies the given function to this value and the given value, if both values are present, returning a new value.
+     *
+     * @param function The combining function
+     * @param that The value to apply with this one
+     * @return The combination of this value and the given value, if both values are non-null, otherwise, returns {@link
+     * #empty()}.
+     */
+    public Maybe<Value> apply(BiFunction<Value, Value, Value> function, Value that)
+    {
+        if (isPresent() && that != null)
+        {
+            return maybe(function.apply(value, that));
+        }
+        return empty();
+    }
+
+    /**
      * Applies the given function to this value, if it is present
      *
      * @param function The function to apply
