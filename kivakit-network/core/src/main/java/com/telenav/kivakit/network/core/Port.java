@@ -20,9 +20,11 @@ package com.telenav.kivakit.network.core;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.data.conversion.string.collection.BaseListConverter;
 import com.telenav.kivakit.kernel.data.conversion.string.primitive.IntegerConverter;
+import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.objects.Hash;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.messaging.Listener;
@@ -39,6 +41,8 @@ import java.net.Socket;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import static com.telenav.kivakit.commandline.SwitchParser.builder;
+import static com.telenav.kivakit.commandline.SwitchParser.listSwitchParser;
 import static com.telenav.kivakit.network.core.Protocol.HTTP;
 import static com.telenav.kivakit.network.core.Protocol.HTTPS;
 
@@ -71,6 +75,22 @@ public class Port
     public static Port parse(Listener listener, String port)
     {
         return new Converter(listener).convert(port);
+    }
+
+    public static SwitchParser.Builder<ObjectList<Port>> portListSwitchParser(Listener listener,
+                                                                              String name,
+                                                                              String description,
+                                                                              String delimiter)
+    {
+        return listSwitchParser(listener, name, description, new Port.Converter(listener), Port.class, delimiter);
+    }
+
+    public static SwitchParser.Builder<Port> portSwitchParser(Listener listener, String name, String description)
+    {
+        return builder(Port.class)
+                .name(name)
+                .converter(new Port.Converter(listener))
+                .description(description);
     }
 
     /**

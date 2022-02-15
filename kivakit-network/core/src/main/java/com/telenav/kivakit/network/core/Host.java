@@ -156,22 +156,6 @@ public class Host implements Named, AsString, Comparable<Host>
         return new Host(name, description);
     }
 
-    public static SwitchParser.Builder<ObjectList<Port>> portListSwitchParser(Listener listener,
-                                                                              String name,
-                                                                              String description,
-                                                                              String delimiter)
-    {
-        return listSwitchParser(listener, name, description, new Port.Converter(listener), Port.class, delimiter);
-    }
-
-    public static SwitchParser.Builder<Port> portSwitchParser(Listener listener, String name, String description)
-    {
-        return builder(Port.class)
-                .name(name)
-                .converter(new Port.Converter(listener))
-                .description(description);
-    }
-
     /**
      * Converts to and from {@link Host}s
      *
