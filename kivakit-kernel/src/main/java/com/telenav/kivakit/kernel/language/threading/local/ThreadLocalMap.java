@@ -11,10 +11,6 @@ public class ThreadLocalMap<Key, Value> extends AbstractMap<Key, Value>
 {
     private final ThreadLocal<Map<Key, Value>> map = ThreadLocal.withInitial(HashMap::new);
 
-    public ThreadLocalMap()
-    {
-    }
-
     @NotNull
     @Override
     public Set<Entry<Key, Value>> entrySet()
