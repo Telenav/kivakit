@@ -15,6 +15,7 @@ import com.telenav.kivakit.kernel.messaging.Broadcaster;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.kernel.messaging.messages.Result;
+import com.telenav.kivakit.kernel.messaging.messages.status.Announcement;
 import com.telenav.kivakit.kernel.messaging.messages.status.Glitch;
 import com.telenav.kivakit.kernel.messaging.messages.status.Information;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
@@ -138,6 +139,7 @@ import java.util.function.Function;
  * <ul>
  *     <li>{@link #listenTo(Broadcaster)} - Adds this component as a listener to the given {@link Broadcaster}</li>
  *     <li>{@link #addListener(Listener)} - Adds the given listener to this component</li>
+ *     <li>{@link #announce(String, Object...)} - Broadcasts an {@link Announcement} message</li>
  *     <li>{@link #problem(String, Object...)} - Broadcasts a {@link Problem} message</li>
  *     <li>{@link #warning(String, Object...)} - Broadcasts a {@link Warning} message</li>
  *     <li>{@link #quibble(String, Object...)} - Broadcasts a {@link Quibble} message</li>

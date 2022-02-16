@@ -57,6 +57,7 @@ import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.kernel.messaging.filters.AllMessages;
 import com.telenav.kivakit.kernel.messaging.filters.SeverityGreaterThanOrEqualTo;
+import com.telenav.kivakit.kernel.messaging.messages.status.Announcement;
 import com.telenav.kivakit.kernel.messaging.messages.status.Glitch;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.kernel.project.Project;
@@ -95,6 +96,8 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  *
  * <ul>
  *     <li>Project Initialization - Initializes {@link Project}s used by the application</li>
+ *     <li>Application Metadata - Provides information about the application and its environment</li>
+ *     <li>Application Environment - Provides information about the execution environment</li>
  *     <li>Application Execution - Runs the application</li>
  *     <li>Command Line Parsing - Parses command line switches and arguments</li>
  *     <li>Messaging and Logging - Captures and logs {@link Message}s broadcast by child components</li>
@@ -137,9 +140,36 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  * <p><b>Project Initialization</b></p>
  *
  * <p>
- * All application constructors must pass one or more {@link Project}s to the {@link Application} constructor to
+ * Application constructors should pass one or more {@link Project}s to the {@link Application} constructor to
  * ensure that all of the application's transitively dependent project(s) are initialized. See {@link Project} for details.
  * </p>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Application Metadata</b></p>
+ *
+ * <p>
+ * Applications provide {@link ApplicationMetadata} about themselves:
+ * </p>
+ *
+ * <ul>
+ *     <li>{@link #version()} - The version of this application</li>
+ *     <li>{@link #description()} - A description of this application</li>
+ *     <li>{@link #identifier()} - A unique identifier for the application class</li>
+ * </ul>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Application Environment</b></p>
+ *
+ * <p>
+ * Applications can access information about their execution environment:
+ * </p>
+ *
+ * <ul>
+ *     <li>{@link #properties()} - System and environment properties</li>
+ *     <li>{@link #localizedProperties(Locale)} - Properties that are specific to the {@link Locale}</li>
+ * </ul>
  *
  * <p><br/><hr/><br/></p>
  *
@@ -169,7 +199,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  * <p><i>Abnormal Termination</i></p>
  *
  * <p>
- * If an application wishes to terminate its execution abnormally, it can call {@link #exit(String, Object...)}. This will
+ * If an application wishes to terminate its execution abnormally, it can call {@links #exit(String, Object...)}. This will
  * display the given message and show command line usage before exiting the application.
  * </p>
  *
@@ -185,6 +215,8 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  *
  * <ul>
  *     <li>{@link #commandLine()} - Gets the parsed command line</li>
+ *     <li>{@link #commandLineDescription(String)} - Returns a text box describing the command line with the given title</li>
+ *     <li>{@link #showCommandLine()} - Broadcasts the command line description as an {@link Announcement} message</li>
  * </ul>
  *
  * <p><i>Switches</i></p>
