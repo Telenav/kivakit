@@ -27,11 +27,16 @@ import com.telenav.kivakit.commandline.CommandLineParser;
 import com.telenav.kivakit.commandline.Quantifier;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.component.BaseComponent;
+import com.telenav.kivakit.component.Component;
+import com.telenav.kivakit.configuration.lookup.Registry;
+import com.telenav.kivakit.configuration.lookup.RegistryTrait;
 import com.telenav.kivakit.configuration.settings.Deployment;
 import com.telenav.kivakit.configuration.settings.DeploymentSet;
+import com.telenav.kivakit.configuration.settings.SettingsTrait;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.KivaKit;
 import com.telenav.kivakit.kernel.interfaces.naming.Named;
+import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
@@ -40,6 +45,7 @@ import com.telenav.kivakit.kernel.language.strings.Align;
 import com.telenav.kivakit.kernel.language.strings.AsciiArt;
 import com.telenav.kivakit.kernel.language.strings.Strip;
 import com.telenav.kivakit.kernel.language.threading.conditions.StateMachine;
+import com.telenav.kivakit.kernel.language.traits.LanguageTrait;
 import com.telenav.kivakit.kernel.language.types.Classes;
 import com.telenav.kivakit.kernel.language.values.identifier.StringIdentifier;
 import com.telenav.kivakit.kernel.language.values.version.Version;
@@ -54,6 +60,7 @@ import com.telenav.kivakit.kernel.messaging.filters.SeverityGreaterThanOrEqualTo
 import com.telenav.kivakit.kernel.messaging.messages.status.Glitch;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.kernel.project.Project;
+import com.telenav.kivakit.resource.PackageTrait;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.resources.other.PropertyMap;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -80,24 +87,42 @@ import static com.telenav.kivakit.commandline.SwitchParser.booleanSwitchParser;
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
 
 /**
- * Base class for KivaKit applications. Handles command line parsing, project initialization and configuration.
- *
- * <p><b>Messaging</b></p>
+ * Base class for KivaKit applications.
  *
  * <p>
- * Because this class extends {@link BaseRepeater} and has a {@link Logger} that listens to the application class, all
- * {@link Application}s automatically inherit logging functionality via the convenience methods in {@link Repeater}.
+ * This class provides:
  * </p>
  *
- * <p><b>Startup</b></p>
+ * <ul>
+ *     <li>Project Initialization - Initializes {@link Project}s used by the application</li>
+ *     <li>Application Execution - Runs the application</li>
+ *     <li>Command Line Parsing - Parses command line switches and arguments</li>
+ *     <li>Messaging and Logging - Captures and logs {@link Message}s broadcast by child components</li>
+ * </ul>
  *
  * <p>
- * The {@link Application} object should be constructed in the main(String[]) Java entrypoint and the {@link
- * #run(String[])} method should be called. This can be done in one step:
+ * {@link Application} is also a {@link Component} and so it inherits:
  * </p>
+ *
+ * <ul>
+ *     <li>{@link PackageTrait} - Provides access to packages and packaged resources</li>
+ *     <li>{@link SettingsTrait} - Loads settings objects and deployment configurations</li>
+ *     <li>{@link RegistryTrait} - Service {@link Registry} access</li>
+ *     <li>{@link LanguageTrait} - Enhancements that reduce language verbosity</li>
+ *     <li>{@link Repeater} - Message broadcasting, listening and repeating</li>
+ *     <li>{@link NamedObject} - Provides component name</li>
+ * </ul>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Creating an Application</b></p>
+ *
+ * <p>
+ * An {@link Application} subclass should be constructed in the <i>main(String[])</i> Java application
+ * entrypoint and the {@link #run(String[])} method should be called on it. This can be done in one step:
  *
  * <pre>
- * public static class MyApplication extends Application
+ * public class MyApplication extends Application
  * {
  *     public static void main(String[] arguments)
  *     {
@@ -105,37 +130,25 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  *     }
  *
  *     [...]
- * }
- * </pre>
+ * }</pre>
  *
- * <p><b>Command Line Parsing</b></p>
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Project Initialization</b></p>
  *
  * <p>
- * For within the application implementation in the {@link #onRun()} method, the {@link Application} class provides
- * convenient access to the parsed command line:
+ * All application constructors must pass one or more {@link Project}s to the {@link Application} constructor to
+ * ensure that all of the application's transitively dependent project(s) are initialized. See {@link Project} for details.
  * </p>
  *
- * <ul>
- *     <li>{@link #commandLine()} - Gets the parsed command line</li>
- *     <li>{@link #argumentList()} - Gets command line arguments (excluding switches)</li>
- *     <li>{@link #argument(ArgumentParser)} - Gets the first command line argument (excluding switches)</li>
- *     <li>{@link #argument(int, ArgumentParser)} - Gets the nth argument using the given argument parser</li>
- *     <li>{@link #get(SwitchParser)} - Gets the switch value for the given switch parser</li>
- *     <li>{@link #has(SwitchParser)} - Determines if there is a switch value for the given switch parser</li>
- *     <li>{@link #exit(String, Object...)} - Exits the application displaying the given message and command line usage</li>
- * </ul>
+ * <p><br/><hr/><br/></p>
  *
- * <p><b>Important Note: Project Initialization</b></p>
+ * <p><b>Execution</b></p>
+ *
+ * <p><i>Lifecycle</i></p>
  *
  * <p>
- * All applications must pass one or more {@link Project}s to the {@link Application} constructor to ensure that all of
- * the application's dependent project(s) are correctly initialized. See {@link Project} for details.
- * </p>
- *
- * <p><b>Running</b></p>
- *
- * <p>
- * The {@link #run(String[])} method will perform the following steps:
+ * The {@link #run(String[])} method performs the following steps:
  * </p>
  *
  * <ol start=1>
@@ -147,9 +160,57 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  *         <li>The {@link ArgumentParser}s returned by {@link #argumentParsers()}</li>
  *         <li>The {@link SwitchParser}s returned by {@link #switchParsers()}</li>
  *     </ul>
- *     </li>
- *     <li>Call the application implementation in {@link #onRun()}</li>
+ *     <li>Call {@link #onRunning()}</li>
+ *     <li>Call {@link #onRun()}, executing the application</li>
+ *     <li>Call {@link #onRan()}</li>
+ *     <li>Exit</li>
  * </ol>
+ *
+ * <p><i>Abnormal Termination</i></p>
+ *
+ * <p>
+ * If an application wishes to terminate its execution abnormally, it can call {@link #exit(String, Object...)}. This will
+ * display the given message and show command line usage before exiting the application.
+ * </p>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Command Line Parsing</b></p>
+ *
+ * <p>
+ * Within the {@link #onRun()} method, the {@link Application} class provides convenient access to a model of the command line:
+ * </p>
+ *
+ * <p><i>Command Line</i></p>
+ *
+ * <ul>
+ *     <li>{@link #commandLine()} - Gets the parsed command line</li>
+ * </ul>
+ *
+ * <p><i>Switches</i></p>
+ *
+ * <ul>
+ *     <li>{@link #get(SwitchParser)} - Gets the switch value for the given switch parser</li>
+ *     <li>{@link #has(SwitchParser)} - Determines if there is a switch value for the given switch parser</li>
+ * </ul>
+ *
+ * <p><i>Arguments</i></p>
+ *
+ * </ul>
+ *     <li>{@link #argumentList()} - Gets command line arguments (excluding switches)</li>
+ *     <li>{@link #argument(ArgumentParser)} - Gets the first command line argument (excluding switches)</li>
+ *     <li>{@link #argument(int, ArgumentParser)} - Gets the nth argument using the given argument parser</li>
+ * </ul>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Messaging and Logging</b></p>
+ *
+ * <p>
+ * This class extends {@link BaseRepeater} and has a {@link Logger} that listens for messages and logs them.
+ * </p>
+ *
+ * <p><br/><hr/><br/></p>
  *
  * @author jonathanl (shibo)
  * @see BaseRepeater

@@ -29,7 +29,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.function.Function;
 
 /**
- * A composite interface providing functionality to components.
+ * A composite interface providing convenient functionality to KivaKit components.
  *
  * <p><b>Sub-Interfaces</b></p>
  *
@@ -42,7 +42,7 @@ import java.util.function.Function;
  *     <li>{@link NamedObject} - Object naming</li>
  * </ul>
  *
- * <hr/>
+ * <p><br/><hr/><br/></p>
  *
  * <p><b>Packaging</b></p>
  *
@@ -56,7 +56,7 @@ import java.util.function.Function;
  *     <li>{@link #relativePackage(String)} - Returns a KivaKit {@link Package} for the given path relative to the class implementing this interface</li>
  * </ul>
  *
- * <hr/>
+ * <p><br/><hr/><br/></p>
  *
  * <p><b>Registry</b></p>
  *
@@ -74,7 +74,7 @@ import java.util.function.Function;
  *     <li>{@link #registry()} - Retrieves the lookup {@link Registry} for this component</li>
  * </ul>
  *
- * <hr/>
+ * <p><br/><hr/><br/></p>
  *
  * <p><b>Language</b></p>
  *
@@ -110,7 +110,7 @@ import java.util.function.Function;
  *     <li>{@link #result(Code)} - Executes the given code, capturing any messages broadcast during execution in a {@link Result} object</li>
  * </ul>
  *
- * <hr/>
+ * <p><br/><hr/><br/></p>
  *
  * <p><b>Settings</b></p>
  *
@@ -131,7 +131,7 @@ import java.util.function.Function;
  *     <li>{@link #registerSettingsIn(SettingsStore)} - Adds settings objects from the given settings store</li>
  * </ul>
  *
- * <hr/>
+ * <p><br/><hr/><br/></p>
  *
  * <p><b>Repeater</b></p>
  *
@@ -145,6 +145,8 @@ import java.util.function.Function;
  *     <li>{@link #information(String, Object...)} - Broadcasts an {@link Information} message</li>
  *     <li>{@link #trace(String, Object...)} - Broadcasts a {@link Trace} message if {@link #isDebugOn()} is true for this component</li>
  * </ul>
+ *
+ * <p><br/><hr/><br/></p>
  *
  * @author jonathanl (shibo)
  * @see Repeater
