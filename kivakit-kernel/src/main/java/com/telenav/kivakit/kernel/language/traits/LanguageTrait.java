@@ -16,16 +16,17 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  * <p><b>Functions</b></p>
  *
  * <ul>
- *     <li>ifNonNullApply - Null-safe version of Function.apply()</li>
- *     <li>ifNullDefault - The given value if it is non-null, the default value otherwise.</li>
+ *     <li>{@link #ifNonNullApply(Object, Function)} - Null-safe version of Function.apply()</li>
+ *     <li>{@link #ifNullDefault(Object, Object)} - The given value if it is non-null, the default value otherwise.</li>
  * </ul>
  *
- * <p><b>Messaging</b></p>
+ * <p><b>Validation</b></p>
  *
  * <ul>
- *     <li>isFalseOr - Broadcasts a {@link Problem} if the given value is not false</li>
- *     <li>isTrueOr - Broadcasts a {@link Problem} if the given value is not true</li>
- *     <li>isNonNullOr - Broadcasts a {@link Problem} if the given value is null</li>
+ *     <li>{@link #isFalseOr(boolean, String, Object...)} - Broadcasts a {@link Problem} if the given value is not false</li>
+ *     <li>{@link #isTrueOr(boolean, String, Object...)} - Broadcasts a {@link Problem} if the given value is not true</li>
+ *     <li>{@link #isNonNullOr(Object, String, Object...)} - Broadcasts a {@link Problem} if the given value is null</li>
+ *     <li>{@link #isValidOr(Validatable, String, Object...)} - Broadcasts a {@link Problem} if the given {@link Validatable} is not valid</li>
  * </ul>
  *
  * <p><b>Function Examples</b></p>
@@ -37,7 +38,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  * ifNullDefault(5, -1)     ==>   5
  * ifNullDefault(null, 5)   ==>   5</pre>
  *
- * <p><b>Messaging Examples</b></p>
+ * <p><b>Validation Examples</b></p>
  *
  * <pre>
  * String name = "bob";
@@ -59,7 +60,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  *
  * @author jonathanl (shibo)
  */
-public interface LanguageTrait extends TryTrait, Repeater
+public interface LanguageTrait extends TryTrait, CodeTrait, Repeater
 {
     /**
      * <p>

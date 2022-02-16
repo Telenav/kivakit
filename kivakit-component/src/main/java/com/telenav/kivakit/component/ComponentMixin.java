@@ -7,11 +7,12 @@ import com.telenav.kivakit.kernel.messaging.repeaters.RepeaterMixin;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * A mixin for {@link BaseComponent} which can be used by a class that already extends another base class.
+ * A mixin for {@link Component} which can be implemented by a class that already extends another base class.
  *
  * @author jonathanl (shibo)
  * @see Component
  * @see Mixin
+ * @see RepeaterMixin
  */
 @UmlClassDiagram(diagram = DiagramComponent.class)
 public interface ComponentMixin extends Component, Mixin, RepeaterMixin
