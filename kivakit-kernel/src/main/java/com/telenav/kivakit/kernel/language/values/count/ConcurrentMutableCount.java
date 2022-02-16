@@ -159,6 +159,6 @@ public class ConcurrentMutableCount implements Countable, Listener
     @Override
     public String toString()
     {
-        return asCount().toCommaSeparatedString();
+        return asCount().asCommaSeparatedString();
     }
 }

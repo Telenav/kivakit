@@ -168,6 +168,6 @@ public class MutableCount implements Countable, Comparable<MutableCount>, Listen
     @Override
     public String toString()
     {
-        return asCount().toCommaSeparatedString();
+        return asCount().asCommaSeparatedString();
     }
 }

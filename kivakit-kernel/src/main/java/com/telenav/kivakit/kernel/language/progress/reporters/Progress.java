@@ -394,7 +394,7 @@ public class Progress extends Multicaster implements ProgressReporter
     private String toString(Count count)
     {
         var builder = new StringBuilder();
-        var commaSeparatedCount = count.toCommaSeparatedString();
+        var commaSeparatedCount = count.asCommaSeparatedString();
         builder.append("  ").append(commaSeparatedCount);
         builder.append(" of ");
         if (steps > 0)

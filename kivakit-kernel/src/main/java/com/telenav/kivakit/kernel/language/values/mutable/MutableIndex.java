@@ -100,6 +100,6 @@ public class MutableIndex
     @Override
     public String toString()
     {
-        return Count.count(index).toCommaSeparatedString();
+        return Count.count(index).asCommaSeparatedString();
     }
 }

@@ -134,7 +134,7 @@ public class Primes
         System.out.println(primes.size() + " primes:");
         for (var prime : primes)
         {
-            System.out.print(Count.count(prime).toCommaSeparatedString().replaceAll(",", "_") + ", ");
+            System.out.print(Count.count(prime).asCommaSeparatedString().replaceAll(",", "_") + ", ");
         }
     }
 

@@ -44,11 +44,31 @@ import java.util.function.Consumer;
 import static com.telenav.kivakit.kernel.language.strings.conversion.StringFormat.PROGRAMMATIC_IDENTIFIER;
 
 /**
- * Represents a count of something. Counts have useful properties that primitive values like long and int do not have.
- * Count objects are guaranteed to be positive values, so it is not possible to have a {@link Count} of -1. Counts also
- * have a variety of useful methods for comparison, conversion, mathematical operations and other conveniences. By
- * implementing the {@link Quantizable} interface, they inherit operations and are interoperable with all other objects
- * that consume {@link Quantizable}s.
+ * Represents a count of something.
+ *
+ * <p>
+ * Counts have useful properties that primitive values like <i>long</i> and <i>int</i> do not have:
+ *
+ * <ol>
+ *     <li>Counts are guaranteed to be positive values, so it is not possible to have a {@link Count} of -1</li>
+ *     <li>Counts have a variety of useful and convenient methods for:
+ *     <ul>
+ *         <li>Conversion</li>
+ *         <li>Comparison</li>
+ *         <li>Mathematics</li>
+ *         <li>Looping</li>
+ *         <li>Iteration</li>
+ *         <li>Array allocation</li>
+ *     </ul>
+ *     </li>
+ *     <li>Counts implement the {@link Quantizable} interface, which makes them interoperable with methods that consume {@link Quantizable}s.</li>
+ *     <li>Counts provide a more readable, comma-separated String representation by default</li>
+ * </ol>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Efficiency</b></p>
+ *
  * <p>
  * {@link Count} objects are cheaper than they might seem for two reasons:
  * <ul>
@@ -59,62 +79,150 @@ import static com.telenav.kivakit.kernel.language.strings.conversion.StringForma
  *     <li>(2) allocation of count objects higher than 65,536 are cheap in Java due to the design of generational garbage
  *     collectors. This said, there will be occasions where {@link Count} objects are not desirable (for example, inside a
  *     doubly nested loop) and sometimes they may improve a public API method or constructor, while the internal representation
- *     is a primitive value for efficiency. As always, the best approach is to use objects until a problem shows up
- *     in a profiler like YourKit.
+ *     is a primitive value for efficiency.
  *     </li>
  * </ul>
+ *
  * <p>
- * Conversion
+ * Although {@link Count} objects are convenient and make method signatures clear and type-safe, as always, the
+ * best approach is to simply use {@link Count} objects until a clear inefficiency shows up in a profiler like YourKit.</li>
+ * </p>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Creation</b></p>
+ *
  * <ul>
- *     <li>{@link #asInt()}</li>
- *     <li>{@link #get()}</li>
- *     <li>{@link #asBitCount()}</li>
- *     <li>{@link #asEstimate()}</li>
- *     <li>{@link #asMaximum()}</li>
- *     <li>{@link #asMinimum()}</li>
- *     <li>{@link #quantum()}</li>
+ *    <li>{@link #parseCount(Listener, String)} - Parses the given string (with or without commas) as a count, calling the {@link Listener} with any problems that occur</li>
+ *    <li>{@link #count(long)} - Returns the given long as a {@link Count}</li>
+ *    <li>{@link #count(double)} - Casts the given double to a long and returns that as a {@link Count}</li>
+ *    <li>{@link #count(Object[])} - Returns the {@link Count} of slots in the array</li>
+ *    <li>{@link #count(Iterable)} - Returns the {@link Count} of items provided by the given {@link Iterable}</li>
+ *    <li>{@link #count(Iterator)} - Returns the {@link Count} of items provided the given {@link Iterator}</li>
+ *    <li>{@link #count(Collection)} - Returns the {@link Count} of items in the given {@link Collection}</li>
  * </ul>
- * <p>
- * Comparison
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Conversion</b></p>
+ *
  * <ul>
- *     <li>{@link #isLessThan(Quantizable)}</li>
- *     <li>{@link #isGreaterThan(Quantizable)}</li>
- *     <li>{@link #isLessThanOrEqualTo(Quantizable)}</li>
- *     <li>{@link #isGreaterThanOrEqualTo(Quantizable)}</li>
- *     <li>{@link #asMaximum()}</li>
- *     <li>{@link #asMinimum()}</li>
- *     <li>{@link #quantum()}</li>
- *     <li>{@link #maximum(Count)}</li>
- *     <li>{@link #minimum(Count)}</li>
+ *     <li>{@link #asInt()} - This count cast to an <i>int</i> value</li>
+ *     <li>{@link #asLong()} - This count as a <i>long</i></li>
+ *     <li>{@link #get()} - This count as a <i>long</i></li>
+ *     <li>{@link #count()} - This count</li>
+ *     <li>{@link #asBitCount()} - This count as a {@link BitCount}</li>
+ *     <li>{@link #asEstimate()} - This count as an {@link Estimate}</li>
+ *     <li>{@link #asMaximum()} - This count as a {@link Maximum}</li>
+ *     <li>{@link #asMinimum()} - This count as a {@link Minimum}</li>
+ *     <li>{@link #quantum()} - This count as a quantum <i>long</i> value ({@link Quantizable#quantum()})</li>
  * </ul>
- * <p>
- * Mathematical
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>String Representations</b></p>
+ *
  * <ul>
- *     <li>{@link #decremented()}</li>
- *     <li>{@link #incremented()}</li>
- *     <li>{@link #plus(Count)}</li>
- *     <li>{@link #plus(long)}</li>
- *     <li>{@link #minus(Count)}</li>
- *     <li>{@link #minus(long)}</li>
- *     <li>{@link #dividedBy(Count)}</li>
- *     <li>{@link #dividedBy(long)}</li>
- *     <li>{@link #times(Count)}</li>
- *     <li>{@link #times(long)}</li>
- *     <li>{@link #dividesEvenlyBy(Count)}</li>
- *     <li>{@link #isZero()}</li>
- *     <li>{@link #isNonZero()}</li>
+ *     <li>{@link #asString(StringFormat)} - This count formatted in the given format</li>
+ *     <li>{@link #asCommaSeparatedString()} - This count as a comma-separated string, like 65,536</li>
+ *     <li>{@link #asSimpleString()} - This count as a simple string, like 65536</li>
+ * </ul>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Comparison</b></p>
+ *
+ * <ul>
+ *     <li>{@link #compareTo(Count)} - {@link Comparable#compareTo(Object)} implementation</li>
+ *     <li>{@link #isLessThan(Quantizable)} - True if this count is less than the given quantum</li>
+ *     <li>{@link #isGreaterThan(Quantizable)} - True if this count is greater than the given quantum</li>
+ *     <li>{@link #isLessThanOrEqualTo(Quantizable)} - True if this count is less than or equal to the given quantum</li>
+ *     <li>{@link #isGreaterThanOrEqualTo(Quantizable) - True if this count is greater than or equal to the given quantum}</li>
+ *     <li>{@link #isZero()} - True if this count is zero</li>
+ *     <li>{@link #isNonZero()} - True if this count is not zero</li>
+ * </ul>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Minima and Maxima</b></p>
+ *
+ * <ul>
+ *     <li>{@link #MAXIMUM} - The largest count possible</li>
+ *     <li>{@link #MAXIMUM_BYTE_VALUE} - {@link Byte#MAX_VALUE}</li>
+ *     <li>{@link #MAXIMUM_CHARACTER_VALUE} - {@link Character#MAX_VALUE}</li>
+ *     <li>{@link #MAXIMUM_SHORT_VALUE} - {@link Short#MAX_VALUE}</li>
+ *     <li>{@link #MAXIMUM_INTEGER_VALUE} - {@link Integer#MAX_VALUE}</li>
+ *     <li>{@link #MAXIMUM_LONG_VALUE} - {@link Long#MAX_VALUE}</li>
+ *     <li>{@link #isMaximum()} - True if this count is {@link #MAXIMUM}</li>
+ *     <li>{@link #isMinimum()} - True if this count is zero</li>
+ *     <li>{@link #asMaximum()} - Converts this count to a {@link Maximum}</li>
+ *     <li>{@link #asMinimum()} - Converts this count to a {@link Minimum}</li>
+ *     <li>{@link #maximum(Count)} - Returns the maximum of this count and the given count</li>
+ *     <li>{@link #minimum(Count)} - Returns the minimum of this count and the given count</li>
+ * </ul>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Arithmetic</b></p>
+ *
+ * <ul>
+ *     <li>{@link #decremented()} - This count minus one</li>
+ *     <li>{@link #incremented()} - This count plus one</li>
+ *     <li>{@link #plus(Count)} - This count plus the given count</li>
+ *     <li>{@link #plus(long)} - This count plus the given value</li>
+ *     <li>{@link #plusOne()} - This count plus one</li>
+ *     <li>{@link #minus(Count)} - This count minus the given count</li>
+ *     <li>{@link #minus(long)} - This count minus the given value</li>
+ *     <li>{@link #minusOne()} - This count minus one </li>
+ *     <li>{@link #dividedBy(Count)} - This count divided by the given count, using integer division without rounding</li>
+ *     <li>{@link #dividedBy(long)} - This count divided by the given value, using integer division without rounding</li>
+ *     <li>{@link #times(Count)} - This count times the given count</li>
+ *     <li>{@link #times(long)} - This count times the given value</li>
+ *     <li>{@link #times(double)} - This count times the given value, cast to a long value</li>
+ *     <li>{@link #times(Percent)} - This count times the given percentage</li>
+ * </ul>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Mathematics</b></p>
+ *
+ * <ul>
  *     <li>{@link #percent(Percent)} - The given percentage of this count</li>
  *     <li>{@link #percentOf(Count)} - This count as a percentage of the given count</li>
- * </ul>
- * <p>
- * Utility
- * <ul>
+ *     <li>{@link #dividesEvenlyBy(Count)} - True if there is no remainder when dividing this count by the given count</li>
+ *     <li>{@link #ceiling(int)} - The maximum value of this count taking on the given number of digits</li>
+ *     <li>{@link #floor(int)} - The minimum value of this count taking on the given number of digits</li>
+ *     <li>{@link #nextPrime()} - The next prime value from a limited table of primes, useful in allocating linear hashmaps</li>
  *     <li>{@link #bitsToRepresent()} - The number of bits required to represent this count</li>
  *     <li>{@link #roundUpToPowerOfTwo()} - The next power of two above this count</li>
- *     <li>{@link #toCommaSeparatedString()}</li>
+ * </ul>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Looping</b></p>
+ *
+ * <ul>
  *     <li>{@link #loop(Runnable)} - Runs the given code block {@link #count()} times</li>
  *     <li>{@link #loop(Loopable)} - Runs the given code block {@link #count()} times, passing the iteration number to the code</li>
  *     <li>{@link #loop(int, Loopable)} - Static method that runs the given code block {@link #count()} times</li>
+ * </ul>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Iteration</b></p>
+ *
+ * <ul>
+ *     <li>{@link #forEachByte(Consumer)} - Passes to the given consumer, each byte from 0 to the smaller of this count or {@link #MAXIMUM_BYTE_VALUE}, exclusive</li>
+ *     <li>{@link #forEachInteger(Consumer)} - Passes to the given consumer, each byte from 0 to the smaller of this count or {@link #MAXIMUM_INTEGER_VALUE}, exclusive</li>
+ *     <li>{@link #forEachLong(Consumer)} - Passes each long from 0 to {@link #asLong()} to the given consumer, exclusive</li>
+ *     <li>{@link #forEachShort(Consumer)} - Passes to the given consumer, each byte from 0 to the smaller of this count or {@link #MAXIMUM_SHORT_VALUE}, exclusive</li>
+ * </ul>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Array Allocation</b></p>
+ *
+ * <ul>
  *     <li>{@link #newByteArray()} - Allocates a byte array of {@link #count()} elements</li>
  *     <li>{@link #newCharArray()} - Allocates a char array of {@link #count()} elements</li>
  *     <li>{@link #newDoubleArray()} - Allocates a double array of {@link #count()} elements</li>
@@ -125,7 +233,10 @@ import static com.telenav.kivakit.kernel.language.strings.conversion.StringForma
  *     <li>{@link #newShortArray()} - Allocates a short array of {@link #count()} elements</li>
  *     <li>{@link #newStringArray()} - Allocates a String array of {@link #count()} elements</li>
  * </ul>
+ * <p>
  * {@link Count} objects implement the {@link #hashCode()} / {@link #equals(Object)} contract and are {@link Comparable}.
+ *
+ * <p><br/><hr/><br/></p>
  *
  * @author jonathanl (shibo)
  * @see Quantizable
@@ -260,7 +371,15 @@ public class Count implements
 
     public static final Count MAXIMUM = new Count(Long.MAX_VALUE);
 
-    public static final Count MAXIMUM_INTEGER = new Count(Integer.MAX_VALUE);
+    public static final Count MAXIMUM_CHARACTER_VALUE = new Count(Character.MAX_VALUE);
+
+    public static final Count MAXIMUM_LONG_VALUE = new Count(Long.MAX_VALUE);
+
+    public static final Count MAXIMUM_INTEGER_VALUE = new Count(Integer.MAX_VALUE);
+
+    public static final Count MAXIMUM_SHORT_VALUE = new Count(Short.MAX_VALUE);
+
+    public static final Count MAXIMUM_BYTE_VALUE = new Count(Byte.MAX_VALUE);
 
     private static final int CACHE_SIZE = 8_192;
 
@@ -294,7 +413,7 @@ public class Count implements
         return count(iterable.iterator());
     }
 
-    public static Count count(Iterable<?> iterable, Count maximum)
+    public static Count count(Iterable<?> iterable, Maximum maximum)
     {
         return count(iterable.iterator(), maximum);
     }
@@ -310,7 +429,7 @@ public class Count implements
         return count(count);
     }
 
-    public static Count count(Iterator<?> iterator, Count maximum)
+    public static Count count(Iterator<?> iterator, Maximum maximum)
     {
         var count = 0L;
         while (iterator.hasNext())
@@ -410,6 +529,11 @@ public class Count implements
         return BitCount.bitCount(asLong());
     }
 
+    public String asCommaSeparatedString()
+    {
+        return String.format("%,d", count);
+    }
+
     public Count asCount()
     {
         return count(get());
@@ -444,13 +568,18 @@ public class Count implements
         return Minimum.minimum(count);
     }
 
+    public String asSimpleString()
+    {
+        return Long.toString(count);
+    }
+
     @Override
     public String asString(StringFormat format)
     {
         switch (format.identifier())
         {
             case PROGRAMMATIC_IDENTIFIER:
-                return toSimpleString();
+                return asSimpleString();
 
             default:
                 return toString();
@@ -517,7 +646,7 @@ public class Count implements
 
     public void forEachByte(Consumer<Byte> consumer)
     {
-        for (byte i = 0; i < asInt(); i++)
+        for (byte i = 0; i < minimum(MAXIMUM_BYTE_VALUE).asInt(); i++)
         {
             consumer.accept(i);
         }
@@ -525,7 +654,7 @@ public class Count implements
 
     public void forEachInteger(Consumer<Integer> consumer)
     {
-        for (var i = 0; i < asInt(); i++)
+        for (var i = 0; i < minimum(MAXIMUM_INTEGER_VALUE).asInt(); i++)
         {
             consumer.accept(i);
         }
@@ -541,7 +670,7 @@ public class Count implements
 
     public void forEachShort(Consumer<Short> consumer)
     {
-        for (short i = 0; i < asInt(); i++)
+        for (short i = 0; i < minimum(MAXIMUM_SHORT_VALUE).asInt(); i++)
         {
             consumer.accept(i);
         }
@@ -561,11 +690,6 @@ public class Count implements
     public Count incremented()
     {
         return plusOne();
-    }
-
-    public boolean isEvenlyDividedBy(Count that)
-    {
-        return get() % that.get() == 0;
     }
 
     public boolean isGreaterThan(Count that)
@@ -591,6 +715,11 @@ public class Count implements
     public boolean isMaximum()
     {
         return count == MAXIMUM.get();
+    }
+
+    public boolean isMinimum()
+    {
+        return count == 0;
     }
 
     public void loop(Loopable code)
@@ -765,20 +894,10 @@ public class Count implements
         return times(percentage.asUnitValue());
     }
 
-    public String toCommaSeparatedString()
-    {
-        return String.format("%,d", count);
-    }
-
-    public String toSimpleString()
-    {
-        return Long.toString(count);
-    }
-
     @Override
     public String toString()
     {
-        return toCommaSeparatedString();
+        return asCommaSeparatedString();
     }
 
     protected Count onNewInstance(long value)
