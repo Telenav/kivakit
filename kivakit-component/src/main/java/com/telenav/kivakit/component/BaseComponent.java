@@ -21,13 +21,4 @@ import java.util.function.Consumer;
 @UmlClassDiagram(diagram = DiagramComponent.class)
 public class BaseComponent extends BaseRepeater implements Component
 {
-    /**
-     * Call the consumer with any messages this component hears
-     *
-     * @param handler The handler to call
-     */
-    public void onMessage(Consumer<Message> handler)
-    {
-        addListener(handler::accept);
-    }
 }
