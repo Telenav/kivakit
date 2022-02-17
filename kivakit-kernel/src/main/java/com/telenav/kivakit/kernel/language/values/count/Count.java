@@ -381,7 +381,7 @@ public class Count implements
 
     public static final Count MAXIMUM_BYTE_VALUE = new Count(Byte.MAX_VALUE);
 
-    private static final int CACHE_SIZE = 8_192;
+    private static final int CACHE_SIZE = 65_536;
 
     private static final Count[] CACHED;
 
