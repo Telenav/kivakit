@@ -25,7 +25,7 @@ import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.filesystem.spi.FolderService;
 import com.telenav.kivakit.kernel.KivaKit;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
-import com.telenav.kivakit.kernel.interfaces.code.UncheckedVoid;
+import com.telenav.kivakit.kernel.interfaces.code.UncheckedVoidCode;
 import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.kernel.language.strings.Strings;
@@ -858,7 +858,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         // then create and save a new digest,
         var digest = nestedFiles().digest();
         node.putByteArray("digest", digest);
-        if (tryCatch(UncheckedVoid.of(node::flush), "Failed to flush preferences"))
+        if (tryCatch(UncheckedVoidCode.of(node::flush), "Failed to flush preferences"))
         {
             // and if there is a previous digest,
             if (previousDigest != null)

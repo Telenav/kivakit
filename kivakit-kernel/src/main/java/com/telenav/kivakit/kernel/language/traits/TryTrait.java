@@ -1,7 +1,7 @@
 package com.telenav.kivakit.kernel.language.traits;
 
-import com.telenav.kivakit.kernel.interfaces.code.Unchecked;
-import com.telenav.kivakit.kernel.interfaces.code.UncheckedVoid;
+import com.telenav.kivakit.kernel.interfaces.code.UncheckedCode;
+import com.telenav.kivakit.kernel.interfaces.code.UncheckedVoidCode;
 import com.telenav.kivakit.kernel.messaging.Broadcaster;
 
 /**
@@ -10,28 +10,28 @@ import com.telenav.kivakit.kernel.messaging.Broadcaster;
  * <p><b>try/catch</b></p>
  *
  * <ul>
- *     <li>{@link #tryCatch(Unchecked, String, Object...)}</li>
- *     <li>{@link #tryCatch(UncheckedVoid, String, Object...)}</li>
+ *     <li>{@link #tryCatch(UncheckedCode, String, Object...)}</li>
+ *     <li>{@link #tryCatch(UncheckedVoidCode, String, Object...)}</li>
  * </ul>
  *
  * <p><b>try/catch/throw</b></p>
  *
  * <ul>
- *     <li>{@link #tryCatchThrow(Unchecked, String, Object...)}</li>
- *     <li>{@link #tryCatchThrow(UncheckedVoid, String, Object...)}</li>
+ *     <li>{@link #tryCatchThrow(UncheckedCode, String, Object...)}</li>
+ *     <li>{@link #tryCatchThrow(UncheckedVoidCode, String, Object...)}</li>
  * </ul>
  *
  * <p><b>try/catch/default</b></p>
  *
  * <ul>
- *     <li>{@link #tryCatchDefault(Unchecked, Object)}</li>
+ *     <li>{@link #tryCatchDefault(UncheckedCode, Object)}</li>
  * </ul>
  *
  * <p><b>try/finally</b></p>
  *
  * <ul>
- *     <li>{@link #tryFinally(UncheckedVoid, Runnable)}</li>
- *     <li>{@link #tryFinally(Unchecked, Runnable)}</li>
+ *     <li>{@link #tryFinally(UncheckedVoidCode, Runnable)}</li>
+ *     <li>{@link #tryFinally(UncheckedCode, Runnable)}</li>
  * </ul>
  *
  * <p><b>Examples:</b></p>
@@ -46,7 +46,7 @@ import com.telenav.kivakit.kernel.messaging.Broadcaster;
  */
 public interface TryTrait extends Broadcaster
 {
-    default <T> T tryCatch(Unchecked<T> code, String message, Object... arguments)
+    default <T> T tryCatch(UncheckedCode<T> code, String message, Object... arguments)
     {
         try
         {
@@ -59,7 +59,30 @@ public interface TryTrait extends Broadcaster
         }
     }
 
-    default boolean tryCatch(UncheckedVoid code, String message, Object... arguments)
+    default <T> T tryCatch(UncheckedCode<T> code)
+    {
+        try
+        {
+            return code.run();
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+    default void tryCatch(UncheckedVoidCode code)
+    {
+        try
+        {
+            code.run();
+        }
+        catch (Exception ignored)
+        {
+        }
+    }
+
+    default boolean tryCatch(UncheckedVoidCode code, String message, Object... arguments)
     {
         try
         {
@@ -73,7 +96,7 @@ public interface TryTrait extends Broadcaster
         }
     }
 
-    default <T> T tryCatchDefault(Unchecked<T> code, T defaultValue)
+    default <T> T tryCatchDefault(UncheckedCode<T> code, T defaultValue)
     {
         try
         {
@@ -85,7 +108,7 @@ public interface TryTrait extends Broadcaster
         }
     }
 
-    default <T> T tryCatchThrow(Unchecked<T> code, String message, Object... arguments)
+    default <T> T tryCatchThrow(UncheckedCode<T> code, String message, Object... arguments)
     {
         try
         {
@@ -98,7 +121,7 @@ public interface TryTrait extends Broadcaster
         }
     }
 
-    default void tryCatchThrow(UncheckedVoid code, String message, Object... arguments)
+    default void tryCatchThrow(UncheckedVoidCode code, String message, Object... arguments)
     {
         try
         {
@@ -110,7 +133,7 @@ public interface TryTrait extends Broadcaster
         }
     }
 
-    default void tryFinally(UncheckedVoid code, Runnable after)
+    default void tryFinally(UncheckedVoidCode code, Runnable after)
     {
         try
         {
@@ -126,7 +149,7 @@ public interface TryTrait extends Broadcaster
         }
     }
 
-    default <T> T tryFinally(Unchecked<T> code, Runnable after)
+    default <T> T tryFinally(UncheckedCode<T> code, Runnable after)
     {
         try
         {

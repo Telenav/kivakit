@@ -21,7 +21,7 @@ package com.telenav.kivakit.resource.compression.archive;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.kernel.KivaKit;
 import com.telenav.kivakit.kernel.interfaces.code.Callback;
-import com.telenav.kivakit.kernel.interfaces.code.Unchecked;
+import com.telenav.kivakit.kernel.interfaces.code.UncheckedCode;
 import com.telenav.kivakit.kernel.interfaces.io.ByteSized;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.language.io.IO;
@@ -241,7 +241,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
      */
     public synchronized ZipEntry entry(String pathname)
     {
-        var path = Unchecked.of(() -> filesystem.getPath(pathname)).orNull();
+        var path = UncheckedCode.of(() -> filesystem.getPath(pathname)).orNull();
         if (path != null)
         {
             return new ZipEntry(filesystem, path);
@@ -265,7 +265,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
     @Override
     public Iterator<ZipEntry> iterator()
     {
-        var files = Unchecked.of(() -> Files.walk(filesystem.getPath("/"))).orNull();
+        var files = UncheckedCode.of(() -> Files.walk(filesystem.getPath("/"))).orNull();
         return files == null ? null : files
                 .filter(path -> !Files.isDirectory(path))
                 .map(path -> new ZipEntry(filesystem, path))
@@ -396,19 +396,19 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
             {
                 var environment = new VariableMap<String>();
                 environment.put("create", "true");
-                return Unchecked.of(() -> Nio.filesystem(listener, uri, environment)).orNull();
+                return UncheckedCode.of(() -> Nio.filesystem(listener, uri, environment)).orNull();
             }
 
             case READ:
             {
                 if (file.exists())
                 {
-                    var filesystem = Unchecked.of(() -> FileSystems.getFileSystem(uri)).orNull();
+                    var filesystem = UncheckedCode.of(() -> FileSystems.getFileSystem(uri)).orNull();
                     if (filesystem != null)
                     {
                         return filesystem;
                     }
-                    return Unchecked.of(() -> FileSystems.newFileSystem(uri, new VariableMap<>())).orNull();
+                    return UncheckedCode.of(() -> FileSystems.newFileSystem(uri, new VariableMap<>())).orNull();
                 }
                 return null;
             }

@@ -1,15 +1,14 @@
-package com.telenav.kivakit.kernel.language.traits;
+package com.telenav.kivakit.kernel.language.monads;
 
 import com.telenav.kivakit.kernel.interfaces.code.Code;
 import com.telenav.kivakit.kernel.language.monads.Maybe;
+import com.telenav.kivakit.kernel.language.monads.Result;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.Repeater;
-import com.telenav.kivakit.kernel.messaging.messages.Result;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
 
 /**
- * Contains methods to facilitate working with {@link Maybe} and {@link Result} monads, as well as for executing code
- * and capturing any transmitted messages.
+ * Contains methods to facilitate working with {@link Result} monads.
  *
  * <p><br/><hr/><br/></p>
  *
@@ -32,7 +31,7 @@ import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
  * @see Result
  * @see Code
  */
-public interface CodeTrait extends Repeater
+public interface ResultTrait extends Repeater
 {
     /**
      * Returns a {@link Result} with no value

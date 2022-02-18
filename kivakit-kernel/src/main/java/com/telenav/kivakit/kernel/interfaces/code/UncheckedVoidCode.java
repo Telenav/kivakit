@@ -4,16 +4,16 @@ import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 
 /**
- * {@link Unchecked} for void methods
+ * {@link UncheckedCode} for void methods
  *
  * @author jonathanl (shibo)
  */
 @FunctionalInterface
-public interface UncheckedVoid
+public interface UncheckedVoidCode
 {
     Logger LOGGER = LoggerFactory.newLogger();
 
-    static UncheckedVoid of(UncheckedVoid code)
+    static UncheckedVoidCode of(UncheckedVoidCode code)
     {
         return code;
     }

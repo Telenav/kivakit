@@ -19,7 +19,7 @@
 package com.telenav.kivakit.kernel.language.threading;
 
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.interfaces.code.Unchecked;
+import com.telenav.kivakit.kernel.interfaces.code.UncheckedCode;
 import com.telenav.kivakit.kernel.language.reflection.Type;
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.kernel.logging.Logger;
@@ -42,10 +42,10 @@ public class Retry extends BaseRepeater
 
     public static final int MAXIMUM_NUMBER_RETRIES = 5;
 
-    public static <T> Unchecked<T> retry(Unchecked<T> code,
-                                         int times,
-                                         Duration delay,
-                                         Runnable... beforeRetry)
+    public static <T> UncheckedCode<T> retry(UncheckedCode<T> code,
+                                             int times,
+                                             Duration delay,
+                                             Runnable... beforeRetry)
     {
         return () ->
         {
@@ -100,7 +100,7 @@ public class Retry extends BaseRepeater
      * @param stepsBeforeRetry This is an optional list of steps executed in case the try fails, and right before each
      * retry
      */
-    public <T> T run(Unchecked<T> runnable, Runnable... stepsBeforeRetry)
+    public <T> T run(UncheckedCode<T> runnable, Runnable... stepsBeforeRetry)
     {
         try
         {
@@ -123,7 +123,7 @@ public class Retry extends BaseRepeater
      * @param stepsBeforeRetry This is an optional list of steps executed in case the try fails, and right before each
      * retry
      */
-    private <T> T runWithRetries(Unchecked<T> runnable, int numberOfRetries, int totalRetries,
+    private <T> T runWithRetries(UncheckedCode<T> runnable, int numberOfRetries, int totalRetries,
                                  Runnable... stepsBeforeRetry)
     {
         if (numberOfRetries < 0)

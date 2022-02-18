@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
-import com.telenav.kivakit.kernel.interfaces.code.Unchecked;
+import com.telenav.kivakit.kernel.interfaces.code.UncheckedCode;
 import com.telenav.kivakit.kernel.language.io.IO;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
@@ -83,7 +83,7 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
     @Override
     public Time lastModified()
     {
-        return Unchecked.of(() -> Time.milliseconds(Files.getLastModifiedTime(path).toMillis())).orNull();
+        return UncheckedCode.of(() -> Time.milliseconds(Files.getLastModifiedTime(path).toMillis())).orNull();
     }
 
     @Override
@@ -91,7 +91,7 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
     {
         if (in == null)
         {
-            var in = Unchecked.of(() -> Files.newInputStream(path)).orNull();
+            var in = UncheckedCode.of(() -> Files.newInputStream(path)).orNull();
             if (in != null)
             {
                 this.in = IO.buffer(in);
@@ -146,7 +146,7 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
     @Override
     public Bytes sizeInBytes()
     {
-        return Unchecked.of(() -> Bytes.bytes(Files.size(path))).orNull();
+        return UncheckedCode.of(() -> Bytes.bytes(Files.size(path))).orNull();
     }
 
     @Override

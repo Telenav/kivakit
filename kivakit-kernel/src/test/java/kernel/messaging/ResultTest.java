@@ -1,13 +1,13 @@
 package kernel.messaging;
 
 import com.telenav.kivakit.kernel.language.time.Time;
-import com.telenav.kivakit.kernel.language.traits.CodeTrait;
+import com.telenav.kivakit.kernel.language.monads.ResultTrait;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import org.junit.Test;
 
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureEqual;
 
-public class ResultTest extends BaseRepeater implements CodeTrait
+public class ResultTest extends BaseRepeater implements ResultTrait
 {
     @Test
     public void test()

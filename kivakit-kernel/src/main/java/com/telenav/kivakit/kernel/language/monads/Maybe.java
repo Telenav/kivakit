@@ -1,10 +1,11 @@
 package com.telenav.kivakit.kernel.language.monads;
 
+import com.telenav.kivakit.kernel.interfaces.code.UncheckedVoidCode;
 import com.telenav.kivakit.kernel.interfaces.collection.Presence;
 import com.telenav.kivakit.kernel.interfaces.function.BooleanFunction;
 import com.telenav.kivakit.kernel.interfaces.value.Source;
+import com.telenav.kivakit.kernel.language.traits.TryTrait;
 import com.telenav.kivakit.kernel.messaging.Repeater;
-import com.telenav.kivakit.kernel.messaging.messages.Result;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 
@@ -66,12 +67,12 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  * <p><b>Conditionals</b></p>
  *
  * <ul>
- *     <li>{@link #ifPresent()} - Permits branching, by returning a curried {@link ElseFunction} with a branch for accepting a value and a branch for running code</li>
- *     <li>{@link #ifAbsent()} - Permits branching, by returning a curried {@link ElseFunction} with a branch for running code and a branch for accepting a value</li>
+ *     <li>{@link #ifPresentElse()} - Permits branching, by returning a curried {@link ElseFunction} with a branch for accepting a value and a branch for running code</li>
+ *     <li>{@link #ifAbsentElse()} - Permits branching, by returning a curried {@link ElseFunction} with a branch for running code and a branch for accepting a value</li>
  *     <li>{@link #ifFalse(BooleanFunction)} - Applies the given function to this value, returning this value if it is false, or {@link #absent()} if it is true</li>
  *     <li>{@link #ifTrue(BooleanFunction)} - Applies the given function to this value, returning this value if it is true, or {@link #absent()} if it is false</li>
  *     <li>{@link #ifPresent(Consumer)} - Calls the given consumer if a value is present</li>
- *     <li>{@link #ifPresentOr(Consumer, Runnable)} - Calls the given consumer if a value is present, otherwise calls the given code</li>
+ *     <li>{@link #ifPresentOr(Consumer, UncheckedVoidCode)} - Calls the given consumer if a value is present, otherwise calls the given code</li>
  *     <li>{@link #or(Source)} - If a value is present, returns this value, otherwise returns the {@link Maybe} supplied by the given {@link Source}</li>
  * </ul>
  *
@@ -81,7 +82,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  * @author viniciusluisr
  * @see <a href="https://github.com/viniciusluisr/improved-optional">improved-optional</a>
  */
-public class Maybe<Value> extends BaseRepeater implements Presence
+public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
 {
     /**
      * A {@link Maybe} object with no value
@@ -177,9 +178,9 @@ public class Maybe<Value> extends BaseRepeater implements Presence
     @SuppressWarnings("unchecked")
     public <Output> Maybe<Output> apply(Function<? super Value, ? extends Maybe<? extends Output>> function)
     {
-        return isPresent()
+        return tryCatchDefault(() -> isPresent()
                 ? ensureNotNull((Maybe<Output>) function.apply(value))
-                : newAbsent();
+                : newAbsent(), newAbsent());
     }
 
     /**
@@ -227,7 +228,7 @@ public class Maybe<Value> extends BaseRepeater implements Presence
     /**
      * Returns an {@link ElseFunction} allowing for branching
      */
-    public ElseFunction<Runnable, ElseFunction<Consumer<Value>, Void>> ifAbsent()
+    public ElseFunction<UncheckedVoidCode, ElseFunction<Consumer<Value>, Void>> ifAbsentElse()
     {
         return curry(ifAbsentFunction());
     }
@@ -241,9 +242,9 @@ public class Maybe<Value> extends BaseRepeater implements Presence
      */
     public Maybe<Value> ifFalse(BooleanFunction<Value> predicate)
     {
-        return isPresent() && ensureNotNull(predicate).test(value)
+        return tryCatchDefault(() -> isPresent() && ensureNotNull(predicate).test(value)
                 ? newAbsent()
-                : this;
+                : this, newAbsent());
     }
 
     /**
@@ -256,15 +257,16 @@ public class Maybe<Value> extends BaseRepeater implements Presence
     {
         if (isPresent())
         {
-            consumer.accept(value);
+            tryCatch(() -> consumer.accept(value));
         }
+
         return this;
     }
 
     /**
      * Returns an {@link ElseFunction} allowing for branching
      */
-    public ElseFunction<Consumer<Value>, ElseFunction<Runnable, Void>> ifPresent()
+    public ElseFunction<Consumer<Value>, ElseFunction<UncheckedVoidCode, Void>> ifPresentElse()
     {
         return curry(ifPresentFunction());
     }
@@ -276,15 +278,15 @@ public class Maybe<Value> extends BaseRepeater implements Presence
      * @param runnable The code to run
      * @return This value for chaining
      */
-    public Maybe<Value> ifPresentOr(Consumer<Value> consumer, Runnable runnable)
+    public Maybe<Value> ifPresentOr(Consumer<Value> consumer, UncheckedVoidCode runnable)
     {
         if (isPresent())
         {
-            consumer.accept(value);
+            tryCatch(() -> consumer.accept(value));
         }
         else
         {
-            runnable.run();
+            tryCatch(runnable);
         }
 
         return this;
@@ -299,9 +301,9 @@ public class Maybe<Value> extends BaseRepeater implements Presence
      */
     public Maybe<Value> ifTrue(BooleanFunction<Value> predicate)
     {
-        return value != null && ensureNotNull(predicate).isTrue(value)
+        return tryCatch(() -> value != null && ensureNotNull(predicate).isTrue(value)
                 ? this
-                : newAbsent();
+                : newAbsent());
     }
 
     /**
@@ -349,9 +351,9 @@ public class Maybe<Value> extends BaseRepeater implements Presence
      */
     public <Output> Maybe<Output> map(Function<? super Value, ? extends Output> mapper)
     {
-        return isPresent()
+        return tryCatchDefault(() -> isPresent()
                 ? newMaybe(ensureNotNull(mapper).apply(value))
-                : newAbsent();
+                : newAbsent(), newAbsent());
     }
 
     /**
@@ -363,14 +365,9 @@ public class Maybe<Value> extends BaseRepeater implements Presence
     @SuppressWarnings("unchecked")
     public Maybe<Value> or(Source<? extends Maybe<? extends Value>> source)
     {
-        if (isPresent())
-        {
-            return this;
-        }
-        else
-        {
-            return (Maybe<Value>) newMaybe(ensureNotNull(source).get());
-        }
+        return tryCatch(() -> isPresent()
+                ? this
+                : (Maybe<Value>) newMaybe(ensureNotNull(source).get()));
     }
 
     /**
@@ -381,7 +378,9 @@ public class Maybe<Value> extends BaseRepeater implements Presence
      */
     public Value orDefault(Value defaultValue)
     {
-        return isPresent() ? value : defaultValue;
+        return tryCatch(() -> isPresent()
+                ? value
+                : defaultValue);
     }
 
     /**
@@ -392,7 +391,9 @@ public class Maybe<Value> extends BaseRepeater implements Presence
      */
     public Value orDefault(Source<Value> defaultValue)
     {
-        return isPresent() ? value : defaultValue.get();
+        return tryCatch(() -> isPresent()
+                ? value
+                : defaultValue.get());
     }
 
     /**
@@ -434,6 +435,7 @@ public class Maybe<Value> extends BaseRepeater implements Presence
         {
             new Problem(message, arguments).throwAsIllegalStateException();
         }
+
         return value;
     }
 
@@ -450,8 +452,9 @@ public class Maybe<Value> extends BaseRepeater implements Presence
     {
         if (isPresent() && value.isPresent())
         {
-            return newMaybe(function.apply(this.value, value.value));
+            return tryCatch(() -> newMaybe(function.apply(this.value, value.value)));
         }
+
         return newAbsent();
     }
 
@@ -468,8 +471,9 @@ public class Maybe<Value> extends BaseRepeater implements Presence
     {
         if (isPresent() && that != null)
         {
-            return newMaybe(function.apply(value, that));
+            return tryCatch(() -> newMaybe(function.apply(value, that)));
         }
+
         return newAbsent();
     }
 
@@ -512,6 +516,7 @@ public class Maybe<Value> extends BaseRepeater implements Presence
     protected Maybe<Value> set(Value value)
     {
         this.value = value;
+
         return this;
     }
 
@@ -528,37 +533,39 @@ public class Maybe<Value> extends BaseRepeater implements Presence
      */
     private <X, Y, Output> ElseFunction<X, ElseFunction<Y, Output>> curry(BiFunction<X, Y, Output> function)
     {
-        return (final X x) -> (final Y y) -> function.apply(x, y);
+        return (final X x) -> (final Y y) -> tryCatch(() -> function.apply(x, y));
     }
 
-    private BiFunction<Runnable, Consumer<Value>, Void> ifAbsentFunction()
+    private BiFunction<UncheckedVoidCode, Consumer<Value>, Void> ifAbsentFunction()
     {
         return (notPresent, present) ->
         {
             if (isAbsent())
             {
-                present.accept(value);
+                tryCatch(() -> present.accept(value));
             }
             else
             {
-                notPresent.run();
+                tryCatch(notPresent);
             }
+
             return null;
         };
     }
 
-    private BiFunction<Consumer<Value>, Runnable, Void> ifPresentFunction()
+    private BiFunction<Consumer<Value>, UncheckedVoidCode, Void> ifPresentFunction()
     {
         return (present, notPresent) ->
         {
             if (isPresent())
             {
-                present.accept(value);
+                tryCatch(() -> present.accept(value));
             }
             else
             {
-                notPresent.run();
+                tryCatch(notPresent);
             }
+
             return null;
         };
     }

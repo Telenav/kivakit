@@ -8,13 +8,13 @@ import com.telenav.kivakit.configuration.settings.SettingsStore;
 import com.telenav.kivakit.configuration.settings.SettingsTrait;
 import com.telenav.kivakit.kernel.data.validation.Validatable;
 import com.telenav.kivakit.kernel.interfaces.code.Code;
-import com.telenav.kivakit.kernel.interfaces.code.Unchecked;
+import com.telenav.kivakit.kernel.interfaces.code.UncheckedCode;
 import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.language.traits.LanguageTrait;
 import com.telenav.kivakit.kernel.messaging.Broadcaster;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Repeater;
-import com.telenav.kivakit.kernel.messaging.messages.Result;
+import com.telenav.kivakit.kernel.language.monads.Result;
 import com.telenav.kivakit.kernel.messaging.messages.status.Announcement;
 import com.telenav.kivakit.kernel.messaging.messages.status.Glitch;
 import com.telenav.kivakit.kernel.messaging.messages.status.Information;
@@ -99,10 +99,10 @@ import java.util.function.Function;
  * <p><i>Exceptions</i></p>
  *
  * <ul>
- *     <li>{@link #tryCatch(Unchecked, String, Object...)} - Executes the given code, broadcasting a problem if it throws an exception</li>
- *     <li>{@link #tryCatchThrow(Unchecked, String, Object...)} - Executes the given code, rethrowing any exceptions</li>
- *     <li>{@link #tryCatchDefault(Unchecked, Object)} - Executes the given code, returning the given default if an exception occurs</li>
- *     <li>{@link #tryFinally(Unchecked, Runnable)} - Executes the given code, always running the {@link Runnable} after execution</li>
+ *     <li>{@link #tryCatch(UncheckedCode, String, Object...)} - Executes the given code, broadcasting a problem if it throws an exception</li>
+ *     <li>{@link #tryCatchThrow(UncheckedCode, String, Object...)} - Executes the given code, rethrowing any exceptions</li>
+ *     <li>{@link #tryCatchDefault(UncheckedCode, Object)} - Executes the given code, returning the given default if an exception occurs</li>
+ *     <li>{@link #tryFinally(UncheckedCode, Runnable)} - Executes the given code, always running the {@link Runnable} after execution</li>
  * </ul>
  *
  * <p><i>Result</i></p>

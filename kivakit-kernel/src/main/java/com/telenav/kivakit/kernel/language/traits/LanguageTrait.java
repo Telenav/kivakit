@@ -2,6 +2,7 @@ package com.telenav.kivakit.kernel.language.traits;
 
 import com.telenav.kivakit.kernel.data.validation.Validatable;
 import com.telenav.kivakit.kernel.language.functions.Functions;
+import com.telenav.kivakit.kernel.language.monads.ResultTrait;
 import com.telenav.kivakit.kernel.language.objects.Objects;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
@@ -60,7 +61,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  *
  * @author jonathanl (shibo)
  */
-public interface LanguageTrait extends TryTrait, CodeTrait, Repeater
+public interface LanguageTrait extends TryTrait, ResultTrait, Repeater
 {
     /**
      * <p>

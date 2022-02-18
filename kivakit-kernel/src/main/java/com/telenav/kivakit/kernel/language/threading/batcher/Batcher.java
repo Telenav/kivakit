@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.threading.batcher;
 
-import com.telenav.kivakit.kernel.interfaces.code.Unchecked;
+import com.telenav.kivakit.kernel.interfaces.code.UncheckedCode;
 import com.telenav.kivakit.kernel.interfaces.collection.Addable;
 import com.telenav.kivakit.kernel.language.threading.Threads;
 import com.telenav.kivakit.kernel.language.threading.conditions.StateMachine;
@@ -387,6 +387,6 @@ public class Batcher<Element> extends BaseRepeater
      */
     private Batch nextBatch()
     {
-        return Unchecked.of(() -> queue.take()).or(Batch::new);
+        return UncheckedCode.of(() -> queue.take()).or(Batch::new);
     }
 }

@@ -16,13 +16,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.kernel.messaging.messages;
+package com.telenav.kivakit.kernel.language.monads;
 
 import com.telenav.kivakit.kernel.interfaces.code.Code;
+import com.telenav.kivakit.kernel.interfaces.code.UncheckedVoidCode;
 import com.telenav.kivakit.kernel.interfaces.function.BooleanFunction;
 import com.telenav.kivakit.kernel.interfaces.value.Source;
-import com.telenav.kivakit.kernel.language.monads.ElseFunction;
-import com.telenav.kivakit.kernel.language.monads.Maybe;
 import com.telenav.kivakit.kernel.messaging.Broadcaster;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.listeners.MessageList;
@@ -100,12 +99,12 @@ import java.util.function.Function;
  * <p><b>Conditionals</b></p>
  *
  * <ul>
- *     <li>{@link #ifPresent()} - Permits branching, by returning a curried {@link ElseFunction} with a branch for accepting a value and a branch for running code</li>
- *     <li>{@link #ifAbsent()} - Permits branching, by returning a curried {@link ElseFunction} with a branch for running code and a branch for accepting a value</li>
+ *     <li>{@link #ifPresentElse()} - Permits branching, by returning a curried {@link ElseFunction} with a branch for accepting a value and a branch for running code</li>
+ *     <li>{@link #ifAbsentElse()} - Permits branching, by returning a curried {@link ElseFunction} with a branch for running code and a branch for accepting a value</li>
  *     <li>{@link #ifFalse(BooleanFunction)} - Applies the given function to this value, returning this value if it is false, or {@link #absent()} if it is true</li>
  *     <li>{@link #ifTrue(BooleanFunction)} - Applies the given function to this value, returning this value if it is true, or {@link #absent()} if it is false</li>
  *     <li>{@link #ifPresent(Consumer)} - Calls the given consumer if a value is present</li>
- *     <li>{@link #ifPresentOr(Consumer, Runnable)} - Calls the given consumer if a value is present, otherwise calls the given code</li>
+ *     <li>{@link #ifPresentOr(Consumer, UncheckedVoidCode)} - Calls the given consumer if a value is present, otherwise calls the given code</li>
  *     <li>{@link #or(Source)} - If a value is present, returns this value, otherwise returns the {@link Maybe} supplied by the given {@link Source}</li>
  *     <li>{@link #or(Code)} - If a value is present, returns this value, otherwise returns the {@link Maybe} supplied by the given {@link Code}</li>
  * </ul>
@@ -252,7 +251,7 @@ public class Result<Value> extends Maybe<Value>
 
     /**
      * <p><i>Down-casting override</i></p>
-     *
+     * <p>
      * {@inheritDoc}
      */
     public <Mapped> Result<Mapped> apply(Function<? super Value, ? extends Maybe<? extends Mapped>> function)
@@ -293,7 +292,7 @@ public class Result<Value> extends Maybe<Value>
 
     /**
      * <p><i>Down-casting override</i></p>
-     *
+     * <p>
      * {@inheritDoc}
      */
     public Result<Value> ifFalse(BooleanFunction<Value> predicate)
@@ -303,7 +302,7 @@ public class Result<Value> extends Maybe<Value>
 
     /**
      * <p><i>Down-casting override</i></p>
-     *
+     * <p>
      * {@inheritDoc}
      */
     public Result<Value> ifPresent(Consumer<Value> consumer)
@@ -313,17 +312,17 @@ public class Result<Value> extends Maybe<Value>
 
     /**
      * <p><i>Down-casting override</i></p>
-     *
+     * <p>
      * {@inheritDoc}
      */
-    public Result<Value> ifPresentOr(Consumer<Value> consumer, Runnable runnable)
+    public Result<Value> ifPresentOr(Consumer<Value> consumer, UncheckedVoidCode runnable)
     {
         return (Result<Value>) super.ifPresentOr(consumer, runnable);
     }
 
     /**
      * <p><i>Down-casting override</i></p>
-     *
+     * <p>
      * {@inheritDoc}
      */
     public Result<Value> ifTrue(BooleanFunction<Value> predicate)
@@ -343,7 +342,7 @@ public class Result<Value> extends Maybe<Value>
 
     /**
      * <p><i>Down-casting override</i></p>
-     *
+     * <p>
      * {@inheritDoc}
      */
     @SuppressWarnings("unchecked")
@@ -400,7 +399,7 @@ public class Result<Value> extends Maybe<Value>
 
     /**
      * <p><i>Down-casting override</i></p>
-     *
+     * <p>
      * {@inheritDoc}
      */
     public Result<Value> or(Source<? extends Maybe<? extends Value>> source)
@@ -418,7 +417,7 @@ public class Result<Value> extends Maybe<Value>
 
     /**
      * <p><i>Down-casting override</i></p>
-     *
+     * <p>
      * {@inheritDoc}
      */
     @Override
@@ -429,7 +428,7 @@ public class Result<Value> extends Maybe<Value>
 
     /**
      * <p><i>Down-casting override</i></p>
-     *
+     * <p>
      * {@inheritDoc}
      */
     public Result<Value> then(Function<Value, Value> function)
@@ -445,7 +444,7 @@ public class Result<Value> extends Maybe<Value>
 
     /**
      * <p><i>Down-casting override</i></p>
-     *
+     * <p>
      * {@inheritDoc}
      */
     @Override
@@ -457,7 +456,7 @@ public class Result<Value> extends Maybe<Value>
 
     /**
      * <p><i>Down-casting override</i></p>
-     *
+     * <p>
      * {@inheritDoc}
      */
     @Override

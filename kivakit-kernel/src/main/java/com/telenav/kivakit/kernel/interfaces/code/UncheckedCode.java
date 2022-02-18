@@ -19,17 +19,17 @@ import com.telenav.kivakit.kernel.messaging.Listener;
  *
  *    [...]
  *
- * return Unchecked.of(this::doIt).or(false, "Unable to do it");
+ * return UncheckedCode.of(this::doIt).or(false, "Unable to do it");
  * </pre>
  *
  * @author jonathanl (shibo)
  */
 @FunctionalInterface
-public interface Unchecked<Value>
+public interface UncheckedCode<Value>
 {
     Logger LOGGER = LoggerFactory.newLogger();
 
-    static <T> Unchecked<T> of(Unchecked<T> code)
+    static <T> UncheckedCode<T> of(UncheckedCode<T> code)
     {
         return code;
     }

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.threading;
 
-import com.telenav.kivakit.kernel.interfaces.code.Unchecked;
+import com.telenav.kivakit.kernel.interfaces.code.UncheckedCode;
 import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.language.values.mutable.MutableIndex;
 import com.telenav.kivakit.kernel.language.vm.JavaVirtualMachine;
@@ -67,7 +67,7 @@ public class Threads
 
     public static void await(ExecutorService executor)
     {
-        Unchecked.of(() -> executor.awaitTermination(Long.MAX_VALUE, MILLISECONDS)).orNull();
+        UncheckedCode.of(() -> executor.awaitTermination(Long.MAX_VALUE, MILLISECONDS)).orNull();
     }
 
     public static ThreadGroup rootGroup()
