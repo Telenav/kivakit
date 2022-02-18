@@ -30,7 +30,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  * <ol>
  *     <li>{@link #absent()} - Creates a {@link Maybe} whose value is missing</li>
  *     <li>{@link #maybe(Object)} - Creates a {@link Maybe} whose value can be missing or not</li>
- *     <li>{@link #definitely(Object)} - Creates a {@link Maybe} whose value is always non-null</li>
+ *     <li>{@link #present(Object)} - Creates a {@link Maybe} whose value is always non-null</li>
  * </ol>
  *
  * <p><br/><hr/><br/></p>
@@ -55,9 +55,9 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  * <p><b>Functions</b></p>
  *
  * <ul>
- *     <li>{@link #apply(Function)} - Returns the result of applying the given function to this value</li>
- *     <li>{@link #apply(BiFunction, Maybe)} - Returns the result of applying the given two-argument function to this value and the given value</li>
- *     <li>{@link #flatMap(Function)} - Applies the given function to this value</li>
+ *     <li>{@link #then(Function)} - Returns the result of applying the given function to this value</li>
+ *     <li>{@link #then(BiFunction, Maybe)} - Returns the result of applying the given two-argument function to this value and the given value</li>
+ *     <li>{@link #apply(Function)} - Applies the given function to this value</li>
  *     <li>{@link #map(Function)} - Applies the given function to this value</li>
  * </ul>
  *
@@ -98,19 +98,19 @@ public class Maybe<Value> extends BaseRepeater implements Presence
     }
 
     /**
-     * @return Maybe for the given non-null value
-     */
-    public static <Value> Maybe<Value> definitely(Value value)
-    {
-        return new Maybe<>(ensureNotNull(value));
-    }
-
-    /**
      * @return Maybe for the given (null or non-null) value
      */
     public static <Value> Maybe<Value> maybe(Value value)
     {
         return value == null ? absent() : new Maybe<>(ensureNotNull(value));
+    }
+
+    /**
+     * @return Maybe for the given non-null value
+     */
+    public static <Value> Maybe<Value> present(Value value)
+    {
+        return new Maybe<>(ensureNotNull(value));
     }
 
     /** The null or non-null value */
@@ -132,52 +132,54 @@ public class Maybe<Value> extends BaseRepeater implements Presence
     }
 
     /**
-     * Applies the given function to this value and the given value, if both values are present, returning a new value.
+     * <p>
+     * If a value is present, uses the given function to map the value from Value to Maybe&lt;Output&gt;. If no value is
+     * present, returns {@link #absent()}. The effect is that of allowing functions to be chained together in a nested
+     * structure where each nested function introduces a new lambda variable that is visible to inner functions. For
+     * example:
+     * </p>
      *
-     * @param function The combining function
-     * @param that The value to apply with this one
-     * @return The combination of this value and the given value, if both values are non-null, otherwise, returns {@link
-     * #absent()}.
-     */
-    public Maybe<Value> apply(BiFunction<Value, Value, Value> function, Maybe<Value> that)
-    {
-        if (isPresent() && that.isPresent())
-        {
-            return newMaybe(function.apply(value, that.value));
-        }
-        return newAbsent();
-    }
-
-    /**
-     * Applies the given function to this value and the given value, if both values are present, returning a new value.
+     * <pre>
+     * var seven = present(7);
+     * var three = present(3);
      *
-     * @param function The combining function
-     * @param that The value to apply with this one
-     * @return The combination of this value and the given value, if both values are non-null, otherwise, returns {@link
-     * #absent()}.
-     */
-    public Maybe<Value> apply(BiFunction<Value, Value, Value> function, Value that)
-    {
-        if (isPresent() && that != null)
-        {
-            return newMaybe(function.apply(value, that));
-        }
-        return newAbsent();
-    }
-
-    /**
-     * Applies the given function to this value, if it is present
+     * var sum = seven.apply(a ->
+     *               three.apply(b ->
+     *                   present(a + b)));</pre>
      *
-     * @param function The function to apply
-     * @return The value produced by the given function when applied to this value
+     * <p>
+     * In this example, if either <i>seven</i> or <i>three</i> had no value present (or both values were absent), the
+     * statement would return {@link #absent()}. Only if both values are present will the statement result in the sum of
+     * the two values. <i>This allows us to stop thinking about the special case where one or both values are
+     * missing.</i>
+     * </p>
+     *
+     * <p><b>Monadic Terminology</b></p>
+     *
+     * <p>
+     * Note that this method is sometimes referred to as <i>flatMap</i>. However, the name 'flatMap' does not accurately
+     * describe what this method does, as it only describes what happens when values are collections.
+     * </p>
+     *
+     * <p><b>Important Note</b></p>
+     *
+     * <p>
+     * Notice that the first sentence of the description for this method is exactly the same as that provided for {@link
+     * #map(Function)}. The difference between the two methods is that the function passed to this method produces
+     * Maybe&lt;Output&gt; directly (which allows function nesting), while the function passed to {@link #map(Function)}
+     * just maps the value to the Output type, which is then wrapped in a {@link Maybe}.
+     * </p>
+     *
+     * @param mapper A function mapping from Value to Maybe&lt;Output&gt;
+     * @param <Output> The type being mapped to
+     * @return The mapped value as a {@link Maybe} object, or {@link #absent()} if no value was present
      */
-    public Maybe<Value> apply(Function<Value, Value> function)
+    @SuppressWarnings("unchecked")
+    public <Output> Maybe<Output> apply(Function<? super Value, ? extends Maybe<? extends Output>> mapper)
     {
-        if (isPresent())
-        {
-            return newMaybe(function.apply(value));
-        }
-        return newAbsent();
+        return isPresent()
+                ? ensureNotNull((Maybe<Output>) mapper.apply(value))
+                : newAbsent();
     }
 
     /**
@@ -198,20 +200,6 @@ public class Maybe<Value> extends BaseRepeater implements Presence
             return Objects.equals(value, that.value);
         }
         return false;
-    }
-
-    /**
-     * Maps this value to another type if a value is present, otherwise returns {@link #absent()}.
-     *
-     * @param mapper The mapping function
-     * @return The mapped value or {@link #absent()}
-     */
-    @SuppressWarnings("unchecked")
-    public <Mapped> Maybe<Mapped> flatMap(Function<? super Value, ? extends Maybe<? extends Mapped>> mapper)
-    {
-        return isAbsent()
-                ? newAbsent()
-                : ensureNotNull((Maybe<Mapped>) mapper.apply(value));
     }
 
     /**
@@ -342,16 +330,28 @@ public class Maybe<Value> extends BaseRepeater implements Presence
     }
 
     /**
-     * Maps this value to another type if a value is present, otherwise returns {@link #absent()}.
+     * If a value is present, uses the given function to map the value from Value to Output. The mapped value is then
+     * wrapped in a Maybe&lt;Output&gt; object and returned. If no value is present, returns {@link #absent()}. The
+     * effect is that of simply mapping this optional value to a new type.
      *
-     * @param mapper The mapping function
+     * <p><b>Important Note</b></p>
+     *
+     * <p>
+     * Notice that the first sentence of the description for this method is exactly the same as that provided for {@link
+     * #apply(Function)}. The difference between the two methods is that the function passed to {@link #apply(Function)}
+     * produces Maybe&lt;Output&gt; directly (which allows function nesting), while the function passed to this method
+     * just maps the value to the Output type, which is then wrapped in a {@link Maybe}.
+     * </p>
+     *
+     * @param valueMapper A function mapping from Value to Output
+     * @param <Output> The type that Value is being mapped to
      * @return The mapped value or {@link #absent()}
      */
-    public <Output> Maybe<Output> map(Function<? super Value, ? extends Output> mapper)
+    public <Output> Maybe<Output> map(Function<? super Value, ? extends Output> valueMapper)
     {
-        return isAbsent()
-                ? newAbsent()
-                : newMaybe(ensureNotNull(mapper).apply(value));
+        return isPresent()
+                ? newMaybe(ensureNotNull(valueMapper).apply(value))
+                : newAbsent();
     }
 
     /**
@@ -435,6 +435,53 @@ public class Maybe<Value> extends BaseRepeater implements Presence
             new Problem(message, arguments).throwAsIllegalStateException();
         }
         return value;
+    }
+
+    /**
+     * If a value is present, and the given value is also present, applies the given bi-function to produce a new value
+     * of the same type.
+     *
+     * @param function The combining function, f(a, b)
+     * @param value The value to pass to the bi-function along with this value
+     * @return The combination of this value and the given value, if both values are non-null, otherwise, returns {@link
+     * #absent()}.
+     */
+    public Maybe<Value> then(BiFunction<Value, Value, Value> function, Maybe<Value> value)
+    {
+        if (isPresent() && value.isPresent())
+        {
+            return newMaybe(function.apply(this.value, value.value));
+        }
+        return newAbsent();
+    }
+
+    /**
+     * If a value is present and the given value is not null, applies the given bi-function to produce a new value of
+     * the same type.
+     *
+     * @param function The combining function
+     * @param that The value to apply with this one
+     * @return The combination of this value and the given value, if both values are non-null, otherwise, returns {@link
+     * #absent()}.
+     */
+    public Maybe<Value> then(BiFunction<Value, Value, Value> function, Value that)
+    {
+        if (isPresent() && that != null)
+        {
+            return newMaybe(function.apply(value, that));
+        }
+        return newAbsent();
+    }
+
+    /**
+     * If a value is present, applies the given function to produce a new value of the same type.
+     *
+     * @param function The function to apply
+     * @return The value produced by the given function when applied to this value
+     */
+    public Maybe<Value> then(Function<Value, Value> function)
+    {
+        return map(function);
     }
 
     public String toString()

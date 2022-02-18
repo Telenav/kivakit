@@ -89,9 +89,9 @@ import java.util.function.Function;
  * <p><b>Functions</b></p>
  *
  * <ul>
- *     <li>{@link #apply(Function)} - Returns the result of applying the given function to this value</li>
- *     <li>{@link #apply(BiFunction, Maybe)} - Returns the result of applying the given two-argument function to this value and the given value</li>
- *     <li>{@link #flatMap(Function)} - Applies the given function to this value</li>
+ *     <li>{@link #then(Function)} - Returns the result of applying the given function to this value</li>
+ *     <li>{@link #then(BiFunction, Maybe)} - Returns the result of applying the given two-argument function to this value and the given value</li>
+ *     <li>{@link #apply(Function)} - Applies the given function to this value</li>
  *     <li>{@link #map(Function)} - Applies the given function to this value</li>
  * </ul>
  *
@@ -251,19 +251,13 @@ public class Result<Value> extends Maybe<Value>
     }
 
     /**
-     * <i>Down-casting override</i>
+     * <p><i>Down-casting override</i></p>
+     *
+     * {@inheritDoc}
      */
-    public Result<Value> apply(Maybe<Value> that, BiFunction<Value, Value, Value> function)
+    public <Mapped> Result<Mapped> apply(Function<? super Value, ? extends Maybe<? extends Mapped>> mapper)
     {
-        return (Result<Value>) super.apply(function, that);
-    }
-
-    /**
-     * <i>Down-casting override</i>
-     */
-    public Result<Value> apply(Function<Value, Value> function)
-    {
-        return (Result<Value>) super.apply(function);
+        return (Result<Mapped>) super.apply(mapper);
     }
 
     /**
@@ -289,14 +283,6 @@ public class Result<Value> extends Maybe<Value>
     }
 
     /**
-     * <i>Down-casting override</i>
-     */
-    public <Mapped> Result<Mapped> flatMap(Function<? super Value, ? extends Maybe<? extends Mapped>> mapper)
-    {
-        return (Result<Mapped>) super.flatMap(mapper);
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -306,7 +292,9 @@ public class Result<Value> extends Maybe<Value>
     }
 
     /**
-     * <i>Down-casting override</i>
+     * <p><i>Down-casting override</i></p>
+     *
+     * {@inheritDoc}
      */
     public Result<Value> ifFalse(BooleanFunction<Value> predicate)
     {
@@ -314,7 +302,9 @@ public class Result<Value> extends Maybe<Value>
     }
 
     /**
-     * <i>Down-casting override</i>
+     * <p><i>Down-casting override</i></p>
+     *
+     * {@inheritDoc}
      */
     public Result<Value> ifPresent(Consumer<Value> consumer)
     {
@@ -322,7 +312,9 @@ public class Result<Value> extends Maybe<Value>
     }
 
     /**
-     * <i>Down-casting override</i>
+     * <p><i>Down-casting override</i></p>
+     *
+     * {@inheritDoc}
      */
     public Result<Value> ifPresentOr(Consumer<Value> consumer, Runnable runnable)
     {
@@ -330,7 +322,9 @@ public class Result<Value> extends Maybe<Value>
     }
 
     /**
-     * <i>Down-casting override</i>
+     * <p><i>Down-casting override</i></p>
+     *
+     * {@inheritDoc}
      */
     public Result<Value> ifTrue(BooleanFunction<Value> predicate)
     {
@@ -348,12 +342,14 @@ public class Result<Value> extends Maybe<Value>
     }
 
     /**
-     * <i>Down-casting override</i>
+     * <p><i>Down-casting override</i></p>
+     *
+     * {@inheritDoc}
      */
     @SuppressWarnings("unchecked")
-    public <Output> Result<Output> map(Function<? super Value, ? extends Output> mapper)
+    public <Output> Result<Output> map(Function<? super Value, ? extends Output> valueMapper)
     {
-        return (Result<Output>) super.map(mapper);
+        return (Result<Output>) super.map(valueMapper);
     }
 
     /**
@@ -403,7 +399,9 @@ public class Result<Value> extends Maybe<Value>
     }
 
     /**
-     * <i>Down-casting override</i>
+     * <p><i>Down-casting override</i></p>
+     *
+     * {@inheritDoc}
      */
     public Result<Value> or(Source<? extends Maybe<? extends Value>> source)
     {
@@ -418,6 +416,27 @@ public class Result<Value> extends Maybe<Value>
         return messages == null || messages().succeeded();
     }
 
+    /**
+     * <p><i>Down-casting override</i></p>
+     *
+     * {@inheritDoc}
+     */
+    @Override
+    public Result<Value> then(BiFunction<Value, Value, Value> function, Maybe<Value> that)
+    {
+        return (Result<Value>) super.then(function, that);
+    }
+
+    /**
+     * <p><i>Down-casting override</i></p>
+     *
+     * {@inheritDoc}
+     */
+    public Result<Value> then(Function<Value, Value> function)
+    {
+        return (Result<Value>) super.then(function);
+    }
+
     @Override
     public String toString()
     {
@@ -425,7 +444,9 @@ public class Result<Value> extends Maybe<Value>
     }
 
     /**
-     * <i>Down-casting override</i>
+     * <p><i>Down-casting override</i></p>
+     *
+     * {@inheritDoc}
      */
     @Override
     @SuppressWarnings("unchecked")
@@ -435,7 +456,9 @@ public class Result<Value> extends Maybe<Value>
     }
 
     /**
-     * <i>Down-casting override</i>
+     * <p><i>Down-casting override</i></p>
+     *
+     * {@inheritDoc}
      */
     @Override
     protected <T> Result<T> newMaybe(T value)
