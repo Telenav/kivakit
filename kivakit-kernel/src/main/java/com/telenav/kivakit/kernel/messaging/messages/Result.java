@@ -255,9 +255,9 @@ public class Result<Value> extends Maybe<Value>
      *
      * {@inheritDoc}
      */
-    public <Mapped> Result<Mapped> apply(Function<? super Value, ? extends Maybe<? extends Mapped>> mapper)
+    public <Mapped> Result<Mapped> apply(Function<? super Value, ? extends Maybe<? extends Mapped>> function)
     {
-        return (Result<Mapped>) super.apply(mapper);
+        return (Result<Mapped>) super.apply(function);
     }
 
     /**
@@ -347,9 +347,9 @@ public class Result<Value> extends Maybe<Value>
      * {@inheritDoc}
      */
     @SuppressWarnings("unchecked")
-    public <Output> Result<Output> map(Function<? super Value, ? extends Output> valueMapper)
+    public <Output> Result<Output> map(Function<? super Value, ? extends Output> mapper)
     {
-        return (Result<Output>) super.map(valueMapper);
+        return (Result<Output>) super.map(mapper);
     }
 
     /**

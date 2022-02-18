@@ -55,9 +55,9 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  * <p><b>Functions</b></p>
  *
  * <ul>
+ *     <li>{@link #apply(Function)} - Applies the given function to this value</li>
  *     <li>{@link #then(Function)} - Returns the result of applying the given function to this value</li>
  *     <li>{@link #then(BiFunction, Maybe)} - Returns the result of applying the given two-argument function to this value and the given value</li>
- *     <li>{@link #apply(Function)} - Applies the given function to this value</li>
  *     <li>{@link #map(Function)} - Applies the given function to this value</li>
  * </ul>
  *
@@ -170,15 +170,15 @@ public class Maybe<Value> extends BaseRepeater implements Presence
      * just maps the value to the Output type, which is then wrapped in a {@link Maybe}.
      * </p>
      *
-     * @param mapper A function mapping from Value to Maybe&lt;Output&gt;
+     * @param function A function mapping from Value to Maybe&lt;Output&gt;
      * @param <Output> The type being mapped to
      * @return The mapped value as a {@link Maybe} object, or {@link #absent()} if no value was present
      */
     @SuppressWarnings("unchecked")
-    public <Output> Maybe<Output> apply(Function<? super Value, ? extends Maybe<? extends Output>> mapper)
+    public <Output> Maybe<Output> apply(Function<? super Value, ? extends Maybe<? extends Output>> function)
     {
         return isPresent()
-                ? ensureNotNull((Maybe<Output>) mapper.apply(value))
+                ? ensureNotNull((Maybe<Output>) function.apply(value))
                 : newAbsent();
     }
 
@@ -343,14 +343,14 @@ public class Maybe<Value> extends BaseRepeater implements Presence
      * just maps the value to the Output type, which is then wrapped in a {@link Maybe}.
      * </p>
      *
-     * @param valueMapper A function mapping from Value to Output
+     * @param mapper A function mapping from Value to Output
      * @param <Output> The type that Value is being mapped to
      * @return The mapped value or {@link #absent()}
      */
-    public <Output> Maybe<Output> map(Function<? super Value, ? extends Output> valueMapper)
+    public <Output> Maybe<Output> map(Function<? super Value, ? extends Output> mapper)
     {
         return isPresent()
-                ? newMaybe(ensureNotNull(valueMapper).apply(value))
+                ? newMaybe(ensureNotNull(mapper).apply(value))
                 : newAbsent();
     }
 
