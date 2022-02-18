@@ -1,9 +1,10 @@
 package com.telenav.kivakit.kernel.language.monads;
 
-import com.telenav.kivakit.kernel.interfaces.collection.Nullable;
+import com.telenav.kivakit.kernel.interfaces.collection.Presence;
 import com.telenav.kivakit.kernel.interfaces.function.BooleanFunction;
 import com.telenav.kivakit.kernel.interfaces.value.Source;
 import com.telenav.kivakit.kernel.messaging.Repeater;
+import com.telenav.kivakit.kernel.messaging.messages.Result;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 
@@ -19,30 +20,37 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
 /**
  * A substitute for {@link Optional} that adds functionality and integrates with {@link Repeater}
  *
- * <p><b>Creating</b></p>
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Construction</b></p>
  *
  * <p>
  * A {@link Maybe} can be constructed in three ways:
  *
  * <ol>
- *     <li>{@link #empty()} - Creates a {@link Maybe} whose value is null</li>
- *     <li>{@link #maybe(Object)} - Creates a {@link Maybe} whose value can be null or non-null</li>
+ *     <li>{@link #absent()} - Creates a {@link Maybe} whose value is missing</li>
+ *     <li>{@link #maybe(Object)} - Creates a {@link Maybe} whose value can be missing or not</li>
  *     <li>{@link #definitely(Object)} - Creates a {@link Maybe} whose value is always non-null</li>
  * </ol>
+ *
+ * <p><br/><hr/><br/></p>
  *
  * <p><b>Terminal Operations</b></p>
  *
  * <ul>
- *     <li>{@link #isPresent()} - Returns true if this maybe has a non-null value</li>
- *     <li>{@link #isEmpty()} - Returns true if this maybe has a null value</li>
- *     <li>{@link #asStream()} - Converts this value to a stream with zero or one element(s)</li>
- *     <li>{@link #get()} - A value or null</li>
+ *     <li>{@link #isPresent()} - Returns true if a value is present</li>
+ *     <li>{@link #isAbsent()} - Returns true if no value is present</li>
+ *     <li>{@link #get()} - Any value that might be present, or null if no value is present</li>
+ *     <li>{@link #has()} - Returns true if a value is present</li>
  *     <li>{@link #orDefault(Object)} - Returns this value, or the default value</li>
  *     <li>{@link #orDefault(Source)} - Returns this value, or the default value</li>
  *     <li>{@link #orProblem(String, Object[])} - Returns this value or broadcasts a problem if this value is not present</li>
  *     <li>{@link #orThrow(String, Object...)} - Returns this value or throws an exception</li>
  *     <li>{@link #orThrow()}- Returns this value or throws an exception</li>
+ *     <li>{@link #asStream()} - Converts this value to a stream with zero or one element(s)</li>
  * </ul>
+ *
+ * <p><br/><hr/><br/></p>
  *
  * <p><b>Functions</b></p>
  *
@@ -53,25 +61,41 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  *     <li>{@link #map(Function)} - Applies the given function to this value</li>
  * </ul>
  *
+ * <p><br/><hr/><br/></p>
+ *
  * <p><b>Conditionals</b></p>
  *
  * <ul>
- *     <li>{@link #ifFalse(BooleanFunction)} - Applies the given function to this value, returning this value if it is false, or {@link #empty()} if it is true</li>
- *     <li>{@link #ifTrue(BooleanFunction)} - Applies the given function to this value, returning this value if it is true, or {@link #empty()} if it is false</li>
+ *     <li>{@link #ifPresent()} - Permits branching, by returning a curried {@link ElseFunction} with a branch for accepting a value and a branch for running code</li>
+ *     <li>{@link #ifAbsent()} - Permits branching, by returning a curried {@link ElseFunction} with a branch for running code and a branch for accepting a value</li>
+ *     <li>{@link #ifFalse(BooleanFunction)} - Applies the given function to this value, returning this value if it is false, or {@link #absent()} if it is true</li>
+ *     <li>{@link #ifTrue(BooleanFunction)} - Applies the given function to this value, returning this value if it is true, or {@link #absent()} if it is false</li>
  *     <li>{@link #ifPresent(Consumer)} - Calls the given consumer if a value is present</li>
  *     <li>{@link #ifPresentOr(Consumer, Runnable)} - Calls the given consumer if a value is present, otherwise calls the given code</li>
  *     <li>{@link #or(Source)} - If a value is present, returns this value, otherwise returns the {@link Maybe} supplied by the given {@link Source}</li>
- *     <li>{@link #ifPresent()} - Permits branching, by returning a curried {@link ElseFunction} with a branch for accepting a value and a branch for running code</li>
- *     <li>{@link #ifEmpty()} - Permits branching, by returning a curried {@link ElseFunction} with a branch for running code and a branch for accepting a value</li>
  * </ul>
+ *
+ * <p><br/><hr/><br/></p>
  *
  * @author jonathanl (shibo)
  * @author viniciusluisr
  * @see <a href="https://github.com/viniciusluisr/improved-optional">improved-optional</a>
  */
-public class Maybe<Value> extends BaseRepeater implements Nullable
+public class Maybe<Value> extends BaseRepeater implements Presence
 {
-    private static final Maybe<?> NULL = new Maybe<>(null);
+    /**
+     * A {@link Maybe} object with no value
+     */
+    private static final Maybe<?> VALUE_ABSENT = new Maybe<>();
+
+    /**
+     * @return Maybe value for null
+     */
+    @SuppressWarnings("unchecked")
+    public static <Value> Maybe<Value> absent()
+    {
+        return (Maybe<Value>) VALUE_ABSENT;
+    }
 
     /**
      * @return Maybe for the given non-null value
@@ -82,28 +106,29 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
     }
 
     /**
-     * @return Maybe value for null
-     */
-    @SuppressWarnings("unchecked")
-    public static <Value> Maybe<Value> empty()
-    {
-        return (Maybe<Value>) NULL;
-    }
-
-    /**
      * @return Maybe for the given (null or non-null) value
      */
     public static <Value> Maybe<Value> maybe(Value value)
     {
-        return value == null ? empty() : new Maybe<>(ensureNotNull(value));
+        return value == null ? absent() : new Maybe<>(ensureNotNull(value));
     }
 
     /** The null or non-null value */
-    private final Value value;
+    private Value value;
 
-    private Maybe(Value value)
+    protected Maybe(Value value)
     {
         this.value = value;
+    }
+
+    protected Maybe(Maybe<Value> value)
+    {
+        this.value = value.get();
+    }
+
+    protected Maybe()
+    {
+        value = null;
     }
 
     /**
@@ -112,15 +137,15 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
      * @param function The combining function
      * @param that The value to apply with this one
      * @return The combination of this value and the given value, if both values are non-null, otherwise, returns {@link
-     * #empty()}.
+     * #absent()}.
      */
     public Maybe<Value> apply(BiFunction<Value, Value, Value> function, Maybe<Value> that)
     {
         if (isPresent() && that.isPresent())
         {
-            return maybe(function.apply(value, that.value));
+            return newMaybe(function.apply(value, that.value));
         }
-        return empty();
+        return newAbsent();
     }
 
     /**
@@ -129,15 +154,15 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
      * @param function The combining function
      * @param that The value to apply with this one
      * @return The combination of this value and the given value, if both values are non-null, otherwise, returns {@link
-     * #empty()}.
+     * #absent()}.
      */
     public Maybe<Value> apply(BiFunction<Value, Value, Value> function, Value that)
     {
         if (isPresent() && that != null)
         {
-            return maybe(function.apply(value, that));
+            return newMaybe(function.apply(value, that));
         }
-        return empty();
+        return newAbsent();
     }
 
     /**
@@ -150,9 +175,9 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
     {
         if (isPresent())
         {
-            return maybe(function.apply(value));
+            return newMaybe(function.apply(value));
         }
-        return empty();
+        return newAbsent();
     }
 
     /**
@@ -176,22 +201,33 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
     }
 
     /**
-     * Maps this value to another type if a value is present, otherwise returns {@link #empty()}.
+     * Maps this value to another type if a value is present, otherwise returns {@link #absent()}.
      *
      * @param mapper The mapping function
-     * @return The mapped value or empty
+     * @return The mapped value or {@link #absent()}
      */
     @SuppressWarnings("unchecked")
     public <Mapped> Maybe<Mapped> flatMap(Function<? super Value, ? extends Maybe<? extends Mapped>> mapper)
     {
-        return isEmpty()
-                ? empty()
+        return isAbsent()
+                ? newAbsent()
                 : ensureNotNull((Maybe<Mapped>) mapper.apply(value));
     }
 
+    /**
+     * Returns any value that might be present, or null if there is none
+     */
     public Value get()
     {
         return value;
+    }
+
+    /**
+     * Returns true if a value is present
+     */
+    public boolean has()
+    {
+        return isPresent();
     }
 
     @Override
@@ -203,22 +239,22 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
     /**
      * Returns an {@link ElseFunction} allowing for branching
      */
-    public ElseFunction<Runnable, ElseFunction<Consumer<Value>, Void>> ifEmpty()
+    public ElseFunction<Runnable, ElseFunction<Consumer<Value>, Void>> ifAbsent()
     {
-        return curry(ifEmptyFunction());
+        return curry(ifAbsentFunction());
     }
 
     /**
      * If a value is present and the predicate is false when applied to the value, returns this, otherwise returns
-     * {@link #empty()}
+     * {@link #absent()}
      *
      * @param predicate The predicate to test the value
-     * @return This value or {@link #empty()}
+     * @return This value or {@link #absent()}
      */
     public Maybe<Value> ifFalse(BooleanFunction<Value> predicate)
     {
         return isPresent() && ensureNotNull(predicate).test(value)
-                ? empty()
+                ? newAbsent()
                 : this;
     }
 
@@ -268,7 +304,7 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
 
     /**
      * If this value is not null and the given predicate evaluates to true for the value, returns this value, otherwise
-     * returns the {@link #empty()} value.
+     * returns the {@link #absent()} value.
      *
      * @param predicate The predicate to test any non-null value
      * @return This value or a null value
@@ -277,29 +313,45 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
     {
         return value != null && ensureNotNull(predicate).isTrue(value)
                 ? this
-                : empty();
+                : newAbsent();
     }
 
     /**
-     * {@inheritDoc}
+     * Returns true if there is no value present
      */
     @Override
-    public boolean isEmpty()
+    public boolean isAbsent()
     {
         return value == null;
     }
 
     /**
-     * Maps this value to another type if a value is present, otherwise returns {@link #empty()}.
+     * Returns true if there is a value present
+     */
+    public boolean isPresent()
+    {
+        return value != null;
+    }
+
+    /**
+     * Returns true if this object is valid
+     */
+    public boolean isValid()
+    {
+        return true;
+    }
+
+    /**
+     * Maps this value to another type if a value is present, otherwise returns {@link #absent()}.
      *
      * @param mapper The mapping function
-     * @return The mapped value or empty
+     * @return The mapped value or {@link #absent()}
      */
     public <Output> Maybe<Output> map(Function<? super Value, ? extends Output> mapper)
     {
-        return isEmpty()
-                ? empty()
-                : maybe(ensureNotNull(mapper).apply(value));
+        return isAbsent()
+                ? newAbsent()
+                : newMaybe(ensureNotNull(mapper).apply(value));
     }
 
     /**
@@ -317,7 +369,7 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
         }
         else
         {
-            return (Maybe<Value>) ensureNotNull(ensureNotNull(source).get());
+            return (Maybe<Value>) newMaybe(ensureNotNull(source).get());
         }
     }
 
@@ -350,7 +402,7 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
      */
     public Value orProblem(String message, Object... arguments)
     {
-        if (isEmpty())
+        if (isAbsent())
         {
             problem(message, arguments);
             return null;
@@ -378,7 +430,7 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
      */
     public Value orThrow(String message, Object... arguments)
     {
-        if (isEmpty())
+        if (isAbsent())
         {
             new Problem(message, arguments).throwAsIllegalStateException();
         }
@@ -388,6 +440,32 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
     public String toString()
     {
         return "[Maybe value = " + value + "]";
+    }
+
+    /**
+     * Overridden in {@link Result} to return the right subclass
+     */
+    @SuppressWarnings("unchecked")
+    protected <T> Maybe<T> newAbsent()
+    {
+        return (Maybe<T>) VALUE_ABSENT;
+    }
+
+    /**
+     * Overridden in {@link Result} to return the right subclass
+     */
+    protected <T> Maybe<T> newMaybe(T value)
+    {
+        return new Maybe<>(value);
+    }
+
+    /**
+     * Sets the given result value
+     */
+    protected Maybe<Value> set(Value value)
+    {
+        this.value = value;
+        return this;
     }
 
     /**
@@ -401,16 +479,16 @@ public class Maybe<Value> extends BaseRepeater implements Nullable
      *
      * @return The composed function
      */
-    private <X, Y, Result> ElseFunction<X, ElseFunction<Y, Result>> curry(BiFunction<X, Y, Result> function)
+    private <X, Y, Output> ElseFunction<X, ElseFunction<Y, Output>> curry(BiFunction<X, Y, Output> function)
     {
         return (final X x) -> (final Y y) -> function.apply(x, y);
     }
 
-    private BiFunction<Runnable, Consumer<Value>, Void> ifEmptyFunction()
+    private BiFunction<Runnable, Consumer<Value>, Void> ifAbsentFunction()
     {
         return (notPresent, present) ->
         {
-            if (isEmpty())
+            if (isAbsent())
             {
                 present.accept(value);
             }

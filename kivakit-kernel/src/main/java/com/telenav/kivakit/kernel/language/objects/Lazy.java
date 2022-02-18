@@ -50,14 +50,15 @@ public class Lazy<Value> implements Clearable
         return new Lazy<>(factory);
     }
 
-    /** The factory to create a new value */
-    private final Factory<Value> factory;
-
     /** A reference to the initialize method */
-    private final Source<Value> initializeMethod = this::initialize;
+    private final Source<Value> createValueMethod = this::createValue;
 
     /** A reference to the method that currently returns a value */
-    private volatile Source<Value> valueSource = initializeMethod;
+    private volatile Source<Value> valueSource = createValueMethod;
+
+
+    /** The factory to create a new value */
+    private final Factory<Value> factory;
 
     /**
      * @param factory A factory to create values whenever needed
@@ -72,9 +73,8 @@ public class Lazy<Value> implements Clearable
      */
     public synchronized void clear()
     {
-        valueSource = this::initialize;
+        valueSource = this::createValue;
     }
-
     /**
      * @return The lazy-loaded value
      */
@@ -88,13 +88,19 @@ public class Lazy<Value> implements Clearable
         return get() != null;
     }
 
-    private synchronized Value initialize()
+    private synchronized Value createValue()
     {
-        if (valueSource == initializeMethod)
+        // If we haven't entered this method yet,
+        if (valueSource == createValueMethod)
         {
-            valueSource = factory::newInstance;
+            // create a new value,
+            var value = factory.newInstance();
+
+            // and have the value source return that constant value,
+            valueSource = () -> value;
         }
 
+        // then return the value.
         return get();
     }
 }

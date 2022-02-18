@@ -23,8 +23,6 @@ import com.telenav.kivakit.kernel.interfaces.function.BooleanFunction;
 import com.telenav.kivakit.kernel.interfaces.value.Source;
 import com.telenav.kivakit.kernel.language.monads.ElseFunction;
 import com.telenav.kivakit.kernel.language.monads.Maybe;
-import com.telenav.kivakit.kernel.language.objects.Hash;
-import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.messaging.Broadcaster;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.listeners.MessageList;
@@ -37,56 +35,215 @@ import java.util.Objects;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
-import java.util.stream.Stream;
-
-import static com.telenav.kivakit.kernel.language.monads.Maybe.maybe;
 
 /**
- * Represents the result of an operation, containing any failure messages in {@link MessageList}. If there are no
- * failure messages, the operation was successful and {@link #value()} provides the value of the operation.
+ * Represents the result of an operation, capturing any failure {@link #messages()}. If there are no failure messages,
+ * the operation was successful and {@link #get()} provides the value of the operation. Note that a {@link Result} is a
+ * subclass of {@link Maybe}. The list of methods inherited from {@link Maybe} are duplicated here for convenience.
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Construction</b></p>
+ *
+ * <p>
+ * A {@link Result} can be constructed in several ways:
+ *
+ * <ol>
+ *     <li>{@link #absent()} - A successful {@link Result} with no value</li>
+ *     <li>{@link #result(Maybe)} - Creates a {@link Result} with the given value</li>
+ *     <li>{@link #result(Object)} - Creates a {@link Result} with the given value</li>
+ *     <li>{@link #failure(String, Object...)} - Creates a {@link Result} with the given failure message</li>
+ *     <li>{@link #failure(Throwable, String, Object...)} - Creates a {@link Result} with the given failure message</li>
+ * </ol>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Validation</b></p>
+ *
+ * <ul>
+ *     <li>{@link #succeeded()} - True if this result represents success</li>
+ *     <li>{@link #failed()} - True if this result represents a failure</li>
+ *     <li>{@link #isValid()} - True if this result is valid. A valid result must have either a value, or one or more messages, but it cannot have both.</li>
+ *     <li>{@link #messages()} - Any captured error messages</li>
+ * </ul>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Terminal Operations</b></p>
+ *
+ * <ul>
+ *     <li>{@link #isPresent()} - Returns true if a value is present</li>
+ *     <li>{@link #isAbsent()} - Returns true if no value is present</li>
+ *     <li>{@link #get()} - Any value that might be present, or null if no value is present</li>
+ *     <li>{@link #has()} - Returns true if a value is present</li>
+ *     <li>{@link #orDefault(Object)} - Returns this value, or the default value</li>
+ *     <li>{@link #orDefault(Source)} - Returns this value, or the default value</li>
+ *     <li>{@link #orProblem(String, Object[])} - Returns this value or broadcasts a problem if this value is not present</li>
+ *     <li>{@link #orThrow(String, Object...)} - Returns this value or throws an exception</li>
+ *     <li>{@link #orThrow()}- Returns this value or throws an exception</li>
+ *     <li>{@link #asStream()} - Converts this value to a stream with zero or one element(s)</li>
+ * </ul>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Functions</b></p>
+ *
+ * <ul>
+ *     <li>{@link #apply(Function)} - Returns the result of applying the given function to this value</li>
+ *     <li>{@link #apply(BiFunction, Maybe)} - Returns the result of applying the given two-argument function to this value and the given value</li>
+ *     <li>{@link #flatMap(Function)} - Applies the given function to this value</li>
+ *     <li>{@link #map(Function)} - Applies the given function to this value</li>
+ * </ul>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Conditionals</b></p>
+ *
+ * <ul>
+ *     <li>{@link #ifPresent()} - Permits branching, by returning a curried {@link ElseFunction} with a branch for accepting a value and a branch for running code</li>
+ *     <li>{@link #ifAbsent()} - Permits branching, by returning a curried {@link ElseFunction} with a branch for running code and a branch for accepting a value</li>
+ *     <li>{@link #ifFalse(BooleanFunction)} - Applies the given function to this value, returning this value if it is false, or {@link #absent()} if it is true</li>
+ *     <li>{@link #ifTrue(BooleanFunction)} - Applies the given function to this value, returning this value if it is true, or {@link #absent()} if it is false</li>
+ *     <li>{@link #ifPresent(Consumer)} - Calls the given consumer if a value is present</li>
+ *     <li>{@link #ifPresentOr(Consumer, Runnable)} - Calls the given consumer if a value is present, otherwise calls the given code</li>
+ *     <li>{@link #or(Source)} - If a value is present, returns this value, otherwise returns the {@link Maybe} supplied by the given {@link Source}</li>
+ *     <li>{@link #or(Code)} - If a value is present, returns this value, otherwise returns the {@link Maybe} supplied by the given {@link Code}</li>
+ * </ul>
+ *
+ * <p><br/><hr/><br/></p>
  *
  * @author jonathanl (shibo)
+ * @see Maybe
+ * @see Consumer
+ * @see Broadcaster
+ * @see BiFunction
+ * @see Function
+ * @see Code
+ * @see Source
  */
 @UmlClassDiagram(diagram = DiagramMessaging.class)
 @UmlRelation(label = "failure reason", referent = Message.class)
-public class Result<Value> extends MessageList
+public class Result<Value> extends Maybe<Value>
 {
-    public static <T> Result<T> failed(Message message)
+    /**
+     * A {@link Result} with no value
+     */
+    private static final Result<?> RESULT_ABSENT = new Result<>();
+
+    /**
+     * Returns a {@link Result} whose value is absent
+     */
+    @SuppressWarnings("unchecked")
+    public static <Value> Result<Value> absent()
+    {
+        return (Result<Value>) RESULT_ABSENT;
+    }
+
+    /**
+     * Returns a result with the given message
+     */
+    public static <T> Result<T> failure(Message message)
     {
         var result = new Result<T>();
         result.receive(message);
         return result;
     }
 
-    public static <T> Result<T> failed(Throwable cause, String message, Object... arguments)
+    /**
+     * Returns a result with the given {@link Problem}
+     */
+    public static <T> Result<T> failure(Throwable cause, String message, Object... arguments)
     {
-        return failed(new Problem(cause, message, arguments));
+        return failure(new Problem(cause, message, arguments));
     }
 
-    public static <T> Result<T> failed(String message, Object... arguments)
+    /**
+     * Returns a result with the given {@link Problem}
+     */
+    public static <T> Result<T> failure(String message, Object... arguments)
     {
-        return failed(new Problem(message, arguments));
+        return failure(new Problem(message, arguments));
     }
 
-    public static <T> Result<T> failed(Result<?> result, String message, Object... arguments)
+    /**
+     * Returns a result with the given {@link Problem}
+     */
+    public static <T> Result<T> failure(Result<?> result, String message, Object... arguments)
     {
-        return failed(new Problem(result + " => " + message, arguments));
+        return failure(new Problem(result + " => " + message, arguments));
     }
 
-    public static <T> Result<T> succeeded(T value)
+    /**
+     * Returns a {@link Result} for a value that may or may not be present
+     */
+    public static <Value> Result<Value> result(Maybe<Value> value)
     {
-        return new Result<T>().set(value);
+        return new Result<>(value);
     }
 
+    /**
+     * Returns a result with the given value
+     */
+    public static <T> Result<T> result(T value)
+    {
+        return new Result<>(value);
+    }
+
+    /**
+     * Returns a result with the given value
+     */
+    public static <T> Result<T> result(Broadcaster value)
+    {
+        return new Result<>(value);
+    }
+
+    /**
+     * Returns the result of executing the given {@link Code}. Captures any value, or any failure messages broadcast by
+     * the given broadcaster during the call, and returns a {@link Result}.
+     *
+     * @return The {@link Result} of the call
+     */
+    public static <T> Result<T> result(Broadcaster broadcaster, Code<T> code)
+    {
+        // Create an empty result that captures messages from this object,
+        var result = Result.<T>result(broadcaster);
+
+        try
+        {
+            // call the code and store any result,
+            result.set(code.run());
+        }
+        catch (Exception e)
+        {
+            // and if the code throws an exception, store that as a problem.
+            result.problem(e, "Operation failed with exception");
+        }
+
+        // Return the result of the method call.
+        return result;
+    }
+
+    /** Any broadcaster to listen to */
     private Broadcaster broadcaster;
 
-    private Maybe<Value> value;
+    /** Any messages this result has captured */
+    private MessageList messages;
 
-    public Result()
+    protected Result()
     {
     }
 
-    public Result(Broadcaster broadcaster)
+    protected Result(Maybe<Value> maybe)
+    {
+        super(maybe);
+    }
+
+    protected Result(Value value)
+    {
+        super(value);
+    }
+
+    protected Result(Broadcaster broadcaster)
     {
         listenTo(broadcaster);
 
@@ -94,186 +251,121 @@ public class Result<Value> extends MessageList
     }
 
     /**
-     * <i>Delegates to {@link Maybe}</i>
+     * <i>Down-casting override</i>
      */
-    public Maybe<Value> apply(Maybe<Value> that, BiFunction<Value, Value, Value> function)
+    public Result<Value> apply(Maybe<Value> that, BiFunction<Value, Value, Value> function)
     {
-        return value.apply(function, that);
+        return (Result<Value>) super.apply(function, that);
     }
 
     /**
-     * <i>Delegates to {@link Maybe}</i>
+     * <i>Down-casting override</i>
      */
-    public Maybe<Value> apply(Function<Value, Value> function)
+    public Result<Value> apply(Function<Value, Value> function)
     {
-        return value.apply(function);
-    }
-
-    /**
-     * <i>Delegates to {@link Maybe}</i>
-     */
-    public Stream<Value> asStream()
-    {
-        return value.asStream();
-    }
-
-    /**
-     * <i>Delegates to {@link Maybe}</i>
-     */
-    public boolean equals(Object object)
-    {
-        if (object instanceof Result)
-        {
-            var that = (Result<?>) object;
-            return Objects.equals(value, that.value);
-        }
-        return false;
-    }
-
-    /**
-     * <i>Delegates to {@link Maybe}</i>
-     */
-    public <Mapped> Maybe<Mapped> flatMap(Function<? super Value, ? extends Maybe<? extends Mapped>> mapper)
-    {
-        return value.flatMap(mapper);
-    }
-
-    /**
-     * @return The value for this result, or null if there is none
-     */
-    @KivaKitIncludeProperty
-    public Value get()
-    {
-        return value.get();
-    }
-
-    /**
-     * If this result succeeded, returns the value from {@link #get()}. If it failed, broadcasts a {@link Problem}
-     * message and returns null.
-     *
-     * @return The value of this result or null if this result failed
-     */
-    public Maybe<Value> getOrProblem(String message, Object... arguments)
-    {
-        if (failed())
-        {
-            problem(message, arguments);
-            return Maybe.empty();
-        }
-        else
-        {
-            return value();
-        }
-    }
-
-    /**
-     * If this result succeeded, returns the value from {@link #get()}. If it failed, throws an {@link
-     * IllegalStateException}.
-     *
-     * @return The value of this result
-     * @throws IllegalStateException Details of this failed result
-     */
-    public Maybe<Value> getOrThrow()
-    {
-        if (failed())
-        {
-            super.ifFailedThrow();
-            return null;
-        }
-        else
-        {
-            return value();
-        }
-    }
-
-    /**
-     * @return True if this result has a value
-     */
-    public boolean has()
-    {
-        return value != null;
-    }
-
-    /**
-     * <i>Delegates to {@link Maybe}</i>
-     */
-    @Override
-    public int hashCode()
-    {
-        return Hash.code(value);
-    }
-
-    /**
-     * <i>Delegates to {@link Maybe}</i>
-     */
-    public Maybe<Value> ifFalse(BooleanFunction<Value> predicate)
-    {
-        return value.ifFalse(predicate);
-    }
-
-    /**
-     * <i>Delegates to {@link Maybe}</i>
-     */
-    public Maybe<Value> ifNonEmptyOr(Consumer<Value> consumer, Runnable runnable)
-    {
-        return value.ifPresentOr(consumer, runnable);
-    }
-
-    /**
-     * <i>Delegates to {@link Maybe}</i>
-     */
-    public ElseFunction<Runnable, ElseFunction<Consumer<Value>, Void>> ifNull()
-    {
-        return value.ifEmpty();
-    }
-
-    /**
-     * <i>Delegates to {@link Maybe}</i>
-     */
-    public Maybe<Value> ifPresent(Consumer<Value> consumer)
-    {
-        return value.ifPresent(consumer);
-    }
-
-    /**
-     * <i>Delegates to {@link Maybe}</i>
-     */
-    public ElseFunction<Consumer<Value>, ElseFunction<Runnable, Void>> ifPresent()
-    {
-        return value.ifPresent();
-    }
-
-    /**
-     * <i>Delegates to {@link Maybe}</i>
-     */
-    public Maybe<Value> ifTrue(BooleanFunction<Value> predicate)
-    {
-        return value.ifTrue(predicate);
+        return (Result<Value>) super.apply(function);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean isEmpty()
+    public boolean equals(Object object)
     {
-        return value.isEmpty();
+        if (object instanceof Result<?>)
+        {
+            var that = (Result<?>) object;
+            return super.equals(that) && succeeded() == that.succeeded();
+        }
+        return false;
     }
 
     /**
-     * @return True if this result has a value and succeeded, or does not have a value and failed. False otherwise.
+     * Returns true if this result represents a failure
      */
+    public boolean failed()
+    {
+        return messages != null && messages().failed();
+    }
+
+    /**
+     * <i>Down-casting override</i>
+     */
+    public <Mapped> Result<Mapped> flatMap(Function<? super Value, ? extends Maybe<? extends Mapped>> mapper)
+    {
+        return (Result<Mapped>) super.flatMap(mapper);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(super.hashCode(), succeeded());
+    }
+
+    /**
+     * <i>Down-casting override</i>
+     */
+    public Result<Value> ifFalse(BooleanFunction<Value> predicate)
+    {
+        return (Result<Value>) super.ifFalse(predicate);
+    }
+
+    /**
+     * <i>Down-casting override</i>
+     */
+    public Result<Value> ifPresent(Consumer<Value> consumer)
+    {
+        return (Result<Value>) super.ifPresent(consumer);
+    }
+
+    /**
+     * <i>Down-casting override</i>
+     */
+    public Result<Value> ifPresentOr(Consumer<Value> consumer, Runnable runnable)
+    {
+        return (Result<Value>) super.ifPresentOr(consumer, runnable);
+    }
+
+    /**
+     * <i>Down-casting override</i>
+     */
+    public Result<Value> ifTrue(BooleanFunction<Value> predicate)
+    {
+        return (Result<Value>) super.ifTrue(predicate);
+    }
+
+    /**
+     * @return True if this result is valid. A result is invalid if it has a value present, but also has failure
+     * messages. Note that a result can have neither a value nor any failure messages (see {@link #absent()}).
+     */
+    @Override
     public boolean isValid()
     {
-        return has() ^ failed();
+        return !(isPresent() && failed());
     }
 
     /**
-     * <i>Delegates to {@link Maybe}</i>
+     * <i>Down-casting override</i>
      */
-    public <Output> Maybe<Output> map(Function<? super Value, ? extends Output> mapper)
+    @SuppressWarnings("unchecked")
+    public <Output> Result<Output> map(Function<? super Value, ? extends Output> mapper)
     {
-        return value.map(mapper);
+        return (Result<Output>) super.map(mapper);
+    }
+
+    /**
+     * Returns any messages captured in this result
+     */
+    public MessageList messages()
+    {
+        if (messages == null)
+        {
+            messages = new MessageList();
+        }
+        return messages;
     }
 
     /**
@@ -311,92 +403,43 @@ public class Result<Value> extends MessageList
     }
 
     /**
-     * <i>Delegates to {@link Maybe}</i>
+     * <i>Down-casting override</i>
      */
-    public Maybe<Value> or(Source<? extends Maybe<? extends Value>> supplier)
+    public Result<Value> or(Source<? extends Maybe<? extends Value>> source)
     {
-        return value.or(supplier);
+        return (Result<Value>) super.or(source);
     }
 
     /**
-     * <i>Delegates to {@link Maybe}</i>
-     */
-    public Value orElse(Value defaultValue)
-    {
-        return value.orDefault(defaultValue);
-    }
-
-    /**
-     * <i>Delegates to {@link Maybe}</i>
-     */
-    public Value orElse(Source<Value> defaultValue)
-    {
-        return value.orDefault(defaultValue);
-    }
-
-    /**
-     * <i>Delegates to {@link Maybe}</i>
-     */
-    public Value orElseProblem(String message, Object... arguments)
-    {
-        return value.orProblem(message, arguments);
-    }
-
-    /**
-     * <i>Delegates to {@link Maybe}</i>
-     */
-    public Value orElseThrow()
-    {
-        return value.orThrow();
-    }
-
-    /**
-     * <i>Delegates to {@link Maybe}</i>
-     */
-    public Value orElseThrow(String message, Object... arguments)
-    {
-        return value.orThrow(message, arguments);
-    }
-
-    /**
-     * Sets the given result value
-     */
-    public Result<Value> set(Value result)
-    {
-        return set(maybe(result));
-    }
-
-    /**
-     * Sets the given result value
-     */
-    public Result<Value> set(Maybe<Value> result)
-    {
-        value = result;
-
-        return this;
-    }
-
-    /**
-     * @return The result is successful
+     * Returns true if this result represents success
      */
     public boolean succeeded()
     {
-        return !failed();
+        return messages == null || messages().succeeded();
     }
 
     @Override
     public String toString()
     {
-        return succeeded() ? "Succeeded: " + value : "Failed:\n\n" + bulleted(4);
+        return succeeded() ? "Succeeded: " + get() : "Failed:\n\n" + messages().bulleted(4);
     }
 
     /**
-     * Returns this result's value as a {@link Maybe}.
-     *
-     * @return The {@link Maybe} object containing any value for this result
+     * <i>Down-casting override</i>
      */
-    public Maybe<Value> value()
+    @Override
+    @SuppressWarnings("unchecked")
+    protected <T> Result<T> newAbsent()
     {
-        return value;
+        return (Result<T>) RESULT_ABSENT;
+    }
+
+    /**
+     * <i>Down-casting override</i>
+     */
+    @Override
+    protected <T> Result<T> newMaybe(T value)
+    {
+        return new Result<>(value);
     }
 }

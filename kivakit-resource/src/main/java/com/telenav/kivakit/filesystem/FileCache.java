@@ -94,10 +94,10 @@ public class FileCache extends BaseRepeater
      * @param mode How the resource should be copied
      * @param reporter The progress reporter to call as the file is being copied into the cache
      */
-    public File addAs(Resource resource,
-                      FileName filename,
-                      CopyMode mode,
-                      ProgressReporter reporter)
+    public synchronized File addAs(Resource resource,
+                                   FileName filename,
+                                   CopyMode mode,
+                                   ProgressReporter reporter)
     {
         var file = file(filename);
         if (!file.exists())
