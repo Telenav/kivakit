@@ -50,21 +50,21 @@ public class Processes
     /**
      * Redirects the output of the given process to the console
      */
-    public static void copyStandardOutToConsole(Process process)
-    {
-        var input = process.getInputStream();
-        IO.copy(input, System.out, IO.CopyStyle.UNBUFFERED);
-        IO.flush(System.out);
-    }
-
-    /**
-     * Redirects the output of the given process to the console
-     */
     public static void redirectStandardErrorToConsole(Process process)
     {
         var input = process.getErrorStream();
         IO.copy(input, System.err, IO.CopyStyle.UNBUFFERED);
         IO.flush(System.err);
+    }
+
+    /**
+     * Redirects the output of the given process to the console
+     */
+    public static void redirectStandardOutToConsole(Process process)
+    {
+        var input = process.getInputStream();
+        IO.copy(input, System.out, IO.CopyStyle.UNBUFFERED);
+        IO.flush(System.out);
     }
 
     /**
