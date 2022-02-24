@@ -320,6 +320,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
     protected Application(Project... projects)
     {
         register(this);
+        register(LOGGER);
 
         instance = this;
         if (projects.length == 1)

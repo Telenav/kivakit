@@ -18,10 +18,7 @@
 
 package com.telenav.kivakit.resource.spi;
 
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.kernel.messaging.Debug;
-import com.telenav.kivakit.kernel.messaging.Listener;
+import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourceService;
@@ -33,47 +30,73 @@ import java.util.List;
 import java.util.ServiceLoader;
 
 /**
- * {@link #resolve(Listener, ResourceIdentifier)} iterates through implementations of the {@link ResourceResolver}
- * interface provided by Java's {@link ServiceLoader} and resolves {@link ResourceIdentifier}s by calling {@link
- * ResourceResolver#accepts(ResourceIdentifier)} until it reaches a resolver that recognizes the identifier. It then
- * returns the resolved resource with {@link ResourceResolver#resolve(Listener, ResourceIdentifier)}.
+ * Resolves {@link ResourceIdentifier}s into {@link Resource}s.
+ *
+ * <p>
+ * The method {@link #resolve(ResourceIdentifier)} iterates through implementations of the {@link ResourceResolver}
+ * interface located by Java's {@link ServiceLoader}, until a resolver is found that can accept the identifier, as
+ * determined by {@link ResourceResolver#accepts(ResourceIdentifier)}. This resolver is then used to resolve the
+ * resource with {@link ResourceResolver#resolve(ResourceIdentifier)}.
+ * </p>
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramResourceService.class)
-public class ResourceResolverServiceLoader
+public class ResourceResolverServiceLoader extends BaseRepeater
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
+    private static final ResourceResolverServiceLoader instance = new ResourceResolverServiceLoader();
 
-    private static final Debug DEBUG = new Debug(LOGGER);
+    public static ResourceResolverServiceLoader get()
+    {
+        return instance;
+    }
 
     @UmlAggregation
-    private static List<ResourceResolver> resolvers;
+    private List<ResourceResolver> resolvers;
 
-    public static Resource resolve(Listener listener, ResourceIdentifier identifier)
+    private ResourceResolverServiceLoader()
+    {
+    }
+
+    /**
+     * Resolves the given {@link ResourceIdentifier} to a {@link Resource} by using {@link ServiceLoader} to locate
+     * {@link ResourceResolver}s. The method {@link ResourceResolver#accepts(ResourceIdentifier)} is called on each
+     * resolver until a resolver is found that can accept the identifier. Then this resolver is used to resolve the
+     * identifier into a resource.
+     *
+     * @param identifier The resource identifier
+     * @return The resolved resource
+     */
+    public Resource resolve(ResourceIdentifier identifier)
     {
         for (var resolver : resolvers())
         {
             if (resolver.accepts(identifier))
             {
-                return resolver.resolve(listener, identifier);
+                return resolver.resolve(identifier);
             }
         }
 
-        throw listener.problem("Invalid resource identifier '$'", identifier).asException();
+        throw problem("Invalid resource identifier '$'", identifier).asException();
     }
 
-    private static synchronized List<ResourceResolver> resolvers()
+    /**
+     * Locates all {@link ResourceResolver}s on the classpath using {@link ServiceLoader}.
+     *
+     * @return The list of all resolvers
+     */
+    private synchronized List<ResourceResolver> resolvers()
     {
         if (resolvers == null)
         {
             resolvers = new ArrayList<>();
             for (var service : ServiceLoader.load(ResourceResolver.class))
             {
-                DEBUG.trace("Loaded resource factory '${class}'", service.getClass());
-                resolvers.add(service);
+                trace("Loaded resource factory '${class}'", service.getClass());
+                resolvers.add(listenTo(service));
             }
         }
+
         return resolvers;
     }
 }

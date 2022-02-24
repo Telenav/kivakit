@@ -1,6 +1,5 @@
 package com.telenav.kivakit.network.http;
 
-import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.network.http.secure.SecureHttpNetworkLocation;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceIdentifier;
@@ -28,16 +27,24 @@ public class HttpGetResourceResolver implements ResourceResolver
     }
 
     @Override
-    public Resource resolve(Listener listener, ResourceIdentifier resourceIdentifier)
+    public Resource resolve(ResourceIdentifier resourceIdentifier)
     {
         var identifier = resourceIdentifier.identifier();
         if (identifier.startsWith("http:"))
         {
-            return new HttpNetworkLocation.Converter(listener).convert(identifier).get();
+            var location = new HttpNetworkLocation.Converter(this).convert(identifier);
+            if (location != null)
+            {
+                return location.get();
+            }
         }
         if (identifier.startsWith("https:"))
         {
-            return new SecureHttpNetworkLocation.Converter(listener).convert(identifier).get();
+            var location = new SecureHttpNetworkLocation.Converter(this).convert(identifier);
+            if (location != null)
+            {
+                return location.get();
+            }
         }
 
         return fail("Internal error: should not be possible");

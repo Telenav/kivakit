@@ -20,13 +20,26 @@ package com.telenav.kivakit.resource;
 
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourceService;
+import com.telenav.kivakit.resource.spi.ResourceResolver;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * An arbitrary string that identifies a resource. This might be a path or package name or some other identifier that
- * can be resolved into a resource. The {@link #resolve(Listener)} method searches resource service providers to find one that
- * accepts this identifier. It then returns the resource, as resolved by the service provider.
+ * An arbitrary string that identifies a resource.
+ *
+ * <p>
+ * A resource identifier might be a path or package name or some other identifier that can be resolved into a resource.
+ * The {@link #resolve(Listener)} method searches available {@link ResourceResolver}s to find one that accepts this
+ * identifier. It then returns the resource, as resolved by the resolver.
+ * </p>
+ *
+ * <p><b>Resource Resolvers</b></p>
+ * <ul>
+ *    <li>PackageResource.Resolver - Resolves resources for the scheme <i>classpath:</i></li>
+ *    <li>File.Resolver - Resolves filesystem resource with various schemes. Resources on the local filesystem
+ *                        are identifier with <i>file:</i> or by not specifying any scheme</li>
+ *    <li>HttpGetResourceResolver - Resolves <i>https:</i> and <i>http:</i> resources</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  * @see Resource#resolve(Listener, String)

@@ -31,6 +31,26 @@ import java.util.Set;
  */
 public class Collections
 {
+    /**
+     * Returns true if the given collection returns the given reference. This can be used when the objects in a list
+     * don't implement {@link #equals(Object)}.
+     *
+     * @param list The list to search
+     * @param reference The reference to fine
+     * @return True if the list contains the given reference
+     */
+    public static <T> boolean containsReference(Collection<T> list, T reference)
+    {
+        for (var at : list)
+        {
+            if (at == reference)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static <T> T first(Collection<T> collection)
     {
         var iterator = collection.iterator();

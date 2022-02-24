@@ -149,6 +149,55 @@ public class File extends BaseWritableResource implements FileSystemObject
 
     private static long temporaryFileNumber = System.currentTimeMillis();
 
+    public static File file(Listener listener, URI uri)
+    {
+        // Ensure our many preconditions
+        if (!uri.isAbsolute())
+        {
+            Ensure.illegalArgument("URI is not absolute");
+        }
+        if (uri.isOpaque())
+        {
+            Ensure.illegalArgument("URI is not hierarchical");
+        }
+        var scheme = uri.getScheme();
+        if (!"file".equalsIgnoreCase(scheme))
+        {
+            Ensure.illegalArgument("URI scheme is not \"file\"");
+        }
+        if (uri.getAuthority() != null)
+        {
+            Ensure.illegalArgument("URI has an authority component");
+        }
+        if (uri.getFragment() != null)
+        {
+            Ensure.illegalArgument("URI has a fragment component");
+        }
+        if (uri.getQuery() != null)
+        {
+            Ensure.illegalArgument("URI has a query component");
+        }
+        var path = uri.getPath();
+        if ("".equals(path))
+        {
+            Ensure.illegalArgument("URI path component is empty");
+        }
+        path = path.replaceFirst("^/", "");
+        return new File(FileSystemServiceLoader
+                .fileSystem(FilePath.parseFilePath(listener, path))
+                .fileService(FilePath.parseFilePath(listener, path)));
+    }
+
+    public static File file(java.io.File file)
+    {
+        return parse(Listener.none(), file.getAbsolutePath());
+    }
+
+    public static File file(FilePath path)
+    {
+        return new File(FileSystemServiceLoader.fileSystem(path).fileService(path));
+    }
+
     public static ArgumentParser.Builder<File> fileArgumentParser(Listener listener, String description)
     {
         return ArgumentParser.builder(File.class)
@@ -199,55 +248,6 @@ public class File extends BaseWritableResource implements FileSystemObject
     public static SwitchParser.Builder<File> inputFileSwitchParser(Listener listener)
     {
         return fileSwitchParser(listener, "input", "The input file to process");
-    }
-
-    public static File file(Listener listener, URI uri)
-    {
-        // Ensure our many preconditions
-        if (!uri.isAbsolute())
-        {
-            Ensure.illegalArgument("URI is not absolute");
-        }
-        if (uri.isOpaque())
-        {
-            Ensure.illegalArgument("URI is not hierarchical");
-        }
-        var scheme = uri.getScheme();
-        if (!"file".equalsIgnoreCase(scheme))
-        {
-            Ensure.illegalArgument("URI scheme is not \"file\"");
-        }
-        if (uri.getAuthority() != null)
-        {
-            Ensure.illegalArgument("URI has an authority component");
-        }
-        if (uri.getFragment() != null)
-        {
-            Ensure.illegalArgument("URI has a fragment component");
-        }
-        if (uri.getQuery() != null)
-        {
-            Ensure.illegalArgument("URI has a query component");
-        }
-        var path = uri.getPath();
-        if ("".equals(path))
-        {
-            Ensure.illegalArgument("URI path component is empty");
-        }
-        path = path.replaceFirst("^/", "");
-        return new File(FileSystemServiceLoader
-                .fileSystem(FilePath.parseFilePath(listener, path))
-                .fileService(FilePath.parseFilePath(listener, path)));
-    }
-
-    public static File file(java.io.File file)
-    {
-        return parse(Listener.none(), file.getAbsolutePath());
-    }
-
-    public static File file(FilePath path)
-    {
-        return new File(FileSystemServiceLoader.fileSystem(path).fileService(path));
     }
 
     public static SwitchParser.Builder<File> outputFile(Listener listener)
@@ -324,8 +324,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         }
 
         @Override
-        public Resource resolve(Listener listener,
-                                ResourceIdentifier identifier)
+        public Resource resolve(ResourceIdentifier identifier)
         {
             return File.parse(this, identifier.identifier());
         }

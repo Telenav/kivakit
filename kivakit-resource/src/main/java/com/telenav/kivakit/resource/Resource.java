@@ -39,10 +39,13 @@ import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResource;
 import com.telenav.kivakit.resource.resources.other.NullResource;
 import com.telenav.kivakit.resource.resources.packaged.PackageResource;
 import com.telenav.kivakit.resource.resources.string.StringResource;
+import com.telenav.kivakit.resource.spi.ResourceResolver;
 import com.telenav.kivakit.resource.spi.ResourceResolverServiceLoader;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+
+import java.util.ServiceLoader;
 
 /**
  * A resource that can be read via {@link ReadableResource}. In addition, resources are {@link ChangedAt}, {@link
@@ -122,14 +125,29 @@ public interface Resource extends
                 .description(description);
     }
 
+    /**
+     * Returns a {@link ResourceIdentifier} for the given string
+     *
+     * @param identifier The identifier
+     * @return The {@link ResourceIdentifier}
+     */
     static ResourceIdentifier identifier(String identifier)
     {
         return new ResourceIdentifier(identifier);
     }
 
+    /**
+     * Resolves the given {@link ResourceIdentifier} to a {@link Resource}. This is done by using {@link
+     * ResourceResolverServiceLoader} to find an implementation of {@link ResourceResolver} using Java's {@link
+     * ServiceLoader} to find the implementation.
+     *
+     * @param listener The listener to call with any resolution problems
+     * @param identifier The resource identifier
+     * @return The resource
+     */
     static Resource resolve(Listener listener, ResourceIdentifier identifier)
     {
-        return listener.listenTo(ResourceResolverServiceLoader.resolve(listener, identifier));
+        return listener.listenTo(listener.listenTo(ResourceResolverServiceLoader.get()).resolve(identifier));
     }
 
     static Resource resolve(Listener listener, ResourcePath path)

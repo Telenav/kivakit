@@ -151,7 +151,7 @@ public class PackageResource extends BaseReadableResource
         }
 
         @Override
-        public Resource resolve(Listener listener, ResourceIdentifier identifier)
+        public Resource resolve(ResourceIdentifier identifier)
         {
             var filepath = FilePath.parseFilePath(this, Strip.leading(identifier.identifier(), SCHEME));
             var parent = filepath.parent();
@@ -165,14 +165,14 @@ public class PackageResource extends BaseReadableResource
         }
     }
 
-    /** Information about the resource */
-    private final ModuleResource resource;
-
     /** The package path to this resource */
     private final PackagePath _package;
 
     /** The name of this resource */
     private final FileName name;
+
+    /** Information about the resource */
+    private final ModuleResource resource;
 
     protected PackageResource(PackagePath _package, ModuleResource resource, FileName name)
     {

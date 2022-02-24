@@ -59,12 +59,22 @@ public interface Broadcaster extends Transceiver
      * Adds a listener to this broadcaster that wants to receive future messages. This is the mirror method of {@link
      * Listener#listenTo(Broadcaster)} as both methods achieve the same thing.
      *
+     * <p>
+     * <i>Note: adding the same listener two or more times will not replace the original listener. To do that, call
+     * {@link #clearListeners()} before calling this method</i>
+     * </p>
+     *
      * @param listener Listener to broadcast to. Implementations should ignore null listeners.
      */
     void addListener(Listener listener, Filter<Transmittable> filter);
 
     /**
      * Adds a listener to this broadcaster that wants to receive future messages.
+     *
+     * <p>
+     * <i>Note: adding the same listener two or more times will not replace the original listener. To do that, call
+     * {@link #clearListeners()} before calling this method</i>
+     * </p>
      */
     default void addListener(Listener listener)
     {
