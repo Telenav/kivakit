@@ -135,6 +135,17 @@ public class Version
     }
 
     /**
+     * Parses the given text for a version, throwing an exception if any errors occur.
+     *
+     * @return The given text, of the form [major].[minor](.[revision)?(-release)?, parsed as a {@link Version} object,
+     * or null if the text is not of that form.
+     */
+    public static Version parse(String text)
+    {
+        return parse(Listener.throwing(), text);
+    }
+
+    /**
      * @return The given text, of the form [major].[minor](.[revision)?(-release)?, parsed as a {@link Version} object,
      * or null if the text is not of that form.
      */
