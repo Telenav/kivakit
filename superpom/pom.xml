@@ -238,7 +238,7 @@
 
         <jetty.version>9.4.44.v20210927</jetty.version>
         <jersey.version>2.33</jersey.version>
-        <wicket.version>9.9.0-SNAPSHOT</wicket.version>
+        <wicket.version>9.8.0</wicket.version>
         <wicket.jquery.version>9.5.0</wicket.jquery.version>
         <swagger.version>2.1.10</swagger.version>
         <swagger.webjar.version>3.51.2</swagger.webjar.version>
