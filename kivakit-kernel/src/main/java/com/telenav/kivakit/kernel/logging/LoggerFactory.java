@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.logging;
 
-import com.telenav.kivakit.kernel.interfaces.factory.Factory;
+import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.kivakit.kernel.logging.loggers.LogServiceLogger;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLogging;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

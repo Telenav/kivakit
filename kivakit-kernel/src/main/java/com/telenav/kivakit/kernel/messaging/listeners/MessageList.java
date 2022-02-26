@@ -18,15 +18,14 @@
 
 package com.telenav.kivakit.kernel.messaging.listeners;
 
-import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
-import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
+import com.telenav.kivakit.interfaces.comparison.Filter;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.language.values.count.Maximum;
 import com.telenav.kivakit.kernel.messaging.Broadcaster;
 import com.telenav.kivakit.kernel.messaging.Message;
-import com.telenav.kivakit.kernel.messaging.filters.operators.All;
 import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramDataValidation;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageListenerType;
@@ -65,7 +64,7 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
 
     public MessageList()
     {
-        this(new All<>());
+        this(Filter.all());
     }
 
     public MessageList(Maximum maximumSize, Matcher<Message> filter)

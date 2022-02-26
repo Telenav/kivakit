@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.logging.logs.text;
 
-import com.telenav.kivakit.kernel.language.time.Duration;
+import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.kernel.language.vm.Console;
 import com.telenav.kivakit.kernel.logging.LogEntry;
 import com.telenav.kivakit.kernel.logging.loggers.LogServiceLogger;
@@ -46,7 +46,7 @@ public class ConsoleLog extends BaseTextLog
 
     @Override
     @UmlExcludeMember
-    public void flush(Duration maximumWaitTime)
+    public void flush(LengthOfTime maximumWaitTime)
     {
         super.flush(maximumWaitTime);
         console.flush(maximumWaitTime);

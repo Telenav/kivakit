@@ -24,7 +24,7 @@ import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfigu
 import com.telenav.kivakit.configuration.settings.stores.memory.MemorySettingsStore;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
-import com.telenav.kivakit.kernel.interfaces.naming.Named;
+import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

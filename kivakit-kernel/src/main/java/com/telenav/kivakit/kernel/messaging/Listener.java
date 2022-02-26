@@ -19,8 +19,8 @@
 package com.telenav.kivakit.kernel.messaging;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
-import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
+import com.telenav.kivakit.interfaces.messaging.Transmittable;
+import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.listeners.ConsoleWriter;

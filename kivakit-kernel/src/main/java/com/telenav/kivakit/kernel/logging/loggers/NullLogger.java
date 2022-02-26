@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.kernel.logging.loggers;
 
-import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
-import com.telenav.kivakit.kernel.language.time.Duration;
+import com.telenav.kivakit.interfaces.comparison.Filter;
+import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.logging.LogEntry;
 import com.telenav.kivakit.kernel.logging.Logger;
@@ -62,7 +62,7 @@ public class NullLogger implements Logger
     }
 
     @Override
-    public void flush(Duration maximumWaitTime)
+    public void flush(LengthOfTime maximumWaitTime)
     {
     }
 

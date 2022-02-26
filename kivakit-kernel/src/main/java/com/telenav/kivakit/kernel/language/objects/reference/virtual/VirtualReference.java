@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.objects.reference.virtual;
 
-import com.telenav.kivakit.kernel.interfaces.value.Source;
+import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.kivakit.kernel.language.objects.reference.virtual.types.HardReferencedValue;
 import com.telenav.kivakit.kernel.language.objects.reference.virtual.types.SoftReferencedValue;
 import com.telenav.kivakit.kernel.language.objects.reference.virtual.types.WeakReferencedValue;

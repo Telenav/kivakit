@@ -18,7 +18,6 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.kernel.interfaces.io.Readable;
 import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResource;
@@ -52,7 +51,7 @@ public interface ReadableResource extends Readable
 {
     default StringResource asStringResource()
     {
-        return new StringResource(reader().string());
+        return new StringResource(reader().asString());
     }
 
     /**

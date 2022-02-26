@@ -19,7 +19,7 @@
 package com.telenav.kivakit.resource.compression.archive;
 
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
+import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.kernel.language.values.version.Version;
 import com.telenav.kivakit.serialization.kryo.CoreKernelKryoTypes;

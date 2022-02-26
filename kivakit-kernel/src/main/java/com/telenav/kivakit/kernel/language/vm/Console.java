@@ -1,7 +1,7 @@
 package com.telenav.kivakit.kernel.language.vm;
 
-import com.telenav.kivakit.kernel.interfaces.io.Flushable;
-import com.telenav.kivakit.kernel.language.time.Duration;
+import com.telenav.kivakit.interfaces.io.Flushable;
+import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.kernel.messaging.Message;
 
 import java.io.PrintStream;
@@ -29,7 +29,7 @@ public class Console implements Flushable
     }
 
     @Override
-    public void flush(Duration maximumWaitTime)
+    public void flush(LengthOfTime maximumWaitTime)
     {
         NORMAL.stream().flush();
         ERROR.stream().flush();

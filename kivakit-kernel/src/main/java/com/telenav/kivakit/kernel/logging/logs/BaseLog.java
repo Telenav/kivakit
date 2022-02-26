@@ -18,9 +18,10 @@
 
 package com.telenav.kivakit.kernel.logging.logs;
 
-import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
-import com.telenav.kivakit.kernel.interfaces.lifecycle.Startable;
-import com.telenav.kivakit.kernel.interfaces.lifecycle.Stoppable;
+import com.telenav.kivakit.interfaces.comparison.Filter;
+import com.telenav.kivakit.interfaces.lifecycle.Startable;
+import com.telenav.kivakit.interfaces.lifecycle.Stoppable;
+import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.kernel.language.collections.map.count.CountMap;
 import com.telenav.kivakit.kernel.language.primitives.Booleans;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
@@ -84,21 +85,19 @@ public abstract class BaseLog implements Startable, Stoppable, Log
         return logs;
     }
 
-    private final ArrayBlockingQueue<LogEntry> queue = new ArrayBlockingQueue<>(queueSize());
-
-    final StateWatcher<Boolean> queueEmpty = new StateWatcher<>(true);
+    private volatile boolean closed;
 
     @KivaKitIncludeProperty
     private final List<Filter<LogEntry>> filters = new ArrayList<>();
 
-    private RepeatingKivaKitThread thread;
+    private final CountMap<String> messageCounts = new CountMap<>();
 
-    private volatile boolean closed;
+    private final ArrayBlockingQueue<LogEntry> queue = new ArrayBlockingQueue<>(queueSize());
 
     @KivaKitIncludeProperty
     private final AtomicBoolean started = new AtomicBoolean();
 
-    private final CountMap<String> messageCounts = new CountMap<>();
+    private RepeatingKivaKitThread thread;
 
     protected BaseLog()
     {
@@ -156,7 +155,7 @@ public abstract class BaseLog implements Startable, Stoppable, Log
     }
 
     @Override
-    public void flush(Duration maximumWaitTime)
+    public void flush(LengthOfTime maximumWaitTime)
     {
         if (thread != null)
         {
@@ -307,7 +306,7 @@ public abstract class BaseLog implements Startable, Stoppable, Log
     }
 
     @Override
-    public void stop(Duration wait)
+    public void stop(LengthOfTime wait)
     {
         close();
         flush(wait);
@@ -385,4 +384,6 @@ public abstract class BaseLog implements Startable, Stoppable, Log
         }
         return success;
     }
+
+    final StateWatcher<Boolean> queueEmpty = new StateWatcher<>(true);
 }

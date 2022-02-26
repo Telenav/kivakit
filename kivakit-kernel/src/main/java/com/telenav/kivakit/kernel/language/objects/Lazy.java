@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.kernel.language.objects;
 
-import com.telenav.kivakit.kernel.interfaces.collection.Clearable;
-import com.telenav.kivakit.kernel.interfaces.factory.Factory;
-import com.telenav.kivakit.kernel.interfaces.value.Source;
+import com.telenav.kivakit.interfaces.collection.Clearable;
+import com.telenav.kivakit.interfaces.factory.Factory;
+import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageObject;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

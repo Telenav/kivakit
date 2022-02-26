@@ -20,8 +20,8 @@ package com.telenav.kivakit.test;
 
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.kernel.data.validation.ensure.Failure;
-import com.telenav.kivakit.kernel.interfaces.code.Loopable;
-import com.telenav.kivakit.kernel.interfaces.value.Source;
+import com.telenav.kivakit.interfaces.code.Loopable;
+import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.kivakit.kernel.language.objects.Objects;
 import com.telenav.kivakit.kernel.language.primitives.Booleans;
 import com.telenav.kivakit.kernel.language.time.Duration;

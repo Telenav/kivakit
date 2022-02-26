@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.strings.conversion;
 
+import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.kivakit.kernel.language.collections.set.Sets;
 import com.telenav.kivakit.kernel.language.reflection.Type;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
@@ -57,7 +58,7 @@ import static com.telenav.kivakit.kernel.language.strings.formatting.IndentingSt
  *
  * @author jonathanl (shibo)
  * @see AsIndentedString
- * @see AsString
+ * @see Stringable
  * @see IndentingStringBuilder
  * @see KivaKitIncludeProperty
  * @see Property
@@ -67,27 +68,27 @@ import static com.telenav.kivakit.kernel.language.strings.formatting.IndentingSt
 @UmlClassDiagram(diagram = DiagramLanguageString.class)
 public class AsStringIndenter
 {
-    private final StringFormat format;
-
     /** Property filter to use to determine which properties and fields to include */
     private final PropertyFilter filter;
+
+    private final Stringable.Format format;
 
     /** String indenter */
     private final IndentingStringBuilder indenter;
 
-    /** Objects we have visited */
-    private final Set<Object> visited = Sets.identitySet();
+    /** Leaf classes that we should not explore further */
+    private final Set<Class<?>> leaves = new HashSet<>();
 
     /** The maximum number of levels of recursion allowed */
     private Maximum levels = Maximum._8;
 
-    /** Leaf classes that we should not explore further */
-    private final Set<Class<?>> leaves = new HashSet<>();
+    /** Objects we have visited */
+    private final Set<Object> visited = Sets.identitySet();
 
     /**
      * By default, an indenter includes all properties and fields explicitly marked with {@link KivaKitIncludeProperty}
      */
-    public AsStringIndenter(StringFormat format)
+    public AsStringIndenter(Stringable.Format format)
     {
         this(format, 0);
     }
@@ -95,7 +96,7 @@ public class AsStringIndenter
     /**
      * By default, an indenter includes all properties and fields explicitly marked with {@link KivaKitIncludeProperty}
      */
-    public AsStringIndenter(StringFormat format, int level)
+    public AsStringIndenter(Stringable.Format format, int level)
     {
         this(format, level, PropertyFilter.kivakitProperties(INCLUDED_FIELDS_AND_METHODS, INCLUDED_FIELDS));
     }
@@ -103,12 +104,12 @@ public class AsStringIndenter
     /**
      * @param filter The filter to determine what properties to include
      */
-    public AsStringIndenter(StringFormat format, int level, PropertyFilter filter)
+    public AsStringIndenter(Stringable.Format format, int level, PropertyFilter filter)
     {
         this.format = format;
         this.filter = filter;
 
-        if (format == StringFormat.HTML)
+        if (format == Stringable.Format.HTML)
         {
             indenter = new IndentingStringBuilder(Style.HTML, Indentation.of(12));
         }

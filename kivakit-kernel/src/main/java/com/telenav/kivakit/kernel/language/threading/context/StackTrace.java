@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.threading.context;
 
-import com.telenav.kivakit.kernel.interfaces.numeric.Sized;
+import com.telenav.kivakit.interfaces.collection.Sized;
 import com.telenav.kivakit.kernel.language.strings.Align;
 import com.telenav.kivakit.kernel.language.strings.formatting.IndentingStringBuilder;
 import com.telenav.kivakit.kernel.language.types.Classes;
@@ -46,13 +46,13 @@ public class StackTrace implements Sized
      */
     public static class Frame
     {
-        private String type;
-
-        private String method;
+        private String file;
 
         private int line;
 
-        private String file;
+        private String method;
+
+        private String type;
 
         public Frame(StackTraceElement element)
         {
@@ -95,15 +95,15 @@ public class StackTrace implements Sized
         }
     }
 
-    private final String message;
-
-    private final Frame[] frames;
-
     private StackTrace cause;
 
     private String exceptionType;
 
+    private final Frame[] frames;
+
     private String fullExceptionType;
+
+    private final String message;
 
     public StackTrace()
     {

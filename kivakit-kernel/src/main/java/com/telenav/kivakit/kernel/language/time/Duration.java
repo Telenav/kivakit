@@ -18,14 +18,12 @@
 
 package com.telenav.kivakit.kernel.language.time;
 
+import com.telenav.kivakit.interfaces.numeric.Quantizable;
+import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
-import com.telenav.kivakit.kernel.data.conversion.string.primitive.FormattedDoubleConverter;
 import com.telenav.kivakit.kernel.data.conversion.string.primitive.LongConverter;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.interfaces.code.Callback;
-import com.telenav.kivakit.kernel.interfaces.numeric.Quantizable;
-import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
-import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.language.values.level.Percent;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.messages.status.Information;
@@ -33,19 +31,9 @@ import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageTime;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Condition;
 import java.util.regex.Pattern;
 
 import static com.telenav.kivakit.kernel.language.strings.Strings.isOneOf;
-import static com.telenav.kivakit.kernel.language.strings.conversion.StringFormat.PROGRAMMATIC_IDENTIFIER;
-import static com.telenav.kivakit.kernel.language.strings.conversion.StringFormat.USER_LABEL_IDENTIFIER;
-import static com.telenav.kivakit.kernel.language.strings.conversion.StringFormat.USER_MULTILINE_IDENTIFIER;
 import static java.util.regex.Pattern.CASE_INSENSITIVE;
 
 /**
@@ -92,7 +80,10 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
  * @see Time
  */
 @UmlClassDiagram(diagram = DiagramLanguageTime.class)
-public class Duration implements Comparable<Duration>, AsString, Quantizable
+public class Duration implements
+        Stringable,
+        Quantizable,
+        LengthOfTime
 {
     /** Constant for maximum duration. */
     public static final Duration MAXIMUM = milliseconds(Long.MAX_VALUE);
@@ -120,8 +111,6 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
 
     /** Constant for one week. */
     public static final Duration ONE_WEEK = days(7);
-
-    private static final double WEEKS_PER_YEAR = 52.177457;
 
     /** Constant for one year. */
     public static final Duration ONE_YEAR = years(1);
@@ -211,7 +200,7 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
 
     public static Duration years(double scalar)
     {
-        return weeks(WEEKS_PER_YEAR * scalar);
+        return weeks(LengthOfTime.WEEKS_PER_YEAR * scalar);
     }
 
     /**
@@ -386,7 +375,7 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
      */
     public Duration add(Duration that, Range range)
     {
-        var sum = asMilliseconds() + that.asMilliseconds();
+        var sum = milliseconds() + that.milliseconds();
         if (range == Range.POSITIVE_ONLY && sum < 0)
         {
             return NONE;
@@ -394,152 +383,9 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
         return new Duration(sum, range);
     }
 
-    public void after(Callback<Timer> onTimer)
-    {
-        var timer = new Timer();
-        timer.schedule(new TimerTask()
-        {
-            @Override
-            public void run()
-            {
-                onTimer.callback(timer);
-            }
-        }, asMilliseconds());
-    }
-
-    /**
-     * Retrieves the number of days of the current <code>Duration</code>.
-     *
-     * @return Number of days of the current <code>Duration</code>
-     */
-    public final double asDays()
-    {
-        return asHours() / 24.0;
-    }
-
     public Frequency asFrequency()
     {
         return Frequency.every(this);
-    }
-
-    /**
-     * Retrieves the number of hours of the current <code>Duration</code>.
-     *
-     * @return number of hours of the current <code>Duration</code>
-     */
-    public final double asHours()
-    {
-        return asMinutes() / 60.0;
-    }
-
-    public java.time.Duration asJavaDuration()
-    {
-        return java.time.Duration.ofMillis(asMilliseconds());
-    }
-
-    /**
-     * @return Number of milliseconds in this duration
-     */
-    public long asMilliseconds()
-    {
-        return milliseconds;
-    }
-
-    /**
-     * Retrieves the number of minutes of the current <code>Duration</code>.
-     *
-     * @return number of minutes of the current <code>Duration</code>
-     */
-    public final double asMinutes()
-    {
-        return asSeconds() / 60.0;
-    }
-
-    /**
-     * Retrieves the number of seconds of the current <code>Duration</code>.
-     *
-     * @return number of seconds of the current <code>Duration</code>
-     */
-    public final double asSeconds()
-    {
-        return asMilliseconds() / 1000.0;
-    }
-
-    @Override
-    public String asString(StringFormat format)
-    {
-        switch (format.identifier())
-        {
-            case USER_LABEL_IDENTIFIER:
-            {
-                String dateFormatPattern;
-                if (asHours() > 1.0)
-                {
-                    dateFormatPattern = "H:mm:ss";
-                }
-                else if (asMinutes() > 1.0)
-                {
-                    dateFormatPattern = "m:ss'm'";
-                }
-                else if (asSeconds() > 1.0)
-                {
-                    dateFormatPattern = "s's'";
-                }
-                else
-                {
-                    dateFormatPattern = "S'ms'";
-                }
-                SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatPattern);
-                dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
-                Date date = new Date(asMilliseconds());
-                return dateFormat.format(date);
-            }
-
-            case PROGRAMMATIC_IDENTIFIER:
-                return Long.toString(asMilliseconds());
-
-            case USER_MULTILINE_IDENTIFIER:
-            default:
-                return toString();
-        }
-    }
-
-    /**
-     * Retrieves the number of weeks of the current <code>Duration</code>.
-     *
-     * @return Number of weeks of the current <code>Duration</code>
-     */
-    public final double asWeeks()
-    {
-        return asDays() / 7;
-    }
-
-    /**
-     * Retrieves the number of years of the current <code>Duration</code>.
-     *
-     * @return Number of years of the current <code>Duration</code>
-     */
-    public final double asYears()
-    {
-        return asWeeks() / WEEKS_PER_YEAR;
-    }
-
-    public boolean await(Condition condition)
-    {
-        try
-        {
-            return condition.await(milliseconds, TimeUnit.MILLISECONDS);
-        }
-        catch (InterruptedException ignored)
-        {
-        }
-        return false;
-    }
-
-    @Override
-    public int compareTo(Duration that)
-    {
-        return Long.compare(asMilliseconds(), that.asMilliseconds());
     }
 
     public Duration difference(Duration that)
@@ -554,12 +400,12 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
         }
     }
 
-    public double divide(Duration that)
+    public double dividedBy(Duration that)
     {
         return (double) milliseconds / that.milliseconds;
     }
 
-    public Duration divide(int divisor)
+    public Duration dividedBy(int divisor)
     {
         return milliseconds(milliseconds / divisor);
     }
@@ -573,19 +419,6 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
             return milliseconds == that.milliseconds;
         }
         return false;
-    }
-
-    public void every(Callback<Timer> onTimer)
-    {
-        var timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask()
-        {
-            @Override
-            public void run()
-            {
-                onTimer.callback(timer);
-            }
-        }, 0L, asMilliseconds());
     }
 
     /**
@@ -612,41 +445,6 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
     public int hashCode()
     {
         return Long.toString(milliseconds).hashCode();
-    }
-
-    public boolean isApproximately(Duration that, Duration within)
-    {
-        return difference(that).isLessThanOrEqualTo(within);
-    }
-
-    public boolean isGreaterThan(Duration that)
-    {
-        return milliseconds > that.milliseconds;
-    }
-
-    public boolean isGreaterThanOrEqualTo(Duration that)
-    {
-        return milliseconds >= that.milliseconds;
-    }
-
-    public boolean isLessThan(Duration that)
-    {
-        return milliseconds < that.milliseconds;
-    }
-
-    public boolean isLessThanOrEqualTo(Duration that)
-    {
-        return milliseconds <= that.milliseconds;
-    }
-
-    public boolean isNone()
-    {
-        return equals(NONE);
-    }
-
-    public boolean isSome()
-    {
-        return !isNone();
     }
 
     public Duration longer(Percent percentage)
@@ -676,6 +474,12 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
         return isGreaterThan(that) ? this : that;
     }
 
+    @Override
+    public long milliseconds()
+    {
+        return milliseconds;
+    }
+
     public Duration minimum(Duration that)
     {
         return isLessThan(that) ? this : that;
@@ -701,7 +505,7 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
                 return NONE;
             }
         }
-        return new Duration(asMilliseconds() - that.asMilliseconds(), range);
+        return new Duration(milliseconds() - that.milliseconds(), range);
     }
 
     public Duration modulus(Duration that)
@@ -724,33 +528,9 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
         return milliseconds(milliseconds + that.milliseconds);
     }
 
-    @Override
-    public long quantum()
-    {
-        return milliseconds;
-    }
-
     public Duration shorter(Percent percentage)
     {
         return milliseconds(milliseconds * (1.0 - percentage.asUnitValue()));
-    }
-
-    /**
-     * Sleeps for the current <code>Duration</code>.
-     */
-    public final void sleep()
-    {
-        if (milliseconds > 0)
-        {
-            try
-            {
-                Thread.sleep(milliseconds);
-            }
-            catch (InterruptedException e)
-            {
-                // Ignored
-            }
-        }
     }
 
     public Duration times(double multiplier)
@@ -758,87 +538,8 @@ public class Duration implements Comparable<Duration>, AsString, Quantizable
         return milliseconds(milliseconds * multiplier);
     }
 
-    /**
-     * Retrieves the <code>String</code> representation of this <code>Duration</code> in days, hours, minutes, seconds
-     * or milliseconds, as appropriate.
-     *
-     * @return a <code>String</code> representation
-     */
-    @Override
     public String toString()
     {
-        if (asMilliseconds() >= 0)
-        {
-            if (asYears() >= 1.0)
-            {
-                return unitString(asYears(), "year");
-            }
-            if (asWeeks() >= 1.0)
-            {
-                return unitString(asWeeks(), "week");
-            }
-            if (asDays() >= 1.0)
-            {
-                return unitString(asDays(), "day");
-            }
-            if (asHours() >= 1.0)
-            {
-                return unitString(asHours(), "hour");
-            }
-            if (asMinutes() >= 1.0)
-            {
-                return unitString(asMinutes(), "minute");
-            }
-            if (asSeconds() >= 1.0)
-            {
-                return unitString(asSeconds(), "second");
-            }
-            return asMilliseconds() + " millisecond" + (milliseconds != 1 ? "s" : "");
-        }
-        else
-        {
-            return "N/A";
-        }
-    }
-
-    /**
-     * Wait for this duration on the given monitor. Note that a duration of NONE is considered to be a wait time of zero
-     * milliseconds, whereas the underlying Java {@link #wait(long)} considers zero milliseconds to be infinite wait
-     * time.
-     *
-     * @param monitor The monitor to wait on
-     * @return True if the thread waited, false if it was interrupted
-     */
-    @SuppressWarnings({ "UnusedReturnValue", "SynchronizationOnLocalVariableOrMethodParameter" })
-    public boolean wait(Object monitor)
-    {
-        synchronized (monitor)
-        {
-            try
-            {
-                var milliseconds = asMilliseconds();
-                if (milliseconds > 0)
-                {
-                    monitor.wait(milliseconds);
-                }
-                return true;
-            }
-            catch (InterruptedException e)
-            {
-                return false;
-            }
-        }
-    }
-
-    /**
-     * Converts a value to a unit-suffixed value, taking care of English singular/plural suffix.
-     *
-     * @param value a <code>double</code> value to format
-     * @param units the units to apply singular or plural suffix to
-     * @return a <code>String</code> representation
-     */
-    private String unitString(double value, String units)
-    {
-        return new FormattedDoubleConverter(Listener.none()).unconvert(value) + " " + units + (value > 1.0 ? "s" : "");
+        return asString();
     }
 }

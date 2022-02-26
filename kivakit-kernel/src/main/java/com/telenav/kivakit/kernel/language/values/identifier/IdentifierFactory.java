@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.values.identifier;
 
-import com.telenav.kivakit.kernel.interfaces.factory.Factory;
+import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageValue;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

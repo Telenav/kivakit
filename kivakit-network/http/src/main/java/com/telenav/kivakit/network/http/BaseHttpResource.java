@@ -69,16 +69,16 @@ public abstract class BaseHttpResource extends BaseNetworkResource
     @UmlAggregation
     private final NetworkAccessConstraints constraints;
 
+    private String contentEncoding;
+
     @UmlAggregation
     private final NetworkLocation networkLocation;
 
-    private String contentEncoding;
+    private HttpResponse response;
 
     private final VariableMap<String> responseHeader = new VariableMap<>();
 
     private int statusCode;
-
-    private HttpResponse response;
 
     /**
      * Constructs a resource accessible via HTTP
@@ -95,7 +95,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource
      */
     public String asString()
     {
-        return reader().string();
+        return reader().asString();
     }
 
     /**

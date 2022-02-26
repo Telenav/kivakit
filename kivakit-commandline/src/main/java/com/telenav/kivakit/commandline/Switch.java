@@ -19,7 +19,7 @@
 package com.telenav.kivakit.commandline;
 
 import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramSwitch;
-import com.telenav.kivakit.kernel.interfaces.naming.Named;
+import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.objects.Hash;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

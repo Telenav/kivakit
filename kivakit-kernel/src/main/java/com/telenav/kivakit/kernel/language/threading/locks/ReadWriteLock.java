@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.threading.locks;
 
-import com.telenav.kivakit.kernel.interfaces.value.Source;
+import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageThreadSynchronization;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

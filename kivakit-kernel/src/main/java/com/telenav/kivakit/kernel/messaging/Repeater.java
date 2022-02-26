@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.kernel.messaging;
 
-import com.telenav.kivakit.kernel.interfaces.messaging.Receiver;
-import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
+import com.telenav.kivakit.interfaces.messaging.Receiver;
+import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageRepeater;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

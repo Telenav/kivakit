@@ -18,10 +18,9 @@
 
 package com.telenav.kivakit.kernel.language.strings;
 
-import com.telenav.kivakit.kernel.interfaces.value.Source;
+import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
-import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -48,17 +47,17 @@ public class StringTo
 
     /**
      * Converts the given object to a debug string. If the object supports the AsString interface, the {@link
-     * AsString#asString(StringFormat)} method is called with {@link StringFormat#DEBUGGER}. If it does not, the
-     * toString() method is called.
+     * Stringable#asString(Stringable.Format)} method is called with {@link Stringable.Format#DEBUGGER}. If it does not,
+     * the toString() method is called.
      *
      * @param object The object
      * @return A debug string for the object
      */
     public static String debug(Object object)
     {
-        if (object instanceof AsString)
+        if (object instanceof Stringable)
         {
-            return ((AsString) object).asString(StringFormat.DEBUGGER);
+            return ((Stringable) object).asString(Stringable.Format.DEBUGGER);
         }
         return string(object);
     }

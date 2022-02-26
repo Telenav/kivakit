@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.kernel.messaging;
 
-import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
-import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
+import com.telenav.kivakit.interfaces.comparison.Filter;
+import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessaging;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

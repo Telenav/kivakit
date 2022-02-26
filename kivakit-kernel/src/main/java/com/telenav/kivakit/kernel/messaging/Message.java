@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.kernel.messaging;
 
-import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
-import com.telenav.kivakit.kernel.interfaces.naming.Named;
+import com.telenav.kivakit.interfaces.messaging.Transmittable;
+import com.telenav.kivakit.interfaces.naming.Named;
+import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.kivakit.kernel.language.reflection.Type;
 import com.telenav.kivakit.kernel.language.strings.Strings;
-import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.kernel.language.threading.context.CodeContext;
 import com.telenav.kivakit.kernel.language.threading.context.StackTrace;
 import com.telenav.kivakit.kernel.language.time.Frequency;
@@ -118,9 +118,9 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 @UmlClassDiagram(diagram = DiagramMessageBroadcaster.class)
 @UmlClassDiagram(diagram = DiagramMessaging.class)
 @UmlClassDiagram(diagram = DiagramMessageListener.class)
-@UmlExcludeSuperTypes({ AsString.class })
+@UmlExcludeSuperTypes({ Stringable.class })
 @UmlRelation(label = "formats with", diagram = DiagramMessaging.class, referent = MessageFormatter.class)
-public interface Message extends Transmittable, Triaged, AsString, Named
+public interface Message extends Transmittable, Triaged, Stringable, Named
 {
     /** Static instance of a (stateless) message formatter */
     MessageFormatter FORMATTER = new MessageFormatter();

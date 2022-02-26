@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.kernel.language.paths;
 
+import com.telenav.kivakit.interfaces.collection.Sized;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.interfaces.numeric.Sized;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.iteration.Streams;
 import com.telenav.kivakit.kernel.language.objects.Hash;
@@ -114,11 +114,11 @@ public abstract class Path<Element extends Comparable<Element>> implements
         Comparable<Path<Element>>,
         Sized
 {
-    /** The path root, if any */
-    private Element root;
-
     /** The list of elements */
     private ObjectList<Element> elements = new ObjectList<>();
+
+    /** The path root, if any */
+    private Element root;
 
     /**
      * Constructs a rooted path with the given list of elements

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.email;
 
-import com.telenav.kivakit.kernel.interfaces.io.Closeable;
+import com.telenav.kivakit.interfaces.io.Closeable;
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.network.email.project.lexakai.diagrams.DiagramEmail;
@@ -66,7 +66,7 @@ class EmailQueue implements Closeable
         {
             try
             {
-                return queue.offer(email, maximumWait.asMilliseconds(), TimeUnit.MILLISECONDS);
+                return queue.offer(email, maximumWait.milliseconds(), TimeUnit.MILLISECONDS);
             }
             catch (InterruptedException ignored)
             {

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.security.authentication;
 
-import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.security.project.lexakai.diagrams.DiagramSecurity;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

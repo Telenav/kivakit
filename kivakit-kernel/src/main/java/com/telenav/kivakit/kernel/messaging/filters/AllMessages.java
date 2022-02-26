@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.messaging.filters;
 
-import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
+import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.messaging.MessageFilter;
 
 /**

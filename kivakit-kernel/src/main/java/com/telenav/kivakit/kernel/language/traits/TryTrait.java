@@ -1,7 +1,7 @@
 package com.telenav.kivakit.kernel.language.traits;
 
-import com.telenav.kivakit.kernel.interfaces.code.UncheckedCode;
-import com.telenav.kivakit.kernel.interfaces.code.UncheckedVoidCode;
+import com.telenav.kivakit.kernel.language.code.UncheckedCode;
+import com.telenav.kivakit.kernel.language.code.UncheckedVoidCode;
 import com.telenav.kivakit.kernel.messaging.Broadcaster;
 
 /**

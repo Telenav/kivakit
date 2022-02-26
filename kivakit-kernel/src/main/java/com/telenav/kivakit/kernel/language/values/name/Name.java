@@ -19,18 +19,16 @@
 package com.telenav.kivakit.kernel.language.values.name;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.telenav.kivakit.kernel.interfaces.naming.Named;
-import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
-import com.telenav.kivakit.kernel.interfaces.string.StringSource;
-import com.telenav.kivakit.kernel.language.primitives.Ints;
+import com.telenav.kivakit.interfaces.naming.Named;
+import com.telenav.kivakit.interfaces.naming.NamedObject;
+import com.telenav.kivakit.interfaces.string.StringSource;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.kernel.language.strings.CaseFormat;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageValue;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * A name value. Also, the static method {@link Name#synthetic(Object)} produces a synthetic name for an object.
+ * A name value.
  *
  * @author jonathanl (shibo)
  */
@@ -38,11 +36,6 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @LexakaiJavadoc(complete = true)
 public class Name implements Named, StringSource
 {
-    public static boolean isSynthetic(String name)
-    {
-        return name != null && name.startsWith("synthetic:");
-    }
-
     /**
      * Extracts a name for the given object by trying the following in order:
      * <ul>
@@ -66,15 +59,9 @@ public class Name implements Named, StringSource
         }
         if (name == null)
         {
-            name = synthetic(object);
+            name = NamedObject.syntheticName(object);
         }
         return name;
-    }
-
-    public static String synthetic(Object object)
-    {
-        return "object:" + CaseFormat.camelCaseToHyphenated(object.getClass().getSimpleName())
-                + ":" + Ints.toHex(System.identityHashCode(object));
     }
 
     @JsonProperty
@@ -87,6 +74,12 @@ public class Name implements Named, StringSource
 
     protected Name()
     {
+    }
+
+    @Override
+    public String asString()
+    {
+        return name();
     }
 
     @Override
@@ -116,12 +109,6 @@ public class Name implements Named, StringSource
     public String name()
     {
         return name;
-    }
-
-    @Override
-    public String string()
-    {
-        return name();
     }
 
     @Override

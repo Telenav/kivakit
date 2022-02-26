@@ -27,6 +27,13 @@
             <artifactId>cactus-build-metadata</artifactId>
         </dependency>
 
+        <!-- KivaKit -->
+
+        <dependency>
+            <groupId>com.telenav.kivakit</groupId>
+            <artifactId>kivakit-interfaces</artifactId>
+        </dependency>
+
         <!-- Test -->
 
         <dependency>

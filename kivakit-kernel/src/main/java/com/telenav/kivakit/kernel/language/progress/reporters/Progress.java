@@ -114,25 +114,25 @@ public class Progress extends Multicaster implements ProgressReporter
 
     private long at;
 
-    private long steps = -1;
+    private boolean ended;
 
     private long every = 10;
 
-    private long start = Time.now().asMilliseconds();
+    private String itemName;
+
+    private int lastPercent;
 
     private Time lastReportedAt = Time.now();
 
+    private ProgressListener listener;
+
     private String phase;
 
-    private String itemName;
-
-    private boolean ended;
+    private long start = Time.now().asMilliseconds();
 
     private boolean started;
 
-    private ProgressListener listener;
-
-    private int lastPercent;
+    private long steps = -1;
 
     protected Progress(Progress that)
     {
@@ -383,7 +383,7 @@ public class Progress extends Multicaster implements ProgressReporter
             // we decrease the reporting interval (speeding up reporting)
             // and the elapsed time by 10
             every = Math.max(10, every / 10);
-            elapsed = elapsed.divide(10);
+            elapsed = elapsed.dividedBy(10);
         }
 
         every = Math.min(every, 1_000_000);

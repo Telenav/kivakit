@@ -19,10 +19,10 @@
 package com.telenav.kivakit.kernel.messaging;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.telenav.kivakit.kernel.interfaces.messaging.Receiver;
-import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
-import com.telenav.kivakit.kernel.interfaces.messaging.Transmitter;
-import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
+import com.telenav.kivakit.interfaces.messaging.Receiver;
+import com.telenav.kivakit.interfaces.messaging.Transmittable;
+import com.telenav.kivakit.interfaces.messaging.Transmitter;
+import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.language.threading.context.CodeContext;
 import com.telenav.kivakit.kernel.language.time.Frequency;
 import com.telenav.kivakit.kernel.messaging.messages.lifecycle.OperationHalted;

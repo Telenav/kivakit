@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.messaging.repeaters;
 
-import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
+import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.language.mixin.Mixin;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;

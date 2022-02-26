@@ -135,7 +135,7 @@ public abstract class BaseResourceSettingsStore extends BaseSettingsStore implem
         var gson = require(GsonFactory.class).gson();
 
         // load JSON from resource,
-        var json = resource.string();
+        var json = resource.asString();
 
         // and if the JSON contains the expected pattern,
         var typeMatcher = TYPE.matcher(json);

@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.kernel.logging.logs.text.formatters;
 
+import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.strings.AsciiArt;
 import com.telenav.kivakit.kernel.language.strings.Strings;
-import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.language.values.count.Maximum;
 import com.telenav.kivakit.kernel.logging.LogEntry;
@@ -59,11 +59,11 @@ public class ColumnarLogFormatter implements LogFormatter
 
     private static class Column
     {
+        private final Layout layout;
+
         private final int maximumWidth;
 
         private int width;
-
-        private final Layout layout;
 
         private Column(int minimumWidth, int maximumWidth, Layout layout)
         {
@@ -134,9 +134,9 @@ public class ColumnarLogFormatter implements LogFormatter
     @LexakaiJavadoc(complete = true)
     private static class LineOutput
     {
-        private int maximumRows = 1;
-
         private final List<Column> columns = new ArrayList<>();
+
+        private int maximumRows = 1;
 
         private final List<StringList> output = new ArrayList<>();
 
@@ -189,21 +189,21 @@ public class ColumnarLogFormatter implements LogFormatter
         }
     }
 
-    private final Column sequenceNumberColumn = new Column(6, 10, Layout.CLIP_RIGHT);
-
-    private final Column timeColumn = new Column(21, 21, Layout.CLIP_RIGHT);
+    private final Column contextColumn = new Column(30, 30, Layout.CLIP_RIGHT);
 
     private final Column durationColumn = new Column(6, 10, Layout.CLIP_RIGHT);
 
-    private final Column typeColumn = new Column(12, 20, Layout.CLIP_RIGHT);
+    private final Column messageColumn = new Column(150, 150, Layout.WRAP);
+
+    private final Column sequenceNumberColumn = new Column(6, 10, Layout.CLIP_RIGHT);
+
+    private final Time start = Time.now();
 
     private final Column threadColumn = new Column(16, 24, Layout.CLIP_LEFT);
 
-    private final Column contextColumn = new Column(30, 30, Layout.CLIP_RIGHT);
+    private final Column timeColumn = new Column(21, 21, Layout.CLIP_RIGHT);
 
-    private final Column messageColumn = new Column(150, 150, Layout.WRAP);
-
-    private final Time start = Time.now();
+    private final Column typeColumn = new Column(12, 20, Layout.CLIP_RIGHT);
 
     @Override
     public String format(LogEntry entry, MessageFormatter.Format format)
@@ -216,7 +216,7 @@ public class ColumnarLogFormatter implements LogFormatter
         line.add(sequenceNumberColumn, String.valueOf(entry.sequenceNumber()));
         if (DURATION)
         {
-            line.add(durationColumn, start.elapsedSince().asString(StringFormat.USER_LABEL));
+            line.add(durationColumn, start.elapsedSince().asString(Stringable.Format.USER_LABEL));
         }
         else
         {

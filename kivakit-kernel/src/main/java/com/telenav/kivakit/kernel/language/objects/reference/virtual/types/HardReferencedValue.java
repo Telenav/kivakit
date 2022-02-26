@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.objects.reference.virtual.types;
 
-import com.telenav.kivakit.kernel.interfaces.value.Source;
+import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageObjectReference;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;

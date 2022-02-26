@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.kernel.language.threading.batcher;
 
-import com.telenav.kivakit.kernel.interfaces.code.UncheckedCode;
-import com.telenav.kivakit.kernel.interfaces.collection.Addable;
+import com.telenav.kivakit.interfaces.collection.Addable;
+import com.telenav.kivakit.kernel.language.code.UncheckedCode;
 import com.telenav.kivakit.kernel.language.threading.Threads;
 import com.telenav.kivakit.kernel.language.threading.conditions.StateMachine;
 import com.telenav.kivakit.kernel.language.time.Time;
@@ -205,32 +205,32 @@ public class Batcher<Element> extends BaseRepeater
         }
     }
 
-    /** Name of this batcher */
-    private String name = "Batcher";
-
-    /** Size of batches */
-    private int batchSize = 4096;
-
-    /** Size of batch queue */
-    private int queueSize = 8;
-
-    /** The blocking queue of batches to process */
-    private ArrayBlockingQueue<Batch> queue;
-
-    /** The worker threads to process batches */
-    private ExecutorService executor;
-
-    /** The code to process batches */
-    private Consumer<Batch> consumer;
-
-    /** State machine to track the execution phases of this batcher */
-    private StateMachine<State> state = new StateMachine<>(State.READY);
-
     /** Set of batch adders for clients */
     private final Set<BatchAdder> adders = new HashSet<>();
 
     /** Predicate to determine if a batch is full (in addition to the batch size) */
     private Predicate<Batch> batchFullPredicate = batch -> false;
+
+    /** Size of batches */
+    private int batchSize = 4096;
+
+    /** The code to process batches */
+    private Consumer<Batch> consumer;
+
+    /** The worker threads to process batches */
+    private ExecutorService executor;
+
+    /** Name of this batcher */
+    private String name = "Batcher";
+
+    /** The blocking queue of batches to process */
+    private ArrayBlockingQueue<Batch> queue;
+
+    /** Size of batch queue */
+    private int queueSize = 8;
+
+    /** State machine to track the execution phases of this batcher */
+    private StateMachine<State> state = new StateMachine<>(State.READY);
 
     protected Batcher()
     {
@@ -387,6 +387,6 @@ public class Batcher<Element> extends BaseRepeater
      */
     private Batch nextBatch()
     {
-        return UncheckedCode.of(() -> queue.take()).or(Batch::new);
+        return UncheckedCode.of(() -> queue.take()).orDefault(Batch::new);
     }
 }

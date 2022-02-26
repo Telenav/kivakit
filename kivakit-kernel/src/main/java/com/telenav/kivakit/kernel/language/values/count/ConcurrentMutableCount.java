@@ -19,7 +19,6 @@
 package com.telenav.kivakit.kernel.language.values.count;
 
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.interfaces.numeric.Countable;
 import com.telenav.kivakit.kernel.language.values.level.Percent;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
@@ -154,6 +153,12 @@ public class ConcurrentMutableCount implements Countable, Listener
     public void set(long count)
     {
         this.count.set(count);
+    }
+
+    @Override
+    public int size()
+    {
+        return asInt();
     }
 
     @Override

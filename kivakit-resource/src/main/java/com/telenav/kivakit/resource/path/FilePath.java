@@ -20,6 +20,7 @@ package com.telenav.kivakit.resource.path;
 
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.paths.Path;
@@ -388,7 +389,7 @@ public class FilePath extends ResourcePath
     /**
      * @return True if this path matches the given matcher
      */
-    public boolean matches(com.telenav.kivakit.kernel.interfaces.comparison.Matcher<String> matcher)
+    public boolean matches(Matcher<String> matcher)
     {
         return matcher.matches(asString());
     }

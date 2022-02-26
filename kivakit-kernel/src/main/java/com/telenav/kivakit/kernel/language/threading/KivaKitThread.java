@@ -18,12 +18,13 @@
 
 package com.telenav.kivakit.kernel.language.threading;
 
+import com.telenav.kivakit.interfaces.code.Code;
+import com.telenav.kivakit.interfaces.lifecycle.Pausable;
+import com.telenav.kivakit.interfaces.lifecycle.Startable;
+import com.telenav.kivakit.interfaces.lifecycle.Stoppable;
+import com.telenav.kivakit.interfaces.naming.Named;
+import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.interfaces.code.Code;
-import com.telenav.kivakit.kernel.interfaces.lifecycle.Pausable;
-import com.telenav.kivakit.kernel.interfaces.lifecycle.Startable;
-import com.telenav.kivakit.kernel.interfaces.lifecycle.Stoppable;
-import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.threading.conditions.StateMachine;
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.kernel.language.time.Frequency;
@@ -213,11 +214,8 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
         EXITED
     }
 
-    /** The thread */
-    private transient final Thread thread;
-
-    /** The current state of this thread */
-    private transient final StateMachine<State> state = listenTo(new StateMachine<>(CREATED, state -> trace(name() + ": " + state.name())));
+    /** The code to run, if any. If this value is null, then {@link #onRun()} is used instead */
+    private transient Runnable code;
 
     /** Any initial delay before the thread starts running */
     private Duration initialDelay = Duration.NONE;
@@ -227,8 +225,11 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
     /** The time at which this thread was started */
     private Time startedAt;
 
-    /** The code to run, if any. If this value is null, then {@link #onRun()} is used instead */
-    private transient Runnable code;
+    /** The thread */
+    private transient final Thread thread;
+
+    /** The current state of this thread */
+    private transient final StateMachine<State> state = listenTo(new StateMachine<>(CREATED, state -> trace(name() + ": " + state.name())));
 
     /**
      * Creates a daemon thread with the given name prefixed by "Kiva-" so it is easy to distinguish from other threads.
@@ -426,7 +427,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
      * Attempt to stop this thread, waiting for the maximum specified time for it to exit
      */
     @Override
-    public void stop(Duration maximumWait)
+    public void stop(LengthOfTime maximumWait)
     {
         whileLocked(() ->
         {
@@ -451,7 +452,7 @@ public class KivaKitThread extends BaseRepeater implements Startable, Runnable, 
     /**
      * Wait for this thread to achieve the given states
      */
-    public void waitFor(State state, Duration maximumWait)
+    public void waitFor(State state, LengthOfTime maximumWait)
     {
         trace("Wait for $", state);
         state().waitFor(state, maximumWait);

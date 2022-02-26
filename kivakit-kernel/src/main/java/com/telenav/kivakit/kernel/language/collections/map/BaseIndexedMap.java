@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.kernel.language.collections.map;
 
-import com.telenav.kivakit.kernel.interfaces.collection.Indexable;
-import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
+import com.telenav.kivakit.interfaces.collection.Indexable;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.values.count.Maximum;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageCollectionsMap;

@@ -18,23 +18,23 @@
 
 package com.telenav.kivakit.kernel.language.collections.list;
 
+import com.telenav.kivakit.interfaces.collection.Addable;
+import com.telenav.kivakit.interfaces.collection.Appendable;
+import com.telenav.kivakit.interfaces.collection.Indexable;
+import com.telenav.kivakit.interfaces.collection.Prependable;
+import com.telenav.kivakit.interfaces.collection.Sequence;
+import com.telenav.kivakit.interfaces.collection.Sized;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
+import com.telenav.kivakit.interfaces.numeric.Quantizable;
+import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.value.Instantiable;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.interfaces.collection.Addable;
-import com.telenav.kivakit.kernel.interfaces.collection.Appendable;
-import com.telenav.kivakit.kernel.interfaces.collection.Indexable;
-import com.telenav.kivakit.kernel.interfaces.collection.Prependable;
-import com.telenav.kivakit.kernel.interfaces.collection.Sequence;
-import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
-import com.telenav.kivakit.kernel.interfaces.numeric.Quantizable;
-import com.telenav.kivakit.kernel.interfaces.numeric.Sized;
-import com.telenav.kivakit.kernel.interfaces.value.NewInstance;
 import com.telenav.kivakit.kernel.language.collections.CompressibleCollection;
 import com.telenav.kivakit.kernel.language.iteration.BaseIterator;
 import com.telenav.kivakit.kernel.language.strings.AsciiArt;
 import com.telenav.kivakit.kernel.language.strings.StringTo;
-import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
-import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.language.values.count.Count;
+import com.telenav.kivakit.kernel.language.values.count.Countable;
 import com.telenav.kivakit.kernel.language.values.count.Maximum;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
@@ -108,19 +108,19 @@ import java.util.stream.Collectors;
  * </ul>
  *
  * @author jonathanl (shibo)
- * @see NewInstance
+ * @see Instantiable
  * @see List
  * @see Indexable
  * @see Addable
  * @see java.lang.Appendable
  * @see CompressibleCollection
  * @see RandomAccess
- * @see AsString
+ * @see Stringable
  */
 @UmlClassDiagram(diagram = DiagramLanguageCollectionsList.class, excludeAllSuperTypes = true)
 @UmlClassDiagram(diagram = DiagramExampleBaseList.class)
 public abstract class BaseList<Element> implements
-        NewInstance<BaseList<Element>>,
+        Instantiable<BaseList<Element>>,
         List<Element>,
         Indexable<Element>,
         Addable<Element>,
@@ -128,7 +128,8 @@ public abstract class BaseList<Element> implements
         Prependable<Element>,
         CompressibleCollection,
         RandomAccess,
-        AsString
+        Countable,
+        Stringable
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
@@ -361,12 +362,13 @@ public abstract class BaseList<Element> implements
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("SwitchStatementWithTooFewBranches")
     @Override
-    public String asString(StringFormat format)
+    public String asString(Format format)
     {
-        switch (format.identifier())
+        switch (format)
         {
-            case StringFormat.DEBUGGER_IDENTIFIER:
+            case DEBUGGER:
                 return join(separator(), StringTo::debug);
 
             default:
@@ -592,7 +594,7 @@ public abstract class BaseList<Element> implements
     @Override
     public int hashCode()
     {
-        return asHashCode();
+        return list.hashCode();
     }
 
     /**
@@ -1016,7 +1018,7 @@ public abstract class BaseList<Element> implements
      */
     @SuppressWarnings({ "SuspiciousToArrayCall", "SuspiciousSystemArraycopy" })
     @Override
-    public <E> E[] toArray(E[] array)
+    public <E> E[] toArray(E @NotNull [] array)
     {
         if (compressionMethod() == Method.FREEZE)
         {

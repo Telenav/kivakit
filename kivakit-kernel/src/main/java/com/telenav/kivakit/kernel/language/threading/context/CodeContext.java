@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.threading.context;
 
-import com.telenav.kivakit.kernel.interfaces.value.Source;
+import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.kernel.language.reflection.Method;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;

@@ -18,13 +18,13 @@
 
 package com.telenav.kivakit.kernel.language.collections.set;
 
-import com.telenav.kivakit.kernel.interfaces.collection.Addable;
-import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
-import com.telenav.kivakit.kernel.interfaces.numeric.Sized;
-import com.telenav.kivakit.kernel.interfaces.value.NewInstance;
+import com.telenav.kivakit.interfaces.collection.Addable;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
+import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.interfaces.value.Instantiable;
 import com.telenav.kivakit.kernel.language.iteration.Matching;
-import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.kernel.language.values.count.Count;
+import com.telenav.kivakit.kernel.language.values.count.Countable;
 import com.telenav.kivakit.kernel.language.values.count.Maximum;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
@@ -37,18 +37,18 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * A set with a maximum size. Adds the methods {@link #matchingAsIterable(Matcher)} and {@link #first()} to the usual {@link Set}
- * operations.
+ * A set with a maximum size. Adds the methods {@link #matchingAsIterable(Matcher)} and {@link #first()} to the usual
+ * {@link Set} operations.
  *
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
 public abstract class BaseSet<Element> implements
         Set<Element>,
-        NewInstance<BaseSet<Element>>,
-        Sized,
+        Instantiable<BaseSet<Element>>,
+        Countable,
         Addable<Element>,
-        AsString
+        Stringable
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
@@ -200,6 +200,13 @@ public abstract class BaseSet<Element> implements
         return set.iterator();
     }
 
+    public BaseSet<Element> matching(Matcher<Element> matcher)
+    {
+        var matches = newInstance();
+        matches.addAllMatching(this, matcher);
+        return matches;
+    }
+
     public Iterable<Element> matchingAsIterable(Matcher<Element> matcher)
     {
         return new Matching<>(matcher)
@@ -210,13 +217,6 @@ public abstract class BaseSet<Element> implements
                 return set.iterator();
             }
         };
-    }
-
-    public BaseSet<Element> matching(Matcher<Element> matcher)
-    {
-        var matches = newInstance();
-        matches.addAllMatching(this, matcher);
-        return matches;
     }
 
     public Count maximumSize()

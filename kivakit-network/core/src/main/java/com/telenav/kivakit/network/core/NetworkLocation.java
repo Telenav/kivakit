@@ -18,13 +18,12 @@
 
 package com.telenav.kivakit.network.core;
 
+import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.language.objects.Hash;
 import com.telenav.kivakit.kernel.language.objects.Objects;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
-import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
@@ -51,7 +50,7 @@ import java.nio.charset.StandardCharsets;
  */
 @UmlClassDiagram(diagram = DiagramNetworkLocation.class)
 @LexakaiJavadoc(complete = true)
-public class NetworkLocation implements AsString, Comparable<NetworkLocation>
+public class NetworkLocation implements Stringable, Comparable<NetworkLocation>
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
@@ -89,13 +88,13 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
     }
 
     @UmlAggregation
-    private final Port port;
+    private NetworkAccessConstraints constraints;
 
     @UmlAggregation
     private NetworkPath networkPath;
 
     @UmlAggregation
-    private NetworkAccessConstraints constraints;
+    private final Port port;
 
     @UmlAggregation(label = "optional")
     private QueryParameters queryParameters;
@@ -119,7 +118,7 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
     }
 
     @Override
-    public String asString(StringFormat format)
+    public String asString(Format format)
     {
         return new ObjectFormatter(this).toString();
     }

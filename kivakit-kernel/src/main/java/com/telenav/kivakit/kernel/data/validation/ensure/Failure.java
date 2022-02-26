@@ -1,7 +1,7 @@
 package com.telenav.kivakit.kernel.data.validation.ensure;
 
 import com.telenav.kivakit.kernel.data.validation.ensure.reporters.ThrowingFailureReporter;
-import com.telenav.kivakit.kernel.interfaces.factory.MapFactory;
+import com.telenav.kivakit.interfaces.factory.MapFactory;
 import com.telenav.kivakit.kernel.language.reflection.Type;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;

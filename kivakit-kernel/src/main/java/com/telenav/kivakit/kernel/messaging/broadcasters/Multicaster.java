@@ -19,16 +19,16 @@
 package com.telenav.kivakit.kernel.messaging.broadcasters;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.telenav.kivakit.kernel.interfaces.code.Code;
-import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
-import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
+import com.telenav.kivakit.interfaces.code.Code;
+import com.telenav.kivakit.interfaces.comparison.Filter;
+import com.telenav.kivakit.interfaces.messaging.Transmittable;
+import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.mixin.Mixins;
 import com.telenav.kivakit.kernel.language.strings.formatting.IndentingStringBuilder;
 import com.telenav.kivakit.kernel.language.threading.context.CodeContext;
 import com.telenav.kivakit.kernel.language.threading.locks.ReadWriteLock;
 import com.telenav.kivakit.kernel.language.types.Classes;
-import com.telenav.kivakit.kernel.language.values.name.Name;
 import com.telenav.kivakit.kernel.language.vm.JavaVirtualMachine;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.loggers.ConsoleLogger;
@@ -98,13 +98,13 @@ public class Multicaster implements Broadcaster
     @UmlAggregation
     private final transient List<AudienceMember> audience = new ArrayList<>();
 
-    private final transient String objectName;
+    private final transient Class<?> debugClassContext;
 
     private transient CodeContext debugCodeContext;
 
-    private final transient Class<?> debugClassContext;
-
     private transient ReadWriteLock lock;
+
+    private final transient String objectName;
 
     private transient Broadcaster source;
 
@@ -119,7 +119,7 @@ public class Multicaster implements Broadcaster
 
     public Multicaster(Class<?> debugClassContext)
     {
-        objectName = Name.synthetic(this);
+        objectName = NamedObject.syntheticName(this);
         this.debugClassContext = debugClassContext;
         debugCodeContext(new CodeContext(debugClassContext));
     }
@@ -133,7 +133,7 @@ public class Multicaster implements Broadcaster
 
     protected Multicaster()
     {
-        objectName = Name.synthetic(this);
+        objectName = NamedObject.syntheticName(this);
         debugClassContext = getClass();
         debugCodeContext(new CodeContext(getClass()));
     }

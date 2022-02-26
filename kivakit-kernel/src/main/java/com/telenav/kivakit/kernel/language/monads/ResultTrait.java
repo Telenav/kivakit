@@ -1,8 +1,6 @@
 package com.telenav.kivakit.kernel.language.monads;
 
-import com.telenav.kivakit.kernel.interfaces.code.Code;
-import com.telenav.kivakit.kernel.language.monads.Maybe;
-import com.telenav.kivakit.kernel.language.monads.Result;
+import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;

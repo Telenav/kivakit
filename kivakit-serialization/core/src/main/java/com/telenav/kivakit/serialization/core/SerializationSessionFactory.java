@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.serialization.core;
 
-import com.telenav.kivakit.kernel.interfaces.factory.Factory;
+import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.kivakit.kernel.messaging.Listener;
 
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;

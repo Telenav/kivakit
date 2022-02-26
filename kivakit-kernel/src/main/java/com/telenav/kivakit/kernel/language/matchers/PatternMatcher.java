@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.kernel.language.matchers;
 
-import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
-import com.telenav.kivakit.kernel.interfaces.naming.Named;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
+import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageMatchers;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

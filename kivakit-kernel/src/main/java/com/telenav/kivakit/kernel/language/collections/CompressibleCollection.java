@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.kernel.language.collections;
 
-import com.telenav.kivakit.kernel.interfaces.messaging.Receiver;
-import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
+import com.telenav.kivakit.interfaces.messaging.Receiver;
+import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.language.reflection.Type;
 import com.telenav.kivakit.kernel.language.values.count.Bytes;
 import com.telenav.kivakit.kernel.language.vm.JavaVirtualMachine;

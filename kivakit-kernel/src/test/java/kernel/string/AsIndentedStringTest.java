@@ -21,7 +21,6 @@ package kernel.string;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.language.strings.conversion.AsIndentedString;
 import com.telenav.kivakit.kernel.language.strings.conversion.AsStringIndenter;
-import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.language.values.count.Maximum;
 import org.junit.Test;
 
@@ -51,13 +50,13 @@ public class AsIndentedStringTest implements AsIndentedString
     static class Foo implements AsIndentedString
     {
         @KivaKitIncludeProperty
+        private final Bar bar = new Bar();
+
+        @KivaKitIncludeProperty
         private final int y = 1;
 
         @KivaKitIncludeProperty
         private final int z = 3;
-
-        @KivaKitIncludeProperty
-        private final Bar bar = new Bar();
 
         @Override
         public String toString()
@@ -67,10 +66,10 @@ public class AsIndentedStringTest implements AsIndentedString
     }
 
     @KivaKitIncludeProperty
-    private final int x = 9;
+    private final Foo foo = new Foo();
 
     @KivaKitIncludeProperty
-    private final Foo foo = new Foo();
+    private final int x = 9;
 
     @Test
     public void test()
@@ -87,10 +86,10 @@ public class AsIndentedStringTest implements AsIndentedString
     @Test
     public void testPrune()
     {
-        var indenter = new AsStringIndenter(StringFormat.TEXT)
+        var indenter = new AsStringIndenter(Format.TEXT)
                 .levels(Maximum._4)
                 .pruneAt(Bar.class);
-        asString(StringFormat.TEXT, indenter);
+        asString(Format.TEXT, indenter);
         ensureEqual("foo:\n" +
                 "  bar: Bar\n" +
                 "  y: 1\n" +

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.objects;
 
-import com.telenav.kivakit.kernel.interfaces.factory.MapFactory;
+import com.telenav.kivakit.interfaces.factory.MapFactory;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageObject;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

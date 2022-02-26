@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.resources.packaged;
 
-import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.language.modules.ModuleResource;
 import com.telenav.kivakit.kernel.language.modules.Modules;
 import com.telenav.kivakit.kernel.language.objects.Hash;

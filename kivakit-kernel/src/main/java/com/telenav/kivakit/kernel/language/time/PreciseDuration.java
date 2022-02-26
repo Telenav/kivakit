@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.time;
 
+import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.kernel.data.conversion.string.primitive.FormattedDoubleConverter;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
@@ -27,7 +28,7 @@ import java.lang.management.ThreadMXBean;
 
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.unsupported;
 
-public class PreciseDuration
+public class PreciseDuration implements LengthOfTime
 {
     private static final double WEEKS_PER_YEAR = 52.177457;
 
@@ -103,7 +104,7 @@ public class PreciseDuration
 
     public double asMilliseconds()
     {
-        return nanoseconds / 1000000.0;
+        return nanoseconds / 1_000_000.0;
     }
 
     /**
@@ -161,6 +162,12 @@ public class PreciseDuration
         return nanoseconds < that.nanoseconds;
     }
 
+    @Override
+    public long milliseconds()
+    {
+        return (long) asMilliseconds();
+    }
+
     public PreciseDuration minus(PreciseDuration that)
     {
         return new PreciseDuration(nanoseconds - that.nanoseconds);
@@ -174,46 +181,7 @@ public class PreciseDuration
     @Override
     public String toString()
     {
-        if (asMilliseconds() >= 0)
-        {
-            if (asYears() >= 1.0)
-            {
-                return unitString(asYears(), "year");
-            }
-            if (asWeeks() >= 1.0)
-            {
-                return unitString(asWeeks(), "week");
-            }
-            if (asDays() >= 1.0)
-            {
-                return unitString(asDays(), "day");
-            }
-            if (asHours() >= 1.0)
-            {
-                return unitString(asHours(), "hour");
-            }
-            if (asMinutes() >= 1.0)
-            {
-                return unitString(asMinutes(), "minute");
-            }
-            if (asSeconds() >= 1.0)
-            {
-                return unitString(asSeconds(), "second");
-            }
-            if (asMilliseconds() >= 1.0)
-            {
-                return unitString(asMilliseconds(), "millisecond");
-            }
-            if (asMicroseconds() >= 1.0)
-            {
-                return unitString(asMicroseconds(), "microsecond");
-            }
-            return unitString(asNanoseconds(), "nanoseconds");
-        }
-        else
-        {
-            return "N/A";
-        }
+        return asDuration().asString();
     }
 
     /**

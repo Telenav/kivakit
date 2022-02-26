@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.progress;
 
-import com.telenav.kivakit.kernel.interfaces.lifecycle.Resettable;
+import com.telenav.kivakit.interfaces.lifecycle.Resettable;
 import com.telenav.kivakit.kernel.language.progress.reporters.Progress;
 import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageProgress;

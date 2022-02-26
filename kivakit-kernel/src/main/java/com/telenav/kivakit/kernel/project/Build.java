@@ -19,7 +19,7 @@
 package com.telenav.kivakit.kernel.project;
 
 import com.telenav.cactus.build.metadata.BuildMetadata;
-import com.telenav.kivakit.kernel.interfaces.naming.Named;
+import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.language.primitives.Ints;
 import com.telenav.kivakit.kernel.language.time.LocalTime;

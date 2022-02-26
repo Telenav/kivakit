@@ -18,9 +18,8 @@
 
 package com.telenav.kivakit.kernel.messaging.messages;
 
-import com.telenav.kivakit.kernel.interfaces.naming.Named;
+import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.map.string.NameMap;
-import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.language.threading.context.CodeContext;
 import com.telenav.kivakit.kernel.language.threading.context.StackTrace;
 import com.telenav.kivakit.kernel.language.threading.status.ReentrancyTracker;
@@ -93,16 +92,16 @@ public abstract class OperationMessage implements Named, Message
         }
     }
 
+    public static Message of(Class<? extends Message> type)
+    {
+        return parse(Listener.throwing(), type.getSimpleName());
+    }
+
     public static Message parse(Listener listener, String name)
     {
         initialize();
 
         return listener.problemIfNull(messages.get(name), "Invalid message name: $", name);
-    }
-
-    public static Message of(Class<? extends Message> type)
-    {
-        return parse(Listener.throwing(), type.getSimpleName());
     }
 
     private transient Object[] arguments;
@@ -149,10 +148,11 @@ public abstract class OperationMessage implements Named, Message
         return new MessageException(this);
     }
 
+    @SuppressWarnings("SwitchStatementWithTooFewBranches")
     @Override
-    public String asString(StringFormat format)
+    public String asString(Format format)
     {
-        switch (format.identifier())
+        switch (format)
         {
             default:
                 return formatted(WITH_EXCEPTION);

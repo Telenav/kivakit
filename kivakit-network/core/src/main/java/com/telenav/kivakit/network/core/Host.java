@@ -21,13 +21,12 @@ package com.telenav.kivakit.network.core;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.telenav.kivakit.commandline.SwitchParser;
+import com.telenav.kivakit.interfaces.naming.Named;
+import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
-import com.telenav.kivakit.kernel.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.objects.reference.ExpiringReference;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
-import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.kernel.logging.Logger;
@@ -96,7 +95,7 @@ import static com.telenav.kivakit.network.core.Protocol.UNKNOWN;
  */
 @UmlClassDiagram(diagram = DiagramPort.class)
 @LexakaiJavadoc(complete = true)
-public class Host implements Named, AsString, Comparable<Host>
+public class Host implements Named, Stringable, Comparable<Host>
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
@@ -176,6 +175,9 @@ public class Host implements Named, AsString, Comparable<Host>
         }
     }
 
+    @JsonIgnore
+    private transient InetAddress address;
+
     @JsonProperty
     private String description;
 
@@ -184,9 +186,6 @@ public class Host implements Named, AsString, Comparable<Host>
 
     @JsonProperty
     private String name;
-
-    @JsonIgnore
-    private transient InetAddress address;
 
     @JsonIgnore
     private byte[] rawAddress;
@@ -232,7 +231,7 @@ public class Host implements Named, AsString, Comparable<Host>
 
     @Override
     @UmlExcludeMember
-    public String asString(StringFormat format)
+    public String asString(Format format)
     {
         return new ObjectFormatter(this).toString();
     }

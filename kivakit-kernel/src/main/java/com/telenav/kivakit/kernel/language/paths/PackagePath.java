@@ -19,7 +19,7 @@
 package com.telenav.kivakit.kernel.language.paths;
 
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.modules.ModuleResource;
 import com.telenav.kivakit.kernel.language.modules.Modules;

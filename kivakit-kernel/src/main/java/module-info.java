@@ -20,8 +20,9 @@ open module kivakit.kernel
 
     // Annotations
     requires transitive lexakai.annotations;
-    requires transitive org.jetbrains.annotations;
     requires transitive com.fasterxml.jackson.annotation;
+
+    requires transitive kivakit.interfaces;
 
     // Module exports
     exports com.telenav.kivakit.kernel.data.comparison;
@@ -35,21 +36,6 @@ open module kivakit.kernel
     exports com.telenav.kivakit.kernel.data.validation.ensure;
     exports com.telenav.kivakit.kernel.data.validation.ensure.reporters;
     exports com.telenav.kivakit.kernel.data.validation;
-    exports com.telenav.kivakit.kernel.interfaces.code;
-    exports com.telenav.kivakit.kernel.interfaces.collection;
-    exports com.telenav.kivakit.kernel.interfaces.comparison;
-    exports com.telenav.kivakit.kernel.interfaces.factory;
-    exports com.telenav.kivakit.kernel.interfaces.function;
-    exports com.telenav.kivakit.kernel.interfaces.io;
-    exports com.telenav.kivakit.kernel.interfaces.lifecycle;
-    exports com.telenav.kivakit.kernel.interfaces.loading;
-    exports com.telenav.kivakit.kernel.interfaces.messaging;
-    exports com.telenav.kivakit.kernel.interfaces.model;
-    exports com.telenav.kivakit.kernel.interfaces.naming;
-    exports com.telenav.kivakit.kernel.interfaces.numeric;
-    exports com.telenav.kivakit.kernel.interfaces.string;
-    exports com.telenav.kivakit.kernel.interfaces.time;
-    exports com.telenav.kivakit.kernel.interfaces.value;
     exports com.telenav.kivakit.kernel.language.bits;
     exports com.telenav.kivakit.kernel.language.collections.list;
     exports com.telenav.kivakit.kernel.language.collections.map;
@@ -117,7 +103,6 @@ open module kivakit.kernel
     exports com.telenav.kivakit.kernel.logging;
     exports com.telenav.kivakit.kernel.messaging.alarms;
     exports com.telenav.kivakit.kernel.messaging.broadcasters;
-    exports com.telenav.kivakit.kernel.messaging.filters.operators;
     exports com.telenav.kivakit.kernel.messaging.filters;
     exports com.telenav.kivakit.kernel.messaging.listeners;
     exports com.telenav.kivakit.kernel.messaging.messages.lifecycle;
@@ -129,4 +114,5 @@ open module kivakit.kernel
     exports com.telenav.kivakit.kernel.project.lexakai.diagrams;
     exports com.telenav.kivakit.kernel.project;
     exports com.telenav.kivakit.kernel;
+    exports com.telenav.kivakit.kernel.language.code;
 }

@@ -18,7 +18,8 @@
 
 package com.telenav.kivakit.kernel.language.threading.conditions;
 
-import com.telenav.kivakit.kernel.interfaces.code.Code;
+import com.telenav.kivakit.interfaces.code.Code;
+import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.kernel.language.threading.locks.Lock;
 import com.telenav.kivakit.kernel.language.threading.status.WakeState;
 import com.telenav.kivakit.kernel.language.time.Duration;
@@ -70,27 +71,27 @@ public final class StateWatcher<State>
     @LexakaiJavadoc(complete = true)
     private class Waiter
     {
-        /** The predicate that must be satisfied */
-        final Predicate<State> predicate;
-
-        /** The condition variable to wait on and signal */
-        final Condition condition;
-
         private Waiter(Predicate<State> predicate, Condition condition)
         {
             this.predicate = predicate;
             this.condition = condition;
         }
+
+        /** The predicate that must be satisfied */
+        final Predicate<State> predicate;
+
+        /** The condition variable to wait on and signal */
+        final Condition condition;
     }
+
+    /** The most recently reported state */
+    private State current;
 
     /** The re-entrant lock */
     private final Lock lock = new Lock();
 
     /** The clients waiting for a predicate to be satisfied */
     private final List<Waiter> waiters = new ArrayList<>();
-
-    /** The most recently reported state */
-    private State current;
 
     public StateWatcher(State current)
     {
@@ -123,7 +124,7 @@ public final class StateWatcher<State>
     /**
      * Wait for the given boolean predicate to be true forever
      *
-     * @see #waitFor(Predicate, Duration)
+     * @see #waitFor(Predicate, LengthOfTime)
      */
     public WakeState waitFor(Predicate<State> predicate)
     {
@@ -137,7 +138,7 @@ public final class StateWatcher<State>
      * satisfied.
      */
     public WakeState waitFor(Predicate<State> predicate,
-                             Duration maximumWaitTime)
+                             LengthOfTime maximumWaitTime)
     {
         return whileLocked(() ->
         {
@@ -155,7 +156,7 @@ public final class StateWatcher<State>
             try
             {
                 // and go to sleep until our condition is satisfied
-                if (waiter.condition.await(maximumWaitTime.asMilliseconds(), TimeUnit.MILLISECONDS))
+                if (waiter.condition.await(maximumWaitTime.milliseconds(), TimeUnit.MILLISECONDS))
                 {
                     return TIMED_OUT;
                 }
@@ -177,7 +178,7 @@ public final class StateWatcher<State>
      * @param desired The desired state
      * @param maximumWaitTime The maximum amount of time to wait
      */
-    public WakeState waitFor(State desired, Duration maximumWaitTime)
+    public WakeState waitFor(State desired, LengthOfTime maximumWaitTime)
     {
         return waitFor(desired::equals, maximumWaitTime);
     }

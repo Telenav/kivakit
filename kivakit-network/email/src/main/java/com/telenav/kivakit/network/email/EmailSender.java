@@ -18,10 +18,11 @@
 
 package com.telenav.kivakit.network.email;
 
-import com.telenav.kivakit.kernel.interfaces.io.Closeable;
-import com.telenav.kivakit.kernel.interfaces.io.Flushable;
-import com.telenav.kivakit.kernel.interfaces.lifecycle.Startable;
-import com.telenav.kivakit.kernel.interfaces.lifecycle.Stoppable;
+import com.telenav.kivakit.interfaces.io.Closeable;
+import com.telenav.kivakit.interfaces.io.Flushable;
+import com.telenav.kivakit.interfaces.lifecycle.Startable;
+import com.telenav.kivakit.interfaces.lifecycle.Stoppable;
+import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.kernel.language.threading.RepeatingKivaKitThread;
 import com.telenav.kivakit.kernel.language.threading.latches.CompletionLatch;
 import com.telenav.kivakit.kernel.language.time.Duration;
@@ -87,22 +88,22 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
 
     private volatile boolean closed;
 
-    private final CompletionLatch queueEmpty = new CompletionLatch();
+    private final Configuration configuration;
+
+    private Maximum maximumRetries = Maximum.maximum(16);
 
     @UmlAggregation
     private final EmailQueue queue = new EmailQueue();
 
-    private Maximum maximumRetries = Maximum.maximum(16);
-
-    private Duration retryPeriod = Duration.seconds(30);
-
-    private boolean sendingOn = true;
-
-    private volatile boolean running;
+    private final CompletionLatch queueEmpty = new CompletionLatch();
 
     private final RateCalculator rate = new RateCalculator(Duration.ONE_MINUTE);
 
-    private final Configuration configuration;
+    private Duration retryPeriod = Duration.seconds(30);
+
+    private volatile boolean running;
+
+    private boolean sendingOn = true;
 
     private final RepeatingKivaKitThread thread = new RepeatingKivaKitThread(this, Classes.simpleName(EmailSender.class), Frequency.CONTINUOUSLY)
     {
@@ -178,7 +179,7 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
     }
 
     @Override
-    public void flush(Duration maximumWaitTime)
+    public void flush(LengthOfTime maximumWaitTime)
     {
         trace("Flushing queue within ${debug}", maximumWaitTime);
         queueEmpty.waitForCompletion();
@@ -227,7 +228,7 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
     }
 
     @Override
-    public void stop(Duration maximumWaitTime)
+    public void stop(LengthOfTime maximumWaitTime)
     {
         // Don't accept any more entries
         close();

@@ -19,7 +19,7 @@
 package com.telenav.kivakit.network.http;
 
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
-import com.telenav.kivakit.kernel.interfaces.model.Initializer;
+import com.telenav.kivakit.interfaces.model.Initializer;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;

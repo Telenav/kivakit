@@ -18,7 +18,8 @@
 
 package com.telenav.kivakit.kernel.language.threading.conditions;
 
-import com.telenav.kivakit.kernel.interfaces.code.Code;
+import com.telenav.kivakit.interfaces.code.Code;
+import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageThreadSynchronization;
@@ -85,11 +86,11 @@ public final class StateMachine<State> extends BaseRepeater
     /** The current state of the receiver */
     private State at;
 
-    /** Watches the state */
-    private final StateWatcher<State> watcher;
-
     /** Listener to call when state transitions occur */
     private final Consumer<State> receiver;
+
+    /** Watches the state */
+    private final StateWatcher<State> watcher;
 
     public StateMachine(State initial)
     {
@@ -294,7 +295,7 @@ public final class StateMachine<State> extends BaseRepeater
      * @param maximumWait The maximum amount of time to wait
      * @return True if the state was achieved, false if the operation timed out
      */
-    public boolean waitFor(State state, Duration maximumWait)
+    public boolean waitFor(State state, LengthOfTime maximumWait)
     {
         return waitFor(ignored -> is(state), maximumWait);
     }
@@ -316,7 +317,7 @@ public final class StateMachine<State> extends BaseRepeater
      * @param maximumWait The maximum amount of time to wait
      * @return True if the state was achieved, false if the operation timed out
      */
-    public boolean waitFor(Predicate<State> predicate, Duration maximumWait)
+    public boolean waitFor(Predicate<State> predicate, LengthOfTime maximumWait)
     {
         return waitFor(predicate, maximumWait, () ->
         {
@@ -332,7 +333,7 @@ public final class StateMachine<State> extends BaseRepeater
      * might interrupt another thread, for example.
      * @return True if the state was achieved, false if the operation timed out
      */
-    public boolean waitFor(Predicate<State> predicate, Duration maximumWait, Runnable beforeWaiting)
+    public boolean waitFor(Predicate<State> predicate, LengthOfTime maximumWait, Runnable beforeWaiting)
     {
         return whileLocked(() ->
         {
@@ -360,7 +361,7 @@ public final class StateMachine<State> extends BaseRepeater
      * @param maximumWait The maximum amount of time to wait
      * @return True if the desired state was achieved, false if the operation timed out
      */
-    public boolean waitForNot(State state, Duration maximumWait)
+    public boolean waitForNot(State state, LengthOfTime maximumWait)
     {
         return waitFor(ignored -> !is(state), maximumWait);
     }

@@ -22,12 +22,12 @@ import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
+import com.telenav.kivakit.interfaces.string.StringSource;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
-import com.telenav.kivakit.kernel.interfaces.io.ByteSized;
-import com.telenav.kivakit.kernel.interfaces.string.StringSource;
-import com.telenav.kivakit.kernel.interfaces.time.ChangedAt;
-import com.telenav.kivakit.kernel.interfaces.time.Modifiable;
 import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
+import com.telenav.kivakit.kernel.language.time.ChangedAt;
+import com.telenav.kivakit.kernel.language.time.Modifiable;
+import com.telenav.kivakit.kernel.language.values.count.ByteSized;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.resource.compression.Codec;
@@ -203,6 +203,12 @@ public interface Resource extends
         }
     }
 
+    @Override
+    default String asString()
+    {
+        return reader().asString();
+    }
+
     /**
      * @return Any codec for compression / decompression
      */
@@ -356,11 +362,5 @@ public interface Resource extends
             // and rename the temporary file to the destination file.
             temporary.renameTo(destination);
         }
-    }
-
-    @Override
-    default String string()
-    {
-        return reader().string();
     }
 }

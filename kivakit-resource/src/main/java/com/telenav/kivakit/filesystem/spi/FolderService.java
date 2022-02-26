@@ -19,7 +19,7 @@
 package com.telenav.kivakit.filesystem.spi;
 
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.path.FileName;
 import com.telenav.kivakit.resource.path.FilePath;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemService;

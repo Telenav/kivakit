@@ -19,9 +19,9 @@
 package com.telenav.kivakit.kernel.language.collections.map.count;
 
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.interfaces.numeric.Countable;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.values.count.Count;
+import com.telenav.kivakit.kernel.language.values.count.Countable;
 import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -47,9 +47,9 @@ public class ConcurrentCountMap<Key>
 
     private static final Pattern KEY_VALUE = Pattern.compile("key\\w+\\s*=\\s*count\\w+");
 
-    private final AtomicLong total = new AtomicLong();
-
     private final ConcurrentHashMap<Key, AtomicLong> counts = new ConcurrentHashMap<>();
+
+    private final AtomicLong total = new AtomicLong();
 
     public ConcurrentCountMap<Key> add(Key key, Count value)
     {

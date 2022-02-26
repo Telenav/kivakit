@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.logging.filters;
 
-import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
+import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.kernel.language.paths.PackagePath;
 import com.telenav.kivakit.kernel.logging.LogEntry;
 

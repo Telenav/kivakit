@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.values.count;
 
-import com.telenav.kivakit.kernel.interfaces.collection.Contains;
+import com.telenav.kivakit.interfaces.collection.Contains;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageValue;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

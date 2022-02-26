@@ -20,7 +20,7 @@ package com.telenav.kivakit.kernel.messaging;
 
 import com.telenav.kivakit.kernel.KivaKit;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
+import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.language.patterns.Pattern;
 import com.telenav.kivakit.kernel.language.patterns.SimplifiedPattern;
 import com.telenav.kivakit.kernel.language.strings.AsciiArt;

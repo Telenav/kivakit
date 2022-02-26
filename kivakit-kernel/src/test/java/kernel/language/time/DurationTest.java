@@ -90,8 +90,8 @@ public class DurationTest implements RepeaterMixin
     @Test
     public void testDivide()
     {
-        ensureEqual(Duration.hours(1), Duration.ONE_DAY.divide(24));
-        ensureEqual(24.0, Duration.ONE_DAY.divide(Duration.ONE_HOUR));
+        ensureEqual(Duration.hours(1), Duration.ONE_DAY.dividedBy(24));
+        ensureEqual(24.0, Duration.ONE_DAY.dividedBy(Duration.ONE_HOUR));
     }
 
     @Test
@@ -134,6 +134,14 @@ public class DurationTest implements RepeaterMixin
         ensure(Duration.NONE.isNone());
         ensureFalse(Duration.seconds(0.1).isNone());
         ensureFalse(Duration.milliseconds(1).isNone());
+    }
+
+    @Test
+    public void testIsSome()
+    {
+        ensureFalse(Duration.NONE.isSome());
+        ensure(Duration.seconds(0.1).isSome());
+        ensure(Duration.milliseconds(1).isSome());
     }
 
     @Test

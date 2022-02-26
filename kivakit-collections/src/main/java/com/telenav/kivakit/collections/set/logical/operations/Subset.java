@@ -20,7 +20,7 @@ package com.telenav.kivakit.collections.set.logical.operations;
 
 import com.telenav.kivakit.collections.project.lexakai.diagrams.DiagramSet;
 import com.telenav.kivakit.collections.set.logical.LogicalSet;
-import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.language.iteration.BaseIterator;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

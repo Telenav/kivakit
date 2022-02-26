@@ -1,9 +1,9 @@
 package com.telenav.kivakit.kernel.language.monads;
 
-import com.telenav.kivakit.kernel.interfaces.code.UncheckedVoidCode;
-import com.telenav.kivakit.kernel.interfaces.collection.Presence;
-import com.telenav.kivakit.kernel.interfaces.function.BooleanFunction;
-import com.telenav.kivakit.kernel.interfaces.value.Source;
+import com.telenav.kivakit.interfaces.function.BooleanFunction;
+import com.telenav.kivakit.interfaces.monads.Presence;
+import com.telenav.kivakit.interfaces.value.Source;
+import com.telenav.kivakit.kernel.language.code.UncheckedVoidCode;
 import com.telenav.kivakit.kernel.language.traits.TryTrait;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;

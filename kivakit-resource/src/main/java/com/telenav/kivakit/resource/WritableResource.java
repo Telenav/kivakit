@@ -18,7 +18,6 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.kernel.interfaces.io.Writable;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResource;
 import com.telenav.kivakit.resource.writing.ResourceWriter;

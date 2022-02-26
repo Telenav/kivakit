@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.kernel.language.collections.map.count;
 
-import com.telenav.kivakit.kernel.interfaces.numeric.Countable;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.values.count.Count;
+import com.telenav.kivakit.kernel.language.values.count.Countable;
 import com.telenav.kivakit.kernel.language.values.count.MutableCount;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageCollectionsMap;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -40,9 +40,9 @@ import java.util.Map;
 @UmlClassDiagram(diagram = DiagramLanguageCollectionsMap.class)
 public class CountMap<T>
 {
-    private long total;
-
     private final Map<T, MutableCount> counts;
+
+    private long total;
 
     public CountMap()
     {

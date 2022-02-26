@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.kernel.logging;
 
-import com.telenav.kivakit.kernel.interfaces.comparison.Filtered;
-import com.telenav.kivakit.kernel.interfaces.io.Closeable;
-import com.telenav.kivakit.kernel.interfaces.io.Flushable;
-import com.telenav.kivakit.kernel.interfaces.naming.Named;
+import com.telenav.kivakit.interfaces.comparison.Filtered;
+import com.telenav.kivakit.interfaces.io.Closeable;
+import com.telenav.kivakit.interfaces.io.Flushable;
+import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.logging.logs.text.ConsoleLog;
 import com.telenav.kivakit.kernel.messaging.messages.Severity;

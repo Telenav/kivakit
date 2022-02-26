@@ -67,22 +67,22 @@ public class Frequency
 
     public static Frequency cyclesPerDay(int times)
     {
-        return every(Duration.ONE_DAY.divide(times));
+        return every(Duration.ONE_DAY.dividedBy(times));
     }
 
     public static Frequency cyclesPerHour(int times)
     {
-        return every(Duration.ONE_HOUR.divide(times));
+        return every(Duration.ONE_HOUR.dividedBy(times));
     }
 
     public static Frequency cyclesPerMinute(int times)
     {
-        return every(Duration.ONE_MINUTE.divide(times));
+        return every(Duration.ONE_MINUTE.dividedBy(times));
     }
 
     public static Frequency cyclesPerSecond(int times)
     {
-        return every(Duration.ONE_SECOND.divide(times));
+        return every(Duration.ONE_SECOND.dividedBy(times));
     }
 
     public static Frequency every(Duration duration)
@@ -136,7 +136,7 @@ public class Frequency
             {
                 return Duration.NONE;
             }
-            
+
             // The time since this frequency started
             var sinceStart = start.elapsedSince();
 

@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.resource.reading;
 
+import com.telenav.kivakit.interfaces.string.StringSource;
 import com.telenav.kivakit.kernel.data.conversion.Converter;
-import com.telenav.kivakit.kernel.interfaces.string.StringSource;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.io.IO;
 import com.telenav.kivakit.kernel.language.io.StringReader;
@@ -48,7 +48,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
 
 /**
  * Resource reader provides a variety of convenient ways of reading a resource, including as an array of bytes ({@link
- * #bytes()}), as a single string ({@link #string()}), as lines ({@link #linesAsStringList()}), and as objects with
+ * #bytes()}), as a single string ({@link #asString()}), as lines ({@link #linesAsStringList()}), and as objects with
  * ({@link #objectList(Converter, ProgressReporter)}, {@link #objectSet(Converter, ProgressReporter)}, and {@link
  * #objects(Converter, ProgressReporter)}). To read the resource as text, a {@link java.io.Reader} can be retrieved with
  * {@link #textReader()}.
@@ -61,13 +61,13 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
 @LexakaiJavadoc(complete = true)
 public class ResourceReader implements StringSource
 {
-    private final Resource resource;
-
     private final Charset charset;
 
-    private String value;
-
     private final ProgressReporter reporter;
+
+    private final Resource resource;
+
+    private String value;
 
     public ResourceReader(Resource resource, ProgressReporter reporter, Charset charset)
     {
@@ -75,6 +75,15 @@ public class ResourceReader implements StringSource
         assert resource != null;
         this.resource = resource;
         this.charset = charset;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String asString()
+    {
+        return string(ProgressReporter.NULL);
     }
 
     /**
@@ -159,15 +168,6 @@ public class ResourceReader implements StringSource
                 return null;
             }
         });
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String string()
-    {
-        return string(ProgressReporter.NULL);
     }
 
     public String string(ProgressReporter reporter)

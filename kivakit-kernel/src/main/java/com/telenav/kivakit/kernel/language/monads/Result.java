@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.kernel.language.monads;
 
-import com.telenav.kivakit.kernel.interfaces.code.Code;
-import com.telenav.kivakit.kernel.interfaces.code.UncheckedVoidCode;
-import com.telenav.kivakit.kernel.interfaces.function.BooleanFunction;
-import com.telenav.kivakit.kernel.interfaces.value.Source;
+import com.telenav.kivakit.interfaces.code.Code;
+import com.telenav.kivakit.interfaces.function.BooleanFunction;
+import com.telenav.kivakit.interfaces.value.Source;
+import com.telenav.kivakit.kernel.language.code.UncheckedVoidCode;
 import com.telenav.kivakit.kernel.messaging.Broadcaster;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.listeners.MessageList;

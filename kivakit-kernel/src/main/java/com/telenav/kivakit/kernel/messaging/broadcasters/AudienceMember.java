@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.kernel.messaging.broadcasters;
 
-import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
-import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
+import com.telenav.kivakit.interfaces.comparison.Filter;
+import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageRepeater;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;

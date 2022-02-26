@@ -453,7 +453,10 @@ public abstract class BaseValidator implements Validator
 
     private <T extends Message> T addIfNotNull(T message)
     {
-        issues().add(message);
+        if (message != null)
+        {
+            issues().add(message);
+        }
         return message;
     }
 

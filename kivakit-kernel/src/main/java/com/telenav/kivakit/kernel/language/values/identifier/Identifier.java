@@ -18,9 +18,10 @@
 
 package com.telenav.kivakit.kernel.language.values.identifier;
 
-import com.telenav.kivakit.kernel.interfaces.collection.LongKeyed;
-import com.telenav.kivakit.kernel.interfaces.model.Identifiable;
-import com.telenav.kivakit.kernel.interfaces.numeric.Quantizable;
+import com.telenav.kivakit.interfaces.collection.LongKeyed;
+import com.telenav.kivakit.interfaces.model.Identifiable;
+import com.telenav.kivakit.interfaces.numeric.Quantizable;
+import com.telenav.kivakit.kernel.data.conversion.QuantizableConverter;
 import com.telenav.kivakit.kernel.language.primitives.Longs;
 import com.telenav.kivakit.kernel.language.values.count.BitCount;
 import com.telenav.kivakit.kernel.messaging.Listener;
@@ -46,7 +47,7 @@ public class Identifier implements Identifiable, LongKeyed, Comparable<Identifie
      * @author jonathanl (shibo)
      */
     @LexakaiJavadoc(complete = true)
-    public static class Converter extends Quantizable.Converter<Identifier>
+    public static class Converter extends QuantizableConverter<Identifier>
     {
         public Converter(Listener listener)
         {

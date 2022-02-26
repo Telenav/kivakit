@@ -18,9 +18,8 @@
 
 package com.telenav.kivakit.kernel.language.values.version;
 
+import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.KivaKit;
-import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
-import com.telenav.kivakit.kernel.language.values.name.Name;
 
 /**
  * An object of a particular version. Used in kryo serialization. For example FieldArchive and ZipArchive both have
@@ -31,9 +30,9 @@ import com.telenav.kivakit.kernel.language.values.name.Name;
  */
 public class VersionedObject<T> implements NamedObject, Versioned
 {
-    private final Version version;
-
     private final T object;
+
+    private final Version version;
 
     public VersionedObject(Version version, T object)
     {
@@ -57,7 +56,7 @@ public class VersionedObject<T> implements NamedObject, Versioned
     @Override
     public String objectName()
     {
-        return Name.synthetic(object);
+        return NamedObject.syntheticName(object);
     }
 
     @Override

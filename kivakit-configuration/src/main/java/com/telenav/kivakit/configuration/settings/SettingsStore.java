@@ -1,7 +1,7 @@
 package com.telenav.kivakit.configuration.settings;
 
 import com.telenav.kivakit.configuration.lookup.RegistryTrait;
-import com.telenav.kivakit.kernel.interfaces.naming.Named;
+import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 

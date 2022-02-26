@@ -45,7 +45,7 @@ public class InitializationLatch
     {
         try
         {
-            return countdown.await(duration.asMilliseconds(), TimeUnit.MILLISECONDS);
+            return countdown.await(duration.milliseconds(), TimeUnit.MILLISECONDS);
         }
         catch (InterruptedException ignored)
         {

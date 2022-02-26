@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.threading;
 
-import com.telenav.kivakit.kernel.interfaces.lifecycle.Pausable;
+import com.telenav.kivakit.interfaces.lifecycle.Pausable;
 import com.telenav.kivakit.kernel.language.time.Frequency;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageThread;

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
-import com.telenav.kivakit.kernel.interfaces.code.UncheckedCode;
+import com.telenav.kivakit.kernel.language.code.UncheckedCode;
 import com.telenav.kivakit.kernel.language.io.IO;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
@@ -52,11 +52,11 @@ import static java.nio.file.StandardOpenOption.WRITE;
 @LexakaiJavadoc(complete = true)
 public class ZipEntry extends BaseWritableResource implements AutoCloseable
 {
-    private final Path path;
-
     private InputStream in;
 
     private OutputStream out;
+
+    private final Path path;
 
     public ZipEntry(FileSystem filesystem, Path path)
     {

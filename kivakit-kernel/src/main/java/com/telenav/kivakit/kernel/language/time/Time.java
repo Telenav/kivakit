@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.kernel.language.time;
 
+import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageTime;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -237,6 +237,21 @@ public class Time implements Quantizable
         return elapsed.minus(elapsedSince());
     }
 
+    public LocalTime localTime()
+    {
+        return new LocalTime(LocalTime.localTimeZone(), this);
+    }
+
+    public LocalTime localTime(String zone)
+    {
+        return new LocalTime(ZoneId.of(zone), this);
+    }
+
+    public LocalTime localTime(ZoneId zone)
+    {
+        return new LocalTime(zone, this);
+    }
+
     public Time maximum(Time that)
     {
         return isAfter(that) ? this : that;
@@ -255,7 +270,7 @@ public class Time implements Quantizable
      */
     public Time minus(Duration duration)
     {
-        return milliseconds(milliseconds - duration.asMilliseconds());
+        return milliseconds(milliseconds - duration.milliseconds());
     }
 
     /**
@@ -271,7 +286,7 @@ public class Time implements Quantizable
 
     public Time nearest(Duration unit)
     {
-        return plus(unit.divide(2)).roundDown(unit);
+        return plus(unit.dividedBy(2)).roundDown(unit);
     }
 
     /**
@@ -282,7 +297,7 @@ public class Time implements Quantizable
      */
     public Time plus(Duration duration)
     {
-        return milliseconds(milliseconds + duration.asMilliseconds());
+        return milliseconds(milliseconds + duration.milliseconds());
     }
 
     @Override
@@ -293,27 +308,12 @@ public class Time implements Quantizable
 
     public Time roundDown(Duration unit)
     {
-        return milliseconds(milliseconds / unit.asMilliseconds() * unit.asMilliseconds());
+        return milliseconds(milliseconds / unit.milliseconds() * unit.milliseconds());
     }
 
     public Time roundUp(Duration unit)
     {
         return roundDown(unit).plus(unit);
-    }
-
-    public LocalTime localTime()
-    {
-        return new LocalTime(LocalTime.localTimeZone(), this);
-    }
-
-    public LocalTime localTime(String zone)
-    {
-        return new LocalTime(ZoneId.of(zone), this);
-    }
-
-    public LocalTime localTime(ZoneId zone)
-    {
-        return new LocalTime(zone, this);
     }
 
     @Override

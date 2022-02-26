@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.strings.formatting;
 
+import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.kivakit.kernel.KernelLimits;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
@@ -27,8 +28,6 @@ import com.telenav.kivakit.kernel.language.reflection.access.Getter;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitExcludeProperty;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.language.reflection.property.PropertyFilter;
-import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
-import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -142,27 +141,26 @@ public class ObjectFormatter
         var annotation = getter.annotation(KivaKitFormatProperty.class);
         if (annotation != null)
         {
-            var formatName = annotation.format();
-            switch (formatName)
+            var format = annotation.format();
+            switch (format)
             {
-                case "toString":
+                case TO_STRING:
                     return value.toString();
 
                 default:
                 {
                     var listener = (object instanceof Listener) ? (Listener) object : Listener.console();
-                    var format = StringFormat.parse(listener, formatName.toUpperCase());
                     Ensure.ensureNotNull(format, "@KivaKitFormatProperty(\"" + format + "\") is not a known format");
-                    return ((AsString) value).asString(format);
+                    return ((Stringable) value).asString(format);
                 }
             }
         }
 
         // If the value supports debug string generation
-        if (value instanceof AsString)
+        if (value instanceof Stringable)
         {
             // get the debug string
-            value = ((AsString) value).asString();
+            value = ((Stringable) value).asString();
         }
         else if (value instanceof Enum<?>)
         {

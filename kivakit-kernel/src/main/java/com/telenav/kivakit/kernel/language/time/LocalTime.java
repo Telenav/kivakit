@@ -279,7 +279,7 @@ public class LocalTime extends Time
     @Override
     public Duration minus(Time time)
     {
-        var localTime = milliseconds(timeZone(), super.minus(time).asMilliseconds());
+        var localTime = milliseconds(timeZone(), super.minus(time).milliseconds());
         return Duration.milliseconds(localTime.asMilliseconds());
     }
 

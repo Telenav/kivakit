@@ -20,7 +20,7 @@ package com.telenav.kivakit.kernel.language.reflection.property;
 
 import com.telenav.kivakit.kernel.data.conversion.Converter;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.interfaces.naming.Named;
+import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.objects.Hash;
 import com.telenav.kivakit.kernel.language.reflection.Field;
 import com.telenav.kivakit.kernel.language.reflection.Member;

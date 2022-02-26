@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.kernel.language.values.count;
 
-import com.telenav.kivakit.kernel.interfaces.numeric.Maximizable;
-import com.telenav.kivakit.kernel.interfaces.numeric.Minimizable;
-import com.telenav.kivakit.kernel.interfaces.numeric.Ranged;
+import com.telenav.kivakit.interfaces.numeric.Maximizable;
+import com.telenav.kivakit.interfaces.numeric.Minimizable;
+import com.telenav.kivakit.interfaces.numeric.Ranged;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageValue;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

@@ -23,11 +23,11 @@ import com.esotericsoftware.kryo.Registration;
 import com.esotericsoftware.kryo.Serializer;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
-import com.telenav.kivakit.kernel.interfaces.naming.Named;
+import com.telenav.kivakit.interfaces.naming.Named;
+import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.collections.map.ObjectMap;
 import com.telenav.kivakit.kernel.language.io.IO;
-import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.kernel.language.values.version.Version;
 import com.telenav.kivakit.kernel.language.values.version.VersionedObject;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
@@ -88,20 +88,20 @@ public final class KryoSerializationSession extends BaseRepeater implements Name
         return kryoToSession.get(kryo);
     }
 
-    /** Serialization object */
-    private final Kryo kryo = new DebugKryo(this);
-
-    /** The version of data being read or written */
-    private Version version;
-
     /** Kryo input when reading */
     private Input input;
+
+    /** Serialization object */
+    private final Kryo kryo = new DebugKryo(this);
 
     /** Kryo output when writing */
     private Output output;
 
     /** The Kryo types that have been registered for this session */
     private final KryoTypes types;
+
+    /** The version of data being read or written */
+    private Version version;
 
     /**
      * @param types The kryo types to register for this session
@@ -121,7 +121,7 @@ public final class KryoSerializationSession extends BaseRepeater implements Name
     }
 
     @Override
-    public void flush(Duration maximumWaitTime)
+    public void flush(LengthOfTime maximumWaitTime)
     {
         if (isWriting())
         {

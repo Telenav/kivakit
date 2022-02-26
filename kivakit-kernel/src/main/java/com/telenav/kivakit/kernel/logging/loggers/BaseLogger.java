@@ -18,12 +18,12 @@
 
 package com.telenav.kivakit.kernel.logging.loggers;
 
+import com.telenav.kivakit.interfaces.comparison.Filter;
+import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.kernel.KernelLimits;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
 import com.telenav.kivakit.kernel.language.collections.map.ConcurrentObjectMap;
 import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
-import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.kernel.language.time.Time;
 import com.telenav.kivakit.kernel.logging.Log;
 import com.telenav.kivakit.kernel.logging.LogEntry;
@@ -88,12 +88,12 @@ public abstract class BaseLogger implements Logger
 
     @Override
     @UmlExcludeMember
-    public void flush(Duration maximumWaitTime)
+    public void flush(LengthOfTime maximumWaitTime)
     {
         var logs = logs();
         for (var log : logs)
         {
-            log.flush(maximumWaitTime.divide(logs.size()));
+            log.flush(maximumWaitTime.dividedBy(logs.size()));
         }
     }
 

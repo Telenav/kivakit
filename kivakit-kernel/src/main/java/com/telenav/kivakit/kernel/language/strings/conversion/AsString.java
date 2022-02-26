@@ -18,10 +18,8 @@
 
 package com.telenav.kivakit.kernel.language.strings.conversion;
 
+import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
-import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramExampleBaseList;
-import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramInterfaceString;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 /**
@@ -29,38 +27,28 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
  * when the {@link Object#toString()} method is already being used or when other kinds of strings are needed for
  * specific purposes.
  * <p>
- * The {@link StringFormat} enum defines different kinds of string representations which can be retrieved with {@link
- * #asString(StringFormat)}. The object can override this method to provide multiple string representations for specific
- * purposes. The object <i>must</i> override {@link #asString()} to provide a default representation for any purpose.
+ * The {@link Format} enum defines different kinds of string representations which can be retrieved with {@link
+ * #asString(Format)}. The object can override this method to provide multiple string representations for specific
+ * purposes.
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramInterfaceString.class)
-@UmlRelation(label = "formats with", referent = StringFormat.class)
-@UmlClassDiagram(diagram = DiagramExampleBaseList.class)
-public interface AsString
+@UmlRelation(label = "formats with", referent = Stringable.Format.class)
+public interface AsString extends Stringable
 {
     /**
      * @return A string representation of this object that is suitable for the given purpose
      */
-    default String asString(StringFormat format)
+    default String asString(Format format)
     {
-        switch (format.identifier())
+        switch (format)
         {
-            case StringFormat.DEBUGGER_IDENTIFIER:
-            case StringFormat.LOG_IDENTIFIER:
+            case DEBUGGER:
+            case LOG:
                 return new ObjectFormatter(this).toString();
 
             default:
                 return toString();
         }
-    }
-
-    /**
-     * @return A string representation of this object that is suitable for any purpose
-     */
-    default String asString()
-    {
-        return asString(StringFormat.TEXT);
     }
 }

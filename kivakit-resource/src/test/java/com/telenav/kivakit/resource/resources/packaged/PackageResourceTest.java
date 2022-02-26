@@ -46,8 +46,8 @@ public class PackageResourceTest extends UnitTest
     @Test
     public void testRead()
     {
-        ensureEqual(a().reader().string().trim(), "123");
-        ensureEqual(b().reader().string().trim(), "1234");
+        ensureEqual(a().reader().asString().trim(), "123");
+        ensureEqual(b().reader().asString().trim(), "1234");
     }
 
     @Test

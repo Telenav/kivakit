@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.messaging.filters;
 
-import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
+import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.kernel.language.types.Classes;
 
 public class SubClassesOf<T> implements Filter<T>

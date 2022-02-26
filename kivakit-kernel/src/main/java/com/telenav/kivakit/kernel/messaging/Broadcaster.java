@@ -18,9 +18,8 @@
 
 package com.telenav.kivakit.kernel.messaging;
 
-import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
-import com.telenav.kivakit.kernel.interfaces.messaging.Transmittable;
-import com.telenav.kivakit.kernel.messaging.filters.operators.All;
+import com.telenav.kivakit.interfaces.comparison.Filter;
+import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageBroadcaster;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageRepeater;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -78,7 +77,7 @@ public interface Broadcaster extends Transceiver
      */
     default void addListener(Listener listener)
     {
-        addListener(listener, new All<>());
+        addListener(listener, Filter.all());
     }
 
     /**

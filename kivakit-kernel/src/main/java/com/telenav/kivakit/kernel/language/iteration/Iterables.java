@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.iteration;
 
-import com.telenav.kivakit.kernel.interfaces.factory.Factory;
+import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageIteration;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

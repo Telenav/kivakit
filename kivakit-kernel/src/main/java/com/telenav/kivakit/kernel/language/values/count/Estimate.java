@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.kernel.language.values.count;
 
+import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.kivakit.kernel.language.strings.Strings;
-import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
 import com.telenav.kivakit.kernel.language.values.level.Percent;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageValue;
@@ -34,7 +34,7 @@ import java.util.Iterator;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramLanguageValue.class)
-public class Estimate extends Count implements AsString
+public class Estimate extends Count implements Stringable
 {
     public static final Estimate _0 = new Estimate(0);
 

@@ -19,7 +19,6 @@
 package com.telenav.kivakit.kernel.language.values.count;
 
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
-import com.telenav.kivakit.kernel.interfaces.io.ByteSized;
 import com.telenav.kivakit.kernel.language.primitives.Doubles;
 import com.telenav.kivakit.kernel.language.strings.Strings;
 import com.telenav.kivakit.kernel.language.values.level.Percent;

@@ -18,18 +18,16 @@
 
 package com.telenav.kivakit.kernel.language.values.count;
 
+import com.telenav.kivakit.interfaces.code.Loopable;
+import com.telenav.kivakit.interfaces.numeric.Maximizable;
+import com.telenav.kivakit.interfaces.numeric.Minimizable;
+import com.telenav.kivakit.interfaces.numeric.Quantizable;
+import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.interfaces.code.Loopable;
-import com.telenav.kivakit.kernel.interfaces.numeric.Countable;
-import com.telenav.kivakit.kernel.interfaces.numeric.Maximizable;
-import com.telenav.kivakit.kernel.interfaces.numeric.Minimizable;
-import com.telenav.kivakit.kernel.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.kernel.language.math.Primes;
 import com.telenav.kivakit.kernel.language.primitives.Ints;
 import com.telenav.kivakit.kernel.language.primitives.Longs;
-import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
-import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.language.values.level.Percent;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageValue;
@@ -40,8 +38,6 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.function.Consumer;
-
-import static com.telenav.kivakit.kernel.language.strings.conversion.StringFormat.PROGRAMMATIC_IDENTIFIER;
 
 /**
  * Represents a count of something.
@@ -123,7 +119,7 @@ import static com.telenav.kivakit.kernel.language.strings.conversion.StringForma
  * <p><b>String Representations</b></p>
  *
  * <ul>
- *     <li>{@link #asString(StringFormat)} - This count formatted in the given format</li>
+ *     <li>{@link #asString(Format)} - This count formatted in the given format</li>
  *     <li>{@link #asCommaSeparatedString()} - This count as a comma-separated string, like 65,536</li>
  *     <li>{@link #asSimpleString()} - This count as a simple string, like 65536</li>
  * </ul>
@@ -246,7 +242,6 @@ import static com.telenav.kivakit.kernel.language.strings.conversion.StringForma
  * @see Maximum
  * @see Minimum
  */
-@SuppressWarnings("SwitchStatementWithTooFewBranches")
 @UmlClassDiagram(diagram = DiagramLanguageValue.class)
 public class Count implements
         Countable,
@@ -254,7 +249,7 @@ public class Count implements
         Quantizable,
         Maximizable<Count>,
         Minimizable<Count>,
-        AsString,
+        Stringable,
         Serializable
 {
     public static final Count _0 = new Count(0);
@@ -529,11 +524,6 @@ public class Count implements
         return BitCount.bitCount(asLong());
     }
 
-    public String asCommaSeparatedString()
-    {
-        return String.format("%,d", count);
-    }
-
     public Count asCount()
     {
         return count(get());
@@ -566,24 +556,6 @@ public class Count implements
     public Minimum asMinimum()
     {
         return Minimum.minimum(count);
-    }
-
-    public String asSimpleString()
-    {
-        return Long.toString(count);
-    }
-
-    @Override
-    public String asString(StringFormat format)
-    {
-        switch (format.identifier())
-        {
-            case PROGRAMMATIC_IDENTIFIER:
-                return asSimpleString();
-
-            default:
-                return toString();
-        }
     }
 
     public BitCount bitsToRepresent()
@@ -867,6 +839,12 @@ public class Count implements
             rounded <<= 1;
         }
         return onNewInstance(rounded);
+    }
+
+    @Override
+    public int size()
+    {
+        return asInt();
     }
 
     public Count times(Count count)

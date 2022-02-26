@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.data.extraction;
 
-import com.telenav.kivakit.kernel.interfaces.collection.Keyed;
+import com.telenav.kivakit.interfaces.collection.Keyed;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.messaging.Listener;

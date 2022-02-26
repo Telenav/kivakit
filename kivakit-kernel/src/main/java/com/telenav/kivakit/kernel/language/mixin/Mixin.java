@@ -1,6 +1,6 @@
 package com.telenav.kivakit.kernel.language.mixin;
 
-import com.telenav.kivakit.kernel.interfaces.factory.Factory;
+import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.kernel.messaging.repeaters.RepeaterMixin;

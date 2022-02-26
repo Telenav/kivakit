@@ -18,27 +18,26 @@
 
 package kernel.messaging;
 
+import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
-import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
 import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class MessageFormatterTest
 {
-    private static class Bean implements AsString
+    private static class Bean implements Stringable
     {
-        @KivaKitIncludeProperty
-        final
-        int x = 5;
-
         @Override
-        public String asString(StringFormat ignored)
+        public String asString(Format ignored)
         {
             return "*" + x + "*";
         }
+
+        @KivaKitIncludeProperty
+        final
+        int x = 5;
     }
 
     @Test

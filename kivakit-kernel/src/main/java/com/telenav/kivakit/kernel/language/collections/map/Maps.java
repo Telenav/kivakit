@@ -19,7 +19,7 @@
 package com.telenav.kivakit.kernel.language.collections.map;
 
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.interfaces.factory.Factory;
+import com.telenav.kivakit.interfaces.factory.Factory;
 
 import java.util.HashMap;
 import java.util.Map;

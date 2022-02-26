@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.kernel.language.time;
 
-import com.telenav.kivakit.kernel.interfaces.numeric.Maximizable;
-import com.telenav.kivakit.kernel.interfaces.numeric.Minimizable;
-import com.telenav.kivakit.kernel.interfaces.numeric.Quantizable;
+import com.telenav.kivakit.interfaces.numeric.Maximizable;
+import com.telenav.kivakit.interfaces.numeric.Minimizable;
+import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageTime;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;

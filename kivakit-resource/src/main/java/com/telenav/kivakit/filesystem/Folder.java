@@ -23,10 +23,11 @@ import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader;
 import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.filesystem.spi.FolderService;
+import com.telenav.kivakit.interfaces.comparison.Filter;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.KivaKit;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
-import com.telenav.kivakit.kernel.interfaces.code.UncheckedVoidCode;
-import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
+import com.telenav.kivakit.kernel.language.code.UncheckedVoidCode;
 import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.kernel.language.strings.Strings;
 import com.telenav.kivakit.kernel.language.threading.locks.Monitor;
@@ -38,7 +39,6 @@ import com.telenav.kivakit.kernel.logging.Logger;
 import com.telenav.kivakit.kernel.logging.LoggerFactory;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
-import com.telenav.kivakit.kernel.messaging.filters.operators.All;
 import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.resource.CopyMode;
@@ -552,8 +552,8 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
 
     public void chmodNested(PosixFilePermission... permissions)
     {
-        nestedFolders(new All<>()).forEach(folder -> folder().chmod(permissions));
-        nestedFiles(new All<>()).forEach(file -> file.chmod(permissions));
+        nestedFolders(Filter.all()).forEach(folder -> folder().chmod(permissions));
+        nestedFiles(Filter.all()).forEach(file -> file.chmod(permissions));
     }
 
     /**
@@ -653,7 +653,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
      */
     public void copyTo(Folder destination, CopyMode mode, ProgressReporter reporter)
     {
-        copyTo(destination, mode, new All<>(), reporter);
+        copyTo(destination, mode, Filter.all(), reporter);
     }
 
     @Override
@@ -761,7 +761,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
 
     public FileList files()
     {
-        return files(new All<>());
+        return files(Filter.all());
     }
 
     public FileList files(Matcher<File> matcher, Traversal recurse)
@@ -973,7 +973,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
 
     public File oldest()
     {
-        return oldest(new All<>());
+        return oldest(Filter.all());
     }
 
     public File oldest(Matcher<File> matcher)
@@ -1069,7 +1069,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
     @Override
     public void safeCopyTo(Folder destination, CopyMode mode, ProgressReporter reporter)
     {
-        safeCopyTo(destination, mode, new All<>(), reporter);
+        safeCopyTo(destination, mode, Filter.all(), reporter);
     }
 
     @SuppressWarnings("UnusedReturnValue")

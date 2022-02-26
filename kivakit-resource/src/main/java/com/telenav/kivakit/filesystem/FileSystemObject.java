@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.kernel.interfaces.time.ChangedAt;
-import com.telenav.kivakit.kernel.interfaces.time.CreatedAt;
+import com.telenav.kivakit.kernel.language.time.ChangedAt;
+import com.telenav.kivakit.kernel.language.time.CreatedAt;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemFolder;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;

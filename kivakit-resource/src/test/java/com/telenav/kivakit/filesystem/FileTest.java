@@ -33,7 +33,7 @@ public class FileTest extends UnitTest
     {
         var temp = File.temporary(Extension.TXT);
         temp.writer().save("hello");
-        ensureEqual("hello", File.parse(this, temp.toString()).reader().string());
+        ensureEqual("hello", File.parse(this, temp.toString()).reader().asString());
         temp.delete();
     }
 

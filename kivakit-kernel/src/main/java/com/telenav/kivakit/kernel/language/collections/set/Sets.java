@@ -19,8 +19,8 @@
 package com.telenav.kivakit.kernel.language.collections.set;
 
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
-import com.telenav.kivakit.kernel.interfaces.factory.Factory;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
+import com.telenav.kivakit.interfaces.factory.Factory;
 
 import java.util.Arrays;
 import java.util.Collection;

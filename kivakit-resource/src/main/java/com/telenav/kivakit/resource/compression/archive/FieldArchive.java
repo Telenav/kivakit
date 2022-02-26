@@ -19,8 +19,8 @@
 package com.telenav.kivakit.resource.compression.archive;
 
 import com.telenav.kivakit.filesystem.File;
-import com.telenav.kivakit.kernel.interfaces.io.Closeable;
-import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
+import com.telenav.kivakit.interfaces.io.Closeable;
+import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.language.objects.Lazy;
 import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.kernel.language.reflection.Type;

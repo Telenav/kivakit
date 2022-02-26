@@ -1,8 +1,7 @@
 package com.telenav.kivakit.component;
 
 import com.telenav.kivakit.component.project.lexakai.diagrams.DiagramComponent;
-import com.telenav.kivakit.kernel.interfaces.naming.NamedObject;
-import com.telenav.kivakit.kernel.language.values.name.Name;
+import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -18,7 +17,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 public class BaseComponent extends BaseRepeater implements Component, NamedObject
 {
     /** The name of this object for debugging purposes */
-    private String objectName = Name.synthetic(this);
+    private String objectName = NamedObject.syntheticName(this);
 
     @Override
     public void objectName(String objectName)

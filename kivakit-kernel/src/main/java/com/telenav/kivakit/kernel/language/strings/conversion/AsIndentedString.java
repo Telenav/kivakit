@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.strings.conversion;
 
+import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.kivakit.kernel.language.reflection.Type;
 import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.kernel.language.reflection.property.Property;
@@ -26,47 +27,46 @@ import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageString
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * An {@link AsString} sub-interface that traverses a tree of objects, adding information to an {@link AsStringIndenter}
- * object as it goes. An {@link AsStringIndenter} handles string indenting, directs recursion and performs reflection on
- * fields and methods that are tagged with the annotation {@literal @}{@link KivaKitIncludeProperty}.
+ * An {@link Stringable} sub-interface that traverses a tree of objects, adding information to an {@link
+ * AsStringIndenter} object as it goes. An {@link AsStringIndenter} handles string indenting, directs recursion and
+ * performs reflection on fields and methods that are tagged with the annotation {@literal @}{@link
+ * KivaKitIncludeProperty}.
  * <p>
- * The method {@link #asString(StringFormat, AsStringIndenter)} uses the given {@link AsStringIndenter} object to
- * determine if it should recurse or not as well as to perform labeling and indentation of text lines. The {@link
- * #asString()} implementation simply formats this object with a {@link AsStringIndenter} specifying a maximum of 8
- * levels.
+ * The method {@link #asString(Format, AsStringIndenter)} uses the given {@link AsStringIndenter} object to determine if
+ * it should recurse or not as well as to perform labeling and indentation of text lines. The {@link #asString()}
+ * implementation simply formats this object with a {@link AsStringIndenter} specifying a maximum of 8 levels.
  * <p>
  * When the traversal is complete, the {@link AsStringIndenter} object yields an indented debug string.
  *
  * @author jonathanl (shibo)
- * @see AsString
+ * @see Stringable
  * @see AsStringIndenter
  * @see KivaKitIncludeProperty
  * @see Property
  * @see Type
  */
 @UmlClassDiagram(diagram = DiagramLanguageString.class)
-public interface AsIndentedString extends AsString
+public interface AsIndentedString extends Stringable
 {
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    default String asString(StringFormat format)
-    {
-        var indenter = new AsStringIndenter(format);
-        indenter.levels(Maximum._8);
-        asString(format, indenter);
-        return indenter.toString();
-    }
-
     /**
      * Adds structured information about this object to the given {@link AsStringIndenter} object
      *
      * @param indenter Information about the traversal in progress
      */
-    default AsStringIndenter asString(StringFormat format, AsStringIndenter indenter)
+    default AsStringIndenter asString(Format format, AsStringIndenter indenter)
     {
         indenter.asString(this);
         return indenter;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    default String asString(Format format)
+    {
+        var indenter = new AsStringIndenter(format);
+        indenter.levels(Maximum._8);
+        asString(format, indenter);
+        return indenter.toString();
     }
 }

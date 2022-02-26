@@ -19,8 +19,8 @@
 package com.telenav.kivakit.collections.iteration.iterators;
 
 import com.telenav.kivakit.collections.project.lexakai.diagrams.DiagramIteration;
-import com.telenav.kivakit.kernel.interfaces.comparison.Filter;
-import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
+import com.telenav.kivakit.interfaces.comparison.Filter;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.language.iteration.BaseIterator;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

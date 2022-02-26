@@ -19,7 +19,6 @@
 package com.telenav.kivakit.kernel.language.values.count;
 
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.interfaces.numeric.Countable;
 import com.telenav.kivakit.kernel.language.values.level.Percent;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
@@ -52,6 +51,11 @@ public class MutableCount implements Countable, Comparable<MutableCount>, Listen
     public Count asCount()
     {
         return Count.count(count);
+    }
+
+    public int asInt()
+    {
+        return (int) count;
     }
 
     public long asLong()
@@ -163,6 +167,12 @@ public class MutableCount implements Countable, Comparable<MutableCount>, Listen
     {
         assert count >= 0;
         this.count = count;
+    }
+
+    @Override
+    public int size()
+    {
+        return asInt();
     }
 
     @Override

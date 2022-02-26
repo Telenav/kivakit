@@ -20,7 +20,7 @@ package com.telenav.kivakit.collections.set;
 
 import com.telenav.kivakit.collections.iteration.iterators.CompoundIterator;
 import com.telenav.kivakit.collections.project.lexakai.diagrams.DiagramSet;
-import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.language.iteration.Matching;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

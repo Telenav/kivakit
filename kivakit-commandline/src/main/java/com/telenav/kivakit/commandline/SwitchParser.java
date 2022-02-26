@@ -20,7 +20,11 @@ package com.telenav.kivakit.commandline;
 
 import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramCommandLine;
 import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramSwitch;
+import com.telenav.kivakit.interfaces.factory.MapFactory;
+import com.telenav.kivakit.interfaces.naming.Named;
+import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.kernel.data.conversion.Converter;
+import com.telenav.kivakit.kernel.data.conversion.QuantizableConverter;
 import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.data.conversion.string.StringConverter;
 import com.telenav.kivakit.kernel.data.conversion.string.collection.BaseListConverter;
@@ -38,9 +42,6 @@ import com.telenav.kivakit.kernel.data.validation.Validatable;
 import com.telenav.kivakit.kernel.data.validation.ValidationIssues;
 import com.telenav.kivakit.kernel.data.validation.ValidationType;
 import com.telenav.kivakit.kernel.data.validation.Validator;
-import com.telenav.kivakit.kernel.interfaces.factory.MapFactory;
-import com.telenav.kivakit.kernel.interfaces.naming.Named;
-import com.telenav.kivakit.kernel.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.collections.list.StringList;
 import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
@@ -276,7 +277,7 @@ public class SwitchParser<T> implements Named, Validatable
         return builder(type)
                 .name(name)
                 .description(description)
-                .converter(new Quantizable.Converter<>(listener, factory));
+                .converter(new QuantizableConverter<>(listener, factory));
     }
 
     public static <E> Builder<ObjectSet<E>> setSwitchParser(
@@ -338,17 +339,17 @@ public class SwitchParser<T> implements Named, Validatable
     @LexakaiJavadoc(complete = true)
     public static class Builder<T>
     {
-        private Quantifier quantifier;
+        private Converter<String, T> converter;
 
-        private Type<T> type;
+        private T defaultValue;
 
         private String description;
 
-        private Converter<String, T> converter;
-
         private String name;
 
-        private T defaultValue;
+        private Quantifier quantifier;
+
+        private Type<T> type;
 
         private Set<T> validValues;
 
@@ -437,24 +438,24 @@ public class SwitchParser<T> implements Named, Validatable
         }
     }
 
-    @UmlAggregation
-    private final Quantifier quantifier;
-
-    private final String name;
-
-    private final Type<T> type;
-
-    private final String description;
-
     @UmlAggregation(label = "converts values with")
     private final Converter<String, T> converter;
 
     @UmlAggregation(label = "default value")
     private final T defaultValue;
 
-    private final Set<T> validValues;
+    private final String description;
+
+    private final String name;
 
     private CommandLineParser parent;
+
+    @UmlAggregation
+    private final Quantifier quantifier;
+
+    private final Type<T> type;
+
+    private final Set<T> validValues;
 
     /**
      * Construct.

@@ -19,7 +19,7 @@
 package com.telenav.kivakit.kernel.language.threading;
 
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.interfaces.code.UncheckedCode;
+import com.telenav.kivakit.kernel.language.code.UncheckedCode;
 import com.telenav.kivakit.kernel.language.reflection.Type;
 import com.telenav.kivakit.kernel.language.time.Duration;
 import com.telenav.kivakit.kernel.logging.Logger;
@@ -54,13 +54,11 @@ public class Retry extends BaseRepeater
         };
     }
 
-    final Class<? extends Throwable> exceptionType;
+    private final String[] exceptionMessageExclusion;
 
     private final int numberOfRetries;
 
     private final Duration retryWaitTime;
-
-    private final String[] exceptionMessageExclusion;
 
     /**
      * A basic {@link Retry} that does not wait before retrying and catches all {@link Throwable} errors.
@@ -202,4 +200,6 @@ public class Retry extends BaseRepeater
 
         return Ensure.fail("Unable to run");
     }
+
+    final Class<? extends Throwable> exceptionType;
 }

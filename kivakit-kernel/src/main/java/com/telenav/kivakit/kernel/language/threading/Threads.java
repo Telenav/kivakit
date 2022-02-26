@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.threading;
 
-import com.telenav.kivakit.kernel.interfaces.code.UncheckedCode;
+import com.telenav.kivakit.kernel.language.code.UncheckedCode;
 import com.telenav.kivakit.kernel.language.values.count.Count;
 import com.telenav.kivakit.kernel.language.values.mutable.MutableIndex;
 import com.telenav.kivakit.kernel.language.vm.JavaVirtualMachine;

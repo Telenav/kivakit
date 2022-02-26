@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.collections.map.string;
 
-import com.telenav.kivakit.kernel.interfaces.naming.Named;
+import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.collections.map.BaseIndexedMap;
 import com.telenav.kivakit.kernel.language.values.count.Maximum;
 

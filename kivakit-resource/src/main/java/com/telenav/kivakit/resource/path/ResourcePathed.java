@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.path;
 
-import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.UriIdentified;
 import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResource;

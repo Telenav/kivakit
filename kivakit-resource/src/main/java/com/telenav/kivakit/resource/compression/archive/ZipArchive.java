@@ -19,15 +19,15 @@
 package com.telenav.kivakit.resource.compression.archive;
 
 import com.telenav.kivakit.filesystem.File;
+import com.telenav.kivakit.interfaces.code.Callback;
 import com.telenav.kivakit.kernel.KivaKit;
-import com.telenav.kivakit.kernel.interfaces.code.Callback;
-import com.telenav.kivakit.kernel.interfaces.code.UncheckedCode;
-import com.telenav.kivakit.kernel.interfaces.io.ByteSized;
+import com.telenav.kivakit.kernel.language.code.UncheckedCode;
 import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
 import com.telenav.kivakit.kernel.language.io.IO;
 import com.telenav.kivakit.kernel.language.paths.Nio;
 import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
 import com.telenav.kivakit.kernel.language.progress.reporters.Progress;
+import com.telenav.kivakit.kernel.language.values.count.ByteSized;
 import com.telenav.kivakit.kernel.language.values.count.Bytes;
 import com.telenav.kivakit.kernel.language.values.count.MutableCount;
 import com.telenav.kivakit.kernel.language.values.version.VersionedObject;
@@ -171,9 +171,9 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
         WRITE
     }
 
-    private FileSystem filesystem;
-
     private final File file;
+
+    private FileSystem filesystem;
 
     private final ProgressReporter reporter;
 

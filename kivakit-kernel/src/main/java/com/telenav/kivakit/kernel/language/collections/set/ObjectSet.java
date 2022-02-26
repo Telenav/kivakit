@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.kernel.language.collections.set;
 
-import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.kernel.language.values.count.Maximum;
 
 import java.util.Collection;
