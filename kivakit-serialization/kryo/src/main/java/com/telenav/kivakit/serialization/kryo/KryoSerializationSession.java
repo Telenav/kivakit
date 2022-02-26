@@ -73,7 +73,9 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
              referent = Serializer.class,
              referentCardinality = "*")
 @LexakaiJavadoc(complete = true)
-public final class KryoSerializationSession extends BaseRepeater implements Named, SerializationSession
+public final class KryoSerializationSession extends BaseRepeater implements
+        Named,
+        SerializationSession
 {
     /**
      * Map from Kryo object back to serialization session
