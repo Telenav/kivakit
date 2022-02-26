@@ -23,8 +23,8 @@ import com.telenav.kivakit.configuration.lookup.InstanceIdentifier;
 import com.telenav.kivakit.configuration.project.lexakai.diagrams.DiagramConfiguration;
 import com.telenav.kivakit.configuration.settings.stores.memory.MemorySettingsStore;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.interfaces.naming.Named;
+import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -197,11 +197,11 @@ public class Deployment extends MemorySettingsStore implements Serializable
         }
     }
 
-    /** The name of this deployment */
-    private final String name;
-
     /** A description of the kind of deployment */
     private final String description;
+
+    /** The name of this deployment */
+    private final String name;
 
     /**
      * @param name The name of the deployment, like "osm-team"

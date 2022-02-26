@@ -18,15 +18,11 @@
 
 package com.telenav.kivakit.interfaces.naming;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceNaming;
-import com.telenav.lexakai.annotations.UmlClassDiagram;
-
 /**
  * An object with a name. The default implementation returns the name of the class and the hashcode of the object.
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramInterfaceNaming.class)
 public interface Named
 {
     /**

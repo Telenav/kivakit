@@ -1,17 +1,17 @@
 package kernel.language.mixin.mixins;
 
-import com.telenav.kivakit.kernel.language.mixin.mixins.AttributedMixin;
+import com.telenav.kivakit.mixins.AttributesMixin;
 import org.junit.Test;
 
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureEqual;
 
 public class AttributedMixinTest
 {
-    static class A implements AttributedMixin<String, String>
+    static class A implements AttributesMixin<String, String>
     {
     }
 
-    static class B implements AttributedMixin<String, String>
+    static class B implements AttributesMixin<String, String>
     {
     }
 

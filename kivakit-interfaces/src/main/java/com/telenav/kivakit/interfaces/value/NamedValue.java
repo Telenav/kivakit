@@ -31,6 +31,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see Valued
  */
 @UmlClassDiagram(diagram = DiagramInterfaceNaming.class)
-public interface NamedValue<T> extends Named, Valued<T>
+public interface NamedValue<T> extends
+        Named,
+        Valued<T>
 {
 }

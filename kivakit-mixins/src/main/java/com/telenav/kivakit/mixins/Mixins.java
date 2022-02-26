@@ -1,13 +1,12 @@
-package com.telenav.kivakit.kernel.language.mixin;
+package com.telenav.kivakit.mixins;
 
 import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
-import com.telenav.kivakit.kernel.language.objects.Hash;
-import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.util.IdentityHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -104,13 +103,13 @@ public class Mixins
         @Override
         public int hashCode()
         {
-            return Hash.many(attachTo, mixinType);
+            return Objects.hash(attachTo, mixinType);
         }
 
         @Override
         public String toString()
         {
-            return Message.format("[Mixin object-type = ${class}, mixin-type = ${class}]", attachTo.getClass(), mixinType);
+            return "[Mixin object = " + attachTo.getClass() + ", mixin = " + mixinType + "]";
         }
     }
 }

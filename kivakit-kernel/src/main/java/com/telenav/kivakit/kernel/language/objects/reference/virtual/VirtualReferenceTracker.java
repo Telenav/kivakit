@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.kernel.language.objects.reference.virtual;
 
-import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.interfaces.naming.Named;
+import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.kernel.language.values.count.Bytes;
 import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageObjectReference;
@@ -36,22 +36,22 @@ public class VirtualReferenceTracker<T> extends BaseRepeater
     /** True to turn on GC debugging */
     private static final boolean DEBUG_GARBAGE_COLLECTION = false;
 
-    /** The approximate maximum amount of memory to hard reference */
-    private final Bytes maximum;
-
-    /** CheckType of references to keep */
-    @UmlAggregation
-    private final VirtualReferenceType type;
-
-    /** The current memory consumption estimate */
-    private Bytes total = Bytes._0;
-
     /** List of loaded references */
     @UmlAggregation(label = "loads, weakens, hardens")
     private final LinkedList<VirtualReference<T>> loaded = new LinkedList<>();
 
+    /** The approximate maximum amount of memory to hard reference */
+    private final Bytes maximum;
+
     /** Reference queue for notifications that soft and weak references have been collected */
     private final ReferenceQueue<T> queue = new ReferenceQueue<>();
+
+    /** The current memory consumption estimate */
+    private Bytes total = Bytes._0;
+
+    /** CheckType of references to keep */
+    @UmlAggregation
+    private final VirtualReferenceType type;
 
     public VirtualReferenceTracker(Bytes maximum, VirtualReferenceType type)
     {

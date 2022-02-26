@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.kernel.language.collections.map.string;
 
-import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.interfaces.naming.Named;
+import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
 import com.telenav.kivakit.kernel.language.values.count.Maximum;
 import com.telenav.kivakit.kernel.language.values.name.Name;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramLanguageCollectionsMap;

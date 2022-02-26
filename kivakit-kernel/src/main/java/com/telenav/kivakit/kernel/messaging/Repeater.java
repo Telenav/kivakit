@@ -72,7 +72,10 @@ import org.jetbrains.annotations.MustBeInvokedByOverriders;
  * @see Listener
  */
 @UmlClassDiagram(diagram = DiagramMessageRepeater.class)
-public interface Repeater extends Listener, Broadcaster, Receiver
+public interface Repeater extends
+        Listener,
+        Broadcaster,
+        Receiver
 {
     /**
      * True if this repeater is repeating messages it receives

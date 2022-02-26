@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.kernel.language.reflection.property;
 
+import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.data.conversion.Converter;
 import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.kernel.language.objects.Hash;
 import com.telenav.kivakit.kernel.language.reflection.Field;
 import com.telenav.kivakit.kernel.language.reflection.Member;
@@ -47,9 +47,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramLanguageReflection.class)
 public class Property implements Named, Comparable<Property>
 {
-    private final String name;
-
     private transient Getter getter;
+
+    private final String name;
 
     private transient Setter setter;
 

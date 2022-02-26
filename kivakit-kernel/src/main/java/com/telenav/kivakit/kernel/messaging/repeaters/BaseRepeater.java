@@ -19,12 +19,12 @@
 package com.telenav.kivakit.kernel.messaging.repeaters;
 
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
-import com.telenav.kivakit.kernel.language.mixin.Mixin;
 import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.kernel.messaging.broadcasters.Multicaster;
 import com.telenav.kivakit.kernel.project.lexakai.diagrams.DiagramMessageRepeater;
+import com.telenav.kivakit.mixins.Mixin;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;

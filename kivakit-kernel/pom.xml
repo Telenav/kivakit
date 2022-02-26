@@ -34,6 +34,11 @@
             <artifactId>kivakit-interfaces</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.telenav.kivakit</groupId>
+            <artifactId>kivakit-mixins</artifactId>
+        </dependency>
+
         <!-- Test -->
 
         <dependency>

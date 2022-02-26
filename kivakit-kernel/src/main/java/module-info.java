@@ -13,6 +13,7 @@ open module kivakit.kernel
     requires java.management;
 
     // Build
+    //noinspection JavaRequiresAutoModule
     requires transitive cactus.build.metadata;
 
     // Test
@@ -22,7 +23,7 @@ open module kivakit.kernel
     requires transitive lexakai.annotations;
     requires transitive com.fasterxml.jackson.annotation;
 
-    requires transitive kivakit.interfaces;
+    requires transitive kivakit.mixins;
 
     // Module exports
     exports com.telenav.kivakit.kernel.data.comparison;
@@ -85,7 +86,6 @@ open module kivakit.kernel
     exports com.telenav.kivakit.kernel.language.time.conversion.converters;
     exports com.telenav.kivakit.kernel.language.time.conversion;
     exports com.telenav.kivakit.kernel.language.time;
-    exports com.telenav.kivakit.kernel.language.mixin;
     exports com.telenav.kivakit.kernel.language.traits;
     exports com.telenav.kivakit.kernel.language.types;
     exports com.telenav.kivakit.kernel.language.values.count;

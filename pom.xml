@@ -99,6 +99,7 @@
     <modules>
 
         <module>kivakit-interfaces</module>
+        <module>kivakit-mixins</module>
         <module>kivakit-kernel</module>
         <module>kivakit-test</module>
         <module>kivakit-serialization</module>

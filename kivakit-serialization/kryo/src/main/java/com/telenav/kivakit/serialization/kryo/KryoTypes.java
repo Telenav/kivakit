@@ -115,17 +115,17 @@ public class KryoTypes implements Named
     /** The base identifier for dynamic registration */
     private static final int DYNAMIC_IDENTIFIER_FIRST = 1_000_000;
 
-    /** The next identifier for Kryo registration */
-    private int nextIdentifier = KRYO_TYPES_SIZE;
-
-    /** The Kryo type sets that have been merged into this set */
-    private ObjectList<KryoTypes> merged = new ObjectList<>();
-
     /** Entries for classes */
     private Map<Class<?>, KryoTypeEntry> entries = new LinkedHashMap<>();
 
     /** Used identifiers */
     private final Map<Integer, Class<?>> identifiers = new HashMap<>();
+
+    /** The Kryo type sets that have been merged into this set */
+    private ObjectList<KryoTypes> merged = new ObjectList<>();
+
+    /** The next identifier for Kryo registration */
+    private int nextIdentifier = KRYO_TYPES_SIZE;
 
     public KryoTypes()
     {

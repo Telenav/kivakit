@@ -1,6 +1,4 @@
-package com.telenav.kivakit.kernel.language.mixin.mixins;
-
-import com.telenav.kivakit.kernel.language.mixin.Mixin;
+package com.telenav.kivakit.mixins;
 
 import java.util.HashMap;
 
@@ -9,7 +7,7 @@ import java.util.HashMap;
  *
  * @author jonathanl (shibo)
  */
-public interface AttributedMixin<Key, Value> extends Mixin
+public interface AttributesMixin<Key, Value> extends Mixin
 {
     default Value attribute(Key key)
     {
@@ -23,6 +21,6 @@ public interface AttributedMixin<Key, Value> extends Mixin
 
     default HashMap<Key, Value> attributes()
     {
-        return mixin(AttributedMixin.class, HashMap::new);
+        return mixin(AttributesMixin.class, HashMap::new);
     }
 }

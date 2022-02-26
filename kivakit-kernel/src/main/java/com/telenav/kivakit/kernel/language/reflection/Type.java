@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.kernel.language.reflection;
 
-import com.telenav.kivakit.kernel.KernelLimits;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.naming.Named;
+import com.telenav.kivakit.kernel.KernelLimits;
 import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.kivakit.kernel.language.collections.map.ClassMap;
 import com.telenav.kivakit.kernel.language.collections.map.string.NameMap;
