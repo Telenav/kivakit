@@ -1,4 +1,4 @@
 
-export M2_HOME=$HOME/Developer/apache-maven-3.8.1
+export M2_HOME=$HOME/Developer/apache-maven-3.8.2
 export EDITOR=/usr/local/bin/emacs
 export PS1="[\w] "

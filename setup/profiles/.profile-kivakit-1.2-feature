@@ -2,7 +2,7 @@
 #―――― Setup ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
 
 export WORKSPACES=$HOME/Workspaces
-export WORKSPACE=$WORKSPACES/kivakit-1.1/feature
+export WORKSPACE=$WORKSPACES/kivakit-1.2/feature
 
 export KIVAKIT_WORKSPACE=$WORKSPACE
 export MESAKIT_WORKSPACE=$WORKSPACE
