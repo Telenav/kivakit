@@ -1,4 +1,4 @@
-package com.telenav.kivakit.network.core.converters;
+package com.telenav.kivakit.network.http;
 
 import com.telenav.kivakit.conversion.core.time.DateTimeConverter;
 import com.telenav.kivakit.core.messaging.Listener;

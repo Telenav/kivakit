@@ -102,7 +102,7 @@ public interface SettingsStore extends RegistryTrait, Repeater, Named, Iterable<
     /**
      * <b>Service Provider API</b>
      *
-     * @return All objects in this store's in-memory index. If the store supports loading and it has not yet been
+     * @return All objects in this store's in-memory index. If the store supports loading, and it has not yet been
      * loaded, {@link #load()} will be called first.
      */
     ObjectSet<SettingsObject> indexed();

@@ -25,7 +25,7 @@
 
         <dependency>
             <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-core</artifactId>
+            <artifactId>kivakit-conversion</artifactId>
         </dependency>
 
         <!-- JSON -->

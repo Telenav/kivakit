@@ -1,4 +1,4 @@
-package com.telenav.kivakit.network.core.converters;
+package com.telenav.kivakit.network.http;
 
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.test.UnitTest;
@@ -26,6 +26,7 @@ public class HttpDateTimeConverterTest extends UnitTest
         calendar.set(Calendar.SECOND, 31);
         calendar.set(Calendar.MILLISECOND, 0);
 
+        assert time != null;
         assertEquals(calendar.getTimeInMillis(), time.asMilliseconds());
     }
 }

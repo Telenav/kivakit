@@ -5,8 +5,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonSerializer;
 import com.google.gson.TypeAdapterFactory;
-import com.telenav.kivakit.language.version.Version;
 import com.telenav.kivakit.core.messaging.Repeater;
+import com.telenav.kivakit.core.version.Version;
 
 public interface GsonFactory extends Repeater
 {

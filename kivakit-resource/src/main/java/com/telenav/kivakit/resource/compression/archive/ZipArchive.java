@@ -19,18 +19,18 @@
 package com.telenav.kivakit.resource.compression.archive;
 
 import com.telenav.kivakit.core.KivaKit;
+import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.value.count.ByteSized;
-import com.telenav.kivakit.core.value.count.Bytes;
-import com.telenav.kivakit.core.value.count.MutableCount;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.io.Nio;
-import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.Progress;
+import com.telenav.kivakit.core.value.count.ByteSized;
+import com.telenav.kivakit.core.value.count.Bytes;
+import com.telenav.kivakit.core.value.count.MutableCount;
 import com.telenav.kivakit.core.version.VersionedObject;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.interfaces.code.Callback;
@@ -143,7 +143,7 @@ public final class ZipArchive implements
     {
         if (file.isRemote())
         {
-            LOGGER.warning("Cannot read remote zip archives: $", file);
+            listener.warning("Cannot read remote zip archives: $", file);
         }
         else
         {

@@ -19,9 +19,9 @@
 package com.telenav.kivakit.core.collections.map;
 
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.core.project.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.string.Strip;
+import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.net.URI;
@@ -69,6 +69,33 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value>
     public long asLong(String key)
     {
         return Long.parseLong(asString(key));
+    }
+
+    public <T> T asObject(String key, StringConverter<T> converter)
+    {
+        return converter.convert(asString(key));
+    }
+
+    public <T> T asObject(String key, StringConverter<T> converter, T defaultValue)
+    {
+        var object = asObject(key, converter);
+        return object != null ? object : defaultValue;
+    }
+
+    public Object asObject(final Listener listener, final Class<?> type)
+    {
+        try
+        {
+            final var object = Type.forClass(type).newInstance();
+            final var filter = PropertyFilter.kivakitProperties(CONVERTED_FIELDS_AND_METHODS);
+            new ObjectPopulator(listener, filter, this).populate(object);
+            return object;
+        }
+        catch (final Exception e)
+        {
+            listener.receive(new Problem(e, "Unable to convert $", type));
+            return null;
+        }
     }
 
     /**

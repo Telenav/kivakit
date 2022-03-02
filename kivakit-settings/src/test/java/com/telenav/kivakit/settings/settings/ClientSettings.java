@@ -18,9 +18,10 @@
 
 package com.telenav.kivakit.settings.settings;
 
-import com.telenav.kivakit.conversion.string.primitive.IntegerConverter;
-import com.telenav.kivakit.core.language.reflection.populator.KivaKitPropertyConverter;
-import com.telenav.kivakit.language.time.Duration;
+import com.telenav.kivakit.conversion.KivaKitPropertyConverter;
+import com.telenav.kivakit.conversion.core.language.primitive.IntegerConverter;
+import com.telenav.kivakit.conversion.core.time.DurationConverter;
+import com.telenav.kivakit.core.time.Duration;
 
 /**
  * Configuration Java Bean with string conversion methods for each property to allow storage of this configuration in a
@@ -50,7 +51,7 @@ public class ClientSettings
         return timeout;
     }
 
-    @KivaKitPropertyConverter(Duration.Converter.class)
+    @KivaKitPropertyConverter(DurationConverter.class)
     public void timeout(Duration timeout)
     {
         this.timeout = timeout;

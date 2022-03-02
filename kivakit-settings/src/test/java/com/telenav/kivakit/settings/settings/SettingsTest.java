@@ -22,7 +22,7 @@ import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.core.test.UnitTest;
-import com.telenav.kivakit.language.time.Duration;
+import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.serialization.json.DefaultGsonFactory;
 import com.telenav.kivakit.settings.settings.stores.PackageSettingsStore;
 import org.jetbrains.annotations.NotNull;

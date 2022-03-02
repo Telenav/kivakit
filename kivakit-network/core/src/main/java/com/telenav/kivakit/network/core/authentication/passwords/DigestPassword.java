@@ -16,28 +16,26 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.serialization.json;
+package com.telenav.kivakit.network.core.authentication.passwords;
 
-import com.telenav.kivakit.core.object.Lazy;
-import com.telenav.kivakit.coreproject.Project;
+import com.telenav.kivakit.security.project.lexakai.DiagramSecurity;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import java.util.Base64;
 
 /**
- * Project class for kivakit-core-serialization-json
+ * A message-digested password created with the {@link Base64} encoder in *java.util*. This is not at all secure, but
+ * can make it difficult to memorize a password on seeing it briefly.
  *
  * @author jonathanl (shibo)
  */
+@UmlClassDiagram(diagram = DiagramSecurity.class)
 @LexakaiJavadoc(complete = true)
-public class GsonSerializationProject extends Project
+public class DigestPassword extends PlainTextPassword
 {
-    private static final Lazy<GsonSerializationProject> project = Lazy.of(GsonSerializationProject::new);
-
-    public static GsonSerializationProject get()
+    public DigestPassword(String password)
     {
-        return project.get();
-    }
-
-    protected GsonSerializationProject()
-    {
+        super(Base64.getEncoder().encodeToString(password.getBytes()));
     }
 }

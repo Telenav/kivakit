@@ -22,7 +22,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
-import com.telenav.kivakit.conversion.string.StringConverter;
+import com.telenav.kivakit.conversion.StringConverter;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.lang.reflect.Type;

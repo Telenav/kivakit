@@ -1,7 +1,7 @@
 open module kivakit.serialization.json
 {
     // KivaKit
-    requires transitive kivakit.kernel;
+    requires transitive kivakit.conversion;
 
     // JSON
     requires gson;

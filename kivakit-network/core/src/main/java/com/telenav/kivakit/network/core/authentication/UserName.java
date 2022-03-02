@@ -16,47 +16,51 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.network.http;
+package com.telenav.kivakit.network.core.authentication;
 
-import com.telenav.kivakit.network.core.authentication.Password;
-import com.telenav.kivakit.network.core.authentication.UserName;
-import com.telenav.kivakit.network.http.project.lexakai.DiagramHttp;
+import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.value.name.Name;
+import com.telenav.kivakit.security.project.lexakai.DiagramSecurity;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * Credentials for HTTP Basic authentication using clear text username and password. This method of authentication is
- * not secure. When possible use classes from the *secure* package.
+ * A username for use in authentication.
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramHttp.class)
+@UmlClassDiagram(diagram = DiagramSecurity.class)
 @LexakaiJavadoc(complete = true)
-public class HttpBasicCredentials
+public class UserName extends Name
 {
-    private final Password password;
-
-    private final UserName username;
-
-    public HttpBasicCredentials(UserName username, Password password)
+    public static UserName parse(Listener listener, String name)
     {
-        this.username = username;
-        this.password = password;
+        return new UserName(name);
     }
 
-    public Password password()
+    /**
+     * Converts {@link UserName} objects to and from strings.
+     *
+     * @author jonathanl (shibo)
+     */
+    @LexakaiJavadoc(complete = true)
+    public static class Converter extends BaseStringConverter<UserName>
     {
-        return password;
+        public Converter(Listener listener)
+        {
+            super(listener);
+        }
+
+        @Override
+        protected UserName onToValue(String value)
+        {
+            return parse(this, value);
+        }
     }
 
-    @Override
-    public String toString()
+    protected UserName(String name)
     {
-        return username.toString();
-    }
-
-    public UserName userName()
-    {
-        return username;
+        super(name);
     }
 }

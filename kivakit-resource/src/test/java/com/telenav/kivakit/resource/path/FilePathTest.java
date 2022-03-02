@@ -44,6 +44,28 @@ public class FilePathTest extends UnitTest
     }
 
     @Test
+    @SuppressWarnings("SpellCheckingInspection")
+    public void testFilePath()
+    {
+        ensureEqual(FilePath.parseFilePath(this, "TestFile1.txt").absolute(), FilePath.parseFilePath(this, "TestFile1.txt").absolute());
+
+        var filePath1 = FilePath.parseFilePath(this, "TestFile1.txt");
+        var filePath1a = FilePath.parseFilePath(this, "TestFile1.txt");
+        var filePath2 = FilePath.parseFilePath(this, "TestFile2.txt");
+        var directoryName = "newdirectory";
+        var fileName = "TestFile3.txt";
+
+        ensureEqual(filePath1, filePath1a);
+        ensure(filePath1.equals(filePath1a));
+        ensureFalse(filePath1.equals(filePath2));
+
+        var filePath3 = FilePath.parseFilePath(this, directoryName).withChild(fileName);
+        ensureEqual(filePath3.toString(), directoryName + filePath1.separator() + fileName);
+
+        ensure(FilePath.parseFilePath(this, fileName).absolute().toString().endsWith(FilePath.parseFilePath(this, fileName).separator() + fileName));
+    }
+
+    @Test
     public void testFirst()
     {
         ensureEqual(path("a/b/c").first(), "a");

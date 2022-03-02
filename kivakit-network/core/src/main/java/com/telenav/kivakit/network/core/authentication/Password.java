@@ -16,25 +16,20 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.network.core.cluster;
+package com.telenav.kivakit.network.core.authentication;
 
-import com.telenav.kivakit.core.language.values.identifier.StringIdentifier;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
+import com.telenav.kivakit.security.project.lexakai.DiagramSecurity;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * Identifies a cluster of servers that work together.
+ * A password can be used to match against another password to perform authentication.
  *
  * @author jonathanl (shibo)
  */
+@UmlClassDiagram(diagram = DiagramSecurity.class)
 @LexakaiJavadoc(complete = true)
-public class ClusterIdentifier extends StringIdentifier
+public interface Password extends Matcher<Password>
 {
-    public ClusterIdentifier(String identifier)
-    {
-        super(identifier);
-    }
-
-    protected ClusterIdentifier()
-    {
-    }
 }

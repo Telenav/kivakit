@@ -11,4 +11,6 @@ open module kivakit.network.core
     exports com.telenav.kivakit.network.core.converters;
     exports com.telenav.kivakit.network.core.cluster;
     exports com.telenav.kivakit.network.core.project.lexakai;
+    exports com.telenav.kivakit.network.core.authentication;
+    exports com.telenav.kivakit.network.core.authentication.passwords;
 }

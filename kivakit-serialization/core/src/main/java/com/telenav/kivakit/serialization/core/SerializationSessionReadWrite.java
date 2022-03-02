@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Unversioned primitive read and write methods. Prefer the automatically versioned {@link SerializationSession#read()}
+ * Un-versioned primitive read and write methods. Prefer the automatically versioned {@link SerializationSession#read()}
  * and {@link SerializationSession#write(VersionedObject)} methods whenever possible.
  *
  * @author jonathanl (shibo)

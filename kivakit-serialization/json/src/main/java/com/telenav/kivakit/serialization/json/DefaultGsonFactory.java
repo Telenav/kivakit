@@ -25,30 +25,32 @@ import com.google.gson.InstanceCreator;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonSerializer;
 import com.google.gson.TypeAdapterFactory;
-import com.telenav.kivakit.conversion.string.StringConverter;
-import com.telenav.kivakit.conversion.string.primitive.BooleanConverter;
-import com.telenav.kivakit.core.language.collections.list.ObjectList;
+import com.telenav.kivakit.conversion.StringConverter;
+import com.telenav.kivakit.conversion.core.language.primitive.BooleanConverter;
+import com.telenav.kivakit.conversion.core.time.DurationConverter;
+import com.telenav.kivakit.conversion.core.time.FrequencyConverter;
+import com.telenav.kivakit.conversion.core.value.BytesConverter;
+import com.telenav.kivakit.conversion.core.value.ConfidenceConverter;
+import com.telenav.kivakit.conversion.core.value.CountConverter;
+import com.telenav.kivakit.conversion.core.value.LevelConverter;
+import com.telenav.kivakit.conversion.core.value.MaximumConverter;
+import com.telenav.kivakit.conversion.core.value.MinimumConverter;
+import com.telenav.kivakit.conversion.core.value.PercentConverter;
+import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.language.Objects;
-import com.telenav.kivakit.language.count.Bytes;
-import com.telenav.kivakit.language.count.Count;
-import com.telenav.kivakit.language.count.Maximum;
-import com.telenav.kivakit.language.count.Minimum;
-import com.telenav.kivakit.language.level.Confidence;
-import com.telenav.kivakit.language.level.ConfidenceConverter;
-import com.telenav.kivakit.language.level.Level;
-import com.telenav.kivakit.language.level.LevelConverter;
-import com.telenav.kivakit.language.level.Percent;
-import com.telenav.kivakit.language.level.PercentConverter;
-import com.telenav.kivakit.language.time.Duration;
-import com.telenav.kivakit.language.time.Frequency;
-import com.telenav.kivakit.language.time.FrequencyConverter;
-import com.telenav.kivakit.language.version.Version;
-import com.telenav.kivakit.core.messaging.Debug;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.messaging.logging.Logger;
-import com.telenav.kivakit.core.messaging.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.time.Duration;
+import com.telenav.kivakit.core.time.Frequency;
+import com.telenav.kivakit.core.value.count.Bytes;
+import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.core.value.count.Maximum;
+import com.telenav.kivakit.core.value.count.Minimum;
+import com.telenav.kivakit.core.value.level.Confidence;
+import com.telenav.kivakit.core.value.level.Level;
+import com.telenav.kivakit.core.value.level.Percent;
+import com.telenav.kivakit.core.version.Version;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.util.ArrayList;
@@ -64,10 +66,6 @@ import java.util.Map;
 @LexakaiJavadoc(complete = true)
 public class DefaultGsonFactory extends BaseRepeater implements GsonFactory
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
-    private static final Debug DEBUG = new Debug(LOGGER);
-
     private static final Map<Settings, Gson> instances = new HashMap<>();
 
     private static class Settings
@@ -208,14 +206,14 @@ public class DefaultGsonFactory extends BaseRepeater implements GsonFactory
         addListener(listener);
 
         addSerializer(Boolean.class, new BooleanConverter(listener));
-        addSerializer(Bytes.class, new Bytes.Converter(listener));
+        addSerializer(Bytes.class, new BytesConverter(listener));
         addSerializer(Confidence.class, new ConfidenceConverter(listener));
-        addSerializer(Count.class, new Count.Converter(listener));
-        addSerializer(Duration.class, new Duration.Converter(listener));
+        addSerializer(Count.class, new CountConverter(listener));
+        addSerializer(Duration.class, new DurationConverter(listener));
         addSerializer(Frequency.class, new FrequencyConverter(listener));
         addSerializer(Level.class, new LevelConverter(listener));
-        addSerializer(Maximum.class, new Maximum.Converter(listener));
-        addSerializer(Minimum.class, new Minimum.Converter(listener));
+        addSerializer(Maximum.class, new MaximumConverter(listener));
+        addSerializer(Minimum.class, new MinimumConverter(listener));
         addSerializer(Percent.class, new PercentConverter(listener));
     }
 

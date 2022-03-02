@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.telenav.kivakit.collections.map.string.VariableMap;
+import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.test.UnitTest;
 import org.junit.Test;
 

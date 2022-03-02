@@ -19,12 +19,12 @@
 package com.telenav.kivakit.settings.settings.deployment;
 
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
+import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.settings.settings.Deployment;
 import com.telenav.kivakit.settings.settings.ServerSettings;
 import com.telenav.kivakit.settings.settings.Settings;
 import com.telenav.kivakit.settings.settings.SettingsTrait;
-import com.telenav.kivakit.language.time.Duration;
-import com.telenav.kivakit.core.test.UnitTest;
 import org.junit.Test;
 
 public class ComplexDeploymentTest extends UnitTest
