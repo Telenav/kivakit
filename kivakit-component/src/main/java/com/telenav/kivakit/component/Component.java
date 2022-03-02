@@ -1,13 +1,8 @@
 package com.telenav.kivakit.component;
 
 import com.telenav.kivakit.component.project.lexakai.DiagramComponent;
-import com.telenav.kivakit.core.registry.Registry;
-import com.telenav.kivakit.core.registry.RegistryTrait;
-import com.telenav.kivakit.settings.settings.Settings;
-import com.telenav.kivakit.settings.settings.SettingsStore;
-import com.telenav.kivakit.settings.settings.SettingsTrait;
-import com.telenav.kivakit.core.language.LanguageTrait;
 import com.telenav.kivakit.core.code.UncheckedCode;
+import com.telenav.kivakit.core.language.trait.LanguageTrait;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Repeater;
@@ -18,11 +13,16 @@ import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Quibble;
 import com.telenav.kivakit.core.messaging.messages.status.Trace;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
+import com.telenav.kivakit.core.registry.Registry;
+import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.resource.PackageTrait;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.resources.packaged.Package;
+import com.telenav.kivakit.settings.settings.Settings;
+import com.telenav.kivakit.settings.settings.SettingsStore;
+import com.telenav.kivakit.settings.settings.SettingsTrait;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.function.Function;

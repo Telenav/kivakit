@@ -18,14 +18,14 @@
 
 package com.telenav.kivakit.resource.resources.jar.launcher;
 
+import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.os.OperatingSystem;
+import com.telenav.kivakit.core.os.Processes;
+import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.core.thread.KivaKitThread;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.core.language.collections.list.StringList;
-import com.telenav.kivakit.core.language.progress.ProgressReporter;
-import com.telenav.kivakit.core.language.threading.KivaKitThread;
-import com.telenav.kivakit.core.language.vm.OperatingSystem;
-import com.telenav.kivakit.core.language.vm.Processes;
-import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.resource.Resourceful;
 import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.kivakit.resource.project.lexakai.DiagramJarLauncher;
@@ -39,7 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.telenav.kivakit.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.resource.resources.jar.launcher.JarLauncher.ProcessType.CHILD;
 import static com.telenav.kivakit.resource.resources.jar.launcher.JarLauncher.ProcessType.DETACHED;
 
