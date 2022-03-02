@@ -178,7 +178,7 @@ public class ResourcePath extends StringPath implements UriIdentified
      */
     public File asFile()
     {
-        return File.parse(LOGGER, asString());
+        return File.parseFile(LOGGER, asString());
     }
 
     /**

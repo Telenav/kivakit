@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.email.converters;
 
-import com.telenav.kivakit.conversion.string.BaseStringConverter;
+import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.network.core.EmailAddress;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -33,12 +33,6 @@ public class EmailAddressConverter extends BaseStringConverter<EmailAddress>
 {
     public EmailAddressConverter(Listener listener)
     {
-        super(listener);
-    }
-
-    @Override
-    protected EmailAddress onToValue(String value)
-    {
-        return EmailAddress.parse(this, value);
+        super(listener, EmailAddress::parseEmail);
     }
 }

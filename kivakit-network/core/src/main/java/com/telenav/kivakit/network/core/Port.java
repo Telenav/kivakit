@@ -21,7 +21,6 @@ package com.telenav.kivakit.network.core;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.conversion.core.language.primitive.IntegerConverter;
-import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -68,17 +67,9 @@ public class Port
      *
      * @return A port for the given string or null if the string is not a port
      */
-    public static Port parse(Listener listener, String port)
+    public static Port parsePort(Listener listener, String port)
     {
         return new Converter(listener).convert(port);
-    }
-
-    public static SwitchParser.Builder<ObjectList<Port>> portListSwitchParser(Listener listener,
-                                                                              String name,
-                                                                              String description,
-                                                                              String delimiter)
-    {
-        return portSwitchParser(listener, name, description).converter(new Port.Converter(listener).listConverter(delimiter));
     }
 
     public static SwitchParser.Builder<Port> portSwitchParser(Listener listener, String name, String description)

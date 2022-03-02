@@ -19,7 +19,9 @@
 package com.telenav.kivakit.core.value.level;
 
 import com.telenav.kivakit.core.language.primitive.Doubles;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.project.lexakai.DiagramCount;
+import com.telenav.kivakit.core.string.Strip;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
@@ -66,6 +68,13 @@ public final class Percent implements Comparable<Percent>
     public static Percent of(double percent)
     {
         return new Percent(percent);
+    }
+
+    public static Percent parsePercent(Listener listener, String value)
+    {
+        return Percent.of(Double.parseDouble(value.endsWith("%")
+                ? Strip.ending(value, "%")
+                : value));
     }
 
     private double value;

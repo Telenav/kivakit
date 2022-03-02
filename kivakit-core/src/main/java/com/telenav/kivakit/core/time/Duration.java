@@ -18,12 +18,18 @@
 
 package com.telenav.kivakit.core.time;
 
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.project.lexakai.DiagramTime;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import java.util.regex.Pattern;
+
+import static com.telenav.kivakit.core.string.Strings.isOneOf;
+import static java.util.regex.Pattern.CASE_INSENSITIVE;
 
 /**
  * A <code>Duration</code> is an immutable length of time stored as a number of milliseconds. Various factory and
@@ -104,6 +110,12 @@ public class Duration implements
     /** Constant for one year. */
     public static final Duration ONE_YEAR = years(1);
 
+    /** Pattern to match strings */
+    private static final Pattern PATTERN = Pattern.compile(
+            "(?x) (?<quantity> [0-9]+ ([.,] [0-9]+)?) "
+                    + "(\\s+ | - | _)?"
+                    + "(?<units> d | h | m | s | ms | ((millisecond | second | minute | hour | day | week | year) s?))", CASE_INSENSITIVE);
+
     public static Duration days(double days)
     {
         return hours(24.0 * days);
@@ -147,6 +159,54 @@ public class Duration implements
     public static Duration nanoseconds(long nanoseconds)
     {
         return new Duration(nanoseconds / 1_000_000L, Range.POSITIVE_ONLY);
+    }
+
+    public static Duration parseDuration(Listener listener, String value)
+    {
+        var matcher = PATTERN.matcher(value);
+        if (matcher.matches())
+        {
+            var quantity = Double.parseDouble(matcher.group("quantity"));
+            var units = matcher.group("units");
+            if (isOneOf(units, "milliseconds", "millisecond", "ms"))
+            {
+                return Duration.milliseconds(quantity);
+            }
+            else if (isOneOf(units, "seconds", "second", "s"))
+            {
+                return Duration.seconds(quantity);
+            }
+            else if (isOneOf(units, "minutes", "minute", "m"))
+            {
+                return Duration.minutes(quantity);
+            }
+            else if (isOneOf(units, "hours", "hour", "h"))
+            {
+                return Duration.hours(quantity);
+            }
+            else if (isOneOf(units, "days", "day", "d"))
+            {
+                return Duration.days(quantity);
+            }
+            else if (isOneOf(units, "weeks", "week"))
+            {
+                return Duration.weeks(quantity);
+            }
+            else if (isOneOf(units, "years", "year"))
+            {
+                return Duration.years(quantity);
+            }
+            else
+            {
+                listener.problem("Unrecognized units: ${debug}", value);
+                return null;
+            }
+        }
+        else
+        {
+            listener.problem("Unable to parse: ${debug}", value);
+            return null;
+        }
     }
 
     public static Duration profile(Runnable code)

@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.telenav.kivakit.collections.map.string.VariableMap;
 import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.language.reflection.ObjectFormatter;
@@ -54,6 +54,24 @@ public class NetworkLocation implements Stringable, Comparable<NetworkLocation>
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
+    public static NetworkLocation parseNetworkLocation(Listener listener, String value)
+    {
+        try
+        {
+            var uri = new URI(value);
+            var location = new NetworkLocation(NetworkPath.networkPath(listener, uri));
+            location.queryParameters(new QueryParameters(uri.getQuery()));
+            var url = uri.toURL();
+            location.reference(url.getRef());
+            return location;
+        }
+        catch (URISyntaxException | MalformedURLException e)
+        {
+            listener.problem(e, "Bad network location ${debug}", value);
+            return null;
+        }
+    }
+
     /**
      * Converts to and from a {@link NetworkLocation}
      *
@@ -64,26 +82,7 @@ public class NetworkLocation implements Stringable, Comparable<NetworkLocation>
     {
         public Converter(Listener listener)
         {
-            super(listener);
-        }
-
-        @Override
-        protected NetworkLocation onToValue(String value)
-        {
-            try
-            {
-                var uri = new URI(value);
-                var location = new NetworkLocation(NetworkPath.networkPath(this, uri));
-                location.queryParameters(new QueryParameters(uri.getQuery()));
-                var url = uri.toURL();
-                location.reference(url.getRef());
-                return location;
-            }
-            catch (URISyntaxException | MalformedURLException e)
-            {
-                problem(e, "Bad network location ${debug}", value);
-                return null;
-            }
+            super(listener, NetworkLocation::parseNetworkLocation);
         }
     }
 
@@ -133,7 +132,7 @@ public class NetworkLocation implements Stringable, Comparable<NetworkLocation>
             {
                 portNumber = -1;
             }
-            // Decode path so we avoid double-encoding if the path is already encoded
+            // Decode path, so we avoid double-encoding if the path is already encoded
             var path = URLDecoder.decode(networkPath().asStringPath().toString(), StandardCharsets.UTF_8);
             return new URI(protocol().name(), username, host().name(), portNumber, "/" + path,
                     queryParameters == null ? null : queryParameters.toString(), reference);
@@ -291,8 +290,7 @@ public class NetworkLocation implements Stringable, Comparable<NetworkLocation>
     public NetworkLocation withInterpolatedVariables(VariableMap<String> variables)
     {
         // Interpolate variables in path
-        var formatter = new Formatter();
-        var interpolatedPath = formatter.format(networkPath().toString(), variables);
+        var interpolatedPath = Formatter.format(networkPath().toString(), variables);
 
         // Create location with the given path
         var location = withPath(NetworkPath.parseNetworkPath(LOGGER, interpolatedPath));
@@ -301,7 +299,7 @@ public class NetworkLocation implements Stringable, Comparable<NetworkLocation>
         if (queryParameters() != null)
         {
             // interpolate variables into query parameter string
-            var interpolatedQueryParameters = formatter.format(queryParameters().toString(), variables);
+            var interpolatedQueryParameters = Formatter.format(queryParameters().toString(), variables);
 
             // and create a new location with the interpolated value
             location = location.withQueryParameters(new QueryParameters(interpolatedQueryParameters));

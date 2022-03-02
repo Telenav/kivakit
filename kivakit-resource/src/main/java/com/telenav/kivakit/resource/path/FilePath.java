@@ -20,8 +20,8 @@ package com.telenav.kivakit.resource.path;
 
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.os.OperatingSystem;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.os.OperatingSystem;
 import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.string.Formatter;
@@ -205,13 +205,7 @@ public class FilePath extends ResourcePath
     {
         public Converter(Listener listener)
         {
-            super(listener);
-        }
-
-        @Override
-        protected FilePath onToValue(String value)
-        {
-            return parseFilePath(this, value);
+            super(listener, FilePath::parseFilePath);
         }
     }
 

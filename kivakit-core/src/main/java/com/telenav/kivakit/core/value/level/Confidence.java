@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.value.level;
 
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.project.lexakai.DiagramCount;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -53,6 +54,11 @@ public class Confidence extends Level
     public static Confidence confidenceForInt(int value)
     {
         return new Confidence(value / 255.0);
+    }
+
+    public static Confidence parseConfidence(Listener listener, String value)
+    {
+        return Confidence.confidence(Double.parseDouble(value));
     }
 
     protected Confidence(double value)

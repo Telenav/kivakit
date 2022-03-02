@@ -20,9 +20,7 @@ package com.telenav.kivakit.resource.resources.other;
 
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.language.primitive.Booleans;
 import com.telenav.kivakit.core.language.reflection.ObjectPopulator;
 import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
@@ -33,6 +31,7 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.string.AsciiArt;
+import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.Resource;
@@ -70,7 +69,6 @@ import java.util.regex.Pattern;
  *
  * <ul>
  *     <li>{@link #copy()} - A copy of this property map</li>
- *     <li>{@link #asObject(Listener, Class)} - Creates a new instance of the given class and populates its
  *     properties with the values in this property map using {@link ObjectPopulator}</li>
  *     <li>{@link #asInt(String)} - The given value as an int</li>
  *     <li>{@link #asLong(String)} - The given value as a long</li>
@@ -175,17 +173,12 @@ public class PropertyMap extends VariableMap<String>
         }
     }
 
-    public boolean asBoolean(String key)
-    {
-        return Booleans.isTrue(get(key));
-    }
-
     /**
      * @return The given value as a {@link Folder}
      */
     public File asFile(String key)
     {
-        return File.parse(LOGGER, get(key));
+        return File.parseFile(LOGGER, get(key));
     }
 
     /**

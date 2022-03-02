@@ -68,7 +68,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  * Files can be created with several static factory methods, including:
  *
  * <ul>
- *     <li>{@link #parse(Listener listener, String)}</li>
+ *     <li>{@link #parseFile(Listener listener, String)}</li>
  *     <li>{@link #file(Listener, URI)}</li>
  *     <li>{@link #file(FilePath)}</li>
  *     <li>{@link #file(java.io.File)}</li>
@@ -189,7 +189,7 @@ public class File extends BaseWritableResource implements FileSystemObject
 
     public static File file(java.io.File file)
     {
-        return parse(Listener.none(), file.getAbsolutePath());
+        return parseFile(Listener.none(), file.getAbsolutePath());
     }
 
     public static File file(FilePath path)
@@ -254,12 +254,12 @@ public class File extends BaseWritableResource implements FileSystemObject
         return fileSwitchParser(listener, "output", "The output file to target");
     }
 
-    public static File parse(Listener listener, String path, VariableMap<String> variables)
+    public static File parseFile(Listener listener, String path, VariableMap<String> variables)
     {
-        return parse(listener, variables.expand(path));
+        return parseFile(listener, variables.expand(path));
     }
 
-    public static File parse(Listener listener, String path)
+    public static File parseFile(Listener listener, String path)
     {
         // If there is a KivaKit scheme, like "s3", "hdfs" or "java",
         var scheme = Paths.head(path, ":");
@@ -293,13 +293,7 @@ public class File extends BaseWritableResource implements FileSystemObject
     {
         public Converter(Listener listener)
         {
-            super(listener);
-        }
-
-        @Override
-        protected File onToValue(String value)
-        {
-            return File.parse(this, value);
+            super(listener, File::parseFile);
         }
     }
 
@@ -325,7 +319,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         @Override
         public Resource resolve(ResourceIdentifier identifier)
         {
-            return File.parse(this, identifier.identifier());
+            return File.parseFile(this, identifier.identifier());
         }
     }
 
@@ -743,7 +737,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      */
     public File withExtension(Extension extension)
     {
-        return File.parse(this, path().toString() + extension);
+        return File.parseFile(this, path().toString() + extension);
     }
 
     /**
@@ -771,7 +765,7 @@ public class File extends BaseWritableResource implements FileSystemObject
             }
             if (dot > 0)
             {
-                return File.parse(this, pathString.substring(0, dot));
+                return File.parseFile(this, pathString.substring(0, dot));
             }
         }
         return this;
@@ -786,7 +780,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         if (extension != null)
         {
             var withoutExtension = Paths.withoutOptionalSuffix(path().toString(), '.');
-            return File.parse(this, withoutExtension);
+            return File.parseFile(this, withoutExtension);
         }
         return this;
     }
@@ -806,7 +800,7 @@ public class File extends BaseWritableResource implements FileSystemObject
             {
                 if (file.fileName().endsWith(extension))
                 {
-                    file = File.parse(this, Strip.ending(path().toString(), extension.toString()));
+                    file = File.parseFile(this, Strip.ending(path().toString(), extension.toString()));
                     removedOne = true;
                 }
             }
@@ -824,7 +818,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         var file = this;
         while (file.exists())
         {
-            file = File.parse(this, withoutExtension() + "-" + count + extension());
+            file = File.parseFile(this, withoutExtension() + "-" + count + extension());
             count++;
         }
         return file;

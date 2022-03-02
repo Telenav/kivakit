@@ -18,15 +18,6 @@ public class FrequencyConverter extends BaseStringConverter<Frequency>
 {
     public FrequencyConverter(Listener listener)
     {
-        super(listener);
-    }
-
-    @Override
-    protected Frequency onToValue(String value)
-    {
-        var duration = new DurationConverter(this).convert(value);
-        return duration == null
-                ? null
-                : Frequency.every(duration);
+        super(listener, Frequency::parseFrequency);
     }
 }

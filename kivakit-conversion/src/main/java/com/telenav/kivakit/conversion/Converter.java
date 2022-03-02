@@ -47,6 +47,18 @@ public interface Converter<From, To> extends Repeater
     To convert(From from);
 
     /**
+     * Convert from type &lt;From&gt; to type &lt;To&gt;.
+     *
+     * @param from The value to convert
+     * @return The converted value
+     */
+    default To convertOrDefault(From from, To defaultValue)
+    {
+        var to = convert(from);
+        return to != null ? to : defaultValue;
+    }
+
+    /**
      * @return The given collection of values converted using the given converter and separated by the given separator
      */
     default String join(Collection<From> values, String separator)

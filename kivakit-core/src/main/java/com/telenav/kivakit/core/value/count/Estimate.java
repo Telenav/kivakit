@@ -18,8 +18,10 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.core.value.level.Percent;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.project.lexakai.DiagramCount;
+import com.telenav.kivakit.core.string.Strings;
+import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -213,6 +215,15 @@ public class Estimate extends Count implements Stringable
     public static <T> Estimate estimate(T[] values)
     {
         return estimate(values.length);
+    }
+
+    public static Estimate parseEstimate(Listener listener, String value)
+    {
+        if (value.indexOf(',') > 0)
+        {
+            value = Strings.removeAll(value, ',');
+        }
+        return Estimate.estimate(Long.parseLong(value));
     }
 
     protected Estimate(long estimate)

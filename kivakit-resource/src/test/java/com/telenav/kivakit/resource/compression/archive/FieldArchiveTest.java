@@ -68,7 +68,7 @@ public class FieldArchiveTest extends KryoUnitTest
         try (var archive = listenTo(new FieldArchive(file, sessionFactory, ProgressReporter.none(), ZipArchive.Mode.WRITE)))
         {
             var test = new TestClass();
-            archive.saveFieldsOf(test, Version.parse(this, "1.0"));
+            archive.saveFieldsOf(test, Version.parseVersion(this, "1.0"));
         }
 
         try (var archive = listenTo(new FieldArchive(file, sessionFactory, ProgressReporter.none(), ZipArchive.Mode.READ)))

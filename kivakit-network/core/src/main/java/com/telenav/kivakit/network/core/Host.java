@@ -121,12 +121,12 @@ public class Host extends BaseRepeater implements
         return new Host("[No Host]");
     }
 
-    public static Host parse(Listener listener, String name)
+    public static Host parseHost(Listener listener, String name)
     {
         return listener.listenTo(new Host(name));
     }
 
-    public static Host parse(Listener listener, String name, String description)
+    public static Host parseHost(Listener listener, String name, String description)
     {
         return listener.listenTo(new Host(name, description));
     }
@@ -141,13 +141,7 @@ public class Host extends BaseRepeater implements
     {
         public Converter(Listener listener)
         {
-            super(listener);
-        }
-
-        @Override
-        protected Host onToValue(String value)
-        {
-            return parse(this, value);
+            super(listener, Host::parseHost);
         }
     }
 

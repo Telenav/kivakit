@@ -1,6 +1,5 @@
 package com.telenav.kivakit.core.language.reflection.property;
 
-import com.telenav.kivakit.core.language.reflection.populator.KivaKitPropertyConverter;
 import com.telenav.kivakit.core.project.lexakai.DiagramReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -24,6 +23,6 @@ public enum IncludeProperty
     /** Include fields marked with {@link KivaKitIncludeProperty} */
     INCLUDED_FIELDS,
 
-    /** Include fields marked with {@link KivaKitPropertyConverter} */
+    /** Include fields marked with @KivaKitPropertyConverter */
     CONVERTED_FIELDS_AND_METHODS
 }

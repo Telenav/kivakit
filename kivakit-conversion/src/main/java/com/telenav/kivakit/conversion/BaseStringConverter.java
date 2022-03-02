@@ -25,6 +25,11 @@ import com.telenav.kivakit.core.string.Strings;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
+import java.util.function.BiFunction;
+import java.util.function.Function;
+
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+
 /**
  * Base class for conversions to and from String objects.
  *
@@ -64,6 +69,10 @@ public abstract class BaseStringConverter<Value> extends BaseConverter<String, V
     /** True if empty strings are allowed */
     private boolean allowEmpty;
 
+    private Function<String, Value> lambda;
+
+    private BiFunction<Listener, String, Value> biLambda;
+
     /**
      * @param listener The conversion listener
      */
@@ -71,6 +80,26 @@ public abstract class BaseStringConverter<Value> extends BaseConverter<String, V
     protected BaseStringConverter(Listener listener)
     {
         super(listener);
+    }
+
+    /**
+     * @param listener The conversion listener
+     */
+    @UmlExcludeMember
+    protected BaseStringConverter(Listener listener, Function<String, Value> lambda)
+    {
+        super(listener);
+        this.lambda = lambda;
+    }
+
+    /**
+     * @param listener The conversion listener
+     */
+    @UmlExcludeMember
+    protected BaseStringConverter(Listener listener, BiFunction<Listener, String, Value> biLambda)
+    {
+        super(listener);
+        this.biLambda = biLambda;
     }
 
     /**
@@ -175,5 +204,11 @@ public abstract class BaseStringConverter<Value> extends BaseConverter<String, V
      * @param value The (guaranteed non-null, non-empty) value to convert
      * @return The converted object
      */
-    protected abstract Value onToValue(String value);
+    protected Value onToValue(String value)
+    {
+        ensure(lambda != null ^ biLambda != null, "Must override onToValue() or provide a lambda to constructor");
+        return lambda != null
+                ? lambda.apply(value)
+                : biLambda.apply(this, value);
+    }
 }

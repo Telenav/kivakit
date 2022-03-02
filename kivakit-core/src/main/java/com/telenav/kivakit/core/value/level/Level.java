@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.value.level;
 
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.project.lexakai.DiagramCount;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -40,6 +41,28 @@ public class Level
     public static Level levelForByte(byte level)
     {
         return new Level((double) level / Byte.MAX_VALUE);
+    }
+
+    public static Level parseLevel(Listener listener, String value, boolean lenient)
+    {
+        var level = Double.parseDouble(value);
+        if (level >= 0 && level <= 1.0)
+        {
+            return new Level(level);
+        }
+        if (lenient)
+        {
+            if (level < 0)
+            {
+                return Level.ZERO;
+            }
+            if (level > 1)
+            {
+                return Level.ONE;
+            }
+        }
+        listener.warning("Invalid level ${debug}", value);
+        return null;
     }
 
     private double value;

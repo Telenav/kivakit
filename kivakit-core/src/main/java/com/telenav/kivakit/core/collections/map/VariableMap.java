@@ -19,8 +19,10 @@
 package com.telenav.kivakit.core.collections.map;
 
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.value.count.Maximum;
+import com.telenav.kivakit.core.language.reflection.property.Property;
+import com.telenav.kivakit.core.language.reflection.property.PropertyValueSource;
 import com.telenav.kivakit.core.project.lexakai.DiagramCollections;
+import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.HashSet;
@@ -36,7 +38,7 @@ import java.util.Map;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCollections.class)
-public class VariableMap<Value> extends BaseStringMap<Value>
+public class VariableMap<Value> extends BaseStringMap<Value> implements PropertyValueSource
 {
     /**
      * @return A string variable map for the given string-to-string map
@@ -198,6 +200,15 @@ public class VariableMap<Value> extends BaseStringMap<Value>
             expanded.put(key, expand(value.toString()));
         }
         return expanded;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Object valueFor(final Property property)
+    {
+        return get(property.name());
     }
 
     /**

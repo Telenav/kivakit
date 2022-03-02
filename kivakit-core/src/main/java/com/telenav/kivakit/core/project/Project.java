@@ -22,16 +22,16 @@ import com.telenav.cactus.build.metadata.BuildMetadata;
 import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
-import com.telenav.kivakit.core.object.Lazy;
-import com.telenav.kivakit.core.vm.JavaVirtualMachine;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Debug;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.project.lexakai.DiagramProject;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.core.version.Version;
+import com.telenav.kivakit.core.vm.JavaVirtualMachine;
 import com.telenav.kivakit.interfaces.lifecycle.Initializable;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -226,7 +226,7 @@ public abstract class Project extends BaseRepeater implements Initializable, Nam
      */
     public Version projectVersion()
     {
-        return Version.parse(this, property("project-version"));
+        return Version.parseVersion(this, property("project-version"));
     }
 
     /**

@@ -38,7 +38,7 @@ public class EmailTest extends UnitTest
     @SuppressWarnings("resource")
     public void test()
     {
-        var shibo = EmailAddress.parse(this, "jonathanl@telenav.com");
+        var shibo = EmailAddress.parseEmail(this, "jonathanl@telenav.com");
 
         var email = new Email()
                 .from(shibo)

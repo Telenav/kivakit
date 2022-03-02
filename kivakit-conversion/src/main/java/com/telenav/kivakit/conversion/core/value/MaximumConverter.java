@@ -2,8 +2,8 @@ package com.telenav.kivakit.conversion.core.value;
 
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.conversion.project.lexakai.DiagramConversionValue;
-import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -18,12 +18,6 @@ public class MaximumConverter extends BaseStringConverter<Maximum>
 {
     public MaximumConverter(Listener listener)
     {
-        super(listener);
-    }
-
-    @Override
-    protected Maximum onToValue(String value)
-    {
-        return Maximum.parseMaximum(this, value);
+        super(listener, Maximum::parseMaximum);
     }
 }

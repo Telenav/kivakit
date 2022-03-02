@@ -102,7 +102,7 @@ public class FileList extends ObjectList<File>
             var files = new FileList();
             for (var path : value.split(","))
             {
-                var file = File.parse(this, path);
+                var file = File.parseFile(this, path);
                 if (file.isFolder())
                 {
                     files.addAll(file.asFolder().nestedFiles(extension.fileMatcher()));

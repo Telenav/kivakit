@@ -34,7 +34,7 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
  * <p><b>Parsing</b></p>
  *
  * <p>
- * Versions can be created by parsing a {@link String} with {@link #parse(Listener listener, String)} as well as by
+ * Versions can be created by parsing a {@link String} with {@link #parseVersion(Listener listener, String)} as well as by
  * using the of() factory methods, passing in major, minor, patch and release values.
  * </p>
  *
@@ -139,16 +139,16 @@ public class Version
      * @return The given text, of the form [major].[minor](.[revision])?(-release)?, parsed as a {@link Version} object,
      * or null if the text is not of that form.
      */
-    public static Version parse(String text)
+    public static Version parseVersion(String text)
     {
-        return parse(Listener.throwing(), text);
+        return parseVersion(Listener.throwing(), text);
     }
 
     /**
      * @return The given text, of the form [major].[minor](.[revision])?(-release)?, parsed as a {@link Version} object,
      * or null if the text is not of that form.
      */
-    public static Version parse(Listener listener, String text)
+    public static Version parseVersion(Listener listener, String text)
     {
         // If the text matches the version pattern,
         var matcher = PATTERN.matcher(text);

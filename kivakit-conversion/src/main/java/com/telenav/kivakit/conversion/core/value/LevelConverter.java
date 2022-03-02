@@ -2,8 +2,8 @@ package com.telenav.kivakit.conversion.core.value;
 
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.conversion.project.lexakai.DiagramConversionValue;
-import com.telenav.kivakit.core.value.level.Level;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.value.level.Level;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -31,23 +31,6 @@ public class LevelConverter extends BaseStringConverter<Level>
     @Override
     protected Level onToValue(String value)
     {
-        var level = Double.parseDouble(value);
-        if (level >= 0 && level <= 1.0)
-        {
-            return new Level(level);
-        }
-        if (lenient)
-        {
-            if (level < 0)
-            {
-                return Level.ZERO;
-            }
-            if (level > 1)
-            {
-                return Level.ONE;
-            }
-        }
-        warning("Invalid level ${debug}", value);
-        return null;
+        return Level.parseLevel(this, value, lenient);
     }
 }

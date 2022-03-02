@@ -19,11 +19,14 @@
 package com.telenav.kivakit.core.value.count;
 
 import com.telenav.kivakit.core.language.primitive.Doubles;
-import com.telenav.kivakit.core.value.level.Percent;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.project.lexakai.DiagramCount;
+import com.telenav.kivakit.core.string.Strings;
+import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.reflect.Array;
+import java.util.regex.Pattern;
 
 /**
  * Represents an immutable byte count. These static factory methods allow easy construction of value objects using
@@ -75,6 +78,10 @@ import java.lang.reflect.Array;
 @UmlClassDiagram(diagram = DiagramCount.class)
 public final class Bytes extends Count implements ByteSized
 {
+    /** Pattern for string parsing. */
+    private static final Pattern PATTERN = Pattern.compile("([0-9]+([.,][0-9]+)?)\\s*(|K|M|G|T)B?",
+            Pattern.CASE_INSENSITIVE);
+
     /** No bytes */
     public static final Bytes _0 = bytes(0);
 
@@ -139,6 +146,52 @@ public final class Bytes extends Count implements ByteSized
     public static Bytes megabytes(long megabytes)
     {
         return kilobytes(megabytes * 1024);
+    }
+
+    public static Bytes parseBytes(Listener listener, String value)
+    {
+        var matcher = PATTERN.matcher(value);
+
+        // Valid input?
+        if (matcher.matches())
+        {
+            // Get double precision value
+            var scalar = Double.parseDouble(Strings.replaceAll(matcher.group(1), ",", ""));
+
+            // Get units specified
+            var units = matcher.group(3);
+
+            if ("".equalsIgnoreCase(units))
+            {
+                return Bytes.bytes(scalar);
+            }
+            else if ("K".equalsIgnoreCase(units))
+            {
+                return Bytes.kilobytes(scalar);
+            }
+            else if ("M".equalsIgnoreCase(units))
+            {
+                return Bytes.megabytes(scalar);
+            }
+            else if ("G".equalsIgnoreCase(units))
+            {
+                return Bytes.gigabytes(scalar);
+            }
+            else if ("T".equalsIgnoreCase(units))
+            {
+                return Bytes.terabytes(scalar);
+            }
+            else
+            {
+                listener.problem("Unrecognized units: ${debug}", value);
+                return null;
+            }
+        }
+        else
+        {
+            listener.problem("Unable to parse: ${debug}", value);
+            return null;
+        }
     }
 
     /**

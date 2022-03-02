@@ -19,10 +19,10 @@
 package com.telenav.kivakit.resource.reading;
 
 import com.telenav.kivakit.core.io.IO;
-import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
 import com.telenav.kivakit.core.time.Time;
@@ -300,7 +300,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
         // Flatten path being cached into a long filename by turning all file system meta characters
         // into underscores.
         // For example, "a/b/c.txt" becomes "a_b_c.txt"
-        return File.parse(this, cacheFolder.get() + "/" + path().toString().replaceAll("[/:]", "_"));
+        return File.parseFile(this, cacheFolder.get() + "/" + path().toString().replaceAll("[/:]", "_"));
     }
 
     private String uniqueIdentifier()

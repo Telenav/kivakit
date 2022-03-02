@@ -27,19 +27,19 @@ public class VersionTest extends UnitTest
     @Test
     public void test()
     {
-        ensure(Version.parse(this, "2.0").isNewerThan(Version.parse(this, "1.9.1-rc")));
-        ensure(Version.parse(this, "1.9").isOlderThan(Version.parse(this, "1.9.1-rc")));
-        ensure(Version.parse(this, "1.9.3").isNewerThan(Version.parse(this, "1.9.1-rc")));
-        ensure(Version.parse(this, "1.9.2-m3").isOlderThan(Version.parse(this, "1.9.3")));
-        ensure(Version.parse(this, "4.9.1-beta").isNewerThan(Version.parse(this, "1.9.3")));
+        ensure(Version.parseVersion(this, "2.0").isNewerThan(Version.parseVersion(this, "1.9.1-rc")));
+        ensure(Version.parseVersion(this, "1.9").isOlderThan(Version.parseVersion(this, "1.9.1-rc")));
+        ensure(Version.parseVersion(this, "1.9.3").isNewerThan(Version.parseVersion(this, "1.9.1-rc")));
+        ensure(Version.parseVersion(this, "1.9.2-m3").isOlderThan(Version.parseVersion(this, "1.9.3")));
+        ensure(Version.parseVersion(this, "4.9.1-beta").isNewerThan(Version.parseVersion(this, "1.9.3")));
         ensure(Version.of(1, 0).isNewerThan(Version.of(0, 9)));
-        ensure(Version.parse(this, "1.9").isNewerThan(Version.parse(this, "0.9")));
-        ensureEqual(Version.of(1, 0, 0), Version.parse(this, "1.0.0"));
-        ensureEqual("1.0.0", Version.parse(this, "1.0.0").toString());
-        ensureEqual(Version.parse(this, "1.0.5-SNAPSHOT"), Version.parse(this, "1.0.5-SNAPSHOT"));
-        ensure(!Version.parse(this, "1.0.5-SNAPSHOT").isNewerThan(Version.parse(this, "1.0.5-SNAPSHOT")));
-        ensure(!Version.parse(this, "1.0.5-SNAPSHOT").isOlderThan(Version.parse(this, "1.0.5-SNAPSHOT")));
-        ensure(Version.parse(this, "1.0.6-SNAPSHOT").isNewerThan(Version.parse(this, "1.0.5-SNAPSHOT")));
-        ensure(Version.parse(this, "1.0.4-SNAPSHOT").isOlderThan(Version.parse(this, "1.0.5-SNAPSHOT")));
+        ensure(Version.parseVersion(this, "1.9").isNewerThan(Version.parseVersion(this, "0.9")));
+        ensureEqual(Version.of(1, 0, 0), Version.parseVersion(this, "1.0.0"));
+        ensureEqual("1.0.0", Version.parseVersion(this, "1.0.0").toString());
+        ensureEqual(Version.parseVersion(this, "1.0.5-SNAPSHOT"), Version.parseVersion(this, "1.0.5-SNAPSHOT"));
+        ensure(!Version.parseVersion(this, "1.0.5-SNAPSHOT").isNewerThan(Version.parseVersion(this, "1.0.5-SNAPSHOT")));
+        ensure(!Version.parseVersion(this, "1.0.5-SNAPSHOT").isOlderThan(Version.parseVersion(this, "1.0.5-SNAPSHOT")));
+        ensure(Version.parseVersion(this, "1.0.6-SNAPSHOT").isNewerThan(Version.parseVersion(this, "1.0.5-SNAPSHOT")));
+        ensure(Version.parseVersion(this, "1.0.4-SNAPSHOT").isOlderThan(Version.parseVersion(this, "1.0.5-SNAPSHOT")));
     }
 }

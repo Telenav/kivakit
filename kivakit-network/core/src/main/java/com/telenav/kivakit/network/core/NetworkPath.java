@@ -128,13 +128,7 @@ public class NetworkPath extends FilePath
     {
         public Converter(Listener listener)
         {
-            super(listener);
-        }
-
-        @Override
-        protected NetworkPath onToValue(String value)
-        {
-            return parseNetworkPath(this, value);
+            super(listener, NetworkPath::parseNetworkPath);
         }
     }
 

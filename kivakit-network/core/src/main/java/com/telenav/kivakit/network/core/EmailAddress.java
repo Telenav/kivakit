@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.telenav.kivakit.conversion.string.BaseStringConverter;
+import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
@@ -38,7 +38,7 @@ public class EmailAddress
     /**
      * @return An email address for the given string, or null if the string is not an email address
      */
-    public static EmailAddress parse(Listener listener, String email)
+    public static EmailAddress parseEmail(Listener listener, String email)
     {
         assert email != null;
 
@@ -60,13 +60,7 @@ public class EmailAddress
     {
         protected Converter(Listener listener)
         {
-            super(listener);
-        }
-
-        @Override
-        protected EmailAddress onToValue(String value)
-        {
-            return parse(this, value);
+            super(listener, EmailAddress::parseEmail);
         }
     }
 
