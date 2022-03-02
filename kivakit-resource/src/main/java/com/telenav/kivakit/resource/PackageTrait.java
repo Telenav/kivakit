@@ -1,7 +1,7 @@
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.kernel.language.paths.PackagePath;
-import com.telenav.kivakit.kernel.messaging.Repeater;
+import com.telenav.kivakit.core.path.PackagePath;
+import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.resource.resources.packaged.Package;
 import com.telenav.kivakit.resource.resources.packaged.PackageResource;
 

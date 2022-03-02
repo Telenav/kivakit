@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.telenav.kivakit.kernel.language.objects.Lazy;
-import com.telenav.kivakit.kernel.language.vm.OperatingSystem;
-import com.telenav.kivakit.kernel.logging.LoggerCodeContext;
-import com.telenav.kivakit.network.core.project.lexakai.diagrams.DiagramPort;
+import com.telenav.kivakit.core.object.Lazy;
+import com.telenav.kivakit.core.os.OperatingSystem;
+import com.telenav.kivakit.core.logging.LoggerCodeContext;
+import com.telenav.kivakit.network.core.project.lexakai.DiagramPort;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -30,7 +30,7 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.UnknownHostException;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
  * The local {@link Host}.

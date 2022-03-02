@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.loading;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfacePersistence;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramLoading;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -27,7 +27,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramInterfacePersistence.class)
+@UmlClassDiagram(diagram = DiagramLoading.class)
 public interface Loadable
 {
     /**

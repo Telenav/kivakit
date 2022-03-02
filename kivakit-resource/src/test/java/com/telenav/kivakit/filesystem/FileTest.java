@@ -18,13 +18,14 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
+import com.telenav.kivakit.core.collections.map.VariableMap;
+import com.telenav.kivakit.core.test.UnitTest;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.path.Extension;
-import com.telenav.kivakit.test.UnitTest;
 import org.junit.Test;
 
 import java.net.URISyntaxException;
+import java.util.Objects;
 
 public class FileTest extends UnitTest
 {
@@ -40,10 +41,11 @@ public class FileTest extends UnitTest
     @Test
     public void testFileFromURI() throws URISyntaxException
     {
-        Resource resource = File.file(this, FileTest.class.getResource("FileTest.class").toURI());
+        Resource resource = File.file(this, Objects.requireNonNull(FileTest.class.getResource("FileTest.class")).toURI());
         ensureEqual("FileTest.class", resource.fileName().toString());
     }
 
+    @SuppressWarnings("SpellCheckingInspection")
     @Test
     public void testWithVariables()
     {
@@ -56,7 +58,7 @@ public class FileTest extends UnitTest
     @Test
     public void testWithoutCompoundExtension()
     {
-        ensureEqual(Folder.parse(this, ".").file("World"), File.parse(this, "./World.osm.pbf").withoutCompoundExtension());
+        ensureEqual(Objects.requireNonNull(Folder.parse(this, ".")).file("World"), File.parse(this, "./World.osm.pbf").withoutCompoundExtension());
         ensureEqual("World", File.parse(this, "World.osm.pbf").withoutCompoundExtension().toString());
         ensureEqual("World", File.parse(this, "World").withoutCompoundExtension().toString());
         ensureEqual("World", File.parse(this, "World.txt").withoutCompoundExtension().toString());

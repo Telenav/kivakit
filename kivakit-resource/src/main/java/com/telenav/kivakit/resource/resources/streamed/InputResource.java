@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.resource.resources.streamed;
 
-import com.telenav.kivakit.kernel.language.values.count.Bytes;
-import com.telenav.kivakit.kernel.messaging.Listener;
+import com.telenav.kivakit.core.value.count.Bytes;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.resource.ReadableResource;
 import com.telenav.kivakit.resource.ResourcePath;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourceType;
+import com.telenav.kivakit.resource.project.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

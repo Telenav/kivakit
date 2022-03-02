@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.kernel.language.threading.latches.CompletionLatch;
-import com.telenav.kivakit.kernel.language.time.Duration;
-import com.telenav.kivakit.kernel.language.values.count.Bytes;
-import com.telenav.kivakit.kernel.language.values.level.Percent;
-import com.telenav.kivakit.test.UnitTest;
+import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.thread.latches.CompletionLatch;
+import com.telenav.kivakit.core.time.Duration;
+import com.telenav.kivakit.core.value.count.Bytes;
+import com.telenav.kivakit.core.value.level.Percent;
 import org.junit.Test;
 
 public class FolderPrunerTest extends UnitTest

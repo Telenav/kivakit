@@ -18,18 +18,18 @@
 
 package com.telenav.kivakit.network.core;
 
+import com.telenav.kivakit.collections.map.string.VariableMap;
+import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.core.language.Hash;
+import com.telenav.kivakit.core.language.Objects;
+import com.telenav.kivakit.core.language.reflection.ObjectFormatter;
+import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.interfaces.string.Stringable;
-import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
-import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
-import com.telenav.kivakit.kernel.language.objects.Hash;
-import com.telenav.kivakit.kernel.language.objects.Objects;
-import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
-import com.telenav.kivakit.network.core.project.lexakai.diagrams.DiagramNetworkLocation;
+import com.telenav.kivakit.network.core.project.lexakai.DiagramNetworkLocation;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -291,7 +291,7 @@ public class NetworkLocation implements Stringable, Comparable<NetworkLocation>
     public NetworkLocation withInterpolatedVariables(VariableMap<String> variables)
     {
         // Interpolate variables in path
-        var formatter = new MessageFormatter();
+        var formatter = new Formatter();
         var interpolatedPath = formatter.format(networkPath().toString(), variables);
 
         // Create location with the given path

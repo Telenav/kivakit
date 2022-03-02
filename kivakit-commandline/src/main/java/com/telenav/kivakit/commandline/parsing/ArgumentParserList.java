@@ -19,11 +19,11 @@
 package com.telenav.kivakit.commandline.parsing;
 
 import com.telenav.kivakit.commandline.ArgumentParser;
-import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramArgument;
-import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramCommandLine;
-import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramValidation;
-import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
-import com.telenav.kivakit.kernel.language.collections.list.StringList;
+import com.telenav.kivakit.commandline.project.lexakai.DiagramArgument;
+import com.telenav.kivakit.commandline.project.lexakai.DiagramCommandLine;
+import com.telenav.kivakit.commandline.project.lexakai.DiagramValidation;
+import com.telenav.kivakit.core.collections.list.ObjectList;
+import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;

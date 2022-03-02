@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.telenav.kivakit.kernel.language.time.Duration;
-import com.telenav.kivakit.test.UnitTest;
+import com.telenav.kivakit.language.time.Duration;
+import com.telenav.kivakit.core.test.UnitTest;
 import org.junit.Test;
 
 public class NetworkAccessConstraintsTest extends UnitTest

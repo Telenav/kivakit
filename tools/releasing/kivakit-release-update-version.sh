@@ -26,6 +26,7 @@ echo " "
 
 update_version "$KIVAKIT_HOME" "$version"
 update_version "$KIVAKIT_EXTENSIONS_HOME" "$version"
+update_version "$KIVAKIT_STUFF_HOME" "$version"
 update_version "$KIVAKIT_EXAMPLES_HOME" "$version"
 
 echo " "

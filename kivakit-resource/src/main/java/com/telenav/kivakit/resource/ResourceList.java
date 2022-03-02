@@ -18,16 +18,16 @@
 
 package com.telenav.kivakit.resource;
 
+import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.value.count.Bytes;
+import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.kernel.language.values.count.Bytes;
-import com.telenav.kivakit.kernel.language.values.count.Count;
-import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.kivakit.resource.path.FileName;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResource;
+import com.telenav.kivakit.resource.project.lexakai.DiagramResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;

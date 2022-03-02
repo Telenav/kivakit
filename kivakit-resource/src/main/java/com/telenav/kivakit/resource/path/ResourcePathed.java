@@ -21,8 +21,8 @@ package com.telenav.kivakit.resource.path;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.UriIdentified;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResource;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourcePath;
+import com.telenav.kivakit.resource.project.lexakai.DiagramResource;
+import com.telenav.kivakit.resource.project.lexakai.DiagramResourcePath;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -35,6 +35,7 @@ import java.net.URI;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
 @LexakaiJavadoc(complete = true)

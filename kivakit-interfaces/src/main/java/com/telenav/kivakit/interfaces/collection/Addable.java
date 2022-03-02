@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceCollection;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramCollection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
@@ -31,22 +31,22 @@ import java.util.Iterator;
  * @author jonathanl (shibo)
  */
 @FunctionalInterface
-@UmlClassDiagram(diagram = DiagramInterfaceCollection.class)
-public interface Addable<T>
+@UmlClassDiagram(diagram = DiagramCollection.class)
+public interface Addable<Value>
 {
     /**
      * Adds the given value
      *
      * @return True if the value was added
      */
-    boolean add(T value);
+    boolean add(Value value);
 
     /**
      * @param values A sequence of values to add
      */
-    default boolean addAll(Iterable<? extends T> values)
+    default boolean addAll(Iterable<? extends Value> values)
     {
-        for (T value : values)
+        for (Value value : values)
         {
             if (!add(value))
             {
@@ -59,7 +59,7 @@ public interface Addable<T>
     /**
      * @param values A sequence of values to add
      */
-    default boolean addAll(Iterator<? extends T> values)
+    default boolean addAll(Iterator<? extends Value> values)
     {
         while (values.hasNext())
         {
@@ -69,5 +69,20 @@ public interface Addable<T>
             }
         }
         return true;
+    }
+
+    /**
+     * Adds the given value if it is not null
+     *
+     * @param value The value to add
+     * @return True if the value was added, false otherwise
+     */
+    default boolean addIfNotNull(Value value)
+    {
+        if (value != null)
+        {
+            return add(value);
+        }
+        return false;
     }
 }

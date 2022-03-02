@@ -18,10 +18,12 @@
 
 package com.telenav.kivakit.interfaces.comparison;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceComparison;
+import com.telenav.kivakit.interfaces.naming.Named;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramComparison;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.function.Predicate;
+import java.util.regex.Pattern;
 
 /**
  * A matcher when the term predicate is often not the right meaning to use. Implements Predicate for interoperation.
@@ -29,9 +31,29 @@ import java.util.function.Predicate;
  * @param <Value> The type of value to match
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramInterfaceComparison.class)
+@UmlClassDiagram(diagram = DiagramComparison.class)
 public interface Matcher<Value> extends Predicate<Value>
 {
+    static <T> Matcher<T> anything()
+    {
+        return ignored -> true;
+    }
+
+    static Matcher<String> matching(Pattern pattern)
+    {
+        return value -> pattern.matcher(value).matches();
+    }
+
+    static <T extends Named> Matcher<T> named(String name)
+    {
+        return named -> named.name().equalsIgnoreCase(name);
+    }
+
+    static <T> Matcher<T> nothing()
+    {
+        return ignored -> false;
+    }
+
     /**
      * @return True if the given value matches
      */

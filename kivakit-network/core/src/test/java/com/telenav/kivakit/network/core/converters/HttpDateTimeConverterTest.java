@@ -1,7 +1,7 @@
 package com.telenav.kivakit.network.core.converters;
 
-import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.kivakit.test.UnitTest;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.test.UnitTest;
 import org.junit.Test;
 
 import java.util.Calendar;

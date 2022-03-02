@@ -18,17 +18,17 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.kernel.language.time.Duration;
-import com.telenav.kivakit.kernel.language.values.level.Percent;
-import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.core.time.Duration;
+import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.path.FileName;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
-import static com.telenav.kivakit.kernel.language.time.Frequency.EVERY_30_SECONDS;
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.time.Frequency.EVERY_30_SECONDS;
 
 /**
  * A file cache with the given root. Resources can be copied into the cache with {@link #add(Resource, CopyMode,
@@ -59,7 +59,7 @@ public class FileCache extends BaseRepeater
      */
     public File add(Resource resource, CopyMode mode)
     {
-        return add(resource, mode, ProgressReporter.NULL);
+        return add(resource, mode, ProgressReporter.none());
     }
 
     /**
@@ -83,7 +83,7 @@ public class FileCache extends BaseRepeater
      */
     public File addAs(Resource resource, FileName filename, CopyMode mode)
     {
-        return addAs(resource, filename, mode, ProgressReporter.NULL);
+        return addAs(resource, filename, mode, ProgressReporter.none());
     }
 
     /**

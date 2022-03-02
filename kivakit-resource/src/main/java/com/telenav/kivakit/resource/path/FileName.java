@@ -18,20 +18,20 @@
 
 package com.telenav.kivakit.resource.path;
 
+import com.telenav.kivakit.conversion.core.time.LocalDateConverter;
+import com.telenav.kivakit.conversion.core.time.LocalDateTimeConverter;
+import com.telenav.kivakit.conversion.core.time.LocalTimeConverter;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.string.Paths;
+import com.telenav.kivakit.core.string.Strings;
+import com.telenav.kivakit.core.string.Strip;
+import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.naming.Named;
-import com.telenav.kivakit.kernel.language.strings.Paths;
-import com.telenav.kivakit.kernel.language.strings.Strings;
-import com.telenav.kivakit.kernel.language.strings.Strip;
-import com.telenav.kivakit.kernel.language.time.LocalTime;
-import com.telenav.kivakit.kernel.language.time.conversion.converters.LocalDateConverter;
-import com.telenav.kivakit.kernel.language.time.conversion.converters.LocalDateTimeConverter;
-import com.telenav.kivakit.kernel.language.time.conversion.converters.LocalTimeConverter;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourcePath;
+import com.telenav.kivakit.resource.project.lexakai.DiagramResourcePath;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

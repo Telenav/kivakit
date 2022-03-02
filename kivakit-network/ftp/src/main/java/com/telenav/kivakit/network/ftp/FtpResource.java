@@ -18,19 +18,19 @@
 
 package com.telenav.kivakit.network.ftp;
 
-import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
-import com.telenav.kivakit.kernel.language.io.IO;
-import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.kernel.language.values.count.Bytes;
-import com.telenav.kivakit.kernel.language.values.count.Count;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
+import com.telenav.kivakit.core.count.Bytes;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.language.collections.list.ObjectList;
+import com.telenav.kivakit.core.language.io.IO;
+import com.telenav.kivakit.core.language.progress.ProgressReporter;
+import com.telenav.kivakit.language.count.Count;
 import com.telenav.kivakit.network.core.BaseNetworkResource;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.core.NetworkPath;
 import com.telenav.kivakit.network.core.Protocol;
-import com.telenav.kivakit.network.ftp.project.lexakai.diagrams.DiagramFtp;
+import com.telenav.kivakit.network.ftp.project.lexakai.DiagramFtp;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.WritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;

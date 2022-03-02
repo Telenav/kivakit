@@ -18,34 +18,29 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.telenav.kivakit.commandline.SwitchParser;
+import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.core.collections.map.CacheMap;
+import com.telenav.kivakit.core.language.Arrays;
+import com.telenav.kivakit.core.language.reflection.ObjectFormatter;
+import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.time.Duration;
+import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.string.Stringable;
-import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
-import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
-import com.telenav.kivakit.kernel.language.objects.reference.ExpiringReference;
-import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
-import com.telenav.kivakit.kernel.language.time.Duration;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.kivakit.network.core.project.lexakai.diagrams.DiagramPort;
+import com.telenav.kivakit.network.core.project.lexakai.DiagramPort;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.ConcurrentHashMap;
 
 import static com.telenav.kivakit.commandline.SwitchParser.builder;
-import static com.telenav.kivakit.commandline.SwitchParser.listSwitchParser;
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.network.core.Protocol.FTP;
 import static com.telenav.kivakit.network.core.Protocol.HAZELCAST;
 import static com.telenav.kivakit.network.core.Protocol.HTTP;
@@ -93,29 +88,15 @@ import static com.telenav.kivakit.network.core.Protocol.UNKNOWN;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramPort.class)
+@SuppressWarnings("SpellCheckingInspection") @UmlClassDiagram(diagram = DiagramPort.class)
 @LexakaiJavadoc(complete = true)
-public class Host implements Named, Stringable, Comparable<Host>
+public class Host extends BaseRepeater implements
+        Named,
+        Stringable,
+        Comparable<Host>
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
-    private static final ExpiringReference<Map<String, InetAddress>> inetAddressForName =
-            new ExpiringReference<>(Duration.minutes(5))
-            {
-                @Override
-                protected Map<String, InetAddress> onNewObject()
-                {
-                    return new ConcurrentHashMap<>();
-                }
-            };
-
-    public static Host NONE = new Host("None");
-
-    public static SwitchParser.Builder<ObjectList<Host>> hostListSwitchParser(
-            Listener listener, String name, String description, String delimiter)
-    {
-        return listSwitchParser(listener, name, description, new Host.Converter(listener), Host.class, delimiter);
-    }
+    private static final CacheMap<String, InetAddress> resolvedHostNames =
+            new CacheMap<>(Maximum.maximum(2048), Duration.minutes(5));
 
     public static SwitchParser.Builder<Host> hostSwitchParser(Listener listener, String name, String description)
     {
@@ -135,24 +116,19 @@ public class Host implements Named, Stringable, Comparable<Host>
         return Loopback.get();
     }
 
-    public static SwitchParser.Builder<NetworkPath> networkFilePathSwitchParser(Listener listener,
-                                                                                String name,
-                                                                                String description)
+    public static Host none()
     {
-        return builder(NetworkPath.class)
-                .name(name)
-                .converter(new NetworkPath.Converter(listener))
-                .description(description);
+        return new Host("[No Host]");
     }
 
     public static Host parse(Listener listener, String name)
     {
-        return new Host(name);
+        return listener.listenTo(new Host(name));
     }
 
     public static Host parse(Listener listener, String name, String description)
     {
-        return new Host(name, description);
+        return listener.listenTo(new Host(name, description));
     }
 
     /**
@@ -175,42 +151,37 @@ public class Host implements Named, Stringable, Comparable<Host>
         }
     }
 
-    @JsonIgnore
     private transient InetAddress address;
 
-    @JsonProperty
     private String description;
 
-    @JsonIgnore
     private Boolean local;
 
-    @JsonProperty
     private String name;
 
-    @JsonIgnore
     private byte[] rawAddress;
 
     public Host(InetAddress address, String description)
     {
-        address(address);
+        address(ensureNotNull(address));
         this.description = description;
     }
 
     public Host(InetAddress address, String name, String description)
     {
-        address(address);
+        address(ensureNotNull(address));
         this.name = name;
         this.description = description;
     }
 
     protected Host(String name)
     {
-        this.name = name;
+        this.name = ensureNotNull(name);
     }
 
     protected Host(String name, String description)
     {
-        this.name = name;
+        this(name);
         this.description = description;
     }
 
@@ -322,7 +293,7 @@ public class Host implements Named, Stringable, Comparable<Host>
         var address = address().getAddress();
         if (address.length > 4)
         {
-            fail("IPv6 Addresses are not supported");
+            problem("IPv6 Addresses are not supported");
             return -1;
         }
         var value = 0L;
@@ -345,7 +316,6 @@ public class Host implements Named, Stringable, Comparable<Host>
         return local;
     }
 
-    @JsonIgnore
     public boolean isResolvable()
     {
         try
@@ -354,6 +324,7 @@ public class Host implements Named, Stringable, Comparable<Host>
         }
         catch (Exception e)
         {
+            problem("Address not resolvable");
             return false;
         }
     }
@@ -445,59 +416,24 @@ public class Host implements Named, Stringable, Comparable<Host>
             }
             catch (UnknownHostException e)
             {
-                LOGGER.problem(e, "Can't resolve address: $", rawAddress);
-                return null;
+                problem(e, "Can't resolve address: $", Arrays.asHexadecimalString(rawAddress));
             }
         }
         else if (name != null)
         {
-            try
-            {
-                return InetAddress.getByName(name);
-            }
-            catch (UnknownHostException e)
-            {
-                LOGGER.problem(e, "Can't resolve address: $", name);
-                return null;
-            }
+            resolveHostName(name);
         }
         else
         {
-            return fail();
+            problem("Cannot resolve address: no name or raw address available");
         }
+        return null;
     }
 
     private void address(InetAddress address)
     {
         this.address = address;
         rawAddress = address.getAddress();
-    }
-
-    private InetAddress resolve(String name)
-    {
-        try
-        {
-            if ("127.0.0.1".equals(name) || "localhost".equals(name) || "localhost.localdomain".equals(name))
-            {
-                return Loopback.get().address();
-            }
-
-            var map = inetAddressForName.get();
-            var address = map.get(name);
-            if (address == null)
-            {
-                address = InetAddress.getByName(name);
-                if (address != null)
-                {
-                    map.put(name, address);
-                }
-            }
-            return address;
-        }
-        catch (UnknownHostException e)
-        {
-            return null;
-        }
     }
 
     private void resolveAddress()
@@ -509,8 +445,9 @@ public class Host implements Named, Stringable, Comparable<Host>
             {
                 address = InetAddress.getLocalHost();
             }
-            catch (UnknownHostException ignored)
+            catch (UnknownHostException e)
             {
+                problem(e, "Unable to resolve local host");
             }
         }
         else if (name.equals("127.0.0.1"))
@@ -522,6 +459,36 @@ public class Host implements Named, Stringable, Comparable<Host>
         {
             // otherwise, let the subclass resolve the host address
             address = onResolveAddress();
+        }
+    }
+
+    private InetAddress resolveHostName(String name)
+    {
+        try
+        {
+            //noinspection SpellCheckingInspection
+            if ("127.0.0.1".equals(name)
+                    || "localhost".equals(name)
+                    || "localhost.localdomain".equals(name))
+            {
+                return Loopback.get().address();
+            }
+
+            var address = resolvedHostNames.get(name);
+            if (address == null)
+            {
+                address = InetAddress.getByName(name);
+                if (address != null)
+                {
+                    resolvedHostNames.put(name, address);
+                }
+            }
+            return address;
+        }
+        catch (UnknownHostException e)
+        {
+            problem(e, "Unable to resolve host name: $", name);
+            return null;
         }
     }
 }

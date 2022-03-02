@@ -1,9 +1,8 @@
 open module kivakit.network.email
 {
     // KivaKit
-    requires transitive kivakit.configuration;
+    requires transitive kivakit.settings;
     requires transitive kivakit.network.core;
-    requires kivakit.test;
 
     // Java mail
     requires java.mail;
@@ -12,6 +11,6 @@ open module kivakit.network.email
     // Module exports
     exports com.telenav.kivakit.network.email;
     exports com.telenav.kivakit.network.email.senders;
-    exports com.telenav.kivakit.network.email.project.lexakai.diagrams;
+    exports com.telenav.kivakit.network.email.project.lexakai;
     exports com.telenav.kivakit.network.email.converters;
 }

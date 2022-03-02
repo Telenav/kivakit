@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.collections.watcher;
 
-import com.telenav.kivakit.collections.project.lexakai.diagrams.DiagramWatcher;
-import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.collections.project.lexakai.DiagramWatcher;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;

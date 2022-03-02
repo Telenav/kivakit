@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.resource.resources.packaged;
 
-import com.telenav.kivakit.kernel.language.paths.PackagePath;
-import com.telenav.kivakit.kernel.language.time.Time;
-import com.telenav.kivakit.kernel.language.values.count.Bytes;
-import com.telenav.kivakit.test.UnitTest;
+import com.telenav.kivakit.core.path.PackagePath;
+import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.core.value.count.Bytes;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 

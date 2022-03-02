@@ -19,14 +19,13 @@
 package com.telenav.kivakit.commandline;
 
 import com.telenav.kivakit.commandline.parsing.SwitchList;
-import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramCommandLine;
+import com.telenav.kivakit.commandline.project.lexakai.DiagramCommandLine;
+import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.language.reflection.ObjectFormatter;
+import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.string.AsciiArt;
+import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.interfaces.string.Stringable;
-import com.telenav.kivakit.kernel.KernelLimits;
-import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.kernel.language.strings.AsciiArt;
-import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
-import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.UmlNote;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -193,7 +192,7 @@ public class CommandLine implements Stringable, Iterable<Argument>
     @UmlExcludeMember
     public String[] asArgumentArray()
     {
-        var strings = new StringList(KernelLimits.COMMAND_LINE_ARGUMENTS.plus(KernelLimits.COMMAND_LINE_SWITCHES));
+        var strings = new StringList();
         for (var _switch : switches)
         {
             strings.add(_switch.toString());
@@ -225,7 +224,7 @@ public class CommandLine implements Stringable, Iterable<Argument>
      */
     public void exit(String error, Object... arguments)
     {
-        parser.exit(Message.format(AsciiArt.spaces(4) + AsciiArt.bullet() + " " + error, arguments));
+        parser.exit(Formatter.format(AsciiArt.spaces(4) + AsciiArt.bullet() + " " + error, arguments));
     }
 
     /**

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.string;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceString;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramString;
 import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -29,7 +29,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramInterfaceString.class)
+@UmlClassDiagram(diagram = DiagramString.class)
 public interface StringSource
 {
     static StringSource of(String string)

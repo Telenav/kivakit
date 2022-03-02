@@ -18,25 +18,25 @@
 
 package com.telenav.kivakit.resource.resources.packaged;
 
+import com.telenav.kivakit.core.language.Hash;
+import com.telenav.kivakit.core.language.Objects;
+import com.telenav.kivakit.core.language.module.ModuleResource;
+import com.telenav.kivakit.core.language.module.Modules;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.path.PackagePath;
+import com.telenav.kivakit.core.string.Strip;
+import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.kernel.language.modules.ModuleResource;
-import com.telenav.kivakit.kernel.language.modules.Modules;
-import com.telenav.kivakit.kernel.language.objects.Hash;
-import com.telenav.kivakit.kernel.language.objects.Objects;
-import com.telenav.kivakit.kernel.language.paths.PackagePath;
-import com.telenav.kivakit.kernel.language.strings.Strip;
-import com.telenav.kivakit.kernel.language.time.Time;
-import com.telenav.kivakit.kernel.language.values.count.Bytes;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.path.FileName;
 import com.telenav.kivakit.resource.path.FilePath;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourceService;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourceType;
+import com.telenav.kivakit.resource.project.lexakai.DiagramResourceService;
+import com.telenav.kivakit.resource.project.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;
 import com.telenav.kivakit.resource.spi.ResourceResolver;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -178,7 +178,7 @@ public class PackageResource extends BaseReadableResource
     {
         this._package = _package;
         this.name = name;
-        this.resource = resource != null ? resource : _package.resource(this.name.name());
+        this.resource = resource != null ? resource : _package.resource(this, this.name.name());
     }
 
     @Override

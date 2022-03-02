@@ -22,12 +22,12 @@ import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.core.NetworkPath;
 import com.telenav.kivakit.network.core.Protocol;
-import com.telenav.kivakit.network.ftp.project.lexakai.diagrams.DiagramSecureFtp;
+import com.telenav.kivakit.network.ftp.project.lexakai.DiagramSecureFtp;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
+import static com.telenav.kivakit.ensure.Ensure.ensure;
 
 /**
  * A secure ftp (SFTP) network location.

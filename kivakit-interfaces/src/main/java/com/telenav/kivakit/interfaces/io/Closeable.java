@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.io;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceIo;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramIo;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
@@ -29,7 +29,7 @@ import java.io.IOException;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramInterfaceIo.class)
+@UmlClassDiagram(diagram = DiagramIo.class)
 public interface Closeable extends AutoCloseable
 {
     /**

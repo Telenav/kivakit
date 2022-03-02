@@ -18,23 +18,23 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
+import com.telenav.kivakit.core.object.Lazy;
+import com.telenav.kivakit.core.language.reflection.ObjectFormatter;
+import com.telenav.kivakit.core.language.reflection.Type;
+import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.language.reflection.property.NamingConvention;
+import com.telenav.kivakit.core.language.reflection.property.Property;
+import com.telenav.kivakit.core.messaging.Repeater;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.core.string.CaseFormat;
+import com.telenav.kivakit.core.version.Version;
+import com.telenav.kivakit.core.version.VersionedObject;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.interfaces.io.Closeable;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
-import com.telenav.kivakit.kernel.language.objects.Lazy;
-import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.kernel.language.reflection.Type;
-import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.kernel.language.reflection.property.NamingConvention;
-import com.telenav.kivakit.kernel.language.reflection.property.Property;
-import com.telenav.kivakit.kernel.language.strings.CaseFormat;
-import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
-import com.telenav.kivakit.kernel.language.values.version.Version;
-import com.telenav.kivakit.kernel.language.values.version.VersionedObject;
-import com.telenav.kivakit.kernel.messaging.Repeater;
-import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourceArchive;
+import com.telenav.kivakit.resource.project.lexakai.DiagramResourceArchive;
 import com.telenav.kivakit.serialization.core.SerializationSession;
 import com.telenav.kivakit.serialization.core.SerializationSessionFactory;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -42,7 +42,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
 /**
  * A field archive serializes data into zip file entries in a {@link ZipArchive}. The constructor for this class takes a
@@ -344,7 +344,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
      */
     public void version(Version version)
     {
-        save("version", new VersionedObject<>(version));
+        save("version", new VersionedObject<>(version, version));
     }
 
     /**

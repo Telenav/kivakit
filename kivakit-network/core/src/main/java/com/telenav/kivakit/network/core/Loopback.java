@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.telenav.kivakit.kernel.language.objects.Lazy;
-import com.telenav.kivakit.network.core.project.lexakai.diagrams.DiagramPort;
+import com.telenav.kivakit.core.object.Lazy;
+import com.telenav.kivakit.network.core.project.lexakai.DiagramPort;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -27,7 +27,7 @@ import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
  * The loopback adapter 'host'.
@@ -64,10 +64,10 @@ public class Loopback extends Host
             var interfaces = NetworkInterface.getNetworkInterfaces();
             while (interfaces.hasMoreElements())
             {
-                var i = interfaces.nextElement();
-                if (i.isLoopback())
+                var at = interfaces.nextElement();
+                if (at.isLoopback())
                 {
-                    var addresses = i.getInetAddresses();
+                    var addresses = at.getInetAddresses();
                     while (addresses.hasMoreElements())
                     {
                         var address = addresses.nextElement();

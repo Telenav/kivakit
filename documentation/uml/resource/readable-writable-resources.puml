@@ -31,7 +31,7 @@ Diagrams:
 
     title "Readable and Writable Resource"
 
-    package kivakit.kernel.interfaces.io {
+    package kivakit.coreinterfaces.io {
         interface ByteSized  {
             {abstract} + sizeInBytes() : Bytes
             ---
@@ -49,7 +49,7 @@ Diagrams:
         Readable -up-^ ByteSized
     }
 
-    package "kivakit.kernel.interfaces.io" as io {
+    package "kivakit.coreinterfaces.io" as io {
         interface Writable {
             {abstract} + isWritable(): Boolean
             {abstract} + onOpenForWriting(): OutputStream
@@ -59,7 +59,7 @@ Diagrams:
 
     }
 
-    package kivakit.kernel.language.paths {
+    package kivakit.corelanguage.paths {
         abstract class Path<String> {
             - root : String
             - elements : ObjectList<String>
@@ -99,7 +99,7 @@ Diagrams:
         PackagePath -up-^ StringPath
     }
 
-    package kivakit.kernel.language.modules {
+    package kivakit.corelanguage.modules {
 
         class ModuleResource ##[dotted] {
             {static} + moduleResource(moduleReference, uri) : ModuleResource

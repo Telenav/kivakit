@@ -3,12 +3,12 @@ package com.telenav.kivakit.network.http;
 import com.telenav.kivakit.network.http.secure.SecureHttpNetworkLocation;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceIdentifier;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourceService;
+import com.telenav.kivakit.resource.project.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.spi.ResourceResolver;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
+import static com.telenav.kivakit.ensure.Ensure.fail;
 
 /**
  * Resolves {@link ResourceIdentifier}s that are file paths into file {@link Resource}s.

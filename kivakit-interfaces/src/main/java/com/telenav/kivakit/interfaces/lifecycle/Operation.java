@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.lifecycle;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceLifeCycle;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramLifeCycle;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -26,7 +26,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramInterfaceLifeCycle.class)
+@UmlClassDiagram(diagram = DiagramLifeCycle.class)
 public interface Operation
 {
     /**

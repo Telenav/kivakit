@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.resource.resources.packaged;
 
-import com.telenav.kivakit.kernel.language.paths.PackagePath;
+import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.resource.path.Extension;
-import com.telenav.kivakit.test.UnitTest;
+import com.telenav.kivakit.core.test.UnitTest;
 import org.junit.Test;
 
 /**

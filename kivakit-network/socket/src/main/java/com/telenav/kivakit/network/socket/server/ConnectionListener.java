@@ -18,12 +18,12 @@
 
 package com.telenav.kivakit.network.socket.server;
 
-import com.telenav.kivakit.kernel.language.threading.KivaKitThread;
-import com.telenav.kivakit.kernel.language.threading.Threads;
-import com.telenav.kivakit.kernel.language.time.Duration;
-import com.telenav.kivakit.kernel.language.values.count.Maximum;
-import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.network.socket.project.lexakai.diagrams.DiagramSocketServer;
+import com.telenav.kivakit.core.language.threading.KivaKitThread;
+import com.telenav.kivakit.core.language.threading.Threads;
+import com.telenav.kivakit.language.time.Duration;
+import com.telenav.kivakit.language.count.Maximum;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.network.socket.project.lexakai.DiagramSocketServer;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.net.BindException;

@@ -18,17 +18,17 @@
 
 package com.telenav.kivakit.serialization.core;
 
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.Repeater;
+import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
+import com.telenav.kivakit.core.progress.reporters.ProgressiveOutputStream;
+import com.telenav.kivakit.core.version.Version;
+import com.telenav.kivakit.core.version.Versioned;
+import com.telenav.kivakit.core.version.VersionedObject;
 import com.telenav.kivakit.interfaces.io.Flushable;
 import com.telenav.kivakit.interfaces.naming.Named;
-import com.telenav.kivakit.kernel.language.io.ProgressiveInput;
-import com.telenav.kivakit.kernel.language.io.ProgressiveOutput;
-import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.kernel.language.values.version.Version;
-import com.telenav.kivakit.kernel.language.values.version.Versioned;
-import com.telenav.kivakit.kernel.language.values.version.VersionedObject;
-import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.kivakit.kernel.messaging.Repeater;
-import com.telenav.kivakit.serialization.core.project.lexakai.diagrams.DiagramSerializationCore;
+import com.telenav.kivakit.serialization.core.project.lexakai.DiagramSerializationCore;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.Closeable;
@@ -70,7 +70,13 @@ import java.net.Socket;
  * @see Version
  */
 @UmlClassDiagram(diagram = DiagramSerializationCore.class)
-public interface SerializationSession extends SerializationSessionReadWrite, Named, Closeable, Flushable, Versioned, Repeater
+public interface SerializationSession extends
+        SerializationSessionReadWrite,
+        Named,
+        Closeable,
+        Flushable,
+        Versioned,
+        Repeater
 {
     static SerializationSession threadLocal(Listener listener)
     {
@@ -137,8 +143,8 @@ public interface SerializationSession extends SerializationSessionReadWrite, Nam
                     (
                             type,
                             version,
-                            new ProgressiveInput(socket.getInputStream(), reporter),
-                            new ProgressiveOutput(socket.getOutputStream(), reporter)
+                            new ProgressiveInputStream(socket.getInputStream(), reporter),
+                            new ProgressiveOutputStream(socket.getOutputStream(), reporter)
                     );
         }
         catch (Exception e)

@@ -20,8 +20,8 @@ package com.telenav.kivakit.serialization.kryo;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Serializer;
-import com.telenav.kivakit.kernel.language.objects.Hash;
-import com.telenav.kivakit.kernel.messaging.Message;
+import com.telenav.kivakit.core.language.Hash;
+import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
@@ -81,7 +81,7 @@ class KryoTypeEntry
     @Override
     public String toString()
     {
-        return Message.format("${class} ($)", type(), identifier());
+        return Formatter.format("${class} ($)", type(), identifier());
     }
 
     KryoTypeEntry identifier(int identifier)

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.serialization.kryo.kernel;
 
-import com.telenav.kivakit.kernel.language.values.version.Version;
+import com.telenav.kivakit.language.version.Version;
 import com.telenav.kivakit.serialization.kryo.KryoUnitTest;
 import org.junit.Test;
 

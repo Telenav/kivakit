@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.io;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceIo;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramIo;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -28,7 +28,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramInterfaceIo.class)
+@UmlClassDiagram(diagram = DiagramIo.class)
 @LexakaiJavadoc(complete = true)
 public interface Flushable
 {

@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.network.email.senders;
 
-import com.telenav.kivakit.kernel.language.reflection.populator.KivaKitPropertyConverter;
+import com.telenav.kivakit.conversion.KivaKitPropertyConverter;
 import com.telenav.kivakit.network.core.Host;
 import com.telenav.kivakit.network.email.EmailSender;
-import com.telenav.kivakit.network.email.project.lexakai.diagrams.DiagramEmail;
+import com.telenav.kivakit.network.email.project.lexakai.DiagramEmail;
 import com.telenav.kivakit.security.authentication.Password;
 import com.telenav.kivakit.security.authentication.UserName;
 import com.telenav.kivakit.security.authentication.passwords.PlainTextPassword;

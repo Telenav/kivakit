@@ -1,9 +1,9 @@
 package com.telenav.kivakit.component;
 
-import com.telenav.kivakit.component.project.lexakai.diagrams.DiagramComponent;
+import com.telenav.kivakit.component.project.lexakai.DiagramComponent;
+import com.telenav.kivakit.core.messaging.Repeater;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
-import com.telenav.kivakit.kernel.messaging.Repeater;
-import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -14,7 +14,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see Repeater
  */
 @UmlClassDiagram(diagram = DiagramComponent.class)
-public class BaseComponent extends BaseRepeater implements Component, NamedObject
+public class BaseComponent extends BaseRepeater implements
+        Component,
+        NamedObject
 {
     /** The name of this object for debugging purposes */
     private String objectName = NamedObject.syntheticName(this);

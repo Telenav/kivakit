@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceCollection;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramCollection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
@@ -34,7 +34,7 @@ import java.util.Iterator;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramInterfaceCollection.class)
+@UmlClassDiagram(diagram = DiagramCollection.class)
 public interface Indexable<Element> extends
         Sized,
         Sequence<Element>

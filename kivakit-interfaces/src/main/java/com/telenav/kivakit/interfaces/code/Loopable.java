@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.code;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceCode;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramCode;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -28,7 +28,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @FunctionalInterface
-@UmlClassDiagram(diagram = DiagramInterfaceCode.class)
+@UmlClassDiagram(diagram = DiagramCode.class)
 public interface Loopable
 {
     /**

@@ -20,22 +20,22 @@ package com.telenav.kivakit.resource.resources.packaged;
 
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.kernel.language.locales.Locale;
-import com.telenav.kivakit.kernel.language.paths.PackagePath;
-import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.kernel.language.strings.Strip;
-import com.telenav.kivakit.kernel.language.types.Classes;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.kernel.messaging.Listener;
+import com.telenav.kivakit.core.language.locales.Locale;
+import com.telenav.kivakit.core.path.PackagePath;
+import com.telenav.kivakit.core.language.progress.ProgressReporter;
+import com.telenav.kivakit.core.language.strings.Strip;
+import com.telenav.kivakit.core.language.types.Classes;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.resource.ResourceFolderIdentifier;
 import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.path.FilePath;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourceService;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourceType;
+import com.telenav.kivakit.resource.project.lexakai.DiagramResourceService;
+import com.telenav.kivakit.resource.project.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.resources.other.PropertyMap;
 import com.telenav.kivakit.resource.spi.ResourceFolderResolver;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -53,7 +53,7 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
+import static com.telenav.kivakit.ensure.Ensure.fail;
 
 /**
  * An abstraction for locating and copying {@link Resource}s in Java packages.

@@ -18,19 +18,19 @@
 
 package com.telenav.kivakit.resource.path;
 
+import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.naming.Named;
-import com.telenav.kivakit.kernel.language.values.count.Count;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.compression.Codec;
 import com.telenav.kivakit.resource.compression.codecs.GzipCodec;
 import com.telenav.kivakit.resource.compression.codecs.NullCodec;
 import com.telenav.kivakit.resource.compression.codecs.ZipCodec;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourcePath;
+import com.telenav.kivakit.resource.project.lexakai.DiagramResourcePath;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
@@ -91,6 +91,7 @@ public class Extension implements Named
 
     public static final Extension CSV = parse(LOGGER, ".csv");
 
+    @SuppressWarnings("SpellCheckingInspection")
     public static final Extension GEOJSON = parse(LOGGER, ".geojson");
 
     public static final Extension GRAPH = parse(LOGGER, ".graph");
@@ -111,6 +112,7 @@ public class Extension implements Named
 
     public static final Extension OSM = parse(LOGGER, ".osm");
 
+    @SuppressWarnings("SpellCheckingInspection")
     public static final Extension OSMPP = parse(LOGGER, ".osmpp");
 
     public static final Extension OSM_PBF = parse(LOGGER, ".osm.pbf");

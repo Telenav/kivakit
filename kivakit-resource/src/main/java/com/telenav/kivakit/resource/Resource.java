@@ -20,22 +20,22 @@ package com.telenav.kivakit.resource;
 
 import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.SwitchParser;
+import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.Repeater;
+import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.core.time.ChangedAt;
+import com.telenav.kivakit.core.time.Modifiable;
+import com.telenav.kivakit.core.value.count.ByteSized;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.string.StringSource;
-import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
-import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.kernel.language.time.ChangedAt;
-import com.telenav.kivakit.kernel.language.time.Modifiable;
-import com.telenav.kivakit.kernel.language.values.count.ByteSized;
-import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.resource.compression.Codec;
 import com.telenav.kivakit.resource.compression.archive.ZipEntry;
 import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.kivakit.resource.path.ResourcePathed;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemFile;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResource;
+import com.telenav.kivakit.resource.project.lexakai.DiagramFileSystemFile;
+import com.telenav.kivakit.resource.project.lexakai.DiagramResource;
 import com.telenav.kivakit.resource.resources.other.NullResource;
 import com.telenav.kivakit.resource.resources.packaged.PackageResource;
 import com.telenav.kivakit.resource.resources.string.StringResource;
@@ -110,7 +110,8 @@ public interface Resource extends
         Resourceful,
         UriIdentified
 {
-    static ArgumentParser.Builder<ResourceList> argumentListParser(Listener listener, String description,
+    static ArgumentParser.Builder<ResourceList> argumentListParser(Listener listener,
+                                                                   String description,
                                                                    Extension extension)
     {
         return ArgumentParser.builder(ResourceList.class)
@@ -308,7 +309,7 @@ public interface Resource extends
      */
     default void safeCopyTo(Folder destination, CopyMode mode)
     {
-        safeCopyTo(destination.file(fileName()), mode, ProgressReporter.NULL);
+        safeCopyTo(destination.file(fileName()), mode, ProgressReporter.none());
     }
 
     /**
@@ -332,7 +333,7 @@ public interface Resource extends
      */
     default void safeCopyTo(File destination, CopyMode mode)
     {
-        safeCopyTo(destination, mode, ProgressReporter.NULL);
+        safeCopyTo(destination, mode, ProgressReporter.none());
     }
 
     /**

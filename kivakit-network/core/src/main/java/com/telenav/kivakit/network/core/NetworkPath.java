@@ -18,15 +18,16 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
-import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.paths.Path;
-import com.telenav.kivakit.kernel.language.paths.StringPath;
-import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.kivakit.network.core.project.lexakai.diagrams.DiagramNetworkLocation;
+import com.telenav.kivakit.commandline.SwitchParser;
+import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.path.Path;
+import com.telenav.kivakit.core.path.StringPath;
+import com.telenav.kivakit.network.core.project.lexakai.DiagramNetworkLocation;
 import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.kivakit.resource.path.FileName;
 import com.telenav.kivakit.resource.path.FilePath;
@@ -37,6 +38,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.function.Function;
+
+import static com.telenav.kivakit.commandline.SwitchParser.builder;
 
 /**
  * An abstraction for network paths.
@@ -87,6 +90,16 @@ public class NetworkPath extends FilePath
     {
         var root = "/" + port + "/";
         return new NetworkPath(port, StringPath.parseStringPath(listener, path, "/", "/").withRoot(root));
+    }
+
+    public static SwitchParser.Builder<NetworkPath> networkPathSwitchParser(Listener listener,
+                                                                            String name,
+                                                                            String description)
+    {
+        return builder(NetworkPath.class)
+                .name(name)
+                .converter(new NetworkPath.Converter(listener))
+                .description(description);
     }
 
     /**

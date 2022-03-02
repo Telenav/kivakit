@@ -19,7 +19,7 @@
 package com.telenav.kivakit.network.http;
 
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
-import com.telenav.kivakit.network.http.project.lexakai.diagrams.DiagramHttp;
+import com.telenav.kivakit.network.http.project.lexakai.DiagramHttp;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;

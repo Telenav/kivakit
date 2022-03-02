@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.function;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceFunction;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramFunction;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -30,7 +30,7 @@ import java.util.function.Predicate;
  * @author jonathanl (shibo)
  */
 @FunctionalInterface
-@UmlClassDiagram(diagram = DiagramInterfaceFunction.class)
+@UmlClassDiagram(diagram = DiagramFunction.class)
 @LexakaiJavadoc(complete = true)
 public interface BooleanFunction<Value> extends Predicate<Value>
 {

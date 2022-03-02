@@ -20,15 +20,15 @@ package com.telenav.kivakit.serialization.kryo;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Serializer;
+import com.telenav.kivakit.core.collections.Collections;
+import com.telenav.kivakit.core.collections.Maps;
+import com.telenav.kivakit.core.collections.list.ObjectList;
+import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.language.Classes;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.messaging.Debug;
 import com.telenav.kivakit.interfaces.naming.Named;
-import com.telenav.kivakit.kernel.language.collections.Collections;
-import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
-import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.collections.map.Maps;
-import com.telenav.kivakit.kernel.language.types.Classes;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.kernel.messaging.Debug;
 import com.telenav.kivakit.serialization.core.SerializationSession;
 import com.telenav.kivakit.serialization.core.SerializationSessionFactory;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -39,7 +39,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
  * A set of Kryo type registrations required to construct a {@link KryoSerializationSession}.
@@ -193,7 +193,7 @@ public class KryoTypes implements Named
         // set its next identifier to the next set,
         merged.nextKryoTypes();
 
-        // then go though the entries in that,
+        // then go through the entries in that,
         for (var entry : that.entries.values())
         {
             // check that the entry is not already in the merged set,

@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.kernel.language.io.IO;
-import com.telenav.kivakit.kernel.language.io.ProgressiveOutput;
-import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.kernel.language.values.count.Count;
+import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.core.io.IO;
+import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.core.progress.reporters.ProgressiveOutputStream;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.io.OutputStream;
@@ -54,7 +54,7 @@ public interface Writable
      */
     default OutputStream openForWriting()
     {
-        return openForWriting(ProgressReporter.NULL);
+        return openForWriting(ProgressReporter.none());
     }
 
     /**
@@ -68,6 +68,6 @@ public interface Writable
      */
     default OutputStream openForWriting(ProgressReporter reporter)
     {
-        return new ProgressiveOutput(IO.buffer(onOpenForWriting()), reporter);
+        return new ProgressiveOutputStream(IO.buffer(onOpenForWriting()), reporter);
     }
 }

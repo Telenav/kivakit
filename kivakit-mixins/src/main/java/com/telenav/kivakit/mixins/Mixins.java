@@ -2,7 +2,9 @@ package com.telenav.kivakit.mixins;
 
 import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
+import com.telenav.kivakit.mixins.project.lexakai.DiagramMixin;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.IdentityHashMap;
 import java.util.Map;
@@ -17,6 +19,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @see Mixin
  */
 @LexakaiJavadoc(complete = true)
+@UmlClassDiagram(diagram = DiagramMixin.class)
 public class Mixins
 {
     /** Map from an object and mixin type to the attached mixin state */

@@ -22,7 +22,7 @@ import com.telenav.kivakit.interfaces.collection.Indexed;
 import com.telenav.kivakit.interfaces.collection.LongKeyed;
 import com.telenav.kivakit.interfaces.factory.MapFactory;
 import com.telenav.kivakit.interfaces.model.Identifiable;
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceNumeric;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramNumeric;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
@@ -46,9 +46,9 @@ import java.util.Collection;
  * </p>
  *
  * <p>
- * Clients may extend <i>QuantizableConverter</i> (see <i>kivakit-kernel</i>) to quickly create a converter for any
- * {@link Quantizable} value. For example, EdgeIdentifier provides a converter between String values and EdgeIdentifiers
- * like this:
+ * Clients may extend <i>QuantizableConverter</i> (see <i>kivakit-core</i>) to quickly create a converter for any {@link
+ * Quantizable} value. For example, EdgeIdentifier provides a converter between String values and EdgeIdentifiers like
+ * this:
  * </p>
  *
  * <pre>
@@ -68,7 +68,7 @@ import java.util.Collection;
  * @author jonathanl (shibo)
  */
 @FunctionalInterface
-@UmlClassDiagram(diagram = DiagramInterfaceNumeric.class)
+@UmlClassDiagram(diagram = DiagramNumeric.class)
 public interface Quantizable extends DoubleQuantizable
 {
     static Quantizable quantizable(Integer value)

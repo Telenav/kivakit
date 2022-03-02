@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.collections.map;
 
-import com.telenav.kivakit.collections.project.lexakai.diagrams.DiagramMap;
-import com.telenav.kivakit.kernel.language.values.count.Count;
-import com.telenav.kivakit.kernel.language.values.count.MutableCount;
+import com.telenav.kivakit.collections.project.lexakai.DiagramMap;
+import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.core.value.count.MutableCount;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.HashMap;

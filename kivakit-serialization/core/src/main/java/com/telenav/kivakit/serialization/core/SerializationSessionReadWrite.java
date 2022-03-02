@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.serialization.core;
 
-import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
-import com.telenav.kivakit.kernel.language.collections.map.ObjectMap;
-import com.telenav.kivakit.kernel.language.values.version.Version;
-import com.telenav.kivakit.kernel.language.values.version.VersionedObject;
+import com.telenav.kivakit.core.collections.list.ObjectList;
+import com.telenav.kivakit.core.collections.map.ObjectMap;
+import com.telenav.kivakit.core.version.Version;
+import com.telenav.kivakit.core.version.VersionedObject;
 
 import java.util.List;
 import java.util.Map;

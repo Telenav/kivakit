@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.messaging;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceMessaging;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramMessaging;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
@@ -36,7 +36,7 @@ import java.util.function.Consumer;
  * @author jonathanl (shibo)
  * @see Transmittable
  */
-@UmlClassDiagram(diagram = DiagramInterfaceMessaging.class)
+@UmlClassDiagram(diagram = DiagramMessaging.class)
 @UmlRelation(label = "receives", referent = Transmittable.class)
 @FunctionalInterface
 public interface Receiver

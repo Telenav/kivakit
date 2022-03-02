@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.comparison;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceComparison;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramComparison;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
@@ -37,7 +37,7 @@ import java.util.Set;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramInterfaceComparison.class)
+@UmlClassDiagram(diagram = DiagramComparison.class)
 public class MatcherSet<T> implements Matcher<T>
 {
     private final IdentityHashMap<Matcher<T>, Boolean> matchers = new IdentityHashMap<>();

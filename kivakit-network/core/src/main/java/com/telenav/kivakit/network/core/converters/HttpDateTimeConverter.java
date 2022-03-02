@@ -1,7 +1,7 @@
 package com.telenav.kivakit.network.core.converters;
 
-import com.telenav.kivakit.kernel.language.time.conversion.converters.DateTimeConverter;
-import com.telenav.kivakit.kernel.messaging.Listener;
+import com.telenav.kivakit.conversion.core.time.DateTimeConverter;
+import com.telenav.kivakit.core.messaging.Listener;
 
 import java.time.format.DateTimeFormatter;
 

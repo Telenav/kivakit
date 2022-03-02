@@ -19,4 +19,5 @@ snapshot_version="${1%-SNAPSHOT}-SNAPSHOT"
 update_version $CACTUS_HOME $snapshot_version
 update_version $KIVAKIT_HOME $snapshot_version
 update_version $KIVAKIT_EXTENSIONS_HOME $snapshot_version
+update_version $KIVAKIT_STUFF_HOME $snapshot_version
 update_version $KIVAKIT_EXAMPLES_HOME $snapshot_version

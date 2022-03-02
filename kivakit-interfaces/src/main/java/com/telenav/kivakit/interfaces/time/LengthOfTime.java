@@ -2,7 +2,7 @@ package com.telenav.kivakit.interfaces.time;
 
 import com.telenav.kivakit.interfaces.code.Callback;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceTime;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramTime;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
@@ -22,7 +22,7 @@ import java.util.concurrent.locks.Condition;
  * @author jonathanl (shibo)
  */
 @FunctionalInterface
-@UmlClassDiagram(diagram = DiagramInterfaceTime.class)
+@UmlClassDiagram(diagram = DiagramTime.class)
 public interface LengthOfTime extends
         Quantizable,
         Comparable<LengthOfTime>,

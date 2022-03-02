@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.lifecycle;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceLifeCycle;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramLifeCycle;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -28,7 +28,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramInterfaceLifeCycle.class)
+@UmlClassDiagram(diagram = DiagramLifeCycle.class)
 @LexakaiJavadoc(complete = true)
 public interface Stoppable extends Operation
 {

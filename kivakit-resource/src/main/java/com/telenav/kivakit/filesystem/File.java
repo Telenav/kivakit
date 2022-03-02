@@ -20,22 +20,21 @@ package com.telenav.kivakit.filesystem;
 
 import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.SwitchParser;
+import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.core.collections.map.VariableMap;
+import com.telenav.kivakit.core.ensure.Ensure;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.core.string.Paths;
+import com.telenav.kivakit.core.string.Strip;
+import com.telenav.kivakit.core.time.Duration;
+import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader;
 import com.telenav.kivakit.filesystem.local.LocalFile;
 import com.telenav.kivakit.filesystem.spi.FileService;
-import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
-import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.data.validation.ensure.reporters.ValidationFailure;
-import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
-import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.kernel.language.strings.Paths;
-import com.telenav.kivakit.kernel.language.strings.Strip;
-import com.telenav.kivakit.kernel.language.time.Duration;
-import com.telenav.kivakit.kernel.language.time.Time;
-import com.telenav.kivakit.kernel.language.values.count.Bytes;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceIdentifier;
@@ -43,8 +42,8 @@ import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.compression.Codec;
 import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.kivakit.resource.path.FilePath;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemFile;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourceService;
+import com.telenav.kivakit.resource.project.lexakai.DiagramFileSystemFile;
+import com.telenav.kivakit.resource.project.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.spi.ResourceResolver;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -58,7 +57,7 @@ import java.net.URI;
 import java.nio.charset.Charset;
 import java.nio.file.attribute.PosixFilePermission;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
 /**
  * File abstraction that adds integrates files with the KivaKit resource mini-framework and adds a variety of useful
@@ -421,7 +420,7 @@ public class File extends BaseWritableResource implements FileSystemObject
 
     /**
      * Reports a validation failure through {@link Ensure#fail()} if this file is not readable. By default, failure
-     * throws a {@link ValidationFailure} exception.
+     * throws an exception.
      */
     public File ensureReadable()
     {
@@ -431,7 +430,7 @@ public class File extends BaseWritableResource implements FileSystemObject
 
     /**
      * Reports a validation failure through {@link Ensure#fail()} if this file is not writable. By default, failure
-     * throws a {@link ValidationFailure} exception.
+     * throws an exception.
      */
     public File ensureWritable()
     {

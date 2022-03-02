@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.model;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceModel;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramModel;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -28,7 +28,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @FunctionalInterface
-@UmlClassDiagram(diagram = DiagramInterfaceModel.class)
+@UmlClassDiagram(diagram = DiagramModel.class)
 public interface Watchable<Value>
 {
     /**

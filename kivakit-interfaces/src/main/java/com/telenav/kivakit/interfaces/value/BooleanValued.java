@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.value;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceValue;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramValue;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -28,7 +28,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @FunctionalInterface
-@UmlClassDiagram(diagram = DiagramInterfaceValue.class)
+@UmlClassDiagram(diagram = DiagramValue.class)
 @LexakaiJavadoc(complete = true)
 public interface BooleanValued
 {

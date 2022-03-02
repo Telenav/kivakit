@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramArgument;
+import com.telenav.kivakit.commandline.project.lexakai.DiagramArgument;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 

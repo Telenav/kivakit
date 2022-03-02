@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.collections.set;
 
-import com.telenav.kivakit.collections.iteration.iterators.CompoundIterator;
-import com.telenav.kivakit.collections.project.lexakai.diagrams.DiagramSet;
+import com.telenav.kivakit.collections.project.lexakai.DiagramSet;
+import com.telenav.kivakit.core.collections.iteration.CompoundIterator;
+import com.telenav.kivakit.core.collections.iteration.Matching;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.kernel.language.iteration.Matching;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.ensure.Ensure.unsupported;
 
 /**
  * A set which contains any number of other sets by reference. The included sets cannot be directly modified via the

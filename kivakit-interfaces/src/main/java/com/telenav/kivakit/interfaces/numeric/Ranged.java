@@ -19,7 +19,7 @@
 package com.telenav.kivakit.interfaces.numeric;
 
 import com.telenav.kivakit.interfaces.collection.Contains;
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceNumeric;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramNumeric;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -27,7 +27,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramInterfaceNumeric.class)
+@UmlClassDiagram(diagram = DiagramNumeric.class)
 public interface Ranged<Value extends Minimizable<Value> & Maximizable<Value>> extends Contains<Value>
 {
     /**

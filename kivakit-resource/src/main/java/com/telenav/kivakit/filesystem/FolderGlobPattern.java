@@ -1,7 +1,7 @@
 package com.telenav.kivakit.filesystem;
 
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.kernel.messaging.Listener;
+import com.telenav.kivakit.core.messaging.Listener;
 
 import java.util.regex.Pattern;
 

@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.comparison;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceComparison;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramComparison;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -26,7 +26,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramInterfaceComparison.class)
+@UmlClassDiagram(diagram = DiagramComparison.class)
 public interface Equality<Value>
 {
     /**

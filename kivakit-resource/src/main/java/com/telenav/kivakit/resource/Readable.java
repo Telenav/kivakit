@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.kernel.language.io.IO;
-import com.telenav.kivakit.kernel.language.io.ProgressiveInput;
-import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.kernel.language.values.count.ByteSized;
-import com.telenav.kivakit.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.core.value.count.ByteSized;
+import com.telenav.kivakit.core.value.count.Bytes;
+import com.telenav.kivakit.core.io.IO;
+import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.io.InputStream;
@@ -70,7 +70,7 @@ public interface Readable extends ByteSized
             reporter.steps(size.asMaximum());
         }
 
-        return new ProgressiveInput(openForReading(), reporter);
+        return new ProgressiveInputStream(openForReading(), reporter);
     }
 
     /**
@@ -86,7 +86,6 @@ public interface Readable extends ByteSized
     /**
      * @return The number of bytes that can be read
      */
-    @Override
     default Bytes sizeInBytes()
     {
         return null;

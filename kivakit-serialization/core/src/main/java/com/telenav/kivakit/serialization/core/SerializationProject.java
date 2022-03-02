@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.serialization.core;
 
-import com.telenav.kivakit.kernel.language.objects.Lazy;
-import com.telenav.kivakit.kernel.project.Project;
+import com.telenav.kivakit.core.object.Lazy;
+import com.telenav.kivakit.coreproject.Project;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**

@@ -18,14 +18,14 @@
 
 package com.telenav.kivakit.serialization.kryo;
 
-import com.telenav.kivakit.kernel.KivaKit;
-import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.language.io.IO;
-import com.telenav.kivakit.kernel.language.values.version.Version;
-import com.telenav.kivakit.kernel.language.values.version.VersionedObject;
+import com.telenav.kivakit.core.KivaKit;
+import com.telenav.kivakit.core.ensure.Ensure;
+import com.telenav.kivakit.core.io.IO;
+import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.version.Version;
+import com.telenav.kivakit.core.version.VersionedObject;
 import com.telenav.kivakit.serialization.core.SerializationSession;
 import com.telenav.kivakit.serialization.core.SerializationSessionFactory;
-import com.telenav.kivakit.test.UnitTest;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.io.ByteArrayInputStream;

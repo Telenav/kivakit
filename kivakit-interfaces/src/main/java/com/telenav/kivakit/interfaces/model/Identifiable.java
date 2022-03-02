@@ -19,7 +19,7 @@
 package com.telenav.kivakit.interfaces.model;
 
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceModel;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramModel;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -28,7 +28,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  * @see Quantizable
  */
-@UmlClassDiagram(diagram = DiagramInterfaceModel.class)
+@UmlClassDiagram(diagram = DiagramModel.class)
 public interface Identifiable extends Quantizable
 {
     /**

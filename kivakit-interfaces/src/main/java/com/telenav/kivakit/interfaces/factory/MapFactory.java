@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.factory;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceFactory;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramFactory;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -32,7 +32,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see Factory
  */
 @FunctionalInterface
-@UmlClassDiagram(diagram = DiagramInterfaceFactory.class)
+@UmlClassDiagram(diagram = DiagramFactory.class)
 public interface MapFactory<Parameter, Value>
 {
     /**

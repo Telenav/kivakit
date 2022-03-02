@@ -22,15 +22,15 @@ import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.Serializer;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
-import com.telenav.kivakit.kernel.language.values.version.Version;
-import com.telenav.kivakit.serialization.kryo.project.lexakai.diagrams.DiagramSerializationKryo;
+import com.telenav.kivakit.core.version.Version;
+import com.telenav.kivakit.serialization.kryo.project.lexakai.DiagramKryo;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Objects;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
  * Kryo serializer extension class for serializing a particular type of object. Provides a thread-local version to
@@ -38,7 +38,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.unsupport
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramSerializationKryo.class)
+@UmlClassDiagram(diagram = DiagramKryo.class)
 @LexakaiJavadoc(complete = true)
 public abstract class KryoSerializer<Value> extends Serializer<Value>
 {

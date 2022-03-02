@@ -18,12 +18,13 @@
 
 package com.telenav.kivakit.filesystem;
 
+import com.telenav.kivakit.core.test.UnitTest;
 import com.telenav.kivakit.resource.path.FilePath;
-import com.telenav.kivakit.test.UnitTest;
 import org.junit.Test;
 
 public class FileSystemTest extends UnitTest
 {
+    @SuppressWarnings("SpellCheckingInspection")
     @Test
     public void testFilePath()
     {

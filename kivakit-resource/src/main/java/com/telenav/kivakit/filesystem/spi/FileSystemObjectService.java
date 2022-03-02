@@ -18,23 +18,23 @@
 
 package com.telenav.kivakit.filesystem.spi;
 
+import com.telenav.kivakit.core.value.count.ByteSized;
+import com.telenav.kivakit.core.messaging.Repeater;
+import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader;
-import com.telenav.kivakit.kernel.language.strings.Strings;
-import com.telenav.kivakit.kernel.language.time.ChangedAt;
-import com.telenav.kivakit.kernel.language.time.CreatedAt;
-import com.telenav.kivakit.kernel.language.time.Modifiable;
-import com.telenav.kivakit.kernel.language.values.count.ByteSized;
-import com.telenav.kivakit.kernel.messaging.Repeater;
 import com.telenav.kivakit.resource.path.FilePath;
 import com.telenav.kivakit.resource.path.ResourcePathed;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemService;
+import com.telenav.kivakit.resource.project.lexakai.DiagramFileSystemService;
+import com.telenav.kivakit.core.time.ChangedAt;
+import com.telenav.kivakit.core.time.CreatedAt;
+import com.telenav.kivakit.core.time.Modifiable;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
 import java.nio.file.attribute.PosixFilePermission;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
  * A service provider interface (SPI) common to all filesystem objects. Implementers must provide:

@@ -22,14 +22,14 @@ import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.path.FileName;
 import com.telenav.kivakit.resource.path.FilePath;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemService;
+import com.telenav.kivakit.resource.project.lexakai.DiagramFileSystemService;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.ensure.Ensure.unsupported;
 
 /**
  * A service provider interface (SPI) for filesystem folders. In addition to the methods required by {@link

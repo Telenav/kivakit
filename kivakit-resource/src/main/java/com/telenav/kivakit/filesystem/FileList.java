@@ -18,14 +18,14 @@
 
 package com.telenav.kivakit.filesystem;
 
+import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.core.collections.list.ObjectList;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.filesystem.spi.FileService;
-import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
-import com.telenav.kivakit.kernel.language.values.count.Bytes;
-import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.path.Extension;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemFile;
+import com.telenav.kivakit.resource.project.lexakai.DiagramFileSystemFile;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
@@ -148,18 +148,22 @@ public class FileList extends ObjectList<File>
 
     public byte[] digest()
     {
-        MessageDigest digester = null;
+        MessageDigest digester;
         try
         {
             digester = MessageDigest.getInstance("MD5");
             var builder = new StringBuilder();
             for (var file : this)
             {
-                builder.append("[" + file.path().absolute()
-                        + ":" + file.created()
-                        + ":" + file.lastModified()
-                        + ":" + file.sizeInBytes()
-                        + "]");
+                builder.append("[")
+                        .append(file.path().absolute())
+                        .append(":")
+                        .append(file.created())
+                        .append(":")
+                        .append(file.lastModified())
+                        .append(":")
+                        .append(file.sizeInBytes())
+                        .append("]");
             }
             return digester.digest(builder.toString().getBytes());
         }

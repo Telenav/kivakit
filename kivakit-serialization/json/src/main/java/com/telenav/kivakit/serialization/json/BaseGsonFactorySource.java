@@ -1,7 +1,7 @@
 package com.telenav.kivakit.serialization.json;
 
-import com.telenav.kivakit.kernel.data.conversion.string.StringConverter;
-import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.conversion.string.StringConverter;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 
 public abstract class BaseGsonFactorySource extends BaseRepeater implements GsonFactorySource
 {

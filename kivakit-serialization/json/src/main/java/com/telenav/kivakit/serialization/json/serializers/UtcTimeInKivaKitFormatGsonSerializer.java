@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.serialization.json.serializers;
 
-import com.telenav.kivakit.kernel.language.time.LocalTime;
-import com.telenav.kivakit.kernel.language.time.Time;
-import com.telenav.kivakit.kernel.language.time.conversion.converters.LocalDateTimeConverter;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
+import com.telenav.kivakit.language.time.LocalTime;
+import com.telenav.kivakit.language.time.Time;
+import com.telenav.kivakit.conversion.time.converters.LocalDateTimeConverter;
+import com.telenav.kivakit.core.messaging.logging.Logger;
+import com.telenav.kivakit.core.messaging.logging.LoggerFactory;
 import com.telenav.kivakit.serialization.json.PrimitiveGsonSerializer;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 

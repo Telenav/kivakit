@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.core.cluster;
 
-import com.telenav.kivakit.kernel.language.values.identifier.StringIdentifier;
+import com.telenav.kivakit.core.language.values.identifier.StringIdentifier;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**

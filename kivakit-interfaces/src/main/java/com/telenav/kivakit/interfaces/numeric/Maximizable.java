@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.numeric;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceNumeric;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramNumeric;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -31,7 +31,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @param <Value> The type of object to compare
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramInterfaceNumeric.class)
+@UmlClassDiagram(diagram = DiagramNumeric.class)
 public interface Maximizable<Value>
 {
     /**

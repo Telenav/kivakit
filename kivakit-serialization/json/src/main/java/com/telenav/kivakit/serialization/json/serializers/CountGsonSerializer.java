@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.serialization.json.serializers;
 
-import com.telenav.kivakit.kernel.language.values.count.Count;
+import com.telenav.kivakit.language.count.Count;
 import com.telenav.kivakit.serialization.json.PrimitiveGsonSerializer;
 
 public class CountGsonSerializer extends PrimitiveGsonSerializer<Count, Integer>

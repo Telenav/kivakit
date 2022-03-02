@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.filesystem;
 
+import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.filesystem.spi.FolderService;
-import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemFolder;
+import com.telenav.kivakit.resource.project.lexakai.DiagramFileSystemFolder;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;

@@ -264,7 +264,7 @@
         <profile>
             <id>test-quick</id>
             <properties>
-                <exclude.test.groups>com.telenav.kivakit.test.annotations.SlowTests</exclude.test.groups>
+                <exclude.test.groups>com.telenav.kivakit.core.test.annotations.SlowTests</exclude.test.groups>
                 <testQuick>true</testQuick>
             </properties>
         </profile>
@@ -918,7 +918,7 @@
             </dependency>
             <dependency>
                 <groupId>com.telenav.kivakit</groupId>
-                <artifactId>kivakit-configuration</artifactId>
+                <artifactId>kivakit-settings</artifactId>
                 <version>${kivakit.version}</version>
             </dependency>
             <dependency>
@@ -963,7 +963,27 @@
             </dependency>
             <dependency>
                 <groupId>com.telenav.kivakit</groupId>
-                <artifactId>kivakit-kernel</artifactId>
+                <artifactId>kivakit-core</artifactId>
+                <version>${kivakit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.telenav.kivakit</groupId>
+                <artifactId>kivakit-conversion</artifactId>
+                <version>${kivakit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.telenav.kivakit</groupId>
+                <artifactId>kivakit-extraction</artifactId>
+                <version>${kivakit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.telenav.kivakit</groupId>
+                <artifactId>kivakit-validation</artifactId>
+                <version>${kivakit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.telenav.kivakit</groupId>
+                <artifactId>kivakit-core</artifactId>
                 <version>${kivakit.version}</version>
             </dependency>
             <dependency>
@@ -1059,11 +1079,6 @@
             <dependency>
                 <groupId>com.telenav.kivakit</groupId>
                 <artifactId>kivakit-service-server</artifactId>
-                <version>${kivakit.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.telenav.kivakit</groupId>
-                <artifactId>kivakit-test</artifactId>
                 <version>${kivakit.version}</version>
             </dependency>
             <dependency>

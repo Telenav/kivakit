@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.kernel.language.time.Duration;
+import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.resource.path.FileName;
-import com.telenav.kivakit.test.UnitTest;
 import org.junit.Ignore;
 import org.junit.Test;
 

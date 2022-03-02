@@ -23,16 +23,16 @@ import com.esotericsoftware.kryo.Registration;
 import com.esotericsoftware.kryo.Serializer;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
+import com.telenav.kivakit.core.collections.list.ObjectList;
+import com.telenav.kivakit.core.collections.map.ObjectMap;
+import com.telenav.kivakit.core.io.IO;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.version.Version;
+import com.telenav.kivakit.core.version.VersionedObject;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
-import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
-import com.telenav.kivakit.kernel.language.collections.map.ObjectMap;
-import com.telenav.kivakit.kernel.language.io.IO;
-import com.telenav.kivakit.kernel.language.values.version.Version;
-import com.telenav.kivakit.kernel.language.values.version.VersionedObject;
-import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.serialization.core.SerializationSession;
-import com.telenav.kivakit.serialization.kryo.project.lexakai.diagrams.DiagramSerializationKryo;
+import com.telenav.kivakit.serialization.kryo.project.lexakai.DiagramKryo;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -43,7 +43,7 @@ import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
  * An extension of the {@link Kryo} object which adds enhanced reading and writing capabilities and enforces versioning
@@ -67,8 +67,8 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  * @see SerializationSession
  * @see KryoSerializer
  */
-@UmlClassDiagram(diagram = DiagramSerializationKryo.class)
-@UmlRelation(diagram = DiagramSerializationKryo.class,
+@UmlClassDiagram(diagram = DiagramKryo.class)
+@UmlRelation(diagram = DiagramKryo.class,
              label = "registers",
              referent = Serializer.class,
              referentCardinality = "*")

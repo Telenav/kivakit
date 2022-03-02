@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.application;
 
-import com.telenav.kivakit.application.project.lexakai.diagrams.DiagramApplication;
+import com.telenav.kivakit.application.project.lexakai.DiagramApplication;
 import com.telenav.kivakit.commandline.ApplicationMetadata;
 import com.telenav.kivakit.commandline.ArgumentList;
 import com.telenav.kivakit.commandline.ArgumentParser;
@@ -28,42 +28,43 @@ import com.telenav.kivakit.commandline.Quantifier;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.component.Component;
-import com.telenav.kivakit.configuration.lookup.Registry;
-import com.telenav.kivakit.configuration.lookup.RegistryTrait;
-import com.telenav.kivakit.configuration.settings.Deployment;
-import com.telenav.kivakit.configuration.settings.DeploymentSet;
-import com.telenav.kivakit.configuration.settings.SettingsTrait;
+import com.telenav.kivakit.core.KivaKit;
+import com.telenav.kivakit.core.collections.list.ObjectList;
+import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.collections.set.ObjectSet;
+import com.telenav.kivakit.core.language.Classes;
+import com.telenav.kivakit.core.language.trait.LanguageTrait;
+import com.telenav.kivakit.core.vm.ShutdownHook;
+import com.telenav.kivakit.core.locale.Locale;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.logging.logs.BaseLog;
+import com.telenav.kivakit.core.messaging.Message;
+import com.telenav.kivakit.core.messaging.Repeater;
+import com.telenav.kivakit.core.messaging.filters.AllMessages;
+import com.telenav.kivakit.core.messaging.filters.SeverityGreaterThanOrEqualTo;
+import com.telenav.kivakit.core.messaging.messages.status.Announcement;
+import com.telenav.kivakit.core.messaging.messages.status.Glitch;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.project.Project;
+import com.telenav.kivakit.core.registry.Registry;
+import com.telenav.kivakit.core.registry.RegistryTrait;
+import com.telenav.kivakit.core.string.Align;
+import com.telenav.kivakit.core.string.AsciiArt;
+import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.string.Strip;
+import com.telenav.kivakit.core.thread.StateMachine;
+import com.telenav.kivakit.core.value.identifier.StringIdentifier;
+import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
-import com.telenav.kivakit.kernel.KivaKit;
-import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
-import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
-import com.telenav.kivakit.kernel.language.locales.Locale;
-import com.telenav.kivakit.kernel.language.strings.Align;
-import com.telenav.kivakit.kernel.language.strings.AsciiArt;
-import com.telenav.kivakit.kernel.language.strings.Strip;
-import com.telenav.kivakit.kernel.language.threading.conditions.StateMachine;
-import com.telenav.kivakit.kernel.language.traits.LanguageTrait;
-import com.telenav.kivakit.kernel.language.types.Classes;
-import com.telenav.kivakit.kernel.language.values.identifier.StringIdentifier;
-import com.telenav.kivakit.kernel.language.values.version.Version;
-import com.telenav.kivakit.kernel.language.vm.KivaKitShutdownHook;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.kernel.logging.logs.BaseLog;
-import com.telenav.kivakit.kernel.messaging.Message;
-import com.telenav.kivakit.kernel.messaging.Repeater;
-import com.telenav.kivakit.kernel.messaging.filters.AllMessages;
-import com.telenav.kivakit.kernel.messaging.filters.SeverityGreaterThanOrEqualTo;
-import com.telenav.kivakit.kernel.messaging.messages.status.Announcement;
-import com.telenav.kivakit.kernel.messaging.messages.status.Glitch;
-import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.kernel.project.Project;
 import com.telenav.kivakit.resource.PackageTrait;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.resources.other.PropertyMap;
+import com.telenav.kivakit.settings.settings.Deployment;
+import com.telenav.kivakit.settings.settings.DeploymentSet;
+import com.telenav.kivakit.settings.settings.SettingsTrait;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -84,8 +85,8 @@ import static com.telenav.kivakit.application.Application.State.READY;
 import static com.telenav.kivakit.application.Application.State.RUNNING;
 import static com.telenav.kivakit.application.Application.State.STOPPED;
 import static com.telenav.kivakit.application.Application.State.STOPPING;
-import static com.telenav.kivakit.commandline.SwitchParser.booleanSwitchParser;
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.commandline.SwitchParsers.booleanSwitchParser;
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 
 /**
  * Base class for KivaKit applications.
@@ -199,7 +200,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  * <p><i>Abnormal Termination</i></p>
  *
  * <p>
- * If an application wishes to terminate its execution abnormally, it can call {@links #exit(String, Object...)}. This will
+ * If an application wishes to terminate its execution abnormally, it can call {@link #exit(String, Object...)}. This will
  * display the given message and show command line usage before exiting the application.
  * </p>
  *
@@ -252,7 +253,9 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  */
 @UmlClassDiagram(diagram = DiagramApplication.class)
 @LexakaiJavadoc(complete = true)
-public abstract class Application extends BaseComponent implements Named, ApplicationMetadata
+public abstract class Application extends BaseComponent implements
+        Named,
+        ApplicationMetadata
 {
     /** The one and only application running in this process */
     private static Application instance;
@@ -313,6 +316,13 @@ public abstract class Application extends BaseComponent implements Named, Applic
     private Project project;
 
     private final StateMachine<State> state = new StateMachine<>(CREATED);
+
+    @UmlExcludeMember
+    protected final SwitchParser<Boolean> QUIET =
+            booleanSwitchParser(this, "quiet", "Minimize output")
+                    .optional()
+                    .defaultValue(false)
+                    .build();
 
     /**
      * @param projects One or more projects to initialize
@@ -440,7 +450,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
     }
 
     /**
-     * Exits the application with the given message formatted by {@link Message#format(String, Object...)}
+     * Exits the application with the given message formatted by {@link Formatter#format(String, Object...)}
      *
      * @param message The message
      * @param arguments Arguments to interpolate into the message
@@ -625,7 +635,6 @@ public abstract class Application extends BaseComponent implements Named, Applic
     /**
      * @return The application version as specified in the resource "/project.properties"
      */
-    @Override
     public Version version()
     {
         return project().projectVersion();
@@ -690,8 +699,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
     }
 
     /**
-     * Called after the application has run and just before shutdown. For system hooks, see {@link
-     * KivaKitShutdownHook}.
+     * Called after the application has run and just before shutdown. For system hooks, see {@link ShutdownHook}.
      */
     @UmlExcludeMember
     protected void onRan()
@@ -753,11 +761,4 @@ public abstract class Application extends BaseComponent implements Named, Applic
 
         return parsers;
     }
-
-    @UmlExcludeMember
-    protected final SwitchParser<Boolean> QUIET =
-            booleanSwitchParser(this, "quiet", "Minimize output")
-                    .optional()
-                    .defaultValue(false)
-                    .build();
 }

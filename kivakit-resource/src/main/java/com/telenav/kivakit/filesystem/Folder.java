@@ -20,27 +20,27 @@ package com.telenav.kivakit.filesystem;
 
 import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.SwitchParser;
+import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.core.KivaKit;
+import com.telenav.kivakit.core.code.UncheckedVoidCode;
+import com.telenav.kivakit.core.os.OperatingSystem;
+import com.telenav.kivakit.core.language.trait.TryTrait;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.messages.status.Problem;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.string.Strings;
+import com.telenav.kivakit.core.thread.Monitor;
+import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader;
 import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.filesystem.spi.FolderService;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.kernel.KivaKit;
-import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
-import com.telenav.kivakit.kernel.language.code.UncheckedVoidCode;
-import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.kernel.language.strings.Strings;
-import com.telenav.kivakit.kernel.language.threading.locks.Monitor;
-import com.telenav.kivakit.kernel.language.time.Time;
-import com.telenav.kivakit.kernel.language.traits.TryTrait;
-import com.telenav.kivakit.kernel.language.values.count.Bytes;
-import com.telenav.kivakit.kernel.language.vm.OperatingSystem;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.kivakit.kernel.messaging.Message;
-import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
-import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
@@ -48,8 +48,8 @@ import com.telenav.kivakit.resource.ResourceFolderIdentifier;
 import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.kivakit.resource.path.FileName;
 import com.telenav.kivakit.resource.path.FilePath;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemFolder;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourceService;
+import com.telenav.kivakit.resource.project.lexakai.DiagramFileSystemFolder;
+import com.telenav.kivakit.resource.project.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.spi.ResourceFolderResolver;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -68,14 +68,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.prefs.Preferences;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.filesystem.Folder.Traversal.RECURSE;
 import static com.telenav.kivakit.filesystem.Folder.Type.CLEAN_UP_ON_EXIT;
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
 
 /**
  * Folder abstraction that extends {@link FileSystemObject} and implements the {@link ResourceFolder} interface for
@@ -194,7 +195,11 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  */
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
 @LexakaiJavadoc(complete = true)
-public class Folder extends BaseRepeater implements FileSystemObject, Comparable<Folder>, ResourceFolder, TryTrait
+public class Folder extends BaseRepeater implements
+        FileSystemObject,
+        Comparable<Folder>,
+        ResourceFolder,
+        TryTrait
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
@@ -350,7 +355,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
         {
             return null;
         }
-        path = Message.format(path, arguments);
+        path = Formatter.format(path, arguments);
         var filePath = FilePath.parseFilePath(listener, path);
         return filePath == null ? null : new Folder(filePath);
     }
@@ -499,7 +504,7 @@ public class Folder extends BaseRepeater implements FileSystemObject, Comparable
      */
     public Folder(FilePath path)
     {
-        this(FileSystemServiceLoader.fileSystem(path).folderService(path));
+        this(Objects.requireNonNull(FileSystemServiceLoader.fileSystem(path)).folderService(path));
     }
 
     /**

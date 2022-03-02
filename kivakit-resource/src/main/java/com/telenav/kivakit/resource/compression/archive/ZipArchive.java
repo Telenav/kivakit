@@ -18,24 +18,24 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
+import com.telenav.kivakit.core.KivaKit;
+import com.telenav.kivakit.core.collections.map.VariableMap;
+import com.telenav.kivakit.core.value.count.ByteSized;
+import com.telenav.kivakit.core.value.count.Bytes;
+import com.telenav.kivakit.core.value.count.MutableCount;
+import com.telenav.kivakit.core.io.IO;
+import com.telenav.kivakit.core.io.Nio;
+import com.telenav.kivakit.core.code.UncheckedCode;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.core.progress.reporters.Progress;
+import com.telenav.kivakit.core.version.VersionedObject;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.interfaces.code.Callback;
-import com.telenav.kivakit.kernel.KivaKit;
-import com.telenav.kivakit.kernel.language.code.UncheckedCode;
-import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
-import com.telenav.kivakit.kernel.language.io.IO;
-import com.telenav.kivakit.kernel.language.paths.Nio;
-import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.kernel.language.progress.reporters.Progress;
-import com.telenav.kivakit.kernel.language.values.count.ByteSized;
-import com.telenav.kivakit.kernel.language.values.count.Bytes;
-import com.telenav.kivakit.kernel.language.values.count.MutableCount;
-import com.telenav.kivakit.kernel.language.values.version.VersionedObject;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourceArchive;
+import com.telenav.kivakit.resource.project.lexakai.DiagramResourceArchive;
 import com.telenav.kivakit.serialization.core.SerializationSession;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -54,7 +54,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.zip.ZipFile;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.resource.compression.archive.ZipArchive.Mode.READ;
 
 /**
@@ -103,7 +103,10 @@ import static com.telenav.kivakit.resource.compression.archive.ZipArchive.Mode.R
 @UmlRelation(label = "opens for access", referent = ZipArchive.Mode.class)
 @UmlExcludeSuperTypes({ AutoCloseable.class, Iterable.class })
 @LexakaiJavadoc(complete = true)
-public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, ByteSized
+public final class ZipArchive implements
+        Iterable<ZipEntry>,
+        AutoCloseable,
+        ByteSized
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
@@ -120,7 +123,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
         {
             if (file.exists())
             {
-                var zip = open(listener, file, ProgressReporter.NULL, READ);
+                var zip = open(listener, file, ProgressReporter.none(), READ);
                 if (zip != null)
                 {
                     zip.close();
@@ -133,7 +136,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
 
     public static ZipArchive open(Listener listener, File file, Mode mode)
     {
-        return open(listener, file, ProgressReporter.NULL, mode);
+        return open(listener, file, ProgressReporter.none(), mode);
     }
 
     public static ZipArchive open(Listener listener, File file, ProgressReporter reporter, Mode mode)
@@ -179,7 +182,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
 
     public ZipArchive(FileSystem filesystem, File file)
     {
-        this(filesystem, ProgressReporter.NULL, file);
+        this(filesystem, ProgressReporter.none(), file);
     }
 
     public ZipArchive(FileSystem filesystem, ProgressReporter reporter, File file)
@@ -194,7 +197,7 @@ public final class ZipArchive implements Iterable<ZipEntry>, AutoCloseable, Byte
 
     public void add(List<File> files)
     {
-        add(files, ProgressReporter.NULL);
+        add(files, ProgressReporter.none());
     }
 
     /**

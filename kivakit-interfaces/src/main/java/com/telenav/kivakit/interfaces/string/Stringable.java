@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.string;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceString;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
@@ -31,13 +31,13 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  * @author jonathanl (shibo)
  */
 @UmlRelation(label = "formats with", referent = Stringable.Format.class)
-@UmlClassDiagram(diagram = DiagramInterfaceString.class)
+@UmlClassDiagram(diagram = DiagramString.class)
 public interface Stringable extends StringSource
 {
     /**
      * The type of format for a string returned by {@link Stringable#asString(Format)}
      */
-    @UmlClassDiagram(diagram = DiagramInterfaceString.class)
+    @UmlClassDiagram(diagram = DiagramString.class)
     @UmlExcludeSuperTypes enum Format
     {
         DEBUGGER,

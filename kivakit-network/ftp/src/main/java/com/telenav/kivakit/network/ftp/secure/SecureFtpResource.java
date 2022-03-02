@@ -19,13 +19,13 @@
 package com.telenav.kivakit.network.ftp.secure;
 
 import com.jcraft.jsch.ChannelSftp.LsEntry;
-import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
-import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.core.count.Bytes;
+import com.telenav.kivakit.core.language.collections.list.ObjectList;
+import com.telenav.kivakit.core.language.progress.ProgressReporter;
 import com.telenav.kivakit.network.core.BaseNetworkResource;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
-import com.telenav.kivakit.network.ftp.project.lexakai.diagrams.DiagramSecureFtp;
+import com.telenav.kivakit.network.ftp.project.lexakai.DiagramSecureFtp;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.WritableResource;
 import com.telenav.kivakit.resource.compression.codecs.GzipCodec;

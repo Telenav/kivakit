@@ -21,12 +21,12 @@ package com.telenav.kivakit.network.http.secure;
 import com.telenav.kivakit.network.core.NetworkPath;
 import com.telenav.kivakit.network.http.HttpGetResource;
 import com.telenav.kivakit.network.http.HttpNetworkLocation;
-import com.telenav.kivakit.network.http.project.lexakai.diagrams.DiagramHttps;
+import com.telenav.kivakit.network.http.project.lexakai.DiagramHttps;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
+import static com.telenav.kivakit.ensure.Ensure.ensure;
 import static com.telenav.kivakit.network.core.Protocol.HTTPS;
 
 /**

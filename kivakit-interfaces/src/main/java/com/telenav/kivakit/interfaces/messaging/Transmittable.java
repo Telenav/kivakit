@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.messaging;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceMessaging;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramMessaging;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -26,7 +26,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramInterfaceMessaging.class)
+@UmlClassDiagram(diagram = DiagramMessaging.class)
 public interface Transmittable
 {
 }

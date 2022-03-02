@@ -18,14 +18,14 @@
 
 package com.telenav.kivakit.resource.writing;
 
-import com.telenav.kivakit.kernel.language.io.IO;
-import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
+import com.telenav.kivakit.core.io.IO;
+import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.WritableResource;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemFile;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResource;
+import com.telenav.kivakit.resource.project.lexakai.DiagramFileSystemFile;
+import com.telenav.kivakit.resource.project.lexakai.DiagramResource;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

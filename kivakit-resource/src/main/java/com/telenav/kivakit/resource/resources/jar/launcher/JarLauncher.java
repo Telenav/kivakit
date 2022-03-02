@@ -20,15 +20,15 @@ package com.telenav.kivakit.resource.resources.jar.launcher;
 
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.kernel.language.threading.KivaKitThread;
-import com.telenav.kivakit.kernel.language.vm.OperatingSystem;
-import com.telenav.kivakit.kernel.language.vm.Processes;
-import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.language.collections.list.StringList;
+import com.telenav.kivakit.core.language.progress.ProgressReporter;
+import com.telenav.kivakit.core.language.threading.KivaKitThread;
+import com.telenav.kivakit.core.language.vm.OperatingSystem;
+import com.telenav.kivakit.core.language.vm.Processes;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.resource.Resourceful;
 import com.telenav.kivakit.resource.path.Extension;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramJarLauncher;
+import com.telenav.kivakit.resource.project.lexakai.DiagramJarLauncher;
 import com.telenav.kivakit.resource.resources.other.PropertyMap;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -39,7 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.resource.resources.jar.launcher.JarLauncher.ProcessType.CHILD;
 import static com.telenav.kivakit.resource.resources.jar.launcher.JarLauncher.ProcessType.DETACHED;
 
@@ -195,7 +195,7 @@ public class JarLauncher extends BaseRepeater
         for (var source : jarSources)
         {
             // get the resource and materialize it to the local host,
-            var resource = source.resource().materialized(ProgressReporter.NULL);
+            var resource = source.resource().materialized(ProgressReporter.none());
             try
             {
                 // get the resource basename,

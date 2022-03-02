@@ -19,7 +19,7 @@
 package com.telenav.kivakit.interfaces.messaging;
 
 import com.telenav.kivakit.interfaces.code.Code;
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceMessaging;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramMessaging;
 import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -37,7 +37,7 @@ import java.util.function.Supplier;
  * @author jonathanl (shibo)
  * @see Transmittable
  */
-@UmlClassDiagram(diagram = DiagramInterfaceMessaging.class)
+@UmlClassDiagram(diagram = DiagramMessaging.class)
 @UmlRelation(label = "transmits", referent = Transmittable.class)
 public interface Transmitter
 {

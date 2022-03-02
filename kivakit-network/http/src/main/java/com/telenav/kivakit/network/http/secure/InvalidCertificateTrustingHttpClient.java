@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.http.secure;
 
-import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
+import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.ssl.SSLSocketFactory;

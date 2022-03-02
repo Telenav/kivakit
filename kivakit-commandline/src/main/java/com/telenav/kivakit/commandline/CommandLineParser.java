@@ -23,19 +23,17 @@ import com.telenav.kivakit.commandline.parsing.ArgumentParserList;
 import com.telenav.kivakit.commandline.parsing.SwitchList;
 import com.telenav.kivakit.commandline.parsing.SwitchListValidator;
 import com.telenav.kivakit.commandline.parsing.SwitchParserList;
-import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramArgument;
-import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramCommandLine;
-import com.telenav.kivakit.kernel.KivaKit;
-import com.telenav.kivakit.kernel.data.validation.BaseValidator;
-import com.telenav.kivakit.kernel.data.validation.ensure.Failure;
-import com.telenav.kivakit.kernel.data.validation.ensure.reporters.NullFailureReporter;
-import com.telenav.kivakit.kernel.language.matchers.AnythingMatcher;
-import com.telenav.kivakit.kernel.language.strings.AsciiArt;
-import com.telenav.kivakit.kernel.language.strings.Wrap;
-import com.telenav.kivakit.kernel.language.time.Duration;
-import com.telenav.kivakit.kernel.messaging.Message;
-import com.telenav.kivakit.kernel.messaging.listeners.MessageList;
-import com.telenav.kivakit.kernel.messaging.messages.OperationMessage;
+import com.telenav.kivakit.commandline.project.lexakai.DiagramArgument;
+import com.telenav.kivakit.commandline.project.lexakai.DiagramCommandLine;
+import com.telenav.kivakit.core.KivaKit;
+import com.telenav.kivakit.core.messaging.listeners.MessageList;
+import com.telenav.kivakit.core.messaging.messages.OperationMessage;
+import com.telenav.kivakit.core.string.AsciiArt;
+import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.string.Wrap;
+import com.telenav.kivakit.core.time.Duration;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
+import com.telenav.kivakit.validation.BaseValidator;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -62,8 +60,8 @@ import java.util.Collection;
  * <p>
  * Please note that the common UNIX convention of having switches with no value, "-verbose" for example, is not
  * supported. All switches must be specified with a value, such as "-verbose=true". Also note that the UNIX convention
- * of binding switches to the next argument (without using "=") is not supported either (so, "-output myfile.txt" must
- * be specified as "-output=myfile.txt").
+ * of binding switches to the next argument (without using "=") is not supported either (so, "-output my-file.txt" must
+ * be specified as "-output=my-file.txt").
  * </p>
  *
  * <p><b>Example</b></p>
@@ -202,7 +200,7 @@ public class CommandLineParser
      */
     protected void exit(String message, Object... arguments)
     {
-        var formatted = Message.format(message, arguments);
+        var formatted = Formatter.format(message, arguments);
         System.err.println(AsciiArt.textBox("COMMAND LINE ERROR(S)", formatted));
         System.err.flush();
         Duration.seconds(0.25).sleep();
@@ -227,25 +225,22 @@ public class CommandLineParser
      */
     void validate(SwitchList switches, ArgumentList arguments)
     {
-        Failure.withReporter(new NullFailureReporter(), () ->
+        var messages = new MessageList(Matcher.anything());
+
+        var validator = new BaseValidator()
         {
-            var messages = new MessageList(new AnythingMatcher<>());
-
-            var validator = new BaseValidator()
+            @Override
+            protected void onValidate()
             {
-                @Override
-                protected void onValidate()
-                {
-                    validate(new SwitchListValidator(switchParsers, switches));
-                    validate(new ArgumentListValidator(argumentParsers, arguments));
-                }
-            };
-
-            if (!validator.validate(message -> messages.add(((OperationMessage) message).cause(null))))
-            {
-                exit(messages.bulleted(4));
+                validate(new SwitchListValidator(switchParsers, switches));
+                validate(new ArgumentListValidator(argumentParsers, arguments));
             }
-        });
+        };
+
+        if (!validator.validate(message -> messages.add(((OperationMessage) message).cause(null))))
+        {
+            exit(messages.bulleted(4));
+        }
     }
 
     /**

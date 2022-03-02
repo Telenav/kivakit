@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
-import com.telenav.kivakit.kernel.language.reflection.property.NamingConvention;
-import com.telenav.kivakit.kernel.language.reflection.property.filters.field.AllFields;
+import com.telenav.kivakit.core.language.reflection.property.NamingConvention;
+import com.telenav.kivakit.core.language.reflection.property.filters.field.AllFields;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.lang.reflect.Field;

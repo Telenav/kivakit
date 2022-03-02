@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.naming;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceNaming;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramNaming;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -28,7 +28,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramInterfaceNaming.class)
+@UmlClassDiagram(diagram = DiagramNaming.class)
 public interface NamedObject
 {
     static boolean isSyntheticName(String name)

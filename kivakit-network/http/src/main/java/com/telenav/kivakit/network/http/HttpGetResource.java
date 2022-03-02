@@ -20,13 +20,13 @@ package com.telenav.kivakit.network.http;
 
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
-import com.telenav.kivakit.network.http.project.lexakai.diagrams.DiagramHttp;
+import com.telenav.kivakit.network.http.project.lexakai.DiagramHttp;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensure;
+import static com.telenav.kivakit.ensure.Ensure.ensure;
 
 /**
  * A resource accessed by HTTP GET at the given network location using the given access constraints.

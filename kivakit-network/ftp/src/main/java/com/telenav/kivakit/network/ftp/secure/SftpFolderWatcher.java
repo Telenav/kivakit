@@ -20,11 +20,11 @@ package com.telenav.kivakit.network.ftp.secure;
 
 import com.jcraft.jsch.ChannelSftp.LsEntry;
 import com.telenav.kivakit.collections.watcher.PeriodicCollectionChangeWatcher;
-import com.telenav.kivakit.kernel.language.time.Frequency;
-import com.telenav.kivakit.kernel.language.time.Time;
+import com.telenav.kivakit.language.time.Frequency;
+import com.telenav.kivakit.language.time.Time;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkPath;
-import com.telenav.kivakit.network.ftp.project.lexakai.diagrams.DiagramSecureFtp;
+import com.telenav.kivakit.network.ftp.project.lexakai.DiagramSecureFtp;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;

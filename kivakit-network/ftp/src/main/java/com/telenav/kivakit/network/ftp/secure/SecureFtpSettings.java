@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.network.ftp.secure;
 
-import com.telenav.kivakit.kernel.language.time.Duration;
+import com.telenav.kivakit.language.time.Duration;
 import com.telenav.kivakit.network.core.Host;
-import com.telenav.kivakit.network.ftp.project.lexakai.diagrams.DiagramSecureFtp;
+import com.telenav.kivakit.network.ftp.project.lexakai.DiagramSecureFtp;
 import com.telenav.kivakit.security.authentication.Password;
 import com.telenav.kivakit.security.authentication.UserName;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;

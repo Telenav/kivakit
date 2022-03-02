@@ -2,7 +2,6 @@ open module kivakit.serialization.kryo
 {
     // KivaKit
     requires transitive kivakit.serialization.core;
-    requires kivakit.test;
 
     // Kryo
     requires transitive kryo;
@@ -11,5 +10,5 @@ open module kivakit.serialization.kryo
 
     // Module exports
     exports com.telenav.kivakit.serialization.kryo;
-    exports com.telenav.kivakit.serialization.kryo.project.lexakai.diagrams;
+    exports com.telenav.kivakit.serialization.kryo.project.lexakai;
 }

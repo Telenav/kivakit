@@ -2,8 +2,6 @@ open module kivakit.interfaces
 {
     // Annotations
     requires transitive lexakai.annotations;
-
-    // Jetbrains
     requires transitive org.jetbrains.annotations;
 
     // Module exports

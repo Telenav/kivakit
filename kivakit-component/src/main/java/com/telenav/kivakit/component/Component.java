@@ -1,27 +1,25 @@
 package com.telenav.kivakit.component;
 
-import com.telenav.kivakit.component.project.lexakai.diagrams.DiagramComponent;
-import com.telenav.kivakit.configuration.lookup.Registry;
-import com.telenav.kivakit.configuration.lookup.RegistryTrait;
-import com.telenav.kivakit.configuration.settings.Settings;
-import com.telenav.kivakit.configuration.settings.SettingsStore;
-import com.telenav.kivakit.configuration.settings.SettingsTrait;
+import com.telenav.kivakit.component.project.lexakai.DiagramComponent;
+import com.telenav.kivakit.core.registry.Registry;
+import com.telenav.kivakit.core.registry.RegistryTrait;
+import com.telenav.kivakit.settings.settings.Settings;
+import com.telenav.kivakit.settings.settings.SettingsStore;
+import com.telenav.kivakit.settings.settings.SettingsTrait;
+import com.telenav.kivakit.core.language.LanguageTrait;
+import com.telenav.kivakit.core.code.UncheckedCode;
+import com.telenav.kivakit.core.messaging.Broadcaster;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.Repeater;
+import com.telenav.kivakit.core.messaging.messages.status.Announcement;
+import com.telenav.kivakit.core.messaging.messages.status.Glitch;
+import com.telenav.kivakit.core.messaging.messages.status.Information;
+import com.telenav.kivakit.core.messaging.messages.status.Problem;
+import com.telenav.kivakit.core.messaging.messages.status.Quibble;
+import com.telenav.kivakit.core.messaging.messages.status.Trace;
+import com.telenav.kivakit.core.messaging.messages.status.Warning;
 import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
-import com.telenav.kivakit.kernel.data.validation.Validatable;
-import com.telenav.kivakit.kernel.language.code.UncheckedCode;
-import com.telenav.kivakit.kernel.language.monads.Result;
-import com.telenav.kivakit.kernel.language.traits.LanguageTrait;
-import com.telenav.kivakit.kernel.messaging.Broadcaster;
-import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.kivakit.kernel.messaging.Repeater;
-import com.telenav.kivakit.kernel.messaging.messages.status.Announcement;
-import com.telenav.kivakit.kernel.messaging.messages.status.Glitch;
-import com.telenav.kivakit.kernel.messaging.messages.status.Information;
-import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
-import com.telenav.kivakit.kernel.messaging.messages.status.Quibble;
-import com.telenav.kivakit.kernel.messaging.messages.status.Trace;
-import com.telenav.kivakit.kernel.messaging.messages.status.Warning;
 import com.telenav.kivakit.resource.PackageTrait;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.resources.packaged.Package;
@@ -93,7 +91,6 @@ import java.util.function.Function;
  *     <li>{@link #isFalseOr(boolean, String, Object...)} - Broadcasts a {@link Problem} if the given value is not false</li>
  *     <li>{@link #isTrueOr(boolean, String, Object...)} - Broadcasts a {@link Problem} if the given value is not true</li>
  *     <li>{@link #isNonNullOr(Object, String, Object...)} - Broadcasts a {@link Problem} if the given value is null</li>
- *     <li>{@link #isValidOr(Validatable, String, Object...)} - Broadcasts a {@link Problem} if the given {@link Validatable} is not valid</li>
  * </ul>
  *
  * <p><i>Exceptions</i></p>

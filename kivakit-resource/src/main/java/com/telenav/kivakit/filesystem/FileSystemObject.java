@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.kernel.language.time.ChangedAt;
-import com.telenav.kivakit.kernel.language.time.CreatedAt;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemFile;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemFolder;
+import com.telenav.kivakit.core.time.ChangedAt;
+import com.telenav.kivakit.core.time.CreatedAt;
+import com.telenav.kivakit.resource.project.lexakai.DiagramFileSystemFile;
+import com.telenav.kivakit.resource.project.lexakai.DiagramFileSystemFolder;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -33,6 +33,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
 @LexakaiJavadoc(complete = true)
-public interface FileSystemObject extends ChangedAt, CreatedAt
+public interface FileSystemObject extends
+        ChangedAt,
+        CreatedAt
 {
 }

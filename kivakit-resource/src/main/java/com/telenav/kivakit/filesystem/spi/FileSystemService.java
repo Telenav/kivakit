@@ -19,7 +19,7 @@
 package com.telenav.kivakit.filesystem.spi;
 
 import com.telenav.kivakit.resource.path.FilePath;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemService;
+import com.telenav.kivakit.resource.project.lexakai.DiagramFileSystemService;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;

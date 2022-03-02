@@ -18,27 +18,27 @@
 
 package com.telenav.kivakit.resource.resources.other;
 
+import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.collections.map.VariableMap;
+import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.core.ensure.Ensure;
+import com.telenav.kivakit.core.language.primitive.Booleans;
+import com.telenav.kivakit.core.language.reflection.ObjectPopulator;
+import com.telenav.kivakit.core.language.reflection.Type;
+import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
+import com.telenav.kivakit.core.locale.Locale;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.path.PackagePath;
+import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
-import com.telenav.kivakit.kernel.language.locales.Locale;
-import com.telenav.kivakit.kernel.language.paths.PackagePath;
-import com.telenav.kivakit.kernel.language.primitives.Booleans;
-import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.kernel.language.reflection.Type;
-import com.telenav.kivakit.kernel.language.reflection.populator.ObjectPopulator;
-import com.telenav.kivakit.kernel.language.reflection.property.PropertyFilter;
-import com.telenav.kivakit.kernel.language.strings.AsciiArt;
-import com.telenav.kivakit.kernel.language.values.count.Count;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.WritableResource;
 import com.telenav.kivakit.resource.path.FilePath;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourceType;
+import com.telenav.kivakit.resource.project.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.resources.packaged.PackageResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -118,7 +118,7 @@ public class PropertyMap extends VariableMap<String>
     {
         if (resource.exists())
         {
-            return load(resource, ProgressReporter.NULL);
+            return load(resource, ProgressReporter.none());
         }
         listener.warning("Unable to load property map from: $", resource);
         return new PropertyMap();

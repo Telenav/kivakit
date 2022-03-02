@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.network.email.converters;
 
-import com.telenav.kivakit.kernel.data.conversion.string.collection.BaseSetConverter;
-import com.telenav.kivakit.kernel.messaging.Listener;
+import com.telenav.kivakit.conversion.string.collection.BaseSetConverter;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.network.core.EmailAddress;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 

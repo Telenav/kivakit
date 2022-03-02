@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.factory;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceFactory;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramFactory;
 import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
@@ -33,7 +33,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
  * @see MapFactory
  */
 @FunctionalInterface
-@UmlClassDiagram(diagram = DiagramInterfaceFactory.class)
+@UmlClassDiagram(diagram = DiagramFactory.class)
 public interface Factory<Value> extends Source<Value>
 {
     /**

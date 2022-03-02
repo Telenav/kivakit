@@ -19,9 +19,9 @@
 package com.telenav.kivakit.serialization.core;
 
 import com.telenav.kivakit.interfaces.factory.Factory;
-import com.telenav.kivakit.kernel.messaging.Listener;
+import com.telenav.kivakit.core.messaging.Listener;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.ensure.Ensure.ensureNotNull;
 
 /**
  * Creates new thread-local instances of {@link SerializationSession} using the {@link Factory} passed to the

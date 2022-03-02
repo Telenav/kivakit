@@ -19,7 +19,7 @@
 package com.telenav.kivakit.interfaces.value;
 
 import com.telenav.kivakit.interfaces.naming.Named;
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceNaming;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramNaming;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -30,7 +30,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see Named
  * @see Valued
  */
-@UmlClassDiagram(diagram = DiagramInterfaceNaming.class)
+@UmlClassDiagram(diagram = DiagramNaming.class)
 public interface NamedValue<T> extends
         Named,
         Valued<T>

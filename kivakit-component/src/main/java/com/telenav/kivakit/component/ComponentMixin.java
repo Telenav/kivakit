@@ -1,8 +1,8 @@
 package com.telenav.kivakit.component;
 
-import com.telenav.kivakit.component.project.lexakai.diagrams.DiagramComponent;
-import com.telenav.kivakit.kernel.messaging.Repeater;
-import com.telenav.kivakit.kernel.messaging.repeaters.RepeaterMixin;
+import com.telenav.kivakit.component.project.lexakai.DiagramComponent;
+import com.telenav.kivakit.core.messaging.Repeater;
+import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.mixins.Mixin;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

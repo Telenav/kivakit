@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.resource.reading;
 
-import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.io.IO;
-import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.kernel.messaging.broadcasters.Multicaster;
+import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.io.IO;
+import com.telenav.kivakit.core.messaging.broadcasters.Multicaster;
+import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.resource.ReadableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import org.jetbrains.annotations.NotNull;
@@ -59,7 +59,8 @@ public class LineReader extends Multicaster implements Iterable<String>
      * {@inheritDoc}
      */
     @Override
-    public @NotNull Iterator<String> iterator()
+    public @NotNull
+    Iterator<String> iterator()
     {
         return stream().iterator();
     }

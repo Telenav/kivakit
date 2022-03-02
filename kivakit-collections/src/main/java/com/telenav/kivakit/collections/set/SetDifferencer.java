@@ -18,7 +18,8 @@
 
 package com.telenav.kivakit.collections.set;
 
-import com.telenav.kivakit.collections.project.lexakai.diagrams.DiagramSet;
+import com.telenav.kivakit.collections.project.lexakai.DiagramSet;
+import com.telenav.kivakit.core.collections.set.ConcurrentHashSet;
 import com.telenav.kivakit.interfaces.comparison.Equality;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -31,6 +32,7 @@ import java.util.Set;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramSet.class)
 public abstract class SetDifferencer<Element>
 {

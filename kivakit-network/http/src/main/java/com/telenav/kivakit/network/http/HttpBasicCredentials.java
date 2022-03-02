@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.http;
 
-import com.telenav.kivakit.network.http.project.lexakai.diagrams.DiagramHttp;
+import com.telenav.kivakit.network.http.project.lexakai.DiagramHttp;
 import com.telenav.kivakit.security.authentication.Password;
 import com.telenav.kivakit.security.authentication.UserName;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;

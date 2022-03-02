@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
+import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
-import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.kernel.language.values.version.Version;
 import com.telenav.kivakit.serialization.kryo.CoreKernelKryoTypes;
 import com.telenav.kivakit.serialization.kryo.KryoTypes;
 import com.telenav.kivakit.serialization.kryo.KryoUnitTest;
@@ -65,13 +65,13 @@ public class FieldArchiveTest extends KryoUnitTest
 
         var sessionFactory = sessionFactory();
 
-        try (var archive = listenTo(new FieldArchive(file, sessionFactory, ProgressReporter.NULL, ZipArchive.Mode.WRITE)))
+        try (var archive = listenTo(new FieldArchive(file, sessionFactory, ProgressReporter.none(), ZipArchive.Mode.WRITE)))
         {
             var test = new TestClass();
             archive.saveFieldsOf(test, Version.parse(this, "1.0"));
         }
 
-        try (var archive = listenTo(new FieldArchive(file, sessionFactory, ProgressReporter.NULL, ZipArchive.Mode.READ)))
+        try (var archive = listenTo(new FieldArchive(file, sessionFactory, ProgressReporter.none(), ZipArchive.Mode.READ)))
         {
             var test = new TestClass();
             archive.loadFieldOf(test, "x");
@@ -80,7 +80,7 @@ public class FieldArchiveTest extends KryoUnitTest
             ensureEqual(test.y, 5);
         }
 
-        try (var archive = listenTo(new FieldArchive(file, sessionFactory, ProgressReporter.NULL, ZipArchive.Mode.READ)))
+        try (var archive = listenTo(new FieldArchive(file, sessionFactory, ProgressReporter.none(), ZipArchive.Mode.READ)))
         {
             var test = new TestClass();
             archive.loadFieldsOf(test);

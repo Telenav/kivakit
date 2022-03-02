@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.collection;
 
-import com.telenav.kivakit.interfaces.project.lexakai.diagrams.DiagramInterfaceNumeric;
+import com.telenav.kivakit.interfaces.project.lexakai.DiagramNumeric;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -29,7 +29,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramInterfaceNumeric.class)
+@UmlClassDiagram(diagram = DiagramNumeric.class)
 @LexakaiJavadoc(complete = true)
 public interface Sized extends Stringable
 {

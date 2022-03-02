@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource.resources.packaged;
 
-import com.telenav.kivakit.kernel.language.paths.PackagePath;
+import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**

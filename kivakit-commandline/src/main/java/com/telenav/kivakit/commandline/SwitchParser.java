@@ -18,47 +18,23 @@
 
 package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramCommandLine;
-import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramSwitch;
-import com.telenav.kivakit.interfaces.factory.MapFactory;
+import com.telenav.kivakit.commandline.project.lexakai.DiagramCommandLine;
+import com.telenav.kivakit.commandline.project.lexakai.DiagramSwitch;
+import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.conversion.Converter;
+import com.telenav.kivakit.conversion.StringConverter;
+import com.telenav.kivakit.conversion.core.value.VersionConverter;
+import com.telenav.kivakit.core.collections.list.ObjectList;
+import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.collections.set.ObjectSet;
+import com.telenav.kivakit.core.language.reflection.Type;
+import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.interfaces.naming.Named;
-import com.telenav.kivakit.interfaces.numeric.Quantizable;
-import com.telenav.kivakit.kernel.data.conversion.Converter;
-import com.telenav.kivakit.kernel.data.conversion.QuantizableConverter;
-import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
-import com.telenav.kivakit.kernel.data.conversion.string.StringConverter;
-import com.telenav.kivakit.kernel.data.conversion.string.collection.BaseListConverter;
-import com.telenav.kivakit.kernel.data.conversion.string.collection.BaseSetConverter;
-import com.telenav.kivakit.kernel.data.conversion.string.enumeration.EnumConverter;
-import com.telenav.kivakit.kernel.data.conversion.string.language.IdentityConverter;
-import com.telenav.kivakit.kernel.data.conversion.string.language.PatternConverter;
-import com.telenav.kivakit.kernel.data.conversion.string.language.VersionConverter;
-import com.telenav.kivakit.kernel.data.conversion.string.primitive.BooleanConverter;
-import com.telenav.kivakit.kernel.data.conversion.string.primitive.DoubleConverter;
-import com.telenav.kivakit.kernel.data.conversion.string.primitive.IntegerConverter;
-import com.telenav.kivakit.kernel.data.conversion.string.primitive.LongConverter;
-import com.telenav.kivakit.kernel.data.validation.BaseValidator;
-import com.telenav.kivakit.kernel.data.validation.Validatable;
-import com.telenav.kivakit.kernel.data.validation.ValidationIssues;
-import com.telenav.kivakit.kernel.data.validation.ValidationType;
-import com.telenav.kivakit.kernel.data.validation.Validator;
-import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
-import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
-import com.telenav.kivakit.kernel.language.reflection.Type;
-import com.telenav.kivakit.kernel.language.strings.CaseFormat;
-import com.telenav.kivakit.kernel.language.time.Duration;
-import com.telenav.kivakit.kernel.language.time.LocalTime;
-import com.telenav.kivakit.kernel.language.time.conversion.converters.LocalDateConverter;
-import com.telenav.kivakit.kernel.language.time.conversion.converters.LocalDateTimeConverter;
-import com.telenav.kivakit.kernel.language.values.count.Bytes;
-import com.telenav.kivakit.kernel.language.values.count.Count;
-import com.telenav.kivakit.kernel.language.values.count.Maximum;
-import com.telenav.kivakit.kernel.language.values.count.Minimum;
-import com.telenav.kivakit.kernel.language.values.level.Percent;
-import com.telenav.kivakit.kernel.language.values.version.Version;
-import com.telenav.kivakit.kernel.language.vm.JavaVirtualMachine;
-import com.telenav.kivakit.kernel.messaging.Listener;
+import com.telenav.kivakit.validation.BaseValidator;
+import com.telenav.kivakit.validation.Validatable;
+import com.telenav.kivakit.validation.ValidationIssues;
+import com.telenav.kivakit.validation.ValidationType;
+import com.telenav.kivakit.validation.Validator;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -67,9 +43,9 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
 import java.util.Set;
-import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
  * A switch parser that can be passed to {@link CommandLine#get(SwitchParser)} to retrieve a switch value.
@@ -93,7 +69,7 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
  *     <li>{@link Builder#optional()} - The user can omit the switch and a null or default value will result</li>
  *     <li>{@link Builder#defaultValue(Object)} - A default value if the switch is optional and omitted</li>
  *     <li>{@link Builder#validValues(Set)} - A set of allowable values for the switch</li>
- *     <li>{@link Builder#converter(Converter)} - A converter to convert the string value of the switch to an object</li>
+ *     <li>{@link Builder#converter(StringConverter)} - A converter to convert the string value of the switch to an object</li>
  * </ul>
  * <p>
  * <b>Example</b>
@@ -120,205 +96,13 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
 @UmlClassDiagram(diagram = DiagramSwitch.class)
 @UmlClassDiagram(diagram = DiagramCommandLine.class, includeMembers = false)
 @UmlExcludeSuperTypes
-public class SwitchParser<T> implements Named, Validatable
+public class SwitchParser<T> implements
+        Named,
+        Validatable
 {
-    public static Builder<Boolean> booleanSwitchParser(Listener listener, String name, String description)
-    {
-        return builder(Boolean.class)
-                .name(name)
-                .converter(new BooleanConverter(listener))
-                .description(description);
-    }
-
     public static <T> Builder<T> builder(Class<T> type)
     {
         return new Builder<T>().type(type);
-    }
-
-    public static Builder<Bytes> bytesSwitchParser(Listener listener, String name, String description)
-    {
-        return builder(Bytes.class)
-                .name(name)
-                .converter(new Bytes.Converter(listener))
-                .description(description);
-    }
-
-    public static Builder<Count> countSwitchParser(Listener listener, String name, String description)
-    {
-        return builder(Count.class)
-                .name(name)
-                .converter(new Count.Converter(listener))
-                .description(description);
-    }
-
-    public static Builder<Double> doubleSwitchParser(Listener listener, String name, String description)
-    {
-        return builder(Double.class)
-                .name(name)
-                .converter(new DoubleConverter(listener))
-                .description(description);
-    }
-
-    public static Builder<Duration> durationSwitchParser(Listener listener, String name, String description)
-    {
-        return builder(Duration.class)
-                .name(name)
-                .description(description)
-                .converter(new Duration.Converter(listener));
-    }
-
-    public static <E extends Enum<E>> Builder<E> enumSwitchParser(Listener listener,
-                                                                  String name,
-                                                                  String description,
-                                                                  Class<E> type)
-    {
-        if (type.isEnum())
-        {
-            var options = new StringList();
-            for (var option : type.getEnumConstants())
-            {
-                options.add(CaseFormat.upperUnderscoreToLowerHyphen(option.name()));
-            }
-            var help = description + "\n\n" + options.bulleted(4) + "\n";
-            return builder(type)
-                    .name(name)
-                    .converter(new EnumConverter<>(listener, type))
-                    .description(help);
-        }
-        return fail("TimeFormat is not an enum");
-    }
-
-    public static Builder<Integer> integerSwitchParser(Listener listener, String name, String description)
-    {
-        return builder(Integer.class)
-                .name(name)
-                .converter(new IntegerConverter(listener))
-                .description(description);
-    }
-
-    public static <E> Builder<ObjectList<E>> listSwitchParser(
-            Listener listener,
-            String name,
-            String description,
-            StringConverter<E> elementConverter,
-            Class<E> elementType,
-            String delimiter)
-    {
-        var builder = new Builder<ObjectList<E>>();
-        builder.type = Type.of(elementType);
-        return builder
-                .name(name)
-                .converter(new BaseListConverter<>(listener, elementConverter, delimiter) {})
-                .description(description);
-    }
-
-    public static Builder<LocalTime> localDateSwitchParser(Listener listener, String name, String description)
-    {
-        return builder(LocalTime.class)
-                .name(name)
-                .description(description)
-                .converter(new LocalDateConverter(listener));
-    }
-
-    public static Builder<LocalTime> localDateTimeSwitchParser(Listener listener, String name, String description)
-    {
-        return builder(LocalTime.class)
-                .name(name)
-                .description(description)
-                .converter(new LocalDateTimeConverter(listener));
-    }
-
-    public static Builder<Long> longSwitchParser(Listener listener, String name, String description)
-    {
-        return builder(Long.class)
-                .name(name)
-                .converter(new LongConverter(listener))
-                .description(description);
-    }
-
-    public static Builder<Maximum> maximumSwitchParser(Listener listener, String name, String description)
-    {
-        return builder(Maximum.class)
-                .name(name)
-                .converter(new Maximum.Converter(listener))
-                .description(description);
-    }
-
-    public static Builder<Minimum> minimumSwitchParser(Listener listener, String name, String description)
-    {
-        return builder(Minimum.class)
-                .name(name)
-                .converter(new Minimum.Converter(listener))
-                .description(description);
-    }
-
-    public static Builder<Pattern> patternSwitchParser(Listener listener, String name, String description)
-    {
-        return builder(Pattern.class)
-                .name(name)
-                .converter(new PatternConverter(listener))
-                .description(description);
-    }
-
-    public static Builder<Percent> percentSwitchParser(Listener listener, String name, String description)
-    {
-        return builder(Percent.class)
-                .name(name)
-                .converter(new Percent.Converter(listener))
-                .description(description);
-    }
-
-    public static <T extends Quantizable> Builder<T> quantizableSwitchParser(Listener listener,
-                                                                             String name,
-                                                                             String description,
-                                                                             Class<T> type,
-                                                                             MapFactory<Long, T> factory)
-    {
-        return builder(type)
-                .name(name)
-                .description(description)
-                .converter(new QuantizableConverter<>(listener, factory));
-    }
-
-    public static <E> Builder<ObjectSet<E>> setSwitchParser(
-            Listener listener,
-            String name,
-            String description,
-            StringConverter<E> elementConverter,
-            Class<E> elementType,
-            String delimiter)
-    {
-        var builder = new Builder<ObjectSet<E>>();
-        builder.type = Type.of(elementType);
-        return builder
-                .name(name)
-                .converter(new BaseSetConverter<>(listener, elementConverter, delimiter) {})
-                .description(description);
-    }
-
-    public static Builder<String> stringSwitchParser(Listener listener, String name, String description)
-    {
-        return builder(String.class)
-                .name(name)
-                .converter(new IdentityConverter(listener))
-                .description(description);
-    }
-
-    public static SwitchParser<Count> threadCountSwitchParser(Listener listener, Count maximum)
-    {
-        var defaultThreads = maximum.minimum(JavaVirtualMachine.local().processors());
-        return countSwitchParser(listener, "threads", "Number of threads to use (default is " + defaultThreads + ")")
-                .optional()
-                .defaultValue(defaultThreads)
-                .build();
-    }
-
-    public static Builder<Version> versionSwitchParser(Listener listener, String name, String description)
-    {
-        return builder(Version.class)
-                .name(name)
-                .converter(new VersionConverter(listener))
-                .description(description);
     }
 
     /**
@@ -339,7 +123,7 @@ public class SwitchParser<T> implements Named, Validatable
     @LexakaiJavadoc(complete = true)
     public static class Builder<T>
     {
-        private Converter<String, T> converter;
+        private StringConverter<T> converter;
 
         private T defaultValue;
 
@@ -353,6 +137,8 @@ public class SwitchParser<T> implements Named, Validatable
 
         private Set<T> validValues;
 
+        private String delimiter;
+
         private Builder()
         {
         }
@@ -362,28 +148,40 @@ public class SwitchParser<T> implements Named, Validatable
         {
             if (quantifier == null)
             {
-                return fail("Must provide quantifier");
+                fail("Must provide quantifier");
+                return null;
             }
             if (name == null)
             {
-                return fail("Must provide name");
+                fail("Must provide name");
+                return null;
             }
             if (type == null)
             {
-                return fail("Must provide type");
+                fail("Must provide type");
+                return null;
             }
             if (converter == null)
             {
-                return fail("Must provide converter");
+                fail("Must provide converter");
+                return null;
             }
             if (description == null)
             {
-                return fail("Must provide description");
+                fail("Must provide description");
+                return null;
             }
-            return new SwitchParser<>(quantifier, name, type, defaultValue, validValues, converter, description);
+            return new SwitchParser<>(quantifier,
+                    name,
+                    type,
+                    defaultValue,
+                    validValues,
+                    converter,
+                    delimiter,
+                    description);
         }
 
-        public Builder<T> converter(Converter<String, T> converter)
+        public Builder<T> converter(StringConverter<T> converter)
         {
             this.converter = converter;
             return this;
@@ -398,6 +196,13 @@ public class SwitchParser<T> implements Named, Validatable
         public Builder<T> description(String description)
         {
             this.description = description;
+            return this;
+        }
+
+        public Builder<T> listConverter(StringConverter<T> converter, String delimiter)
+        {
+            this.converter = converter;
+            this.delimiter = delimiter;
             return this;
         }
 
@@ -439,7 +244,9 @@ public class SwitchParser<T> implements Named, Validatable
     }
 
     @UmlAggregation(label = "converts values with")
-    private final Converter<String, T> converter;
+    private final StringConverter<T> converter;
+
+    private final String delimiter;
 
     @UmlAggregation(label = "default value")
     private final T defaultValue;
@@ -474,7 +281,8 @@ public class SwitchParser<T> implements Named, Validatable
             Type<T> type,
             T defaultValue,
             Set<T> validValues,
-            Converter<String, T> converter,
+            StringConverter<T> converter,
+            String delimiter,
             String description)
     {
         this.name = name;
@@ -482,6 +290,7 @@ public class SwitchParser<T> implements Named, Validatable
         this.defaultValue = defaultValue;
         this.validValues = validValues;
         this.converter = converter;
+        this.delimiter = delimiter;
         this.type = type;
         this.description = description;
     }
@@ -537,12 +346,48 @@ public class SwitchParser<T> implements Named, Validatable
     }
 
     /**
+     * Returns a list of values for the given switch
+     */
+    @UmlNotPublicApi
+    @UmlRelation(label = "gets")
+    public ObjectList<T> list(Switch _switch)
+    {
+        var messages = new ValidationIssues();
+        messages.listenTo(converter);
+        var value = converter.convertToList(_switch.value(), ensureNotNull(delimiter));
+        if (messages.isEmpty())
+        {
+            return value;
+        }
+        parent.exit("Invalid value $ for switch -$ ", _switch.value(), _switch.name());
+        return null;
+    }
+
+    /**
      * @return The name of the switch
      */
     @Override
     public String name()
     {
         return name;
+    }
+
+    /**
+     * Returns a list of values for the given switch
+     */
+    @UmlNotPublicApi
+    @UmlRelation(label = "gets")
+    public ObjectSet<T> set(Switch _switch, String delimiter)
+    {
+        var messages = new ValidationIssues();
+        messages.listenTo(converter);
+        var value = converter.convertToSet(_switch.value(), delimiter);
+        if (messages.isEmpty())
+        {
+            return value;
+        }
+        parent.exit("Invalid value $ for switch -$ ", _switch.value(), _switch.name());
+        return null;
     }
 
     @Override

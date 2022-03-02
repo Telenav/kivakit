@@ -18,20 +18,20 @@
 
 package com.telenav.kivakit.resource.path;
 
+import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.os.OperatingSystem;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.path.Path;
+import com.telenav.kivakit.core.path.StringPath;
+import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.string.Strings;
+import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
-import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.paths.Path;
-import com.telenav.kivakit.kernel.language.paths.StringPath;
-import com.telenav.kivakit.kernel.language.strings.Strings;
-import com.telenav.kivakit.kernel.language.strings.Strip;
-import com.telenav.kivakit.kernel.language.vm.OperatingSystem;
-import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.kivakit.kernel.messaging.Message;
 import com.telenav.kivakit.resource.ResourcePath;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourcePath;
+import com.telenav.kivakit.resource.project.lexakai.DiagramResourcePath;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
@@ -177,7 +177,7 @@ public class FilePath extends ResourcePath
             return empty();
         }
 
-        path = Message.format(path, arguments);
+        path = Formatter.format(path, arguments);
 
         if (path.contains("${"))
         {

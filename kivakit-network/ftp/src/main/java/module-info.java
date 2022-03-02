@@ -11,5 +11,5 @@ open module kivakit.network.ftp
     // Module exports
     exports com.telenav.kivakit.network.ftp;
     exports com.telenav.kivakit.network.ftp.secure;
-    exports com.telenav.kivakit.network.ftp.project.lexakai.diagrams;
+    exports com.telenav.kivakit.network.ftp.project.lexakai;
 }

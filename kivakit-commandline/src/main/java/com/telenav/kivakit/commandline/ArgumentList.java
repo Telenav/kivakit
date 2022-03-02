@@ -18,12 +18,12 @@
 
 package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramArgument;
-import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramCommandLine;
-import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramValidation;
+import com.telenav.kivakit.commandline.project.lexakai.DiagramArgument;
+import com.telenav.kivakit.commandline.project.lexakai.DiagramCommandLine;
+import com.telenav.kivakit.commandline.project.lexakai.DiagramValidation;
+import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.interfaces.collection.Sized;
 import com.telenav.kivakit.interfaces.string.Stringable;
-import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
@@ -36,7 +36,7 @@ import java.util.List;
 /**
  * A list of {@link Argument}s passed on a command line and retrieved with {@link CommandLine#arguments()} after command
  * line parsing with {@link CommandLineParser}. Individual arguments values can be retrieved as typed values with {@link
- * Argument#get(ArgumentParser)}. If the arguments are all of the same type they can be retrieved as a list with {@link
+ * Argument#get(ArgumentParser)}. If the arguments are all the same type they can be retrieved as a list with {@link
  * #argumentValues(ArgumentParser)}.
  *
  * @author jonathanl (shibo)

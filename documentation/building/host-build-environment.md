@@ -43,9 +43,12 @@ The KivaKit project will look roughly like this when we're done with the setup p
         │   ├── kivakit-commandline
         │   └── [...]
         ├── kivakit-extensions
-        │   ├── kivakit-data
         │   ├── kivakit-filesystems
         │   ├── kivakit-logs
+        │   └── [...]
+        ├── kivakit-stuff
+        │   ├── kivakit-service
+        │   ├── kivakit-security
         │   └── [...]
         └── kivakit-examples
             └── [...]
