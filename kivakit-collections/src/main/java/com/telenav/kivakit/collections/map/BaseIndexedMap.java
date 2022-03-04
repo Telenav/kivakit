@@ -54,7 +54,8 @@ public class BaseIndexedMap<Key, Value> extends BaseMap<Key, Value> implements I
     }
 
     @Override
-    public @NotNull Iterator<Value> asIterator(Matcher<Value> matcher)
+    public @NotNull
+    Iterator<Value> asIterator(Matcher<Value> matcher)
     {
         return list.asIterator();
     }

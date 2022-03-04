@@ -73,4 +73,6 @@ open module kivakit.core
     exports com.telenav.kivakit.core.language.object;
     exports com.telenav.kivakit.core.language.reflection.filters.field;
     exports com.telenav.kivakit.core.messaging.alarms;
+    exports com.telenav.kivakit.core.value.mutable;
+    exports com.telenav.kivakit.core.bits;
 }

@@ -19,9 +19,9 @@
 package com.telenav.kivakit.collections.watcher;
 
 import com.telenav.kivakit.collections.project.lexakai.DiagramWatcher;
-import com.telenav.kivakit.interfaces.lifecycle.Startable;
 import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.interfaces.lifecycle.Startable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;

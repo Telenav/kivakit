@@ -34,8 +34,8 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
  * <p><b>Parsing</b></p>
  *
  * <p>
- * Versions can be created by parsing a {@link String} with {@link #parseVersion(Listener listener, String)} as well as by
- * using the of() factory methods, passing in major, minor, patch and release values.
+ * Versions can be created by parsing a {@link String} with {@link #parseVersion(Listener listener, String)} as well as
+ * by using the of() factory methods, passing in major, minor, patch and release values.
  * </p>
  *
  * <p><b>Information</b></p>
@@ -155,13 +155,13 @@ public class Version
         if (matcher.matches())
         {
             // Extract the required major and minor versions
-            var major = Ints.parse(listener, matcher.group("major"));
+            var major = Ints.parseInt(listener, matcher.group("major"));
             var minor = matcher.group("minor");
-            var minorVersion = minor == null ? NO_MINOR : Ints.parse(listener, minor);
+            var minorVersion = minor == null ? NO_MINOR : Ints.parseInt(listener, minor);
 
             // then get the patch group and convert it to a number or NO_PATCH if there is none
             var patch = matcher.group("patch");
-            var patchNumber = patch == null ? NO_PATCH : Ints.parse(listener, patch);
+            var patchNumber = patch == null ? NO_PATCH : Ints.parseInt(listener, patch);
 
             // and the release name or null if there is none
             var releaseName = matcher.group("release");

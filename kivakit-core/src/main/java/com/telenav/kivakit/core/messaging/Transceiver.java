@@ -18,26 +18,26 @@
 
 package com.telenav.kivakit.core.messaging;
 
-import com.telenav.kivakit.core.messaging.messages.status.Announcement;
-import com.telenav.kivakit.core.messaging.messages.status.FatalProblem;
-import com.telenav.kivakit.core.messaging.messages.status.Information;
-import com.telenav.kivakit.core.project.lexakai.DiagramLogging;
-import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.interfaces.messaging.Receiver;
-import com.telenav.kivakit.interfaces.messaging.Transmittable;
-import com.telenav.kivakit.interfaces.messaging.Transmitter;
-import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationHalted;
+import com.telenav.kivakit.core.messaging.messages.status.Announcement;
+import com.telenav.kivakit.core.messaging.messages.status.FatalProblem;
 import com.telenav.kivakit.core.messaging.messages.status.Glitch;
+import com.telenav.kivakit.core.messaging.messages.status.Information;
 import com.telenav.kivakit.core.messaging.messages.status.Narration;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Quibble;
 import com.telenav.kivakit.core.messaging.messages.status.Trace;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.project.lexakai.DiagramBroadcaster;
 import com.telenav.kivakit.core.project.lexakai.DiagramListener;
+import com.telenav.kivakit.core.project.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.time.Frequency;
+import com.telenav.kivakit.interfaces.messaging.Receiver;
+import com.telenav.kivakit.interfaces.messaging.Transmittable;
+import com.telenav.kivakit.interfaces.messaging.Transmitter;
+import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.UmlNote;
 import com.telenav.lexakai.annotations.associations.UmlRelation;

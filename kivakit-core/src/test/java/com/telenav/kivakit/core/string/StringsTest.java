@@ -132,10 +132,10 @@ import org.junit.Test;
     @Test
     public void testLevenshteinDistance()
     {
-        ensureEqual(3, Similarity.levenshteinDistance("kitten", "sitting"));
-        ensureEqual(0, Similarity.levenshteinDistance("kitten", "kitten"));
-        ensureEqual(1, Similarity.levenshteinDistance("kitten", "kitton"));
-        ensureEqual(6, Similarity.levenshteinDistance("kitten", "flobpa"));
+        ensureEqual(3, StringSimilarity.levenshteinDistance("kitten", "sitting"));
+        ensureEqual(0, StringSimilarity.levenshteinDistance("kitten", "kitten"));
+        ensureEqual(1, StringSimilarity.levenshteinDistance("kitten", "kitton"));
+        ensureEqual(6, StringSimilarity.levenshteinDistance("kitten", "flobpa"));
     }
 
     @Test

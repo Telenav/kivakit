@@ -19,8 +19,8 @@
 package com.telenav.kivakit.core.string;
 
 import com.telenav.kivakit.core.language.primitive.Doubles;
-import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.core.project.lexakai.DiagramString;
+import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -32,7 +32,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @UmlClassDiagram(diagram = DiagramString.class)
 @LexakaiJavadoc(complete = true)
-public class Similarity
+public class StringSimilarity
 {
     /**
      * Compares two strings avoiding problems with null values
@@ -133,7 +133,7 @@ public class Similarity
 
     /**
      * @return The similarity of the two strings
-     * @see Similarity#levenshteinDifference(String, String)
+     * @see StringSimilarity#levenshteinDifference(String, String)
      */
     public static Percent levenshteinSimilarity(String a, String b)
     {

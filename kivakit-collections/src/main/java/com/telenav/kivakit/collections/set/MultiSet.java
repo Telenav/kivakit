@@ -19,12 +19,12 @@
 package com.telenav.kivakit.collections.set;
 
 import com.telenav.kivakit.collections.project.lexakai.DiagramSet;
+import com.telenav.kivakit.core.collections.iteration.Iterables;
+import com.telenav.kivakit.core.collections.iteration.Next;
 import com.telenav.kivakit.core.collections.map.BaseMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
-import com.telenav.kivakit.core.collections.iteration.Iterables;
-import com.telenav.kivakit.core.collections.iteration.Next;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

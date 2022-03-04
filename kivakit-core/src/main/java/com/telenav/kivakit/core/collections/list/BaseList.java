@@ -19,13 +19,13 @@
 package com.telenav.kivakit.core.collections.list;
 
 import com.telenav.kivakit.core.collections.iteration.BaseIterator;
-import com.telenav.kivakit.core.value.count.Count;
-import com.telenav.kivakit.core.value.count.Countable;
-import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.project.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.StringTo;
+import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.core.value.count.Countable;
+import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.collection.Addable;
 import com.telenav.kivakit.interfaces.collection.Appendable;
 import com.telenav.kivakit.interfaces.collection.Indexable;
@@ -694,6 +694,17 @@ public abstract class BaseList<Element> implements
             return remove(size() - 1);
         }
         return null;
+    }
+
+    /**
+     * Replace all occurrences of the given element with the given replacement
+     *
+     * @param element The element to replace
+     * @param replacement The element to substitute
+     */
+    public boolean replaceAll(final Element element, final Element replacement)
+    {
+        return Collections.replaceAll(list, element, replacement);
     }
 
     /**

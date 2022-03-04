@@ -66,7 +66,7 @@ public abstract class SetDifferencer<Element>
             }
             else
             {
-                // otherwise save the object so it can be looked up below
+                // otherwise, save the object, so it can be looked up below
                 if (updateComparator != null)
                 {
                     beforeUnionAfter.add(before);

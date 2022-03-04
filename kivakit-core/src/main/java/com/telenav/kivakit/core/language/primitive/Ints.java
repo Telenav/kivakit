@@ -165,21 +165,6 @@ public class Ints
     }
 
     /**
-     * @return An integer value or throws an exception if the string is not a valid integer
-     */
-    public static int parse(Listener listener, String text)
-    {
-        try
-        {
-            return Integer.parseInt(text);
-        }
-        catch (Exception e)
-        {
-            throw listener.problem(e, "Invalid integer: $", text).asException();
-        }
-    }
-
-    /**
      * @return An integer value or {@link #INVALID} if the string is not a valid integer
      */
     public static int parseFast(String text)
@@ -208,6 +193,21 @@ public class Ints
     {
         var number = Longs.parseFastNaturalNumber(string);
         return number < 0 ? INVALID : (int) number;
+    }
+
+    /**
+     * @return An integer value or throws an exception if the string is not a valid integer
+     */
+    public static int parseInt(Listener listener, String text)
+    {
+        try
+        {
+            return Integer.parseInt(text);
+        }
+        catch (Exception e)
+        {
+            throw listener.problem(e, "Invalid integer: $", text).asException();
+        }
     }
 
     /**
