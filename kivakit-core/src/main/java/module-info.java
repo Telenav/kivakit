@@ -31,7 +31,6 @@ open module kivakit.core
     exports com.telenav.kivakit.core.io;
     exports com.telenav.kivakit.core.language.module;
     exports com.telenav.kivakit.core.language.primitive;
-    exports com.telenav.kivakit.core.language.reflection.property.filters.field;
     exports com.telenav.kivakit.core.language.reflection.property;
     exports com.telenav.kivakit.core.language.reflection;
     exports com.telenav.kivakit.core.language.trait;
@@ -71,4 +70,7 @@ open module kivakit.core
     exports com.telenav.kivakit.core;
     exports com.telenav.kivakit.core.logging.logs.text;
     exports com.telenav.kivakit.core.logging.loggers;
+    exports com.telenav.kivakit.core.language.object;
+    exports com.telenav.kivakit.core.language.reflection.filters.field;
+    exports com.telenav.kivakit.core.messaging.alarms;
 }

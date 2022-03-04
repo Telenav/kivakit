@@ -177,7 +177,7 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
      */
     public Percent asPercent(String key)
     {
-        return convert(key, Percent::parsePercent, Percent.class);
+        return convert(this, key, Percent::parsePercent, Percent.class);
     }
 
     public String asString(String key)

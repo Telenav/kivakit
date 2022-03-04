@@ -21,7 +21,7 @@ package com.telenav.kivakit.commandline;
 import com.telenav.kivakit.commandline.parsing.SwitchList;
 import com.telenav.kivakit.commandline.project.lexakai.DiagramCommandLine;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.language.reflection.ObjectFormatter;
+import com.telenav.kivakit.core.language.object.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.Formatter;

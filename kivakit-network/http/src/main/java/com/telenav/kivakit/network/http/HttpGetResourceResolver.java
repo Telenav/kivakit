@@ -8,7 +8,7 @@ import com.telenav.kivakit.resource.spi.ResourceResolver;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
  * Resolves {@link ResourceIdentifier}s that are file paths into file {@link Resource}s.

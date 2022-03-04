@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.core.logging.filters;
 
-import com.telenav.kivakit.core.messaging.Message;
+import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.logging.LogEntry;
+import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.interfaces.comparison.Filter;
-import com.telenav.kivakit.core.language.collections.list.StringList;
-import com.telenav.kivakit.core.language.types.Classes;
 
 public class LogEntriesSubclassing implements Filter<LogEntry>
 {

@@ -20,8 +20,8 @@ package com.telenav.kivakit.network.ftp.secure;
 
 import com.jcraft.jsch.ChannelSftp.LsEntry;
 import com.telenav.kivakit.collections.watcher.PeriodicCollectionChangeWatcher;
-import com.telenav.kivakit.language.time.Frequency;
-import com.telenav.kivakit.language.time.Time;
+import com.telenav.kivakit.core.time.Frequency;
+import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkPath;
 import com.telenav.kivakit.network.ftp.project.lexakai.DiagramSecureFtp;

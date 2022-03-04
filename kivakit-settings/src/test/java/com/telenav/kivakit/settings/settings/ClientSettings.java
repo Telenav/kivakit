@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.settings.settings;
 
-import com.telenav.kivakit.conversion.KivaKitPropertyConverter;
+import com.telenav.kivakit.conversion.core.language.object.KivaKitPropertyConverter;
 import com.telenav.kivakit.conversion.core.language.primitive.IntegerConverter;
 import com.telenav.kivakit.conversion.core.time.DurationConverter;
 import com.telenav.kivakit.core.time.Duration;

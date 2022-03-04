@@ -18,7 +18,6 @@
 
 package com.telenav.kivakit.core.language.reflection.property;
 
-import com.telenav.kivakit.core.language.reflection.property.filters.PropertyFilterSet;
 import com.telenav.kivakit.core.project.lexakai.DiagramReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -33,14 +32,14 @@ import java.lang.reflect.Method;
 @UmlClassDiagram(diagram = DiagramReflection.class)
 public interface PropertyFilter
 {
-    static PropertyFilter beansProperties(IncludeProperty... included)
+    static PropertyFilter beansProperties(PropertyMembers... included)
     {
-        return new PropertyFilterSet(NamingConvention.JAVA_BEANS, included);
+        return new PropertyFilterSet(PropertyNamingConvention.JAVA_BEANS, included);
     }
 
-    static PropertyFilter kivakitProperties(IncludeProperty... included)
+    static PropertyFilter kivakitProperties(PropertyMembers... included)
     {
-        return new PropertyFilterSet(NamingConvention.KIVAKIT, included);
+        return new PropertyFilterSet(PropertyNamingConvention.KIVAKIT, included);
     }
 
     /** True if the given method should be included as a property getter */

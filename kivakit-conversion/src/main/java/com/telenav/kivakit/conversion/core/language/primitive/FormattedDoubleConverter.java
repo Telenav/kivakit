@@ -20,8 +20,8 @@ package com.telenav.kivakit.conversion.core.language.primitive;
 
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.conversion.project.lexakai.DiagramConversionPrimitive;
-import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 

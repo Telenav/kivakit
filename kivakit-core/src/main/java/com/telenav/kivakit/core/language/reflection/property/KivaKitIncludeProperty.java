@@ -36,8 +36,14 @@ import java.lang.annotation.Target;
 @UmlClassDiagram(diagram = DiagramReflection.class)
 public @interface KivaKitIncludeProperty
 {
+
     /**
      * @return Optional alternate name of property
      */
     String name() default "";
+
+    /**
+     * @return The purpose for which this property is being included
+     */
+    PropertyPurpose[] purpose() default { PropertyPurpose.FORMATTING };
 }

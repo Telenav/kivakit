@@ -19,17 +19,16 @@
 package com.telenav.kivakit.core.language.reflection.property;
 
 import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.language.reflection.Field;
 import com.telenav.kivakit.core.language.Hash;
-import com.telenav.kivakit.core.language.reflection.KivaKitOptionalProperty;
+import com.telenav.kivakit.core.language.reflection.Field;
+import com.telenav.kivakit.core.language.reflection.FieldGetter;
+import com.telenav.kivakit.core.language.reflection.Getter;
 import com.telenav.kivakit.core.language.reflection.Member;
 import com.telenav.kivakit.core.language.reflection.Method;
-import com.telenav.kivakit.core.language.reflection.ReflectionError;
+import com.telenav.kivakit.core.language.reflection.MethodGetter;
+import com.telenav.kivakit.core.language.reflection.ReflectionProblem;
+import com.telenav.kivakit.core.language.reflection.Setter;
 import com.telenav.kivakit.core.language.reflection.Type;
-import com.telenav.kivakit.core.language.reflection.access.Getter;
-import com.telenav.kivakit.core.language.reflection.access.Setter;
-import com.telenav.kivakit.core.language.reflection.access.field.FieldGetter;
-import com.telenav.kivakit.core.language.reflection.access.method.MethodGetter;
 import com.telenav.kivakit.core.project.lexakai.DiagramReflection;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.value.Source;
@@ -60,7 +59,7 @@ public class Property implements Named, Comparable<Property>
         this.setter = setter;
     }
 
-    public ReflectionError clear(Object object)
+    public ReflectionProblem clear(Object object)
     {
         if (setter != null)
         {
@@ -68,7 +67,7 @@ public class Property implements Named, Comparable<Property>
         }
         else
         {
-            return new ReflectionError("Setter not found: " + this);
+            return new ReflectionProblem("Setter not found: " + this);
         }
     }
 
@@ -164,13 +163,13 @@ public class Property implements Named, Comparable<Property>
         return name;
     }
 
-    public <T> ReflectionError set(Object object, Source<T> source)
+    public <T> ReflectionProblem set(Object object, Source<T> source)
     {
         var value = source.get();
 
         if (value == null && !isOptional())
         {
-            return new ReflectionError("Required property was not populated: " + this);
+            return new ReflectionProblem("Required property was not populated: " + this);
         }
 
         if (setter != null)
@@ -179,7 +178,7 @@ public class Property implements Named, Comparable<Property>
         }
         else
         {
-            return new ReflectionError("Setter not found: " + this);
+            return new ReflectionProblem("Setter not found: " + this);
         }
     }
 

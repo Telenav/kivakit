@@ -23,6 +23,7 @@ import com.telenav.kivakit.core.collections.iteration.CompoundIterator;
 import com.telenav.kivakit.core.collections.iteration.Matching;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,7 +32,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import static com.telenav.kivakit.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
  * A set which contains any number of other sets by reference. The included sets cannot be directly modified via the
@@ -179,7 +180,7 @@ public class CompoundSet<Element> implements Set<Element>
     }
 
     @Override
-    public <E> E[] toArray(E[] a)
+    public <E> E[] toArray(E @NotNull [] a)
     {
         return unsupported();
     }

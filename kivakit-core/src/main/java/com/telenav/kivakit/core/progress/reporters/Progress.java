@@ -18,18 +18,18 @@
 
 package com.telenav.kivakit.core.progress.reporters;
 
-import com.telenav.kivakit.core.value.count.Count;
-import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.broadcasters.Multicaster;
 import com.telenav.kivakit.core.progress.ProgressListener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.project.lexakai.DiagramProgress;
 import com.telenav.kivakit.core.string.AsciiArt;
+import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Rate;
 import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
 
@@ -55,7 +55,7 @@ import org.jetbrains.annotations.NotNull;
  * <pre>
  * progress.listener(percent -&gt; System.out.println("$ complete", percent);
  * </pre>
- * {@link Progress} is not thread-safe. To report progress in a multi-threaded operations, use {@link
+ * {@link Progress} is not thread-safe. To report progress in a multithreaded operations, use {@link
  * ConcurrentProgress}.
  *
  * @author jonathanl (shibo)
@@ -86,7 +86,6 @@ public class Progress extends Multicaster implements ProgressReporter
      * @param listener The message listener
      * @param itemName The item that is being processed, like "bytes"
      * @param steps The number of steps in the operation
-     * @return A new progress object
      */
     public static Progress create(Listener listener, String itemName, Count steps)
     {
@@ -167,7 +166,7 @@ public class Progress extends Multicaster implements ProgressReporter
         {
             ended = true;
             report(at());
-            var formatted = Message.format(message, arguments);
+            var formatted = Formatter.format(message, arguments);
             feedback(AsciiArt.bottomLine("$ $ in $", formatted, itemName, Time.milliseconds(start).elapsedSince()));
         }
     }

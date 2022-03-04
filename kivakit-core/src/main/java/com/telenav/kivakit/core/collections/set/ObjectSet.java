@@ -69,13 +69,13 @@ public class ObjectSet<T> extends BaseSet<T>
         this(Maximum.MAXIMUM);
     }
 
-    public ObjectSet<T> addIfNotNull(T object)
+    public boolean addIfNotNull(T object)
     {
         if (object != null)
         {
-            add(object);
+            return add(object);
         }
-        return this;
+        return false;
     }
 
     @Override

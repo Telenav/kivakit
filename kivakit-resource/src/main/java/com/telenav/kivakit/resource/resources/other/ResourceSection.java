@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.resource.resources.other;
 
+import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.value.count.Bytes;
-import com.telenav.kivakit.core.language.io.IO;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.project.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;

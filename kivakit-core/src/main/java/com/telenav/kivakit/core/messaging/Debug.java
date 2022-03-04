@@ -18,6 +18,9 @@
 
 package com.telenav.kivakit.core.messaging;
 
+import com.telenav.kivakit.core.KivaKit;
+import com.telenav.kivakit.core.ensure.Ensure;
+import com.telenav.kivakit.core.language.Patterns;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.context.CallStack;
@@ -68,7 +71,6 @@ import java.util.Map;
  * </pre>
  *
  * @author jonathanl (shibo)
- * @see SimplifiedPattern
  * @see <a href="https://tinyurl.com/2xycuvph">KivaKit Debugging Documentation</a>
  */
 @UmlClassDiagram(diagram = DiagramBroadcaster.class)
@@ -169,8 +171,8 @@ public final class Debug implements Transceiver
     }
 
     /**
-     * @return Boolean.TRUE if the class is enabled by KIVAKIT_DEBUG, Boolean.FALSE if it is explicitly disabled and
-     * null if the class is simply available for enabling.
+     * @return {@link Boolean#TRUE} if the class is enabled by KIVAKIT_DEBUG, {@link Boolean#FALSE} if it is explicitly
+     * disabled and null if the class is simply available for enabling.
      */
     private static Boolean debugEnableState(Class<?> type)
     {
@@ -278,12 +280,13 @@ public final class Debug implements Transceiver
 
     private static boolean matches(Class<?> type, String simplifiedPattern, boolean checkParent)
     {
-        Pattern pattern = new SimplifiedPattern(simplifiedPattern);
+        var pattern = Patterns.simplified(simplifiedPattern);
         if (checkParent)
         {
             for (var at = type; at != null; at = at.getSuperclass())
             {
-                if (pattern.matches(at.getSimpleName()) || pattern.matches(at.getName()))
+                if (Patterns.matches(pattern, at.getSimpleName())
+                        || Patterns.matches(pattern, at.getName()))
                 {
                     return true;
                 }
@@ -292,7 +295,8 @@ public final class Debug implements Transceiver
         }
         else
         {
-            return pattern.matches(type.getSimpleName()) || pattern.matches(type.getName());
+            return Patterns.matches(pattern, type.getSimpleName())
+                    || Patterns.matches(pattern, type.getName());
         }
     }
 

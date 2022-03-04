@@ -20,10 +20,10 @@ package com.telenav.kivakit.core.io;
 
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
-import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
 import com.telenav.kivakit.core.project.lexakai.DiagramIo;
+import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
@@ -262,7 +262,7 @@ public class IO
     @UmlExcludeMember
     public static void println(String message, Object... arguments)
     {
-        System.out.println(Message.format(message, arguments));
+        System.out.println(Formatter.format(message, arguments));
     }
 
     public static int readByte(InputStream in)

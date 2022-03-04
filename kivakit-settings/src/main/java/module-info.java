@@ -7,10 +7,7 @@ open module kivakit.settings
     requires kivakit.core;
 
     // Module exports
-    exports com.telenav.kivakit.settings;
     exports com.telenav.kivakit.settings.project.lexakai;
     exports com.telenav.kivakit.settings.settings;
-    exports com.telenav.kivakit.settings.settings.stores.resource;
-    exports com.telenav.kivakit.settings.settings.stores.memory;
     exports com.telenav.kivakit.settings.settings.stores;
 }

@@ -18,16 +18,17 @@
 
 package com.telenav.kivakit.resource.resources.packaged;
 
-import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.core.language.locales.Locale;
-import com.telenav.kivakit.core.path.PackagePath;
-import com.telenav.kivakit.core.language.progress.ProgressReporter;
-import com.telenav.kivakit.core.language.strings.Strip;
-import com.telenav.kivakit.core.language.types.Classes;
+import com.telenav.kivakit.core.language.Classes;
+import com.telenav.kivakit.core.locale.Locale;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.path.PackagePath;
+import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.core.string.Strip;
+import com.telenav.kivakit.filesystem.Folder;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
@@ -53,7 +54,7 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import static com.telenav.kivakit.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
  * An abstraction for locating and copying {@link Resource}s in Java packages.
@@ -87,7 +88,7 @@ import static com.telenav.kivakit.ensure.Ensure.fail;
  */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
 @LexakaiJavadoc(complete = true)
-public class Package implements ResourceFolder
+public class Package extends BaseRepeater implements ResourceFolder
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
@@ -232,11 +233,12 @@ public class Package implements ResourceFolder
     /**
      * @return The resources in this package folder
      */
+    @SuppressWarnings("SpellCheckingInspection")
     @Override
     public List<PackageResource> resources(Matcher<? super Resource> matcher)
     {
         var resources = package_
-                .resources()
+                .resources(this)
                 .stream()
                 .map(PackageResource::packageResource)
                 .filter(matcher)
@@ -269,7 +271,7 @@ public class Package implements ResourceFolder
     {
         try
         {
-            return Classes.resourceUri(LOGGER, package_.packageType(), package_.join("/"));
+            return Classes.resourceUri(package_.packageType(), package_.join("/"));
         }
         catch (IllegalArgumentException ignored)
         {
@@ -359,7 +361,7 @@ public class Package implements ResourceFolder
 
                         // Get the entry's name
                         String name = e.getName();
-                        // and if it is not a folder and it starts with the file path for the package,
+                        // and if it is not a folder, and it starts with the file path for the package,
                         if (!name.endsWith("/") && name.startsWith(filepath))
                         {
                             // then strip off the leading filepath,

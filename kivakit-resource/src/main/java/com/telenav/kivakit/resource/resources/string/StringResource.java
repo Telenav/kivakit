@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.resource.resources.string;
 
-import com.telenav.kivakit.core.value.count.Bytes;
+import com.telenav.kivakit.core.io.StringInputStream;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.language.io.StringInput;
+import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.resource.ReadableResource;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.project.lexakai.DiagramResourceType;
@@ -56,7 +56,7 @@ public class StringResource extends BaseReadableResource
     @Override
     public InputStream onOpenForReading()
     {
-        return new StringInput(value);
+        return new StringInputStream(value);
     }
 
     @Override

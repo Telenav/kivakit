@@ -19,10 +19,10 @@
 package com.telenav.kivakit.resource.compression.archive;
 
 import com.telenav.kivakit.core.object.Lazy;
-import com.telenav.kivakit.core.language.reflection.ObjectFormatter;
+import com.telenav.kivakit.core.language.object.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.core.language.reflection.property.NamingConvention;
+import com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention;
 import com.telenav.kivakit.core.language.reflection.property.Property;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
@@ -258,7 +258,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
         {
             // and for each archived field
             Type<?> type = Type.of(object);
-            for (var field : type.properties(new ArchivedFields(NamingConvention.KIVAKIT)).sorted())
+            for (var field : type.properties(new ArchivedFields(PropertyNamingConvention.KIVAKIT)).sorted())
             {
                 // if it is not lazy,
                 if (!field.getter().annotation(KivaKitArchivedField.class).lazy())
@@ -308,7 +308,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
 
         try (var session = session())
         {
-            for (var field : Type.of(object).properties(new ArchivedFields(NamingConvention.KIVAKIT)).sorted())
+            for (var field : Type.of(object).properties(new ArchivedFields(PropertyNamingConvention.KIVAKIT)).sorted())
             {
                 try
                 {

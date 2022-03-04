@@ -25,15 +25,11 @@ import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.language.Classes;
-import com.telenav.kivakit.core.language.reflection.access.method.MethodSetter;
-import com.telenav.kivakit.core.language.reflection.property.NamingConvention;
+import com.telenav.kivakit.core.language.reflection.filters.field.NamedField;
+import com.telenav.kivakit.core.language.reflection.filters.method.NamedMethod;
 import com.telenav.kivakit.core.language.reflection.property.Property;
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
-import com.telenav.kivakit.core.language.reflection.property.filters.method.NamedMethod;
-import com.telenav.kivakit.core.language.reflection.access.field.FieldGetter;
-import com.telenav.kivakit.core.language.reflection.access.field.FieldSetter;
-import com.telenav.kivakit.core.language.reflection.access.method.MethodGetter;
-import com.telenav.kivakit.core.language.reflection.property.filters.field.NamedField;
+import com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention;
 import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.core.project.lexakai.DiagramReflection;
 import com.telenav.kivakit.core.string.Formatter;
@@ -203,7 +199,7 @@ public class Type<T> implements Named
 
     public Property field(String name)
     {
-        var iterator = properties(new NamedField(NamingConvention.KIVAKIT, name)).iterator();
+        var iterator = properties(new NamedField(PropertyNamingConvention.KIVAKIT, name)).iterator();
         if (iterator.hasNext())
         {
             return iterator.next();
@@ -407,7 +403,7 @@ public class Type<T> implements Named
 
     public Property property(String name)
     {
-        return properties(new NamedMethod(NamingConvention.KIVAKIT, name)).first();
+        return properties(new NamedMethod(PropertyNamingConvention.KIVAKIT, name)).first();
     }
 
     public List<Field> reachableFields(Object root, Filter<java.lang.reflect.Field> filter)

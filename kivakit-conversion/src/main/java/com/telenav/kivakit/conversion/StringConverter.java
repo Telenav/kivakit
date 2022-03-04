@@ -113,7 +113,7 @@ public interface StringConverter<Value> extends TwoWayConverter<String, Value>
      *
      * @return A list of strings, one for each unconverted value
      */
-    default StringList unconvert(Iterable<Value> values)
+    default StringList unconvertCollection(Iterable<Value> values)
     {
         var list = new StringList();
         for (var value : values)

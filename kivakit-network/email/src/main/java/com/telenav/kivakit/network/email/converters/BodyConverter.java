@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.network.email.converters;
 
-import com.telenav.kivakit.conversion.string.collection.BaseCollectionConverter;
-import com.telenav.kivakit.core.language.collections.list.StringList;
-import com.telenav.kivakit.language.count.Maximum;
+import com.telenav.kivakit.conversion.BaseTwoWayConverter;
+import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.network.email.EmailBody;
 import com.telenav.kivakit.network.email.HtmlEmailBody;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -32,15 +32,15 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
-public class BodyConverter extends BaseCollectionConverter<EmailBody>
+public class BodyConverter extends BaseTwoWayConverter<StringList, EmailBody>
 {
     public BodyConverter(Listener listener)
     {
-        super(listener, ",");
+        super(listener);
     }
 
     @Override
-    protected EmailBody onConvertToObject(StringList columns)
+    protected EmailBody onConvert(final StringList columns)
     {
         var mimeType = columns.get(0);
         if (EmailBody.MIME_TYPE.equals(mimeType))
@@ -55,11 +55,11 @@ public class BodyConverter extends BaseCollectionConverter<EmailBody>
     }
 
     @Override
-    protected StringList onConvertToStringList(EmailBody value)
+    protected StringList onUnconvert(final EmailBody emailBody)
     {
         var list = new StringList(Maximum._2);
-        list.add(value.mimeType());
-        list.add(value.text());
+        list.add(emailBody.mimeType());
+        list.add(emailBody.text());
         return list;
     }
 }

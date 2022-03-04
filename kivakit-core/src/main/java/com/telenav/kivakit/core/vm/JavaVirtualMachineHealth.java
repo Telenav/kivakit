@@ -20,7 +20,7 @@ package com.telenav.kivakit.core.vm;
 
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.value.count.Count;
-import com.telenav.kivakit.core.language.reflection.ObjectFormatter;
+import com.telenav.kivakit.core.language.object.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.project.lexakai.DiagramLanguage;
@@ -31,7 +31,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static com.telenav.kivakit.core.language.reflection.ObjectFormatter.Format.SINGLE_LINE;
+import static com.telenav.kivakit.core.language.object.ObjectFormatter.Format.SINGLE_LINE;
 
 /**
  * @author jonathanl (shibo)

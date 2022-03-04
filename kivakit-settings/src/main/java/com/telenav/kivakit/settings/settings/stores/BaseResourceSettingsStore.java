@@ -1,8 +1,9 @@
 package com.telenav.kivakit.settings.settings.stores;
 
-import com.telenav.kivakit.conversion.KivaKitPropertyConverter;
+import com.telenav.kivakit.conversion.core.language.object.KivaKitPropertyConverter;
+import com.telenav.kivakit.conversion.core.language.object.ObjectConverter;
+import com.telenav.kivakit.conversion.core.language.object.ObjectPopulator;
 import com.telenav.kivakit.core.language.Classes;
-import com.telenav.kivakit.core.language.reflection.ObjectPopulator;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.registry.Registry;
@@ -201,7 +202,8 @@ public abstract class BaseResourceSettingsStore extends BaseSettingsStore implem
             trace("Settings identifier: $", identifier);
 
             // then create the settings object and populate it using the converter framework
-            var settings = properties.asObject(this, type);
+            var converter = new ObjectConverter<>(this, type);
+            var settings = converter.convert(properties);
             if (settings instanceof Broadcaster)
             {
                 listenTo((Broadcaster) settings);

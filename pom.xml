@@ -105,7 +105,6 @@
         <module>kivakit-conversion</module>
         <module>kivakit-extraction</module>
         <module>kivakit-validation</module>
-        <module>kivakit-serialization</module>
         <module>kivakit-resource</module>
         <module>kivakit-settings</module>
         <module>kivakit-network</module>

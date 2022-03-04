@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.network.email;
 
+import com.telenav.kivakit.core.language.object.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.core.language.strings.formatting.ObjectFormatter;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.network.email.project.lexakai.DiagramEmail;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;

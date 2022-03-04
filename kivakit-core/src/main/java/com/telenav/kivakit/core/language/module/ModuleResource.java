@@ -20,7 +20,7 @@ package com.telenav.kivakit.core.language.module;
 
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.io.Nio;
-import com.telenav.kivakit.core.language.reflection.ObjectFormatter;
+import com.telenav.kivakit.core.language.object.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.PackagePath;

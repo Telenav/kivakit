@@ -18,13 +18,10 @@
 
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.language.time.Rate;
+import com.telenav.kivakit.core.test.UnitTest;
 import org.junit.Test;
 
-import static com.telenav.kivakit.ensure.Ensure.ensure;
-import static com.telenav.kivakit.ensure.Ensure.ensureEqual;
-
-public class RateTest
+public class RateTest extends UnitTest
 {
     @Test
     public void test()

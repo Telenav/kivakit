@@ -70,11 +70,11 @@ public class Classes
         }
     }
 
-    public static <T> T newInstance(Class<T> type)
+    public static <T> T newInstance(Class<T> type, Object... parameters)
     {
         try
         {
-            return type.getConstructor().newInstance();
+            return type.getConstructor().newInstance(parameters);
         }
         catch (Exception e)
         {

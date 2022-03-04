@@ -18,15 +18,14 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.core.collections.Sets;
 import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.language.reflection.property.Property;
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
-import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.project.lexakai.DiagramString;
 import com.telenav.kivakit.core.string.IndentingStringBuilder.Style;
+import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -35,8 +34,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
 
-import static com.telenav.kivakit.core.language.reflection.property.IncludeProperty.INCLUDED_FIELDS;
-import static com.telenav.kivakit.core.language.reflection.property.IncludeProperty.INCLUDED_FIELDS_AND_METHODS;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyMembers.INCLUDED_FIELDS;
+import static com.telenav.kivakit.core.language.reflection.property.PropertyMembers.INCLUDED_FIELDS_AND_METHODS;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation;
 
 /**
@@ -123,7 +122,7 @@ public class AsStringIndenter
      */
     public void add(String line, Object... arguments)
     {
-        indenter.appendLine(Message.format(line, arguments));
+        indenter.appendLine(Formatter.format(line, arguments));
     }
 
     /**
@@ -149,52 +148,56 @@ public class AsStringIndenter
                 add(toString(object));
             }
             // otherwise, if it's a collection,
-            else if (object instanceof Collection)
-            {
-                // add the elements in brackets
-                var collection = (Collection<?>) object;
-                bracketed(collection, object1 -> asString(format));
-            }
-            // otherwise, if it's an AsIndentedString and we're recursing (to avoid infinite recursion),
-            else if (object instanceof AsIndentedString && indentationLevel() > 1 && canExplore(object))
-            {
-                // format the sub-object using AsIndentedString.toDebugString,
-                ((AsIndentedString) object).asString(format, this);
-            }
             else
             {
-                // and last of all, if we just have a vanilla object, loop through the properties of the object,
-                var type = Type.of(object);
-                var properties = type.properties(filter);
-                if (properties.isEmpty())
+                //noinspection SpellCheckingInspection
+                if (object instanceof Collection)
                 {
-                    labeled(CaseFormat.camelCaseToHyphenated(type.name()), toString(object));
+                    // add the elements in brackets
+                    var collection = (Collection<?>) object;
+                    bracketed(collection, object1 -> asString(format));
+                }
+                // otherwise, if it's an AsIndentedString, and we're recursing (to avoid infinite recursion),
+                else if (object instanceof AsIndentedString && indentationLevel() > 1 && canExplore(object))
+                {
+                    // format the sub-object using AsIndentedString.toDebugString,
+                    ((AsIndentedString) object).asString(format, this);
                 }
                 else
                 {
-                    for (var property : properties)
+                    // and last of all, if we just have a vanilla object, loop through the properties of the object,
+                    var type = Type.of(object);
+                    var properties = type.properties(filter);
+                    if (properties.isEmpty())
                     {
-                        // get the property value
-                        var hyphenated = CaseFormat.camelCaseToHyphenated(property.name());
-                        var value = property.get(object);
-                        if (value != null)
+                        labeled(CaseFormat.camelCaseToHyphenated(type.name()), toString(object));
+                    }
+                    else
+                    {
+                        for (var property : properties)
                         {
-                            // and if it's an AsIndentedString,
-                            if (value instanceof AsIndentedString && canExplore(value))
+                            // get the property value
+                            var hyphenated = CaseFormat.camelCaseToHyphenated(property.name());
+                            var value = property.get(object);
+                            if (value != null)
                             {
-                                // recurse to add the indented property
-                                indented(hyphenated, () -> asString(value));
+                                // and if it's an AsIndentedString,
+                                if (value instanceof AsIndentedString && canExplore(value))
+                                {
+                                    // recurse to add the indented property
+                                    indented(hyphenated, () -> asString(value));
+                                }
+                                else
+                                {
+                                    // otherwise, just add the value with toString,
+                                    labeled(hyphenated, toString(value));
+                                }
                             }
                             else
                             {
-                                // otherwise, just add the value with toString,
-                                labeled(hyphenated, toString(value));
+                                // or if there was no value, label it as not available.
+                                labeled(hyphenated, "N/A");
                             }
-                        }
-                        else
-                        {
-                            // or if there was no value, label it as not available.
-                            labeled(hyphenated, "N/A");
                         }
                     }
                 }

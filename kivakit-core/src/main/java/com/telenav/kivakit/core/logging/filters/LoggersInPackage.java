@@ -19,8 +19,8 @@
 package com.telenav.kivakit.core.logging.filters;
 
 import com.telenav.kivakit.core.logging.LogEntry;
+import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.interfaces.comparison.Filter;
-import com.telenav.kivakit.core.language.paths.PackagePath;
 
 public class LoggersInPackage implements Filter<LogEntry>
 {

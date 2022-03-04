@@ -18,20 +18,20 @@
 
 package com.telenav.kivakit.network.email;
 
+import com.telenav.kivakit.core.language.Classes;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.thread.RepeatingThread;
+import com.telenav.kivakit.core.thread.latches.CompletionLatch;
+import com.telenav.kivakit.core.time.Duration;
+import com.telenav.kivakit.core.time.Frequency;
+import com.telenav.kivakit.core.time.Rate;
+import com.telenav.kivakit.core.time.RateCalculator;
+import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.io.Closeable;
 import com.telenav.kivakit.interfaces.io.Flushable;
 import com.telenav.kivakit.interfaces.lifecycle.Startable;
 import com.telenav.kivakit.interfaces.lifecycle.Stoppable;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
-import com.telenav.kivakit.core.thread.latches.CompletionLatch;
-import com.telenav.kivakit.core.language.threading.RepeatingKivaKitThread;
-import com.telenav.kivakit.core.language.types.Classes;
-import com.telenav.kivakit.language.count.Maximum;
-import com.telenav.kivakit.language.time.Duration;
-import com.telenav.kivakit.language.time.Frequency;
-import com.telenav.kivakit.language.time.Rate;
-import com.telenav.kivakit.language.time.RateCalculator;
-import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.network.email.project.lexakai.DiagramEmail;
 import com.telenav.kivakit.network.email.senders.SmtpEmailSender;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -105,7 +105,7 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
 
     private boolean sendingOn = true;
 
-    private final RepeatingKivaKitThread thread = new RepeatingKivaKitThread(this, Classes.simpleName(EmailSender.class), Frequency.CONTINUOUSLY)
+    private final RepeatingThread thread = new RepeatingThread(this, Classes.simpleName(EmailSender.class), Frequency.CONTINUOUSLY)
     {
         @Override
         protected void onRun()

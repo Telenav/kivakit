@@ -18,18 +18,13 @@
 
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.language.time.Duration;
-import com.telenav.kivakit.language.time.Time;
+import com.telenav.kivakit.core.test.UnitTest;
 import org.junit.Test;
-
-import static com.telenav.kivakit.ensure.Ensure.ensure;
-import static com.telenav.kivakit.ensure.Ensure.ensureEqual;
-import static com.telenav.kivakit.ensure.Ensure.ensureFalse;
 
 /**
  * Time test
  */
-public class TimeTest
+public class TimeTest extends UnitTest
 {
     @Test
     public void testBeforeAfter()

@@ -18,22 +18,17 @@
 
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.language.time.Duration;
-import com.telenav.kivakit.language.time.Frequency;
-import com.telenav.kivakit.language.time.Frequency.Cycle;
-import com.telenav.kivakit.language.time.Time;
+import com.telenav.kivakit.core.test.UnitTest;
 import org.junit.Test;
 
-import static com.telenav.kivakit.ensure.Ensure.ensureWithin;
-
-public class FrequencyTest
+public class FrequencyTest extends UnitTest
 {
     @Test
     public void test()
     {
         Frequency frequency = Frequency.EVERY_10_SECONDS;
         var now = Time.now();
-        Cycle cycle = frequency.start(now);
+        var cycle = frequency.start(now);
         ensureWithin(Duration.seconds(10).asSeconds(), cycle.waitTimeBeforeNextCycle().asSeconds(), 1.0);
         ensureWithin(now.plus(Duration.seconds(10)).asSeconds(), cycle.next().asSeconds(), 1.0);
     }

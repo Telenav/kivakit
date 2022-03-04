@@ -19,12 +19,12 @@
 package com.telenav.kivakit.core.messaging.messages;
 
 import com.telenav.kivakit.core.collections.map.NameMap;
+import com.telenav.kivakit.core.logging.Log;
+import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.context.StackTrace;
-import com.telenav.kivakit.core.logging.Log;
-import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationFailed;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationHalted;
 import com.telenav.kivakit.core.messaging.messages.lifecycle.OperationStarted;
@@ -40,9 +40,9 @@ import com.telenav.kivakit.core.messaging.messages.status.activity.Activity;
 import com.telenav.kivakit.core.project.lexakai.DiagramMessageType;
 import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.thread.ReentrancyTracker;
-import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
@@ -201,7 +201,7 @@ public abstract class OperationMessage implements Named, Message
     @Override
     public String description()
     {
-        return Message.format(message, arguments);
+        return Formatter.format(message, arguments);
     }
 
     /**
@@ -220,7 +220,7 @@ public abstract class OperationMessage implements Named, Message
                 }
                 else
                 {
-                    formattedMessage = Message.format(message, arguments);
+                    formattedMessage = Formatter.format(message, arguments);
                     if (format == WITH_EXCEPTION)
                     {
                         var cause = cause();

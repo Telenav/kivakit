@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.network.http;
 
-import com.telenav.kivakit.conversion.string.BaseStringConverter;
-import com.telenav.kivakit.interfaces.model.Initializer;
-import com.telenav.kivakit.collections.map.string.VariableMap;
+import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.interfaces.model.Initializer;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.core.NetworkPath;
@@ -42,7 +42,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import static com.telenav.kivakit.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
 /**
  * An HTTP network location.

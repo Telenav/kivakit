@@ -16,6 +16,14 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+import com.telenav.kivakit.filesystem.File;
+import com.telenav.kivakit.filesystem.Folder;
+import com.telenav.kivakit.filesystem.spi.FileSystemService;
+import com.telenav.kivakit.resource.resources.packaged.Package;
+import com.telenav.kivakit.resource.resources.packaged.PackageResource;
+import com.telenav.kivakit.resource.spi.ResourceFolderResolver;
+import com.telenav.kivakit.resource.spi.ResourceResolver;
+
 open module kivakit.resource
 {
     uses FileSystemService;
@@ -31,17 +39,17 @@ open module kivakit.resource
     requires transitive kivakit.collections;
     requires java.prefs;
     requires lexakai.annotations;
+    requires kivakit.serialization.kryo;
 
     // Module exports
     exports com.telenav.kivakit.filesystem.spi;
     exports com.telenav.kivakit.filesystem;
-    exports com.telenav.kivakit.resource;
-    exports com.telenav.kivakit.resource.compression;
     exports com.telenav.kivakit.resource.compression.archive;
     exports com.telenav.kivakit.resource.compression.codecs;
+    exports com.telenav.kivakit.resource.compression;
     exports com.telenav.kivakit.resource.path;
-    exports com.telenav.kivakit.resource.project;
     exports com.telenav.kivakit.resource.project.lexakai;
+    exports com.telenav.kivakit.resource.project;
     exports com.telenav.kivakit.resource.reading;
     exports com.telenav.kivakit.resource.resources.jar.launcher;
     exports com.telenav.kivakit.resource.resources.other;
@@ -50,4 +58,5 @@ open module kivakit.resource
     exports com.telenav.kivakit.resource.resources.string;
     exports com.telenav.kivakit.resource.spi;
     exports com.telenav.kivakit.resource.writing;
+    exports com.telenav.kivakit.resource;
 }

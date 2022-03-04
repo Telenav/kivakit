@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.email.senders;
 
-import com.telenav.kivakit.conversion.KivaKitPropertyConverter;
+import com.telenav.kivakit.conversion.core.language.object.KivaKitPropertyConverter;
 import com.telenav.kivakit.network.core.Host;
 import com.telenav.kivakit.network.core.authentication.Password;
 import com.telenav.kivakit.network.core.authentication.UserName;

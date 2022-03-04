@@ -20,23 +20,27 @@ package com.telenav.kivakit.core.logging.logs;
 
 import com.telenav.kivakit.core.collections.map.CountMap;
 import com.telenav.kivakit.core.language.Classes;
-import com.telenav.kivakit.core.vm.SystemProperties;
-import com.telenav.kivakit.core.vm.ShutdownHook;
+import com.telenav.kivakit.core.language.object.ObjectFormatter;
+import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.logging.Log;
+import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.logging.filters.LogEntriesWithSeverityGreaterThanOrEqualTo;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
+import com.telenav.kivakit.core.os.ConsoleWriter;
 import com.telenav.kivakit.core.project.lexakai.DiagramLogs;
 import com.telenav.kivakit.core.string.Plural;
 import com.telenav.kivakit.core.thread.RepeatingThread;
 import com.telenav.kivakit.core.thread.StateWatcher;
+import com.telenav.kivakit.core.time.Duration;
+import com.telenav.kivakit.core.vm.JavaVirtualMachine;
+import com.telenav.kivakit.core.vm.ShutdownHook;
+import com.telenav.kivakit.core.vm.SystemProperties;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.lifecycle.Startable;
 import com.telenav.kivakit.interfaces.lifecycle.Stoppable;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
-import com.telenav.kivakit.core.time.Duration;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
@@ -44,9 +48,9 @@ import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static com.telenav.kivakit.core.vm.ShutdownHook.Order.LAST;
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.STOP_REQUESTED;
 import static com.telenav.kivakit.core.time.Frequency.CONTINUOUSLY;
+import static com.telenav.kivakit.core.vm.ShutdownHook.Order.LAST;
 
 /**
  * Base class for log implementations. Handles background queueing of log entries.

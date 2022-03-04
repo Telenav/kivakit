@@ -36,4 +36,8 @@ import java.lang.annotation.Target;
 @UmlClassDiagram(diagram = DiagramReflection.class)
 public @interface KivaKitExcludeProperty
 {
+    /**
+     * @return The purpose for which this property is being included
+     */
+    PropertyPurpose[] purpose() default { PropertyPurpose.FORMATTING };
 }

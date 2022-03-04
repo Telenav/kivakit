@@ -19,11 +19,12 @@
 package com.telenav.kivakit.core.logging;
 
 import com.telenav.kivakit.core.messaging.context.CallStack;
-import com.telenav.kivakit.core.project.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.messaging.context.CodeContext;
+import com.telenav.kivakit.core.project.lexakai.DiagramLogging;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.reflect.Method;
+import java.util.Objects;
 
 /**
  * Information about the origin of a {@link LogEntry}, including the host and class.
@@ -36,7 +37,12 @@ public class LoggerCodeContext extends CodeContext
     public LoggerCodeContext()
     {
         // The logger code context is the immediate caller of any subclass of logger, ignoring any intervening LoggerFactory calls
-        super(CallStack.callerOf(CallStack.Proximity.IMMEDIATE, CallStack.Matching.SUBCLASS, Logger.class, CallStack.Matching.EXACT, LoggerFactory.class));
+        super(Objects.requireNonNull(
+                CallStack.callerOf(CallStack.Proximity.IMMEDIATE,
+                        CallStack.Matching.SUBCLASS,
+                        Logger.class,
+                        CallStack.Matching.EXACT,
+                        LoggerFactory.class)).typeClass());
     }
 
     public LoggerCodeContext(Method callerOf)

@@ -18,15 +18,14 @@
 
 package com.telenav.kivakit.resource.resources.other;
 
+import com.telenav.kivakit.conversion.StringConverter;
+import com.telenav.kivakit.conversion.core.language.object.ObjectPopulator;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.language.reflection.ObjectPopulator;
 import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.core.locale.Locale;
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.core.progress.ProgressReporter;
@@ -102,8 +101,6 @@ import java.util.regex.Pattern;
 @LexakaiJavadoc(complete = true)
 public class PropertyMap extends VariableMap<String>
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     /**
      * @return An empty property map
      */
@@ -178,7 +175,7 @@ public class PropertyMap extends VariableMap<String>
      */
     public File asFile(String key)
     {
-        return File.parseFile(LOGGER, get(key));
+        return File.parseFile(this, get(key));
     }
 
     /**
@@ -186,7 +183,7 @@ public class PropertyMap extends VariableMap<String>
      */
     public Folder asFolder(String key)
     {
-        return Folder.parse(LOGGER, asPath(key));
+        return Folder.parse(this, asPath(key));
     }
 
     /**
@@ -237,6 +234,21 @@ public class PropertyMap extends VariableMap<String>
         return map;
     }
 
+    public <T> T get(String key, StringConverter<T> converter)
+    {
+        if (converter.listeners().isEmpty())
+        {
+            listenTo(converter);
+        }
+        return converter.convert(get(key));
+    }
+
+    public <T> T get(String key, StringConverter<T> converter, T defaultValue)
+    {
+        var converted = get(key, converter);
+        return converted == null ? defaultValue : converted;
+    }
+
     @Override
     public String join(String separator)
     {
@@ -277,7 +289,7 @@ public class PropertyMap extends VariableMap<String>
     }
 
     /**
-     * @return Loads the given properties resource, interpolating system variables into each value
+     * @return Loads the given .properties resource, interpolating system variables into each value
      */
     private static PropertyMap load(Resource resource, ProgressReporter reporter)
     {
