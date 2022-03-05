@@ -26,6 +26,8 @@ import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.interfaces.string.Stringable.Format.TEXT;
+
 /**
  * An {@link Stringable} sub-interface that traverses a tree of objects, adding information to an {@link
  * AsStringIndenter} object as it goes. An {@link AsStringIndenter} handles string indenting, directs recursion and
@@ -57,6 +59,11 @@ public interface AsIndentedString extends Stringable
     {
         indenter.asString(this);
         return indenter;
+    }
+
+    default String asString()
+    {
+        return asString(TEXT);
     }
 
     /**

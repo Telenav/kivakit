@@ -18,23 +18,23 @@ import com.telenav.kivakit.conversion.core.value.PercentConverter;
 import com.telenav.kivakit.conversion.core.value.QuantizableConverter;
 import com.telenav.kivakit.conversion.core.value.VersionConverter;
 import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.value.count.Bytes;
-import com.telenav.kivakit.core.value.count.Count;
-import com.telenav.kivakit.core.value.count.Maximum;
-import com.telenav.kivakit.core.value.count.Minimum;
-import com.telenav.kivakit.core.vm.JavaVirtualMachine;
-import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.CaseFormat;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.LocalTime;
+import com.telenav.kivakit.core.value.count.Bytes;
+import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.core.value.count.Maximum;
+import com.telenav.kivakit.core.value.count.Minimum;
+import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.core.version.Version;
+import com.telenav.kivakit.core.vm.JavaVirtualMachine;
 import com.telenav.kivakit.interfaces.factory.MapFactory;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
 
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.ensure.Ensure.illegalArgument;
 
 public class SwitchParsers
 {
@@ -98,8 +98,7 @@ public class SwitchParsers
                     .description(help);
         }
 
-        fail("TimeFormat is not an enum");
-        return null;
+        return illegalArgument("Not an enum: " + type);
     }
 
     public static SwitchParser.Builder<Integer> integerSwitchParser(Listener listener, String name, String description)

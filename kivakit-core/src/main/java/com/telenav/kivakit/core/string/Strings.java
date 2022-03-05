@@ -123,6 +123,11 @@ public class Strings
         return null;
     }
 
+    public static String format(String message, Object... arguments)
+    {
+        return Strings.format(message, arguments);
+    }
+
     /**
      * @return True if every character in the given text is a byte value
      */

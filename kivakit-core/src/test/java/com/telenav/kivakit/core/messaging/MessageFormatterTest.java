@@ -20,7 +20,6 @@ package com.telenav.kivakit.core.messaging;
 
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.test.UnitTest;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import org.junit.Assert;
@@ -59,10 +58,5 @@ public class MessageFormatterTest extends UnitTest
         Assert.assertEquals("[MessageFormatterTest.Bean x = 5]",
                 format("${object}", new Bean()).replaceAll("≡\\d+ ", ""));
         Assert.assertEquals("*5*", format("${debug}", new Bean()));
-    }
-
-    private String format(String message, Object... arguments)
-    {
-        return Formatter.formatArray(message, arguments);
     }
 }

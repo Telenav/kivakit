@@ -5,6 +5,7 @@ import com.telenav.kivakit.core.messaging.messages.status.Unsupported;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
 import com.telenav.kivakit.core.project.lexakai.DiagramEnsure;
 import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.string.Strings;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
@@ -27,7 +28,7 @@ import java.util.function.Supplier;
  *
  * <ul>
  *     <li><b>{@link Failure}</b> - A generic failure message reported by {@link #fail(String, Object...)}</li>
- *     <li><b>{@link EnsureFailure}</b> - An ensure failure reported by one of the ensure() methods</li>
+ *     <li><b>{@link EnsureProblem}</b> - An ensure failure reported by one of the ensure() methods</li>
  *     <li><b>{@link Unsupported}</b> - An unsupported operation reported by {@link #unsupported(String, Object...)}</li>
  * </ul>
  *
@@ -51,7 +52,7 @@ import java.util.function.Supplier;
  * <p><b>Ensure Methods</b></p>
  *
  * <p>
- * The method {@link #ensure(boolean, String, Object...)} will report an {@link EnsureFailure} if the given boolean
+ * The method {@link #ensure(boolean, String, Object...)} will report an {@link EnsureProblem} if the given boolean
  * condition value is false. Other convenience methods include:
  * <ul>
  *     <li>{@link #ensure(boolean, Throwable, String, Object...)}</li>
@@ -115,7 +116,7 @@ import java.util.function.Supplier;
  * @see Formatter
  */
 @UmlClassDiagram(diagram = DiagramEnsure.class)
-@UmlRelation(label = "reports", referent = EnsureFailure.class)
+@UmlRelation(label = "reports", referent = EnsureProblem.class)
 public class Ensure
 {
     /**
@@ -148,7 +149,7 @@ public class Ensure
     }
 
     /**
-     * If the condition is false (the check is invalid), a {@link EnsureFailure} message is given to the {@link
+     * If the condition is false (the check is invalid), a {@link EnsureProblem} message is given to the {@link
      * FailureReporter} that message type.
      */
     public static <T> T ensure(boolean condition, Throwable e, String message,
@@ -156,7 +157,7 @@ public class Ensure
     {
         if (!condition)
         {
-            Failure.report(EnsureFailure.class, e, message, arguments);
+            Failure.report(EnsureProblem.class, e, message, arguments);
         }
         return null;
     }
@@ -245,7 +246,7 @@ public class Ensure
 
     public static <T> T fail(Throwable e, String message, Object... arguments)
     {
-        return Failure.report(EnsureFailure.class, e, message, arguments);
+        return Failure.report(EnsureProblem.class, e, message, arguments);
     }
 
     public static <T> T fail(String message, Object... arguments)
@@ -287,12 +288,12 @@ public class Ensure
 
     public static void warning(String message, Object... arguments)
     {
-        System.out.println("Warning: " + Formatter.format(message, arguments));
+        System.out.println("Warning: " + Strings.format(message, arguments));
     }
 
     public static void warning(Throwable throwable, String message, Object... arguments)
     {
-        System.out.println("Warning: " + Formatter.format(message, arguments) + "\n" + throwable);
+        System.out.println("Warning: " + Strings.format(message, arguments) + "\n" + throwable);
     }
 
     protected void ensureBetween(double actual, double low, double high)
@@ -326,11 +327,11 @@ public class Ensure
             var argumentsPlus = new Object[arguments.length + 1];
             System.arraycopy(arguments, 0, argumentsPlus, 0, arguments.length);
             argumentsPlus[arguments.length] = e;
-            return Formatter.format(message + "\n$", argumentsPlus);
+            return Strings.format(message + "\n$", argumentsPlus);
         }
         else
         {
-            return Formatter.format(message, arguments);
+            return Strings.format(message, arguments);
         }
     }
 }

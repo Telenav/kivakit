@@ -34,7 +34,6 @@ import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.trait.LanguageTrait;
-import com.telenav.kivakit.core.vm.ShutdownHook;
 import com.telenav.kivakit.core.locale.Locale;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
@@ -56,6 +55,7 @@ import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.core.thread.StateMachine;
 import com.telenav.kivakit.core.value.identifier.StringIdentifier;
 import com.telenav.kivakit.core.version.Version;
+import com.telenav.kivakit.core.vm.ShutdownHook;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
@@ -333,11 +333,12 @@ public abstract class Application extends BaseComponent implements
         register(LOGGER);
 
         instance = this;
+
         if (projects.length == 1)
         {
             project = listenTo(ensureNotNull(projects[0]));
         }
-        else
+        else if (projects.length > 1)
         {
             project = listenTo(new Project()
             {

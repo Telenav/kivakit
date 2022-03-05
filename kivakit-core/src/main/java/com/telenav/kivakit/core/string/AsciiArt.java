@@ -80,7 +80,7 @@ public class AsciiArt
 
     public static String bottomLine(int extraWidth, String message, Object... arguments)
     {
-        message = " " + Formatter.format(message, arguments) + " ";
+        message = " " + Strings.format(message, arguments) + " ";
         return BOTTOM_LEFT_LINE_CHARACTER + line(4) + message
                 + line(Math.max(4, LINE_LENGTH + extraWidth - 6 - message.length()))
                 + BOTTOM_RIGHT_LINE_CHARACTER;
@@ -124,7 +124,7 @@ public class AsciiArt
      */
     public static String box(String message, Object... arguments)
     {
-        return box(Formatter.format(message, arguments), HORIZONTAL_LINE_CHARACTER, VERTICAL_LINE_CHARACTER);
+        return box(Strings.format(message, arguments), HORIZONTAL_LINE_CHARACTER, VERTICAL_LINE_CHARACTER);
     }
 
     /**
@@ -258,7 +258,7 @@ public class AsciiArt
     public static String textBox(String title, String message, Object... arguments)
     {
         title = title(title);
-        message = Formatter.format(message, arguments);
+        message = Strings.format(message, arguments);
         var width = widestLine(title + "\n" + message) + 4;
         var builder = new StringBuilder();
         builder.append(" \n");
@@ -275,18 +275,12 @@ public class AsciiArt
         return builder.toString();
     }
 
-    @NotNull
-    public static String title(String title)
+    public static String topLine(String title, Object... arguments)
     {
-        return TITLE_LEFT_CHARACTER + " " + title + " " + TITLE_RIGHT_CHARACTER;
+        return topLine(0, title, arguments);
     }
 
-    public static String topLine(String title)
-    {
-        return topLine(0, title);
-    }
-
-    public static String topLine(int extraWidth, String title)
+    public static String topLine(int extraWidth, String title, Object... arguments)
     {
         title = title(title);
         return (extraWidth > 0 ? " \n" : "")
@@ -307,5 +301,11 @@ public class AsciiArt
             width = Math.max(width, line.length());
         }
         return width;
+    }
+
+    @NotNull
+    private static String title(String title)
+    {
+        return TITLE_LEFT_CHARACTER + " " + title + " " + TITLE_RIGHT_CHARACTER;
     }
 }

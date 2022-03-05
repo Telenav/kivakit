@@ -216,7 +216,7 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
      */
     public Version asVersion(String key)
     {
-        return convert(key, Version::parseVersion, Version.class);
+        return convert(key, Version::version, Version.class);
     }
 
     /**

@@ -77,21 +77,21 @@ public class Failure
     }
 
     /**
-     * Temporarily sets the validation reporter for {@link EnsureFailure} messages to the given reporter (only for the
+     * Temporarily sets the validation reporter for {@link EnsureProblem} messages to the given reporter (only for the
      * current thread) while the given code is executed.
      */
     public static void withReporter(FailureReporter reporter, Runnable code)
     {
         var reporterMap = Failure.reporterMap.get();
-        var originalReporter = reporterMap.get(EnsureFailure.class);
-        reporterMap.put(EnsureFailure.class, reporter);
+        var originalReporter = reporterMap.get(EnsureProblem.class);
+        reporterMap.put(EnsureProblem.class, reporter);
         try
         {
             code.run();
         }
         finally
         {
-            reporterMap.put(EnsureFailure.class, originalReporter);
+            reporterMap.put(EnsureProblem.class, originalReporter);
         }
     }
 

@@ -177,7 +177,7 @@ public class FilePath extends ResourcePath
             return empty();
         }
 
-        path = Formatter.format(path, arguments);
+        path = Strings.format(path, arguments);
 
         if (path.contains("${"))
         {

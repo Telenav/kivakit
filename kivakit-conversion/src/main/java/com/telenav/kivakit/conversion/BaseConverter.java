@@ -32,8 +32,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 /**
- * Base class for implementing converters. The inherited {@link Converter#convert(Object)} method converts from the From
- * type to the To type. Whether the conversion allows null values or not can be specified with {@link
+ * Base class for implementing converters. The inherited {@link Converter#convert(Object)} method converts from the
+ * 'From' type to the To type. Whether the conversion allows null values or not can be specified with {@link
  * #allowNull(boolean)}. Converters are used extensively in KivaKit for tasks as diverse as switch parsing and
  * populating objects from properties files.
  *
@@ -89,7 +89,7 @@ public abstract class BaseConverter<From, To> extends BaseRepeater implements Co
     }
 
     /**
-     * Converts from the &lt;From&gt; type to the &lt;To&gt; type. If the from value is null and the converter allows
+     * Converts from the &lt;From&gt; type to the &lt;To&gt; type. If the 'from' value is null and the converter allows
      * null values, null will be returned. If the value is null and the converter does not allow null values a problem
      * will be broadcast. Any exceptions that occur during conversion are caught and broadcast as problems.
      */

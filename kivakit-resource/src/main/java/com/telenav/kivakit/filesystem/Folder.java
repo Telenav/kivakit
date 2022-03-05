@@ -355,7 +355,7 @@ public class Folder extends BaseRepeater implements
         {
             return null;
         }
-        path = Formatter.format(path, arguments);
+        path = Strings.format(path, arguments);
         var filePath = FilePath.parseFilePath(listener, path);
         return filePath == null ? null : new Folder(filePath);
     }

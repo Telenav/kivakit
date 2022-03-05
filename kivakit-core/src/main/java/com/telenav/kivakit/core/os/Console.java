@@ -1,6 +1,6 @@
 package com.telenav.kivakit.core.os;
 
-import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.interfaces.io.Flushable;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
 
@@ -15,6 +15,31 @@ public class Console implements Flushable
     public static Console get()
     {
         return new Console();
+    }
+
+    public static void print(String text, Object... arguments)
+    {
+        print(NORMAL, text, arguments);
+    }
+
+    public static void print(OutputType output, String text, Object... arguments)
+    {
+        output.stream().print(Strings.format(text, arguments));
+    }
+
+    public static PrintWriter printWriter()
+    {
+        return new PrintWriter(NORMAL.stream());
+    }
+
+    public static void println(String text, Object... arguments)
+    {
+        println(NORMAL, text, arguments);
+    }
+
+    public static void println(OutputType output, String text, Object... arguments)
+    {
+        output.stream().println(Strings.format(text, arguments));
     }
 
     public enum OutputType
@@ -33,30 +58,5 @@ public class Console implements Flushable
     {
         NORMAL.stream().flush();
         ERROR.stream().flush();
-    }
-
-    public void print(String text, Object... arguments)
-    {
-        print(NORMAL, text, arguments);
-    }
-
-    public void print(OutputType output, String text, Object... arguments)
-    {
-        output.stream().print(Formatter.format(text, arguments));
-    }
-
-    public void printLine(OutputType output, String text, Object... arguments)
-    {
-        output.stream().println(Formatter.format(text, arguments));
-    }
-
-    public void printLine(String text, Object... arguments)
-    {
-        printLine(NORMAL, text, arguments);
-    }
-
-    public PrintWriter printWriter()
-    {
-        return new PrintWriter(NORMAL.stream());
     }
 }

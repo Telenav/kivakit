@@ -122,7 +122,7 @@ public class AsStringIndenter
      */
     public void add(String line, Object... arguments)
     {
-        indenter.appendLine(Formatter.format(line, arguments));
+        indenter.appendLine(Strings.format(line, arguments));
     }
 
     /**

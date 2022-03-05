@@ -250,22 +250,6 @@ public interface LengthOfTime extends
         return milliseconds(milliseconds() / value);
     }
 
-    /**
-     * Calls the given callback at this fixed rate
-     */
-    default void every(Callback<Timer> onTimer)
-    {
-        var timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask()
-        {
-            @Override
-            public void run()
-            {
-                onTimer.callback(timer);
-            }
-        }, 0L, milliseconds());
-    }
-
     default boolean isApproximately(LengthOfTime that, LengthOfTime within)
     {
         return Math.abs(milliseconds() - that.milliseconds()) <= within.milliseconds();
@@ -323,6 +307,22 @@ public interface LengthOfTime extends
     default long quantum()
     {
         return milliseconds();
+    }
+
+    /**
+     * Calls the given callback at this fixed rate
+     */
+    default void repeat(Callback<Timer> onTimer)
+    {
+        var timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask()
+        {
+            @Override
+            public void run()
+            {
+                onTimer.callback(timer);
+            }
+        }, 0L, milliseconds());
     }
 
     /**

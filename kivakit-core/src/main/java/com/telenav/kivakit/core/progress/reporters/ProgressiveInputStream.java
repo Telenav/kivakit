@@ -49,7 +49,7 @@ public class ProgressiveInputStream extends InputStream
 
     public ProgressiveInputStream(InputStream input)
     {
-        this(input, Progress.create());
+        this(input, BroadcastingProgressReporter.create());
     }
 
     @Override

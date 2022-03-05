@@ -63,7 +63,7 @@ public class CacheMap<Key, Value> extends BaseMap<Key, Value>
             }
         });
         this.maximumEntryAge = maximumEntryAge;
-        maximumEntryAge.every(timer -> expire());
+        maximumEntryAge.repeat(timer -> expire());
     }
 
     @Override

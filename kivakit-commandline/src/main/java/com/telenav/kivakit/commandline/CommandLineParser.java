@@ -29,7 +29,7 @@ import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.messaging.listeners.MessageList;
 import com.telenav.kivakit.core.messaging.messages.OperationMessage;
 import com.telenav.kivakit.core.string.AsciiArt;
-import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.string.Wrap;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
@@ -200,7 +200,7 @@ public class CommandLineParser
      */
     protected void exit(String message, Object... arguments)
     {
-        var formatted = Formatter.format(message, arguments);
+        var formatted = Strings.format(message, arguments);
         System.err.println(AsciiArt.textBox("COMMAND LINE ERROR(S)", formatted));
         System.err.flush();
         Duration.seconds(0.25).sleep();

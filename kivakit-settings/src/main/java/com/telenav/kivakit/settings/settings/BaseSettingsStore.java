@@ -5,6 +5,7 @@ import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.thread.locks.ReadWriteLock;
+import com.telenav.kivakit.core.vm.JavaTrait;
 import com.telenav.kivakit.settings.settings.stores.FolderSettingsStore;
 import com.telenav.kivakit.settings.settings.stores.MemorySettingsStore;
 import com.telenav.kivakit.settings.settings.stores.PackageSettingsStore;
@@ -80,7 +81,8 @@ import static com.telenav.kivakit.settings.settings.SettingsStore.AccessMode.UNL
  */
 public abstract class BaseSettingsStore extends BaseRepeater implements
         SettingsStore,
-        RegistryTrait
+        RegistryTrait,
+        JavaTrait
 {
     /** True if settings have been loaded into this store */
     private boolean loaded;

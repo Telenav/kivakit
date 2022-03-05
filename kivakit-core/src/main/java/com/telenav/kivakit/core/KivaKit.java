@@ -19,7 +19,6 @@
 package com.telenav.kivakit.core;
 
 import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.vm.SystemProperties;
 import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.project.Project;
 import com.telenav.kivakit.core.project.lexakai.DiagramProject;
@@ -76,7 +75,7 @@ public class KivaKit extends Project
      */
     public Path homeFolderPath()
     {
-        var home = SystemProperties.property("KIVAKIT_HOME");
+        var home = systemProperty("KIVAKIT_HOME");
         if (home == null)
         {
             return null;

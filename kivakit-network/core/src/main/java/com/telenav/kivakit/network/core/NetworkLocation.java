@@ -27,7 +27,7 @@ import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludePrope
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.kivakit.network.core.project.lexakai.DiagramNetworkLocation;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -290,7 +290,7 @@ public class NetworkLocation implements Stringable, Comparable<NetworkLocation>
     public NetworkLocation withInterpolatedVariables(VariableMap<String> variables)
     {
         // Interpolate variables in path
-        var interpolatedPath = Formatter.format(networkPath().toString(), variables);
+        var interpolatedPath = Strings.format(networkPath().toString(), variables);
 
         // Create location with the given path
         var location = withPath(NetworkPath.parseNetworkPath(LOGGER, interpolatedPath));
@@ -299,7 +299,7 @@ public class NetworkLocation implements Stringable, Comparable<NetworkLocation>
         if (queryParameters() != null)
         {
             // interpolate variables into query parameter string
-            var interpolatedQueryParameters = Formatter.format(queryParameters().toString(), variables);
+            var interpolatedQueryParameters = Strings.format(queryParameters().toString(), variables);
 
             // and create a new location with the interpolated value
             location = location.withQueryParameters(new QueryParameters(interpolatedQueryParameters));

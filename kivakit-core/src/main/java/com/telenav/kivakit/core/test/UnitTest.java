@@ -18,20 +18,26 @@
 
 package com.telenav.kivakit.core.test;
 
-import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.ensure.Failure;
-import com.telenav.kivakit.core.os.ConsoleWriter;
-import com.telenav.kivakit.core.os.OperatingSystem;
 import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.language.primitive.Booleans;
+import com.telenav.kivakit.core.language.trait.LanguageTrait;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Message;
+import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
+import com.telenav.kivakit.core.os.ConsoleWriter;
+import com.telenav.kivakit.core.os.OperatingSystem;
+import com.telenav.kivakit.core.project.ProjectTrait;
 import com.telenav.kivakit.core.project.lexakai.DiagramTest;
+import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.time.Duration;
+import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.core.vm.JavaTrait;
 import com.telenav.kivakit.interfaces.code.Loopable;
+import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -60,7 +66,14 @@ import java.util.function.Predicate;
 @UmlClassDiagram(diagram = DiagramTest.class)
 @UmlRelation(label = "uses", referent = RandomValueFactory.class)
 @UmlRelation(label = "reports validation failures with", referent = JUnitFailureReporter.class)
-public abstract class UnitTest extends TestWatcher implements RepeaterMixin
+public abstract class UnitTest extends TestWatcher implements
+        RepeaterMixin,
+        JavaTrait,
+        ProjectTrait,
+        RegistryTrait,
+        LanguageTrait,
+        Repeater,
+        NamedObject
 {
     private static boolean quickTest;
 
@@ -502,7 +515,7 @@ public abstract class UnitTest extends TestWatcher implements RepeaterMixin
         assert maximum > minimum;
         assert count.get() <= range : "Count is " + count + " but maximum of " + maximum + " - " + minimum + " = " + range;
 
-        // If we're to allowing repeats,
+        // If we're allowing repeats,
         if (repeats == Repeats.NO_REPEATS)
         {
             var values = new HashSet<Integer>();
@@ -549,7 +562,7 @@ public abstract class UnitTest extends TestWatcher implements RepeaterMixin
         }
         else
         {
-            // otherwise we are allowing repeats, so things are simple.
+            // otherwise, we are allowing repeats, so things are simple.
             count.loop(() -> consumer.accept(randomInt(minimum, maximum, filter)));
         }
     }
@@ -589,17 +602,21 @@ public abstract class UnitTest extends TestWatcher implements RepeaterMixin
         randomLongs(repeats, iterations, minimum, maximum, filter, consumer);
     }
 
-    protected void randomLongs(Repeats repeats, Count count, long minimum, long maximum,
-                               Predicate<Long> filter, Consumer<Long> consumer)
+    protected void randomLongs(Repeats repeats,
+                               Count count,
+                               long minimum,
+                               long maximum,
+                               Predicate<Long> filter,
+                               Consumer<Long> consumer)
     {
         assert maximum > minimum;
 
         // Computed the range, handling overflow (well enough for our tests)
-        var range = Math.max(Long.MAX_VALUE, maximum - minimum);
+        var range = maximum - minimum;
 
         assert count.get() <= range : "Count is " + count + " but maximum of " + maximum + " - " + minimum + " = " + range;
 
-        // If we're to allowing repeats,
+        // If we're allowing repeats,
         if (repeats == Repeats.NO_REPEATS)
         {
             var values = new HashSet<Long>();
@@ -646,7 +663,7 @@ public abstract class UnitTest extends TestWatcher implements RepeaterMixin
         }
         else
         {
-            // otherwise we are allowing repeats, so things are simple.
+            // otherwise, we are allowing repeats, so things are simple.
             count.loop(() -> consumer.accept(randomValueFactory().newLong(minimum, maximum, filter)));
         }
     }

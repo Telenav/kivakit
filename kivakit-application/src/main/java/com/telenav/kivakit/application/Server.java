@@ -32,8 +32,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @LexakaiJavadoc(complete = true)
 public abstract class Server extends Application
 {
-    protected Server(Project project)
+    protected Server(Project... projects)
     {
-        super(project);
+        super(projects);
     }
 }

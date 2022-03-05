@@ -25,22 +25,22 @@ import org.jetbrains.annotations.NotNull;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * A thread-safe subclass of {@link Progress}.
+ * A thread-safe subclass of {@link BroadcastingProgressReporter}.
  *
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramProgress.class)
-public class ConcurrentProgress extends Progress
+public class ConcurrentBroadcastingProgressReporter extends BroadcastingProgressReporter
 {
     private final AtomicLong at;
 
-    public ConcurrentProgress(Progress that)
+    public ConcurrentBroadcastingProgressReporter(BroadcastingProgressReporter that)
     {
         super(that);
         at = new AtomicLong(that.at());
     }
 
-    protected ConcurrentProgress()
+    protected ConcurrentBroadcastingProgressReporter()
     {
         at = new AtomicLong();
     }
@@ -70,8 +70,9 @@ public class ConcurrentProgress extends Progress
     }
 
     @Override
-    protected @NotNull Progress newInstance()
+    protected @NotNull
+    BroadcastingProgressReporter newInstance()
     {
-        return new ConcurrentProgress(this);
+        return new ConcurrentBroadcastingProgressReporter(this);
     }
 }

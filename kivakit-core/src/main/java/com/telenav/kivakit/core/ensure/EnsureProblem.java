@@ -28,19 +28,19 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramEnsure.class)
-public class EnsureFailure extends Problem
+public class EnsureProblem extends Problem
 {
-    public EnsureFailure(String message, Object... arguments)
+    public EnsureProblem(String message, Object... arguments)
     {
         super(message, arguments);
     }
 
-    public EnsureFailure(Throwable cause, String message, Object... arguments)
+    public EnsureProblem(Throwable cause, String message, Object... arguments)
     {
         super(cause, message, arguments);
     }
 
-    public EnsureFailure()
+    public EnsureProblem()
     {
     }
 }

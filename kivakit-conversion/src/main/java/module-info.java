@@ -13,4 +13,5 @@ open module kivakit.conversion
     exports com.telenav.kivakit.conversion.core.value;
     exports com.telenav.kivakit.conversion;
     exports com.telenav.kivakit.conversion.core.collections.map;
+    exports com.telenav.kivakit.conversion.core.collections.list;
 }

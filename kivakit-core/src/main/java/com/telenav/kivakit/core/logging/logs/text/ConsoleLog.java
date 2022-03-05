@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.core.logging.logs.text;
 
-import com.telenav.kivakit.core.os.Console;
-import com.telenav.kivakit.core.logging.loggers.LogServiceLogger;
 import com.telenav.kivakit.core.logging.LogEntry;
+import com.telenav.kivakit.core.logging.loggers.LogServiceLogger;
+import com.telenav.kivakit.core.os.Console;
 import com.telenav.kivakit.core.project.lexakai.DiagramLogs;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -63,6 +63,6 @@ public class ConsoleLog extends BaseTextLog
     @UmlExcludeMember
     public synchronized void onLog(LogEntry entry)
     {
-        console.printLine(entry.isSevere() ? ERROR : NORMAL, formatted(entry));
+        console.println(entry.isSevere() ? ERROR : NORMAL, formatted(entry));
     }
 }

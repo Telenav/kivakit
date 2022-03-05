@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.core.progress;
 
+import com.telenav.kivakit.core.progress.reporters.BroadcastingProgressReporter;
 import com.telenav.kivakit.core.value.count.Count;
-import com.telenav.kivakit.core.progress.reporters.Progress;
 import com.telenav.kivakit.core.project.lexakai.DiagramProgress;
 import com.telenav.kivakit.interfaces.lifecycle.Resettable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -32,7 +32,7 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
  * via {@link #listener(ProgressListener)} is called with the percent-complete.
  *
  * @author jonathanl (shibo)
- * @see Progress
+ * @see BroadcastingProgressReporter
  */
 @UmlClassDiagram(diagram = DiagramProgress.class)
 @UmlRelation(label = "reports progress to", referent = ProgressListener.class)
@@ -82,7 +82,8 @@ public interface ProgressReporter extends Resettable
 
     /**
      * Report the next step in the operation. This is often fine-grained such as processing a single node or way in a
-     * data file. The implementation in {@link Progress} of this interface is designed to be efficient in this way.
+     * data file. The implementation in {@link BroadcastingProgressReporter} of this interface is designed to be
+     * efficient in this way.
      */
     void next();
 

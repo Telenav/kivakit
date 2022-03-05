@@ -24,7 +24,7 @@ import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.language.object.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.string.AsciiArt;
-import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.UmlNote;
@@ -224,7 +224,7 @@ public class CommandLine implements Stringable, Iterable<Argument>
      */
     public void exit(String error, Object... arguments)
     {
-        parser.exit(Formatter.format(AsciiArt.spaces(4) + AsciiArt.bullet() + " " + error, arguments));
+        parser.exit(Strings.format(AsciiArt.spaces(4) + AsciiArt.bullet() + " " + error, arguments));
     }
 
     /**

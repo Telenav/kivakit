@@ -18,13 +18,13 @@
 
 package com.telenav.kivakit.settings.settings;
 
-import com.telenav.kivakit.core.vm.SystemProperties;
-import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.registry.Registry;
+import com.telenav.kivakit.core.vm.JavaTrait;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.settings.project.lexakai.DiagramSettings;
 import com.telenav.kivakit.settings.settings.stores.FolderSettingsStore;
@@ -121,7 +121,9 @@ import static com.telenav.kivakit.settings.settings.SettingsStore.AccessMode.LOA
  * @see PackageSettingsStore
  */
 @UmlClassDiagram(diagram = DiagramSettings.class)
-public class Settings extends MemorySettingsStore implements SettingsTrait
+public class Settings extends MemorySettingsStore implements
+        SettingsTrait,
+        JavaTrait
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
@@ -246,7 +248,7 @@ public class Settings extends MemorySettingsStore implements SettingsTrait
     private void loadSystemPropertyOverrides()
     {
         // Go through each path specified by the KIVAKIT_SETTINGS_FOLDERS environment variable
-        var settingsFolders = SystemProperties.property("KIVAKIT_SETTINGS_FOLDERS");
+        var settingsFolders = systemProperty("KIVAKIT_SETTINGS_FOLDERS");
         if (settingsFolders != null)
         {
             for (var path : settingsFolders.split(",\\s*"))

@@ -55,8 +55,8 @@ public class Join
      * separator
      */
     public static <T> String join(Collection<T> values,
-                                  Function<T, String> toString,
-                                  String separator)
+                                  String separator,
+                                  Function<T, String> toString)
     {
         return values.stream()
                 .map(toString)

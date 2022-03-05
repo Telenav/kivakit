@@ -13,8 +13,10 @@ import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Quibble;
 import com.telenav.kivakit.core.messaging.messages.status.Trace;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
+import com.telenav.kivakit.core.project.ProjectTrait;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.core.registry.RegistryTrait;
+import com.telenav.kivakit.core.vm.JavaTrait;
 import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.resource.PackageTrait;
@@ -158,6 +160,8 @@ import java.util.function.Function;
  */
 @UmlClassDiagram(diagram = DiagramComponent.class)
 public interface Component extends
+        JavaTrait,
+        ProjectTrait,
         PackageTrait,
         RegistryTrait,
         LanguageTrait,

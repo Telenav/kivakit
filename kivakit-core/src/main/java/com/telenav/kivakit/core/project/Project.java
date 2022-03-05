@@ -22,18 +22,22 @@ import com.telenav.cactus.build.metadata.BuildMetadata;
 import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
+import com.telenav.kivakit.core.language.trait.LanguageTrait;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Debug;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.project.lexakai.DiagramProject;
+import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.core.version.Version;
+import com.telenav.kivakit.core.vm.JavaTrait;
 import com.telenav.kivakit.core.vm.JavaVirtualMachine;
 import com.telenav.kivakit.interfaces.lifecycle.Initializable;
 import com.telenav.kivakit.interfaces.naming.Named;
+import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -80,7 +84,15 @@ import java.util.Set;
  */
 @UmlClassDiagram(diagram = DiagramProject.class)
 @UmlExcludeSuperTypes({ Named.class })
-public abstract class Project extends BaseRepeater implements Initializable, Named
+public abstract class Project extends BaseRepeater implements
+        Initializable,
+        Named,
+        JavaTrait,
+        ProjectTrait,
+        RegistryTrait,
+        LanguageTrait,
+        NamedObject
+
 {
     private static final Lazy<Logger> LOGGER = Lazy.of(LoggerFactory::newLogger);
 

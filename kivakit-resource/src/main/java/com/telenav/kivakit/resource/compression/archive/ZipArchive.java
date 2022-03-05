@@ -27,7 +27,7 @@ import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.kivakit.core.progress.reporters.Progress;
+import com.telenav.kivakit.core.progress.reporters.BroadcastingProgressReporter;
 import com.telenav.kivakit.core.value.count.ByteSized;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.value.count.MutableCount;
@@ -191,7 +191,7 @@ public final class ZipArchive implements
         assert file != null;
         assert filesystem != null;
 
-        this.file = file.materialized(Progress.create(LOGGER));
+        this.file = file.materialized(BroadcastingProgressReporter.create(LOGGER));
         this.filesystem = filesystem;
     }
 

@@ -134,17 +134,6 @@ public class Version
     }
 
     /**
-     * Parses the given text for a version, throwing an exception if any errors occur.
-     *
-     * @return The given text, of the form [major].[minor](.[revision])?(-release)?, parsed as a {@link Version} object,
-     * or null if the text is not of that form.
-     */
-    public static Version parseVersion(String text)
-    {
-        return parseVersion(Listener.throwing(), text);
-    }
-
-    /**
      * @return The given text, of the form [major].[minor](.[revision])?(-release)?, parsed as a {@link Version} object,
      * or null if the text is not of that form.
      */
@@ -174,6 +163,17 @@ public class Version
 
         listener.problem("Could not parse version: $", text);
         return null;
+    }
+
+    /**
+     * Parses the given text for a version, throwing an exception if any errors occur.
+     *
+     * @return The given text, of the form [major].[minor](.[revision])?(-release)?, parsed as a {@link Version} object,
+     * or null if the text is not of that form.
+     */
+    public static Version version(String text)
+    {
+        return parseVersion(Listener.throwing(), text);
     }
 
     private int major;

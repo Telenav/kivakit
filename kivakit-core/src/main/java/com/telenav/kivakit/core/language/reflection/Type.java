@@ -32,7 +32,7 @@ import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention;
 import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.core.project.lexakai.DiagramReflection;
-import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -287,7 +287,7 @@ public class Type<T> implements Named
         }
         catch (Exception e)
         {
-            throw new IllegalStateException(Formatter.format("Unable to get method $.$", type, methodName));
+            throw new IllegalStateException(Strings.format("Unable to get method $.$", type, methodName));
         }
     }
 

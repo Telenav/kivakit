@@ -19,12 +19,12 @@
 package com.telenav.kivakit.core.collections.list;
 
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.value.count.Count;
-import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.core.project.lexakai.DiagramString;
 import com.telenav.kivakit.core.string.AsciiArt;
-import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.string.StringTo;
+import com.telenav.kivakit.core.string.Strings;
+import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -294,7 +294,7 @@ public class StringList extends ObjectList<String>
      */
     public StringList add(String message, Object... arguments)
     {
-        add(Formatter.format(message, arguments));
+        add(Strings.format(message, arguments));
         return this;
     }
 

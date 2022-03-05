@@ -43,7 +43,7 @@ public class ProgressiveOutputStream extends OutputStream
 
     public ProgressiveOutputStream(OutputStream output)
     {
-        this(output, Progress.create());
+        this(output, BroadcastingProgressReporter.create());
     }
 
     public ProgressiveOutputStream(OutputStream output, ProgressReporter reporter)

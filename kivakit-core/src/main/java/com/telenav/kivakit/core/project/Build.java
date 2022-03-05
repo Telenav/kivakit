@@ -21,10 +21,8 @@ package com.telenav.kivakit.core.project;
 import com.telenav.cactus.build.metadata.BuildMetadata;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.language.primitive.Ints;
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
-import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.core.time.LocalTime;
+import com.telenav.kivakit.interfaces.naming.Named;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -48,8 +46,6 @@ import java.time.format.DateTimeFormatter;
  */
 public class Build implements Named
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     /**
      * @return Build information for the given project
      */

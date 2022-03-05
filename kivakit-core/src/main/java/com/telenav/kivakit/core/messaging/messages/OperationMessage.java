@@ -39,6 +39,7 @@ import com.telenav.kivakit.core.messaging.messages.status.Warning;
 import com.telenav.kivakit.core.messaging.messages.status.activity.Activity;
 import com.telenav.kivakit.core.project.lexakai.DiagramMessageType;
 import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.thread.ReentrancyTracker;
 import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.time.Time;
@@ -201,7 +202,7 @@ public abstract class OperationMessage implements Named, Message
     @Override
     public String description()
     {
-        return Formatter.format(message, arguments);
+        return Strings.format(message, arguments);
     }
 
     /**
@@ -220,7 +221,7 @@ public abstract class OperationMessage implements Named, Message
                 }
                 else
                 {
-                    formattedMessage = Formatter.format(message, arguments);
+                    formattedMessage = Strings.format(message, arguments);
                     if (format == WITH_EXCEPTION)
                     {
                         var cause = cause();
