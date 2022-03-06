@@ -5,6 +5,7 @@ import com.telenav.kivakit.core.language.trait.TryTrait;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.test.Tested;
 import com.telenav.kivakit.interfaces.function.BooleanFunction;
 import com.telenav.kivakit.interfaces.monads.Presence;
 import com.telenav.kivakit.interfaces.value.Source;
@@ -43,8 +44,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #isAbsent()} - Returns true if no value is present</li>
  *     <li>{@link #get()} - Any value that might be present, or null if no value is present</li>
  *     <li>{@link #has()} - Returns true if a value is present</li>
- *     <li>{@link #orDefault(Object)} - Returns this value, or the default value</li>
- *     <li>{@link #orDefault(Source)} - Returns this value, or the default value</li>
+ *     <li>{@link #orMaybe(Object)} - Returns this value, or the default maybe value</li>
+ *     <li>{@link #orDefaultTo(Object)} - Returns this value, or the default value</li>
+ *     <li>{@link #orDefaultTo(Source)} - Returns this value, or the default value</li>
  *     <li>{@link #orProblem(String, Object[])} - Returns this value or broadcasts a problem if this value is not present</li>
  *     <li>{@link #orThrow(String, Object...)} - Returns this value or throws an exception</li>
  *     <li>{@link #orThrow()}- Returns this value or throws an exception</li>
@@ -67,13 +69,10 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * <p><b>Conditionals</b></p>
  *
  * <ul>
- *     <li>{@link #ifPresentElse()} - Permits branching, by returning a curried {@link ElseFunction} with a branch for accepting a value and a branch for running code</li>
- *     <li>{@link #ifAbsentElse()} - Permits branching, by returning a curried {@link ElseFunction} with a branch for running code and a branch for accepting a value</li>
- *     <li>{@link #ifFalse(BooleanFunction)} - Applies the given function to this value, returning this value if it is false, or {@link #absent()} if it is true</li>
- *     <li>{@link #ifTrue(BooleanFunction)} - Applies the given function to this value, returning this value if it is true, or {@link #absent()} if it is false</li>
+ *     <li>{@link #absentIf(BooleanFunction)} - Applies the given function to this value, returning this value if it is true, or {@link #absent()} if it is false</li>
+ *     <li>{@link #presentIf(BooleanFunction)} - Applies the given function to this value, returning this value if it is true, or {@link #absent()} if it is false</li>
  *     <li>{@link #ifPresent(Consumer)} - Calls the given consumer if a value is present</li>
  *     <li>{@link #ifPresentOr(Consumer, UncheckedVoidCode)} - Calls the given consumer if a value is present, otherwise calls the given code</li>
- *     <li>{@link #or(Source)} - If a value is present, returns this value, otherwise returns the {@link Maybe} supplied by the given {@link Source}</li>
  * </ul>
  *
  * <p><br/><hr/><br/></p>
@@ -82,7 +81,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * @author viniciusluisr
  * @see <a href="https://github.com/viniciusluisr/improved-optional">improved-optional</a>
  */
-public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
+public class Maybe<Value> extends BaseRepeater implements
+        Presence,
+        TryTrait
 {
     /**
      * A {@link Maybe} object with no value
@@ -93,6 +94,7 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
      * @return Maybe value for null
      */
     @SuppressWarnings("unchecked")
+    @Tested
     public static <Value> Maybe<Value> absent()
     {
         return (Maybe<Value>) VALUE_ABSENT;
@@ -101,6 +103,7 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
     /**
      * @return Maybe for the given (null or non-null) value
      */
+    @Tested
     public static <Value> Maybe<Value> maybe(Value value)
     {
         return value == null ? absent() : new Maybe<>(ensureNotNull(value));
@@ -109,6 +112,7 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
     /**
      * @return Maybe for the given non-null value
      */
+    @Tested
     public static <Value> Maybe<Value> present(Value value)
     {
         return new Maybe<>(ensureNotNull(value));
@@ -133,6 +137,21 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
     }
 
     /**
+     * If this value is not null and the given predicate evaluates to true for the value, returns {@link #absent()},
+     * otherwise returns this value.
+     *
+     * @param predicate The predicate to test any non-null value
+     * @return This value or a null value
+     */
+    @Tested
+    public Maybe<Value> absentIf(BooleanFunction<Value> predicate)
+    {
+        return tryCatch(() -> value != null && ensureNotNull(predicate).isTrue(value)
+                ? newAbsent()
+                : this);
+    }
+
+    /**
      * <p>
      * If a value is present, uses the given function to map the value from Value to Maybe&lt;Output&gt;. If no value is
      * present, returns {@link #absent()}. The effect is that of allowing functions to be chained together in a nested
@@ -146,7 +165,8 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
      *
      * var sum = seven.apply(a ->
      *               three.apply(b ->
-     *                   present(a + b)));</pre>
+     *                   present(a + b)))
+     *           .get();</pre>
      *
      * <p>
      * In this example, if either <i>seven</i> or <i>three</i> had no value present (or both values were absent), the
@@ -176,6 +196,7 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
      * @return The mapped value as a {@link Maybe} object, or {@link #absent()} if no value was present
      */
     @SuppressWarnings("unchecked")
+    @Tested
     public <Output> Maybe<Output> apply(Function<? super Value, ? extends Maybe<? extends Output>> function)
     {
         return tryCatchDefault(() -> isPresent()
@@ -188,6 +209,7 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
      *
      * @return This value as a {@link Stream}
      */
+    @Tested
     public Stream<Value> asStream()
     {
         return isPresent() ? Stream.of(value) : Stream.empty();
@@ -206,6 +228,7 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
     /**
      * Returns any value that might be present, or null if there is none
      */
+    @Tested
     public Value get()
     {
         return value;
@@ -214,6 +237,7 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
     /**
      * Returns true if a value is present
      */
+    @Tested
     public boolean has()
     {
         return isPresent();
@@ -226,33 +250,12 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
     }
 
     /**
-     * Returns an {@link ElseFunction} allowing for branching
-     */
-    public ElseFunction<UncheckedVoidCode, ElseFunction<Consumer<Value>, Void>> ifAbsentElse()
-    {
-        return curry(ifAbsentFunction());
-    }
-
-    /**
-     * If a value is present and the predicate is false when applied to the value, returns this, otherwise returns
-     * {@link #absent()}
-     *
-     * @param predicate The predicate to test the value
-     * @return This value or {@link #absent()}
-     */
-    public Maybe<Value> ifFalse(BooleanFunction<Value> predicate)
-    {
-        return tryCatchDefault(() -> isPresent() && ensureNotNull(predicate).test(value)
-                ? newAbsent()
-                : this, newAbsent());
-    }
-
-    /**
      * If this value is not null, calls the given consumer with the value
      *
      * @param consumer The consumer for any non-null value
      * @return This {@link Maybe} for chaining
      */
+    @Tested
     public Maybe<Value> ifPresent(Consumer<Value> consumer)
     {
         if (isPresent())
@@ -264,20 +267,13 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
     }
 
     /**
-     * Returns an {@link ElseFunction} allowing for branching
-     */
-    public ElseFunction<Consumer<Value>, ElseFunction<UncheckedVoidCode, Void>> ifPresentElse()
-    {
-        return curry(ifPresentFunction());
-    }
-
-    /**
      * If a value is present, calls the given consumer, otherwise runs the given block of code
      *
      * @param consumer The consumer to call
      * @param runnable The code to run
      * @return This value for chaining
      */
+    @Tested
     public Maybe<Value> ifPresentOr(Consumer<Value> consumer, UncheckedVoidCode runnable)
     {
         if (isPresent())
@@ -293,23 +289,10 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
     }
 
     /**
-     * If this value is not null and the given predicate evaluates to true for the value, returns this value, otherwise
-     * returns the {@link #absent()} value.
-     *
-     * @param predicate The predicate to test any non-null value
-     * @return This value or a null value
-     */
-    public Maybe<Value> ifTrue(BooleanFunction<Value> predicate)
-    {
-        return tryCatch(() -> value != null && ensureNotNull(predicate).isTrue(value)
-                ? this
-                : newAbsent());
-    }
-
-    /**
      * Returns true if there is no value present
      */
     @Override
+    @Tested
     public boolean isAbsent()
     {
         return value == null;
@@ -318,6 +301,7 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
     /**
      * Returns true if there is a value present
      */
+    @Tested
     public boolean isPresent()
     {
         return value != null;
@@ -326,6 +310,7 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
     /**
      * Returns true if this object is valid
      */
+    @Tested
     public boolean isValid()
     {
         return true;
@@ -349,6 +334,7 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
      * @param <Output> The type that Value is being mapped to
      * @return The mapped value or {@link #absent()}
      */
+    @Tested
     public <Output> Maybe<Output> map(Function<? super Value, ? extends Output> mapper)
     {
         return tryCatchDefault(() -> isPresent()
@@ -357,26 +343,13 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
     }
 
     /**
-     * If there is a value present, returns this, otherwise returns the maybe provided by the given {@link Source}
-     *
-     * @param source A source of a {@link Maybe} if there is no value present
-     * @return This value or the value produced by the given source
-     */
-    @SuppressWarnings("unchecked")
-    public Maybe<Value> or(Source<? extends Maybe<? extends Value>> source)
-    {
-        return tryCatch(() -> isPresent()
-                ? this
-                : (Maybe<Value>) newMaybe(ensureNotNull(source).get()));
-    }
-
-    /**
      * If there is a value present, returns it, otherwise returns the given default value
      *
      * @param defaultValue The default value to return if there is no value
      * @return The value
      */
-    public Value orDefault(Value defaultValue)
+    @Tested
+    public Value orDefaultTo(Value defaultValue)
     {
         return tryCatch(() -> isPresent()
                 ? value
@@ -389,7 +362,8 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
      * @param defaultValue The default value to return if there is no value
      * @return The value
      */
-    public Value orDefault(Source<Value> defaultValue)
+    @Tested
+    public Value orDefaultTo(Source<Value> defaultValue)
     {
         return tryCatch(() -> isPresent()
                 ? value
@@ -397,10 +371,39 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
     }
 
     /**
+     * If there is a value present, returns this, otherwise returns the value provided by the given {@link Source}
+     *
+     * @param source A source of a value, if there is no value present
+     * @return This value or the value produced by the given source
+     */
+    @Tested
+    public Maybe<Value> orMaybe(Source<Value> source)
+    {
+        return tryCatch(() -> isPresent()
+                ? this
+                : newMaybe(ensureNotNull(source).get()));
+    }
+
+    /**
+     * If there is a value present, returns this, otherwise returns the value provided by the given {@link Source}
+     *
+     * @param value A source of a {@link Maybe} if there is no value present
+     * @return This value or the value produced by the given source
+     */
+    @Tested
+    public Maybe<Value> orMaybe(Value value)
+    {
+        return tryCatch(() -> isPresent()
+                ? this
+                : newMaybe(value));
+    }
+
+    /**
      * Broadcasts a problem and returns null if there is no value, otherwise returns the value
      *
      * @return A value or null
      */
+    @Tested
     public Value orProblem(String message, Object... arguments)
     {
         if (isAbsent())
@@ -417,6 +420,7 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
      *
      * @return The value
      */
+    @Tested
     public Value orThrow()
     {
         return orThrow("No value present");
@@ -429,6 +433,7 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
      * @param arguments The message arguments
      * @return The value
      */
+    @Tested
     public Value orThrow(String message, Object... arguments)
     {
         if (isAbsent())
@@ -440,6 +445,21 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
     }
 
     /**
+     * If this value is not null and the given predicate evaluates to true for the value, returns this value, otherwise
+     * returns the {@link #absent()} value.
+     *
+     * @param predicate The predicate to test any non-null value
+     * @return This value or a null value
+     */
+    @Tested
+    public Maybe<Value> presentIf(BooleanFunction<Value> predicate)
+    {
+        return tryCatch(() -> value != null && ensureNotNull(predicate).isTrue(value)
+                ? this
+                : newAbsent());
+    }
+
+    /**
      * If a value is present, and the given value is also present, applies the given bi-function to produce a new value
      * of the same type.
      *
@@ -448,6 +468,7 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
      * @return The combination of this value and the given value, if both values are non-null, otherwise, returns {@link
      * #absent()}.
      */
+    @Tested
     public Maybe<Value> then(BiFunction<Value, Value, Value> function, Maybe<Value> value)
     {
         if (isPresent() && value.isPresent())
@@ -467,6 +488,7 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
      * @return The combination of this value and the given value, if both values are non-null, otherwise, returns {@link
      * #absent()}.
      */
+    @Tested
     public Maybe<Value> then(BiFunction<Value, Value, Value> function, Value that)
     {
         if (isPresent() && that != null)
@@ -483,6 +505,7 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
      * @param function The function to apply
      * @return The value produced by the given function when applied to this value
      */
+    @Tested
     public Maybe<Value> then(Function<Value, Value> function)
     {
         return map(function);
@@ -518,55 +541,5 @@ public class Maybe<Value> extends BaseRepeater implements Presence, TryTrait
         this.value = value;
 
         return this;
-    }
-
-    /**
-     * Takes a two argument function:
-     *
-     * <pre>f(x, y) -> result</pre>
-     * <p>
-     * and returns a function of a function:
-     *
-     * <pre>f(x, f'(y)) -> result</pre>
-     *
-     * @return The composed function
-     */
-    private <X, Y, Output> ElseFunction<X, ElseFunction<Y, Output>> curry(BiFunction<X, Y, Output> function)
-    {
-        return (final X x) -> (final Y y) -> tryCatch(() -> function.apply(x, y));
-    }
-
-    private BiFunction<UncheckedVoidCode, Consumer<Value>, Void> ifAbsentFunction()
-    {
-        return (notPresent, present) ->
-        {
-            if (isAbsent())
-            {
-                tryCatch(() -> present.accept(value));
-            }
-            else
-            {
-                tryCatch(notPresent);
-            }
-
-            return null;
-        };
-    }
-
-    private BiFunction<Consumer<Value>, UncheckedVoidCode, Void> ifPresentFunction()
-    {
-        return (present, notPresent) ->
-        {
-            if (isPresent())
-            {
-                tryCatch(() -> present.accept(value));
-            }
-            else
-            {
-                tryCatch(notPresent);
-            }
-
-            return null;
-        };
     }
 }

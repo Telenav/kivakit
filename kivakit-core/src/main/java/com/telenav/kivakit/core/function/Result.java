@@ -75,8 +75,8 @@ import java.util.function.Function;
  *     <li>{@link #isAbsent()} - Returns true if no value is present</li>
  *     <li>{@link #get()} - Any value that might be present, or null if no value is present</li>
  *     <li>{@link #has()} - Returns true if a value is present</li>
- *     <li>{@link #orDefault(Object)} - Returns this value, or the default value</li>
- *     <li>{@link #orDefault(Source)} - Returns this value, or the default value</li>
+ *     <li>{@link #orMaybe(Object)} - Returns this value, or the default value</li>
+ *     <li>{@link #orMaybe(Source)} - Returns this value, or the default value</li>
  *     <li>{@link #orProblem(String, Object[])} - Returns this value or broadcasts a problem if this value is not present</li>
  *     <li>{@link #orThrow(String, Object...)} - Returns this value or throws an exception</li>
  *     <li>{@link #orThrow()}- Returns this value or throws an exception</li>
@@ -101,8 +101,8 @@ import java.util.function.Function;
  * <ul>
  *     <li>{@link #ifPresentElse()} - Permits branching, by returning a curried {@link ElseFunction} with a branch for accepting a value and a branch for running code</li>
  *     <li>{@link #ifAbsentElse()} - Permits branching, by returning a curried {@link ElseFunction} with a branch for running code and a branch for accepting a value</li>
- *     <li>{@link #ifFalse(BooleanFunction)} - Applies the given function to this value, returning this value if it is false, or {@link #absent()} if it is true</li>
- *     <li>{@link #ifTrue(BooleanFunction)} - Applies the given function to this value, returning this value if it is true, or {@link #absent()} if it is false</li>
+ *     <li>{@link #presentIfNot(BooleanFunction)} - Applies the given function to this value, returning this value if it is false, or {@link #absent()} if it is true</li>
+ *     <li>{@link #presentIf(BooleanFunction)} - Applies the given function to this value, returning this value if it is true, or {@link #absent()} if it is false</li>
  *     <li>{@link #ifPresent(Consumer)} - Calls the given consumer if a value is present</li>
  *     <li>{@link #ifPresentOr(Consumer, UncheckedVoidCode)} - Calls the given consumer if a value is present, otherwise calls the given code</li>
  *     <li>{@link #or(Source)} - If a value is present, returns this value, otherwise returns the {@link Maybe} supplied by the given {@link Source}</li>
@@ -295,16 +295,6 @@ public class Result<Value> extends Maybe<Value>
      * <p>
      * {@inheritDoc}
      */
-    public Result<Value> ifFalse(BooleanFunction<Value> predicate)
-    {
-        return (Result<Value>) super.ifFalse(predicate);
-    }
-
-    /**
-     * <p><i>Down-casting override</i></p>
-     * <p>
-     * {@inheritDoc}
-     */
     public Result<Value> ifPresent(Consumer<Value> consumer)
     {
         return (Result<Value>) super.ifPresent(consumer);
@@ -318,16 +308,6 @@ public class Result<Value> extends Maybe<Value>
     public Result<Value> ifPresentOr(Consumer<Value> consumer, UncheckedVoidCode runnable)
     {
         return (Result<Value>) super.ifPresentOr(consumer, runnable);
-    }
-
-    /**
-     * <p><i>Down-casting override</i></p>
-     * <p>
-     * {@inheritDoc}
-     */
-    public Result<Value> ifTrue(BooleanFunction<Value> predicate)
-    {
-        return (Result<Value>) super.ifTrue(predicate);
     }
 
     /**
@@ -397,16 +377,28 @@ public class Result<Value> extends Maybe<Value>
         return this;
     }
 
+    @Override
+    public Result<Value> orMaybe(final Value value)
+    {
+        return (Result<Value>) super.orMaybe(value);
+    }
+
+    @Override
+    public Result<Value> orMaybe(final Source<Value> source)
+    {
+        return (Result<Value>) super.orMaybe(source);
+    }
+
     /**
      * <p><i>Down-casting override</i></p>
      * <p>
      * {@inheritDoc}
      */
-    public Result<Value> or(Source<? extends Maybe<? extends Value>> source)
+    public Result<Value> presentIf(BooleanFunction<Value> predicate)
     {
-        return (Result<Value>) super.or(source);
+        return (Result<Value>) super.presentIf(predicate);
     }
-
+    
     /**
      * Returns true if this result represents success
      */

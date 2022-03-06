@@ -34,6 +34,11 @@ import java.util.function.Predicate;
 @LexakaiJavadoc(complete = true)
 public interface BooleanFunction<Value> extends Predicate<Value>
 {
+    default boolean isFalse(Value value)
+    {
+        return !isTrue(value);
+    }
+
     /**
      * @return True if the value evaluates to true
      */

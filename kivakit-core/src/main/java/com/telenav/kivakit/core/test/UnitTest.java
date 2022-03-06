@@ -27,6 +27,8 @@ import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Repeater;
+import com.telenav.kivakit.core.messaging.listeners.MessageList;
+import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.core.os.ConsoleWriter;
 import com.telenav.kivakit.core.os.OperatingSystem;
@@ -150,6 +152,18 @@ public abstract class UnitTest extends TestWatcher implements
         }
     }
 
+    protected boolean ensureBroadcastsNoProblem(Runnable code)
+    {
+        return !ensureBroadcastsProblem(code);
+    }
+
+    protected boolean ensureBroadcastsProblem(Runnable code)
+    {
+        var messages = new MessageList();
+        code.run();
+        return messages.count(Problem.class).equals(Count._1);
+    }
+
     protected void ensureClose(Number expected, Number actual, int numberOfDecimalsToMatch)
     {
         var roundedExpected = (int) (expected.doubleValue() * Math.pow(10, numberOfDecimalsToMatch))
@@ -213,7 +227,6 @@ public abstract class UnitTest extends TestWatcher implements
         ensure(object == null);
     }
 
-    @SuppressWarnings("MaskedAssertion")
     protected void ensureThrows(Runnable code)
     {
         try
@@ -221,7 +234,7 @@ public abstract class UnitTest extends TestWatcher implements
             code.run();
             fail("Code should have thrown exception");
         }
-        catch (AssertionError e)
+        catch (Exception e)
         {
             // Expected
         }

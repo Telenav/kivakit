@@ -125,7 +125,7 @@ public class Strings
 
     public static String format(String message, Object... arguments)
     {
-        return Strings.format(message, arguments);
+        return Formatter.format(message, arguments);
     }
 
     /**
