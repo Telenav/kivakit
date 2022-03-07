@@ -22,7 +22,7 @@ import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
-import com.telenav.kivakit.serialization.kryo.CoreKernelKryoTypes;
+import com.telenav.kivakit.serialization.kryo.CoreKryoTypes;
 import com.telenav.kivakit.serialization.kryo.KryoTypes;
 import com.telenav.kivakit.serialization.kryo.KryoUnitTest;
 import org.junit.Test;
@@ -92,6 +92,6 @@ public class FieldArchiveTest extends KryoUnitTest
     @Override
     protected KryoTypes kryoTypes()
     {
-        return new CoreKernelKryoTypes();
+        return new CoreKryoTypes();
     }
 }

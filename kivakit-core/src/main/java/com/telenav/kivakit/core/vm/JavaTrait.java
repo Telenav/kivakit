@@ -2,13 +2,13 @@ package com.telenav.kivakit.core.vm;
 
 import com.telenav.kivakit.core.language.primitive.Booleans;
 import com.telenav.kivakit.core.os.Console;
-import com.telenav.kivakit.core.string.Strings;
+import com.telenav.kivakit.core.string.Formatter;
 
 public interface JavaTrait
 {
     default String format(String message, Object... arguments)
     {
-        return Strings.format(message, arguments);
+        return Formatter.format(message, arguments);
     }
 
     default boolean isSystemPropertyTrue(String key)

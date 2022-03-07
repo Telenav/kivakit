@@ -83,8 +83,8 @@ import java.util.zip.ZipInputStream;
  * PackagePath.parsePackagePath(MyClass.class, "resources/images")
  * PackagePath.parsePackagePath(MyClass.class, "resources.images")
  * PackagePath.parsePackagePath(getClass(), "resources/images")
- * PackagePath.parsePackagePath("com.telenav.kivakit/kernel")
- * PackagePath.parsePackagePath("com.telenav.kivakit.kernel")
+ * PackagePath.parsePackagePath("com.telenav.kivakit/core")
+ * PackagePath.parsePackagePath("com.telenav.kivakit.core")
  * </pre>
  *
  * @author jonathanl (shibo)
@@ -258,7 +258,7 @@ public final class PackagePath extends StringPath
                         // Get the entry's name
                         String name = e.getName();
 
-                        // and if it is a folder and it starts with the file path for the package,
+                        // and if it is a folder, and it starts with the file path for the package,
                         if (name.endsWith("/") && name.startsWith(filepath))
                         {
                             // then strip off the leading filepath,
@@ -387,6 +387,7 @@ public final class PackagePath extends StringPath
     /**
      * {@inheritDoc}
      */
+    @SuppressWarnings("SpellCheckingInspection")
     @Override
     public PackagePath subpath(int start, int end)
     {

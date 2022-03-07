@@ -18,7 +18,6 @@
 
 package com.telenav.kivakit.core.language.module;
 
-import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.io.Nio;
 import com.telenav.kivakit.core.language.object.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
@@ -27,6 +26,7 @@ import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.project.lexakai.DiagramModule;
 import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.IOException;
@@ -50,8 +50,8 @@ import java.nio.file.Path;
  * <p><b>NOTE</b></p>
  *
  * <p>
- * <i>This class is in the kivakit-core-kernel project and so it is not a resource in the sense of resources that
- * implement the Resource interface in the kivakit-core-resource project (which depends on the kernel).</i>
+ * <i>This class is in the kivakit-core project and so it is not a resource in the sense of resources that
+ * implement the Resource interface in the kivakit-resource project (which depends on core).</i>
  * </p>
  *
  * @author jonathanl (shibo)

@@ -130,8 +130,8 @@ public class MaybeTest extends UnitTest
     @Test
     public void testOrProblem()
     {
-        ensureBroadcastsProblem(() -> Maybe.absent().orProblem("missing"));
-        ensureBroadcastsNoProblem(() -> Maybe.present(3).orProblem("missing"));
+        ensureBroadcastsProblem(Maybe.absent(), maybe -> maybe.orProblem("missing"));
+        ensureBroadcastsNoProblem(Maybe.present(3), maybe -> maybe.orProblem("missing"));
     }
 
     @Test

@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.thread;
 
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.test.UnitTest;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
@@ -33,7 +34,7 @@ public class KivaKitThreadTest extends UnitTest
     public void testInitialDelay()
     {
         var executedAt = new ConcurrentMutableValue<Time>();
-        KivaKitThread thread = this.listenTo(new KivaKitThread("Test")
+        KivaKitThread thread = Listener.none().listenTo(new KivaKitThread("Test")
         {
             @Override
             protected void onRun()

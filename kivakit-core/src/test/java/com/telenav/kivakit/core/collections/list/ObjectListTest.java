@@ -23,6 +23,7 @@ import com.telenav.kivakit.core.value.count.Count;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -190,7 +191,8 @@ public class ObjectListTest extends UnitTest
     @Test
     public void testQuantized()
     {
-        ensureEqual(ObjectList.objectList(Count._1, Count._5, Count._7).quantized(), new long[] { 1L, 5L, 7L });
+        ensure(Arrays.equals(ObjectList.objectList(Count._1, Count._5, Count._7).quantized(),
+                new long[] { 1L, 5L, 7L }));
     }
 
     @Test

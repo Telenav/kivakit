@@ -86,18 +86,12 @@ public class Maybe<Value> extends BaseRepeater implements
         TryTrait
 {
     /**
-     * A {@link Maybe} object with no value
-     */
-    private static final Maybe<?> VALUE_ABSENT = new Maybe<>();
-
-    /**
      * @return Maybe value for null
      */
-    @SuppressWarnings("unchecked")
     @Tested
     public static <Value> Maybe<Value> absent()
     {
-        return (Maybe<Value>) VALUE_ABSENT;
+        return new Maybe<>();
     }
 
     /**
@@ -519,10 +513,9 @@ public class Maybe<Value> extends BaseRepeater implements
     /**
      * Overridden in {@link Result} to return the right subclass
      */
-    @SuppressWarnings("unchecked")
     protected <T> Maybe<T> newAbsent()
     {
-        return (Maybe<T>) VALUE_ABSENT;
+        return new Maybe<>();
     }
 
     /**

@@ -25,6 +25,7 @@ import com.telenav.kivakit.core.language.primitive.Booleans;
 import com.telenav.kivakit.core.language.trait.LanguageTrait;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.listeners.MessageList;
@@ -152,16 +153,20 @@ public abstract class UnitTest extends TestWatcher implements
         }
     }
 
-    protected boolean ensureBroadcastsNoProblem(Runnable code)
-    {
-        return !ensureBroadcastsProblem(code);
-    }
-
-    protected boolean ensureBroadcastsProblem(Runnable code)
+    protected <T extends Broadcaster> void ensureBroadcastsNoProblem(T broadcaster, Consumer<T> code)
     {
         var messages = new MessageList();
-        code.run();
-        return messages.count(Problem.class).equals(Count._1);
+        messages.listenTo(broadcaster);
+        code.accept(broadcaster);
+        ensure(messages.count(Problem.class).equals(Count._0));
+    }
+
+    protected <T extends Broadcaster> void ensureBroadcastsProblem(T broadcaster, Consumer<T> code)
+    {
+        var messages = new MessageList();
+        messages.listenTo(broadcaster);
+        code.accept(broadcaster);
+        ensure(messages.count(Problem.class).equals(Count._1));
     }
 
     protected void ensureClose(Number expected, Number actual, int numberOfDecimalsToMatch)
@@ -229,14 +234,19 @@ public abstract class UnitTest extends TestWatcher implements
 
     protected void ensureThrows(Runnable code)
     {
+        var threw = false;
         try
         {
             code.run();
-            fail("Code should have thrown exception");
         }
-        catch (Exception e)
+        catch (AssertionError | Exception ignored)
         {
-            // Expected
+            threw = true;
+        }
+
+        if (!threw)
+        {
+            fail("Code should have thrown exception");
         }
     }
 

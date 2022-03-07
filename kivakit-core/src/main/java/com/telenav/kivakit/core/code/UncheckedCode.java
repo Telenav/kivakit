@@ -2,6 +2,7 @@ package com.telenav.kivakit.core.code;
 
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.interfaces.value.Source;
 
 /**
@@ -24,7 +25,7 @@ import com.telenav.kivakit.interfaces.value.Source;
  * @author jonathanl (shibo)
  */
 @FunctionalInterface
-public interface UncheckedCode<Value>
+public interface UncheckedCode<Value> extends RepeaterMixin
 {
     static <T> UncheckedCode<T> of(UncheckedCode<T> code)
     {

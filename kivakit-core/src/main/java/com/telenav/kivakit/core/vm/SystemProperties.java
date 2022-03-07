@@ -6,7 +6,8 @@ public class SystemProperties
 {
     public static boolean isPropertyFalse(String key)
     {
-        return Booleans.isFalse(property(key));
+        var value = property(key);
+        return value == null || Booleans.isFalse(value);
     }
 
     public static boolean isPropertyTrue(String key)

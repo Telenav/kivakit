@@ -20,6 +20,7 @@ package com.telenav.kivakit.core.string;
 
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.language.Classes;
+import com.telenav.kivakit.core.language.object.ObjectFormatter;
 import com.telenav.kivakit.core.language.primitive.Doubles;
 import com.telenav.kivakit.core.project.lexakai.DiagramString;
 import com.telenav.kivakit.interfaces.naming.Named;
@@ -85,11 +86,27 @@ public class Formatter
      */
     public static String format(String message, Object... arguments)
     {
-        if (arguments.length > 0)
+        if (arguments.length > 0 || message.contains("$"))
         {
             return formatArray(message, arguments);
         }
         return message;
+    }
+
+    public enum Format
+    {
+        WITHOUT_EXCEPTION,
+        WITH_EXCEPTION
+    }
+
+    @SuppressWarnings({ "unchecked" })
+    private static <T> T cast(Object object, Class<T> type)
+    {
+        if (type.isAssignableFrom(object.getClass()))
+        {
+            return (T) object;
+        }
+        return null;
     }
 
     /**
@@ -99,7 +116,7 @@ public class Formatter
      * @param arguments The arguments to use in formatting
      * @return The formatted message
      */
-    public static String formatArray(String message, Object[] arguments)
+    private static String formatArray(String message, Object[] arguments)
     {
         try
         {
@@ -189,6 +206,10 @@ public class Formatter
                         // Interpret the command
                         switch (command)
                         {
+                            case "object":
+                                builder.append(new ObjectFormatter(arguments[argumentIndex++]));
+                                break;
+
                             case "string":
                                 builder.append(StringTo.string(arguments[argumentIndex++]));
                                 break;
@@ -326,21 +347,5 @@ public class Formatter
             }
             return "Problem: Unable to format message '" + message + "' due to exception: " + cause;
         }
-    }
-
-    public enum Format
-    {
-        WITHOUT_EXCEPTION,
-        WITH_EXCEPTION
-    }
-
-    @SuppressWarnings({ "unchecked" })
-    private static <T> T cast(Object object, Class<T> type)
-    {
-        if (type.isAssignableFrom(object.getClass()))
-        {
-            return (T) object;
-        }
-        return null;
     }
 }

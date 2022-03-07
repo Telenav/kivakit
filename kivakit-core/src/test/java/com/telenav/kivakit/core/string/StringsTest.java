@@ -23,7 +23,8 @@ import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.test.UnitTest;
 import org.junit.Test;
 
-@SuppressWarnings("SpellCheckingInspection") public class StringsTest extends UnitTest
+@SuppressWarnings("SpellCheckingInspection")
+public class StringsTest extends UnitTest
 {
     @Test
     public void testCamelToHyphenated()
@@ -183,27 +184,11 @@ import org.junit.Test;
     {
         ensureEqual("**********", AsciiArt.repeat(10, "*"));
         ensureEqual("", AsciiArt.repeat(0, "*"));
-        try
-        {
-            ensureEqual("", AsciiArt.repeat(-1, "*"));
-            fail("Should have thrown AssertionError");
-        }
-        catch (Exception e)
-        {
-            // expected
-        }
+        ensureThrows(() -> AsciiArt.repeat(-1, "*"));
         //noinspection SpellCheckingInspection
         ensureEqual("hellohellohellohellohello", AsciiArt.repeat(5, "hello"));
         ensureEqual("", AsciiArt.repeat(0, "hello"));
-        try
-        {
-            ensureEqual("", AsciiArt.repeat(-1, "hello"));
-            fail("Should have thrown AssertionError");
-        }
-        catch (Exception e)
-        {
-            // expected
-        }
+        ensureThrows(() -> AsciiArt.repeat(-1, "hello"));
     }
 
     @Test

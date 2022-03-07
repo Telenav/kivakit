@@ -1,6 +1,7 @@
 package com.telenav.kivakit.core.code;
 
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.core.time.Duration;
 
 /**
@@ -9,7 +10,7 @@ import com.telenav.kivakit.core.time.Duration;
  * @author jonathanl (shibo)
  */
 @FunctionalInterface
-public interface UncheckedVoidCode
+public interface UncheckedVoidCode extends RepeaterMixin
 {
     static UncheckedVoidCode of(UncheckedVoidCode code)
     {

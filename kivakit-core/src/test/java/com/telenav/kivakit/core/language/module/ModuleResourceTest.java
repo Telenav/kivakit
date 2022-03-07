@@ -18,8 +18,6 @@
 
 package com.telenav.kivakit.core.language.module;
 
-import com.telenav.kivakit.core.language.module.ModuleResource;
-import com.telenav.kivakit.core.language.module.Modules;
 import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.core.test.UnitTest;
 import com.telenav.kivakit.core.time.Time;
@@ -85,7 +83,7 @@ public class ModuleResourceTest extends UnitTest
     {
         var uri = a().uri();
         ensureEqual(uri.getScheme(), "file");
-        ensure(uri.getPath().endsWith("kernel/language/modules/resources/a/a.txt"));
+        ensure(uri.getPath().endsWith("core/language/module/resources/a/a.txt"));
     }
 
     @Nullable

@@ -45,7 +45,7 @@ public class Split
      */
     public static List<String> split(String text, String delimiter)
     {
-        return Arrays.stream(text.split(delimiter))
+        return Arrays.stream(text.split(delimiter, Integer.MAX_VALUE))
                 .collect(Collectors.toList());
     }
 

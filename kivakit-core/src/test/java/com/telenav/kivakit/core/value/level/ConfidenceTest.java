@@ -39,22 +39,8 @@ public class ConfidenceTest extends UnitTest
         ensureFalse(Confidence.LOW.isZero());
         ensureEqual(0, Confidence.NO.asUnsignedByte());
         ensureEqual(255, Confidence.FULL.asUnsignedByte());
-        try
-        {
-            Confidence.confidence(2);
-            fail("Should throw");
-        }
-        catch (Exception ignored)
-        {
-        }
-        try
-        {
-            Confidence.confidence(-1);
-            fail("Should throw");
-        }
-        catch (Exception ignored)
-        {
-        }
+        ensureThrows(() -> Confidence.confidence(2));
+        ensureThrows(() -> Confidence.confidence(-1));
         Confidence.confidence(1);
     }
 }

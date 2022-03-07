@@ -29,14 +29,6 @@
             <groupId>com.telenav.kivakit</groupId>
             <artifactId>kivakit-commandline</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-serialization-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.telenav.kivakit</groupId>
-            <artifactId>kivakit-serialization-kryo</artifactId>
-\        </dependency>
 
     </dependencies>
 

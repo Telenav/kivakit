@@ -69,7 +69,7 @@ import java.net.URI;
  * </ul>
  * <p>
  * Note that {@link PackageResource}s cannot be retrieved from {@link PackagePath}s because package paths
- * are used in *kivakit-core-kernel*, which cannot depend on *kivakit-core-resource*. The easiest way to
+ * are used in *kivakit-core*, which cannot depend on *kivakit-resource*. The easiest way to
  * get a resource from a package path is one of the factory methods above.
  *
  * @author jonathanl (shibo)

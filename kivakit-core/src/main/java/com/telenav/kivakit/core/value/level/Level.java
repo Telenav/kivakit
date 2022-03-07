@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.value.level;
 
+import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.project.lexakai.DiagramCount;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -69,8 +70,8 @@ public class Level
 
     public Level(double value)
     {
-        assert value >= 0.0 : "Level " + value + " cannot be less than zero";
-        assert value <= 1.0 : "Level " + value + " cannot be greater than one";
+        Ensure.ensure(value >= 0.0, "Level " + value + " cannot be less than zero");
+        Ensure.ensure(value <= 1.0, "Level " + value + " cannot be greater than one");
 
         this.value = value;
     }

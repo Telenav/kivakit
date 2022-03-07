@@ -28,7 +28,6 @@ public class ResultTest extends UnitTest implements ResultTrait
     {
         if (Time.now().asSeconds() % 2 == 0)
         {
-            problem("a() failed");
             return null;
         }
 
@@ -37,7 +36,6 @@ public class ResultTest extends UnitTest implements ResultTrait
 
     private Integer b()
     {
-        problem("b() failed");
         return null;
     }
 }

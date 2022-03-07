@@ -35,11 +35,13 @@ open module kivakit.resource
 
     // KivaKit
     requires transitive kivakit.commandline;
-    requires transitive kivakit.serialization.core;
     requires transitive kivakit.collections;
-    requires java.prefs;
+
+    // Lexakai
     requires lexakai.annotations;
-    requires kivakit.serialization.kryo;
+
+    // Java
+    requires java.prefs;
 
     // Module exports
     exports com.telenav.kivakit.filesystem.spi;
