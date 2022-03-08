@@ -208,6 +208,7 @@ public class StringList extends ObjectList<String>
     /**
      * @return A list of words from the given text with word breaks occurring on whitespace
      */
+    @SuppressWarnings("DuplicatedCode")
     public static StringList words(String text)
     {
         var list = new StringList();

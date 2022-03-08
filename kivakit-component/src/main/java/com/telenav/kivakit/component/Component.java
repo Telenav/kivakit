@@ -21,10 +21,10 @@ import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.resource.PackageTrait;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.resources.packaged.Package;
-import com.telenav.kivakit.settings.settings.Settings;
-import com.telenav.kivakit.settings.settings.SettingsStore;
-import com.telenav.kivakit.settings.settings.SettingsTrait;
+import com.telenav.kivakit.resource.Package;
+import com.telenav.kivakit.settings.Settings;
+import com.telenav.kivakit.settings.SettingsStore;
+import com.telenav.kivakit.settings.SettingsTrait;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.function.Function;

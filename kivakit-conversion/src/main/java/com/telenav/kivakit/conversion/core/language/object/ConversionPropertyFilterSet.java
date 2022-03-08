@@ -31,7 +31,7 @@ public class ConversionPropertyFilterSet extends PropertyFilterSet
             {
                 return true;
             }
-            return field.getAnnotation(KivaKitPropertyConverter.class) != null && included().contains(PropertyMembers.CONVERTED_FIELDS_AND_METHODS);
+            return field.getAnnotation(KivaKitConverted.class) != null && included().contains(PropertyMembers.CONVERTED_FIELDS_AND_METHODS);
         }
         return false;
     }
@@ -43,7 +43,7 @@ public class ConversionPropertyFilterSet extends PropertyFilterSet
     {
         if (!method.isSynthetic() && !java.lang.reflect.Modifier.isStatic(method.getModifiers()))
         {
-            if (method.getAnnotation(KivaKitPropertyConverter.class) != null && included().contains(PropertyMembers.CONVERTED_FIELDS_AND_METHODS))
+            if (method.getAnnotation(KivaKitConverted.class) != null && included().contains(PropertyMembers.CONVERTED_FIELDS_AND_METHODS))
             {
                 return true;
             }

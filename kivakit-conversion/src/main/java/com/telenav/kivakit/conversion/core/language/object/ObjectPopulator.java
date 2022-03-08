@@ -22,7 +22,8 @@ import com.telenav.kivakit.conversion.project.lexakai.DiagramConversionLanguage;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
-import com.telenav.kivakit.core.language.reflection.property.PropertyValueSource;
+import com.telenav.kivakit.core.language.reflection.property.PropertyValues;
+import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -34,11 +35,11 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramConversionLanguage.class)
 public class ObjectPopulator
 {
-    private final PropertyValueSource source;
+    private final Source<PropertyValues> source;
 
     private final PropertyFilter filter;
 
-    public ObjectPopulator(PropertyFilter filter, PropertyValueSource source)
+    public ObjectPopulator(PropertyFilter filter, Source<PropertyValues> source)
     {
         this.filter = filter;
         this.source = source;
@@ -56,7 +57,7 @@ public class ObjectPopulator
         for (var property : Type.of(object).properties(filter))
         {
             // get any value for the given property,
-            var value = source.valueFor(property);
+            var value = source.get().valueFor(property);
 
             // and if the value is non-null,
             if (value != null)

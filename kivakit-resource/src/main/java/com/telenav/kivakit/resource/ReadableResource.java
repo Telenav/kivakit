@@ -22,7 +22,7 @@ import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.resource.project.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.project.lexakai.DiagramResource;
 import com.telenav.kivakit.resource.reading.ResourceReader;
-import com.telenav.kivakit.resource.resources.string.StringResource;
+import com.telenav.kivakit.resource.resources.StringResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;

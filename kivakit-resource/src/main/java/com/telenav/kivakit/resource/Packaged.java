@@ -18,15 +18,22 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.core.test.UnitTest;
-import org.junit.Test;
+import com.telenav.kivakit.core.path.PackagePath;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
-public class ResourceTest extends UnitTest
+/**
+ * An object having a (KivaKit) {@link Package}.
+ *
+ * @author jonathanl (shibo)
+ */
+@LexakaiJavadoc(complete = true)
+public interface Packaged
 {
-    @Test
-    public void testResolution()
+    /**
+     * @return The {@link Package} for this object
+     */
+    default Package _package()
     {
-        var properties = Resource.resolve(this, "classpath:com/telenav/kivakit/resource/ResourceTest.properties");
-        ensureEqual("b", PropertyMap.load(this, properties).get("a"));
+        return new Package(PackagePath.packagePath(getClass()));
     }
 }

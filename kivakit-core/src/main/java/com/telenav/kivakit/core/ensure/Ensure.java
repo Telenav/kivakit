@@ -199,7 +199,15 @@ public class Ensure
      */
     public static boolean ensureFalse(boolean condition)
     {
-        return ensure(!condition);
+        return Boolean.TRUE.equals(ensure(!condition));
+    }
+
+    /**
+     * @see #ensure(boolean, String, Object...)
+     */
+    public static boolean ensureFalse(boolean condition, String message, Object... arguments)
+    {
+        return Boolean.TRUE.equals(ensure(!condition, message, arguments));
     }
 
     public static <T> T ensureNotEqual(T given, T expected)

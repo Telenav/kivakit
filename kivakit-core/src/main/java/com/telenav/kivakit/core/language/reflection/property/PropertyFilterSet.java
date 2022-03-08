@@ -272,7 +272,8 @@ public class PropertyFilterSet implements PropertyFilter
     {
         if (!method.isSynthetic() && !java.lang.reflect.Modifier.isStatic(method.getModifiers()))
         {
-            if (method.getAnnotation(KivaKitIncludeProperty.class) != null && included.contains(PropertyMembers.INCLUDED_FIELDS_AND_METHODS))
+            if (method.getAnnotation(KivaKitIncludeProperty.class) != null
+                    && included.contains(PropertyMembers.INCLUDED_FIELDS_AND_METHODS))
             {
                 return true;
             }

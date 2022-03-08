@@ -21,6 +21,8 @@
 
     <dependencies>
 
+        <!-- KivaKit -->
+
         <dependency>
             <groupId>com.telenav.kivakit</groupId>
             <artifactId>kivakit-collections</artifactId>

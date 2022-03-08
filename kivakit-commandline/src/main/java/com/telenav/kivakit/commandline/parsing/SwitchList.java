@@ -25,7 +25,7 @@ import com.telenav.kivakit.commandline.project.lexakai.DiagramSwitch;
 import com.telenav.kivakit.commandline.project.lexakai.DiagramValidation;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.language.reflection.property.Property;
-import com.telenav.kivakit.core.language.reflection.property.PropertyValueSource;
+import com.telenav.kivakit.core.language.reflection.property.PropertyValues;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -50,7 +50,7 @@ import java.util.Iterator;
 public class SwitchList implements
         Iterable<Switch>,
         Stringable,
-        PropertyValueSource
+        PropertyValues
 {
     /** The switches */
     @UmlAggregation

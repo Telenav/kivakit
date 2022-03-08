@@ -56,7 +56,7 @@ public class InstanceIdentifier extends StringIdentifier
 
     protected InstanceIdentifier(String string)
     {
-        super(ensureNotNull(string));
+        super(ensureNotNull(string, "Instance identifier cannot be null"));
     }
 
     RegistryKey key(Class<?> at)

@@ -16,17 +16,18 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.resource;
+package com.telenav.kivakit.core.language.reflection.property;
 
-import com.telenav.kivakit.core.test.UnitTest;
-import org.junit.Test;
+import com.telenav.kivakit.core.project.lexakai.DiagramReflection;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-public class ResourceTest extends UnitTest
+/**
+ * Yields a value for a given property
+ *
+ * @author jonathanl (shibo)
+ */
+@UmlClassDiagram(diagram = DiagramReflection.class)
+public interface PropertyValues
 {
-    @Test
-    public void testResolution()
-    {
-        var properties = Resource.resolve(this, "classpath:com/telenav/kivakit/resource/ResourceTest.properties");
-        ensureEqual("b", PropertyMap.load(this, properties).get("a"));
-    }
+    Object valueFor(Property property);
 }

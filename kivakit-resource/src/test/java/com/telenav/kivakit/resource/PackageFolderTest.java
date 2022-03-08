@@ -18,15 +18,28 @@
 
 package com.telenav.kivakit.resource;
 
+import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.resource.path.Extension;
 import org.junit.Test;
 
-public class ResourceTest extends UnitTest
+/**
+ * @author jonathanl (shibo)
+ */
+public class PackageFolderTest extends UnitTest
 {
     @Test
-    public void testResolution()
+    public void testResources()
     {
-        var properties = Resource.resolve(this, "classpath:com/telenav/kivakit/resource/ResourceTest.properties");
-        ensureEqual("b", PropertyMap.load(this, properties).get("a"));
+        if (!isQuickTest())
+        {
+            var folder = new Package(PackagePath.packagePath(getClass()));
+            int textFiles = 0;
+            for (var ignored : folder.resources(Extension.TXT::ends))
+            {
+                textFiles++;
+            }
+            ensureEqual(textFiles, 2);
+        }
     }
 }

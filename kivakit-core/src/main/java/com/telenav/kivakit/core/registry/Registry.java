@@ -135,7 +135,7 @@ public class Registry implements RegistryTrait
     @Override
     public <T> T require(Class<T> type, InstanceIdentifier instance)
     {
-        return ensureNotNull(lookup(type, instance));
+        return ensureNotNull(lookup(type, instance), "Unable to find required object: $:$", type, instance);
     }
 
     /**

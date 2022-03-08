@@ -19,7 +19,7 @@
 package com.telenav.kivakit.resource.reading;
 
 import com.telenav.kivakit.core.path.PackagePath;
-import com.telenav.kivakit.resource.resources.packaged.PackageResource;
+import com.telenav.kivakit.resource.resources.PackageResource;
 import com.telenav.kivakit.core.test.UnitTest;
 import org.junit.Test;
 

@@ -19,8 +19,8 @@
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.filesystem.spi.FileSystemService;
-import com.telenav.kivakit.resource.resources.packaged.Package;
-import com.telenav.kivakit.resource.resources.packaged.PackageResource;
+import com.telenav.kivakit.resource.Package;
+import com.telenav.kivakit.resource.resources.PackageResource;
 import com.telenav.kivakit.resource.spi.ResourceFolderResolver;
 import com.telenav.kivakit.resource.spi.ResourceResolver;
 
@@ -52,14 +52,10 @@ open module kivakit.resource
     exports com.telenav.kivakit.resource.path;
     exports com.telenav.kivakit.resource.project.lexakai;
     exports com.telenav.kivakit.resource.reading;
-    exports com.telenav.kivakit.resource.resources.jar.launcher;
-    exports com.telenav.kivakit.resource.resources.other;
-    exports com.telenav.kivakit.resource.resources.packaged;
-    exports com.telenav.kivakit.resource.resources.streamed;
-    exports com.telenav.kivakit.resource.resources.string;
+    exports com.telenav.kivakit.resource.resources;
+    exports com.telenav.kivakit.resource.serialization.serializers;
+    exports com.telenav.kivakit.resource.serialization;
     exports com.telenav.kivakit.resource.spi;
     exports com.telenav.kivakit.resource.writing;
     exports com.telenav.kivakit.resource;
-    exports com.telenav.kivakit.resource.resources.properties;
-    exports com.telenav.kivakit.resource.serialization;
 }

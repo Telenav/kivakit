@@ -8,6 +8,6 @@ open module kivakit.settings
 
     // Module exports
     exports com.telenav.kivakit.settings.project.lexakai;
-    exports com.telenav.kivakit.settings.settings;
-    exports com.telenav.kivakit.settings.settings.stores;
+    exports com.telenav.kivakit.settings;
+    exports com.telenav.kivakit.settings.stores;
 }

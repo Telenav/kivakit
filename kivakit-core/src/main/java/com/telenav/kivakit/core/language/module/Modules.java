@@ -18,7 +18,6 @@
 
 package com.telenav.kivakit.core.language.module;
 
-import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.core.path.StringPath;
@@ -81,7 +80,7 @@ public class Modules
             }
             allResourcesUnder.put(_package, all);
         }
-        listener.trace("Found $ nested resources in $:\n$", all.size(), _package, new StringList(all).join("\n"));
+        // listener.trace("Found $ nested resources in $:\n$", all.size(), _package, new StringList(all).join("\n"));
         return all;
     }
 

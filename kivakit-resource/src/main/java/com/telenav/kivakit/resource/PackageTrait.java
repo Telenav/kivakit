@@ -2,8 +2,7 @@ package com.telenav.kivakit.resource;
 
 import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.core.messaging.Repeater;
-import com.telenav.kivakit.resource.resources.packaged.Package;
-import com.telenav.kivakit.resource.resources.packaged.PackageResource;
+import com.telenav.kivakit.resource.resources.PackageResource;
 
 /**
  * Trait containing methods for working with packages
