@@ -2,7 +2,6 @@ open module kivakit.network.core
 {
     // KivaKit
     requires transitive kivakit.commandline;
-    requires transitive kivakit.security;
     requires transitive kivakit.resource;
     requires transitive kivakit.conversion;
 

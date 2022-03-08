@@ -230,6 +230,10 @@ public class Host extends BaseRepeater implements
         if (object instanceof Host)
         {
             Host that = (Host) object;
+            if (name().equals(name()))
+            {
+                return true;
+            }
             return address().equals(that.address());
         }
         return false;
@@ -415,7 +419,7 @@ public class Host extends BaseRepeater implements
         }
         else if (name != null)
         {
-            resolveHostName(name);
+            return resolveHostName(name);
         }
         else
         {
