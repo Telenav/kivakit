@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.resource.spi;
 
-import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
+import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.resource.ResourceFolderIdentifier;
 import com.telenav.kivakit.resource.ResourceIdentifier;

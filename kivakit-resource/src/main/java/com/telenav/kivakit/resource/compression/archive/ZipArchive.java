@@ -18,7 +18,6 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
-import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.io.IO;
@@ -35,8 +34,12 @@ import com.telenav.kivakit.core.version.VersionedObject;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.interfaces.code.Callback;
 import com.telenav.kivakit.resource.Resource;
+import com.telenav.kivakit.resource.SerializedObject;
 import com.telenav.kivakit.resource.project.lexakai.DiagramResourceArchive;
-import com.telenav.kivakit.serialization.core.SerializationSession;
+import com.telenav.kivakit.resource.resources.streamed.InputResource;
+import com.telenav.kivakit.resource.resources.streamed.OutputResource;
+import com.telenav.kivakit.resource.serialization.ObjectReader;
+import com.telenav.kivakit.resource.serialization.ObjectWriter;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -56,13 +59,15 @@ import java.util.zip.ZipFile;
 
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.resource.compression.archive.ZipArchive.Mode.READ;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.TYPE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.VERSION;
 
 /**
  * A wrapper around the JDK zip filesystem that makes it easier to use. A {@link ZipArchive} can be created with {@link
  * #open(Listener, File, ProgressReporter, Mode)}, which returns the open zip archive or null if the operation fails.
- * Adds the ability to save and load objects into zip entries using a {@link SerializationSession}. A zip archive
- * contains entries wrapped by {@link ZipEntry} and a {@link ZipArchive} is {@link Iterable} to make it easy to
- * enumerate zip entries:
+ * Adds the ability to save and load objects into zip entries using an {@link ObjectWriter}, and {@link ObjectReader},
+ * respectively. A zip archive contains entries wrapped by {@link ZipEntry} and a {@link ZipArchive} is {@link Iterable}
+ * to make it easy to enumerate zip entries:
  * <pre>
  * var archive = new ZipArchive("test.zip");
  * for (var entry : archive)
@@ -82,20 +87,21 @@ import static com.telenav.kivakit.resource.compression.archive.ZipArchive.Mode.R
  *
  * <ul>
  *     <li>{@link #save(String, Resource)} - Saves the given resources into the named zip entry</li>
- *     <li>{@link #save(SerializationSession, String, VersionedObject)} - Writes the object to the given entry</li>
+ *     <li>{@link #save(ObjectWriter, String, VersionedObject)} - Writes the object to the given entry</li>
  *     <li>{@link #saveEntry(String, Callback)} - Saves to the named entry calling the callback to do the work</li>
  * </ul>
  *
  * <p><b>Loading</b></p>
  *
  * <ul>
- *     <li>{@link #load(SerializationSession, String)} - Loads the object from the named entry using the given serializer </li>
+ *     <li>{@link #load(ObjectReader, String)} - Loads the object from the named entry using the given serializer </li>
  * </ul>
  *
  * @author jonathanl (shibo)
  * @see ZipEntry
  * @see ProgressReporter
- * @see SerializationSession
+ * @see ObjectReader
+ * @see ObjectWriter
  * @see Resource
  */
 @UmlClassDiagram(diagram = DiagramResourceArchive.class)
@@ -278,7 +284,7 @@ public final class ZipArchive implements
     /**
      * @return The versioned object loaded from the given archive entry using the given serialization
      */
-    public synchronized <T> VersionedObject<T> load(SerializationSession session, String entryName)
+    public synchronized <T> VersionedObject<T> load(ObjectReader reader, String entryName)
     {
         try
         {
@@ -289,11 +295,9 @@ public final class ZipArchive implements
                 {
                     if (input != null)
                     {
-                        session.open(SerializationSession.Type.RESOURCE, KivaKit.get().projectVersion(), input);
-                        return session.read();
+                        return reader.read(new InputResource(input), TYPE, VERSION);
                     }
                 }
-                session.close();
             }
         }
         catch (Exception e)
@@ -331,20 +335,17 @@ public final class ZipArchive implements
     /**
      * Saves the given object to the zip archive under the given entry name using the given serialization
      */
-    public <T> void save(SerializationSession session,
-                         String entryName,
-                         VersionedObject<T> object)
+    public <T> void save(ObjectWriter writer, String entryName, VersionedObject<T> object)
     {
         saveEntry(entryName, output ->
         {
             try
             {
-                session.open(SerializationSession.Type.RESOURCE, KivaKit.get().projectVersion(), output);
-                session.write(object);
+                writer.write(new OutputResource(output), new SerializedObject<>(object), TYPE, VERSION);
             }
             finally
             {
-                session.flush();
+                IO.flush(output);
             }
         });
     }

@@ -21,6 +21,8 @@ package com.telenav.kivakit.settings.settings.stores;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.filesystem.Folder;
+import com.telenav.kivakit.resource.serialization.ObjectSerializer;
+import com.telenav.kivakit.resource.serialization.ObjectSerializers;
 import com.telenav.kivakit.settings.project.lexakai.DiagramSettings;
 import com.telenav.kivakit.settings.settings.Settings;
 import com.telenav.kivakit.settings.settings.SettingsObject;
@@ -31,8 +33,6 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import java.util.Set;
 
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
-import static com.telenav.kivakit.resource.path.Extension.JSON;
-import static com.telenav.kivakit.resource.path.Extension.PROPERTIES;
 import static com.telenav.kivakit.settings.settings.SettingsStore.AccessMode.DELETE;
 import static com.telenav.kivakit.settings.settings.SettingsStore.AccessMode.INDEX;
 import static com.telenav.kivakit.settings.settings.SettingsStore.AccessMode.LOAD;
@@ -44,13 +44,14 @@ import static com.telenav.kivakit.settings.settings.SettingsStore.AccessMode.UNL
  * </p>
  *
  * <p>
- * A {@link FolderSettingsStore} can be created with {@link #of(Folder)}. The specified folder must contain a set of
- * <i>.properties</i> files, each of which can be used to instantiate and populate a single settings object.
- * <i>See {@link BaseResourceSettingsStore} for details on how this works.</i>
+ * A {@link FolderSettingsStore} can be created with {@link #of(Listener, Folder, ObjectSerializers)}. The specified
+ * package should contain a set of settings files, each of which can be passed to the {@link ObjectSerializer} for the
+ * file's extension to deserialize the object.
  * </p>
  *
  * @author jonathanl (shibo)
  * @see BaseResourceSettingsStore
+ * @see ObjectSerializers
  * @see Settings
  * @see SettingsStore
  * @see SettingsObject
@@ -60,22 +61,30 @@ import static com.telenav.kivakit.settings.settings.SettingsStore.AccessMode.UNL
 public class FolderSettingsStore extends BaseResourceSettingsStore
 {
     /**
-     * @param folder The folder containing .properties files specifying settings objects
+     * @param folder The folder containing files specifying settings objects
+     * @param serializers The {@link ObjectSerializers} to deserialize objects
      */
-    public static FolderSettingsStore of(Listener listener, Folder folder)
+    public static FolderSettingsStore of(Listener listener, Folder folder, ObjectSerializers serializers)
     {
-        return listener.listenTo(new FolderSettingsStore(folder));
+        return listener.listenTo(new FolderSettingsStore(folder, serializers));
     }
 
     /** The folder containing .properties files defining settings objects */
     private final Folder folder;
 
     /**
+     * Serializers for reading files in the folder
+     */
+    private final ObjectSerializers serializers;
+
+    /**
      * @param folder The folder containing .properties files specifying settings objects
      */
-    protected FolderSettingsStore(Folder folder)
+    protected FolderSettingsStore(Folder folder, ObjectSerializers serializers)
     {
+        super(serializers);
         this.folder = folder;
+        this.serializers = serializers;
     }
 
     @Override
@@ -99,18 +108,15 @@ public class FolderSettingsStore extends BaseResourceSettingsStore
     {
         var objects = new ObjectSet<SettingsObject>();
 
-        // Go through .properties files in the folder
-        for (var at : folder.files().matching(PROPERTIES.fileMatcher()))
+        // Go through files in the folder
+        for (var file : folder.files())
         {
-            // and add a settings objects for each file
-            objects.addIfNotNull(loadFromProperties(at));
-        }
-
-        // Go through .json files in the folder
-        for (var at : folder.files().matching(JSON.fileMatcher()))
-        {
-            // and add a settings objects for each file
-            objects.addIfNotNull(loadFromJson(at));
+            // get any serializer for the file extension,
+            var serializer = serializers.serializer(file.extension());
+            if (serializer != null)
+            {
+                objects.addIfNotNull(read(file));
+            }
         }
 
         return objects;

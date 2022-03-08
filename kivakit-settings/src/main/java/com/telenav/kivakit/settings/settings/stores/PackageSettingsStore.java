@@ -22,6 +22,8 @@ import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.resource.resources.packaged.Package;
+import com.telenav.kivakit.resource.serialization.ObjectSerializer;
+import com.telenav.kivakit.resource.serialization.ObjectSerializers;
 import com.telenav.kivakit.settings.project.lexakai.DiagramSettings;
 import com.telenav.kivakit.settings.settings.Settings;
 import com.telenav.kivakit.settings.settings.SettingsObject;
@@ -34,8 +36,6 @@ import java.util.Map;
 import java.util.Set;
 
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
-import static com.telenav.kivakit.resource.path.Extension.JSON;
-import static com.telenav.kivakit.resource.path.Extension.PROPERTIES;
 import static com.telenav.kivakit.settings.settings.SettingsStore.AccessMode.DELETE;
 import static com.telenav.kivakit.settings.settings.SettingsStore.AccessMode.INDEX;
 import static com.telenav.kivakit.settings.settings.SettingsStore.AccessMode.LOAD;
@@ -47,10 +47,9 @@ import static com.telenav.kivakit.settings.settings.SettingsStore.AccessMode.UNL
  * </p>
  *
  * <p>
- * A {@link PackageSettingsStore} can be created with {@link #of(Listener, Package)} or {@link #of(Listener,
- * PackagePath)}. The specified package should contain a set of .properties files, each of which can be used to
- * instantiate and populate a settings object.
- * <i>See {@link BaseResourceSettingsStore} for details on how this works.</i>
+ * A {@link PackageSettingsStore} can be created with {@link #of(Listener, Package, ObjectSerializers)} or {@link
+ * #of(Listener, PackagePath, ObjectSerializers)}. The specified package should contain a set of settings resources,
+ * each of which can be passed to the {@link ObjectSerializer} for the resource extension to deserialize the object.
  * </p>
  *
  * @author jonathanl (shibo)
@@ -67,19 +66,23 @@ public class PackageSettingsStore extends BaseResourceSettingsStore
     private static final Map<PackagePath, PackageSettingsStore> packages = new HashMap<>();
 
     /**
+     * @param _package The package containing settings resources
+     * @param serializers The {@link ObjectSerializers} to deserialize objects
      * @return A {@link PackageSettingsStore} for the given {@link Package}
      */
-    public static PackageSettingsStore of(Listener listener, Package _package)
+    public static PackageSettingsStore of(Listener listener, Package _package, ObjectSerializers serializers)
     {
-        return of(listener, _package.path());
+        return of(listener, _package.path(), serializers);
     }
 
     /**
+     * @param path The package path for a package containing settings resources
+     * @param serializers The {@link ObjectSerializers} to deserialize objects
      * @return A {@link PackageSettingsStore} for the given {@link PackagePath}
      */
-    public static PackageSettingsStore of(Listener listener, PackagePath path)
+    public static PackageSettingsStore of(Listener listener, PackagePath path, ObjectSerializers serializers)
     {
-        return listener.listenTo(packages.computeIfAbsent(path, ignored -> new PackageSettingsStore(path)));
+        return listener.listenTo(packages.computeIfAbsent(path, ignored -> new PackageSettingsStore(path, serializers)));
     }
 
     /** The path of this configuration package */
@@ -88,8 +91,9 @@ public class PackageSettingsStore extends BaseResourceSettingsStore
     /**
      * @param path The path to the package where the configurations are stored
      */
-    protected PackageSettingsStore(PackagePath path)
+    protected PackageSettingsStore(PackagePath path, ObjectSerializers serializers)
     {
+        super(serializers);
         this.path = path;
     }
 
@@ -117,18 +121,11 @@ public class PackageSettingsStore extends BaseResourceSettingsStore
 
         var objects = new ObjectSet<SettingsObject>();
 
-        // Go through .properties files in the package
-        for (var at : _package.resources(PROPERTIES::ends))
+        // Go through files in the package,
+        for (var resource : _package.resources())
         {
-            // load the properties file
-            objects.addIfNotNull(loadFromProperties(at));
-        }
-
-        // Go through .json files in the package
-        for (var at : _package.resources(JSON::ends))
-        {
-            // and add the object for the resource
-            objects.addIfNotNull(loadFromJson(at));
+            // and load any settings object.
+            objects.addIfNotNull(read(resource));
         }
 
         trace("Loaded $ settings objects", objects.size());

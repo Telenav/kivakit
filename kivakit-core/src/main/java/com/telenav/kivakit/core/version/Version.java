@@ -133,6 +133,11 @@ public class Version
         return new Version(major, minor, patch, release, snapshot);
     }
 
+    public static Version parseVersion(String text)
+    {
+        return parseVersion(Listener.throwing(), text);
+    }
+
     /**
      * @return The given text, of the form [major].[minor](.[revision])?(-release)?, parsed as a {@link Version} object,
      * or null if the text is not of that form.

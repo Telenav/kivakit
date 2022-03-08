@@ -19,14 +19,16 @@
 package com.telenav.kivakit.settings.settings;
 
 import com.telenav.kivakit.commandline.SwitchParser;
-import com.telenav.kivakit.core.vm.JavaVirtualMachine;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.path.PackagePath;
+import com.telenav.kivakit.core.registry.RegistryTrait;
+import com.telenav.kivakit.core.vm.JavaVirtualMachine;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.resources.other.PropertyMap;
 import com.telenav.kivakit.resource.resources.packaged.Package;
+import com.telenav.kivakit.resource.resources.properties.PropertyMap;
+import com.telenav.kivakit.resource.serialization.ObjectSerializers;
 import com.telenav.kivakit.settings.project.lexakai.DiagramSettings;
 import com.telenav.kivakit.settings.settings.stores.FolderSettingsStore;
 import com.telenav.kivakit.settings.settings.stores.PackageSettingsStore;
@@ -48,7 +50,7 @@ import java.util.Set;
  * @see Settings
  */
 @UmlClassDiagram(diagram = DiagramSettings.class)
-public class DeploymentSet extends BaseRepeater
+public class DeploymentSet extends BaseRepeater implements RegistryTrait
 {
     /**
      * Loads all deployments in the root package 'deployments' and in any folder specified by
@@ -126,7 +128,7 @@ public class DeploymentSet extends BaseRepeater
             var deployment = listenTo(new Deployment(folder.name().name(), description));
 
             // and add the configuration information from the sub-folder,
-            deployment.indexAll(FolderSettingsStore.of(this, folder));
+            deployment.indexAll(FolderSettingsStore.of(this, folder, require(ObjectSerializers.class)));
 
             // assert that the deployment has not already been added,
             assert !deployments.contains(deployment);
@@ -172,7 +174,7 @@ public class DeploymentSet extends BaseRepeater
             var deployment = listenTo(new Deployment(subPackage.last(), description));
 
             // and add the configuration information from the sub-folder,
-            deployment.indexAll(PackageSettingsStore.of(this, subPackage));
+            deployment.indexAll(PackageSettingsStore.of(this, subPackage, require(ObjectSerializers.class)));
 
             // add it to this set of deployments.
             deployments.add(deployment);

@@ -16,27 +16,13 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.resource.project;
+package com.telenav.kivakit.network.core.project.lexakai;
 
-import com.telenav.kivakit.resource.resources.other.PropertyMap;
-import com.telenav.kivakit.serialization.kryo.KryoTypes;
-import com.telenav.lexakai.annotations.LexakaiJavadoc;
+import com.telenav.lexakai.annotations.diagrams.UmlDiagramIdentifier;
 
 /**
- * The types to register with Kryo for this project
- *
  * @author jonathanl (shibo)
  */
-@LexakaiJavadoc(complete = true)
-public class ResourceKryoTypes extends KryoTypes
+public class DiagramAuthentication implements UmlDiagramIdentifier
 {
-    public ResourceKryoTypes()
-    {
-        //----------------------------------------------------------------------------------------------
-        // NOTE: To maintain backward compatibility of serialization, registration groups and the types
-        // in each registration group must remain in the same order.
-        //----------------------------------------------------------------------------------------------
-
-        group("other", () -> register(PropertyMap.class));
-    }
 }

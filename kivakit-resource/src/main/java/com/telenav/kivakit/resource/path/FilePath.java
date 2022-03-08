@@ -24,7 +24,6 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.os.OperatingSystem;
 import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
-import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.filesystem.File;

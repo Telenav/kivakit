@@ -23,6 +23,8 @@ import com.telenav.kivakit.core.value.identifier.StringIdentifier;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+
 /**
  * An identifier for a particular instance of a class. Used by {@link Registry} when locating an object by class which
  * has more than one instance.
@@ -39,12 +41,12 @@ public class InstanceIdentifier extends StringIdentifier
 
     public static InstanceIdentifier of(Class<?> value)
     {
-        return InstanceIdentifier.of(value.getSimpleName());
+        return of(value.getSimpleName());
     }
 
     public static InstanceIdentifier of(Enum<?> value)
     {
-        return InstanceIdentifier.of(value.name());
+        return of(value.name());
     }
 
     public static InstanceIdentifier of(String value)
@@ -54,7 +56,7 @@ public class InstanceIdentifier extends StringIdentifier
 
     protected InstanceIdentifier(String string)
     {
-        super(string);
+        super(ensureNotNull(string));
     }
 
     RegistryKey key(Class<?> at)

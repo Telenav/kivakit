@@ -18,12 +18,11 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
-import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.language.object.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention;
 import com.telenav.kivakit.core.language.reflection.property.Property;
+import com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
@@ -35,8 +34,8 @@ import com.telenav.kivakit.interfaces.io.Closeable;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.project.lexakai.DiagramResourceArchive;
-import com.telenav.kivakit.serialization.core.SerializationSession;
-import com.telenav.kivakit.serialization.core.SerializationSessionFactory;
+import com.telenav.kivakit.resource.serialization.ObjectReader;
+import com.telenav.kivakit.resource.serialization.ObjectWriter;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -46,39 +45,37 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
 /**
  * A field archive serializes data into zip file entries in a {@link ZipArchive}. The constructor for this class takes a
- * {@link Resource}, which is used to construct the zip archive, and a {@link SerializationSessionFactory}, which is
- * used to create {@link SerializationSession}s to save and load fields to and from the archive. {@link FieldArchive}
- * only serializes fields that are explicitly labeled with the {@link KivaKitArchivedField} annotation.
+ * {@link Resource}, which is used to construct the zip archive. {@link FieldArchive} only serializes fields that are
+ * explicitly labeled with the {@link KivaKitArchivedField} annotation.
  * <p>
- * When the fields of an object are saved with {@link #saveFieldsOf(NamedObject, Version)}, the object's name via {@link
- * NamedObject#objectName()} is used as a prefix for each field that is saved. For example, if an object named
- * "paintbrush" has a field named "width", the entry would be saved as "paintbrush.width" in the archive.
+ * When the fields of an object are saved with {@link #saveFieldsOf(ObjectWriter, NamedObject, Version)}, the object's
+ * name via {@link NamedObject#objectName()} is used as a prefix for each field that is saved. For example, if an object
+ * named "paintbrush" has a field named "width", the entry would be saved as "paintbrush.width" in the archive.
  * <p>
- * When an entry is read with {@link #load(NamedObject, String)}, the object's name and the field name will be used
- * again to reconstruct the archive entry name. The methods {@link #loadFieldOf(NamedObject, String)} and {@link
- * #loadFieldsOf(NamedObject...)} both load object(s) from the archive, but they also set the loaded value into the
- * property with the given field name.
+ * When an entry is read with {@link #load(ObjectReader, NamedObject, String)}, the object's name and the field name
+ * will be used again to reconstruct the archive entry name. The methods {@link #loadFieldOf(ObjectReader, NamedObject,
+ * String)} and {@link #loadFieldsOf(ObjectReader, NamedObject...)} both load object(s) from the archive, but they also
+ * set the loaded value into the property with the given field name.
  * <p>
  * <b>Saving</b>
  * <ul>
- *     <li>{@link #save(String, VersionedObject)} - Saves the versioned object in the named archive entry</li>
- *     <li>{@link #saveFieldsOf(NamedObject, Version)} - Saves all object fields using the given version</li>
- *     <li>{@link #version(Version)} - Sets the version of data in this archive</li>
+ *     <li>{@link #save(ObjectWriter, String, VersionedObject)} - Saves the versioned object in the named archive entry</li>
+ *     <li>{@link #saveFieldsOf(ObjectWriter, NamedObject, Version)} - Saves all object fields using the given version</li>
+ *     <li>{@link #saveVersion(ObjectWriter, Version)} - Sets the version of data in this archive</li>
  * </ul>
  * <p>
  * <b>Loading</b>
  * <ul>
- *      <li>{@link #load(NamedObject, String)} - Loads the object with the given object name and field name</li>
- *      <li>{@link #loadFieldOf(NamedObject, String)} - Loads the named field into the given object</li>
- *      <li>{@link #loadFieldsOf(NamedObject...)} - Loads all the fields of the given object</li>
- *      <li>{@link #version()} - The version of data in this archive</li>
+ *      <li>{@link #load(ObjectReader reader, NamedObject, String)} - Loads the object with the given object name and field name</li>
+ *      <li>{@link #loadFieldOf(ObjectReader, NamedObject, String)} - Loads the named field into the given object</li>
+ *      <li>{@link #loadFieldsOf(ObjectReader, NamedObject...)} - Loads all the fields of the given object</li>
+ *      <li>{@link #loadVersion(ObjectReader)} - The version of data in this archive</li>
  * </ul>
  * <p>
  * When objects have been saved or loaded from the archive, {@link #close()} ensures that output (if any) is flushed and
  * streams are closed.
  *
  * @author jonathanl (shibo)
- * @see SerializationSession
  * @see Resource
  * @see VersionedObject
  * @see Version
@@ -118,13 +115,13 @@ public class FieldArchive extends BaseRepeater implements Closeable
             return field.toString();
         }
 
-        boolean saveObject(SerializationSession session, String entryName)
+        boolean saveObject(ObjectWriter writer, String entryName)
         {
             var outer = FieldArchive.this;
             var value = field.get(object);
             if (value != null)
             {
-                zip().save(session, entryName, new VersionedObject<>(outer.version, value));
+                zip().save(writer, entryName, new VersionedObject<>(outer.version, value));
                 return true;
             }
             return false;
@@ -149,22 +146,15 @@ public class FieldArchive extends BaseRepeater implements Closeable
     /** The mode for accessing the zip file */
     private final ZipArchive.Mode mode;
 
-    /** The session for this field archive */
-    private final Lazy<SerializationSession> session;
-
     /**
      * @param file A field archive resource
      * @param mode The mode of access to this archive
      */
-    public FieldArchive(File file,
-                        SerializationSessionFactory sessionFactory,
-                        ProgressReporter reporter,
-                        ZipArchive.Mode mode)
+    public FieldArchive(File file, ProgressReporter reporter, ZipArchive.Mode mode)
     {
         this.file = file;
         this.reporter = reporter;
         this.mode = mode;
-        session = Lazy.of(() -> sessionFactory.session(this));
     }
 
     /**
@@ -187,9 +177,9 @@ public class FieldArchive extends BaseRepeater implements Closeable
     /**
      * Loads a versioned object from the zip entry named "[object-name].[field-name]"
      */
-    public <T> VersionedObject<T> load(NamedObject object, String fieldName)
+    public <T> VersionedObject<T> load(ObjectReader reader, NamedObject object, String fieldName)
     {
-        return zip().load(session(), entryName(object, fieldName));
+        return zip().load(reader, entryName(object, fieldName));
     }
 
     /**
@@ -200,7 +190,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
      * @return The value of the field after attempting to load
      */
     @SuppressWarnings({ "ConstantConditions", "unchecked" })
-    public synchronized <T> T loadFieldOf(NamedObject object, String fieldName)
+    public synchronized <T> T loadFieldOf(ObjectReader reader, NamedObject object, String fieldName)
     {
         // Get the field
         Type<?> type = Type.of(object);
@@ -208,11 +198,11 @@ public class FieldArchive extends BaseRepeater implements Closeable
         ensure(field != null, "Cannot find field '$' in $", fieldName, type);
 
         // and to load object with object scoped name "[object-name].[field-name]"
-        var versionedObject = load(object, fieldName);
+        var versionedObject = load(reader, object, fieldName);
         Object value = null;
         if (versionedObject != null)
         {
-            value = versionedObject.get();
+            value = versionedObject.object();
         }
 
         // If we loaded the object
@@ -246,7 +236,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
      * @return True if all fields were loaded
      */
     @SuppressWarnings({ "UnusedReturnValue", "ConstantConditions" })
-    public synchronized boolean loadFieldsOf(NamedObject... objects)
+    public synchronized boolean loadFieldsOf(ObjectReader reader, NamedObject... objects)
     {
         ensure(objects != null);
         ensure(objects.length > 0);
@@ -264,7 +254,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
                 if (!field.getter().annotation(KivaKitArchivedField.class).lazy())
                 {
                     // then load the field into the object.
-                    if (loadFieldOf(object, field.name()) == null)
+                    if (loadFieldOf(reader, object, field.name()) == null)
                     {
                         success = false;
                     }
@@ -273,6 +263,23 @@ public class FieldArchive extends BaseRepeater implements Closeable
         }
 
         return success;
+    }
+
+    /**
+     * @return The version of data in this archive
+     */
+    @KivaKitIncludeProperty
+    public Version loadVersion(ObjectReader reader)
+    {
+        if (version == null)
+        {
+            var version = zip().load(reader, "version");
+            if (version != null)
+            {
+                this.version = (Version) version.object();
+            }
+        }
+        return version;
     }
 
     public ZipArchive.Mode mode()
@@ -288,46 +295,43 @@ public class FieldArchive extends BaseRepeater implements Closeable
     /**
      * Saves the given versioned object to the entry with the given name
      */
-    public synchronized <T> void save(String fieldName, VersionedObject<T> object)
+    public synchronized <T> void save(ObjectWriter writer, String fieldName, VersionedObject<T> object)
     {
-        try (var session = session())
-        {
-            zip().save(session, CaseFormat.camelCaseToHyphenated(fieldName), object);
-        }
+        zip().save(writer, CaseFormat.camelCaseToHyphenated(fieldName), object);
     }
 
     /**
      * Saves the fields of the given object to this archive with the given version
      */
     @SuppressWarnings("ConstantConditions")
-    public synchronized void saveFieldsOf(NamedObject object, Version version)
+    public synchronized void saveFieldsOf(ObjectWriter writer, NamedObject object, Version version)
     {
         ensure(object != null);
 
         this.version = version;
 
-        try (var session = session())
+        for (var field : Type.of(object).properties(new ArchivedFields(PropertyNamingConvention.KIVAKIT)).sorted())
         {
-            for (var field : Type.of(object).properties(new ArchivedFields(PropertyNamingConvention.KIVAKIT)).sorted())
+            try
             {
-                try
+                if (new ObjectField(object, field).saveObject(writer, entryName(object, field.name())))
                 {
-                    if (new ObjectField(object, field).saveObject(session, entryName(object, field.name())))
-                    {
-                        trace("Saved field $", field.name());
-                    }
+                    trace("Saved field $", field.name());
                 }
-                catch (Exception e)
-                {
-                    warning(e, "Unable to save field $", field.name());
-                }
+            }
+            catch (Exception e)
+            {
+                warning(e, "Unable to save field $", field.name());
             }
         }
     }
 
-    public SerializationSession session()
+    /**
+     * Saves the given archive version
+     */
+    public void saveVersion(ObjectWriter writer, Version version)
     {
-        return session.get();
+        save(writer, "version", new VersionedObject<>(version, version));
     }
 
     /**
@@ -337,31 +341,6 @@ public class FieldArchive extends BaseRepeater implements Closeable
     public String toString()
     {
         return new ObjectFormatter(this).toString();
-    }
-
-    /**
-     * Saves the given archive version
-     */
-    public void version(Version version)
-    {
-        save("version", new VersionedObject<>(version, version));
-    }
-
-    /**
-     * @return The version of data in this archive
-     */
-    @KivaKitIncludeProperty
-    public Version version()
-    {
-        if (version == null)
-        {
-            var version = zip().load(session(), "version");
-            if (version != null)
-            {
-                this.version = (Version) version.get();
-            }
-        }
-        return version;
     }
 
     /**

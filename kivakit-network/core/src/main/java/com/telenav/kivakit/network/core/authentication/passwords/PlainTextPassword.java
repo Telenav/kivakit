@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.kivakit.network.core.authentication.Password;
-import com.telenav.kivakit.security.project.lexakai.DiagramSecurity;
+import com.telenav.kivakit.network.core.project.lexakai.DiagramAuthentication;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
@@ -33,7 +33,7 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramSecurity.class)
+@UmlClassDiagram(diagram = DiagramAuthentication.class)
 @UmlExcludeSuperTypes({ Stringable.class })
 @LexakaiJavadoc(complete = true)
 public class PlainTextPassword implements Password, Stringable

@@ -44,7 +44,7 @@ public class VersionedObject<T> implements
     /**
      * @return The object
      */
-    public T get()
+    public T object()
     {
         return object;
     }

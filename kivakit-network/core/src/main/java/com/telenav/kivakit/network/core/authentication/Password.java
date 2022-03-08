@@ -19,7 +19,7 @@
 package com.telenav.kivakit.network.core.authentication;
 
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.security.project.lexakai.DiagramSecurity;
+import com.telenav.kivakit.network.core.project.lexakai.DiagramAuthentication;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -28,7 +28,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramSecurity.class)
+@UmlClassDiagram(diagram = DiagramAuthentication.class)
 @LexakaiJavadoc(complete = true)
 public interface Password extends Matcher<Password>
 {

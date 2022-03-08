@@ -21,7 +21,6 @@ package com.telenav.kivakit.settings.settings;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.registry.RegistryTrait;
-import com.telenav.kivakit.serialization.json.GsonFactory;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeType;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
@@ -140,7 +139,7 @@ public class SettingsObject implements RegistryTrait
     @UmlAggregation
     private final Identifier identifier;
 
-    /** The configuration object itself */
+    /** The settings object itself */
     private final Object object;
 
     public SettingsObject(Object object)
@@ -148,23 +147,18 @@ public class SettingsObject implements RegistryTrait
         this(object, SINGLETON);
     }
 
-    public SettingsObject(Object object, InstanceIdentifier identifier)
+    public SettingsObject(Object object, InstanceIdentifier instance)
     {
-        this(object, object.getClass(), identifier);
+        this(object, object.getClass(), instance);
     }
 
-    public SettingsObject(Object object, Class<?> type, InstanceIdentifier identifier)
+    public SettingsObject(Object object, Class<?> type, InstanceIdentifier instance)
     {
-        ensureNotNull(identifier);
+        ensureNotNull(instance);
         ensureNotNull(object);
 
-        this.identifier = new Identifier(type, identifier);
+        this.identifier = new Identifier(type, instance);
         this.object = object;
-    }
-
-    public String asJson()
-    {
-        return require(GsonFactory.class).gson().toJson(object);
     }
 
     @Override

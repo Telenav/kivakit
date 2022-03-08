@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.resource.resources.streamed;
 
-import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.resource.ReadableResource;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.project.lexakai.DiagramResourceType;

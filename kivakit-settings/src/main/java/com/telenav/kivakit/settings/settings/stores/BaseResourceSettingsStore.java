@@ -1,29 +1,18 @@
 package com.telenav.kivakit.settings.settings.stores;
 
 import com.telenav.kivakit.conversion.core.language.object.KivaKitPropertyConverter;
-import com.telenav.kivakit.conversion.core.language.object.ObjectConverter;
 import com.telenav.kivakit.conversion.core.language.object.ObjectPopulator;
-import com.telenav.kivakit.core.language.Classes;
-import com.telenav.kivakit.core.messaging.Broadcaster;
-import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.path.Extension;
-import com.telenav.kivakit.resource.resources.other.PropertyMap;
-import com.telenav.kivakit.serialization.json.GsonFactory;
+import com.telenav.kivakit.resource.serialization.ObjectReader;
+import com.telenav.kivakit.resource.serialization.ObjectSerializers;
 import com.telenav.kivakit.settings.settings.BaseSettingsStore;
 import com.telenav.kivakit.settings.settings.SettingsObject;
 import com.telenav.kivakit.settings.settings.SettingsStore;
-import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import java.util.regex.Pattern;
-
-import static com.telenav.kivakit.core.ensure.Ensure.ensure;
-import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
-import static com.telenav.kivakit.core.ensure.Ensure.fail;
-import static com.telenav.kivakit.core.registry.InstanceIdentifier.SINGLETON;
-import static com.telenav.kivakit.resource.path.Extension.PROPERTIES;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.INSTANCE;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.TYPE;
 
 /**
  * <b>Service Provider API</b>
@@ -107,7 +96,7 @@ import static com.telenav.kivakit.resource.path.Extension.PROPERTIES;
  *
  * <p>
  * The object specified by the "class" property is used to instantiate the settings object. Deserialization of the JSON
- * is performed by a required {@link GsonFactory} object retrieved from the global object {@link Registry}. The
+ * is performed by a required {@link ObjectReader} object retrieved from the global object {@link Registry}. The
  * "instance" variable is used to distinguish between multiple instances of the same type of settings object.
  * </p>
  *
@@ -120,109 +109,34 @@ public abstract class BaseResourceSettingsStore extends BaseSettingsStore implem
         SettingsStore,
         RegistryTrait
 {
-    private static final Pattern TYPE = Pattern.compile("(?x) \"class\" \\s* : \\s* \"(?<class>[a-zA-Z_$][a-zA-Z0-9_$.]+)\"");
+    private final ObjectSerializers serializers;
 
-    private static final Pattern INSTANCE = Pattern.compile("(?x) \"instance\" \\s* : \\s* \"(?<instance>[a-zA-Z0-9_.-]+)\"");
-
-    /**
-     * Loads a settings object from the given <i>.json</i> resource
-     *
-     * @param resource The JSON resource
-     * @return The {@link SettingsObject}
-     */
-    protected SettingsObject loadFromJson(Resource resource)
+    public BaseResourceSettingsStore(final ObjectSerializers serializers)
     {
-        ensure(resource.extension().equals(Extension.JSON));
-
-        // Get GsonFactory from global registry,
-        var gson = require(GsonFactory.class).gson();
-
-        // load JSON from resource,
-        var json = resource.asString();
-
-        // and if the JSON contains the expected pattern,
-        var typeMatcher = TYPE.matcher(json);
-        if (typeMatcher.find())
-        {
-            // load the specified class,
-            var className = typeMatcher.group("class");
-            var type = Classes.forName(className);
-            if (type != null)
-            {
-                // get any instance identifier
-                var instanceMatcher = INSTANCE.matcher(json);
-                var instance = SINGLETON;
-                if (instanceMatcher.find())
-                {
-                    instance = InstanceIdentifier.of(instanceMatcher.group("instance"));
-                }
-
-                // convert the json to an object,
-                var object = gson.fromJson(json, type);
-
-                // and return the object
-                return new SettingsObject(object, instance);
-            }
-            else
-            {
-                return fail("Could not instantiate class $ in JSON resource $", className, resource);
-            }
-        }
-        else
-        {
-            return fail("Could not find \"class\" property in JSON resource: $", resource);
-        }
+        this.serializers = serializers;
     }
 
     /**
-     * Loads a settings object from the given <i>.properties</i> resource.
+     * Loads a settings object from the given resource
      *
-     * @return A settings object loaded from the given properties resource
+     * @param input The resource to read
+     * @return The {@link SettingsObject}
      */
-    @UmlExcludeMember
-    protected SettingsObject loadFromProperties(Resource resource)
+    protected SettingsObject read(Resource input)
     {
-        ensure(resource.extension().equals(PROPERTIES));
-
-        // Load the given properties
-        trace("Loading settings from: $", resource);
-        var properties = PropertyMap.load(this, resource);
-        try
+        var reader = serializers.serializer(input.extension());
+        if (reader != null)
         {
-            // then get the settings class to instantiate,
-            var typeName = properties.get("class");
-            ensureNotNull(typeName, "Missing class property in $", resource);
-            var type = Class.forName(typeName);
-            ensureNotNull(type, "Unable to load class $ specified in $", type, resource);
-            trace("Settings class: $", type.getSimpleName());
-
-            // and the instance identifier (if any),
-            var instance = properties.get("instance");
-            var identifier = instance != null ? InstanceIdentifier.of(instance) : SINGLETON;
-            trace("Settings identifier: $", identifier);
-
-            // then create the settings object and populate it using the converter framework
-            var converter = new ObjectConverter<>(this, type);
-            var settings = converter.convert(properties);
-            if (settings instanceof Broadcaster)
+            var object = reader.read(input, TYPE, INSTANCE);
+            if (object != null)
             {
-                listenTo((Broadcaster) settings);
-            }
-            if (settings != null)
-            {
-                trace("Loaded settings: $", settings);
-
-                // and return the settings set entry for the fully loaded settings object
-                return new SettingsObject(settings, type, identifier);
+                return new SettingsObject(object, object.instance());
             }
             else
             {
-                return fail("Unable to load settings object from $", resource);
+                problem("Unable to read settings object from: $", input);
             }
         }
-        catch (Exception e)
-        {
-            return fail(e, "Unable to load properties from $", resource);
-        }
+        return null;
     }
 }

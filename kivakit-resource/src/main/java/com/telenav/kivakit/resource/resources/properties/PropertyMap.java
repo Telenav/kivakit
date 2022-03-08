@@ -16,7 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.resource.resources.other;
+package com.telenav.kivakit.resource.resources.properties;
 
 import com.telenav.kivakit.conversion.StringConverter;
 import com.telenav.kivakit.conversion.core.language.object.ObjectPopulator;

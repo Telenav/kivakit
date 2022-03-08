@@ -61,7 +61,7 @@ import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.resource.PackageTrait;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.resources.other.PropertyMap;
+import com.telenav.kivakit.resource.resources.properties.PropertyMap;
 import com.telenav.kivakit.settings.settings.Deployment;
 import com.telenav.kivakit.settings.settings.DeploymentSet;
 import com.telenav.kivakit.settings.settings.SettingsTrait;

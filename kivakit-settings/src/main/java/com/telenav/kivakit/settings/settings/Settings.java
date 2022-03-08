@@ -26,6 +26,7 @@ import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.core.vm.JavaTrait;
 import com.telenav.kivakit.filesystem.Folder;
+import com.telenav.kivakit.resource.serialization.ObjectSerializers;
 import com.telenav.kivakit.settings.project.lexakai.DiagramSettings;
 import com.telenav.kivakit.settings.settings.stores.FolderSettingsStore;
 import com.telenav.kivakit.settings.settings.stores.MemorySettingsStore;
@@ -164,7 +165,7 @@ public class Settings extends MemorySettingsStore implements
                                 PackagePath defaultSettingsPackage)
     {
         // First load any settings overrides from KIVAKIT_SETTINGS_FOLDERS,
-        loadSystemPropertyOverrides();
+        loadSettingsFolders();
 
         // then look in the global object registry for the settings object,
         var settings = Registry.of(this).lookup(type, instance);
@@ -180,7 +181,7 @@ public class Settings extends MemorySettingsStore implements
             {
                 // then load any default settings from the specified package
                 trace("Loading default settings from $", defaultSettingsPackage);
-                var store = PackageSettingsStore.of(this, defaultSettingsPackage);
+                var store = PackageSettingsStore.of(this, defaultSettingsPackage, require(ObjectSerializers.class));
                 registerSettingsIn(store);
                 settings = store.lookup(new SettingsObject.Identifier(type, instance));
             }
@@ -245,7 +246,7 @@ public class Settings extends MemorySettingsStore implements
     /**
      * Loads settings from the list of folders specified by the KIVAKIT_SETTINGS_FOLDERS environment variable
      */
-    private void loadSystemPropertyOverrides()
+    private void loadSettingsFolders()
     {
         // Go through each path specified by the KIVAKIT_SETTINGS_FOLDERS environment variable
         var settingsFolders = systemProperty("KIVAKIT_SETTINGS_FOLDERS");
@@ -257,7 +258,7 @@ public class Settings extends MemorySettingsStore implements
                 var folder = Folder.parse(this, path);
                 if (folder != null)
                 {
-                    indexAll(FolderSettingsStore.of(this, folder));
+                    indexAll(FolderSettingsStore.of(this, folder, require(ObjectSerializers.class)));
                 }
                 else
                 {

@@ -50,6 +50,18 @@ public class Arrays
         return builder.toString();
     }
 
+    public static <T> boolean contains(T[] array, T object)
+    {
+        for (var at : array)
+        {
+            if (at.equals(object))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Reverses the elements in the given array
      */

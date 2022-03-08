@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.resource.resources.other.PropertyMap;
+import com.telenav.kivakit.resource.resources.properties.PropertyMap;
 import com.telenav.kivakit.core.test.UnitTest;
 import org.junit.Test;
 

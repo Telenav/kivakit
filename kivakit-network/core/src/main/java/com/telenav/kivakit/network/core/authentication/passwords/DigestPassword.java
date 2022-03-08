@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.core.authentication.passwords;
 
-import com.telenav.kivakit.security.project.lexakai.DiagramSecurity;
+import com.telenav.kivakit.network.core.project.lexakai.DiagramAuthentication;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -30,7 +30,7 @@ import java.util.Base64;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramSecurity.class)
+@UmlClassDiagram(diagram = DiagramAuthentication.class)
 @LexakaiJavadoc(complete = true)
 public class DigestPassword extends PlainTextPassword
 {

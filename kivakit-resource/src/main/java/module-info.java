@@ -51,7 +51,6 @@ open module kivakit.resource
     exports com.telenav.kivakit.resource.compression;
     exports com.telenav.kivakit.resource.path;
     exports com.telenav.kivakit.resource.project.lexakai;
-    exports com.telenav.kivakit.resource.project;
     exports com.telenav.kivakit.resource.reading;
     exports com.telenav.kivakit.resource.resources.jar.launcher;
     exports com.telenav.kivakit.resource.resources.other;
@@ -61,4 +60,6 @@ open module kivakit.resource
     exports com.telenav.kivakit.resource.spi;
     exports com.telenav.kivakit.resource.writing;
     exports com.telenav.kivakit.resource;
+    exports com.telenav.kivakit.resource.resources.properties;
+    exports com.telenav.kivakit.resource.serialization;
 }

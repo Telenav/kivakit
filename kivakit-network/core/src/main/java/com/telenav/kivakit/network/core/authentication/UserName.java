@@ -21,7 +21,7 @@ package com.telenav.kivakit.network.core.authentication;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.name.Name;
-import com.telenav.kivakit.security.project.lexakai.DiagramSecurity;
+import com.telenav.kivakit.network.core.project.lexakai.DiagramAuthentication;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -30,7 +30,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramSecurity.class)
+@UmlClassDiagram(diagram = DiagramAuthentication.class)
 @LexakaiJavadoc(complete = true)
 public class UserName extends Name
 {
