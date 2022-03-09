@@ -22,6 +22,8 @@ import com.telenav.kivakit.core.project.lexakai.DiagramPrimitive;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.lang.reflect.Array;
+
 /**
  * Utility methods for working with arrays.
  *
@@ -48,6 +50,15 @@ public class Arrays
             builder.append(String.format("%02d", at & 0xff));
         }
         return builder.toString();
+    }
+
+    public static <T> T[] concatenate(T[] a, T[] b)
+    {
+        @SuppressWarnings("unchecked")
+        T[] concatenated = (T[]) Array.newInstance(a.getClass().getComponentType(), a.length + b.length);
+        System.arraycopy(a, 0, concatenated, 0, a.length);
+        System.arraycopy(b, 0, concatenated, a.length, b.length);
+        return concatenated;
     }
 
     public static <T> boolean contains(T[] array, T object)

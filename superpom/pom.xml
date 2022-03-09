@@ -963,11 +963,6 @@
             </dependency>
             <dependency>
                 <groupId>com.telenav.kivakit</groupId>
-                <artifactId>kivakit-core</artifactId>
-                <version>${kivakit.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.telenav.kivakit</groupId>
                 <artifactId>kivakit-conversion</artifactId>
                 <version>${kivakit.version}</version>
             </dependency>

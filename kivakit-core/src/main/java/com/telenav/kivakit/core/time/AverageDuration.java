@@ -16,13 +16,32 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.serialization.core.project.lexakai;
+package com.telenav.kivakit.core.time;
 
-import com.telenav.lexakai.annotations.diagrams.UmlDiagramIdentifier;
+import com.telenav.kivakit.core.math.Average;
+import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
+ * Computes an average duration for a succession of samples.
+ *
  * @author jonathanl (shibo)
  */
-public class DiagramSerializationCore implements UmlDiagramIdentifier
+@LexakaiJavadoc(complete = true)
+public class AverageDuration extends Average
 {
+    public void add(Duration duration)
+    {
+        super.add(duration.asMilliseconds());
+    }
+
+    public Duration averageDuration()
+    {
+        return Duration.milliseconds(average());
+    }
+
+    @Override
+    public String toString()
+    {
+        return averageDuration().toString();
+    }
 }

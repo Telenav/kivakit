@@ -51,7 +51,7 @@ public class ObjectConverter<Value> extends BaseConverter<PropertyValues, Value>
         }
         catch (final Exception e)
         {
-            problem(e, "Unable to convert $ to $ object", values, type);
+            problem(e, "Unable to convert to $ object:\n$", type.getSimpleName(), values.toString());
             return null;
         }
     }
