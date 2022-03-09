@@ -1053,12 +1053,12 @@
             </dependency>
             <dependency>
                 <groupId>com.telenav.kivakit</groupId>
-                <artifactId>kivakit-serialization-core</artifactId>
+                <artifactId>kivakit-serialization-gson</artifactId>
                 <version>${kivakit.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.telenav.kivakit</groupId>
-                <artifactId>kivakit-serialization-json</artifactId>
+                <artifactId>kivakit-serialization-properties</artifactId>
                 <version>${kivakit.version}</version>
             </dependency>
             <dependency>

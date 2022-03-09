@@ -19,11 +19,16 @@
 package com.telenav.kivakit.core.progress;
 
 import com.telenav.kivakit.core.progress.reporters.BroadcastingProgressReporter;
-import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
+import com.telenav.kivakit.core.progress.reporters.ProgressiveOutputStream;
 import com.telenav.kivakit.core.project.lexakai.DiagramProgress;
+import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.interfaces.lifecycle.Resettable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+
+import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * Reports the progress of some operation to an end-user in some manner. The operation begins when {@link #start()} is
@@ -112,6 +117,24 @@ public interface ProgressReporter extends Resettable
     default ProgressReporter phase(String phase)
     {
         return this;
+    }
+
+    default ProgressiveInputStream progressiveInput(InputStream input)
+    {
+        if (input instanceof ProgressiveInputStream)
+        {
+            return (ProgressiveInputStream) input;
+        }
+        return new ProgressiveInputStream(input, this);
+    }
+
+    default ProgressiveOutputStream progressiveOutput(OutputStream output)
+    {
+        if (output instanceof ProgressiveOutputStream)
+        {
+            return (ProgressiveOutputStream) output;
+        }
+        return new ProgressiveOutputStream(output, this);
     }
 
     /**

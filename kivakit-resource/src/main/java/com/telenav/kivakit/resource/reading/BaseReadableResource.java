@@ -24,7 +24,6 @@ import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
@@ -272,7 +271,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
             reporter.steps(sizeInBytes());
 
             // and return a progressive input which will call the reporter.
-            return new ProgressiveInputStream(decompressed, reporter);
+            return reporter.progressiveInput(decompressed);
         }
 
         return decompressed;

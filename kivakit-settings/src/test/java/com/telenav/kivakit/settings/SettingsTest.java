@@ -20,7 +20,9 @@ import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.test.UnitTest;
 import com.telenav.kivakit.core.time.Duration;
+import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.kivakit.resource.serialization.ObjectSerializers;
+import com.telenav.kivakit.serialization.properties.PropertiesObjectSerializer;
 import com.telenav.kivakit.settings.stores.PackageSettingsStore;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
@@ -35,7 +37,9 @@ public class SettingsTest extends UnitTest
     @Before
     public void setup()
     {
-        register(new ObjectSerializers());
+        var serializers = new ObjectSerializers();
+        serializers.add(Extension.PROPERTIES, new PropertiesObjectSerializer());
+        register(serializers);
     }
 
     @Test

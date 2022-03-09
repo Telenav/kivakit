@@ -35,7 +35,7 @@ public class VersionedObject<T> implements
 
     private final Version version;
 
-    public VersionedObject(Version version, T object)
+    public VersionedObject(T object, Version version)
     {
         this.version = version;
         this.object = object;

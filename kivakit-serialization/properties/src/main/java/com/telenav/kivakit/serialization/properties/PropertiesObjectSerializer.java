@@ -1,21 +1,24 @@
-package com.telenav.kivakit.resource.serialization.serializers;
+package com.telenav.kivakit.serialization.properties;
 
 import com.telenav.kivakit.conversion.core.language.object.ObjectConverter;
 import com.telenav.kivakit.core.language.Arrays;
 import com.telenav.kivakit.core.language.Classes;
+import com.telenav.kivakit.core.path.StringPath;
+import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.resource.PropertyMap;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.SerializedObject;
-import com.telenav.kivakit.resource.WritableResource;
 import com.telenav.kivakit.resource.serialization.ObjectMetadata;
 import com.telenav.kivakit.resource.serialization.ObjectSerializer;
+
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
-import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.SINGLETON;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.INSTANCE;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.TYPE;
@@ -30,25 +33,45 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.VERSION;
  * @see Version
  * @see InstanceIdentifier
  */
-public class PropertyMapSerializer implements ObjectSerializer
+public class PropertiesObjectSerializer implements ObjectSerializer
 {
+    private final ProgressReporter reporter;
+
+    public PropertiesObjectSerializer()
+    {
+        this(ProgressReporter.none());
+    }
+
+    public PropertiesObjectSerializer(ProgressReporter reporter)
+    {
+        this.reporter = reporter;
+    }
+
     /**
      * {@inheritDoc}
      */
     @Override
-    public <T> SerializedObject<T> read(Resource input, Class<T> type, ObjectMetadata... metadata)
+    public <T> SerializedObject<T> read(InputStream input,
+                                        StringPath path,
+                                        Class<T> type,
+                                        ObjectMetadata... metadata)
     {
         // Load properties from the given resource,
-        var properties = PropertyMap.load(this, input);
+        var properties = PropertyMap.load(this, input, ProgressReporter.none());
         try
         {
             // and if a type wasn't explicitly specified,
             if (type == null)
             {
                 // then load it using the class name specified by the 'class' property.
-                ensure(Arrays.contains(metadata, TYPE), "Must specify either a type or Metadata.TYPE");
-                var typeName = ensureNotNull(properties.get("class"), "Missing class property in: $", input);
-                type = ensureNotNull(Classes.forName(typeName), "Unable to load class: $", typeName);
+                ensure(Arrays.contains(metadata, TYPE), "Must specify either an explicit type or ObjectMetadata.TYPE to read the type from the input");
+                var typeName = properties.get("class");
+                if (typeName == null)
+                {
+                    typeName = properties.get("type");
+                }
+                ensureNotNull(typeName, "Cannot find 'class' or 'type' property in: $", path);
+                type = ensureNotNull(Classes.forName(typeName), "Unable to load class $, specified in $", typeName, path);
             }
 
             // Next, read any version
@@ -74,19 +97,27 @@ public class PropertyMapSerializer implements ObjectSerializer
             }
             else
             {
-                return fail("Unable to convert properties to an object: $", input);
+                return fail("Unable to convert properties to an object of type $: $", type, path);
             }
         }
         catch (Exception e)
         {
-            return fail(e, "Unable to load properties from: $", input);
+            return fail(e, "Unable to load properties for type $: $", type, path);
         }
     }
 
     @Override
-    public <T> boolean write(WritableResource out, SerializedObject<T> object,
-                             com.telenav.kivakit.resource.serialization.ObjectMetadata... metadata)
+    public ProgressReporter reporter()
     {
-        return unsupported();
+        return reporter;
+    }
+
+    @Override
+    public <T> boolean write(OutputStream output,
+                             StringPath path,
+                             SerializedObject<T> object,
+                             ObjectMetadata... metadata)
+    {
+        return false;
     }
 }

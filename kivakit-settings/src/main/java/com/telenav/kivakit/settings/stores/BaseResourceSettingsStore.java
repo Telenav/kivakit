@@ -112,22 +112,22 @@ public abstract class BaseResourceSettingsStore extends BaseSettingsStore implem
     /**
      * Loads a settings object from the given resource
      *
-     * @param input The resource to read
+     * @param resource The resource to read
      * @return The {@link SettingsObject}
      */
-    protected SettingsObject read(Resource input)
+    protected SettingsObject read(Resource resource)
     {
-        var reader = require(ObjectSerializers.class).serializer(input.extension());
+        var reader = require(ObjectSerializers.class).serializer(resource.extension());
         if (reader != null)
         {
-            var object = reader.read(input, TYPE, INSTANCE);
+            var object = reader.read(resource, TYPE, INSTANCE);
             if (object != null)
             {
                 return new SettingsObject(object);
             }
             else
             {
-                problem("Unable to read settings object from: $", input);
+                problem("Unable to read settings object from: $", resource);
             }
         }
         return null;

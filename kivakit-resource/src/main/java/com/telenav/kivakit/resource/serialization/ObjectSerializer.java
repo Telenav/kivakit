@@ -9,6 +9,8 @@ import com.telenav.kivakit.resource.WritableResource;
  *
  * @author jonathanl (shibo)
  */
-public interface ObjectSerializer extends ObjectReader, ObjectWriter
+public interface ObjectSerializer extends
+        ObjectReader,
+        ObjectWriter
 {
 }

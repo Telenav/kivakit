@@ -35,10 +35,12 @@ import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.path.FilePath;
 import com.telenav.kivakit.resource.project.lexakai.DiagramResourceType;
+import com.telenav.kivakit.resource.resources.InputResource;
 import com.telenav.kivakit.resource.resources.PackageResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -57,8 +59,8 @@ import java.util.regex.Pattern;
  * <ul>
  *     <li>{@link #create()} - Creates an empty property map</li>
  *     <li>{@link #propertyMap(VariableMap)} - Creates a property map from the given variable map</li>
- *     <li>{@link #load(Listener, Resource)} - Loads property map from the given resource</li>
- *     <li>{@link #localized(Listener, PackagePath, Locale)} - Loads a property map from the given package with a relative path
+ *     <li>{@link #load(Listener, ProgressReporter, Resource)} - Loads property map from the given resource</li>
+ *     <li>{@link #localized(Listener, ProgressReporter, PackagePath, Locale)} - Loads a property map from the given package with a relative path
  *      from the given {@link Locale} of the form "locales/[language-name](/[country-name])?.</li>
  * </ul>
  *
@@ -107,29 +109,29 @@ public class PropertyMap extends VariableMap<String>
         return new PropertyMap();
     }
 
-    public static PropertyMap load(Listener listener, Resource resource)
+    public static PropertyMap load(Listener listener, InputStream input, ProgressReporter reporter)
     {
-        if (resource.exists())
-        {
-            return load(resource, ProgressReporter.none());
-        }
-        listener.warning("Unable to load property map from: $", resource);
-        return new PropertyMap();
+        return load(listener, reporter, new InputResource(input));
     }
 
-    public static PropertyMap load(Listener listener, PackagePath _package, String path)
+    public static PropertyMap load(Listener listener, ProgressReporter reporter, Resource resource)
     {
-        return load(listener, PackageResource.packageResource(_package, FilePath.parseFilePath(listener, path)));
+        return load(resource, reporter);
     }
 
-    public static PropertyMap load(Listener listener, Class<?> _package, String path)
+    public static PropertyMap load(Listener listener, ProgressReporter reporter, PackagePath _package, String path)
     {
-        return load(listener, PackagePath.packagePath(_package), path);
+        return load(listener, reporter, PackageResource.packageResource(_package, FilePath.parseFilePath(listener, path)));
     }
 
-    public static PropertyMap localized(Listener listener, PackagePath path, Locale locale)
+    public static PropertyMap load(Listener listener, ProgressReporter reporter, Class<?> _package, String path)
     {
-        return PropertyMap.load(listener, path, locale.path().join("/"));
+        return load(listener, reporter, PackagePath.packagePath(_package), path);
+    }
+
+    public static PropertyMap localized(Listener listener, ProgressReporter reporter, PackagePath path, Locale locale)
+    {
+        return PropertyMap.load(listener, reporter, path, locale.path().join("/"));
     }
 
     public static PropertyMap propertyMap(VariableMap<String> variables)

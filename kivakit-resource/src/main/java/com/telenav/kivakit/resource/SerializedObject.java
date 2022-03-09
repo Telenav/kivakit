@@ -20,13 +20,18 @@ public class SerializedObject<T> extends VersionedObject<T>
 
     public SerializedObject(T object, Version version, InstanceIdentifier instance)
     {
-        super(version, object);
+        super(object, version);
         this.instance = instance;
     }
 
     public SerializedObject(T object, Version version)
     {
-        super(version, object);
+        super(object, version);
+    }
+
+    public SerializedObject(T object)
+    {
+        this(object, null);
     }
 
     public InstanceIdentifier instance()

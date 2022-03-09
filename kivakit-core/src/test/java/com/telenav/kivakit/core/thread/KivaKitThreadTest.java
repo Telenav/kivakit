@@ -39,9 +39,7 @@ public class KivaKitThreadTest extends UnitTest
             @Override
             protected void onRun()
             {
-                this.information("Running");
                 executedAt.set(Time.now());
-                this.information("Done");
             }
         });
 

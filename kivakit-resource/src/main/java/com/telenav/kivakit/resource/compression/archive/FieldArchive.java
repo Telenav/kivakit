@@ -121,7 +121,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
             var value = field.get(object);
             if (value != null)
             {
-                zip().save(writer, entryName, new VersionedObject<>(outer.version, value));
+                zip().save(writer, entryName, new VersionedObject<>(value, outer.version));
                 return true;
             }
             return false;
@@ -177,7 +177,9 @@ public class FieldArchive extends BaseRepeater implements Closeable
     /**
      * Loads a versioned object from the zip entry named "[object-name].[field-name]"
      */
-    public <T> VersionedObject<T> load(ObjectReader reader, NamedObject object, String fieldName)
+    public <T> VersionedObject<T> load(ObjectReader reader,
+                                       NamedObject object,
+                                       String fieldName)
     {
         return zip().load(reader, entryName(object, fieldName));
     }
@@ -351,7 +353,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
     {
         if (zip == null)
         {
-            zip = ZipArchive.open(this, file, reporter, mode);
+            zip = ZipArchive.open(this, file, mode);
         }
         return zip;
     }

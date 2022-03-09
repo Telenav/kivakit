@@ -182,9 +182,9 @@ public class Package extends BaseRepeater implements ResourceFolder
     /**
      * @return A localized property map for the given locale
      */
-    public PropertyMap localizedProperties(Listener listener, Locale locale)
+    public PropertyMap localizedProperties(Listener listener, ProgressReporter reporter, Locale locale)
     {
-        return PropertyMap.localized(listener, path(), locale);
+        return PropertyMap.localized(listener, reporter, path(), locale);
     }
 
     /**

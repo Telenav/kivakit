@@ -53,7 +53,6 @@ open module kivakit.resource
     exports com.telenav.kivakit.resource.project.lexakai;
     exports com.telenav.kivakit.resource.reading;
     exports com.telenav.kivakit.resource.resources;
-    exports com.telenav.kivakit.resource.serialization.serializers;
     exports com.telenav.kivakit.resource.serialization;
     exports com.telenav.kivakit.resource.spi;
     exports com.telenav.kivakit.resource.writing;

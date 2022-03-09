@@ -22,11 +22,13 @@ import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.io.Nio;
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.BroadcastingProgressReporter;
+import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
+import com.telenav.kivakit.core.progress.reporters.ProgressiveOutputStream;
 import com.telenav.kivakit.core.value.count.ByteSized;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.value.count.MutableCount;
@@ -36,8 +38,6 @@ import com.telenav.kivakit.interfaces.code.Callback;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.SerializedObject;
 import com.telenav.kivakit.resource.project.lexakai.DiagramResourceArchive;
-import com.telenav.kivakit.resource.resources.InputResource;
-import com.telenav.kivakit.resource.resources.OutputResource;
 import com.telenav.kivakit.resource.serialization.ObjectReader;
 import com.telenav.kivakit.resource.serialization.ObjectWriter;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -64,10 +64,10 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.VERSION;
 
 /**
  * A wrapper around the JDK zip filesystem that makes it easier to use. A {@link ZipArchive} can be created with {@link
- * #open(Listener, File, ProgressReporter, Mode)}, which returns the open zip archive or null if the operation fails.
- * Adds the ability to save and load objects into zip entries using an {@link ObjectWriter}, and {@link ObjectReader},
- * respectively. A zip archive contains entries wrapped by {@link ZipEntry} and a {@link ZipArchive} is {@link Iterable}
- * to make it easy to enumerate zip entries:
+ * #open(Listener, File, Mode)}, which returns the open zip archive or null if the operation fails. Adds the ability to
+ * save and load objects into zip entries using an {@link ObjectWriter}, and {@link ObjectReader}, respectively. A zip
+ * archive contains entries wrapped by {@link ZipEntry} and a {@link ZipArchive} is {@link Iterable} to make it easy to
+ * enumerate zip entries:
  * <pre>
  * var archive = new ZipArchive("test.zip");
  * for (var entry : archive)
@@ -109,13 +109,11 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.VERSION;
 @UmlRelation(label = "opens for access", referent = ZipArchive.Mode.class)
 @UmlExcludeSuperTypes({ AutoCloseable.class, Iterable.class })
 @LexakaiJavadoc(complete = true)
-public final class ZipArchive implements
+public final class ZipArchive extends BaseRepeater implements
         Iterable<ZipEntry>,
         AutoCloseable,
         ByteSized
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     /**
      * @return True if the resource is a zip archive
      */
@@ -123,13 +121,13 @@ public final class ZipArchive implements
     {
         if (file.isRemote())
         {
-            LOGGER.warning("Cannot read remote zip archives: $", file);
+            listener.warning("Cannot read remote zip archives: $", file);
         }
         else
         {
             if (file.exists())
             {
-                var zip = open(listener, file, ProgressReporter.none(), READ);
+                var zip = open(listener, file, READ);
                 if (zip != null)
                 {
                     zip.close();
@@ -142,11 +140,6 @@ public final class ZipArchive implements
 
     public static ZipArchive open(Listener listener, File file, Mode mode)
     {
-        return open(listener, file, ProgressReporter.none(), mode);
-    }
-
-    public static ZipArchive open(Listener listener, File file, ProgressReporter reporter, Mode mode)
-    {
         if (file.isRemote())
         {
             listener.warning("Cannot read remote zip archives: $", file);
@@ -156,12 +149,7 @@ public final class ZipArchive implements
             var filesystem = filesystem(listener, file, mode);
             if (filesystem != null)
             {
-                var zip = new ZipArchive(filesystem, reporter, file);
-                if (mode == ZipArchive.Mode.READ)
-                {
-                    reporter.steps(zip.sizeInBytes());
-                }
-                return zip;
+                return new ZipArchive(filesystem, file);
             }
         }
         return null;
@@ -184,20 +172,12 @@ public final class ZipArchive implements
 
     private FileSystem filesystem;
 
-    private final ProgressReporter reporter;
-
     public ZipArchive(FileSystem filesystem, File file)
     {
-        this(filesystem, ProgressReporter.none(), file);
-    }
-
-    public ZipArchive(FileSystem filesystem, ProgressReporter reporter, File file)
-    {
-        this.reporter = reporter;
         assert file != null;
         assert filesystem != null;
 
-        this.file = file.materialized(BroadcastingProgressReporter.create(LOGGER));
+        this.file = file.materialized(BroadcastingProgressReporter.create(this));
         this.filesystem = filesystem;
     }
 
@@ -255,7 +235,7 @@ public final class ZipArchive implements
         {
             return new ZipEntry(filesystem, path);
         }
-        LOGGER.warning("Couldn't find zip entry '$'", pathname);
+        warning("Couldn't find zip entry '$'", pathname);
         return null;
     }
 
@@ -291,12 +271,9 @@ public final class ZipArchive implements
             var entry = entry(entryName);
             if (entry != null)
             {
-                try (var input = entry.openForReading(reporter))
+                try (var input = new ProgressiveInputStream(entry.openForReading(reader.reporter())))
                 {
-                    if (input != null)
-                    {
-                        return reader.read(new InputResource(input), TYPE, VERSION);
-                    }
+                    return reader.read(input, StringPath.stringPath(entryName), TYPE, VERSION);
                 }
             }
         }
@@ -325,7 +302,7 @@ public final class ZipArchive implements
     {
         saveEntry(entryName, output ->
         {
-            var input = resource.openForReading(reporter);
+            var input = resource.openForReading();
             IO.copy(input, output);
             IO.close(input);
         });
@@ -341,7 +318,8 @@ public final class ZipArchive implements
         {
             try
             {
-                writer.write(new OutputResource(output), new SerializedObject<>(object), TYPE, VERSION);
+                writer.write(new ProgressiveOutputStream(output, writer.reporter()),
+                        StringPath.stringPath(entryName), new SerializedObject<>(object), TYPE, VERSION);
             }
             finally
             {
