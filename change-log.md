@@ -4,14 +4,62 @@
 
 ## Version 1.4.0 (2022.03.10) "cobalt bunny"
 
-### refactoring
-
 This release was a major cleanup release and refactored and relocated
 code between the three repositories, _kivakit_, _kivakit-extensions_, and 
 _kivakit-stuff_, according to the principles described in 
 the Medium article [*Open Source Repository Structure*](https://medium.com/@jonathanlocke/open-source-repository-structure-c1050d5840c6).
+See *restructuring* below for details.
+ 
+### collections
+   
+ * CacheMap expiry time
+ * BaseList.replaceAll()
+ * Added BaseStringMap.asObject() methods
+ * Added LazyMap
 
+### conversion
 
+   * Added converters
+     * VariableMapConverter
+     * ObjectConverter
+     * BaseTwoWayConverter
+   * Added BaseStringMap.asObject() methods
+
+### documentation
+
+ * improvements to documentation in key classes
+ * moved project.lexakai.* -> lexakai.*
+
+### interfaces
+
+ * Added Presence
+ * Added LengthOfTime
+
+### logging
+
+ * Removed remaining static LOGGER fields
+
+### microservices
+
+ * Added -api-versions switch to enable easy backwards compatibility
+   by forwarding requests to old API versions to child processes
+ 
+### monads
+
+ * Added monads
+   * Maybe
+   * Result
+ * Added ResultTrait for convenience
+
+### progress reporting
+
+ * Added ProgressiveIterable
+
+### resources
+
+ * FilePath.last() now returns the last filename in the path, rather than the last element (which could be empty in the case where the path ends in a slash)
+
+### restructuring
 
  * Code was migrated between kivakit, kivakit-extensions and kivakit-stuff to ensure that only mature code is in kivakit and kivakit-extensions.
  * _kivakit-kernel_ was broken into multiple projects to reduce dependencies and conceptual surface area.
@@ -36,9 +84,42 @@ the Medium article [*Open Source Repository Structure*](https://medium.com/@jona
    abstraction works in a similar way to the previous code, with some simplifications
    and improvements. It is not anticipated that this code will need significant work 
    like this again in the future, so it has been migrated into the *kivakit* repository.
+ * Created providers for serializing objects to:
+   * .properties format
+   * JSON
+   * Kryo
+   
+### string
 
+ * Similarity -> StringSimilarity
+ * Message.format() -> Formatter.format()
 
+### system
 
+ * Added SystemProperties
+ * Added Console.print*()
+ * Improved reflection code internals
+ * Move virtual reference code to kivakit-stuff
+
+### traits
+
+ * Added traits:
+   * JavaTrait
+   * PackageTrait
+   * RegistryTrait
+   * ProjectTrait
+   * SettingsTrait
+   * LanguageTrait
+     * TryTrait
+     * ResultTrait
+     
+### values
+   
+ * Moved *Matcher classes into methods in Matcher
+ * Added Primitives
+ * Added NameMixin
+ * AttributedMixin -> AttributesMixin
+   
 -----------------------------------------------------------------------------------------------------------------------
 
 ## Version 1.3.0 (2022.01.31) "mango beachball"
