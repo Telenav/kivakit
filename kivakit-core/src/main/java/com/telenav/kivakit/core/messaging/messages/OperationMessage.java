@@ -19,6 +19,8 @@
 package com.telenav.kivakit.core.messaging.messages;
 
 import com.telenav.kivakit.core.collections.map.NameMap;
+import com.telenav.kivakit.core.language.Hash;
+import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.logging.Log;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -46,6 +48,8 @@ import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
+
+import java.util.Arrays;
 
 import static com.telenav.kivakit.core.string.Formatter.Format.WITH_EXCEPTION;
 import static com.telenav.kivakit.core.thread.ReentrancyTracker.Reentrancy.REENTERED;
@@ -104,7 +108,7 @@ public abstract class OperationMessage implements Named, Message
         return listener.problemIfNull(messages.get(name), "Invalid message name: $", name);
     }
 
-    private transient Object[] arguments;
+    private Object[] arguments;
 
     private transient Throwable cause;
 
@@ -116,7 +120,7 @@ public abstract class OperationMessage implements Named, Message
 
     private Frequency maximumFrequency;
 
-    private transient String message;
+    private String message;
 
     private StackTrace stackTrace;
 
@@ -205,6 +209,20 @@ public abstract class OperationMessage implements Named, Message
         return Strings.format(message, arguments);
     }
 
+    @Override
+    public boolean equals(final Object object)
+    {
+        if (object instanceof OperationMessage)
+        {
+            var that = (OperationMessage) object;
+            return Objects.equalPairs(this.getClass(), that.getClass(),
+                    this.created, that.created,
+                    this.message, that.message,
+                    this.stackTrace, that.stackTrace) && Arrays.equals(this.arguments, that.arguments);
+        }
+        return false;
+    }
+
     /**
      * @return The fully formatted message including stack trace information
      */
@@ -238,6 +256,12 @@ public abstract class OperationMessage implements Named, Message
             }
         }
         return formattedMessage;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Hash.many(getClass(), created, message, stackTrace, Arrays.hashCode(arguments));
     }
 
     @Override

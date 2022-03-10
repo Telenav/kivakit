@@ -25,13 +25,11 @@ import com.telenav.kivakit.core.collections.Maps;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.language.Classes;
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
-import com.telenav.kivakit.core.messaging.Debug;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.interfaces.naming.Named;
-import com.telenav.kivakit.serialization.core.SerializationSession;
 import com.telenav.kivakit.serialization.core.SerializationSessionFactory;
 import com.telenav.kivakit.serialization.kryo.KryoSerializationSession;
+import com.telenav.kivakit.serialization.kryo.KryoSerializationSessionFactory;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.util.HashMap;
@@ -48,7 +46,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  * <p><b>Kryo Serialization Identifiers</b></p>
  *
  * <p>
- * For best performance using Kryo serialization, types are assigned Kryo serialization identifiers. See the Kryo
+ * For best performance and security with Kryo, types are assigned Kryo serialization identifiers. See the Kryo
  * documentation for more information. Types registered with this class are assigned identifiers in sequential order in
  * groups. The method {@link #group(String, Runnable)} brackets the next group of identifiers of {@link #GROUP_SIZE},
  * assigning the next identifier from the group to each class registered within the group using {@link #register(Class)}
@@ -74,10 +72,11 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  * <p><b>Serialization</b></p>
  *
  * <p>
- * Once all relevant serializable types have been added to a type set, it can be merged with other type set(s) using
- * {@link #mergedWith(KryoTypes)}. The resulting merged set can be used to produce a {@link SerializationSessionFactory}
- * with {@link #sessionFactory()}. This session factory can then be used to create a {@link SerializationSession} which
- * can be used to read and write data.
+ * Once all relevant serializable types have been with a {@link KryoTypes} set, it can be merged with other type set(s)
+ * using {@link #mergedWith(KryoTypes)}. The resulting merged set can be passed to {@link
+ * KryoSerializationSessionFactory#KryoSerializationSessionFactory(KryoTypes)} to create a {@link
+ * SerializationSessionFactory}. The {@link KryoSerializationSessionFactory#newSession(Listener)} method can then be
+ * used to create a thread-local {@link KryoSerializationSession}, which can be used to read and write data.
  * </p>
  *
  * <p><b>Backwards Compatibility</b></p>
@@ -85,8 +84,8 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  * <p>
  * To maintain backwards compatibility with prior serialized data, it is necessary to add types and groups in the same
  * order, and to merge {@link KryoTypes} sets in the same order. If new items need to be added, they must be added at
- * the end of the list. Plenty of space is available in the identifier groupings to allow for this (1,000 per group and
- * 1,000,000 per {@link KryoTypes} set).
+ * the end of each group. Plenty of space is available in the identifier groupings to allow for this (1,000 per group
+ * and 1,000,000 per {@link KryoTypes} set).
  * </p>
  *
  * <p><b>Important Note</b></p>
@@ -103,15 +102,11 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
 @LexakaiJavadoc(complete = true)
 public class KryoTypes implements Named
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
-    private static final Debug DEBUG = new Debug(LOGGER);
-
     /** The number of identifiers in each group */
     public static final int GROUP_SIZE = 1_000;
 
     /** The number of identifiers in each KryoTypes set */
-    public static final int KRYO_TYPES_SIZE = 2_000_000;
+    public static final int KRYO_TYPES_SIZE = 1_000_000;
 
     /** The base identifier for dynamic registration */
     private static final int DYNAMIC_IDENTIFIER_FIRST = 1_000_000;
@@ -126,7 +121,7 @@ public class KryoTypes implements Named
     private ObjectList<KryoTypes> merged = new ObjectList<>();
 
     /** The next identifier for Kryo registration */
-    private int nextIdentifier = KRYO_TYPES_SIZE;
+    private int nextIdentifier = DYNAMIC_IDENTIFIER_FIRST + KRYO_TYPES_SIZE;
 
     public KryoTypes()
     {
@@ -265,19 +260,28 @@ public class KryoTypes implements Named
     }
 
     /**
+     * <p>
+     * Registers all the kryo types in set of types with the given {@link Kryo} object.
+     * </p>
+     *
+     * @param kryo The kryo serializer to register types with
+     */
+    public void registerWith(Kryo kryo)
+    {
+        // Go through each entry,
+        for (var entry : entries.values())
+        {
+            // and register it with kryo,
+            entry.register(kryo);
+        }
+    }
+
+    /**
      * @return The set of all registered types
      */
     public Set<Class<?>> registeredTypes()
     {
         return entries.keySet();
-    }
-
-    /**
-     * @return A session factory for this set of types
-     */
-    public SerializationSessionFactory sessionFactory()
-    {
-        return new SerializationSessionFactory(() -> new KryoSerializationSession(this));
     }
 
     @Override
@@ -289,28 +293,6 @@ public class KryoTypes implements Named
             lines.add(entry.toString());
         }
         return lines.join("\n");
-    }
-
-    /**
-     * <b>Not public API</b>
-     *
-     * <p>
-     * Registers all the kryo types in set of types with the given {@link Kryo} object.
-     * </p>
-     *
-     * @param kryo The kryo serializer to register types with
-     */
-    void registerWith(Kryo kryo)
-    {
-        DEBUG.trace("Registering $", name());
-
-        // Go through each entry,
-        for (var entry : entries.values())
-        {
-            // and register it with kryo,
-            DEBUG.trace("Registering $", entry);
-            entry.register(kryo);
-        }
     }
 
     /**
@@ -339,7 +321,6 @@ public class KryoTypes implements Named
                 .identifier(identifier);
 
         // and store it in the map.
-        DEBUG.trace("Register $ => $", identifier, type);
         entries.put(type, entry);
         identifiers.put(identifier, type);
     }

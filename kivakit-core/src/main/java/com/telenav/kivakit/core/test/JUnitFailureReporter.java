@@ -26,7 +26,7 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.junit.Assert;
 
-import static com.telenav.kivakit.core.string.Formatter.Format.WITHOUT_EXCEPTION;
+import static com.telenav.kivakit.core.string.Formatter.Format.WITH_EXCEPTION;
 
 /**
  * A {@link FailureReporter} that causes a JUnit test failure. This validation reporter is installed by {@link UnitTest}
@@ -41,6 +41,6 @@ public class JUnitFailureReporter implements FailureReporter
     @Override
     public void report(Message message)
     {
-        Assert.fail(message.formatted(WITHOUT_EXCEPTION));
+        Assert.fail(message.formatted(WITH_EXCEPTION));
     }
 }

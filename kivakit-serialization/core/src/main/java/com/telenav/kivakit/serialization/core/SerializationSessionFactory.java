@@ -16,22 +16,22 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.serialization.kryo;
+package com.telenav.kivakit.serialization.core;
 
-import com.telenav.kivakit.core.version.Version;
-import org.junit.Test;
+import com.telenav.kivakit.core.messaging.Listener;
 
 /**
+ * Creates new {@link SerializationSession}. The session will be thread-safe.
+ *
  * @author jonathanl (shibo)
  */
-public class VersionTest extends KryoUnitTest
+public interface SerializationSessionFactory
 {
-    @Test
-    public void testSerialization()
-    {
-        serializationTest(Version.parseVersion(this, "6.0.0-snapshot"));
-        serializationTest(Version.parseVersion(this, "18.3.4-rc"));
-        serializationTest(Version.parseVersion(this, "4.0.9-m1"));
-        serializationTest(Version.parseVersion(this, "4.0"));
-    }
+    /**
+     * Creates a new {@link SerializationSession}
+     *
+     * @param listener The listener to report problems to
+     * @return The session
+     */
+    SerializationSession newSession(Listener listener);
 }

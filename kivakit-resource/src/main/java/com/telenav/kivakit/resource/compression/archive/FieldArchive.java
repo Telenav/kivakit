@@ -157,6 +157,11 @@ public class FieldArchive extends BaseRepeater implements Closeable
         this.mode = mode;
     }
 
+    public FieldArchive(File file, ZipArchive.Mode mode)
+    {
+        this(file, ProgressReporter.none(), mode);
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -214,7 +219,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
             {
                 // set the field to that value
                 var message = field.setter().set(object, value);
-                if (message.status().failed())
+                if (message != null && message.status().failed())
                 {
                     transmit(message);
                 }

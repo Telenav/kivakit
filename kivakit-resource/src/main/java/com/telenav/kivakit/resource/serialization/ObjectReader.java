@@ -5,14 +5,14 @@ import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.SerializedObject;
+import com.telenav.kivakit.resource.SerializableObject;
 
 import java.io.InputStream;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
 /**
- * Interface to code that can read {@link SerializedObject}s from a {@link Resource}.
+ * Interface to code that can read {@link SerializableObject}s from a {@link Resource}.
  *
  * @author jonathanl (shibo)
  */
@@ -21,8 +21,7 @@ public interface ObjectReader extends RepeaterMixin
     /**
      * Reads an object of the given type from the given {@link InputStream}. If no type is supplied, the type can be
      * read from the stream by supplying {@link ObjectMetadata#TYPE}. It is required to supply a type or {@link
-     * ObjectMetadata#TYPE}. The type will always be read before any version. Any instance identifier will always be
-     * read last.
+     * ObjectMetadata#TYPE}.
      *
      * @param input The input stream
      * @param path Path associated with the input stream, for diagnostic purposes
@@ -30,10 +29,10 @@ public interface ObjectReader extends RepeaterMixin
      * @param metadata The metadata to read
      * @return The deserialized object
      */
-    <T> SerializedObject<T> read(InputStream input,
-                                 StringPath path,
-                                 Class<T> type,
-                                 ObjectMetadata... metadata);
+    <T> SerializableObject<T> read(InputStream input,
+                                   StringPath path,
+                                   Class<T> type,
+                                   ObjectMetadata... metadata);
 
     /**
      * Reads an object from the given {@link InputStream}. The type to be read must be in the input, and metadata must
@@ -43,9 +42,9 @@ public interface ObjectReader extends RepeaterMixin
      * @param path The path for the input stream, for diagnostic purposes
      * @param metadata The metadata to read from the input
      */
-    default <T> SerializedObject<T> read(InputStream input,
-                                         StringPath path,
-                                         ObjectMetadata... metadata)
+    default <T> SerializableObject<T> read(InputStream input,
+                                           StringPath path,
+                                           ObjectMetadata... metadata)
     {
         ensure(Arrays.contains(metadata, ObjectMetadata.TYPE),
                 "Must specify ObjectMetadata.TYPE, or include an explicit type to read");
@@ -62,9 +61,9 @@ public interface ObjectReader extends RepeaterMixin
      * @param metadata The metadata to read
      * @return The deserialized object
      */
-    default <T> SerializedObject<T> read(Resource resource,
-                                         Class<T> type,
-                                         ObjectMetadata... metadata)
+    default <T> SerializableObject<T> read(Resource resource,
+                                           Class<T> type,
+                                           ObjectMetadata... metadata)
     {
         var input = reporter().progressiveInput(resource.openForReading());
         return read(input, resource.path(), type, metadata);
@@ -78,8 +77,8 @@ public interface ObjectReader extends RepeaterMixin
      * @param metadata The metadata to read
      * @return The deserialized object
      */
-    default <T> SerializedObject<T> read(Resource resource,
-                                         ObjectMetadata... metadata)
+    default <T> SerializableObject<T> read(Resource resource,
+                                           ObjectMetadata... metadata)
     {
         return read(resource, null, metadata);
     }

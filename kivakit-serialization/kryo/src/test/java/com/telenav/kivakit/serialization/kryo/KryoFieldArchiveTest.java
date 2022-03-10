@@ -18,21 +18,19 @@
 
 package com.telenav.kivakit.serialization.kryo;
 
-import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.resource.compression.archive.FieldArchive;
 import com.telenav.kivakit.resource.compression.archive.KivaKitArchivedField;
-import com.telenav.kivakit.resource.compression.archive.ZipArchive;
-import com.telenav.kivakit.serialization.kryo.types.CoreKryoTypes;
-import com.telenav.kivakit.serialization.kryo.types.KryoTypes;
-import com.telenav.kivakit.serialization.properties.PropertyMapSerializer;
 import org.junit.Test;
 
 import java.io.Serializable;
 
-public class FieldArchiveTest extends KryoUnitTest
+import static com.telenav.kivakit.resource.compression.archive.ZipArchive.Mode.READ;
+import static com.telenav.kivakit.resource.compression.archive.ZipArchive.Mode.WRITE;
+
+public class KryoFieldArchiveTest extends KryoUnitTest
 {
     public static class TestClass implements NamedObject, Serializable
     {
@@ -62,21 +60,21 @@ public class FieldArchiveTest extends KryoUnitTest
     }
 
     @Test
-    public void testSaveAndLoad()
+    public void test()
     {
         var file = Folder.kivakitTest(getClass()).file("field-archive-test.zip");
 
         var sessionFactory = sessionFactory();
 
-        var serializer = new PropertyMapSerializer();
+        var serializer = new KryoObjectSerializer(kryoTypes());
 
-        try (var archive = listenTo(new FieldArchive(file, ProgressReporter.none(), ZipArchive.Mode.WRITE)))
+        try (var archive = listenTo(new FieldArchive(file, WRITE)))
         {
             var test = new TestClass();
             archive.saveFieldsOf(serializer, test, Version.parseVersion(this, "1.0"));
         }
 
-        try (var archive = listenTo(new FieldArchive(file, ProgressReporter.none(), ZipArchive.Mode.READ)))
+        try (var archive = listenTo(new FieldArchive(file, READ)))
         {
             var test = new TestClass();
             archive.loadFieldOf(serializer, test, "x");
@@ -85,18 +83,12 @@ public class FieldArchiveTest extends KryoUnitTest
             ensureEqual(test.y, 5);
         }
 
-        try (var archive = listenTo(new FieldArchive(file, ProgressReporter.none(), ZipArchive.Mode.READ)))
+        try (var archive = listenTo(new FieldArchive(file, READ)))
         {
             var test = new TestClass();
             archive.loadFieldsOf(serializer, test);
             ensureEqual(test.x, "this is a test of the emergency broadcasting system");
             ensureEqual(test.y, 5);
         }
-    }
-
-    @Override
-    protected KryoTypes kryoTypes()
-    {
-        return new CoreKryoTypes();
     }
 }

@@ -29,6 +29,8 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 public interface Versioned
 {
     /**
+     * Returns the version of this object
+     *
      * @return The version
      */
     Version version();

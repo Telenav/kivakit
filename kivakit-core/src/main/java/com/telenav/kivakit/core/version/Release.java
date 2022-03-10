@@ -39,7 +39,8 @@ public enum Release
     M6(10),
     M7(11),
     M8(12),
-    M9(13);
+    M9(13),
+    RELEASE(14);
 
     public static Release forIdentifier(int identifier)
     {

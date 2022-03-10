@@ -1,11 +1,11 @@
 package com.telenav.kivakit.resource.serialization;
 
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.SerializedObject;
+import com.telenav.kivakit.resource.SerializableObject;
 import com.telenav.kivakit.resource.WritableResource;
 
 /**
- * Reads {@link SerializedObject}s from {@link Resource}s and writes them to {@link WritableResource}s.
+ * Reads {@link SerializableObject}s from {@link Resource}s and writes them to {@link WritableResource}s.
  *
  * @author jonathanl (shibo)
  */

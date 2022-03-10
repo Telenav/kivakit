@@ -36,7 +36,7 @@ import com.telenav.kivakit.core.version.VersionedObject;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.interfaces.code.Callback;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.SerializedObject;
+import com.telenav.kivakit.resource.SerializableObject;
 import com.telenav.kivakit.resource.project.lexakai.DiagramResourceArchive;
 import com.telenav.kivakit.resource.serialization.ObjectReader;
 import com.telenav.kivakit.resource.serialization.ObjectWriter;
@@ -319,7 +319,7 @@ public final class ZipArchive extends BaseRepeater implements
             try
             {
                 writer.write(new ProgressiveOutputStream(output, writer.reporter()),
-                        StringPath.stringPath(entryName), new SerializedObject<>(object), TYPE, VERSION);
+                        StringPath.stringPath(entryName), new SerializableObject<>(object), TYPE, VERSION);
             }
             finally
             {

@@ -16,10 +16,9 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.serialization.kryo;
+package com.telenav.kivakit.serialization.kryo.types;
 
 import com.telenav.kivakit.resource.PropertyMap;
-import com.telenav.kivakit.serialization.kryo.types.KryoTypes;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
@@ -37,6 +36,6 @@ public class ResourceKryoTypes extends KryoTypes
         // in each registration group must remain in the same order.
         //----------------------------------------------------------------------------------------------
 
-        group("other", () -> register(PropertyMap.class));
+        group("properties", () -> register(PropertyMap.class));
     }
 }

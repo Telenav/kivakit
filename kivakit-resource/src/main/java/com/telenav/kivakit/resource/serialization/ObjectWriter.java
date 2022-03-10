@@ -4,17 +4,17 @@ import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveOutputStream;
-import com.telenav.kivakit.resource.SerializedObject;
+import com.telenav.kivakit.resource.SerializableObject;
 import com.telenav.kivakit.resource.WritableResource;
 
 import java.io.OutputStream;
 
 /**
- * Interface to code that can write {@link SerializedObject}s to a {@link WritableResource}.
+ * Interface to code that can write {@link SerializableObject}s to a {@link WritableResource}.
  *
  * @author jonathanl (shibo)
  * @see WritableResource
- * @see SerializedObject
+ * @see SerializableObject
  */
 public interface ObjectWriter extends RepeaterMixin
 {
@@ -27,7 +27,7 @@ public interface ObjectWriter extends RepeaterMixin
 
     /**
      * Writes the given serialized object to the given {@link WritableResource}, including the given metadata in the
-     * output. The type will always be written before the version. Any instance identifier will always be written last.
+     * output.
      *
      * @param resource The output stream
      * @param object The object to write
@@ -35,7 +35,7 @@ public interface ObjectWriter extends RepeaterMixin
      * @return True if the object was successfully written
      */
     default <T> boolean write(WritableResource resource,
-                              SerializedObject<T> object,
+                              SerializableObject<T> object,
                               ObjectMetadata... metadata)
     {
         var output = new ProgressiveOutputStream(resource.openForWriting(), reporter());
@@ -43,8 +43,8 @@ public interface ObjectWriter extends RepeaterMixin
     }
 
     /**
-     * Writes the given serialized object to the given {@link OutputStream}, including the given metadata in the output.
-     * The type will always be written before the version. Any instance identifier will always be written last.
+     * Writes the given serialized object to the given {@link OutputStream}, including the given metadata in the
+     * output.
      *
      * @param output The output stream
      * @param path Path associated with the output stream, for diagnostic purposes
@@ -54,6 +54,6 @@ public interface ObjectWriter extends RepeaterMixin
      */
     <T> boolean write(OutputStream output,
                       StringPath path,
-                      SerializedObject<T> object,
+                      SerializableObject<T> object,
                       ObjectMetadata... metadata);
 }

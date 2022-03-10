@@ -18,6 +18,8 @@
 
 package com.telenav.kivakit.core.version;
 
+import com.telenav.kivakit.core.language.Hash;
+import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 
 /**
@@ -39,6 +41,23 @@ public class VersionedObject<T> implements
     {
         this.version = version;
         this.object = object;
+    }
+
+    @Override
+    public boolean equals(final Object object)
+    {
+        if (object instanceof VersionedObject)
+        {
+            var that = (VersionedObject<?>) object;
+            return Objects.equalPairs(this.object, that.object, this.version, that.version);
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Hash.many(this.object, this.version);
     }
 
     /**

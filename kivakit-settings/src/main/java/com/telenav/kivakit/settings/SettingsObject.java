@@ -21,7 +21,7 @@ package com.telenav.kivakit.settings;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.registry.RegistryTrait;
-import com.telenav.kivakit.resource.SerializedObject;
+import com.telenav.kivakit.resource.SerializableObject;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeType;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
@@ -149,7 +149,7 @@ public class SettingsObject implements RegistryTrait
         this(object, SINGLETON);
     }
 
-    public SettingsObject(SerializedObject<?> object)
+    public SettingsObject(SerializableObject<?> object)
     {
         this(object.object(), object.object().getClass(), object.instance());
     }
@@ -163,7 +163,7 @@ public class SettingsObject implements RegistryTrait
     {
         ensureNotNull(instance);
         ensureNotNull(object);
-        ensureFalse(object instanceof SerializedObject, "Internal error: Unwrapped SerializedObject");
+        ensureFalse(object instanceof SerializableObject, "Internal error: Unwrapped SerializableObject");
 
         this.identifier = new Identifier(type, instance);
         this.object = object;

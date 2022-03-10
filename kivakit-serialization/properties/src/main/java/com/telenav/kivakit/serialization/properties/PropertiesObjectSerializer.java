@@ -9,7 +9,7 @@ import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.resource.PropertyMap;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.SerializedObject;
+import com.telenav.kivakit.resource.SerializableObject;
 import com.telenav.kivakit.resource.serialization.ObjectMetadata;
 import com.telenav.kivakit.resource.serialization.ObjectSerializer;
 
@@ -25,7 +25,7 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.TYPE;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.VERSION;
 
 /**
- * Reads a {@link SerializedObject} from a <i>.properties</i> file.
+ * Reads a {@link SerializableObject} from a <i>.properties</i> file.
  *
  * @author jonathanl (shibo)
  * @see ObjectSerializer
@@ -51,10 +51,10 @@ public class PropertiesObjectSerializer implements ObjectSerializer
      * {@inheritDoc}
      */
     @Override
-    public <T> SerializedObject<T> read(InputStream input,
-                                        StringPath path,
-                                        Class<T> type,
-                                        ObjectMetadata... metadata)
+    public <T> SerializableObject<T> read(InputStream input,
+                                          StringPath path,
+                                          Class<T> type,
+                                          ObjectMetadata... metadata)
     {
         // Load properties from the given resource,
         var properties = PropertyMap.load(this, input, ProgressReporter.none());
@@ -93,7 +93,7 @@ public class PropertiesObjectSerializer implements ObjectSerializer
             if (object != null)
             {
                 // and return the deserialized object.
-                return new SerializedObject<>(object, version, instance);
+                return new SerializableObject<>(object, version, instance);
             }
             else
             {
@@ -115,7 +115,7 @@ public class PropertiesObjectSerializer implements ObjectSerializer
     @Override
     public <T> boolean write(OutputStream output,
                              StringPath path,
-                             SerializedObject<T> object,
+                             SerializableObject<T> object,
                              ObjectMetadata... metadata)
     {
         return false;

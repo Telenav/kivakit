@@ -2,6 +2,45 @@
 
 -----------------------------------------------------------------------------------------------------------------------
 
+## Version 1.4.0 (2022.03.10) "cobalt bunny"
+
+### refactoring
+
+This release was a major cleanup release and refactored and relocated
+code between the three repositories, _kivakit_, _kivakit-extensions_, and 
+_kivakit-stuff_, according to the principles described in 
+the Medium article [*Open Source Repository Structure*](https://medium.com/@jonathanlocke/open-source-repository-structure-c1050d5840c6).
+
+
+
+ * Code was migrated between kivakit, kivakit-extensions and kivakit-stuff to ensure that only mature code is in kivakit and kivakit-extensions.
+ * _kivakit-kernel_ was broken into multiple projects to reduce dependencies and conceptual surface area.
+   * kivakit-conversion
+   * kivakit-core
+   * kivakit-extraction
+   * kivakit-interfaces
+   * kivakit-mixins
+   * kivakit-validation
+ * Code lacking maturity in _kivakit-extensions_ was moved:
+   * kivakit-hdfs-filesystem (lacks test and has regressions)
+   * kivakit-remote-log (presently broken)
+   * kivakit-service (presently broken)
+   * kivakit-primitive-collections (working, but only has one consumer)
+ 
+### serialization
+
+ * The serialization abstraction was rewritten to provide cleaner structure
+   and to support more future serialization providers. The ObjectReader, ObjectWriter,
+   and ObjectSerializer interfaces give more control over this functionality
+   than the prior idea of serialization sessions. In addition, the new SerializationSession
+   abstraction works in a similar way to the previous code, with some simplifications
+   and improvements. It is not anticipated that this code will need significant work 
+   like this again in the future, so it has been migrated into the *kivakit* repository.
+
+
+
+-----------------------------------------------------------------------------------------------------------------------
+
 ## Version 1.3.0 (2022.01.31) "mango beachball"
 
 ### todo

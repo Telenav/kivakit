@@ -8,10 +8,12 @@ import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.version.Version;
-import com.telenav.kivakit.resource.SerializedObject;
+import com.telenav.kivakit.resource.SerializableObject;
 import com.telenav.kivakit.resource.resources.OutputResource;
 import com.telenav.kivakit.resource.serialization.ObjectMetadata;
 import com.telenav.kivakit.resource.serialization.ObjectSerializer;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -56,49 +58,30 @@ public class GsonObjectSerializer implements
      * {@inheritDoc}
      */
     @Override
-    public <T> SerializedObject<T> read(InputStream input,
-                                        StringPath path,
-                                        Class<T> typeToRead,
-                                        ObjectMetadata... metadata)
+    public <T> SerializableObject<T> read(InputStream input,
+                                          StringPath path,
+                                          Class<T> typeToRead,
+                                          ObjectMetadata... metadata)
     {
-        return tryCatch(() ->
+        try
         {
+            // Read JSON from input,
             var json = IO.string(input);
 
-            // Get any instance identifier
-            var instance = InstanceIdentifier.SINGLETON;
-            var instanceMatcher = INSTANCE_PATTERN.matcher(json);
-            if (INSTANCE.containedIn(metadata) && instanceMatcher.find())
-            {
-                instance = InstanceIdentifier.of(instanceMatcher.group("instance"));
-            }
-
-            // Get the type to instantiate
-            Class<T> type = typeToRead;
-            if (type == null && TYPE.containedIn(metadata))
-            {
-                var typeMatcher = TYPE_PATTERN.matcher(json);
-                if (typeMatcher.find())
-                {
-                    type = Classes.forName(typeMatcher.group("type"));
-                }
-            }
-
-            // Get version
-            Version version = null;
-            var versionMatcher = VERSION_PATTERN.matcher(json);
-            if (versionMatcher.find())
-            {
-                version = Version.parseVersion(versionMatcher.group("version"));
-            }
-
+            // get the type to read,
+            var type = type(json, metadata, typeToRead);
             if (type != null)
             {
-                return new SerializedObject<>(factory.gson().fromJson(json, type), version, instance);
+                return new SerializableObject<>(factory.gson().fromJson(json, type),
+                        version(json), instance(json, metadata));
             }
 
-            return fail("Unable to find type field in: $", path);
-        });
+            return fail("No type to read: $", path);
+        }
+        catch (Exception e)
+        {
+            return fail(e, "Unable to find type field in: $", path);
+        }
     }
 
     @Override
@@ -113,7 +96,7 @@ public class GsonObjectSerializer implements
     @Override
     public <T> boolean write(OutputStream output,
                              StringPath path,
-                             SerializedObject<T> object,
+                             SerializableObject<T> object,
                              ObjectMetadata... metadata)
     {
         return tryCatchDefault(() ->
@@ -136,7 +119,48 @@ public class GsonObjectSerializer implements
             }
 
             new OutputResource(output).printWriter().println(json);
+
             return true;
         }, false);
+    }
+
+    @NotNull
+    private InstanceIdentifier instance(final String json, final ObjectMetadata[] metadata)
+    {
+        var instance = InstanceIdentifier.SINGLETON;
+        var instanceMatcher = INSTANCE_PATTERN.matcher(json);
+        if (INSTANCE.containedIn(metadata) && instanceMatcher.find())
+        {
+            instance = InstanceIdentifier.of(instanceMatcher.group("instance"));
+        }
+        return instance;
+    }
+
+    @Nullable
+    private <T> Class<T> type(final String json, final ObjectMetadata[] metadata, final Class<T> typeToRead)
+    {
+        Class<T> type = typeToRead;
+        if (type == null && TYPE.containedIn(metadata))
+        {
+            var typeMatcher = TYPE_PATTERN.matcher(json);
+            if (typeMatcher.find())
+            {
+                type = Classes.forName(typeMatcher.group("type"));
+            }
+        }
+
+        return type;
+    }
+
+    @Nullable
+    private Version version(final String json)
+    {
+        Version version = null;
+        var versionMatcher = VERSION_PATTERN.matcher(json);
+        if (versionMatcher.find())
+        {
+            version = Version.parseVersion(versionMatcher.group("version"));
+        }
+        return version;
     }
 }

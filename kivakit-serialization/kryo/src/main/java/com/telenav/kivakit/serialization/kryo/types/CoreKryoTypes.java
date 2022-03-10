@@ -54,7 +54,7 @@ import com.telenav.kivakit.core.version.Release;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.core.vm.JavaVirtualMachineHealth;
 import com.telenav.kivakit.core.vm.ThreadStatus;
-import com.telenav.kivakit.serialization.kryo.project.lexakai.DiagramKryo;
+import com.telenav.kivakit.serialization.kryo.lexakai.DiagramKryo;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -76,7 +76,7 @@ public class CoreKryoTypes extends KryoTypes
     public CoreKryoTypes()
     {
         //----------------------------------------------------------------------------------------------
-        // NOTE: To maintain backward compatibility, classes are assigned identifiers by KryoSerialization.
+        // NOTE: To maintain backward compatibility, classes are assigned identifiers by KryoTypes.
         // If classes are appended to a group, and no classes are removed, older data can always be read.
         //----------------------------------------------------------------------------------------------
 
