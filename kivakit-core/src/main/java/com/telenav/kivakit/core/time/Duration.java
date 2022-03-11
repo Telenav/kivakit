@@ -364,6 +364,11 @@ public class Duration implements
         return Long.toString(milliseconds).hashCode();
     }
 
+    public boolean isMaximum()
+    {
+        return equals(Duration.MAXIMUM);
+    }
+
     public Duration longer(Percent percentage)
     {
         return milliseconds(milliseconds * (1.0 + percentage.asUnitValue()));

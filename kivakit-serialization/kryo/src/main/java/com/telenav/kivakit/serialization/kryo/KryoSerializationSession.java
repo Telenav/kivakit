@@ -97,6 +97,9 @@ public final class KryoSerializationSession extends BaseRepeater implements
         // Associate this session with the given kryo object so that BaseSerializer can look it up,
         kryoToSession.put(kryo, this);
 
+        // turn on reference tracking by default to avoid hard-to-diagnose errors,
+        trackReferences(true);
+
         // and register the given types with kryo.
         types.registerWith(kryo);
     }
@@ -284,7 +287,7 @@ public final class KryoSerializationSession extends BaseRepeater implements
             {
                 write(object.version());
             }
-            
+
             kryo.writeClassAndObject(output, object.object());
         }
         catch (Exception e)

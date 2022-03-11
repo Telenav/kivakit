@@ -25,7 +25,6 @@ import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -46,6 +45,14 @@ public class CacheMap<Key, Value> extends BaseMap<Key, Value>
     /** The maximum allowed age of an entry */
     private final Duration maximumEntryAge;
 
+    /** True if this map should expire old entries */
+    private final boolean expireOldEntries;
+
+    public CacheMap(Maximum cacheSize)
+    {
+        this(cacheSize, Duration.MAXIMUM);
+    }
+
     /**
      * Constructor
      *
@@ -62,40 +69,39 @@ public class CacheMap<Key, Value> extends BaseMap<Key, Value>
                 return size() >= cacheSize.asInt();
             }
         });
+
         this.maximumEntryAge = maximumEntryAge;
-        maximumEntryAge.repeat(timer -> expire());
+        this.expireOldEntries = !maximumEntryAge.isMaximum();
     }
 
     @Override
     public Value get(final Object key)
     {
-        expire();
+        if (expireOldEntries && age.get(key).isGreaterThan(maximumEntryAge))
+        {
+            remove(key);
+            return null;
+        }
         return super.get(key);
     }
 
     @Override
     public Value put(final Key key, final Value value)
     {
-        age.put(key, Time.now());
+        if (expireOldEntries)
+        {
+            age.put(key, Time.now());
+        }
         return super.put(key, value);
     }
 
     @Override
     public Value remove(final Object key)
     {
-        age.remove(key);
-        return super.remove(key);
-    }
-
-    /** Expire any entries older than the maximum cache age */
-    private void expire()
-    {
-        for (var key : new HashSet<>(keySet()))
+        if (expireOldEntries)
         {
-            if (age.get(key).isOlderThan(maximumEntryAge))
-            {
-                remove(key);
-            }
+            age.remove(key);
         }
+        return super.remove(key);
     }
 }
