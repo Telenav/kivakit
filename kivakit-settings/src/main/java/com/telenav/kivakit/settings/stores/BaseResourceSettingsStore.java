@@ -117,7 +117,8 @@ public abstract class BaseResourceSettingsStore extends BaseSettingsStore implem
      */
     protected SettingsObject read(Resource resource)
     {
-        var reader = require(ObjectSerializers.class).serializer(resource.extension());
+        var reader = require(ObjectSerializers.class, ObjectSerializers::new)
+                .serializer(resource.extension());
         if (reader != null)
         {
             var object = reader.read(resource, TYPE, INSTANCE);

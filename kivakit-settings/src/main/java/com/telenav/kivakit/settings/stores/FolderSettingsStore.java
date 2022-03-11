@@ -25,9 +25,9 @@ import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.serialization.ObjectSerializer;
 import com.telenav.kivakit.resource.serialization.ObjectSerializers;
 import com.telenav.kivakit.settings.Settings;
-import com.telenav.kivakit.settings.project.lexakai.DiagramSettings;
 import com.telenav.kivakit.settings.SettingsObject;
 import com.telenav.kivakit.settings.SettingsStore;
+import com.telenav.kivakit.settings.project.lexakai.DiagramSettings;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
@@ -106,7 +106,8 @@ public class FolderSettingsStore extends BaseResourceSettingsStore
         for (var file : folder.files())
         {
             // get any serializer for the file extension,
-            var serializer = require(ObjectSerializers.class).serializer(file.extension());
+            var serializer = require(ObjectSerializers.class, ObjectSerializers::new)
+                    .serializer(file.extension());
             if (serializer != null)
             {
                 objects.addIfNotNull(read(file));

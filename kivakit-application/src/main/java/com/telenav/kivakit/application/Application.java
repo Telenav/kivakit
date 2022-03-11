@@ -544,6 +544,11 @@ public abstract class Application extends BaseComponent implements
         // set up temporary listener,
         LOGGER.listenTo(this);
 
+        // initialize this application's project
+        onProjectInitializing();
+        project.initialize();
+        onProjectInitialized();
+
         // load deployments,
         deployments = DeploymentSet.load(this, getClass());
 
@@ -589,11 +594,6 @@ public abstract class Application extends BaseComponent implements
             // install it in the global settings registry.
             registerSettingsIn(get(DEPLOYMENT));
         }
-
-        // Initialize this application's project
-        onProjectInitializing();
-        project.initialize();
-        onProjectInitialized();
 
         announce("Project: $", project.name());
         announce("Application: " + name() + " (" + KivaKit.get().projectVersion() + ")");

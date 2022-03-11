@@ -68,8 +68,7 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
 
     public boolean asBoolean(String key)
     {
-        var value = get(key).toString();
-        return Booleans.isTrue(value);
+        return Booleans.isTrue((String) get(key));
     }
 
     public Boolean asBooleanObject(String key)

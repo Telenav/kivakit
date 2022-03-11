@@ -308,7 +308,7 @@ public abstract class Project extends BaseRepeater implements
             for (var dependency : dependencies())
             {
                 // and visit it,
-                dependency.visitDependencies(dependency, visited, visitor, level + 1);
+                listenTo(dependency).visitDependencies(dependency, visited, visitor, level + 1);
             }
 
             // then call the visitor.

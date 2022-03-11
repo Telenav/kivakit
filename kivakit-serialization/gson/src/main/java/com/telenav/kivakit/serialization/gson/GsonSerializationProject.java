@@ -24,7 +24,8 @@ public class GsonSerializationProject extends Project
     public void onInitialize()
     {
         // Associate Gson object serializer with .json resources
-        require(ObjectSerializers.class).add(Extension.JSON, new GsonObjectSerializer());
+        require(ObjectSerializers.class, ObjectSerializers::new)
+                .add(Extension.JSON, listenTo(new GsonObjectSerializer()));
 
         // Register default GsonFactory
         register(new CoreGsonFactory(this));

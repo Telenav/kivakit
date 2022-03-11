@@ -41,5 +41,8 @@ public interface ApplicationMetadata extends Versioned
     /**
      * @return The application description
      */
-    String description();
+    default String description()
+    {
+        return "No description";
+    }
 }

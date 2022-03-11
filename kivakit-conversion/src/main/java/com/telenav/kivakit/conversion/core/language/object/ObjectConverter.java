@@ -4,6 +4,7 @@ import com.telenav.kivakit.conversion.BaseConverter;
 import com.telenav.kivakit.conversion.StringConverter;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.reflection.Type;
+import com.telenav.kivakit.core.language.reflection.property.KivaKitOptionalProperty;
 import com.telenav.kivakit.core.language.reflection.property.PropertyValues;
 import com.telenav.kivakit.core.messaging.Listener;
 
@@ -72,6 +73,10 @@ public class ObjectConverter<Value> extends BaseConverter<PropertyValues, Value>
                         var constructor = Classes.constructor(annotation.value(), Listener.class);
                         var converter = (StringConverter<?>) constructor.newInstance(outer);
                         var value = values.valueFor(property);
+                        if (setter.hasAnnotation(KivaKitOptionalProperty.class) && value == null)
+                        {
+                            return null;
+                        }
                         return converter.convert(value.toString());
                     }
                 }

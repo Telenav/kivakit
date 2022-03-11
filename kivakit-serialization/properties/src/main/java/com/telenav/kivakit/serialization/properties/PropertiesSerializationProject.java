@@ -10,6 +10,7 @@ public class PropertiesSerializationProject extends Project
     public void onInitialize()
     {
         // Register .properties object serializer
-        require(ObjectSerializers.class).add(Extension.PROPERTIES, new PropertiesObjectSerializer());
+        require(ObjectSerializers.class, ObjectSerializers::new)
+                .add(Extension.PROPERTIES, listenTo(new PropertiesObjectSerializer()));
     }
 }

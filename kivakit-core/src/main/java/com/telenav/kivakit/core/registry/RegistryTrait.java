@@ -1,7 +1,9 @@
 package com.telenav.kivakit.core.registry;
 
 import com.telenav.kivakit.core.ensure.Ensure;
+import com.telenav.kivakit.interfaces.factory.Factory;
 
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.SINGLETON;
 
 /**
@@ -114,6 +116,26 @@ public interface RegistryTrait
     default Registry registry()
     {
         return Registry.of(this);
+    }
+
+    /**
+     * If the given type cannot be found in the registry with {@link #lookup(Class)}, an instance is created using the
+     * given factory and registered with {@link #register(Object)}. The value is then returned.
+     *
+     * @param type The type that's required
+     * @param factory A factory for creating the type if it can't be foundf
+     * @return The required value
+     */
+    default <T> T require(Class<T> type, Factory<T> factory)
+    {
+        var value = lookup(type);
+        if (value == null)
+        {
+            value = factory.newInstance();
+            register(value);
+        }
+        ensureNotNull(value, "Could not find or create: $", type);
+        return value;
     }
 
     /**
