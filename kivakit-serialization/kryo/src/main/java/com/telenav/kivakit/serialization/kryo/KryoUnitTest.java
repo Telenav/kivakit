@@ -39,9 +39,9 @@ import static com.telenav.kivakit.serialization.core.SerializationSession.Sessio
  * Adds Kryo serialization testing to the {@link UnitTest} base class. Serialization of objects can be tested with:
  *
  * <ul>
- *     <li>{@link #testSerialize(Object)}</li>
- *     <li>{@link #testSerialize(Object, Version)}</li>
- *     <li>{@link #testSessionSerialize(Object)}</li>
+ *     <li>{@link #testSerialization(Object)}</li>
+ *     <li>{@link #testSerialization(Object, Version)}</li>
+ *     <li>{@link #testSessionSerialization(Object)}</li>
  * </ul>
  *
  * <p>
@@ -75,7 +75,7 @@ public class KryoUnitTest extends UnitTest
         return factory;
     }
 
-    protected <T> void testSerialize(T object, Version version)
+    protected <T> void testSerialization(T object, Version version)
     {
         var output = new ByteArrayOutputStream();
         var types = new CoreKryoTypes();
@@ -91,17 +91,17 @@ public class KryoUnitTest extends UnitTest
         ensureEqual(write, read);
     }
 
-    protected void testSerialize(Object object)
+    protected void testSerialization(Object object)
     {
-        testSerialize(object, null);
+        testSerialization(object, null);
     }
 
-    protected void testSessionSerialize(Object object)
+    protected void testSessionSerialization(Object object)
     {
-        testSessionSerialize(object, null);
+        testSessionSerialization(object, null);
     }
 
-    protected void testSessionSerialize(Object object, Version version)
+    protected void testSessionSerialization(Object object, Version version)
     {
         if (!isQuickTest())
         {

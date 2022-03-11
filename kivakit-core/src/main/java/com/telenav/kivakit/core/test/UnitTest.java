@@ -635,7 +635,7 @@ public abstract class UnitTest extends TestWatcher implements
         assert maximum > minimum;
 
         // Computed the range, handling overflow (well enough for our tests)
-        var range = maximum - minimum;
+        double range = (double) maximum - (double) minimum;
 
         assert count.get() <= range : "Count is " + count + " but maximum of " + maximum + " - " + minimum + " = " + range;
 

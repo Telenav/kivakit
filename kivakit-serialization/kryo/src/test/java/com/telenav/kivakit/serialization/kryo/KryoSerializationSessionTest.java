@@ -14,22 +14,22 @@ public class KryoSerializationSessionTest extends KryoUnitTest
     @Test
     public void test()
     {
-        testSessionSerialize(9);
-        testSessionSerialize(parseVersion("6.0.0-snapshot"));
-        testSessionSerialize(parseVersion("18.3.4-rc"));
-        testSessionSerialize(parseVersion("4.0.9-m1"));
-        testSessionSerialize(parseVersion("4.0"));
-        testSessionSerialize(Bytes.bytes(9), parseVersion("1.0"));
+        testSessionSerialization(9);
+        testSessionSerialization(parseVersion("6.0.0-snapshot"));
+        testSessionSerialization(parseVersion("18.3.4-rc"));
+        testSessionSerialization(parseVersion("4.0.9-m1"));
+        testSessionSerialization(parseVersion("4.0"));
+        testSessionSerialization(Bytes.bytes(9), parseVersion("1.0"));
 
-        testSessionSerialize(new Problem("testing: $", 1));
-        testSessionSerialize("test");
-        testSessionSerialize(9);
-        testSessionSerialize(true);
-        testSessionSerialize(Boolean.TRUE);
-        testSessionSerialize(4L);
-        testSessionSerialize(Version.parseVersion("4.1.0-RELEASE"));
-        testSessionSerialize(Bytes.bytes(1_004));
-        testSessionSerialize(Duration.days(17));
-        testSessionSerialize(Time.now());
+        testSessionSerialization(new Problem("testing: $", 1));
+        testSessionSerialization("test");
+        testSessionSerialization(9);
+        testSessionSerialization(true);
+        testSessionSerialization(Boolean.TRUE);
+        testSessionSerialization(4L);
+        testSessionSerialization(Version.parseVersion("4.1.0-RELEASE"));
+        testSessionSerialization(Bytes.bytes(1_004));
+        testSessionSerialization(Duration.days(17));
+        testSessionSerialization(Time.now());
     }
 }

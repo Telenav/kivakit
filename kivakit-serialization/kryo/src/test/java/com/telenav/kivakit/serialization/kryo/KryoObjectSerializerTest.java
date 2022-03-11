@@ -12,15 +12,15 @@ public class KryoObjectSerializerTest extends KryoUnitTest
     @Test
     public void test()
     {
-        testSerialize(new Problem("testing: $", 1));
-        testSerialize("test");
-        testSerialize(9);
-        testSerialize(true);
-        testSerialize(Boolean.TRUE);
-        testSerialize(4L);
-        testSerialize(Version.parseVersion("4.1.0-RELEASE"));
-        testSerialize(Bytes.bytes(1_004));
-        testSerialize(Duration.days(17));
-        testSerialize(Time.now());
+        testSerialization(new Problem("testing: $", 1));
+        testSerialization("test");
+        testSerialization(9);
+        testSerialization(true);
+        testSerialization(Boolean.TRUE);
+        testSerialization(4L);
+        testSerialization(Version.parseVersion("4.1.0-RELEASE"));
+        testSerialization(Bytes.bytes(1_004));
+        testSerialization(Duration.days(17));
+        testSerialization(Time.now());
     }
 }
