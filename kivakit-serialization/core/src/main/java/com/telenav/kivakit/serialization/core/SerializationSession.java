@@ -26,6 +26,7 @@ import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveOutputStream;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.core.version.Versioned;
+import com.telenav.kivakit.core.version.VersionedObject;
 import com.telenav.kivakit.interfaces.io.Flushable;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.resource.SerializableObject;
@@ -36,6 +37,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Collection;
+
+import static com.telenav.kivakit.core.ensure.Ensure.ensureFalse;
 
 /**
  * A high-level abstraction for serialization. This interface allows the serialization of a sequence of {@link
@@ -219,12 +222,12 @@ public interface SerializationSession extends
      * @param type The type to read
      * @return The object
      */
+    @SuppressWarnings("unchecked")
     default <T> T read(Class<T> type)
     {
         var object = read().object();
         if (type.isAssignableFrom(object.getClass()))
         {
-            //noinspection unchecked
             return (T) object;
         }
         return illegalState("Expected object of type $, not $", type, object.getClass());
@@ -252,6 +255,8 @@ public interface SerializationSession extends
      */
     default <T> void write(T object)
     {
+        ensureFalse(object instanceof VersionedObject, "Use SerializableObject instead of VersionedObject");
+
         write(new SerializableObject<>(object));
     }
 

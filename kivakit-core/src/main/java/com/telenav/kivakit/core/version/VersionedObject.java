@@ -33,9 +33,13 @@ public class VersionedObject<T> implements
         NamedObject,
         Versioned
 {
-    private final T object;
+    private T object;
 
-    private final Version version;
+    private Version version;
+
+    public VersionedObject()
+    {
+    }
 
     public VersionedObject(T object, Version version)
     {

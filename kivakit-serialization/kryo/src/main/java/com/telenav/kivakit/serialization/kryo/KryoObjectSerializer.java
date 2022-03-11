@@ -46,6 +46,7 @@ public class KryoObjectSerializer implements
         this.reporter = reporter;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public <T> SerializableObject<T> read(InputStream inputStream,
                                           StringPath path,
@@ -60,7 +61,6 @@ public class KryoObjectSerializer implements
             // read any type from the input,
             if (type == null && TYPE.containedIn(metadata))
             {
-                //noinspection unchecked
                 type = (Class<T>) kryo.get().readObject(input, Class.class);
             }
 

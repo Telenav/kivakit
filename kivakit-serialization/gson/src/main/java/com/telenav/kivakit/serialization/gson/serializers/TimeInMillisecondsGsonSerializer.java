@@ -19,6 +19,7 @@
 package com.telenav.kivakit.serialization.gson.serializers;
 
 import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.serialization.gson.PrimitiveGsonSerializer;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**

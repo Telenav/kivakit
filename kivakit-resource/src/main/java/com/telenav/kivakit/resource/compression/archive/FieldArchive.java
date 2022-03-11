@@ -33,6 +33,7 @@ import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.interfaces.io.Closeable;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.resource.Resource;
+import com.telenav.kivakit.resource.SerializableObject;
 import com.telenav.kivakit.resource.project.lexakai.DiagramResourceArchive;
 import com.telenav.kivakit.resource.serialization.ObjectReader;
 import com.telenav.kivakit.resource.serialization.ObjectWriter;
@@ -121,7 +122,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
             var value = field.get(object);
             if (value != null)
             {
-                zip().save(writer, entryName, new VersionedObject<>(value, outer.version));
+                zip().save(writer, entryName, new SerializableObject<>(value, outer.version));
                 return true;
             }
             return false;
@@ -338,7 +339,7 @@ public class FieldArchive extends BaseRepeater implements Closeable
      */
     public void saveVersion(ObjectWriter writer, Version version)
     {
-        save(writer, "version", new VersionedObject<>(version, version));
+        save(writer, "version", new SerializableObject<>(version, version));
     }
 
     /**
@@ -353,6 +354,11 @@ public class FieldArchive extends BaseRepeater implements Closeable
     public Version version()
     {
         return version;
+    }
+
+    public void version(Version version)
+    {
+        this.version = version;
     }
 
     /**

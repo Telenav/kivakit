@@ -11,4 +11,5 @@ open module kivakit.serialization.gson
     // Module exports
     exports com.telenav.kivakit.serialization.gson;
     exports com.telenav.kivakit.serialization.gson.serializers;
+    exports com.telenav.kivakit.serialization.gson.factory;
 }

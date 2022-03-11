@@ -19,6 +19,7 @@
 package com.telenav.kivakit.serialization.gson.serializers;
 
 import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.serialization.gson.PrimitiveGsonSerializer;
 
 public class CountGsonSerializer extends PrimitiveGsonSerializer<Count, Integer>
 {
@@ -28,9 +29,9 @@ public class CountGsonSerializer extends PrimitiveGsonSerializer<Count, Integer>
     }
 
     @Override
-    protected Count toObject(Integer scalar)
+    protected Count toObject(Integer primitive)
     {
-        return Count.count(scalar);
+        return Count.count(primitive);
     }
 
     @Override

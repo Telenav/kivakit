@@ -20,6 +20,7 @@ package com.telenav.kivakit.serialization.gson.serializers;
 
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.serialization.gson.PrimitiveGsonSerializer;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**

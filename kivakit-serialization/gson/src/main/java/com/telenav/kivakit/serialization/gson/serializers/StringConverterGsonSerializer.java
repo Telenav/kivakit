@@ -19,40 +19,43 @@
 package com.telenav.kivakit.serialization.gson.serializers;
 
 import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 import com.telenav.kivakit.conversion.StringConverter;
-import com.telenav.kivakit.serialization.gson.JsonSerializerDeserializer;
+import com.telenav.kivakit.serialization.gson.factory.JsonSerializerDeserializer;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.lang.reflect.Type;
 
 /**
- * An adapter class that converts a {@link StringConverter} into a {@link JsonSerializerDeserializer} by using the
- * convert to serialize and deserialize strings.
+ * An adapter that converts a {@link StringConverter} into a {@link JsonSerializer} and {@link JsonDeserializer} by
+ * using the {@link StringConverter#convert(Object)} and {@link StringConverter#unconvert(Object)} methods to serialize
+ * and deserialize strings.
  *
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
-public class StringConverterGsonSerializer<T> implements JsonSerializerDeserializer<T>
+public class StringConverterGsonSerializer<Value> implements JsonSerializerDeserializer<Value>
 {
-    private final StringConverter<T> converter;
+    private final StringConverter<Value> converter;
 
-    public StringConverterGsonSerializer(StringConverter<T> converter)
+    public StringConverterGsonSerializer(StringConverter<Value> converter)
     {
         this.converter = converter;
     }
 
     @Override
-    public T deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+    public Value deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
             throws JsonParseException
     {
         return converter.convert(context.deserialize(json, String.class));
     }
 
     @Override
-    public JsonElement serialize(T value, Type typeOfSrc, JsonSerializationContext context)
+    public JsonElement serialize(Value value, Type typeOfSrc, JsonSerializationContext context)
     {
         return context.serialize(converter.unconvert(value));
     }

@@ -22,6 +22,7 @@ import com.telenav.kivakit.conversion.core.time.LocalDateTimeConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.serialization.gson.PrimitiveGsonSerializer;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
