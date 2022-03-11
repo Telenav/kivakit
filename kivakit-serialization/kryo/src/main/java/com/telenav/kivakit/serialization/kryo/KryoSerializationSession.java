@@ -94,7 +94,7 @@ public final class KryoSerializationSession extends BaseRepeater implements
     {
         this.types = types;
 
-        // Associate this session with the given kryo object so that KryoSerializer can look it up,
+        // Associate this session with the given kryo object so that BaseSerializer can look it up,
         kryoToSession.put(kryo, this);
 
         // and register the given types with kryo.
@@ -284,6 +284,7 @@ public final class KryoSerializationSession extends BaseRepeater implements
             {
                 write(object.version());
             }
+            
             kryo.writeClassAndObject(output, object.object());
         }
         catch (Exception e)

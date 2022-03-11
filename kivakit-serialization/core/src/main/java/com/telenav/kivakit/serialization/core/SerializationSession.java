@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.serialization.core;
 
+import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
@@ -34,6 +35,7 @@ import java.io.Closeable;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.util.Collection;
 
 /**
  * A high-level abstraction for serialization. This interface allows the serialization of a sequence of {@link
@@ -229,6 +231,23 @@ public interface SerializationSession extends
     }
 
     /**
+     * Reads a list of elements written by the {@link #writeList(Collection)} method
+     *
+     * @param type The element type
+     * @return The list
+     */
+    default <Element> ObjectList<Element> readList(Class<Element> type)
+    {
+        var size = read(Integer.class);
+        var list = new ObjectList<Element>();
+        for (var i = 0; i < size; i++)
+        {
+            list.add(read(type));
+        }
+        return list;
+    }
+
+    /**
      * Writes the given object to output without version information
      */
     default <T> void write(T object)
@@ -240,4 +259,18 @@ public interface SerializationSession extends
      * Writes the given {@link SerializableObject} to output
      */
     <T> void write(SerializableObject<T> object);
+
+    /**
+     * Writes the given collection of elements as a list
+     *
+     * @param list The list to write
+     */
+    default <Element> void writeList(Collection<Element> list)
+    {
+        write(list.size());
+        for (var element : list)
+        {
+            write(element);
+        }
+    }
 }

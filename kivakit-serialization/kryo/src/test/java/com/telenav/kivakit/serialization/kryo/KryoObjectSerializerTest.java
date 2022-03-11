@@ -7,6 +7,8 @@ import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.version.Version;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class KryoObjectSerializerTest extends KryoUnitTest
 {
     @Test
@@ -22,5 +24,11 @@ public class KryoObjectSerializerTest extends KryoUnitTest
         testSerialization(Bytes.bytes(1_004));
         testSerialization(Duration.days(17));
         testSerialization(Time.now());
+        
+        var list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        testSerialization(list);
     }
 }

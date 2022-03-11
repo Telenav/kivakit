@@ -350,6 +350,11 @@ public class FieldArchive extends BaseRepeater implements Closeable
         return new ObjectFormatter(this).toString();
     }
 
+    public Version version()
+    {
+        return version;
+    }
+
     /**
      * @return The field archive's underlying zip archive for special operations on the archive
      */

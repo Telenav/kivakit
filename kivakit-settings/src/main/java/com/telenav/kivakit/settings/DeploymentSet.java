@@ -22,7 +22,6 @@ import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.path.PackagePath;
-import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.vm.JavaVirtualMachine;
 import com.telenav.kivakit.filesystem.Folder;
@@ -233,7 +232,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
     private String description(Resource resource)
     {
         var description = "'" + resource.fileName().name() + "' deployment";
-        var deploymentProperties = PropertyMap.load(this, ProgressReporter.none(), resource);
+        var deploymentProperties = PropertyMap.load(this, resource);
         if (deploymentProperties.containsKey("description"))
         {
             description = deploymentProperties.get("description");

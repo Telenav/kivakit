@@ -59,8 +59,8 @@ import java.util.regex.Pattern;
  * <ul>
  *     <li>{@link #create()} - Creates an empty property map</li>
  *     <li>{@link #propertyMap(VariableMap)} - Creates a property map from the given variable map</li>
- *     <li>{@link #load(Listener, ProgressReporter, Resource)} - Loads property map from the given resource</li>
- *     <li>{@link #localized(Listener, ProgressReporter, PackagePath, Locale)} - Loads a property map from the given package with a relative path
+ *     <li>{@link #load(Listener, Resource)} - Loads property map from the given resource</li>
+ *     <li>{@link #localized(Listener, PackagePath, Locale)} - Loads a property map from the given package with a relative path
  *      from the given {@link Locale} of the form "locales/[language-name](/[country-name])?.</li>
  * </ul>
  *
@@ -109,29 +109,29 @@ public class PropertyMap extends VariableMap<String>
         return new PropertyMap();
     }
 
-    public static PropertyMap load(Listener listener, InputStream input, ProgressReporter reporter)
+    public static PropertyMap load(Listener listener, InputStream input)
     {
-        return load(listener, reporter, new InputResource(input));
+        return load(listener, new InputResource(input));
     }
 
-    public static PropertyMap load(Listener listener, ProgressReporter reporter, Resource resource)
+    public static PropertyMap load(Listener listener, Resource resource)
     {
-        return load(resource, reporter);
+        return load(resource);
     }
 
-    public static PropertyMap load(Listener listener, ProgressReporter reporter, PackagePath _package, String path)
+    public static PropertyMap load(Listener listener, PackagePath _package, String path)
     {
-        return load(listener, reporter, PackageResource.packageResource(_package, FilePath.parseFilePath(listener, path)));
+        return load(listener, PackageResource.packageResource(_package, FilePath.parseFilePath(listener, path)));
     }
 
-    public static PropertyMap load(Listener listener, ProgressReporter reporter, Class<?> _package, String path)
+    public static PropertyMap load(Listener listener, Class<?> _package, String path)
     {
-        return load(listener, reporter, PackagePath.packagePath(_package), path);
+        return load(listener, PackagePath.packagePath(_package), path);
     }
 
-    public static PropertyMap localized(Listener listener, ProgressReporter reporter, PackagePath path, Locale locale)
+    public static PropertyMap localized(Listener listener, PackagePath path, Locale locale)
     {
-        return PropertyMap.load(listener, reporter, path, locale.path().join("/"));
+        return PropertyMap.load(listener, path, locale.path().join("/"));
     }
 
     public static PropertyMap propertyMap(VariableMap<String> variables)
@@ -291,12 +291,12 @@ public class PropertyMap extends VariableMap<String>
     /**
      * @return Loads the given .properties resource, interpolating system variables into each value
      */
-    private static PropertyMap load(Resource resource, ProgressReporter reporter)
+    private static PropertyMap load(Resource resource)
     {
         var properties = new PropertyMap();
         var linePattern = Pattern.compile("(?<key>[^=]*?)\\s*=\\s*(?<value>[^=]*)");
         int lineNumber = 1;
-        for (var line : resource.reader().lines(reporter))
+        for (var line : resource.reader().lines(ProgressReporter.none()))
         {
             var trimmed = line.trim();
             if (!trimmed.isEmpty() && !trimmed.startsWith("#") && !trimmed.startsWith("//"))

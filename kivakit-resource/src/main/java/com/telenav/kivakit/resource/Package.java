@@ -182,9 +182,9 @@ public class Package extends BaseRepeater implements ResourceFolder
     /**
      * @return A localized property map for the given locale
      */
-    public PropertyMap localizedProperties(Listener listener, ProgressReporter reporter, Locale locale)
+    public PropertyMap localizedProperties(Listener listener, Locale locale)
     {
-        return PropertyMap.localized(listener, reporter, path(), locale);
+        return PropertyMap.localized(listener, path(), locale);
     }
 
     /**
@@ -228,7 +228,6 @@ public class Package extends BaseRepeater implements ResourceFolder
     /**
      * @return The resources in this package folder
      */
-    @SuppressWarnings("SpellCheckingInspection")
     @Override
     public List<PackageResource> resources(Matcher<? super Resource> matcher)
     {

@@ -45,7 +45,6 @@ import com.telenav.kivakit.core.messaging.filters.SeverityGreaterThanOrEqualTo;
 import com.telenav.kivakit.core.messaging.messages.status.Announcement;
 import com.telenav.kivakit.core.messaging.messages.status.Glitch;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.project.Project;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.core.registry.RegistryTrait;
@@ -496,7 +495,7 @@ public abstract class Application extends BaseComponent implements
 
     public PropertyMap localizedProperties(Locale locale)
     {
-        return PropertyMap.localized(this, ProgressReporter.none(), packagePath(), locale);
+        return PropertyMap.localized(this, packagePath(), locale);
     }
 
     public Project project()
@@ -558,7 +557,7 @@ public abstract class Application extends BaseComponent implements
                 // then load properties from the resource
                 var resourceIdentifier = Strip.leading(argument, "-switches=");
                 var resource = Resource.resolve(this, resourceIdentifier);
-                var properties = PropertyMap.load(this, ProgressReporter.none(), resource);
+                var properties = PropertyMap.load(this, resource);
 
                 // and add those properties to the argument list
                 for (var key : properties.keySet())

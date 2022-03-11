@@ -57,7 +57,7 @@ public class PropertiesObjectSerializer implements ObjectSerializer
                                           ObjectMetadata... metadata)
     {
         // Load properties from the given resource,
-        var properties = PropertyMap.load(this, input, ProgressReporter.none());
+        var properties = PropertyMap.load(this, input);
         try
         {
             // and if a type wasn't explicitly specified,

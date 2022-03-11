@@ -78,8 +78,7 @@ public class KryoUnitTest extends UnitTest
     protected <T> void testSerialization(T object, Version version)
     {
         var output = new ByteArrayOutputStream();
-        var types = new CoreKryoTypes();
-        var serializer = new KryoObjectSerializer(types);
+        var serializer = new KryoObjectSerializer(kryoTypes());
         var path = StringPath.stringPath("/a/b/c");
 
         var write = new SerializableObject<>(object, version);
@@ -103,37 +102,35 @@ public class KryoUnitTest extends UnitTest
 
     protected void testSessionSerialization(Object object, Version version)
     {
-        if (!isQuickTest())
+        trace("before serialization = $", object);
+
+        var output = new ByteArrayOutputStream();
+
+        var n = Count.count(3);
+
+        // Write the object n times to the session
         {
-            trace("before serialization = $", object);
+            var session = new KryoSerializationSession(kryoTypes());
+            session.open(RESOURCE, projectVersion(), output);
+            n.loop(() -> session.write(new SerializableObject<>(object, version)));
+            session.close();
+        }
 
-            var output = new ByteArrayOutputStream();
-
-            // Write the object n times to the session
-            var n = Count.count(3);
+        // Read the object n times from the written data
+        {
+            var session = new KryoSerializationSession(kryoTypes());
+            var input = new ByteArrayInputStream(output.toByteArray());
+            var streamVersion = session.open(RESOURCE, projectVersion(), input);
+            ensureEqual(projectVersion(), streamVersion);
+            n.loop(() ->
             {
-                var session = new KryoSerializationSession(kryoTypes()).trackReferences(false); // session();
-                session.open(RESOURCE, projectVersion(), output);
-                n.loop(() -> session.write(new SerializableObject<>(object, version)));
-                session.close();
-            }
-
-            // Read the object n times from the written data
-            {
-                var session = new KryoSerializationSession(kryoTypes()).trackReferences(false);
-                var input = new ByteArrayInputStream(output.toByteArray());
-                var streamVersion = session.open(RESOURCE, projectVersion(), input);
-                ensureEqual(projectVersion(), streamVersion);
-                n.loop(() ->
-                {
-                    var deserialized = session.read();
-                    assert deserialized != null;
-                    trace("version $ after deserialization = $", deserialized.version(), deserialized.object());
-                    ensureEqual(deserialized.object(), object);
-                    ensureEqual(deserialized.version(), version);
-                });
-                session.close();
-            }
+                var deserialized = session.read();
+                assert deserialized != null;
+                trace("version $ after deserialization = $", deserialized.version(), deserialized.object());
+                ensureEqual(deserialized.object(), object);
+                ensureEqual(deserialized.version(), version);
+            });
+            session.close();
         }
     }
 }
