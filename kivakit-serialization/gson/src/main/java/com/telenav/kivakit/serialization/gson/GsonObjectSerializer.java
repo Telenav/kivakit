@@ -8,10 +8,10 @@ import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.version.Version;
-import com.telenav.kivakit.resource.SerializableObject;
 import com.telenav.kivakit.resource.resources.OutputResource;
 import com.telenav.kivakit.resource.serialization.ObjectMetadata;
 import com.telenav.kivakit.resource.serialization.ObjectSerializer;
+import com.telenav.kivakit.resource.serialization.SerializableObject;
 import com.telenav.kivakit.serialization.gson.factory.GsonFactory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -20,7 +20,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.INSTANCE;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.TYPE;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.VERSION;
@@ -64,25 +64,18 @@ public class GsonObjectSerializer implements
                                           Class<T> typeToRead,
                                           ObjectMetadata... metadata)
     {
-        try
+        return tryCatchThrow(() ->
         {
             // Read JSON from input,
             var json = IO.string(input);
 
             // get the type to read,
-            var type = type(json, metadata, typeToRead);
-            if (type != null)
-            {
-                return new SerializableObject<>(factory.gson().fromJson(json, type),
-                        version(json), instance(json, metadata));
-            }
+            var type = ensureNotNull(type(json, metadata, typeToRead));
 
-            return fail("No type to read: $", path);
-        }
-        catch (Exception e)
-        {
-            return fail(e, "Unable to find type field in: $", path);
-        }
+            // and return the deserialized object.
+            return new SerializableObject<>(factory.gson().fromJson(json, type),
+                    version(json), instance(json, metadata));
+        }, "Unable to read from $", path);
     }
 
     @Override
@@ -95,12 +88,12 @@ public class GsonObjectSerializer implements
      * {@inheritDoc}
      */
     @Override
-    public <T> boolean write(OutputStream output,
-                             StringPath path,
-                             SerializableObject<T> object,
-                             ObjectMetadata... metadata)
+    public <T> void write(OutputStream output,
+                          StringPath path,
+                          SerializableObject<T> object,
+                          ObjectMetadata... metadata)
     {
-        return tryCatchDefault(() ->
+        tryCatchThrow(() ->
         {
             var json = factory.gson().toJson(object);
 
@@ -120,9 +113,7 @@ public class GsonObjectSerializer implements
             }
 
             new OutputResource(output).printWriter().println(json);
-
-            return true;
-        }, false);
+        }, "Unable to write to: $", path);
     }
 
     @NotNull

@@ -1,7 +1,6 @@
 package com.telenav.kivakit.resource.serialization;
 
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.SerializableObject;
 import com.telenav.kivakit.resource.WritableResource;
 
 /**

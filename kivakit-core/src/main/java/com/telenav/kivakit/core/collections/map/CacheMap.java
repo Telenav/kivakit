@@ -77,10 +77,14 @@ public class CacheMap<Key, Value> extends BaseMap<Key, Value>
     @Override
     public Value get(final Object key)
     {
-        if (expireOldEntries && age.get(key).isGreaterThan(maximumEntryAge))
+        if (expireOldEntries)
         {
-            remove(key);
-            return null;
+            var age = this.age.get(key);
+            if (age != null && age.isGreaterThan(maximumEntryAge))
+            {
+                remove(key);
+                return null;
+            }
         }
         return super.get(key);
     }

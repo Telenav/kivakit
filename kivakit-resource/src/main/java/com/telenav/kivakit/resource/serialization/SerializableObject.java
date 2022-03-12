@@ -1,4 +1,4 @@
-package com.telenav.kivakit.resource;
+package com.telenav.kivakit.resource.serialization;
 
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.language.Objects;

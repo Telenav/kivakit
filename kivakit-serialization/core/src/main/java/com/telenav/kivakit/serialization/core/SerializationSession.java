@@ -29,7 +29,7 @@ import com.telenav.kivakit.core.version.Versioned;
 import com.telenav.kivakit.core.version.VersionedObject;
 import com.telenav.kivakit.interfaces.io.Flushable;
 import com.telenav.kivakit.interfaces.naming.Named;
-import com.telenav.kivakit.resource.SerializableObject;
+import com.telenav.kivakit.resource.serialization.SerializableObject;
 import com.telenav.kivakit.resource.serialization.ObjectSerializer;
 
 import java.io.Closeable;

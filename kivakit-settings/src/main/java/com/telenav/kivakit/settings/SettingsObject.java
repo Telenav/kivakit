@@ -21,7 +21,7 @@ package com.telenav.kivakit.settings;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.registry.RegistryTrait;
-import com.telenav.kivakit.resource.SerializableObject;
+import com.telenav.kivakit.resource.serialization.SerializableObject;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeType;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;

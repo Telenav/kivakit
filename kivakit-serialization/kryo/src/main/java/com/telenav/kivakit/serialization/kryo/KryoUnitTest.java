@@ -22,7 +22,7 @@ import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.test.UnitTest;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.version.Version;
-import com.telenav.kivakit.resource.SerializableObject;
+import com.telenav.kivakit.resource.serialization.SerializableObject;
 import com.telenav.kivakit.serialization.core.SerializationSession;
 import com.telenav.kivakit.serialization.core.SerializationSessionFactory;
 import com.telenav.kivakit.serialization.kryo.types.CoreKryoTypes;

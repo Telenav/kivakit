@@ -5,7 +5,6 @@ import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.SerializableObject;
 
 import java.io.InputStream;
 
@@ -56,7 +55,6 @@ public interface ObjectReader extends RepeaterMixin
      * Reads an object of the given type from the given {@link Resource}.
      *
      * @param resource The resource to read from
-     * @param reporter Reports on progress in reading data
      * @param type The type to read (if {@link ObjectMetadata#TYPE} is not supplied
      * @param metadata The metadata to read
      * @return The deserialized object
@@ -73,7 +71,6 @@ public interface ObjectReader extends RepeaterMixin
      * Reads an object from the given {@link Resource}.
      *
      * @param resource The resource to read from
-     * @param reporter Reports on progress in reading data
      * @param metadata The metadata to read
      * @return The deserialized object
      */

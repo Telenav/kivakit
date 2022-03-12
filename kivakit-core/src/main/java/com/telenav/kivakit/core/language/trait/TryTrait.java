@@ -1,7 +1,7 @@
 package com.telenav.kivakit.core.language.trait;
 
-import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.code.UncheckedCode;
+import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 
 /**
@@ -116,7 +116,7 @@ public interface TryTrait extends Broadcaster
         }
         catch (Exception e)
         {
-            problem(message, arguments).throwAsIllegalStateException();
+            problem(e, message, arguments).throwAsIllegalStateException();
             return null;
         }
     }
@@ -129,7 +129,7 @@ public interface TryTrait extends Broadcaster
         }
         catch (Exception e)
         {
-            problem(message, arguments).throwAsIllegalStateException();
+            problem(e, message, arguments).throwAsIllegalStateException();
         }
     }
 

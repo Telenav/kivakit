@@ -33,7 +33,7 @@ import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.interfaces.io.Closeable;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.SerializableObject;
+import com.telenav.kivakit.resource.serialization.SerializableObject;
 import com.telenav.kivakit.resource.project.lexakai.DiagramResourceArchive;
 import com.telenav.kivakit.resource.serialization.ObjectReader;
 import com.telenav.kivakit.resource.serialization.ObjectWriter;

@@ -9,9 +9,9 @@ import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.resource.PropertyMap;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.SerializableObject;
 import com.telenav.kivakit.resource.serialization.ObjectMetadata;
 import com.telenav.kivakit.resource.serialization.ObjectSerializer;
+import com.telenav.kivakit.resource.serialization.SerializableObject;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -19,6 +19,7 @@ import java.io.OutputStream;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.registry.InstanceIdentifier.SINGLETON;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.INSTANCE;
 import static com.telenav.kivakit.resource.serialization.ObjectMetadata.TYPE;
@@ -113,11 +114,11 @@ public class PropertiesObjectSerializer implements ObjectSerializer
     }
 
     @Override
-    public <T> boolean write(OutputStream output,
-                             StringPath path,
-                             SerializableObject<T> object,
-                             ObjectMetadata... metadata)
+    public <T> void write(OutputStream output,
+                          StringPath path,
+                          SerializableObject<T> object,
+                          ObjectMetadata... metadata)
     {
-        return false;
+        unsupported();
     }
 }

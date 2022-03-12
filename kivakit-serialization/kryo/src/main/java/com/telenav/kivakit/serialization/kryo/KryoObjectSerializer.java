@@ -7,9 +7,9 @@ import com.telenav.kivakit.core.language.trait.TryTrait;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.version.Version;
-import com.telenav.kivakit.resource.SerializableObject;
 import com.telenav.kivakit.resource.serialization.ObjectMetadata;
 import com.telenav.kivakit.resource.serialization.ObjectSerializer;
+import com.telenav.kivakit.resource.serialization.SerializableObject;
 import com.telenav.kivakit.serialization.kryo.types.KryoTypes;
 
 import java.io.InputStream;
@@ -92,12 +92,12 @@ public class KryoObjectSerializer implements
     }
 
     @Override
-    public <T> boolean write(OutputStream outputStream,
-                             StringPath path,
-                             SerializableObject<T> object,
-                             ObjectMetadata... metadata)
+    public <T> void write(OutputStream outputStream,
+                          StringPath path,
+                          SerializableObject<T> object,
+                          ObjectMetadata... metadata)
     {
-        return tryCatchDefault(() ->
+        tryCatchThrow(() ->
         {
             // Wrap output stream in Kryo wrapper,
             var output = new Output(outputStream);
@@ -117,8 +117,7 @@ public class KryoObjectSerializer implements
             // and write the object.
             kryo.get().writeObject(output, object.object());
             output.flush();
-            return true;
-        }, false);
+        }, "Unable to write object to $", path);
     }
 
     private Kryo newKryo()

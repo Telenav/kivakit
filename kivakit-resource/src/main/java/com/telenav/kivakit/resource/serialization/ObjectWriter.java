@@ -1,10 +1,10 @@
 package com.telenav.kivakit.resource.serialization;
 
+import com.telenav.kivakit.core.language.trait.TryTrait;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveOutputStream;
-import com.telenav.kivakit.resource.SerializableObject;
 import com.telenav.kivakit.resource.WritableResource;
 
 import java.io.OutputStream;
@@ -16,7 +16,7 @@ import java.io.OutputStream;
  * @see WritableResource
  * @see SerializableObject
  */
-public interface ObjectWriter extends RepeaterMixin
+public interface ObjectWriter extends RepeaterMixin, TryTrait
 {
     /**
      * Gets the {@link ProgressReporter} to use while writing
@@ -34,12 +34,15 @@ public interface ObjectWriter extends RepeaterMixin
      * @param metadata The metadata to write
      * @return True if the object was successfully written
      */
-    default <T> boolean write(WritableResource resource,
-                              SerializableObject<T> object,
-                              ObjectMetadata... metadata)
+    default <T> void write(WritableResource resource,
+                           SerializableObject<T> object,
+                           ObjectMetadata... metadata)
     {
-        var output = new ProgressiveOutputStream(resource.openForWriting(), reporter());
-        return write(output, resource.path(), object, metadata);
+        tryCatchThrow(() ->
+        {
+            var output = new ProgressiveOutputStream(resource.openForWriting(), reporter());
+            write(output, resource.path(), object, metadata);
+        }, "Unable to write to $", resource);
     }
 
     /**
@@ -52,8 +55,8 @@ public interface ObjectWriter extends RepeaterMixin
      * @param metadata The metadata to write
      * @return True if the object was successfully written
      */
-    <T> boolean write(OutputStream output,
-                      StringPath path,
-                      SerializableObject<T> object,
-                      ObjectMetadata... metadata);
+    <T> void write(OutputStream output,
+                   StringPath path,
+                   SerializableObject<T> object,
+                   ObjectMetadata... metadata);
 }

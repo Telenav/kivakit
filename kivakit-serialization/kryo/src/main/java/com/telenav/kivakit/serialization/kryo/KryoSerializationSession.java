@@ -27,7 +27,7 @@ import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
-import com.telenav.kivakit.resource.SerializableObject;
+import com.telenav.kivakit.resource.serialization.SerializableObject;
 import com.telenav.kivakit.serialization.core.SerializationSession;
 import com.telenav.kivakit.serialization.kryo.lexakai.DiagramKryo;
 import com.telenav.kivakit.serialization.kryo.types.KryoTypes;
