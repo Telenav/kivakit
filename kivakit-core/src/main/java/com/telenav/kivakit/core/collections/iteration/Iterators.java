@@ -110,4 +110,27 @@ public class Iterators
             }
         };
     }
+
+    /**
+     * Returns an iterator that provides the given value as the only value in the sequence
+     *
+     * @param value The singleton value
+     */
+    public static <T> Iterator<T> singletonIterator(T value)
+    {
+        return new BaseIterator<T>()
+        {
+            int index = 0;
+
+            @Override
+            protected T onNext()
+            {
+                if (index++ == 0)
+                {
+                    return value;
+                }
+                return null;
+            }
+        };
+    }
 }
