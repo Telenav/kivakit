@@ -152,10 +152,8 @@ public final class KryoSerializationSession extends BaseRepeater implements
      * {@inheritDoc}
      */
     @Override
-    public Version open(SessionType type,
-                        Version version,
-                        InputStream input,
-                        OutputStream output)
+    public Version open(InputStream input, OutputStream output, SessionType type,
+                        Version version)
     {
         trace("Opening serialization session: type = $, version = $, kryoTypes = $", type, version, kryoTypes().name());
 

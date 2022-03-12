@@ -68,7 +68,7 @@ public interface ResultTrait extends Repeater
      */
     default <T> Result<T> result(T value)
     {
-        return Result.result(value);
+        return Result.success(value);
     }
 
     /**
@@ -76,7 +76,7 @@ public interface ResultTrait extends Repeater
      */
     default <T> Result<T> result(Maybe<T> value)
     {
-        return Result.result(value);
+        return Result.success(value);
     }
 
     /**
@@ -87,6 +87,6 @@ public interface ResultTrait extends Repeater
      */
     default <T> Result<T> result(Code<T> code)
     {
-        return Result.result(this, code);
+        return Result.run(this, code);
     }
 }

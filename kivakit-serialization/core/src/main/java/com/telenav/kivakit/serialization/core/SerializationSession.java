@@ -18,7 +18,9 @@
 
 package com.telenav.kivakit.serialization.core;
 
+import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.collections.list.ObjectList;
+import com.telenav.kivakit.core.language.trait.TryTrait;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
@@ -29,16 +31,20 @@ import com.telenav.kivakit.core.version.Versioned;
 import com.telenav.kivakit.core.version.VersionedObject;
 import com.telenav.kivakit.interfaces.io.Flushable;
 import com.telenav.kivakit.interfaces.naming.Named;
-import com.telenav.kivakit.resource.serialization.SerializableObject;
+import com.telenav.kivakit.resource.Resource;
+import com.telenav.kivakit.resource.WritableResource;
 import com.telenav.kivakit.resource.serialization.ObjectSerializer;
+import com.telenav.kivakit.resource.serialization.SerializableObject;
 
 import java.io.Closeable;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Collection;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensureFalse;
+import static com.telenav.kivakit.serialization.core.SerializationSession.SessionType.RESOURCE;
 
 /**
  * A high-level abstraction for serialization. This interface allows the serialization of a sequence of {@link
@@ -61,10 +67,12 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureFalse;
  * A serialization session is initiated by calling:
  *
  * <ul>
- *     <li>{@link #open(SessionType, Version, InputStream)}</li>
- *     <li>{@link #open(SessionType, Version, OutputStream)}</li>
- *     <li>{@link #open(SessionType, Version, InputStream, OutputStream)}</li>
- *     <li>{@link #open(SessionType, Version, Socket, ProgressReporter)}</li>
+ *     <li>{@link #open(InputStream)}</li>
+ *     <li>{@link #open(InputStream, SessionType)}</li>
+ *     <li>{@link #open(OutputStream, Version)}</li>
+ *     <li>{@link #open(OutputStream, SessionType, Version)}</li>
+ *     <li>{@link #open(Socket, SessionType, Version, ProgressReporter)}</li>
+ *     <li>{@link #open(InputStream, OutputStream, SessionType, Version)}</li>
  * </ul>
  * <p>
  * When a {@link SessionType#CLIENT} or {@link SessionType#SERVER} session is opened, handshaking and
@@ -107,7 +115,8 @@ public interface SerializationSession extends
         Closeable,
         Flushable,
         Versioned,
-        Repeater
+        Repeater,
+        TryTrait
 {
     /**
      * The type of serialization session. This determines the order of
@@ -158,9 +167,9 @@ public interface SerializationSession extends
      * SessionType#SERVER}s and {@link SessionType#CLIENT}s with the version of the connected endpoint returned to the
      * caller.
      */
-    default Version open(SessionType sessionType,
+    default Version open(Socket socket,
+                         SessionType sessionType,
                          Version version,
-                         Socket socket,
                          ProgressReporter reporter)
     {
         try
@@ -168,10 +177,8 @@ public interface SerializationSession extends
             trace("Opening socket");
             return open
                     (
-                            sessionType,
-                            version,
-                            new ProgressiveInputStream(socket.getInputStream(), reporter),
-                            new ProgressiveOutputStream(socket.getOutputStream(), reporter)
+                            new ProgressiveInputStream(socket.getInputStream(), reporter), new ProgressiveOutputStream(socket.getOutputStream(), reporter), sessionType,
+                            version
                     );
         }
         catch (Exception e)
@@ -186,28 +193,45 @@ public interface SerializationSession extends
      *
      * @return The version or an exception is thrown
      */
-    default Version open(SessionType sessionType, Version version, InputStream input)
+    default Version open(InputStream input, SessionType sessionType)
     {
-        return open(sessionType, version, input, null);
+        return open(input, null, sessionType, null);
+    }
+
+    /**
+     * Opens this session for reading from a resource
+     *
+     * @param input The input stream,
+     * @return The version of the stream, or a runtime exception
+     */
+    default Version open(InputStream input)
+    {
+        return open(input, null, RESOURCE, null);
     }
 
     /**
      * Opens this session for writing
-     *
-     * @return The version or an exception is thrown
      */
-    default Version open(SessionType sessionType, Version version, OutputStream output)
+    default void open(OutputStream output, SessionType sessionType, Version version)
     {
-        return open(sessionType, version, null, output);
+        open(null, output, sessionType, version);
     }
 
     /**
-     * Opens this session for reading and writing. Retains the given input and output streams for future use, and
-     * performs version handshaking per the {@link SessionType} parameter.
+     * Opens this session for writing to a resource
+     */
+    default void open(OutputStream output, Version version)
+    {
+        open(output, RESOURCE, version);
+    }
+
+    /**
+     * Opens this session for reading and/or writing. Retains the given input and output streams for future use, and
+     * performs version any socket handshaking per the {@link SessionType} parameter.
      *
      * @return The resource, client or server version, or an exception
      */
-    Version open(SessionType sessionType, Version version, InputStream input, OutputStream output);
+    Version open(InputStream input, OutputStream output, SessionType sessionType, Version version);
 
     /**
      * @return A serializable object
@@ -251,6 +275,26 @@ public interface SerializationSession extends
     }
 
     /**
+     * Runs the given code while the given resource is open for reading
+     *
+     * @param resource The resource to read from
+     * @param code The code to run
+     */
+    default void readResource(Resource resource, UncheckedVoidCode code)
+    {
+        try (var input = resource.openForReading())
+        {
+            open(input, RESOURCE);
+            tryCatchThrow(code, "Error while reading from: $");
+            close();
+        }
+        catch (IOException e)
+        {
+            problem(e, "Auto-close failure");
+        }
+    }
+
+    /**
      * Writes the given object to output without version information
      */
     default <T> void write(T object)
@@ -276,6 +320,27 @@ public interface SerializationSession extends
         for (var element : list)
         {
             write(element);
+        }
+    }
+
+    /**
+     * Runs the given code while the given resource is open for writing
+     *
+     * @param resource The resource to write to
+     * @param version The output version
+     * @param code The code to run
+     */
+    default void writeResource(WritableResource resource, Version version, UncheckedVoidCode code)
+    {
+        try (var output = resource.openForWriting())
+        {
+            open(output, RESOURCE, version);
+            tryCatchThrow(code, "Error while writing to: $");
+            close();
+        }
+        catch (IOException e)
+        {
+            problem(e, "Auto-close failure");
         }
     }
 }

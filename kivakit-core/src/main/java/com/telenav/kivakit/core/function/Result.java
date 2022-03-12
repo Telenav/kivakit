@@ -49,8 +49,8 @@ import java.util.function.Function;
  *
  * <ol>
  *     <li>{@link #absent()} - A successful {@link Result} with no value</li>
- *     <li>{@link #result(Maybe)} - Creates a {@link Result} with the given value</li>
- *     <li>{@link #result(Object)} - Creates a {@link Result} with the given value</li>
+ *     <li>{@link #success(Maybe)} - Creates a {@link Result} with the given value</li>
+ *     <li>{@link #success(Object)} - Creates a {@link Result} with the given value</li>
  *     <li>{@link #failure(String, Object...)} - Creates a {@link Result} with the given failure message</li>
  *     <li>{@link #failure(Throwable, String, Object...)} - Creates a {@link Result} with the given failure message</li>
  * </ol>
@@ -99,13 +99,9 @@ import java.util.function.Function;
  * <p><b>Conditionals</b></p>
  *
  * <ul>
- *     <li>{@link #ifPresentElse()} - Permits branching, by returning a curried {@link ElseFunction} with a branch for accepting a value and a branch for running code</li>
- *     <li>{@link #ifAbsentElse()} - Permits branching, by returning a curried {@link ElseFunction} with a branch for running code and a branch for accepting a value</li>
- *     <li>{@link #presentIfNot(BooleanFunction)} - Applies the given function to this value, returning this value if it is false, or {@link #absent()} if it is true</li>
  *     <li>{@link #presentIf(BooleanFunction)} - Applies the given function to this value, returning this value if it is true, or {@link #absent()} if it is false</li>
  *     <li>{@link #ifPresent(Consumer)} - Calls the given consumer if a value is present</li>
  *     <li>{@link #ifPresentOr(Consumer, UncheckedVoidCode)} - Calls the given consumer if a value is present, otherwise calls the given code</li>
- *     <li>{@link #or(Source)} - If a value is present, returns this value, otherwise returns the {@link Maybe} supplied by the given {@link Source}</li>
  *     <li>{@link #or(Code)} - If a value is present, returns this value, otherwise returns the {@link Maybe} supplied by the given {@link Code}</li>
  * </ul>
  *
@@ -139,13 +135,11 @@ public class Result<Value> extends Maybe<Value>
     }
 
     /**
-     * Returns a result with the given message
+     * Returns a result with the given value
      */
-    public static <T> Result<T> failure(Message message)
+    public static <T> Result<T> capture(Broadcaster value)
     {
-        var result = new Result<T>();
-        result.receive(message);
-        return result;
+        return new Result<>(value);
     }
 
     /**
@@ -167,33 +161,19 @@ public class Result<Value> extends Maybe<Value>
     /**
      * Returns a result with the given {@link Problem}
      */
-    public static <T> Result<T> failure(Result<?> result, String message, Object... arguments)
+    public static <T> Result<T> failure(Result<T> result, String message, Object... arguments)
     {
         return failure(new Problem(result + " => " + message, arguments));
     }
 
     /**
-     * Returns a {@link Result} for a value that may or may not be present
+     * Returns a result with the given message
      */
-    public static <Value> Result<Value> result(Maybe<Value> value)
+    public static <T> Result<T> failure(Message message)
     {
-        return new Result<>(value);
-    }
-
-    /**
-     * Returns a result with the given value
-     */
-    public static <T> Result<T> result(T value)
-    {
-        return new Result<>(value);
-    }
-
-    /**
-     * Returns a result with the given value
-     */
-    public static <T> Result<T> result(Broadcaster value)
-    {
-        return new Result<>(value);
+        var result = new Result<T>();
+        result.receive(message);
+        return result;
     }
 
     /**
@@ -202,10 +182,10 @@ public class Result<Value> extends Maybe<Value>
      *
      * @return The {@link Result} of the call
      */
-    public static <T> Result<T> result(Broadcaster broadcaster, Code<T> code)
+    public static <T> Result<T> run(Broadcaster broadcaster, Code<T> code)
     {
         // Create an empty result that captures messages from this object,
-        var result = Result.<T>result(broadcaster);
+        var result = Result.<T>capture(broadcaster);
 
         try
         {
@@ -220,6 +200,22 @@ public class Result<Value> extends Maybe<Value>
 
         // Return the result of the method call.
         return result;
+    }
+
+    /**
+     * Returns a {@link Result} for a value that may or may not be present
+     */
+    public static <Value> Result<Value> success(Maybe<Value> value)
+    {
+        return new Result<>(value);
+    }
+
+    /**
+     * Returns a result with the given value
+     */
+    public static <T> Result<T> success(T value)
+    {
+        return new Result<>(value);
     }
 
     /** Any broadcaster to listen to */
@@ -343,6 +339,12 @@ public class Result<Value> extends Maybe<Value>
         return messages;
     }
 
+    @Override
+    public void onMessage(Message message)
+    {
+        messages().receive(message);
+    }
+
     /**
      * If this result failed, runs the given {@link Code}, capturing any messages and result of the call. If the code
      * succeeds, returns the result, otherwise returns this result.
@@ -398,7 +400,7 @@ public class Result<Value> extends Maybe<Value>
     {
         return (Result<Value>) super.presentIf(predicate);
     }
-    
+
     /**
      * Returns true if this result represents success
      */

@@ -111,7 +111,7 @@ public class KryoUnitTest extends UnitTest
         // Write the object n times to the session
         {
             var session = new KryoSerializationSession(kryoTypes());
-            session.open(RESOURCE, projectVersion(), output);
+            session.open(output, RESOURCE, projectVersion());
             n.loop(() -> session.write(new SerializableObject<>(object, version)));
             session.close();
         }
@@ -120,7 +120,7 @@ public class KryoUnitTest extends UnitTest
         {
             var session = new KryoSerializationSession(kryoTypes());
             var input = new ByteArrayInputStream(output.toByteArray());
-            var streamVersion = session.open(RESOURCE, projectVersion(), input);
+            var streamVersion = session.open(input, RESOURCE);
             ensureEqual(projectVersion(), streamVersion);
             n.loop(() ->
             {
