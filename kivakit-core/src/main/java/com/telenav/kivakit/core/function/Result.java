@@ -23,7 +23,9 @@ import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.listeners.MessageList;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
+import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.core.project.lexakai.DiagramMessaging;
+import com.telenav.kivakit.core.test.Tested;
 import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.function.BooleanFunction;
 import com.telenav.kivakit.interfaces.value.Source;
@@ -34,6 +36,8 @@ import java.util.Objects;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
+
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
  * Represents the result of an operation, capturing any failure {@link #messages()}. If there are no failure messages,
@@ -118,7 +122,7 @@ import java.util.function.Function;
  */
 @UmlClassDiagram(diagram = DiagramMessaging.class)
 @UmlRelation(label = "failure reason", referent = Message.class)
-public class Result<Value> extends Maybe<Value>
+public class Result<Value> extends Maybe<Value> implements RepeaterMixin
 {
     /**
      * A {@link Result} with no value
@@ -174,6 +178,14 @@ public class Result<Value> extends Maybe<Value>
         var result = new Result<T>();
         result.receive(message);
         return result;
+    }
+
+    /**
+     * Returns a result with the given value
+     */
+    public static <T> Result<T> present(T value)
+    {
+        return unsupported("Call Result.success(), not Result.present()");
     }
 
     /**
@@ -240,8 +252,8 @@ public class Result<Value> extends Maybe<Value>
 
     protected Result(Broadcaster broadcaster)
     {
-        listenTo(broadcaster);
-
+        messages = new MessageList();
+        messages.listenTo(broadcaster);
         this.broadcaster = broadcaster;
     }
 
@@ -332,17 +344,14 @@ public class Result<Value> extends Maybe<Value>
      */
     public MessageList messages()
     {
+        // If we were not constructed with a Broadcaster,
         if (messages == null)
         {
-            messages = new MessageList();
+            // return an empty message list.
+            return MessageList.empty();
         }
-        return messages;
-    }
 
-    @Override
-    public void onMessage(Message message)
-    {
-        messages().receive(message);
+        return messages;
     }
 
     /**
@@ -389,6 +398,22 @@ public class Result<Value> extends Maybe<Value>
     public Result<Value> orMaybe(final Source<Value> source)
     {
         return (Result<Value>) super.orMaybe(source);
+    }
+
+    /**
+     * Broadcasts a problem if no value is present
+     *
+     * @return Any value that might be present
+     */
+    @Tested
+    public Value orProblem(String message, Object... arguments)
+    {
+        if (isAbsent())
+        {
+            problem(message, arguments);
+        }
+
+        return get();
     }
 
     /**

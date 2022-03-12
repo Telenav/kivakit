@@ -20,15 +20,17 @@ package com.telenav.kivakit.core.messaging.listeners;
 
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.messaging.Broadcaster;
+import com.telenav.kivakit.core.messaging.Message;
+import com.telenav.kivakit.core.project.lexakai.DiagramListenerType;
+import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
-import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.core.messaging.Broadcaster;
-import com.telenav.kivakit.core.string.Formatter;
-import com.telenav.kivakit.core.project.lexakai.DiagramListenerType;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
  * A list of messages that listens for and adds incoming messages. Only messages that are accepted by a {@link Matcher}
@@ -52,6 +54,20 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramListenerType.class)
 public class MessageList extends ObjectList<Message> implements MessageCounter
 {
+    private static final MessageList EMPTY = new MessageList()
+    {
+        @Override
+        public void onMessage(final Message message)
+        {
+            unsupported("The message list returned by empty() is read-only");
+        }
+    };
+
+    public static MessageList empty()
+    {
+        return EMPTY;
+    }
+
     private Matcher<Message> filter;
 
     public MessageList(Matcher<Message> filter)

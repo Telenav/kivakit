@@ -61,6 +61,13 @@ public class ResultTest extends UnitTest implements ResultTrait
         ensure(result.messages().isNonEmpty());
     }
 
+    @Test
+    public void testOrProblem()
+    {
+        ensureBroadcastsProblem(Result.absent(), result -> result.orProblem("missing"));
+        ensureBroadcastsNoProblem(Result.success(3), result -> result.orProblem("missing"));
+    }
+
     private Integer a()
     {
         if (Time.now().asSeconds() % 2 == 0)

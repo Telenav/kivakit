@@ -128,13 +128,6 @@ public class MaybeTest extends UnitTest
     }
 
     @Test
-    public void testOrProblem()
-    {
-        ensureBroadcastsProblem(Maybe.absent(), maybe -> maybe.orProblem("missing"));
-        ensureBroadcastsNoProblem(Maybe.present(3), maybe -> maybe.orProblem("missing"));
-    }
-
-    @Test
     public void testOrThrow()
     {
         ensureThrows(() -> Maybe.absent().orThrow());

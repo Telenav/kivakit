@@ -10,6 +10,8 @@ import com.telenav.kivakit.core.messaging.Broadcaster;
  * <p><b>try/catch</b></p>
  *
  * <ul>
+ *     <li>{@link #tryCatch(UncheckedVoidCode)}</li>
+ *     <li>{@link #tryCatch(UncheckedCode)}</li>
  *     <li>{@link #tryCatch(UncheckedCode, String, Object...)}</li>
  *     <li>{@link #tryCatch(UncheckedVoidCode, String, Object...)}</li>
  * </ul>
@@ -44,7 +46,7 @@ import com.telenav.kivakit.core.messaging.Broadcaster;
  *
  * @author jonathanl (shibo)
  */
-public interface TryTrait extends Broadcaster
+public interface TryTrait extends Broadcaster, SilentTryTrait
 {
     default <T> T tryCatch(UncheckedCode<T> code, String message, Object... arguments)
     {
@@ -59,29 +61,6 @@ public interface TryTrait extends Broadcaster
         }
     }
 
-    default <T> T tryCatch(UncheckedCode<T> code)
-    {
-        try
-        {
-            return code.run();
-        }
-        catch (Exception e)
-        {
-            return null;
-        }
-    }
-
-    default void tryCatch(UncheckedVoidCode code)
-    {
-        try
-        {
-            code.run();
-        }
-        catch (Exception ignored)
-        {
-        }
-    }
-
     default boolean tryCatch(UncheckedVoidCode code, String message, Object... arguments)
     {
         try
@@ -93,18 +72,6 @@ public interface TryTrait extends Broadcaster
         {
             problem(e, message, arguments);
             return false;
-        }
-    }
-
-    default <T> T tryCatchDefault(UncheckedCode<T> code, T defaultValue)
-    {
-        try
-        {
-            return code.run();
-        }
-        catch (Exception e)
-        {
-            return defaultValue;
         }
     }
 

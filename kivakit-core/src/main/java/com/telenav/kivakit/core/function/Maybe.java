@@ -1,10 +1,9 @@
 package com.telenav.kivakit.core.function;
 
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
-import com.telenav.kivakit.core.language.trait.TryTrait;
+import com.telenav.kivakit.core.language.trait.SilentTryTrait;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.test.Tested;
 import com.telenav.kivakit.interfaces.function.BooleanFunction;
 import com.telenav.kivakit.interfaces.monads.Presence;
@@ -47,7 +46,6 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  *     <li>{@link #orMaybe(Object)} - Returns this value, or the default maybe value</li>
  *     <li>{@link #orDefaultTo(Object)} - Returns this value, or the default value</li>
  *     <li>{@link #orDefaultTo(Source)} - Returns this value, or the default value</li>
- *     <li>{@link #orProblem(String, Object[])} - Returns this value or broadcasts a problem if this value is not present</li>
  *     <li>{@link #orThrow(String, Object...)} - Returns this value or throws an exception</li>
  *     <li>{@link #orThrow()}- Returns this value or throws an exception</li>
  *     <li>{@link #asStream()} - Converts this value to a stream with zero or one element(s)</li>
@@ -81,9 +79,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * @author viniciusluisr
  * @see <a href="https://github.com/viniciusluisr/improved-optional">improved-optional</a>
  */
-public class Maybe<Value> extends BaseRepeater implements
+public class Maybe<Value> implements
         Presence,
-        TryTrait
+        SilentTryTrait
 {
     /**
      * @return Maybe value for null
@@ -390,23 +388,6 @@ public class Maybe<Value> extends BaseRepeater implements
         return tryCatch(() -> isPresent()
                 ? this
                 : newMaybe(value));
-    }
-
-    /**
-     * Broadcasts a problem and returns null if there is no value, otherwise returns the value
-     *
-     * @return A value or null
-     */
-    @Tested
-    public Value orProblem(String message, Object... arguments)
-    {
-        if (isAbsent())
-        {
-            problem(message, arguments);
-            return null;
-        }
-
-        return value;
     }
 
     /**
