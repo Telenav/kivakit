@@ -74,6 +74,7 @@ import java.util.stream.Collectors;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.project.Project.resolveProject;
 import static com.telenav.kivakit.filesystem.Folder.Traversal.RECURSE;
 import static com.telenav.kivakit.filesystem.Folder.Type.CLEAN_UP_ON_EXIT;
 
@@ -306,7 +307,7 @@ public class Folder extends BaseRepeater implements
 
     public static Folder kivakitCache()
     {
-        return Folder.from(KivaKit.get().cacheFolderPath()).mkdirs();
+        return Folder.from(resolveProject(KivaKit.class).cacheFolderPath()).mkdirs();
     }
 
     public static Folder kivakitExtensionsHome()
@@ -316,7 +317,7 @@ public class Folder extends BaseRepeater implements
 
     public static Folder kivakitHome()
     {
-        var home = KivaKit.get().homeFolderPath();
+        var home = resolveProject(KivaKit.class).homeFolderPath();
         if (home != null)
         {
             return Folder.from(home);
@@ -855,7 +856,7 @@ public class Folder extends BaseRepeater implements
      */
     public boolean hasChanged()
     {
-        // Get the preferences node for this folder and from that, the previous folder digest,
+        // Get the Java 'Preferences' node for this folder and from that, the previous folder digest,
         var node = Preferences.userNodeForPackage(getClass()).node("kivakit-folder:" + path().toString());
         var previousDigest = node.getByteArray("digest", null);
 
@@ -1189,7 +1190,7 @@ public class Folder extends BaseRepeater implements
     {
         if (service == null)
         {
-            service = FileSystemServiceLoader.fileSystem(path).folderService(path);
+            service = Objects.requireNonNull(FileSystemServiceLoader.fileSystem(path)).folderService(path);
         }
         return service;
     }

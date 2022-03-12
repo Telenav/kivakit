@@ -19,15 +19,16 @@
 package com.telenav.kivakit.core.project;
 
 import com.telenav.cactus.build.metadata.BuildMetadata;
-import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
+import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.trait.LanguageTrait;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Debug;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.object.Lazy;
+import com.telenav.kivakit.core.object.LazyMap;
 import com.telenav.kivakit.core.project.lexakai.DiagramProject;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.string.AsciiArt;
@@ -97,6 +98,14 @@ public abstract class Project extends BaseRepeater implements
     private static final Lazy<Logger> LOGGER = Lazy.of(LoggerFactory::newLogger);
 
     private static final Lazy<Debug> DEBUG = Lazy.of(() -> new Debug(LOGGER.get()));
+
+    private static final LazyMap<Class<? extends Project>, Project> projects = LazyMap.of(Project::newProject);
+
+    @SuppressWarnings("unchecked")
+    public static <T extends Project> T resolveProject(Class<T> type)
+    {
+        return (T) projects.get(type);
+    }
 
     /**
      * Visitor interface for use with {@link #visitDependencies(Visitor)}
@@ -205,7 +214,7 @@ public abstract class Project extends BaseRepeater implements
      */
     public final Version kivakitVersion()
     {
-        return KivaKit.get().projectVersion();
+        return kivakit().projectVersion();
     }
 
     /**
@@ -291,6 +300,16 @@ public abstract class Project extends BaseRepeater implements
     public void visitDependencies(Visitor visitor)
     {
         visitDependencies(this, new HashSet<>(), visitor, 0);
+    }
+
+    /**
+     * Creates the Project object of the given type
+     *
+     * @param type The project type
+     */
+    private static Project newProject(Class<? extends Project> type)
+    {
+        return Classes.newInstance(type);
     }
 
     private void visitDependencies(Project project,

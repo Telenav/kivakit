@@ -38,7 +38,7 @@ public interface FailureReporter extends Listener
     {
         return message ->
         {
-            assert false : message.description();
+            assert false : "Failure occurred: " + message.description() + "\n\n" + new Throwable();
         };
     }
 

@@ -41,6 +41,8 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 import java.util.Collection;
 
+import static com.telenav.kivakit.core.project.Project.resolveProject;
+
 /**
  * Parses an array of command line arguments into a list of {@link SwitchList} of the form "-switch=value" and a list of
  * remaining non-switch arguments in an {@link ArgumentList}. Normally, this class does not need to be used directly, as
@@ -248,7 +250,7 @@ public class CommandLineParser
      */
     private String help()
     {
-        var kivakitVersion = "\nKivaKit " + KivaKit.get().projectVersion() + " (" + KivaKit.get().build().name() + ")";
+        var kivakitVersion = "\nKivaKit " + resolveProject(KivaKit.class).projectVersion() + " (" + resolveProject(KivaKit.class).build().name() + ")";
         var usage = "\n\nUsage: " + application.getClass().getSimpleName() + " " + application.version() + " <switches> <arguments>\n\n";
         var description = Wrap.wrapRegion(application.description(), 100).trim() + "\n\n";
         var arguments = "Arguments:\n\n" + argumentParsers.help();

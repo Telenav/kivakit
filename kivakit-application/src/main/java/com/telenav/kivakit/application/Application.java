@@ -28,7 +28,6 @@ import com.telenav.kivakit.commandline.Quantifier;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.component.Component;
-import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
@@ -596,7 +595,7 @@ public abstract class Application extends BaseComponent implements
         }
 
         announce("Project: $", project.name());
-        announce("Application: " + name() + " (" + KivaKit.get().projectVersion() + ")");
+        announce("Application: " + name() + " (" + kivakit().projectVersion() + ")");
 
         try
         {

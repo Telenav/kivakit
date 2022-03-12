@@ -20,22 +20,22 @@ package com.telenav.kivakit.core.vm;
 
 import com.sun.tools.attach.VirtualMachine;
 import com.telenav.kivakit.core.KivaKit;
-import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.value.count.Bytes;
-import com.telenav.kivakit.core.value.count.Count;
-import com.telenav.kivakit.core.os.OperatingSystem;
 import com.telenav.kivakit.core.collections.Sets;
-import com.telenav.kivakit.core.object.Lazy;
+import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.language.primitive.Primitives;
 import com.telenav.kivakit.core.language.reflection.Field;
 import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.value.name.Name;
+import com.telenav.kivakit.core.object.Lazy;
+import com.telenav.kivakit.core.os.OperatingSystem;
 import com.telenav.kivakit.core.project.lexakai.DiagramLanguage;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.core.value.count.Bytes;
+import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.core.value.name.Name;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
@@ -49,6 +49,8 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Modifier;
 import java.nio.file.Path;
 import java.util.Set;
+
+import static com.telenav.kivakit.core.project.Project.resolveProject;
 
 /**
  * An object for working with a Java virtual machine, including getting properties, instrumentation and determining the
@@ -143,6 +145,7 @@ public class JavaVirtualMachine extends BaseRepeater
         var processIdentifier = ProcessHandle.current().pid();
         try
         {
+            @SuppressWarnings("SpellCheckingInspection")
             var process = Runtime.getRuntime().exec("jmap -dump:live,file=" + path + " " + processIdentifier);
             process.waitFor();
         }
@@ -199,7 +202,7 @@ public class JavaVirtualMachine extends BaseRepeater
             }
             if (agentJar == null)
             {
-                var kivakitHome = KivaKit.get().homeFolderPath();
+                var kivakitHome = resolveProject(KivaKit.class).homeFolderPath();
                 if (kivakitHome != null)
                 {
                     agentJar = kivakitHome + "/tools/agent/kivakit-agent.jar";

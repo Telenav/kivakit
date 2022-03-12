@@ -9,7 +9,7 @@ import com.telenav.kivakit.core.messaging.Message;
  */
 public class MessageException extends RuntimeException
 {
-    private Message message;
+    private final Message message;
 
     public MessageException(Message message)
     {

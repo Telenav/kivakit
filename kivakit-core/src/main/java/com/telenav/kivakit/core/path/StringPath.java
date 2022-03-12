@@ -33,6 +33,8 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 
+import static com.telenav.kivakit.core.project.Project.resolveProject;
+
 /**
  * A {@link Path} of strings that has a given separator string. This class contains numerous methods which down-cast the
  * return value of the superclass to make use easier for clients. Methods that are unique to this class mainly have to
@@ -485,7 +487,7 @@ public class StringPath extends Path<String>
     {
         for (int i = 0; i < elements.size(); i++)
         {
-            elements.set(i, KivaKit.get().properties().expand(elements.get(i)));
+            elements.set(i, resolveProject(KivaKit.class).properties().expand(elements.get(i)));
         }
         return elements;
     }

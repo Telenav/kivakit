@@ -19,7 +19,6 @@
 package com.telenav.kivakit.core;
 
 import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.project.Project;
 import com.telenav.kivakit.core.project.lexakai.DiagramProject;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -28,8 +27,14 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.nio.file.Path;
 
 /**
+ * This class defines a KivaKit {@link Project}. It cannot be constructed with the new operator since it has a private
+ * constructor. To access the singleton instance of this class, call {@link Project#resolveProject(Class)}, or use
+ * {@link com.telenav.kivakit.core.project.ProjectTrait#project(Class)}.
+ *
+ * <p>
  * Information about KivaKit, including the home folder, the cache folder and the framework version. Since {@link
  * KivaKit} is a {@link Project} it inherits that functionality as well.
+ * </p>
  *
  * @author jonathanl (shibo)
  * @see Project
@@ -39,17 +44,6 @@ import java.nio.file.Path;
 @LexakaiJavadoc(complete = true)
 public class KivaKit extends Project
 {
-    private static final Lazy<KivaKit> kivakit = Lazy.of(KivaKit::new);
-
-    public static KivaKit get()
-    {
-        return kivakit.get();
-    }
-
-    protected KivaKit()
-    {
-    }
-
     /**
      * @return The cache folder for KivaKit
      */

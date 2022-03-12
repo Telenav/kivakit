@@ -32,6 +32,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.telenav.kivakit.core.project.Project.resolveProject;
+
 /**
  * <b>Note</b>: For a detailed discussion, see <a href="https://tinyurl.com/2xycuvph">KivaKit Debugging
  * Documentation</a>
@@ -239,7 +241,7 @@ public final class Debug implements Transceiver
                 var debug = property("KIVAKIT_DEBUG");
                 var log = property("KIVAKIT_LOG");
                 var kivakitVersion = property("KIVAKIT_VERSION");
-                var title = "KivaKit " + kivakitVersion + " (" + KivaKit.get().build() + ")";
+                var title = "KivaKit " + kivakitVersion + " (" + resolveProject(KivaKit.class).build() + ")";
                 LOGGER.information(AsciiArt.textBox(title, "      Logging: https://tinyurl.com/mhc3ss5s\n"
                                 + "    Debugging: https://tinyurl.com/2xycuvph\n"
                                 + "  KIVAKIT_LOG: $\n"

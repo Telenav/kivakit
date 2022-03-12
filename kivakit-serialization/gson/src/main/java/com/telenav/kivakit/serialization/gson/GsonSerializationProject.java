@@ -9,8 +9,14 @@ import com.telenav.kivakit.serialization.gson.factory.CoreGsonFactory;
 import com.telenav.kivakit.serialization.gson.factory.GsonFactory;
 
 /**
- * Project initializer that associates a {@link GsonObjectSerializer} with the <i>.json</i> extension in {@link
+ * This class defines a KivaKit {@link Project}. It cannot be constructed with the new operator since it has a private
+ * constructor. To access the singleton instance of this class, call {@link Project#resolveProject(Class)}, or use
+ * {@link com.telenav.kivakit.core.project.ProjectTrait#project(Class)}.
+ *
+ * <p>
+ * Project initialization associates a {@link GsonObjectSerializer} with the <i>.json</i> extension in {@link
  * ObjectSerializers}, and registers a {@link BaseGsonFactory} in the global {@link Registry}.
+ * </p>
  *
  * @author jonathanl (shibo)
  * @see GsonObjectSerializer

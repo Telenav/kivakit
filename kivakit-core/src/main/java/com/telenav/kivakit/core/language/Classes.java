@@ -74,7 +74,9 @@ public class Classes
     {
         try
         {
-            return type.getConstructor().newInstance(parameters);
+            var constructor = type.getConstructor();
+            constructor.setAccessible(true);
+            return constructor.newInstance(parameters);
         }
         catch (Exception e)
         {

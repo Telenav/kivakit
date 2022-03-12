@@ -282,7 +282,7 @@ public class AsciiArt
 
     public static String topLine(int extraWidth, String title, Object... arguments)
     {
-        title = title(title);
+        title = title(title, arguments);
         return (extraWidth > 0 ? " \n" : "")
                 + TOP_LEFT_LINE_CHARACTER + line(4) + title
                 + line(Math.max(4, LINE_LENGTH + extraWidth - 6 - title.length()))
@@ -304,8 +304,8 @@ public class AsciiArt
     }
 
     @NotNull
-    private static String title(String title)
+    private static String title(String title, Object... arguments)
     {
-        return TITLE_LEFT_CHARACTER + " " + title + " " + TITLE_RIGHT_CHARACTER;
+        return TITLE_LEFT_CHARACTER + " " + Formatter.format(title, arguments) + " " + TITLE_RIGHT_CHARACTER;
     }
 }
