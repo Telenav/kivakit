@@ -18,12 +18,12 @@
 
 package com.telenav.kivakit.core.object;
 
-import com.telenav.kivakit.interfaces.factory.MapFactory;
 import com.telenav.kivakit.core.project.lexakai.DiagramObject;
+import com.telenav.kivakit.interfaces.factory.MapFactory;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * A lazy-initializing map.
@@ -61,7 +61,7 @@ public class LazyMap<Key, Value>
     private final MapFactory<Key, Value> factory;
 
     /** The value, or null if it doesn't exist */
-    private final Map<Key, Value> map = new HashMap<>();
+    private final Map<Key, Value> map = new ConcurrentHashMap<>();
 
     protected LazyMap(MapFactory<Key, Value> factory)
     {
