@@ -63,7 +63,7 @@ public interface ObjectReader extends RepeaterMixin
                                            Class<T> type,
                                            ObjectMetadata... metadata)
     {
-        var input = reporter().progressiveInput(resource.openForReading());
+        var input = resource.openForReading(); // reporter().progressiveInput(resource.openForReading());
         return read(input, resource.path(), type, metadata);
     }
 

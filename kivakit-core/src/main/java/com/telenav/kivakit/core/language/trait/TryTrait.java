@@ -116,7 +116,7 @@ public interface TryTrait extends Broadcaster, SilentTryTrait
         }
     }
 
-    default <T> T tryFinally(UncheckedCode<T> code, Runnable after)
+    default <T> T tryFinally(UncheckedCode<T> code, UncheckedVoidCode after)
     {
         try
         {
@@ -125,11 +125,19 @@ public interface TryTrait extends Broadcaster, SilentTryTrait
         catch (Exception e)
         {
             problem(e, "Code threw exception");
-            return null;
         }
         finally
         {
-            after.run();
+            try
+            {
+                after.run();
+            }
+            catch (Exception e)
+            {
+                problem(e, "Code threw exception");
+            }
         }
+        
+        return null;
     }
 }

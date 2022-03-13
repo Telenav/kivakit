@@ -25,12 +25,12 @@ public class VariableMapConverter
 
     public <T> T get(String key, Class<? extends StringConverter<T>> converterType)
     {
-        return get(key, Classes.newInstance(converterType, Listener.class));
+        return get(key, Classes.newInstance(converterType, Listener.class, listener));
     }
 
     public <T> T get(String key, Class<? extends StringConverter<T>> converterType, T defaultValue)
     {
-        return get(key, Classes.newInstance(converterType, Listener.class), defaultValue);
+        return get(key, Classes.newInstance(converterType, Listener.class, listener), defaultValue);
     }
 
     public <T> T get(String key, StringConverter<T> converter)

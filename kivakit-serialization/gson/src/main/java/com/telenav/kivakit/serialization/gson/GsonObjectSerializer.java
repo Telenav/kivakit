@@ -1,6 +1,7 @@
 package com.telenav.kivakit.serialization.gson;
 
 import com.telenav.kivakit.core.io.IO;
+import com.telenav.kivakit.core.language.Arrays;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.trait.TryTrait;
 import com.telenav.kivakit.core.path.StringPath;
@@ -70,7 +71,9 @@ public class GsonObjectSerializer implements
             var json = IO.string(input);
 
             // get the type to read,
-            var type = ensureNotNull(type(json, metadata, typeToRead));
+            var type = Arrays.contains(metadata, TYPE)
+                    ? ensureNotNull(type(json, metadata, typeToRead))
+                    : typeToRead;
 
             // and return the deserialized object.
             return new SerializableObject<>(factory.gson().fromJson(json, type),

@@ -23,6 +23,7 @@ import com.telenav.kivakit.core.project.lexakai.DiagramIo;
 import com.telenav.kivakit.core.project.lexakai.DiagramProgress;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -66,7 +67,7 @@ public class ProgressiveInputStream extends InputStream
     }
 
     @Override
-    public int read(byte[] bytes, int offset, int length) throws IOException
+    public int read(byte @NotNull [] bytes, int offset, int length) throws IOException
     {
         var read = input.read(bytes, offset, length);
         if (read > 0)
@@ -77,7 +78,7 @@ public class ProgressiveInputStream extends InputStream
     }
 
     @Override
-    public int read(byte[] bytes) throws IOException
+    public int read(byte @NotNull [] bytes) throws IOException
     {
         var read = input.read(bytes);
         if (read > 0)

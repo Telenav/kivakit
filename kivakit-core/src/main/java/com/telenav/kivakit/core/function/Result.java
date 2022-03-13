@@ -22,7 +22,9 @@ import com.telenav.kivakit.core.code.UncheckedVoidCode;
 import com.telenav.kivakit.core.function.arities.PentaFunction;
 import com.telenav.kivakit.core.function.arities.TetraFunction;
 import com.telenav.kivakit.core.function.arities.TriFunction;
+import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.messaging.Broadcaster;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.listeners.MessageList;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
@@ -31,6 +33,7 @@ import com.telenav.kivakit.core.project.lexakai.DiagramMessaging;
 import com.telenav.kivakit.core.test.Tested;
 import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.function.BooleanFunction;
+import com.telenav.kivakit.interfaces.string.StringMapper;
 import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -40,6 +43,7 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
@@ -96,7 +100,10 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  *
  * <ul>
  *     <li>{@link #then(Function)} - Returns the result of applying the given function to this value</li>
- *     <li>{@link #then(BiFunction, Maybe)} - Returns the result of applying the given two-argument function to this value and the given value</li>
+ *     <li>{@link #then(BiFunction, Object)} - Returns the result of applying the given two-argument function to this value and the given argument</li>
+ *     <li>{@link #then(TriFunction, Object, Object)} - Returns the result of applying the given three-argument function to this value and the given arguments</li>
+ *     <li>{@link #then(TetraFunction, Object, Object, Object)} - Returns the result of applying the given four-argument function to this value and the given arguments</li>
+ *     <li>{@link #then(PentaFunction, Object, Object, Object, Object)} - Returns the result of applying the given five-argument function to this value and the given arguments</li>
  *     <li>{@link #apply(Function)} - Applies the given function to this value</li>
  *     <li>{@link #map(Function)} - Applies the given function to this value</li>
  * </ul>
@@ -270,6 +277,32 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     public <Mapped> Result<Mapped> apply(Function<? super Value, ? extends Maybe<? extends Mapped>> function)
     {
         return (Result<Mapped>) super.apply(function);
+    }
+
+    /**
+     * If a value is present, converts it to a string and then applies the given {@link StringMapper} class to convert
+     * it to a value. The {@link StringMapper} must have a public constructor that takes a {@link Listener}. String
+     * converters in the <i>kivakit-converter</i> mini-framework are such {@link StringMapper}s.
+     *
+     * @param mapperType The {@link StringMapper} class
+     * @return A {@link Maybe} object with the mapped value, or {@link #absent()} if the mapping failed
+     */
+    @Tested
+    public <Output, Mapper extends StringMapper<? extends Output>> Maybe<Output> convert(Class<Mapper> mapperType)
+    {
+        var outer = this;
+        return tryCatchDefault(() ->
+        {
+            if (isPresent())
+            {
+                var mapper = Classes.newInstance(mapperType, Listener.class, outer);
+                return newMaybe(ensureNotNull(mapper).map(get().toString()));
+            }
+            else
+            {
+                return newAbsent();
+            }
+        }, newAbsent());
     }
 
     /**

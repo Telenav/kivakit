@@ -26,6 +26,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+
 /**
  * Class utility methods
  *
@@ -70,13 +72,43 @@ public class Classes
         }
     }
 
-    public static <T> T newInstance(Class<T> type, Object... parameters)
+    /**
+     * Constructs an object from a type and a list of arguments. The list of arguments must alternate between type and
+     * value. For example:
+     *
+     * <pre>
+     * Listener listener = [...]
+     * var converter = newInstance(DurationConverter.class, Listener.class, listener);
+     * </pre>
+     *
+     * @param type The type to instantiate
+     * @param arguments The arguments, alternating between argument type and argument value
+     * @return The created object
+     */
+    public static <T> T newInstance(Class<T> type, Object... arguments)
     {
         try
         {
-            var constructor = type.getConstructor();
+            ensure(arguments.length % 2 == 0);
+
+            int count = arguments.length / 2;
+
+            var types = new Class<?>[count];
+            var values = new Object[count];
+
+            for (var index = 0; index < count; index++)
+            {
+                var argumentIndex = index * 2;
+
+                ensure(arguments[argumentIndex] instanceof Class);
+                
+                types[index] = (Class<?>) arguments[argumentIndex];
+                values[index] = arguments[argumentIndex + 1];
+            }
+
+            var constructor = type.getConstructor(types);
             constructor.setAccessible(true);
-            return constructor.newInstance(parameters);
+            return constructor.newInstance(values);
         }
         catch (Exception e)
         {

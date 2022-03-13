@@ -22,6 +22,7 @@ import com.telenav.kivakit.conversion.project.lexakai.DiagramConversion;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
+import com.telenav.kivakit.interfaces.string.StringMapper;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -34,7 +35,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see BaseStringConverter
  */
 @UmlClassDiagram(diagram = DiagramConversion.class)
-public interface StringConverter<Value> extends TwoWayConverter<String, Value>
+public interface StringConverter<Value> extends
+        TwoWayConverter<String, Value>,
+        StringMapper<Value>
 {
     /**
      * Converts the given delimited string to a list
@@ -106,6 +109,12 @@ public interface StringConverter<Value> extends TwoWayConverter<String, Value>
     default StringConverter<ObjectList<Value>> listConverter()
     {
         return listConverter(",");
+    }
+
+    @Override
+    default Value map(String text)
+    {
+        return convert(text);
     }
 
     /**

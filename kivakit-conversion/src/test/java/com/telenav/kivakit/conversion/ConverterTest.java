@@ -18,11 +18,14 @@
 
 package com.telenav.kivakit.conversion;
 
+import com.telenav.kivakit.conversion.core.time.DurationConverter;
 import com.telenav.kivakit.conversion.core.time.SecondsConverter;
+import com.telenav.kivakit.core.function.Result;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.listeners.MessageChecker;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.time.Duration;
 import org.junit.Test;
 
 public class ConverterTest extends UnitTest
@@ -38,5 +41,17 @@ public class ConverterTest extends UnitTest
 
         new MessageChecker().expect(Problem.class).check(() ->
                 ensureEqual(null, new SecondsConverter(Listener.none()).convert("x")));
+    }
+
+    @Test
+    public void testResultMonad()
+    {
+        ensureEqual(Result.success("5 minutes")
+                .convert(DurationConverter.class)
+                .get(), Duration.minutes(5));
+
+        ensureEqual(Result.success("junk")
+                .convert(DurationConverter.class)
+                .get(), null);
     }
 }

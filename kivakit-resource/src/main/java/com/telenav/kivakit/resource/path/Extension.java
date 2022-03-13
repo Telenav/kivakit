@@ -145,6 +145,10 @@ public class Extension implements Named
 
     public static final Extension XML = parse(LOGGER, ".xml");
 
+    public static final Extension YAML = parse(LOGGER, ".yaml");
+
+    public static final Extension YML = parse(LOGGER, ".yml");
+
     public static final Extension ZIP = parse(LOGGER, ".zip");
 
     public static List<Extension> archive()
@@ -164,28 +168,31 @@ public class Extension implements Named
         return executable;
     }
 
+    @SuppressWarnings("DuplicatedCode")
     public static List<Extension> known()
     {
         List<Extension> known = new ArrayList<>();
-        known.add(GZIP);
-        known.add(ZIP);
-        known.add(PROPERTIES);
-        known.add(TXT);
         known.add(CSV);
-        known.add(PNG);
+        known.add(GEOJSON);
+        known.add(GRAPH);
+        known.add(GRAPH_GZIP);
+        known.add(GZIP);
         known.add(JAR);
+        known.add(OSM);
+        known.add(OSMPP);
+        known.add(OSM_PBF);
+        known.add(PBF);
+        known.add(PNG);
+        known.add(POLY);
+        known.add(PROPERTIES);
         known.add(SHELL);
         known.add(TXD);
-        known.add(GRAPH);
-        known.add(PBF);
-        known.add(OSM);
-        known.add(OSM_PBF);
-        known.add(POLY);
-        known.add(GEOJSON);
-        known.add(OSMPP);
-        known.add(TXT_GZIP);
         known.add(TXD_GZIP);
-        known.add(GRAPH_GZIP);
+        known.add(TXT);
+        known.add(TXT_GZIP);
+        known.add(XML);
+        known.add(YAML);
+        known.add(ZIP);
         known.sort((a, b) ->
         {
             if (a.length().isLessThan(b.length()))
