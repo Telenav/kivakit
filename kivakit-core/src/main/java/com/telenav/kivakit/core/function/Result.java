@@ -280,32 +280,6 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     }
 
     /**
-     * If a value is present, converts it to a string and then applies the given {@link StringMapper} class to convert
-     * it to a value. The {@link StringMapper} must have a public constructor that takes a {@link Listener}. String
-     * converters in the <i>kivakit-converter</i> mini-framework are such {@link StringMapper}s.
-     *
-     * @param mapperType The {@link StringMapper} class
-     * @return A {@link Maybe} object with the mapped value, or {@link #absent()} if the mapping failed
-     */
-    @Tested
-    public <Output, Mapper extends StringMapper<? extends Output>> Maybe<Output> convert(Class<Mapper> mapperType)
-    {
-        var outer = this;
-        return tryCatchDefault(() ->
-        {
-            if (isPresent())
-            {
-                var mapper = Classes.newInstance(mapperType, Listener.class, outer);
-                return newMaybe(ensureNotNull(mapper).map(get().toString()));
-            }
-            else
-            {
-                return newAbsent();
-            }
-        }, newAbsent());
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -369,6 +343,32 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
         var invalid = isPresent() && failed();
 
         return !invalid;
+    }
+
+    /**
+     * If a value is present, converts it to a string and then applies the given {@link StringMapper} class to convert
+     * it to a value. The {@link StringMapper} must have a public constructor that takes a {@link Listener}. String
+     * converters in the <i>kivakit-converter</i> mini-framework are such {@link StringMapper}s.
+     *
+     * @param mapperType The {@link StringMapper} class
+     * @return A {@link Maybe} object with the mapped value, or {@link #absent()} if the mapping failed
+     */
+    @Tested
+    public <Output, Mapper extends StringMapper<? extends Output>> Maybe<Output> convert(Class<Mapper> mapperType)
+    {
+        var outer = this;
+        return tryCatchDefault(() ->
+        {
+            if (isPresent())
+            {
+                var mapper = Classes.newInstance(mapperType, Listener.class, outer);
+                return newMaybe(ensureNotNull(mapper).map(get().toString()));
+            }
+            else
+            {
+                return newAbsent();
+            }
+        }, newAbsent());
     }
 
     /**
