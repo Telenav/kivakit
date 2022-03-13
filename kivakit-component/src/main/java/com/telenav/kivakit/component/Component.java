@@ -19,9 +19,9 @@ import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.vm.JavaTrait;
 import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
+import com.telenav.kivakit.resource.Package;
 import com.telenav.kivakit.resource.PackageTrait;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.Package;
 import com.telenav.kivakit.settings.Settings;
 import com.telenav.kivakit.settings.SettingsStore;
 import com.telenav.kivakit.settings.SettingsTrait;
@@ -107,7 +107,7 @@ import java.util.function.Function;
  * <p><i>Result</i></p>
  *
  * <ul>
- *     <li>{@link #result(Code)} - Executes the given code, capturing any messages broadcast during execution in a {@link Result} object</li>
+ *     <li>{@link #run(Code)} - Executes the given code, capturing any messages broadcast during execution in a {@link Result} object</li>
  * </ul>
  *
  * <p><br/><hr/><br/></p>

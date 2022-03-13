@@ -28,6 +28,11 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 @LexakaiJavadoc(complete = true)
 public interface Versioned
 {
+    default boolean hasVersion()
+    {
+        return version() != null;
+    }
+
     /**
      * Returns the version of this object
      *

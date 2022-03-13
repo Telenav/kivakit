@@ -28,6 +28,7 @@ open module kivakit.core
     exports com.telenav.kivakit.core.collections;
     exports com.telenav.kivakit.core.ensure;
     exports com.telenav.kivakit.core.function;
+    exports com.telenav.kivakit.core.function.arities;
     exports com.telenav.kivakit.core.io;
     exports com.telenav.kivakit.core.language.module;
     exports com.telenav.kivakit.core.language.primitive;

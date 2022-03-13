@@ -281,9 +281,9 @@ public final class KryoSerializationSession extends BaseRepeater implements
     {
         try
         {
-            var hasVersion = object.version() != null;
-            kryo.writeObject(output, hasVersion);
-            if (hasVersion)
+            kryo.writeObject(output, object.hasVersion());
+
+            if (object.hasVersion())
             {
                 write(object.version());
             }

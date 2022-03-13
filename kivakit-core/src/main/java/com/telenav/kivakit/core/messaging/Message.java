@@ -54,6 +54,9 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
 
+import static com.telenav.kivakit.core.string.Formatter.Format.WITHOUT_EXCEPTION;
+import static com.telenav.kivakit.core.string.Formatter.Format.WITH_EXCEPTION;
+
 /**
  * An interface to retrieve the basic attributes of a message, find out what it means and format it as text. A message's
  * text is un-formatted when it is created. The message text and any arguments must be passed to {@link Formatter} to
@@ -279,7 +282,7 @@ public interface Message extends Transmittable, Triaged, Stringable, Named
 
     default String formatted()
     {
-        return formatted(Formatter.Format.WITHOUT_EXCEPTION);
+        return formatted(WITHOUT_EXCEPTION);
     }
 
     /**
@@ -384,13 +387,13 @@ public interface Message extends Transmittable, Triaged, Stringable, Named
     @UmlExcludeMember
     default void throwAsIllegalArgumentException()
     {
-        throw new IllegalArgumentException(formatted(Formatter.Format.WITH_EXCEPTION));
+        throw new IllegalArgumentException(formatted(WITH_EXCEPTION));
     }
 
     @UmlExcludeMember
     default void throwAsIllegalStateException()
     {
-        throw new IllegalStateException(formatted(Formatter.Format.WITH_EXCEPTION));
+        throw new IllegalStateException(formatted(WITH_EXCEPTION));
     }
 
     /**

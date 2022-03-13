@@ -29,24 +29,6 @@ public class ResultTest extends UnitTest implements ResultTrait
     }
 
     @Test
-    public void test()
-    {
-        try
-        {
-            var result = result(this::a) // get result of calling a(),
-                    .or(this::b) // or the result of b(), if a() failed,
-                    .orThrow(); // and if both failed, throw an exception, otherwise return the result.
-
-            // The result should be 7,
-            ensureEqual(result, 7);
-        }
-        catch (Exception ignored)
-        {
-            // or an exception, which we ignore.
-        }
-    }
-
-    @Test
     public void testCapture()
     {
         var operation = new Operation(true);
@@ -59,6 +41,25 @@ public class ResultTest extends UnitTest implements ResultTrait
         ensureEqual(result.get(), null);
         ensure(result.failed());
         ensure(result.messages().isNonEmpty());
+        ensure(result.messages().get(0).formatted().equals("Failed!"));
+    }
+
+    @Test
+    public void testOr()
+    {
+        try
+        {
+            var result = run(this::a) // get result of calling a(),
+                    .or(this::b) // or the result of b(), if a() failed,
+                    .orThrow(); // and if both failed, throw an exception, otherwise return the result.
+
+            // The result should be 7,
+            ensureEqual(result, 7);
+        }
+        catch (Exception ignored)
+        {
+            // or an exception, which we ignore.
+        }
     }
 
     @Test

@@ -14,9 +14,9 @@ import com.telenav.kivakit.interfaces.code.Code;
  *
  * <ul>
  *     <li>{@link #absent()} - Returns a {@link Result} that represents a missing value</li>
- *     <li>{@link #result(Object)} - Returns a {@link Result} for the given value</li>
- *     <li>{@link #result(Maybe)} - Returns a {@link Result} for the given value</li>
- *     <li>{@link #result(Code)} - Runs the given code and returns a {@link Result}. If the code failed, the result it will contain one or more {@link Message}s</li>
+ *     <li>{@link #success(Object)} - Returns a {@link Result} for the given value</li>
+ *     <li>{@link #success(Maybe)} - Returns a {@link Result} for the given value</li>
+ *     <li>{@link #run(Code)} - Runs the given code and returns a {@link Result}. If the code failed, the result it will contain one or more {@link Message}s</li>
  *     <li>{@link #failure(String, Object...)} - Creates a {@link Result} with the given failure message</li>
  *     <li>{@link #failure(Throwable, String, Object...)} - Creates a {@link Result} with the given failure message</li>
  *     <li>{@link #failure(Message)} - Creates a {@link Result} with the given failure message</li>
@@ -64,29 +64,29 @@ public interface ResultTrait extends Repeater
     }
 
     /**
-     * Returns a {@link Result} for the given value
-     */
-    default <T> Result<T> result(T value)
-    {
-        return Result.success(value);
-    }
-
-    /**
-     * Returns a {@link Result} for the given value
-     */
-    default <T> Result<T> result(Maybe<T> value)
-    {
-        return Result.success(value);
-    }
-
-    /**
      * Returns the result of executing the given {@link Code}. Captures any value, or any failure messages broadcast by
      * this object during the call, and returns a {@link Result}.
      *
      * @return The {@link Result} of the call
      */
-    default <T> Result<T> result(Code<T> code)
+    default <T> Result<T> run(Code<T> code)
     {
         return Result.run(this, code);
+    }
+
+    /**
+     * Returns a {@link Result} for the given value
+     */
+    default <T> Result<T> success(Maybe<T> value)
+    {
+        return Result.success(value);
+    }
+
+    /**
+     * Returns a {@link Result} for the given value
+     */
+    default <T> Result<T> success(T value)
+    {
+        return Result.success(value);
     }
 }

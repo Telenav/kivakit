@@ -1,5 +1,6 @@
 package com.telenav.kivakit.core.function;
 
+import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.test.UnitTest;
 import com.telenav.kivakit.core.value.mutable.MutableValue;
 import org.junit.Test;
@@ -112,6 +113,26 @@ public class MaybeTest extends UnitTest
     }
 
     @Test
+    public void testMediumRocketSurgeryArticle()
+    {
+        ensureEqual(Maybe.present("123") // "123"
+                .map(Integer::parseInt) // 123
+                .then(Integer::sum, 123) // 246
+                .map(String::valueOf) // "246"
+                .then(String::concat, "xyz") // "246xyz"
+                .then(String::substring, 2, 4) // "6x"
+                .get(), "6x");
+
+        ensureEqual(Maybe.present("abc") // "123"
+                .map(Integer::parseInt) // null
+                .then(Integer::sum, 123) // null
+                .map(String::valueOf) // null
+                .then(String::concat, "xyz") // null
+                .then(String::substring, 2, 4) // null
+                .get(), null);
+    }
+
+    @Test
     public void testOrMaybe()
     {
         ensureEqual(8, Maybe.present(8).orMaybe(5).get());
@@ -168,17 +189,69 @@ public class MaybeTest extends UnitTest
         ensureEqual(null, Maybe.maybe((Integer) null)
                 .then(Integer::sum, 9).get());
 
-        ensureEqual(12, Maybe.present(3)
-                .then(Integer::sum, Maybe.maybe(9)).get());
-
-        ensureEqual(null, Maybe.maybe((Integer) null)
-                .then(Integer::sum, Maybe.maybe(9)).get());
-
         ensureEqual(Maybe.present("abc")
                 .then(String::toUpperCase)
                 .then(String::concat, "def")
                 .then(it -> it + "!")
                 .presentIf(it -> it.contains("A"))
                 .get(), "ABCdef!");
+    }
+
+    @Test
+    public void testThenBiFunction()
+    {
+        ensureEqual(Maybe.present("9")
+                .map(Ints::parseFast)
+                .then(Integer::sum, 3)
+                .get(), 12);
+
+        ensureEqual(Maybe.present("9")
+                .then(String::repeat, 5)
+                .get(), "99999");
+
+        ensureEqual(Maybe.maybe((String) null)
+                .then(String::repeat, 5)
+                .get(), null);
+    }
+
+    @Test
+    @SuppressWarnings("SpellCheckingInspection")
+    public void testThenPentaFunction()
+    {
+        ensureEqual(Maybe.present(123456789)
+                .map(String::valueOf)
+                .then(String::regionMatches, 1, "234", 0, 3)
+                .get(), true);
+
+        ensureEqual(Maybe.maybe((Integer) null)
+                .map(String::valueOf)
+                .then(String::regionMatches, 1, "234", 0, 3)
+                .get(), null);
+    }
+
+    @Test
+    public void testThenQuadFunction()
+    {
+        ensureEqual(Maybe.present(":")
+                .then(String::join, "a", "b", "c")
+                .get(), "a:b:c");
+
+        ensureEqual(Maybe.maybe((String) null)
+                .then(String::join, "a", "b", "c")
+                .get(), null);
+    }
+
+    @Test
+    public void testThenTriFunction()
+    {
+        ensureEqual(Maybe.present(123456789)
+                .map(String::valueOf)
+                .then(String::substring, 3, 5)
+                .get(), "45");
+
+        ensureEqual(Maybe.maybe((Integer) null)
+                .map(String::valueOf)
+                .then(String::substring, 3, 5)
+                .get(), null);
     }
 }
