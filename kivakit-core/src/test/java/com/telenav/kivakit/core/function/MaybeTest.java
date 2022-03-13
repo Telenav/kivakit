@@ -148,6 +148,7 @@ public class MaybeTest extends UnitTest
         ensureEqual(null, Maybe.present(3).presentIf(x -> false).get());
     }
 
+    @SuppressWarnings("SpellCheckingInspection")
     @Test
     public void testThen()
     {
@@ -172,5 +173,12 @@ public class MaybeTest extends UnitTest
 
         ensureEqual(null, Maybe.maybe((Integer) null)
                 .then(Integer::sum, Maybe.maybe(9)).get());
+
+        ensureEqual(Maybe.present("abc")
+                .then(String::toUpperCase)
+                .then(String::concat, "def")
+                .then(it -> it + "!")
+                .presentIf(it -> it.contains("A"))
+                .get(), "ABCdef!");
     }
 }
