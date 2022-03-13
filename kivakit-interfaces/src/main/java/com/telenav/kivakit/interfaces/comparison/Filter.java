@@ -32,19 +32,14 @@ import java.util.function.Predicate;
 @UmlClassDiagram(diagram = DiagramComparison.class)
 public interface Filter<Value> extends Matcher<Value>
 {
-    Filter<?> instance = value ->
-    {
-        throw new IllegalStateException();
-    };
-
     static <T> Filter<T> all()
     {
-        return instance.filter(value -> true);
+        return ignored -> true;
     }
 
     static <T> Filter<T> none()
     {
-        return instance.filter(value -> false);
+        return ignored -> false;
     }
 
     boolean accepts(Value value);
