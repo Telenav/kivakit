@@ -23,11 +23,7 @@ import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.trait.LanguageTrait;
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
-import com.telenav.kivakit.core.messaging.Debug;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.object.LazyMap;
 import com.telenav.kivakit.core.project.lexakai.DiagramProject;
 import com.telenav.kivakit.core.registry.RegistryTrait;
@@ -95,12 +91,15 @@ public abstract class Project extends BaseRepeater implements
         NamedObject
 
 {
-    private static final Lazy<Logger> LOGGER = Lazy.of(LoggerFactory::newLogger);
-
-    private static final Lazy<Debug> DEBUG = Lazy.of(() -> new Debug(LOGGER.get()));
-
+    /** Map from project class to project instance used by {@link #resolveProject(Class)} */
     private static final LazyMap<Class<? extends Project>, Project> projects = LazyMap.of(Project::newProject);
 
+    /**
+     * Resolves the given Project class to a singleton instance.
+     *
+     * @param type The project class
+     * @return The singleton project object
+     */
     @SuppressWarnings("unchecked")
     public static <T extends Project> T resolveProject(Class<T> type)
     {
@@ -201,7 +200,7 @@ public abstract class Project extends BaseRepeater implements
             visitDependencies((project, level) -> project.initialize());
 
             // initialize the project
-            DEBUG.get().trace("Initializing ${class}", getClass());
+            trace("Initializing ${class}", getClass());
             onInitialize();
 
             // and signal that we are done initializing.
