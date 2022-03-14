@@ -5,5 +5,5 @@ open module kivakit.network.socket
 
     // Module exports
     exports com.telenav.kivakit.network.socket.server;
-    exports com.telenav.kivakit.network.socket.project.lexakai;
+    exports com.telenav.kivakit.network.socket.lexakai;
 }

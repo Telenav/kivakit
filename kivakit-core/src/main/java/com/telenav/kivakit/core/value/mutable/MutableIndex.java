@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.value.mutable;
 
 import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.project.lexakai.DiagramValue;
+import com.telenav.kivakit.core.lexakai.DiagramValue;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

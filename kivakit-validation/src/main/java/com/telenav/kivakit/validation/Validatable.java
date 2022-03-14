@@ -19,7 +19,7 @@
 package com.telenav.kivakit.validation;
 
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.validation.project.lexakai.DiagramValidation;
+import com.telenav.kivakit.validation.lexakai.DiagramValidation;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 

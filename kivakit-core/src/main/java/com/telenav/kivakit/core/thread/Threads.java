@@ -22,7 +22,7 @@ import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.MutableCount;
 import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.vm.JavaVirtualMachine;
-import com.telenav.kivakit.core.project.lexakai.DiagramThread;
+import com.telenav.kivakit.core.lexakai.DiagramThread;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

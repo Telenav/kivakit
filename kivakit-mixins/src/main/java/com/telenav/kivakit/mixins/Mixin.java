@@ -1,7 +1,7 @@
 package com.telenav.kivakit.mixins;
 
 import com.telenav.kivakit.interfaces.factory.Factory;
-import com.telenav.kivakit.mixins.project.lexakai.DiagramMixin;
+import com.telenav.kivakit.mixins.lexakai.DiagramMixin;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

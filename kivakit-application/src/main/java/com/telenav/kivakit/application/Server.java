@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.application;
 
-import com.telenav.kivakit.application.project.lexakai.DiagramApplication;
+import com.telenav.kivakit.application.lexakai.DiagramApplication;
 import com.telenav.kivakit.core.project.Project;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

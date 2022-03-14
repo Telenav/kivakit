@@ -30,7 +30,7 @@ import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.messages.OperationMessage;
 import com.telenav.kivakit.core.messaging.messages.Severity;
-import com.telenav.kivakit.core.project.lexakai.DiagramLogging;
+import com.telenav.kivakit.core.lexakai.DiagramLogging;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.core.time.Time;

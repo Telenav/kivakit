@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.language.reflection;
 
-import com.telenav.kivakit.core.project.lexakai.DiagramReflection;
+import com.telenav.kivakit.core.lexakai.DiagramReflection;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

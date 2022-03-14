@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.collections.list;
 
 import com.telenav.kivakit.core.value.count.Maximum;
-import com.telenav.kivakit.core.project.lexakai.DiagramCollections;
+import com.telenav.kivakit.core.lexakai.DiagramCollections;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

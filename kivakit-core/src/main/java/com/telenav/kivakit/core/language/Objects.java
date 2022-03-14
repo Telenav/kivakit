@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.language;
 
 import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.project.lexakai.DiagramObject;
+import com.telenav.kivakit.core.lexakai.DiagramObject;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Arrays;

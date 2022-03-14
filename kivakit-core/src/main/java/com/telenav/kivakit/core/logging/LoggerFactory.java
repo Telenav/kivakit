@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.logging;
 
 import com.telenav.kivakit.core.logging.loggers.LogServiceLogger;
-import com.telenav.kivakit.core.project.lexakai.DiagramLogging;
+import com.telenav.kivakit.core.lexakai.DiagramLogging;
 import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;

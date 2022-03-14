@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.language.primitive;
 
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.project.lexakai.DiagramPrimitive;
+import com.telenav.kivakit.core.lexakai.DiagramPrimitive;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

@@ -20,7 +20,7 @@ package com.telenav.kivakit.core.collections.list;
 
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
-import com.telenav.kivakit.core.project.lexakai.DiagramCollections;
+import com.telenav.kivakit.core.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.factory.IntMapFactory;

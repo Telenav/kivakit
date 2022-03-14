@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.io;
 
-import com.telenav.kivakit.interfaces.project.lexakai.DiagramIo;
+import com.telenav.kivakit.interfaces.lexakai.DiagramIo;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

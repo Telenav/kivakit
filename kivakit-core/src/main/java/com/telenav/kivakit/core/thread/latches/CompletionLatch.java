@@ -20,7 +20,7 @@ package com.telenav.kivakit.core.thread.latches;
 
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.core.value.count.Count;
-import com.telenav.kivakit.core.project.lexakai.DiagramThread;
+import com.telenav.kivakit.core.lexakai.DiagramThread;
 import com.telenav.kivakit.core.thread.WakeState;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;

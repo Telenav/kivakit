@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.thread.KivaKitThread;
 import com.telenav.kivakit.core.thread.Threads;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.value.count.Maximum;
-import com.telenav.kivakit.network.socket.project.lexakai.DiagramSocketServer;
+import com.telenav.kivakit.network.socket.lexakai.DiagramSocketServer;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.net.BindException;

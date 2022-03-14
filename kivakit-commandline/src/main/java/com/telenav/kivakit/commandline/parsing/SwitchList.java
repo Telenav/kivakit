@@ -20,9 +20,9 @@ package com.telenav.kivakit.commandline.parsing;
 
 import com.telenav.kivakit.commandline.Switch;
 import com.telenav.kivakit.commandline.SwitchParser;
-import com.telenav.kivakit.commandline.project.lexakai.DiagramCommandLine;
-import com.telenav.kivakit.commandline.project.lexakai.DiagramSwitch;
-import com.telenav.kivakit.commandline.project.lexakai.DiagramValidation;
+import com.telenav.kivakit.commandline.lexakai.DiagramCommandLine;
+import com.telenav.kivakit.commandline.lexakai.DiagramSwitch;
+import com.telenav.kivakit.commandline.lexakai.DiagramValidation;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.language.reflection.property.Property;
 import com.telenav.kivakit.core.language.reflection.property.PropertyValues;

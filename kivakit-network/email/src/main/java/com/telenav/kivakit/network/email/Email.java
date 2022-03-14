@@ -22,7 +22,7 @@ import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.network.core.EmailAddress;
-import com.telenav.kivakit.network.email.project.lexakai.DiagramEmail;
+import com.telenav.kivakit.network.email.lexakai.DiagramEmail;
 import com.telenav.kivakit.validation.BaseValidator;
 import com.telenav.kivakit.validation.Validatable;
 import com.telenav.kivakit.validation.ValidationType;

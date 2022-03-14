@@ -19,7 +19,7 @@
 package com.telenav.kivakit.validation;
 
 import com.telenav.kivakit.core.value.name.Name;
-import com.telenav.kivakit.validation.project.lexakai.DiagramValidation;
+import com.telenav.kivakit.validation.lexakai.DiagramValidation;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.HashSet;

@@ -8,7 +8,7 @@ open module kivakit.settings
     requires lexakai.annotations;
 
     // Module exports
-    exports com.telenav.kivakit.settings.project.lexakai;
+    exports com.telenav.kivakit.settings.lexakai;
     exports com.telenav.kivakit.settings;
     exports com.telenav.kivakit.settings.stores;
 }

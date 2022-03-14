@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.telenav.kivakit.network.core.project.lexakai.DiagramNetworkLocation;
+import com.telenav.kivakit.network.core.lexakai.DiagramNetworkLocation;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.core.messaging.messages;
 
-import com.telenav.kivakit.core.project.lexakai.DiagramLogging;
-import com.telenav.kivakit.core.project.lexakai.DiagramMessaging;
+import com.telenav.kivakit.core.lexakai.DiagramLogging;
+import com.telenav.kivakit.core.lexakai.DiagramMessaging;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;

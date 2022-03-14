@@ -184,7 +184,7 @@ public class PreciseDuration implements LengthOfTime
      * @param units the units to apply singular or plural suffix to
      * @return a <code>String</code> representation
      */
-    private String unitString(double value, String units)
+    public String unitString(double value, String units)
     {
         return String.format("%.1f", value) + " " + units + (value > 1.0 ? "s" : "");
     }

@@ -22,7 +22,7 @@ import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.iteration.Iterables;
 import com.telenav.kivakit.core.language.Objects;
-import com.telenav.kivakit.core.project.lexakai.DiagramLanguage;
+import com.telenav.kivakit.core.lexakai.DiagramLanguage;
 import com.telenav.kivakit.interfaces.collection.Sized;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;

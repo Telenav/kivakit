@@ -20,7 +20,7 @@ package com.telenav.kivakit.network.http;
 
 import com.telenav.kivakit.network.core.authentication.Password;
 import com.telenav.kivakit.network.core.authentication.UserName;
-import com.telenav.kivakit.network.http.project.lexakai.DiagramHttp;
+import com.telenav.kivakit.network.http.lexakai.DiagramHttp;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

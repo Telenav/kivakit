@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.value;
 
-import com.telenav.kivakit.interfaces.project.lexakai.DiagramValue;
+import com.telenav.kivakit.interfaces.lexakai.DiagramValue;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

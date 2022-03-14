@@ -28,7 +28,7 @@ import com.telenav.kivakit.core.messaging.context.CodeContext;
 import com.telenav.kivakit.core.messaging.context.StackTrace;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.messaging.messages.Triaged;
-import com.telenav.kivakit.core.project.lexakai.DiagramLogging;
+import com.telenav.kivakit.core.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

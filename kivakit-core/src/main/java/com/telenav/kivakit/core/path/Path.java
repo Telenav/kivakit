@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.language.Streams;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.language.Objects;
-import com.telenav.kivakit.core.project.lexakai.DiagramPath;
+import com.telenav.kivakit.core.lexakai.DiagramPath;
 import com.telenav.kivakit.interfaces.collection.Sized;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;

@@ -21,7 +21,7 @@ package com.telenav.kivakit.core.object;
 import com.telenav.kivakit.interfaces.collection.Clearable;
 import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.kivakit.interfaces.value.Source;
-import com.telenav.kivakit.core.project.lexakai.DiagramObject;
+import com.telenav.kivakit.core.lexakai.DiagramObject;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**

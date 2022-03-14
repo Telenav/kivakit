@@ -21,7 +21,7 @@ package com.telenav.kivakit.filesystem;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.filesystem.spi.DiskService;
-import com.telenav.kivakit.resource.project.lexakai.DiagramFileSystemFolder;
+import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFolder;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;

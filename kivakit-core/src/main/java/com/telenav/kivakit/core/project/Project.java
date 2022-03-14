@@ -25,7 +25,7 @@ import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.trait.LanguageTrait;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.object.LazyMap;
-import com.telenav.kivakit.core.project.lexakai.DiagramProject;
+import com.telenav.kivakit.core.lexakai.DiagramProject;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.time.LocalTime;

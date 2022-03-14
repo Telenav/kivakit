@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.core.messaging;
 
-import com.telenav.kivakit.core.project.lexakai.DiagramRepeater;
+import com.telenav.kivakit.core.lexakai.DiagramRepeater;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
-import com.telenav.kivakit.core.project.lexakai.DiagramBroadcaster;
+import com.telenav.kivakit.core.lexakai.DiagramBroadcaster;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 

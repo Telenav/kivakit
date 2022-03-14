@@ -22,7 +22,7 @@ import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerCodeContext;
-import com.telenav.kivakit.core.project.lexakai.DiagramLogging;
+import com.telenav.kivakit.core.lexakai.DiagramLogging;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
 import com.telenav.kivakit.core.time.Time;

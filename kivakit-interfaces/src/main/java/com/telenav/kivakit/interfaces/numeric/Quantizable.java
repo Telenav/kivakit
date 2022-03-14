@@ -22,7 +22,7 @@ import com.telenav.kivakit.interfaces.collection.Indexed;
 import com.telenav.kivakit.interfaces.collection.LongKeyed;
 import com.telenav.kivakit.interfaces.factory.MapFactory;
 import com.telenav.kivakit.interfaces.model.Identifiable;
-import com.telenav.kivakit.interfaces.project.lexakai.DiagramNumeric;
+import com.telenav.kivakit.interfaces.lexakai.DiagramNumeric;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;

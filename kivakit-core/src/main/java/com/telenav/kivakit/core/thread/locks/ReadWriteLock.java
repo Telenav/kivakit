@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.thread.locks;
 
 import com.telenav.kivakit.interfaces.value.Source;
-import com.telenav.kivakit.core.project.lexakai.DiagramThread;
+import com.telenav.kivakit.core.lexakai.DiagramThread;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.concurrent.locks.ReentrantLock;

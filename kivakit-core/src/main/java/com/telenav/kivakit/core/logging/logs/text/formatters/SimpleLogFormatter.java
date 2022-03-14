@@ -21,7 +21,7 @@ package com.telenav.kivakit.core.logging.logs.text.formatters;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.logging.logs.text.LogFormatter;
-import com.telenav.kivakit.core.project.lexakai.DiagramLogs;
+import com.telenav.kivakit.core.lexakai.DiagramLogs;
 import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.messaging.listeners.MessageCounter;
 import com.telenav.kivakit.core.messaging.listeners.MessageList;
 import com.telenav.kivakit.core.messaging.messages.status.Glitch;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.validation.project.lexakai.DiagramValidation;
+import com.telenav.kivakit.validation.lexakai.DiagramValidation;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**

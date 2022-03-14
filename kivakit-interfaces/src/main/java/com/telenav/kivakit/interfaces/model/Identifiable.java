@@ -19,7 +19,7 @@
 package com.telenav.kivakit.interfaces.model;
 
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
-import com.telenav.kivakit.interfaces.project.lexakai.DiagramModel;
+import com.telenav.kivakit.interfaces.lexakai.DiagramModel;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**

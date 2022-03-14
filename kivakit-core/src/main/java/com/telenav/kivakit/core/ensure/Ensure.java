@@ -3,7 +3,7 @@ package com.telenav.kivakit.core.ensure;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.messages.status.Unsupported;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
-import com.telenav.kivakit.core.project.lexakai.DiagramEnsure;
+import com.telenav.kivakit.core.lexakai.DiagramEnsure;
 import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

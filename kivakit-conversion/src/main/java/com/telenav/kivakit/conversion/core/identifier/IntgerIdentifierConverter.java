@@ -1,6 +1,6 @@
 package com.telenav.kivakit.conversion.core.identifier;
 
-import com.telenav.kivakit.conversion.project.lexakai.DiagramConversionOther;
+import com.telenav.kivakit.conversion.lexakai.DiagramConversionOther;
 import com.telenav.kivakit.conversion.core.value.QuantizableConverter;
 import com.telenav.kivakit.core.value.identifier.IntegerIdentifier;
 import com.telenav.kivakit.core.messaging.Listener;

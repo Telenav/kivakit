@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.collections.list;
 
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.project.lexakai.DiagramString;
+import com.telenav.kivakit.core.lexakai.DiagramString;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.StringTo;
 import com.telenav.kivakit.core.string.Strings;

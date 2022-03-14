@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.messaging.messages;
 
-import com.telenav.kivakit.core.project.lexakai.DiagramMessaging;
+import com.telenav.kivakit.core.lexakai.DiagramMessaging;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.level.Level;

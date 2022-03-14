@@ -19,7 +19,7 @@
 package com.telenav.kivakit.conversion.core.time;
 
 import com.telenav.kivakit.conversion.BaseStringConverter;
-import com.telenav.kivakit.conversion.project.lexakai.DiagramConversionTime;
+import com.telenav.kivakit.conversion.lexakai.DiagramConversionTime;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

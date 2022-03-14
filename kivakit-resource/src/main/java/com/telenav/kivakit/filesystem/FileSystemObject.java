@@ -20,8 +20,8 @@ package com.telenav.kivakit.filesystem;
 
 import com.telenav.kivakit.core.time.ChangedAt;
 import com.telenav.kivakit.core.time.CreatedAt;
-import com.telenav.kivakit.resource.project.lexakai.DiagramFileSystemFile;
-import com.telenav.kivakit.resource.project.lexakai.DiagramFileSystemFolder;
+import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFile;
+import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFolder;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

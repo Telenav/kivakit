@@ -50,7 +50,7 @@ open module kivakit.resource
     exports com.telenav.kivakit.resource.compression.codecs;
     exports com.telenav.kivakit.resource.compression;
     exports com.telenav.kivakit.resource.path;
-    exports com.telenav.kivakit.resource.project.lexakai;
+    exports com.telenav.kivakit.resource.lexakai;
     exports com.telenav.kivakit.resource.reading;
     exports com.telenav.kivakit.resource.resources;
     exports com.telenav.kivakit.resource.serialization;

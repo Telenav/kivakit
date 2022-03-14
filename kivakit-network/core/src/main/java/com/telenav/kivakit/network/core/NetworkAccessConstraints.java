@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludePrope
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.network.core.authentication.Password;
 import com.telenav.kivakit.network.core.authentication.UserName;
-import com.telenav.kivakit.network.core.project.lexakai.DiagramNetworkLocation;
+import com.telenav.kivakit.network.core.lexakai.DiagramNetworkLocation;
 import com.telenav.kivakit.validation.BaseValidator;
 import com.telenav.kivakit.validation.Validatable;
 import com.telenav.kivakit.validation.ValidationType;

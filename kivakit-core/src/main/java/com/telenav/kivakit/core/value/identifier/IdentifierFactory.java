@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.value.identifier;
 
-import com.telenav.kivakit.core.project.lexakai.DiagramIdentifier;
+import com.telenav.kivakit.core.lexakai.DiagramIdentifier;
 import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

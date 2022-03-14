@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.language;
 
-import com.telenav.kivakit.core.project.lexakai.DiagramLanguage;
+import com.telenav.kivakit.core.lexakai.DiagramLanguage;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

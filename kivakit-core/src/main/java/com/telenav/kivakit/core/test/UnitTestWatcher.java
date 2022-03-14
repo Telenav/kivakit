@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.test;
 
-import com.telenav.kivakit.core.project.lexakai.DiagramTest;
+import com.telenav.kivakit.core.lexakai.DiagramTest;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;

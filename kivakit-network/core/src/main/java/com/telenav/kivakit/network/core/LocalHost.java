@@ -21,7 +21,7 @@ package com.telenav.kivakit.network.core;
 import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.os.OperatingSystem;
 import com.telenav.kivakit.core.logging.LoggerCodeContext;
-import com.telenav.kivakit.network.core.project.lexakai.DiagramPort;
+import com.telenav.kivakit.network.core.lexakai.DiagramPort;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

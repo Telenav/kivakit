@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.collections.iteration;
 
 import com.telenav.kivakit.interfaces.factory.Factory;
-import com.telenav.kivakit.core.project.lexakai.DiagramIteration;
+import com.telenav.kivakit.core.lexakai.DiagramIteration;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;

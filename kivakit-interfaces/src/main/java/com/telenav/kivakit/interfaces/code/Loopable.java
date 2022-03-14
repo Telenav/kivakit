@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.code;
 
-import com.telenav.kivakit.interfaces.project.lexakai.DiagramCode;
+import com.telenav.kivakit.interfaces.lexakai.DiagramCode;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**

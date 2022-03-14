@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.value.mutable;
 
-import com.telenav.kivakit.core.project.lexakai.DiagramMutable;
+import com.telenav.kivakit.core.lexakai.DiagramMutable;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

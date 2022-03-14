@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.Transceiver;
-import com.telenav.kivakit.extraction.project.lexakai.DiagramExtraction;
+import com.telenav.kivakit.extraction.lexakai.DiagramExtraction;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**

@@ -28,7 +28,7 @@ import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.Package;
 import com.telenav.kivakit.resource.PropertyMap;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.settings.project.lexakai.DiagramSettings;
+import com.telenav.kivakit.settings.lexakai.DiagramSettings;
 import com.telenav.kivakit.settings.stores.FolderSettingsStore;
 import com.telenav.kivakit.settings.stores.PackageSettingsStore;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

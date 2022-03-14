@@ -29,7 +29,7 @@ import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.listeners.MessageList;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
-import com.telenav.kivakit.core.project.lexakai.DiagramMessaging;
+import com.telenav.kivakit.core.lexakai.DiagramMessaging;
 import com.telenav.kivakit.core.test.Tested;
 import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.function.BooleanFunction;

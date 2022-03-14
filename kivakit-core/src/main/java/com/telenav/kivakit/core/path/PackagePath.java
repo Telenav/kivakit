@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.language.module.ModuleResource;
 import com.telenav.kivakit.core.language.module.Modules;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.project.lexakai.DiagramPath;
+import com.telenav.kivakit.core.lexakai.DiagramPath;
 import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

@@ -20,7 +20,7 @@ package com.telenav.kivakit.core.messaging.context;
 
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.path.PackagePath;
-import com.telenav.kivakit.core.project.lexakai.DiagramThread;
+import com.telenav.kivakit.core.lexakai.DiagramThread;
 import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

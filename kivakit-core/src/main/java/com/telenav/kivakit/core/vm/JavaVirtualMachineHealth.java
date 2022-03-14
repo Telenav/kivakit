@@ -23,7 +23,7 @@ import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.language.object.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.logging.LogEntry;
-import com.telenav.kivakit.core.project.lexakai.DiagramLanguage;
+import com.telenav.kivakit.core.lexakai.DiagramLanguage;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

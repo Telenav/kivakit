@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.value.count;
 
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.project.lexakai.DiagramCount;
+import com.telenav.kivakit.core.lexakai.DiagramCount;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.string.Stringable;

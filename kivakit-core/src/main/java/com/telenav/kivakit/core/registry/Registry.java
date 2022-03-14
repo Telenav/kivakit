@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.registry;
 
-import com.telenav.kivakit.core.project.lexakai.DiagramRegistry;
+import com.telenav.kivakit.core.lexakai.DiagramRegistry;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 

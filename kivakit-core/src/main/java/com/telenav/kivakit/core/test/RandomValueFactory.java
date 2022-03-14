@@ -24,7 +24,7 @@ import com.telenav.kivakit.core.value.level.Confidence;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Debug;
-import com.telenav.kivakit.core.project.lexakai.DiagramTest;
+import com.telenav.kivakit.core.lexakai.DiagramTest;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

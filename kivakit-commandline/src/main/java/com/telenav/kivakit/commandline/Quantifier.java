@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.commandline.project.lexakai.DiagramArgument;
-import com.telenav.kivakit.commandline.project.lexakai.DiagramSwitch;
+import com.telenav.kivakit.commandline.lexakai.DiagramArgument;
+import com.telenav.kivakit.commandline.lexakai.DiagramSwitch;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**

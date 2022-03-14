@@ -31,8 +31,8 @@ import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.kivakit.resource.path.FileName;
 import com.telenav.kivakit.resource.path.FilePath;
-import com.telenav.kivakit.resource.project.lexakai.DiagramResource;
-import com.telenav.kivakit.resource.project.lexakai.DiagramResourcePath;
+import com.telenav.kivakit.resource.lexakai.DiagramResource;
+import com.telenav.kivakit.resource.lexakai.DiagramResourcePath;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

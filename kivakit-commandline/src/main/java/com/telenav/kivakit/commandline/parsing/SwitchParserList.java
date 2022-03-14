@@ -20,8 +20,8 @@ package com.telenav.kivakit.commandline.parsing;
 
 import com.telenav.kivakit.collections.map.IndexedNameMap;
 import com.telenav.kivakit.commandline.SwitchParser;
-import com.telenav.kivakit.commandline.project.lexakai.DiagramCommandLine;
-import com.telenav.kivakit.commandline.project.lexakai.DiagramValidation;
+import com.telenav.kivakit.commandline.lexakai.DiagramCommandLine;
+import com.telenav.kivakit.commandline.lexakai.DiagramValidation;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;

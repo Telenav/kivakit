@@ -20,7 +20,7 @@ package com.telenav.kivakit.core.language.reflection.filters.method;
 
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilterSet;
 import com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention;
-import com.telenav.kivakit.core.project.lexakai.DiagramReflection;
+import com.telenav.kivakit.core.lexakai.DiagramReflection;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.reflect.Field;

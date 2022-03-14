@@ -1,6 +1,6 @@
 package com.telenav.kivakit.mixins;
 
-import com.telenav.kivakit.mixins.project.lexakai.DiagramMixin;
+import com.telenav.kivakit.mixins.lexakai.DiagramMixin;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.HashMap;

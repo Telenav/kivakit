@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.bits;
 
 import com.telenav.kivakit.core.value.count.Count;
-import com.telenav.kivakit.core.project.lexakai.DiagramBits;
+import com.telenav.kivakit.core.lexakai.DiagramBits;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

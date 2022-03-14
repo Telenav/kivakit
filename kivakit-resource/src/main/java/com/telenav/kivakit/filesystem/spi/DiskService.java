@@ -20,7 +20,7 @@ package com.telenav.kivakit.filesystem.spi;
 
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.value.level.Percent;
-import com.telenav.kivakit.resource.project.lexakai.DiagramFileSystemService;
+import com.telenav.kivakit.resource.lexakai.DiagramFileSystemService;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

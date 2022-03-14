@@ -29,7 +29,7 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.os.OperatingSystem;
-import com.telenav.kivakit.core.project.lexakai.DiagramLanguage;
+import com.telenav.kivakit.core.lexakai.DiagramLanguage;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.time.Time;

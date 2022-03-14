@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.lifecycle;
 
-import com.telenav.kivakit.interfaces.project.lexakai.DiagramLifeCycle;
+import com.telenav.kivakit.interfaces.lexakai.DiagramLifeCycle;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**

@@ -1,8 +1,8 @@
 package com.telenav.kivakit.interfaces.time;
 
 import com.telenav.kivakit.interfaces.code.Callback;
+import com.telenav.kivakit.interfaces.lexakai.DiagramTime;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
-import com.telenav.kivakit.interfaces.project.lexakai.DiagramTime;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
@@ -151,6 +151,7 @@ public interface LengthOfTime extends
      *
      * @return a <code>String</code> representation
      */
+    @SuppressWarnings("SpellCheckingInspection")
     default String asString(Format format)
     {
         switch (format)
@@ -349,6 +350,19 @@ public interface LengthOfTime extends
     }
 
     /**
+     * Converts a value to a unit-suffixed value, taking care of English singular/plural suffix.
+     *
+     * @param value a <code>double</code> value to format
+     * @param units the units to apply singular or plural suffix to
+     * @return a <code>String</code> representation
+     */
+    default String unitString(double value, String units)
+    {
+        var format = new DecimalFormat("###,###.##");
+        return format.format(value) + " " + units + (value > 1.0 ? "s" : "");
+    }
+
+    /**
      * Wait for this duration on the given monitor. Note that a duration of NONE is considered to be a wait time of zero
      * milliseconds, whereas the underlying Java {@link #wait(long)} considers zero milliseconds to be infinite wait
      * time.
@@ -375,18 +389,5 @@ public interface LengthOfTime extends
                 return false;
             }
         }
-    }
-
-    /**
-     * Converts a value to a unit-suffixed value, taking care of English singular/plural suffix.
-     *
-     * @param value a <code>double</code> value to format
-     * @param units the units to apply singular or plural suffix to
-     * @return a <code>String</code> representation
-     */
-    private String unitString(double value, String units)
-    {
-        var format = new DecimalFormat("###,###.##");
-        return format.format(value) + " " + units + (value > 1.0 ? "s" : "");
     }
 }

@@ -22,7 +22,7 @@ import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
-import com.telenav.kivakit.core.project.lexakai.DiagramIo;
+import com.telenav.kivakit.core.lexakai.DiagramIo;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

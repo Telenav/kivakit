@@ -37,7 +37,7 @@ import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.interfaces.code.Callback;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.serialization.SerializableObject;
-import com.telenav.kivakit.resource.project.lexakai.DiagramResourceArchive;
+import com.telenav.kivakit.resource.lexakai.DiagramResourceArchive;
 import com.telenav.kivakit.resource.serialization.ObjectReader;
 import com.telenav.kivakit.resource.serialization.ObjectWriter;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;

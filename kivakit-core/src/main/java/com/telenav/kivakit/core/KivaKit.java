@@ -20,7 +20,7 @@ package com.telenav.kivakit.core;
 
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.project.Project;
-import com.telenav.kivakit.core.project.lexakai.DiagramProject;
+import com.telenav.kivakit.core.lexakai.DiagramProject;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

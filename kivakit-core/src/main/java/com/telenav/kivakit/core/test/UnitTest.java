@@ -34,7 +34,7 @@ import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.core.os.ConsoleWriter;
 import com.telenav.kivakit.core.os.OperatingSystem;
 import com.telenav.kivakit.core.project.ProjectTrait;
-import com.telenav.kivakit.core.project.lexakai.DiagramTest;
+import com.telenav.kivakit.core.lexakai.DiagramTest;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.value.count.Count;

@@ -21,7 +21,7 @@ package com.telenav.kivakit.core.progress;
 import com.telenav.kivakit.core.progress.reporters.BroadcastingProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveOutputStream;
-import com.telenav.kivakit.core.project.lexakai.DiagramProgress;
+import com.telenav.kivakit.core.lexakai.DiagramProgress;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.interfaces.lifecycle.Resettable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

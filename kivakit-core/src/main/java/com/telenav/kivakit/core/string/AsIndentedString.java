@@ -21,7 +21,7 @@ package com.telenav.kivakit.core.string;
 import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.language.reflection.property.Property;
-import com.telenav.kivakit.core.project.lexakai.DiagramString;
+import com.telenav.kivakit.core.lexakai.DiagramString;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

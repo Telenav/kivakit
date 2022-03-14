@@ -21,7 +21,7 @@ package com.telenav.kivakit.resource.resources;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.resource.ResourcePath;
-import com.telenav.kivakit.resource.project.lexakai.DiagramResourceType;
+import com.telenav.kivakit.resource.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

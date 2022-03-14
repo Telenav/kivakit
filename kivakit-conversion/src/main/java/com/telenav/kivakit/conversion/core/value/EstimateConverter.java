@@ -1,7 +1,7 @@
 package com.telenav.kivakit.conversion.core.value;
 
 import com.telenav.kivakit.conversion.BaseStringConverter;
-import com.telenav.kivakit.conversion.project.lexakai.DiagramConversionValue;
+import com.telenav.kivakit.conversion.lexakai.DiagramConversionValue;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.count.Estimate;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;

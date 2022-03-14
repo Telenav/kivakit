@@ -20,7 +20,7 @@ package com.telenav.kivakit.core.string;
 
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.project.lexakai.DiagramString;
+import com.telenav.kivakit.core.lexakai.DiagramString;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;

@@ -22,7 +22,7 @@ import com.telenav.kivakit.interfaces.comparison.matchers.Anything;
 import com.telenav.kivakit.interfaces.comparison.matchers.Nothing;
 import com.telenav.kivakit.interfaces.comparison.matchers.PatternMatcher;
 import com.telenav.kivakit.interfaces.naming.Named;
-import com.telenav.kivakit.interfaces.project.lexakai.DiagramComparison;
+import com.telenav.kivakit.interfaces.lexakai.DiagramComparison;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.function.Predicate;

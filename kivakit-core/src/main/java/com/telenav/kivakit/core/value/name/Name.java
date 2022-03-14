@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.value.name;
 
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.core.project.lexakai.DiagramValue;
+import com.telenav.kivakit.core.lexakai.DiagramValue;
 import com.telenav.kivakit.interfaces.naming.Nameable;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.naming.NamedObject;

@@ -21,7 +21,7 @@ package com.telenav.kivakit.core.test;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.ensure.FailureReporter;
 import com.telenav.kivakit.core.messaging.Message;
-import com.telenav.kivakit.core.project.lexakai.DiagramTest;
+import com.telenav.kivakit.core.lexakai.DiagramTest;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.junit.Assert;

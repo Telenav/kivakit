@@ -24,7 +24,7 @@ import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.messages.OperationMessage;
-import com.telenav.kivakit.core.project.lexakai.DiagramRepeater;
+import com.telenav.kivakit.core.lexakai.DiagramRepeater;
 import com.telenav.kivakit.core.string.IndentingStringBuilder;
 import com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation;
 import com.telenav.kivakit.core.thread.locks.ReadWriteLock;

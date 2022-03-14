@@ -21,7 +21,7 @@ package com.telenav.kivakit.core.thread;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.project.lexakai.DiagramThread;
+import com.telenav.kivakit.core.lexakai.DiagramThread;
 import com.telenav.kivakit.interfaces.collection.Addable;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;

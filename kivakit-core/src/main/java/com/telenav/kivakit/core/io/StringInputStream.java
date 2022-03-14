@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.core.io;
 
-import com.telenav.kivakit.core.project.lexakai.DiagramIo;
+import com.telenav.kivakit.core.lexakai.DiagramIo;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;

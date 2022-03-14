@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.function;
 
-import com.telenav.kivakit.interfaces.project.lexakai.DiagramFunction;
+import com.telenav.kivakit.interfaces.lexakai.DiagramFunction;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

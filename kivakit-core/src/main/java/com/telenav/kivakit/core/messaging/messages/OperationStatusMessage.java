@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.messaging.messages;
 
 import com.telenav.kivakit.core.messaging.Message;
-import com.telenav.kivakit.core.project.lexakai.DiagramMessageType;
+import com.telenav.kivakit.core.lexakai.DiagramMessageType;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**

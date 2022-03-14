@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.messaging.repeaters;
 
 import com.telenav.kivakit.core.messaging.Message;
-import com.telenav.kivakit.core.project.lexakai.DiagramRepeater;
+import com.telenav.kivakit.core.lexakai.DiagramRepeater;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Repeater;

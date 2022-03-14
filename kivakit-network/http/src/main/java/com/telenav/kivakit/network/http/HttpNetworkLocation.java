@@ -26,7 +26,7 @@ import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.core.NetworkPath;
 import com.telenav.kivakit.network.core.QueryParameters;
-import com.telenav.kivakit.network.http.project.lexakai.DiagramHttp;
+import com.telenav.kivakit.network.http.lexakai.DiagramHttp;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.Resourceful;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;

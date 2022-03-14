@@ -19,8 +19,8 @@
 package com.telenav.kivakit.core.progress.reporters;
 
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.kivakit.core.project.lexakai.DiagramIo;
-import com.telenav.kivakit.core.project.lexakai.DiagramProgress;
+import com.telenav.kivakit.core.lexakai.DiagramIo;
+import com.telenav.kivakit.core.lexakai.DiagramProgress;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;

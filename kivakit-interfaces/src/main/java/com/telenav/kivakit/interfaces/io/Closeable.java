@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.interfaces.io;
 
-import com.telenav.kivakit.interfaces.project.lexakai.DiagramIo;
+import com.telenav.kivakit.interfaces.lexakai.DiagramIo;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 

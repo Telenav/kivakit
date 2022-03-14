@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.collections.set;
 
-import com.telenav.kivakit.collections.project.lexakai.DiagramSet;
+import com.telenav.kivakit.collections.lexakai.DiagramSet;
 import com.telenav.kivakit.collections.set.operations.Intersection;
 import com.telenav.kivakit.collections.set.operations.Union;
 import com.telenav.kivakit.collections.set.operations.Without;

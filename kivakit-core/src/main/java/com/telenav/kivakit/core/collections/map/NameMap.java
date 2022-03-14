@@ -20,7 +20,7 @@ package com.telenav.kivakit.core.collections.map;
 
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.project.lexakai.DiagramCollections;
+import com.telenav.kivakit.core.lexakai.DiagramCollections;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

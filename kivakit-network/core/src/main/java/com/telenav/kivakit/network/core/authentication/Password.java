@@ -19,7 +19,7 @@
 package com.telenav.kivakit.network.core.authentication;
 
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.network.core.project.lexakai.DiagramAuthentication;
+import com.telenav.kivakit.network.core.lexakai.DiagramAuthentication;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

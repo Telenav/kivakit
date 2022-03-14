@@ -22,7 +22,7 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
-import com.telenav.kivakit.core.project.lexakai.DiagramListenerType;
+import com.telenav.kivakit.core.lexakai.DiagramListenerType;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**

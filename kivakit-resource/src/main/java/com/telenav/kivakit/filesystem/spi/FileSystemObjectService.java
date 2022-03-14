@@ -27,7 +27,7 @@ import com.telenav.kivakit.core.value.count.ByteSized;
 import com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader;
 import com.telenav.kivakit.resource.path.FilePath;
 import com.telenav.kivakit.resource.path.ResourcePathed;
-import com.telenav.kivakit.resource.project.lexakai.DiagramFileSystemService;
+import com.telenav.kivakit.resource.lexakai.DiagramFileSystemService;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
