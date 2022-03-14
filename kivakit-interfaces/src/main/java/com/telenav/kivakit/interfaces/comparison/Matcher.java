@@ -18,6 +18,9 @@
 
 package com.telenav.kivakit.interfaces.comparison;
 
+import com.telenav.kivakit.interfaces.comparison.matchers.Anything;
+import com.telenav.kivakit.interfaces.comparison.matchers.Nothing;
+import com.telenav.kivakit.interfaces.comparison.matchers.PatternMatcher;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.project.lexakai.DiagramComparison;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -36,12 +39,12 @@ public interface Matcher<Value> extends Predicate<Value>
 {
     static <T> Matcher<T> anything()
     {
-        return ignored -> true;
+        return new Anything<>();
     }
 
     static Matcher<String> matching(Pattern pattern)
     {
-        return value -> pattern.matcher(value).matches();
+        return new PatternMatcher(pattern);
     }
 
     static <T extends Named> Matcher<T> named(String name)
@@ -51,7 +54,7 @@ public interface Matcher<Value> extends Predicate<Value>
 
     static <T> Matcher<T> nothing()
     {
-        return ignored -> false;
+        return new Nothing<>();
     }
 
     /**

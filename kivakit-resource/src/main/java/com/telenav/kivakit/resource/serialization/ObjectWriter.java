@@ -32,7 +32,6 @@ public interface ObjectWriter extends RepeaterMixin, TryTrait
      * @param resource The output stream
      * @param object The object to write
      * @param metadata The metadata to write
-     * @return True if the object was successfully written
      */
     default <T> void write(WritableResource resource,
                            SerializableObject<T> object,
@@ -53,10 +52,26 @@ public interface ObjectWriter extends RepeaterMixin, TryTrait
      * @param path Path associated with the output stream, for diagnostic purposes
      * @param object The object to write
      * @param metadata The metadata to write
-     * @return True if the object was successfully written
      */
     <T> void write(OutputStream output,
                    StringPath path,
                    SerializableObject<T> object,
                    ObjectMetadata... metadata);
+
+    /**
+     * Writes the given serialized object to the given {@link OutputStream}, including the given metadata in the
+     * output.
+     *
+     * @param output The output stream
+     * @param path Path associated with the output stream, for diagnostic purposes
+     * @param object The object to write
+     * @param metadata The metadata to write
+     */
+    default <T> void write(OutputStream output,
+                           StringPath path,
+                           T object,
+                           ObjectMetadata... metadata)
+    {
+        write(output, path, new SerializableObject<>(object), metadata);
+    }
 }
