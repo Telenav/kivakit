@@ -41,7 +41,7 @@ See *restructuring* below for details.
 
 ### microservices
 
- * Added -api-versions switch to enable easy backwards compatibility
+ * Added -api-forwarding switch to enable easy backwards compatibility
    by forwarding requests to old API versions to child processes
  
 ### monads
