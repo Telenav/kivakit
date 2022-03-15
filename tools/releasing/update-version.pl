@@ -80,10 +80,11 @@ sub process_file {
 sub update_project_properties {
     my $path = shift @_;
 
+    print "updating $path\n";
     my $text = read_file($path);
     $text =~ s!project-version.*!project-version = $new_version!g;
     print "text = $text\n";
-    #write_file($path, $text);
+    # write_file($path, $text);
     print "Updated $path\n";
 }
 
