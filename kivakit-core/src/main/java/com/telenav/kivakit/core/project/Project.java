@@ -192,7 +192,7 @@ public abstract class Project extends BaseRepeater implements
             onInitializing();
 
             // initialize the project
-            announce("Initializing project: ${class}", getClass());
+            announce("Project: ${class}", getClass());
             onInitialize();
 
             // and signal that we are done initializing.
