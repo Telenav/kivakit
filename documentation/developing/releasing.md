@@ -30,19 +30,19 @@ Before building KivaKit, cactus-build must be released.
    If one of these script fails, you can continue the release process by running the remaining scripts by hand.
 
 
-2. Double check the release branch
+2. Double-check the release branch
 3. Execute the commands:
 
        cactus-release-finish.sh [version]
        cactus-build.sh deploy-ossrh
 
-4. Sign into [OSSRH](https://s01.oss.sonatype.org) and release to Maven Central
+4. Sign in to [OSSRH](https://s01.oss.sonatype.org) and release to Maven Central
 
 ### 1. Creating the Release Branch <img src="https://www.kivakit.org/images/branch-32.png" srcset="https://www.kivakit.org/images/branch-32-2x.png 2x"/>
 
 Start a new release branch with the following command:
 
-    kivakit-release-start.sh [kivakit-version]
+    kivakit-release.sh [kivakit-version]
 
 This script does the following:
 

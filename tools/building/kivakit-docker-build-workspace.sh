@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source library-functions.sh
+source kivakit-library-functions.sh
 
 help="[host|docker]"
 

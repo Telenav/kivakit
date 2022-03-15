@@ -7,7 +7,7 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-source library-functions.sh
+source kivakit-library-functions.sh
 source kivakit-projects.sh
 
 help="[version]"
@@ -16,9 +16,18 @@ version=$1
 
 require_variable version "$help"
 
-git_flow_release_start "$KIVAKIT_HOME" "$version"
-git_flow_release_start "$KIVAKIT_EXTENSIONS_HOME" "$version"
-git_flow_release_start "$KIVAKIT_STUFF_HOME" "$version"
-git_flow_release_start "$KIVAKIT_EXAMPLES_HOME" "$version"
+for project_home in "${KIVAKIT_REPOSITORY_HOMES[@]}"; do
 
-bash kivakit-release-update-version.sh "$version"
+    if ! git_flow_init "$project_home"; then
+
+        exit 1
+
+    fi
+
+done
+
+for project_home in "${KIVAKIT_REPOSITORY_HOMES[@]}"; do
+
+    git_flow_release_start "$project_home" "$version"
+
+done

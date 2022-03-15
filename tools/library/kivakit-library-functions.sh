@@ -4,7 +4,9 @@ export NORMAL='\033[0m'
 export ATTENTION='\033[1;32m'
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
+
     export HISTCONTROL=ignoreboth:erasedups
+
 fi
 
 ################ PROJECT ################################################################################################
@@ -62,22 +64,26 @@ showVersion()
     project_name=$(project_name "$project_home")
     project_version=$(project_version "$project_home")
 
-    echo -e "${ATTENTION}$project_name $project_version $(project_build "$project_home") from ${project_home}${NORMAL}"
+    echo -e "${ATTENTION}$project_name $project_version $(project_build "$project_home")${NORMAL}"
 }
 
 ################ CLEAN ################################################################################################
 
 clean_cache() {
 
-    cache=$1
+    if [[ "$ALLOW_CLEANING" == "true" ]]; then
 
-    if [ -d "$cache" ]; then
+        cache=$1
 
-        if yes_no "┋ Remove ALL cached files in $cache"; then
+        if [ -d "$cache" ]; then
 
-            rm -rf "$cache"
+            if yes_no "┋ Remove ALL cached files in $cache"; then
 
+                rm -rf "$cache"
+
+            fi
         fi
+
     fi
 }
 
@@ -102,6 +108,7 @@ remove_maven_repository() {
             rm -rf "$HOME/.m2/repository"
 
         fi
+
     fi
 }
 
@@ -124,7 +131,6 @@ script() {
     # shellcheck disable=SC2046
     # shellcheck disable=SC2005
     echo $(basename -- "$0")
-
 }
 
 usage() {
@@ -163,10 +169,42 @@ require_folder() {
 ################ GIT ################################################################################################
 
 
-git_flow_release_start()
-{
+git_flow_check_changes() {
+
     project_home=$1
-    project_name=$(basename "$project_home")
+
+    cd $project_home
+
+    if [[  `git status --porcelain` ]]; then
+        echo " "
+        echo "Project contains changes that must be committed first: $project_home"
+        echo " "
+        exit 1
+    fi
+}
+
+git_flow_init() {
+
+    project_home=$1
+
+    cd $project_home
+
+    git_flow_check_changes $project_home
+
+    git flow init -d /dev/null 2>&1
+
+    if [ "$(git flow config >/dev/null 2>&1)" ]; then
+        echo " "
+        echo "Please install git flow and try again."
+        echo "See https://kivakit.org for details."
+        echo " "
+        exit 1
+    fi
+}
+
+git_flow_release_start() {
+
+    project_home=$1
     version=$2
 
     echo " "
@@ -187,13 +225,8 @@ git_flow_release_start()
     # switch to the release branch
     git checkout release/"$version"
 
-    echo " "
-    echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Branch Created  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
-    echo "┋"
-    echo "┋  Created $project_name git flow branch release/$version"
-    echo "┋"
-    echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
-    echo " "
+    # and update its version
+    bash cactus-release-update-version.sh "$version"
 }
 
 git_branch_name()
@@ -213,18 +246,15 @@ git_flow_release_finish()
 
     git checkout master
     git tag -a "$version" -m "$version"
-    git merge release/"$version"
-    git flow release finish "$version"
-    git push origin --tags
+    git checkout release/"$version"
+    git flow merge finish "$version"
 
     echo " "
-    echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Merged and Published  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
-    echo "┋"
-    echo "┋  VERSION: $version"
+    echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Merged to Master  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
     echo "┋"
     echo "┋  The branch 'release/$version' has been merged into master using git flow."
     echo "┋"
-    echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
+    echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
     echo " "
 }
 
@@ -247,7 +277,8 @@ git_flow_feature_finish() {
     feature_name=$2
 
     if yes_no "Finish '$feature_name' branch of $project_home"; then
-        cd "$project_home" || exit
+        # shellcheck disable=SC2164
+        cd "$project_home"
         git-flow feature finish "$feature_name"
     fi
 }
@@ -380,7 +411,8 @@ lexakai() {
     # -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=1044
     echo "java -jar $lexakai_jar -overwrite-resources=true -update-readme=true $*"
 
-    java -jar "$lexakai_jar" -overwrite-resources=true -update-readme=true "$@"
+    # shellcheck disable=SC2068
+    java -jar "$lexakai_jar" -overwrite-resources=true -update-readme=true $@
 }
 
 yes_no() {

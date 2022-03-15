@@ -7,7 +7,7 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-source library-functions.sh
+source kivakit-library-functions.sh
 source kivakit-projects.sh
 
 help="[version]"
@@ -16,8 +16,27 @@ version=$1
 
 require_variable version "$help"
 
-git_flow_release_finish "$CACTUS_HOME" "$version"
-git_flow_release_finish "$KIVAKIT_HOME" "$version"
-git_flow_release_finish "$KIVAKIT_EXTENSIONS_HOME" "$version"
-git_flow_release_finish "$KIVAKIT_STUFF_HOME" "$version"
-git_flow_release_finish "$KIVAKIT_EXAMPLES_HOME" "$version"
+for project_home in "${KIVAKIT_REPOSITORY_HOMES[@]}"; do
+
+    git_flow_check_changes "$project_home"
+
+done
+
+for project_home in "${KIVAKIT_REPOSITORY_HOMES[@]}"; do
+
+    git_flow_release_finish "$project_home" "$version"
+
+done
+
+echo " "
+echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Ready to Deploy  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
+echo "┋"
+echo "┋  Release Version: $version"
+echo "┋"
+echo "┋  Next Steps:"
+echo "┋"
+echo "┋  1. Run kivakit-build.sh deploy-ossrh"
+echo "┋  2. Sign into OSSRH and release to Maven Central"
+echo "┋"
+echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
+echo " "
