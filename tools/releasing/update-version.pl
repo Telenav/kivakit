@@ -38,21 +38,6 @@ $base_version =~ s/-SNAPSHOT//;
 print "Updating $root from $old_version to $new_version\n";
 
 #
-# Update markdown file if it contains the old version
-#
-sub update_markdown {
-    my $path = shift @_;
-    my $text = read_file($path);
-    my $updated = $text;
-    $updated =~ s/\b${old_version}\b/${new_version}/g;
-
-    if ($text ne $updated) {
-        print "Updating $path\n";
-        write_file($path, $updated);
-    }
-}
-
-#
 # Update the pom file version
 #
 sub update_pom {
@@ -84,10 +69,19 @@ sub process_file {
     if ($path =~ /pom.xml/g) {
         update_pom($path);
     }
-
-    if ($path =~ /.*\.md$/) {
-        update_markdown($path);
+    if ($path =~ /project.properties/g) {
+        update_project_properties($path);
     }
+}
+
+#
+# Update the root pom
+#
+sub update_project_properties {
+    my $path = $1;
+
+    my $text = read_file($path);
+    $text =~ s!project-version\s*=\s*(?<version>.*?)\s*!project-version = $new_version!;
 }
 
 #
