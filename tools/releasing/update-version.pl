@@ -78,7 +78,7 @@ sub process_file {
 # Update the root pom
 #
 sub update_project_properties {
-    my $path = $1;
+    my $path = shift @_;
 
     my $text = read_file($path);
     $text =~ s!project-version.*!project-version = $new_version!g;
