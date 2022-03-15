@@ -33,11 +33,6 @@ my $base_version = $new_version;
 $base_version =~ s/-SNAPSHOT//;
 
 #
-# Begin updating
-#
-print "Updating $root from $old_version to $new_version\n";
-
-#
 # Update the pom file version
 #
 sub update_pom {
@@ -80,11 +75,9 @@ sub process_file {
 sub update_project_properties {
     my $path = shift @_;
 
-    print "updating $path\n";
     my $text = read_file($path);
     $text =~ s!project-version.*!project-version = $new_version!g;
-    print "text = $text\n";
-    # write_file($path, $text);
+    write_file($path, $text);
     print "Updated $path\n";
 }
 
