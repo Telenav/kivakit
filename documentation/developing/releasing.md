@@ -4,105 +4,98 @@
 
 This section documents how to release a new version of KivaKit, step by step.
 
-In the text below *\[kivakit-version\]* refers to a [semantic versioning](https://semver.org) identifier, such
-as 2.1.7 or 1.4.0-beta.
+In the text below *\[kivakit-version\]* refers to a [semantic versioning](https://semver.org) identifier, such as 2.1.7 or 1.4.0-beta.
 
 KivaKit adheres to the standard [Git Flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) branching model.
 
 ### 0. Releasing Cactus Build
 
-Before building KivaKit, cactus-build must be released. 
+Before building *kivakit*, *cactus-build* must be released.
 
-> The version number of cactus-build must always be in sync with KivaKit
+> The version number of *cactus-build* must always be in sync with *kivakit*
 
-1. Execute the command:  
+1. To prepare a release branch, and build the release:
 
        cactus-release.sh [kivakit-version]
 
-   The *cactus-release.sh* script will execute this sequence of scripts:
-
-   * cactus-release-start.sh *[kivakit-version]*
-   * cactus-release-update-version.sh *[kivakit-version]*
-   * cactus-build.sh
-   * cactus-build-documentation.sh
-   * cactus-build.sh *deploy-local*
-
-   If one of these script fails, you can continue the release process by running the remaining scripts by hand.
+2. Check that the release branch was created and that all version numbers were updated correctly in pom.xml and project.properties files.
 
 
-2. Double-check the release branch
-3. Execute the commands:
+3. To finalize the release:
 
        cactus-release-finish.sh [version]
+
+4. To build the release for Maven Central
+
        cactus-build.sh deploy-ossrh
 
-4. Sign in to [OSSRH](https://s01.oss.sonatype.org) and release to Maven Central
+5. Sign in to [OSSRH](https://s01.oss.sonatype.org) and release to Maven Central
 
-### 1. Creating the Release Branch <img src="https://www.kivakit.org/images/branch-32.png" srcset="https://www.kivakit.org/images/branch-32-2x.png 2x"/>
+### 1. Preparing the KivaKit Release Branch <img src="https://www.kivakit.org/images/branch-32.png" srcset="https://www.kivakit.org/images/branch-32-2x.png 2x"/>
 
-Start a new release branch with the following command:
+#### 1.1 Create a release branch
+
+To create a release branch, and update version numbers:
 
     kivakit-release.sh [kivakit-version]
 
-This script does the following:
+#### 1.2 Check the release
 
-1. Creates the branch *release/[kivakit-version\]* from the *develop* branch using git flow
-2. Updates the versions of all pom.xml and project.properties files
+Check that version numbers in *pom.xml* and *project.properties* files were updated correctly.
 
-Search for and replace any stray version numbers from the previous revision.
- 
-> Quit and restart your terminal program (not just the shell window) to ensure your environment variables are updated.
+#### 1.3 Update the change log
 
-### 2. Preparing the Release &nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
+Examine the git history log of all four *kivakit** repositories, and update the *change-log.md* file with any important information about the release.
 
-Once the release branch has been created, several steps need to be performed manually to prepare the branch for publication.
-
-#### 2.1 Preparing the Release Branch
-
-1. Double check for stray references to the previous version in pom.xml files
-2. Run *kivakit-release.sh [kivakit-version]* again, and it will build the release
-
-#### 2.2 Updating Code Flowers
+#### 1.4 Update the project code flowers
 
 To update code flowers for the release
 
-1. On the command line, execute:  
+1. On the command line, execute:
 
         mkdir -p $KIVAKIT_WORKSPACE/kivakit-assets/docs/$KIVAKIT_VERSION
-        
-1. Copy the *codeflowers* folder from a previous build into this folder
-1. Inside the *codeflowers* folder, execute:
+
+2. Copy the *codeflowers* folder from a previous build into this folder
+
+
+3. Inside the *codeflowers* folder, execute:
 
         ./kivakit-build-codeflowers.sh
-        
-1. Open *site/index.html* in an editor and insert the &lt;option&gt; HTML code that was output by the build process.
 
-#### 2.3 Checking the Build
+4. Open *site/index.html* in an editor and insert the &lt;option&gt; HTML code that was output by the build process.
+
+#### 1.4 Build the release branch
+
+To build the release branch, run the release script again:
+
+    kivakit-release.sh [kivakit-version]
+
+#### 1.4 Check the release for publishing
 
 To ensure that the build will be accepted on Maven Central, run:
 
     kivakit-build.sh deploy-local
-    
+
 This will build all kivakit artifacts from scratch (answer 'y' to the prompt to remove all artifacts), including Javadoc and Lexakai documentation.
 
-#### 2.4 Updating the Change Log
+#### 1.5 Committing Final Changes
 
-Examine the git history log and update the change-log.md file with any important changes in the release.
+Commit any final changes to the release branch.
 
-#### 2.5 Committing Final Changes
+### 2. Publishing the Release &nbsp;  <img src="https://www.kivakit.org/images/stars-32.png" srcset="https://www.kivakit.org/images/stars-32-2x.png 2x"/>
 
-Commit any remaining changes to the release branch.
+#### 2.1 Merge the release branch into master
 
-### 3. Publishing the Release &nbsp;  <img src="https://www.kivakit.org/images/stars-32.png" srcset="https://www.kivakit.org/images/stars-32-2x.png 2x"/>
-
-The release is finished and merged into master with another script that uses git flow:
+The release is finished and merged into master with:
 
     kivakit-release-finish.sh [kivakit-version]
 
-### 4. Pushing the Release to Maven Central
+#### 2.2 Push the Release to OSSRH
 
 To push the release to OSSRH, run:
 
     kivakit-build.sh deploy-ossrh
 
-The sign into OSSRH and push the build to Maven Central
+#### 2.3 Publish from OSSRH to Maven Central
+
+The sign into [OSSRH](http://s01.oss.sonatype.org) and push the build to Maven Central.
