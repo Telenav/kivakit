@@ -82,7 +82,8 @@ sub update_project_properties {
 
     my $text = read_file($path);
     $text =~ s!project-version.*!project-version = $new_version!g;
-    write_file($path, $text);
+    print "text = $text\n"
+    #write_file($path, $text);
     print "Updated $path\n";
 }
 
