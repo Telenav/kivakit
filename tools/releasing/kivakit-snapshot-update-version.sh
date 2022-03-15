@@ -18,12 +18,6 @@ require_variable version "[version]"
 
 snapshot_version="${1%-SNAPSHOT}-SNAPSHOT"
 
-for project_home in "${CACTUS_REPOSITORY_HOMES[@]}"; do
-
-    update_version "$project_home" "$version"
-
-done
-
 for project_home in "${KIVAKIT_REPOSITORY_HOMES[@]}"; do
 
     update_version "$project_home" "$version"

@@ -226,7 +226,7 @@ git_flow_release_start() {
     git checkout release/"$version"
 
     # and update its version
-    bash cactus-release-update-version.sh "$version"
+    bash kivakit-release-update-version.sh "$version"
 }
 
 git_branch_name()
