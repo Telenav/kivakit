@@ -208,22 +208,30 @@ git_flow_release_start() {
     version=$2
 
     echo " "
-    echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Creating Release Branch  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
+    echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Preparing Release Branch  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
     echo "┋"
-    echo "┋  Creating $(basename $project_home) git flow branch release/$version"
+    echo "┋  Preparing $(basename $project_home) git flow branch release/$version"
     echo "┋"
     echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
     echo " "
 
-    # Check out the develop branch
-    cd "$project_home" || exit
-    git checkout develop
+    if [ "$(git_branch_name)" = "release/$version" ]; then
 
-    # then start a new release branch
-    git flow release start "$version"
+        echo "Already on release branch"
 
-    # switch to the release branch
-    git checkout release/"$version"
+    else
+
+        # Check out the develop branch
+        cd "$project_home" || exit
+        git checkout develop
+
+        # then start a new release branch
+        git flow release start "$version"
+
+        # switch to the release branch
+        git checkout release/"$version"
+
+    fi
 
     # and update its version
     update_version "$project_home" "$version"
