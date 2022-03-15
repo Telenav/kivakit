@@ -20,9 +20,9 @@ import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.test.UnitTest;
 import com.telenav.kivakit.core.time.Duration;
-import com.telenav.kivakit.resource.path.Extension;
-import com.telenav.kivakit.resource.serialization.ObjectSerializers;
-import com.telenav.kivakit.serialization.properties.PropertiesObjectSerializer;
+import com.telenav.kivakit.serialization.gson.GsonSerializationProject;
+import com.telenav.kivakit.serialization.gson.factory.CoreGsonFactory;
+import com.telenav.kivakit.serialization.properties.PropertiesSerializationProject;
 import com.telenav.kivakit.settings.stores.PackageSettingsStore;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
@@ -37,16 +37,15 @@ public class SettingsTest extends UnitTest
     @Before
     public void setup()
     {
-        var serializers = new ObjectSerializers();
-        serializers.add(Extension.PROPERTIES, new PropertiesObjectSerializer());
-        register(serializers);
+        register(new CoreGsonFactory(this));
+
+        new PropertiesSerializationProject().initialize();
+        new GsonSerializationProject().initialize();
     }
 
     @Test
     public void test()
     {
-        Settings settings = globalSettings();
-
         // Configure
         {
             // Script or startup code creates configuration
@@ -64,6 +63,26 @@ public class SettingsTest extends UnitTest
             var server = Settings.of(this).requireSettings(ServerSettings.class);
             ensureEqual(Duration.ONE_MINUTE, server.timeout());
             ensureEqual(9000, server.port());
+        }
+    }
+
+    @Test
+    public void testJson()
+    {
+        var settings = globalSettings();
+
+        // Configure
+        {
+            // Add all properties files in this package to the global set
+            settings.registerSettingsIn(PackageSettingsStore.of(this, PackagePath.packagePath(getClass())));
+        }
+
+        // Get configuration
+        {
+            // Client code can then retrieve both settings
+            var server1 = settings.requireSettings(ClientSettings.class, "banana");
+            ensureEqual(Duration.seconds(6), server1.timeout());
+            ensureEqual(9999, server1.port());
         }
     }
 

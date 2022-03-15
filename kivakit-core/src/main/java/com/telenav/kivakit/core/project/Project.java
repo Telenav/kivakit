@@ -18,20 +18,18 @@
 
 package com.telenav.kivakit.core.project;
 
-import com.telenav.cactus.build.metadata.BuildMetadata;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.trait.LanguageTrait;
+import com.telenav.kivakit.core.lexakai.DiagramProject;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.object.LazyMap;
-import com.telenav.kivakit.core.lexakai.DiagramProject;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.string.AsciiArt;
-import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.core.vm.JavaTrait;
-import com.telenav.kivakit.core.vm.JavaVirtualMachine;
+import com.telenav.kivakit.core.vm.Properties;
 import com.telenav.kivakit.interfaces.lifecycle.Initializable;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
@@ -123,9 +121,6 @@ public abstract class Project extends BaseRepeater implements
     /** True if this project has been initialized */
     private boolean initialized;
 
-    /** The properties for this project */
-    private VariableMap<String> properties;
-
     /**
      * @return The maven artifactId of this project
      */
@@ -146,7 +141,7 @@ public abstract class Project extends BaseRepeater implements
      * @return The set of dependent projects for this project
      */
     @UmlRelation(label = "depends on")
-    public ObjectSet<Project> dependencies()
+    public ObjectSet<Class<? extends Project>> dependencies()
     {
         return ObjectSet.emptyObjectSet();
     }
@@ -196,11 +191,8 @@ public abstract class Project extends BaseRepeater implements
             initialized = true;
             onInitializing();
 
-            // then initialize all dependencies,
-            visitDependencies((project, level) -> project.initialize());
-
             // initialize the project
-            trace("Initializing ${class}", getClass());
+            announce("Initializing project: ${class}", getClass());
             onInitialize();
 
             // and signal that we are done initializing.
@@ -254,22 +246,7 @@ public abstract class Project extends BaseRepeater implements
      */
     public VariableMap<String> properties()
     {
-        if (properties == null)
-        {
-            var projectProperties = BuildMetadata.of(getClass()).projectProperties();
-
-            var properties = JavaVirtualMachine.local().variables();
-            properties.addAll(VariableMap.variableMap(projectProperties));
-            properties.put("version", properties.get("project-version"));
-            properties.putIfNotNull("build-name", build().name());
-            properties.putIfNotNull("build-date", build().formattedDate());
-            properties.putIfNotNull("build-number", Integer.toString(build().number()));
-            properties.put("date-and-time", LocalTime.now().asDateTimeString());
-
-            this.properties = properties.expanded();
-        }
-
-        return properties;
+        return Properties.projectProperties(getClass());
     }
 
     /**
@@ -326,7 +303,7 @@ public abstract class Project extends BaseRepeater implements
             for (var dependency : dependencies())
             {
                 // and visit it,
-                listenTo(dependency).visitDependencies(dependency, visited, visitor, level + 1);
+                visitDependencies(resolveProject(dependency), visited, visitor, level + 1);
             }
 
             // then call the visitor.

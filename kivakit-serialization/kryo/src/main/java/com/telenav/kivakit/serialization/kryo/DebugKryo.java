@@ -25,7 +25,7 @@ import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 import com.telenav.kivakit.core.messaging.Debug;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.vm.SystemProperties;
+import com.telenav.kivakit.core.vm.Properties;
 
 import java.util.function.Supplier;
 
@@ -41,7 +41,7 @@ import java.util.function.Supplier;
 class DebugKryo extends Kryo
 {
     /** True to turn on Kryo tracing */
-    private static final boolean TRACE = SystemProperties.isPropertyTrue("KIVAKIT_KRYO_SERIALIZATION_TRACE");
+    private static final boolean TRACE = Properties.isPropertyTrue("KIVAKIT_KRYO_SERIALIZATION_TRACE");
 
     static
     {

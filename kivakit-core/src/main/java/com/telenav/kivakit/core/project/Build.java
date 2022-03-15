@@ -47,7 +47,8 @@ import java.time.format.DateTimeFormatter;
 public class Build implements Named
 {
     /**
-     * @return Build information for the given project
+     * @return Build information for the given class in the root of the project. This is typically the {@link Project}
+     * or Application class.
      */
     public static Build build(Class<?> project)
     {

@@ -28,11 +28,11 @@ public interface JavaTrait
 
     default String systemProperty(String key)
     {
-        return SystemProperties.property(key);
+        return Properties.property(key);
     }
 
     default String systemProperty(String key, String defaultValue)
     {
-        return SystemProperties.property(key, defaultValue);
+        return Properties.property(key, defaultValue);
     }
 }

@@ -21,20 +21,22 @@ package com.telenav.kivakit.core.logging.loggers;
 import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.vm.SystemProperties;
-import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.logging.Log;
 import com.telenav.kivakit.core.logging.LoggerCodeContext;
 import com.telenav.kivakit.core.logging.logs.text.ConsoleLog;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.messages.OperationMessage;
-import com.telenav.kivakit.core.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.string.Strings;
+import com.telenav.kivakit.core.vm.Properties;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
 import java.util.regex.Pattern;
+
+import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
 
 /**
  * A Java Services logger that creates loggers by inspecting the KIVAKIT_LOG and KIVAKIT_LOG_LEVEL environment
@@ -55,7 +57,7 @@ public class LogServiceLogger extends BaseLogger
 {
     /** List of logs to log to, initially just a console log, unless logs are specified with KIVAKIT_LOG */
     @UmlAggregation(label = "logs to")
-    private static ObjectSet<Log> logs = ObjectSet.objectSet(new ConsoleLog());
+    private static ObjectSet<Log> logs = objectSet(new ConsoleLog());
 
     private static boolean loaded;
 
@@ -82,7 +84,7 @@ public class LogServiceLogger extends BaseLogger
             loaded = true;
 
             // so get log service descriptors
-            var descriptors = SystemProperties.property("KIVAKIT_LOG");
+            var descriptors = Properties.property("KIVAKIT_LOG");
             if (descriptors != null)
             {
                 // and for each descriptor,

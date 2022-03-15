@@ -18,6 +18,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.settings.SettingsStore.AccessMode.DELETE;
@@ -155,7 +156,7 @@ public abstract class BaseSettingsStore extends BaseRepeater implements
     {
         maybeLoad();
 
-        return lock.write(() -> ObjectSet.objectSet(objects.values()));
+        return lock.write(() -> objectSet(objects.values()));
     }
 
     @NotNull

@@ -22,6 +22,7 @@ import com.telenav.kivakit.core.collections.map.CountMap;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.object.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.lexakai.DiagramLogs;
 import com.telenav.kivakit.core.logging.Log;
 import com.telenav.kivakit.core.logging.LogEntry;
 import com.telenav.kivakit.core.logging.filters.LogEntriesWithSeverityGreaterThanOrEqualTo;
@@ -29,14 +30,13 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.messages.Severity;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.os.ConsoleWriter;
-import com.telenav.kivakit.core.lexakai.DiagramLogs;
 import com.telenav.kivakit.core.string.Plural;
 import com.telenav.kivakit.core.thread.RepeatingThread;
 import com.telenav.kivakit.core.thread.StateWatcher;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.vm.JavaVirtualMachine;
+import com.telenav.kivakit.core.vm.Properties;
 import com.telenav.kivakit.core.vm.ShutdownHook;
-import com.telenav.kivakit.core.vm.SystemProperties;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.lifecycle.Startable;
 import com.telenav.kivakit.interfaces.lifecycle.Stoppable;
@@ -67,7 +67,7 @@ public abstract class BaseLog implements Startable, Stoppable, Log
 
     static
     {
-        isAsynchronous = SystemProperties.isPropertyFalse("KIVAKIT_LOG_SYNCHRONOUS");
+        isAsynchronous = Properties.isPropertyFalse("KIVAKIT_LOG_SYNCHRONOUS");
     }
 
     public static void asynchronous(boolean asynchronous)

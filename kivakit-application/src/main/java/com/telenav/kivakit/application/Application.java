@@ -28,8 +28,10 @@ import com.telenav.kivakit.commandline.Quantifier;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.component.Component;
+import com.telenav.kivakit.conversion.core.value.VersionConverter;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.collections.set.IdentitySet;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.language.Classes;
 import com.telenav.kivakit.core.language.trait.LanguageTrait;
@@ -54,6 +56,7 @@ import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.core.thread.StateMachine;
 import com.telenav.kivakit.core.value.identifier.StringIdentifier;
 import com.telenav.kivakit.core.version.Version;
+import com.telenav.kivakit.core.vm.Properties;
 import com.telenav.kivakit.core.vm.ShutdownHook;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.naming.Named;
@@ -78,14 +81,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.telenav.kivakit.application.Application.State.CREATED;
+import static com.telenav.kivakit.application.Application.State.CONSTRUCTING;
 import static com.telenav.kivakit.application.Application.State.INITIALIZING;
 import static com.telenav.kivakit.application.Application.State.READY;
 import static com.telenav.kivakit.application.Application.State.RUNNING;
 import static com.telenav.kivakit.application.Application.State.STOPPED;
 import static com.telenav.kivakit.application.Application.State.STOPPING;
 import static com.telenav.kivakit.commandline.SwitchParsers.booleanSwitchParser;
-import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
 /**
  * Base class for KivaKit applications.
@@ -182,9 +186,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * </p>
  *
  * <ol start=1>
- *     <li>Call {@link #onProjectInitializing()}</li>
+ *     <li>Call {@link #onProjectsInitializing()}</li>
  *     <li>Initialize and install the {@link Project} passed to the constructor</li>
- *     <li>Call {@link #onProjectInitialized()}</li>
+ *     <li>Call {@link #onProjectsInitialized()}</li>
  *     <li>Parse command line arguments using:
  *     <ul>
  *         <li>The {@link ArgumentParser}s returned by {@link #argumentParsers()}</li>
@@ -272,7 +276,7 @@ public abstract class Application extends BaseComponent implements
 
     public enum State
     {
-        CREATED,
+        CONSTRUCTING,
         INITIALIZING,
         RUNNING,
         READY,
@@ -312,9 +316,10 @@ public abstract class Application extends BaseComponent implements
 
     /** The project that this application uses */
     @UmlAggregation(label = "initializes and uses")
-    private Project project;
+    private final Set<Project> projects = new IdentitySet<>();
 
-    private final StateMachine<State> state = new StateMachine<>(CREATED);
+    /** State machine for application lifecycle */
+    private final StateMachine<State> state = new StateMachine<>(CONSTRUCTING);
 
     @UmlExcludeMember
     protected final SwitchParser<Boolean> QUIET =
@@ -323,31 +328,27 @@ public abstract class Application extends BaseComponent implements
                     .defaultValue(false)
                     .build();
 
-    /**
-     * @param projects One or more projects to initialize
-     */
-    protected Application(Project... projects)
+    protected Application()
     {
         register(this);
         register(LOGGER);
 
         instance = this;
+    }
 
-        if (projects.length == 1)
-        {
-            project = listenTo(ensureNotNull(projects[0]));
-        }
-        else if (projects.length > 1)
-        {
-            project = listenTo(new Project()
-            {
-                @Override
-                public ObjectSet<Project> dependencies()
-                {
-                    return ObjectSet.objectSet(projects);
-                }
-            });
-        }
+    /**
+     * Adds the given {@link Project} based on its class. Projects should be added in the application constructor. This
+     * ensures that project objects are singletons.
+     *
+     * @param project The {@link Project} class
+     */
+    public Application addProject(Class<? extends Project> project)
+    {
+        // We can only add projects during application construction.
+        ensure(state.is(CONSTRUCTING));
+
+        projects.add(Project.resolveProject(project));
+        return this;
     }
 
     /**
@@ -497,18 +498,20 @@ public abstract class Application extends BaseComponent implements
         return PropertyMap.localized(this, packagePath(), locale);
     }
 
-    public Project project()
+    /**
+     * Returns the set of projects on which this application depends
+     */
+    public Set<Project> projects()
     {
-        if (project == null)
-        {
-            project = ensureNotNull(newProject());
-        }
-        return project;
+        return projects;
     }
 
+    /**
+     * Returns the properties for this application's project
+     */
     public PropertyMap properties()
     {
-        return PropertyMap.propertyMap(project().properties());
+        return PropertyMap.propertyMap(Properties.projectProperties(getClass()));
     }
 
     public void ready()
@@ -523,9 +526,9 @@ public abstract class Application extends BaseComponent implements
      *     <li>{@link #onRunning()} is called to indicate that running is about to start</li>
      *     <li>Command line arguments are validated and parsed into a {@link CommandLine}</li>
      *     <li>{@link #onConfigureListeners()} is called to allow redirection of output</li>
-     *     <li>{@link #onProjectInitializing()} is called before the {@link Project} for this application is initialized</li>
+     *     <li>{@link #onProjectsInitializing()} is called before the {@link Project} for this application is initialized</li>
      *     <li>{@link Project#initialize()} is called</li>
-     *     <li>{@link #onProjectInitialized()} is called</li>
+     *     <li>{@link #onProjectsInitialized()} is called</li>
      *     <li>{@link #onRun()} is called</li>
      *     <li>{@link #onRan()} is called</li>
      *     <li>The application exits</li>
@@ -544,9 +547,9 @@ public abstract class Application extends BaseComponent implements
         LOGGER.listenTo(this);
 
         // initialize this application's project
-        onProjectInitializing();
-        project.initialize();
-        onProjectInitialized();
+        onProjectsInitializing();
+        initializeProjects();
+        onProjectsInitialized();
 
         // load deployments,
         deployments = DeploymentSet.load(this, getClass());
@@ -594,7 +597,6 @@ public abstract class Application extends BaseComponent implements
             registerSettingsIn(get(DEPLOYMENT));
         }
 
-        announce("Project: $", project.name());
         announce("Application: " + name() + " (" + kivakit().projectVersion() + ")");
 
         try
@@ -637,7 +639,7 @@ public abstract class Application extends BaseComponent implements
      */
     public Version version()
     {
-        return project().projectVersion();
+        return properties().get("project-version", new VersionConverter(this));
     }
 
     /**
@@ -686,7 +688,7 @@ public abstract class Application extends BaseComponent implements
      * Called after this application's project has been initialized
      */
     @UmlExcludeMember
-    protected void onProjectInitialized()
+    protected void onProjectsInitialized()
     {
     }
 
@@ -694,7 +696,7 @@ public abstract class Application extends BaseComponent implements
      * Called before this application's project is initialized
      */
     @UmlExcludeMember
-    protected void onProjectInitializing()
+    protected void onProjectsInitializing()
     {
     }
 
@@ -724,7 +726,7 @@ public abstract class Application extends BaseComponent implements
      */
     protected ObjectSet<SwitchParser<?>> switchParsers()
     {
-        return ObjectSet.objectSet();
+        return objectSet();
     }
 
     /**
@@ -740,6 +742,43 @@ public abstract class Application extends BaseComponent implements
                 : new AllMessages();
 
         LOGGER.listenTo(this, filter);
+    }
+
+    private void initializeProject(IdentitySet<Project> uninitialized, Project project)
+    {
+        // For each dependent project,
+        for (var at : project.dependencies())
+        {
+            // initialize it,
+            initializeProject(uninitialized, project(at));
+        }
+
+        // then initialize this project,
+        listenTo(project).initialize();
+
+        // and remove it from the uninitialized set.
+        uninitialized.remove(project);
+    }
+
+    /**
+     * Initialize all projects and their dependencies in depth-first order
+     */
+    private void initializeProjects()
+    {
+        // Start with all projects uninitialized,
+        var uninitialized = new IdentitySet<Project>();
+        uninitialized.addAll(projects());
+
+        // then for each project,
+        for (var project : projects())
+        {
+            // if it is uninitialized,
+            if (uninitialized.contains(project))
+            {
+                // initialize it and its dependencies.
+                initializeProject(uninitialized, project);
+            }
+        }
     }
 
     private Set<SwitchParser<?>> internalSwitchParsers()

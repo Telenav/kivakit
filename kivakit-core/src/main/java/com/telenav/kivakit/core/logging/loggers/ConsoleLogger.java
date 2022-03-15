@@ -19,11 +19,13 @@
 package com.telenav.kivakit.core.logging.loggers;
 
 import com.telenav.kivakit.core.collections.set.ObjectSet;
+import com.telenav.kivakit.core.lexakai.DiagramLogging;
 import com.telenav.kivakit.core.logging.Log;
 import com.telenav.kivakit.core.logging.logs.text.ConsoleLog;
-import com.telenav.kivakit.core.lexakai.DiagramLogging;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
+
+import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
 
 /**
  * A simple logger for bootstrapping purposes (the logging system itself may need to do logging, for example, which can
@@ -40,6 +42,6 @@ public class ConsoleLogger extends BaseLogger
     @UmlExcludeMember
     protected ObjectSet<Log> logs()
     {
-        return ObjectSet.objectSet(log);
+        return objectSet(log);
     }
 }

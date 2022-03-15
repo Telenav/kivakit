@@ -3,6 +3,7 @@ open module kivakit.settings
     // KivaKit
     requires transitive kivakit.resource;
     requires transitive kivakit.serialization.properties;
+    requires transitive kivakit.serialization.gson;
 
     // Lexakai
     requires lexakai.annotations;

@@ -19,22 +19,22 @@
 package com.telenav.kivakit.core.messaging.broadcasters;
 
 import com.telenav.kivakit.core.language.Classes;
-import com.telenav.kivakit.core.vm.SystemProperties;
-import com.telenav.kivakit.core.messaging.Broadcaster;
-import com.telenav.kivakit.core.messaging.Message;
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.messaging.messages.OperationMessage;
 import com.telenav.kivakit.core.lexakai.DiagramRepeater;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.loggers.ConsoleLogger;
+import com.telenav.kivakit.core.messaging.Broadcaster;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.Message;
+import com.telenav.kivakit.core.messaging.context.CodeContext;
+import com.telenav.kivakit.core.messaging.messages.OperationMessage;
 import com.telenav.kivakit.core.string.IndentingStringBuilder;
 import com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation;
 import com.telenav.kivakit.core.thread.locks.ReadWriteLock;
+import com.telenav.kivakit.core.vm.Properties;
 import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
-import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.messaging.context.CodeContext;
-import com.telenav.kivakit.core.logging.loggers.ConsoleLogger;
 import com.telenav.kivakit.mixins.Mixins;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -349,7 +349,7 @@ public class Multicaster implements Broadcaster
                 }
 
                 // Notify that there was nowhere to send the message.
-                if (SystemProperties.isPropertyFalse("KIVAKIT_IGNORE_MISSING_LISTENERS"))
+                if (Properties.isPropertyFalse("KIVAKIT_IGNORE_MISSING_LISTENERS"))
                 {
                     var text = new IndentingStringBuilder();
                     for (var at : listenerChain())

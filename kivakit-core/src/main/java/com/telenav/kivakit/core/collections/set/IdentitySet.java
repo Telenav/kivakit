@@ -80,7 +80,7 @@ public class IdentitySet<Element> extends AbstractSet<Element>
     @Override
     public boolean remove(Object element)
     {
-        return map.remove(element);
+        return map.remove(element) != null;
     }
 
     @Override
