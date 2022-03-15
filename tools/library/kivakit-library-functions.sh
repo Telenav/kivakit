@@ -253,9 +253,10 @@ git_flow_release_finish()
     cd "$project_home" || exit
 
     git checkout master
+    git pull
     git tag -a "$version" -m "$version"
     git checkout release/"$version"
-    git flow merge finish "$version"
+    git flow release finish "$version"
 
     echo " "
     echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Merged to Master  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
