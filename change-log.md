@@ -2,7 +2,7 @@
 
 -----------------------------------------------------------------------------------------------------------------------
 
-## Version 1.4.0 (2022.03.10) "cobalt bunny"
+## Version 1.4.0 (2022.03.14) "cobalt hamster"
 
 This release was a major cleanup release and refactored and relocated
 code between the three repositories, _kivakit_, _kivakit-extensions_, and 
