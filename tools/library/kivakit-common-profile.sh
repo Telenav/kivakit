@@ -1,5 +1,5 @@
 
-source "$KIVAKIT_WORKSPACE"/kivakit/tools/library/library-functions.sh
+source "$KIVAKIT_WORKSPACE"/kivakit/tools/library/kivakit-library-functions.sh
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export MAVEN_OPTS="--add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED"

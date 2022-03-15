@@ -7,7 +7,7 @@ export WORKSPACE=$WORKSPACES/safety-service
 export KIVAKIT_WORKSPACE=$WORKSPACE
 export MESAKIT_WORKSPACE=$WORKSPACE
 
-source "$KIVAKIT_WORKSPACE"/kivakit/tools/library/library-functions.sh
+source "$KIVAKIT_WORKSPACE"/kivakit/tools/library/kivakit-library-functions.sh
 
 export SAFETY_SERVICE_WORKSPACE=$WORKSPACE
 export SAFETY_SERVICE_HOME=$SAFETY_SERVICE_WORKSPACE/safety-service

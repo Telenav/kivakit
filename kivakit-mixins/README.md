@@ -1,28 +1,18 @@
 [//]: # (start-user-text)
 
-<a href="https://www.kivakit.org">
-<img src="https://www.kivakit.org/images/web-32.png" srcset="https://www.kivakit.org/images/web-32-2x.png 2x"/>
-</a>
-&nbsp;
-<a href="https://twitter.com/openkivakit">
-<img src="https://www.kivakit.org/images/twitter-32.png" srcset="https://www.kivakit.org/images/twitter-32-2x.png 2x"/>
-</a>
-&nbsp;
-<a href="https://kivakit.zulipchat.com">
-<img src="https://www.kivakit.org/images/zulip-32.png" srcset="https://www.kivakit.org/images/zulip-32-2x.png 2x"/>
-</a>
+
 
 [//]: # (end-user-text)
 
-# kivakit-serialization core &nbsp;&nbsp; <img src="https://www.kivakit.org/images/nucleus-32.png" srcset="https://www.kivakit.org/images/nucleus-32-2x.png 2x"/>
+# kivakit-mixins &nbsp;&nbsp; <img src="https://www.kivakit.org/images/puzzle-32.png" srcset="https://www.kivakit.org/images/puzzle-32-2x.png 2x"/>
 
-This module defines core serialization abstractions.
+This module provides stateful traits for Java.
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
 ### Index
 
-[**Summary**](#summary)  
+
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
@@ -30,13 +20,13 @@ This module defines core serialization abstractions.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/dependencies-32.png" srcset="https://www.kivakit.org/images/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-serialization/core/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-mixins/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit-serialization-core</artifactId>
+        <artifactId>kivakit-mixins</artifactId>
         <version>1.4.0</version>
     </dependency>
 
@@ -44,9 +34,7 @@ This module defines core serialization abstractions.
 
 [//]: # (start-user-text)
 
-### Summary <a name = "summary"></a>
 
-This package provides serialization abstraction useful to Kryo and other serializers.
 
 [//]: # (end-user-text)
 
@@ -54,13 +42,14 @@ This package provides serialization abstraction useful to Kryo and other seriali
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-40.png" srcset="https://www.kivakit.org/images/diagram-40-2x.png 2x"/>
 
-None
+[*Mixins*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-mixins/documentation/diagrams/diagram-mixin.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
-[*com.telenav.kivakit.serialization.core*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-serialization/core/documentation/diagrams/com.telenav.kivakit.serialization.core.svg)
+[*com.telenav.kivakit.mixins*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-mixins/documentation/diagrams/com.telenav.kivakit.mixins.svg)  
+[*com.telenav.kivakit.mixins.lexakai*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-mixins/documentation/diagrams/com.telenav.kivakit.mixins.lexakai.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
@@ -75,12 +64,11 @@ Javadoc coverage for this project is 75.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*SerializationSession*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.serialization.core/com/telenav/kivakit/serialization/core/SerializationSession.html) | Creating a Session |  
-| | Reading and Writing |  
-| | Opening a Session |  
-| | Example |  
-| [*SerializationSession.SessionType*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.serialization.core/com/telenav/kivakit/serialization/core/SerializationSession.SessionType.html) |  |  
-| [*SerializationSessionFactory*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.serialization.core/com/telenav/kivakit/serialization/core/SerializationSessionFactory.html) |  |  
+| [*AttributesMixin*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/AttributesMixin.html) |  |  
+| [*DiagramMixin*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/lexakai/DiagramMixin.html) |  |  
+| [*Mixin*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/Mixin.html) | Performance Note |  
+| [*Mixins*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/Mixins.html) |  |  
+| [*Mixins.MixinKey*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/Mixins.MixinKey.html) |  |  
 
 [//]: # (start-user-text)
 

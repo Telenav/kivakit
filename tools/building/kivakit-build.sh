@@ -7,8 +7,8 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-source library-functions.sh
-source library-build.sh
+source kivakit-library-functions.sh
+source kivakit-library-build.sh
 source kivakit-projects.sh
 
 export PREBUILD_SCRIPT=kivakit-prebuild.sh
