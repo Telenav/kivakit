@@ -22,7 +22,7 @@
 
 [//]: # (end-user-text)
 
-# kivakit 1.3.1-SNAPSHOT &nbsp;&nbsp; <img src="https://www.kivakit.org/images/kivakit-64.png" srcset="https://www.kivakit.org/images/kivakit-64-2x.png 2x"/>
+# kivakit 1.4.0 &nbsp;&nbsp; <img src="https://www.kivakit.org/images/kivakit-64.png" srcset="https://www.kivakit.org/images/kivakit-64-2x.png 2x"/>
 
 KivaKit (KEE-vah-KIT) is a set of integrated Java mini-frameworks that are potentially needed by any application or server.
 
@@ -117,8 +117,8 @@ KivaKit helps you to:
 
 ### Reference <a name = "reference"></a>&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-[**Javadoc**](https://www.kivakit.org/1.3.1-SNAPSHOT/javadoc/kivakit)  
-[**CodeFlowers**](https://www.kivakit.org/1.3.1-SNAPSHOT/codeflowers/site/index.html)  
+[**Javadoc**](https://www.kivakit.org/1.4.0/javadoc/kivakit)  
+[**CodeFlowers**](https://www.kivakit.org/1.4.0/codeflowers/site/index.html)  
 [**System Properties**](documentation/reference/system-properties.md)
 
 ### Working on KivaKit <a name = "working-on-kivakit"></a> &nbsp; <img src="https://www.kivakit.org/images/toolbox-32.png" srcset="https://www.kivakit.org/images/toolbox-32-2x.png 2x"/>

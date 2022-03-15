@@ -319,6 +319,8 @@ update_version() {
     echo " "
     echo "Updating $(project_name "$project_home") version from $old_version to $new_version"
 
+    find $project_home -name project.properties | xargs sed -i 's/$old_version/$new_version/g'
+
     # Update POM versions and .md files
     update-version.pl "$project_home" "$old_version" "$new_version"
 
