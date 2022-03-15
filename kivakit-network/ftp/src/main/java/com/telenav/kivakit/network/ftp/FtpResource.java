@@ -18,19 +18,17 @@
 
 package com.telenav.kivakit.network.ftp;
 
-import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
-import com.telenav.kivakit.kernel.language.io.IO;
-import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.kernel.language.values.count.Bytes;
-import com.telenav.kivakit.kernel.language.values.count.Count;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
+import com.telenav.kivakit.core.collections.list.ObjectList;
+import com.telenav.kivakit.core.io.IO;
+import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.core.value.count.Bytes;
+import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.network.core.BaseNetworkResource;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
 import com.telenav.kivakit.network.core.NetworkPath;
 import com.telenav.kivakit.network.core.Protocol;
-import com.telenav.kivakit.network.ftp.project.lexakai.diagrams.DiagramFtp;
+import com.telenav.kivakit.network.ftp.lexakai.DiagramFtp;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.WritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -57,8 +55,6 @@ import java.util.List;
 @LexakaiJavadoc(complete = true)
 public class FtpResource extends BaseNetworkResource
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     /**
      * Simple input stream wrapper that will close the FTP connection when reading of the stream is complete.
      *
@@ -166,7 +162,7 @@ public class FtpResource extends BaseNetworkResource
         }
         catch (IOException e)
         {
-            LOGGER.problem(e, "Unable to close the FTP connection.");
+            problem(e, "Unable to close the FTP connection.");
         }
     }
 
@@ -238,7 +234,7 @@ public class FtpResource extends BaseNetworkResource
     }
 
     /**
-     * @return An input stream for reading a binary file on a FTP server (i.e. a gzipped file)
+     * @return An input stream for reading a binary file on an FTP server (i.e. a gzipped file)
      */
     public InputStream openBinaryFileForReading()
     {
@@ -265,7 +261,7 @@ public class FtpResource extends BaseNetworkResource
     }
 
     /**
-     * Connect the to the FTP server and login
+     * Connect to the FTP server and login
      */
     private void connect() throws IOException
     {

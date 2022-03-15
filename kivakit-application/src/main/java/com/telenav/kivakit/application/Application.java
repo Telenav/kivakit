@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.application;
 
-import com.telenav.kivakit.application.project.lexakai.diagrams.DiagramApplication;
+import com.telenav.kivakit.application.lexakai.DiagramApplication;
 import com.telenav.kivakit.commandline.ApplicationMetadata;
 import com.telenav.kivakit.commandline.ArgumentList;
 import com.telenav.kivakit.commandline.ArgumentParser;
@@ -27,34 +27,46 @@ import com.telenav.kivakit.commandline.CommandLineParser;
 import com.telenav.kivakit.commandline.Quantifier;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.component.BaseComponent;
-import com.telenav.kivakit.configuration.settings.Deployment;
-import com.telenav.kivakit.configuration.settings.DeploymentSet;
+import com.telenav.kivakit.component.Component;
+import com.telenav.kivakit.conversion.core.value.VersionConverter;
+import com.telenav.kivakit.core.collections.list.ObjectList;
+import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.collections.set.IdentitySet;
+import com.telenav.kivakit.core.collections.set.ObjectSet;
+import com.telenav.kivakit.core.language.Classes;
+import com.telenav.kivakit.core.language.trait.LanguageTrait;
+import com.telenav.kivakit.core.locale.Locale;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.logging.logs.BaseLog;
+import com.telenav.kivakit.core.messaging.Message;
+import com.telenav.kivakit.core.messaging.Repeater;
+import com.telenav.kivakit.core.messaging.filters.AllMessages;
+import com.telenav.kivakit.core.messaging.filters.SeverityGreaterThanOrEqualTo;
+import com.telenav.kivakit.core.messaging.messages.status.Announcement;
+import com.telenav.kivakit.core.messaging.messages.status.Glitch;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.project.Project;
+import com.telenav.kivakit.core.registry.Registry;
+import com.telenav.kivakit.core.registry.RegistryTrait;
+import com.telenav.kivakit.core.string.Align;
+import com.telenav.kivakit.core.string.AsciiArt;
+import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.string.Strip;
+import com.telenav.kivakit.core.thread.StateMachine;
+import com.telenav.kivakit.core.value.identifier.StringIdentifier;
+import com.telenav.kivakit.core.version.Version;
+import com.telenav.kivakit.core.vm.Properties;
+import com.telenav.kivakit.core.vm.ShutdownHook;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.kernel.interfaces.naming.Named;
-import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
-import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.collections.set.ObjectSet;
-import com.telenav.kivakit.kernel.language.locales.Locale;
-import com.telenav.kivakit.kernel.language.strings.Align;
-import com.telenav.kivakit.kernel.language.strings.AsciiArt;
-import com.telenav.kivakit.kernel.language.strings.Strip;
-import com.telenav.kivakit.kernel.language.threading.conditions.StateMachine;
-import com.telenav.kivakit.kernel.language.types.Classes;
-import com.telenav.kivakit.kernel.language.values.identifier.StringIdentifier;
-import com.telenav.kivakit.kernel.language.values.version.Version;
-import com.telenav.kivakit.kernel.language.vm.KivaKitShutdownHook;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.kernel.logging.logs.BaseLog;
-import com.telenav.kivakit.kernel.messaging.Message;
-import com.telenav.kivakit.kernel.messaging.Repeater;
-import com.telenav.kivakit.kernel.messaging.filters.AllMessages;
-import com.telenav.kivakit.kernel.messaging.filters.SeverityGreaterThanOrEqualTo;
-import com.telenav.kivakit.kernel.messaging.messages.status.Glitch;
-import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.kernel.project.Project;
+import com.telenav.kivakit.interfaces.naming.Named;
+import com.telenav.kivakit.interfaces.naming.NamedObject;
+import com.telenav.kivakit.resource.PackageTrait;
+import com.telenav.kivakit.resource.PropertyMap;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.resources.other.PropertyMap;
+import com.telenav.kivakit.settings.Deployment;
+import com.telenav.kivakit.settings.DeploymentSet;
+import com.telenav.kivakit.settings.SettingsTrait;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -69,34 +81,55 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.telenav.kivakit.application.Application.State.CREATED;
+import static com.telenav.kivakit.application.Application.State.CONSTRUCTING;
 import static com.telenav.kivakit.application.Application.State.INITIALIZING;
 import static com.telenav.kivakit.application.Application.State.READY;
 import static com.telenav.kivakit.application.Application.State.RUNNING;
 import static com.telenav.kivakit.application.Application.State.STOPPED;
 import static com.telenav.kivakit.application.Application.State.STOPPING;
-import static com.telenav.kivakit.commandline.SwitchParser.booleanSwitchParser;
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.commandline.SwitchParsers.booleanSwitchParser;
+import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
+import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 
 /**
- * Base class for KivaKit applications. Handles command line parsing, project initialization and configuration.
- *
- * <p><b>Messaging</b></p>
+ * Base class for KivaKit applications.
  *
  * <p>
- * Because this class extends {@link BaseRepeater} and has a {@link Logger} that listens to the application class, all
- * {@link Application}s automatically inherit logging functionality via the convenience methods in {@link Repeater}.
+ * This class provides:
  * </p>
  *
- * <p><b>Startup</b></p>
+ * <ul>
+ *     <li>Project Initialization - Initializes {@link Project}s used by the application</li>
+ *     <li>Application Metadata - Provides information about the application and its environment</li>
+ *     <li>Application Environment - Provides information about the execution environment</li>
+ *     <li>Application Execution - Runs the application</li>
+ *     <li>Command Line Parsing - Parses command line switches and arguments</li>
+ *     <li>Messaging and Logging - Captures and logs {@link Message}s broadcast by child components</li>
+ * </ul>
  *
  * <p>
- * The {@link Application} object should be constructed in the main(String[]) Java entrypoint and the {@link
- * #run(String[])} method should be called. This can be done in one step:
+ * {@link Application} is also a {@link Component} and so it inherits:
  * </p>
+ *
+ * <ul>
+ *     <li>{@link PackageTrait} - Provides access to packages and packaged resources</li>
+ *     <li>{@link SettingsTrait} - Loads settings objects and deployment configurations</li>
+ *     <li>{@link RegistryTrait} - Service {@link Registry} access</li>
+ *     <li>{@link LanguageTrait} - Enhancements that reduce language verbosity</li>
+ *     <li>{@link Repeater} - Message broadcasting, listening and repeating</li>
+ *     <li>{@link NamedObject} - Provides component name</li>
+ * </ul>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Creating an Application</b></p>
+ *
+ * <p>
+ * An {@link Application} subclass should be constructed in the <i>main(String[])</i> Java application
+ * entrypoint and the {@link #run(String[])} method should be called on it. This can be done in one step:
  *
  * <pre>
- * public static class MyApplication extends Application
+ * public class MyApplication extends Application
  * {
  *     public static void main(String[] arguments)
  *     {
@@ -104,51 +137,116 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  *     }
  *
  *     [...]
- * }
- * </pre>
+ * }</pre>
  *
- * <p><b>Command Line Parsing</b></p>
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Project Initialization</b></p>
  *
  * <p>
- * For within the application implementation in the {@link #onRun()} method, the {@link Application} class provides
- * convenient access to the parsed command line:
+ * Application constructors should pass one or more {@link Project}s to the {@link Application} constructor to
+ * ensure that all of the application's transitively dependent project(s) are initialized. See {@link Project} for details.
+ * </p>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Application Metadata</b></p>
+ *
+ * <p>
+ * Applications provide {@link ApplicationMetadata} about themselves:
  * </p>
  *
  * <ul>
- *     <li>{@link #commandLine()} - Gets the parsed command line</li>
- *     <li>{@link #argumentList()} - Gets command line arguments (excluding switches)</li>
- *     <li>{@link #argument(ArgumentParser)} - Gets the first command line argument (excluding switches)</li>
- *     <li>{@link #argument(int, ArgumentParser)} - Gets the nth argument using the given argument parser</li>
- *     <li>{@link #get(SwitchParser)} - Gets the switch value for the given switch parser</li>
- *     <li>{@link #has(SwitchParser)} - Determines if there is a switch value for the given switch parser</li>
- *     <li>{@link #exit(String, Object...)} - Exits the application displaying the given message and command line usage</li>
+ *     <li>{@link #version()} - The version of this application</li>
+ *     <li>{@link #description()} - A description of this application</li>
+ *     <li>{@link #identifier()} - A unique identifier for the application class</li>
  * </ul>
  *
- * <p><b>Important Note: Project Initialization</b></p>
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Application Environment</b></p>
  *
  * <p>
- * All applications must pass one or more {@link Project}s to the {@link Application} constructor to ensure that all of
- * the application's dependent project(s) are correctly initialized. See {@link Project} for details.
+ * Applications can access information about their execution environment:
  * </p>
  *
- * <p><b>Running</b></p>
+ * <ul>
+ *     <li>{@link #properties()} - System and environment properties</li>
+ *     <li>{@link #localizedProperties(Locale)} - Properties that are specific to the {@link Locale}</li>
+ * </ul>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Execution</b></p>
+ *
+ * <p><i>Lifecycle</i></p>
  *
  * <p>
- * The {@link #run(String[])} method will perform the following steps:
+ * The {@link #run(String[])} method performs the following steps:
  * </p>
  *
  * <ol start=1>
- *     <li>Call {@link #onProjectInitializing()}</li>
+ *     <li>Call {@link #onProjectsInitializing()}</li>
  *     <li>Initialize and install the {@link Project} passed to the constructor</li>
- *     <li>Call {@link #onProjectInitialized()}</li>
+ *     <li>Call {@link #onProjectsInitialized()}</li>
  *     <li>Parse command line arguments using:
  *     <ul>
  *         <li>The {@link ArgumentParser}s returned by {@link #argumentParsers()}</li>
  *         <li>The {@link SwitchParser}s returned by {@link #switchParsers()}</li>
  *     </ul>
- *     </li>
- *     <li>Call the application implementation in {@link #onRun()}</li>
+ *     <li>Call {@link #onRunning()}</li>
+ *     <li>Call {@link #onRun()}, executing the application</li>
+ *     <li>Call {@link #onRan()}</li>
+ *     <li>Exit</li>
  * </ol>
+ *
+ * <p><i>Abnormal Termination</i></p>
+ *
+ * <p>
+ * If an application wishes to terminate its execution abnormally, it can call {@link #exit(String, Object...)}. This will
+ * display the given message and show command line usage before exiting the application.
+ * </p>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Command Line Parsing</b></p>
+ *
+ * <p>
+ * Within the {@link #onRun()} method, the {@link Application} class provides convenient access to a model of the command line:
+ * </p>
+ *
+ * <p><i>Command Line</i></p>
+ *
+ * <ul>
+ *     <li>{@link #commandLine()} - Gets the parsed command line</li>
+ *     <li>{@link #commandLineDescription(String)} - Returns a text box describing the command line with the given title</li>
+ *     <li>{@link #showCommandLine()} - Broadcasts the command line description as an {@link Announcement} message</li>
+ * </ul>
+ *
+ * <p><i>Switches</i></p>
+ *
+ * <ul>
+ *     <li>{@link #get(SwitchParser)} - Gets the switch value for the given switch parser</li>
+ *     <li>{@link #has(SwitchParser)} - Determines if there is a switch value for the given switch parser</li>
+ * </ul>
+ *
+ * <p><i>Arguments</i></p>
+ *
+ * </ul>
+ *     <li>{@link #argumentList()} - Gets command line arguments (excluding switches)</li>
+ *     <li>{@link #argument(ArgumentParser)} - Gets the first command line argument (excluding switches)</li>
+ *     <li>{@link #argument(int, ArgumentParser)} - Gets the nth argument using the given argument parser</li>
+ * </ul>
+ *
+ * <p><br/><hr/><br/></p>
+ *
+ * <p><b>Messaging and Logging</b></p>
+ *
+ * <p>
+ * This class extends {@link BaseRepeater} and has a {@link Logger} that listens for messages and logs them.
+ * </p>
+ *
+ * <p><br/><hr/><br/></p>
  *
  * @author jonathanl (shibo)
  * @see BaseRepeater
@@ -158,7 +256,9 @@ import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNot
  */
 @UmlClassDiagram(diagram = DiagramApplication.class)
 @LexakaiJavadoc(complete = true)
-public abstract class Application extends BaseComponent implements Named, ApplicationMetadata
+public abstract class Application extends BaseComponent implements
+        Named,
+        ApplicationMetadata
 {
     /** The one and only application running in this process */
     private static Application instance;
@@ -176,7 +276,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
 
     public enum State
     {
-        CREATED,
+        CONSTRUCTING,
         INITIALIZING,
         RUNNING,
         READY,
@@ -204,16 +304,22 @@ public abstract class Application extends BaseComponent implements Named, Applic
         }
     }
 
-    /** The project that this application uses */
-    @UmlAggregation(label = "initializes and uses")
-    private Project project;
+    /** Switch parser to specify deployment settings */
+    private SwitchParser<Deployment> DEPLOYMENT;
 
     /** The parsed command line for this application */
     @UmlAggregation
     private CommandLine commandLine;
 
-    /** Switch parser to specify deployment settings */
-    private SwitchParser<Deployment> DEPLOYMENT;
+    /** Set of deployments for the application, if any */
+    private DeploymentSet deployments;
+
+    /** The project that this application uses */
+    @UmlAggregation(label = "initializes and uses")
+    private final Set<Project> projects = new IdentitySet<>();
+
+    /** State machine for application lifecycle */
+    private final StateMachine<State> state = new StateMachine<>(CONSTRUCTING);
 
     @UmlExcludeMember
     protected final SwitchParser<Boolean> QUIET =
@@ -222,34 +328,27 @@ public abstract class Application extends BaseComponent implements Named, Applic
                     .defaultValue(false)
                     .build();
 
-    /** Set of deployments for the application, if any */
-    private DeploymentSet deployments;
-
-    private final StateMachine<State> state = new StateMachine<>(CREATED);
-
-    /**
-     * @param projects One or more projects to initialize
-     */
-    protected Application(Project... projects)
+    protected Application()
     {
         register(this);
+        register(LOGGER);
 
         instance = this;
-        if (projects.length == 1)
-        {
-            project = listenTo(ensureNotNull(projects[0]));
-        }
-        else
-        {
-            project = listenTo(new Project()
-            {
-                @Override
-                public ObjectSet<Project> dependencies()
-                {
-                    return ObjectSet.objectSet(projects);
-                }
-            });
-        }
+    }
+
+    /**
+     * Adds the given {@link Project} based on its class. Projects should be added in the application constructor. This
+     * ensures that project objects are singletons.
+     *
+     * @param project The {@link Project} class
+     */
+    public Application addProject(Class<? extends Project> project)
+    {
+        // We can only add projects during application construction.
+        ensure(state.is(CONSTRUCTING));
+
+        projects.add(Project.resolveProject(project));
+        return this;
     }
 
     /**
@@ -332,7 +431,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
                 var value = get(switchParser);
                 if (value instanceof Folder)
                 {
-                    value = ((Folder)value).path().asContraction(80);
+                    value = ((Folder) value).path().asContraction(80);
                 }
                 box.add("   $ = $", Align.right(switchParser.name(), width, ' '),
                         value == null ? "N/A" : value);
@@ -352,7 +451,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
     }
 
     /**
-     * Exits the application with the given message formatted by {@link Message#format(String, Object...)}
+     * Exits the application with the given message formatted by {@link Formatter#format(String, Object...)}
      *
      * @param message The message
      * @param arguments Arguments to interpolate into the message
@@ -399,18 +498,20 @@ public abstract class Application extends BaseComponent implements Named, Applic
         return PropertyMap.localized(this, packagePath(), locale);
     }
 
-    public Project project()
+    /**
+     * Returns the set of projects on which this application depends
+     */
+    public Set<Project> projects()
     {
-        if (project == null)
-        {
-            project = ensureNotNull(newProject());
-        }
-        return project;
+        return projects;
     }
 
+    /**
+     * Returns the properties for this application's project
+     */
     public PropertyMap properties()
     {
-        return PropertyMap.propertyMap(project().properties());
+        return PropertyMap.propertyMap(Properties.projectProperties(getClass()));
     }
 
     public void ready()
@@ -425,9 +526,9 @@ public abstract class Application extends BaseComponent implements Named, Applic
      *     <li>{@link #onRunning()} is called to indicate that running is about to start</li>
      *     <li>Command line arguments are validated and parsed into a {@link CommandLine}</li>
      *     <li>{@link #onConfigureListeners()} is called to allow redirection of output</li>
-     *     <li>{@link #onProjectInitializing()} is called before the {@link Project} for this application is initialized</li>
+     *     <li>{@link #onProjectsInitializing()} is called before the {@link Project} for this application is initialized</li>
      *     <li>{@link Project#initialize()} is called</li>
-     *     <li>{@link #onProjectInitialized()} is called</li>
+     *     <li>{@link #onProjectsInitialized()} is called</li>
      *     <li>{@link #onRun()} is called</li>
      *     <li>{@link #onRan()} is called</li>
      *     <li>The application exits</li>
@@ -444,6 +545,11 @@ public abstract class Application extends BaseComponent implements Named, Applic
 
         // set up temporary listener,
         LOGGER.listenTo(this);
+
+        // initialize this application's project
+        onProjectsInitializing();
+        initializeProjects();
+        onProjectsInitialized();
 
         // load deployments,
         deployments = DeploymentSet.load(this, getClass());
@@ -491,13 +597,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
             registerSettingsIn(get(DEPLOYMENT));
         }
 
-        // Initialize this application's project
-        onProjectInitializing();
-        project.initialize();
-        onProjectInitialized();
-
-        announce("Project: $", project.name());
-        announce("Application: " + name());
+        announce("Application: " + name() + " (" + kivakit().projectVersion() + ")");
 
         try
         {
@@ -537,10 +637,9 @@ public abstract class Application extends BaseComponent implements Named, Applic
     /**
      * @return The application version as specified in the resource "/project.properties"
      */
-    @Override
     public Version version()
     {
-        return project().projectVersion();
+        return properties().get("project-version", new VersionConverter(this));
     }
 
     /**
@@ -589,7 +688,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
      * Called after this application's project has been initialized
      */
     @UmlExcludeMember
-    protected void onProjectInitialized()
+    protected void onProjectsInitialized()
     {
     }
 
@@ -597,13 +696,12 @@ public abstract class Application extends BaseComponent implements Named, Applic
      * Called before this application's project is initialized
      */
     @UmlExcludeMember
-    protected void onProjectInitializing()
+    protected void onProjectsInitializing()
     {
     }
 
     /**
-     * Called after the application has run and just before shutdown. For system hooks, see {@link
-     * KivaKitShutdownHook}.
+     * Called after the application has run and just before shutdown. For system hooks, see {@link ShutdownHook}.
      */
     @UmlExcludeMember
     protected void onRan()
@@ -628,7 +726,7 @@ public abstract class Application extends BaseComponent implements Named, Applic
      */
     protected ObjectSet<SwitchParser<?>> switchParsers()
     {
-        return ObjectSet.objectSet();
+        return objectSet();
     }
 
     /**
@@ -644,6 +742,43 @@ public abstract class Application extends BaseComponent implements Named, Applic
                 : new AllMessages();
 
         LOGGER.listenTo(this, filter);
+    }
+
+    private void initializeProject(IdentitySet<Project> uninitialized, Project project)
+    {
+        // For each dependent project,
+        for (var at : project.dependencies())
+        {
+            // initialize it,
+            initializeProject(uninitialized, project(at));
+        }
+
+        // then initialize this project,
+        listenTo(project).initialize();
+
+        // and remove it from the uninitialized set.
+        uninitialized.remove(project);
+    }
+
+    /**
+     * Initialize all projects and their dependencies in depth-first order
+     */
+    private void initializeProjects()
+    {
+        // Start with all projects uninitialized,
+        var uninitialized = new IdentitySet<Project>();
+        uninitialized.addAll(projects());
+
+        // then for each project,
+        for (var project : projects())
+        {
+            // if it is uninitialized,
+            if (uninitialized.contains(project))
+            {
+                // initialize it and its dependencies.
+                initializeProject(uninitialized, project);
+            }
+        }
     }
 
     private Set<SwitchParser<?>> internalSwitchParsers()

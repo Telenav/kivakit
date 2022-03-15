@@ -18,8 +18,9 @@
 
 package com.telenav.kivakit.collections.set;
 
-import com.telenav.kivakit.collections.project.lexakai.diagrams.DiagramSet;
-import com.telenav.kivakit.kernel.interfaces.comparison.Equality;
+import com.telenav.kivakit.collections.lexakai.DiagramSet;
+import com.telenav.kivakit.core.collections.set.ConcurrentHashSet;
+import com.telenav.kivakit.interfaces.comparison.Equality;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Set;
@@ -31,6 +32,7 @@ import java.util.Set;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramSet.class)
 public abstract class SetDifferencer<Element>
 {
@@ -64,7 +66,7 @@ public abstract class SetDifferencer<Element>
             }
             else
             {
-                // otherwise save the object so it can be looked up below
+                // otherwise, save the object, so it can be looked up below
                 if (updateComparator != null)
                 {
                     beforeUnionAfter.add(before);

@@ -18,19 +18,18 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
-import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
-import com.telenav.kivakit.kernel.language.objects.Hash;
-import com.telenav.kivakit.kernel.language.objects.Objects;
-import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
-import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
-import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.kivakit.kernel.messaging.messages.MessageFormatter;
-import com.telenav.kivakit.network.core.project.lexakai.diagrams.DiagramNetworkLocation;
+import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.core.collections.map.VariableMap;
+import com.telenav.kivakit.core.language.Hash;
+import com.telenav.kivakit.core.language.Objects;
+import com.telenav.kivakit.core.language.object.ObjectFormatter;
+import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.string.Strings;
+import com.telenav.kivakit.interfaces.string.Stringable;
+import com.telenav.kivakit.network.core.lexakai.DiagramNetworkLocation;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -51,9 +50,27 @@ import java.nio.charset.StandardCharsets;
  */
 @UmlClassDiagram(diagram = DiagramNetworkLocation.class)
 @LexakaiJavadoc(complete = true)
-public class NetworkLocation implements AsString, Comparable<NetworkLocation>
+public class NetworkLocation implements Stringable, Comparable<NetworkLocation>
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
+
+    public static NetworkLocation parseNetworkLocation(Listener listener, String value)
+    {
+        try
+        {
+            var uri = new URI(value);
+            var location = new NetworkLocation(NetworkPath.networkPath(listener, uri));
+            location.queryParameters(new QueryParameters(uri.getQuery()));
+            var url = uri.toURL();
+            location.reference(url.getRef());
+            return location;
+        }
+        catch (URISyntaxException | MalformedURLException e)
+        {
+            listener.problem(e, "Bad network location ${debug}", value);
+            return null;
+        }
+    }
 
     /**
      * Converts to and from a {@link NetworkLocation}
@@ -65,37 +82,18 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
     {
         public Converter(Listener listener)
         {
-            super(listener);
-        }
-
-        @Override
-        protected NetworkLocation onToValue(String value)
-        {
-            try
-            {
-                var uri = new URI(value);
-                var location = new NetworkLocation(NetworkPath.networkPath(this, uri));
-                location.queryParameters(new QueryParameters(uri.getQuery()));
-                var url = uri.toURL();
-                location.reference(url.getRef());
-                return location;
-            }
-            catch (URISyntaxException | MalformedURLException e)
-            {
-                problem(e, "Bad network location ${debug}", value);
-                return null;
-            }
+            super(listener, NetworkLocation::parseNetworkLocation);
         }
     }
 
     @UmlAggregation
-    private final Port port;
+    private NetworkAccessConstraints constraints;
 
     @UmlAggregation
     private NetworkPath networkPath;
 
     @UmlAggregation
-    private NetworkAccessConstraints constraints;
+    private final Port port;
 
     @UmlAggregation(label = "optional")
     private QueryParameters queryParameters;
@@ -119,7 +117,7 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
     }
 
     @Override
-    public String asString(StringFormat format)
+    public String asString(Format format)
     {
         return new ObjectFormatter(this).toString();
     }
@@ -134,7 +132,7 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
             {
                 portNumber = -1;
             }
-            // Decode path so we avoid double-encoding if the path is already encoded
+            // Decode path, so we avoid double-encoding if the path is already encoded
             var path = URLDecoder.decode(networkPath().asStringPath().toString(), StandardCharsets.UTF_8);
             return new URI(protocol().name(), username, host().name(), portNumber, "/" + path,
                     queryParameters == null ? null : queryParameters.toString(), reference);
@@ -292,8 +290,7 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
     public NetworkLocation withInterpolatedVariables(VariableMap<String> variables)
     {
         // Interpolate variables in path
-        var formatter = new MessageFormatter();
-        var interpolatedPath = formatter.format(networkPath().toString(), variables);
+        var interpolatedPath = Strings.format(networkPath().toString(), variables);
 
         // Create location with the given path
         var location = withPath(NetworkPath.parseNetworkPath(LOGGER, interpolatedPath));
@@ -302,7 +299,7 @@ public class NetworkLocation implements AsString, Comparable<NetworkLocation>
         if (queryParameters() != null)
         {
             // interpolate variables into query parameter string
-            var interpolatedQueryParameters = formatter.format(queryParameters().toString(), variables);
+            var interpolatedQueryParameters = Strings.format(queryParameters().toString(), variables);
 
             // and create a new location with the interpolated value
             location = location.withQueryParameters(new QueryParameters(interpolatedQueryParameters));

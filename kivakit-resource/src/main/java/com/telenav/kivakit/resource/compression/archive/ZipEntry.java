@@ -18,15 +18,15 @@
 
 package com.telenav.kivakit.resource.compression.archive;
 
-import com.telenav.kivakit.kernel.interfaces.code.Unchecked;
-import com.telenav.kivakit.kernel.language.io.IO;
-import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
-import com.telenav.kivakit.kernel.language.time.Time;
-import com.telenav.kivakit.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.core.code.UncheckedCode;
+import com.telenav.kivakit.core.io.IO;
+import com.telenav.kivakit.core.language.object.ObjectFormatter;
+import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.resource.WritableResource;
 import com.telenav.kivakit.resource.path.FilePath;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourceArchive;
+import com.telenav.kivakit.resource.lexakai.DiagramResourceArchive;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -52,11 +52,11 @@ import static java.nio.file.StandardOpenOption.WRITE;
 @LexakaiJavadoc(complete = true)
 public class ZipEntry extends BaseWritableResource implements AutoCloseable
 {
-    private final Path path;
-
     private InputStream in;
 
     private OutputStream out;
+
+    private final Path path;
 
     public ZipEntry(FileSystem filesystem, Path path)
     {
@@ -83,7 +83,7 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
     @Override
     public Time lastModified()
     {
-        return Unchecked.of(() -> Time.milliseconds(Files.getLastModifiedTime(path).toMillis())).orNull();
+        return UncheckedCode.of(() -> Time.milliseconds(Files.getLastModifiedTime(path).toMillis())).orNull();
     }
 
     @Override
@@ -91,7 +91,7 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
     {
         if (in == null)
         {
-            var in = Unchecked.of(() -> Files.newInputStream(path)).orNull();
+            var in = UncheckedCode.of(() -> Files.newInputStream(path)).orNull();
             if (in != null)
             {
                 this.in = IO.buffer(in);
@@ -146,7 +146,7 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
     @Override
     public Bytes sizeInBytes()
     {
-        return Unchecked.of(() -> Bytes.bytes(Files.size(path))).orNull();
+        return UncheckedCode.of(() -> Bytes.bytes(Files.size(path))).orNull();
     }
 
     @Override

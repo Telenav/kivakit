@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.network.ftp.secure;
 
-import com.telenav.kivakit.kernel.language.io.IO;
-import com.telenav.kivakit.kernel.language.values.count.Bytes;
+import com.telenav.kivakit.core.io.IO;
+import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.network.core.NetworkLocation;
-import com.telenav.kivakit.network.ftp.project.lexakai.diagrams.DiagramSecureFtp;
+import com.telenav.kivakit.network.ftp.lexakai.DiagramSecureFtp;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -51,10 +51,10 @@ class SecureFtpInput extends InputStream
     }
 
     /**
-     * JSch does not do any buffering, so we need to do it ourselves. When the round-trip time gets around 300ms and
-     * you're doing one round-trip for every read, it really matters that your buffer size is not just 8KB, which is the
-     * default for BufferedInputStream. This default should be good for most cases, just override this function if it's
-     * not.
+     * JSch does not do any buffering, so we need to do it ourselves. When the round-trip time gets around 300 ms, and
+     * you're doing one round-trip for every read, it really matters that your buffer size is not just 8 KB, which is
+     * the default for BufferedInputStream. This default should be good for most cases, just override this function if
+     * it's not.
      *
      * @return The size of the buffer.
      */

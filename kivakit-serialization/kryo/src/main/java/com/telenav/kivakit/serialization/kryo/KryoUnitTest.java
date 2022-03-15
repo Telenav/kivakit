@@ -18,24 +18,35 @@
 
 package com.telenav.kivakit.serialization.kryo;
 
-import com.telenav.kivakit.kernel.KivaKit;
-import com.telenav.kivakit.kernel.data.validation.ensure.Ensure;
-import com.telenav.kivakit.kernel.language.io.IO;
-import com.telenav.kivakit.kernel.language.values.version.Version;
-import com.telenav.kivakit.kernel.language.values.version.VersionedObject;
+import com.telenav.kivakit.core.path.StringPath;
+import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.core.version.Version;
+import com.telenav.kivakit.resource.serialization.SerializableObject;
 import com.telenav.kivakit.serialization.core.SerializationSession;
 import com.telenav.kivakit.serialization.core.SerializationSessionFactory;
-import com.telenav.kivakit.test.UnitTest;
+import com.telenav.kivakit.serialization.kryo.types.CoreKryoTypes;
+import com.telenav.kivakit.serialization.kryo.types.KryoTypes;
+import com.telenav.kivakit.serialization.kryo.types.ResourceKryoTypes;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+
+import static com.telenav.kivakit.serialization.core.SerializationSession.SessionType.RESOURCE;
 
 /**
- * Adds Kryo serialization testing to the {@link UnitTest} base class. Serialization of objects can be tested with
- * {@link #serializationTest(Object)} and serialization sessions can be specialized by {@link #kryoTypes()} and {@link
- * #sessionFactory()}.
+ * Adds Kryo serialization testing to the {@link UnitTest} base class. Serialization of objects can be tested with:
+ *
+ * <ul>
+ *     <li>{@link #testSerialization(Object)}</li>
+ *     <li>{@link #testSerialization(Object, Version)}</li>
+ *     <li>{@link #testSessionSerialization(Object)}</li>
+ * </ul>
+ *
+ * <p>
+ * The registered types used by these methods can be specified by overriding {@link #kryoTypes()}.
+ * </p>
  *
  * @author jonathanl (shibo)
  */
@@ -46,68 +57,80 @@ public class KryoUnitTest extends UnitTest
 
     protected KryoTypes kryoTypes()
     {
-        return new CoreKernelKryoTypes();
-    }
-
-    protected void serializationTest(Object object)
-    {
-        if (!isQuickTest())
-        {
-            trace("before serialization = $", object);
-
-            var version = Version.parse(this, "1.0");
-            var data = new ByteArrayOutputStream();
-
-            {
-                var session = session();
-                try (var output = data)
-                {
-                    session.open(SerializationSession.Type.RESOURCE, KivaKit.get().projectVersion(), output);
-                    for (var index = 0; index < 3; index++)
-                    {
-                        session.write(new VersionedObject<>(version, object));
-                    }
-                    IO.close(session);
-                }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-
-            {
-                var session = session();
-                try (var input = new ByteArrayInputStream(data.toByteArray()))
-                {
-                    Ensure.ensureEqual(session.open(SerializationSession.Type.RESOURCE, KivaKit.get().projectVersion(), input), KivaKit.get().projectVersion());
-                    for (var index = 0; index < 3; index++)
-                    {
-                        var deserialized = session.read();
-                        trace("version $ after deserialization = $", deserialized.version(), deserialized.get());
-                        ensureEqual(deserialized.version(), version);
-                        ensureEqual(deserialized.get(), object);
-                    }
-                }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }
+        return new CoreKryoTypes().mergedWith(new ResourceKryoTypes());
     }
 
     protected SerializationSession session()
     {
-        return sessionFactory().session(this);
+        return sessionFactory().newSession(this);
     }
 
     protected final SerializationSessionFactory sessionFactory()
     {
         if (factory == null)
         {
-            factory = kryoTypes().sessionFactory();
+            factory = new KryoSerializationSessionFactory(kryoTypes());
         }
 
         return factory;
+    }
+
+    protected <T> void testSerialization(T object, Version version)
+    {
+        var output = new ByteArrayOutputStream();
+        var serializer = new KryoObjectSerializer(kryoTypes());
+        var path = StringPath.stringPath("/a/b/c");
+
+        var write = new SerializableObject<>(object, version);
+        serializer.write(output, path, write);
+
+        var input = new ByteArrayInputStream(output.toByteArray());
+
+        var read = serializer.read(input, path, object.getClass());
+        ensureEqual(write, read);
+    }
+
+    protected void testSerialization(Object object)
+    {
+        testSerialization(object, null);
+    }
+
+    protected void testSessionSerialization(Object object)
+    {
+        testSessionSerialization(object, null);
+    }
+
+    protected void testSessionSerialization(Object object, Version version)
+    {
+        trace("before serialization = $", object);
+
+        var output = new ByteArrayOutputStream();
+
+        var n = Count.count(3);
+
+        // Write the object n times to the session
+        {
+            var session = new KryoSerializationSession(kryoTypes());
+            session.open(output, RESOURCE, projectVersion());
+            n.loop(() -> session.write(new SerializableObject<>(object, version)));
+            session.close();
+        }
+
+        // Read the object n times from the written data
+        {
+            var session = new KryoSerializationSession(kryoTypes());
+            var input = new ByteArrayInputStream(output.toByteArray());
+            var streamVersion = session.open(input, RESOURCE);
+            ensureEqual(projectVersion(), streamVersion);
+            n.loop(() ->
+            {
+                var deserialized = session.read();
+                assert deserialized != null;
+                trace("version $ after deserialization = $", deserialized.version(), deserialized.object());
+                ensureEqual(deserialized.object(), object);
+                ensureEqual(deserialized.version(), version);
+            });
+            session.close();
+        }
     }
 }

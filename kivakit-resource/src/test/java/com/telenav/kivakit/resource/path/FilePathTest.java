@@ -18,15 +18,16 @@
 
 package com.telenav.kivakit.resource.path;
 
+import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.os.OperatingSystem;
+import com.telenav.kivakit.core.test.UnitTest;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.vm.OperatingSystem;
 import com.telenav.kivakit.resource.ResourcePath;
-import com.telenav.kivakit.test.UnitTest;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.Objects;
 
 public class FilePathTest extends UnitTest
 {
@@ -40,6 +41,28 @@ public class FilePathTest extends UnitTest
     public void testChild()
     {
         ensureEqual(path("a/b/c").withChild("d"), path("a/b/c/d"));
+    }
+
+    @Test
+    @SuppressWarnings("SpellCheckingInspection")
+    public void testFilePath()
+    {
+        ensureEqual(FilePath.parseFilePath(this, "TestFile1.txt").absolute(), FilePath.parseFilePath(this, "TestFile1.txt").absolute());
+
+        var filePath1 = FilePath.parseFilePath(this, "TestFile1.txt");
+        var filePath1a = FilePath.parseFilePath(this, "TestFile1.txt");
+        var filePath2 = FilePath.parseFilePath(this, "TestFile2.txt");
+        var directoryName = "newdirectory";
+        var fileName = "TestFile3.txt";
+
+        ensureEqual(filePath1, filePath1a);
+        ensure(filePath1.equals(filePath1a));
+        ensureFalse(filePath1.equals(filePath2));
+
+        var filePath3 = FilePath.parseFilePath(this, directoryName).withChild(fileName);
+        ensureEqual(filePath3.toString(), directoryName + filePath1.separator() + fileName);
+
+        ensure(FilePath.parseFilePath(this, fileName).absolute().toString().endsWith(FilePath.parseFilePath(this, fileName).separator() + fileName));
     }
 
     @Test
@@ -151,7 +174,7 @@ public class FilePathTest extends UnitTest
         {
             var rawPath = "C:\\this\\is\\a\\test\\path";
             var path = FilePath.parseFilePath(this, rawPath);
-            var root = Folder.parse(this, "C:\\").path().absolute();
+            var root = Objects.requireNonNull(Folder.parse(this, "C:\\")).path().absolute();
             var root2 = path.root().absolute();
             ensureEqual(root, root2);
         }

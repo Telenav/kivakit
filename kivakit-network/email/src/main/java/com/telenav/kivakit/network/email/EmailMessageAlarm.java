@@ -1,8 +1,8 @@
 package com.telenav.kivakit.network.email;
 
-import com.telenav.kivakit.configuration.lookup.RegistryTrait;
-import com.telenav.kivakit.kernel.language.time.Rate;
-import com.telenav.kivakit.kernel.messaging.alarms.BaseMessageAlarm;
+import com.telenav.kivakit.core.messaging.alarms.BaseMessageAlarm;
+import com.telenav.kivakit.core.registry.RegistryTrait;
+import com.telenav.kivakit.core.time.Rate;
 
 /**
  * When triggered, sends the email composed by {@link #composeEmail(Rate)} using a registered {@link EmailSender}

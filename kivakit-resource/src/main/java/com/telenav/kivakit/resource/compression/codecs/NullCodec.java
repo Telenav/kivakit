@@ -19,7 +19,7 @@
 package com.telenav.kivakit.resource.compression.codecs;
 
 import com.telenav.kivakit.resource.compression.Codec;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourceCompression;
+import com.telenav.kivakit.resource.lexakai.DiagramResourceCompression;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

@@ -18,23 +18,23 @@
 
 package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramArgument;
-import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramCommandLine;
-import com.telenav.kivakit.kernel.data.conversion.Converter;
-import com.telenav.kivakit.kernel.data.conversion.string.language.IdentityConverter;
-import com.telenav.kivakit.kernel.data.conversion.string.language.VersionConverter;
-import com.telenav.kivakit.kernel.data.conversion.string.primitive.BooleanConverter;
-import com.telenav.kivakit.kernel.data.conversion.string.primitive.IntegerConverter;
-import com.telenav.kivakit.kernel.data.conversion.string.primitive.LongConverter;
-import com.telenav.kivakit.kernel.language.reflection.Type;
-import com.telenav.kivakit.kernel.language.values.version.Version;
-import com.telenav.kivakit.kernel.messaging.Listener;
+import com.telenav.kivakit.commandline.lexakai.DiagramArgument;
+import com.telenav.kivakit.commandline.lexakai.DiagramCommandLine;
+import com.telenav.kivakit.conversion.Converter;
+import com.telenav.kivakit.conversion.core.language.IdentityConverter;
+import com.telenav.kivakit.conversion.core.language.primitive.BooleanConverter;
+import com.telenav.kivakit.conversion.core.language.primitive.IntegerConverter;
+import com.telenav.kivakit.conversion.core.language.primitive.LongConverter;
+import com.telenav.kivakit.conversion.core.value.VersionConverter;
+import com.telenav.kivakit.core.language.reflection.Type;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.version.Version;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
  * Parses a command-line {@link Argument}, as defined by a {@link Quantifier}, a type, a string converter for that type
@@ -168,19 +168,23 @@ public class ArgumentParser<T>
         {
             if (quantifier == null)
             {
-                return fail("Must provide quantifier");
+                fail("Must provide quantifier");
+                return null;
             }
             if (type == null)
             {
-                return fail("Must provide type");
+                fail("Must provide type");
+                return null;
             }
             if (converter == null)
             {
-                return fail("Must provide converter");
+                fail("Must provide converter");
+                return null;
             }
             if (description == null)
             {
-                return fail("Must provide description");
+                fail("Must provide description");
+                return null;
             }
             return new ArgumentParser<>(quantifier, type, converter, description);
         }
@@ -246,7 +250,7 @@ public class ArgumentParser<T>
     private final Type<T> type;
 
     /**
-     * A human readable description of the argument for use in creating help messages
+     * A human-readable description of the argument for use in creating help messages
      */
     private final String description;
 
@@ -265,7 +269,7 @@ public class ArgumentParser<T>
      * @param quantifier The allowable quantities of the argument
      * @param type The type of the argument
      * @param converter String converter for the argument
-     * @param description The human readable description of the argument
+     * @param description The human-readable description of the argument
      */
     private ArgumentParser(
             Quantifier quantifier,

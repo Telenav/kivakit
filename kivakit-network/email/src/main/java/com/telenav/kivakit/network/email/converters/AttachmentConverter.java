@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.network.email.converters;
 
-import com.telenav.kivakit.kernel.data.conversion.string.collection.BaseCollectionConverter;
-import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.messaging.Listener;
+import com.telenav.kivakit.conversion.BaseTwoWayConverter;
+import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.network.email.EmailAttachment;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
@@ -32,34 +32,34 @@ import java.util.Base64;
  * @author jonathanl (shibo)
  */
 @LexakaiJavadoc(complete = true)
-public class AttachmentConverter extends BaseCollectionConverter<EmailAttachment>
+public class AttachmentConverter extends BaseTwoWayConverter<StringList, EmailAttachment>
 {
     public AttachmentConverter(Listener listener)
     {
-        super(listener, ",");
+        super(listener);
     }
 
     @Override
-    protected EmailAttachment onConvertToObject(StringList columns)
+    protected EmailAttachment onConvert(final StringList value)
     {
-        if (columns.size() == 3)
+        if (value.size() == 3)
         {
             var attachment = new EmailAttachment();
-            attachment.mimeType(columns.get(0));
-            attachment.filename(columns.get(1));
-            attachment.data(Base64.getEncoder().encode(columns.get(2).getBytes()));
+            attachment.mimeType(value.get(0));
+            attachment.filename(value.get(1));
+            attachment.data(Base64.getEncoder().encode(value.get(2).getBytes()));
             return attachment;
         }
         return null;
     }
 
     @Override
-    protected StringList onConvertToStringList(EmailAttachment value)
+    protected StringList onUnconvert(final EmailAttachment emailAttachment)
     {
         var list = new StringList();
-        list.add(value.mimeType());
-        list.add(value.filename());
-        list.add(new String(Base64.getDecoder().decode(value.data())));
+        list.add(emailAttachment.mimeType());
+        list.add(emailAttachment.filename());
+        list.add(new String(Base64.getDecoder().decode(emailAttachment.data())));
         return list;
     }
 }

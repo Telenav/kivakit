@@ -18,12 +18,11 @@
 
 package com.telenav.kivakit.resource;
 
+import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
-import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
-import com.telenav.kivakit.kernel.language.matchers.AnythingMatcher;
-import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.kernel.messaging.Listener;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.spi.ResourceFolderResolverServiceLoader;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
@@ -118,7 +117,7 @@ public interface ResourceFolder extends UriIdentified
      */
     default List<? extends Resource> resources()
     {
-        return resources(new AnythingMatcher<>());
+        return resources(Matcher.anything());
     }
 
     /**

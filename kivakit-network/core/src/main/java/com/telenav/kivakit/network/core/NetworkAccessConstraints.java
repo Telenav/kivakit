@@ -18,16 +18,16 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.telenav.kivakit.kernel.data.validation.BaseValidator;
-import com.telenav.kivakit.kernel.data.validation.Validatable;
-import com.telenav.kivakit.kernel.data.validation.ValidationType;
-import com.telenav.kivakit.kernel.data.validation.Validator;
-import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
-import com.telenav.kivakit.kernel.language.time.Duration;
-import com.telenav.kivakit.network.core.project.lexakai.diagrams.DiagramNetworkLocation;
-import com.telenav.kivakit.security.authentication.Password;
-import com.telenav.kivakit.security.authentication.UserName;
+import com.telenav.kivakit.core.language.object.ObjectFormatter;
+import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.time.Duration;
+import com.telenav.kivakit.network.core.authentication.Password;
+import com.telenav.kivakit.network.core.authentication.UserName;
+import com.telenav.kivakit.network.core.lexakai.DiagramNetworkLocation;
+import com.telenav.kivakit.validation.BaseValidator;
+import com.telenav.kivakit.validation.Validatable;
+import com.telenav.kivakit.validation.ValidationType;
+import com.telenav.kivakit.validation.Validator;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;

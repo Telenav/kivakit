@@ -26,6 +26,7 @@ git clone https://github.com/Telenav/lexakai-annotations.git
 [ ! -d "KIVAKIT_WORKSPACE/kivakit" ] && git clone https://github.com/Telenav/kivakit.git
 git clone --depth 1 https://github.com/Telenav/kivakit-assets.git
 git clone https://github.com/Telenav/kivakit-extensions.git
+git clone https://github.com/Telenav/kivakit-stuff.git
 git clone https://github.com/Telenav/kivakit-examples.git
 
 #
@@ -69,4 +70,5 @@ initialize "$KIVAKIT_WORKSPACE"/cactus-build develop
 initialize "$KIVAKIT_WORKSPACE"/lexakai-annotations develop
 initialize "$KIVAKIT_WORKSPACE"/kivakit develop
 initialize "$KIVAKIT_WORKSPACE"/kivakit-extensions develop
+initialize "$KIVAKIT_WORKSPACE"/kivakit-stuff develop
 initialize "$KIVAKIT_WORKSPACE"/kivakit-examples develop

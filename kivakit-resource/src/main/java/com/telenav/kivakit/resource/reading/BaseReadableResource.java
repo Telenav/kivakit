@@ -18,16 +18,15 @@
 
 package com.telenav.kivakit.resource.reading;
 
+import com.telenav.kivakit.core.io.IO;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.object.Lazy;
+import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.kernel.language.io.IO;
-import com.telenav.kivakit.kernel.language.io.ProgressiveInput;
-import com.telenav.kivakit.kernel.language.objects.Lazy;
-import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.kernel.language.time.Time;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourcePath;
@@ -35,8 +34,8 @@ import com.telenav.kivakit.resource.WritableResource;
 import com.telenav.kivakit.resource.compression.Codec;
 import com.telenav.kivakit.resource.compression.codecs.NullCodec;
 import com.telenav.kivakit.resource.path.FilePath;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemFile;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResource;
+import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFile;
+import com.telenav.kivakit.resource.lexakai.DiagramResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -272,7 +271,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
             reporter.steps(sizeInBytes());
 
             // and return a progressive input which will call the reporter.
-            return new ProgressiveInput(decompressed, reporter);
+            return reporter.progressiveInput(decompressed);
         }
 
         return decompressed;
@@ -300,7 +299,7 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
         // Flatten path being cached into a long filename by turning all file system meta characters
         // into underscores.
         // For example, "a/b/c.txt" becomes "a_b_c.txt"
-        return File.parse(this, cacheFolder.get() + "/" + path().toString().replaceAll("[/:]", "_"));
+        return File.parseFile(this, cacheFolder.get() + "/" + path().toString().replaceAll("[/:]", "_"));
     }
 
     private String uniqueIdentifier()

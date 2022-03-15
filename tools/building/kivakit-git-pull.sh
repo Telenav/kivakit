@@ -7,7 +7,7 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-source "$KIVAKIT_WORKSPACE"/kivakit/tools/library/library-functions.sh
+source "$KIVAKIT_WORKSPACE"/kivakit/tools/library/kivakit-library-functions.sh
 source kivakit-projects.sh
 
 for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do

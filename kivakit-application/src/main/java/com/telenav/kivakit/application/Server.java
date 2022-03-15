@@ -18,8 +18,7 @@
 
 package com.telenav.kivakit.application;
 
-import com.telenav.kivakit.application.project.lexakai.diagrams.DiagramApplication;
-import com.telenav.kivakit.kernel.project.Project;
+import com.telenav.kivakit.application.lexakai.DiagramApplication;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -32,8 +31,4 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @LexakaiJavadoc(complete = true)
 public abstract class Server extends Application
 {
-    protected Server(Project project)
-    {
-        super(project);
-    }
 }

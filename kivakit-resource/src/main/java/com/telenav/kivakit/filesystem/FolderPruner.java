@@ -18,16 +18,15 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
-import com.telenav.kivakit.kernel.language.matchers.AnythingMatcher;
-import com.telenav.kivakit.kernel.language.threading.RepeatingKivaKitThread;
-import com.telenav.kivakit.kernel.language.time.Duration;
-import com.telenav.kivakit.kernel.language.time.Frequency;
-import com.telenav.kivakit.kernel.language.values.count.Bytes;
-import com.telenav.kivakit.kernel.language.values.level.Percent;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemFolder;
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.thread.RepeatingThread;
+import com.telenav.kivakit.core.time.Duration;
+import com.telenav.kivakit.core.time.Frequency;
+import com.telenav.kivakit.core.value.count.Bytes;
+import com.telenav.kivakit.core.value.level.Percent;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
+import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFolder;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -53,7 +52,7 @@ public class FolderPruner
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
     /** Matcher to restrict files that can be pruned */
-    private volatile Matcher<File> matcher = new AnythingMatcher<>();
+    private volatile Matcher<File> matcher = Matcher.anything();
 
     /** The minimum percentage of usable disk space that must be maintained on the folder's disk. */
     private volatile Percent minimumUsableDiskSpace = Percent.of(15);
@@ -65,14 +64,14 @@ public class FolderPruner
     private volatile Bytes capacity = Bytes.MAXIMUM;
 
     /** The pruner thread */
-    private final RepeatingKivaKitThread thread;
+    private final RepeatingThread thread;
 
     /** True if this pruner is running */
     private volatile boolean running;
 
     public FolderPruner(Folder folder, Frequency frequency)
     {
-        thread = new RepeatingKivaKitThread(LOGGER, getClass().getSimpleName(), frequency)
+        thread = new RepeatingThread(LOGGER, getClass().getSimpleName(), frequency)
         {
             @Override
             protected void onRun()

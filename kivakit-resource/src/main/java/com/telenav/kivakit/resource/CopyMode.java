@@ -20,7 +20,7 @@ package com.telenav.kivakit.resource;
 
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.unsupported;
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
  * The mode for copying resources. Resources can be updated (copied if they don't exist yet), overwritten (copied over

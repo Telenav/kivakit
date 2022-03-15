@@ -18,12 +18,12 @@
 
 package com.telenav.kivakit.network.email;
 
+import com.telenav.kivakit.core.test.UnitTest;
 import com.telenav.kivakit.network.core.EmailAddress;
 import com.telenav.kivakit.network.core.Host;
+import com.telenav.kivakit.network.core.authentication.UserName;
+import com.telenav.kivakit.network.core.authentication.passwords.PlainTextPassword;
 import com.telenav.kivakit.network.email.senders.SmtpEmailSender;
-import com.telenav.kivakit.security.authentication.UserName;
-import com.telenav.kivakit.security.authentication.passwords.PlainTextPassword;
-import com.telenav.kivakit.test.UnitTest;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -38,7 +38,7 @@ public class EmailTest extends UnitTest
     @SuppressWarnings("resource")
     public void test()
     {
-        var shibo = EmailAddress.parse(this, "jonathanl@telenav.com");
+        var shibo = EmailAddress.parseEmail(this, "jonathanl@telenav.com");
 
         var email = new Email()
                 .from(shibo)

@@ -18,8 +18,7 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.kernel.language.vm.OperatingSystem;
-import com.telenav.kivakit.test.UnitTest;
+import com.telenav.kivakit.core.test.UnitTest;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 
@@ -103,7 +102,7 @@ public class ResourcePathTest extends UnitTest
     @Test
     public void testRoot()
     {
-        if (OperatingSystem.get().isWindows())
+        if (isWindows())
         {
             var path = ResourcePath.parseResourcePath(this, "c:\\");
             ensure(path.isRoot());

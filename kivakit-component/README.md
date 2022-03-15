@@ -12,7 +12,7 @@ This module defines KivaKit lightweight components.
 
 ### Index
 
-
+[**Component Interface Composition**](#component-interface-composition)  
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
@@ -20,21 +20,30 @@ This module defines KivaKit lightweight components.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/dependencies-32.png" srcset="https://www.kivakit.org/images/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.3.0/lexakai/kivakit/kivakit-component/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-component/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-component</artifactId>
-        <version>1.3.0</version>
+        <version>1.4.0</version>
     </dependency>
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 [//]: # (start-user-text)
 
+### Component Interface Composition <a name = "component-interface-composition"></a>
 
+| Sub-Interface   | Purpose                                       |
+|-----------------|-----------------------------------------------|
+| *Repeater*      | Message broadcasting, listening and repeating |
+| *RegistryTrait* | Service registry access                       |
+| *SettingsTrait* | Component settings                            |
+| *LanguageTrait* | Enhancements that reduce language verbosity   |
+| *PackageTrait*  | Access to packages and packaged resources     |
+| *NamedObject*   | Component naming                              |
 
 [//]: # (end-user-text)
 
@@ -42,19 +51,20 @@ This module defines KivaKit lightweight components.
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-40.png" srcset="https://www.kivakit.org/images/diagram-40-2x.png 2x"/>
 
-None
+[*Component, BaseComponent and ComponentMixin*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-component/documentation/diagrams/diagram-component.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
-[*com.telenav.kivakit.component*](https://www.kivakit.org/1.3.0/lexakai/kivakit/kivakit-component/documentation/diagrams/com.telenav.kivakit.component.svg)
+[*com.telenav.kivakit.component*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-component/documentation/diagrams/com.telenav.kivakit.component.svg)  
+[*com.telenav.kivakit.component.lexakai*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-component/documentation/diagrams/com.telenav.kivakit.component.lexakai.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 80.0%.  
+Javadoc coverage for this project is 75.0%.  
   
 &nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
 
@@ -63,13 +73,15 @@ Javadoc coverage for this project is 80.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*BaseComponent*](https://www.kivakit.org/1.3.0/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/BaseComponent.html) |  |  
-| [*Component*](https://www.kivakit.org/1.3.0/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/Component.html) | Object Lookup Registry |  
-| | Packaging Methods |  
-| | Settings Registry Methods |  
-| [*ComponentFunction*](https://www.kivakit.org/1.3.0/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/ComponentFunction.html) |  |  
-| [*ComponentMixin*](https://www.kivakit.org/1.3.0/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/ComponentMixin.html) |  |  
-| [*ComponentSupplier*](https://www.kivakit.org/1.3.0/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/ComponentSupplier.html) |  |  
+| [*BaseComponent*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/BaseComponent.html) |  |  
+| [*Component*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/Component.html) | Language |  
+| | Packaging |  
+| | Repeater |  
+| | Registry |  
+| | Sub-Interfaces |  
+| | Settings |  
+| [*ComponentMixin*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/ComponentMixin.html) |  |  
+| [*DiagramComponent*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/lexakai/DiagramComponent.html) |  |  
 
 [//]: # (start-user-text)
 

@@ -7,7 +7,7 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-source library-functions.sh
+source kivakit-library-functions.sh
 source kivakit-projects.sh
 
 help="[version]"
@@ -24,9 +24,11 @@ echo "┋"
 echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
 echo " "
 
-update_version "$KIVAKIT_HOME" "$version"
-update_version "$KIVAKIT_EXTENSIONS_HOME" "$version"
-update_version "$KIVAKIT_EXAMPLES_HOME" "$version"
+for project_home in "${KIVAKIT_REPOSITORY_HOMES[@]}"; do
+
+    update_version "$project_home" "$version"
+
+done
 
 echo " "
 echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Updating Project Versions  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"

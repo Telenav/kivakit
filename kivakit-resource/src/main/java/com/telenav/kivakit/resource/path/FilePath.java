@@ -18,19 +18,19 @@
 
 package com.telenav.kivakit.resource.path;
 
+import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.os.OperatingSystem;
+import com.telenav.kivakit.core.path.Path;
+import com.telenav.kivakit.core.path.StringPath;
+import com.telenav.kivakit.core.string.Strings;
+import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
-import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.paths.Path;
-import com.telenav.kivakit.kernel.language.paths.StringPath;
-import com.telenav.kivakit.kernel.language.strings.Strings;
-import com.telenav.kivakit.kernel.language.strings.Strip;
-import com.telenav.kivakit.kernel.language.vm.OperatingSystem;
-import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.kivakit.kernel.messaging.Message;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.ResourcePath;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourcePath;
+import com.telenav.kivakit.resource.lexakai.DiagramResourcePath;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
@@ -176,7 +176,7 @@ public class FilePath extends ResourcePath
             return empty();
         }
 
-        path = Message.format(path, arguments);
+        path = Strings.format(path, arguments);
 
         if (path.contains("${"))
         {
@@ -204,13 +204,7 @@ public class FilePath extends ResourcePath
     {
         public Converter(Listener listener)
         {
-            super(listener);
-        }
-
-        @Override
-        protected FilePath onToValue(String value)
-        {
-            return parseFilePath(this, value);
+            super(listener, FilePath::parseFilePath);
         }
     }
 
@@ -336,6 +330,17 @@ public class FilePath extends ResourcePath
     }
 
     /**
+     * Determines if this path has a trailing slash. A trailing slash is represented by having a final path component
+     * that is empty ("").
+     *
+     * @return True if the last component of this path is the empty string.
+     */
+    public boolean hasTrailingSlash()
+    {
+        return size() > 0 && "".equals(get(size() - 1));
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -360,9 +365,24 @@ public class FilePath extends ResourcePath
     }
 
     /**
+     * @return The last component of this path
+     */
+    public String last()
+    {
+        // If this path has a trailing slash, it has a final empty component,
+        if (hasTrailingSlash())
+        {
+            // so we get the component before the empty one at the end.
+            return get(size() - 2);
+        }
+
+        return super.last();
+    }
+
+    /**
      * @return True if this path matches the given matcher
      */
-    public boolean matches(com.telenav.kivakit.kernel.interfaces.comparison.Matcher<String> matcher)
+    public boolean matches(Matcher<String> matcher)
     {
         return matcher.matches(asString());
     }
@@ -438,6 +458,10 @@ public class FilePath extends ResourcePath
     @Override
     public FilePath withChild(String child)
     {
+        if (hasTrailingSlash())
+        {
+            return withoutTrailingSlash().withChild(child);
+        }
         return (FilePath) super.withChild(child);
     }
 
@@ -499,6 +523,18 @@ public class FilePath extends ResourcePath
     public FilePath withSeparator(String separator)
     {
         return (FilePath) super.withSeparator(separator);
+    }
+
+    /**
+     * @return This path with a trailing slash
+     */
+    public FilePath withTrailingSlash()
+    {
+        if (!hasTrailingSlash())
+        {
+            return withTrailingSlash();
+        }
+        return this;
     }
 
     /**
@@ -589,9 +625,12 @@ public class FilePath extends ResourcePath
         return (FilePath) super.withoutSuffix(suffix);
     }
 
+    /**
+     * @return This path without any trailing slash, which is represented by a final component that is empty ("")
+     */
     public FilePath withoutTrailingSlash()
     {
-        if (last().equals(""))
+        if (hasTrailingSlash())
         {
             return first(size() - 1);
         }

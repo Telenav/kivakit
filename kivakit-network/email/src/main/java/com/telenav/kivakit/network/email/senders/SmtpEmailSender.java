@@ -18,13 +18,13 @@
 
 package com.telenav.kivakit.network.email.senders;
 
-import com.telenav.kivakit.kernel.language.reflection.populator.KivaKitPropertyConverter;
+import com.telenav.kivakit.conversion.core.language.object.KivaKitConverted;
 import com.telenav.kivakit.network.core.Host;
+import com.telenav.kivakit.network.core.authentication.Password;
+import com.telenav.kivakit.network.core.authentication.UserName;
+import com.telenav.kivakit.network.core.authentication.passwords.PlainTextPassword;
 import com.telenav.kivakit.network.email.EmailSender;
-import com.telenav.kivakit.network.email.project.lexakai.diagrams.DiagramEmail;
-import com.telenav.kivakit.security.authentication.Password;
-import com.telenav.kivakit.security.authentication.UserName;
-import com.telenav.kivakit.security.authentication.passwords.PlainTextPassword;
+import com.telenav.kivakit.network.email.lexakai.DiagramEmail;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -58,7 +58,7 @@ public class SmtpEmailSender extends EmailSender
             return host;
         }
 
-        @KivaKitPropertyConverter(Host.Converter.class)
+        @KivaKitConverted(Host.Converter.class)
         public Configuration host(Host host)
         {
             this.host = host;
@@ -70,7 +70,7 @@ public class SmtpEmailSender extends EmailSender
             return password;
         }
 
-        @KivaKitPropertyConverter(PlainTextPassword.Converter.class)
+        @KivaKitConverted(PlainTextPassword.Converter.class)
         public Configuration password(Password password)
         {
             this.password = password;
@@ -82,7 +82,7 @@ public class SmtpEmailSender extends EmailSender
             return username;
         }
 
-        @KivaKitPropertyConverter(UserName.Converter.class)
+        @KivaKitConverted(UserName.Converter.class)
         public Configuration username(UserName username)
         {
             this.username = username;

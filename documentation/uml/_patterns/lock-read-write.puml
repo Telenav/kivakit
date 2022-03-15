@@ -79,7 +79,7 @@ Diagrams:
         }
     }
 
-    package kivakit.kernel.language.threading.locks {
+    package kivakit.corelanguage.threading.locks {
         class "ReadWriteLock" as KivakitLock {
             + read(returnableCode) : ReturnType
             + read(runnableCode)

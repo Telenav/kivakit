@@ -7,7 +7,7 @@
 #
 #///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-source "$KIVAKIT_WORKSPACE"/kivakit/tools/library/library-functions.sh
+source "$KIVAKIT_WORKSPACE"/kivakit/tools/library/kivakit-library-functions.sh
 
 clean_cache "$KIVAKIT_CACHE_HOME"
 clean_temporary_files "$KIVAKIT_WORKSPACE"

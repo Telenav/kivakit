@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.commandline;
 
-import com.telenav.kivakit.kernel.language.values.version.Versioned;
+import com.telenav.kivakit.core.version.Versioned;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 /**
@@ -41,5 +41,8 @@ public interface ApplicationMetadata extends Versioned
     /**
      * @return The application description
      */
-    String description();
+    default String description()
+    {
+        return "No description";
+    }
 }

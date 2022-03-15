@@ -18,20 +18,21 @@
 
 package com.telenav.kivakit.network.email;
 
-import com.telenav.kivakit.kernel.interfaces.io.Closeable;
-import com.telenav.kivakit.kernel.interfaces.io.Flushable;
-import com.telenav.kivakit.kernel.interfaces.lifecycle.Startable;
-import com.telenav.kivakit.kernel.interfaces.lifecycle.Stoppable;
-import com.telenav.kivakit.kernel.language.threading.RepeatingKivaKitThread;
-import com.telenav.kivakit.kernel.language.threading.latches.CompletionLatch;
-import com.telenav.kivakit.kernel.language.time.Duration;
-import com.telenav.kivakit.kernel.language.time.Frequency;
-import com.telenav.kivakit.kernel.language.time.Rate;
-import com.telenav.kivakit.kernel.language.time.RateCalculator;
-import com.telenav.kivakit.kernel.language.types.Classes;
-import com.telenav.kivakit.kernel.language.values.count.Maximum;
-import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.network.email.project.lexakai.diagrams.DiagramEmail;
+import com.telenav.kivakit.core.language.Classes;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.thread.RepeatingThread;
+import com.telenav.kivakit.core.thread.latches.CompletionLatch;
+import com.telenav.kivakit.core.time.Duration;
+import com.telenav.kivakit.core.time.Frequency;
+import com.telenav.kivakit.core.time.Rate;
+import com.telenav.kivakit.core.time.RateCalculator;
+import com.telenav.kivakit.core.value.count.Maximum;
+import com.telenav.kivakit.interfaces.io.Closeable;
+import com.telenav.kivakit.interfaces.io.Flushable;
+import com.telenav.kivakit.interfaces.lifecycle.Startable;
+import com.telenav.kivakit.interfaces.lifecycle.Stoppable;
+import com.telenav.kivakit.interfaces.time.LengthOfTime;
+import com.telenav.kivakit.network.email.lexakai.DiagramEmail;
 import com.telenav.kivakit.network.email.senders.SmtpEmailSender;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -87,24 +88,24 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
 
     private volatile boolean closed;
 
-    private final CompletionLatch queueEmpty = new CompletionLatch();
+    private final Configuration configuration;
+
+    private Maximum maximumRetries = Maximum.maximum(16);
 
     @UmlAggregation
     private final EmailQueue queue = new EmailQueue();
 
-    private Maximum maximumRetries = Maximum.maximum(16);
-
-    private Duration retryPeriod = Duration.seconds(30);
-
-    private boolean sendingOn = true;
-
-    private volatile boolean running;
+    private final CompletionLatch queueEmpty = new CompletionLatch();
 
     private final RateCalculator rate = new RateCalculator(Duration.ONE_MINUTE);
 
-    private final Configuration configuration;
+    private Duration retryPeriod = Duration.seconds(30);
 
-    private final RepeatingKivaKitThread thread = new RepeatingKivaKitThread(this, Classes.simpleName(EmailSender.class), Frequency.CONTINUOUSLY)
+    private volatile boolean running;
+
+    private boolean sendingOn = true;
+
+    private final RepeatingThread thread = new RepeatingThread(this, Classes.simpleName(EmailSender.class), Frequency.CONTINUOUSLY)
     {
         @Override
         protected void onRun()
@@ -178,7 +179,7 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
     }
 
     @Override
-    public void flush(Duration maximumWaitTime)
+    public void flush(LengthOfTime maximumWaitTime)
     {
         trace("Flushing queue within ${debug}", maximumWaitTime);
         queueEmpty.waitForCompletion();
@@ -227,7 +228,7 @@ public abstract class EmailSender extends BaseRepeater implements Startable, Sto
     }
 
     @Override
-    public void stop(Duration maximumWaitTime)
+    public void stop(LengthOfTime maximumWaitTime)
     {
         // Don't accept any more entries
         close();

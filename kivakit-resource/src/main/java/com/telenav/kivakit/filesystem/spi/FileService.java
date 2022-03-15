@@ -19,7 +19,7 @@
 package com.telenav.kivakit.filesystem.spi;
 
 import com.telenav.kivakit.resource.WritableResource;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemService;
+import com.telenav.kivakit.resource.lexakai.DiagramFileSystemService;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -33,7 +33,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @UmlClassDiagram(diagram = DiagramFileSystemService.class)
 @LexakaiJavadoc(complete = true)
-public interface FileService extends FileSystemObjectService, WritableResource
+public interface FileService extends
+        FileSystemObjectService,
+        WritableResource
 {
     default java.io.File asJavaFile()
     {

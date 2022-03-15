@@ -18,11 +18,10 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
-import com.telenav.kivakit.kernel.language.values.count.Maximum;
-import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.kivakit.network.core.project.lexakai.diagrams.DiagramNetworkLocation;
+import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.collections.map.VariableMap;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.network.core.lexakai.DiagramNetworkLocation;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -65,7 +64,7 @@ public class QueryParameters
         if (map == null)
         {
             map = new VariableMap<>();
-            for (var assignment : StringList.split(Maximum._1_000, string, "&"))
+            for (var assignment : StringList.split(string, "&"))
             {
                 var split = StringList.split(assignment, "=");
                 if (split.size() == 2)

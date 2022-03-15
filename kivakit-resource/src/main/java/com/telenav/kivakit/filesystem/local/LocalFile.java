@@ -18,14 +18,14 @@
 
 package com.telenav.kivakit.filesystem.local;
 
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.filesystem.spi.DiskService;
 import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.filesystem.spi.FolderService;
-import com.telenav.kivakit.kernel.language.time.Time;
-import com.telenav.kivakit.kernel.language.values.count.Bytes;
-import com.telenav.kivakit.kernel.messaging.Listener;
 import com.telenav.kivakit.resource.path.FilePath;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemService;
+import com.telenav.kivakit.resource.lexakai.DiagramFileSystemService;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -79,7 +79,7 @@ public class LocalFile extends BaseWritableResource implements FileService
 
     public LocalFile(LocalFolder folder, String name)
     {
-        this(folder.path().withChild(name));
+        this(folder.path().withoutTrailingSlash().withChild(name));
     }
 
     public LocalFile(String path)

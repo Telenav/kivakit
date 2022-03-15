@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.kivakit.network.core.project.lexakai.diagrams.DiagramNetworkLocation;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.network.core.lexakai.DiagramNetworkLocation;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;

@@ -18,19 +18,19 @@
 
 package com.telenav.kivakit.resource.path;
 
+import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.filesystem.File;
-import com.telenav.kivakit.kernel.interfaces.comparison.Matcher;
-import com.telenav.kivakit.kernel.interfaces.naming.Named;
-import com.telenav.kivakit.kernel.language.values.count.Count;
-import com.telenav.kivakit.kernel.logging.Logger;
-import com.telenav.kivakit.kernel.logging.LoggerFactory;
-import com.telenav.kivakit.kernel.messaging.Listener;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
+import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.compression.Codec;
 import com.telenav.kivakit.resource.compression.codecs.GzipCodec;
 import com.telenav.kivakit.resource.compression.codecs.NullCodec;
 import com.telenav.kivakit.resource.compression.codecs.ZipCodec;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourcePath;
+import com.telenav.kivakit.resource.lexakai.DiagramResourcePath;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;
@@ -91,6 +91,7 @@ public class Extension implements Named
 
     public static final Extension CSV = parse(LOGGER, ".csv");
 
+    @SuppressWarnings("SpellCheckingInspection")
     public static final Extension GEOJSON = parse(LOGGER, ".geojson");
 
     public static final Extension GRAPH = parse(LOGGER, ".graph");
@@ -111,6 +112,7 @@ public class Extension implements Named
 
     public static final Extension OSM = parse(LOGGER, ".osm");
 
+    @SuppressWarnings("SpellCheckingInspection")
     public static final Extension OSMPP = parse(LOGGER, ".osmpp");
 
     public static final Extension OSM_PBF = parse(LOGGER, ".osm.pbf");
@@ -143,6 +145,10 @@ public class Extension implements Named
 
     public static final Extension XML = parse(LOGGER, ".xml");
 
+    public static final Extension YAML = parse(LOGGER, ".yaml");
+
+    public static final Extension YML = parse(LOGGER, ".yml");
+
     public static final Extension ZIP = parse(LOGGER, ".zip");
 
     public static List<Extension> archive()
@@ -162,28 +168,31 @@ public class Extension implements Named
         return executable;
     }
 
+    @SuppressWarnings("DuplicatedCode")
     public static List<Extension> known()
     {
         List<Extension> known = new ArrayList<>();
-        known.add(GZIP);
-        known.add(ZIP);
-        known.add(PROPERTIES);
-        known.add(TXT);
         known.add(CSV);
-        known.add(PNG);
+        known.add(GEOJSON);
+        known.add(GRAPH);
+        known.add(GRAPH_GZIP);
+        known.add(GZIP);
         known.add(JAR);
+        known.add(OSM);
+        known.add(OSMPP);
+        known.add(OSM_PBF);
+        known.add(PBF);
+        known.add(PNG);
+        known.add(POLY);
+        known.add(PROPERTIES);
         known.add(SHELL);
         known.add(TXD);
-        known.add(GRAPH);
-        known.add(PBF);
-        known.add(OSM);
-        known.add(OSM_PBF);
-        known.add(POLY);
-        known.add(GEOJSON);
-        known.add(OSMPP);
-        known.add(TXT_GZIP);
         known.add(TXD_GZIP);
-        known.add(GRAPH_GZIP);
+        known.add(TXT);
+        known.add(TXT_GZIP);
+        known.add(XML);
+        known.add(YAML);
+        known.add(ZIP);
         known.sort((a, b) ->
         {
             if (a.length().isLessThan(b.length()))

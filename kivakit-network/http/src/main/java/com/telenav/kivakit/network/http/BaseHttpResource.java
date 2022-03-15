@@ -18,12 +18,12 @@
 
 package com.telenav.kivakit.network.http;
 
-import com.telenav.kivakit.kernel.language.collections.map.string.VariableMap;
-import com.telenav.kivakit.kernel.messaging.messages.status.Problem;
+import com.telenav.kivakit.core.collections.map.VariableMap;
+import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.network.core.BaseNetworkResource;
 import com.telenav.kivakit.network.core.NetworkAccessConstraints;
 import com.telenav.kivakit.network.core.NetworkLocation;
-import com.telenav.kivakit.network.http.project.lexakai.diagrams.DiagramHttp;
+import com.telenav.kivakit.network.http.lexakai.DiagramHttp;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -69,16 +69,16 @@ public abstract class BaseHttpResource extends BaseNetworkResource
     @UmlAggregation
     private final NetworkAccessConstraints constraints;
 
+    private String contentEncoding;
+
     @UmlAggregation
     private final NetworkLocation networkLocation;
 
-    private String contentEncoding;
+    private HttpResponse response;
 
     private final VariableMap<String> responseHeader = new VariableMap<>();
 
     private int statusCode;
-
-    private HttpResponse response;
 
     /**
      * Constructs a resource accessible via HTTP
@@ -95,7 +95,7 @@ public abstract class BaseHttpResource extends BaseNetworkResource
      */
     public String asString()
     {
-        return reader().string();
+        return reader().asString();
     }
 
     /**

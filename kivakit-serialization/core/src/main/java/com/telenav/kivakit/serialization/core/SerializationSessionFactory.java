@@ -18,48 +18,20 @@
 
 package com.telenav.kivakit.serialization.core;
 
-import com.telenav.kivakit.kernel.interfaces.factory.Factory;
-import com.telenav.kivakit.kernel.messaging.Listener;
-
-import static com.telenav.kivakit.kernel.data.validation.ensure.Ensure.ensureNotNull;
+import com.telenav.kivakit.core.messaging.Listener;
 
 /**
- * Creates new thread-local instances of {@link SerializationSession} using the {@link Factory} passed to the
- * constructor.
+ * Creates new {@link SerializationSession}. The session will be thread-safe.
  *
  * @author jonathanl (shibo)
  */
-public class SerializationSessionFactory
+public interface SerializationSessionFactory
 {
-    private static ThreadLocal<SerializationSessionFactory> local;
-
-    public static void threadLocal(SerializationSessionFactory factory)
-    {
-        local = ThreadLocal.withInitial(() -> factory);
-    }
-
-    public static SerializationSessionFactory threadLocal()
-    {
-        ensureNotNull(local);
-        return local.get();
-    }
-
-    /** Factory that produces serialization objects */
-    private final Factory<SerializationSession> factory;
-
     /**
-     * @param factory The factory for creating {@link SerializationSession} objects
+     * Creates a new {@link SerializationSession}
+     *
+     * @param listener The listener to report problems to
+     * @return The session
      */
-    public SerializationSessionFactory(Factory<SerializationSession> factory)
-    {
-        this.factory = factory;
-    }
-
-    /**
-     * @return A thread-local {@link SerializationSession} object with only the given listener
-     */
-    public SerializationSession session(Listener listener)
-    {
-        return listener.listenTo(factory.newInstance());
-    }
+    SerializationSession newSession(Listener listener);
 }

@@ -19,15 +19,13 @@
 package com.telenav.kivakit.commandline;
 
 import com.telenav.kivakit.commandline.parsing.SwitchList;
-import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramCommandLine;
-import com.telenav.kivakit.kernel.language.collections.list.StringList;
-import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.kernel.language.strings.AsciiArt;
-import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
-import com.telenav.kivakit.kernel.language.strings.conversion.StringFormat;
-import com.telenav.kivakit.kernel.language.strings.formatting.ObjectFormatter;
-import com.telenav.kivakit.kernel.messaging.Message;
-import com.telenav.kivakit.kernel.project.KernelLimits;
+import com.telenav.kivakit.commandline.lexakai.DiagramCommandLine;
+import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.language.object.ObjectFormatter;
+import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.string.AsciiArt;
+import com.telenav.kivakit.core.string.Strings;
+import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.UmlNote;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -40,7 +38,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import static com.telenav.kivakit.kernel.language.strings.conversion.StringFormat.DEBUGGER_IDENTIFIER;
 import static com.telenav.lexakai.annotations.UmlNote.Align.TOP;
 
 /**
@@ -65,9 +62,9 @@ import static com.telenav.lexakai.annotations.UmlNote.Align.TOP;
  * @see CommandLineParser
  */
 @UmlClassDiagram(diagram = DiagramCommandLine.class)
-@UmlExcludeSuperTypes({ AsString.class })
+@UmlExcludeSuperTypes({ Stringable.class })
 @UmlNote(text = "See Application for easy access to switches and arguments", align = TOP)
-public class CommandLine implements AsString, Iterable<Argument>
+public class CommandLine implements Stringable, Iterable<Argument>
 {
     /**
      * The pattern for switches, such as "-x=9" ( note that the equal sign is always required)
@@ -81,15 +78,15 @@ public class CommandLine implements AsString, Iterable<Argument>
     @UmlAggregation
     private final ArgumentList arguments;
 
+    @UmlRelation(label = "parses with")
+    private final CommandLineParser parser;
+
     /**
      * The switch arguments
      */
     @KivaKitIncludeProperty
     @UmlAggregation
     private final SwitchList switches;
-
-    @UmlRelation(label = "parses with")
-    private final CommandLineParser parser;
 
     /**
      * @param parser The command line parser
@@ -195,7 +192,7 @@ public class CommandLine implements AsString, Iterable<Argument>
     @UmlExcludeMember
     public String[] asArgumentArray()
     {
-        var strings = new StringList(KernelLimits.COMMAND_LINE_ARGUMENTS.plus(KernelLimits.COMMAND_LINE_SWITCHES));
+        var strings = new StringList();
         for (var _switch : switches)
         {
             strings.add(_switch.toString());
@@ -207,13 +204,14 @@ public class CommandLine implements AsString, Iterable<Argument>
         return strings.asStringArray();
     }
 
+    @SuppressWarnings("SwitchStatementWithTooFewBranches")
     @Override
     @UmlExcludeMember
-    public String asString(StringFormat format)
+    public String asString(Format format)
     {
-        switch (format.identifier())
+        switch (format)
         {
-            case DEBUGGER_IDENTIFIER:
+            case DEBUGGER:
                 return new ObjectFormatter(this).toString();
 
             default:
@@ -226,7 +224,7 @@ public class CommandLine implements AsString, Iterable<Argument>
      */
     public void exit(String error, Object... arguments)
     {
-        parser.exit(Message.format(AsciiArt.spaces(4) + AsciiArt.bullet() + " " + error, arguments));
+        parser.exit(Strings.format(AsciiArt.spaces(4) + AsciiArt.bullet() + " " + error, arguments));
     }
 
     /**

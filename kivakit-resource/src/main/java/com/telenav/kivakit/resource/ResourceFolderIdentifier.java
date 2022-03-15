@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.resource;
 
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResourceService;
+import com.telenav.kivakit.resource.lexakai.DiagramResourceService;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

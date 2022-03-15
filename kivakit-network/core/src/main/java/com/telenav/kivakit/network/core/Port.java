@@ -18,15 +18,13 @@
 
 package com.telenav.kivakit.network.core;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
-import com.telenav.kivakit.kernel.data.conversion.string.collection.BaseListConverter;
-import com.telenav.kivakit.kernel.data.conversion.string.primitive.IntegerConverter;
-import com.telenav.kivakit.kernel.language.objects.Hash;
-import com.telenav.kivakit.kernel.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.kivakit.network.core.project.lexakai.diagrams.DiagramPort;
+import com.telenav.kivakit.commandline.SwitchParser;
+import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.conversion.core.language.primitive.IntegerConverter;
+import com.telenav.kivakit.core.language.Hash;
+import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.network.core.lexakai.DiagramPort;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
@@ -39,6 +37,7 @@ import java.net.Socket;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import static com.telenav.kivakit.commandline.SwitchParser.builder;
 import static com.telenav.kivakit.network.core.Protocol.HTTP;
 import static com.telenav.kivakit.network.core.Protocol.HTTPS;
 
@@ -68,9 +67,17 @@ public class Port
      *
      * @return A port for the given string or null if the string is not a port
      */
-    public static Port parse(Listener listener, String port)
+    public static Port parsePort(Listener listener, String port)
     {
         return new Converter(listener).convert(port);
+    }
+
+    public static SwitchParser.Builder<Port> portSwitchParser(Listener listener, String name, String description)
+    {
+        return builder(Port.class)
+                .name(name)
+                .converter(new Port.Converter(listener))
+                .description(description);
     }
 
     /**
@@ -112,33 +119,11 @@ public class Port
         }
     }
 
-    /**
-     * Converts to and from a list of ports
-     *
-     * @author jonathanl (shibo)
-     */
-    @LexakaiJavadoc(complete = true)
-    public static class ListConverter extends BaseListConverter<Port>
-    {
-        public ListConverter(Listener listener)
-        {
-            super(listener, new Converter(listener), ",");
-        }
-
-        public ListConverter(Listener listener, String delimiter)
-        {
-            super(listener, new Converter(listener), delimiter);
-        }
-    }
-
-    @JsonProperty
     @UmlAggregation
     private Host host;
 
-    @JsonProperty
     private int port;
 
-    @JsonProperty
     @UmlAggregation(label = "speaks")
     private Protocol protocol;
 
@@ -224,7 +209,6 @@ public class Port
     /**
      * @return True if this port's port number is not claimed on the local host
      */
-    @JsonIgnore
     public boolean isAvailable()
     {
         try
@@ -242,7 +226,6 @@ public class Port
     /**
      * @return True if this port speaks HTTP
      */
-    @JsonIgnore
     public boolean isHttp()
     {
         return protocol().equals(HTTP) || protocol().equals(HTTPS);

@@ -1,5 +1,5 @@
 
-source "$KIVAKIT_WORKSPACE"/kivakit/tools/library/library-functions.sh
+source "$KIVAKIT_WORKSPACE"/kivakit/tools/library/kivakit-library-functions.sh
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 export MAVEN_OPTS="--add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED"
@@ -20,6 +20,7 @@ append_path "$KIVAKIT_TOOLS/releasing"
 
 system_variable KIVAKIT_ASSETS_HOME "$KIVAKIT_WORKSPACE/kivakit-assets"
 system_variable KIVAKIT_EXTENSIONS_HOME "$KIVAKIT_WORKSPACE/kivakit-extensions"
+system_variable KIVAKIT_STUFF_HOME "$KIVAKIT_WORKSPACE/kivakit-stuff"
 system_variable KIVAKIT_EXAMPLES_HOME "$KIVAKIT_WORKSPACE/kivakit-examples"
 system_variable KIVAKIT_CACHE_HOME "$HOME/.kivakit/$KIVAKIT_VERSION"
 system_variable KIVAKIT_AGENT_JAR "$KIVAKIT_TOOLS/agent/kivakit-agent.jar"
@@ -39,6 +40,7 @@ echo "┋"
 echo "┋       KIVAKIT_CACHE_HOME: $KIVAKIT_CACHE_HOME"
 echo "┋      KIVAKIT_ASSETS_HOME: $KIVAKIT_ASSETS_HOME"
 echo "┋  KIVAKIT_EXTENSIONS_HOME: $KIVAKIT_EXTENSIONS_HOME"
+echo "┋       KIVAKIT_STUFF_HOME: $KIVAKIT_STUFF_HOME"
 echo "┋    KIVAKIT_EXAMPLES_HOME: $KIVAKIT_EXAMPLES_HOME"
 echo "┋"
 echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"

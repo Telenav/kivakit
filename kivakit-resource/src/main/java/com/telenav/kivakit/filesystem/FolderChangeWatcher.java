@@ -20,9 +20,9 @@ package com.telenav.kivakit.filesystem;
 
 import com.telenav.kivakit.collections.watcher.CollectionChangeListener;
 import com.telenav.kivakit.collections.watcher.PeriodicCollectionChangeWatcher;
-import com.telenav.kivakit.kernel.language.time.Frequency;
-import com.telenav.kivakit.kernel.language.time.Time;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemFolder;
+import com.telenav.kivakit.core.time.Frequency;
+import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFolder;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;

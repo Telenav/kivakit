@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.collections.watcher;
 
-import com.telenav.kivakit.collections.project.lexakai.diagrams.DiagramWatcher;
+import com.telenav.kivakit.collections.lexakai.DiagramWatcher;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

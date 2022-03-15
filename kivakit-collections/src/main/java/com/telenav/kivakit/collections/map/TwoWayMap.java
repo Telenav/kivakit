@@ -18,9 +18,10 @@
 
 package com.telenav.kivakit.collections.map;
 
-import com.telenav.kivakit.collections.project.lexakai.diagrams.DiagramMap;
-import com.telenav.kivakit.kernel.language.collections.map.BaseMap;
-import com.telenav.kivakit.kernel.language.values.count.Maximum;
+import com.telenav.kivakit.collections.lexakai.DiagramMap;
+import com.telenav.kivakit.core.collections.map.BaseMap;
+import com.telenav.kivakit.core.collections.map.LinkedMap;
+import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 

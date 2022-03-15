@@ -20,29 +20,32 @@ package com.telenav.kivakit.resource;
 
 import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.SwitchParser;
+import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.Repeater;
+import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.core.time.ChangedAt;
+import com.telenav.kivakit.core.time.Modifiable;
+import com.telenav.kivakit.core.value.count.ByteSized;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.kernel.data.conversion.string.BaseStringConverter;
-import com.telenav.kivakit.kernel.interfaces.io.ByteSized;
-import com.telenav.kivakit.kernel.interfaces.string.StringSource;
-import com.telenav.kivakit.kernel.interfaces.time.ChangedAt;
-import com.telenav.kivakit.kernel.interfaces.time.Modifiable;
-import com.telenav.kivakit.kernel.language.progress.ProgressReporter;
-import com.telenav.kivakit.kernel.messaging.Listener;
-import com.telenav.kivakit.kernel.messaging.Repeater;
+import com.telenav.kivakit.interfaces.string.StringSource;
 import com.telenav.kivakit.resource.compression.Codec;
 import com.telenav.kivakit.resource.compression.archive.ZipEntry;
 import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.kivakit.resource.path.ResourcePathed;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramFileSystemFile;
-import com.telenav.kivakit.resource.project.lexakai.diagrams.DiagramResource;
-import com.telenav.kivakit.resource.resources.other.NullResource;
-import com.telenav.kivakit.resource.resources.packaged.PackageResource;
-import com.telenav.kivakit.resource.resources.string.StringResource;
+import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFile;
+import com.telenav.kivakit.resource.lexakai.DiagramResource;
+import com.telenav.kivakit.resource.resources.NullResource;
+import com.telenav.kivakit.resource.resources.PackageResource;
+import com.telenav.kivakit.resource.resources.StringResource;
+import com.telenav.kivakit.resource.spi.ResourceResolver;
 import com.telenav.kivakit.resource.spi.ResourceResolverServiceLoader;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+
+import java.util.ServiceLoader;
 
 /**
  * A resource that can be read via {@link ReadableResource}. In addition, resources are {@link ChangedAt}, {@link
@@ -107,7 +110,8 @@ public interface Resource extends
         Resourceful,
         UriIdentified
 {
-    static ArgumentParser.Builder<ResourceList> argumentListParser(Listener listener, String description,
+    static ArgumentParser.Builder<ResourceList> argumentListParser(Listener listener,
+                                                                   String description,
                                                                    Extension extension)
     {
         return ArgumentParser.builder(ResourceList.class)
@@ -122,14 +126,29 @@ public interface Resource extends
                 .description(description);
     }
 
+    /**
+     * Returns a {@link ResourceIdentifier} for the given string
+     *
+     * @param identifier The identifier
+     * @return The {@link ResourceIdentifier}
+     */
     static ResourceIdentifier identifier(String identifier)
     {
         return new ResourceIdentifier(identifier);
     }
 
+    /**
+     * Resolves the given {@link ResourceIdentifier} to a {@link Resource}. This is done by using {@link
+     * ResourceResolverServiceLoader} to find an implementation of {@link ResourceResolver} using Java's {@link
+     * ServiceLoader} to find the implementation.
+     *
+     * @param listener The listener to call with any resolution problems
+     * @param identifier The resource identifier
+     * @return The resource
+     */
     static Resource resolve(Listener listener, ResourceIdentifier identifier)
     {
-        return listener.listenTo(ResourceResolverServiceLoader.resolve(listener, identifier));
+        return listener.listenTo(listener.listenTo(ResourceResolverServiceLoader.get()).resolve(identifier));
     }
 
     static Resource resolve(Listener listener, ResourcePath path)
@@ -183,6 +202,12 @@ public interface Resource extends
         {
             return new ResourceIdentifier(value).resolve(this);
         }
+    }
+
+    @Override
+    default String asString()
+    {
+        return reader().asString();
     }
 
     /**
@@ -284,7 +309,7 @@ public interface Resource extends
      */
     default void safeCopyTo(Folder destination, CopyMode mode)
     {
-        safeCopyTo(destination.file(fileName()), mode, ProgressReporter.NULL);
+        safeCopyTo(destination.file(fileName()), mode, ProgressReporter.none());
     }
 
     /**
@@ -308,7 +333,7 @@ public interface Resource extends
      */
     default void safeCopyTo(File destination, CopyMode mode)
     {
-        safeCopyTo(destination, mode, ProgressReporter.NULL);
+        safeCopyTo(destination, mode, ProgressReporter.none());
     }
 
     /**
@@ -338,11 +363,5 @@ public interface Resource extends
             // and rename the temporary file to the destination file.
             temporary.renameTo(destination);
         }
-    }
-
-    @Override
-    default String string()
-    {
-        return reader().string();
     }
 }

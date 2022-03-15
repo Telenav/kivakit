@@ -1,35 +1,35 @@
 package com.telenav.kivakit.component;
 
-import com.telenav.kivakit.configuration.lookup.Registry;
-import com.telenav.kivakit.configuration.lookup.RegistryTrait;
-import com.telenav.kivakit.configuration.settings.Settings;
-import com.telenav.kivakit.configuration.settings.SettingsTrait;
-import com.telenav.kivakit.kernel.messaging.Message;
-import com.telenav.kivakit.kernel.messaging.repeaters.BaseRepeater;
-
-import java.util.function.Consumer;
+import com.telenav.kivakit.component.lexakai.DiagramComponent;
+import com.telenav.kivakit.core.messaging.Repeater;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.interfaces.naming.NamedObject;
+import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * Base class for KivaKit components. Provides easy access to object registration and lookup (see {@link Registry}) as
- * well as settings registration and lookup (see {@link Settings}). For details, see {@link Component}.
+ * Base class for KivaKit components. For details, see {@link Component}.
  *
  * @author jonathanl (shibo)
  * @see Component
- * @see Registry
- * @see Settings
+ * @see Repeater
  */
+@UmlClassDiagram(diagram = DiagramComponent.class)
 public class BaseComponent extends BaseRepeater implements
         Component,
-        RegistryTrait,
-        SettingsTrait
+        NamedObject
 {
-    /**
-     * Call the consumer with any messages this component hears
-     *
-     * @param handler The handler to call
-     */
-    public void onMessage(Consumer<Message> handler)
+    /** The name of this object for debugging purposes */
+    private String objectName = NamedObject.syntheticName(this);
+
+    @Override
+    public void objectName(String objectName)
     {
-        addListener(handler::accept);
+        this.objectName = objectName;
+    }
+
+    @Override
+    public String objectName()
+    {
+        return objectName;
     }
 }

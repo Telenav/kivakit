@@ -20,13 +20,13 @@ package com.telenav.kivakit.commandline.parsing;
 
 import com.telenav.kivakit.commandline.Switch;
 import com.telenav.kivakit.commandline.SwitchParser;
-import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramCommandLine;
-import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramSwitch;
-import com.telenav.kivakit.commandline.project.lexakai.diagrams.DiagramValidation;
-import com.telenav.kivakit.kernel.language.collections.list.ObjectList;
-import com.telenav.kivakit.kernel.language.reflection.property.Property;
-import com.telenav.kivakit.kernel.language.reflection.property.PropertyValueSource;
-import com.telenav.kivakit.kernel.language.strings.conversion.AsString;
+import com.telenav.kivakit.commandline.lexakai.DiagramCommandLine;
+import com.telenav.kivakit.commandline.lexakai.DiagramSwitch;
+import com.telenav.kivakit.commandline.lexakai.DiagramValidation;
+import com.telenav.kivakit.core.collections.list.ObjectList;
+import com.telenav.kivakit.core.language.reflection.property.Property;
+import com.telenav.kivakit.core.language.reflection.property.PropertyValues;
+import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
@@ -47,7 +47,10 @@ import java.util.Iterator;
 @UmlClassDiagram(diagram = DiagramCommandLine.class)
 @UmlExcludeSuperTypes
 @UmlNotPublicApi
-public class SwitchList implements Iterable<Switch>, PropertyValueSource, AsString
+public class SwitchList implements
+        Iterable<Switch>,
+        Stringable,
+        PropertyValues
 {
     /** The switches */
     @UmlAggregation
@@ -65,7 +68,7 @@ public class SwitchList implements Iterable<Switch>, PropertyValueSource, AsStri
      * {@inheritDoc}
      */
     @Override
-    public String asString()
+    public String asString(Format format)
     {
         return switches.join();
     }
