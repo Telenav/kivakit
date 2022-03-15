@@ -46,9 +46,8 @@ Start a new release branch with the following command:
 
 This script does the following:
 
-1. Creates the release branch *release/[kivakit-version\]* using git flow
-2. Updates *$KIVAKIT_HOME/project.properties* file
-3. Updates the version of all pom.xml files to *[kivakit-version]*
+1. Creates the branch *release/[kivakit-version\]* from the *develop* branch using git flow
+2. Updates the versions of all pom.xml and project.properties files
 
 Search for and replace any stray version numbers from the previous revision.
  
@@ -60,7 +59,8 @@ Once the release branch has been created, several steps need to be performed man
 
 #### 2.1 Preparing the Release Branch
 
-Double check for stray references to the previous version in pom.xml files
+1. Double check for stray references to the previous version in pom.xml files
+2. Run *kivakit-release.sh [kivakit-version]* again, and it will build the release
 
 #### 2.2 Updating Code Flowers
 

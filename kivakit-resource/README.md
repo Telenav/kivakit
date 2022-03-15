@@ -251,14 +251,11 @@ A wide variety of other resources are available and new ones are easy to write. 
 [*com.telenav.kivakit.resource.compression*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.compression.svg)  
 [*com.telenav.kivakit.resource.compression.archive*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.compression.archive.svg)  
 [*com.telenav.kivakit.resource.compression.codecs*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.compression.codecs.svg)  
+[*com.telenav.kivakit.resource.lexakai*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.lexakai.svg)  
 [*com.telenav.kivakit.resource.path*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.path.svg)  
-[*com.telenav.kivakit.resource.project*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.project.svg)  
 [*com.telenav.kivakit.resource.reading*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.reading.svg)  
-[*com.telenav.kivakit.resource.resources.jar.launcher*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.resources.jar.launcher.svg)  
-[*com.telenav.kivakit.resource.resources.other*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.resources.other.svg)  
-[*com.telenav.kivakit.resource.resources.packaged*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.resources.packaged.svg)  
-[*com.telenav.kivakit.resource.resources.streamed*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.resources.streamed.svg)  
-[*com.telenav.kivakit.resource.resources.string*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.resources.string.svg)  
+[*com.telenav.kivakit.resource.resources*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.resources.svg)  
+[*com.telenav.kivakit.resource.serialization*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.serialization.svg)  
 [*com.telenav.kivakit.resource.spi*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.spi.svg)  
 [*com.telenav.kivakit.resource.writing*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-resource/documentation/diagrams/com.telenav.kivakit.resource.writing.svg)
 
@@ -266,12 +263,14 @@ A wide variety of other resources are available and new ones are easy to write. 
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 86.4%.  
+Javadoc coverage for this project is 85.9%.  
   
 &nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
 
 
+The following significant classes are undocumented:  
 
+- ObjectReader
 
 | Class | Documentation Sections |
 |---|---|
@@ -282,6 +281,17 @@ Javadoc coverage for this project is 86.4%.
 | [*Compressor*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/compression/Compressor.html) |  |  
 | [*CopyMode*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/CopyMode.html) |  |  
 | [*Decompressor*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/compression/Decompressor.html) |  |  
+| [*DiagramFileSystem*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/lexakai/DiagramFileSystem.html) |  |  
+| [*DiagramFileSystemFile*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/lexakai/DiagramFileSystemFile.html) |  |  
+| [*DiagramFileSystemFolder*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/lexakai/DiagramFileSystemFolder.html) |  |  
+| [*DiagramFileSystemService*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/lexakai/DiagramFileSystemService.html) |  |  
+| [*DiagramJarLauncher*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/lexakai/DiagramJarLauncher.html) |  |  
+| [*DiagramResource*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/lexakai/DiagramResource.html) |  |  
+| [*DiagramResourceArchive*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/lexakai/DiagramResourceArchive.html) |  |  
+| [*DiagramResourceCompression*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/lexakai/DiagramResourceCompression.html) |  |  
+| [*DiagramResourcePath*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/lexakai/DiagramResourcePath.html) |  |  
+| [*DiagramResourceService*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/lexakai/DiagramResourceService.html) |  |  
+| [*DiagramResourceType*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/lexakai/DiagramResourceType.html) |  |  
 | [*Disk*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/filesystem/Disk.html) |  |  
 | [*DiskService*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/filesystem/spi/DiskService.html) |  |  
 | [*Extension*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/path/Extension.html) | Matching |  
@@ -331,11 +341,11 @@ Javadoc coverage for this project is 86.4%.
 | [*FolderPruner*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/filesystem/FolderPruner.html) | Expiration Criteria |  
 | [*FolderService*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/filesystem/spi/FolderService.html) |  |  
 | [*GzipCodec*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/compression/codecs/GzipCodec.html) |  |  
-| [*InputResource*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/streamed/InputResource.html) |  |  
-| [*JarLauncher*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/jar/launcher/JarLauncher.html) | Options |  
+| [*InputResource*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/InputResource.html) |  |  
+| [*JarLauncher*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/JarLauncher.html) | Options |  
 | | Example |  
-| [*JarLauncher.ProcessType*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/jar/launcher/JarLauncher.ProcessType.html) |  |  
-| [*JarLauncher.RedirectTo*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/jar/launcher/JarLauncher.RedirectTo.html) |  |  
+| [*JarLauncher.ProcessType*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/JarLauncher.ProcessType.html) |  |  
+| [*JarLauncher.RedirectTo*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/JarLauncher.RedirectTo.html) |  |  
 | [*KivaKitArchivedField*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/compression/archive/KivaKitArchivedField.html) |  |  
 | [*LineReader*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/reading/LineReader.html) |  |  
 | [*LineSource*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/reading/LineSource.html) |  |  
@@ -344,19 +354,25 @@ Javadoc coverage for this project is 86.4%.
 | [*LocalFileSystemService*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/filesystem/local/LocalFileSystemService.html) |  |  
 | [*LocalFolder*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/filesystem/local/LocalFolder.html) |  |  
 | [*NullCodec*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/compression/codecs/NullCodec.html) |  |  
-| [*NullResource*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/other/NullResource.html) |  |  
-| [*OutputResource*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/streamed/OutputResource.html) |  |  
-| [*Package*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/packaged/Package.html) | Hierarchy |  
+| [*NullResource*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/NullResource.html) |  |  
+| [*ObjectMetadata*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/serialization/ObjectMetadata.html) |  |  
+| [*ObjectReader*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/serialization/ObjectReader.html) |  |  
+| [*ObjectSerializer*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/serialization/ObjectSerializer.html) |  |  
+| [*ObjectSerializers*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/serialization/ObjectSerializers.html) |  |  
+| [*ObjectWriter*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/serialization/ObjectWriter.html) |  |  
+| [*OutputResource*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/OutputResource.html) |  |  
+| [*Package*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/Package.html) | Hierarchy |  
 | | Resources |  
-| [*Package.Resolver*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/packaged/Package.Resolver.html) |  |  
-| [*PackageResource*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/packaged/PackageResource.html) |  |  
-| [*PackageResource.Resolver*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/packaged/PackageResource.Resolver.html) |  |  
+| [*Package.Resolver*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/Package.Resolver.html) |  |  
+| [*PackageResource*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/PackageResource.html) |  |  
+| [*PackageResource.Resolver*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/PackageResource.Resolver.html) |  |  
 | [*PackageTrait*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/PackageTrait.html) |  |  
-| [*Packaged*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/packaged/Packaged.html) |  |  
-| [*PropertyMap*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/other/PropertyMap.html) | Conversions |  
+| [*Packaged*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/Packaged.html) |  |  
+| [*PropertyMap*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/PropertyMap.html) | Conversions |  
 | | Creating and Loading Property Maps |  
 | | Adding to Property Maps |  
 | | Saving Property Maps |  
+| [*Readable*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/Readable.html) |  |  
 | [*ReadableResource*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/ReadableResource.html) |  |  
 | [*Resource*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/Resource.html) | Checks |  
 | | Properties |  
@@ -368,24 +384,25 @@ Javadoc coverage for this project is 86.4%.
 | [*ResourceFolderIdentifier*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/ResourceFolderIdentifier.html) |  |  
 | [*ResourceFolderResolver*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/spi/ResourceFolderResolver.html) |  |  
 | [*ResourceFolderResolverServiceLoader*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/spi/ResourceFolderResolverServiceLoader.html) |  |  
-| [*ResourceIdentifier*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/ResourceIdentifier.html) |  |  
-| [*ResourceKryoTypes*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/project/ResourceKryoTypes.html) |  |  
+| [*ResourceIdentifier*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/ResourceIdentifier.html) | Resource Resolvers |  
 | [*ResourceList*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/ResourceList.html) |  |  
 | [*ResourceList.Converter*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/ResourceList.Converter.html) |  |  
 | [*ResourcePath*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/ResourcePath.html) | Parsing |  
 | | Factories |  
 | [*ResourcePath.Converter*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/ResourcePath.Converter.html) |  |  
 | [*ResourcePathed*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/path/ResourcePathed.html) |  |  
-| [*ResourceProject*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/ResourceProject.html) |  |  
 | [*ResourceReader*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/reading/ResourceReader.html) |  |  
 | [*ResourceResolver*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/spi/ResourceResolver.html) |  |  
 | [*ResourceResolverServiceLoader*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/spi/ResourceResolverServiceLoader.html) |  |  
-| [*ResourceSection*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/other/ResourceSection.html) |  |  
+| [*ResourceSection*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/ResourceSection.html) |  |  
 | [*ResourceWriter*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/writing/ResourceWriter.html) | Writers |  
 | | Saving |  
 | [*Resourceful*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/Resourceful.html) |  |  
-| [*StringResource*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/string/StringResource.html) |  |  
+| [*SerializableObject*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/serialization/SerializableObject.html) |  |  
+| [*StringOutputResource*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/StringOutputResource.html) |  |  
+| [*StringResource*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/resources/StringResource.html) |  |  
 | [*UriIdentified*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/UriIdentified.html) |  |  
+| [*Writable*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/Writable.html) |  |  
 | [*WritableResource*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/WritableResource.html) |  |  
 | [*ZipArchive*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.resource/com/telenav/kivakit/resource/compression/archive/ZipArchive.html) | Adding Files |  
 | | Loading |  

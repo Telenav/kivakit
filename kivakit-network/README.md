@@ -38,15 +38,15 @@ This project contains core networking projects including resources for common pr
 
 ### Javadoc Coverage <a name = "javadoc-coverage"></a> &nbsp; <img src="https://www.kivakit.org/images/bargraph-32.png" srcset="https://www.kivakit.org/images/bargraph-32-2x.png 2x"/>
 
-&nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-network-core**](core/README.md)  
-&nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-network-email**](email/README.md)  
-&nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-network-ftp**](ftp/README.md)  
-&nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
- &nbsp; &nbsp; [**kivakit-network-http**](http/README.md)  
 &nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
+ &nbsp; &nbsp; [**kivakit-network-core**](core/README.md)  
+&nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
+ &nbsp; &nbsp; [**kivakit-network-email**](email/README.md)  
+&nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
+ &nbsp; &nbsp; [**kivakit-network-ftp**](ftp/README.md)  
+&nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
+ &nbsp; &nbsp; [**kivakit-network-http**](http/README.md)  
+&nbsp; <img src="https://www.kivakit.org/images/meter-30-96.png" srcset="https://www.kivakit.org/images/meter-30-96-2x.png 2x"/>
  &nbsp; &nbsp; [**kivakit-network-socket**](socket/README.md)
 
 [//]: # (start-user-text)

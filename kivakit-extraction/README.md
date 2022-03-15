@@ -1,28 +1,18 @@
 [//]: # (start-user-text)
 
-<a href="https://www.kivakit.org">
-<img src="https://www.kivakit.org/images/web-32.png" srcset="https://www.kivakit.org/images/web-32-2x.png 2x"/>
-</a>
-&nbsp;
-<a href="https://twitter.com/openkivakit">
-<img src="https://www.kivakit.org/images/twitter-32.png" srcset="https://www.kivakit.org/images/twitter-32-2x.png 2x"/>
-</a>
-&nbsp;
-<a href="https://kivakit.zulipchat.com">
-<img src="https://www.kivakit.org/images/zulip-32.png" srcset="https://www.kivakit.org/images/zulip-32-2x.png 2x"/>
-</a>
+
 
 [//]: # (end-user-text)
 
-# kivakit-serialization core &nbsp;&nbsp; <img src="https://www.kivakit.org/images/nucleus-32.png" srcset="https://www.kivakit.org/images/nucleus-32-2x.png 2x"/>
+# kivakit-extraction &nbsp;&nbsp; <img src="https://www.kivakit.org/images/puzzle-32.png" srcset="https://www.kivakit.org/images/puzzle-32-2x.png 2x"/>
 
-This module defines core serialization abstractions.
+This module contains the KivaKit extraction mini-framework
 
 <img src="https://www.kivakit.org/images/horizontal-line-512.png" srcset="https://www.kivakit.org/images/horizontal-line-512-2x.png 2x"/>
 
 ### Index
 
-[**Summary**](#summary)  
+
 
 [**Dependencies**](#dependencies) | [**Class Diagrams**](#class-diagrams) | [**Package Diagrams**](#package-diagrams) | [**Javadoc**](#javadoc)
 
@@ -30,13 +20,13 @@ This module defines core serialization abstractions.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/dependencies-32.png" srcset="https://www.kivakit.org/images/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-serialization/core/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-extraction/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
-        <artifactId>kivakit-serialization-core</artifactId>
+        <artifactId>kivakit-extraction</artifactId>
         <version>1.4.0</version>
     </dependency>
 
@@ -44,9 +34,7 @@ This module defines core serialization abstractions.
 
 [//]: # (start-user-text)
 
-### Summary <a name = "summary"></a>
 
-This package provides serialization abstraction useful to Kryo and other serializers.
 
 [//]: # (end-user-text)
 
@@ -54,19 +42,20 @@ This package provides serialization abstraction useful to Kryo and other seriali
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-40.png" srcset="https://www.kivakit.org/images/diagram-40-2x.png 2x"/>
 
-None
+[*Extraction*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-extraction/documentation/diagrams/diagram-extraction.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
-[*com.telenav.kivakit.serialization.core*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-serialization/core/documentation/diagrams/com.telenav.kivakit.serialization.core.svg)
+[*com.telenav.kivakit.extraction*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-extraction/documentation/diagrams/com.telenav.kivakit.extraction.svg)  
+[*com.telenav.kivakit.extraction.lexakai*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-extraction/documentation/diagrams/com.telenav.kivakit.extraction.lexakai.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 75.0%.  
+Javadoc coverage for this project is 83.3%.  
   
 &nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
 
@@ -75,12 +64,9 @@ Javadoc coverage for this project is 75.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*SerializationSession*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.serialization.core/com/telenav/kivakit/serialization/core/SerializationSession.html) | Creating a Session |  
-| | Reading and Writing |  
-| | Opening a Session |  
-| | Example |  
-| [*SerializationSession.SessionType*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.serialization.core/com/telenav/kivakit/serialization/core/SerializationSession.SessionType.html) |  |  
-| [*SerializationSessionFactory*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.serialization.core/com/telenav/kivakit/serialization/core/SerializationSessionFactory.html) |  |  
+| [*BaseExtractor*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.extraction/com/telenav/kivakit/extraction/BaseExtractor.html) |  |  
+| [*DiagramExtraction*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.extraction/com/telenav/kivakit/extraction/lexakai/DiagramExtraction.html) |  |  
+| [*Extractor*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.extraction/com/telenav/kivakit/extraction/Extractor.html) | Object Extraction |  
 
 [//]: # (start-user-text)
 

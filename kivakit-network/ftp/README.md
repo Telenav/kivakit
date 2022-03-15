@@ -62,24 +62,26 @@ This module integrates FTP and secure FTP services with the KivaKi resource mini
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
 [*com.telenav.kivakit.network.ftp*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-network/ftp/documentation/diagrams/com.telenav.kivakit.network.ftp.svg)  
+[*com.telenav.kivakit.network.ftp.lexakai*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-network/ftp/documentation/diagrams/com.telenav.kivakit.network.ftp.lexakai.svg)  
 [*com.telenav.kivakit.network.ftp.secure*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-network/ftp/documentation/diagrams/com.telenav.kivakit.network.ftp.secure.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 89.1%.  
+Javadoc coverage for this project is 77.6%.  
   
-&nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
 
 
 
 
 | Class | Documentation Sections |
 |---|---|
+| [*DiagramFtp*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.ftp/com/telenav/kivakit/network/ftp/lexakai/DiagramFtp.html) |  |  
+| [*DiagramSecureFtp*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.ftp/com/telenav/kivakit/network/ftp/lexakai/DiagramSecureFtp.html) |  |  
 | [*FtpNetworkLocation*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.ftp/com/telenav/kivakit/network/ftp/FtpNetworkLocation.html) |  |  
 | [*FtpNetworkLocation.Mode*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.ftp/com/telenav/kivakit/network/ftp/FtpNetworkLocation.Mode.html) |  |  
-| [*FtpProject*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.ftp/com/telenav/kivakit/network/ftp/FtpProject.html) |  |  
 | [*FtpResource*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.ftp/com/telenav/kivakit/network/ftp/FtpResource.html) |  |  
 | [*FtpResource.FtpInput*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.ftp/com/telenav/kivakit/network/ftp/FtpResource.FtpInput.html) |  |  
 | [*SecureFtpConnector*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.ftp/com/telenav/kivakit/network/ftp/secure/SecureFtpConnector.html) |  |  

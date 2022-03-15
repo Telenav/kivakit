@@ -115,23 +115,25 @@ project [*kivakit-network-core-email*](../email/README.md) makes use of this cla
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-40.png" srcset="https://www.kivakit.org/images/diagram-40-2x.png 2x"/>
 
 [*Hosts, Ports and Protocols*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/diagram-port.svg)  
-[*Network Locations*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/diagram-network-location.svg)
+[*Network Locations*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/diagram-network-location.svg)  
+[*diagram-authentication*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/diagram-authentication.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
 [*com.telenav.kivakit.network.core*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.svg)  
-[*com.telenav.kivakit.network.core.cluster*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.cluster.svg)  
-[*com.telenav.kivakit.network.core.converters*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.converters.svg)
+[*com.telenav.kivakit.network.core.authentication*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.authentication.svg)  
+[*com.telenav.kivakit.network.core.authentication.passwords*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.authentication.passwords.svg)  
+[*com.telenav.kivakit.network.core.lexakai*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-network/core/documentation/diagrams/com.telenav.kivakit.network.core.lexakai.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 87.3%.  
+Javadoc coverage for this project is 83.3%.  
   
-&nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
 
 
 
@@ -139,13 +141,15 @@ Javadoc coverage for this project is 87.3%.
 | Class | Documentation Sections |
 |---|---|
 | [*BaseNetworkResource*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/BaseNetworkResource.html) |  |  
-| [*ClusterIdentifier*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/cluster/ClusterIdentifier.html) |  |  
+| [*DiagramAuthentication*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/lexakai/DiagramAuthentication.html) |  |  
+| [*DiagramNetworkLocation*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/lexakai/DiagramNetworkLocation.html) |  |  
+| [*DiagramPort*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/lexakai/DiagramPort.html) |  |  
+| [*DigestPassword*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/authentication/passwords/DigestPassword.html) |  |  
 | [*EmailAddress*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/EmailAddress.html) |  |  
 | [*EmailAddress.Converter*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/EmailAddress.Converter.html) |  |  
 | [*Host*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/Host.html) | Attributes |  
 | | Ports |  
 | [*Host.Converter*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/Host.Converter.html) |  |  
-| [*HttpDateTimeConverter*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/converters/HttpDateTimeConverter.html) |  |  
 | [*LocalHost*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/LocalHost.html) |  |  
 | [*Loopback*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/Loopback.html) |  |  
 | [*NetworkAccessConstraints*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/NetworkAccessConstraints.html) |  |  
@@ -154,13 +158,16 @@ Javadoc coverage for this project is 87.3%.
 | [*NetworkPath*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/NetworkPath.html) | Path Parsing Methods |  
 | | Path Factory Methods |  
 | [*NetworkPath.Converter*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/NetworkPath.Converter.html) |  |  
-| [*NetworkProject*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/NetworkProject.html) |  |  
 | [*NetworkResource*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/NetworkResource.html) |  |  
+| [*Password*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/authentication/Password.html) |  |  
+| [*PlainTextPassword*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/authentication/passwords/PlainTextPassword.html) |  |  
+| [*PlainTextPassword.Converter*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/authentication/passwords/PlainTextPassword.Converter.html) |  |  
 | [*Port*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/Port.html) |  |  
 | [*Port.Converter*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/Port.Converter.html) |  |  
-| [*Port.ListConverter*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/Port.ListConverter.html) |  |  
 | [*Protocol*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/Protocol.html) |  |  
 | [*QueryParameters*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/QueryParameters.html) |  |  
+| [*UserName*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/authentication/UserName.html) |  |  
+| [*UserName.Converter*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.core/com/telenav/kivakit/network/core/authentication/UserName.Converter.html) |  |  
 
 [//]: # (start-user-text)
 

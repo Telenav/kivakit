@@ -101,15 +101,16 @@ it and enqueueing *Email* objects. No attempt is made to persist the queue of un
 
 [*com.telenav.kivakit.network.email*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-network/email/documentation/diagrams/com.telenav.kivakit.network.email.svg)  
 [*com.telenav.kivakit.network.email.converters*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-network/email/documentation/diagrams/com.telenav.kivakit.network.email.converters.svg)  
+[*com.telenav.kivakit.network.email.lexakai*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-network/email/documentation/diagrams/com.telenav.kivakit.network.email.lexakai.svg)  
 [*com.telenav.kivakit.network.email.senders*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-network/email/documentation/diagrams/com.telenav.kivakit.network.email.senders.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 88.8%.  
+Javadoc coverage for this project is 84.5%.  
   
-&nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
 
 
 
@@ -117,15 +118,13 @@ Javadoc coverage for this project is 88.8%.
 | Class | Documentation Sections |
 |---|---|
 | [*AttachmentConverter*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/converters/AttachmentConverter.html) |  |  
-| [*AttachmentListConverter*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/converters/AttachmentListConverter.html) |  |  
 | [*BodyConverter*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/converters/BodyConverter.html) |  |  
+| [*DiagramEmail*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/lexakai/DiagramEmail.html) |  |  
 | [*Email*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/Email.html) |  |  
 | [*EmailAddressConverter*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/converters/EmailAddressConverter.html) |  |  
-| [*EmailAddressSetConverter*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/converters/EmailAddressSetConverter.html) |  |  
 | [*EmailAttachment*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/EmailAttachment.html) |  |  
 | [*EmailBody*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/EmailBody.html) |  |  
 | [*EmailMessageAlarm*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/EmailMessageAlarm.html) |  |  
-| [*EmailProject*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/EmailProject.html) |  |  
 | [*EmailQueue*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/EmailQueue.html) |  |  
 | [*EmailSender*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/EmailSender.html) |  |  
 | [*EmailSender.Configuration*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.network.email/com/telenav/kivakit/network/email/EmailSender.Configuration.html) |  |  

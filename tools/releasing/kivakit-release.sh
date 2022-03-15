@@ -26,9 +26,15 @@ if [ "$KIVAKIT_VERSION" = "$version" ]; then
     echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
     echo " "
 
-    bash kivakit-build.sh
-    bash kivakit-build-documentation.sh
+    if yes_no "Maven repository and .kivakit/$version folders must be removed to build a release. Remove them?"; then
+
+        rm -rf ~/.m2
+        rm -rf ~/.kivakit/$version
+
+    fi
+
     bash kivakit-build.sh deploy-local
+    bash kivakit-build-documentation.sh
 
     echo " "
     echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Built  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"

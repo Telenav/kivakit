@@ -66,18 +66,21 @@ arguments and switches is available in the Javadoc for the [*Application*](https
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
 [*com.telenav.kivakit.commandline*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-commandline/documentation/diagrams/com.telenav.kivakit.commandline.svg)  
+[*com.telenav.kivakit.commandline.lexakai*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-commandline/documentation/diagrams/com.telenav.kivakit.commandline.lexakai.svg)  
 [*com.telenav.kivakit.commandline.parsing*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-commandline/documentation/diagrams/com.telenav.kivakit.commandline.parsing.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Javadoc <a name="javadoc"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/books-32.png" srcset="https://www.kivakit.org/images/books-32-2x.png 2x"/>
 
-Javadoc coverage for this project is 91.7%.  
+Javadoc coverage for this project is 78.2%.  
   
-&nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-90-96.png" srcset="https://www.kivakit.org/images/meter-90-96-2x.png 2x"/>
+&nbsp; &nbsp; <img src="https://www.kivakit.org/images/meter-80-96.png" srcset="https://www.kivakit.org/images/meter-80-96-2x.png 2x"/>
 
 
+The following significant classes are undocumented:  
 
+- SwitchParsers
 
 | Class | Documentation Sections |
 |---|---|
@@ -94,7 +97,10 @@ Javadoc coverage for this project is 91.7%.
 | [*CommandLineParser*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/CommandLineParser.html) | Example |  
 | | Parsing a Command Line |  
 | | Switch Conventions |  
-| [*CommandLineProject*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/CommandLineProject.html) |  |  
+| [*DiagramArgument*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/lexakai/DiagramArgument.html) |  |  
+| [*DiagramCommandLine*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/lexakai/DiagramCommandLine.html) |  |  
+| [*DiagramSwitch*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/lexakai/DiagramSwitch.html) |  |  
+| [*DiagramValidation*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/lexakai/DiagramValidation.html) |  |  
 | [*Quantifier*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/Quantifier.html) |  |  
 | [*Switch*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/Switch.html) |  |  
 | [*SwitchList*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/parsing/SwitchList.html) |  |  
@@ -103,6 +109,7 @@ Javadoc coverage for this project is 91.7%.
 | | Built-In Parsers |  
 | [*SwitchParser.Builder*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/SwitchParser.Builder.html) |  |  
 | [*SwitchParserList*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/parsing/SwitchParserList.html) |  |  
+| [*SwitchParsers*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.commandline/com/telenav/kivakit/commandline/SwitchParsers.html) |  |  
 
 [//]: # (start-user-text)
 
