@@ -70,12 +70,6 @@ To build the release branch, run the release script again:
 
     kivakit-release.sh [kivakit-version]
 
-#### 1.4 Check the release for publishing
-
-To ensure that the build will be accepted on Maven Central, run:
-
-    kivakit-build.sh deploy-local
-
 This will build all kivakit artifacts from scratch (answer 'y' to the prompt to remove all artifacts), including Javadoc and Lexakai documentation.
 
 #### 1.5 Committing Final Changes
