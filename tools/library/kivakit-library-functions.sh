@@ -211,8 +211,8 @@ git_flow_init()
     fi
 }
 
-git_flow_release_start() {
-
+git_flow_release_start()
+{
     project_home=$1
     version=$2
 
@@ -224,6 +224,8 @@ git_flow_release_start() {
     echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
     echo " "
 
+    cd "$project_home" || exit
+
     if [ "$(git_branch_name)" = "release/$version" ]; then
 
         echo "Already on release branch"
@@ -231,7 +233,6 @@ git_flow_release_start() {
     else
 
         # Check out the develop branch
-        cd "$project_home" || exit
         git checkout develop
 
         # then start a new release branch
