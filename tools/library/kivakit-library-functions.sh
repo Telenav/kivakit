@@ -69,8 +69,8 @@ showVersion()
 
 ################ CLEAN ################################################################################################
 
-clean_cache() {
-
+clean_cache()
+{
     if [[ "$ALLOW_CLEANING" == "true" ]]; then
 
         cache=$1
@@ -87,62 +87,71 @@ clean_cache() {
     fi
 }
 
-clean_maven_repository() {
+clean_maven_repository()
+{
+    if [[ "$ALLOW_CLEANING" == "true" ]]; then
 
-    project_home=$1
-    name=$(basename -- "$project_home")
+        project_home=$1
+        name=$(basename -- "$project_home")
 
-    if yes_no "┋ Remove all $name artifacts from $HOME/.m2/repository"; then
+        if yes_no "┋ Remove all $name artifacts from $HOME/.m2/repository"; then
 
-        rm -rf "$HOME/.m2/repository/com/telenav/$name"
-
-    fi
-}
-
-remove_maven_repository() {
-
-    if [ -d "$HOME/.m2/repository" ]; then
-
-        if yes_no "┋ Remove ALL artifacts in $HOME/.m2/repository"; then
-
-            rm -rf "$HOME/.m2/repository"
+            rm -rf "$HOME/.m2/repository/com/telenav/$name"
 
         fi
 
     fi
 }
 
-clean_temporary_files() {
+remove_maven_repository()
+{
+    if [[ "$ALLOW_CLEANING" == "true" ]]; then
 
+        if [ -d "$HOME/.m2/repository" ]; then
+
+            if yes_no "┋ Remove ALL artifacts in $HOME/.m2/repository"; then
+
+                rm -rf "$HOME/.m2/repository"
+
+            fi
+        fi
+    fi
+}
+
+clean_temporary_files()
+{
     project_home=$1
 
-    if yes_no "┋ Remove temporary files (.DS_Store, .metadata, .classpath, .project, *.hprof, *~) from $project_home tree"; then
+    if [[ "$ALLOW_CLEANING" == "true" ]]; then
+
+        if yes_no "┋ Remove transient files from $project_home tree"; then
 
         # shellcheck disable=SC2038
         find "$project_home" \( -name \.DS_Store -o -name \.metadata -o -name \.classpath -o -name \.project -o -name \*\.hprof -o -name \*~ \) | xargs rm
 
+        fi
     fi
 }
 
 ################ COMMAND LINE ################################################################################################
 
-script() {
-
+script()
+{
     # shellcheck disable=SC2046
     # shellcheck disable=SC2005
     echo $(basename -- "$0")
 }
 
-usage() {
-
+usage()
+{
     argument_help=$1
 
     echo "Usage: $(script) $argument_help"
     exit 1
 }
 
-require_variable() {
-
+require_variable()
+{
     variable=$1
     argument_help=$2
 
@@ -153,8 +162,8 @@ require_variable() {
     fi
 }
 
-require_folder() {
-
+require_folder()
+{
     variable=$1
     argument_help=$2
 
@@ -169,11 +178,11 @@ require_folder() {
 ################ GIT ################################################################################################
 
 
-git_flow_check_changes() {
-
+git_flow_check_changes()
+{
     project_home=$1
 
-    cd $project_home
+    cd "$project_home" || exit
 
     if [[  `git status --porcelain` ]]; then
         echo " "
@@ -183,13 +192,13 @@ git_flow_check_changes() {
     fi
 }
 
-git_flow_init() {
-
+git_flow_init()
+{
     project_home=$1
 
-    cd $project_home
+    cd "$project_home" || exit
 
-    git_flow_check_changes $project_home
+    git_flow_check_changes "$project_home"
 
     git flow init -d /dev/null 2>&1
 
@@ -210,7 +219,7 @@ git_flow_release_start() {
     echo " "
     echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Preparing Release Branch  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
     echo "┋"
-    echo "┋  Preparing $(basename $project_home) git flow branch release/$version"
+    echo "┋  Preparing $(basename "$project_home") git flow branch release/$version"
     echo "┋"
     echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
     echo " "
@@ -257,6 +266,7 @@ git_flow_release_finish()
     git tag -a "$version" -m "$version"
     git checkout release/"$version"
     git flow release finish "$version"
+    git push origin --tags
 
     echo " "
     echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Merged to Master  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
@@ -267,8 +277,8 @@ git_flow_release_finish()
     echo " "
 }
 
-git_flow_feature_start() {
-
+git_flow_feature_start()
+{
     project_home=$1
     feature_name=$2
 
@@ -280,8 +290,8 @@ git_flow_feature_start() {
     fi
 }
 
-git_flow_feature_finish() {
-
+git_flow_feature_finish()
+{
     project_home=$1
     feature_name=$2
 
@@ -292,8 +302,8 @@ git_flow_feature_finish() {
     fi
 }
 
-git_flow_hotfix_start() {
-
+git_flow_hotfix_start()
+{
     project_home=$1
     feature_name=$2
 
@@ -305,8 +315,8 @@ git_flow_hotfix_start() {
     fi
 }
 
-git_flow_hotfix_finish() {
-
+git_flow_hotfix_finish()
+{
     project_home=$1
     feature_name=$2
 
@@ -328,7 +338,7 @@ update_version() {
     echo " "
     echo "Updating $(project_name "$project_home") version from $old_version to $new_version"
 
-    # Update POM versions and .md files
+    # Update POM versions project.properties files
     update-version.pl "$project_home" "$old_version" "$new_version"
 
     echo "Updated"
@@ -337,16 +347,18 @@ update_version() {
 
 ################ UTILITY ################################################################################################
 
-append_path() {
+append_path()
+{
     export PATH="$PATH:$1"
 }
 
-prepend_path() {
+prepend_path()
+{
     export PATH="$1:$PATH"
 }
 
-source_project_profile() {
-
+source_project_profile()
+{
     project_name=$1
 
     common_profile="$KIVAKIT_WORKSPACE/${project_name}/tools/library/${project_name}-common-profile.sh"
@@ -363,8 +375,8 @@ source_project_profile() {
     fi
 }
 
-system_variable() {
-
+system_variable()
+{
     variable=$1
     value=$2
     temporary="${TMPDIR%/}/export.txt"
@@ -378,8 +390,8 @@ system_variable() {
     fi
 }
 
-is_mac() {
-
+is_mac()
+{
     if [[ "$OSTYPE" == "darwin"* ]]; then
         true
     else
