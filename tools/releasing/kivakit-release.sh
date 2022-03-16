@@ -28,7 +28,7 @@ if [ "$KIVAKIT_VERSION" = "$version" ]; then
 
     if yes_no "Maven repository and .kivakit/$version folders must be removed to build a release. Remove them?"; then
 
-        rm -rf ~/.m2
+        rm -rf ~/.m2/repository
         rm -rf ~/.kivakit/$version
 
     fi
