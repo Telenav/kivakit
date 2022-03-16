@@ -21,9 +21,9 @@ package com.telenav.kivakit.core.value.count;
 import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.language.primitive.Primes;
-import com.telenav.kivakit.core.value.level.Percent;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.lexakai.DiagramCount;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.code.Loopable;
 import com.telenav.kivakit.interfaces.numeric.Maximizable;
 import com.telenav.kivakit.interfaces.numeric.Minimizable;
@@ -592,6 +592,14 @@ public class Count implements
     public Count floor(int digits)
     {
         return onNewInstance(get() / Ints.powerOfTen(digits) * Ints.powerOfTen(digits));
+    }
+
+    public void forEach(Consumer<Count> consumer)
+    {
+        for (var i = 0; i < minimum(MAXIMUM_INTEGER_VALUE).asInt(); i++)
+        {
+            consumer.accept(count(i));
+        }
     }
 
     public void forEachByte(Consumer<Byte> consumer)
