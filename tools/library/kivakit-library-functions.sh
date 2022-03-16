@@ -69,9 +69,28 @@ showVersion()
 
 ################ CLEAN ################################################################################################
 
+allow_cleaning()
+{
+    if [ -z "$ALLOW_CLEANING" ]; then
+
+        ALLOW_CLEANING=true
+
+    fi
+
+    if [ "$ALLOW_CLEANING" == "true" ]; then
+
+        return 0
+
+    else
+
+        return 1
+
+    fi
+}
+
 clean_cache()
 {
-    if [[ "$ALLOW_CLEANING" == "true" ]]; then
+    if allow_cleaning; then
 
         cache=$1
 
@@ -89,7 +108,7 @@ clean_cache()
 
 clean_maven_repository()
 {
-    if [[ "$ALLOW_CLEANING" == "true" ]]; then
+    if allow_cleaning; then
 
         project_home=$1
         name=$(basename -- "$project_home")
@@ -105,7 +124,7 @@ clean_maven_repository()
 
 remove_maven_repository()
 {
-    if [[ "$ALLOW_CLEANING" == "true" ]]; then
+    if allow_cleaning; then
 
         if [ -d "$HOME/.m2/repository" ]; then
 
@@ -122,7 +141,7 @@ clean_temporary_files()
 {
     project_home=$1
 
-    if [[ "$ALLOW_CLEANING" == "true" ]]; then
+    if allow_cleaning; then
 
         if yes_no "┋ Remove transient files from $project_home tree"; then
 
@@ -308,7 +327,7 @@ git_flow_release_finish()
     echo " "
     echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Merged to Master  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
     echo "┋"
-    echo "┋  The branch 'release/$version' has been merged into master using git flow."
+    echo "┋  The branch 'release/$version' has been merged into master."
     echo "┋"
     echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
     echo " "
@@ -358,15 +377,17 @@ git_flow_hotfix_finish()
     feature_name=$2
 
     if yes_no "Finish '$feature_name' branch of $project_home"; then
+
         cd "$project_home" || exit
         git-flow hotfix finish "$feature_name"
+
     fi
 }
 
 ################ VERSIONING ################################################################################################
 
-update_version() {
-
+update_version()
+{
     project_home=$1
     new_version=$2
 
@@ -423,7 +444,9 @@ system_variable()
     source "$temporary"
 
     if is_mac; then
+
         launchctl setenv "$variable" "$value"
+
     fi
 }
 
@@ -436,8 +459,8 @@ is_mac()
     fi
 }
 
-lexakai() {
-
+lexakai()
+{
     lexakai_download_version="1.0.5"
     lexakai_download_name="lexakai-1.0.5.jar"
 
@@ -473,8 +496,8 @@ lexakai() {
     java -jar "$lexakai_jar" -overwrite-resources=true -update-readme=true $@
 }
 
-yes_no() {
-
+yes_no()
+{
     if [ -z "${NO_PROMPT}" ]; then
 
         prompt=$1
