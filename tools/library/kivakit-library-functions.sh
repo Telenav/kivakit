@@ -184,6 +184,7 @@ git_flow_check_changes()
 
     cd "$project_home" || exit
 
+    # shellcheck disable=SC2006
     if [[  `git status --porcelain` ]]; then
         echo " "
         echo "Project contains changes that must be committed first: $project_home"
@@ -192,23 +193,42 @@ git_flow_check_changes()
     fi
 }
 
+git_flow_install()
+{
+    echo " "
+    echo "Please install latest git flow AVH Edition:"
+    echo " "
+    echo "MacOS: brew install git-flow-avh"
+    echo " "
+
+    exit 1
+}
+
 git_flow_init()
 {
     project_home=$1
 
     cd "$project_home" || exit
 
+    if [ "$(git flow config >/dev/null 2>&1)" ]; then
+
+        git_flow_install
+
+    fi
+
+    git_flow_version=$(git flow version);
+
+    if ! grep -q AVH <<<"$git_flow_version"; then
+
+        git_flow_install
+
+    fi
+
     git_flow_check_changes "$project_home"
 
-    git flow init -d /dev/null 2>&1
+    git flow init -f -d --feature feature/  --bugfix bugfix/ --release release/ --hotfix hotfix/ --support support/ -t ''
 
-    if [ "$(git flow config >/dev/null 2>&1)" ]; then
-        echo " "
-        echo "Please install git flow and try again."
-        echo "See https://kivakit.org for details."
-        echo " "
-        exit 1
-    fi
+
 }
 
 git_flow_release_start()
@@ -219,18 +239,22 @@ git_flow_release_start()
     echo " "
     echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Preparing Release Branch  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
     echo "┋"
-    echo "┋  Preparing $(basename "$project_home") git flow branch release/$version"
+    echo "┋  Preparing $(basename "$project_home") branch: release/$version"
     echo "┋"
     echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
     echo " "
 
     cd "$project_home" || exit
 
-    if [ "$(git_branch_name)" = "release/$version" ]; then
+    branch_name=$(git_branch_name "$project_home")
 
-        echo "Already on release branch"
+    if [ "$branch_name" = "release/$version" ]; then
+
+        echo "Already on release branch: $branch_name"
 
     else
+
+        git_flow_init "$project_home"
 
         # Check out the develop branch
         git checkout develop
@@ -238,8 +262,19 @@ git_flow_release_start()
         # then start a new release branch
         git flow release start "$version"
 
-        # switch to the release branch
-        git checkout release/"$version"
+        branch_name=$(git_branch_name "$project_home")
+
+        if [ "$branch_name" = "release/$version" ]; then
+
+            # switch to the release branch
+            git checkout release/"$version"
+
+        else
+
+            echo "Could not create release branch: release/$version"
+            exit 1
+
+        fi
 
     fi
 
@@ -250,6 +285,7 @@ git_flow_release_start()
 git_branch_name()
 {
     project_home=$1
+
     cd "$project_home" || exit
     branch_name=$(git rev-parse --abbrev-ref HEAD)
     echo "$branch_name"
@@ -340,7 +376,7 @@ update_version() {
     echo "Updating $(project_name "$project_home") version from $old_version to $new_version"
 
     # Update POM versions project.properties files
-    update-version.pl "$project_home" "$old_version" "$new_version"
+    kivakit-update-version.pl "$project_home" "$old_version" "$new_version"
 
     echo "Updated"
     echo " "
