@@ -18,16 +18,17 @@
 
 package com.telenav.kivakit.core.progress.reporters;
 
+import com.telenav.kivakit.core.lexakai.DiagramProgress;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.broadcasters.Multicaster;
 import com.telenav.kivakit.core.progress.ProgressListener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.kivakit.core.lexakai.DiagramProgress;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Rate;
 import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.core.value.count.AbstractCount;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -88,7 +89,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
      * @param itemName The item that is being processed, like "bytes"
      * @param steps The number of steps in the operation
      */
-    public static BroadcastingProgressReporter create(Listener listener, String itemName, Count steps)
+    public static BroadcastingProgressReporter create(Listener listener, String itemName, AbstractCount<?> steps)
     {
         return listener.listenTo(new BroadcastingProgressReporter()
                 .withItemName(itemName)
@@ -105,7 +106,9 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
         return createConcurrent(listener, itemName, null);
     }
 
-    public static BroadcastingProgressReporter createConcurrent(Listener listener, String itemName, Count steps)
+    public static BroadcastingProgressReporter createConcurrent(Listener listener,
+                                                                String itemName,
+                                                                AbstractCount<?> steps)
     {
         return listener.listenTo(new ConcurrentBroadcastingProgressReporter()
                 .withItemName(itemName)
@@ -262,7 +265,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
     }
 
     @Override
-    public BroadcastingProgressReporter steps(Count steps)
+    public BroadcastingProgressReporter steps(AbstractCount<?> steps)
     {
         if (steps != null)
         {
@@ -297,7 +300,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
         return progress;
     }
 
-    public BroadcastingProgressReporter withSteps(Count steps)
+    public BroadcastingProgressReporter withSteps(AbstractCount<?> steps)
     {
         if (steps != null)
         {

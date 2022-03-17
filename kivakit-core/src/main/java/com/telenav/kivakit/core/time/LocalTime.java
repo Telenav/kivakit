@@ -216,7 +216,7 @@ public class LocalTime extends Time
 
     public int hourOfWeek()
     {
-        return dayOfWeek().asIsoConstant() * 24 + hourOfDay();
+        return dayOfWeek().asIsoOrdinal() * 24 + hourOfDay();
     }
 
     public LocalDateTime javaLocalDateTime()

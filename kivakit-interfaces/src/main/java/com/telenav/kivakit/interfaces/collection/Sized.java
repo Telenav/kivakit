@@ -19,6 +19,7 @@
 package com.telenav.kivakit.interfaces.collection;
 
 import com.telenav.kivakit.interfaces.lexakai.DiagramNumeric;
+import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -31,7 +32,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @UmlClassDiagram(diagram = DiagramNumeric.class)
 @LexakaiJavadoc(complete = true)
-public interface Sized extends Stringable
+public interface Sized extends
+        Stringable,
+        Quantizable
 {
     default String asCommaSeparatedString()
     {
@@ -74,6 +77,12 @@ public interface Sized extends Stringable
     default boolean isNonEmpty()
     {
         return !isEmpty();
+    }
+
+    @Override
+    default long quantum()
+    {
+        return size();
     }
 
     /**

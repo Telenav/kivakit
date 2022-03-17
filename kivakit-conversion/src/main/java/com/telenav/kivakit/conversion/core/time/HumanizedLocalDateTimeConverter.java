@@ -97,7 +97,7 @@ public class HumanizedLocalDateTimeConverter extends BaseStringConverter<LocalTi
                 if (day != null)
                 {
                     var dayOfWeek = dayOrdinal.get(day.toLowerCase());
-                    var nowDayOfWeek = now.dayOfWeek().ordinal();
+                    var nowDayOfWeek = now.dayOfWeek().asInt();
                     var daysAgo = nowDayOfWeek - dayOfWeek;
                     if (daysAgo < 0)
                     {

@@ -18,8 +18,9 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.core.lexakai.DiagramCount;
+import com.telenav.kivakit.core.value.level.Percent;
+import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
@@ -32,7 +33,9 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCount.class)
-public class MutableCount implements Countable, Comparable<MutableCount>
+public class MutableCount implements
+        Countable,
+        Comparable<MutableCount>
 {
     private long count;
 
@@ -114,14 +117,14 @@ public class MutableCount implements Countable, Comparable<MutableCount>
         return count++;
     }
 
-    public boolean isGreaterThan(MutableCount that)
+    public boolean isGreaterThan(Quantizable that)
     {
-        return asLong() > that.asLong();
+        return asLong() > that.quantum();
     }
 
-    public boolean isLessThan(MutableCount that)
+    public boolean isLessThan(Quantizable that)
     {
-        return asLong() < that.asLong();
+        return asLong() < that.quantum();
     }
 
     public boolean isZero()
@@ -152,9 +155,9 @@ public class MutableCount implements Countable, Comparable<MutableCount>
         return count;
     }
 
-    public long plus(Count that)
+    public long plus(Quantizable that)
     {
-        return plus(that.get());
+        return plus(that.quantum());
     }
 
     public void set(long count)

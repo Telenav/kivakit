@@ -23,6 +23,7 @@ import com.telenav.kivakit.core.ensure.Failure;
 import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.language.primitive.Booleans;
 import com.telenav.kivakit.core.language.trait.LanguageTrait;
+import com.telenav.kivakit.core.lexakai.DiagramTest;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Broadcaster;
@@ -34,13 +35,18 @@ import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.core.os.ConsoleWriter;
 import com.telenav.kivakit.core.os.OperatingSystem;
 import com.telenav.kivakit.core.project.ProjectTrait;
-import com.telenav.kivakit.core.lexakai.DiagramTest;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.core.value.count.Maximum;
+import com.telenav.kivakit.core.value.count.Minimum;
+import com.telenav.kivakit.core.value.count.Range;
 import com.telenav.kivakit.core.vm.JavaTrait;
 import com.telenav.kivakit.interfaces.code.Loopable;
+import com.telenav.kivakit.interfaces.collection.NextValue;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
+import com.telenav.kivakit.interfaces.numeric.Maximizable;
+import com.telenav.kivakit.interfaces.numeric.Minimizable;
 import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -129,9 +135,27 @@ public abstract class UnitTest extends TestWatcher implements
         console.receive(message);
     }
 
+    public <Value extends Minimizable<Value>
+            & Maximizable<Value>
+            & NextValue<Value>>
+    Range<Value> rangeExclusive(Value minimum, Value maximum)
+    {
+        return Range.exclusive(minimum, maximum);
+    }
+
     @Before
     public void testBeforeUnitTest()
     {
+    }
+
+    public Count times(long times)
+    {
+        return Count.count(times);
+    }
+
+    protected Count count(long value)
+    {
+        return Count.count(value);
     }
 
     protected boolean ensure(boolean condition)
@@ -329,21 +353,6 @@ public abstract class UnitTest extends TestWatcher implements
         iterations.loop(code);
     }
 
-    protected void loop(Loopable code)
-    {
-        iterations.loop(code);
-    }
-
-    protected void loop(int minimum, int maximum, Runnable code)
-    {
-        loop(randomInt(minimum, maximum), code);
-    }
-
-    protected void loop(int minimum, int maximum, Loopable code)
-    {
-        loop(randomInt(minimum, maximum), code);
-    }
-
     protected void loop(int times, Runnable code)
     {
         for (var i = 0; i < times; i++)
@@ -352,12 +361,29 @@ public abstract class UnitTest extends TestWatcher implements
         }
     }
 
-    protected void loop(int times, Loopable code)
+    protected void loop(Loopable<Count> code)
     {
-        for (var iteration = 0; iteration < times; iteration++)
-        {
-            code.iteration(iteration);
-        }
+        iterations.loop(code);
+    }
+
+    protected void loopRandomNumberOfTimes(int minimum, int maximum, Runnable code)
+    {
+        randomCount(minimum, maximum).loop(code);
+    }
+
+    protected <Value> void loopRandomNumberOfTimes(int minimum, int maximum, Loopable<Count> code)
+    {
+        randomCount(minimum, maximum).loop(code);
+    }
+
+    protected Maximum maximum(long minimum)
+    {
+        return Maximum.maximum(minimum);
+    }
+
+    protected Minimum minimum(long minimum)
+    {
+        return Minimum.minimum(minimum);
     }
 
     @SuppressWarnings("unchecked")
@@ -447,6 +473,11 @@ public abstract class UnitTest extends TestWatcher implements
     protected void randomBytes(Repeats repeats, Predicate<Byte> filter, Consumer<Byte> consumer)
     {
         randomBytes(repeats, iterations, (byte) (Byte.MIN_VALUE + 2), Byte.MAX_VALUE, filter, consumer);
+    }
+
+    protected Count randomCount(int minimum, int maximum)
+    {
+        return count(randomInt(minimum, maximum));
     }
 
     protected int randomIndex()
@@ -751,6 +782,24 @@ public abstract class UnitTest extends TestWatcher implements
     protected RandomValueFactory randomValueFactory()
     {
         return newRandomValueFactory(RandomValueFactory::new);
+    }
+
+    protected Range<Count> rangeExclusive(long minimum, long maximum)
+    {
+        return rangeExclusive(count(minimum), count(maximum));
+    }
+
+    protected Range<Count> rangeInclusive(long minimum, long maximum)
+    {
+        return rangeInclusive(count(minimum), count(maximum));
+    }
+
+    protected <Value extends Minimizable<Value>
+            & Maximizable<Value>
+            & NextValue<Value>>
+    Range<Value> rangeInclusive(Value minimum, Value maximum)
+    {
+        return new Range<>(minimum, maximum);
     }
 
     protected void resetIndex()

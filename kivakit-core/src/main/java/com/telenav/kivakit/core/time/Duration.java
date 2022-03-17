@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.lexakai.DiagramTime;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.interfaces.string.Stringable;
@@ -353,7 +353,7 @@ public class Duration implements
         var hours = hoursRest / 60;
         var minutes = hoursRest % 60;
         // Ex. "TUESDAY, 15:32"
-        return DayOfWeek.forIsoConstant(days).toString() + ", "
+        return DayOfWeek.forIsoOrdinal(days).toString() + ", "
                 + (String.valueOf(hours).length() == 2 ? hours : ("0" + hours)) + ":"
                 + (String.valueOf(minutes).length() == 2 ? minutes : ("0" + minutes));
     }

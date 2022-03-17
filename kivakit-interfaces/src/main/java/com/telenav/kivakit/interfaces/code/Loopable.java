@@ -18,23 +18,39 @@
 
 package com.telenav.kivakit.interfaces.code;
 
+import com.telenav.kivakit.interfaces.collection.NextValue;
 import com.telenav.kivakit.interfaces.lexakai.DiagramCode;
+import com.telenav.kivakit.interfaces.numeric.Maximizable;
+import com.telenav.kivakit.interfaces.numeric.Minimizable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * A piece of code that can be executed in a loop. The {@link #iteration(int)} method is called with the iteration
- * number for each time through the loop.
+ * A piece of code that can be executed in a loop. The {@link #at(Value)} method is called with the next value for each
+ * execution of the loop.
  *
  * @author jonathanl (shibo)
  */
-@FunctionalInterface
+@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramCode.class)
-public interface Loopable
+public interface Loopable<Value extends Minimizable<Value> & Maximizable<Value> & NextValue<Value>>
 {
     /**
-     * Executes the target code for the nth iteration
+     * Executes the target code for next value in a sequence
      *
-     * @param iteration The loop iteration
+     * @param at The loop Value
      */
-    void iteration(int iteration);
+    void at(Value at);
+
+    /**
+     * Executes the loop for each value
+     *
+     * @param loop The loop code to execute
+     */
+    default void forEach(Value minimum, Value maximum)
+    {
+        for (Value at = minimum; at.equals(maximum); at = at.next())
+        {
+            at(at);
+        }
+    }
 }

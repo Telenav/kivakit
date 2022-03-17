@@ -19,44 +19,72 @@
 package com.telenav.kivakit.core.value.count;
 
 import com.telenav.kivakit.core.lexakai.DiagramCount;
+import com.telenav.kivakit.interfaces.code.Loopable;
+import com.telenav.kivakit.interfaces.collection.NextValue;
 import com.telenav.kivakit.interfaces.numeric.Maximizable;
 import com.telenav.kivakit.interfaces.numeric.Minimizable;
-import com.telenav.kivakit.interfaces.numeric.Ranged;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+/**
+ * Represents a range of Values from a minimum to a maximum.
+ *
+ * @param <Value> A value that must be {@link Minimizable}, {@link Maximizable} and implement {@link NextValue}.
+ * @author jonathanl (shibo)
+ * @see Loopable
+ */
 @UmlClassDiagram(diagram = DiagramCount.class)
-public class Range<T extends Minimizable<T> & Maximizable<T>> implements Ranged<T>
+public class Range<Value extends Minimizable<Value>
+        & Maximizable<Value>
+        & NextValue<Value>>
+
 {
-    private final T minimum;
+    public static <Value extends Minimizable<Value>
+            & Maximizable<Value>
+            & NextValue<Value>>
+    Range<Value> exclusive(Value minimum, Value maximum)
+    {
+        return new Range<>(minimum, maximum);
+    }
 
-    private final T maximum;
+    public static <Value extends Minimizable<Value>
+            & Maximizable<Value>
+            & NextValue<Value>>
+    Range<Value> inclusive(Value minimum, Value maximum)
+    {
+        return new Range<>(minimum, maximum.next());
+    }
 
-    public Range(T minimum, T maximum)
+    private final Value minimum;
+
+    private final Value maximum;
+
+    public Range(Value minimum, Value maximum)
     {
         this.minimum = minimum;
         this.maximum = maximum;
     }
 
-    @Override
-    public T constrainTo(T value)
+    public Value constrainTo(Value value)
     {
         return maximum.minimum(minimum.maximum(value));
     }
 
-    @Override
-    public boolean contains(T value)
+    public boolean contains(Value value)
     {
         return false;
     }
 
-    @Override
-    public T maximum()
+    public void loop(Loopable<Value> body)
+    {
+        body.forEach(minimum(), maximum());
+    }
+
+    public Value maximum()
     {
         return maximum;
     }
 
-    @Override
-    public T minimum()
+    public Value minimum()
     {
         return minimum;
     }

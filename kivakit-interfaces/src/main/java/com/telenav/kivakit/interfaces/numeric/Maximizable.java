@@ -38,4 +38,9 @@ public interface Maximizable<Value>
      * @return The maximum of this value and the given value.
      */
     Value maximum(Value value);
+
+    /**
+     * Returns the maximum possible Value
+     */
+    Value maximum();
 }

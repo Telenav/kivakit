@@ -151,9 +151,21 @@ public class Rate implements
     }
 
     @Override
+    public Rate maximum()
+    {
+        return Rate.MAXIMUM;
+    }
+
+    @Override
     public Rate minimum(Rate that)
     {
         return isGreaterThan(that) ? this : that;
+    }
+
+    @Override
+    public Rate minimum()
+    {
+        return Rate.perYear(0);
     }
 
     public Rate perDay()

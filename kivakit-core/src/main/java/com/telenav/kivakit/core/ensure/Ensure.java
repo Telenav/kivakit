@@ -1,9 +1,9 @@
 package com.telenav.kivakit.core.ensure;
 
+import com.telenav.kivakit.core.lexakai.DiagramEnsure;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.messaging.messages.status.Unsupported;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
-import com.telenav.kivakit.core.lexakai.DiagramEnsure;
 import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -160,6 +160,32 @@ public class Ensure
             Failure.report(EnsureProblem.class, e, message, arguments);
         }
         return null;
+    }
+
+    public static long ensureBetweenExclusive(long value, long minimum, long maximum)
+    {
+        ensureBetweenExclusive(value, minimum, maximum, "Value $ must be between $ and $ inclusive", value, minimum, maximum);
+        return value;
+    }
+
+    public static long ensureBetweenExclusive(long value, long minimum, long maximum, String message,
+                                              Object... arguments)
+    {
+        ensure(value >= minimum && value < maximum, message, arguments);
+        return value;
+    }
+
+    public static long ensureBetweenInclusive(long value, long minimum, long maximum, String message,
+                                              Object... arguments)
+    {
+        ensure(value >= minimum && value <= maximum, message, arguments);
+        return value;
+    }
+
+    public static long ensureBetweenInclusive(long value, long minimum, long maximum)
+    {
+        ensureBetweenInclusive(value, minimum, maximum, "Value $ must be between $ and $ inclusive", value, minimum, maximum);
+        return value;
     }
 
     public static <T> T ensureEqual(T given, T expected)

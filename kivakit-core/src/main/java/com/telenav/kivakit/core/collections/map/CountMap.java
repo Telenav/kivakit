@@ -19,10 +19,11 @@
 package com.telenav.kivakit.core.collections.map;
 
 import com.telenav.kivakit.core.collections.list.StringList;
+import com.telenav.kivakit.core.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Countable;
+import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.core.value.count.MutableCount;
-import com.telenav.kivakit.core.lexakai.DiagramCollections;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
@@ -75,7 +76,7 @@ public class CountMap<T>
         return Count.count(total);
     }
 
-    public List<Map.Entry<T, MutableCount>> ascendingEntries(Count maximum,
+    public List<Map.Entry<T, MutableCount>> ascendingEntries(Maximum maximum,
                                                              Comparator<Map.Entry<T, MutableCount>> comparator)
     {
         assert maximum != null;
@@ -84,12 +85,12 @@ public class CountMap<T>
         return sorted.subList(0, Math.min(sorted.size(), maximum.asInt()));
     }
 
-    public CountMap<T> bottom(Count maximum)
+    public CountMap<T> bottom(Maximum maximum)
     {
         return bottom(maximum, Map.Entry.comparingByValue());
     }
 
-    public CountMap<T> bottom(Count maximum, Comparator<Map.Entry<T, MutableCount>> comparator)
+    public CountMap<T> bottom(Maximum maximum, Comparator<Map.Entry<T, MutableCount>> comparator)
     {
         var bottom = new CountMap<T>();
         for (var entry : ascendingEntries(maximum, comparator))
@@ -117,7 +118,7 @@ public class CountMap<T>
         return this;
     }
 
-    public List<Map.Entry<T, MutableCount>> descendingEntries(Count maximum,
+    public List<Map.Entry<T, MutableCount>> descendingEntries(Maximum maximum,
                                                               Comparator<Map.Entry<T, MutableCount>> comparator)
     {
         assert maximum != null;
@@ -264,12 +265,12 @@ public class CountMap<T>
         return list.join(separator);
     }
 
-    public CountMap<T> top(Count maximum)
+    public CountMap<T> top(Maximum maximum)
     {
         return top(maximum, Map.Entry.comparingByValue());
     }
 
-    public CountMap<T> top(Count maximum, Comparator<Map.Entry<T, MutableCount>> comparator)
+    public CountMap<T> top(Maximum maximum, Comparator<Map.Entry<T, MutableCount>> comparator)
     {
         var top = new CountMap<T>();
         for (var entry : descendingEntries(maximum, comparator))

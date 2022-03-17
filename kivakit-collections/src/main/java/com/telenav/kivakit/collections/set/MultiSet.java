@@ -20,11 +20,11 @@ package com.telenav.kivakit.collections.set;
 
 import com.telenav.kivakit.collections.lexakai.DiagramSet;
 import com.telenav.kivakit.core.collections.iteration.Iterables;
-import com.telenav.kivakit.core.collections.iteration.Next;
 import com.telenav.kivakit.core.collections.map.BaseMap;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Maximum;
+import com.telenav.kivakit.interfaces.collection.NextValue;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -85,14 +85,14 @@ public class MultiSet<Key, Value> extends BaseMap<Key, ObjectSet<Value>>
 
     public Iterable<Value> flatValues()
     {
-        return Iterables.iterable(() -> new Next<>()
+        return Iterables.iterable(() -> new NextValue<>()
         {
             private final Iterator<ObjectSet<Value>> sets = values().iterator();
 
             private Iterator<Value> values;
 
             @Override
-            public Value onNext()
+            public Value next()
             {
                 while (values == null || !values.hasNext())
                 {

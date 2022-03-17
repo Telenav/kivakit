@@ -20,11 +20,11 @@ package com.telenav.kivakit.resource.reading;
 
 import com.telenav.kivakit.conversion.Converter;
 import com.telenav.kivakit.core.collections.iteration.Iterables;
-import com.telenav.kivakit.core.collections.iteration.Next;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.io.StringReader;
 import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.interfaces.collection.NextValue;
 import com.telenav.kivakit.interfaces.string.StringSource;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFile;
@@ -154,12 +154,12 @@ public class ResourceReader implements StringSource
      */
     public <T> Iterable<T> objects(Converter<String, T> converter, ProgressReporter reporter)
     {
-        return Iterables.iterable(() -> new Next<>()
+        return Iterables.iterable(() -> new NextValue<>()
         {
             private final Iterator<String> lines = lines(reporter).iterator();
 
             @Override
-            public T onNext()
+            public T next()
             {
                 if (lines.hasNext())
                 {

@@ -25,11 +25,11 @@ import com.telenav.kivakit.core.collections.map.VariableMap;
 import com.telenav.kivakit.core.language.primitive.Primitives;
 import com.telenav.kivakit.core.language.reflection.Field;
 import com.telenav.kivakit.core.language.reflection.Type;
+import com.telenav.kivakit.core.lexakai.DiagramLanguage;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.os.OperatingSystem;
-import com.telenav.kivakit.core.lexakai.DiagramLanguage;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.time.Frequency;
 import com.telenav.kivakit.core.time.Time;
@@ -480,7 +480,7 @@ public class JavaVirtualMachine extends BaseRepeater
                                 {
                                     if (value.getClass().getComponentType().isPrimitive())
                                     {
-                                        size = size.add(sizeOf(value));
+                                        size = size.plus(sizeOf(value));
                                     }
                                     else
                                     {
@@ -494,7 +494,7 @@ public class JavaVirtualMachine extends BaseRepeater
                                                         minimumSizeToDebugTrace, excludeFromTracing, level + 1);
                                                 if (sizeOf != null)
                                                 {
-                                                    size = size.add(sizeOf);
+                                                    size = size.plus(sizeOf);
                                                 }
                                             }
                                         }
@@ -504,7 +504,7 @@ public class JavaVirtualMachine extends BaseRepeater
                                 {
                                     if (Primitives.isPrimitive(field.getType()))
                                     {
-                                        size = size.add(sizeOfPrimitive(value));
+                                        size = size.plus(sizeOfPrimitive(value));
                                     }
                                     else
                                     {
@@ -512,7 +512,7 @@ public class JavaVirtualMachine extends BaseRepeater
                                                 excludeFromTracing, level + 1);
                                         if (sizeOf != null)
                                         {
-                                            size = size.add(sizeOf);
+                                            size = size.plus(sizeOf);
                                         }
                                     }
                                 }
@@ -555,7 +555,7 @@ public class JavaVirtualMachine extends BaseRepeater
                                 excludeFromTracing, level);
                         if (sizeOf != null)
                         {
-                            size = size.add(sizeOf);
+                            size = size.plus(sizeOf);
                         }
                     }
                 }

@@ -1,8 +1,8 @@
 package com.telenav.kivakit.core.progress.reporters;
 
 import com.telenav.kivakit.core.collections.iteration.BaseIterable;
-import com.telenav.kivakit.core.collections.iteration.Next;
 import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.interfaces.collection.NextValue;
 
 import java.util.Iterator;
 
@@ -24,7 +24,7 @@ public class ProgressiveIterable<T> extends BaseIterable<T>
     }
 
     @Override
-    protected Next<T> newNext()
+    protected NextValue<T> newNext()
     {
         return () ->
         {
@@ -33,7 +33,7 @@ public class ProgressiveIterable<T> extends BaseIterable<T>
                 reporter.next();
                 return iterator.next();
             }
-            
+
             return null;
         };
     }

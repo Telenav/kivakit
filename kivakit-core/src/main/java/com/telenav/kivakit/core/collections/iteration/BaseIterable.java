@@ -19,13 +19,15 @@
 package com.telenav.kivakit.core.collections.iteration;
 
 import com.telenav.kivakit.core.lexakai.DiagramIteration;
+import com.telenav.kivakit.interfaces.collection.NextValue;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 
 /**
- * Implements the {@link Iterable} interface by using a {@link Next} object to find the next value when iterating.
+ * Implements the {@link Iterable} interface by using a {@link NextValue} object to find the next value when iterating.
  *
  * @author jonathanl (shibo)
  */
@@ -33,23 +35,23 @@ import java.util.Iterator;
 public abstract class BaseIterable<T> implements Iterable<T>
 {
     @Override
-    public final Iterator<T> iterator()
+    public final @NotNull Iterator<T> iterator()
     {
         return new BaseIterator<>()
         {
-            private final Next<T> next = newNext();
+            private final NextValue<T> next = newNext();
 
             @Override
             protected T onNext()
             {
-                return next.onNext();
+                return next.next();
             }
         };
     }
 
     /**
-     * @return A new {@link Next} implementation for finding the next value in a sequence
+     * @return A new {@link NextValue} implementation for finding the next value in a sequence
      */
     @UmlRelation(label = "creates")
-    protected abstract Next<T> newNext();
+    protected abstract NextValue<T> newNext();
 }

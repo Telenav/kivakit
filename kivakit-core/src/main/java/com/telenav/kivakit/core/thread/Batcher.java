@@ -18,12 +18,13 @@
 
 package com.telenav.kivakit.core.thread;
 
-import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.code.UncheckedCode;
-import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.lexakai.DiagramThread;
-import com.telenav.kivakit.interfaces.collection.Addable;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.time.Time;
+import com.telenav.kivakit.core.value.count.AbstractCount;
+import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.interfaces.collection.Addable;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -148,7 +149,7 @@ public class Batcher<Element> extends BaseRepeater
     /**
      * Adds elements to a batch and enqueues the batch when it is full before starting a new one. Note that this design
      * is better than adding to a single batch in the {@link Batcher} because that batch data structure would have to be
-     * shared among threads and therefore it would have to be synchronized. Having each thread add elements to its own
+     * shared among threads, and therefore it would have to be synchronized. Having each thread add elements to its own
      * thread-local batch adder reduces lock contention.
      */
     public class BatchAdder implements Addable<Element>
@@ -294,7 +295,7 @@ public class Batcher<Element> extends BaseRepeater
      */
     public synchronized void stop()
     {
-        // If we are running and we aren't already trying to stop
+        // If we are running, and we aren't already trying to stop
         if (state.transition(State.RUNNING, State.STOPPING))
         {
             // shut down the executor, interrupting waiting threads and waiting for them to exit,
@@ -361,7 +362,7 @@ public class Batcher<Element> extends BaseRepeater
         return copy;
     }
 
-    public Batcher<Element> withQueueSize(Count size)
+    public Batcher<Element> withQueueSize(AbstractCount<?> size)
     {
         var copy = copy();
         copy.queueSize = size.asInt();

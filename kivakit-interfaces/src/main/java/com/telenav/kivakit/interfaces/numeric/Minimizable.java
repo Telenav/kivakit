@@ -38,4 +38,9 @@ public interface Minimizable<Value>
      * @return The maximum of this value and the given value.
      */
     Value minimum(Value value);
+
+    /**
+     * Returns The minimum possible value
+     */
+    Value minimum();
 }

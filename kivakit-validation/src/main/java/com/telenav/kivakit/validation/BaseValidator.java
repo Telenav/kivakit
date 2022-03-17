@@ -18,7 +18,6 @@
 
 package com.telenav.kivakit.validation;
 
-import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
@@ -27,10 +26,11 @@ import com.telenav.kivakit.core.messaging.messages.status.Glitch;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Quibble;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
-import com.telenav.kivakit.core.value.name.Name;
 import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.thread.ReentrancyTracker;
+import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.core.value.name.Name;
 import com.telenav.kivakit.validation.lexakai.DiagramValidation;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -334,7 +334,12 @@ public abstract class BaseValidator implements Validator
         return null;
     }
 
-    protected void problemIfNotValueInRangeInclusive(int value, String name, int minimum, int maximum)
+    protected void problemIfNotInRangeExclusive(int value, String name, int minimum, int maximum)
+    {
+        problemIf(!Ints.isBetweenExclusive(value, minimum, maximum), "Invalid " + name);
+    }
+
+    protected void problemIfNotInRangeInclusive(int value, String name, int minimum, int maximum)
     {
         problemIf(!Ints.isBetweenInclusive(value, minimum, maximum), "Invalid " + name);
     }
