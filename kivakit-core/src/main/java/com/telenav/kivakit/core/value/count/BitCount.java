@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.core.lexakai.DiagramCount;
+import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -325,7 +325,7 @@ public class BitCount extends Count
         return bitCount(get() - count);
     }
 
-    public BitCount minus(BitCount count)
+    public BitCount minus(Count count)
     {
         if (count.isGreaterThan(this))
         {
@@ -370,7 +370,8 @@ public class BitCount extends Count
         return bitCount(rounded);
     }
 
-    public BitCount times(BitCount count)
+    @Override
+    public BitCount times(Count count)
     {
         return times(count.get());
     }
