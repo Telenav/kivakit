@@ -20,7 +20,8 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
 
 /**
  * Base class for classes that represent some kind of cardinal number. Each method in this class works for all subclass
- * types. Instances of the subclass are created with {@link #newInstance(long)}.
+ * types. Instances of the subclass are created with {@link #newInstance(long)}. If a subclass wishes to store
+ * information in its own field, it can override {@link #asLong()}.
  *
  * <p>
  * Counts have useful properties that primitive values like <i>long</i> and <i>int</i> do not have:
@@ -211,10 +212,11 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
         Source<Long>
 {
     /** The underlying primitive cardinal number */
-    private long count;
+    private final long count;
 
     public AbstractCount()
     {
+        this.count = 0;
     }
 
     protected AbstractCount(long count)
@@ -226,24 +228,23 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
 
     public BitCount asBitCount()
     {
-        return bitCount(count);
+        return bitCount(asLong());
     }
 
     public Count asCount()
     {
-        return Count.count(count);
+        return Count.count(asLong());
     }
 
     public Estimate asEstimate()
     {
-        return estimate(count);
+        return estimate(asLong());
     }
 
     public int asInt()
     {
-        return count > Integer.MAX_VALUE
-                ? Integer.MAX_VALUE
-                : (int) count;
+        var value = asLong();
+        return value > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) value;
     }
 
     public long asLong()
@@ -253,17 +254,17 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
 
     public Maximum asMaximum()
     {
-        return Maximum.maximum(count);
+        return Maximum.maximum(asLong());
     }
 
     public Minimum asMinimum()
     {
-        return Minimum.minimum(count);
+        return Minimum.minimum(asLong());
     }
 
     public BitCount bitsToRepresent()
     {
-        return BitCount.bitsToRepresent(count);
+        return BitCount.bitsToRepresent(asLong());
     }
 
     /**
@@ -272,7 +273,7 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
     @Override
     public int compareTo(AbstractCount<T> that)
     {
-        return Long.compare(count, that.count);
+        return Long.compare(asLong(), that.asLong());
     }
 
     /**
@@ -281,7 +282,7 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
     @Override
     public Count count()
     {
-        return Count.count(count);
+        return Count.count(asLong());
     }
 
     public T decremented()
@@ -296,12 +297,12 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
 
     public T dividedBy(long divisor)
     {
-        return inRange(count / divisor);
+        return inRange(asLong() / divisor);
     }
 
     public boolean dividesEvenlyBy(Quantizable value)
     {
-        return get() % value.quantum() == 0;
+        return asLong() % value.quantum() == 0;
     }
 
     @Override
@@ -310,7 +311,7 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
         if (object instanceof AbstractCount)
         {
             var that = (AbstractCount<?>) object;
-            return count == that.count;
+            return asLong() == that.asLong();
         }
         return false;
     }
@@ -361,13 +362,13 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
     @Override
     public Long get()
     {
-        return count;
+        return asLong();
     }
 
     @Override
     public int hashCode()
     {
-        return Long.hashCode(count);
+        return Long.hashCode(asLong());
     }
 
     public T inRange(long value)
@@ -400,44 +401,44 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
 
     public boolean isGreaterThan(Quantizable that)
     {
-        return count > that.quantum();
+        return asLong() > that.quantum();
     }
 
     public boolean isGreaterThanOrEqualTo(Quantizable that)
     {
-        return count >= that.quantum();
+        return asLong() >= that.quantum();
     }
 
     public boolean isLessThan(Quantizable that)
     {
-        return count < that.quantum();
+        return asLong() < that.quantum();
     }
 
     public boolean isLessThanOrEqualTo(Quantizable that)
     {
-        return count <= that.quantum();
+        return asLong() <= that.quantum();
     }
 
     public boolean isMaximum()
     {
-        return count == maximum().asLong();
+        return asLong() == maximum().asLong();
     }
 
     public boolean isMinimum()
     {
-        return count == 0;
+        return asLong() == 0;
     }
 
     @Override
     public boolean isNonZero()
     {
-        return count != 0;
+        return asLong() != 0;
     }
 
     @Override
     public boolean isZero()
     {
-        return count == 0;
+        return asLong() == 0;
     }
 
     public void loop(Loopable<T> code)
@@ -471,7 +472,7 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
     @Override
     public T maximum(T that)
     {
-        if (count > that.asLong())
+        if (asLong() > that.asLong())
         {
             return (T) this;
         }
@@ -489,7 +490,7 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
     {
         return inRange(Long.MAX_VALUE);
     }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -497,7 +498,7 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
     @SuppressWarnings("unchecked")
     public T minimum(T that)
     {
-        if (count < that.asLong())
+        if (asLong() < that.asLong())
         {
             return (T) this;
         }
@@ -523,7 +524,7 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
 
     public T minus(long count)
     {
-        return inRange(this.count - count);
+        return inRange(asLong() - count);
     }
 
     public byte[] newByteArray()
@@ -588,12 +589,12 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
 
     public T offset(long offset)
     {
-        return inRange(count + offset);
+        return inRange(asLong() + offset);
     }
 
     public T percent(Percent percentage)
     {
-        return inRange((long) (count * percentage.asUnitValue()));
+        return inRange((long) (asLong() * percentage.asUnitValue()));
     }
 
     public Percent percentOf(Quantizable total)
@@ -602,7 +603,7 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
         {
             return Percent._0;
         }
-        return Percent.of(count * 100.0 / total.quantum());
+        return Percent.of(asLong() * 100.0 / total.quantum());
     }
 
     public T plus(Quantizable count)
@@ -612,7 +613,7 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
 
     public T plus(long count)
     {
-        return inRange(this.count + count);
+        return inRange(asLong() + count);
     }
 
     /**
@@ -623,7 +624,7 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
      */
     public T powerOfTenCeiling(int digits)
     {
-        return inRange((get() + Ints.powerOfTen(digits))
+        return inRange((asLong() + Ints.powerOfTen(digits))
                 / Ints.powerOfTen(digits)
                 * Ints.powerOfTen(digits));
     }
@@ -636,7 +637,7 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
      */
     public T powerOfTenFloor(int digits)
     {
-        return inRange(get() / Ints.powerOfTen(digits) * Ints.powerOfTen(digits));
+        return inRange(asLong() / Ints.powerOfTen(digits) * Ints.powerOfTen(digits));
     }
 
     /**
@@ -658,7 +659,7 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
     @Override
     public long quantum()
     {
-        return count;
+        return asLong();
     }
 
     /**
@@ -682,7 +683,7 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
 
     public T times(long multiplier)
     {
-        return inRange(count * multiplier);
+        return inRange(asLong() * multiplier);
     }
 
     public T times(Percent percentage)

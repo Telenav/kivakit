@@ -29,6 +29,15 @@ public class HourOfDay extends AbstractCount<HourOfDay>
     }
 
     @Override
+    public String toString()
+    {
+        int hour = asInt();
+        return hour < 12
+                ? hour + "am"
+                : (hour - 12) + "pm";
+    }
+
+    @Override
     protected HourOfDay newInstance(long count)
     {
         return hourOfDay((int) count);

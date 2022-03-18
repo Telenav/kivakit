@@ -24,12 +24,10 @@ import com.telenav.kivakit.core.value.count.AbstractCount;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.core.ensure.Ensure.fail;
-
 /**
- * Typesafe value for day of week. The value stored in the {@link AbstractCount} superclass is the Java day of the week
- * ordinal (see java.time.{@link java.time.DayOfWeek}), where MONDAY is 1 and SUNDAY is 7. The ISO representation is
- * also supported, where MONDAY is 0 and SUNDAY is 6.
+ * Typesafe value for day of week. The value stored in the {@link AbstractCount} superclass is the ISO day of the week
+ * ordinal, where MONDAY is 0 and SUNDAY is 6. The Java day of the week (see java.time.{@link java.time.DayOfWeek}),
+ * where MONDAY is 1 and SUNDAY is 7 also supported.
  *
  * @author jonathanl (shibo)
  * @author matthieun
@@ -66,32 +64,7 @@ public class DayOfWeek extends AbstractCount<DayOfWeek>
 
     public static DayOfWeek forJavaDayOfWeek(java.time.DayOfWeek dayOfWeek)
     {
-        switch (dayOfWeek)
-        {
-            case SUNDAY:
-                return SUNDAY;
-
-            case MONDAY:
-                return MONDAY;
-
-            case TUESDAY:
-                return TUESDAY;
-
-            case WEDNESDAY:
-                return WEDNESDAY;
-
-            case THURSDAY:
-                return THURSDAY;
-
-            case FRIDAY:
-                return FRIDAY;
-
-            case SATURDAY:
-                return SATURDAY;
-
-            default:
-                return fail();
-        }
+        return javaDayOfWeek(dayOfWeek.getValue());
     }
 
     /**
@@ -130,26 +103,26 @@ public class DayOfWeek extends AbstractCount<DayOfWeek>
         }
     }
 
-    public static DayOfWeek isoDayOfWeek(int day)
+    public static DayOfWeek isoDayOfWeek(int isoDayOfWeek)
     {
-        return javaDayOfWeek(day + 1);
+        return new DayOfWeek(isoDayOfWeek);
     }
 
     public static DayOfWeek javaDayOfWeek(java.time.DayOfWeek day)
     {
-        return new DayOfWeek(day.getValue());
+        return javaDayOfWeek(day.getValue());
     }
 
-    public static DayOfWeek javaDayOfWeek(int day)
+    public static DayOfWeek javaDayOfWeek(int javaDayOfWeek)
     {
-        return new DayOfWeek(day);
+        return isoDayOfWeek(javaDayOfWeek - 1);
     }
 
-    public DayOfWeek(int javaDayOfWeek)
+    protected DayOfWeek(int isoDayOfWeek)
     {
-        super(Ensure.ensureBetweenInclusive(javaDayOfWeek, 1, 7, "Invalid day of the week: "
-                + "java = " + javaDayOfWeek
-                + ", iso = " + (javaDayOfWeek - 1)));
+        super(Ensure.ensureBetweenInclusive(isoDayOfWeek, 0, 6, "Invalid day of the week: "
+                + "java = " + (isoDayOfWeek + 1)
+                + ", iso = " + isoDayOfWeek));
     }
 
     /**
@@ -157,7 +130,7 @@ public class DayOfWeek extends AbstractCount<DayOfWeek>
      */
     public int asIsoOrdinal()
     {
-        return asJavaOrdinal() - 1;
+        return asInt();
     }
 
     public java.time.DayOfWeek asJavaDayOfWeek()
@@ -167,7 +140,7 @@ public class DayOfWeek extends AbstractCount<DayOfWeek>
 
     public int asJavaOrdinal()
     {
-        return asInt();
+        return asIsoOrdinal() + 1;
     }
 
     @Override
