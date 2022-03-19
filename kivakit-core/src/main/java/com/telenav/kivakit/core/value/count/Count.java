@@ -119,7 +119,7 @@ import java.util.function.Consumer;
  * <p><b>Comparison</b></p>
  *
  * <ul>
- *     <li>{@link #compareTo(AbstractCount)} - {@link Comparable#compareTo(Object)} implementation</li>
+ *     <li>{@link #compareTo(BaseCount)} - {@link Comparable#compareTo(Object)} implementation</li>
  *     <li>{@link #isLessThan(Quantizable)} - True if this count is less than the given quantum</li>
  *     <li>{@link #isGreaterThan(Quantizable)} - True if this count is greater than the given quantum</li>
  *     <li>{@link #isLessThanOrEqualTo(Quantizable)} - True if this count is less than or equal to the given quantum</li>
@@ -230,7 +230,7 @@ import java.util.function.Consumer;
  * @see Minimum
  */
 @UmlClassDiagram(diagram = DiagramCount.class)
-public class Count extends AbstractCount<Count>
+public class Count extends BaseCount<Count>
 {
     public static final Count _0 = new Count(0);
 
@@ -467,8 +467,14 @@ public class Count extends AbstractCount<Count>
     }
 
     @Override
-    protected Count newInstance(long count)
+    public Count newInstance(long count)
     {
         return count(count);
+    }
+
+    @Override
+    public Count newInstance(Long count)
+    {
+        return newInstance(count.longValue());
     }
 }

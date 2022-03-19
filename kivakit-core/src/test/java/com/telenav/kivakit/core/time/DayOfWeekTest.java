@@ -21,196 +21,207 @@ package com.telenav.kivakit.core.time;
 import com.telenav.kivakit.core.test.UnitTest;
 import org.junit.Test;
 
+import static com.telenav.kivakit.core.time.DayOfWeek.FRIDAY;
+import static com.telenav.kivakit.core.time.DayOfWeek.MONDAY;
+import static com.telenav.kivakit.core.time.DayOfWeek.SATURDAY;
+import static com.telenav.kivakit.core.time.DayOfWeek.SUNDAY;
+import static com.telenav.kivakit.core.time.DayOfWeek.THURSDAY;
+import static com.telenav.kivakit.core.time.DayOfWeek.TUESDAY;
+import static com.telenav.kivakit.core.time.DayOfWeek.WEDNESDAY;
+import static com.telenav.kivakit.core.time.DayOfWeek.forIsoOrdinal;
+import static com.telenav.kivakit.core.time.DayOfWeek.forJavaDayOfWeek;
+
 /**
- * Created by bogdantnv on 12/07/16.
+ * Unit test for {@link DayOfWeek}
+ *
+ * @author jonathanl (shibo)
+ * @author bogdantv
  */
-@SuppressWarnings({ "ResultOfMethodCallIgnored", "SpellCheckingInspection" })
 public class DayOfWeekTest extends UnitTest
 {
     @Test
     public void asIsoConstant0()
     {
-        ensureEqual(0, DayOfWeek.MONDAY.asIsoOrdinal());
+        ensureEqual(0, MONDAY.asIsoOrdinal());
     }
 
     @Test
     public void asIsoConstant1()
     {
-        ensureEqual(1, DayOfWeek.TUESDAY.asIsoOrdinal());
+        ensureEqual(1, TUESDAY.asIsoOrdinal());
     }
 
     @Test
     public void asIsoConstant2()
     {
-        ensureEqual(2, DayOfWeek.WEDNESDAY.asIsoOrdinal());
+        ensureEqual(2, WEDNESDAY.asIsoOrdinal());
     }
 
     @Test
     public void asIsoConstant3()
     {
-        ensureEqual(3, DayOfWeek.THURSDAY.asIsoOrdinal());
+        ensureEqual(3, THURSDAY.asIsoOrdinal());
     }
 
     @Test
     public void asIsoConstant4()
     {
-        ensureEqual(4, DayOfWeek.FRIDAY.asIsoOrdinal());
+        ensureEqual(4, FRIDAY.asIsoOrdinal());
     }
 
     @Test
     public void asIsoConstant5()
     {
-        ensureEqual(5, DayOfWeek.SATURDAY.asIsoOrdinal());
+        ensureEqual(5, SATURDAY.asIsoOrdinal());
     }
 
     @Test
     public void asIsoConstant6()
     {
-        ensureEqual(6, DayOfWeek.SUNDAY.asIsoOrdinal());
+        ensureEqual(6, SUNDAY.asIsoOrdinal());
     }
 
     @Test
     public void forIsoConstant0()
     {
-        ensureEqual(DayOfWeek.MONDAY, DayOfWeek.forIsoOrdinal(0));
+        ensureEqual(MONDAY, forIsoOrdinal(0));
     }
 
     @Test
     public void forIsoConstant1()
     {
-        ensureEqual(DayOfWeek.TUESDAY, DayOfWeek.forIsoOrdinal(1));
+        ensureEqual(TUESDAY, forIsoOrdinal(1));
     }
 
     @Test
     public void forIsoConstant2()
     {
-        ensureEqual(DayOfWeek.WEDNESDAY, DayOfWeek.forIsoOrdinal(2));
+        ensureEqual(WEDNESDAY, forIsoOrdinal(2));
     }
 
     @Test
     public void forIsoConstant3()
     {
-        ensureEqual(DayOfWeek.THURSDAY, DayOfWeek.forIsoOrdinal(3));
+        ensureEqual(THURSDAY, forIsoOrdinal(3));
     }
 
     @Test
     public void forIsoConstant4()
     {
-        ensureEqual(DayOfWeek.FRIDAY, DayOfWeek.forIsoOrdinal(4));
+        ensureEqual(FRIDAY, forIsoOrdinal(4));
     }
 
     @Test
     public void forIsoConstant5()
     {
-        ensureEqual(DayOfWeek.SATURDAY, DayOfWeek.forIsoOrdinal(5));
+        ensureEqual(SATURDAY, forIsoOrdinal(5));
     }
 
     @Test
     public void forIsoConstant6()
     {
-        ensureEqual(DayOfWeek.SUNDAY, DayOfWeek.forIsoOrdinal(6));
+        ensureEqual(SUNDAY, forIsoOrdinal(6));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void forIsoConstant7()
     {
-        DayOfWeek.forIsoOrdinal(7);
+        ensureThrows(() -> forIsoOrdinal(7));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void forIsoConstant8()
     {
-        DayOfWeek.forIsoOrdinal(8);
+        ensureThrows(() -> forIsoOrdinal(8));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void forIsoConstantMinus1()
     {
-        DayOfWeek.forIsoOrdinal(-1);
+        ensureThrows(() -> forIsoOrdinal(-1));
     }
 
     @Test
     public void forJavaDayOfWeekFRIDAY()
     {
-        ensureEqual(DayOfWeek.FRIDAY, DayOfWeek.forJavaDayOfWeek(java.time.DayOfWeek.FRIDAY));
+        ensureEqual(FRIDAY, forJavaDayOfWeek(java.time.DayOfWeek.FRIDAY));
     }
 
     @Test
     public void forJavaDayOfWeekMONDAY()
     {
-        ensureEqual(DayOfWeek.MONDAY, DayOfWeek.forJavaDayOfWeek(java.time.DayOfWeek.MONDAY));
+        ensureEqual(MONDAY, forJavaDayOfWeek(java.time.DayOfWeek.MONDAY));
     }
 
     @Test
     public void forJavaDayOfWeekSATURDAY()
     {
-        ensureEqual(DayOfWeek.SATURDAY, DayOfWeek.forJavaDayOfWeek(java.time.DayOfWeek.SATURDAY));
+        ensureEqual(SATURDAY, forJavaDayOfWeek(java.time.DayOfWeek.SATURDAY));
     }
 
     @Test
     public void forJavaDayOfWeekSUNDAY()
     {
-        ensureEqual(DayOfWeek.SUNDAY, DayOfWeek.forJavaDayOfWeek(java.time.DayOfWeek.SUNDAY));
+        ensureEqual(SUNDAY, forJavaDayOfWeek(java.time.DayOfWeek.SUNDAY));
     }
 
     @Test
     public void forJavaDayOfWeekTHURSDAY()
     {
-        ensureEqual(DayOfWeek.THURSDAY, DayOfWeek.forJavaDayOfWeek(java.time.DayOfWeek.THURSDAY));
+        ensureEqual(THURSDAY, forJavaDayOfWeek(java.time.DayOfWeek.THURSDAY));
     }
 
     @Test
     public void forJavaDayOfWeekTUESDAY()
     {
-        ensureEqual(DayOfWeek.TUESDAY, DayOfWeek.forJavaDayOfWeek(java.time.DayOfWeek.TUESDAY));
+        ensureEqual(TUESDAY, forJavaDayOfWeek(java.time.DayOfWeek.TUESDAY));
     }
 
     @Test
     public void forJavaDayOfWeekWEDNESDAY()
     {
-        ensureEqual(DayOfWeek.WEDNESDAY, DayOfWeek.forJavaDayOfWeek(java.time.DayOfWeek.WEDNESDAY));
+        ensureEqual(WEDNESDAY, forJavaDayOfWeek(java.time.DayOfWeek.WEDNESDAY));
     }
 
     @Test
-    @SuppressWarnings("SpellCheckingInspection")
     public void getJodaTimeConstant1()
     {
-        ensureEqual(1, DayOfWeek.MONDAY.asJavaOrdinal());
+        ensureEqual(1, MONDAY.asJavaOrdinal());
     }
 
     @Test
     public void getJodaTimeConstant2()
     {
-        ensureEqual(2, DayOfWeek.TUESDAY.asJavaOrdinal());
+        ensureEqual(2, TUESDAY.asJavaOrdinal());
     }
 
     @Test
     public void getJodaTimeConstant3()
     {
-        ensureEqual(3, DayOfWeek.WEDNESDAY.asJavaOrdinal());
+        ensureEqual(3, WEDNESDAY.asJavaOrdinal());
     }
 
     @Test
     public void getJodaTimeConstant4()
     {
-        ensureEqual(4, DayOfWeek.THURSDAY.asJavaOrdinal());
+        ensureEqual(4, THURSDAY.asJavaOrdinal());
     }
 
     @Test
     public void getJodaTimeConstant5()
     {
-        ensureEqual(5, DayOfWeek.FRIDAY.asJavaOrdinal());
+        ensureEqual(5, FRIDAY.asJavaOrdinal());
     }
 
     @Test
     public void getJodaTimeConstant6()
     {
-        ensureEqual(6, DayOfWeek.SATURDAY.asJavaOrdinal());
+        ensureEqual(6, SATURDAY.asJavaOrdinal());
     }
 
     @Test
     public void getJodaTimeConstant7()
     {
-        ensureEqual(7, DayOfWeek.SUNDAY.asJavaOrdinal());
+        ensureEqual(7, SUNDAY.asJavaOrdinal());
     }
 }

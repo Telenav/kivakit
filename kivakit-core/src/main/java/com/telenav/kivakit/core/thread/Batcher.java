@@ -22,7 +22,7 @@ import com.telenav.kivakit.core.code.UncheckedCode;
 import com.telenav.kivakit.core.lexakai.DiagramThread;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.time.Time;
-import com.telenav.kivakit.core.value.count.AbstractCount;
+import com.telenav.kivakit.core.value.count.BaseCount;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.interfaces.collection.Addable;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -362,7 +362,7 @@ public class Batcher<Element> extends BaseRepeater
         return copy;
     }
 
-    public Batcher<Element> withQueueSize(AbstractCount<?> size)
+    public Batcher<Element> withQueueSize(BaseCount<?> size)
     {
         var copy = copy();
         copy.queueSize = size.asInt();

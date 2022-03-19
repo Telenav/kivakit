@@ -75,7 +75,7 @@ import java.util.regex.Pattern;
  * @author Jonathan Locke
  */
 @UmlClassDiagram(diagram = DiagramCount.class)
-public final class Bytes extends AbstractCount<Bytes> implements ByteSized
+public final class Bytes extends BaseCount<Bytes> implements ByteSized
 {
     /** Pattern for string parsing. */
     private static final Pattern PATTERN = Pattern.compile("([0-9]+([.,][0-9]+)?)\\s*(|K|M|G|T)B?",
@@ -331,6 +331,18 @@ public final class Bytes extends AbstractCount<Bytes> implements ByteSized
     }
 
     @Override
+    public Bytes newInstance(long count)
+    {
+        return bytes(count);
+    }
+
+    @Override
+    public Bytes newInstance(Long value)
+    {
+        return newInstance(value.longValue());
+    }
+
+    @Override
     public Bytes sizeInBytes()
     {
         return this;
@@ -361,12 +373,6 @@ public final class Bytes extends AbstractCount<Bytes> implements ByteSized
             return unitString(asKilobytes(), "K");
         }
         return asBytes() + " bytes";
-    }
-
-    @Override
-    protected Bytes newInstance(long count)
-    {
-        return bytes(count);
     }
 
     /**

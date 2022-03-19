@@ -5,11 +5,8 @@ import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.language.primitive.Primes;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.code.Loopable;
-import com.telenav.kivakit.interfaces.collection.NextValue;
-import com.telenav.kivakit.interfaces.numeric.Maximizable;
-import com.telenav.kivakit.interfaces.numeric.Minimizable;
+import com.telenav.kivakit.interfaces.numeric.IntegerNumeric;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
-import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.kivakit.interfaces.value.Source;
 
 import java.util.function.Consumer;
@@ -96,7 +93,7 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  * <p><b>Comparison</b></p>
  *
  * <ul>
- *     <li>{@link #compareTo(AbstractCount)} - {@link Comparable#compareTo(Object)} implementation</li>
+ *     <li>{@link #compareTo(BaseCount)} - {@link Comparable#compareTo(Object)} implementation</li>
  *     <li>{@link #isLessThan(Quantizable)} - True if this count is less than the given quantum</li>
  *     <li>{@link #isGreaterThan(Quantizable)} - True if this count is greater than the given quantum</li>
  *     <li>{@link #isLessThanOrEqualTo(Quantizable)} - True if this count is less than or equal to the given quantum</li>
@@ -201,25 +198,20 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  * @see Maximum
  * @see Minimum
  */
-public abstract class AbstractCount<T extends AbstractCount<T>> implements
+public abstract class BaseCount<T extends BaseCount<T>> implements
         Countable,
-        Comparable<AbstractCount<T>>,
-        Quantizable,
-        Maximizable<T>,
-        Minimizable<T>,
-        Stringable,
-        NextValue<T>,
+        IntegerNumeric<T>,
         Source<Long>
 {
     /** The underlying primitive cardinal number */
     private final long count;
 
-    public AbstractCount()
+    public BaseCount()
     {
         this.count = 0;
     }
 
-    protected AbstractCount(long count)
+    protected BaseCount(long count)
     {
         ensure(count >= 0, "Count of " + count + " is negative");
 
@@ -271,7 +263,7 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
      * {@inheritDoc}
      */
     @Override
-    public int compareTo(AbstractCount<T> that)
+    public int compareTo(T that)
     {
         return Long.compare(asLong(), that.asLong());
     }
@@ -288,6 +280,12 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
     public T decremented()
     {
         return offset(-1);
+    }
+
+    @Override
+    public T dividedBy(T divisor)
+    {
+        return dividedBy(divisor.asLong());
     }
 
     public T dividedBy(Quantizable divisor)
@@ -308,9 +306,9 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
     @Override
     public boolean equals(Object object)
     {
-        if (object instanceof AbstractCount)
+        if (object instanceof BaseCount)
         {
-            var that = (AbstractCount<?>) object;
+            var that = (BaseCount<?>) object;
             return asLong() == that.asLong();
         }
         return false;
@@ -318,7 +316,7 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
 
     public void forEach(Consumer<T> consumer)
     {
-        for (var value = minimum(); value.isLessThan(maximum()); value = value.next())
+        for (var value = minimum(); value.isLessThan(this); value = value.next())
         {
             consumer.accept(value);
         }
@@ -389,12 +387,12 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
         return offset(1);
     }
 
-    public boolean isBetweenExclusive(AbstractCount<?> minimum, AbstractCount<?> maximum)
+    public boolean isBetweenExclusive(BaseCount<?> minimum, BaseCount<?> maximum)
     {
         return Longs.isBetweenExclusive(asLong(), minimum.asLong(), maximum.asLong());
     }
 
-    public boolean isBetweenInclusive(AbstractCount<?> minimum, AbstractCount<?> maximum)
+    public boolean isBetweenInclusive(BaseCount<?> minimum, BaseCount<?> maximum)
     {
         return Longs.isBetweenInclusive(asLong(), minimum.asLong(), maximum.asLong());
     }
@@ -443,7 +441,7 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
 
     public void loop(Loopable<T> code)
     {
-        for (var at = minimum(); at.isLessThan(maximum()); at = at.next())
+        for (var at = minimum(); at.isLessThan(this); at = at.next())
         {
             code.at(at);
         }
@@ -459,7 +457,7 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
 
     public void loopInclusive(Loopable<T> code)
     {
-        for (var at = minimum(); at.isLessThanOrEqualTo(maximum()); at = at.next())
+        for (var at = minimum(); at.isLessThanOrEqualTo(this); at = at.next())
         {
             code.at(at);
         }
@@ -488,9 +486,9 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
     @Override
     public T maximum()
     {
-        return inRange(Long.MAX_VALUE);
+        return newInstance(Long.MAX_VALUE);
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -515,6 +513,12 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
     public T minimum()
     {
         return inRange(0);
+    }
+
+    @Override
+    public T minus(T count)
+    {
+        return minus(count.asLong());
     }
 
     public T minus(Quantizable count)
@@ -546,6 +550,14 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
     {
         return new float[asInt()];
     }
+
+    /**
+     * Returns a new instance of the concrete subclass of this abstract class.
+     *
+     * @param count The count value
+     * @return The new instance
+     */
+    public abstract T newInstance(long count);
 
     public int[] newIntArray()
     {
@@ -604,6 +616,12 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
             return Percent._0;
         }
         return Percent.of(asLong() * 100.0 / total.quantum());
+    }
+
+    @Override
+    public T plus(T count)
+    {
+        return plus(count.asLong());
     }
 
     public T plus(Quantizable count)
@@ -671,6 +689,12 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
         return asInt();
     }
 
+    @Override
+    public T times(T count)
+    {
+        return times(count.asLong());
+    }
+
     public T times(Quantizable count)
     {
         return times(count.quantum());
@@ -706,14 +730,6 @@ public abstract class AbstractCount<T extends AbstractCount<T>> implements
     {
         return asCommaSeparatedString();
     }
-
-    /**
-     * Returns a new instance of the concrete subclass of this abstract class.
-     *
-     * @param count The count value
-     * @return The new instance
-     */
-    protected abstract T newInstance(long count);
 
     @SuppressWarnings("unchecked")
     private T asSubclassType()

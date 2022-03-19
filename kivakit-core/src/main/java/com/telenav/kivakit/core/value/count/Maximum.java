@@ -33,7 +33,7 @@ import java.util.Iterator;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
-public class Maximum extends AbstractCount<Maximum>
+public class Maximum extends BaseCount<Maximum>
 {
     public static final Maximum _0 = new Maximum(0);
 
@@ -236,8 +236,14 @@ public class Maximum extends AbstractCount<Maximum>
     }
 
     @Override
-    protected Maximum newInstance(long count)
+    public Maximum newInstance(long count)
     {
         return maximum(count);
+    }
+
+    @Override
+    public Maximum newInstance(Long count)
+    {
+        return newInstance(count.longValue());
     }
 }

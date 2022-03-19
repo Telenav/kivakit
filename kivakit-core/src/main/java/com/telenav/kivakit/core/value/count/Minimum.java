@@ -33,7 +33,7 @@ import java.util.Iterator;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
-public class Minimum extends AbstractCount<Minimum>
+public class Minimum extends BaseCount<Minimum>
 {
     public static final Minimum _0 = new Minimum(0);
 
@@ -236,8 +236,14 @@ public class Minimum extends AbstractCount<Minimum>
     }
 
     @Override
-    protected Minimum newInstance(long count)
+    public Minimum newInstance(long count)
     {
         return minimum(count);
+    }
+
+    @Override
+    public Minimum newInstance(Long count)
+    {
+        return newInstance(count.longValue());
     }
 }

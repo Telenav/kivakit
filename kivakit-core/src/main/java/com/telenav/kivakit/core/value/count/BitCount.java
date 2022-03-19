@@ -33,7 +33,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see Count
  */
 @UmlClassDiagram(diagram = DiagramCount.class)
-public class BitCount extends AbstractCount<BitCount>
+public class BitCount extends BaseCount<BitCount>
 {
     public static final BitCount _0 = new BitCount(0);
 
@@ -270,6 +270,12 @@ public class BitCount extends AbstractCount<BitCount>
         return asInt() == 64 ? Long.MIN_VALUE : -maximumSigned() - 1;
     }
 
+    @Override
+    public BitCount newInstance(Long value)
+    {
+        return newInstance(value.longValue());
+    }
+
     /**
      * @return The number of values this bit count can take on (2^n)
      */
@@ -279,7 +285,7 @@ public class BitCount extends AbstractCount<BitCount>
     }
 
     @Override
-    protected BitCount newInstance(long count)
+    public BitCount newInstance(long count)
     {
         return bitCount(count);
     }

@@ -152,7 +152,9 @@ public class Ensure
      * If the condition is false (the check is invalid), a {@link EnsureProblem} message is given to the {@link
      * FailureReporter} that message type.
      */
-    public static <T> T ensure(boolean condition, Throwable e, String message,
+    public static <T> T ensure(boolean condition,
+                               Throwable e,
+                               String message,
                                Object... arguments)
     {
         if (!condition)
@@ -162,30 +164,57 @@ public class Ensure
         return null;
     }
 
+    public static double ensureBetween(double actual, double low, double high)
+    {
+        ensure(low < high, "The low boundary $ is higher than the high boundary $", low, high);
+        if (actual < low || actual > high)
+        {
+            fail("Value $ is not between $ and $", actual, low, high);
+        }
+        return actual;
+    }
+
     public static long ensureBetweenExclusive(long value, long minimum, long maximum)
     {
         ensureBetweenExclusive(value, minimum, maximum, "Value $ must be between $ and $ inclusive", value, minimum, maximum);
         return value;
     }
 
-    public static long ensureBetweenExclusive(long value, long minimum, long maximum, String message,
+    public static long ensureBetweenExclusive(long value,
+                                              long minimum,
+                                              long maximum,
+                                              String message,
                                               Object... arguments)
     {
         ensure(value >= minimum && value < maximum, message, arguments);
         return value;
     }
 
-    public static long ensureBetweenInclusive(long value, long minimum, long maximum, String message,
+    public static long ensureBetweenInclusive(long value,
+                                              long minimum,
+                                              long maximum,
+                                              String message,
                                               Object... arguments)
     {
         ensure(value >= minimum && value <= maximum, message, arguments);
         return value;
     }
 
-    public static long ensureBetweenInclusive(long value, long minimum, long maximum)
+    public static long ensureBetweenInclusive(long value,
+                                              long minimum,
+                                              long maximum)
     {
         ensureBetweenInclusive(value, minimum, maximum, "Value $ must be between $ and $ inclusive", value, minimum, maximum);
         return value;
+    }
+
+    public static void ensureClose(Number expected, Number actual, int numberOfDecimalsToMatch)
+    {
+        var roundedExpected = (int) (expected.doubleValue() * Math.pow(10, numberOfDecimalsToMatch))
+                / Math.pow(10, numberOfDecimalsToMatch);
+        var roundedActual = (int) (actual.doubleValue() * Math.pow(10, numberOfDecimalsToMatch))
+                / Math.pow(10, numberOfDecimalsToMatch);
+        ensureWithin(roundedExpected, roundedActual, 0.0);
     }
 
     public static <T> T ensureEqual(T given, T expected)
@@ -215,7 +244,7 @@ public class Ensure
         else
         {
             // otherwise, if one value is null the other has to be.
-            ensure(given == expected);
+            ensure(given == expected, "Not equal: one object is null and the other isn't");
         }
         return null;
     }
@@ -273,6 +302,11 @@ public class Ensure
         }
     }
 
+    public static void ensureZero(final Number value)
+    {
+        ensure(value.doubleValue() == 0.0);
+    }
+
     public static <T> T fail()
     {
         return fail("Operation failure");
@@ -328,24 +362,6 @@ public class Ensure
     public static void warning(Throwable throwable, String message, Object... arguments)
     {
         System.out.println("Warning: " + Strings.format(message, arguments) + "\n" + throwable);
-    }
-
-    protected void ensureBetween(double actual, double low, double high)
-    {
-        ensure(low < high, "The low boundary $ is higher than the high boundary $", low, high);
-        if (actual < low || actual > high)
-        {
-            fail("Value $ is not between $ and $", actual, low, high);
-        }
-    }
-
-    protected void ensureClose(Number expected, Number actual, int numberOfDecimalsToMatch)
-    {
-        var roundedExpected = (int) (expected.doubleValue() * Math.pow(10, numberOfDecimalsToMatch))
-                / Math.pow(10, numberOfDecimalsToMatch);
-        var roundedActual = (int) (actual.doubleValue() * Math.pow(10, numberOfDecimalsToMatch))
-                / Math.pow(10, numberOfDecimalsToMatch);
-        ensureWithin(roundedExpected, roundedActual, 0.0);
     }
 
     private static String format(String message, Object[] arguments)

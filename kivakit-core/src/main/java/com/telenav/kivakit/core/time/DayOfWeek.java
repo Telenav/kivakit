@@ -20,12 +20,12 @@ package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.lexakai.DiagramTime;
-import com.telenav.kivakit.core.value.count.AbstractCount;
+import com.telenav.kivakit.core.value.count.BaseCount;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * Typesafe value for day of week. The value stored in the {@link AbstractCount} superclass is the ISO day of the week
+ * Typesafe value for day of week. The value stored in the {@link BaseCount} superclass is the ISO day of the week
  * ordinal, where MONDAY is 0 and SUNDAY is 6. The Java day of the week (see java.time.{@link java.time.DayOfWeek}),
  * where MONDAY is 1 and SUNDAY is 7 also supported.
  *
@@ -35,7 +35,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @UmlClassDiagram(diagram = DiagramTime.class)
 @LexakaiJavadoc(complete = true)
-public class DayOfWeek extends AbstractCount<DayOfWeek>
+public class DayOfWeek extends BaseCount<DayOfWeek>
 {
     public static final DayOfWeek MONDAY = javaDayOfWeek(java.time.DayOfWeek.MONDAY);
 
@@ -156,14 +156,20 @@ public class DayOfWeek extends AbstractCount<DayOfWeek>
     }
 
     @Override
-    public String toString()
+    public DayOfWeek newInstance(long javaOrdinal)
     {
-        return asJavaDayOfWeek().name();
+        return forJavaOrdinal((int) javaOrdinal);
     }
 
     @Override
-    protected DayOfWeek newInstance(final long javaOrdinal)
+    public DayOfWeek newInstance(Long javaOrdinal)
     {
-        return forJavaOrdinal((int) javaOrdinal);
+        return newInstance(javaOrdinal.longValue());
+    }
+
+    @Override
+    public String toString()
+    {
+        return asJavaDayOfWeek().name();
     }
 }

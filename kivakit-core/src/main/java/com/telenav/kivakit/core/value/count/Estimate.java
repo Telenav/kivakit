@@ -33,7 +33,7 @@ import java.util.Iterator;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCount.class)
-public class Estimate extends AbstractCount<Estimate> implements Stringable
+public class Estimate extends BaseCount<Estimate> implements Stringable
 {
     public static final Estimate _0 = new Estimate(0);
 
@@ -241,8 +241,14 @@ public class Estimate extends AbstractCount<Estimate> implements Stringable
     }
 
     @Override
-    protected Estimate newInstance(long count)
+    public Estimate newInstance(long count)
     {
         return estimate(count);
+    }
+
+    @Override
+    public Estimate newInstance(Long count)
+    {
+        return newInstance(count.longValue());
     }
 }

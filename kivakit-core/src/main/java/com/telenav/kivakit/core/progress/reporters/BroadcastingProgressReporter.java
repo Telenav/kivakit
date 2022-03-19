@@ -28,7 +28,7 @@ import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Rate;
 import com.telenav.kivakit.core.time.Time;
-import com.telenav.kivakit.core.value.count.AbstractCount;
+import com.telenav.kivakit.core.value.count.BaseCount;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -89,7 +89,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
      * @param itemName The item that is being processed, like "bytes"
      * @param steps The number of steps in the operation
      */
-    public static BroadcastingProgressReporter create(Listener listener, String itemName, AbstractCount<?> steps)
+    public static BroadcastingProgressReporter create(Listener listener, String itemName, BaseCount<?> steps)
     {
         return listener.listenTo(new BroadcastingProgressReporter()
                 .withItemName(itemName)
@@ -108,7 +108,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
 
     public static BroadcastingProgressReporter createConcurrent(Listener listener,
                                                                 String itemName,
-                                                                AbstractCount<?> steps)
+                                                                BaseCount<?> steps)
     {
         return listener.listenTo(new ConcurrentBroadcastingProgressReporter()
                 .withItemName(itemName)
@@ -265,7 +265,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
     }
 
     @Override
-    public BroadcastingProgressReporter steps(AbstractCount<?> steps)
+    public BroadcastingProgressReporter steps(BaseCount<?> steps)
     {
         if (steps != null)
         {
@@ -300,7 +300,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
         return progress;
     }
 
-    public BroadcastingProgressReporter withSteps(AbstractCount<?> steps)
+    public BroadcastingProgressReporter withSteps(BaseCount<?> steps)
     {
         if (steps != null)
         {

@@ -165,6 +165,11 @@ public class CountMap<T>
         return this;
     }
 
+    public boolean isEmpty()
+    {
+        return size() == 0;
+    }
+
     public Collection<T> keySet()
     {
         return counts.keySet();

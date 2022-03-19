@@ -32,7 +32,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramCode.class)
-public interface Loopable<Value extends Minimizable<Value> & Maximizable<Value> & NextValue<Value>>
+public interface Loopable<Value extends Minimizable<Value>
+        & Maximizable<Value>
+        & NextValue<Value>>
 {
     /**
      * Executes the target code for next value in a sequence
@@ -43,12 +45,10 @@ public interface Loopable<Value extends Minimizable<Value> & Maximizable<Value> 
 
     /**
      * Executes the loop for each value
-     *
-     * @param loop The loop code to execute
      */
     default void forEach(Value minimum, Value maximum)
     {
-        for (Value at = minimum; at.equals(maximum); at = at.next())
+        for (Value at = minimum; !at.equals(maximum); at = at.next())
         {
             at(at);
         }

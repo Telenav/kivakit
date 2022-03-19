@@ -22,7 +22,7 @@ import com.telenav.kivakit.core.lexakai.DiagramProgress;
 import com.telenav.kivakit.core.progress.reporters.BroadcastingProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveInputStream;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveOutputStream;
-import com.telenav.kivakit.core.value.count.AbstractCount;
+import com.telenav.kivakit.core.value.count.BaseCount;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.interfaces.lifecycle.Resettable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -158,7 +158,7 @@ public interface ProgressReporter extends Resettable
     /**
      * Sets the number of steps that can be executed, allowing a calculation of absolute progress
      */
-    default ProgressReporter steps(AbstractCount<?> steps)
+    default ProgressReporter steps(BaseCount<?> steps)
     {
         return this;
     }
