@@ -1,6 +1,9 @@
 package com.telenav.kivakit.interfaces.numeric;
 
 import com.telenav.kivakit.interfaces.comparison.Filter;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
+
+import java.util.Objects;
 
 /**
  * Provides convenient random number methods given an implementation of {@link #randomLongExclusive(long, long)}, and
@@ -16,7 +19,7 @@ public interface RandomNumeric extends CastTrait
         return random(type, Filter.all());
     }
 
-    default <T extends Number> T random(Class<T> type, Filter<T> filter)
+    default <T extends Number> T random(Class<T> type, Matcher<T> filter)
     {
         return randomInclusive(minimum(type), maximum(type), type, filter);
     }
@@ -72,14 +75,15 @@ public interface RandomNumeric extends CastTrait
      */
     double randomDoubleZeroToOne();
 
-    default <T extends Number> T randomExclusive(long minimum, long maximum, Class<T> type, Filter<T> filter)
+    default <T extends Number> T randomExclusive(long minimum, long maximum, Class<T> type, Matcher<T> matcher)
     {
+        Objects.requireNonNull(matcher);
         T value;
         do
         {
             value = cast(randomLongExclusive(minimum, maximum), type);
         }
-        while (filter != null && !filter.test(value));
+        while (!matcher.test(value));
         return value;
     }
 
@@ -93,8 +97,12 @@ public interface RandomNumeric extends CastTrait
         return (float) randomDouble(Float.MIN_VALUE, Float.MAX_VALUE);
     }
 
-    default <T extends Number> T randomInclusive(long minimum, long maximum, Class<T> type, Filter<T> filter)
+    default <T extends Number> T randomInclusive(long minimum, long maximum, Class<T> type, Matcher<T> filter)
     {
+        if (maximum + 1 < 0)
+        {
+            maximum = Long.MAX_VALUE - 1;
+        }
         return randomExclusive(minimum, maximum + 1, type, filter);
     }
 

@@ -48,6 +48,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Random;
 import java.util.RandomAccess;
 import java.util.function.Function;
 
@@ -123,9 +124,6 @@ public abstract class BaseList<Element> implements
         Countable,
         Stringable
 {
-    /** Array store when frozen */
-    private Element[] array;
-
     /** Initial list implementation while mutable */
     private final List<Element> list;
 
@@ -755,6 +753,16 @@ public abstract class BaseList<Element> implements
     public Element set(int index, Element element)
     {
         return list.set(index, element);
+    }
+
+    public void shuffle()
+    {
+        shuffle(new Random());
+    }
+
+    public void shuffle(Random random)
+    {
+        Collections.shuffle(list, random);
     }
 
     /**

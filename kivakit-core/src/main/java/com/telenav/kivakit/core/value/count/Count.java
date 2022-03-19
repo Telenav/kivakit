@@ -22,7 +22,7 @@ import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.lexakai.DiagramCount;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.level.Percent;
-import com.telenav.kivakit.interfaces.code.Loopable;
+import com.telenav.kivakit.interfaces.code.LoopBody;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -187,7 +187,7 @@ import java.util.function.Consumer;
  *
  * <ul>
  *     <li>{@link #loop(Runnable)} - Runs the given code block {@link #count()} times</li>
- *     <li>{@link #loop(Loopable)} - Runs the given code block {@link #count()} times, passing the iteration number to the code</li>
+ *     <li>{@link #loop(LoopBody)} - Runs the given code block {@link #count()} times, passing the iteration number to the code</li>
  * </ul>
  *
  * <p><br/><hr/><br/></p>
@@ -314,11 +314,11 @@ public class Count extends BaseCount<Count>
 
     public static final Count _8192 = new Count(8192);
 
-    public static final Count _16384 = new Count(16384);
+    public static final Count _16_384 = new Count(16384);
 
-    public static final Count _32768 = new Count(32678);
+    public static final Count _32_768 = new Count(32678);
 
-    public static final Count _65536 = new Count(65536);
+    public static final Count _65_536 = new Count(65536);
 
     public static final Count _131_072 = new Count(131_072);
 

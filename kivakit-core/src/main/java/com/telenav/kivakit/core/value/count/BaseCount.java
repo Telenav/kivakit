@@ -4,7 +4,9 @@ import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.language.primitive.Primes;
 import com.telenav.kivakit.core.value.level.Percent;
-import com.telenav.kivakit.interfaces.code.Loopable;
+import com.telenav.kivakit.interfaces.code.LoopBody;
+import com.telenav.kivakit.interfaces.code.RetryableLoopBody;
+import com.telenav.kivakit.interfaces.code.RetryableLoopBody.Action;
 import com.telenav.kivakit.interfaces.numeric.IntegerNumeric;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.interfaces.value.Source;
@@ -155,7 +157,7 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  *
  * <ul>
  *     <li>{@link #loop(Runnable)} - Runs the given code block {@link #count()} times</li>
- *     <li>{@link #loop(Loopable)} - Runs the given code block {@link #count()} times, passing the iteration number to the code</li>
+ *     <li>{@link #loop(LoopBody)} - Runs the given code block {@link #count()} times, passing the iteration number to the code</li>
  * </ul>
  *
  * <p><br/><hr/><br/></p>
@@ -439,11 +441,25 @@ public abstract class BaseCount<T extends BaseCount<T>> implements
         return asLong() == 0;
     }
 
-    public void loop(Loopable<T> code)
+    public void loop(LoopBody<T> body)
     {
-        for (var at = minimum(); at.isLessThan(this); at = at.next())
+        var maximum = this;
+        for (var at = minimum(); at.isLessThan(maximum); at = at.next())
         {
-            code.at(at);
+            body.at(at);
+        }
+    }
+
+    public void loop(RetryableLoopBody<T> body)
+    {
+        var maximum = this;
+        for (var at = minimum(); at.isLessThan(maximum); at = at.next())
+        {
+
+            if (body.at(at) == Action.RETRY)
+            {
+                maximum = maximum.incremented();
+            }
         }
     }
 
@@ -455,7 +471,7 @@ public abstract class BaseCount<T extends BaseCount<T>> implements
         }
     }
 
-    public void loopInclusive(Loopable<T> code)
+    public void loopInclusive(LoopBody<T> code)
     {
         for (var at = minimum(); at.isLessThanOrEqualTo(this); at = at.next())
         {

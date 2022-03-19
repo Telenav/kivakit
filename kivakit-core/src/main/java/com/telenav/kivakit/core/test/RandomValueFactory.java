@@ -18,6 +18,8 @@
 
 package com.telenav.kivakit.core.test;
 
+import com.telenav.kivakit.core.collections.list.ObjectList;
+import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.lexakai.DiagramTest;
 import com.telenav.kivakit.core.logging.Logger;
@@ -30,14 +32,13 @@ import com.telenav.kivakit.core.value.count.Range;
 import com.telenav.kivakit.core.value.identifier.Identifier;
 import com.telenav.kivakit.core.value.level.Confidence;
 import com.telenav.kivakit.interfaces.comparison.Filter;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.numeric.RandomNumeric;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Consumer;
@@ -45,6 +46,9 @@ import java.util.function.Consumer;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.test.UnitTest.Repeats.ALLOW_REPEATS;
 import static com.telenav.kivakit.core.test.UnitTest.Repeats.NO_REPEATS;
+import static com.telenav.kivakit.core.value.count.Count._65_536;
+import static com.telenav.kivakit.interfaces.code.RetryableLoopBody.Action.NEXT;
+import static com.telenav.kivakit.interfaces.code.RetryableLoopBody.Action.RETRY;
 
 /**
  * Utility class for tests used to create random values. {@link UnitTest} has a variety of methods for random testing
@@ -115,10 +119,10 @@ public class RandomValueFactory implements RandomNumeric
     }
 
     public void byteSequence(Repeats repeats,
-                             Filter<Byte> filter,
+                             Matcher<Byte> include,
                              Consumer<Byte> consumer)
     {
-        sequence(repeats, iterations(), minimum(Byte.class), maximum(Byte.class), Byte.class, filter, consumer);
+        sequence(repeats, iterations(), minimum(Byte.class), maximum(Byte.class), Byte.class, include, consumer);
     }
 
     public void byteSequence(Repeats repeats,
@@ -127,10 +131,10 @@ public class RandomValueFactory implements RandomNumeric
         sequence(repeats, iterations(), minimum(Byte.class), maximum(Byte.class), Byte.class, Filter.all(), consumer);
     }
 
-    public void byteSequence(Filter<Byte> filter,
+    public void byteSequence(Matcher<Byte> include,
                              Consumer<Byte> consumer)
     {
-        sequence(ALLOW_REPEATS, iterations(), minimum(Byte.class), maximum(Byte.class), Byte.class, Filter.all(), consumer);
+        sequence(ALLOW_REPEATS, iterations(), minimum(Byte.class), maximum(Byte.class), Byte.class, include, consumer);
     }
 
     public Confidence confidence()
@@ -196,10 +200,10 @@ public class RandomValueFactory implements RandomNumeric
     }
 
     public void intSequence(Repeats repeats,
-                            Filter<Integer> filter,
+                            Matcher<Integer> include,
                             Consumer<Integer> consumer)
     {
-        sequence(repeats, iterations(), minimum(Integer.class), maximum(Integer.class), Integer.class, filter, consumer);
+        sequence(repeats, iterations(), minimum(Integer.class), maximum(Integer.class), Integer.class, include, consumer);
     }
 
     public void intSequence(Repeats repeats,
@@ -208,15 +212,15 @@ public class RandomValueFactory implements RandomNumeric
         sequence(repeats, iterations(), minimum(Integer.class), maximum(Integer.class), Integer.class, Filter.all(), consumer);
     }
 
-    public void intSequence(Filter<Integer> filter,
+    public void intSequence(Matcher<Integer> include,
                             Consumer<Integer> consumer)
     {
-        sequence(ALLOW_REPEATS, iterations(), minimum(Integer.class), maximum(Integer.class), Integer.class, Filter.all(), consumer);
+        sequence(ALLOW_REPEATS, iterations(), minimum(Integer.class), maximum(Integer.class), Integer.class, include, consumer);
     }
 
     public Count iterations()
     {
-        return Count._100;
+        return Count.count(5000);
     }
 
     public char letter()
@@ -265,14 +269,21 @@ public class RandomValueFactory implements RandomNumeric
     }
 
     public <T extends Number> List<T> list(Repeats repeats,
+                                           Class<T> type,
+                                           Matcher<T> include)
+    {
+        return list(repeats, iterations(), type, include);
+    }
+
+    public <T extends Number> List<T> list(Repeats repeats,
                                            Count count,
                                            long minimum,
                                            long maximum,
                                            Class<T> type,
-                                           Filter<T> filter)
+                                           Matcher<T> include)
     {
         var list = new ArrayList<T>(count.asInt());
-        sequence(repeats, count, minimum, maximum, type, filter, list::add);
+        sequence(repeats, count, minimum, maximum, type, include, list::add);
         return list;
     }
 
@@ -282,19 +293,15 @@ public class RandomValueFactory implements RandomNumeric
                                            long maximum,
                                            Class<T> type)
     {
-        var list = new ArrayList<T>(count.asInt());
-        sequence(repeats, count, minimum, maximum, type, Filter.all(), list::add);
-        return list;
+        return list(repeats, count, minimum, maximum, type, Filter.all());
     }
 
     public <T extends Number> List<T> list(Repeats repeats,
                                            Count count,
                                            Class<T> type,
-                                           Filter<T> filter)
+                                           Matcher<T> include)
     {
-        var list = new ArrayList<T>(count.asInt());
-        sequence(repeats, count, minimum(type), maximum(type), type, filter, list::add);
-        return list;
+        return list(repeats, count, minimum(type), maximum(type), type, include);
     }
 
     public void longSequence(Consumer<Long> consumer)
@@ -303,10 +310,10 @@ public class RandomValueFactory implements RandomNumeric
     }
 
     public void longSequence(Repeats repeats,
-                             Filter<Long> filter,
+                             Matcher<Long> include,
                              Consumer<Long> consumer)
     {
-        sequence(repeats, iterations(), minimum(Long.class), maximum(Long.class), Long.class, filter, consumer);
+        sequence(repeats, iterations(), minimum(Long.class), maximum(Long.class), Long.class, include, consumer);
     }
 
     public void longSequence(Repeats repeats,
@@ -315,10 +322,10 @@ public class RandomValueFactory implements RandomNumeric
         sequence(repeats, iterations(), minimum(Long.class), maximum(Long.class), Long.class, Filter.all(), consumer);
     }
 
-    public void longSequence(Filter<Long> filter,
+    public void longSequence(Matcher<Long> include,
                              Consumer<Long> consumer)
     {
-        sequence(ALLOW_REPEATS, iterations(), minimum(Long.class), maximum(Long.class), Long.class, Filter.all(), consumer);
+        sequence(ALLOW_REPEATS, iterations(), minimum(Long.class), maximum(Long.class), Long.class, include, consumer);
     }
 
     public void loop(Runnable code)
@@ -353,6 +360,11 @@ public class RandomValueFactory implements RandomNumeric
         return rangeInclusive(minimum, maximum.incremented(), minimumWidth);
     }
 
+    public <T extends BaseCount<T>> Range<T> rangeExclusive(T minimum, T maximum)
+    {
+        return rangeInclusive(minimum, maximum.incremented(), 0);
+    }
+
     public Range<Count> rangeInclusive(long minimum, long maximum)
     {
         return rangeInclusive(minimum, maximum, 0);
@@ -375,7 +387,7 @@ public class RandomValueFactory implements RandomNumeric
 
         var width = maximum - minimum;
         var randomWidth = randomLongInclusive(minimumWidth, width);
-        var left = randomLongInclusive(minimum, width - randomWidth);
+        var left = randomLongInclusive(minimum, Math.max(minimum, width - randomWidth));
 
         return Range.inclusive(Count.count(left), Count.count(left + width));
     }
@@ -442,18 +454,18 @@ public class RandomValueFactory implements RandomNumeric
     public <T extends Number> void sequence(Repeats repeats,
                                             Count count,
                                             Class<T> type,
-                                            Filter<T> filter,
+                                            Matcher<T> include,
                                             Consumer<T> consumer)
     {
-        sequence(repeats, count, minimum(type), maximum(type), type, filter, consumer);
+        sequence(repeats, count, minimum(type), maximum(type), type, include, consumer);
     }
 
     public <T extends Number> void sequence(Repeats repeats,
                                             Class<T> type,
-                                            Filter<T> filter,
+                                            Matcher<T> include,
                                             Consumer<T> consumer)
     {
-        sequence(repeats, iterations(), minimum(type), maximum(type), type, filter, consumer);
+        sequence(repeats, iterations(), minimum(type), maximum(type), type, include, consumer);
     }
 
     public <T extends Number> void sequence(Repeats repeats,
@@ -461,55 +473,57 @@ public class RandomValueFactory implements RandomNumeric
                                             long minimum,
                                             long maximum,
                                             Class<T> type,
-                                            Filter<T> filter,
+                                            Matcher<T> include,
                                             Consumer<T> consumer)
     {
         // Computed the range, handling overflow (well enough for our tests)
         double range = (double) maximum - (double) minimum;
+        if (repeats == NO_REPEATS && count.asInt() > range)
+        {
+            count = count((long) range);
+        }
 
-        assert count.get() <= range : "Count is " + count + " but maximum of " + maximum + " - " + minimum + " = " + (long) range;
+        ensure(repeats == ALLOW_REPEATS || count.get() <= range, "Count $ is larger than range $", count, range);
 
         // If we're allowing repeats,
         if (repeats == NO_REPEATS)
         {
-            var values = new HashSet<T>();
-
-            // and we're trying to get values for less than 80% of the range,
-            if (100L * count.asInt() / range < 80)
+            var values = new ObjectSet<T>();
+            if (count.isLessThanOrEqualTo(_65_536))
             {
-                // just fill the set randomly until it's big enough,
-                while (values.size() < count.asInt())
+                count.loop(at ->
                 {
-                    values.add(randomInclusive(minimum, maximum, type, filter));
-                }
+                    var value = cast(at, type);
+                    if (include.matches(value))
+                    {
+                        values.add(value);
+                        return NEXT;
+                    }
+                    return RETRY;
+                });
             }
             else
             {
-                // but if we're trying to fill most or all of the range with no repeats
-                // it might take too long to do that randomly, so we keep a list of choices
-                // (this is only going to work for relatively small ranges due to memory),
-                var choices = new LinkedList<T>();
-                for (var i = minimum; i < maximum; i++)
+                count.loop(() ->
                 {
-                    choices.add(cast(i, type));
-                }
-
-                // and while we don't have enough values,
-                while (values.size() < count.asInt())
-                {
-                    // we pick a random index in the remaining choices list
-                    var index = choices.size() <= 1 ? 0 : randomIndex(choices.size());
-
-                    // and add the chosen value to the set
-                    values.add(choices.get(index));
-
-                    // before removing it from the choices,
-                    choices.remove(index);
-                }
+                    var included = false;
+                    do
+                    {
+                        var randomValue = cast(randomLongExclusive(minimum, maximum), type);
+                        included = !values.contains(randomValue) && include.matches(randomValue);
+                        if (included)
+                        {
+                            values.add(randomValue);
+                        }
+                    }
+                    while (!included);
+                });
             }
 
-            // until finally, we call the consumer with each value.
-            for (var value : values)
+            var list = new ObjectList<>(values);
+            list.shuffle(random);
+
+            for (var value : list)
             {
                 consumer.accept(value);
             }
@@ -517,7 +531,7 @@ public class RandomValueFactory implements RandomNumeric
         else
         {
             // otherwise, we are allowing repeats, so things are simple.
-            count.loop(() -> consumer.accept(randomInclusive(minimum, maximum, type, filter)));
+            count.loop(() -> consumer.accept(randomInclusive(minimum, maximum, type, include)));
         }
     }
 
@@ -527,10 +541,10 @@ public class RandomValueFactory implements RandomNumeric
     }
 
     public void shortSequence(Repeats repeats,
-                              Filter<Short> filter,
+                              Matcher<Short> include,
                               Consumer<Short> consumer)
     {
-        sequence(repeats, iterations(), minimum(Short.class), maximum(Short.class), Short.class, filter, consumer);
+        sequence(repeats, iterations(), minimum(Short.class), maximum(Short.class), Short.class, include, consumer);
     }
 
     public void shortSequence(Repeats repeats,
@@ -539,10 +553,10 @@ public class RandomValueFactory implements RandomNumeric
         sequence(repeats, iterations(), minimum(Short.class), maximum(Short.class), Short.class, Filter.all(), consumer);
     }
 
-    public void shortSequence(Filter<Short> filter,
+    public void shortSequence(Matcher<Short> include,
                               Consumer<Short> consumer)
     {
-        sequence(ALLOW_REPEATS, iterations(), minimum(Short.class), maximum(Short.class), Short.class, Filter.all(), consumer);
+        sequence(ALLOW_REPEATS, iterations(), minimum(Short.class), maximum(Short.class), Short.class, include, consumer);
     }
 
     public String string()

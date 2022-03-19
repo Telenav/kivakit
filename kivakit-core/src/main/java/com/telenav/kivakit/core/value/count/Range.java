@@ -21,7 +21,8 @@ package com.telenav.kivakit.core.value.count;
 import com.telenav.kivakit.core.lexakai.DiagramCount;
 import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.test.RandomValueFactory;
-import com.telenav.kivakit.interfaces.code.Loopable;
+import com.telenav.kivakit.interfaces.code.LoopBody;
+import com.telenav.kivakit.interfaces.code.RetryableLoopBody;
 import com.telenav.kivakit.interfaces.collection.NextValue;
 import com.telenav.kivakit.interfaces.numeric.IntegerNumeric;
 import com.telenav.kivakit.interfaces.numeric.Maximizable;
@@ -35,7 +36,7 @@ import java.util.function.Consumer;
  *
  * @param <Value> A value that must be {@link Minimizable}, {@link Maximizable} and implement {@link NextValue}.
  * @author jonathanl (shibo)
- * @see Loopable
+ * @see LoopBody
  */
 @UmlClassDiagram(diagram = DiagramCount.class)
 public class Range<Value extends IntegerNumeric<Value>>
@@ -104,7 +105,12 @@ public class Range<Value extends IntegerNumeric<Value>>
         return inclusive;
     }
 
-    public void loop(Loopable<Value> body)
+    public void loop(LoopBody<Value> body)
+    {
+        body.forEach(minimum(), maximum());
+    }
+
+    public void retryLoop(RetryableLoopBody<Value> body)
     {
         body.forEach(minimum(), maximum());
     }

@@ -50,6 +50,7 @@ import org.junit.Rule;
 import org.junit.rules.TestWatcher;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -111,6 +112,11 @@ public abstract class UnitTest extends TestWatcher implements
     }
 
     public Count count(long value)
+    {
+        return Count.count(value);
+    }
+
+    public Count count(Collection<?> value)
     {
         return Count.count(value);
     }
