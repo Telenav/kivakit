@@ -203,7 +203,7 @@
         <kryo.serializers.version>0.45</kryo.serializers.version>
         <jdk.serializable.functional.version>1.9.0</jdk.serializable.functional.version>
         <objenesis.version>3.2</objenesis.version>
-        <json.smart.version>2.4.2</json.smart.version>
+        <json.smart.version>2.4.5</json.smart.version>
 
         <!-- SSH -->
 
