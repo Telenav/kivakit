@@ -40,8 +40,8 @@ public class SettingsTest extends UnitTest
     {
         register(new CoreGsonFactory(this));
 
-        Listener.none().listenTo(new PropertiesSerializationProject()).initialize();
-        Listener.none().listenTo(new GsonSerializationProject()).initialize();
+        initializeProject(PropertiesSerializationProject.class);
+        initializeProject(GsonSerializationProject.class);
     }
 
     @Test

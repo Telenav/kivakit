@@ -26,11 +26,13 @@ import com.telenav.kivakit.core.lexakai.DiagramTest;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Broadcaster;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.core.os.ConsoleWriter;
 import com.telenav.kivakit.core.os.OperatingSystem;
+import com.telenav.kivakit.core.project.Project;
 import com.telenav.kivakit.core.project.ProjectTrait;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.time.Duration;
@@ -50,6 +52,8 @@ import org.junit.rules.TestWatcher;
 import java.util.Collection;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+
+import static com.telenav.kivakit.core.project.Project.resolveProject;
 
 /**
  * This is the base class for all unit tests. It provides useful methods that are common to all tests. Several ensure*()
@@ -80,6 +84,7 @@ import java.util.function.Supplier;
  *
  * <ul>
  *     <li>{@link #random()}</li>
+ *     <li>{@link #initializeProject(Class)}</li>
  *     <li>{@link #isRandomTest()}</li>
  *     <li>{@link #isQuickTest()}</li>
  *     <li>{@link #isMac()}</li>
@@ -373,6 +378,12 @@ public abstract class UnitTest extends TestWatcher implements
     protected void fail(String message, Object... arguments)
     {
         Ensure.fail(message, arguments);
+    }
+
+    protected <T extends Project> void initializeProject(Class<T> project)
+    {
+
+        Listener.none().listenTo(resolveProject(project)).initialize();
     }
 
     protected boolean isMac()

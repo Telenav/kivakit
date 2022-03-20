@@ -5,6 +5,7 @@ import com.telenav.kivakit.core.function.ResultTrait;
 import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
+import com.telenav.kivakit.interfaces.code.TripwireTrait;
 
 import java.util.function.Function;
 
@@ -59,6 +60,7 @@ import java.util.function.Function;
  */
 public interface LanguageTrait extends
         TryTrait,
+        TripwireTrait,
         ResultTrait,
         Repeater
 {
