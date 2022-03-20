@@ -177,14 +177,14 @@ public abstract class UnitTest extends TestWatcher implements
      * @author jonathanl (shibo)
      */
     @LexakaiJavadoc(complete = true)
-    protected enum Repeats
+    public enum Repeats
     {
         NO_REPEATS,
         ALLOW_REPEATS
     }
 
     @Rule
-    protected UnitTestWatcher watcher = new UnitTestWatcher(this);
+    public UnitTestWatcher watcher = new UnitTestWatcher(this);
 
     private final ConsoleWriter console = new ConsoleWriter();
 

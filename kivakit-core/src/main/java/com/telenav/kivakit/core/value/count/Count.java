@@ -426,6 +426,11 @@ public class Count extends BaseCount<Count>
         return count((long) value);
     }
 
+    public static Count count(String text)
+    {
+        return count(text.length());
+    }
+
     public static Count count(long value)
     {
         // If we have a cached value,

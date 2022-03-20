@@ -46,12 +46,13 @@ public class ConverterTest extends UnitTest
     @Test
     public void testResultMonad()
     {
-        ensureEqual(Result.success("5 minutes")
+        ensureEqual(success("5 minutes")
                 .convert(DurationConverter.class)
                 .get(), Duration.minutes(5));
 
-        ensureEqual(Result.success("junk")
-                .convert(DurationConverter.class)
+        var junk = listenTo(success("junk"));
+        junk.silence();
+        ensureEqual(junk.convert(DurationConverter.class)
                 .get(), null);
     }
 }

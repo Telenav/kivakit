@@ -44,12 +44,12 @@ public class Range<Value extends IntegerNumeric<Value>>
 {
     public static <Value extends IntegerNumeric<Value>> Range<Value> exclusive(Value minimum, Value maximum)
     {
-        return new Range<>(minimum, maximum, false);
+        return new Range<>(minimum, maximum.next(), false);
     }
 
     public static <Value extends IntegerNumeric<Value>> Range<Value> inclusive(Value minimum, Value maximum)
     {
-        return new Range<>(minimum, maximum.next(), true);
+        return new Range<>(minimum, maximum, true);
     }
 
     private final Value minimum;
