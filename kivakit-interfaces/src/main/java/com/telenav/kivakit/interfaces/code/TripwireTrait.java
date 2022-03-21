@@ -4,7 +4,7 @@ import java.util.IdentityHashMap;
 import java.util.Map;
 
 /**
- * Quick hack to debug code to see how often it is being executed. The {@link #tripEvery(int)} method can be called with
+ * Quick hack to debug code to see how often it is being executed. The {@link #tripwireTripEvery(int)} method can be called with
  * the number of times the method itself should be called before the {@link #tripwireTripped(int)} method is called.
  *
  * @author jonathanl (shibo)
@@ -15,7 +15,7 @@ public interface TripwireTrait
     Map<Class<?>, Integer> classToCount = new IdentityHashMap<>();
 
     /**
-     * Map from this trait's implementing class to the number of times {@link #tripEvery(int)} must be called before
+     * Map from this trait's implementing class to the number of times {@link #tripwireTripEvery(int)} must be called before
      * {@link #tripwireTripped(int)} is called
      */
     Map<Class<?>, Integer> classToTimes = new IdentityHashMap<>();
@@ -28,7 +28,7 @@ public interface TripwireTrait
      * @param every The invocation threshold for tripping this tripwire
      * @return True if the tripwire was tripped
      */
-    default boolean tripEvery(int every)
+    default boolean tripwireTripEvery(int every)
     {
         int times = classToTimes.computeIfAbsent(getClass(), ignored -> every);
         int count = classToCount.computeIfAbsent(getClass(), ignored -> 0);
