@@ -15,6 +15,7 @@ import static com.telenav.kivakit.core.time.DayOfWeek.TUESDAY;
 import static com.telenav.kivakit.core.time.DayOfWeek.WEDNESDAY;
 import static com.telenav.kivakit.core.time.HourOfDay.hourOfDay;
 import static com.telenav.kivakit.core.time.HourOfWeek.hourOfWeek;
+import static com.telenav.kivakit.core.value.count.Count._100;
 import static com.telenav.kivakit.core.value.count.Count._2;
 
 /**
@@ -45,7 +46,7 @@ public class HourOfWeekTest extends UnitTest
         // For all hours of the week from 0 to 167,
         random().rangeExclusive(0, 7 * 24).forEach(at ->
         {
-            // create an HourOfWeek fo that hour,
+            // create an HourOfWeek for that hour,
             var hourOfWeek = hourOfWeek(at);
 
             // and ensure that it can be converted to the right day of the week, and hour of the day.
@@ -61,7 +62,7 @@ public class HourOfWeekTest extends UnitTest
         ensure(hourOfWeek(5).asInt() == 5);
         ensure(hourOfWeek(_2).asInt() == 2);
 
-        count(100).loop(() ->
+        _100.loop(() ->
         {
             var range = random().rangeExclusive(0, 7 * 24);
             ensure(range.isExclusive());
