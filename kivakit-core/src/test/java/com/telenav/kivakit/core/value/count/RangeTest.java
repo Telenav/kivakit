@@ -108,6 +108,16 @@ public class RangeTest extends UnitTest
     }
 
     @Test
+    public void testSize()
+    {
+        var inclusive = inclusive(count(0), count(10));
+        ensureEqual(inclusive.size(), 11);
+
+        var exclusive = exclusive(count(0), count(10));
+        ensureEqual(exclusive.size(), 10);
+    }
+
+    @Test
     public void testLoop()
     {
         var counter = new MutableCount();

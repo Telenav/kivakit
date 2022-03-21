@@ -21,6 +21,7 @@ package com.telenav.kivakit.core.value.count;
 import com.telenav.kivakit.core.lexakai.DiagramCount;
 import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.test.RandomValueFactory;
+import com.telenav.kivakit.core.test.Tested;
 import com.telenav.kivakit.interfaces.code.FilteredLoopBody;
 import com.telenav.kivakit.interfaces.code.LoopBody;
 import com.telenav.kivakit.interfaces.collection.NextValue;
@@ -85,6 +86,7 @@ public class Range<Value extends IntegerNumeric<Value>> implements Countable
     /**
      * Constructs a range that excludes the given maximum value.
      */
+    @Tested
     public static <Value extends IntegerNumeric<Value>> Range<Value> exclusive(Value minimum, Value exclusiveMaximum)
     {
         return new Range<>(minimum, exclusiveMaximum, EXCLUSIVE);
@@ -93,6 +95,7 @@ public class Range<Value extends IntegerNumeric<Value>> implements Countable
     /**
      * Constructs a range that includes the given maximum value.
      */
+    @Tested
     public static <Value extends IntegerNumeric<Value>> Range<Value> inclusive(Value minimum, Value inclusiveMaximum)
     {
         return new Range<>(minimum, inclusiveMaximum, INCLUSIVE);
@@ -137,6 +140,7 @@ public class Range<Value extends IntegerNumeric<Value>> implements Countable
     /**
      * Forces the given value into this range
      */
+    @Tested
     public Value constrain(Value value)
     {
         var constrainedToMinimum = minimum().maximum(value);
@@ -146,6 +150,7 @@ public class Range<Value extends IntegerNumeric<Value>> implements Countable
     /**
      * True if this range contains the given value
      */
+    @Tested
     public boolean contains(Value value)
     {
         return value.isGreaterThanOrEqualTo(minimum()) &&
@@ -156,6 +161,7 @@ public class Range<Value extends IntegerNumeric<Value>> implements Countable
      * Returns the exclusive maximum for this range, even if it was constructed as inclusive (for example, inclusive
      * range of 0 to 9 is the same as an exclusive range of 0-10).
      */
+    @Tested
     public Value exclusiveMaximum()
     {
         return isExclusive()
@@ -169,6 +175,7 @@ public class Range<Value extends IntegerNumeric<Value>> implements Countable
      *
      * @param body The loop body to invoke
      */
+    @Tested
     public void forCount(Count count, FilteredLoopBody<Value> body)
     {
         body.forCount(minimum(), exclusiveMaximum(), count.asLong());
@@ -180,6 +187,7 @@ public class Range<Value extends IntegerNumeric<Value>> implements Countable
      *
      * @param body The loop body to invoke
      */
+    @Tested
     public void forEach(LoopBody<Value> body)
     {
         body.forEach(minimum(), exclusiveMaximum());
@@ -189,6 +197,7 @@ public class Range<Value extends IntegerNumeric<Value>> implements Countable
      * Returns the inclusive maximum for this range, even if it was constructed as exclusive (for example, an exclusive
      * range of 0-10 is the same as an inclusive range of 0 to 9).
      */
+    @Tested
     public Value inclusiveMaximum()
     {
         return isInclusive()
@@ -199,6 +208,7 @@ public class Range<Value extends IntegerNumeric<Value>> implements Countable
     /**
      * @return True if this is an exclusive range
      */
+    @Tested
     public boolean isExclusive()
     {
         return upperBound == EXCLUSIVE;
@@ -207,6 +217,7 @@ public class Range<Value extends IntegerNumeric<Value>> implements Countable
     /**
      * @return True if this is an inclusive range
      */
+    @Tested
     public boolean isInclusive()
     {
         return upperBound == INCLUSIVE;
@@ -215,6 +226,7 @@ public class Range<Value extends IntegerNumeric<Value>> implements Countable
     /**
      * Executes the given code body once for each value in this range
      */
+    @Tested
     public void loop(Runnable body)
     {
         forEach(ignored -> body.run());
@@ -223,6 +235,7 @@ public class Range<Value extends IntegerNumeric<Value>> implements Countable
     /**
      * Returns the minimum value in this range.
      */
+    @Tested
     public Value minimum()
     {
         return minimum;
@@ -231,6 +244,7 @@ public class Range<Value extends IntegerNumeric<Value>> implements Countable
     /**
      * Returns a random value in this range
      */
+    @Tested
     public Value randomValue()
     {
         var valueAsLong = new RandomValueFactory().randomLongExclusive(
@@ -244,6 +258,7 @@ public class Range<Value extends IntegerNumeric<Value>> implements Countable
      * Returns the size of this range in values
      */
     @Override
+    @Tested
     public int size()
     {
         return exclusiveMaximum().minus(minimum()).asInt();
@@ -264,6 +279,7 @@ public class Range<Value extends IntegerNumeric<Value>> implements Countable
     /**
      * Returns the kind of {@link UpperBound} that was used to construct this range.
      */
+    @Tested
     public UpperBound upperBound()
     {
         return upperBound;
