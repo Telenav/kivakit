@@ -68,10 +68,10 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
  * </p>
  *
  * <pre>
- * // randomValueFactory().seed(123456789L);</pre>
+ * // random().seed(123456789L);</pre>
  *
  * <p>
- * To reproduce the test, put this code in the unit test's constructor.
+ * To reproduce the test, insert this code at the start of the test method that failed.
  * </p>
  *
  * <p><b>Quick Tests</b></p>

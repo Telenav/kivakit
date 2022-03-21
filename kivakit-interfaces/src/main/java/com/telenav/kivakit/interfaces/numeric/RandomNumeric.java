@@ -145,6 +145,12 @@ public interface RandomNumeric extends CastTrait
 
     default long randomLongInclusive(long minimum, long maximum)
     {
+//        assert minimum <= maximum;
+
+        if (minimum > maximum)
+        {
+            System.out.println("");
+        }
         return randomLongExclusive(minimum, maximum + 1);
     }
 

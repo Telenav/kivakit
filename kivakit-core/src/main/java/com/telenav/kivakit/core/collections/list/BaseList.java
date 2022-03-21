@@ -342,7 +342,7 @@ public abstract class BaseList<Element> implements
     {
         switch (format)
         {
-            case DEBUGGER:
+            case DEBUG:
                 return join(separator(), StringTo::debug);
 
             default:
@@ -572,7 +572,7 @@ public abstract class BaseList<Element> implements
     public <Target> BaseList<Target> mapped(Function<Element, Target> mapper)
     {
         var filtered = (BaseList<Target>) newInstance();
-        for (var element : asIterable())
+        for (var element : this)
         {
             filtered.add(mapper.apply(element));
         }

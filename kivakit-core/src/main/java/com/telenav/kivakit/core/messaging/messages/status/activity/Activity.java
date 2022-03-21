@@ -45,7 +45,9 @@ public class Activity extends OperationStatusMessage
 
     public Activity(Throwable cause, String message, Object... arguments)
     {
-        super(message + ": " + Message.escape(cause.getMessage()));
+        super(message + (cause == null
+                ? ""
+                :  ": " + Message.escape(cause.getMessage())));
         cause(cause);
         arguments(arguments);
     }

@@ -5,6 +5,11 @@ import com.telenav.kivakit.core.value.count.BaseCount;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensureBetweenInclusive;
 
+/**
+ * Represents the hour of the day from 0 to 23, inclusive.
+ *
+ * @author jonathanl (shibo)
+ */
 public class HourOfDay extends BaseCount<HourOfDay>
 {
     @Tested
@@ -17,12 +22,6 @@ public class HourOfDay extends BaseCount<HourOfDay>
     public static HourOfDay hourOfDay(int hourOfDay)
     {
         return new HourOfDay(hourOfDay);
-    }
-
-    @Tested
-    public static HourOfDay midnight()
-    {
-        return am(0);
     }
 
     @Tested
@@ -65,6 +64,18 @@ public class HourOfDay extends BaseCount<HourOfDay>
     }
 
     @Override
+    public HourOfDay newInstance(long count)
+    {
+        return hourOfDay((int) count);
+    }
+
+    @Override
+    public HourOfDay newInstance(Long count)
+    {
+        return newInstance(count.longValue());
+    }
+
+    @Override
     public String toString()
     {
         int hour = asInt();
@@ -79,16 +90,5 @@ public class HourOfDay extends BaseCount<HourOfDay>
         return hour < 12
                 ? hour + "am"
                 : (hour - 12) + "pm";
-    }
-
-    @Override
-    public HourOfDay newInstance(long count)
-    {
-        return hourOfDay((int) count);
-    }
-    @Override
-    public HourOfDay newInstance(Long count)
-    {
-        return newInstance(count.longValue());
     }
 }

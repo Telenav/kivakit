@@ -29,6 +29,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.regex.Pattern;
 
 import static com.telenav.kivakit.core.string.Strings.isOneOf;
+import static com.telenav.kivakit.core.time.DayOfWeek.isoDayOfWeek;
 import static java.util.regex.Pattern.CASE_INSENSITIVE;
 
 /**
@@ -353,7 +354,7 @@ public class Duration implements
         var hours = hoursRest / 60;
         var minutes = hoursRest % 60;
         // Ex. "TUESDAY, 15:32"
-        return DayOfWeek.forIsoOrdinal(days).toString() + ", "
+        return isoDayOfWeek(days) + ", "
                 + (String.valueOf(hours).length() == 2 ? hours : ("0" + hours)) + ":"
                 + (String.valueOf(minutes).length() == 2 ? minutes : ("0" + minutes));
     }

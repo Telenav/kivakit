@@ -221,7 +221,7 @@ public class Ensure
 
     public static long ensureBetweenExclusive(long value, long minimum, long maximum)
     {
-        ensureBetweenExclusive(value, minimum, maximum, "Value $ must be between $ and $ inclusive", value, minimum, maximum);
+        ensureBetweenExclusive(value, minimum, maximum, "Value $ must be between $ and $ exclusive", value, minimum, maximum);
         return value;
     }
 

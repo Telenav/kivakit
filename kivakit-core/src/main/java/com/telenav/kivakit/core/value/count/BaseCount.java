@@ -5,8 +5,8 @@ import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.language.primitive.Primes;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.code.LoopBody;
-import com.telenav.kivakit.interfaces.code.RetryableLoopBody;
-import com.telenav.kivakit.interfaces.code.RetryableLoopBody.Action;
+import com.telenav.kivakit.interfaces.code.FilteredLoopBody;
+import com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction;
 import com.telenav.kivakit.interfaces.numeric.IntegerNumeric;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.interfaces.value.Source;
@@ -95,7 +95,7 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  * <p><b>Comparison</b></p>
  *
  * <ul>
- *     <li>{@link #compareTo(BaseCount)} - {@link Comparable#compareTo(Object)} implementation</li>
+ *     <li>{@link #compareTo(SubClass)} - {@link Comparable#compareTo(Object)} implementation</li>
  *     <li>{@link #isLessThan(Quantizable)} - True if this count is less than the given quantum</li>
  *     <li>{@link #isGreaterThan(Quantizable)} - True if this count is greater than the given quantum</li>
  *     <li>{@link #isLessThanOrEqualTo(Quantizable)} - True if this count is less than or equal to the given quantum</li>
@@ -201,8 +201,8 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  * @see Minimum
  */
 public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
-        Countable,
         IntegerNumeric<SubClass>,
+        Countable,
         Source<Long>
 {
     /** The underlying primitive cardinal number */
@@ -389,14 +389,14 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         return offset(1);
     }
 
-    public boolean isBetweenExclusive(BaseCount<?> minimum, BaseCount<?> maximum)
+    public boolean isBetweenExclusive(BaseCount<?> minimum, BaseCount<?> exclusiveMaximum)
     {
-        return Longs.isBetweenExclusive(asLong(), minimum.asLong(), maximum.asLong());
+        return Longs.isBetweenExclusive(asLong(), minimum.asLong(), exclusiveMaximum.asLong());
     }
 
-    public boolean isBetweenInclusive(BaseCount<?> minimum, BaseCount<?> maximum)
+    public boolean isBetweenInclusive(BaseCount<?> minimum, BaseCount<?> inclusiveMaximum)
     {
-        return Longs.isBetweenInclusive(asLong(), minimum.asLong(), maximum.asLong());
+        return Longs.isBetweenInclusive(asLong(), minimum.asLong(), inclusiveMaximum.asLong());
     }
 
     public boolean isGreaterThan(Quantizable that)
@@ -450,13 +450,13 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         }
     }
 
-    public void loop(RetryableLoopBody<SubClass> body)
+    public void loop(FilteredLoopBody<SubClass> body)
     {
         var maximum = this;
         for (var at = minimum(); at.isLessThan(maximum); at = at.next())
         {
 
-            if (body.at(at) == Action.RETRY)
+            if (body.at(at) == FilterAction.REJECT)
             {
                 maximum = maximum.incremented();
             }

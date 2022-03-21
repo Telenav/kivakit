@@ -25,15 +25,22 @@ import com.telenav.kivakit.interfaces.numeric.Minimizable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
- * A piece of code that can be executed in a loop. The {@link #at(Value)} method is called with the next value for each
- * execution of the loop.
+ * A piece of code that can be executed in a loop.
+ *
+ * <p>
+ * Looping is implemented by {@link #forEach(Minimizable, Minimizable)}, which calls {@link #at(Value)} from the given
+ * minimum value to the given maximum value (exclusive), by increments determined by {@link NextValue#next()}. The loop
+ * can terminate before reaching (maximum - 1) if next returns null.
+ * </p>
  *
  * @author jonathanl (shibo)
+ * @see FilteredLoopBody
  */
 @UmlClassDiagram(diagram = DiagramCode.class)
 @FunctionalInterface
 public interface LoopBody<Value extends Minimizable<Value>
         & Maximizable<Value>
+        & Comparable<Value>
         & NextValue<Value>>
 {
     /**
@@ -44,12 +51,12 @@ public interface LoopBody<Value extends Minimizable<Value>
     void at(Value at);
 
     /**
-     * Executes the loop for each value
+     * Executes the loop for each value, <i>exclusive</i>
      */
-    default void forEach(Value minimum, Value maximum)
+    default void forEach(Value minimum, Value exclusiveMaximum)
     {
-        // Loop through values from minimum to maximum, inclusive,
-        for (Value value = minimum; !value.equals(maximum); value = value.next())
+        // Loop through values from minimum to maximum, exclusive,
+        for (Value value = minimum; value != null && value.compareTo(exclusiveMaximum) < 0; value = value.next())
         {
             // and call the body.
             at(value);

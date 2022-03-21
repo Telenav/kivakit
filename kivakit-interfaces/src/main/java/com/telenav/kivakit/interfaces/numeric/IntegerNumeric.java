@@ -14,9 +14,18 @@ public interface IntegerNumeric<Value> extends
         Comparable<Value>,
         Maximizable<Value>,
         Minimizable<Value>,
-        MapFactory<Long, Value>,
         NextValue<Value>,
         Castable,
+        MapFactory<Long, Value>,
         Quantizable
 {
+    default Value decremented()
+    {
+        return minus(newInstance(1L));
+    }
+
+    default Value incremented()
+    {
+        return plus(newInstance(1L));
+    }
 }

@@ -46,9 +46,12 @@ import java.util.function.Consumer;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.test.UnitTest.Repeats.ALLOW_REPEATS;
 import static com.telenav.kivakit.core.test.UnitTest.Repeats.NO_REPEATS;
+import static com.telenav.kivakit.core.value.count.Count._100_000;
+import static com.telenav.kivakit.core.value.count.Count._1_000_000;
 import static com.telenav.kivakit.core.value.count.Count._65_536;
-import static com.telenav.kivakit.interfaces.code.RetryableLoopBody.Action.NEXT;
-import static com.telenav.kivakit.interfaces.code.RetryableLoopBody.Action.RETRY;
+import static com.telenav.kivakit.core.value.count.Count.count;
+import static com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction.ACCEPT;
+import static com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction.REJECT;
 
 /**
  * Utility class for tests used to create random values. {@link UnitTest} has a variety of methods for random testing
@@ -142,16 +145,6 @@ public class RandomValueFactory implements RandomNumeric
         return Confidence.confidence(randomDoubleZeroToOne());
     }
 
-    public Count count(long maximum)
-    {
-        return count(0, maximum);
-    }
-
-    public Count count(long minimum, long maximum)
-    {
-        return Count.count(randomLongInclusive(minimum, maximum));
-    }
-
     public <T> T from(Collection<T> values)
     {
         if (values.isEmpty())
@@ -191,7 +184,7 @@ public class RandomValueFactory implements RandomNumeric
 
     public void indexes(long maximum, Consumer<Integer> consumer)
     {
-        sequence(ALLOW_REPEATS, iterations().minimum(count(maximum - 1)), 0, maximum - 1, Integer.class, consumer);
+        sequence(ALLOW_REPEATS, iterations().minimum(randomCount(maximum - 1)), 0, maximum - 1, Integer.class, consumer);
     }
 
     public void intSequence(Consumer<Integer> consumer)
@@ -220,7 +213,7 @@ public class RandomValueFactory implements RandomNumeric
 
     public Count iterations()
     {
-        return Count.count(5000);
+        return _1_000_000;
     }
 
     public char letter()
@@ -333,6 +326,16 @@ public class RandomValueFactory implements RandomNumeric
         iterations().loop(code);
     }
 
+    public Count randomCount(long maximum)
+    {
+        return randomCount(0, maximum);
+    }
+
+    public Count randomCount(long minimum, long maximum)
+    {
+        return count(randomLongInclusive(minimum, maximum));
+    }
+
     @Override
     public double randomDoubleZeroToOne()
     {
@@ -340,56 +343,60 @@ public class RandomValueFactory implements RandomNumeric
     }
 
     @Override
-    public final long randomLongExclusive(long minimum, long maximum)
+    public final long randomLongExclusive(long minimum, long exclusiveMaximum)
     {
-        return internalNextLong(minimum, maximum);
+        return internalNextLong(minimum, exclusiveMaximum);
     }
 
-    public Range<Count> rangeExclusive(long minimum, long maximum)
+    public Range<Count> rangeExclusive(long minimum, long exclusiveMaximum)
     {
-        return rangeExclusive(minimum, maximum, 0);
+        return rangeExclusive(minimum, exclusiveMaximum, 1);
     }
 
-    public Range<Count> rangeExclusive(long minimum, long maximum, long minimumWidth)
+    public Range<Count> rangeExclusive(long minimum, long exclusiveMaximum, long minimumWidth)
     {
-        return rangeInclusive(minimum, maximum - 1, minimumWidth);
+        return rangeExclusive(count(minimum), count(exclusiveMaximum), minimumWidth);
     }
 
-    public <T extends BaseCount<T>> Range<T> rangeExclusive(T minimum, T maximum, long minimumWidth)
+    public <T extends BaseCount<T>> Range<T> rangeExclusive(T minimum, T exclusiveMaximum, long minimumWidth)
     {
-        return rangeInclusive(minimum, maximum.incremented(), minimumWidth);
+        ensure(minimum.isLessThan(exclusiveMaximum));
+
+        var width = exclusiveMaximum.minus(minimum).asLong();
+
+        var randomWidth = randomLongExclusive(minimumWidth, width);
+        var randomMinimum = randomLongExclusive(minimum.asLong(), exclusiveMaximum.asLong() - randomWidth);
+        var randomExclusiveMaximum = randomMinimum + randomWidth;
+
+        return Range.exclusive(minimum.newInstance(randomMinimum), minimum.newInstance(randomExclusiveMaximum));
     }
 
-    public <T extends BaseCount<T>> Range<T> rangeExclusive(T minimum, T maximum)
+    public <T extends BaseCount<T>> Range<T> rangeExclusive(T minimum, T exclusiveMaximum)
     {
-        return rangeInclusive(minimum, maximum.incremented(), 0);
+        return rangeInclusive(minimum, exclusiveMaximum.incremented(), 0);
     }
 
-    public Range<Count> rangeInclusive(long minimum, long maximum)
+    public Range<Count> rangeInclusive(long minimum, long inclusiveMaximum)
     {
-        return rangeInclusive(minimum, maximum, 0);
+        return rangeInclusive(minimum, inclusiveMaximum, 0);
     }
 
-    public <T extends BaseCount<T>> Range<T> rangeInclusive(T minimum, T maximum, long minimumWidth)
+    public <T extends BaseCount<T>> Range<T> rangeInclusive(T minimum, T inclusiveMaximum, long minimumWidth)
     {
-        ensure(minimum.isLessThan(maximum));
+        ensure(minimum.isLessThanOrEqualTo(inclusiveMaximum));
 
-        var width = maximum.minus(minimum).asLong();
-        var randomWidth = randomLongInclusive(minimumWidth, width);
-        var left = randomLongInclusive(minimum.asLong(), width - randomWidth);
+        var width = inclusiveMaximum.minus(minimum).asLong() + 1;
 
-        return Range.inclusive(minimum.newInstance(left), minimum.newInstance(left + width));
+        var randomWidth = randomLongInclusive(minimumWidth, width - 1);
+        var randomMinimum = randomLongInclusive(minimum.asLong(), minimum.asLong() + randomWidth);
+        var randomInclusiveMaximum = randomMinimum + randomWidth;
+
+        return Range.inclusive(minimum.newInstance(randomMinimum), minimum.newInstance(randomInclusiveMaximum));
     }
 
-    public Range<Count> rangeInclusive(long minimum, long maximum, long minimumWidth)
+    public Range<Count> rangeInclusive(long minimum, long inclusiveMaximum, long minimumWidth)
     {
-        ensure(minimum < maximum);
-
-        var width = maximum - minimum;
-        var randomWidth = randomLongInclusive(minimumWidth, width);
-        var left = randomLongInclusive(minimum, Math.max(minimum, width - randomWidth));
-
-        return Range.inclusive(Count.count(left), Count.count(left + width));
+        return rangeInclusive(count(minimum), count(inclusiveMaximum), minimumWidth);
     }
 
     public long seed()
@@ -471,16 +478,16 @@ public class RandomValueFactory implements RandomNumeric
     public <T extends Number> void sequence(Repeats repeats,
                                             Count count,
                                             long minimum,
-                                            long maximum,
+                                            long exclusiveMaximum,
                                             Class<T> type,
                                             Matcher<T> include,
                                             Consumer<T> consumer)
     {
         // Computed the range, handling overflow (well enough for our tests)
-        double range = (double) maximum - (double) minimum;
+        double range = (double) exclusiveMaximum - (double) minimum;
         if (repeats == NO_REPEATS && count.asInt() > range)
         {
-            count = count((long) range);
+            count = randomCount((long) range);
         }
 
         ensure(repeats == ALLOW_REPEATS || count.get() <= range, "Count $ is larger than range $", count, range);
@@ -497,9 +504,9 @@ public class RandomValueFactory implements RandomNumeric
                     if (include.matches(value))
                     {
                         values.add(value);
-                        return NEXT;
+                        return ACCEPT;
                     }
-                    return RETRY;
+                    return REJECT;
                 });
             }
             else
@@ -509,7 +516,7 @@ public class RandomValueFactory implements RandomNumeric
                     var included = false;
                     do
                     {
-                        var randomValue = cast(randomLongExclusive(minimum, maximum), type);
+                        var randomValue = cast(randomLongExclusive(minimum, exclusiveMaximum), type);
                         included = !values.contains(randomValue) && include.matches(randomValue);
                         if (included)
                         {
@@ -531,7 +538,16 @@ public class RandomValueFactory implements RandomNumeric
         else
         {
             // otherwise, we are allowing repeats, so things are simple.
-            count.loop(() -> consumer.accept(randomInclusive(minimum, maximum, type, include)));
+            Range.exclusive(count(0), count).forCount(count, at ->
+            {
+                var value = randomExclusive(minimum, exclusiveMaximum, type, include);
+                if (include.matches(value))
+                {
+                    consumer.accept(value);
+                    return ACCEPT;
+                }
+                return REJECT;
+            });
         }
     }
 

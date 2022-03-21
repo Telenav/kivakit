@@ -27,6 +27,7 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
+import static com.telenav.kivakit.core.time.DayOfWeek.javaDayOfWeek;
 import static java.time.temporal.ChronoField.AMPM_OF_DAY;
 import static java.time.temporal.ChronoField.DAY_OF_WEEK;
 import static java.time.temporal.ChronoField.DAY_OF_YEAR;
@@ -162,7 +163,7 @@ public class LocalTime extends Time
      */
     public DayOfWeek dayOfWeek()
     {
-        return DayOfWeek.forJavaDayOfWeek(javaLocalDateTime().getDayOfWeek());
+        return javaDayOfWeek(javaLocalDateTime().getDayOfWeek());
     }
 
     /**
@@ -216,7 +217,7 @@ public class LocalTime extends Time
 
     public int hourOfWeek()
     {
-        return dayOfWeek().asIsoOrdinal() * 24 + hourOfDay();
+        return dayOfWeek().asIso() * 24 + hourOfDay();
     }
 
     public LocalDateTime javaLocalDateTime()

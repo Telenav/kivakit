@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import static com.telenav.kivakit.core.time.HourOfDay.am;
 import static com.telenav.kivakit.core.time.HourOfDay.hourOfDay;
-import static com.telenav.kivakit.core.time.HourOfDay.midnight;
 import static com.telenav.kivakit.core.time.HourOfDay.noon;
 import static com.telenav.kivakit.core.time.HourOfDay.pm;
 
@@ -32,12 +31,6 @@ public class HourOfDayTest extends UnitTest
     public void testMaximum()
     {
         ensureEqual(am(0).maximum(), hourOfDay(23));
-    }
-
-    @Test
-    public void testMidnight()
-    {
-        ensureEqual(midnight(), hourOfDay(0));
     }
 
     @Test

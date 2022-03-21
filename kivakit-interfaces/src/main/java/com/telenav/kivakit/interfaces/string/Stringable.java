@@ -40,7 +40,7 @@ public interface Stringable extends StringSource
     @UmlClassDiagram(diagram = DiagramString.class)
     @UmlExcludeSuperTypes enum Format
     {
-        DEBUGGER,
+        DEBUG,
         FILESYSTEM,
         HTML,
         PROGRAMMATIC,

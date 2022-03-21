@@ -21,6 +21,7 @@ package com.telenav.kivakit.core.value.count;
 import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.lexakai.DiagramCount;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.os.Console;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.code.LoopBody;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
@@ -119,7 +120,7 @@ import java.util.function.Consumer;
  * <p><b>Comparison</b></p>
  *
  * <ul>
- *     <li>{@link #compareTo(BaseCount)} - {@link Comparable#compareTo(Object)} implementation</li>
+ *     <li>{@link #compareTo(Count)}  - {@link Comparable#compareTo(Object)} implementation</li>
  *     <li>{@link #isLessThan(Quantizable)} - True if this count is less than the given quantum</li>
  *     <li>{@link #isGreaterThan(Quantizable)} - True if this count is greater than the given quantum</li>
  *     <li>{@link #isLessThanOrEqualTo(Quantizable)} - True if this count is less than or equal to the given quantum</li>
@@ -358,7 +359,7 @@ public class Count extends BaseCount<Count>
 
     public static final Count MAXIMUM_BYTE_VALUE = new Count(Byte.MAX_VALUE);
 
-    private static final int CACHE_SIZE = 65_536;
+    private static final long CACHE_SIZE = 65_536L;
 
     private static final Count[] CACHED;
 
@@ -366,7 +367,7 @@ public class Count extends BaseCount<Count>
 
     static
     {
-        CACHED = new Count[CACHE_SIZE];
+        CACHED = new Count[(int)CACHE_SIZE];
         for (var i = 0; i < CACHED.length; i++)
         {
             CACHED[i] = new Count(i);

@@ -50,8 +50,8 @@ public class UnitTestWatcher extends TestWatcher
         // If the test that failed is a random test,
         if (test.isRandomTest())
         {
-            // then print out the seed value so it can be reproduced.
-            System.err.println("// randomValueFactory().seed(" + test.newRandomValueFactory().seed() + "L);");
+            // then print out the seed value, so it can be reproduced.
+            System.err.println("// random().seed(" + test.newRandomValueFactory().seed() + "L);");
             System.err.flush();
         }
     }

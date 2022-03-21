@@ -103,15 +103,15 @@ public class Longs
     }
 
     /**
-     * Returns true if the given value is in the given range, exclusive
+     * Returns true if the given value is in the given range (exclusive)
      */
     public static boolean isBetweenExclusive(long value, long low, long high)
     {
-        return value > low && value < high;
+        return value >= low && value < high;
     }
 
     /**
-     * Returns true if the given value is in the given range, inclusive
+     * Returns true if the given value is in the given range (inclusive)
      */
     public static boolean isBetweenInclusive(long value, long low, long high)
     {

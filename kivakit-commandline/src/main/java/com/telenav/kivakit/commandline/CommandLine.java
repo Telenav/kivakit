@@ -211,7 +211,7 @@ public class CommandLine implements Stringable, Iterable<Argument>
     {
         switch (format)
         {
-            case DEBUGGER:
+            case DEBUG:
                 return new ObjectFormatter(this).toString();
 
             default:

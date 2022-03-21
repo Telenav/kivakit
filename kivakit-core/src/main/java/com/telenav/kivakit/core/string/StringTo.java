@@ -50,7 +50,7 @@ public class StringTo
 
     /**
      * Converts the given object to a debug string. If the object supports the AsString interface, the {@link
-     * Stringable#asString(Stringable.Format)} method is called with {@link Stringable.Format#DEBUGGER}. If it does not,
+     * Stringable#asString(Stringable.Format)} method is called with {@link Stringable.Format#DEBUG}. If it does not,
      * the toString() method is called.
      *
      * @param object The object
@@ -60,7 +60,7 @@ public class StringTo
     {
         if (object instanceof Stringable)
         {
-            return ((Stringable) object).asString(Stringable.Format.DEBUGGER);
+            return ((Stringable) object).asString(Stringable.Format.DEBUG);
         }
         return string(object);
     }
