@@ -31,7 +31,7 @@ public class HourOfWeekTest extends UnitTest
         random().rangeInclusive(MONDAY, SUNDAY, 0).forEach(dayOfWeek ->
         {
             // and all hours of the day,
-            random().rangeExclusive(hourOfDay(0), hourOfDay(23)).forEach(hourOfDay ->
+            random().rangeExclusive(hourOfDay(0), hourOfDay(24)).forEach(hourOfDay ->
             {
                 // create an HourOfWeek,
                 var hourOfWeek = hourOfWeek(dayOfWeek, hourOfDay);
