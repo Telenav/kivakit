@@ -57,6 +57,6 @@ public interface TripwireTrait
      */
     default void tripwireTripped(int count)
     {
-        System.out.println(getClass().getSimpleName() + " tripped: " + count);
+        System.out.println(getClass().getSimpleName() + " tripwire tripped: " + count);
     }
 }
