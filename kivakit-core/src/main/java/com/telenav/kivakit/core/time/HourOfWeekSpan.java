@@ -7,6 +7,8 @@ import com.telenav.kivakit.core.test.Tested;
 
 import java.time.ZoneId;
 
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+
 /**
  * Represents a span of hours of the week in a local timezone. For example, monday at 3pm to tuesday at 1pm in the
  * Pacific timezone (PT).
@@ -40,9 +42,9 @@ public class HourOfWeekSpan
     @Tested
     protected HourOfWeekSpan(HourOfWeek startHourOfWeek, HourOfWeek endHourOfWeek, ZoneId timeZone)
     {
-        this.endHourOfWeek = endHourOfWeek;
-        this.startHourOfWeek = startHourOfWeek;
-        this.timeZone = timeZone.getId();
+        this.startHourOfWeek = ensureNotNull(startHourOfWeek, "Start hour of week is required");
+        this.endHourOfWeek = ensureNotNull(endHourOfWeek, "End hour of week is required");
+        this.timeZone = ensureNotNull(timeZone, "Time zone is required").getId();
     }
 
     /**
