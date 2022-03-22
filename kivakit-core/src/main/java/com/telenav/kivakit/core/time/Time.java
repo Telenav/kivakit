@@ -25,6 +25,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.time.Instant;
 import java.time.ZoneId;
 
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+
 /**
  * An immutable <code>Time</code> class that represents a specific point in UNIX time. The underlying representation is
  * a <code>long</code> value which holds a number of milliseconds since January 1, 1970, 0:00 GMT. To represent a
@@ -243,12 +245,12 @@ public class Time implements Quantizable
 
     public LocalTime localTime(String zone)
     {
-        return new LocalTime(ZoneId.of(zone), this);
+        return localTime(ZoneId.of(ensureNotNull(zone)));
     }
 
     public LocalTime localTime(ZoneId zone)
     {
-        return new LocalTime(zone, this);
+        return new LocalTime(ensureNotNull(zone), this);
     }
 
     public Time maximum(Time that)
