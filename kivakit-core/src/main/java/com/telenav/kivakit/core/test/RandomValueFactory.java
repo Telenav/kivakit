@@ -46,8 +46,7 @@ import java.util.function.Consumer;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.test.UnitTest.Repeats.ALLOW_REPEATS;
 import static com.telenav.kivakit.core.test.UnitTest.Repeats.NO_REPEATS;
-import static com.telenav.kivakit.core.value.count.Count._100_000;
-import static com.telenav.kivakit.core.value.count.Count._1_000_000;
+import static com.telenav.kivakit.core.value.count.Count._1_000;
 import static com.telenav.kivakit.core.value.count.Count._65_536;
 import static com.telenav.kivakit.core.value.count.Count.count;
 import static com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction.ACCEPT;
@@ -99,9 +98,6 @@ public class RandomValueFactory implements RandomNumeric
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
     private static final Debug DEBUG = new Debug(LOGGER);
-
-    /** Random number generator */
-    protected Random random;
 
     /** Seed value when reproducing test failures */
     private long seed;
@@ -213,7 +209,7 @@ public class RandomValueFactory implements RandomNumeric
 
     public Count iterations()
     {
-        return _1_000_000;
+        return _1_000;
     }
 
     public char letter()
@@ -648,4 +644,7 @@ public class RandomValueFactory implements RandomNumeric
         // seed values
         return Hash.knuth(++SALT + System.nanoTime());
     }
+
+    /** Random number generator */
+    protected Random random;
 }
