@@ -78,6 +78,17 @@ Commit any final changes to the release branch.
 
 ### 2. Publishing the Release &nbsp;  <img src="https://www.kivakit.org/images/stars-32.png" srcset="https://www.kivakit.org/images/stars-32-2x.png 2x"/>
 
+
+#### 2.0 Update Docker build environment image
+
+A docker build environment image can be created with:
+
+    kivakit-docker-build-create-image.sh
+    
+When the image has been built, it can be pushed to DockerHub with:
+
+    kivakit-docker-build-push-image.sh
+
 #### 2.1 Merge the release branch into master
 
 The release is finished and merged into master with:
