@@ -31,8 +31,17 @@ else
 
 fi
 
+echo " "
+echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
+echo "┋"
+echo "┋  Docker build environment: $WORKSPACE"
+echo "┋"
+echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
+echo " "
+
 export KIVAKIT_WORKSPACE="$WORKSPACE"
 
 source "$HOME/.profile"
 
 $SHELL
+

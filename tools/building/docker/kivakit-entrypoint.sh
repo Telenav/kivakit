@@ -3,7 +3,7 @@
 source /root/.profile
 
 echo " "
-echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ KivaKit Docker Build Help  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
+echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ KivaKit Docker Build Environment Help  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
 echo "┋  "
 echo "┋  Command                                       Description"
 echo "┋  ------------------------------------------    ---------------------------"
