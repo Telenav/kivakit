@@ -8,9 +8,9 @@ In the text below *\[kivakit-version\]* refers to a [semantic versioning](https:
 
 KivaKit adheres to the standard [Git Flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) branching model.
 
-### 0. Releasing Cactus Build
+### 0. Releasing Cactus Build (Optional)
 
-Before building *kivakit*, *cactus-build* must be released.
+Cactus build needs to be released only if it has been changed.
 
 > The version number of *cactus-build* must always be in sync with *kivakit*
 
