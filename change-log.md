@@ -1,5 +1,46 @@
 # KivaKit Change Log
 
+## Version 1.4.1 (2022.03.23) "cobalt piglet"
+
+This release 
+
+### build
+
+ - Improved docker build scripts
+ - Made build scripts consistent across repositories
+
+### core
+
+ - Rewrote Range and Count hierarchy to fix generics and extract:
+     - BaseCount
+     - Arithmetic
+     - Castable
+     - IntegerNumeric
+ - Added LoopBody, FilteredLoopBody for use in unit test update
+ - Added BaseList/ObjectList.shuffle() methods
+ - Moved iteration interfaces from kivakit-core to kivakit-interfaces
+ - Added Maybe.then() arities, fixed parameter binding mistake
+
+### debugging
+
+ - Added TripWireTrait 
+
+### testing
+
+ - Improved testing framework including UnitTest and RandomValue
+ - Improved documentation
+ - Created HourOfWeekTest and HourOfWeekSpanTest as examples
+ - Added test for Range
+
+### security
+
+ - Upgraded to json-smart version 2.4.8 to address vulnerability
+
+### time
+
+ - Added HourOfWeek and HourOfWeekSpan
+
+
 -----------------------------------------------------------------------------------------------------------------------
 
 ## Version 1.4.0 (2022.03.14) "cobalt hamster"

@@ -30,7 +30,6 @@ import com.telenav.kivakit.interfaces.numeric.Maximizable;
 import com.telenav.kivakit.interfaces.numeric.Minimizable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.value.count.Range.UpperBound.EXCLUSIVE;
 import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
 
@@ -84,6 +83,14 @@ import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
 public class Range<Value extends IntegerNumeric<Value>> implements Countable
 {
     /**
+     * @return The range of all counts, from 0 to {@link Count#MAXIMUM}
+     */
+    public static Range<Count> allCounts()
+    {
+        return new Range<>(Count.count(0), Count.MAXIMUM, INCLUSIVE);
+    }
+
+    /**
      * Constructs a range that excludes the given maximum value.
      */
     @Tested
@@ -102,14 +109,6 @@ public class Range<Value extends IntegerNumeric<Value>> implements Countable
     }
 
     /**
-     * @return The range of all counts, from 0 to {@link Count#MAXIMUM}
-     */
-    public static Range<Count> allCounts()
-    {
-        return new Range<>(Count.count(0), Count.MAXIMUM, INCLUSIVE);
-    }
-
-    /**
      * The type of upper bound
      */
     public enum UpperBound
@@ -121,11 +120,11 @@ public class Range<Value extends IntegerNumeric<Value>> implements Countable
         EXCLUSIVE
     }
 
-    /** The minimum value of the range */
-    private final Value minimum;
-
     /** The maximum value of the range (which may be included in the range or not, depending on the <i>upperBound</i> */
     private final Value maximum;
+
+    /** The minimum value of the range */
+    private final Value minimum;
 
     /** The type of upper bound that this range has, either inclusive or exclusive of the end point */
     private final UpperBound upperBound;
