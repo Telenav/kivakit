@@ -12,7 +12,7 @@ KivaKit adheres to the standard [Git Flow](https://www.atlassian.com/git/tutoria
 
 Cactus build needs to be released only if it has been changed.
 
-> The version number of *cactus-build* must always be in sync with *kivakit*
+> The version number of *cactus-build* should always be in sync with *kivakit*
 
 1. To prepare a release branch, and build the release:
 
@@ -62,7 +62,9 @@ To update code flowers for the release
 
         ./kivakit-build-codeflowers.sh
 
-4. Open *site/index.html* in an editor and insert the &lt;option&gt; HTML code that was output by the build process.
+4. If there have been any projects added or removed since the last release,
+   open *site/index.html* in an editor and insert the &lt;option&gt; HTML
+   code that was output by the kivakit-build-codeflowers.sh.
 
 #### 1.4 Build the release branch
 

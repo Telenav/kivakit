@@ -104,19 +104,17 @@ build() {
         ;;
 
     "deploy-ossrh")
-        JAVADOC=true
         BUILD_ARGUMENTS="clean deploy"
         # shellcheck disable=SC2206
-        BUILD_MODIFIERS=(multi-threaded clean-sparkling tests attach-jars sign-artifacts ${@:3})
-        RUN_POSTBUILD_SCRIPT=true
+        BUILD_MODIFIERS=(multi-threaded no-javadoc clean-sparkling tests attach-jars sign-artifacts ${@:3})
+        export BUILD_LEXAKAI_DOCUMENTATION=true
         ;;
 
     "deploy-local")
-        JAVADOC=true
         BUILD_ARGUMENTS="clean install"
         # shellcheck disable=SC2206
-        BUILD_MODIFIERS=(multi-threaded clean-sparkling tests attach-jars sign-artifacts ${@:3})
-        export RUN_POSTBUILD_SCRIPT=true
+        BUILD_MODIFIERS=(multi-threaded no-javadoc clean-sparkling tests attach-jars sign-artifacts ${@:3})
+        export BUILD_LEXAKAI_DOCUMENTATION=true
         ;;
 
     "javadoc")
@@ -171,6 +169,7 @@ build() {
         case "$MODIFIER" in
 
         "attach-jars")
+            # To attach jars, we have to build the javadoc for the jars
             SWITCHES="${SWITCHES//-Dmaven.javadoc.skip=true/}"
             BUILD_ARGUMENTS="$BUILD_ARGUMENTS -Pattach-jars"
             ;;
@@ -274,13 +273,17 @@ build() {
 
     if [ -f "$KIVAKIT_HOME/build.properties" ]; then
 
+        # shellcheck disable=SC2002
         KIVAKIT_BUILD_NAME=$(cat "$KIVAKIT_HOME"/build.properties | grep "build-name" | cut -d'=' -f2 | xargs echo)
+        # shellcheck disable=SC2002
         KIVAKIT_BUILD_DATE=$(cat "$KIVAKIT_HOME"/build.properties | grep "build-date" | cut -d'=' -f2 | xargs echo)
 
     fi
 
     if [ -n "$KIVAKIT_BUILD_NAME" ]; then
+
         KIVAKIT_BUILD_NAME=" ($KIVAKIT_BUILD_DATE $KIVAKIT_BUILD_NAME)"
+
     fi
 
     if [ -e "$BUILD_FOLDER" ]; then
@@ -326,7 +329,9 @@ build() {
 
         fi
 
+        # shellcheck disable=SC2002
         KIVAKIT_BUILD_NAME=$(cat "$KIVAKIT_HOME"/build.properties | grep "build-name" | cut -d'=' -f2 | xargs echo)
+        # shellcheck disable=SC2002
         KIVAKIT_BUILD_DATE=$(cat "$KIVAKIT_HOME"/build.properties | grep "build-date" | cut -d'=' -f2 | xargs echo)
 
         if [ -n "$KIVAKIT_BUILD_NAME" ]; then

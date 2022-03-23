@@ -19,8 +19,8 @@ for project_home in "${KIVAKIT_PROJECT_HOMES[@]}"; do
 
 done
 
-if [ -n "$RUN_POSTBUILD_SCRIPT" ]; then
+if [ -n "$BUILD_LEXAKAI_DOCUMENTATION" ]; then
 
-    bash kivakit-build-documentation.sh
+    bash kivakit-build-lexakai-documentation.sh
 
 fi

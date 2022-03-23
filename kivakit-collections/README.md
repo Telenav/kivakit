@@ -35,14 +35,14 @@ This module provides collections, iteration support, stacks, collection observat
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/dependencies-32.png" srcset="https://www.kivakit.org/images/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-collections/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.4.1/lexakai/kivakit/kivakit-collections/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-collections</artifactId>
-        <version>1.4.1-SNAPSHOT</version>
+        <version>1.4.1</version>
     </dependency>
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
@@ -133,19 +133,19 @@ more methods in *CollectionChangeListener* is called with information about what
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-40.png" srcset="https://www.kivakit.org/images/diagram-40-2x.png 2x"/>
 
-[*Collection Watching*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-collections/documentation/diagrams/diagram-watcher.svg)  
-[*Maps*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-collections/documentation/diagrams/diagram-map.svg)  
-[*Sets*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-collections/documentation/diagrams/diagram-set.svg)
+[*Collection Watching*](https://www.kivakit.org/1.4.1/lexakai/kivakit/kivakit-collections/documentation/diagrams/diagram-watcher.svg)  
+[*Maps*](https://www.kivakit.org/1.4.1/lexakai/kivakit/kivakit-collections/documentation/diagrams/diagram-map.svg)  
+[*Sets*](https://www.kivakit.org/1.4.1/lexakai/kivakit/kivakit-collections/documentation/diagrams/diagram-set.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
-[*com.telenav.kivakit.collections.lexakai*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.lexakai.svg)  
-[*com.telenav.kivakit.collections.map*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.map.svg)  
-[*com.telenav.kivakit.collections.set*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.set.svg)  
-[*com.telenav.kivakit.collections.set.operations*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.set.operations.svg)  
-[*com.telenav.kivakit.collections.watcher*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.watcher.svg)
+[*com.telenav.kivakit.collections.lexakai*](https://www.kivakit.org/1.4.1/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.lexakai.svg)  
+[*com.telenav.kivakit.collections.map*](https://www.kivakit.org/1.4.1/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.map.svg)  
+[*com.telenav.kivakit.collections.set*](https://www.kivakit.org/1.4.1/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.set.svg)  
+[*com.telenav.kivakit.collections.set.operations*](https://www.kivakit.org/1.4.1/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.set.operations.svg)  
+[*com.telenav.kivakit.collections.watcher*](https://www.kivakit.org/1.4.1/lexakai/kivakit/kivakit-collections/documentation/diagrams/com.telenav.kivakit.collections.watcher.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
@@ -160,27 +160,27 @@ Javadoc coverage for this project is 69.4%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*BaseCollectionChangeWatcher*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/watcher/BaseCollectionChangeWatcher.html) |  |  
-| [*BaseIndexedMap*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/map/BaseIndexedMap.html) |  |  
-| [*CollectionChangeListener*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/watcher/CollectionChangeListener.html) |  |  
-| [*CollectionChangeWatcher*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/watcher/CollectionChangeWatcher.html) |  |  
-| [*CompoundSet*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/CompoundSet.html) |  |  
-| [*ConcurrentCountMap*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/map/ConcurrentCountMap.html) |  |  
-| [*DiagramMap*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/lexakai/DiagramMap.html) |  |  
-| [*DiagramSet*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/lexakai/DiagramSet.html) |  |  
-| [*DiagramWatcher*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/lexakai/DiagramWatcher.html) |  |  
-| [*IndexedNameMap*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/map/IndexedNameMap.html) |  |  
-| [*Intersection*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/operations/Intersection.html) |  |  
-| [*LogicalSet*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/LogicalSet.html) |  |  
-| [*MultiMap*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/map/MultiMap.html) |  |  
-| [*MultiSet*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/MultiSet.html) |  |  
-| [*PeriodicCollectionChangeWatcher*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/watcher/PeriodicCollectionChangeWatcher.html) |  |  
-| [*ReferenceCountMap*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/map/ReferenceCountMap.html) |  |  
-| [*SetDifferencer*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/SetDifferencer.html) |  |  
-| [*Subset*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/operations/Subset.html) |  |  
-| [*TwoWayMap*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/map/TwoWayMap.html) |  |  
-| [*Union*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/operations/Union.html) |  |  
-| [*Without*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/operations/Without.html) |  |  
+| [*BaseCollectionChangeWatcher*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/watcher/BaseCollectionChangeWatcher.html) |  |  
+| [*BaseIndexedMap*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/map/BaseIndexedMap.html) |  |  
+| [*CollectionChangeListener*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/watcher/CollectionChangeListener.html) |  |  
+| [*CollectionChangeWatcher*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/watcher/CollectionChangeWatcher.html) |  |  
+| [*CompoundSet*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/CompoundSet.html) |  |  
+| [*ConcurrentCountMap*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/map/ConcurrentCountMap.html) |  |  
+| [*DiagramMap*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/lexakai/DiagramMap.html) |  |  
+| [*DiagramSet*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/lexakai/DiagramSet.html) |  |  
+| [*DiagramWatcher*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/lexakai/DiagramWatcher.html) |  |  
+| [*IndexedNameMap*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/map/IndexedNameMap.html) |  |  
+| [*Intersection*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/operations/Intersection.html) |  |  
+| [*LogicalSet*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/LogicalSet.html) |  |  
+| [*MultiMap*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/map/MultiMap.html) |  |  
+| [*MultiSet*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/MultiSet.html) |  |  
+| [*PeriodicCollectionChangeWatcher*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/watcher/PeriodicCollectionChangeWatcher.html) |  |  
+| [*ReferenceCountMap*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/map/ReferenceCountMap.html) |  |  
+| [*SetDifferencer*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/SetDifferencer.html) |  |  
+| [*Subset*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/operations/Subset.html) |  |  
+| [*TwoWayMap*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/map/TwoWayMap.html) |  |  
+| [*Union*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/operations/Union.html) |  |  
+| [*Without*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.collections/com/telenav/kivakit/collections/set/operations/Without.html) |  |  
 
 [//]: # (start-user-text)
 
