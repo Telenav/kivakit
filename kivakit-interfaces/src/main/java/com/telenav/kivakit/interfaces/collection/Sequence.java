@@ -36,14 +36,14 @@ import java.util.function.Function;
  * <p><b>Iteration</b></p>
  *
  * <p>
- * Sequences can be iterated over by converting them to an {@link Iterator} or {@link Iterable}. Sequence does not
+ * Sequences can be iterated over by simply using the sequence as an {@link Iterable} (which it implements), or by
+ * converting it to an {@link Iterable} or {@link Iterator} using one of the asIter*() methods. Sequence does not
  * directly extend these interfaces because some objects may already be using them for another purpose (and type
  * erasures in particular would ensure difficulties).
  * </p>
  *
  * <ul>
  *     <li>{@link #asIterator()} - This sequence as a Java {@link Iterator}</li>
- *     <li>{@link #asIterable()} - This sequence as a Java {@link Iterable}</li>
  *     <li>{@link #asIterator(Matcher)} - The sequence of values in this sequence that match the given matcher as a Java {@link Iterator}</li>
  *     <li>{@link #asIterable(Matcher)} - The sequence of values in this sequence that match the given matcher as a Java {@link Iterable}</li>
  * </ul>
@@ -92,14 +92,14 @@ import java.util.function.Function;
  * @see Matcher
  */
 @UmlClassDiagram(diagram = DiagramCollection.class)
-public interface Sequence<Element>
+public interface Sequence<Element> extends Iterable<Element>
 {
     /**
      * @return True if all elements in this sequence match the given matcher
      */
     default boolean allMatch(Matcher<Element> matcher)
     {
-        for (var element : asIterable())
+        for (var element : this)
         {
             if (!matcher.matches(element))
             {
@@ -123,7 +123,7 @@ public interface Sequence<Element>
     default int asHashCode()
     {
         var hash = 536_870_909;
-        for (var value : asIterable())
+        for (var value : this)
         {
             hash = hash ^ value.hashCode();
         }
@@ -168,7 +168,7 @@ public interface Sequence<Element>
     default List<Element> asList()
     {
         var list = new ArrayList<Element>();
-        for (var element : asIterable())
+        for (var element : this)
         {
             list.add(element);
         }
@@ -181,7 +181,7 @@ public interface Sequence<Element>
     default Set<Element> asSet()
     {
         var set = new HashSet<Element>();
-        for (var element : asIterable())
+        for (var element : this)
         {
             set.add(element);
         }
@@ -198,7 +198,7 @@ public interface Sequence<Element>
      */
     default Element find(Matcher<Element> matcher)
     {
-        for (var element : asIterable())
+        for (var element : this)
         {
             if (matcher.matches(element))
             {
@@ -231,7 +231,7 @@ public interface Sequence<Element>
     default int indexOfFirst(Matcher<Element> matcher)
     {
         int index = 0;
-        for (var element : asIterable())
+        for (var element : this)
         {
             if (matcher.matches(element))
             {
@@ -268,7 +268,7 @@ public interface Sequence<Element>
                 return false;
             }
 
-            // otherwise both sequences have a next element,
+            // otherwise, both sequences have a next element,
             var thisElement = thisIterator.next();
             var thatElement = thatIterator.next();
 
@@ -282,6 +282,12 @@ public interface Sequence<Element>
 
         // If we ran out of elements, then that sequence must also be out of elements.
         return !thatIterator.hasNext();
+    }
+
+    @Override
+    default Iterator<Element> iterator()
+    {
+        return asIterator();
     }
 
     /**
@@ -320,7 +326,7 @@ public interface Sequence<Element>
     default String join(String separator, Function<Element, String> toString)
     {
         var builder = new StringBuilder();
-        for (var value : asIterable())
+        for (var value : this)
         {
             if (builder.length() > 0)
             {
@@ -347,7 +353,7 @@ public interface Sequence<Element>
     {
         var tail = new ArrayList<Element>();
         int index = 0;
-        for (var element : asIterable())
+        for (var element : this)
         {
             if (index++ > 0)
             {

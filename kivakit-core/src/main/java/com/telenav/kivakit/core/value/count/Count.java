@@ -18,25 +18,18 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.core.language.primitive.Ints;
 import com.telenav.kivakit.core.language.primitive.Longs;
-import com.telenav.kivakit.core.language.primitive.Primes;
-import com.telenav.kivakit.core.value.level.Percent;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.lexakai.DiagramCount;
-import com.telenav.kivakit.interfaces.code.Loopable;
-import com.telenav.kivakit.interfaces.numeric.Maximizable;
-import com.telenav.kivakit.interfaces.numeric.Minimizable;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.os.Console;
+import com.telenav.kivakit.core.value.level.Percent;
+import com.telenav.kivakit.interfaces.code.LoopBody;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
-import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.function.Consumer;
-
-import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
  * Represents a count of something.
@@ -127,7 +120,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  * <p><b>Comparison</b></p>
  *
  * <ul>
- *     <li>{@link #compareTo(Count)} - {@link Comparable#compareTo(Object)} implementation</li>
+ *     <li>{@link #compareTo(Count)}  - {@link Comparable#compareTo(Object)} implementation</li>
  *     <li>{@link #isLessThan(Quantizable)} - True if this count is less than the given quantum</li>
  *     <li>{@link #isGreaterThan(Quantizable)} - True if this count is greater than the given quantum</li>
  *     <li>{@link #isLessThanOrEqualTo(Quantizable)} - True if this count is less than or equal to the given quantum</li>
@@ -162,15 +155,13 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  * <ul>
  *     <li>{@link #decremented()} - This count minus one</li>
  *     <li>{@link #incremented()} - This count plus one</li>
- *     <li>{@link #plus(Count)} - This count plus the given count</li>
+ *     <li>{@link #plus(Quantizable)} - This count plus the given count</li>
  *     <li>{@link #plus(long)} - This count plus the given value</li>
- *     <li>{@link #plusOne()} - This count plus one</li>
- *     <li>{@link #minus(Count)} - This count minus the given count</li>
+ *     <li>{@link #minus(Quantizable)} - This count minus the given count</li>
  *     <li>{@link #minus(long)} - This count minus the given value</li>
- *     <li>{@link #minusOne()} - This count minus one </li>
- *     <li>{@link #dividedBy(Count)} - This count divided by the given count, using integer division without rounding</li>
+ *     <li>{@link #dividedBy(Quantizable)} - This count divided by the given count, using integer division without rounding</li>
  *     <li>{@link #dividedBy(long)} - This count divided by the given value, using integer division without rounding</li>
- *     <li>{@link #times(Count)} - This count times the given count</li>
+ *     <li>{@link #times(Quantizable)} - This count times the given count</li>
  *     <li>{@link #times(long)} - This count times the given value</li>
  *     <li>{@link #times(double)} - This count times the given value, cast to a long value</li>
  *     <li>{@link #times(Percent)} - This count times the given percentage</li>
@@ -182,13 +173,13 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  *
  * <ul>
  *     <li>{@link #percent(Percent)} - The given percentage of this count</li>
- *     <li>{@link #percentOf(Count)} - This count as a percentage of the given count</li>
- *     <li>{@link #dividesEvenlyBy(Count)} - True if there is no remainder when dividing this count by the given count</li>
- *     <li>{@link #ceiling(int)} - The maximum value of this count taking on the given number of digits</li>
- *     <li>{@link #floor(int)} - The minimum value of this count taking on the given number of digits</li>
+ *     <li>{@link #percentOf(Quantizable)} - This count as a percentage of the given count</li>
+ *     <li>{@link #dividesEvenlyBy(Quantizable)} - True if there is no remainder when dividing this count by the given count</li>
+ *     <li>{@link #powerOfTenCeiling(int)} - The maximum value of this count taking on the given number of digits</li>
+ *     <li>{@link #powerOfTenFloor(int)} - The minimum value of this count taking on the given number of digits</li>
  *     <li>{@link #nextPrime()} - The next prime value from a limited table of primes, useful in allocating linear hashmaps</li>
  *     <li>{@link #bitsToRepresent()} - The number of bits required to represent this count</li>
- *     <li>{@link #roundUpToPowerOfTwo()} - The next power of two above this count</li>
+ *     <li>{@link #powerOfTwoCeiling()} - The next power of two above this count</li>
  * </ul>
  *
  * <p><br/><hr/><br/></p>
@@ -197,8 +188,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  *
  * <ul>
  *     <li>{@link #loop(Runnable)} - Runs the given code block {@link #count()} times</li>
- *     <li>{@link #loop(Loopable)} - Runs the given code block {@link #count()} times, passing the iteration number to the code</li>
- *     <li>{@link #loop(int, Loopable)} - Static method that runs the given code block {@link #count()} times</li>
+ *     <li>{@link #loop(LoopBody)} - Runs the given code block {@link #count()} times, passing the iteration number to the code</li>
  * </ul>
  *
  * <p><br/><hr/><br/></p>
@@ -241,14 +231,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  * @see Minimum
  */
 @UmlClassDiagram(diagram = DiagramCount.class)
-public class Count implements
-        Countable,
-        Comparable<Count>,
-        Quantizable,
-        Maximizable<Count>,
-        Minimizable<Count>,
-        Stringable,
-        Serializable
+public class Count extends BaseCount<Count>
 {
     public static final Count _0 = new Count(0);
 
@@ -332,11 +315,11 @@ public class Count implements
 
     public static final Count _8192 = new Count(8192);
 
-    public static final Count _16384 = new Count(16384);
+    public static final Count _16_384 = new Count(16384);
 
-    public static final Count _32768 = new Count(32678);
+    public static final Count _32_768 = new Count(32678);
 
-    public static final Count _65536 = new Count(65536);
+    public static final Count _65_536 = new Count(65536);
 
     public static final Count _131_072 = new Count(131_072);
 
@@ -362,6 +345,8 @@ public class Count implements
 
     public static final Count _1_000_000_000 = new Count(1_000_000_000);
 
+    public static final Count MINIMUM = _0;
+
     public static final Count MAXIMUM = new Count(Long.MAX_VALUE);
 
     public static final Count MAXIMUM_CHARACTER_VALUE = new Count(Character.MAX_VALUE);
@@ -374,7 +359,7 @@ public class Count implements
 
     public static final Count MAXIMUM_BYTE_VALUE = new Count(Byte.MAX_VALUE);
 
-    private static final int CACHE_SIZE = 65_536;
+    private static final long CACHE_SIZE = 65_536L;
 
     private static final Count[] CACHED;
 
@@ -382,7 +367,7 @@ public class Count implements
 
     static
     {
-        CACHED = new Count[CACHE_SIZE];
+        CACHED = new Count[(int)CACHE_SIZE];
         for (var i = 0; i < CACHED.length; i++)
         {
             CACHED[i] = new Count(i);
@@ -442,6 +427,11 @@ public class Count implements
         return count((long) value);
     }
 
+    public static Count count(String text)
+    {
+        return count(text.length());
+    }
+
     public static Count count(long value)
     {
         // If we have a cached value,
@@ -467,397 +457,30 @@ public class Count implements
         return count(values.length);
     }
 
-    public static void loop(int times, Loopable code)
-    {
-        for (var iteration = 0; iteration < times; iteration++)
-        {
-            code.iteration(times);
-        }
-    }
-
     public static Count parseCount(Listener listener, String value)
     {
         var count = Longs.parseFast(value, -1);
         return count < 0 ? null : count(count);
     }
 
-    private long count;
-
     protected Count(long count)
     {
-        if (count < 0)
-        {
-            fail("Count of " + count + " is negative");
-        }
-
-        this.count = count;
+        super(count);
     }
 
     protected Count()
     {
     }
 
-    public BitCount asBitCount()
+    @Override
+    public Count newInstance(long count)
     {
-        return BitCount.bitCount(asLong());
-    }
-
-    public Count asCount()
-    {
-        return count(get());
-    }
-
-    public Estimate asEstimate()
-    {
-        return Estimate.estimate(count);
-    }
-
-    public int asInt()
-    {
-        if (count > Integer.MAX_VALUE)
-        {
-            return Integer.MAX_VALUE;
-        }
-        return (int) count;
-    }
-
-    public long asLong()
-    {
-        return count;
-    }
-
-    public Maximum asMaximum()
-    {
-        return Maximum.maximum(count);
-    }
-
-    public Minimum asMinimum()
-    {
-        return Minimum.minimum(count);
-    }
-
-    public BitCount bitsToRepresent()
-    {
-        return BitCount.bitsToRepresent(count);
-    }
-
-    public Count ceiling(int digits)
-    {
-        return onNewInstance((get() + Ints.powerOfTen(digits)) / Ints.powerOfTen(digits) * Ints.powerOfTen(digits));
+        return count(count);
     }
 
     @Override
-    public int compareTo(Count that)
+    public Count newInstance(Long count)
     {
-        return Long.compare(count, that.count);
-    }
-
-    @Override
-    public Count count()
-    {
-        return this;
-    }
-
-    public Count decremented()
-    {
-        return minusOne();
-    }
-
-    public Count dividedBy(Count divisor)
-    {
-        return dividedBy(divisor.get());
-    }
-
-    public Count dividedBy(long divisor)
-    {
-        return onNewInstance(count / divisor);
-    }
-
-    public boolean dividesEvenlyBy(Count value)
-    {
-        return get() % value.get() == 0;
-    }
-
-    @Override
-    public boolean equals(Object object)
-    {
-        if (object instanceof Count)
-        {
-            var that = (Count) object;
-            return count == that.count;
-        }
-        return false;
-    }
-
-    public Count floor(int digits)
-    {
-        return onNewInstance(get() / Ints.powerOfTen(digits) * Ints.powerOfTen(digits));
-    }
-
-    public void forEachByte(Consumer<Byte> consumer)
-    {
-        for (byte i = 0; i < minimum(MAXIMUM_BYTE_VALUE).asInt(); i++)
-        {
-            consumer.accept(i);
-        }
-    }
-
-    public void forEachInteger(Consumer<Integer> consumer)
-    {
-        for (var i = 0; i < minimum(MAXIMUM_INTEGER_VALUE).asInt(); i++)
-        {
-            consumer.accept(i);
-        }
-    }
-
-    public void forEachLong(Consumer<Long> consumer)
-    {
-        for (long i = 0; i < get(); i++)
-        {
-            consumer.accept(i);
-        }
-    }
-
-    public void forEachShort(Consumer<Short> consumer)
-    {
-        for (short i = 0; i < minimum(MAXIMUM_SHORT_VALUE).asInt(); i++)
-        {
-            consumer.accept(i);
-        }
-    }
-
-    public long get()
-    {
-        return count;
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return Long.hashCode(count);
-    }
-
-    public Count incremented()
-    {
-        return plusOne();
-    }
-
-    public boolean isGreaterThan(Count that)
-    {
-        return count > that.count;
-    }
-
-    public boolean isGreaterThanOrEqualTo(Count that)
-    {
-        return count >= that.count;
-    }
-
-    public boolean isLessThan(Count that)
-    {
-        return count < that.count;
-    }
-
-    public boolean isLessThanOrEqualTo(Count that)
-    {
-        return count <= that.count;
-    }
-
-    public boolean isMaximum()
-    {
-        return count == MAXIMUM.get();
-    }
-
-    public boolean isMinimum()
-    {
-        return count == 0;
-    }
-
-    public void loop(Loopable code)
-    {
-        loop(asInt(), code);
-    }
-
-    public void loop(Runnable code)
-    {
-        loop(asInt(), iteration -> code.run());
-    }
-
-    @Override
-    public Count maximum(Count that)
-    {
-        if (count > that.count)
-        {
-            return this;
-        }
-        else
-        {
-            return that;
-        }
-    }
-
-    @Override
-    public Count minimum(Count that)
-    {
-        if (count < that.count)
-        {
-            return this;
-        }
-        else
-        {
-            return that;
-        }
-    }
-
-    public Count minus(Count count)
-    {
-        return minus(count.get());
-    }
-
-    public Count minus(long count)
-    {
-        return onNewInstance(this.count - count);
-    }
-
-    public Count minusOne()
-    {
-        return minus(_1);
-    }
-
-    public byte[] newByteArray()
-    {
-        return new byte[asInt()];
-    }
-
-    public char[] newCharArray()
-    {
-        return new char[asInt()];
-    }
-
-    public double[] newDoubleArray()
-    {
-        return new double[asInt()];
-    }
-
-    public float[] newFloatArray()
-    {
-        return new float[asInt()];
-    }
-
-    public int[] newIntArray()
-    {
-        return new int[asInt()];
-    }
-
-    public long[] newLongArray()
-    {
-        return new long[asInt()];
-    }
-
-    @SuppressWarnings({ "unchecked" })
-    public <T> T[] newObjectArray()
-    {
-        return (T[]) new Object[asInt()];
-    }
-
-    public short[] newShortArray()
-    {
-        return new short[asInt()];
-    }
-
-    public String[] newStringArray()
-    {
-        return new String[asInt()];
-    }
-
-    public Count nextPrime()
-    {
-        return onNewInstance(Primes.primeAllocationSize(asInt()));
-    }
-
-    public Count percent(Percent percentage)
-    {
-        return onNewInstance((long) (count * percentage.asUnitValue()));
-    }
-
-    public Percent percentOf(Count total)
-    {
-        if (total.isZero())
-        {
-            return Percent._0;
-        }
-        return Percent.of(count * 100.0 / total.get());
-    }
-
-    public Count plus(Count count)
-    {
-        return plus(count.get());
-    }
-
-    public Count plus(long count)
-    {
-        return onNewInstance(this.count + count);
-    }
-
-    public Count plusOne()
-    {
-        return plus(_1);
-    }
-
-    @Override
-    public long quantum()
-    {
-        return count;
-    }
-
-    public Count roundUpToPowerOfTwo()
-    {
-        var rounded = 1L;
-        while (rounded < count)
-        {
-            rounded <<= 1;
-        }
-        return onNewInstance(rounded);
-    }
-
-    @Override
-    public int size()
-    {
-        return asInt();
-    }
-
-    public Count times(Count count)
-    {
-        return times(count.get());
-    }
-
-    public Count times(double multiplier)
-    {
-        return onNewInstance((long) (get() * multiplier));
-    }
-
-    public Count times(long count)
-    {
-        var product = this.count * count;
-        if (product < 0)
-        {
-            return MAXIMUM;
-        }
-        return onNewInstance(product);
-    }
-
-    public Count times(Percent percentage)
-    {
-        return times(percentage.asUnitValue());
-    }
-
-    @Override
-    public String toString()
-    {
-        return asCommaSeparatedString();
-    }
-
-    protected Count onNewInstance(long value)
-    {
-        return count(value);
+        return newInstance(count.longValue());
     }
 }

@@ -19,10 +19,9 @@
 package com.telenav.kivakit.core.value.count;
 
 import com.telenav.kivakit.core.language.primitive.Doubles;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.lexakai.DiagramCount;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strings;
-import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.lang.reflect.Array;
@@ -76,7 +75,7 @@ import java.util.regex.Pattern;
  * @author Jonathan Locke
  */
 @UmlClassDiagram(diagram = DiagramCount.class)
-public final class Bytes extends Count implements ByteSized
+public final class Bytes extends BaseCount<Bytes> implements ByteSized
 {
     /** Pattern for string parsing. */
     private static final Pattern PATTERN = Pattern.compile("([0-9]+([.,][0-9]+)?)\\s*(|K|M|G|T)B?",
@@ -281,11 +280,6 @@ public final class Bytes extends Count implements ByteSized
         super(bytes);
     }
 
-    public Bytes add(Bytes that)
-    {
-        return bytes(asBytes() + that.asBytes());
-    }
-
     /**
      * Gets the byte count represented by this value object.
      *
@@ -337,205 +331,21 @@ public final class Bytes extends Count implements ByteSized
     }
 
     @Override
-    public Bytes decremented()
+    public Bytes newInstance(long count)
     {
-        return (Bytes) super.decremented();
+        return bytes(count);
     }
 
     @Override
-    public Bytes dividedBy(Count divisor)
+    public Bytes newInstance(Long value)
     {
-        return (Bytes) super.dividedBy(divisor);
-    }
-
-    @Override
-    public Bytes dividedBy(long divisor)
-    {
-        return (Bytes) super.dividedBy(divisor);
-    }
-
-    @Override
-    public Bytes incremented()
-    {
-        return (Bytes) super.incremented();
-    }
-
-    /**
-     * Compares this <code>Bytes</code> with another <code>Bytes</code> instance.
-     *
-     * @param that the <code>Bytes</code> instance to compare with
-     * @return <code>true</code> if this <code>Bytes</code> is greater than the given
-     * <code>Bytes</code> instance
-     */
-    public boolean isGreaterThan(Bytes that)
-    {
-        if (this == that || that == null)
-        {
-            return false;
-        }
-        return asBytes() > that.asBytes();
-    }
-
-    /**
-     * Compares this <code>Bytes</code> with another <code>Bytes</code> instance.
-     *
-     * @param that the <code>Bytes</code> instance to compare with
-     * @return <code>true</code> if this <code>Bytes</code> is greater than the given
-     * <code>Bytes</code> instance
-     */
-    public boolean isGreaterThanOrEqualTo(Bytes that)
-    {
-        if (that == null)
-        {
-            return false;
-        }
-        return asBytes() >= that.asBytes();
-    }
-
-    /**
-     * Compares this <code>Bytes</code> with another <code>Bytes</code> instance.
-     *
-     * @param that the <code>Bytes</code> instance to compare with
-     * @return <code>true</code> if this <code>Bytes</code> is greater than the given
-     * <code>Bytes</code> instance
-     */
-    public boolean isLessThan(Bytes that)
-    {
-        if (this == that || that == null)
-        {
-            return false;
-        }
-        return asBytes() < that.asBytes();
-    }
-
-    public boolean isLessThanOrEqualTo(Bytes that)
-    {
-        if (that == null)
-        {
-            return false;
-        }
-        return asBytes() <= that.asBytes();
-    }
-
-    @Override
-    public boolean isZero()
-    {
-        return equals(_0);
-    }
-
-    @Override
-    public Bytes maximum(Count that)
-    {
-        return (Bytes) super.maximum(that);
-    }
-
-    public Bytes maximum(Bytes that)
-    {
-        return isGreaterThan(that) ? this : that;
-    }
-
-    @Override
-    public Bytes minimum(Count that)
-    {
-        return (Bytes) super.minimum(that);
-    }
-
-    public Bytes minimum(Bytes that)
-    {
-        return isLessThan(that) ? this : that;
-    }
-
-    @Override
-    public Bytes minus(Count count)
-    {
-        return (Bytes) super.minus(count);
-    }
-
-    @Override
-    public Bytes minus(long count)
-    {
-        return (Bytes) super.minus(count);
-    }
-
-    public Bytes minus(Bytes that)
-    {
-        return bytes(asBytes() - that.asBytes());
-    }
-
-    @Override
-    public Bytes minusOne()
-    {
-        return (Bytes) super.minusOne();
-    }
-
-    @Override
-    public Bytes percent(Percent percentage)
-    {
-        return bytes(asBytes() * percentage.asUnitValue());
-    }
-
-    public Percent percentOf(Bytes that)
-    {
-        return Percent.of((double) asBytes() / that.asBytes() * 100.0);
-    }
-
-    @Override
-    public Bytes plus(long count)
-    {
-        return bytes(asBytes() + count);
-    }
-
-    @Override
-    public Bytes plus(Count count)
-    {
-        return (Bytes) super.plus(count);
-    }
-
-    @Override
-    public Bytes plusOne()
-    {
-        return (Bytes) super.plusOne();
-    }
-
-    @Override
-    public Bytes roundUpToPowerOfTwo()
-    {
-        return (Bytes) super.roundUpToPowerOfTwo();
+        return newInstance(value.longValue());
     }
 
     @Override
     public Bytes sizeInBytes()
     {
         return this;
-    }
-
-    @Override
-    public Bytes times(Count count)
-    {
-        return times(count.get());
-    }
-
-    @Override
-    public Bytes times(double value)
-    {
-        return bytes(asBytes() * value);
-    }
-
-    @Override
-    public Bytes times(long bytes)
-    {
-        var product = get() * bytes;
-        if (product < 0)
-        {
-            return MAXIMUM;
-        }
-        return bytes(product);
-    }
-
-    @Override
-    public Bytes times(Percent percentage)
-    {
-        return (Bytes) super.times(percentage);
     }
 
     /**

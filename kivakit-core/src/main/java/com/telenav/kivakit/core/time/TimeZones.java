@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.lexakai.DiagramTime;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -127,5 +127,10 @@ public class TimeZones
     public static String shortDisplayName(ZoneId zone)
     {
         return zone.getDisplayName(TextStyle.SHORT, Locale.getDefault());
+    }
+
+    public static ZoneId utc()
+    {
+        return ZoneId.of("UTC");
     }
 }

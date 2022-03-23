@@ -19,45 +19,268 @@
 package com.telenav.kivakit.core.value.count;
 
 import com.telenav.kivakit.core.lexakai.DiagramCount;
+import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.test.RandomValueFactory;
+import com.telenav.kivakit.core.test.Tested;
+import com.telenav.kivakit.interfaces.code.FilteredLoopBody;
+import com.telenav.kivakit.interfaces.code.LoopBody;
+import com.telenav.kivakit.interfaces.collection.NextValue;
+import com.telenav.kivakit.interfaces.numeric.IntegerNumeric;
 import com.telenav.kivakit.interfaces.numeric.Maximizable;
 import com.telenav.kivakit.interfaces.numeric.Minimizable;
-import com.telenav.kivakit.interfaces.numeric.Ranged;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.core.value.count.Range.UpperBound.EXCLUSIVE;
+import static com.telenav.kivakit.core.value.count.Range.UpperBound.INCLUSIVE;
+
+/**
+ * Represents a range of value objects from a minimum to a maximum.
+ *
+ * <p>Creation and Properties</p>
+ *
+ * <p>
+ * Ranges can be created in two ways, as {@link #exclusive(Value, Value)} ranges which do not include their maximum
+ * value, and as {@link #inclusive(Value, Value)} ranges which do.
+ * </p>
+ *
+ * <ul>
+ *     <li>{@link #inclusive(Value, Value)}</li>
+ *     <li>{@link #exclusive(Value, Value)}</li>
+ *     <li>{@link #upperBound()}</li>
+ *     <li>{@link #isInclusive()}</li>
+ *     <li>{@link #isExclusive()}</li>
+ *     <li>{@link #minimum()}</li>
+ *     <li>{@link #inclusiveMaximum()}</li>
+ *     <li>{@link #exclusiveMaximum()}</li>
+ * </ul>
+ *
+ * <p><b>Looping</b></p>
+ *
+ * <p>
+ * The values in a range can be processed in a loop with these methods.
+ * </p>
+ *
+ * <ul>
+ *     <li>{@link #forEach(LoopBody)}</li>
+ *     <li>{@link #forCount(Count, FilteredLoopBody)} </li>
+ *     <li>{@link #loop(Runnable)}</li>
+ * </ul>
+ *
+ * <p><b>Operations</b></p>
+ *
+ * <ul>
+ *     <li>{@link #constrain(Value)}</li>
+ *     <li>{@link #contains(Value)}</li>
+ *     <li>{@link #randomValue()}</li>
+ * </ul>
+ *
+ * @param <Value> A value that is {@link IntegerNumeric}, which includes {@link Minimizable}, {@link Maximizable},
+ * {@link Comparable}, and {@link NextValue}.
+ * @author jonathanl (shibo)
+ * @see LoopBody
+ */
 @UmlClassDiagram(diagram = DiagramCount.class)
-public class Range<T extends Minimizable<T> & Maximizable<T>> implements Ranged<T>
+public class Range<Value extends IntegerNumeric<Value>> implements Countable
 {
-    private final T minimum;
+    /**
+     * @return The range of all counts, from 0 to {@link Count#MAXIMUM}
+     */
+    public static Range<Count> allCounts()
+    {
+        return new Range<>(Count.count(0), Count.MAXIMUM, INCLUSIVE);
+    }
 
-    private final T maximum;
+    /**
+     * Constructs a range that excludes the given maximum value.
+     */
+    @Tested
+    public static <Value extends IntegerNumeric<Value>> Range<Value> exclusive(Value minimum, Value exclusiveMaximum)
+    {
+        return new Range<>(minimum, exclusiveMaximum, EXCLUSIVE);
+    }
 
-    public Range(T minimum, T maximum)
+    /**
+     * Constructs a range that includes the given maximum value.
+     */
+    @Tested
+    public static <Value extends IntegerNumeric<Value>> Range<Value> inclusive(Value minimum, Value inclusiveMaximum)
+    {
+        return new Range<>(minimum, inclusiveMaximum, INCLUSIVE);
+    }
+
+    /**
+     * The type of upper bound
+     */
+    public enum UpperBound
+    {
+        /** The range's maximum value is included in the range */
+        INCLUSIVE,
+
+        /** The range's maximum value is not included in the range */
+        EXCLUSIVE
+    }
+
+    /** The maximum value of the range (which may be included in the range or not, depending on the <i>upperBound</i> */
+    private final Value maximum;
+
+    /** The minimum value of the range */
+    private final Value minimum;
+
+    /** The type of upper bound that this range has, either inclusive or exclusive of the end point */
+    private final UpperBound upperBound;
+
+    protected Range(Value minimum, Value maximum, UpperBound upperBound)
     {
         this.minimum = minimum;
         this.maximum = maximum;
+        this.upperBound = upperBound;
     }
 
-    @Override
-    public T constrainTo(T value)
+    /**
+     * Forces the given value into this range
+     */
+    @Tested
+    public Value constrain(Value value)
     {
-        return maximum.minimum(minimum.maximum(value));
+        var constrainedToMinimum = minimum().maximum(value);
+        return inclusiveMaximum().minimum(constrainedToMinimum);
     }
 
-    @Override
-    public boolean contains(T value)
+    /**
+     * True if this range contains the given value
+     */
+    @Tested
+    public boolean contains(Value value)
     {
-        return false;
+        return value.isGreaterThanOrEqualTo(minimum()) &&
+                value.isLessThanOrEqualTo(inclusiveMaximum());
     }
 
-    @Override
-    public T maximum()
+    /**
+     * Returns the exclusive maximum for this range, even if it was constructed as inclusive (for example, inclusive
+     * range of 0 to 9 is the same as an exclusive range of 0-10).
+     */
+    @Tested
+    public Value exclusiveMaximum()
     {
-        return maximum;
+        return isExclusive()
+                ? maximum
+                : maximum.incremented();
     }
 
-    @Override
-    public T minimum()
+    /**
+     * Executes the loop starting at the minimum value, calling the {@link FilteredLoopBody} until the given number of
+     * values are accepted.
+     *
+     * @param body The loop body to invoke
+     */
+    @Tested
+    public void forCount(Count count, FilteredLoopBody<Value> body)
+    {
+        body.forCount(minimum(), exclusiveMaximum(), count.asLong());
+    }
+
+    /**
+     * Calls the given {@link LoopBody} with each value from the minimum to the maximum (inclusive or exclusive,
+     * depending on construction of the range)
+     *
+     * @param body The loop body to invoke
+     */
+    @Tested
+    public void forEach(LoopBody<Value> body)
+    {
+        body.forEach(minimum(), exclusiveMaximum());
+    }
+
+    /**
+     * Returns the inclusive maximum for this range, even if it was constructed as exclusive (for example, an exclusive
+     * range of 0-10 is the same as an inclusive range of 0 to 9).
+     */
+    @Tested
+    public Value inclusiveMaximum()
+    {
+        return isInclusive()
+                ? maximum
+                : maximum.decremented();
+    }
+
+    /**
+     * @return True if this is an exclusive range
+     */
+    @Tested
+    public boolean isExclusive()
+    {
+        return upperBound == EXCLUSIVE;
+    }
+
+    /**
+     * @return True if this is an inclusive range
+     */
+    @Tested
+    public boolean isInclusive()
+    {
+        return upperBound == INCLUSIVE;
+    }
+
+    /**
+     * Executes the given code body once for each value in this range
+     */
+    @Tested
+    public void loop(Runnable body)
+    {
+        forEach(ignored -> body.run());
+    }
+
+    /**
+     * Returns the minimum value in this range.
+     */
+    @Tested
+    public Value minimum()
     {
         return minimum;
+    }
+
+    /**
+     * Returns a random value in this range
+     */
+    @Tested
+    public Value randomValue()
+    {
+        var valueAsLong = new RandomValueFactory().randomLongExclusive(
+                minimum().asLong(),
+                exclusiveMaximum().asLong());
+
+        return minimum.newInstance(valueAsLong);
+    }
+
+    /**
+     * Returns the size of this range in values
+     */
+    @Override
+    @Tested
+    public int size()
+    {
+        return exclusiveMaximum().minus(minimum()).asInt();
+    }
+
+    @Override
+    public String toString()
+    {
+        return Formatter.format("[$ to $, $]", minimum(),
+                isInclusive()
+                        ? inclusiveMaximum()
+                        : exclusiveMaximum(),
+                isInclusive()
+                        ? "inclusive"
+                        : "exclusive");
+    }
+
+    /**
+     * Returns the kind of {@link UpperBound} that was used to construct this range.
+     */
+    @Tested
+    public UpperBound upperBound()
+    {
+        return upperBound;
     }
 }

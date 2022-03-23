@@ -23,6 +23,7 @@ import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
+
 /**
  * A factory that creates an object.
  * <p>
@@ -34,18 +35,8 @@ import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
  */
 @FunctionalInterface
 @UmlClassDiagram(diagram = DiagramFactory.class)
-public interface Factory<Value> extends Source<Value>
+public interface Factory<Value>
 {
-    /**
-     * @return New instance of the given type
-     */
-    @Override
-    @UmlExcludeMember
-    default Value get()
-    {
-        return newInstance();
-    }
-
     /**
      * @return A new instance of the given type
      */

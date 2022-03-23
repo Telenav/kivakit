@@ -18,10 +18,9 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.lexakai.DiagramCount;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strings;
-import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -34,7 +33,7 @@ import java.util.Iterator;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramCount.class)
-public class Estimate extends Count implements Stringable
+public class Estimate extends BaseCount<Estimate> implements Stringable
 {
     public static final Estimate _0 = new Estimate(0);
 
@@ -233,12 +232,6 @@ public class Estimate extends Count implements Stringable
 
     protected Estimate()
     {
-        super(0);
-    }
-
-    public Estimate add(Estimate that)
-    {
-        return plus(that.get());
     }
 
     @Override
@@ -248,148 +241,14 @@ public class Estimate extends Count implements Stringable
     }
 
     @Override
-    public Estimate ceiling(int digits)
+    public Estimate newInstance(long count)
     {
-        return (Estimate) super.ceiling(digits);
+        return estimate(count);
     }
 
     @Override
-    public Estimate decremented()
+    public Estimate newInstance(Long count)
     {
-        return (Estimate) super.decremented();
-    }
-
-    @Override
-    public Estimate dividedBy(Count divisor)
-    {
-        return dividedBy(divisor.get());
-    }
-
-    @Override
-    public Estimate dividedBy(long divisor)
-    {
-        return estimate(get() / divisor);
-    }
-
-    @Override
-    public Estimate floor(int digits)
-    {
-        return (Estimate) super.floor(digits);
-    }
-
-    @Override
-    public Estimate incremented()
-    {
-        return (Estimate) super.incremented();
-    }
-
-    @Override
-    public Estimate maximum(Count that)
-    {
-        if (isGreaterThan(that))
-        {
-            return this;
-        }
-        else
-        {
-            return that.asEstimate();
-        }
-    }
-
-    @Override
-    public Estimate minimum(Count that)
-    {
-        if (isLessThan(that))
-        {
-            return this;
-        }
-        else
-        {
-            return that.asEstimate();
-        }
-    }
-
-    @Override
-    public Estimate minus(Count count)
-    {
-        return (Estimate) super.minus(count);
-    }
-
-    @Override
-    public Estimate minus(long count)
-    {
-        return (Estimate) super.minus(count);
-    }
-
-    @Override
-    public Estimate minusOne()
-    {
-        return (Estimate) super.minusOne();
-    }
-
-    @Override
-    public Estimate nextPrime()
-    {
-        return (Estimate) super.nextPrime();
-    }
-
-    @Override
-    public Estimate percent(Percent percentage)
-    {
-        return (Estimate) super.percent(percentage);
-    }
-
-    @Override
-    public Estimate plus(Count count)
-    {
-        return (Estimate) super.plus(count);
-    }
-
-    @Override
-    public Estimate plus(long count)
-    {
-        return estimate(get() + count);
-    }
-
-    @Override
-    public Estimate plusOne()
-    {
-        return (Estimate) super.plusOne();
-    }
-
-    @Override
-    public Estimate roundUpToPowerOfTwo()
-    {
-        return (Estimate) super.roundUpToPowerOfTwo();
-    }
-
-    @Override
-    public Estimate times(long count)
-    {
-        return (Estimate) super.times(count);
-    }
-
-    @Override
-    public Estimate times(Count count)
-    {
-        return estimate(get() * count.get());
-    }
-
-    @Override
-    public Estimate times(double multiplier)
-    {
-        return estimate((long) (get() * multiplier));
-    }
-
-    @Override
-    public Estimate times(Percent percentage)
-    {
-        return times(percentage.asUnitValue());
-    }
-
-    @Override
-    protected Estimate onNewInstance(long value)
-    {
-        return new Estimate(value);
+        return newInstance(count.longValue());
     }
 }

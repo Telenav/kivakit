@@ -93,57 +93,65 @@ build() {
     "all")
         JAVADOC=true
         BUILD_ARGUMENTS="clean install"
+        # shellcheck disable=SC2206
         BUILD_MODIFIERS=(multi-threaded clean-all tests shade tools ${@:3})
         ;;
 
     "compile")
         BUILD_ARGUMENTS="clean compile"
+        # shellcheck disable=SC2206
         BUILD_MODIFIERS=(multi-threaded no-tests shade no-javadoc quiet ${@:3})
         ;;
 
     "deploy-ossrh")
-        JAVADOC=true
         BUILD_ARGUMENTS="clean deploy"
-        BUILD_MODIFIERS=(multi-threaded clean-sparkling tests attach-jars sign-artifacts ${@:3})
-        RUN_POSTBUILD_SCRIPT=true
+        # shellcheck disable=SC2206
+        BUILD_MODIFIERS=(multi-threaded no-javadoc clean-sparkling tests attach-jars sign-artifacts ${@:3})
+        export BUILD_LEXAKAI_DOCUMENTATION=true
         ;;
 
     "deploy-local")
-        JAVADOC=true
         BUILD_ARGUMENTS="clean install"
-        BUILD_MODIFIERS=(multi-threaded clean-sparkling tests attach-jars sign-artifacts ${@:3})
-        RUN_POSTBUILD_SCRIPT=true
+        # shellcheck disable=SC2206
+        BUILD_MODIFIERS=(multi-threaded no-javadoc clean-sparkling tests attach-jars sign-artifacts ${@:3})
+        export BUILD_LEXAKAI_DOCUMENTATION=true
         ;;
 
     "javadoc")
         JAVADOC="true"
         BUILD_ARGUMENTS="clean install"
+        # shellcheck disable=SC2206
         BUILD_MODIFIERS=(multi-threaded no-tests javadoc ${@:3})
         ;;
 
     "setup")
         BUILD_ARGUMENTS="clean install"
+        # shellcheck disable=SC2206
         BUILD_MODIFIERS=(multi-threaded tests shade tools ${@:3})
         ;;
 
     "test")
         BUILD_ARGUMENTS="clean install"
+        # shellcheck disable=SC2206
         BUILD_MODIFIERS=(single-threaded tests no-javadoc ${@:3})
         ;;
 
     "tools")
         BUILD_ARGUMENTS="clean install"
+        # shellcheck disable=SC2206
         BUILD_MODIFIERS=(multi-threaded tests shade tools no-javadoc ${@:3})
         ;;
 
     "dmg")
         BUILD_ARGUMENTS="clean install"
+        # shellcheck disable=SC2206
         BUILD_MODIFIERS=(multi-threaded tests shade tools dmg no-javadoc ${@:3})
         ;;
 
     *)
         BUILD_TYPE="default"
         BUILD_ARGUMENTS="clean install"
+        # shellcheck disable=SC2206
         BUILD_MODIFIERS=(multi-threaded tests shade no-javadoc ${@:2})
         ;;
 
@@ -161,6 +169,7 @@ build() {
         case "$MODIFIER" in
 
         "attach-jars")
+            # To attach jars, we have to build the javadoc for the jars
             SWITCHES="${SWITCHES//-Dmaven.javadoc.skip=true/}"
             BUILD_ARGUMENTS="$BUILD_ARGUMENTS -Pattach-jars"
             ;;
@@ -262,17 +271,19 @@ build() {
 
     BUILD_FOLDER="$PROJECT"
 
-    FILTER_OUT="grep -y -v --line-buffered"
-
     if [ -f "$KIVAKIT_HOME/build.properties" ]; then
 
+        # shellcheck disable=SC2002
         KIVAKIT_BUILD_NAME=$(cat "$KIVAKIT_HOME"/build.properties | grep "build-name" | cut -d'=' -f2 | xargs echo)
+        # shellcheck disable=SC2002
         KIVAKIT_BUILD_DATE=$(cat "$KIVAKIT_HOME"/build.properties | grep "build-date" | cut -d'=' -f2 | xargs echo)
 
     fi
 
     if [ -n "$KIVAKIT_BUILD_NAME" ]; then
+
         KIVAKIT_BUILD_NAME=" ($KIVAKIT_BUILD_DATE $KIVAKIT_BUILD_NAME)"
+
     fi
 
     if [ -e "$BUILD_FOLDER" ]; then
@@ -288,7 +299,7 @@ build() {
 
         if [ -z "$DRY_RUN" ]; then
 
-            cd "$BUILD_FOLDER"
+            cd "$BUILD_FOLDER" || exit
 
             if [ -z "$CLEANED" ] && [ -n "$CLEAN_SCRIPT" ]; then
 
@@ -307,7 +318,7 @@ build() {
             fi
 
             # shellcheck disable=SC2086
-            "$M2_HOME"/bin/mvn --no-transfer-progress -DKIVAKIT_DEBUG="$KIVAKIT_DEBUG" $SWITCHES $BUILD_ARGUMENTS 2>&1 | $FILTER_OUT "illegal reflective access\|denied in a future release\|please consider reporting"
+            "$M2_HOME/bin/mvn" --no-transfer-progress -DKIVAKIT_DEBUG=$KIVAKIT_DEBUG $SWITCHES $BUILD_ARGUMENTS 2>&1
 
             if [ "${PIPESTATUS[0]}" -ne "0" ]; then
 
@@ -318,10 +329,12 @@ build() {
 
         fi
 
+        # shellcheck disable=SC2002
         KIVAKIT_BUILD_NAME=$(cat "$KIVAKIT_HOME"/build.properties | grep "build-name" | cut -d'=' -f2 | xargs echo)
+        # shellcheck disable=SC2002
         KIVAKIT_BUILD_DATE=$(cat "$KIVAKIT_HOME"/build.properties | grep "build-date" | cut -d'=' -f2 | xargs echo)
 
-        if [ ! -z "$KIVAKIT_BUILD_NAME" ]; then
+        if [ -n "$KIVAKIT_BUILD_NAME" ]; then
 
             KIVAKIT_BUILD_NAME=" ($KIVAKIT_BUILD_DATE $KIVAKIT_BUILD_NAME)"
 

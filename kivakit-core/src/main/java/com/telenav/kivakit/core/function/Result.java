@@ -23,13 +23,13 @@ import com.telenav.kivakit.core.function.arities.PentaFunction;
 import com.telenav.kivakit.core.function.arities.TetraFunction;
 import com.telenav.kivakit.core.function.arities.TriFunction;
 import com.telenav.kivakit.core.language.Classes;
+import com.telenav.kivakit.core.lexakai.DiagramMessaging;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.listeners.MessageList;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
-import com.telenav.kivakit.core.lexakai.DiagramMessaging;
 import com.telenav.kivakit.core.test.Tested;
 import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.function.BooleanFunction;
@@ -100,10 +100,10 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  *
  * <ul>
  *     <li>{@link #then(Function)} - Returns the result of applying the given function to this value</li>
- *     <li>{@link #then(BiFunction, Object)} - Returns the result of applying the given two-argument function to this value and the given argument</li>
- *     <li>{@link #then(TriFunction, Object, Object)} - Returns the result of applying the given three-argument function to this value and the given arguments</li>
- *     <li>{@link #then(TetraFunction, Object, Object, Object)} - Returns the result of applying the given four-argument function to this value and the given arguments</li>
- *     <li>{@link #then(PentaFunction, Object, Object, Object, Object)} - Returns the result of applying the given five-argument function to this value and the given arguments</li>
+ *     <li>{@link #map(BiFunction, Object)} - Returns the result of applying the given two-argument function to this value and the given argument</li>
+ *     <li>{@link #map(TriFunction, Object, Object)} - Returns the result of applying the given three-argument function to this value and the given arguments</li>
+ *     <li>{@link #map(TetraFunction, Object, Object, Object)} - Returns the result of applying the given four-argument function to this value and the given arguments</li>
+ *     <li>{@link #map(PentaFunction, Object, Object, Object, Object)} - Returns the result of applying the given five-argument function to this value and the given arguments</li>
  *     <li>{@link #apply(Function)} - Applies the given function to this value</li>
  *     <li>{@link #map(Function)} - Applies the given function to this value</li>
  * </ul>
@@ -384,6 +384,60 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     }
 
     /**
+     * <p><i>Down-casting override</i></p>
+     * <p>
+     * {@inheritDoc}
+     */
+    @Tested
+    public <Argument2, R> Result<R> map(BiFunction<Value, Argument2, R> function, Argument2 argument2)
+    {
+        return (Result<R>) super.map(function, argument2);
+    }
+
+    /**
+     * <p><i>Down-casting override</i></p>
+     * <p>
+     * {@inheritDoc}
+     */
+    @Override
+    @Tested
+    public <Argument2, Argument3, ResultType> Result<ResultType> map(
+            final TriFunction<Value, Argument2, Argument3, ResultType> function, final Argument2 argument2,
+            final Argument3 argument3)
+    {
+        return (Result<ResultType>) super.map(function, argument2, argument3);
+    }
+
+    /**
+     * <p><i>Down-casting override</i></p>
+     * <p>
+     * {@inheritDoc}
+     */
+    @Override
+    @Tested
+    public <Argument2, Argument3, Argument4, ResultType> Result<ResultType> map(
+            final TetraFunction<Value, Argument2, Argument3, Argument4, ResultType> function, final Argument2 argument2,
+            final Argument3 argument3, final Argument4 argument4)
+    {
+        return (Result<ResultType>) super.map(function, argument2, argument3, argument4);
+    }
+
+    /**
+     * <p><i>Down-casting override</i></p>
+     * <p>
+     * {@inheritDoc}
+     */
+    @Override
+    @Tested
+    public <Argument2, Argument3, Argument4, Argument5, ResultType> Result<ResultType> map(
+            final PentaFunction<Value, Argument2, Argument3, Argument4, Argument5, ResultType> function,
+            final Argument2 argument2,
+            final Argument3 argument3, final Argument4 argument4, final Argument5 argument5)
+    {
+        return (Result<ResultType>) super.map(function, argument2, argument3, argument4, argument5);
+    }
+
+    /**
      * Returns any messages captured in this result
      */
     @Tested
@@ -492,60 +546,6 @@ public class Result<Value> extends Maybe<Value> implements RepeaterMixin
     public boolean succeeded()
     {
         return messages == null || messages().succeeded();
-    }
-
-    /**
-     * <p><i>Down-casting override</i></p>
-     * <p>
-     * {@inheritDoc}
-     */
-    @Tested
-    public <Argument2, R> Result<R> then(BiFunction<Value, Argument2, R> function, Argument2 argument2)
-    {
-        return (Result<R>) super.then(function, argument2);
-    }
-
-    /**
-     * <p><i>Down-casting override</i></p>
-     * <p>
-     * {@inheritDoc}
-     */
-    @Override
-    @Tested
-    public <Argument2, Argument3, ResultType> Result<ResultType> then(
-            final TriFunction<Value, Argument2, Argument3, ResultType> function, final Argument2 argument2,
-            final Argument3 argument3)
-    {
-        return (Result<ResultType>) super.then(function, argument2, argument3);
-    }
-
-    /**
-     * <p><i>Down-casting override</i></p>
-     * <p>
-     * {@inheritDoc}
-     */
-    @Override
-    @Tested
-    public <Argument2, Argument3, Argument4, ResultType> Result<ResultType> then(
-            final TetraFunction<Value, Argument2, Argument3, Argument4, ResultType> function, final Argument2 argument2,
-            final Argument3 argument3, final Argument4 argument4)
-    {
-        return (Result<ResultType>) super.then(function, argument2, argument3, argument4);
-    }
-
-    /**
-     * <p><i>Down-casting override</i></p>
-     * <p>
-     * {@inheritDoc}
-     */
-    @Override
-    @Tested
-    public <Argument2, Argument3, Argument4, Argument5, ResultType> Result<ResultType> then(
-            final PentaFunction<Value, Argument2, Argument3, Argument4, Argument5, ResultType> function,
-            final Argument2 argument2,
-            final Argument3 argument3, final Argument4 argument4, final Argument5 argument5)
-    {
-        return (Result<ResultType>) super.then(function, argument2, argument3, argument4, argument5);
     }
 
     /**

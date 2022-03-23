@@ -20,28 +20,27 @@ package com.telenav.kivakit.core.test;
 
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.ensure.Failure;
-import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.language.primitive.Booleans;
 import com.telenav.kivakit.core.language.trait.LanguageTrait;
+import com.telenav.kivakit.core.lexakai.DiagramTest;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Broadcaster;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.messaging.Repeater;
-import com.telenav.kivakit.core.messaging.listeners.MessageList;
-import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.core.os.ConsoleWriter;
 import com.telenav.kivakit.core.os.OperatingSystem;
+import com.telenav.kivakit.core.project.Project;
 import com.telenav.kivakit.core.project.ProjectTrait;
-import com.telenav.kivakit.core.lexakai.DiagramTest;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.core.value.count.Maximum;
+import com.telenav.kivakit.core.value.count.Minimum;
 import com.telenav.kivakit.core.vm.JavaTrait;
-import com.telenav.kivakit.interfaces.code.Loopable;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
-import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -50,19 +49,106 @@ import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.rules.TestWatcher;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Collection;
 import java.util.function.Consumer;
-import java.util.function.Predicate;
+import java.util.function.Supplier;
+
+import static com.telenav.kivakit.core.project.Project.resolveProject;
 
 /**
- * This is the base test class for all unit tests. It provides useful methods that are common to all tests. Several
- * ensure*() methods delegate to the {@link Ensure} class to provide easy access to these methods. A variety of methods
- * provide looping, indexing, iteration and random testing assistance.
+ * This is the base class for all unit tests. It provides useful methods that are common to all tests. Several ensure*()
+ * methods delegate to the {@link Ensure} class to provide easy access to these methods.
+ *
+ * <p><b>Random Value Testing</b></p>
+ *
+ * <p>
+ * The method {@link #random()} retrieves a {@link RandomValueFactory} for the test, which can be specialized by
+ * overriding {@link #newRandomValueFactory()}. Methods in {@link RandomValueFactory} provide support for random value
+ * testing. In the event that a randomized test fails the seed number to reproduce the test will be output:
+ * </p>
+ *
+ * <pre>
+ * // random().seed(123456789L);</pre>
+ *
+ * <p>
+ * To reproduce the test, insert this code at the start of the test method that failed.
+ * </p>
+ *
+ * <p><b>Quick Tests</b></p>
+ *
+ * <p>
+ * If the system property "testQuick" is set to "true", only unit tests that override {@link #isQuickTest()} to return
+ * true will be executed. Alternatively, quick tests can be labeled with the {@link QuickTest} annotation.
+ *
+ * <p><b>Test Methods</b></p>
+ *
+ * <ul>
+ *     <li>{@link #random()}</li>
+ *     <li>{@link #initializeProject(Class)}</li>
+ *     <li>{@link #isRandomTest()}</li>
+ *     <li>{@link #isQuickTest()}</li>
+ *     <li>{@link #isMac()}</li>
+ *     <li>{@link #isWindows()}</li>
+ *     <li>{@link #count(long)}</li>
+ *     <li>{@link #count(Collection)}</li>
+ *     <li>{@link #maximum(long)}</li>
+ *     <li>{@link #minimum(long)}</li>
+ *     <li>{@link #register(Object)}</li>
+ * </ul>
+ *
+ * <p><b>Ensure</b></p>
+ *
+ * <ul>
+ *     <li>{@link #ensure(boolean)}</li>
+ *     <li>{@link #ensure(boolean, String, Object...)}</li>
+ *     <li>{@link #ensure(Supplier, String, Object...)}</li>
+ *     <li>{@link #ensure(boolean, Throwable, String, Object...)}</li>
+ *     <li>{@link #ensureFalse(boolean)}</li>
+ *     <li>{@link #ensureFalse(boolean, String, Object...)}</li>
+ *     <li>{@link #fail(String, Object...)}</li>
+ * </ul>
+ *
+ * <p><b>Ensure Null</b></p>
+ *
+ * <ul>
+ *     <li>{@link #ensureNull(Object)}</li>
+ *     <li>{@link #ensureNull(Object, String, Object...)}</li>
+ *     <li>{@link #ensureNotNull(Object)}</li>
+ *     <li>{@link #ensureNotNull(Object, String, Object...)}</li>
+ * </ul>
+ *
+ * <p><b>Ensure Equality</b></p>
+ *
+ * <ul>
+ *     <li>{@link #ensureEqual(Object, Object)}</li>
+ *     <li>{@link #ensureEqual(Object, Object, String, Object...)}</li>
+ *     <li>{@link #ensureNotEqual(Object, Object)}</li>
+ *     <li>{@link #ensureNotEqual(Object, Object, String, Object...)}</li>
+ *     <li>{@link #ensureEqualArray(Object[], Object[])}</li>
+ *     <li>{@link #ensureEqualArray(byte[], byte[])}</li>
+ * </ul>
+ *
+ *  <p><b>Ensure Behavior</b></p>
+ *
+ *  <ul>
+ *      <li>{@link #ensureBroadcastsProblem(Broadcaster, Consumer)}</li>
+ *      <li>{@link #ensureBroadcastsNoProblem(Broadcaster, Consumer)}</li>
+ *      <li>{@link #ensureThrows(Runnable)}</li>
+ *  </ul>
+ *
+ * <p><b>Ensure Math</b></p>
+ *
+ * <ul>
+ *     <li>{@link #ensureZero(Number)}</li>
+ *     <li>{@link #ensureNonZero(Number)}</li>
+ *     <li>{@link #ensureClose(Duration, Duration)}</li>
+ *     <li>{@link #ensureClose(Number, Number, int)}</li>
+ *     <li>{@link #ensureBetweenExclusive(long, long, long)}</li>
+ *     <li>{@link #ensureBetweenInclusive(long, long, long)}</li>
+ *     <li>{@link #ensureBetweenInclusive(long, long, long, String, Object...)}</li>
+ *     <li>{@link #ensureBetweenExclusive(long, long, long, String, Object...)}</li>
+ *     <li>{@link #ensureBetween(double, double, double)}</li>
+ * </ul>
  *
  * @author jonathanl (shibo)
  */
@@ -105,22 +191,15 @@ public abstract class UnitTest extends TestWatcher implements
     @Rule
     public UnitTestWatcher watcher = new UnitTestWatcher(this);
 
-    private Count iterations = isQuickTest() ? Count.count(100) : Count._1_000;
-
     private final ConsoleWriter console = new ConsoleWriter();
 
-    private final ThreadLocal<Object> randomValueFactory = new ThreadLocal<>();
+    private final ThreadLocal<RandomValueFactory> randomValueFactory = ThreadLocal.withInitial(this::newRandomValueFactory);
 
-    private final ThreadLocal<Integer> index = new ThreadLocal<>();
+    protected int index;
 
-    public UnitTest()
+    protected UnitTest()
     {
         LOGGER.listenTo(this);
-    }
-
-    public boolean isRandomTest()
-    {
-        return randomValueFactory.get() != null;
     }
 
     @Override
@@ -129,9 +208,35 @@ public abstract class UnitTest extends TestWatcher implements
         console.receive(message);
     }
 
+    @Override
+    public <T> T register(final T object)
+    {
+        return RegistryTrait.super.register(object);
+    }
+
     @Before
     public void testBeforeUnitTest()
     {
+    }
+
+    protected Count count(long value)
+    {
+        return Count.count(value);
+    }
+
+    protected Count count(Collection<?> value)
+    {
+        return Count.count(value);
+    }
+
+    protected <T> T ensure(Supplier<Boolean> valid, String message, Object... arguments)
+    {
+        return ensure(valid.get(), message, arguments);
+    }
+
+    protected <T> T ensure(boolean condition, Throwable e, String message, Object... arguments)
+    {
+        return Ensure.ensure(condition, e, message, arguments);
     }
 
     protected boolean ensure(boolean condition)
@@ -139,43 +244,49 @@ public abstract class UnitTest extends TestWatcher implements
         return Ensure.ensure(condition);
     }
 
-    protected void ensure(boolean condition, String message, Object... arguments)
+    protected <T> T ensure(boolean condition, String message, Object... arguments)
     {
-        Ensure.ensure(condition, message, arguments);
+        return Ensure.ensure(condition, message, arguments);
     }
 
-    protected void ensureBetween(double actual, double low, double high)
+    protected double ensureBetween(double actual, double low, double high)
     {
-        ensure(low < high, "The low boundary $ is higher than the high boundary $", low, high);
-        if (actual < low || actual > high)
-        {
-            fail("Value $ is not between $ and $", actual, low, high);
-        }
+        return Ensure.ensureBetween(actual, low, high);
+    }
+
+    protected long ensureBetweenExclusive(long value, long minimum, long maximum)
+    {
+        return Ensure.ensureBetweenExclusive(value, minimum, maximum);
+    }
+
+    protected long ensureBetweenExclusive(long value, long minimum, long maximum, String message, Object... arguments)
+    {
+        return Ensure.ensureBetweenExclusive(value, minimum, maximum, message, arguments);
+    }
+
+    protected long ensureBetweenInclusive(long value, long minimum, long maximum, String message, Object... arguments)
+    {
+        return Ensure.ensureBetweenInclusive(value, minimum, maximum, message, arguments);
+    }
+
+    protected long ensureBetweenInclusive(long value, long minimum, long maximum)
+    {
+        return Ensure.ensureBetweenInclusive(value, minimum, maximum);
     }
 
     protected <T extends Broadcaster> void ensureBroadcastsNoProblem(T broadcaster, Consumer<T> code)
     {
-        var messages = new MessageList();
-        messages.listenTo(broadcaster);
-        code.accept(broadcaster);
-        ensure(messages.count(Problem.class).equals(Count._0));
+        Ensure.ensureBroadcastsNoProblem(broadcaster, code);
     }
 
     protected <T extends Broadcaster> void ensureBroadcastsProblem(T broadcaster, Consumer<T> code)
     {
-        var messages = new MessageList();
-        messages.listenTo(broadcaster);
-        code.accept(broadcaster);
-        ensure(messages.count(Problem.class).equals(Count._1));
+        Ensure.ensureBroadcastsProblem(broadcaster, code);
     }
 
     protected void ensureClose(Number expected, Number actual, int numberOfDecimalsToMatch)
     {
-        var roundedExpected = (int) (expected.doubleValue() * Math.pow(10, numberOfDecimalsToMatch))
-                / Math.pow(10, numberOfDecimalsToMatch);
-        var roundedActual = (int) (actual.doubleValue() * Math.pow(10, numberOfDecimalsToMatch))
-                / Math.pow(10, numberOfDecimalsToMatch);
-        ensureWithin(roundedExpected, roundedActual, 1E-3);
+        Ensure.ensureClose(expected, actual, numberOfDecimalsToMatch);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -196,30 +307,42 @@ public abstract class UnitTest extends TestWatcher implements
 
     protected void ensureEqualArray(byte[] a, byte[] b)
     {
-        ensure(Arrays.equals(a, b));
-        ensure(Arrays.equals(b, a));
+        Ensure.ensureEqualArray(a, b);
     }
 
     protected <T> void ensureEqualArray(T[] a, T[] b)
     {
-        ensure(Arrays.equals(a, b));
-        ensure(Arrays.equals(b, a));
+        Ensure.ensureEqualArray(a, b);
     }
 
-    protected void ensureFalse(boolean condition)
+    protected boolean ensureFalse(boolean condition)
     {
-        Ensure.ensure(!condition);
+        return Ensure.ensureFalse(condition);
     }
 
     protected void ensureFalse(boolean condition, String message, Object... arguments)
     {
-        Ensure.ensure(!condition, message, arguments);
+        Ensure.ensureFalse(condition, message, arguments);
     }
 
-    protected <T> void ensureNotEqual(T a, T b)
+    protected void ensureNonZero(Number value)
     {
-        ensureFalse(Objects.equal(a, b), a + " should not equal " + b);
-        ensureFalse(Objects.equal(b, a), a + " should not equal " + b);
+        Ensure.ensureNonZero(value);
+    }
+
+    protected <T> T ensureNotEqual(T given, T expected)
+    {
+        return Ensure.ensureNotEqual(given, expected);
+    }
+
+    protected <T> T ensureNotEqual(T given, T expected, String message, Object... objects)
+    {
+        return Ensure.ensureNotEqual(given, expected, message, objects);
+    }
+
+    protected <T> T ensureNotNull(T object, String message, Object... objects)
+    {
+        return Ensure.ensureNotNull(object, message, objects);
     }
 
     protected <T> T ensureNotNull(T object)
@@ -227,41 +350,29 @@ public abstract class UnitTest extends TestWatcher implements
         return Ensure.ensureNotNull(object);
     }
 
-    protected void ensureNull(Object object)
+    protected <T> T ensureNull(T object, String message, Object... arguments)
     {
-        ensure(object == null);
+        return Ensure.ensureNull(object, message, arguments);
+    }
+
+    protected <T> T ensureNull(T object)
+    {
+        return Ensure.ensureNull(object);
     }
 
     protected void ensureThrows(Runnable code)
     {
-        var threw = false;
-        try
-        {
-            code.run();
-        }
-        catch (AssertionError | Exception ignored)
-        {
-            threw = true;
-        }
-
-        if (!threw)
-        {
-            fail("Code should have thrown exception");
-        }
+        Ensure.ensureThrows(code);
     }
 
     protected void ensureWithin(double expected, double actual, double maximumDifference)
     {
-        var difference = Math.abs(expected - actual);
-        if (difference > maximumDifference)
-        {
-            fail("Expected value $ was not within $ of actual value $", expected, maximumDifference, actual);
-        }
+        Ensure.ensureWithin(expected, actual, maximumDifference);
     }
 
     protected void ensureZero(Number value)
     {
-        ensure(value.doubleValue() == 0.0);
+        Ensure.ensureZero(value);
     }
 
     protected void fail(String message, Object... arguments)
@@ -269,9 +380,15 @@ public abstract class UnitTest extends TestWatcher implements
         Ensure.fail(message, arguments);
     }
 
-    protected int index()
+    protected <T extends Project> void initializeProject(Class<T> project)
     {
-        return index.get();
+
+        Listener.none().listenTo(resolveProject(project)).initialize();
+    }
+
+    protected boolean isMac()
+    {
+        return OperatingSystem.get().isMac();
     }
 
     protected boolean isQuickTest()
@@ -279,482 +396,33 @@ public abstract class UnitTest extends TestWatcher implements
         return quickTest;
     }
 
+    protected boolean isRandomTest()
+    {
+        return randomValueFactory.get() != null;
+    }
+
     protected boolean isWindows()
     {
         return OperatingSystem.get().isWindows();
     }
 
-    protected void iterateBytes(Consumer<Byte> consumer)
+    protected Maximum maximum(long minimum)
     {
-        iterations.forEachByte(consumer);
+        return Maximum.maximum(minimum);
     }
 
-    protected void iterateIndexes(Consumer<Integer> consumer)
+    protected Minimum minimum(long minimum)
     {
-        iterations.forEachInteger(consumer);
+        return Minimum.minimum(minimum);
     }
 
-    protected void iterateIntegers(Consumer<Integer> consumer)
+    protected RandomValueFactory newRandomValueFactory()
     {
-        iterations.forEachInteger(consumer);
+        return new RandomValueFactory();
     }
 
-    protected void iterateLongs(Consumer<Long> consumer)
+    protected RandomValueFactory random()
     {
-        iterations.forEachLong(consumer);
-    }
-
-    protected void iterateShorts(Consumer<Short> consumer)
-    {
-        iterations.forEachShort(consumer);
-    }
-
-    protected void iterations(Count iterations)
-    {
-        this.iterations = iterations;
-    }
-
-    protected void iterations(int iterations)
-    {
-        iterations(Count.count(iterations));
-    }
-
-    protected Count iterations()
-    {
-        return iterations;
-    }
-
-    protected void loop(Runnable code)
-    {
-        iterations.loop(code);
-    }
-
-    protected void loop(Loopable code)
-    {
-        iterations.loop(code);
-    }
-
-    protected void loop(int minimum, int maximum, Runnable code)
-    {
-        loop(randomInt(minimum, maximum), code);
-    }
-
-    protected void loop(int minimum, int maximum, Loopable code)
-    {
-        loop(randomInt(minimum, maximum), code);
-    }
-
-    protected void loop(int times, Runnable code)
-    {
-        for (var i = 0; i < times; i++)
-        {
-            code.run();
-        }
-    }
-
-    protected void loop(int times, Loopable code)
-    {
-        for (var iteration = 0; iteration < times; iteration++)
-        {
-            code.iteration(iteration);
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    protected final <T extends RandomValueFactory> T newRandomValueFactory(Source<T> factory)
-    {
-        if (randomValueFactory.get() == null)
-        {
-            randomValueFactory.set(factory.get());
-        }
-        return (T) randomValueFactory.get();
-    }
-
-    protected int nextIndex()
-    {
-        var next = index.get();
-        index.set(next + 1);
-        return next;
-    }
-
-    protected char randomAsciiChar()
-    {
-        return randomValueFactory().newAsciiChar();
-    }
-
-    protected String randomAsciiString(int minimum, int maximum)
-    {
-        return randomValueFactory().newAsciiString(minimum, maximum);
-    }
-
-    protected String randomAsciiString()
-    {
-        return randomValueFactory().newAsciiString();
-    }
-
-    protected List<Byte> randomByteList(Repeats repeats)
-    {
-        var values = new ArrayList<Byte>();
-        randomBytes(repeats, values::add);
-        return values;
-    }
-
-    protected List<Byte> randomByteList(Repeats repeats, byte minimum, byte maximum)
-    {
-        var values = new ArrayList<Byte>();
-        randomBytes(repeats, minimum, maximum, null, values::add);
-        return values;
-    }
-
-    protected void randomBytes(Repeats repeats, Consumer<Byte> consumer)
-    {
-        randomBytes(repeats, iterations, consumer);
-    }
-
-    protected void randomBytes(Repeats repeats, Count count, Consumer<Byte> consumer)
-    {
-        randomBytes(repeats, count, (byte) (Byte.MIN_VALUE + 2), Byte.MAX_VALUE, null, consumer);
-    }
-
-    protected void randomBytes(Repeats repeats, byte minimum, byte maximum,
-                               Predicate<Byte> filter, Consumer<Byte> consumer)
-    {
-        randomBytes(repeats, iterations, minimum, maximum, filter, consumer);
-    }
-
-    protected void randomBytes(Repeats repeats, Count count, byte minimum, byte maximum,
-                               Predicate<Byte> filter, Consumer<Byte> consumer)
-    {
-        if (repeats == Repeats.NO_REPEATS)
-        {
-            var values = new HashSet<Byte>();
-            while (values.size() < count.minimum(Count.count(250)).asInt())
-            {
-                var value = randomValueFactory().newByte(minimum, maximum, filter);
-                values.add(value);
-            }
-            for (var value : values)
-            {
-                consumer.accept(value);
-            }
-        }
-        else
-        {
-            count.loop(() -> consumer.accept(randomValueFactory().newByte(minimum, maximum, filter)));
-        }
-    }
-
-    protected void randomBytes(Repeats repeats, Predicate<Byte> filter, Consumer<Byte> consumer)
-    {
-        randomBytes(repeats, iterations, (byte) (Byte.MIN_VALUE + 2), Byte.MAX_VALUE, filter, consumer);
-    }
-
-    protected int randomIndex()
-    {
-        return randomValueFactory().newIndex(iterations().asInt());
-    }
-
-    protected void randomIndexes(Repeats repeats, Consumer<Integer> consumer)
-    {
-        randomIndexes(repeats, iterations(), consumer);
-    }
-
-    protected void randomIndexes(Repeats repeats, Count count, Consumer<Integer> consumer)
-    {
-        randomIndexes(repeats, count, count.asInt(), consumer);
-    }
-
-    protected void randomIndexes(Repeats repeats, Count count, int maximum,
-                                 Consumer<Integer> consumer)
-    {
-        var indexes = randomIntList(repeats, count, 0, maximum);
-        Collections.shuffle(indexes);
-        indexes.forEach(consumer);
-    }
-
-    protected int randomInt(int minimum, int maximum)
-    {
-        return randomValueFactory().newInt(minimum, maximum);
-    }
-
-    protected int randomInt()
-    {
-        return randomValueFactory().newInt();
-    }
-
-    protected int randomInt(int minimum, int maximum, Predicate<Integer> filter)
-    {
-        return randomValueFactory().newInt(minimum, maximum, filter);
-    }
-
-    protected List<Integer> randomIntList(Repeats repeats)
-    {
-        var values = new ArrayList<Integer>();
-        randomInts(repeats, values::add);
-        return values;
-    }
-
-    protected List<Integer> randomIntList(Repeats repeats, int minimum, int maximum)
-    {
-        var values = new ArrayList<Integer>();
-        randomInts(repeats, minimum, maximum, null, values::add);
-        return values;
-    }
-
-    protected List<Integer> randomIntList(Repeats repeats, Count count, int minimum,
-                                          int maximum)
-    {
-        var values = new ArrayList<Integer>();
-        randomInts(repeats, count, minimum, maximum, null, values::add);
-        return values;
-    }
-
-    protected void randomInts(Repeats repeats, Consumer<Integer> consumer)
-    {
-        randomInts(repeats, iterations, consumer);
-    }
-
-    protected void randomInts(Repeats repeats, Predicate<Integer> filter, Consumer<Integer> consumer)
-    {
-        randomInts(repeats, iterations, Integer.MIN_VALUE + 2, Integer.MAX_VALUE, filter, consumer);
-    }
-
-    protected void randomInts(Repeats repeats, Count count, Consumer<Integer> consumer)
-    {
-        randomInts(repeats, count, Integer.MIN_VALUE + 2, Integer.MAX_VALUE, null, consumer);
-    }
-
-    protected void randomInts(Repeats repeats, int minimum, int maximum,
-                              Predicate<Integer> filter, Consumer<Integer> consumer)
-    {
-        randomInts(repeats, iterations, minimum, maximum, filter, consumer);
-    }
-
-    protected void randomInts(Repeats repeats, Count count, int minimum, int maximum,
-                              Predicate<Integer> filter, Consumer<Integer> consumer)
-    {
-        var range = (long) maximum - (long) minimum;
-
-        assert maximum > minimum;
-        assert count.get() <= range : "Count is " + count + " but maximum of " + maximum + " - " + minimum + " = " + range;
-
-        // If we're allowing repeats,
-        if (repeats == Repeats.NO_REPEATS)
-        {
-            var values = new HashSet<Integer>();
-
-            // and we're trying to get values for less than 80% of the range,
-            if (100L * count.asInt() / range < 80)
-            {
-                // just fill the set randomly until it's big enough,
-                while (values.size() < count.asInt())
-                {
-                    values.add(randomInt(minimum, maximum, filter));
-                }
-            }
-            else
-            {
-                // but if we're trying to fill most or all of the range with no repeats
-                // it might take too long to do that randomly, so we keep a list of choices
-                // (this is only going to work for relatively small ranges due to memory),
-                var choices = new LinkedList<Integer>();
-                for (var i = minimum; i < maximum; i++)
-                {
-                    choices.add(i);
-                }
-
-                // and while we don't have enough values,
-                while (values.size() < count.asInt())
-                {
-                    // we pick a random index in the remaining choices list
-                    var index = choices.size() <= 1 ? 0 : randomInt(0, choices.size() - 1, filter);
-
-                    // and add the chosen value to the set
-                    values.add(choices.get(index));
-
-                    // before removing it from the choices,
-                    choices.remove(index);
-                }
-            }
-
-            // until finally, we call the consumer with each value.
-            for (var value : values)
-            {
-                consumer.accept(value);
-            }
-        }
-        else
-        {
-            // otherwise, we are allowing repeats, so things are simple.
-            count.loop(() -> consumer.accept(randomInt(minimum, maximum, filter)));
-        }
-    }
-
-    protected List<Long> randomLongList(Repeats repeats)
-    {
-        var values = new ArrayList<Long>();
-        randomLongs(repeats, values::add);
-        return values;
-    }
-
-    protected List<Long> randomLongList(Repeats repeats, long minimum, long maximum)
-    {
-        var values = new ArrayList<Long>();
-        randomLongs(repeats, minimum, maximum, null, values::add);
-        return values;
-    }
-
-    protected void randomLongs(Repeats repeats, Predicate<Long> filter, Consumer<Long> consumer)
-    {
-        randomLongs(repeats, iterations, Long.MIN_VALUE + 2, Long.MAX_VALUE, filter, consumer);
-    }
-
-    protected void randomLongs(Repeats repeats, Consumer<Long> consumer)
-    {
-        randomLongs(repeats, iterations, consumer);
-    }
-
-    protected void randomLongs(Repeats repeats, Count count, Consumer<Long> consumer)
-    {
-        randomLongs(repeats, count, Long.MIN_VALUE + 2, Long.MAX_VALUE, null, consumer);
-    }
-
-    protected void randomLongs(Repeats repeats, long minimum, long maximum,
-                               Predicate<Long> filter, Consumer<Long> consumer)
-    {
-        randomLongs(repeats, iterations, minimum, maximum, filter, consumer);
-    }
-
-    protected void randomLongs(Repeats repeats,
-                               Count count,
-                               long minimum,
-                               long maximum,
-                               Predicate<Long> filter,
-                               Consumer<Long> consumer)
-    {
-        assert maximum > minimum;
-
-        // Computed the range, handling overflow (well enough for our tests)
-        double range = (double) maximum - (double) minimum;
-
-        assert count.get() <= range : "Count is " + count + " but maximum of " + maximum + " - " + minimum + " = " + range;
-
-        // If we're allowing repeats,
-        if (repeats == Repeats.NO_REPEATS)
-        {
-            var values = new HashSet<Long>();
-
-            // and we're trying to get values for less than 80% of the range,
-            if (100L * count.asInt() / range < 80)
-            {
-                // just fill the set randomly until it's big enough,
-                while (values.size() < count.asInt())
-                {
-                    values.add(randomValueFactory().newLong(minimum, maximum, filter));
-                }
-            }
-            else
-            {
-                // but if we're trying to fill most or all of the range with no repeats
-                // it might take too long to do that randomly, so we keep a list of choices
-                // (this is only going to work for relatively small ranges due to memory),
-                var choices = new LinkedList<Long>();
-                for (var i = minimum; i < maximum; i++)
-                {
-                    choices.add(i);
-                }
-
-                // and while we don't have enough values,
-                while (values.size() < count.asInt())
-                {
-                    // we pick a random index in the remaining choices list
-                    var index = choices.size() <= 1 ? 0 : randomInt(0, choices.size() - 1);
-
-                    // and add the chosen value to the set
-                    values.add(choices.get(index));
-
-                    // before removing it from the choices,
-                    choices.remove(index);
-                }
-            }
-
-            // until finally, we call the consumer with each value.
-            for (var value : values)
-            {
-                consumer.accept(value);
-            }
-        }
-        else
-        {
-            // otherwise, we are allowing repeats, so things are simple.
-            count.loop(() -> consumer.accept(randomValueFactory().newLong(minimum, maximum, filter)));
-        }
-    }
-
-    protected List<Short> randomShortList(Repeats repeats)
-    {
-        var values = new ArrayList<Short>();
-        randomShorts(repeats, values::add);
-        return values;
-    }
-
-    protected List<Short> randomShortList(Repeats repeats, short minimum, short maximum)
-    {
-        var values = new ArrayList<Short>();
-        randomShorts(repeats, minimum, maximum, null, values::add);
-        return values;
-    }
-
-    protected void randomShorts(Repeats repeats, Predicate<Short> filter, Consumer<Short> consumer)
-    {
-        randomShorts(repeats, iterations, (short) (Short.MIN_VALUE + 2), Short.MAX_VALUE, filter, consumer);
-    }
-
-    protected void randomShorts(Repeats repeats, Consumer<Short> consumer)
-    {
-        randomShorts(repeats, iterations, consumer);
-    }
-
-    protected void randomShorts(Repeats repeats, Count count, Consumer<Short> consumer)
-    {
-        randomShorts(repeats, count, (short) (Short.MIN_VALUE + 2), Short.MAX_VALUE, null, consumer);
-    }
-
-    protected void randomShorts(Repeats repeats, short minimum, short maximum,
-                                Predicate<Short> filter, Consumer<Short> consumer)
-    {
-        randomShorts(repeats, iterations, minimum, maximum, filter, consumer);
-    }
-
-    protected void randomShorts(Repeats repeats, Count count, short minimum, short maximum,
-                                Predicate<Short> filter, Consumer<Short> consumer)
-    {
-        if (repeats == Repeats.NO_REPEATS)
-        {
-            var values = new HashSet<Short>();
-            while (values.size() < count.minimum(Count.count(Short.MAX_VALUE)).asInt())
-            {
-                var value = randomValueFactory().newShort(minimum, maximum, filter);
-                values.add(value);
-            }
-            for (var value : values)
-            {
-                consumer.accept(value);
-            }
-        }
-        else
-        {
-            count.loop(() -> consumer.accept(randomValueFactory().newShort(minimum, maximum, filter)));
-        }
-    }
-
-    protected RandomValueFactory randomValueFactory()
-    {
-        return newRandomValueFactory(RandomValueFactory::new);
-    }
-
-    protected void resetIndex()
-    {
-        index.set(0);
+        return randomValueFactory.get();
     }
 }

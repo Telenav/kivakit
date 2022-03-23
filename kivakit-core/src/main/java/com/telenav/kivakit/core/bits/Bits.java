@@ -18,8 +18,8 @@
 
 package com.telenav.kivakit.core.bits;
 
-import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.lexakai.DiagramBits;
+import com.telenav.kivakit.core.value.count.BaseCount;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -33,7 +33,7 @@ public class Bits
     /**
      * @return The given number of one bits
      */
-    public static long oneBits(Count count)
+    public static long oneBits(BaseCount<?> count)
     {
         var one = 1L;
         var value = 0L;

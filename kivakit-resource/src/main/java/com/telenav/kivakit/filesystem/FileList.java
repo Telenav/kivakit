@@ -24,8 +24,8 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFile;
+import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
@@ -256,7 +256,7 @@ public class FileList extends ObjectList<File>
         var bytes = Bytes._0;
         for (var file : this)
         {
-            bytes = bytes.add(file.sizeInBytes());
+            bytes = bytes.plus(file.sizeInBytes());
         }
         return bytes;
     }

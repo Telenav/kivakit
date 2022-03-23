@@ -43,7 +43,7 @@ public interface AsString extends Stringable
     {
         switch (format)
         {
-            case DEBUGGER:
+            case DEBUG:
             case LOG:
                 return new ObjectFormatter(this).toString();
 

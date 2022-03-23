@@ -18,7 +18,6 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.core.lexakai.DiagramCount;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -34,7 +33,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * @see Count
  */
 @UmlClassDiagram(diagram = DiagramCount.class)
-public class BitCount extends Count
+public class BitCount extends BaseCount<BitCount>
 {
     public static final BitCount _0 = new BitCount(0);
 
@@ -248,48 +247,12 @@ public class BitCount extends Count
         super(0);
     }
 
-    @Override
-    public BitCount decremented()
-    {
-        return minusOne();
-    }
-
-    @Override
-    public BitCount dividedBy(Count divisor)
-    {
-        return dividedBy(divisor.get());
-    }
-
-    @Override
-    public BitCount dividedBy(long divisor)
-    {
-        return bitCount(get() / divisor);
-    }
-
-    @Override
-    public BitCount incremented()
-    {
-        return plusOne();
-    }
-
     /**
      * @return A mask for the values this number of bits can take on
      */
     public long mask()
     {
         return values() - 1;
-    }
-
-    public BitCount maximum(BitCount that)
-    {
-        if (isGreaterThan(that))
-        {
-            return this;
-        }
-        else
-        {
-            return that;
-        }
     }
 
     public long maximumSigned()
@@ -302,100 +265,15 @@ public class BitCount extends Count
         return asInt() == 64 ? Long.MAX_VALUE : (1L << asInt()) - 1;
     }
 
-    public BitCount minimum(BitCount that)
-    {
-        if (isLessThan(that))
-        {
-            return this;
-        }
-        else
-        {
-            return that;
-        }
-    }
-
     public long minimumSigned()
     {
         return asInt() == 64 ? Long.MIN_VALUE : -maximumSigned() - 1;
     }
 
     @Override
-    public BitCount minus(long count)
+    public BitCount newInstance(Long value)
     {
-        return bitCount(get() - count);
-    }
-
-    public BitCount minus(BitCount count)
-    {
-        if (count.isGreaterThan(this))
-        {
-            throw new IllegalArgumentException(
-                    "Cannot subtract " + count + " from " + this + " or the result will be negative");
-        }
-        return minus(count.get());
-    }
-
-    @Override
-    public BitCount minusOne()
-    {
-        return minus(_1);
-    }
-
-    @Override
-    public BitCount plus(Count count)
-    {
-        return plus(count.get());
-    }
-
-    @Override
-    public BitCount plus(long count)
-    {
-        return bitCount(get() + count);
-    }
-
-    @Override
-    public BitCount plusOne()
-    {
-        return plus(_1);
-    }
-
-    @Override
-    public BitCount roundUpToPowerOfTwo()
-    {
-        var rounded = 1L;
-        while (rounded < get())
-        {
-            rounded <<= 1;
-        }
-        return bitCount(rounded);
-    }
-
-    public BitCount times(BitCount count)
-    {
-        return times(count.get());
-    }
-
-    @Override
-    public BitCount times(double multiplier)
-    {
-        return bitCount((long) (get() * multiplier));
-    }
-
-    @Override
-    public BitCount times(long count)
-    {
-        var product = get() * count;
-        if (product < 0)
-        {
-            return MAXIMUM;
-        }
-        return bitCount(product);
-    }
-
-    @Override
-    public BitCount times(Percent percentage)
-    {
-        return times(percentage.asUnitValue());
+        return newInstance(value.longValue());
     }
 
     /**
@@ -407,8 +285,8 @@ public class BitCount extends Count
     }
 
     @Override
-    protected BitCount onNewInstance(long value)
+    public BitCount newInstance(long count)
     {
-        return bitCount(value);
+        return bitCount(count);
     }
 }

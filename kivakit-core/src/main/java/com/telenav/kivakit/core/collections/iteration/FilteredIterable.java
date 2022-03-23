@@ -19,6 +19,7 @@
 package com.telenav.kivakit.core.collections.iteration;
 
 import com.telenav.kivakit.core.lexakai.DiagramCollections;
+import com.telenav.kivakit.interfaces.collection.NextValue;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -47,14 +48,14 @@ public class FilteredIterable<Element> extends BaseIterable<Element>
     }
 
     @Override
-    protected Next<Element> newNext()
+    protected NextValue<Element> newNext()
     {
-        return new Next<>()
+        return new NextValue<>()
         {
             private final Iterator<Element> iterator = iterable.iterator();
 
             @Override
-            public Element onNext()
+            public Element next()
             {
                 while (iterator.hasNext())
                 {

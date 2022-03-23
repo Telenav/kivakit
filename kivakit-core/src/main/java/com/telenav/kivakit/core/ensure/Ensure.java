@@ -1,15 +1,22 @@
 package com.telenav.kivakit.core.ensure;
 
+import com.telenav.kivakit.core.lexakai.DiagramEnsure;
 import com.telenav.kivakit.core.logging.Logger;
+import com.telenav.kivakit.core.messaging.Broadcaster;
+import com.telenav.kivakit.core.messaging.listeners.MessageList;
+import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.messages.status.Unsupported;
 import com.telenav.kivakit.core.messaging.messages.status.Warning;
-import com.telenav.kivakit.core.lexakai.DiagramEnsure;
 import com.telenav.kivakit.core.string.Formatter;
 import com.telenav.kivakit.core.string.Strings;
+import com.telenav.kivakit.core.time.Duration;
+import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
+import java.util.Arrays;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 /**
@@ -49,20 +56,58 @@ import java.util.function.Supplier;
  * All failure types are linked to the {@link FailureReporter} by default.
  * </p>
  *
- * <p><b>Ensure Methods</b></p>
+ * <p><b>Ensure</b></p>
  *
- * <p>
- * The method {@link #ensure(boolean, String, Object...)} will report an {@link EnsureProblem} if the given boolean
- * condition value is false. Other convenience methods include:
  * <ul>
- *     <li>{@link #ensure(boolean, Throwable, String, Object...)}</li>
  *     <li>{@link #ensure(boolean)}</li>
  *     <li>{@link #ensure(boolean, String, Object...)}</li>
  *     <li>{@link #ensure(Supplier, String, Object...)}</li>
+ *     <li>{@link #ensure(boolean, Throwable, String, Object...)}</li>
+ *     <li>{@link #ensureFalse(boolean)}</li>
+ *     <li>{@link #ensureFalse(boolean, String, Object...)}</li>
+ *     <li>{@link #fail(String, Object...)}</li>
+ * </ul>
+ *
+ * <p><b>Ensure Null</b></p>
+ *
+ * <ul>
+ *     <li>{@link #ensureNull(Object)}</li>
+ *     <li>{@link #ensureNull(Object, String, Object...)}</li>
  *     <li>{@link #ensureNotNull(Object)}</li>
  *     <li>{@link #ensureNotNull(Object, String, Object...)}</li>
+ * </ul>
+ *
+ * <p><b>Ensure Equality</b></p>
+ *
+ * <ul>
  *     <li>{@link #ensureEqual(Object, Object)}</li>
  *     <li>{@link #ensureEqual(Object, Object, String, Object...)}</li>
+ *     <li>{@link #ensureNotEqual(Object, Object)}</li>
+ *     <li>{@link #ensureNotEqual(Object, Object, String, Object...)}</li>
+ *     <li>{@link #ensureEqualArray(Object[], Object[])}</li>
+ *     <li>{@link #ensureEqualArray(byte[], byte[])}</li>
+ * </ul>
+ *
+ *  <p><b>Ensure Behavior</b></p>
+ *
+ *  <ul>
+ *      <li>{@link #ensureBroadcastsProblem(Broadcaster, Consumer)}</li>
+ *      <li>{@link #ensureBroadcastsNoProblem(Broadcaster, Consumer)}</li>
+ *      <li>{@link #ensureThrows(Runnable)}</li>
+ *  </ul>
+ *
+ * <p><b>Ensure Math</b></p>
+ *
+ * <ul>
+ *     <li>{@link #ensureZero(Number)}</li>
+ *     <li>{@link #ensureNonZero(Number)}</li>
+ *     <li>{@link #ensureClose(Duration, Duration)}</li>
+ *     <li>{@link #ensureClose(Number, Number, int)}</li>
+ *     <li>{@link #ensureBetweenExclusive(long, long, long)}</li>
+ *     <li>{@link #ensureBetweenInclusive(long, long, long)}</li>
+ *     <li>{@link #ensureBetweenInclusive(long, long, long, String, Object...)}</li>
+ *     <li>{@link #ensureBetweenExclusive(long, long, long, String, Object...)}</li>
+ *     <li>{@link #ensureBetween(double, double, double)}</li>
  * </ul>
  *
  * <p><i>Examples:</i></p>
@@ -152,7 +197,9 @@ public class Ensure
      * If the condition is false (the check is invalid), a {@link EnsureProblem} message is given to the {@link
      * FailureReporter} that message type.
      */
-    public static <T> T ensure(boolean condition, Throwable e, String message,
+    public static <T> T ensure(boolean condition,
+                               Throwable e,
+                               String message,
                                Object... arguments)
     {
         if (!condition)
@@ -160,6 +207,81 @@ public class Ensure
             Failure.report(EnsureProblem.class, e, message, arguments);
         }
         return null;
+    }
+
+    public static double ensureBetween(double actual, double low, double high)
+    {
+        ensure(low < high, "The low boundary $ is higher than the high boundary $", low, high);
+        if (actual < low || actual > high)
+        {
+            fail("Value $ is not between $ and $", actual, low, high);
+        }
+        return actual;
+    }
+
+    public static long ensureBetweenExclusive(long value, long minimum, long maximum)
+    {
+        ensureBetweenExclusive(value, minimum, maximum, "Value $ must be between $ and $ exclusive", value, minimum, maximum);
+        return value;
+    }
+
+    public static long ensureBetweenExclusive(long value,
+                                              long minimum,
+                                              long maximum,
+                                              String message,
+                                              Object... arguments)
+    {
+        ensure(value >= minimum && value < maximum, message, arguments);
+        return value;
+    }
+
+    public static long ensureBetweenInclusive(long value,
+                                              long minimum,
+                                              long maximum,
+                                              String message,
+                                              Object... arguments)
+    {
+        ensure(value >= minimum && value <= maximum, message, arguments);
+        return value;
+    }
+
+    public static long ensureBetweenInclusive(long value,
+                                              long minimum,
+                                              long maximum)
+    {
+        ensureBetweenInclusive(value, minimum, maximum, "Value $ must be between $ and $ inclusive", value, minimum, maximum);
+        return value;
+    }
+
+    public static <T extends Broadcaster> void ensureBroadcastsNoProblem(T broadcaster, Consumer<T> code)
+    {
+        var messages = new MessageList();
+        messages.listenTo(broadcaster);
+        code.accept(broadcaster);
+        ensure(messages.count(Problem.class).equals(Count._0));
+    }
+
+    public static <T extends Broadcaster> void ensureBroadcastsProblem(T broadcaster, Consumer<T> code)
+    {
+        var messages = new MessageList();
+        messages.listenTo(broadcaster);
+        code.accept(broadcaster);
+        ensure(messages.count(Problem.class).equals(Count._1));
+    }
+
+    public static void ensureClose(Number expected, Number actual, int numberOfDecimalsToMatch)
+    {
+        var roundedExpected = (int) (expected.doubleValue() * Math.pow(10, numberOfDecimalsToMatch))
+                / Math.pow(10, numberOfDecimalsToMatch);
+        var roundedActual = (int) (actual.doubleValue() * Math.pow(10, numberOfDecimalsToMatch))
+                / Math.pow(10, numberOfDecimalsToMatch);
+        ensureWithin(roundedExpected, roundedActual, 1E-3);
+    }
+
+    @SuppressWarnings("UnusedReturnValue")
+    public static boolean ensureClose(Duration given, Duration expected)
+    {
+        return given.isApproximately(expected, Duration.seconds(0.5));
     }
 
     public static <T> T ensureEqual(T given, T expected)
@@ -189,9 +311,21 @@ public class Ensure
         else
         {
             // otherwise, if one value is null the other has to be.
-            ensure(given == expected);
+            ensure(given == expected, "Not equal: one object is null and the other isn't");
         }
         return null;
+    }
+
+    public static void ensureEqualArray(byte[] a, byte[] b)
+    {
+        ensure(Arrays.equals(a, b));
+        ensure(Arrays.equals(b, a));
+    }
+
+    public static <T> void ensureEqualArray(T[] a, T[] b)
+    {
+        ensure(Arrays.equals(a, b));
+        ensure(Arrays.equals(b, a));
     }
 
     /**
@@ -210,9 +344,20 @@ public class Ensure
         return Boolean.TRUE.equals(ensure(!condition, message, arguments));
     }
 
+    public static void ensureNonZero(final Number value)
+    {
+        ensure(value.doubleValue() != 0.0);
+    }
+
     public static <T> T ensureNotEqual(T given, T expected)
     {
         ensure(!Objects.equals(given, expected));
+        return null;
+    }
+
+    public static <T> T ensureNotEqual(T given, T expected, String message, Object... arguments)
+    {
+        ensure(!Objects.equals(given, expected), message, arguments);
         return null;
     }
 
@@ -238,6 +383,24 @@ public class Ensure
         return object;
     }
 
+    public static void ensureThrows(Runnable code)
+    {
+        var threw = false;
+        try
+        {
+            code.run();
+        }
+        catch (AssertionError | Exception ignored)
+        {
+            threw = true;
+        }
+
+        if (!threw)
+        {
+            fail("Code should have thrown exception");
+        }
+    }
+
     public static void ensureWithin(double expected, double actual, double maximumDifference)
     {
         var difference = Math.abs(expected - actual);
@@ -245,6 +408,11 @@ public class Ensure
         {
             fail("Expected value $ was not within $ of actual value $", expected, maximumDifference, actual);
         }
+    }
+
+    public static void ensureZero(final Number value)
+    {
+        ensure(value.doubleValue() == 0.0);
     }
 
     public static <T> T fail()
@@ -302,24 +470,6 @@ public class Ensure
     public static void warning(Throwable throwable, String message, Object... arguments)
     {
         System.out.println("Warning: " + Strings.format(message, arguments) + "\n" + throwable);
-    }
-
-    protected void ensureBetween(double actual, double low, double high)
-    {
-        ensure(low < high, "The low boundary $ is higher than the high boundary $", low, high);
-        if (actual < low || actual > high)
-        {
-            fail("Value $ is not between $ and $", actual, low, high);
-        }
-    }
-
-    protected void ensureClose(Number expected, Number actual, int numberOfDecimalsToMatch)
-    {
-        var roundedExpected = (int) (expected.doubleValue() * Math.pow(10, numberOfDecimalsToMatch))
-                / Math.pow(10, numberOfDecimalsToMatch);
-        var roundedActual = (int) (actual.doubleValue() * Math.pow(10, numberOfDecimalsToMatch))
-                / Math.pow(10, numberOfDecimalsToMatch);
-        ensureWithin(roundedExpected, roundedActual, 0.0);
     }
 
     private static String format(String message, Object[] arguments)

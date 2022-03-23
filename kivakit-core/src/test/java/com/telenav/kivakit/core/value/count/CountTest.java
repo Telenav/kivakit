@@ -31,11 +31,12 @@ public class CountTest extends UnitTest
         ensureEqual(99, count.asInt());
         ensureEqual(Count.count(100), count.plus(Count._1));
         ensureEqual(Count.count(100), count.plus(1));
-        ensureEqual(Count.count(100), count.plusOne());
+        ensureEqual(Count.count(100), count.incremented());
         ensureFalse(count.isZero());
         ensure(Count._0.isZero());
         ensureEqual(Percent.of(99), count.percentOf(Count.count(100)));
         ensureEqual(-1, count.compareTo(Count.count(100)));
+        //noinspection EqualsWithItself
         ensureEqual(0, count.compareTo(count));
         ensureEqual(1, count.compareTo(Count.count(98)));
     }

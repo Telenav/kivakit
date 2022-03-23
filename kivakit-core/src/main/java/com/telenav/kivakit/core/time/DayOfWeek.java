@@ -18,135 +18,192 @@
 
 package com.telenav.kivakit.core.time;
 
+import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.lexakai.DiagramTime;
+import com.telenav.kivakit.core.value.count.BaseCount;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import static com.telenav.kivakit.core.ensure.Ensure.ensureBetweenInclusive;
+import static com.telenav.kivakit.core.time.DayOfWeek.Standard.ISO;
+import static com.telenav.kivakit.core.time.DayOfWeek.Standard.JAVA;
+import static com.telenav.kivakit.interfaces.string.Stringable.Format.USER_LABEL;
+
 /**
- * Enum for days of the week
+ * Typesafe value for day of week. The value stored in the {@link BaseCount} superclass is the ISO day of the week
+ * ordinal, where MONDAY is 0 and SUNDAY is 6. The Java day of the week (see java.time.{@link java.time.DayOfWeek}),
+ * where MONDAY is 1 and SUNDAY is 7 also supported.
  *
+ * @author jonathanl (shibo)
  * @author matthieun
+ * @see java.time.DayOfWeek
  */
 @UmlClassDiagram(diagram = DiagramTime.class)
 @LexakaiJavadoc(complete = true)
-public enum DayOfWeek
+public class DayOfWeek extends BaseCount<DayOfWeek>
 {
-    MONDAY(java.time.DayOfWeek.MONDAY),
-    TUESDAY(java.time.DayOfWeek.TUESDAY),
-    WEDNESDAY(java.time.DayOfWeek.WEDNESDAY),
-    THURSDAY(java.time.DayOfWeek.THURSDAY),
-    FRIDAY(java.time.DayOfWeek.FRIDAY),
-    SATURDAY(java.time.DayOfWeek.SATURDAY),
-    SUNDAY(java.time.DayOfWeek.SUNDAY);
+    public static final DayOfWeek MONDAY = isoDayOfWeek(0);
 
-    public static DayOfWeek forIsoConstant(int isoConstant)
+    public static final DayOfWeek TUESDAY = isoDayOfWeek(1);
+
+    public static final DayOfWeek WEDNESDAY = isoDayOfWeek(2);
+
+    public static final DayOfWeek THURSDAY = isoDayOfWeek(3);
+
+    public static final DayOfWeek FRIDAY = isoDayOfWeek(4);
+
+    public static final DayOfWeek SATURDAY = isoDayOfWeek(5);
+
+    public static final DayOfWeek SUNDAY = isoDayOfWeek(6);
+
+    /**
+     * Returns the day of the week under the given standard
+     *
+     * @param dayOfWeek The day of the week
+     * @param standard The standard, either ISO or JAVA
+     * @return The day of the week
+     */
+    public static DayOfWeek dayOfWeek(int dayOfWeek, Standard standard)
     {
-        switch (isoConstant)
-        {
-            case 0:
-                return MONDAY;
-
-            case 1:
-                return TUESDAY;
-
-            case 2:
-                return WEDNESDAY;
-
-            case 3:
-                return THURSDAY;
-
-            case 4:
-                return FRIDAY;
-
-            case 5:
-                return SATURDAY;
-
-            case 6:
-                return SUNDAY;
-
-            default:
-                throw new IllegalArgumentException("Day of week (ISO) " + isoConstant + " not found");
-        }
-    }
-
-    public static DayOfWeek forJavaDayOfWeek(java.time.DayOfWeek dayOfWeek)
-    {
-        switch (dayOfWeek)
-        {
-            case SUNDAY:
-                return SUNDAY;
-
-            case MONDAY:
-                return MONDAY;
-
-            case TUESDAY:
-                return TUESDAY;
-
-            case WEDNESDAY:
-                return WEDNESDAY;
-
-            case THURSDAY:
-                return THURSDAY;
-
-            case FRIDAY:
-                return FRIDAY;
-
-            case SATURDAY:
-                return SATURDAY;
-
-            default:
-                throw new IllegalArgumentException("Historical day of week " + dayOfWeek + " is not valid");
-        }
-    }
-
-    private final java.time.DayOfWeek internalDayOfWeek;
-
-    DayOfWeek(java.time.DayOfWeek dayOfWeek)
-    {
-        internalDayOfWeek = dayOfWeek;
+        return new DayOfWeek(dayOfWeek, standard);
     }
 
     /**
-     * @return This day of the week as an ISO-8601 constant
+     * The day of the week for an ISO ordinal value from 0 to 6
+     *
+     * @param dayOfWeek THe value from 0 to 6
+     * @return The day of the week
      */
-    public int asIsoConstant()
+    public static DayOfWeek isoDayOfWeek(int dayOfWeek)
     {
-        switch (internalDayOfWeek)
+        return dayOfWeek(dayOfWeek, ISO);
+    }
+
+    /**
+     * The day of the week for Java ordinal value from 1 to 7
+     *
+     * @param day THe value from 0 to 6
+     * @return The day of the week
+     */
+    public static DayOfWeek javaDayOfWeek(java.time.DayOfWeek day)
+    {
+        return dayOfWeek(day.getValue(), JAVA);
+    }
+
+    /**
+     * The day of the week for Java ordinal value from 1 to 7
+     *
+     * @param dayOfWeek THe value from 0 to 6
+     * @return The day of the week
+     */
+    public static DayOfWeek javaDayOfWeek(int dayOfWeek)
+    {
+        return dayOfWeek(dayOfWeek, ISO);
+    }
+
+    public enum Standard
+    {
+        ISO,
+        JAVA
+    }
+
+    private final Standard standard;
+
+    protected DayOfWeek(int dayOfWeek, Standard standard)
+    {
+        super(dayOfWeek);
+
+        this.standard = standard;
+
+        ensureBetweenInclusive(asIso(), 0, 6, "Invalid day of the week: " + this);
+    }
+
+    /**
+     * @return This day of the week as an ISO-8601 ordinal value
+     */
+    public int asIso()
+    {
+        return isIso() ? asInt() : asInt() - 1;
+    }
+
+    public int asJava()
+    {
+        return isJava() ? asInt() : asInt() + 1;
+    }
+
+    public java.time.DayOfWeek asJavaDayOfWeek()
+    {
+        return java.time.DayOfWeek.of(asJava());
+    }
+
+    @Override
+    @SuppressWarnings("SwitchStatementWithTooFewBranches")
+    public String asString(final Format format)
+    {
+        switch (format)
         {
-            case MONDAY:
-                return 0;
-
-            case TUESDAY:
-                return 1;
-
-            case WEDNESDAY:
-                return 2;
-
-            case THURSDAY:
-                return 3;
-
-            case FRIDAY:
-                return 4;
-
-            case SATURDAY:
-                return 5;
-
-            case SUNDAY:
-                return 6;
+            case DEBUG:
+                return asJavaDayOfWeek().name() + " (" + standard + ")";
 
             default:
-                throw new UnsupportedOperationException("Day of week " + this + " is not valid");
+                return asJavaDayOfWeek().name();
         }
     }
 
-    public int asJavaConstant()
+    @Override
+    public boolean equals(final Object object)
     {
-        return asIsoConstant() + 1;
+        if (object instanceof DayOfWeek)
+        {
+            DayOfWeek that = (DayOfWeek) object;
+            return this.asIso() == that.asIso();
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Hash.code(asIso());
+    }
+
+    public boolean isIso()
+    {
+        return standard == ISO;
+    }
+
+    public boolean isJava()
+    {
+        return standard == JAVA;
+    }
+
+    @Override
+    public DayOfWeek maximum()
+    {
+        return SUNDAY;
+    }
+
+    @Override
+    public DayOfWeek minimum()
+    {
+        return MONDAY;
+    }
+
+    @Override
+    public DayOfWeek newInstance(long ordinal)
+    {
+        return dayOfWeek(asInt(), standard);
+    }
+
+    @Override
+    public DayOfWeek newInstance(Long javaOrdinal)
+    {
+        return newInstance(javaOrdinal.longValue());
     }
 
     @Override
     public String toString()
     {
-        return name();
+        return asString(USER_LABEL);
     }
 }

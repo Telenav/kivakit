@@ -44,7 +44,7 @@ public interface ResultTrait extends Repeater
      */
     default <T> Result<T> failure(String message, Object... arguments)
     {
-        return Result.failure(message, arguments);
+        return listenTo(Result.failure(message, arguments));
     }
 
     /**
@@ -52,7 +52,7 @@ public interface ResultTrait extends Repeater
      */
     default <T> Result<T> failure(Message message)
     {
-        return Result.failure(message);
+        return listenTo(Result.failure(message));
     }
 
     /**
@@ -60,7 +60,7 @@ public interface ResultTrait extends Repeater
      */
     default <T> Result<T> failure(Throwable throwable, String message, Object... arguments)
     {
-        return Result.failure(throwable, message, arguments);
+        return listenTo(Result.failure(throwable, message, arguments));
     }
 
     /**
@@ -79,7 +79,7 @@ public interface ResultTrait extends Repeater
      */
     default <T> Result<T> success(Maybe<T> value)
     {
-        return Result.success(value);
+        return listenTo(Result.success(value));
     }
 
     /**
@@ -87,6 +87,6 @@ public interface ResultTrait extends Repeater
      */
     default <T> Result<T> success(T value)
     {
-        return Result.success(value);
+        return listenTo(Result.success(value));
     }
 }

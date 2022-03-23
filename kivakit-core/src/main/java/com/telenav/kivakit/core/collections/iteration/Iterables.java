@@ -18,8 +18,9 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
-import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.kivakit.core.lexakai.DiagramIteration;
+import com.telenav.kivakit.interfaces.collection.NextValue;
+import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Collection;
@@ -28,10 +29,10 @@ import java.util.Set;
 
 /**
  * Utility methods that operate on {@link Iterable}s. The method {@link #iterable(Factory)} can be used to implement the
- * {@link Iterable} interface with a minimum of code. The implementation of the {@link Next} interface provides either
- * the next value in an iteration of the sequence or null if there is none.
+ * {@link Iterable} interface with a minimum of code. The implementation of the {@link NextValue} interface provides
+ * either the next value in an iteration of the sequence or null if there is none.
  * <pre>
- * var iterable = Iterables.of(() -&gt; new Next&lt;Integer&gt;()
+ * var iterable = Iterables.of(() -&gt; new NextValue&lt;Integer&gt;()
  * {
  *     int next;
  *
@@ -43,7 +44,7 @@ import java.util.Set;
  * </pre>
  *
  * @author jonathanl (shibo)
- * @see Next
+ * @see NextValue
  */
 @UmlClassDiagram(diagram = DiagramIteration.class)
 public class Iterables
@@ -114,14 +115,14 @@ public class Iterables
     }
 
     /**
-     * @return An iterable for the given {@link Next} factory
+     * @return An iterable for the given {@link NextValue} factory
      */
-    public static <T> Iterable<T> iterable(Factory<Next<T>> factory)
+    public static <T> Iterable<T> iterable(Factory<NextValue<T>> factory)
     {
         return new BaseIterable<>()
         {
             @Override
-            protected Next<T> newNext()
+            protected NextValue<T> newNext()
             {
                 return factory.newInstance();
             }

@@ -8,6 +8,15 @@ else
     IMAGE_VERSION=$(echo "$1" | tr '[:upper:]' '[:lower:]')
 fi
 
+echo " "
+echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
+echo "┋"
+echo "┋  Starting Docker build environment"
+echo "┋"
+echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
+echo " "
+
+
 docker run \
     --volume "$KIVAKIT_WORKSPACE:/host/workspace" \
     --volume "$HOME/.m2:/host/.m2" \

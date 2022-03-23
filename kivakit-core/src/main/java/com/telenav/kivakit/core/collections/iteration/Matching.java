@@ -18,8 +18,9 @@
 
 package com.telenav.kivakit.core.collections.iteration;
 
-import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.core.lexakai.DiagramIteration;
+import com.telenav.kivakit.interfaces.collection.NextValue;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.Iterator;
@@ -40,14 +41,14 @@ public abstract class Matching<T> extends BaseIterable<T>
     }
 
     @Override
-    protected Next<T> newNext()
+    protected NextValue<T> newNext()
     {
-        return new Next<>()
+        return new NextValue<>()
         {
             private final Iterator<T> values = values();
 
             @Override
-            public T onNext()
+            public T next()
             {
                 while (values.hasNext())
                 {

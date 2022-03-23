@@ -28,13 +28,12 @@ if [ "$KIVAKIT_VERSION" = "$version" ]; then
 
     if yes_no "Maven repository and .kivakit/$version folders must be removed to build a release. Remove them?"; then
 
-        rm -rf ~/.m2
-        rm -rf ~/.kivakit/$version
+        rm -rf ~/.m2/repository
+        rm -rf ~/.kivakit/"$version"
 
     fi
 
-    bash kivakit-build.sh deploy-local
-    bash kivakit-build-documentation.sh
+    bash kivakit-build.sh deploy-local # single-threaded
 
     echo " "
     echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Built  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
@@ -68,9 +67,12 @@ else
         echo "┋  1. The branch release/$version has been created with git flow "
         echo "┋  2. Build files have been updated from $KIVAKIT_VERSION to $version"
         echo "┋"
-        echo "┋  EXIT YOUR TERMINAL PROGRAM ENTIRELY and restart it, then re-execute the command:"
+        echo "┋  EXIT YOUR TERMINAL PROGRAM ENTIRELY and restart it, then:"
         echo "┋"
-        echo "┋  $(basename $0) $1"
+        echo "┋  1. Check the release"
+        echo "|  2. Update change-log.md"
+        echo "┋  3. Update codeflowers"
+        echo "┋  4. Rerun this script: $(basename "$0") $1"
         echo "┋"
         echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
         echo " "

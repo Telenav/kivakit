@@ -16,6 +16,7 @@ package com.telenav.kivakit.settings;///////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.test.UnitTest;
@@ -39,8 +40,8 @@ public class SettingsTest extends UnitTest
     {
         register(new CoreGsonFactory(this));
 
-        new PropertiesSerializationProject().initialize();
-        new GsonSerializationProject().initialize();
+        initializeProject(PropertiesSerializationProject.class);
+        initializeProject(GsonSerializationProject.class);
     }
 
     @Test

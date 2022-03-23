@@ -8,11 +8,11 @@ In the text below *\[kivakit-version\]* refers to a [semantic versioning](https:
 
 KivaKit adheres to the standard [Git Flow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) branching model.
 
-### 0. Releasing Cactus Build
+### 0. Releasing Cactus Build (Optional)
 
-Before building *kivakit*, *cactus-build* must be released.
+Cactus build needs to be released only if it has been changed.
 
-> The version number of *cactus-build* must always be in sync with *kivakit*
+> The version number of *cactus-build* should always be in sync with *kivakit*
 
 1. To prepare a release branch, and build the release:
 
@@ -62,19 +62,15 @@ To update code flowers for the release
 
         ./kivakit-build-codeflowers.sh
 
-4. Open *site/index.html* in an editor and insert the &lt;option&gt; HTML code that was output by the build process.
+4. If there have been any projects added or removed since the last release,
+   open *site/index.html* in an editor and insert the &lt;option&gt; HTML
+   code that was output by the kivakit-build-codeflowers.sh.
 
 #### 1.4 Build the release branch
 
 To build the release branch, run the release script again:
 
     kivakit-release.sh [kivakit-version]
-
-#### 1.4 Check the release for publishing
-
-To ensure that the build will be accepted on Maven Central, run:
-
-    kivakit-build.sh deploy-local
 
 This will build all kivakit artifacts from scratch (answer 'y' to the prompt to remove all artifacts), including Javadoc and Lexakai documentation.
 
@@ -83,6 +79,17 @@ This will build all kivakit artifacts from scratch (answer 'y' to the prompt to 
 Commit any final changes to the release branch.
 
 ### 2. Publishing the Release &nbsp;  <img src="https://www.kivakit.org/images/stars-32.png" srcset="https://www.kivakit.org/images/stars-32-2x.png 2x"/>
+
+
+#### 2.0 Update Docker build environment image
+
+A docker build environment image can be created with:
+
+    kivakit-docker-build-create-image.sh
+    
+When the image has been built, it can be pushed to DockerHub with:
+
+    kivakit-docker-build-push-image.sh
 
 #### 2.1 Merge the release branch into master
 

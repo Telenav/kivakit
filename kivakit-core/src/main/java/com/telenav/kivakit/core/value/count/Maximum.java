@@ -18,10 +18,8 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.core.language.primitive.Longs;
-import com.telenav.kivakit.core.value.level.Percent;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.lexakai.DiagramCount;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -35,7 +33,7 @@ import java.util.Iterator;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
-public class Maximum extends Count
+public class Maximum extends BaseCount<Maximum>
 {
     public static final Maximum _0 = new Maximum(0);
 
@@ -238,152 +236,14 @@ public class Maximum extends Count
     }
 
     @Override
-    public BitCount asBitCount()
+    public Maximum newInstance(long count)
     {
-        return super.asBitCount();
+        return maximum(count);
     }
 
     @Override
-    public Maximum ceiling(int digits)
+    public Maximum newInstance(Long count)
     {
-        return (Maximum) super.ceiling(digits);
-    }
-
-    @Override
-    public Maximum decremented()
-    {
-        return (Maximum) super.decremented();
-    }
-
-    @Override
-    public Maximum dividedBy(Count divisor)
-    {
-        return dividedBy(divisor.get());
-    }
-
-    @Override
-    public Maximum dividedBy(long divisor)
-    {
-        return maximum(Longs.inRange(get() / divisor, 0, Long.MAX_VALUE));
-    }
-
-    @Override
-    public Maximum floor(int digits)
-    {
-        return (Maximum) super.floor(digits);
-    }
-
-    @Override
-    public Maximum incremented()
-    {
-        return (Maximum) super.incremented();
-    }
-
-    @Override
-    public Maximum maximum(Count that)
-    {
-        if (isGreaterThan(that))
-        {
-            return this;
-        }
-        else
-        {
-            return maximum(that);
-        }
-    }
-
-    @Override
-    public Maximum minimum(Count that)
-    {
-        if (isLessThan(that))
-        {
-            return this;
-        }
-        else
-        {
-            return maximum(that);
-        }
-    }
-
-    @Override
-    public Maximum minus(Count count)
-    {
-        return (Maximum) super.minus(count);
-    }
-
-    @Override
-    public Maximum minus(long count)
-    {
-        return (Maximum) super.minus(count);
-    }
-
-    @Override
-    public Maximum minusOne()
-    {
-        return (Maximum) super.minusOne();
-    }
-
-    @Override
-    public Maximum percent(Percent percentage)
-    {
-        return (Maximum) super.percent(percentage);
-    }
-
-    @Override
-    public Maximum plus(Count count)
-    {
-        return plus(count.get());
-    }
-
-    @Override
-    public Maximum plus(long count)
-    {
-        return maximum(get() + count);
-    }
-
-    @Override
-    public Maximum plusOne()
-    {
-        return (Maximum) super.plusOne();
-    }
-
-    @Override
-    public Maximum roundUpToPowerOfTwo()
-    {
-        return (Maximum) super.roundUpToPowerOfTwo();
-    }
-
-    @Override
-    public Maximum times(Count count)
-    {
-        if (count.isMaximum() || isMaximum())
-        {
-            return MAXIMUM;
-        }
-        return maximum(Longs.inRange(get() * count.get(), 0, Long.MAX_VALUE));
-    }
-
-    @Override
-    public Maximum times(double multiplier)
-    {
-        return (Maximum) super.times(multiplier);
-    }
-
-    @Override
-    public Maximum times(long count)
-    {
-        return (Maximum) super.times(count);
-    }
-
-    @Override
-    public Maximum times(Percent percentage)
-    {
-        return (Maximum) super.times(percentage);
-    }
-
-    @Override
-    protected Count onNewInstance(long value)
-    {
-        return maximum(value);
+        return newInstance(count.longValue());
     }
 }

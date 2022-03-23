@@ -20,14 +20,14 @@ This module provides stateful traits for Java.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/dependencies-32.png" srcset="https://www.kivakit.org/images/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-mixins/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.4.1/lexakai/kivakit/kivakit-mixins/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-mixins</artifactId>
-        <version>1.4.0</version>
+        <version>1.4.1</version>
     </dependency>
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
@@ -42,14 +42,14 @@ This module provides stateful traits for Java.
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-40.png" srcset="https://www.kivakit.org/images/diagram-40-2x.png 2x"/>
 
-[*Mixins*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-mixins/documentation/diagrams/diagram-mixin.svg)
+[*Mixins*](https://www.kivakit.org/1.4.1/lexakai/kivakit/kivakit-mixins/documentation/diagrams/diagram-mixin.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
-[*com.telenav.kivakit.mixins*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-mixins/documentation/diagrams/com.telenav.kivakit.mixins.svg)  
-[*com.telenav.kivakit.mixins.lexakai*](https://www.kivakit.org/1.4.0/lexakai/kivakit/kivakit-mixins/documentation/diagrams/com.telenav.kivakit.mixins.lexakai.svg)
+[*com.telenav.kivakit.mixins*](https://www.kivakit.org/1.4.1/lexakai/kivakit/kivakit-mixins/documentation/diagrams/com.telenav.kivakit.mixins.svg)  
+[*com.telenav.kivakit.mixins.lexakai*](https://www.kivakit.org/1.4.1/lexakai/kivakit/kivakit-mixins/documentation/diagrams/com.telenav.kivakit.mixins.lexakai.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
@@ -64,11 +64,11 @@ Javadoc coverage for this project is 75.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*AttributesMixin*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/AttributesMixin.html) |  |  
-| [*DiagramMixin*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/lexakai/DiagramMixin.html) |  |  
-| [*Mixin*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/Mixin.html) | Performance Note |  
-| [*Mixins*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/Mixins.html) |  |  
-| [*Mixins.MixinKey*](https://www.kivakit.org/1.4.0/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/Mixins.MixinKey.html) |  |  
+| [*AttributesMixin*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/AttributesMixin.html) |  |  
+| [*DiagramMixin*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/lexakai/DiagramMixin.html) |  |  
+| [*Mixin*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/Mixin.html) | Performance Note |  
+| [*Mixins*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/Mixins.html) |  |  
+| [*Mixins.MixinKey*](https://www.kivakit.org/1.4.1/javadoc/kivakit/kivakit.mixins/com/telenav/kivakit/mixins/Mixins.MixinKey.html) |  |  
 
 [//]: # (start-user-text)
 

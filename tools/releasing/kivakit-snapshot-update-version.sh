@@ -12,15 +12,15 @@ source kivakit-projects.sh
 
 version="$1"
 
-help="[version]"
+export help="[version]"
 
 require_variable version "[version]"
 
-snapshot_version="${1%-SNAPSHOT}-SNAPSHOT"
+snapshot_version="${version%-SNAPSHOT}-SNAPSHOT"
 
 for project_home in "${KIVAKIT_REPOSITORY_HOMES[@]}"; do
 
-    update_version "$project_home" "$version"
+    update_version "$project_home" "$snapshot_version"
 
 done
 

@@ -18,13 +18,22 @@
 
 package com.telenav.kivakit.core.test;
 
-import com.telenav.kivakit.core.value.identifier.Identifier;
+import com.telenav.kivakit.core.collections.list.ObjectList;
+import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.language.Hash;
-import com.telenav.kivakit.core.value.level.Confidence;
+import com.telenav.kivakit.core.lexakai.DiagramTest;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Debug;
-import com.telenav.kivakit.core.lexakai.DiagramTest;
+import com.telenav.kivakit.core.test.UnitTest.Repeats;
+import com.telenav.kivakit.core.value.count.BaseCount;
+import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.core.value.count.Range;
+import com.telenav.kivakit.core.value.identifier.Identifier;
+import com.telenav.kivakit.core.value.level.Confidence;
+import com.telenav.kivakit.interfaces.comparison.Filter;
+import com.telenav.kivakit.interfaces.comparison.Matcher;
+import com.telenav.kivakit.interfaces.numeric.RandomNumeric;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -32,9 +41,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
-import java.util.function.Predicate;
+import java.util.function.Consumer;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.test.UnitTest.Repeats.ALLOW_REPEATS;
+import static com.telenav.kivakit.core.test.UnitTest.Repeats.NO_REPEATS;
+import static com.telenav.kivakit.core.value.count.Count._1_000;
+import static com.telenav.kivakit.core.value.count.Count._65_536;
+import static com.telenav.kivakit.core.value.count.Count.count;
+import static com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction.ACCEPT;
+import static com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction.REJECT;
 
 /**
  * Utility class for tests used to create random values. {@link UnitTest} has a variety of methods for random testing
@@ -74,17 +90,16 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  */
 @UmlClassDiagram(diagram = DiagramTest.class)
 @LexakaiJavadoc(complete = true)
-public class RandomValueFactory
+@SuppressWarnings({ "SpellCheckingInspection", "DuplicatedCode" })
+public class RandomValueFactory implements RandomNumeric
 {
-    @SuppressWarnings("SpellCheckingInspection")
-    private static volatile long seedUniquifier = 8682522807148012L;
+    private static volatile long SALT = 8682522807148012L;
 
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
     private static final Debug DEBUG = new Debug(LOGGER);
 
-    protected Random random;
-
+    /** Seed value when reproducing test failures */
     private long seed;
 
     public RandomValueFactory(long seed)
@@ -97,86 +112,36 @@ public class RandomValueFactory
         seed(newSeed());
     }
 
-    @SuppressWarnings("SpellCheckingInspection")
-    public char newAsciiChar()
+    public void byteSequence(Consumer<Byte> consumer)
     {
-        var alphabet = "abcdefghijklmonpqrstuvwxyz";
-        return alphabet.charAt(newInt(0, alphabet.length()));
+        sequence(ALLOW_REPEATS, iterations(), minimum(Byte.class), maximum(Byte.class), Byte.class, Filter.all(), consumer);
     }
 
-    public String newAsciiString()
+    public void byteSequence(Repeats repeats,
+                             Matcher<Byte> include,
+                             Consumer<Byte> consumer)
     {
-        return newAsciiString(1, 32);
+        sequence(repeats, iterations(), minimum(Byte.class), maximum(Byte.class), Byte.class, include, consumer);
     }
 
-    public String newAsciiString(int minLength, int maxLength)
+    public void byteSequence(Repeats repeats,
+                             Consumer<Byte> consumer)
     {
-        var builder = new StringBuilder();
-        for (var i = 0; i < newCount(minLength, maxLength); i++)
-        {
-            builder.append(newAsciiChar());
-        }
-        return builder.toString();
+        sequence(repeats, iterations(), minimum(Byte.class), maximum(Byte.class), Byte.class, Filter.all(), consumer);
     }
 
-    public boolean newBoolean()
+    public void byteSequence(Matcher<Byte> include,
+                             Consumer<Byte> consumer)
     {
-        return newInt(0, 2) == 0;
+        sequence(ALLOW_REPEATS, iterations(), minimum(Byte.class), maximum(Byte.class), Byte.class, include, consumer);
     }
 
-    public final byte newByte(byte minimum, byte maximum)
+    public Confidence confidence()
     {
-        return (byte) newInt(minimum, maximum);
+        return Confidence.confidence(randomDoubleZeroToOne());
     }
 
-    public final byte newByte()
-    {
-        return (byte) newInt();
-    }
-
-    public final byte newByte(byte minimum, byte maximum, Predicate<Byte> filter)
-    {
-        byte value;
-        do
-        {
-            value = newByte(minimum, maximum);
-        }
-        while (filter != null && !filter.test(value));
-        return value;
-    }
-
-    public char newChar()
-    {
-        return (char) newInt(0, 32768);
-    }
-
-    public Confidence newConfidence()
-    {
-        return Confidence.confidence(newDoubleZeroToOne());
-    }
-
-    public int newCount(int minimum, int maximum)
-    {
-        return Math.abs(newInt(minimum, maximum));
-    }
-
-    public final double newDouble()
-    {
-        return newDouble(-1 * Double.MAX_VALUE, Double.MIN_VALUE);
-    }
-
-    public final double newDouble(double minimum, double maximum)
-    {
-        var difference = maximum - minimum;
-        return minimum + random.nextDouble() * difference;
-    }
-
-    public final double newDoubleZeroToOne()
-    {
-        return random.nextDouble();
-    }
-
-    public <T> T newFrom(Collection<T> values)
+    public <T> T from(Collection<T> values)
     {
         if (values.isEmpty())
         {
@@ -185,11 +150,11 @@ public class RandomValueFactory
         else
         {
             List<T> list = new ArrayList<>(values);
-            return list.get(newIndex(list.size()));
+            return list.get(randomIndex(list.size()));
         }
     }
 
-    public <T> T newFrom(T[] values)
+    public <T> T from(T[] values)
     {
         if (values.length == 0)
         {
@@ -197,121 +162,237 @@ public class RandomValueFactory
         }
         else
         {
-            return values[newIndex(values.length)];
+            return values[randomIndex(values.length)];
         }
     }
 
-    public Identifier newIdentifier(long maximum)
+    public Identifier identifierExclusive(long maximum)
     {
-        return new Identifier(newLong(1, maximum));
+        return new Identifier(randomLongExclusive(1, maximum));
     }
 
-    public int newIndex(int maximum)
+    public void indexes(Repeats repeats,
+                        long maximum,
+                        Consumer<Integer> consumer)
     {
-        ensure(maximum > 0);
-        return newInt(0, maximum);
+        sequence(repeats, iterations(), 0, maximum, Integer.class, consumer);
     }
 
-    public final int newInt(int minimum, int maximum, Predicate<Integer> filter)
+    public void indexes(long maximum, Consumer<Integer> consumer)
     {
-        int value;
-        do
-        {
-            value = newInt(minimum, maximum);
-        }
-        while (filter != null && !filter.test(value));
-        return value;
+        sequence(ALLOW_REPEATS, iterations().minimum(randomCount(maximum - 1)), 0, maximum - 1, Integer.class, consumer);
     }
 
-    public final int newInt(int minimum, int maximum)
+    public void intSequence(Consumer<Integer> consumer)
     {
-        return (int) newLong(minimum, maximum);
+        sequence(ALLOW_REPEATS, iterations(), minimum(Integer.class), maximum(Integer.class), Integer.class, Filter.all(), consumer);
     }
 
-    public final int newInt()
+    public void intSequence(Repeats repeats,
+                            Matcher<Integer> include,
+                            Consumer<Integer> consumer)
     {
-        return random.nextInt();
+        sequence(repeats, iterations(), minimum(Integer.class), maximum(Integer.class), Integer.class, include, consumer);
     }
 
-    public final long newLong(long minimum, long maximum, Predicate<Long> filter)
+    public void intSequence(Repeats repeats,
+                            Consumer<Integer> consumer)
     {
-        long value;
-        do
-        {
-            value = newLong(minimum, maximum);
-        }
-        while (filter != null && !filter.test(value));
-        return value;
+        sequence(repeats, iterations(), minimum(Integer.class), maximum(Integer.class), Integer.class, Filter.all(), consumer);
     }
 
-    public final long newLong()
+    public void intSequence(Matcher<Integer> include,
+                            Consumer<Integer> consumer)
     {
-        var value = random.nextLong();
-        DEBUG.trace("Next = $", value);
-        return value;
+        sequence(ALLOW_REPEATS, iterations(), minimum(Integer.class), maximum(Integer.class), Integer.class, include, consumer);
     }
 
-    public final long newLong(long minimum, long maximum)
+    public Count iterations()
     {
-        var value = internalNextLong(minimum, maximum);
-        DEBUG.trace("Next long = $", value);
-        return value;
+        return _1_000;
     }
 
-    public final short newShort(short minimum, short maximum, Predicate<Short> filter)
+    public char letter()
     {
-        short value;
-        do
-        {
-            value = newShort(minimum, maximum);
-        }
-        while (filter != null && !filter.test(value));
-        return value;
+        var alphabet = "ABCDEFGHIJKLMONPQRSTUVWXYZabcdefghijklmonpqrstuvwxyz";
+        return alphabet.charAt(randomIntExclusive(0, alphabet.length()));
     }
 
-    public final short newShort(short minimum, short maximum)
+    public String letters()
     {
-        return (short) newInt(minimum, maximum);
+        return letters(1, 32);
     }
 
-    public final short newShort()
-    {
-        return (short) newInt();
-    }
-
-    public String newString()
-    {
-        return newString(1, 1024);
-    }
-
-    public String newString(int minLength, int maxLength)
+    public String letters(int minLength, int maxLength)
     {
         var builder = new StringBuilder();
-        for (var i = 0; i < newInt(minLength, maxLength); i++)
+        for (var i = 0; i < randomIntInclusive(minLength, maxLength); i++)
         {
-            builder.append(newChar());
+            builder.append(letter());
         }
         return builder.toString();
     }
 
-    public final double newUnsignedDouble()
+    public <T extends Number> List<T> list(Repeats repeats,
+                                           Count count,
+                                           Class<T> type)
     {
-        return newUnsignedDouble(Double.MAX_VALUE);
+        var list = new ArrayList<T>(count.asInt());
+        sequence(repeats, count, type, list::add);
+        return list;
     }
 
-    public final double newUnsignedDouble(double maximum)
+    public <T extends Number> List<T> list(Repeats repeats,
+                                           Class<T> type)
     {
-        return newDouble(0, maximum);
+        var list = new ArrayList<T>(iterations().asInt());
+        sequence(repeats, iterations(), type, list::add);
+        return list;
     }
 
-    public final int newUnsignedInt()
+    public <T extends Number> List<T> list(Class<T> type)
     {
-        return newInt(0, Integer.MAX_VALUE);
+        var list = new ArrayList<T>(iterations().asInt());
+        sequence(ALLOW_REPEATS, iterations(), type, list::add);
+        return list;
     }
 
-    public final long newUnsignedLong()
+    public <T extends Number> List<T> list(Repeats repeats,
+                                           Class<T> type,
+                                           Matcher<T> include)
     {
-        return newLong(0, Long.MAX_VALUE);
+        return list(repeats, iterations(), type, include);
+    }
+
+    public <T extends Number> List<T> list(Repeats repeats,
+                                           Count count,
+                                           long minimum,
+                                           long maximum,
+                                           Class<T> type,
+                                           Matcher<T> include)
+    {
+        var list = new ArrayList<T>(count.asInt());
+        sequence(repeats, count, minimum, maximum, type, include, list::add);
+        return list;
+    }
+
+    public <T extends Number> List<T> list(Repeats repeats,
+                                           Count count,
+                                           long minimum,
+                                           long maximum,
+                                           Class<T> type)
+    {
+        return list(repeats, count, minimum, maximum, type, Filter.all());
+    }
+
+    public <T extends Number> List<T> list(Repeats repeats,
+                                           Count count,
+                                           Class<T> type,
+                                           Matcher<T> include)
+    {
+        return list(repeats, count, minimum(type), maximum(type), type, include);
+    }
+
+    public void longSequence(Consumer<Long> consumer)
+    {
+        sequence(ALLOW_REPEATS, iterations(), minimum(Long.class), maximum(Long.class), Long.class, Filter.all(), consumer);
+    }
+
+    public void longSequence(Repeats repeats,
+                             Matcher<Long> include,
+                             Consumer<Long> consumer)
+    {
+        sequence(repeats, iterations(), minimum(Long.class), maximum(Long.class), Long.class, include, consumer);
+    }
+
+    public void longSequence(Repeats repeats,
+                             Consumer<Long> consumer)
+    {
+        sequence(repeats, iterations(), minimum(Long.class), maximum(Long.class), Long.class, Filter.all(), consumer);
+    }
+
+    public void longSequence(Matcher<Long> include,
+                             Consumer<Long> consumer)
+    {
+        sequence(ALLOW_REPEATS, iterations(), minimum(Long.class), maximum(Long.class), Long.class, include, consumer);
+    }
+
+    public void loop(Runnable code)
+    {
+        iterations().loop(code);
+    }
+
+    public Count randomCount(long maximum)
+    {
+        return randomCount(0, maximum);
+    }
+
+    public Count randomCount(long minimum, long maximum)
+    {
+        return count(randomLongInclusive(minimum, maximum));
+    }
+
+    @Override
+    public double randomDoubleZeroToOne()
+    {
+        return random.nextDouble();
+    }
+
+    @Override
+    public final long randomLongExclusive(long minimum, long exclusiveMaximum)
+    {
+        return internalNextLong(minimum, exclusiveMaximum);
+    }
+
+    public Range<Count> rangeExclusive(long minimum, long exclusiveMaximum)
+    {
+        return rangeExclusive(minimum, exclusiveMaximum, 1);
+    }
+
+    public Range<Count> rangeExclusive(long minimum, long exclusiveMaximum, long minimumWidth)
+    {
+        return rangeExclusive(count(minimum), count(exclusiveMaximum), minimumWidth);
+    }
+
+    public <T extends BaseCount<T>> Range<T> rangeExclusive(T minimum, T exclusiveMaximum, long minimumWidth)
+    {
+        ensure(minimum.isLessThan(exclusiveMaximum));
+
+        var width = exclusiveMaximum.minus(minimum).asLong();
+
+        var randomWidth = randomLongExclusive(minimumWidth, width);
+        var randomMinimum = randomLongExclusive(minimum.asLong(), exclusiveMaximum.asLong() - randomWidth);
+        var randomExclusiveMaximum = randomMinimum + randomWidth;
+
+        return Range.exclusive(minimum.newInstance(randomMinimum), minimum.newInstance(randomExclusiveMaximum));
+    }
+
+    public <T extends BaseCount<T>> Range<T> rangeExclusive(T minimum, T exclusiveMaximum)
+    {
+        return rangeInclusive(minimum, exclusiveMaximum.incremented(), 0);
+    }
+
+    public Range<Count> rangeInclusive(long minimum, long inclusiveMaximum)
+    {
+        return rangeInclusive(minimum, inclusiveMaximum, 0);
+    }
+
+    public <T extends BaseCount<T>> Range<T> rangeInclusive(T minimum, T inclusiveMaximum, long minimumWidth)
+    {
+        ensure(minimum.isLessThanOrEqualTo(inclusiveMaximum));
+
+        var width = inclusiveMaximum.minus(minimum).asLong() + 1;
+
+        var randomWidth = randomLongInclusive(minimumWidth, width - 1);
+        var randomMinimum = randomLongInclusive(minimum.asLong(), minimum.asLong() + randomWidth);
+        var randomInclusiveMaximum = randomMinimum + randomWidth;
+
+        return Range.inclusive(minimum.newInstance(randomMinimum), minimum.newInstance(randomInclusiveMaximum));
+    }
+
+    public Range<Count> rangeInclusive(long minimum, long inclusiveMaximum, long minimumWidth)
+    {
+        return rangeInclusive(count(minimum), count(inclusiveMaximum), minimumWidth);
     }
 
     public long seed()
@@ -323,6 +404,191 @@ public class RandomValueFactory
     {
         random = new Random(seed);
         this.seed = seed;
+    }
+
+    public <T extends Number> void sequence(Class<T> type,
+                                            Consumer<T> consumer)
+    {
+        sequence(ALLOW_REPEATS, iterations(), minimum(type), maximum(type), type, Filter.all(), consumer);
+    }
+
+    public <T extends Number> void sequence(Repeats repeats,
+                                            Class<T> type,
+                                            Consumer<T> consumer)
+    {
+        sequence(repeats, iterations(), minimum(type), maximum(type), type, Filter.all(), consumer);
+    }
+
+    public <T extends Number> void sequence(Repeats repeats,
+                                            Count count,
+                                            Class<T> type,
+                                            Consumer<T> consumer)
+    {
+        sequence(repeats, count, minimum(type), maximum(type), type, Filter.all(), consumer);
+    }
+
+    public <T extends Number> void sequence(Repeats repeats,
+                                            long minimum,
+                                            long maximum,
+                                            Class<T> type,
+                                            Consumer<T> consumer)
+    {
+        sequence(repeats, iterations(), minimum, maximum, type, Filter.all(), consumer);
+    }
+
+    public <T extends Number> void sequence(Repeats repeats,
+                                            long maximum,
+                                            Class<T> type,
+                                            Consumer<T> consumer)
+    {
+        sequence(repeats, iterations(), 0, maximum, type, Filter.all(), consumer);
+    }
+
+    public <T extends Number> void sequence(Repeats repeats,
+                                            Count count,
+                                            long minimum,
+                                            long maximum,
+                                            Class<T> type,
+                                            Consumer<T> consumer)
+    {
+        sequence(repeats, count, minimum, maximum, type, Filter.all(), consumer);
+    }
+
+    public <T extends Number> void sequence(Repeats repeats,
+                                            Count count,
+                                            Class<T> type,
+                                            Matcher<T> include,
+                                            Consumer<T> consumer)
+    {
+        sequence(repeats, count, minimum(type), maximum(type), type, include, consumer);
+    }
+
+    public <T extends Number> void sequence(Repeats repeats,
+                                            Class<T> type,
+                                            Matcher<T> include,
+                                            Consumer<T> consumer)
+    {
+        sequence(repeats, iterations(), minimum(type), maximum(type), type, include, consumer);
+    }
+
+    public <T extends Number> void sequence(Repeats repeats,
+                                            Count count,
+                                            long minimum,
+                                            long exclusiveMaximum,
+                                            Class<T> type,
+                                            Matcher<T> include,
+                                            Consumer<T> consumer)
+    {
+        // Computed the range, handling overflow (well enough for our tests)
+        double range = (double) exclusiveMaximum - (double) minimum;
+        if (repeats == NO_REPEATS && count.asInt() > range)
+        {
+            count = randomCount((long) range);
+        }
+
+        ensure(repeats == ALLOW_REPEATS || count.get() <= range, "Count $ is larger than range $", count, range);
+
+        // If we're allowing repeats,
+        if (repeats == NO_REPEATS)
+        {
+            var values = new ObjectSet<T>();
+            if (count.isLessThanOrEqualTo(_65_536))
+            {
+                count.loop(at ->
+                {
+                    var value = cast(at, type);
+                    if (include.matches(value))
+                    {
+                        values.add(value);
+                        return ACCEPT;
+                    }
+                    return REJECT;
+                });
+            }
+            else
+            {
+                count.loop(() ->
+                {
+                    var included = false;
+                    do
+                    {
+                        var randomValue = cast(randomLongExclusive(minimum, exclusiveMaximum), type);
+                        included = !values.contains(randomValue) && include.matches(randomValue);
+                        if (included)
+                        {
+                            values.add(randomValue);
+                        }
+                    }
+                    while (!included);
+                });
+            }
+
+            var list = new ObjectList<>(values);
+            list.shuffle(random);
+
+            for (var value : list)
+            {
+                consumer.accept(value);
+            }
+        }
+        else
+        {
+            // otherwise, we are allowing repeats, so things are simple.
+            Range.exclusive(count(0), count).forCount(count, at ->
+            {
+                var value = randomExclusive(minimum, exclusiveMaximum, type, include);
+                if (include.matches(value))
+                {
+                    consumer.accept(value);
+                    return ACCEPT;
+                }
+                return REJECT;
+            });
+        }
+    }
+
+    public void shortSequence(Consumer<Short> consumer)
+    {
+        sequence(ALLOW_REPEATS, iterations(), minimum(Short.class), maximum(Short.class), Short.class, Filter.all(), consumer);
+    }
+
+    public void shortSequence(Repeats repeats,
+                              Matcher<Short> include,
+                              Consumer<Short> consumer)
+    {
+        sequence(repeats, iterations(), minimum(Short.class), maximum(Short.class), Short.class, include, consumer);
+    }
+
+    public void shortSequence(Repeats repeats,
+                              Consumer<Short> consumer)
+    {
+        sequence(repeats, iterations(), minimum(Short.class), maximum(Short.class), Short.class, Filter.all(), consumer);
+    }
+
+    public void shortSequence(Matcher<Short> include,
+                              Consumer<Short> consumer)
+    {
+        sequence(ALLOW_REPEATS, iterations(), minimum(Short.class), maximum(Short.class), Short.class, include, consumer);
+    }
+
+    public String string()
+    {
+        return string(1024);
+    }
+
+    public String string(int maximum)
+    {
+        return string(1, 1024);
+    }
+
+    public String string(int minimum, int maximum)
+    {
+        var builder = new StringBuilder();
+        for (var i = 0; i < randomIntInclusive(minimum, maximum); i++)
+        {
+            builder.append(randomChar());
+        }
+        return builder.toString();
     }
 
     /**
@@ -376,6 +642,9 @@ public class RandomValueFactory
     {
         // NOTE: this code comes from java.util.Random, since it does not expose the way it creates
         // seed values
-        return Hash.knuth(++seedUniquifier + System.nanoTime());
+        return Hash.knuth(++SALT + System.nanoTime());
     }
+
+    /** Random number generator */
+    protected Random random;
 }

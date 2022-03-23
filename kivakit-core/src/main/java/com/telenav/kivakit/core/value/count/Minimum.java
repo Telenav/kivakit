@@ -18,10 +18,8 @@
 
 package com.telenav.kivakit.core.value.count;
 
-import com.telenav.kivakit.core.language.primitive.Longs;
-import com.telenav.kivakit.core.value.level.Percent;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.lexakai.DiagramCount;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -35,7 +33,7 @@ import java.util.Iterator;
  */
 @SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCount.class)
-public class Minimum extends Count
+public class Minimum extends BaseCount<Minimum>
 {
     public static final Minimum _0 = new Minimum(0);
 
@@ -238,132 +236,14 @@ public class Minimum extends Count
     }
 
     @Override
-    public BitCount asBitCount()
+    public Minimum newInstance(long count)
     {
-        return super.asBitCount();
+        return minimum(count);
     }
 
     @Override
-    public Minimum ceiling(int digits)
+    public Minimum newInstance(Long count)
     {
-        return (Minimum) super.ceiling(digits);
-    }
-
-    @Override
-    public Minimum decremented()
-    {
-        return (Minimum) super.decremented();
-    }
-
-    @Override
-    public Minimum dividedBy(Count divisor)
-    {
-        return dividedBy(divisor.get());
-    }
-
-    @Override
-    public Minimum dividedBy(long divisor)
-    {
-        return minimum(Longs.inRange(get() / divisor, 0, Long.MAX_VALUE));
-    }
-
-    @Override
-    public Minimum floor(int digits)
-    {
-        return (Minimum) super.floor(digits);
-    }
-
-    @Override
-    public Minimum incremented()
-    {
-        return (Minimum) super.incremented();
-    }
-
-    @Override
-    public Minimum minus(Count count)
-    {
-        return (Minimum) super.minus(count);
-    }
-
-    @Override
-    public Minimum minus(long count)
-    {
-        return (Minimum) super.minus(count);
-    }
-
-    @Override
-    public Minimum minusOne()
-    {
-        return (Minimum) super.minusOne();
-    }
-
-    @Override
-    public Minimum nextPrime()
-    {
-        return (Minimum) super.nextPrime();
-    }
-
-    @Override
-    public Minimum percent(Percent percentage)
-    {
-        return (Minimum) super.percent(percentage);
-    }
-
-    @Override
-    public Minimum plus(Count count)
-    {
-        return plus(count.get());
-    }
-
-    @Override
-    public Minimum plus(long count)
-    {
-        return minimum(get() + count);
-    }
-
-    @Override
-    public Minimum plusOne()
-    {
-        return (Minimum) super.plusOne();
-    }
-
-    @Override
-    public Minimum roundUpToPowerOfTwo()
-    {
-        return (Minimum) super.roundUpToPowerOfTwo();
-    }
-
-    @Override
-    public Minimum times(Count count)
-    {
-        if (count.isMaximum() || isMaximum())
-        {
-            return MAXIMUM;
-        }
-        return minimum(Longs.inRange(get() * count.get(), 0, Long.MAX_VALUE));
-    }
-
-    @Override
-    public Minimum times(double multiplier)
-    {
-        return (Minimum) super.times(multiplier);
-    }
-
-    @Override
-    public Minimum times(long count)
-    {
-        return (Minimum) super.times(count);
-    }
-
-    @Override
-    public Minimum times(Percent percentage)
-    {
-        return (Minimum) super.times(percentage);
-    }
-
-    @Override
-    protected Minimum onNewInstance(long value)
-    {
-        return minimum(value);
+        return newInstance(count.longValue());
     }
 }

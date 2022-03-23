@@ -53,7 +53,7 @@ public class ConcurrentMutableCount implements Countable
         return count.addAndGet(that);
     }
 
-    public long add(Count that)
+    public long add(BaseCount<?> that)
     {
         return add(that.get());
     }

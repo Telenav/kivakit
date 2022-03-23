@@ -20,8 +20,9 @@ package com.telenav.kivakit.core.collections.iteration;
 
 import com.telenav.kivakit.core.collections.list.BaseList;
 import com.telenav.kivakit.core.collections.list.ObjectList;
-import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.value.count.Maximum;
+import com.telenav.kivakit.interfaces.collection.NextValue;
 import org.junit.Test;
 
 import java.util.Collections;
@@ -31,23 +32,24 @@ public class IteratorTest extends UnitTest
     @Test
     public void abstractIterableTest()
     {
-        var iterable = Iterables.iterable(() -> new Next<Integer>()
-        {
-            int i;
-
-            int n = 1;
-
-            @Override
-            public Integer onNext()
-            {
-                if (i++ < 10)
+        var iterable = Iterables.iterable(() -> new
+                NextValue<Integer>()
                 {
-                    n += n;
-                    return n;
-                }
-                return null;
-            }
-        });
+                    int i;
+
+                    int n = 1;
+
+                    @Override
+                    public Integer next()
+                    {
+                        if (i++ < 10)
+                        {
+                            n += n;
+                            return n;
+                        }
+                        return null;
+                    }
+                });
         ensureEqual(values(2, 4, 8, 16, 32, 64, 128, 256, 512, 1024), new ObjectList<>().appendAll(iterable));
         ensureEqual(values(2, 4, 8, 16, 32, 64, 128, 256, 512, 1024), new ObjectList<>().appendAll(iterable));
     }

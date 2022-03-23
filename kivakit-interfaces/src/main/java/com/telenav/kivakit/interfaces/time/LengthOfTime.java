@@ -188,7 +188,7 @@ public interface LengthOfTime extends
                 return dateFormat.format(date);
             }
 
-            case DEBUGGER:
+            case DEBUG:
             case USER_SINGLE_LINE:
             case USER_LABEL:
             case HTML:

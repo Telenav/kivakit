@@ -61,10 +61,10 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
  * <ul>
  *     <li>{@link #apply(Function)} - Applies the given function to this value</li>
  *     <li>{@link #then(Function)} - Returns the result of applying the given function to this value</li>
- *     <li>{@link #then(BiFunction, Object)} - Returns the result of applying the given two-argument function to this value and the given argument</li>
- *     <li>{@link #then(TriFunction, Object, Object)} - Returns the result of applying the given three-argument function to this value and the given arguments</li>
- *     <li>{@link #then(TetraFunction, Object, Object, Object)} - Returns the result of applying the given four-argument function to this value and the given arguments</li>
- *     <li>{@link #then(PentaFunction, Object, Object, Object, Object)} - Returns the result of applying the given five-argument function to this value and the given arguments</li>
+ *     <li>{@link #map(BiFunction, Object)} - Returns the result of applying the given two-argument function to this value and the given argument</li>
+ *     <li>{@link #map(TriFunction, Object, Object)} - Returns the result of applying the given three-argument function to this value and the given arguments</li>
+ *     <li>{@link #map(TetraFunction, Object, Object, Object)} - Returns the result of applying the given four-argument function to this value and the given arguments</li>
+ *     <li>{@link #map(PentaFunction, Object, Object, Object, Object)} - Returns the result of applying the given five-argument function to this value and the given arguments</li>
  *     <li>{@link #map(Function)} - Applies the given function to this value</li>
  * </ul>
  *
@@ -151,10 +151,10 @@ public class Maybe<Value> implements
 
     /**
      * <p>
-     * If a value is present, uses the given function to map the value from Value to Maybe&lt;Output&gt;. If no value is
-     * present, returns {@link #absent()}. The effect is that of allowing functions to be chained together in a nested
-     * structure where each nested function introduces a new lambda variable that is visible to inner functions. For
-     * example:
+     * If a value is present, uses the given function to map the value from Value to Maybe&lt;ResultType&gt;. If no
+     * value is present, returns {@link #absent()}. The effect is that of allowing functions to be chained together in a
+     * nested structure where each nested function introduces a new lambda variable that is visible to inner functions.
+     * For example:
      * </p>
      *
      * <pre>
@@ -185,11 +185,11 @@ public class Maybe<Value> implements
      * <p>
      * Notice that the first sentence of the description for this method is exactly the same as that provided for {@link
      * #map(Function)}. The difference between the two methods is that the function passed to this method produces
-     * Maybe&lt;Output&gt; directly (which allows function nesting), while the function passed to {@link #map(Function)}
-     * just maps the value to the Output type, which is then wrapped in a {@link Maybe}.
+     * Maybe&lt;ResultType&gt; directly (which allows function nesting), while the function passed to {@link
+     * #map(Function)} just maps the value to the ResultType type, which is then wrapped in a {@link Maybe}.
      * </p>
      *
-     * @param function A function mapping from Value to Maybe&lt;Output&gt;
+     * @param function A function mapping from Value to Maybe&lt;ResultType&gt;
      * @param <Output> The type being mapped to
      * @return The mapped value as a {@link Maybe} object, or {@link #absent()} if no value was present
      */
@@ -315,29 +315,130 @@ public class Maybe<Value> implements
     }
 
     /**
-     * If a value is present, uses the given function to map the value from Value to Output. The mapped value is then
-     * wrapped in a Maybe&lt;Output&gt; object and returned. If no value is present, returns {@link #absent()}. The
-     * effect is that of simply mapping this optional value to a new type.
+     * If a value is present, uses the given function to map the value from Value to ResultType. The mapped value is
+     * then wrapped in a Maybe&lt;ResultType&gt; object and returned. If no value is present, returns {@link #absent()}.
+     * The effect is that of simply mapping this optional value to a new type.
      *
      * <p><b>Important Note</b></p>
      *
      * <p>
      * Notice that the first sentence of the description for this method is exactly the same as that provided for {@link
      * #apply(Function)}. The difference between the two methods is that the function passed to {@link #apply(Function)}
-     * produces Maybe&lt;Output&gt; directly (which allows function nesting), while the function passed to this method
-     * just maps the value to the Output type, which is then wrapped in a {@link Maybe}.
+     * produces Maybe&lt;ResultType&gt; directly (which allows function nesting), while the function passed to this
+     * method just maps the value to the ResultType type, which is then wrapped in a {@link Maybe}.
      * </p>
      *
-     * @param mapper A function mapping from Value to Output
-     * @param <Output> The type that Value is being mapped to
+     * @param mapper A function mapping from Value to ResultType
+     * @param <ResultType> The type that Value is being mapped to
      * @return The mapped value or {@link #absent()}
      */
     @Tested
-    public <Output> Maybe<Output> map(Function<? super Value, ? extends Output> mapper)
+    public <ResultType> Maybe<ResultType> map(
+            Function<? super Value, ? extends ResultType> mapper)
     {
         return tryCatchDefault(() -> isPresent()
                 ? newMaybe(ensureNotNull(mapper).apply(value))
                 : newAbsent(), newAbsent());
+    }
+
+    /**
+     * If a value is present and the given value is not null, applies the given bi-function to produce a result of a
+     * different type.
+     *
+     * @param function The bi-function, f(Value, Argument2) -> ResultType
+     * @param argument2 The second argument to pass to the bi-function, along with this value as the first argument
+     * @return The combination of this value and the given argument, if both values are non-null, otherwise, returns
+     * {@link #absent()}.
+     */
+    @Tested
+    public <Argument2, ResultType> Maybe<ResultType> map(
+            BiFunction<Value, Argument2, ResultType> function,
+            Argument2 argument2)
+    {
+        if (isPresent() && value != null)
+        {
+            return tryCatch(() -> newMaybe(function.apply(value, argument2)));
+        }
+
+        return newAbsent();
+    }
+
+    /**
+     * If a value is present, and the given arguments are non-null, applies the given tri-function to produce a result
+     * of a different type.
+     *
+     * @param function The tri-function, f(Value, Argument2, Argument3) -> ResultType
+     * @param argument2 The second argument to pass to the tri-function, along with this value as the first argument
+     * @param argument3 The third argument to pass to the tri-function
+     * @return The combination of this value and the given arguments, if all arguments are non-null, otherwise, returns
+     * {@link #absent()}.
+     */
+    @Tested
+    public <Argument2, Argument3, ResultType> Maybe<ResultType> map(
+            TriFunction<Value, Argument2, Argument3, ResultType> function,
+            Argument2 argument2,
+            Argument3 argument3)
+    {
+        if (isPresent() && argument2 != null && argument3 != null)
+        {
+            return tryCatch(() -> newMaybe(function.apply(this.value, argument2, argument3)));
+        }
+
+        return newAbsent();
+    }
+
+    /**
+     * If a value is present, and the given value is also present, applies the given tri-function to produce a result of
+     * a different type.
+     *
+     * @param function The combining tetra-function, f(Value, Argument2, Argument3, Argument4) -> ResultType
+     * @param argument2 The second argument to pass to the quad-function, along with this value as the first argument
+     * @param argument3 The third argument to pass to the quad-function along with this value
+     * @param argument4 The fourth argument to pass to the quad-function along with this value
+     * @return The combination of this value and the given arguments, if all arguments are non-null, otherwise, returns
+     * {@link #absent()}.
+     */
+    @Tested
+    public <Argument2, Argument3, Argument4, ResultType> Maybe<ResultType> map(
+            TetraFunction<Value, Argument2, Argument3, Argument4, ResultType> function,
+            Argument2 argument2,
+            Argument3 argument3,
+            Argument4 argument4)
+    {
+        if (isPresent() && argument2 != null && argument3 != null && argument4 != null)
+        {
+            return tryCatch(() -> newMaybe(function.apply(this.value, argument2, argument3, argument4)));
+        }
+
+        return newAbsent();
+    }
+
+    /**
+     * If a value is present, and the given value is also present, applies the given five-argument function to produce a
+     * result of a different type.
+     *
+     * @param function The five-argument function, f(Value, Argument2, Argument3, Argument4, Argument5) -> ResultType
+     * @param argument2 The second argument to pass to the quad-function, along with this value as the first argument
+     * @param argument3 The third argument to pass to the quad-function along with this value
+     * @param argument4 The fourth argument to pass to the quad-function along with this value
+     * @param argument5 The fifth argument to pass to the quad-function along with this value
+     * @return The combination of this value and the given arguments, if all arguments are non-null, otherwise, returns
+     * {@link #absent()}.
+     */
+    @Tested
+    public <Argument2, Argument3, Argument4, Argument5, ResultType> Maybe<ResultType> map(
+            PentaFunction<Value, Argument2, Argument3, Argument4, Argument5, ResultType> function,
+            Argument2 argument2,
+            Argument3 argument3,
+            Argument4 argument4,
+            Argument5 argument5)
+    {
+        if (isPresent() && argument2 != null && argument3 != null && argument4 != null && argument5 != null)
+        {
+            return tryCatch(() -> newMaybe(function.apply(this.value, argument2, argument3, argument4, argument5)));
+        }
+
+        return newAbsent();
     }
 
     /**
@@ -441,45 +542,29 @@ public class Maybe<Value> implements
     }
 
     /**
-     * If a value is present and the given value is not null, applies the given bi-function to produce a result.
+     * If a value is present, and the given value is also present, applies the given five-argument function to produce a
+     * new value of the same type.
      *
-     * @param function The combining bi-function, f(Value, Argument2) -> ResultType
-     * @param argument2 The second argument to pass to the bi-function, along with this value as the first argument
-     * @return The combination of this value and the given argument, if both values are non-null, otherwise, returns
-     * {@link #absent()}.
-     */
-    @Tested
-    public <Argument2, ResultType> Maybe<ResultType> then(
-            BiFunction<Value, Argument2, ResultType> function,
-            Argument2 argument2)
-    {
-        if (isPresent() && value != null)
-        {
-            return tryCatch(() -> newMaybe(function.apply(value, argument2)));
-        }
-
-        return newAbsent();
-    }
-
-    /**
-     * If a value is present, and the given arguments are non-null, applies the given tri-function to produce a combined
-     * value.
-     *
-     * @param function The combining tri-function, f(Value, Argument2, Argument3) -> ResultType
-     * @param argument2 The second argument to pass to the tri-function, along with this value as the first argument
-     * @param argument3 The third argument to pass to the tri-function
+     * @param function The combining five-argument function, f(Value, Argument2, Argument3, Argument4, Argument5) ->
+     * Value
+     * @param argument2 The second argument to pass to the quad-function, along with this value as the first argument
+     * @param argument3 The third argument to pass to the quad-function along with this value
+     * @param argument4 The fourth argument to pass to the quad-function along with this value
+     * @param argument5 The fifth argument to pass to the quad-function along with this value
      * @return The combination of this value and the given arguments, if all arguments are non-null, otherwise, returns
      * {@link #absent()}.
      */
     @Tested
-    public <Argument2, Argument3, ResultType> Maybe<ResultType> then(
-            TriFunction<Value, Argument2, Argument3, ResultType> function,
+    public <Argument2, Argument3, Argument4, Argument5> Maybe<Value> then(
+            PentaFunction<Value, Argument2, Argument3, Argument4, Argument5, Value> function,
             Argument2 argument2,
-            Argument3 argument3)
+            Argument3 argument3,
+            Argument4 argument4,
+            Argument5 argument5)
     {
-        if (isPresent() && argument2 != null && argument3 != null)
+        if (isPresent() && argument2 != null && argument3 != null && argument4 != null && argument5 != null)
         {
-            return tryCatch(() -> newMaybe(function.apply(this.value, argument2, argument3)));
+            return tryCatch(() -> newMaybe(function.apply(this.value, argument2, argument3, argument4, argument5)));
         }
 
         return newAbsent();
@@ -493,12 +578,12 @@ public class Maybe<Value> implements
      * @param argument2 The second argument to pass to the quad-function, along with this value as the first argument
      * @param argument3 The third argument to pass to the quad-function along with this value
      * @param argument4 The fourth argument to pass to the quad-function along with this value
-     * @return The combination of this value and the given value, if all arguments are non-null, otherwise, returns
+     * @return The combination of this value and the given arguments. if all arguments are non-null, otherwise, returns
      * {@link #absent()}.
      */
     @Tested
-    public <Argument2, Argument3, Argument4, ResultType> Maybe<ResultType> then(
-            TetraFunction<Value, Argument2, Argument3, Argument4, ResultType> function,
+    public <Argument2, Argument3, Argument4> Maybe<Value> then(
+            TetraFunction<Value, Argument2, Argument3, Argument4, Value> function,
             Argument2 argument2,
             Argument3 argument3,
             Argument4 argument4)
@@ -512,29 +597,46 @@ public class Maybe<Value> implements
     }
 
     /**
-     * If a value is present, and the given value is also present, applies the given five-argument function to produce a
-     * new value of the same type.
+     * If a value is present, and the given arguments are non-null, applies the given tri-function to produce a result
+     * of the same type.
      *
-     * @param function The combining five-argument function, f(Value, Argument2, Argument3, Argument4, Argument5) ->
-     * ResultType
-     * @param argument2 The second argument to pass to the quad-function, along with this value as the first argument
-     * @param argument3 The third argument to pass to the quad-function along with this value
-     * @param argument4 The fourth argument to pass to the quad-function along with this value
-     * @param argument5 The fifth argument to pass to the quad-function along with this value
-     * @return The combination of this value and the given value, if all arguments are non-null, otherwise, returns
+     * @param function The combining tri-function, f(Value, Argument2, Argument3) -> ResultType
+     * @param argument2 The second argument to pass to the tri-function, along with this value as the first argument
+     * @param argument3 The third argument to pass to the tri-function
+     * @return The combination of this value and the given arguments, if all arguments are non-null, otherwise, returns
      * {@link #absent()}.
      */
     @Tested
-    public <Argument2, Argument3, Argument4, Argument5, ResultType> Maybe<ResultType> then(
-            PentaFunction<Value, Argument2, Argument3, Argument4, Argument5, ResultType> function,
+    public <Argument2, Argument3> Maybe<Value> then(
+            TriFunction<Value, Argument2, Argument3, Value> function,
             Argument2 argument2,
-            Argument3 argument3,
-            Argument4 argument4,
-            Argument5 argument5)
+            Argument3 argument3)
     {
-        if (isPresent() && argument2 != null && argument3 != null && argument4 != null && argument5 != null)
+        if (isPresent() && argument2 != null && argument3 != null)
         {
-            return tryCatch(() -> newMaybe(function.apply(this.value, argument2, argument3, argument4, argument5)));
+            return tryCatch(() -> newMaybe(function.apply(this.value, argument2, argument3)));
+        }
+
+        return newAbsent();
+    }
+
+    /**
+     * If a value is present and the given value is not null, applies the given bi-function to produce a result of the
+     * same type.
+     *
+     * @param function The combining bi-function, f(Value, Argument2) -> Value
+     * @param argument2 The second argument to pass to the bi-function, along with this value as the first argument
+     * @return The combination of this value and the given argument, if both values are non-null, otherwise, returns
+     * {@link #absent()}.
+     */
+    @Tested
+    public <Argument2> Maybe<Value> then(
+            BiFunction<Value, Argument2, Value> function,
+            Argument2 argument2)
+    {
+        if (isPresent() && value != null)
+        {
+            return tryCatch(() -> newMaybe(function.apply(value, argument2)));
         }
 
         return newAbsent();

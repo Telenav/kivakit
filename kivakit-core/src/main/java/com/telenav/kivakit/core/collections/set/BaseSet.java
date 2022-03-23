@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.core.collections.set;
 
+import com.telenav.kivakit.core.collections.iteration.Matching;
+import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.Countable;
 import com.telenav.kivakit.core.value.count.Maximum;
-import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.collections.iteration.Matching;
 import com.telenav.kivakit.interfaces.collection.Addable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.string.Stringable;
@@ -218,7 +218,7 @@ public abstract class BaseSet<Element> implements
         };
     }
 
-    public Count maximumSize()
+    public Maximum maximumSize()
     {
         return maximumSize;
     }

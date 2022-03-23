@@ -117,18 +117,18 @@ public class MaybeTest extends UnitTest
     {
         ensureEqual(Maybe.present("123") // "123"
                 .map(Integer::parseInt) // 123
-                .then(Integer::sum, 123) // 246
+                .map(Integer::sum, 123) // 246
                 .map(String::valueOf) // "246"
-                .then(String::concat, "xyz") // "246xyz"
-                .then(String::substring, 2, 4) // "6x"
+                .map(String::concat, "xyz") // "246xyz"
+                .map(String::substring, 2, 4) // "6x"
                 .get(), "6x");
 
         ensureEqual(Maybe.present("abc") // "123"
                 .map(Integer::parseInt) // null
-                .then(Integer::sum, 123) // null
+                .map(Integer::sum, 123) // null
                 .map(String::valueOf) // null
-                .then(String::concat, "xyz") // null
-                .then(String::substring, 2, 4) // null
+                .map(String::concat, "xyz") // null
+                .map(String::substring, 2, 4) // null
                 .get(), null);
     }
 
@@ -184,14 +184,14 @@ public class MaybeTest extends UnitTest
                 .get());
 
         ensureEqual(12, Maybe.present(3)
-                .then(Integer::sum, 9).get());
+                .map(Integer::sum, 9).get());
 
         ensureEqual(null, Maybe.maybe((Integer) null)
-                .then(Integer::sum, 9).get());
+                .map(Integer::sum, 9).get());
 
         ensureEqual(Maybe.present("abc")
                 .then(String::toUpperCase)
-                .then(String::concat, "def")
+                .map(String::concat, "def")
                 .then(it -> it + "!")
                 .presentIf(it -> it.contains("A"))
                 .get(), "ABCdef!");
@@ -202,15 +202,15 @@ public class MaybeTest extends UnitTest
     {
         ensureEqual(Maybe.present("9")
                 .map(Ints::parseFast)
-                .then(Integer::sum, 3)
+                .map(Integer::sum, 3)
                 .get(), 12);
 
         ensureEqual(Maybe.present("9")
-                .then(String::repeat, 5)
+                .map(String::repeat, 5)
                 .get(), "99999");
 
         ensureEqual(Maybe.maybe((String) null)
-                .then(String::repeat, 5)
+                .map(String::repeat, 5)
                 .get(), null);
     }
 
@@ -220,12 +220,12 @@ public class MaybeTest extends UnitTest
     {
         ensureEqual(Maybe.present(123456789)
                 .map(String::valueOf)
-                .then(String::regionMatches, 1, "234", 0, 3)
+                .map(String::regionMatches, 1, "234", 0, 3)
                 .get(), true);
 
         ensureEqual(Maybe.maybe((Integer) null)
                 .map(String::valueOf)
-                .then(String::regionMatches, 1, "234", 0, 3)
+                .map(String::regionMatches, 1, "234", 0, 3)
                 .get(), null);
     }
 
@@ -233,11 +233,11 @@ public class MaybeTest extends UnitTest
     public void testThenQuadFunction()
     {
         ensureEqual(Maybe.present(":")
-                .then(String::join, "a", "b", "c")
+                .map(String::join, "a", "b", "c")
                 .get(), "a:b:c");
 
         ensureEqual(Maybe.maybe((String) null)
-                .then(String::join, "a", "b", "c")
+                .map(String::join, "a", "b", "c")
                 .get(), null);
     }
 
@@ -246,12 +246,12 @@ public class MaybeTest extends UnitTest
     {
         ensureEqual(Maybe.present(123456789)
                 .map(String::valueOf)
-                .then(String::substring, 3, 5)
+                .map(String::substring, 3, 5)
                 .get(), "45");
 
         ensureEqual(Maybe.maybe((Integer) null)
                 .map(String::valueOf)
-                .then(String::substring, 3, 5)
+                .map(String::substring, 3, 5)
                 .get(), null);
     }
 }
