@@ -18,6 +18,36 @@ require_variable version "$help"
 
 if [ "$KIVAKIT_VERSION" = "$version" ]; then
 
+    docs="$KIVAKIT_WORKSPACE/kivakit-assets/docs/$KIVAKIT_VERSION"
+
+    if [ ! -d "$docs/codeflowers" ]; then
+
+        echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Building Codeflowers  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
+        echo "┋"
+        echo "┋  output: $docs/codeflowers"
+        echo "┋"
+        echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
+
+        mkdir -p "$docs"
+        cp -r "$KIVAKIT_KIVAKIT_WORKSPACE/kivakit-assets/docs/1.4.0/codeflowers" "$docs"
+        cd "$docs/codeflowers" || exit
+        bash ./kivakit-build-codeflowers.sh
+
+        echo " "
+        echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Verify Release  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
+        echo "┋"
+        echo "┋  Next Steps:"
+        echo "┋"
+        echo "┋  1. Check the release"
+        echo "┋  2. Update change-log.md"
+        echo "┋  3. Rerun this script: $(basename "$0") $1"
+        echo "┋"
+        echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
+        echo " "
+        exit 0
+
+    fi
+
     echo " "
     echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Building Release  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
     echo "┋"
@@ -64,15 +94,12 @@ else
         echo " "
         echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┫ Release Created  ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
         echo "┋"
-        echo "┋  1. The branch release/$version has been created with git flow "
+        echo "┋  1. The branch release/$version has been created"
         echo "┋  2. Build files have been updated from $KIVAKIT_VERSION to $version"
         echo "┋"
-        echo "┋  EXIT YOUR TERMINAL PROGRAM ENTIRELY and restart it, then:"
+        echo "┋  EXIT YOUR TERMINAL PROGRAM ENTIRELY, restart it, and then re-run this script:"
         echo "┋"
-        echo "┋  1. Check the release"
-        echo "|  2. Update change-log.md"
-        echo "┋  3. Update codeflowers"
-        echo "┋  4. Rerun this script: $(basename "$0") $1"
+        echo "┋    $(basename "$0") $1"
         echo "┋"
         echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
         echo " "
