@@ -245,6 +245,7 @@
         <httpclient.version>4.5.13</httpclient.version>
         <jakarta.ws.rs.version>2.1.6</jakarta.ws.rs.version>
         <jakarta.servlet.api.version>5.0.0</jakarta.servlet.api.version>
+        <netty.version>4.1.66.Final</netty.version>
 
         <!-- XML -->
 
@@ -1581,6 +1582,31 @@
                 <groupId>org.danekja</groupId>
                 <artifactId>jdk-serializable-functional</artifactId>
                 <version>${jdk.serializable.functional.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-buffer</artifactId>
+                <version>${netty.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-common</artifactId>
+                <version>${netty.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-codec</artifactId>
+                <version>${netty.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-transport</artifactId>
+                <version>${netty.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-transport-native-epoll</artifactId>
+                <version>${netty.version}</version>
             </dependency>
 
             <!-- XML -->

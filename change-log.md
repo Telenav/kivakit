@@ -1,45 +1,48 @@
 # KivaKit Change Log
 
+## Version 1.4.2 (2022.03.24) "cobalt penguin"
+
+This release makes merged jars part of the main build.
+
 ## Version 1.4.1 (2022.03.23) "cobalt piglet"
 
-This release 
+This release includes small changes and improvements to existing code.
 
 ### build
 
- - Improved docker build scripts
- - Made build scripts consistent across repositories
+- Improved docker build scripts
+- Made build scripts consistent across repositories
 
 ### core
 
- - Rewrote Range and Count hierarchy to fix generics and extract:
-     - BaseCount
-     - Arithmetic
-     - Castable
-     - IntegerNumeric
- - Added LoopBody, FilteredLoopBody for use in unit test update
- - Added BaseList/ObjectList.shuffle() methods
- - Moved iteration interfaces from kivakit-core to kivakit-interfaces
- - Added Maybe.then() arities, fixed parameter binding mistake
+- Rewrote Range and Count hierarchy to fix generics and extract:
+    - BaseCount
+    - Arithmetic
+    - Castable
+    - IntegerNumeric
+- Added LoopBody, FilteredLoopBody for use in unit test update
+- Added BaseList/ObjectList.shuffle() methods
+- Moved iteration interfaces from kivakit-core to kivakit-interfaces
+- Added Maybe.then() arities, fixed parameter binding mistake
 
 ### debugging
 
- - Added TripWireTrait 
+- Added TripWireTrait
 
 ### testing
 
- - Improved testing framework including UnitTest and RandomValue
- - Improved documentation
- - Created HourOfWeekTest and HourOfWeekSpanTest as examples
- - Added test for Range
+- Improved testing framework including UnitTest and RandomValue
+- Improved documentation
+- Created HourOfWeekTest and HourOfWeekSpanTest as examples
+- Added test for Range
 
 ### security
 
- - Upgraded to json-smart version 2.4.8 to address vulnerability
+- Upgraded to json-smart version 2.4.8 to address vulnerability
 
 ### time
 
- - Added HourOfWeek and HourOfWeekSpan
-
+- Added HourOfWeek and HourOfWeekSpan
 
 -----------------------------------------------------------------------------------------------------------------------
 
