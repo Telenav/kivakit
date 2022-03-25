@@ -29,7 +29,7 @@ if [ "$KIVAKIT_VERSION" = "$version" ]; then
         echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
 
         mkdir -p "$docs"
-        cp -r "$KIVAKIT_KIVAKIT_WORKSPACE/kivakit-assets/docs/1.4.0/codeflowers" "$docs"
+        cp -r "$KIVAKIT_WORKSPACE/kivakit-assets/docs/1.4.0/codeflowers" "$docs"
         cd "$docs/codeflowers" || exit
         bash ./kivakit-build-codeflowers.sh
 
