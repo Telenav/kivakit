@@ -62,9 +62,7 @@ To update code flowers for the release
 
         ./kivakit-build-codeflowers.sh
 
-4. If there have been any projects added or removed since the last release,
-   open *site/index.html* in an editor and insert the &lt;option&gt; HTML
-   code that was output by the kivakit-build-codeflowers.sh.
+4. If there have been any projects added or removed since the last release, open *site/index.html* in an editor and insert the &lt;option&gt; HTML code that was output by the kivakit-build-codeflowers.sh.
 
 #### 1.4 Build the release branch
 
@@ -80,22 +78,21 @@ Commit any final changes to the release branch.
 
 ### 2. Publishing the Release &nbsp;  <img src="https://www.kivakit.org/images/stars-32.png" srcset="https://www.kivakit.org/images/stars-32-2x.png 2x"/>
 
-
-#### 2.0 Update Docker build environment image
-
-A docker build environment image can be created with:
-
-    kivakit-docker-build-create-image.sh
-    
-When the image has been built, it can be pushed to DockerHub with:
-
-    kivakit-docker-build-push-image.sh
-
-#### 2.1 Merge the release branch into master
+#### 2.0 Merge the release branch into master
 
 The release is finished and merged into master with:
 
     kivakit-release-finish.sh [kivakit-version]
+
+#### 2.1 Update Docker build environment image
+
+Switch to the develop branch, then a docker build environment image can be created with:
+
+    kivakit-docker-build-create-image.sh
+
+When the image has been built, it can be pushed to DockerHub with:
+
+    kivakit-docker-build-push-image.sh
 
 #### 2.2 Push the Release to OSSRH
 

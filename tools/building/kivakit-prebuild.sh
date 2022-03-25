@@ -19,8 +19,6 @@ if [ -z "$PREBUILT" ]; then
 
     fi
 
-    bash "${KIVAKIT_HOME}/tools/library/kivakit-install-merged-jars.sh"
-
     export PREBUILT=true
 
 fi
