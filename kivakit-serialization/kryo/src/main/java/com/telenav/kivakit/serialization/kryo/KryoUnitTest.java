@@ -36,7 +36,7 @@ import java.io.ByteArrayOutputStream;
 import static com.telenav.kivakit.serialization.core.SerializationSession.SessionType.RESOURCE;
 
 /**
- * Adds Kryo serialization testing to the {@link CoreUnitTest} base class. Serialization of objects can be tested with:
+ * Adds Kryo serialization testing to the {@link UnitTest} base class. Serialization of objects can be tested with:
  *
  * <ul>
  *     <li>{@link #testSerialization(Object)}</li>
