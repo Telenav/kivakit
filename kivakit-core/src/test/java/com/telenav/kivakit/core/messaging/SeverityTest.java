@@ -18,11 +18,10 @@
 
 package com.telenav.kivakit.core.messaging;
 
-import com.telenav.kivakit.core.messaging.messages.Severity;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.messaging.messages.Severity;import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
-public class SeverityTest extends UnitTest
+public class SeverityTest extends CoreUnitTest
 {
     @Test
     public void test()

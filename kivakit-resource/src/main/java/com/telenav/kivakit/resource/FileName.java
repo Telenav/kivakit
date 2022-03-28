@@ -16,7 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.resource.path;
+package com.telenav.kivakit.resource;
 
 import com.telenav.kivakit.conversion.core.time.LocalDateConverter;
 import com.telenav.kivakit.conversion.core.time.LocalDateTimeConverter;
@@ -29,6 +29,7 @@ import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.filesystem.File;
+import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.resource.lexakai.DiagramResourcePath;
@@ -43,7 +44,7 @@ import java.util.regex.Pattern;
  *
  * <p>
  * File names can be created with various factory methods, including methods that produce valid filenames for dates and
- * times as well as the general method {@link #parse(Listener listener, String)}.
+ * times as well as the general method {@link #parseFileName(Listener listener, String)}.
  * </p>
  *
  * <ul>
@@ -96,17 +97,17 @@ public class FileName implements Named, Comparable<FileName>
 
     public static FileName date()
     {
-        return parse(LOGGER, LocalTime.now().asDateString());
+        return parseFileName(LOGGER, LocalTime.now().asDateString());
     }
 
     public static FileName date(LocalTime time)
     {
-        return parse(LOGGER, new LocalDateConverter(LOGGER).unconvert(time));
+        return parseFileName(LOGGER, new LocalDateConverter(LOGGER).unconvert(time));
     }
 
     public static FileName date(LocalTime time, ZoneId zone)
     {
-        return parse(LOGGER, new LocalDateConverter(LOGGER, zone).unconvert(time));
+        return parseFileName(LOGGER, new LocalDateConverter(LOGGER, zone).unconvert(time));
     }
 
     public static FileName dateTime()
@@ -116,17 +117,12 @@ public class FileName implements Named, Comparable<FileName>
 
     public static FileName dateTime(LocalTime time)
     {
-        return parse(LOGGER, new LocalDateTimeConverter(LOGGER).unconvert(time));
+        return parseFileName(LOGGER, new LocalDateTimeConverter(LOGGER).unconvert(time));
     }
 
     public static FileName dateTime(LocalTime time, ZoneId zone)
     {
-        return parse(LOGGER, new LocalDateTimeConverter(LOGGER, zone).unconvert(time));
-    }
-
-    public static FileName parse(Listener listener, String name)
-    {
-        return new FileName(name);
+        return parseFileName(LOGGER, new LocalDateTimeConverter(LOGGER, zone).unconvert(time));
     }
 
     public static LocalTime parseDateTime(Listener listener, String dateTime)
@@ -139,14 +135,19 @@ public class FileName implements Named, Comparable<FileName>
         return new LocalDateTimeConverter(listener, zone).convert(dateTime);
     }
 
+    public static FileName parseFileName(Listener listener, String name)
+    {
+        return new FileName(name);
+    }
+
     public static FileName time(LocalTime time)
     {
-        return parse(LOGGER, new LocalTimeConverter(LOGGER, time.timeZone()).unconvert(time));
+        return parseFileName(LOGGER, new LocalTimeConverter(LOGGER, time.timeZone()).unconvert(time));
     }
 
     public static FileName time(LocalTime time, ZoneId zone)
     {
-        return parse(LOGGER, new LocalTimeConverter(LOGGER, zone).unconvert(time));
+        return parseFileName(LOGGER, new LocalTimeConverter(LOGGER, zone).unconvert(time));
     }
 
     private final String name;
@@ -174,7 +175,7 @@ public class FileName implements Named, Comparable<FileName>
             var before = Paths.optionalHead(name(), '.');
             if (before != null)
             {
-                return parse(LOGGER, before);
+                return parseFileName(LOGGER, before);
             }
         }
         return this;
@@ -309,7 +310,7 @@ public class FileName implements Named, Comparable<FileName>
      */
     public FileName normalized()
     {
-        return parse(LOGGER, FilePath.filePath(this).normalized().toString());
+        return parseFileName(LOGGER, FilePath.filePath(this).normalized().toString());
     }
 
     /**
@@ -317,7 +318,7 @@ public class FileName implements Named, Comparable<FileName>
      */
     public FileName prefixedWith(String prefix)
     {
-        return parse(LOGGER, prefix + name);
+        return parseFileName(LOGGER, prefix + name);
     }
 
     /**
@@ -333,7 +334,7 @@ public class FileName implements Named, Comparable<FileName>
      */
     public FileName toLowerCase()
     {
-        return parse(LOGGER, name().toLowerCase());
+        return parseFileName(LOGGER, name().toLowerCase());
     }
 
     @Override
@@ -347,7 +348,7 @@ public class FileName implements Named, Comparable<FileName>
      */
     public FileName toUpperCase()
     {
-        return parse(LOGGER, name().toUpperCase());
+        return parseFileName(LOGGER, name().toUpperCase());
     }
 
     /**
@@ -355,7 +356,7 @@ public class FileName implements Named, Comparable<FileName>
      */
     public FileName withExtension(Extension extension)
     {
-        return parse(LOGGER, name() + extension);
+        return parseFileName(LOGGER, name() + extension);
     }
 
     /**
@@ -363,7 +364,7 @@ public class FileName implements Named, Comparable<FileName>
      */
     public FileName withSuffix(String suffix)
     {
-        return parse(LOGGER, name + suffix);
+        return parseFileName(LOGGER, name + suffix);
     }
 
     /**
@@ -374,7 +375,7 @@ public class FileName implements Named, Comparable<FileName>
         var extension = extension();
         if (extension != null)
         {
-            return parse(LOGGER, Paths.optionalHead(name(), '.'));
+            return parseFileName(LOGGER, Paths.optionalHead(name(), '.'));
         }
         return this;
     }
@@ -390,7 +391,7 @@ public class FileName implements Named, Comparable<FileName>
             var before = Paths.optionalHead(name(), '.');
             if (before != null)
             {
-                return parse(LOGGER, before);
+                return parseFileName(LOGGER, before);
             }
         }
         return this;
@@ -403,7 +404,7 @@ public class FileName implements Named, Comparable<FileName>
     {
         if (name().endsWith(extension.toString()))
         {
-            return parse(LOGGER, Strip.trailing(name(), extension.toString()));
+            return parseFileName(LOGGER, Strip.trailing(name(), extension.toString()));
         }
         return this;
     }
@@ -422,7 +423,7 @@ public class FileName implements Named, Comparable<FileName>
             {
                 if (name.endsWith(extension))
                 {
-                    name = parse(LOGGER, Strip.ending(name.toString(), extension.toString()));
+                    name = parseFileName(LOGGER, Strip.ending(name.toString(), extension.toString()));
                     removedOne = true;
                 }
             }

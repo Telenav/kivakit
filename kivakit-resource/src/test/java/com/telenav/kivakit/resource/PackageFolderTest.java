@@ -18,22 +18,21 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.core.path.PackagePath;
-import com.telenav.kivakit.core.test.UnitTest;
-import com.telenav.kivakit.resource.path.Extension;
+import com.telenav.kivakit.test.UnitTest;
+import com.telenav.kivakit.resource.packages.PackageTrait;
 import org.junit.Test;
 
 /**
  * @author jonathanl (shibo)
  */
-public class PackageFolderTest extends UnitTest
+public class PackageFolderTest extends UnitTest implements PackageTrait
 {
     @Test
     public void testResources()
     {
         if (!isQuickTest())
         {
-            var folder = new Package(PackagePath.packagePath(getClass()));
+            var folder =  thisPackage();
             int textFiles = 0;
             for (var ignored : folder.resources(Extension.TXT::ends))
             {

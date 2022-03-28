@@ -17,14 +17,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.string;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Indentation;
 import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
 
-public class IndentingStringBuilderTest extends UnitTest
+public class IndentingStringBuilderTest extends CoreUnitTest
 {
     @Test
     public void test()

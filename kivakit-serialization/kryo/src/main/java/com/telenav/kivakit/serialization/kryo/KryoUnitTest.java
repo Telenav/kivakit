@@ -19,7 +19,7 @@
 package com.telenav.kivakit.serialization.kryo;
 
 import com.telenav.kivakit.core.path.StringPath;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.test.UnitTest;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.resource.serialization.SerializableObject;
@@ -36,7 +36,7 @@ import java.io.ByteArrayOutputStream;
 import static com.telenav.kivakit.serialization.core.SerializationSession.SessionType.RESOURCE;
 
 /**
- * Adds Kryo serialization testing to the {@link UnitTest} base class. Serialization of objects can be tested with:
+ * Adds Kryo serialization testing to the {@link CoreUnitTest} base class. Serialization of objects can be tested with:
  *
  * <ul>
  *     <li>{@link #testSerialization(Object)}</li>

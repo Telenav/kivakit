@@ -16,16 +16,13 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.resource.path;
+package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.count.Count;
-import com.telenav.kivakit.filesystem.File;
+import com.telenav.kivakit.interfaces.comparison.Matchable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.naming.Named;
-import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.compression.Codec;
 import com.telenav.kivakit.resource.compression.codecs.GzipCodec;
 import com.telenav.kivakit.resource.compression.codecs.NullCodec;
@@ -42,8 +39,8 @@ import java.util.List;
  * A {@link FileName} extension, such as ".txt" or ".jar".
  *
  * <p>
- * Common extensions are provided as static constants. An extension can also be constructed with {@link #parse(Listener
- * listener, String)}, with or without a dot prefix:
+ * Common extensions are provided as static constants. An extension can also be constructed with {@link
+ * #parseExtension(Listener listener, String)}, with or without a dot prefix:
  * </p>
  *
  * <pre>
@@ -61,7 +58,7 @@ import java.util.List;
  * <p><b>Matching</b></p>
  *
  * <ul>
- *     <li>{@link #fileMatcher()} - A matcher that matches resources with this extension</li>
+ *     <li>{@link #matcher()} - A matcher that matches resources with this extension</li>
  *     <li>{@link #ends(Resource)} - True if the given resource has this extension</li>
  * </ul>
  *
@@ -83,73 +80,73 @@ import java.util.List;
  */
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
 @LexakaiJavadoc(complete = true)
-public class Extension implements Named
+public class Extension implements
+        Named,
+        Matchable<Resource>
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
+    public static final Extension CLASS = parseExtension(".class");
 
-    public static final Extension CLASS = parse(LOGGER, ".class");
+    public static final Extension CSV = parseExtension(".csv");
 
-    public static final Extension CSV = parse(LOGGER, ".csv");
+    public static final Extension GEOJSON = parseExtension(".geojson");
 
-    @SuppressWarnings("SpellCheckingInspection")
-    public static final Extension GEOJSON = parse(LOGGER, ".geojson");
-
-    public static final Extension GRAPH = parse(LOGGER, ".graph");
+    public static final Extension GRAPH = parseExtension(".graph");
 
     public static final Extension GRAPH_GZIP = GRAPH.gzipped();
 
-    public static final Extension GZIP = parse(LOGGER, ".gz");
+    public static final Extension GZIP = parseExtension(".gz");
 
-    public static final Extension JAR = parse(LOGGER, ".jar");
+    public static final Extension JAR = parseExtension(".jar");
 
-    public static final Extension JAVA = parse(LOGGER, ".java");
+    public static final Extension JAVA = parseExtension(".java");
 
-    public static final Extension JSON = parse(LOGGER, ".json");
+    public static final Extension JSON = parseExtension(".json");
 
-    public static final Extension KRYO = parse(LOGGER, ".kryo");
+    public static final Extension KRYO = parseExtension(".kryo");
 
-    public static final Extension MD5 = parse(LOGGER, ".md5");
+    public static final Extension MARKDOWN = parseExtension(".md");
 
-    public static final Extension OSM = parse(LOGGER, ".osm");
+    public static final Extension MD5 = parseExtension(".md5");
 
-    @SuppressWarnings("SpellCheckingInspection")
-    public static final Extension OSMPP = parse(LOGGER, ".osmpp");
+    public static final Extension OSM = parseExtension(".osm");
 
-    public static final Extension OSM_PBF = parse(LOGGER, ".osm.pbf");
+    public static final Extension OSMPP = parseExtension(".osmpp");
 
-    public static final Extension PBF = parse(LOGGER, ".pbf");
+    public static final Extension OSM_PBF = parseExtension(".osm.pbf");
 
-    public static final Extension PNG = parse(LOGGER, ".png");
+    public static final Extension PBF = parseExtension(".pbf");
 
-    public static final Extension POLY = parse(LOGGER, ".poly");
+    public static final Extension PNG = parseExtension(".png");
 
-    public static final Extension POM = parse(LOGGER, ".pom");
+    public static final Extension POLY = parseExtension(".poly");
 
-    public static final Extension PROPERTIES = parse(LOGGER, ".properties");
+    public static final Extension POM = parseExtension(".pom");
 
-    public static final Extension PYTHON = parse(LOGGER, ".py");
+    public static final Extension PROPERTIES = parseExtension(".properties");
 
-    public static final Extension SHA1 = parse(LOGGER, ".sha1");
+    public static final Extension PYTHON = parseExtension(".py");
 
-    public static final Extension SHELL = parse(LOGGER, ".sh");
+    public static final Extension SHA1 = parseExtension(".sha1");
 
-    public static final Extension TMP = parse(LOGGER, ".tmp");
+    public static final Extension SHELL = parseExtension(".sh");
 
-    public static final Extension TXD = parse(LOGGER, ".txd");
+    public static final Extension TMP = parseExtension(".tmp");
+
+    public static final Extension TXD = parseExtension(".txd");
 
     public static final Extension TXD_GZIP = TXD.gzipped();
 
-    public static final Extension TXT = parse(LOGGER, ".txt");
+    public static final Extension TXT = parseExtension(".txt");
 
     public static final Extension TXT_GZIP = TXT.gzipped();
 
-    public static final Extension XML = parse(LOGGER, ".xml");
+    public static final Extension XML = parseExtension(".xml");
 
-    public static final Extension YAML = parse(LOGGER, ".yaml");
+    public static final Extension YAML = parseExtension(".yaml");
 
-    public static final Extension YML = parse(LOGGER, ".yml");
+    public static final Extension YML = parseExtension(".yml");
 
-    public static final Extension ZIP = parse(LOGGER, ".zip");
+    public static final Extension ZIP = parseExtension(".zip");
 
     public static List<Extension> archive()
     {
@@ -208,13 +205,18 @@ public class Extension implements Named
         return known;
     }
 
-    public static Extension parse(Listener listener, String value)
+    public static Extension parseExtension(Listener listener, String value)
     {
         if (value.matches("(\\.[A-Za-z0-9]+)+"))
         {
             return new Extension(value);
         }
         throw listener.problem("Cannot parse $", value).asException();
+    }
+
+    public static Extension parseExtension(String value)
+    {
+        return parseExtension(Listener.throwing(), value);
     }
 
     private final String extension;
@@ -259,7 +261,7 @@ public class Extension implements Named
     /**
      * True if the given path has this extension
      */
-    public boolean ends(FilePath path)
+    public boolean ends(ResourcePath path)
     {
         return path.extension().equals(this);
     }
@@ -284,16 +286,6 @@ public class Extension implements Named
         return false;
     }
 
-    @NotNull
-    public Matcher<File> fileMatcher()
-    {
-        return file ->
-        {
-            var extension = file.compoundExtension();
-            return extension != null && extension.endsWith(this);
-        };
-    }
-
     public Extension gzipped()
     {
         return new Extension(extension + ".gz");
@@ -315,6 +307,22 @@ public class Extension implements Named
         return executable().contains(this);
     }
 
+    public Count length()
+    {
+        return Count.count(toString().length());
+    }
+
+    @Override
+    @NotNull
+    public Matcher<Resource> matcher()
+    {
+        return resource ->
+        {
+            var extension = resource.compoundExtension();
+            return extension != null && extension.endsWith(this);
+        };
+    }
+
     @Override
     public String name()
     {
@@ -330,10 +338,5 @@ public class Extension implements Named
     public Extension withExtension(Extension extension)
     {
         return new Extension(this.extension + extension);
-    }
-
-    Count length()
-    {
-        return Count.count(toString().length());
     }
 }

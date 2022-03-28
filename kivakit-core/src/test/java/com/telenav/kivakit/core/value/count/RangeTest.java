@@ -1,6 +1,5 @@
 package com.telenav.kivakit.core.value.count;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
 import static com.telenav.kivakit.core.value.count.Range.exclusive;
@@ -13,7 +12,7 @@ import static com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction.
  *
  * @author jonathanl (shibo)
  */
-public class RangeTest extends UnitTest
+public class RangeTest extends CoreUnitTest
 {
     @Test
     public void testConstrain()

@@ -41,9 +41,9 @@ public class LocalDisk implements DiskService
     {
         // Go up the folder hierarchy until we find a partition mount point
         var at = folder;
-        while (at.asJavaFile().getFreeSpace() == 0 && at.parent() != null)
+        while (at.asJavaFile().getFreeSpace() == 0 && at.parentService() != null)
         {
-            at = at.parent();
+            at = at.parentService();
         }
         root = at;
     }

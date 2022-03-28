@@ -18,22 +18,13 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.conversion.BaseStringConverter;
+import com.telenav.kivakit.core.collections.iteration.Iterables;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.value.count.Bytes;
-import com.telenav.kivakit.core.value.count.Count;
-import com.telenav.kivakit.filesystem.File;
-import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.lexakai.DiagramResource;
-import com.telenav.kivakit.resource.path.Extension;
-import com.telenav.kivakit.resource.path.FileName;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
-
-import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * A list of {@link Resource}s. Adds the methods:
@@ -49,67 +40,24 @@ import java.util.Collection;
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlRelation(label = "contains", referent = Resource.class)
 @LexakaiJavadoc(complete = true)
-public class ResourceList extends ArrayList<Resource>
+public class ResourceList extends BaseResourceList<Resource>
 {
-    /**
-     * Converts lists of resource identifiers to and from {@link ResourceList}s
-     *
-     * @author jonathanl (shibo)
-     */
-    @LexakaiJavadoc(complete = true)
-    public static class Converter extends BaseStringConverter<ResourceList>
+    public static ResourceList resourceList(Iterable<? extends Resource> resources)
     {
-        private final Extension extension;
-
-        public Converter(Listener listener, Extension extension)
-        {
-            super(listener);
-            this.extension = extension;
-        }
-
-        @Override
-        protected ResourceList onToValue(String value)
-        {
-            var resources = new ResourceList(extension);
-            for (var path : value.split(","))
-            {
-                var resource = Resource.resolve(this, path);
-                if (resource instanceof File)
-                {
-                    var file = (File) resource;
-                    if (file.isFolder())
-                    {
-                        resources.addAll(file.asFolder().nestedFiles(extension.fileMatcher()));
-                    }
-                    else
-                    {
-                        resources.add(file);
-                    }
-                }
-                else
-                {
-                    resources.add(resource);
-                }
-            }
-            return resources;
-        }
+        return new ResourceList(resources);
     }
 
-    private final Extension extension;
+    public static ResourceList resourceList(Resource... resources)
+    {
+        return resourceList(Iterables.iterable(resources));
+    }
 
     public ResourceList()
     {
-        extension = null;
     }
 
-    public ResourceList(Extension extension)
+    public ResourceList(Iterable<? extends Resource> resources)
     {
-        this.extension = extension;
-    }
-
-    public ResourceList(Iterable<Resource> resources)
-    {
-        extension = null;
         for (var resource : resources)
         {
             add(resource);
@@ -117,135 +65,14 @@ public class ResourceList extends ArrayList<Resource>
     }
 
     @Override
-    public void add(int index, Resource resource)
+    protected Resource newResource(final ResourcePath path)
     {
-        if (accepts(resource.fileName()))
-        {
-            super.add(index, resource);
-        }
+        return Resource.resolve(Listener.throwing(), path);
     }
 
     @Override
-    public boolean add(Resource resource)
+    protected ResourceList newResourceList()
     {
-        if (accepts(resource.fileName()))
-        {
-            return super.add(resource);
-        }
-        return false;
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends Resource> collection)
-    {
-        for (var file : collection)
-        {
-            add(file);
-        }
-        return true;
-    }
-
-    public Count count()
-    {
-        return Count.count(size());
-    }
-
-    public Resource largest()
-    {
-        Resource largest = null;
-        for (var resource : this)
-        {
-            if (largest == null || resource.isLargerThan(largest))
-            {
-                largest = resource;
-            }
-        }
-        return largest;
-    }
-
-    public ResourceList matching(Extension extension)
-    {
-        return matching(resource ->
-        {
-            var fileExtension = resource.compoundExtension();
-            return fileExtension != null && fileExtension.endsWith(extension);
-        });
-    }
-
-    public ResourceList matching(Matcher<Resource> matcher)
-    {
-        var matches = new ResourceList();
-        for (var resource : this)
-        {
-            if (matcher.matches(resource))
-            {
-                matches.add(resource);
-            }
-        }
-        return matches;
-    }
-
-    public ResourceList relativeTo(Folder folder)
-    {
-        var resources = new ResourceList();
-        for (var resource : this)
-        {
-            resources.add(resource.path().asFile().relativeTo(folder));
-        }
-        return resources;
-    }
-
-    @Override
-    public Resource set(int index, Resource resource)
-    {
-        if (accepts(resource.fileName()))
-        {
-            return super.set(index, resource);
-        }
-        return null;
-    }
-
-    public Resource smallest()
-    {
-        Resource smallest = null;
-        for (var resource : this)
-        {
-            if (smallest == null || resource.isSmallerThan(smallest))
-            {
-                smallest = resource;
-            }
-        }
-        return smallest;
-    }
-
-    public void sortOldestToNewest()
-    {
-        sort((a, b) ->
-        {
-            if (a.wasChangedBefore(b))
-            {
-                return -1;
-            }
-            if (b.wasChangedBefore(a))
-            {
-                return 1;
-            }
-            return 0;
-        });
-    }
-
-    public Bytes totalSize()
-    {
-        var bytes = Bytes._0;
-        for (var resource : this)
-        {
-            bytes = bytes.plus(resource.sizeInBytes());
-        }
-        return bytes;
-    }
-
-    private boolean accepts(FileName name)
-    {
-        return extension == null || name.endsWith(extension);
+        return new ResourceList();
     }
 }

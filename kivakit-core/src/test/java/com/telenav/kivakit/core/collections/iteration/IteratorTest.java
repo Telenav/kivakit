@@ -19,15 +19,14 @@
 package com.telenav.kivakit.core.collections.iteration;
 
 import com.telenav.kivakit.core.collections.list.BaseList;
-import com.telenav.kivakit.core.collections.list.ObjectList;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.collections.list.ObjectList;import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.collection.NextValue;
 import org.junit.Test;
 
 import java.util.Collections;
 
-public class IteratorTest extends UnitTest
+public class IteratorTest extends CoreUnitTest
 {
     @Test
     public void abstractIterableTest()

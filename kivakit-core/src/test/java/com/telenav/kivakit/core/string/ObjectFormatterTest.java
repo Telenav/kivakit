@@ -19,12 +19,11 @@
 package com.telenav.kivakit.core.string;
 
 import com.telenav.kivakit.core.language.object.ObjectFormatter;
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ObjectFormatterTest extends UnitTest
+public class ObjectFormatterTest extends CoreUnitTest
 {
     public static class Bean
     {

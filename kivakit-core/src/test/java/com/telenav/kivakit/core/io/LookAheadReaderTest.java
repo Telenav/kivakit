@@ -17,14 +17,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.io;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.io.StringReader;
 
-public class LookAheadReaderTest extends UnitTest
+public class LookAheadReaderTest extends CoreUnitTest
 {
     @Test
     public void test() throws IOException

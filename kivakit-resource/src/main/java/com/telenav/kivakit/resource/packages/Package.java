@@ -16,23 +16,29 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.resource;
+package com.telenav.kivakit.resource.packages;
 
 import com.telenav.kivakit.core.language.Classes;
+import com.telenav.kivakit.core.language.module.PackageReference;
 import com.telenav.kivakit.core.locale.Locale;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.string.Strip;
+import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.resource.path.FilePath;
+import com.telenav.kivakit.properties.PropertyMap;
+import com.telenav.kivakit.resource.CopyMode;
+import com.telenav.kivakit.resource.Resource;
+import com.telenav.kivakit.resource.ResourceFolder;
+import com.telenav.kivakit.resource.ResourceFolderIdentifier;
+import com.telenav.kivakit.resource.ResourceIdentifier;
+import com.telenav.kivakit.resource.ResourceList;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceType;
-import com.telenav.kivakit.resource.resources.PackageResource;
 import com.telenav.kivakit.resource.spi.ResourceFolderResolver;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -50,12 +56,18 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.language.module.PackageReference.packageReference;
+import static com.telenav.kivakit.core.messaging.Listener.throwing;
+import static com.telenav.kivakit.resource.ResourceList.resourceList;
+import static com.telenav.kivakit.resource.packages.PackagePath.packagePath;
+import static com.telenav.kivakit.resource.packages.PackagePath.parsePackagePath;
+import static com.telenav.kivakit.resource.packages.PackageResource.packageResource;
 
 /**
  * An abstraction for locating and copying {@link Resource}s in Java packages.
  *
  * <p>
- * A package object can be constructed with {@link #packageFrom(PackagePath)} or {@link #packageFrom(Listener listener,
+ * A package object can be constructed with {@link #packageForPath(Listener, PackagePath)} or {@link #parsePackage(Listener listener,
  * Class, String)}. It implements the {@link ResourceFolder} interface because it contains resources, just as {@link
  * Folder} does. This means, of course, that methods that accept {@link ResourceFolder} can accept either {@link
  * Folder}s or {@link Package}s.
@@ -78,26 +90,31 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
  * </p>
  *
  * @author jonathanl (shibo)
- * @see PackagePath
+ * @see PackageReference
  * @see PackageResource
  */
 @UmlClassDiagram(diagram = DiagramResourceType.class)
 @LexakaiJavadoc(complete = true)
-public class Package extends BaseRepeater implements ResourceFolder
+public class Package extends BaseRepeater implements ResourceFolder<Package>
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
-    /**
-     * @param _package The path to this package
-     */
-    public static Package packageFrom(PackagePath _package)
+    public static Package packageContaining(Listener listener, Class<?> packageType)
     {
-        return new Package(_package);
+        return new Package(listener, packagePath(packageType));
     }
 
-    public static Package packageFrom(Listener listener, Class<?> _packageType, String path)
+    /**
+     * @param packagePath The path to this package
+     */
+    public static Package packageForPath(Listener listener, PackagePath packagePath)
     {
-        return packageFrom(PackagePath.parsePackagePath(listener, _packageType, path));
+        return new Package(listener, packagePath);
+    }
+
+    public static Package parsePackage(Listener listener, Class<?> packageType, String path)
+    {
+        return packageForPath(listener, parsePackagePath(listener, packageType, path));
     }
 
     /**
@@ -121,19 +138,21 @@ public class Package extends BaseRepeater implements ResourceFolder
         }
 
         @Override
-        public ResourceFolder resolve(ResourceFolderIdentifier identifier)
+        public Package resolve(ResourceFolderIdentifier identifier)
         {
-            var filepath = FilePath.parseFilePath(LOGGER, Strip.leading(identifier.identifier(), SCHEME));
-            return Package.packageFrom(PackagePath.packagePath(filepath));
+            var filepath = FilePath.parseFilePath(this, Strip.leading(identifier.identifier(), SCHEME));
+            return packageForPath(throwing(), packagePath(filepath));
         }
     }
 
     /** The path to this package */
-    private final PackagePath package_;
+    private final PackagePath packagePath;
 
-    public Package(PackagePath _package)
+    public Package(Listener listener, PackagePath packagePath)
     {
-        package_ = _package;
+        listener.listenTo(this);
+
+        this.packagePath = packagePath;
     }
 
     /**
@@ -141,7 +160,7 @@ public class Package extends BaseRepeater implements ResourceFolder
      */
     public Package child(String name)
     {
-        return new Package(package_.withChild(name));
+        return new Package(this, packagePath.withChild(name));
     }
 
     @Override
@@ -162,6 +181,19 @@ public class Package extends BaseRepeater implements ResourceFolder
     }
 
     @Override
+    public List<Package> folders()
+    {
+        var children = new ArrayList<Package>();
+
+        for (var child : reference().subPackages(this))
+        {
+            children.add(packageForPath(this, packagePath(child)));
+        }
+
+        return children;
+    }
+
+    @Override
     public int hashCode()
     {
         return Objects.hash(path());
@@ -170,7 +202,7 @@ public class Package extends BaseRepeater implements ResourceFolder
     @Override
     public ResourceFolderIdentifier identifier()
     {
-        return ResourceFolder.identifier(package_.packageType() + ":" + package_.join());
+        return ResourceFolder.identifier(packagePath.packageType() + ":" + packagePath.join());
     }
 
     @Override
@@ -192,16 +224,22 @@ public class Package extends BaseRepeater implements ResourceFolder
      */
     public Package parent()
     {
-        var parent = package_.withoutLast();
-        return parent == null ? null : new Package(parent);
+        var parent = packagePath.withoutLast();
+        return parent == null ? null : new Package(this, parent);
     }
 
     /**
      * @return The path to this package folder
      */
+    @Override
     public PackagePath path()
     {
-        return package_;
+        return packagePath;
+    }
+
+    public PackageReference reference()
+    {
+        return packageReference(path());
     }
 
     /**
@@ -229,12 +267,13 @@ public class Package extends BaseRepeater implements ResourceFolder
      * @return The resources in this package folder
      */
     @Override
-    public List<PackageResource> resources(Matcher<? super Resource> matcher)
+    public ResourceList resources(Matcher<? super Resource> matcher)
     {
-        var resources = package_
-                .resources(this)
+        var resources = packagePath
+                .asPackageReference()
+                .moduleResources(this)
                 .stream()
-                .map(PackageResource::packageResource)
+                .map(moduleResource -> packageResource(this, moduleResource))
                 .filter(matcher)
                 .collect(Collectors.toList());
 
@@ -251,13 +290,13 @@ public class Package extends BaseRepeater implements ResourceFolder
         jarResources(matcher).forEach(addDeduplicated);
         directoryResources(matcher).forEach(addDeduplicated);
 
-        return resources;
+        return resourceList(resources);
     }
 
     @Override
     public String toString()
     {
-        return package_.toString();
+        return packagePath.toString();
     }
 
     @Override
@@ -265,7 +304,7 @@ public class Package extends BaseRepeater implements ResourceFolder
     {
         try
         {
-            return Classes.resourceUri(package_.packageType(), package_.join("/"));
+            return Classes.resourceUri(packagePath.packageType(), packagePath.join("/"));
         }
         catch (IllegalArgumentException ignored)
         {
@@ -283,7 +322,7 @@ public class Package extends BaseRepeater implements ResourceFolder
     {
         // Get the code source for the package type class,
         var resources = new ArrayList<PackageResource>();
-        CodeSource source = package_.packageType().getProtectionDomain().getCodeSource();
+        CodeSource source = packagePath.packageType().getProtectionDomain().getCodeSource();
         if (source != null)
         {
             try
@@ -292,13 +331,13 @@ public class Package extends BaseRepeater implements ResourceFolder
                 URL location = source.getLocation();
                 if (location != null && location.toString().endsWith("/"))
                 {
-                    var filepath = package_.join("/") + "/";
+                    var filepath = packagePath.join("/") + "/";
                     var directory = Folder.from(location.toURI()).folder(filepath);
                     if (directory.exists())
                     {
                         for (var file : directory.files())
                         {
-                            var resource = PackageResource.packageResource(LOGGER, package_, file.fileName().name());
+                            var resource = packageResource(this, packagePath, file.fileName().name());
                             if (matcher.matches(resource))
                             {
                                 resources.add(resource);
@@ -309,7 +348,7 @@ public class Package extends BaseRepeater implements ResourceFolder
             }
             catch (Exception ignored)
             {
-                LOGGER.warning("Exception thrown while loading directory resources from $", package_);
+                LOGGER.warning("Exception thrown while loading directory resources from $", packagePath);
             }
         }
 
@@ -325,7 +364,7 @@ public class Package extends BaseRepeater implements ResourceFolder
     {
         // Get the code source for the package type class,
         var resources = new ArrayList<PackageResource>();
-        CodeSource source = package_.packageType().getProtectionDomain().getCodeSource();
+        CodeSource source = packagePath.packageType().getProtectionDomain().getCodeSource();
         if (source != null)
         {
             try
@@ -339,7 +378,7 @@ public class Package extends BaseRepeater implements ResourceFolder
                     ZipInputStream zip = new ZipInputStream(urlConnection.getInputStream());
 
                     // form a file path from the package path,
-                    var filepath = package_.join("/") + "/";
+                    var filepath = packagePath.join("/") + "/";
 
                     // and loop,
                     while (true)
@@ -364,7 +403,7 @@ public class Package extends BaseRepeater implements ResourceFolder
                             if (!suffix.contains("/"))
                             {
                                 // then the entry is in the package, so add it to the resources list
-                                var resource = PackageResource.packageResource(LOGGER, package_, name.substring(filepath.length()));
+                                var resource = packageResource(LOGGER, packagePath, name.substring(filepath.length()));
                                 if (matcher.matches(resource))
                                 {
                                     resources.add(resource);
@@ -376,7 +415,7 @@ public class Package extends BaseRepeater implements ResourceFolder
             }
             catch (Exception ignored)
             {
-                LOGGER.warning("Exception thrown while loading jar resources from $", package_);
+                LOGGER.warning("Exception thrown while loading jar resources from $", packagePath);
             }
         }
         return resources;

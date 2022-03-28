@@ -16,7 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.resource.path;
+package com.telenav.kivakit.filesystem;
 
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.list.StringList;
@@ -26,11 +26,11 @@ import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.string.Strip;
-import com.telenav.kivakit.filesystem.File;
-import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.lexakai.DiagramResourcePath;
+import com.telenav.kivakit.resource.Extension;
+import com.telenav.kivakit.resource.FileName;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.NotNull;

@@ -21,7 +21,7 @@ package com.telenav.kivakit.resource.path;
 import com.telenav.kivakit.conversion.core.time.LocalDateTimeWithMillisecondsConverter;
 import com.telenav.kivakit.conversion.core.time.LocalDateTimeWithSecondsConverter;
 import com.telenav.kivakit.core.messaging.listeners.ThrowingListener;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.test.UnitTest;
 import com.telenav.kivakit.core.time.DayOfWeek;
 import com.telenav.kivakit.core.time.LocalTime;
 import com.telenav.kivakit.core.time.Time;

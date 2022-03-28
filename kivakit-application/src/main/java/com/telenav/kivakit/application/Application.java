@@ -61,8 +61,8 @@ import com.telenav.kivakit.core.vm.ShutdownHook;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
-import com.telenav.kivakit.resource.PackageTrait;
-import com.telenav.kivakit.resource.PropertyMap;
+import com.telenav.kivakit.resource.packages.PackageTrait;
+import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.settings.Deployment;
 import com.telenav.kivakit.settings.DeploymentSet;
@@ -495,7 +495,7 @@ public abstract class Application extends BaseComponent implements
 
     public PropertyMap localizedProperties(Locale locale)
     {
-        return PropertyMap.localized(this, packagePath(), locale);
+        return PropertyMap.localized(this, thisPackage().path(), locale);
     }
 
     /**
@@ -564,7 +564,7 @@ public abstract class Application extends BaseComponent implements
                 // then load properties from the resource
                 var resourceIdentifier = Strip.leading(argument, "-switches=");
                 var resource = Resource.resolve(this, resourceIdentifier);
-                var properties = PropertyMap.load(this, resource);
+                var properties = PropertyMap.load(resource);
 
                 // and add those properties to the argument list
                 for (var key : properties.keySet())

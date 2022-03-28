@@ -19,8 +19,8 @@
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.filesystem.spi.FileSystemService;
-import com.telenav.kivakit.resource.Package;
-import com.telenav.kivakit.resource.resources.PackageResource;
+import com.telenav.kivakit.resource.packages.Package;
+import com.telenav.kivakit.resource.packages.PackageResource;
 import com.telenav.kivakit.resource.spi.ResourceFolderResolver;
 import com.telenav.kivakit.resource.spi.ResourceResolver;
 
@@ -46,15 +46,18 @@ open module kivakit.resource
     // Module exports
     exports com.telenav.kivakit.filesystem.spi;
     exports com.telenav.kivakit.filesystem;
+    exports com.telenav.kivakit.launcher;
+    exports com.telenav.kivakit.properties;
     exports com.telenav.kivakit.resource.compression.archive;
     exports com.telenav.kivakit.resource.compression.codecs;
     exports com.telenav.kivakit.resource.compression;
-    exports com.telenav.kivakit.resource.path;
     exports com.telenav.kivakit.resource.lexakai;
+    exports com.telenav.kivakit.resource.packages;
     exports com.telenav.kivakit.resource.reading;
     exports com.telenav.kivakit.resource.resources;
     exports com.telenav.kivakit.resource.serialization;
     exports com.telenav.kivakit.resource.spi;
     exports com.telenav.kivakit.resource.writing;
     exports com.telenav.kivakit.resource;
+    exports com.telenav.kivakit.test;
 }

@@ -16,7 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.resource;
+package com.telenav.kivakit.properties;
 
 import com.telenav.kivakit.conversion.StringConverter;
 import com.telenav.kivakit.conversion.core.language.object.ObjectPopulator;
@@ -27,16 +27,17 @@ import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.core.locale.Locale;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.resource.path.FilePath;
+import com.telenav.kivakit.resource.Resource;
+import com.telenav.kivakit.resource.ResourceFolder;
+import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceType;
+import com.telenav.kivakit.resource.packages.PackagePath;
 import com.telenav.kivakit.resource.resources.InputResource;
-import com.telenav.kivakit.resource.resources.PackageResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -46,6 +47,8 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
+
+import static com.telenav.kivakit.resource.packages.PackageResource.packageResource;
 
 /**
  * A property map is a {@link VariableMap} with strings as both keys and values.
@@ -59,7 +62,10 @@ import java.util.regex.Pattern;
  * <ul>
  *     <li>{@link #create()} - Creates an empty property map</li>
  *     <li>{@link #propertyMap(VariableMap)} - Creates a property map from the given variable map</li>
- *     <li>{@link #load(Listener, Resource)} - Loads property map from the given resource</li>
+ *     <li>{@link #load(Resource)} - Loads a property map from the given resource</li>
+ *     <li>{@link #load(Listener, InputStream)} - Loads property map from the given input stream</li>
+ *     <li>{@link #load(Listener, Class, String)} - Loads property map from the given package type and relative path</li>
+ *     <li>{@link #load(Listener, PackagePath, String)} - Loads property map from the given package path and relative path</li>
  *     <li>{@link #localized(Listener, PackagePath, Locale)} - Loads a property map from the given package with a relative path
  *      from the given {@link Locale} of the form "locales/[language-name](/[country-name])?.</li>
  * </ul>
@@ -111,27 +117,47 @@ public class PropertyMap extends VariableMap<String>
 
     public static PropertyMap load(Listener listener, InputStream input)
     {
-        return load(listener, new InputResource(input));
+        return load(listener.listenTo(new InputResource(input)));
     }
 
-    public static PropertyMap load(Listener listener, Resource resource)
+    public static PropertyMap load(Listener listener, ResourceFolder folder, String resourcePath)
     {
-        return load(resource);
+        return load(listener.listenTo(folder.resource(resourcePath)));
     }
 
-    public static PropertyMap load(Listener listener, PackagePath _package, String path)
+    /**
+     * @return Loads the given .properties resource, interpolating system variables into each value
+     */
+    public static PropertyMap load(Resource resource)
     {
-        return load(listener, PackageResource.packageResource(_package, FilePath.parseFilePath(listener, path)));
-    }
-
-    public static PropertyMap load(Listener listener, Class<?> _package, String path)
-    {
-        return load(listener, PackagePath.packagePath(_package), path);
+        var properties = new PropertyMap();
+        var linePattern = Pattern.compile("(?<key>[^=]*?)\\s*=\\s*(?<value>[^=]*)");
+        int lineNumber = 1;
+        for (var line : resource.reader().lines(ProgressReporter.none()))
+        {
+            var trimmed = line.trim();
+            if (!trimmed.isEmpty() && !trimmed.startsWith("#") && !trimmed.startsWith("//"))
+            {
+                var matcher = linePattern.matcher(line);
+                if (matcher.matches())
+                {
+                    var key = matcher.group("key");
+                    var value = matcher.group("value");
+                    properties.put(key, value);
+                }
+                else
+                {
+                    Ensure.fail("Cannot parse line $:$: $", resource.fileName(), lineNumber, line);
+                }
+            }
+            lineNumber++;
+        }
+        return properties;
     }
 
     public static PropertyMap localized(Listener listener, PackagePath path, Locale locale)
     {
-        return PropertyMap.load(listener, path, locale.path().join("/"));
+        return PropertyMap.load(packageResource(listener, path, locale.path().join("/")));
     }
 
     public static PropertyMap propertyMap(VariableMap<String> variables)
@@ -286,35 +312,5 @@ public class PropertyMap extends VariableMap<String>
     protected VariableMap<String> newStringMap()
     {
         return PropertyMap.create();
-    }
-
-    /**
-     * @return Loads the given .properties resource, interpolating system variables into each value
-     */
-    private static PropertyMap load(Resource resource)
-    {
-        var properties = new PropertyMap();
-        var linePattern = Pattern.compile("(?<key>[^=]*?)\\s*=\\s*(?<value>[^=]*)");
-        int lineNumber = 1;
-        for (var line : resource.reader().lines(ProgressReporter.none()))
-        {
-            var trimmed = line.trim();
-            if (!trimmed.isEmpty() && !trimmed.startsWith("#") && !trimmed.startsWith("//"))
-            {
-                var matcher = linePattern.matcher(line);
-                if (matcher.matches())
-                {
-                    var key = matcher.group("key");
-                    var value = matcher.group("value");
-                    properties.put(key, value);
-                }
-                else
-                {
-                    Ensure.fail("Cannot parse line $:$: $", resource.fileName(), lineNumber, line);
-                }
-            }
-            lineNumber++;
-        }
-        return properties;
     }
 }

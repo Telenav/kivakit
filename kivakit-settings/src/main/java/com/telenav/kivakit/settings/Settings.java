@@ -21,15 +21,14 @@ package com.telenav.kivakit.settings;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.object.Lazy;
-import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.core.vm.JavaTrait;
 import com.telenav.kivakit.filesystem.Folder;
+import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.settings.lexakai.DiagramSettings;
-import com.telenav.kivakit.settings.stores.FolderSettingsStore;
 import com.telenav.kivakit.settings.stores.MemorySettingsStore;
-import com.telenav.kivakit.settings.stores.PackageSettingsStore;
+import com.telenav.kivakit.settings.stores.ResourceFolderSettingsStore;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
@@ -117,8 +116,7 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.LOAD;
  * @see Registry
  * @see Deployment
  * @see MemorySettingsStore
- * @see FolderSettingsStore
- * @see PackageSettingsStore
+ * @see ResourceFolderSettingsStore
  */
 @UmlClassDiagram(diagram = DiagramSettings.class)
 public class Settings extends MemorySettingsStore implements
@@ -161,7 +159,7 @@ public class Settings extends MemorySettingsStore implements
     @Override
     public <T> T lookupSettings(Class<T> type,
                                 InstanceIdentifier instance,
-                                PackagePath defaultSettingsPackage)
+                                ResourceFolder defaultSettings)
     {
         // First load any settings overrides from KIVAKIT_SETTINGS_FOLDERS,
         loadSettingsFolders();
@@ -176,11 +174,11 @@ public class Settings extends MemorySettingsStore implements
             settings = lookup(new SettingsObject.Identifier(type, instance));
 
             // and if the settings are still not found and a default settings package was specified,
-            if (settings == null && defaultSettingsPackage != null)
+            if (settings == null && defaultSettings != null)
             {
                 // then load any default settings from the specified package
-                trace("Loading default settings from $", defaultSettingsPackage);
-                var store = PackageSettingsStore.of(this, defaultSettingsPackage);
+                trace("Loading default settings from $", defaultSettings);
+                var store = new ResourceFolderSettingsStore(this, defaultSettings);
                 registerSettingsIn(store);
                 settings = store.lookup(new SettingsObject.Identifier(type, instance));
             }
@@ -257,7 +255,7 @@ public class Settings extends MemorySettingsStore implements
                 var folder = Folder.parse(this, path);
                 if (folder != null)
                 {
-                    indexAll(FolderSettingsStore.of(this, folder));
+                    indexAll(new ResourceFolderSettingsStore(this, folder));
                 }
                 else
                 {

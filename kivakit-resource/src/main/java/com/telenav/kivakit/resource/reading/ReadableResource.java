@@ -16,12 +16,14 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.resource;
+package com.telenav.kivakit.resource.reading;
 
 import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.resource.CopyMode;
+import com.telenav.kivakit.resource.Resource;
+import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.lexakai.DiagramResource;
-import com.telenav.kivakit.resource.reading.ResourceReader;
 import com.telenav.kivakit.resource.resources.StringResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;

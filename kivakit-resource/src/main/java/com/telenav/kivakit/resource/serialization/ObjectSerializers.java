@@ -1,6 +1,6 @@
 package com.telenav.kivakit.resource.serialization;
 
-import com.telenav.kivakit.resource.path.Extension;
+import com.telenav.kivakit.resource.Extension;
 
 import java.util.HashMap;
 import java.util.Map;

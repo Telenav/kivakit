@@ -7,7 +7,10 @@ public interface CreatedAt
         return created().elapsedSince();
     }
 
-    Time created();
+    default Time created()
+    {
+        throw new UnsupportedOperationException("Cannot retrieve last modified time from: " + getClass());
+    }
 
     default boolean wasCreatedAfter(CreatedAt that)
     {

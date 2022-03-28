@@ -23,6 +23,7 @@ import com.telenav.kivakit.interfaces.collection.NextValue;
 import com.telenav.kivakit.interfaces.factory.Factory;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -112,6 +113,11 @@ public class Iterables
             return ((Collection<?>) iterable).isEmpty();
         }
         return !iterable.iterator().hasNext();
+    }
+
+    public static <T> Iterable<T> iterable(T[] values)
+    {
+        return Arrays.asList(values);
     }
 
     /**

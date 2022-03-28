@@ -18,10 +18,11 @@
 
 package com.telenav.kivakit.core.collections.list;
 
-import com.telenav.kivakit.core.value.count.Count;
-import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.core.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.string.AsciiArt;
+import com.telenav.kivakit.core.string.Formatter;
+import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.factory.IntMapFactory;
 import com.telenav.kivakit.interfaces.factory.LongMapFactory;
@@ -347,6 +348,14 @@ public class ObjectList<Element> extends BaseList<Element>
     public String titledBox(String title)
     {
         return AsciiArt.textBox(title, join("\n"));
+    }
+
+    /**
+     * @return This list of objects as an ASCII art text box with the given title
+     */
+    public String titledBox(String title, Object... arguments)
+    {
+        return titledBox(Formatter.format(title, arguments));
     }
 
     /**

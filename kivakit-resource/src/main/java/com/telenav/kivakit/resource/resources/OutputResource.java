@@ -19,7 +19,7 @@
 package com.telenav.kivakit.resource.resources;
 
 import com.telenav.kivakit.core.value.count.Bytes;
-import com.telenav.kivakit.resource.WritableResource;
+import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -27,6 +27,8 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
  * An {@link OutputStream} stream wrapper that turns the output stream into a {@link WritableResource}.
@@ -53,7 +55,7 @@ public class OutputResource extends BaseWritableResource
     @Override
     public InputStream onOpenForReading()
     {
-        return null;
+        return unsupported();
     }
 
     @Override

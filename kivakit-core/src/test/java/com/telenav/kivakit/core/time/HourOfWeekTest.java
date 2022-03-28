@@ -1,8 +1,5 @@
 package com.telenav.kivakit.core.time;
-
-import com.telenav.kivakit.core.test.UnitTest;
-import com.telenav.kivakit.core.value.count.Count;
-import com.telenav.kivakit.core.value.count.Range;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
 import java.time.ZoneId;
@@ -23,7 +20,7 @@ import static com.telenav.kivakit.core.value.count.Count._2;
  *
  * @author jonathanl (shibo)
  */
-public class HourOfWeekTest extends UnitTest
+public class HourOfWeekTest extends CoreUnitTest
 {
     @Test
     public void testConversions()

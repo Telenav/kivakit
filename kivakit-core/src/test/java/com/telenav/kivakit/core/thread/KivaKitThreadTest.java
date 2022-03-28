@@ -19,7 +19,7 @@
 package com.telenav.kivakit.core.thread;
 
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.mutable.ConcurrentMutableValue;
@@ -28,7 +28,7 @@ import org.junit.Test;
 
 import static com.telenav.kivakit.core.thread.KivaKitThread.State.EXITED;
 
-public class KivaKitThreadTest extends UnitTest
+public class KivaKitThreadTest extends CoreUnitTest
 {
     @Test
     public void testInitialDelay()

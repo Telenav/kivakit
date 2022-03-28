@@ -22,7 +22,6 @@ import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.messaging.broadcasters.Multicaster;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.kivakit.resource.ReadableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import org.jetbrains.annotations.NotNull;
 

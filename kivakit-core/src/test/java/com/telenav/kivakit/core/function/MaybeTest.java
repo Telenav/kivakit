@@ -1,13 +1,13 @@
 package com.telenav.kivakit.core.function;
 
 import com.telenav.kivakit.core.language.primitive.Ints;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.value.mutable.MutableValue;
 import org.junit.Test;
 
 import java.util.stream.Collectors;
 
-public class MaybeTest extends UnitTest
+public class MaybeTest extends CoreUnitTest
 {
     @Test
     public void testAbsentIf()

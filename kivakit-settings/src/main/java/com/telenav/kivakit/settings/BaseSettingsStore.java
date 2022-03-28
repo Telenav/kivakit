@@ -6,9 +6,8 @@ import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.thread.locks.ReadWriteLock;
 import com.telenav.kivakit.core.vm.JavaTrait;
-import com.telenav.kivakit.settings.stores.FolderSettingsStore;
 import com.telenav.kivakit.settings.stores.MemorySettingsStore;
-import com.telenav.kivakit.settings.stores.PackageSettingsStore;
+import com.telenav.kivakit.settings.stores.ResourceFolderSettingsStore;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 import org.jetbrains.annotations.NotNull;
 
@@ -38,8 +37,7 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.UNLOAD;
  *
  * <ul>
  *     <li>{@link Deployment} - Loads settings for a particular application or server deployment</li>
- *     <li>{@link FolderSettingsStore} - Loads settings from <i>.properties</i> files</li>
- *     <li>{@link PackageSettingsStore} - Loads settings from <i>.properties</i> package resources</li>
+ *     <li>{@link ResourceFolderSettingsStore} - Loads settings from <i>.properties</i> files</li>
  *     <li>{@link MemorySettingsStore} - A store of non-persistent settings objects in memory</li>
  * </ul>
  *
@@ -77,8 +75,7 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.UNLOAD;
  * @author jonathanl (shibo)
  * @see SettingsStore
  * @see Deployment
- * @see FolderSettingsStore
- * @see PackageSettingsStore
+ * @see ResourceFolderSettingsStore
  */
 public abstract class BaseSettingsStore extends BaseRepeater implements
         SettingsStore,

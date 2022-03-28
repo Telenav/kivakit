@@ -17,12 +17,11 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.value.count;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.value.level.Percent;
 import org.junit.Test;
 
-public class BytesTest extends UnitTest
+public class BytesTest extends CoreUnitTest
 {
     @Test
     public void test()

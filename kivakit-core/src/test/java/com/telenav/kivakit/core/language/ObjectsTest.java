@@ -18,14 +18,10 @@
 
 package com.telenav.kivakit.core.language;
 
-import com.telenav.kivakit.core.language.ClassesTest;
-import com.telenav.kivakit.core.language.Hash;
-import com.telenav.kivakit.core.language.Objects;
-import com.telenav.kivakit.core.language.primitive.Primitives;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.language.primitive.Primitives;import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
-public class ObjectsTest extends UnitTest
+public class ObjectsTest extends CoreUnitTest
 {
     @Test
     public void testEquals()

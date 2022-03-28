@@ -1,6 +1,5 @@
 package com.telenav.kivakit.core.time;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 
@@ -20,7 +19,7 @@ import static com.telenav.kivakit.core.time.HourOfWeekSpan.hourOfWeekSpanUtc;
  *
  * @author jonathanl (shibo)
  */
-public class HourOfWeekSpanTest extends UnitTest
+public class HourOfWeekSpanTest extends CoreUnitTest
 {
     @Test
     public void testAsLocal()

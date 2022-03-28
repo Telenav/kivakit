@@ -24,7 +24,7 @@ import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.filesystem.spi.DiskService;
 import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.filesystem.spi.FolderService;
-import com.telenav.kivakit.resource.path.FilePath;
+import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.resource.lexakai.DiagramFileSystemService;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -188,7 +188,7 @@ public class LocalFile extends BaseWritableResource implements FileService
 
         // If the parent exists and is writable and the file doesn't exist
         // the file is writable because we can create it
-        return parent().exists() && parent().isWritable() && !file.exists();
+        return parentService().exists() && parentService().isWritable() && !file.exists();
     }
 
     @Override
@@ -230,7 +230,7 @@ public class LocalFile extends BaseWritableResource implements FileService
     }
 
     @Override
-    public LocalFolder parent()
+    public LocalFolder parentService()
     {
         return new LocalFolder(path().absolute().parent());
     }

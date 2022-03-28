@@ -18,7 +18,7 @@
 
 package com.telenav.kivakit.collections.set;
 
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -26,13 +26,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 @SuppressWarnings("SpellCheckingInspection")
-public class SetDifferencerTest extends UnitTest
+public class SetDifferencerTest extends CoreUnitTest
 {
     private static class Value
     {
         private int id;
-
-        String name;
 
         @Override
         public boolean equals(Object object)
@@ -56,6 +54,8 @@ public class SetDifferencerTest extends UnitTest
         {
             return id + "(" + name + ")";
         }
+
+        String name;
     }
 
     @Test

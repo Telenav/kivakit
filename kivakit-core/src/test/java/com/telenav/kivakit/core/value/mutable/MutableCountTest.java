@@ -17,13 +17,12 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.value.mutable;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.value.count.MutableCount;
 import org.junit.Test;
 
-public class MutableCountTest extends UnitTest
+public class MutableCountTest extends CoreUnitTest
 {
     @Test
     public void test()

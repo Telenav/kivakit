@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.core.path;
 
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.language.module.PackageReference;import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 
-public class PackagePathTest extends UnitTest
+public class PackagePathTest extends CoreUnitTest
 {
     @Test
     public void testAppend()
@@ -54,11 +54,11 @@ public class PackagePathTest extends UnitTest
     @Test
     public void testIs()
     {
-        ensure(PackagePath.isPackagePath("a.b.c"));
-        ensure(PackagePath.isPackagePath("a"));
-        ensure(!PackagePath.isPackagePath("3"));
-        ensure(!PackagePath.isPackagePath("3.c"));
-        ensure(PackagePath.isPackagePath("a1.b2.c3"));
+        ensure(PackageReference.isPackageReference("a.b.c"));
+        ensure(PackageReference.isPackageReference("a"));
+        ensure(!PackageReference.isPackageReference("3"));
+        ensure(!PackageReference.isPackageReference("3.c"));
+        ensure(PackageReference.isPackageReference("a1.b2.c3"));
     }
 
     @Test
@@ -81,7 +81,7 @@ public class PackagePathTest extends UnitTest
     @Test
     public void testParent()
     {
-        var path = PackagePath.packagePath(PackagePathTest.class);
+        var path = PackageReference.packageReference(PackagePathTest.class);
         var parent = path.parent();
         ensure(path.startsWith(parent));
     }
@@ -95,14 +95,14 @@ public class PackagePathTest extends UnitTest
     @Test
     public void testRoot()
     {
-        var path = PackagePath.packagePath(PackagePathTest.class);
+        var path = PackageReference.packageReference(PackagePathTest.class);
         ensureFalse(path.isRoot());
     }
 
     @Test
     public void testSeparator()
     {
-        var path = PackagePath.packagePath(PackagePathTest.class);
+        var path = PackageReference.packageReference(PackagePathTest.class);
         ensureEqual(path.separator(), ".");
     }
 
@@ -143,8 +143,8 @@ public class PackagePathTest extends UnitTest
     }
 
     @NotNull
-    private PackagePath path(String path)
+    private PackageReference path(String path)
     {
-        return PackagePath.parsePackagePath(this, path);
+        return PackageReference.parsePackageReference(this, path);
     }
 }

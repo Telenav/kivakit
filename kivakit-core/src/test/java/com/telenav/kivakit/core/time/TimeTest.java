@@ -17,14 +17,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.time;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
 /**
  * Time test
  */
-public class TimeTest extends UnitTest
+public class TimeTest extends CoreUnitTest
 {
     @Test
     public void testBeforeAfter()

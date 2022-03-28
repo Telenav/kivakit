@@ -17,8 +17,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.vm;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.Bytes;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -26,7 +25,7 @@ import org.junit.Test;
 import java.util.HashSet;
 import java.util.Set;
 
-public class JavaVirtualMachineTest extends UnitTest
+public class JavaVirtualMachineTest extends CoreUnitTest
 {
     @Test
     public void test()

@@ -18,8 +18,7 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.Maximum;
 import org.junit.Test;
 
@@ -27,7 +26,7 @@ import org.junit.Test;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
-public class AsIndentedStringTest extends UnitTest implements AsIndentedString
+public class AsIndentedStringTest extends CoreUnitTest implements AsIndentedString
 {
     static class Bar implements AsIndentedString
     {

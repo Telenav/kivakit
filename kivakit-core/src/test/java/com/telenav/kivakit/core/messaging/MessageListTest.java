@@ -21,18 +21,17 @@ package com.telenav.kivakit.core.messaging;
 import com.telenav.kivakit.core.messaging.listeners.MessageList;
 import com.telenav.kivakit.core.messaging.messages.status.Information;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.string.Formatter;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.string.Formatter;import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.MutableCount;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import org.junit.Test;
 
-public class MessageListTest extends UnitTest
+public class MessageListTest extends CoreUnitTest
 {
     @Test
     public void test()
     {
-        var list = new MessageList(Matcher.anything());
+        var list = new MessageList(Matcher.matchAll());
         Repeater repeater = new BaseRepeater(getClass());
         var count = new MutableCount();
         list.listenTo(repeater);

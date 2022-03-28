@@ -20,8 +20,9 @@ package com.telenav.kivakit.resource.resources;
 
 import com.telenav.kivakit.core.io.StringInputStream;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
-import com.telenav.kivakit.resource.ReadableResource;
+import com.telenav.kivakit.resource.reading.ReadableResource;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;
@@ -42,15 +43,24 @@ public class StringResource extends BaseReadableResource
 {
     private final String value;
 
+    private final Time created = Time.now();
+
     public StringResource(String value)
     {
         this(ResourcePath.parseUnixResourcePath(Listener.console(), "/objects/String@" + Integer.toHexString(value.hashCode())), value);
+
     }
 
     public StringResource(ResourcePath path, String value)
     {
         super(path);
         this.value = value;
+    }
+
+    @Override
+    public Time created()
+    {
+        return created;
     }
 
     @Override

@@ -19,24 +19,22 @@
 package com.telenav.kivakit.filesystem;
 
 import com.telenav.kivakit.conversion.BaseStringConverter;
-import com.telenav.kivakit.core.collections.list.ObjectList;
+import com.telenav.kivakit.core.collections.iteration.Iterables;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
+import com.telenav.kivakit.resource.BaseResourceList;
+import com.telenav.kivakit.resource.Extension;
+import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFile;
-import com.telenav.kivakit.resource.path.Extension;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
+import static com.telenav.kivakit.filesystem.FilePath.filePath;
 
 /**
  * A list of files with useful methods added. Additional methods include:
@@ -57,23 +55,26 @@ import java.util.Set;
  */
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @LexakaiJavadoc(complete = true)
-public class FileList extends ObjectList<File>
+public class FileList extends BaseResourceList<File> implements Iterable<File>
 {
-    public static FileList files(File... files)
+    public static FileList fileList(File... files)
     {
-        var list = new FileList();
-        list.addAll(Arrays.asList(files));
-        return list;
+        return fileList(Iterables.iterable(files));
+    }
+
+    public static FileList fileList(Iterable<File> files)
+    {
+        return new FileList(files);
     }
 
     /**
      * <b>Not public API</b>
      */
     @UmlExcludeMember
-    public static FileList forServices(List<? extends FileService> virtualFiles)
+    public static FileList forServices(List<? extends FileService> fileServices)
     {
         var files = new FileList();
-        for (var file : virtualFiles)
+        for (var file : fileServices)
         {
             files.add(new File(file));
         }
@@ -105,7 +106,7 @@ public class FileList extends ObjectList<File>
                 var file = File.parseFile(this, path);
                 if (file.isFolder())
                 {
-                    files.addAll(file.asFolder().nestedFiles(extension.fileMatcher()));
+                    files.addAll(file.asFolder().nestedFiles(extension.matcher()));
                 }
                 else
                 {
@@ -127,7 +128,7 @@ public class FileList extends ObjectList<File>
     {
     }
 
-    FileList(FileList that)
+    protected FileList(Iterable<File> that)
     {
         addAll(that);
     }
@@ -140,124 +141,47 @@ public class FileList extends ObjectList<File>
         return files;
     }
 
+
     @Override
-    public Set<File> asSet()
-    {
-        return new HashSet<>(this);
-    }
-
-    public byte[] digest()
-    {
-        MessageDigest digester;
-        try
-        {
-            digester = MessageDigest.getInstance("MD5");
-            var builder = new StringBuilder();
-            for (var file : this)
-            {
-                builder.append("[")
-                        .append(file.path().absolute())
-                        .append(":")
-                        .append(file.created())
-                        .append(":")
-                        .append(file.lastModified())
-                        .append(":")
-                        .append(file.sizeInBytes())
-                        .append("]");
-            }
-            return digester.digest(builder.toString().getBytes());
-        }
-        catch (NoSuchAlgorithmException ignored)
-        {
-            // Not possible
-        }
-        return null;
-    }
-
     public File largest()
     {
-        File largest = null;
-        for (var file : this)
-        {
-            if (largest == null || file.isLargerThan(largest))
-            {
-                largest = file;
-            }
-        }
-        return largest;
+        return (File) super.largest();
     }
 
     @Override
     public FileList matching(Matcher<File> matcher)
     {
-        var files = new FileList();
-        for (var file : this)
-        {
-            if (matcher.matches(file))
-            {
-                files.add(file);
-            }
-        }
-        return files;
+        return (FileList) super.matching(matcher);
     }
 
+    @Override
     public File smallest()
     {
-        File smallest = null;
-        for (var file : this)
-        {
-            if (smallest == null || file.isSmallerThan(smallest))
-            {
-                smallest = file;
-            }
-        }
-        return smallest;
+        return (File) super.smallest();
     }
 
+    @Override
     public FileList sortedLargestToSmallest()
     {
-        var sorted = new FileList(this);
-        sorted.sort((a, b) ->
-        {
-            if (a.isLargerThan(b))
-            {
-                return -1;
-            }
-            if (b.isLargerThan(a))
-            {
-                return 1;
-            }
-            return 0;
-        });
-        return sorted;
+        return (FileList) super.sortedLargestToSmallest();
     }
 
+    @Override
     @SuppressWarnings("UnusedReturnValue")
     public FileList sortedOldestToNewest()
     {
-        var sorted = new FileList(this);
-        sorted.sort((a, b) ->
-        {
-            if (a.isOlderThan(b))
-            {
-                return -1;
-            }
-            if (b.isOlderThan(a))
-            {
-                return 1;
-            }
-            return 0;
-        });
-        return sorted;
+        return (FileList) super.sortedOldestToNewest();
     }
 
-    public Bytes totalSize()
+    @Override
+    protected File newResource(ResourcePath path)
     {
-        var bytes = Bytes._0;
-        for (var file : this)
-        {
-            bytes = bytes.plus(file.sizeInBytes());
-        }
-        return bytes;
+        return File.file(filePath(path));
+    }
+
+    @Override
+    protected BaseResourceList<File> newResourceList()
+    {
+        return new FileList();
     }
 }

@@ -27,7 +27,7 @@ import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludePrope
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.core.language.reflection.property.PropertyMembers;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.path.PackagePath;
+import com.telenav.kivakit.core.language.module.PackageReference;
 import com.telenav.kivakit.core.lexakai.DiagramReflection;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -38,7 +38,7 @@ import java.util.Collection;
  * A convenient class for formatting the fields and also particular methods of an object. By default, all fields will be
  * included except fields annotated with {@link KivaKitExcludeProperty}. In addition, all methods annotated with {@link
  * KivaKitIncludeProperty} will be included. Child objects will be formatted recursively. Recursion is limited to
- * objects that are in the list of {@link PackagePath}s passed to the constructor.
+ * objects that are in the list of {@link PackageReference}s passed to the constructor.
  *
  * @author jonathanl (shibo)
  */
@@ -55,17 +55,17 @@ public class ObjectFormatter
     private PropertyFilter filter = PropertyFilter.kivakitProperties(PropertyMembers.INCLUDED_FIELDS_AND_METHODS, PropertyMembers.INCLUDED_FIELDS);
 
     /** The package paths to include when recursing */
-    private final PackagePath[] include;
+    private final PackageReference[] include;
 
     /** The object to format */
     private final Object object;
 
     public ObjectFormatter(Object object)
     {
-        this(object, PackagePath.TELENAV);
+        this(object, PackageReference.TELENAV);
     }
 
-    public ObjectFormatter(Object object, PackagePath... include)
+    public ObjectFormatter(Object object, PackageReference... include)
     {
         this.object = object;
         this.include = include;

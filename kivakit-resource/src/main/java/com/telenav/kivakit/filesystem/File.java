@@ -32,16 +32,14 @@ import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
-import com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader;
 import com.telenav.kivakit.filesystem.local.LocalFile;
 import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.resource.CopyMode;
+import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.compression.Codec;
-import com.telenav.kivakit.resource.path.Extension;
-import com.telenav.kivakit.resource.path.FilePath;
 import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.spi.ResourceResolver;
@@ -58,6 +56,9 @@ import java.nio.charset.Charset;
 import java.nio.file.attribute.PosixFilePermission;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.messaging.Listener.none;
+import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.fileSystem;
 
 /**
  * File abstraction that adds integrates files with the KivaKit resource mini-framework and adds a variety of useful
@@ -182,19 +183,24 @@ public class File extends BaseWritableResource implements FileSystemObject
             Ensure.illegalArgument("URI path component is empty");
         }
         path = path.replaceFirst("^/", "");
-        return new File(FileSystemServiceLoader
-                .fileSystem(FilePath.parseFilePath(listener, path))
-                .fileService(FilePath.parseFilePath(listener, path)));
+
+        var filesystem = fileSystem(listener, FilePath.parseFilePath(listener, path));
+
+        var service = ensureNotNull(filesystem)
+                .fileService(FilePath.parseFilePath(listener, path));
+
+        return new File(service);
     }
 
     public static File file(java.io.File file)
     {
-        return parseFile(Listener.none(), file.getAbsolutePath());
+        return parseFile(Listener.throwing(), file.getAbsolutePath());
     }
 
     public static File file(FilePath path)
     {
-        return new File(FileSystemServiceLoader.fileSystem(path).fileService(path));
+        var filesystem = fileSystem(Listener.throwing(), path);
+        return new File(ensureNotNull(filesystem).fileService(path));
     }
 
     public static ArgumentParser.Builder<File> fileArgumentParser(Listener listener, String description)
@@ -313,7 +319,7 @@ public class File extends BaseWritableResource implements FileSystemObject
             {
                 return false;
             }
-            return FileSystemServiceLoader.fileSystem(FilePath.parseFilePath(this, identifier.identifier())) != null;
+            return fileSystem(none(), FilePath.parseFilePath(this, identifier.identifier())) != null;
         }
 
         @Override
@@ -353,6 +359,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         return File.file(path().absolute());
     }
 
+    @Override
     public Duration age()
     {
         return created().elapsedSince();
@@ -428,8 +435,8 @@ public class File extends BaseWritableResource implements FileSystemObject
      */
     public File ensureWritable()
     {
-        service.parent().mkdirs();
-        if (!service.parent().exists())
+        service.parentService().mkdirs();
+        if (!service.parentService().exists())
         {
             fatal("Parent folder of " + this + " does not exist");
         }
@@ -619,9 +626,10 @@ public class File extends BaseWritableResource implements FileSystemObject
     /**
      * @return The parent folder that contains this file
      */
+    @Override
     public Folder parent()
     {
-        return new Folder(service.parent());
+        return new Folder(service.parentService());
     }
 
     /**

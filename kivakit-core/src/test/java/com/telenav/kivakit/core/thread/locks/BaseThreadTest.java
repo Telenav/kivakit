@@ -17,15 +17,14 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.thread.locks;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.time.Time;
 
 /**
  * @author jonathanl (shibo)
  */
-public abstract class BaseThreadTest extends UnitTest
+public abstract class BaseThreadTest extends CoreUnitTest
 {
     private Time start;
 

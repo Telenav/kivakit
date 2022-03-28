@@ -19,14 +19,13 @@
 package com.telenav.kivakit.core.thread;
 
 import com.telenav.kivakit.core.messaging.context.CallStack;
-import com.telenav.kivakit.core.messaging.context.CallStack.Matching;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.messaging.context.CallStack.Matching;import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Assert;
 import org.junit.Test;
 
 import static com.telenav.kivakit.core.messaging.context.CallStack.Proximity.IMMEDIATE;
 
-public class CallStackTest extends UnitTest
+public class CallStackTest extends CoreUnitTest
 {
     public interface TestInterface
     {

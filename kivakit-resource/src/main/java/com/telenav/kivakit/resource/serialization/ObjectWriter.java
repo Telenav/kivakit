@@ -5,7 +5,7 @@ import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveOutputStream;
-import com.telenav.kivakit.resource.WritableResource;
+import com.telenav.kivakit.resource.writing.WritableResource;
 
 import java.io.OutputStream;
 

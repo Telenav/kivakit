@@ -21,8 +21,8 @@ package com.telenav.kivakit.interfaces.comparison;
 import com.telenav.kivakit.interfaces.comparison.matchers.Anything;
 import com.telenav.kivakit.interfaces.comparison.matchers.Nothing;
 import com.telenav.kivakit.interfaces.comparison.matchers.PatternMatcher;
-import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.lexakai.DiagramComparison;
+import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.util.function.Predicate;
@@ -35,11 +35,16 @@ import java.util.regex.Pattern;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramComparison.class)
-public interface Matcher<Value> extends Predicate<Value>
+public interface Matcher<Value> extends Predicate<Value>, Matchable<Value>
 {
-    static <T> Matcher<T> anything()
+    static <T> Matcher<T> matchAll()
     {
         return new Anything<>();
+    }
+
+    static <T> Matcher<T> matchNothing()
+    {
+        return new Nothing<>();
     }
 
     static Matcher<String> matching(Pattern pattern)
@@ -52,9 +57,10 @@ public interface Matcher<Value> extends Predicate<Value>
         return named -> named.name().equalsIgnoreCase(name);
     }
 
-    static <T> Matcher<T> nothing()
+    @Override
+    default Matcher<Value> matcher()
     {
-        return new Nothing<>();
+        return this;
     }
 
     /**

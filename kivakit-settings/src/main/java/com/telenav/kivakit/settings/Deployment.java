@@ -207,8 +207,10 @@ public class Deployment extends MemorySettingsStore implements Serializable
      * @param name The name of the deployment, like "osm-team"
      * @param description A description of the deployment
      */
-    public Deployment(String name, String description)
+    public Deployment(Listener listener, String name, String description)
     {
+        listener.listenTo(this);
+
         this.name = name;
         this.description = description;
     }

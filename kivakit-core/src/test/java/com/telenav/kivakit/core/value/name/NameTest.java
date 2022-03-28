@@ -17,11 +17,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.value.name;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
-public class NameTest extends UnitTest
+public class NameTest extends CoreUnitTest
 {
     @Test
     public void test()

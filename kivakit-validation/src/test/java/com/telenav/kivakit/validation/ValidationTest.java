@@ -19,9 +19,9 @@
 package com.telenav.kivakit.validation;
 
 import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 
-public class ValidationTest extends UnitTest
+public class ValidationTest extends CoreUnitTest
 {
     public static class A implements Validatable
     {
@@ -44,6 +44,7 @@ public class ValidationTest extends UnitTest
                     try
                     {
                         problemIf(x == 0, "x cannot be zero");
+                        //noinspection MaskedAssertion
                         Ensure.fail("Should have thrown an exception");
                     }
                     catch (AssertionError ignored)

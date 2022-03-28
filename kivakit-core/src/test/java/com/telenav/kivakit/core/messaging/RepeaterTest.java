@@ -19,12 +19,11 @@
 package com.telenav.kivakit.core.messaging;
 
 import com.telenav.kivakit.core.messaging.messages.status.Information;
-import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.MutableCount;
 import org.junit.Test;
 
-public class RepeaterTest extends UnitTest
+public class RepeaterTest extends CoreUnitTest
 {
     @Test
     public void test()

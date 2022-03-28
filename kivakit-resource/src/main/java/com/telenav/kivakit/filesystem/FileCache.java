@@ -24,7 +24,7 @@ import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.path.FileName;
+import com.telenav.kivakit.resource.FileName;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;

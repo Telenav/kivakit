@@ -17,11 +17,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.value.count;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
-public class BitCountTest extends UnitTest
+public class BitCountTest extends CoreUnitTest
 {
     @Test
     public void testMaximumSigned()

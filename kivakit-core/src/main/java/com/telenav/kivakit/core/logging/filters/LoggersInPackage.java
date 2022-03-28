@@ -19,14 +19,14 @@
 package com.telenav.kivakit.core.logging.filters;
 
 import com.telenav.kivakit.core.logging.LogEntry;
-import com.telenav.kivakit.core.path.PackagePath;
+import com.telenav.kivakit.core.language.module.PackageReference;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 
 public class LoggersInPackage implements Filter<LogEntry>
 {
-    private final PackagePath path;
+    private final PackageReference path;
 
-    public LoggersInPackage(PackagePath path)
+    public LoggersInPackage(PackageReference path)
     {
         this.path = path;
     }

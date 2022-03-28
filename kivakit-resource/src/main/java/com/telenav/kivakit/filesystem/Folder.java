@@ -35,18 +35,19 @@ import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.core.thread.Monitor;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
-import com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader;
 import com.telenav.kivakit.filesystem.spi.FileService;
+import com.telenav.kivakit.filesystem.spi.FileSystemService;
 import com.telenav.kivakit.filesystem.spi.FolderService;
 import com.telenav.kivakit.interfaces.comparison.Filter;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.CopyMode;
+import com.telenav.kivakit.resource.Extension;
+import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.resource.ResourceFolderIdentifier;
-import com.telenav.kivakit.resource.path.Extension;
-import com.telenav.kivakit.resource.path.FileName;
-import com.telenav.kivakit.resource.path.FilePath;
+import com.telenav.kivakit.resource.ResourceGlob;
+import com.telenav.kivakit.resource.ResourceList;
 import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFolder;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.spi.ResourceFolderResolver;
@@ -77,6 +78,8 @@ import static com.telenav.kivakit.core.ensure.Ensure.fail;
 import static com.telenav.kivakit.core.project.Project.resolveProject;
 import static com.telenav.kivakit.filesystem.Folder.Traversal.RECURSE;
 import static com.telenav.kivakit.filesystem.Folder.Type.CLEAN_UP_ON_EXIT;
+import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.fileSystem;
+import static com.telenav.kivakit.resource.ResourceList.resourceList;
 
 /**
  * Folder abstraction that extends {@link FileSystemObject} and implements the {@link ResourceFolder} interface for
@@ -198,7 +201,7 @@ import static com.telenav.kivakit.filesystem.Folder.Type.CLEAN_UP_ON_EXIT;
 public class Folder extends BaseRepeater implements
         FileSystemObject,
         Comparable<Folder>,
-        ResourceFolder,
+        ResourceFolder<Folder>,
         TryTrait
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
@@ -349,6 +352,11 @@ public class Folder extends BaseRepeater implements
                 .description("Output folder to write to");
     }
 
+    public static Folder parse(String path, Object... arguments)
+    {
+        return parse(Listener.throwing(), path, arguments);
+    }
+
     public static Folder parse(Listener listener, String path, Object... arguments)
     {
         if (Strings.isEmpty(path))
@@ -464,7 +472,7 @@ public class Folder extends BaseRepeater implements
         }
 
         @Override
-        public ResourceFolder resolve(ResourceFolderIdentifier identifier)
+        public Folder resolve(ResourceFolderIdentifier identifier)
         {
             return Folder.parse(this, identifier.identifier());
         }
@@ -504,7 +512,7 @@ public class Folder extends BaseRepeater implements
      */
     public Folder(FilePath path)
     {
-        this(Objects.requireNonNull(FileSystemServiceLoader.fileSystem(path)).folderService(path));
+        this(Objects.requireNonNull(fileSystem(Listener.throwing(), path)).folderService(path));
     }
 
     /**
@@ -627,7 +635,7 @@ public class Folder extends BaseRepeater implements
      */
     public void copyTo(Folder destination,
                        CopyMode mode,
-                       Matcher<File> matcher,
+                       Matcher<Resource> matcher,
                        ProgressReporter reporter)
     {
         var start = Time.now();
@@ -776,7 +784,7 @@ public class Folder extends BaseRepeater implements
 
     public FileList files(String globPattern)
     {
-        return files(FileGlobPattern.parse(this, globPattern));
+        return files(ResourceGlob.match(globPattern));
     }
 
     public FileList files(Matcher<File> matcher)
@@ -836,9 +844,10 @@ public class Folder extends BaseRepeater implements
         return folders().stream().filter(matcher::matches).collect(Collectors.toList());
     }
 
+    @Override
     public List<Folder> folders()
     {
-        List<Folder> folders = new ArrayList<>();
+        var folders = new ArrayList<Folder>();
         if (service != null)
         {
             for (FolderService folder : folder().folders())
@@ -959,9 +968,10 @@ public class Folder extends BaseRepeater implements
     /**
      * @return Any matching files that are recursively contained in this folder
      */
-    public FileList nestedFiles(Matcher<File> matcher)
+    @SuppressWarnings("unchecked")
+    public <T extends Resource> FileList nestedFiles(Matcher<T> matcher)
     {
-        var files = FileList.forServices(folder().nestedFiles(path -> matcher.matches(path.asFile())));
+        var files = FileList.forServices(folder().nestedFiles(path -> matcher.matches((T) path.asFile())));
         trace("Nested files in $: $", this, files);
         return files;
     }
@@ -969,6 +979,7 @@ public class Folder extends BaseRepeater implements
     /**
      * @return Any matching folders that are recursively contained in this folder
      */
+    @Override
     public FolderList nestedFolders(Matcher<Folder> matcher)
     {
         var folders = FolderList.forVirtual(folder().nestedFolders(path -> matcher.matches(new Folder(path))));
@@ -1002,6 +1013,7 @@ public class Folder extends BaseRepeater implements
         return new Folder(path().absolute().parent());
     }
 
+    @Override
     public FilePath path()
     {
         return folder().path();
@@ -1031,12 +1043,12 @@ public class Folder extends BaseRepeater implements
     }
 
     @Override
-    public List<File> resources(Matcher<? super Resource> matcher)
+    public ResourceList resources(Matcher<? super Resource> matcher)
     {
-        return files()
+        return resourceList(files()
                 .stream()
                 .filter(matcher)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
     public Folder root()
@@ -1062,7 +1074,7 @@ public class Folder extends BaseRepeater implements
 
         var start = Time.now();
         information("Safely copying $ to $", this, destination);
-        var temporary = destination.parent().temporary(FileName.parse(this, "temporary-copy"));
+        var temporary = destination.parent().temporary(FileName.parseFileName(this, "temporary-copy"));
         for (var file : nestedFiles(matcher))
         {
             file.copyTo(temporary.file(file.relativeTo(this)), mode, reporter);
@@ -1186,11 +1198,16 @@ public class Folder extends BaseRepeater implements
         return service;
     }
 
+    private @NotNull FileSystemService fileSystemService(FilePath path)
+    {
+        return ensureNotNull(fileSystem(Listener.throwing(), path));
+    }
+
     private FolderService folder()
     {
         if (service == null)
         {
-            service = Objects.requireNonNull(FileSystemServiceLoader.fileSystem(path)).folderService(path);
+            service = fileSystemService(path).folderService(path);
         }
         return service;
     }

@@ -23,9 +23,11 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
+import com.telenav.kivakit.resource.packages.Package;
 import com.telenav.kivakit.resource.spi.ResourceFolderResolverServiceLoader;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.telenav.kivakit.filesystem.Folder.Type.NORMAL;
@@ -37,19 +39,21 @@ import static com.telenav.kivakit.resource.CopyMode.OVERWRITE;
  *
  * @author jonathanl (shibo)
  */
-public interface ResourceFolder extends UriIdentified
+public interface ResourceFolder<T extends ResourceFolder<T>> extends
+        UriIdentified,
+        ResourcePathed
 {
     static ResourceFolderIdentifier identifier(String identifier)
     {
         return new ResourceFolderIdentifier(identifier);
     }
 
-    static ResourceFolder resolve(Listener listener, String identifier)
+    static ResourceFolder<?> resolve(Listener listener, String identifier)
     {
         return resolve(listener, new ResourceFolderIdentifier(identifier));
     }
 
-    static ResourceFolder resolve(Listener listener, ResourceFolderIdentifier identifier)
+    static ResourceFolder<?> resolve(Listener listener, ResourceFolderIdentifier identifier)
     {
         return ResourceFolderResolverServiceLoader.resolve(listener, identifier);
     }
@@ -60,7 +64,7 @@ public interface ResourceFolder extends UriIdentified
      * @author jonathanl (shibo)
      */
     @LexakaiJavadoc(complete = true)
-    class Converter extends BaseStringConverter<ResourceFolder>
+    class Converter extends BaseStringConverter<ResourceFolder<?>>
     {
         public Converter(Listener listener)
         {
@@ -68,16 +72,28 @@ public interface ResourceFolder extends UriIdentified
         }
 
         @Override
-        protected ResourceFolder onToValue(String value)
+        protected ResourceFolder<?> onToValue(String value)
         {
             return new ResourceFolderIdentifier(value).resolve(this);
         }
     }
 
+    default boolean contains(T that)
+    {
+        return that.path().startsWith(path());
+    }
+
+    default boolean contains(Resource that)
+    {
+        return that.path().startsWith(path());
+    }
+
     /**
      * @return The child resource container at the given relative path
      */
-    ResourceFolder folder(String path);
+    T folder(String path);
+
+    List<T> folders();
 
     ResourceFolderIdentifier identifier();
 
@@ -102,6 +118,36 @@ public interface ResourceFolder extends UriIdentified
         return folder;
     }
 
+    default List<T> nestedFolders(Matcher<T> matcher)
+    {
+        var folders = new ArrayList<T>();
+        for (var at : folders())
+        {
+            folders.add(at);
+            folders.addAll(at.nestedFolders(matcher));
+        }
+        return folders;
+    }
+
+    default ResourceList nestedResources()
+    {
+        return nestedResources(value -> true);
+    }
+
+    /**
+     * @return Any matching files that are recursively contained in this folder
+     */
+    default ResourceList nestedResources(Matcher<T> matcher)
+    {
+        var list = new ResourceList();
+        list.addAll(resources());
+        for (var at : folders())
+        {
+            at.nestedResources(matcher);
+        }
+        return list;
+    }
+
     /**
      * @return The resource of the given in this container
      */
@@ -110,14 +156,14 @@ public interface ResourceFolder extends UriIdentified
     /**
      * @return The resources in this folder matching the given matcher
      */
-    List<? extends Resource> resources(Matcher<? super Resource> matcher);
+    ResourceList resources(Matcher<? super Resource> matcher);
 
     /**
      * @return The resources in this folder
      */
-    default List<? extends Resource> resources()
+    default ResourceList resources()
     {
-        return resources(Matcher.anything());
+        return resources(Matcher.matchAll());
     }
 
     /**

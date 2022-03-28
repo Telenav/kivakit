@@ -21,10 +21,9 @@ package com.telenav.kivakit.core.language.module;
 import com.telenav.kivakit.core.io.Nio;
 import com.telenav.kivakit.core.language.object.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.path.PackagePath;
-import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.lexakai.DiagramModule;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -34,13 +33,14 @@ import java.lang.module.ModuleReference;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.attribute.BasicFileAttributes;
 
 /**
  * A resource in a module having the following attributes. {@link ModuleResource}s can be found with the methods in
  * {@link Modules}.
  * <ul>
  *     <li>{@link #uri()} - The {@link URI} to the resource</li>
- *     <li>{@link #packagePath()} - The package where the resource resides</li>
+ *     <li>{@link #packageReference()} - The package where the resource resides</li>
  *     <li>{@link #javaPath()} - The full package path to the resource</li>
  *     <li>{@link #fileNameAsJavaPath()} - The filename of the resource</li>
  *     <li>{@link #lastModified()} - The time of the last modification to the resource</li>
@@ -80,13 +80,13 @@ public class ModuleResource
                         if (filepath.startsWith(folder))
                         {
                             var relativePath = filepath.withoutPrefix(folder);
-                            var _package = PackagePath.packagePath(relativePath.withoutLast());
+                            var _package = PackageReference.packageReference(relativePath.withoutLast());
                             return new ModuleResource(_package, uri);
                         }
                         if (filepath.startsWith(testFolder))
                         {
                             var relativePath = filepath.withoutPrefix(testFolder);
-                            var _package = PackagePath.packagePath(relativePath.withoutLast());
+                            var _package = PackageReference.packageReference(relativePath.withoutLast());
                             return new ModuleResource(_package, uri);
                         }
                     }
@@ -97,7 +97,7 @@ public class ModuleResource
                 case "zip":
                 {
                     Nio.filesystem(listener, uri);
-                    var _package = PackagePath.packagePath(StringPath.stringPath(uri));
+                    var _package = PackageReference.packageReference(StringPath.stringPath(uri));
                     return new ModuleResource(_package, uri);
                 }
 
@@ -112,27 +112,35 @@ public class ModuleResource
         return null;
     }
 
-    private final PackagePath _package;
-
-    private final URI uri;
-
-    private Bytes size;
+    private Time created;
 
     private Time lastModified;
 
-    protected ModuleResource(PackagePath _package, URI uri)
+    private final PackageReference packageReference;
+
+    private Bytes size;
+
+    private final URI uri;
+
+    protected ModuleResource(PackageReference packageReference, URI uri)
     {
-        this._package = _package;
+        this.packageReference = packageReference;
         this.uri = uri;
         try
         {
             var path = Path.of(uri);
             size = Bytes.bytes(Files.size(path));
             lastModified = Time.milliseconds(Files.getLastModifiedTime(path).toMillis());
+            created = Time.milliseconds(Files.readAttributes(path, BasicFileAttributes.class).creationTime().toMillis());
         }
         catch (IOException ignored)
         {
         }
+    }
+
+    public Time created()
+    {
+        return created;
     }
 
     @KivaKitIncludeProperty
@@ -153,9 +161,9 @@ public class ModuleResource
     }
 
     @KivaKitIncludeProperty
-    public PackagePath packagePath()
+    public PackageReference packageReference()
     {
-        return _package;
+        return packageReference;
     }
 
     @KivaKitIncludeProperty

@@ -17,15 +17,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.language.primitive;
-
-import com.telenav.kivakit.core.language.primitive.Ints;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
 /**
  * @author jonathanl (shibo)
  */
-public class IntsTest extends UnitTest
+public class IntsTest extends CoreUnitTest
 {
     @Test
     public void testParse()

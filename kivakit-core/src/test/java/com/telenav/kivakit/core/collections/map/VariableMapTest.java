@@ -17,11 +17,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.collections.map;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
-public class VariableMapTest extends UnitTest
+public class VariableMapTest extends CoreUnitTest
 {
     @Test
     public void test()

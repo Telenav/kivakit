@@ -16,7 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.resource;
+package com.telenav.kivakit.launcher;
 
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
@@ -26,7 +26,9 @@ import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.thread.KivaKitThread;
 import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.resource.path.Extension;
+import com.telenav.kivakit.resource.Extension;
+import com.telenav.kivakit.properties.PropertyMap;
+import com.telenav.kivakit.resource.Resourceful;
 import com.telenav.kivakit.resource.lexakai.DiagramJarLauncher;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -38,8 +40,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
-import static com.telenav.kivakit.resource.JarLauncher.ProcessType.CHILD;
-import static com.telenav.kivakit.resource.JarLauncher.ProcessType.DETACHED;
+import static com.telenav.kivakit.launcher.JarLauncher.ProcessType.CHILD;
+import static com.telenav.kivakit.launcher.JarLauncher.ProcessType.DETACHED;
 
 /**
  * Launches an executable Java program from some, possibly remote, resource when {@link #run()}  is called.

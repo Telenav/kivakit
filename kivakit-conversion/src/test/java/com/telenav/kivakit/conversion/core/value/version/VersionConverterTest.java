@@ -1,11 +1,11 @@
 package com.telenav.kivakit.conversion.core.value.version;
 
 import com.telenav.kivakit.conversion.core.value.VersionConverter;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.version.Version;
 import org.junit.Test;
 
-public class VersionConverterTest extends UnitTest
+public class VersionConverterTest extends CoreUnitTest
 {
     @Test
     public void testVersionConverter()

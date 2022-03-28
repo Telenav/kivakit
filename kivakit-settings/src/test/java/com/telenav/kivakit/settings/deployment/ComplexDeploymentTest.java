@@ -18,8 +18,9 @@
 
 package com.telenav.kivakit.settings.deployment;
 
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.test.UnitTest;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.settings.Deployment;
 import com.telenav.kivakit.settings.ServerSettings;
@@ -37,7 +38,7 @@ public class ComplexDeploymentTest extends UnitTest
     {
         public Development()
         {
-            super("development", "test development deployment");
+            super(Listener.throwing(), "development", "test development deployment");
             registerSettingsObject(new Server1(), SERVER1);
             registerSettingsObject(new Server2(), SERVER2);
         }
@@ -47,7 +48,7 @@ public class ComplexDeploymentTest extends UnitTest
     {
         public Production()
         {
-            super("production", "test production deployment");
+            super(Listener.throwing(),"production", "test production deployment");
             registerSettingsObject(new Server3(), SERVER1);
             registerSettingsObject(new Server4(), SERVER2);
         }

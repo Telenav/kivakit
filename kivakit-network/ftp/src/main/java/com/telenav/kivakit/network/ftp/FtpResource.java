@@ -30,7 +30,7 @@ import com.telenav.kivakit.network.core.NetworkPath;
 import com.telenav.kivakit.network.core.Protocol;
 import com.telenav.kivakit.network.ftp.lexakai.DiagramFtp;
 import com.telenav.kivakit.resource.CopyMode;
-import com.telenav.kivakit.resource.WritableResource;
+import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.apache.commons.net.ftp.FTP;

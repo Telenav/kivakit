@@ -19,6 +19,7 @@
 package com.telenav.kivakit.resource.resources;
 
 import com.telenav.kivakit.core.io.IO;
+import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceType;
@@ -38,11 +39,11 @@ import java.io.InputStream;
 @LexakaiJavadoc(complete = true)
 public class ResourceSection extends BaseReadableResource
 {
+    private final long endOffset;
+
     private final Resource parent;
 
     private final long startOffset;
-
-    private final long endOffset;
 
     /**
      * @param parent The parent resource to read from
@@ -59,6 +60,12 @@ public class ResourceSection extends BaseReadableResource
         {
             illegalArgument("Start index of " + startOffset + " must be less than end index of " + endOffset);
         }
+    }
+
+    @Override
+    public Time created()
+    {
+        return resource().created();
     }
 
     @Override

@@ -32,7 +32,7 @@ import com.telenav.kivakit.core.version.VersionedObject;
 import com.telenav.kivakit.interfaces.io.Flushable;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.WritableResource;
+import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.kivakit.resource.serialization.ObjectSerializer;
 import com.telenav.kivakit.resource.serialization.SerializableObject;
 

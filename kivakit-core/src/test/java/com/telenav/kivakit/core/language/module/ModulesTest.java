@@ -17,10 +17,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.language.module;
-
-import com.telenav.kivakit.core.language.module.Modules;
-import com.telenav.kivakit.core.path.PackagePath;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.Bytes;
 import org.junit.Test;
 
@@ -31,13 +28,13 @@ import java.util.HashSet;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("ConstantConditions")
-public class ModulesTest extends UnitTest
+public class ModulesTest extends CoreUnitTest
 {
     @Test
     public void testAllNestedResources()
     {
-        var a = PackagePath.parsePackagePath(this, getClass(), "resources.a");
-        var resources = Modules.allNestedResources(this, a);
+        var a = PackageReference.parsePackageReference(this, getClass(), "resources.a");
+        var resources = Modules.allNestedModuleResources(this, a);
         ensureEqual(resources.size(), 2);
         var filenames = new HashSet<Path>();
         filenames.add(resources.get(0).fileNameAsJavaPath());
@@ -51,8 +48,8 @@ public class ModulesTest extends UnitTest
     @Test
     public void testNestedResources()
     {
-        var a = PackagePath.parsePackagePath(this, getClass(), "resources.a");
-        var resources = Modules.nestedResources(this, a, resource -> resource.fileNameAsJavaPath().equals(Path.of("b.txt")));
+        var a = PackageReference.parsePackageReference(this, getClass(), "resources.a");
+        var resources = Modules.nestedModuleResources(this, a, resource -> resource.fileNameAsJavaPath().equals(Path.of("b.txt")));
         ensureEqual(resources.size(), 1);
         ensureEqual(resources.get(0).fileNameAsJavaPath(), Path.of("b.txt"));
         ensure(resources.get(0).size().isGreaterThan(Bytes._0));
@@ -61,20 +58,20 @@ public class ModulesTest extends UnitTest
     @Test
     public void testResource()
     {
-        var _package = PackagePath.packagePath(getClass());
+        var _package = PackageReference.packageReference(getClass());
         var path = _package.withChild("resources/a/a.txt");
-        var resource = Modules.resource(this, path);
+        var resource = Modules.moduleResource(this, path);
         ensureNotNull(resource);
         ensureEqual(resource.fileNameAsJavaPath(), Path.of("a.txt"));
-        ensureEqual(resource.packagePath(), _package.withChild("resources").withChild("a"));
+        ensureEqual(resource.packageReference(), _package.withChild("resources").withChild("a"));
         ensure(resource.size().isGreaterThan(Bytes._0));
     }
 
     @Test
     public void testResources()
     {
-        var a = PackagePath.parsePackagePath(this, getClass(), "resources.a");
-        var resources = Modules.resources(this, a);
+        var a = PackageReference.parsePackageReference(this, getClass(), "resources.a");
+        var resources = Modules.moduleResources(this, a);
         ensureEqual(resources.size(), 1);
         ensureEqual(resources.get(0).fileNameAsJavaPath(), Path.of("a.txt"));
         ensure(resources.get(0).size().isGreaterThan(Bytes._0));

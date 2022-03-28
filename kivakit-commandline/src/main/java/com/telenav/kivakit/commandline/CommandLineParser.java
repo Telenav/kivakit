@@ -227,7 +227,7 @@ public class CommandLineParser
      */
     void validate(SwitchList switches, ArgumentList arguments)
     {
-        var messages = new MessageList(Matcher.anything());
+        var messages = new MessageList(Matcher.matchAll());
 
         var validator = new BaseValidator()
         {

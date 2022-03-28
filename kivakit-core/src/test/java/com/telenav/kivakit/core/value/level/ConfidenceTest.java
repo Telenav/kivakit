@@ -17,11 +17,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.value.level;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
-public class ConfidenceTest extends UnitTest
+public class ConfidenceTest extends CoreUnitTest
 {
     @Test
     public void test()

@@ -26,12 +26,13 @@ import com.telenav.kivakit.filesystem.spi.DiskService;
 import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.filesystem.spi.FileSystemService;
 import com.telenav.kivakit.filesystem.spi.FolderService;
-import com.telenav.kivakit.resource.path.FilePath;
 import com.telenav.kivakit.resource.lexakai.DiagramFileSystemService;
+import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
+import org.jetbrains.annotations.NotNull;
 
 import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
@@ -74,19 +75,19 @@ public class LocalFileSystemService implements FileSystemService
     }
 
     @Override
-    public DiskService diskService(FilePath path)
+    public @NotNull DiskService diskService(FilePath path)
     {
         return new LocalDisk(new LocalFolder(normalize(path)));
     }
 
     @Override
-    public FileService fileService(FilePath path)
+    public @NotNull FileService fileService(FilePath path)
     {
         return new LocalFile(normalize(path));
     }
 
     @Override
-    public FolderService folderService(FilePath path)
+    public @NotNull FolderService folderService(FilePath path)
     {
         return new LocalFolder(normalize(path));
     }

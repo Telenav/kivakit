@@ -16,10 +16,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.resource;
+package com.telenav.kivakit.resource.packages;
 
-import com.telenav.kivakit.core.path.PackagePath;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
+
+import static com.telenav.kivakit.resource.packages.PackagePath.packagePath;
 
 /**
  * An object having a (KivaKit) {@link Package}.
@@ -34,6 +36,6 @@ public interface Packaged
      */
     default Package _package()
     {
-        return new Package(PackagePath.packagePath(getClass()));
+        return new Package(Listener.throwing(), packagePath(getClass()));
     }
 }

@@ -1,12 +1,12 @@
 package com.telenav.kivakit.conversion.core.value.count;
 
 import com.telenav.kivakit.conversion.core.value.CountConverter;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
 import java.util.Objects;
 
-public class CountConverterTest extends UnitTest
+public class CountConverterTest extends CoreUnitTest
 {
     @Test
     public void testCountConverter()

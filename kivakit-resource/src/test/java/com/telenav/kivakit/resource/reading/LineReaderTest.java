@@ -18,9 +18,7 @@
 
 package com.telenav.kivakit.resource.reading;
 
-import com.telenav.kivakit.core.path.PackagePath;
-import com.telenav.kivakit.resource.resources.PackageResource;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.test.UnitTest;
 import org.junit.Test;
 
 public class LineReaderTest extends UnitTest
@@ -29,7 +27,7 @@ public class LineReaderTest extends UnitTest
     public void test()
     {
         var i = 1;
-        var resource = PackageResource.packageResource(this, PackagePath.packagePath(getClass()), "test.txt");
+        var resource = packageResource("test.txt");
         for (String line : resource.reader().linesAsStringList())
         {
             ensureEqual(i++, Integer.parseInt(line));

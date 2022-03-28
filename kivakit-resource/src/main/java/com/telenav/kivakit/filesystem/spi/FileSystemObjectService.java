@@ -18,15 +18,16 @@
 
 package com.telenav.kivakit.filesystem.spi;
 
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.string.Strings;
-import com.telenav.kivakit.core.time.ChangedAt;
+import com.telenav.kivakit.core.time.LastModifiedAt;
 import com.telenav.kivakit.core.time.CreatedAt;
 import com.telenav.kivakit.core.time.Modifiable;
 import com.telenav.kivakit.core.value.count.ByteSized;
+import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader;
-import com.telenav.kivakit.resource.path.FilePath;
-import com.telenav.kivakit.resource.path.ResourcePathed;
+import com.telenav.kivakit.resource.ResourcePathed;
 import com.telenav.kivakit.resource.lexakai.DiagramFileSystemService;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -44,7 +45,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
  *     <li>{@link #exists()} - True if the object exists</li>
  *     <li>{@link #delete()} - Deletes the object</li>
  *     <li>{@link #isFolder()} - Returns true if the object is a folder</li>
- *     <li>{@link #parent()} - The parent {@link FolderService} of the object, if any</li>
+ *     <li>{@link #parentService()} - The parent {@link FolderService} of the object, if any</li>
  *     <li>{@link #path()} - The path to the object on the filesystem</li>
  *     <li>{@link #root()} - The root folder</li>
  * </ul>
@@ -59,7 +60,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 public interface FileSystemObjectService extends
         Repeater,
         ByteSized,
-        ChangedAt,
+        LastModifiedAt,
         CreatedAt,
         Modifiable,
         ResourcePathed
@@ -98,7 +99,7 @@ public interface FileSystemObjectService extends
      */
     default FolderService folderService()
     {
-        return FileSystemServiceLoader.fileSystem(path()).folderService(path());
+        return fileSystemService(path()).folderService(path());
     }
 
     /**
@@ -116,8 +117,8 @@ public interface FileSystemObjectService extends
 
     default boolean isOnSameFileSystem(FileSystemObjectService that)
     {
-        var thisService = FileSystemServiceLoader.fileSystem(path());
-        var thatService = FileSystemServiceLoader.fileSystem(that.path());
+        var thisService = fileSystemService(path());
+        var thatService = fileSystemService(that.path());
         return thisService.getClass().equals(thatService.getClass());
     }
 
@@ -132,7 +133,7 @@ public interface FileSystemObjectService extends
     /**
      * @return The parent of this folder or null if none exists
      */
-    FolderService parent();
+    FolderService parentService();
 
     /**
      * @return The path to this object
@@ -140,10 +141,10 @@ public interface FileSystemObjectService extends
     @Override
     FilePath path();
 
-    default FilePath relativePath(FolderService folder)
+    default FilePath relativePath(FolderService folderService)
     {
         var fullName = Strings.ensureEndsWith(path().toString().replace("\\", "/"), "/");
-        var folderName = Strings.ensureEndsWith(folder.path().toString().replace("\\", "/"), "/");
+        var folderName = Strings.ensureEndsWith(folderService.path().toString().replace("\\", "/"), "/");
         if (fullName.startsWith(folderName))
         {
             return FilePath.parseFilePath(this, fullName.substring(folderName.length()));
@@ -163,4 +164,9 @@ public interface FileSystemObjectService extends
      * @return The root folder containing this object
      */
     FolderService root();
+
+    private FileSystemService fileSystemService(FilePath path)
+    {
+        return FileSystemServiceLoader.fileSystem(Listener.throwing(), path);
+    }
 }

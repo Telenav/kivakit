@@ -37,7 +37,12 @@ import java.util.Set;
  *
  * @author jonathanl (shibo)
  */
-public interface SettingsStore extends RegistryTrait, Repeater, Named, Iterable<Object>
+@SuppressWarnings("UnusedReturnValue")
+public interface SettingsStore extends
+        RegistryTrait,
+        Repeater,
+        Named,
+        Iterable<Object>
 {
     /**
      * <p>
@@ -167,7 +172,6 @@ public interface SettingsStore extends RegistryTrait, Repeater, Named, Iterable<
      * Removes the given object from the in-memory index of this settings store. This will <i>not</i>> add the object to
      * the underlying persistent store. To do that, call {@link #save(SettingsObject)}.
      */
-    @SuppressWarnings("SpellCheckingInspection")
     boolean unindex(SettingsObject object);
 
     /**

@@ -24,10 +24,10 @@ import com.telenav.kivakit.core.language.object.ObjectFormatter;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
-import com.telenav.kivakit.resource.WritableResource;
-import com.telenav.kivakit.resource.path.FilePath;
+import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceArchive;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
+import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.visibility.UmlExcludeSuperTypes;
@@ -37,6 +37,7 @@ import java.io.OutputStream;
 import java.nio.file.FileSystem;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.attribute.BasicFileAttributes;
 
 import static java.nio.file.StandardOpenOption.CREATE;
 import static java.nio.file.StandardOpenOption.WRITE;
@@ -71,6 +72,13 @@ public class ZipEntry extends BaseWritableResource implements AutoCloseable
 
         IO.close(out);
         out = null;
+    }
+
+    @Override
+    public Time created()
+    {
+        return UncheckedCode.of(() -> Time.milliseconds(Files.readAttributes(path, BasicFileAttributes.class)
+                .creationTime().toMillis())).orNull();
     }
 
     @Override

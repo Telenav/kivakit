@@ -6,7 +6,7 @@ import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.filesystem.File;
-import com.telenav.kivakit.resource.path.Extension;
+import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.serialization.kryo.types.CoreKryoTypes;
 import org.junit.Test;
 

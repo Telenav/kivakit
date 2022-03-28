@@ -17,15 +17,14 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.collections.list;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.Maximum;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
 
-public class BoundedListTest extends UnitTest
+public class BoundedListTest extends CoreUnitTest
 {
     @Test
     public void testAdd()

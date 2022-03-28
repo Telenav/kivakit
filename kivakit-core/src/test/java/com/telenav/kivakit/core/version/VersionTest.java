@@ -17,12 +17,11 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.version;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
 @SuppressWarnings("ConstantConditions")
-public class VersionTest extends UnitTest
+public class VersionTest extends CoreUnitTest
 {
     @Test
     public void test()

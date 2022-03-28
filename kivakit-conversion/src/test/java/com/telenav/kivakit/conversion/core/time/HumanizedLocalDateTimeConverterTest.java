@@ -18,14 +18,13 @@
 
 package com.telenav.kivakit.conversion.core.time;
 
-import com.telenav.kivakit.conversion.core.time.HumanizedLocalDateTimeConverter;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.time.LocalTime;
 import org.junit.Test;
 
 import static com.telenav.kivakit.core.time.Meridiem.PM;
 
-public class HumanizedLocalDateTimeConverterTest extends UnitTest
+public class HumanizedLocalDateTimeConverterTest extends CoreUnitTest
 {
 
     @Test

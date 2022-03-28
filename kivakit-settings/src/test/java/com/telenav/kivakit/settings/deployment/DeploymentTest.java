@@ -18,7 +18,8 @@
 
 package com.telenav.kivakit.settings.deployment;
 
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.test.UnitTest;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.settings.Deployment;
 import com.telenav.kivakit.settings.ServerSettings;
@@ -32,7 +33,7 @@ public class DeploymentTest extends UnitTest implements SettingsTrait
     {
         public China()
         {
-            super("china", "test china deployment");
+            super(Listener.throwing(),"china", "test china deployment");
 
             var settings = new ServerSettings();
             settings.timeout(Duration.ONE_MINUTE);
@@ -46,7 +47,7 @@ public class DeploymentTest extends UnitTest implements SettingsTrait
     {
         public Development()
         {
-            super("development", "test development deployment");
+            super(Listener.throwing(),"development", "test development deployment");
 
             var settings = new ServerSettings();
             settings.timeout(Duration.ONE_MINUTE);
@@ -60,7 +61,7 @@ public class DeploymentTest extends UnitTest implements SettingsTrait
     {
         public Production()
         {
-            super("production", "test production deployment");
+            super(Listener.throwing(),"production", "test production deployment");
 
             var settings = new ServerSettings();
             settings.timeout(Duration.ONE_MINUTE);

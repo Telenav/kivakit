@@ -18,11 +18,10 @@
 
 package com.telenav.kivakit.core.bits;
 
-import com.telenav.kivakit.core.bits.BitDiagram.BitField;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.bits.BitDiagram.BitField;import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
-public class BitDiagramTest extends UnitTest
+public class BitDiagramTest extends CoreUnitTest
 {
     @SuppressWarnings("SpellCheckingInspection")
     private final BitDiagram DIAGRAM = new BitDiagram("AAAABBBBC");

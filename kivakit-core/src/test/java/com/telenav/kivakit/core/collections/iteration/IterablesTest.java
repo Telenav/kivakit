@@ -17,8 +17,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.collections.iteration;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 
@@ -31,7 +30,7 @@ import java.util.List;
  *
  * @author matthieun
  */
-public class IterablesTest extends UnitTest
+public class IterablesTest extends CoreUnitTest
 {
     @Test
     public void testSize()

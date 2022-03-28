@@ -20,15 +20,14 @@ package com.telenav.kivakit.conversion;
 
 import com.telenav.kivakit.conversion.core.time.DurationConverter;
 import com.telenav.kivakit.conversion.core.time.SecondsConverter;
-import com.telenav.kivakit.core.function.Result;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.listeners.MessageChecker;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.time.Duration;
 import org.junit.Test;
 
-public class ConverterTest extends UnitTest
+public class ConverterTest extends CoreUnitTest
 {
     @Test
     public void testBadInputs()

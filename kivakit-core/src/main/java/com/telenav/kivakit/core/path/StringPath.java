@@ -21,8 +21,8 @@ package com.telenav.kivakit.core.path;
 import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
-import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.lexakai.DiagramPath;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -113,6 +113,14 @@ public class StringPath extends Path<String>
     public static StringPath stringPath(List<String> elements)
     {
         return new StringPath(elements);
+    }
+
+    /**
+     * @return A path (sans scheme) for the given URI
+     */
+    public static StringPath stringPath(String root, List<String> elements)
+    {
+        return new StringPath(root, elements);
     }
 
     /**
@@ -224,6 +232,7 @@ public class StringPath extends Path<String>
     /**
      * @return This path as a String
      */
+    @Override
     @KivaKitIncludeProperty
     public String asString()
     {

@@ -22,8 +22,8 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.TYPE;
  * </p>
  *
  * <p>
- * This class is the base class for {@link FolderSettingsStore} and {@link PackageSettingsStore}, which load settings
- * information from <i>.properties</i> files in folders and packages, respectively. Settings objects are loaded when
+ * This class is the base class for {@link ResourceFolderSettingsStore}, which loads settings
+ * information from <i>.properties</i> files in folders and packages. Settings objects are loaded when
  * they are requested, and each <i>.properties</i> resource describes <i>just one settings object</i>. This means that a
  * settings folder or package will often have more than one <i>.properties</i> resource in it, such as:
  * </p>
@@ -102,8 +102,7 @@ import static com.telenav.kivakit.resource.serialization.ObjectMetadata.TYPE;
  *
  * @author jonathanl (shibo)
  * @see SettingsStore
- * @see FolderSettingsStore
- * @see PackageSettingsStore
+ * @see ResourceFolderSettingsStore
  */
 public abstract class BaseResourceSettingsStore extends BaseSettingsStore implements
         SettingsStore,

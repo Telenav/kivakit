@@ -18,12 +18,11 @@
 
 package com.telenav.kivakit.core.messaging;
 
-import com.telenav.kivakit.core.messaging.messages.status.Warning;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.messaging.messages.status.Warning;import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class MessageTest extends UnitTest
+public class MessageTest extends CoreUnitTest
 {
     @Test
     public void test()

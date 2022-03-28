@@ -19,7 +19,7 @@
 package com.telenav.kivakit.network.core;
 
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.test.UnitTest;
 import org.junit.Test;
 
 public class QueryParametersTest extends UnitTest

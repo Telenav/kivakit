@@ -155,7 +155,7 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
 @UmlClassDiagram(diagram = DiagramTest.class)
 @UmlRelation(label = "uses", referent = RandomValueFactory.class)
 @UmlRelation(label = "reports validation failures with", referent = JUnitFailureReporter.class)
-public abstract class UnitTest extends TestWatcher implements
+public abstract class CoreUnitTest extends TestWatcher implements
         RepeaterMixin,
         JavaTrait,
         ProjectTrait,
@@ -197,7 +197,7 @@ public abstract class UnitTest extends TestWatcher implements
 
     protected int index;
 
-    protected UnitTest()
+    protected CoreUnitTest()
     {
         LOGGER.listenTo(this);
     }

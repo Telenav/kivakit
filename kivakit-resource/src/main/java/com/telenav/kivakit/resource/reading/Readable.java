@@ -16,7 +16,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.resource;
+package com.telenav.kivakit.resource.reading;
 
 import com.telenav.kivakit.core.value.count.ByteSized;
 import com.telenav.kivakit.core.value.count.Bytes;

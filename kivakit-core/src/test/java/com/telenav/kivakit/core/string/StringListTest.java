@@ -18,15 +18,14 @@
 
 package com.telenav.kivakit.core.string;
 
-import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.collections.list.StringList;import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.Maximum;
 import org.junit.Test;
 
 import java.util.Arrays;
 
 @SuppressWarnings("ConstantConditions")
-public class StringListTest extends UnitTest
+public class StringListTest extends CoreUnitTest
 {
     @Test
     public void testAdd()

@@ -1,6 +1,6 @@
 package com.telenav.kivakit.conversion.core.language;
 
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 import static com.telenav.kivakit.conversion.core.language.LanguageConverterTest.Type.A;
 import static com.telenav.kivakit.conversion.core.language.LanguageConverterTest.Type.B;
 
-public class LanguageConverterTest extends UnitTest
+public class LanguageConverterTest extends CoreUnitTest
 {
     enum Type
     {

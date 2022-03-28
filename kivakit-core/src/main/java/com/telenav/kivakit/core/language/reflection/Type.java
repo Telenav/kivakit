@@ -30,7 +30,7 @@ import com.telenav.kivakit.core.language.reflection.filters.method.NamedMethod;
 import com.telenav.kivakit.core.language.reflection.property.Property;
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.core.language.reflection.property.PropertyNamingConvention;
-import com.telenav.kivakit.core.path.PackagePath;
+import com.telenav.kivakit.core.language.module.PackageReference;
 import com.telenav.kivakit.core.lexakai.DiagramReflection;
 import com.telenav.kivakit.core.string.Strings;
 import com.telenav.kivakit.interfaces.comparison.Filter;
@@ -264,7 +264,7 @@ public class Type<T> implements Named
         return Enum.class.isAssignableFrom(type);
     }
 
-    public boolean isInside(PackagePath path)
+    public boolean isInside(PackageReference path)
     {
         return packagePath().startsWith(path);
     }
@@ -329,9 +329,9 @@ public class Type<T> implements Named
         }
     }
 
-    public PackagePath packagePath()
+    public PackageReference packagePath()
     {
-        return PackagePath.packagePath(type);
+        return PackageReference.packageReference(type);
     }
 
     /**

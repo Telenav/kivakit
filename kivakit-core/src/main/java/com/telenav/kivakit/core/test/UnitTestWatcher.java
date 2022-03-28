@@ -36,9 +36,9 @@ import org.junit.runner.Description;
 public class UnitTestWatcher extends TestWatcher
 {
     @UmlAggregation(label = "watches for failures in")
-    private final UnitTest test;
+    private final CoreUnitTest test;
 
-    public UnitTestWatcher(UnitTest test)
+    public UnitTestWatcher(CoreUnitTest test)
     {
         this.test = test;
     }

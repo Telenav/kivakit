@@ -16,26 +16,22 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.resource.resources;
+package com.telenav.kivakit.resource.packages;
 
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.language.Objects;
 import com.telenav.kivakit.core.language.module.ModuleResource;
-import com.telenav.kivakit.core.language.module.Modules;
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.language.module.PackageReference;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
+import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
-import com.telenav.kivakit.resource.Package;
+import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.ResourcePath;
-import com.telenav.kivakit.resource.path.FileName;
-import com.telenav.kivakit.resource.path.FilePath;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;
@@ -48,17 +44,22 @@ import java.io.InputStream;
 import java.lang.module.ModuleReference;
 import java.net.URI;
 
+import static com.telenav.kivakit.core.language.module.Modules.moduleResource;
+import static com.telenav.kivakit.resource.FileName.parseFileName;
+import static com.telenav.kivakit.resource.ResourcePath.resourcePath;
+import static com.telenav.kivakit.resource.packages.PackagePath.packagePath;
+
 /**
- * A readable {@link Resource} in a package, as specified by {@link PackagePath} or {@link ModuleResource} (which has a
- * {@link ModuleReference} and {@link URI}), and a name. Package resources can be constructed by several factory
+ * A readable {@link Resource} in a package, as specified by {@link PackageReference} or {@link ModuleResource} (which
+ * has a {@link ModuleReference} and {@link URI}), and a name. Package resources can be constructed by several factory
  * methods:
  *
  * <ul>
- *     <li>{@link #packageResource(ModuleResource)}</li>
+ *     <li>{@link #packageResource(Listener, ModuleResource)}</li>
  *     <li>{@link #packageResource(Listener listener, Class, String)}</li>
  *     <li>{@link #packageResource(Listener listener, PackagePath, String)}</li>
- *     <li>{@link #packageResource(PackagePath, FileName)}</li>
- *     <li>{@link #packageResource(PackagePath, FilePath)}</li>
+ *     <li>{@link #packageResource(Listener, PackagePath, FileName)}</li>
+ *     <li>{@link #packageResource(Listener, PackagePath, FilePath)}</li>
  * </ul>
  * <p>
  * They can also be retrieved from a (KivaKit) {@link Package} with these methods:
@@ -69,7 +70,7 @@ import java.net.URI;
  *     <li>{@link Package#resources(Matcher)}</li>
  * </ul>
  * <p>
- * Note that {@link PackageResource}s cannot be retrieved from {@link PackagePath}s because package paths
+ * Note that {@link PackageResource}s cannot be retrieved from {@link PackageReference}s because package paths
  * are used in *kivakit-core*, which cannot depend on *kivakit-resource*. The easiest way to
  * get a resource from a package path is one of the factory methods above.
  *
@@ -81,23 +82,21 @@ import java.net.URI;
 @LexakaiJavadoc(complete = true)
 public class PackageResource extends BaseReadableResource
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     /**
      * @return A package resource for the given module resource
      */
-    public static PackageResource packageResource(ModuleResource resource)
+    public static PackageResource packageResource(Listener listener, ModuleResource resource)
     {
-        var fileName = FileName.parse(LOGGER, resource.fileNameAsJavaPath().toString());
-        return new PackageResource(resource.packagePath(), resource, fileName);
+        var fileName = parseFileName(listener, resource.fileNameAsJavaPath().toString());
+        return new PackageResource(listener, packagePath(resource.packageReference()), resource, fileName);
     }
 
     /**
      * @return A package resource for the resource at the given path relative to the given package
      */
-    public static PackageResource packageResource(Listener listener, PackagePath _package, String path)
+    public static PackageResource packageResource(Listener listener, PackagePath packagePath, String path)
     {
-        return packageResource(_package, FilePath.parseFilePath(listener, path));
+        return packageResource(listener, packagePath, FilePath.parseFilePath(listener, path));
     }
 
     /**
@@ -105,32 +104,32 @@ public class PackageResource extends BaseReadableResource
      */
     public static PackageResource packageResource(Listener listener, Class<?> type, String path)
     {
-        return packageResource(listener, PackagePath.packagePath(type), path);
+        return packageResource(listener, packagePath(type), path);
     }
 
     /**
      * @return A package resource for the resource at the given path relative to the given package
      */
-    public static PackageResource packageResource(PackagePath _package, FilePath path)
+    public static PackageResource packageResource(Listener listener, PackagePath packagePath, FilePath path)
     {
-        var resource = Modules.resource(LOGGER, _package.withChild(path));
+        var resource = moduleResource(listener, packagePath.withChild(path));
         if (path.size() == 1)
         {
-            return new PackageResource(_package, resource, path.fileName());
+            return new PackageResource(listener, packagePath, resource, path.fileName());
         }
         else
         {
-            return new PackageResource(_package.withChild(path.parent()), resource, path.fileName());
+            return new PackageResource(listener, packagePath.withChild(path.parent()), resource, path.fileName());
         }
     }
 
     /**
      * @return A package resource for the resource with the given filename in the given package
      */
-    public static PackageResource packageResource(PackagePath _package, FileName name)
+    public static PackageResource packageResource(Listener listener, PackagePath packagePath, FileName name)
     {
-        var resource = Modules.resource(LOGGER, _package.withChild(name.name()));
-        return new PackageResource(_package, resource, name);
+        var resource = moduleResource(listener, packagePath.withChild(name.name()));
+        return new PackageResource(listener, packagePath, resource, name);
     }
 
     /**
@@ -158,28 +157,36 @@ public class PackageResource extends BaseReadableResource
             var parent = filepath.parent();
             if (parent != null)
             {
-                var _package = PackagePath.packagePath(parent);
-                var name = filepath.fileName();
-                return packageResource(_package, name);
+                var packagePath = PackagePath.packagePath(parent);
+                return packageResource(Listener.throwing(), packagePath, filepath.fileName());
             }
             return null;
         }
     }
 
-    /** The package path to this resource */
-    private final PackagePath _package;
-
     /** The name of this resource */
     private final FileName name;
+
+    /** The package path to this resource */
+    private final PackagePath packagePath;
 
     /** Information about the resource */
     private final ModuleResource resource;
 
-    protected PackageResource(PackagePath _package, ModuleResource resource, FileName name)
+    protected PackageResource(Listener listener, PackagePath packagePath, ModuleResource resource, FileName name)
     {
-        this._package = _package;
+        listener.listenTo(this);
+        this.packagePath = packagePath;
         this.name = name;
-        this.resource = resource != null ? resource : _package.resource(this, this.name.name());
+        this.resource = resource != null
+                ? resource
+                : packagePath.asPackageReference().moduleResource(this, this.name.name());
+    }
+
+    @Override
+    public Time created()
+    {
+        return resource.created();
     }
 
     @Override
@@ -188,7 +195,7 @@ public class PackageResource extends BaseReadableResource
         if (object instanceof PackageResource)
         {
             var that = (PackageResource) object;
-            return Objects.equalPairs(_package, that._package, name, that.name);
+            return Objects.equalPairs(packagePath, that.packagePath, name, that.name);
         }
         return false;
     }
@@ -196,7 +203,7 @@ public class PackageResource extends BaseReadableResource
     @Override
     public int hashCode()
     {
-        return Hash.many(_package, name);
+        return Hash.many(packagePath, name);
     }
 
     @Override
@@ -228,8 +235,8 @@ public class PackageResource extends BaseReadableResource
             }
             else
             {
-                var path = _package.withRoot("/").join("/") + "/" + name;
-                return _package.resourceStream(path);
+                var path = packagePath.withRoot("/").join("/") + "/" + name;
+                return packagePath.asPackageReference().moduleResourceStream(path);
             }
         }
         catch (IOException e)
@@ -244,8 +251,11 @@ public class PackageResource extends BaseReadableResource
     @Override
     public ResourcePath path()
     {
-        var _package = resource != null ? resource.packagePath() : this._package;
-        return ResourcePath.resourcePath(_package).withChild(name.name());
+        var path = resource != null
+                ? resource.packageReference()
+                : this.packagePath;
+
+        return resourcePath(path).withChild(name.name());
     }
 
     /**
@@ -260,6 +270,6 @@ public class PackageResource extends BaseReadableResource
     @Override
     public String toString()
     {
-        return resource != null ? resource.toString() : _package + "/" + name;
+        return resource != null ? resource.toString() : packagePath + "/" + name;
     }
 }

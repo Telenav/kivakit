@@ -17,11 +17,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.value.identifier;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
-public class ObjectIdentifierTest extends UnitTest
+public class ObjectIdentifierTest extends CoreUnitTest
 {
     @Test
     public void test()

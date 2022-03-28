@@ -19,11 +19,13 @@
 package com.telenav.kivakit.core.messaging;
 
 import com.telenav.kivakit.core.messaging.broadcasters.Multicaster;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.MutableCount;
 import org.junit.Test;
 
-public class BroadcasterTest extends UnitTest
+import static com.telenav.kivakit.core.ensure.Ensure.ensureEqual;
+
+public class BroadcasterTest extends CoreUnitTest
 {
     @Test
     public void test()

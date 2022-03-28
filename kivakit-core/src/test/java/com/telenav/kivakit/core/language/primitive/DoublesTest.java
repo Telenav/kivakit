@@ -18,15 +18,13 @@
 
 package com.telenav.kivakit.core.language.primitive;
 
-import com.telenav.kivakit.core.ensure.Ensure;
-import com.telenav.kivakit.core.language.primitive.Doubles;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.ensure.Ensure;import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
 /**
  * @author jonathanl (shibo)
  */
-public class DoublesTest extends UnitTest
+public class DoublesTest extends CoreUnitTest
 {
     @Test
     public void testParse()

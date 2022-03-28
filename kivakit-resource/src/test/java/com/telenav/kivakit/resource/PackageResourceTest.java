@@ -18,18 +18,17 @@
 
 package com.telenav.kivakit.resource;
 
-import com.telenav.kivakit.core.path.PackagePath;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.test.UnitTest;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
-import com.telenav.kivakit.resource.resources.PackageResource;
-import org.jetbrains.annotations.NotNull;
+import com.telenav.kivakit.resource.packages.PackageResource;
+import com.telenav.kivakit.resource.packages.PackageTrait;
 import org.junit.Test;
 
 /**
  * @author jonathanl (shibo)
  */
-public class PackageResourceTest extends UnitTest
+public class PackageResourceTest extends UnitTest implements PackageTrait
 {
     @Test
     public void testLastModified()
@@ -58,19 +57,13 @@ public class PackageResourceTest extends UnitTest
         ensure(b().sizeInBytes().isGreaterThanOrEqualTo(Bytes.bytes(5)));
     }
 
-    @NotNull
-    private PackagePath _package()
-    {
-        return PackagePath.packagePath(getClass());
-    }
-
     private PackageResource a()
     {
-        return PackageResource.packageResource(this, _package(), "a.txt");
+        return packageResource("a.txt");
     }
 
     private PackageResource b()
     {
-        return PackageResource.packageResource(this, _package(), "b.txt");
+        return packageResource("b.txt");
     }
 }

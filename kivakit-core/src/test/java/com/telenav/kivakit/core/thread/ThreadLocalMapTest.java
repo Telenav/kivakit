@@ -1,10 +1,9 @@
 package com.telenav.kivakit.core.thread;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.Count;
 import org.junit.Test;
 
-public class ThreadLocalMapTest extends UnitTest
+public class ThreadLocalMapTest extends CoreUnitTest
 {
     @Test
     public void test()

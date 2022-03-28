@@ -17,14 +17,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.thread;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.Count;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Test;
 
 @SuppressWarnings("SpellCheckingInspection")
-public class BatcherTest extends UnitTest
+public class BatcherTest extends CoreUnitTest
 {
     private static int number;
 

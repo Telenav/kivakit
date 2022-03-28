@@ -18,11 +18,10 @@
 
 package com.telenav.kivakit.core.language;
 
-import com.telenav.kivakit.core.language.primitive.Primitives;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.language.primitive.Primitives;import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
-public class ClassesTest extends UnitTest
+public class ClassesTest extends CoreUnitTest
 {
     @Test
     public void testForName()

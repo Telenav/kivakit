@@ -17,9 +17,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.language.module;
-
-import com.telenav.kivakit.core.path.PackagePath;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.core.value.count.Bytes;
 import org.jetbrains.annotations.Nullable;
@@ -33,7 +31,7 @@ import java.nio.file.Path;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("ConstantConditions")
-public class ModuleResourceTest extends UnitTest
+public class ModuleResourceTest extends CoreUnitTest
 {
     @Test
     public void testFileName()
@@ -57,13 +55,13 @@ public class ModuleResourceTest extends UnitTest
     @Test
     public void testPackagePath()
     {
-        ensureEqual(a().packagePath(), PackagePath.parsePackagePath(this, getClass(), "resources/a"));
+        ensureEqual(a().packageReference(), PackageReference.parsePackageReference(this, getClass(), "resources/a"));
     }
 
     @Test
     public void testPath()
     {
-        ensureEqual(a().packagePath(), packagePath().withChild("resources.a"));
+        ensureEqual(a().packageReference(), packagePath().withChild("resources.a"));
     }
 
     @Test
@@ -89,11 +87,11 @@ public class ModuleResourceTest extends UnitTest
     @Nullable
     private ModuleResource a()
     {
-        return Modules.resource(this, packagePath().withChild("resources/a/a.txt"));
+        return Modules.moduleResource(this, packagePath().withChild("resources/a/a.txt"));
     }
 
-    private PackagePath packagePath()
+    private PackageReference packagePath()
     {
-        return PackagePath.packagePath(getClass());
+        return PackageReference.packageReference(getClass());
     }
 }

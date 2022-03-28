@@ -24,7 +24,8 @@ import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.progress.ProgressReporter;
-import com.telenav.kivakit.core.time.ChangedAt;
+import com.telenav.kivakit.core.time.LastModifiedAt;
+import com.telenav.kivakit.core.time.CreatedAt;
 import com.telenav.kivakit.core.time.Modifiable;
 import com.telenav.kivakit.core.value.count.ByteSized;
 import com.telenav.kivakit.filesystem.File;
@@ -32,12 +33,11 @@ import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.string.StringSource;
 import com.telenav.kivakit.resource.compression.Codec;
 import com.telenav.kivakit.resource.compression.archive.ZipEntry;
-import com.telenav.kivakit.resource.path.Extension;
-import com.telenav.kivakit.resource.path.ResourcePathed;
 import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.lexakai.DiagramResource;
+import com.telenav.kivakit.resource.packages.PackageResource;
+import com.telenav.kivakit.resource.reading.ReadableResource;
 import com.telenav.kivakit.resource.resources.NullResource;
-import com.telenav.kivakit.resource.resources.PackageResource;
 import com.telenav.kivakit.resource.resources.StringResource;
 import com.telenav.kivakit.resource.spi.ResourceResolver;
 import com.telenav.kivakit.resource.spi.ResourceResolverServiceLoader;
@@ -48,7 +48,7 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
 import java.util.ServiceLoader;
 
 /**
- * A resource that can be read via {@link ReadableResource}. In addition, resources are {@link ChangedAt}, {@link
+ * A resource that can be read via {@link ReadableResource}. In addition, resources are {@link LastModifiedAt}, {@link
  * ByteSized} and are message {@link Repeater}s. A resource can be created by instantiating a concrete implementation of
  * {@link Resource} or one can be resolved from an abstract {@link ResourceIdentifier} with {@link #resolve(Listener,
  * ResourceIdentifier)}.
@@ -102,7 +102,8 @@ import java.util.ServiceLoader;
 public interface Resource extends
         ResourcePathed,
         Modifiable,
-        ChangedAt,
+        LastModifiedAt,
+        CreatedAt,
         ByteSized,
         StringSource,
         ReadableResource,
@@ -110,15 +111,6 @@ public interface Resource extends
         Resourceful,
         UriIdentified
 {
-    static ArgumentParser.Builder<ResourceList> argumentListParser(Listener listener,
-                                                                   String description,
-                                                                   Extension extension)
-    {
-        return ArgumentParser.builder(ResourceList.class)
-                .converter(new ResourceList.Converter(listener, extension))
-                .description(description);
-    }
-
     static ArgumentParser.Builder<Resource> argumentParser(Listener listener, String description)
     {
         return ArgumentParser.builder(Resource.class)
@@ -159,18 +151,6 @@ public interface Resource extends
     static Resource resolve(Listener listener, String identifier)
     {
         return resolve(listener, new ResourceIdentifier(identifier));
-    }
-
-    static SwitchParser.Builder<ResourceList> resourceListSwitchParser(
-            Listener listener,
-            String name,
-            String description,
-            Extension extension)
-    {
-        return SwitchParser.builder(ResourceList.class)
-                .name(name)
-                .converter(new ResourceList.Converter(listener, extension))
-                .description(description);
     }
 
     static SwitchParser.Builder<Resource> resourceSwitchParser(
@@ -223,6 +203,11 @@ public interface Resource extends
     {
     }
 
+    default boolean endsWith(String end)
+    {
+        return path().endsWith(end);
+    }
+
     /**
      * Ensures that this file exists or throws a runtime exception
      */
@@ -239,6 +224,11 @@ public interface Resource extends
      */
     boolean exists();
 
+    default boolean hasParent()
+    {
+        return parent() != null;
+    }
+
     default boolean isEmpty()
     {
         return sizeInBytes().isZero();
@@ -252,6 +242,11 @@ public interface Resource extends
     default boolean isMaterializable()
     {
         return isPackaged() || isRemote();
+    }
+
+    default boolean isOlderThan(Resource that)
+    {
+        return lastModified().isOlderThan(that.lastModified());
     }
 
     /**
@@ -288,6 +283,16 @@ public interface Resource extends
      * @return A local cached copy of this resource if it is remote.
      */
     Resource materialized(ProgressReporter reporter);
+
+    /**
+     * Returns the parent folder of this resource
+     *
+     * @return The parent
+     */
+    default ResourceFolder parent()
+    {
+        return null;
+    }
 
     /**
      * StringPath to this resource

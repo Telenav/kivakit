@@ -17,12 +17,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.language.primitive;
-
-import com.telenav.kivakit.core.language.primitive.Booleans;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
-public class BooleansTest extends UnitTest
+public class BooleansTest extends CoreUnitTest
 {
     @Test
     public void test()

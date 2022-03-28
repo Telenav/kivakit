@@ -1,19 +1,10 @@
 package com.telenav.kivakit.conversion.core.language.primitive;
 
-import com.telenav.kivakit.conversion.core.language.primitive.BooleanConverter;
-import com.telenav.kivakit.conversion.core.language.primitive.DoubleConverter;
-import com.telenav.kivakit.conversion.core.language.primitive.FloatConverter;
-import com.telenav.kivakit.conversion.core.language.primitive.FormattedDoubleConverter;
-import com.telenav.kivakit.conversion.core.language.primitive.FormattedIntegerConverter;
-import com.telenav.kivakit.conversion.core.language.primitive.FormattedLongConverter;
-import com.telenav.kivakit.conversion.core.language.primitive.HexadecimalLongConverter;
-import com.telenav.kivakit.conversion.core.language.primitive.IntegerConverter;
-import com.telenav.kivakit.conversion.core.language.primitive.LongConverter;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
-public class PrimitiveConverterTest extends UnitTest
+public class PrimitiveConverterTest extends CoreUnitTest
 {
     @Test
     public void testPrimitiveConverters()

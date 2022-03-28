@@ -17,11 +17,10 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.value.mutable;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
-public class MutableValueTest extends UnitTest
+public class MutableValueTest extends CoreUnitTest
 {
     @Test
     @SuppressWarnings({ "ConstantConditions", "EqualsWithItself" })

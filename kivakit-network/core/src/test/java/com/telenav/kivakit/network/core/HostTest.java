@@ -19,7 +19,7 @@
 package com.telenav.kivakit.network.core;
 
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.test.UnitTest;
 import org.junit.Test;
 
 public class HostTest extends UnitTest

@@ -16,20 +16,19 @@ package com.telenav.kivakit.settings;///////////////////////////////////////////
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.test.UnitTest;
 import com.telenav.kivakit.core.time.Duration;
+import com.telenav.kivakit.resource.packages.PackageTrait;
 import com.telenav.kivakit.serialization.gson.GsonSerializationProject;
 import com.telenav.kivakit.serialization.gson.factory.CoreGsonFactory;
 import com.telenav.kivakit.serialization.properties.PropertiesSerializationProject;
-import com.telenav.kivakit.settings.stores.PackageSettingsStore;
+import com.telenav.kivakit.settings.stores.ResourceFolderSettingsStore;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
 import org.junit.Test;
 
-public class SettingsTest extends UnitTest
+public class SettingsTest extends UnitTest implements PackageTrait
 {
     private static final InstanceIdentifier SERVER1 = InstanceIdentifier.of("SERVER1");
 
@@ -75,7 +74,7 @@ public class SettingsTest extends UnitTest
         // Configure
         {
             // Add all properties files in this package to the global set
-            settings.registerSettingsIn(PackageSettingsStore.of(this, PackagePath.packagePath(getClass())));
+            settings.registerSettingsIn(new ResourceFolderSettingsStore(this, thisPackage()));
         }
 
         // Get configuration
@@ -132,7 +131,7 @@ public class SettingsTest extends UnitTest
         // Configure
         {
             // Add all properties files in this package to the global set
-            settings.registerSettingsIn(PackageSettingsStore.of(this, PackagePath.packagePath(getClass())));
+            settings.registerSettingsIn(new ResourceFolderSettingsStore(this, thisPackage()));
         }
 
         // Get settings

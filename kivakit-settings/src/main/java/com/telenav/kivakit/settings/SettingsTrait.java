@@ -3,8 +3,8 @@ package com.telenav.kivakit.settings;
 import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.messaging.Repeater;
-import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
+import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
@@ -98,9 +98,9 @@ public interface SettingsTrait extends Repeater
      */
     default <T> T lookupSettings(Class<T> settingsClass,
                                  InstanceIdentifier instance,
-                                 PackagePath defaultSettingsPackage)
+                                 ResourceFolder defaultSettings)
     {
-        return settingsRegistry().lookupSettings(settingsClass, instance, defaultSettingsPackage);
+        return settingsRegistry().lookupSettings(settingsClass, instance, defaultSettings);
     }
 
     /**

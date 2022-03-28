@@ -12,8 +12,7 @@ public class SettingsProject extends Project
     @Override
     public ObjectSet<Class<? extends Project>> dependencies()
     {
-        return objectSet(
-                PropertiesSerializationProject.class,
+        return objectSet(PropertiesSerializationProject.class,
                 GsonSerializationProject.class);
     }
 }

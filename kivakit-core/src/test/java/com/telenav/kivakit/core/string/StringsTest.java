@@ -19,12 +19,11 @@
 package com.telenav.kivakit.core.string;
 
 import com.telenav.kivakit.core.collections.iteration.Iterables;
-import com.telenav.kivakit.core.collections.list.StringList;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.collections.list.StringList;import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
 @SuppressWarnings("SpellCheckingInspection")
-public class StringsTest extends UnitTest
+public class StringsTest extends CoreUnitTest
 {
     @Test
     public void testCamelToHyphenated()

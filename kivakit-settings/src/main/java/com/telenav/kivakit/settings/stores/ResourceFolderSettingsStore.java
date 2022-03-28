@@ -22,6 +22,7 @@ import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.filesystem.Folder;
+import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.resource.serialization.ObjectSerializer;
 import com.telenav.kivakit.resource.serialization.ObjectSerializers;
 import com.telenav.kivakit.settings.Settings;
@@ -45,10 +46,10 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.UNLOAD;
  * </p>
  *
  * <p>
- * A {@link FolderSettingsStore} can be created with {@link #of(Listener, Folder)}. The specified package should contain
- * a set of settings files, each of which can be passed to the {@link ObjectSerializer} for the file's extension to
- * deserialize the object. Object serializers are located with the {@link ObjectSerializers} object found in the global
- * {@link Registry}.
+ * A {@link ResourceFolderSettingsStore} can be created with {@link ResourceFolderSettingsStore(Listener,
+ * ResourceFolder)}. The specified package should contain a set of settings files, each of which can be passed to the
+ * {@link ObjectSerializer} for the file's extension to deserialize the object. Object serializers are located with the
+ * {@link ObjectSerializers} object found in the global {@link Registry}.
  * </p>
  *
  * @author jonathanl (shibo)
@@ -60,24 +61,18 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.UNLOAD;
  * @see Folder
  */
 @UmlClassDiagram(diagram = DiagramSettings.class)
-public class FolderSettingsStore extends BaseResourceSettingsStore
+public class ResourceFolderSettingsStore extends BaseResourceSettingsStore
 {
-    /**
-     * @param folder The folder containing files specifying settings objects
-     */
-    public static FolderSettingsStore of(Listener listener, Folder folder)
-    {
-        return listener.listenTo(new FolderSettingsStore(folder));
-    }
-
     /** The folder containing .properties files defining settings objects */
-    private final Folder folder;
+    private final ResourceFolder folder;
 
     /**
      * @param folder The folder containing .properties files specifying settings objects
      */
-    protected FolderSettingsStore(Folder folder)
+    public ResourceFolderSettingsStore(Listener listener, ResourceFolder folder)
     {
+        listener.listenTo(this);
+
         this.folder = folder;
     }
 
@@ -103,14 +98,14 @@ public class FolderSettingsStore extends BaseResourceSettingsStore
         var objects = new ObjectSet<SettingsObject>();
 
         // Go through files in the folder
-        for (var file : folder.files())
+        for (var resource : folder.resources())
         {
             // get any serializer for the file extension,
             var serializer = require(ObjectSerializers.class, ObjectSerializers::new)
-                    .serializer(file.extension());
+                    .serializer(resource.extension());
             if (serializer != null)
             {
-                objects.addIfNotNull(read(file));
+                objects.addIfNotNull(read(resource));
             }
         }
 

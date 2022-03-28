@@ -52,7 +52,7 @@ public class FolderPruner
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
     /** Matcher to restrict files that can be pruned */
-    private volatile Matcher<File> matcher = Matcher.anything();
+    private volatile Matcher<File> matcher = Matcher.matchAll();
 
     /** The minimum percentage of usable disk space that must be maintained on the folder's disk. */
     private volatile Percent minimumUsableDiskSpace = Percent.of(15);

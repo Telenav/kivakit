@@ -1,12 +1,11 @@
 package com.telenav.kivakit.core.function;
 
-import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.interfaces.code.Code;
 import org.junit.Test;
 
-public class ResultTest extends UnitTest implements ResultTrait
+public class ResultTest extends CoreUnitTest implements ResultTrait
 {
     static class Operation extends BaseRepeater implements Code<String>
     {

@@ -7,7 +7,7 @@ import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
 import com.telenav.kivakit.core.version.Version;
-import com.telenav.kivakit.resource.PropertyMap;
+import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.serialization.ObjectMetadata;
 import com.telenav.kivakit.resource.serialization.ObjectSerializer;

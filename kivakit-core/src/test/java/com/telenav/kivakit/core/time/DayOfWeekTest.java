@@ -17,8 +17,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.time;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
 import static com.telenav.kivakit.core.time.DayOfWeek.FRIDAY;
@@ -37,7 +36,7 @@ import static com.telenav.kivakit.core.time.DayOfWeek.javaDayOfWeek;
  * @author jonathanl (shibo)
  * @author bogdantv
  */
-public class DayOfWeekTest extends UnitTest
+public class DayOfWeekTest extends CoreUnitTest
 {
     @Test
     public void asIsoConstant0()

@@ -16,11 +16,11 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.resource;
+package com.telenav.kivakit.resource.writing;
 
+import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.lexakai.DiagramResource;
-import com.telenav.kivakit.resource.writing.ResourceWriter;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
@@ -38,7 +38,9 @@ import java.nio.charset.Charset;
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
 @LexakaiJavadoc(complete = true)
-public interface WritableResource extends Resource, Writable
+public interface WritableResource extends
+        Resource,
+        Writable
 {
     /**
      * @return A {@link PrintWriter} for writing to this resource

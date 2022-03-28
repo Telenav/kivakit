@@ -1,6 +1,5 @@
 package com.telenav.kivakit.core.time;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
 import static com.telenav.kivakit.core.time.HourOfDay.am;
@@ -13,7 +12,7 @@ import static com.telenav.kivakit.core.time.HourOfDay.pm;
  *
  * @author jonathanl (shibo)
  */
-public class HourOfDayTest extends UnitTest
+public class HourOfDayTest extends CoreUnitTest
 {
     @Test
     public void testAm()

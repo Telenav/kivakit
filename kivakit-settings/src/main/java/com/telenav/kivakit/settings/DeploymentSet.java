@@ -21,16 +21,15 @@ package com.telenav.kivakit.settings;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.path.PackagePath;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.vm.JavaVirtualMachine;
 import com.telenav.kivakit.filesystem.Folder;
-import com.telenav.kivakit.resource.Package;
-import com.telenav.kivakit.resource.PropertyMap;
+import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.kivakit.resource.Resource;
+import com.telenav.kivakit.resource.ResourceFolder;
+import com.telenav.kivakit.resource.packages.Package;
 import com.telenav.kivakit.settings.lexakai.DiagramSettings;
-import com.telenav.kivakit.settings.stores.FolderSettingsStore;
-import com.telenav.kivakit.settings.stores.PackageSettingsStore;
+import com.telenav.kivakit.settings.stores.ResourceFolderSettingsStore;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 
@@ -48,7 +47,7 @@ import java.util.Set;
  * @see Deployment
  * @see Settings
  */
-@UmlClassDiagram(diagram = DiagramSettings.class)
+@SuppressWarnings("UnusedReturnValue") @UmlClassDiagram(diagram = DiagramSettings.class)
 public class DeploymentSet extends BaseRepeater implements RegistryTrait
 {
     /**
@@ -62,7 +61,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
         var deployments = listener.listenTo(new DeploymentSet());
 
         // and if there is a root package called 'deployments' in the application,
-        var settings = Package.packageFrom(listener, relativeTo, "deployments");
+        var settings = Package.parsePackage(listener, relativeTo, "deployments");
         if (settings != null)
         {
             // then add all the deployments in that package,
@@ -124,10 +123,10 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
             String description = description(folder.file("Deployment.metadata"));
 
             // create a deployment,
-            var deployment = listenTo(new Deployment(folder.name().name(), description));
+            var deployment = new Deployment(this, folder.name().name(), description);
 
             // and add the configuration information from the sub-folder,
-            deployment.indexAll(FolderSettingsStore.of(this, folder));
+            deployment.indexAll(new ResourceFolderSettingsStore(this, folder));
 
             // assert that the deployment has not already been added,
             assert !deployments.contains(deployment);
@@ -145,35 +144,19 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
     /**
      * Adds all the deployments from the sub-packages found in the given package.
      */
-    public DeploymentSet addDeploymentsIn(Package package_)
-    {
-        return addDeploymentsIn(package_.path());
-    }
-
-    /**
-     * Adds all the deployments in the given package-relative path
-     */
-    public DeploymentSet addDeploymentsIn(Class<?> relativeTo, String path)
-    {
-        return addDeploymentsIn(PackagePath.parsePackagePath(this, relativeTo, path));
-    }
-
-    /**
-     * Adds all the deployments from the sub-packages found in the given package.
-     */
-    public DeploymentSet addDeploymentsIn(PackagePath path)
+    public DeploymentSet addDeploymentsIn(ResourceFolder<?> folder)
     {
         // Go through the sub-packages,
-        for (var subPackage : path.subPackages(this))
+        for (var child : folder.folders())
         {
             // get description from deployment metadata,
-            String description = description(Package.packageFrom(subPackage).resource("Deployment.metadata"));
+            String description = description(child.resource("Deployment.metadata"));
 
             // create a deployment,
-            var deployment = listenTo(new Deployment(subPackage.last(), description));
+            var deployment = new Deployment(this, child.path().last(), description);
 
             // and add the configuration information from the sub-folder,
-            deployment.indexAll(PackageSettingsStore.of(this, subPackage));
+            deployment.indexAll(new ResourceFolderSettingsStore(this, child));
 
             // add it to this set of deployments.
             deployments.add(deployment);
@@ -232,7 +215,7 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
     private String description(Resource resource)
     {
         var description = "'" + resource.fileName().name() + "' deployment";
-        var deploymentProperties = PropertyMap.load(this, resource);
+        var deploymentProperties = PropertyMap.load(resource);
         if (deploymentProperties.containsKey("description"))
         {
             description = deploymentProperties.get("description");

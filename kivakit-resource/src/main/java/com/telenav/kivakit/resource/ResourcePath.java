@@ -28,9 +28,7 @@ import com.telenav.kivakit.core.path.Path;
 import com.telenav.kivakit.core.path.StringPath;
 import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.filesystem.File;
-import com.telenav.kivakit.resource.path.Extension;
-import com.telenav.kivakit.resource.path.FileName;
-import com.telenav.kivakit.resource.path.FilePath;
+import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.resource.lexakai.DiagramResource;
 import com.telenav.kivakit.resource.lexakai.DiagramResourcePath;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -173,6 +171,11 @@ public class ResourcePath extends StringPath implements UriIdentified
         this.schemes = schemes.copy();
     }
 
+    public ResourcePath absolute()
+    {
+        return this;
+    }
+
     /**
      * @return This resource path as a file
      */
@@ -203,7 +206,7 @@ public class ResourcePath extends StringPath implements UriIdentified
     public FileName fileName()
     {
         var last = last();
-        return last == null ? null : FileName.parse(LOGGER, last);
+        return last == null ? null : FileName.parseFileName(LOGGER, last);
     }
 
     /**
@@ -254,6 +257,15 @@ public class ResourcePath extends StringPath implements UriIdentified
     public ResourcePath parent()
     {
         return (ResourcePath) super.parent();
+    }
+
+    public ResourcePath relativeTo(ResourcePath path)
+    {
+        if (startsWith(path))
+        {
+            return withoutOptionalPrefix(path);
+        }
+        return null;
     }
 
     /**

@@ -16,9 +16,11 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-package com.telenav.kivakit.resource.path;
+package com.telenav.kivakit.resource;
 
 import com.telenav.kivakit.interfaces.comparison.Matcher;
+import com.telenav.kivakit.resource.Extension;
+import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.UriIdentified;
 import com.telenav.kivakit.resource.lexakai.DiagramResource;
@@ -35,7 +37,6 @@ import java.net.URI;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
 @LexakaiJavadoc(complete = true)

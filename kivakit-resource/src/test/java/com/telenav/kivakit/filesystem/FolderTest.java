@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.test.UnitTest;
 import com.telenav.kivakit.core.time.Duration;
-import com.telenav.kivakit.resource.path.FileName;
+import com.telenav.kivakit.resource.FileName;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -75,7 +75,7 @@ public class FolderTest extends UnitTest
         folder.file("a.txt").print("A");
         Duration.untilNextSecond().sleep();
         folder.file("b.txt").print("B");
-        ensureEqual(FileName.parse(this, "a.txt"), folder.oldest().fileName());
+        ensureEqual(FileName.parseFileName(this, "a.txt"), folder.oldest().fileName());
     }
 
     @Test

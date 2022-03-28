@@ -21,20 +21,20 @@ package com.telenav.kivakit.filesystem.loader;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.Debug;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.local.LocalFileSystemService;
 import com.telenav.kivakit.filesystem.spi.FileSystemService;
-import com.telenav.kivakit.resource.path.FilePath;
 import com.telenav.kivakit.resource.lexakai.DiagramFileSystemService;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlAggregation;
 import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ServiceLoader;
-
-import static com.telenav.kivakit.core.ensure.Ensure.fail;
 
 /**
  * Loads {@link FileSystemService}s with the Java {@link ServiceLoader} and chooses a {@link FileSystemService}
@@ -63,7 +63,8 @@ public class FileSystemServiceLoader
     /**
      * @return The {@link FileSystemService} to use for the given path
      */
-    public static FileSystemService fileSystem(FilePath path)
+    @Nullable
+    public static FileSystemService fileSystem(Listener listener, FilePath path)
     {
         assert path != null;
 
@@ -86,7 +87,7 @@ public class FileSystemServiceLoader
         }
 
         // Couldn't find an applicable server.
-        fail("No filesystem service understands '$'", path);
+        listener.problem("No filesystem service understands: " + path);
         return null;
     }
 

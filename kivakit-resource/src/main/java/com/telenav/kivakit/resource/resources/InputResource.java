@@ -20,7 +20,7 @@ package com.telenav.kivakit.resource.resources;
 
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.count.Bytes;
-import com.telenav.kivakit.resource.ReadableResource;
+import com.telenav.kivakit.resource.reading.ReadableResource;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;

@@ -209,9 +209,19 @@ public class Time implements Quantizable
         return elapsedSince().isLessThan(duration);
     }
 
+    public boolean isNewerThan(Time that)
+    {
+        return isGreaterThan(that);
+    }
+
     public boolean isNewerThanOrEqual(Duration duration)
     {
         return elapsedSince().isLessThanOrEqualTo(duration);
+    }
+
+    public boolean isNewerThanOrEqualTo(Time that)
+    {
+        return isGreaterThanOrEqualTo(that);
     }
 
     /**
@@ -225,9 +235,19 @@ public class Time implements Quantizable
         return elapsedSince().isGreaterThan(duration);
     }
 
+    public boolean isOlderThan(Time that)
+    {
+        return isLessThan(that);
+    }
+
     public boolean isOlderThanOrEqual(Duration duration)
     {
         return elapsedSince().isGreaterThanOrEqualTo(duration);
+    }
+
+    public boolean isOlderThanOrEqualTo(Time that)
+    {
+        return isLessThanOrEqualTo(that);
     }
 
     /**

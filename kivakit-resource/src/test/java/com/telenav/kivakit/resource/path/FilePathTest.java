@@ -20,7 +20,8 @@ package com.telenav.kivakit.resource.path;
 
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.os.OperatingSystem;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.test.UnitTest;
+import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.ResourcePath;
 import org.jetbrains.annotations.NotNull;

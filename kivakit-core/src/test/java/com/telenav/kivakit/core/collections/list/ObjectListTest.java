@@ -17,8 +17,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.collections.list;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.value.count.Count;
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,7 +26,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-public class ObjectListTest extends UnitTest
+public class ObjectListTest extends CoreUnitTest
 {
     @Test
     public void testAdd()

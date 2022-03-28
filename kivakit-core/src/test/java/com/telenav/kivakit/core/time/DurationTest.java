@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.core.time;
 
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.value.level.Percent;
 import org.junit.Test;
 
-public class DurationTest extends UnitTest
+public class DurationTest extends CoreUnitTest
 {
     @Test
     public void testAdd()

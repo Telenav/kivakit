@@ -19,9 +19,9 @@
 package com.telenav.kivakit.filesystem;
 
 import com.telenav.kivakit.core.collections.map.VariableMap;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.test.UnitTest;
 import com.telenav.kivakit.resource.Resource;
-import com.telenav.kivakit.resource.path.Extension;
+import com.telenav.kivakit.resource.Extension;
 import org.junit.Test;
 
 import java.net.URISyntaxException;

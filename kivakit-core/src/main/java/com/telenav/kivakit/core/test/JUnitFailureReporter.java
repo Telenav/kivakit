@@ -29,7 +29,7 @@ import org.junit.Assert;
 import static com.telenav.kivakit.core.string.Formatter.Format.WITH_EXCEPTION;
 
 /**
- * A {@link FailureReporter} that causes a JUnit test failure. This validation reporter is installed by {@link UnitTest}
+ * A {@link FailureReporter} that causes a JUnit test failure. This validation reporter is installed by {@link CoreUnitTest}
  * to ensure that validation failures by {@link Ensure} are reported through JUnit.
  *
  * @author jonathanl (shibo)

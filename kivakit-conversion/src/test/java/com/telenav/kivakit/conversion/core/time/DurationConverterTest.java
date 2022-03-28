@@ -1,13 +1,11 @@
 package com.telenav.kivakit.conversion.core.time;
 
-import com.telenav.kivakit.conversion.core.time.DurationConverter;
-import com.telenav.kivakit.conversion.core.time.SecondsConverter;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.time.Duration;
 import org.junit.Test;
 
-public class DurationConverterTest extends UnitTest
+public class DurationConverterTest extends CoreUnitTest
 {
     @Test
     public void testConvert()

@@ -18,15 +18,14 @@
 
 package com.telenav.kivakit.conversion.core.time;
 
-import com.telenav.kivakit.conversion.core.time.LocalDateConverter;
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.time.LocalTime;
 import org.junit.Test;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
-public class LocalDateConverterTest extends UnitTest
+public class LocalDateConverterTest extends CoreUnitTest
 {
     @Test
     public void convert()

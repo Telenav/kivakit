@@ -17,12 +17,11 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 package com.telenav.kivakit.core.path;
-
-import com.telenav.kivakit.core.test.UnitTest;
+import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
 @SuppressWarnings("SameParameterValue")
-public class StringPathTest extends UnitTest
+public class StringPathTest extends CoreUnitTest
 {
     @Test
     public void testParse()
