@@ -182,10 +182,7 @@
         <kivakit.version>1.4.3-SNAPSHOT</kivakit.version>
 
         <!-- Merged JARs -->
-        <kivakit.merged.grpc.version>${kivakit.version}</kivakit.merged.grpc.version>
-        <kivakit.merged.zookeeper.version>${kivakit.version}</kivakit.merged.zookeeper.version>
-        <kivakit.merged.prometheus.version>${kivakit.version}</kivakit.merged.prometheus.version>
-        <kivakit.merged.protostuff.version>${kivakit.version}</kivakit.merged.protostuff.version>
+        <kivakit.merged.version>1.5.0</kivakit.merged.version>
 
         <!-- Parsing -->
         <antlr.version>4.7.2</antlr.version>
@@ -1268,22 +1265,22 @@
             <dependency>
                 <groupId>com.telenav.kivakit</groupId>
                 <artifactId>kivakit-merged-protostuff</artifactId>
-                <version>${kivakit.merged.protostuff.version}</version>
+                <version>${kivakit.merged.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.telenav.kivakit</groupId>
                 <artifactId>kivakit-merged-grpc</artifactId>
-                <version>${kivakit.merged.grpc.version}</version>
+                <version>${kivakit.merged.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.telenav.kivakit</groupId>
                 <artifactId>kivakit-merged-prometheus</artifactId>
-                <version>1.4.3-SNAPSHOT</version>
+                <version>${kivakit.merged.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.telenav.kivakit</groupId>
                 <artifactId>kivakit-merged-zookeeper</artifactId>
-                <version>1.4.3-SNAPSHOT</version>
+                <version>${kivakit.merged.version}</version>
             </dependency>
 
             <!-- Parsing -->

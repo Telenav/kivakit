@@ -47,7 +47,8 @@ import java.util.Set;
  * @see Deployment
  * @see Settings
  */
-@SuppressWarnings("UnusedReturnValue") @UmlClassDiagram(diagram = DiagramSettings.class)
+@SuppressWarnings("UnusedReturnValue")
+@UmlClassDiagram(diagram = DiagramSettings.class)
 public class DeploymentSet extends BaseRepeater implements RegistryTrait
 {
     /**
@@ -109,36 +110,6 @@ public class DeploymentSet extends BaseRepeater implements RegistryTrait
     public void addAll(Collection<Deployment> deployments)
     {
         this.deployments.addAll(deployments);
-    }
-
-    /**
-     * Adds all the deployments from the sub-folders found in the given folder.
-     */
-    public DeploymentSet addDeploymentsIn(Folder parent)
-    {
-        // Go through the sub-folders,
-        for (var folder : parent.folders())
-        {
-            // get description from deployment metadata,
-            String description = description(folder.file("Deployment.metadata"));
-
-            // create a deployment,
-            var deployment = new Deployment(this, folder.name().name(), description);
-
-            // and add the configuration information from the sub-folder,
-            deployment.indexAll(new ResourceFolderSettingsStore(this, folder));
-
-            // assert that the deployment has not already been added,
-            assert !deployments.contains(deployment);
-
-            // and if we don't already have the deployment,
-            if (!deployments.contains(deployment))
-            {
-                // add it to this set of deployments.
-                add(deployment);
-            }
-        }
-        return this;
     }
 
     /**
