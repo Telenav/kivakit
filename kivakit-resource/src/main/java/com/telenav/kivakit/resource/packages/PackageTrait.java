@@ -9,6 +9,7 @@ import static com.telenav.kivakit.resource.packages.Package.parsePackage;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 public interface PackageTrait extends Repeater
 {
     default Package packageContaining(Class<?> type)

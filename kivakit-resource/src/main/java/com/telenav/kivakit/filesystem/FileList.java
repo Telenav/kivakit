@@ -53,6 +53,7 @@ import static com.telenav.kivakit.filesystem.FilePath.filePath;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @LexakaiJavadoc(complete = true)
 public class FileList extends BaseResourceList<File> implements Iterable<File>
@@ -106,7 +107,7 @@ public class FileList extends BaseResourceList<File> implements Iterable<File>
                 var file = File.parseFile(this, path);
                 if (file.isFolder())
                 {
-                    files.addAll(file.asFolder().nestedFiles(extension.matcher()));
+                    files.addAll(file.asFolder().nestedFiles(extension.fileMatcher()));
                 }
                 else
                 {
