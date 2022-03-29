@@ -777,7 +777,7 @@ public class Folder extends BaseRepeater implements
         return files(Filter.all());
     }
 
-    public FileList files(Matcher<File> matcher, Traversal recurse)
+    public FileList files(Matcher<Resource> matcher, Traversal recurse)
     {
         return recurse == RECURSE ? nestedFiles(matcher) : files(matcher);
     }
@@ -787,7 +787,12 @@ public class Folder extends BaseRepeater implements
         return files(ResourceGlob.match(globPattern));
     }
 
-    public FileList files(Matcher<File> matcher)
+    public FileList files(Extension extension)
+    {
+        return files(extension.matcher());
+    }
+
+    public FileList files(Matcher<Resource> matcher)
     {
         var files = new FileList();
         if (exists())
