@@ -22,6 +22,8 @@ import com.telenav.kivakit.test.UnitTest;
 import com.telenav.kivakit.resource.packages.PackageTrait;
 import org.junit.Test;
 
+import static com.telenav.kivakit.resource.Extension.TXT;
+
 /**
  * @author jonathanl (shibo)
  */
@@ -34,7 +36,7 @@ public class PackageFolderTest extends UnitTest implements PackageTrait
         {
             var folder =  thisPackage();
             int textFiles = 0;
-            for (var ignored : folder.resources(Extension.TXT::ends))
+            for (var ignored : folder.resources(TXT::ends))
             {
                 textFiles++;
             }

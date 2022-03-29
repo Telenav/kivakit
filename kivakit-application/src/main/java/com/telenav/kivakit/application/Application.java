@@ -47,6 +47,8 @@ import com.telenav.kivakit.core.messaging.messages.status.Announcement;
 import com.telenav.kivakit.core.messaging.messages.status.Glitch;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.project.Project;
+import com.telenav.kivakit.core.project.StartUp;
+import com.telenav.kivakit.core.project.StartUp.Option;
 import com.telenav.kivakit.core.registry.Registry;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.string.Align;
@@ -61,9 +63,9 @@ import com.telenav.kivakit.core.vm.ShutdownHook;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
-import com.telenav.kivakit.resource.packages.PackageTrait;
 import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.kivakit.resource.Resource;
+import com.telenav.kivakit.resource.packages.PackageTrait;
 import com.telenav.kivakit.settings.Deployment;
 import com.telenav.kivakit.settings.DeploymentSet;
 import com.telenav.kivakit.settings.SettingsTrait;
@@ -219,8 +221,8 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  *
  * <ul>
  *     <li>{@link #commandLine()} - Gets the parsed command line</li>
- *     <li>{@link #commandLineDescription(String)} - Returns a text box describing the command line with the given title</li>
- *     <li>{@link #showCommandLine()} - Broadcasts the command line description as an {@link Announcement} message</li>
+ *     <li>{@link #startupInformation(String)} - Returns a text box describing the command line with the given title</li>
+ *     <li>{@link #showStartupInformation()} - Broadcasts the command line description as an {@link Announcement} message</li>
  * </ul>
  *
  * <p><i>Switches</i></p>
@@ -254,6 +256,7 @@ import static com.telenav.kivakit.core.ensure.Ensure.ensure;
  * @see SwitchParser
  * @see ArgumentParser
  */
+@SuppressWarnings({ "unused", "BooleanMethodIsAlwaysInverted" })
 @UmlClassDiagram(diagram = DiagramApplication.class)
 @LexakaiJavadoc(complete = true)
 public abstract class Application extends BaseComponent implements
@@ -320,13 +323,6 @@ public abstract class Application extends BaseComponent implements
 
     /** State machine for application lifecycle */
     private final StateMachine<State> state = new StateMachine<>(CONSTRUCTING);
-
-    @UmlExcludeMember
-    protected final SwitchParser<Boolean> QUIET =
-            booleanSwitchParser(this, "quiet", "Minimize output")
-                    .optional()
-                    .defaultValue(false)
-                    .build();
 
     protected Application()
     {
@@ -398,47 +394,6 @@ public abstract class Application extends BaseComponent implements
     public CommandLine commandLine()
     {
         return commandLine;
-    }
-
-    /**
-     * @return This command line in a text box intended for user feedback when starting an application
-     */
-    public String commandLineDescription(String title)
-    {
-        var box = new StringList();
-        int number = 1;
-
-        if (!argumentList().isEmpty())
-        {
-            box.add("");
-            box.add("Arguments:");
-            box.add("");
-            for (var argument : argumentList())
-            {
-                box.add(AsciiArt.repeat(4, ' ') + "$. $", number++, argument.value());
-            }
-        }
-        if (!internalSwitchParsers().isEmpty())
-        {
-            box.add("");
-            box.add("Switches:");
-            box.add("");
-            var sorted = new ArrayList<>(internalSwitchParsers());
-            sorted.sort(Comparator.comparing(SwitchParser::name));
-            var width = new StringList(sorted).longest().asInt();
-            for (var switchParser : sorted)
-            {
-                var value = get(switchParser);
-                if (value instanceof Folder)
-                {
-                    value = ((Folder) value).path().asContraction(80);
-                }
-                box.add("   $ = $", Align.right(switchParser.name(), width, ' '),
-                        value == null ? "N/A" : value);
-            }
-        }
-        box.add("");
-        return box.titledBox(title);
     }
 
     /**
@@ -538,9 +493,13 @@ public abstract class Application extends BaseComponent implements
      */
     public final void run(String[] arguments)
     {
+        // Enable start-up options,
+        startupOptions().forEach(StartUp::enable);
+
+        // signal that we are initializing,
         state.transitionTo(INITIALIZING);
 
-        // Signal that we're about to start running,
+        // and we're running,
         onRunning();
 
         // set up temporary listener,
@@ -597,7 +556,10 @@ public abstract class Application extends BaseComponent implements
             registerSettingsIn(get(DEPLOYMENT));
         }
 
-        announce("Application: " + name() + " (" + kivakit().projectVersion() + ")");
+        if (!StartUp.isEnabled(Option.QUIET))
+        {
+            showStartupInformation();
+        }
 
         try
         {
@@ -629,9 +591,60 @@ public abstract class Application extends BaseComponent implements
     }
 
     @UmlExcludeMember
-    public void showCommandLine()
+    public void showStartupInformation()
     {
-        announce(commandLineDescription(name()));
+        announce(startupInformation(name()));
+    }
+
+    /**
+     * @return This command line in a text box intended for user feedback when starting an application
+     */
+    public String startupInformation(String title)
+    {
+        var box = new StringList();
+        int number = 1;
+
+        var deployment = has(DEPLOYMENT) ? get(DEPLOYMENT) : null;
+
+        box.add(" ");
+        box.add("    Version: $", projectVersion());
+        box.add("      Build: $", projectBuild().toString());
+        if (deployment != null)
+        {
+            box.add(" Deployment: $ ($)", deployment.name(), deployment.description());
+        }
+
+        if (!argumentList().isEmpty())
+        {
+            box.add("");
+            box.add("Arguments:");
+            box.add("");
+            for (var argument : argumentList())
+            {
+                box.add(AsciiArt.repeat(4, ' ') + "$. $", number++, argument.value());
+            }
+        }
+        if (!internalSwitchParsers().isEmpty())
+        {
+            box.add("");
+            box.add("Switches:");
+            box.add("");
+            var sorted = new ArrayList<>(internalSwitchParsers());
+            sorted.sort(Comparator.comparing(SwitchParser::name));
+            var width = new StringList(sorted).longest().asInt();
+            for (var switchParser : sorted)
+            {
+                var value = get(switchParser);
+                if (value instanceof Folder)
+                {
+                    value = ((Folder) value).path().asContraction(80);
+                }
+                box.add("   $ = $", Align.right(switchParser.name(), width, ' '),
+                        value == null ? "N/A" : value);
+            }
+        }
+        box.add(" ");
+        return box.titledBox(title);
     }
 
     /**
@@ -722,6 +735,14 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
+     * Returns true if this application should not show startup information
+     */
+    protected ObjectSet<StartUp.Option> startupOptions()
+    {
+        return objectSet();
+    }
+
+    /**
      * @return The switch parsers for this application
      */
     protected ObjectSet<SwitchParser<?>> switchParsers()
@@ -800,4 +821,11 @@ public abstract class Application extends BaseComponent implements
 
         return parsers;
     }
+
+    @UmlExcludeMember
+    protected final SwitchParser<Boolean> QUIET =
+            booleanSwitchParser(this, "quiet", "Minimize output")
+                    .optional()
+                    .defaultValue(false)
+                    .build();
 }

@@ -76,6 +76,7 @@ import static com.telenav.kivakit.resource.packages.Package.packageForPath;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings({ "unused", "DuplicatedCode" })
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
 public final class PackagePath extends ResourcePath
@@ -208,6 +209,14 @@ public final class PackagePath extends ResourcePath
     public PackagePath first(int n)
     {
         return (PackagePath) super.first(n);
+    }
+
+    /**
+     * @return Returns true if this path has an associated type
+     */
+    public boolean hasPackageType()
+    {
+        return packageType != null;
     }
 
     /**

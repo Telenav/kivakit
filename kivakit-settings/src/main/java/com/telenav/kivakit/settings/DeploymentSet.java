@@ -23,7 +23,6 @@ import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.vm.JavaVirtualMachine;
-import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
@@ -40,8 +39,8 @@ import java.util.Set;
 
 /**
  * A set of {@link Deployment} objects, each being a set of settings objects. Deployments can be added to the set from a
- * folder with {@link #addDeploymentsIn(Folder)}. A switch parser to select a deployment from the command line can be
- * retrieved with SwitchParser.deployment(DeploymentSet).
+ * folder with {@link #addDeploymentsIn(ResourceFolder)}. A switch parser to select a deployment from the command line
+ * can be retrieved with SwitchParser.deployment(DeploymentSet).
  *
  * @author jonathanl (shibo)
  * @see Deployment
