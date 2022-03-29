@@ -51,7 +51,7 @@ public class UnitTestWatcher extends TestWatcher
         if (test.isRandomTest())
         {
             // then print out the seed value, so it can be reproduced.
-            System.err.println("// random().seed(" + test.newRandomValueFactory().seed() + "L);");
+            System.err.println("// random().seed(" + test.random().seed() + "L);");
             System.err.flush();
         }
     }

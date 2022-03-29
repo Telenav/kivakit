@@ -48,6 +48,7 @@ import java.util.Set;
  * @see Deployment
  * @see Settings
  */
+@SuppressWarnings("UnusedReturnValue")
 @UmlClassDiagram(diagram = DiagramSettings.class)
 public class DeploymentSet extends BaseRepeater implements RegistryTrait
 {
