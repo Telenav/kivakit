@@ -88,12 +88,13 @@ public class Modules
                                     var resource = ModuleResource.moduleResource(listener, reference, uri);
                                     if (resource != null)
                                     {
-                                        listener.trace("Found resource $.$", resource.packagePath(), resource.fileNameAsJavaPath());
+                                        listener.trace("Found resource $.$", resource.packageReference(), resource.fileNameAsJavaPath());
                                         allResources.add(resource);
                                         if (!resource.uri().toString().endsWith("/"))
                                         {
                                             allResources.add(resource);
-                                        }                                    }
+                                        }
+                                    }
                                 }
                             }
                             catch (IOException ignored)

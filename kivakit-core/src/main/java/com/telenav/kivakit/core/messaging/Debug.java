@@ -21,10 +21,11 @@ package com.telenav.kivakit.core.messaging;
 import com.telenav.kivakit.core.KivaKit;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.language.Patterns;
+import com.telenav.kivakit.core.lexakai.DiagramBroadcaster;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
 import com.telenav.kivakit.core.messaging.context.CallStack;
-import com.telenav.kivakit.core.lexakai.DiagramBroadcaster;
+import com.telenav.kivakit.core.project.StartUp;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.interfaces.messaging.Transmittable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -242,12 +243,15 @@ public final class Debug implements Transceiver
                 var log = property("KIVAKIT_LOG");
                 var kivakitVersion = property("KIVAKIT_VERSION");
                 var title = "KivaKit " + kivakitVersion + " (" + resolveProject(KivaKit.class).build() + ")";
-                LOGGER.information(AsciiArt.textBox(title, "      Logging: https://tinyurl.com/mhc3ss5s\n"
-                                + "    Debugging: https://tinyurl.com/2xycuvph\n"
-                                + "  KIVAKIT_LOG: $\n"
-                                + "KIVAKIT_DEBUG: $",
-                        log == null ? "Console" : log,
-                        debug == null ? "Disabled" : debug));
+                if (!StartUp.isEnabled(StartUp.Option.QUIET))
+                {
+                    LOGGER.information(AsciiArt.textBox(title, "      Logging: https://tinyurl.com/mhc3ss5s\n"
+                                    + "    Debugging: https://tinyurl.com/2xycuvph\n"
+                                    + "  KIVAKIT_LOG: $\n"
+                                    + "KIVAKIT_DEBUG: $",
+                            log == null ? "Console" : log,
+                            debug == null ? "Disabled" : debug));
+                }
             }
 
             // Get the enable state for the type parameter

@@ -196,6 +196,7 @@ import static com.telenav.kivakit.resource.ResourceList.resourceList;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemFolder.class)
 @LexakaiJavadoc(complete = true)
 public class Folder extends BaseRepeater implements
@@ -635,7 +636,7 @@ public class Folder extends BaseRepeater implements
      */
     public void copyTo(Folder destination,
                        CopyMode mode,
-                       Matcher<Resource> matcher,
+                       Matcher<File> matcher,
                        ProgressReporter reporter)
     {
         var start = Time.now();
@@ -785,6 +786,11 @@ public class Folder extends BaseRepeater implements
     public FileList files(String globPattern)
     {
         return files(ResourceGlob.match(globPattern));
+    }
+
+    public FileList files(Extension extension)
+    {
+        return files(extension.fileMatcher());
     }
 
     public FileList files(Matcher<File> matcher)
@@ -968,10 +974,9 @@ public class Folder extends BaseRepeater implements
     /**
      * @return Any matching files that are recursively contained in this folder
      */
-    @SuppressWarnings("unchecked")
-    public <T extends Resource> FileList nestedFiles(Matcher<T> matcher)
+    public FileList nestedFiles(Matcher<File> matcher)
     {
-        var files = FileList.forServices(folder().nestedFiles(path -> matcher.matches((T) path.asFile())));
+        var files = FileList.forServices(folder().nestedFiles(path -> matcher.matches((path.asFile()))));
         trace("Nested files in $: $", this, files);
         return files;
     }

@@ -32,7 +32,6 @@ import org.jetbrains.annotations.NotNull;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
-import java.security.CodeSource;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -89,7 +88,7 @@ import java.util.zip.ZipInputStream;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramPath.class)
+@SuppressWarnings({ "unused", "DuplicatedCode" }) @UmlClassDiagram(diagram = DiagramPath.class)
 public final class PackageReference extends StringPath
 {
     public static final PackageReference TELENAV = parsePackageReference(Listener.none(), "com.telenav");
@@ -178,11 +177,11 @@ public final class PackageReference extends StringPath
     /**
      * @return A list of sub packages under this package from the directories in classpath
      */
-    public Set<PackageReference> directorySubPackages()
+    public Set<PackageReference> filesystemSubPackages()
     {
         // Get the code source for the package type class,
         var packages = new HashSet<PackageReference>();
-        CodeSource source = packageType().getProtectionDomain().getCodeSource();
+        var source = hasPackageType() ? packageType().getProtectionDomain().getCodeSource() : null;
         if (source != null)
         {
             try
@@ -221,13 +220,21 @@ public final class PackageReference extends StringPath
     }
 
     /**
+     * @return True if this reference is relative to some class in the referenced package (the "package type")
+     */
+    public boolean hasPackageType()
+    {
+        return packageType != null;
+    }
+
+    /**
      * @return A list of sub packages under this package from the jars in classpath
      */
     public Set<PackageReference> jarSubPackages()
     {
         // Get the code source for the package type class,
         var packages = new HashSet<PackageReference>();
-        CodeSource source = packageType().getProtectionDomain().getCodeSource();
+        var source = hasPackageType() ? packageType().getProtectionDomain().getCodeSource() : null;
         if (source != null)
         {
             try
@@ -305,7 +312,7 @@ public final class PackageReference extends StringPath
      */
     public InputStream moduleResourceStream(String path)
     {
-        return packageType.getResourceAsStream(path);
+        return packageType().getResourceAsStream(path);
     }
 
     /**
@@ -380,7 +387,7 @@ public final class PackageReference extends StringPath
                 .collect(Collectors.toSet());
         listener.trace("Found sub-packages:\n$", ObjectList.objectList(packages).join("\n"));
         packages.addAll(jarSubPackages());
-        packages.addAll(directorySubPackages());
+        packages.addAll(filesystemSubPackages());
         return packages;
     }
 

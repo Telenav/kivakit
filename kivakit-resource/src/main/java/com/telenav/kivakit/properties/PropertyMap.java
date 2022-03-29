@@ -120,7 +120,7 @@ public class PropertyMap extends VariableMap<String>
         return load(listener.listenTo(new InputResource(input)));
     }
 
-    public static PropertyMap load(Listener listener, ResourceFolder folder, String resourcePath)
+    public static PropertyMap load(Listener listener, ResourceFolder<?> folder, String resourcePath)
     {
         return load(listener.listenTo(folder.resource(resourcePath)));
     }

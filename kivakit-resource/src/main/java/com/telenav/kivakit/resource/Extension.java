@@ -20,6 +20,7 @@ package com.telenav.kivakit.resource;
 
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.value.count.Count;
+import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.interfaces.comparison.Matchable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.interfaces.naming.Named;
@@ -78,6 +79,7 @@ import java.util.List;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
 @LexakaiJavadoc(complete = true)
 public class Extension implements
@@ -315,6 +317,16 @@ public class Extension implements
     @Override
     @NotNull
     public Matcher<Resource> matcher()
+    {
+        return resource ->
+        {
+            var extension = resource.compoundExtension();
+            return extension != null && extension.endsWith(this);
+        };
+    }
+
+    @NotNull
+    public Matcher<File> fileMatcher()
     {
         return resource ->
         {

@@ -45,7 +45,6 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import java.net.URI;
 import java.net.URL;
-import java.security.CodeSource;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -67,10 +66,10 @@ import static com.telenav.kivakit.resource.packages.PackageResource.packageResou
  * An abstraction for locating and copying {@link Resource}s in Java packages.
  *
  * <p>
- * A package object can be constructed with {@link #packageForPath(Listener, PackagePath)} or {@link #parsePackage(Listener listener,
- * Class, String)}. It implements the {@link ResourceFolder} interface because it contains resources, just as {@link
- * Folder} does. This means, of course, that methods that accept {@link ResourceFolder} can accept either {@link
- * Folder}s or {@link Package}s.
+ * A package object can be constructed with {@link #packageForPath(Listener, PackagePath)} or {@link
+ * #parsePackage(Listener listener, Class, String)}. It implements the {@link ResourceFolder} interface because it
+ * contains resources, just as {@link Folder} does. This means, of course, that methods that accept {@link
+ * ResourceFolder} can accept either {@link Folder}s or {@link Package}s.
  * </p>
  *
  * <p><b>Hierarchy</b></p>
@@ -93,6 +92,7 @@ import static com.telenav.kivakit.resource.packages.PackageResource.packageResou
  * @see PackageReference
  * @see PackageResource
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramResourceType.class)
 @LexakaiJavadoc(complete = true)
 public class Package extends BaseRepeater implements ResourceFolder<Package>
@@ -322,7 +322,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     {
         // Get the code source for the package type class,
         var resources = new ArrayList<PackageResource>();
-        CodeSource source = packagePath.packageType().getProtectionDomain().getCodeSource();
+        var source = packagePath.hasPackageType() ? packagePath.packageType().getProtectionDomain().getCodeSource() : null;
         if (source != null)
         {
             try
@@ -364,7 +364,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     {
         // Get the code source for the package type class,
         var resources = new ArrayList<PackageResource>();
-        CodeSource source = packagePath.packageType().getProtectionDomain().getCodeSource();
+        var source = packagePath.hasPackageType() ? packagePath.packageType().getProtectionDomain().getCodeSource() : null;
         if (source != null)
         {
             try

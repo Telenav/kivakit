@@ -46,7 +46,7 @@ import java.util.function.Consumer;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.test.CoreUnitTest.Repeats.ALLOW_REPEATS;
 import static com.telenav.kivakit.core.test.CoreUnitTest.Repeats.NO_REPEATS;
-import static com.telenav.kivakit.core.value.count.Count._1_000;
+import static com.telenav.kivakit.core.value.count.Count._256;
 import static com.telenav.kivakit.core.value.count.Count._65_536;
 import static com.telenav.kivakit.core.value.count.Count.count;
 import static com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction.ACCEPT;
@@ -209,7 +209,7 @@ public class RandomValueFactory implements RandomNumeric
 
     public Count iterations()
     {
-        return _1_000;
+        return _256;
     }
 
     public char letter()

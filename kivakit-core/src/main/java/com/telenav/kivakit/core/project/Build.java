@@ -44,6 +44,7 @@ import java.time.format.DateTimeFormatter;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 public class Build implements Named
 {
     /**

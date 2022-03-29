@@ -1,5 +1,6 @@
 import com.telenav.kivakit.core.logging.Log;
 
+@SuppressWarnings("JavaRequiresAutoModule")
 open module kivakit.core
 {
     uses Log;
