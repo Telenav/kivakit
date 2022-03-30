@@ -12,7 +12,7 @@ import java.util.Objects;
  *
  * @author jonathanl (shibo)
  */
-public interface RandomNumeric extends CastTrait
+@SuppressWarnings("unused") public interface RandomNumeric extends CastTrait
 {
     default <T extends Number> T random(Class<T> type)
     {
@@ -145,12 +145,6 @@ public interface RandomNumeric extends CastTrait
 
     default long randomLongInclusive(long minimum, long maximum)
     {
-//        assert minimum <= maximum;
-
-        if (minimum > maximum)
-        {
-            System.out.println("");
-        }
         return randomLongExclusive(minimum, maximum + 1);
     }
 

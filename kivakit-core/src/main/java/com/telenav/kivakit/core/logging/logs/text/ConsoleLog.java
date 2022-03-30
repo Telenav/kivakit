@@ -61,6 +61,7 @@ public class ConsoleLog extends BaseTextLog
 
     @Override
     @UmlExcludeMember
+    @SuppressWarnings("AccessStaticViaInstance")
     public synchronized void onLog(LogEntry entry)
     {
         console.println(entry.isSevere() ? ERROR : NORMAL, formatted(entry));

@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
  *
  * @author jonathanl (shibo)
  */
-@UmlClassDiagram(diagram = DiagramString.class)
+@SuppressWarnings("DuplicatedCode") @UmlClassDiagram(diagram = DiagramString.class)
 @LexakaiJavadoc(complete = true)
 public class Split
 {

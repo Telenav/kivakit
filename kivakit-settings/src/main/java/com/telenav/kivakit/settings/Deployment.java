@@ -22,8 +22,8 @@ import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.registry.InstanceIdentifier;
-import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.naming.Named;
+import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.settings.lexakai.DiagramSettings;
 import com.telenav.kivakit.settings.stores.MemorySettingsStore;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
@@ -45,10 +45,10 @@ import java.util.Objects;
  * <p><b>Deploying Applications</b></p>
  *
  * <p>
- * Deployments can be added to a {@link DeploymentSet} via {@link DeploymentSet#addDeploymentsIn(Class, String)} or
- * {@link DeploymentSet#addDeploymentsIn(Folder)}. The method SwitchParser.deployment(DeploymentSet) will create a
- * command line SwitchParser that can select among several deployments in a {@link DeploymentSet} by name. This is
- * handled automatically if the application places deployments in the application-relative package "deployments".
+ * Deployments can be added to a {@link DeploymentSet} via {@link DeploymentSet#addDeploymentsIn(ResourceFolder)}. The
+ * method SwitchParser.deployment(DeploymentSet) will create a command line SwitchParser that can select among several
+ * deployments in a {@link DeploymentSet} by name. This is handled automatically if the application places deployments
+ * in the application-relative package "deployments".
  * </p>
  *
  * <p>
@@ -151,6 +151,7 @@ import java.util.Objects;
  * @see SettingsObject
  * @see DeploymentSet
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramSettings.class, excludeSuperTypes = { Serializable.class })
 public class Deployment extends MemorySettingsStore implements Serializable
 {

@@ -48,7 +48,7 @@ public class ReentrancyTracker
         ENTERED,
         REENTERED,
         EXITED_REENTRY,
-        EXITED;
+        EXITED
     }
 
     private final ThreadLocal<Integer> level = ThreadLocal.withInitial(() -> 0);

@@ -29,6 +29,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("AccessStaticViaInstance")
 @UmlClassDiagram(diagram = DiagramOs.class)
 public class ConsoleWriter implements Listener
 {

@@ -113,7 +113,7 @@ public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
         return matches;
     }
 
-    public BaseResourceList<T> relativeTo(ResourceFolder folder)
+    public BaseResourceList<T> relativeTo(ResourceFolder<?> folder)
     {
         var resources = newResourceList();
         for (var resource : this)

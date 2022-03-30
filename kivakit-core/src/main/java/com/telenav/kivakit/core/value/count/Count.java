@@ -21,7 +21,6 @@ package com.telenav.kivakit.core.value.count;
 import com.telenav.kivakit.core.language.primitive.Longs;
 import com.telenav.kivakit.core.lexakai.DiagramCount;
 import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.os.Console;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.code.LoopBody;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;

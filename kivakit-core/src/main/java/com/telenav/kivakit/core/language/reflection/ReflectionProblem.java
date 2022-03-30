@@ -16,4 +16,9 @@ public class ReflectionProblem extends Problem
         super(cause, message);
         this.error = message + "\n" + cause;
     }
+
+    public String error()
+    {
+        return error;
+    }
 }

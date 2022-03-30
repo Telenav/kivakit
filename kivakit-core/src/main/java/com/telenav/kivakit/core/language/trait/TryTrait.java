@@ -33,7 +33,7 @@ import com.telenav.kivakit.core.messaging.Broadcaster;
  *
  * <ul>
  *     <li>{@link #tryFinally(UncheckedVoidCode, Runnable)}</li>
- *     <li>{@link #tryFinally(UncheckedCode, Runnable)}</li>
+ *     <li>{@link #tryFinally(UncheckedCode, UncheckedVoidCode)}</li>
  * </ul>
  *
  * <p><b>Examples:</b></p>

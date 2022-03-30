@@ -372,7 +372,6 @@ public abstract class Path<Element extends Comparable<Element>> implements
      * is absolute, the sub-path will still be absolute with the same root. If the start and end indexes are invalid,
      * null is returned.
      */
-    @SuppressWarnings("SpellCheckingInspection")
     public Path<Element> subpath(int start, int end)
     {
         if (start <= end && start >= 0 && end <= size())

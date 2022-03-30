@@ -18,9 +18,6 @@
 
 package com.telenav.kivakit.resource.spi;
 
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
-import com.telenav.kivakit.core.messaging.Debug;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.resource.ResourceFolderIdentifier;
@@ -46,14 +43,10 @@ import java.util.ServiceLoader;
 @LexakaiJavadoc(complete = true)
 public class ResourceFolderResolverServiceLoader
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
-    private static final Debug DEBUG = new Debug(LOGGER);
-
     @UmlAggregation
     private static List<ResourceFolderResolver> resolvers;
 
-    public static ResourceFolder resolve(Listener listener, ResourceFolderIdentifier identifier)
+    public static ResourceFolder<?> resolve(Listener listener, ResourceFolderIdentifier identifier)
     {
         for (var factory : resolvers(listener))
         {

@@ -54,5 +54,5 @@ public interface ResourceFolderResolver extends RepeaterMixin
      * @return A new resource for the given resource identifier
      */
     @UmlRelation(label = "creates")
-    ResourceFolder resolve(ResourceFolderIdentifier identifier);
+    ResourceFolder<?> resolve(ResourceFolderIdentifier identifier);
 }

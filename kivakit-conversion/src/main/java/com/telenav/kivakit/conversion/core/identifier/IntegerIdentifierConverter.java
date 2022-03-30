@@ -14,9 +14,9 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  */
 @LexakaiJavadoc(complete = true)
 @UmlClassDiagram(diagram = DiagramConversionOther.class)
-public class IntgerIdentifierConverter extends QuantizableConverter<IntegerIdentifier>
+public class IntegerIdentifierConverter extends QuantizableConverter<IntegerIdentifier>
 {
-    public IntgerIdentifierConverter(Listener listener)
+    public IntegerIdentifierConverter(Listener listener)
     {
         super(listener, identifier -> identifier == null
                 ? null

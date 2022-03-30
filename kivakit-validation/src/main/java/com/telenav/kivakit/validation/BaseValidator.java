@@ -400,7 +400,6 @@ public abstract class BaseValidator implements Validator
      * @param validatable The object to validate
      * @param type The type of validation to apply
      */
-    @SuppressWarnings("SpellCheckingInspection")
     protected boolean validate(Validatable validatable, ValidationType type)
     {
         if (validatable != null)

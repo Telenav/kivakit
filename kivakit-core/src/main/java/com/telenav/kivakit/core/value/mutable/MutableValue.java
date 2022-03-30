@@ -25,7 +25,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import java.util.function.Function;
 
 /**
- * A value that can be retrived with {@link #get()} and mutated with {@link #set(Object)} or {@link #update(Function)}.
+ * A value that can be retrieved with {@link #get()} and mutated with {@link #set(Object)} or {@link #update(Function)}.
  *
  * @author jonathanl (shibo)
  */

@@ -120,7 +120,7 @@ public class SwitchParser<T> implements
      *
      * @author jonathanl (shibo)
      */
-    @LexakaiJavadoc(complete = true)
+    @SuppressWarnings("DuplicatedCode") @LexakaiJavadoc(complete = true)
     public static class Builder<T>
     {
         private StringConverter<T> converter;

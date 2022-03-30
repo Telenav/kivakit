@@ -87,7 +87,6 @@ import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
  * @see Broadcaster
  * @see Listener
  */
-@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramRepeater.class)
 public class Multicaster implements Broadcaster
 {

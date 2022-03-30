@@ -88,7 +88,7 @@ import static com.telenav.kivakit.network.core.Protocol.UNKNOWN;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("SpellCheckingInspection") @UmlClassDiagram(diagram = DiagramPort.class)
+@UmlClassDiagram(diagram = DiagramPort.class)
 @LexakaiJavadoc(complete = true)
 public class Host extends BaseRepeater implements
         Named,
@@ -464,7 +464,6 @@ public class Host extends BaseRepeater implements
     {
         try
         {
-            //noinspection SpellCheckingInspection
             if ("127.0.0.1".equals(name)
                     || "localhost".equals(name)
                     || "localhost.localdomain".equals(name))

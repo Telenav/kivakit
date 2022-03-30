@@ -63,11 +63,11 @@ public class Strip
             return text;
         }
         var index = text.lastIndexOf(ending);
-        var endpos = stringLength - endingLength;
+        var end = stringLength - endingLength;
 
-        if (index == endpos)
+        if (index == end)
         {
-            return text.substring(0, endpos);
+            return text.substring(0, end);
         }
 
         return text;

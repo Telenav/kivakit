@@ -51,7 +51,7 @@ class SecureFtpConnector
 
     private ChannelSftp channel;
 
-    public SecureFtpConnector(NetworkAccessConstraints constraints)
+    public SecureFtpConnector(NetworkAccessConstraints ignored)
     {
     }
 

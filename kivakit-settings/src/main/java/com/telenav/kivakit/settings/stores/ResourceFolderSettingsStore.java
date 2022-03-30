@@ -64,12 +64,12 @@ import static com.telenav.kivakit.settings.SettingsStore.AccessMode.UNLOAD;
 public class ResourceFolderSettingsStore extends BaseResourceSettingsStore
 {
     /** The folder containing .properties files defining settings objects */
-    private final ResourceFolder folder;
+    private final ResourceFolder<?> folder;
 
     /**
      * @param folder The folder containing .properties files specifying settings objects
      */
-    public ResourceFolderSettingsStore(Listener listener, ResourceFolder folder)
+    public ResourceFolderSettingsStore(Listener listener, ResourceFolder<?> folder)
     {
         listener.listenTo(this);
 

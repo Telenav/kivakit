@@ -1,7 +1,6 @@
 open module kivakit.network.email
 {
     // KivaKit
-    requires transitive kivakit.settings;
     requires transitive kivakit.network.core;
 
     // Java mail

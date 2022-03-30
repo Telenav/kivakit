@@ -147,7 +147,7 @@ public class ArgumentParser<T>
      *
      * @author jonathanl (shibo)
      */
-    @UmlClassDiagram(diagram = DiagramArgument.class)
+    @SuppressWarnings("DuplicatedCode") @UmlClassDiagram(diagram = DiagramArgument.class)
     @LexakaiJavadoc(complete = true)
     public static class Builder<T>
     {

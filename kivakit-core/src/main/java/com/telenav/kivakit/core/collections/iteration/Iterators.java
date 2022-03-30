@@ -118,7 +118,7 @@ public class Iterators
      */
     public static <T> Iterator<T> singletonIterator(T value)
     {
-        return new BaseIterator<T>()
+        return new BaseIterator<>()
         {
             int index = 0;
 

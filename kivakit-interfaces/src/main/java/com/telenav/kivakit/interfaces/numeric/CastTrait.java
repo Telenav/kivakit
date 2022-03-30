@@ -47,7 +47,7 @@ public interface CastTrait
     }
 
     /**
-     * Returns the maximum value for the given number typee
+     * Returns the maximum value for the given number type
      */
     default <T extends Number> long maximum(Class<T> type)
     {

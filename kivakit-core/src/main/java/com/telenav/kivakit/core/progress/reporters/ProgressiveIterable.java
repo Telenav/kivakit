@@ -7,7 +7,7 @@ import com.telenav.kivakit.interfaces.collection.NextValue;
 import java.util.Iterator;
 
 /**
- * A wrapper that adds {@link ProgressReporter} reporting to an interable
+ * A wrapper that adds {@link ProgressReporter} reporting to an iterable
  *
  * @author jonathanl (shibo)
  */

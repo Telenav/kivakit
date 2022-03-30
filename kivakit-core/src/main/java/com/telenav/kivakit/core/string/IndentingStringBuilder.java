@@ -41,7 +41,6 @@ import static com.telenav.kivakit.core.string.IndentingStringBuilder.Style.TEXT;
 @UmlClassDiagram(diagram = DiagramString.class)
 public class IndentingStringBuilder
 {
-    @SuppressWarnings("SpellCheckingInspection")
     public static IndentingStringBuilder defaultTextIndenter()
     {
         return new IndentingStringBuilder(TEXT, new Indentation(4));

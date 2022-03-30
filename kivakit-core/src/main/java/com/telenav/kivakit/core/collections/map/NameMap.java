@@ -28,7 +28,7 @@ import java.util.Map;
 
 /**
  * A map to look up {@link Named} objects by their name. Objects can be added to the map with {@link #add(Named)}
- * instead of put() and their name will be used as the map key. To retrieve a value, {@link #get(Name)} or {@link
+ * instead of put() and their name will be used as the map key. To retrieve a value, {@link #get(Named)} or {@link
  * #get(String)} can be called. Map keys are case-insensitive by default. If case sensitivity is desired, {@link
  * #caseSensitive(boolean)} can be used.
  *

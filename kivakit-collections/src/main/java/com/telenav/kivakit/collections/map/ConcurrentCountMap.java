@@ -31,7 +31,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.regex.Pattern;
 
 /**
  * Keeps a count for each key allowing for safe concurrency.
@@ -41,8 +40,6 @@ import java.util.regex.Pattern;
 @LexakaiJavadoc(complete = true)
 public class ConcurrentCountMap<Key>
 {
-    private static final Pattern KEY_VALUE = Pattern.compile("key\\w+\\s*=\\s*count\\w+");
-
     private final ConcurrentHashMap<Key, AtomicLong> counts = new ConcurrentHashMap<>();
 
     private final AtomicLong total = new AtomicLong();

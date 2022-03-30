@@ -18,9 +18,9 @@
 
 package com.telenav.kivakit.resource.resources;
 
-import com.telenav.kivakit.resource.reading.ReadableResource;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.writing.BaseWritableResource;
+import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -30,7 +30,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- * A {@link ReadableResource} formed from a string passed to the constructor {@link #StringOutputResource()}.
+ * A {@link WritableResource} that writes to a byte array, and can be converted to a string with {@link #string()}.
  *
  * @author jonathanl (shibo)
  */

@@ -81,7 +81,6 @@ public class PlainTextPassword implements Password, Stringable
     }
 
     @Override
-    @SuppressWarnings("SpellCheckingInspection")
     public boolean matches(Password uncast)
     {
         if (uncast instanceof PlainTextPassword)

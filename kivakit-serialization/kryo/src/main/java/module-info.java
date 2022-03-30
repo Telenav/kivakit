@@ -1,13 +1,12 @@
 open module kivakit.serialization.kryo
 {
     // KivaKit
-    requires transitive kivakit.serialization.properties;
+    requires kivakit.resource;
+    requires kivakit.serialization.core;
 
     // Kryo
     requires transitive kryo;
-    requires transitive de.javakaffee.kryoserializers;
     requires minlog;
-    requires kivakit.serialization.core;
 
     // Module exports
     exports com.telenav.kivakit.serialization.kryo;

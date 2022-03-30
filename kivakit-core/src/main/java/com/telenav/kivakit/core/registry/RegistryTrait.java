@@ -123,7 +123,7 @@ public interface RegistryTrait
      * given factory and registered with {@link #register(Object)}. The value is then returned.
      *
      * @param type The type that's required
-     * @param factory A factory for creating the type if it can't be foundf
+     * @param factory A factory for creating the type if it can't be found
      * @return The required value
      */
     default <T> T require(Class<T> type, Factory<T> factory)

@@ -2,6 +2,8 @@ package com.telenav.kivakit.component;
 
 import com.telenav.kivakit.component.lexakai.DiagramComponent;
 import com.telenav.kivakit.core.code.UncheckedCode;
+import com.telenav.kivakit.core.code.UncheckedVoidCode;
+import com.telenav.kivakit.core.function.Result;
 import com.telenav.kivakit.core.language.trait.LanguageTrait;
 import com.telenav.kivakit.core.messaging.Broadcaster;
 import com.telenav.kivakit.core.messaging.Listener;
@@ -19,9 +21,9 @@ import com.telenav.kivakit.core.registry.RegistryTrait;
 import com.telenav.kivakit.core.vm.JavaTrait;
 import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.naming.NamedObject;
+import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.packages.Package;
 import com.telenav.kivakit.resource.packages.PackageTrait;
-import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.settings.Settings;
 import com.telenav.kivakit.settings.SettingsStore;
 import com.telenav.kivakit.settings.SettingsTrait;
@@ -101,7 +103,8 @@ import java.util.function.Function;
  *     <li>{@link #tryCatch(UncheckedCode, String, Object...)} - Executes the given code, broadcasting a problem if it throws an exception</li>
  *     <li>{@link #tryCatchThrow(UncheckedCode, String, Object...)} - Executes the given code, rethrowing any exceptions</li>
  *     <li>{@link #tryCatchDefault(UncheckedCode, Object)} - Executes the given code, returning the given default if an exception occurs</li>
- *     <li>{@link #tryFinally(UncheckedCode, Runnable)} - Executes the given code, always running the {@link Runnable} after execution</li>
+ *     <li>{@link #tryFinally(UncheckedVoidCode, Runnable)} - Execute the given code, always running the given {@link Runnable} afterwards</li>
+ *     <li>{@link #tryFinally(UncheckedCode, UncheckedVoidCode)} - Executes the given code, always running the given {@link UncheckedVoidCode} after execution</li>
  * </ul>
  *
  * <p><i>Result</i></p>

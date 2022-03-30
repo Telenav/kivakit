@@ -19,10 +19,7 @@
 package com.telenav.kivakit.interfaces.factory;
 
 import com.telenav.kivakit.interfaces.lexakai.DiagramFactory;
-import com.telenav.kivakit.interfaces.value.Source;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
-import com.telenav.lexakai.annotations.visibility.UmlExcludeMember;
-
 
 /**
  * A factory that creates an object.

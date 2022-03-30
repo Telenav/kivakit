@@ -6,7 +6,6 @@ open module kivakit.network.ftp
     // Networking
     requires commons.net;
     requires jsch;
-    requires j2ssh.core;
 
     // Module exports
     exports com.telenav.kivakit.network.ftp;

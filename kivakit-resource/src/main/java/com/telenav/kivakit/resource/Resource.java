@@ -289,7 +289,7 @@ public interface Resource extends
      *
      * @return The parent
      */
-    default ResourceFolder parent()
+    default ResourceFolder<?> parent()
     {
         return null;
     }

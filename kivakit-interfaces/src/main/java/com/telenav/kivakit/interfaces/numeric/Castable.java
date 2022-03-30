@@ -5,7 +5,6 @@ package com.telenav.kivakit.interfaces.numeric;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("DuplicatedCode")
 public interface Castable extends CastTrait
 {
     default byte asByte()

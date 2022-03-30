@@ -121,7 +121,7 @@ public class ResourceGlob<T extends Resource> implements Matcher<T>
      * @param folder The folder that resources must be under (recursively)
      * @return The glob
      */
-    public static <T extends Resource> ResourceGlob<T> matchAllIn(ResourceFolder folder)
+    public static <T extends Resource> ResourceGlob<T> matchAllIn(ResourceFolder<?> folder)
     {
         return match(resource -> folder.equals(resource.parent()));
     }
@@ -132,7 +132,7 @@ public class ResourceGlob<T extends Resource> implements Matcher<T>
      * @param folder The folder that resources must be under (recursively)
      * @return The glob
      */
-    public static <T extends Resource> ResourceGlob<T> matchAllUnder(ResourceFolder folder)
+    public static <T extends Resource> ResourceGlob<T> matchAllUnder(ResourceFolder<?> folder)
     {
         return match(folder::contains);
     }
@@ -163,7 +163,7 @@ public class ResourceGlob<T extends Resource> implements Matcher<T>
     /**
      * Returns a glob that matches everything this glob does not
      */
-    public ResourceGlob<T> in(ResourceFolder folder)
+    public ResourceGlob<T> in(ResourceFolder<?> folder)
     {
         return and(matchAllIn(folder));
     }
@@ -217,7 +217,7 @@ public class ResourceGlob<T extends Resource> implements Matcher<T>
     /**
      * Returns a glob that matches everything this glob does not
      */
-    public ResourceGlob<T> under(ResourceFolder folder)
+    public ResourceGlob<T> under(ResourceFolder<?> folder)
     {
         return match(resource -> matches(resource) && folder.contains(resource));
     }

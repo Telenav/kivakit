@@ -98,7 +98,7 @@ public interface SettingsTrait extends Repeater
      */
     default <T> T lookupSettings(Class<T> settingsClass,
                                  InstanceIdentifier instance,
-                                 ResourceFolder defaultSettings)
+                                 ResourceFolder<?> defaultSettings)
     {
         return settingsRegistry().lookupSettings(settingsClass, instance, defaultSettings);
     }

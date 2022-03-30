@@ -38,6 +38,8 @@ import java.util.ListIterator;
 import java.util.Set;
 import java.util.function.UnaryOperator;
 
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
+
 /**
  * A list of folders with additional useful methods, including:
  *
@@ -291,6 +293,6 @@ public class FolderList implements List<Folder>
     @Override
     public <T> T[] toArray(@NotNull T[] array)
     {
-        return folders.toArray(array);
+       return unsupported();
     }
 }

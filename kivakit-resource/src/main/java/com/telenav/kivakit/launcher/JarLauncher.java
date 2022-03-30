@@ -207,6 +207,7 @@ public class JarLauncher extends BaseRepeater
                 arguments.add(java);
                 if (headless)
                 {
+                    //noinspection SpellCheckingInspection
                     arguments.add("-Djava.awt.headless=true");
                 }
                 if (debugPort > 0)

@@ -28,10 +28,10 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
  * A piece of code that can be executed in a loop, and can filter out values.
  *
  * <p>
- * Looping is implemented by {@link #forCount(Value, int)}, which calls {@link #at(Value)} starting at the given minimum
- * value until the required number of values are accepted. The next value for each iteration of the loop is determined
- * by {@link NextValue#next()}. The loop can terminate before reaching the requested count of values if next() returns
- * null. T
+ * Looping is implemented by {@link #forCount(Value, Value, long)}, which calls {@link #at(Value)} starting at the given
+ * minimum value until the required number of values are accepted. The next value for each iteration of the loop is
+ * determined by {@link NextValue#next()}. The loop can terminate before reaching the requested count of values if
+ * next() returns null. T
  * </p>
  *
  * <p><b>Filtering</b></p>

@@ -30,7 +30,6 @@ import com.telenav.lexakai.annotations.associations.UmlRelation;
  * @see Validator
  * @see ValidationType
  */
-@SuppressWarnings("SpellCheckingInspection")
 @UmlClassDiagram(diagram = DiagramValidation.class)
 @UmlRelation(label = "how to validate", referent = ValidationType.class)
 @UmlRelation(label = "provides", referent = Validator.class)

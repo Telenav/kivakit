@@ -20,14 +20,13 @@ package com.telenav.kivakit.core.language.object;
 
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.ensure.Ensure;
+import com.telenav.kivakit.core.language.module.PackageReference;
 import com.telenav.kivakit.core.language.reflection.Getter;
 import com.telenav.kivakit.core.language.reflection.Type;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitExcludeProperty;
 import com.telenav.kivakit.core.language.reflection.property.KivaKitIncludeProperty;
 import com.telenav.kivakit.core.language.reflection.property.PropertyFilter;
 import com.telenav.kivakit.core.language.reflection.property.PropertyMembers;
-import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.language.module.PackageReference;
 import com.telenav.kivakit.core.lexakai.DiagramReflection;
 import com.telenav.kivakit.interfaces.string.Stringable;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -54,7 +53,7 @@ public class ObjectFormatter
 
     private PropertyFilter filter = PropertyFilter.kivakitProperties(PropertyMembers.INCLUDED_FIELDS_AND_METHODS, PropertyMembers.INCLUDED_FIELDS);
 
-    /** The package paths to include when recursing */
+    /** The package paths to include while formatting recursively */
     private final PackageReference[] include;
 
     /** The object to format */
@@ -146,7 +145,6 @@ public class ObjectFormatter
 
                 default:
                 {
-                    var listener = (object instanceof Listener) ? (Listener) object : Listener.console();
                     Ensure.ensureNotNull(format, "@KivaKitFormatProperty(\"" + format + "\") is not a known format");
                     return ((Stringable) value).asString(format);
                 }

@@ -18,10 +18,10 @@
 
 package com.telenav.kivakit.resource.writing;
 
-import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.io.IO;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.progress.reporters.ProgressiveOutputStream;
+import com.telenav.kivakit.core.value.count.BaseCount;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.io.OutputStream;
@@ -37,7 +37,7 @@ import java.io.OutputStream;
 public interface Writable
 {
     /**
-     * @return True if this write-openable object can be written to, false if it cannot and null if it cannot be
+     * @return True if this write-open-able object can be written to, false if it cannot and null if it cannot be
      * determined if this object can be written to.
      */
     Boolean isWritable();
@@ -60,8 +60,8 @@ public interface Writable
     /**
      * Opens something that can be written to, returning an output stream. The given progress reporter is called for
      * each byte that is written to the output stream. The caller may wish to initialize the progress reporter with the
-     * number of bytes it plans to write via {@link ProgressReporter#steps(Count)}  to allow the reporter to report the
-     * percent complete as the stream is written.
+     * number of bytes it plans to write via {@link ProgressReporter#steps(BaseCount)} to allow the reporter to report
+     * the percent complete as the stream is written.
      *
      * @param reporter A progress reporter that is called for each byte that is written
      * @return The output stream to write to

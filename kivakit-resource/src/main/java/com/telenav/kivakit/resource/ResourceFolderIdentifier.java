@@ -49,7 +49,7 @@ public class ResourceFolderIdentifier
         return identifier;
     }
 
-    public ResourceFolder resolve(Listener listener)
+    public ResourceFolder<?> resolve(Listener listener)
     {
         return ResourceFolder.resolve(listener, this);
     }

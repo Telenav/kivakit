@@ -159,7 +159,7 @@ public class Settings extends MemorySettingsStore implements
     @Override
     public <T> T lookupSettings(Class<T> type,
                                 InstanceIdentifier instance,
-                                ResourceFolder defaultSettings)
+                                ResourceFolder<?> defaultSettings)
     {
         // First load any settings overrides from KIVAKIT_SETTINGS_FOLDERS,
         loadSettingsFolders();
