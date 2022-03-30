@@ -542,6 +542,16 @@ public class Maybe<Value> implements
     }
 
     /**
+     * Sets the given result value
+     */
+    public Maybe<Value> set(Value value)
+    {
+        this.value = value;
+
+        return this;
+    }
+
+    /**
      * If a value is present, and the given value is also present, applies the given five-argument function to produce a
      * new value of the same type.
      *
@@ -673,15 +683,5 @@ public class Maybe<Value> implements
     protected <T> Maybe<T> newMaybe(T value)
     {
         return new Maybe<>(value);
-    }
-
-    /**
-     * Sets the given result value
-     */
-    protected Maybe<Value> set(Value value)
-    {
-        this.value = value;
-
-        return this;
     }
 }

@@ -21,10 +21,10 @@ package com.telenav.kivakit.core.collections.map;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.language.primitive.Booleans;
 import com.telenav.kivakit.core.language.trait.TryTrait;
+import com.telenav.kivakit.core.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.messages.status.Problem;
 import com.telenav.kivakit.core.messaging.repeaters.RepeaterMixin;
-import com.telenav.kivakit.core.lexakai.DiagramCollections;
 import com.telenav.kivakit.core.string.Strip;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.value.count.Count;
@@ -69,6 +69,14 @@ public abstract class BaseStringMap<Value> extends BaseMap<String, Value> implem
     public boolean asBoolean(String key)
     {
         return Booleans.isTrue((String) get(key));
+    }
+
+    public boolean asBoolean(String key, boolean defaultValue)
+    {
+        var value = get(key);
+        return value == null
+                ? defaultValue
+                : Booleans.isTrue((String) value);
     }
 
     public Boolean asBooleanObject(String key)

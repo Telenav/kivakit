@@ -37,5 +37,7 @@ public class CoreGsonFactory extends BaseGsonFactory
         addConvertingSerializer(Maximum.class, new MaximumConverter(listener));
         addConvertingSerializer(Minimum.class, new MinimumConverter(listener));
         addConvertingSerializer(Percent.class, new PercentConverter(listener));
+
+        ignoreField("objectName");
     }
 }

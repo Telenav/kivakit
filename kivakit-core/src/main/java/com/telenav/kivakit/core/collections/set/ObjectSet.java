@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.core.collections.set;
 
+import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.value.count.Maximum;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 
@@ -94,6 +95,13 @@ public class ObjectSet<T> extends BaseSet<T>
     public ObjectSet<T> onNewInstance()
     {
         return new ObjectSet<>();
+    }
+
+    public ObjectList<T> sorted()
+    {
+        var list = ObjectList.objectList(this);
+        list.sorted();
+        return list;
     }
 
     @Override

@@ -1,8 +1,66 @@
 # KivaKit Change Log
 
+-----------------------------------------------------------------------------------------------------------------------
+
+## Version 1.5.0 (2022.03.30) "cobalt penguin"
+
+### Application
+
+ - Added StartUp class for startup options
+ - Improved start-up messages
+   - Only show information when QUIET startup option not present
+   - Include correct version and build information for loaded Projects
+   - Correct application version information
+
+### Build
+
+ - Removed kivakit-merged from build and published to Maven Central
+ - Code inspection and clean up
+ - Fix warnings
+ 
+### Collections
+
+ - Fixed problem with tombstone identifiers in primitive map tests
+ - Added Iterables.iterable(T[])
+
+### Deployments
+
+ - Generalized deployment loading using ResourceFolder
+
+### Documentation
+
+ - Added documentation for 
+
+### Interfaces
+
+ - Added Matchable
+ - Matcher.anything() -> Matcher.matchAll()
+ - 
+
+### Packages
+
+ - Fixed package resource regressions
+ - Improved PackageTrait
+ - Renamed old PackagePath class in kivakit core to PackageReference (which is only for use in kivakit-core)
+ - Created new PackagePath class in kivakit-resource as subclass of ResourcePath
+
+### Resources
+
+ - Reorganized package structure to clarify code
+ - Added resource creation time
+ - Added ResourceGlob
+
+### Settings 
+
+ - Generalized folder and package settings stores into ResourceFolderSettingsStore
+ 
+-----------------------------------------------------------------------------------------------------------------------
+
 ## Version 1.4.2 (2022.03.24) "cobalt penguin"
 
 This release makes merged jars part of the main build.
+
+-----------------------------------------------------------------------------------------------------------------------
 
 ## Version 1.4.1 (2022.03.23) "cobalt piglet"
 

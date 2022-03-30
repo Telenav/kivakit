@@ -226,7 +226,7 @@ public class ResourcePath extends StringPath implements UriIdentified
         // NOTE: We call super.join(String) here because it is not overridden
         return schemes.join(":")
                 + (hasScheme() ? ":" : "")
-                + super.join("/");
+                + super.join(separator());
     }
 
     /**

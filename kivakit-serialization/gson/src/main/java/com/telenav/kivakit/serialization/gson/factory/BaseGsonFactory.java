@@ -19,6 +19,7 @@
 package com.telenav.kivakit.serialization.gson.factory;
 
 import com.google.gson.ExclusionStrategy;
+import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.InstanceCreator;
@@ -41,6 +42,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.telenav.kivakit.core.version.Version.parseVersion;
+
 /**
  * Factory that produces configured {@link Gson} JSON serializers via {@link #gson()}.
  *
@@ -59,29 +62,51 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
      */
     private static class GsonSettings
     {
-        private final List<TypeAdapterFactory> typeAdapterFactories = new ArrayList<>();
-
-        private final Map<Class<?>, JsonSerializer<?>> serializers = new HashMap<>();
-
-        private final Map<Class<?>, JsonDeserializer<?>> deserializers = new HashMap<>();
-
-        private final Map<Class<?>, InstanceCreator<?>> instanceCreators = new HashMap<>();
-
-        private final Map<Class<?>, Object> typeHierarchyAdapters = new HashMap<>();
-
-        private final ObjectSet<ExclusionStrategy> exclusionStrategies = new ObjectSet<>();
+        private final ObjectSet<Class<?>> classesToExclude = ObjectSet.objectSet();
 
         private String dateFormat;
 
+        private final Map<Class<?>, JsonDeserializer<?>> deserializers = new HashMap<>();
+
         private boolean escapeHtml;
 
-        private boolean requireExposeAnnotation = false;
+        private final ObjectSet<ExclusionStrategy> exclusionStrategies = new ObjectSet<>();
+
+        private final ObjectSet<String> fieldsToExclude = ObjectSet.objectSet();
+
+        private final Map<Class<?>, InstanceCreator<?>> instanceCreators = new HashMap<>();
 
         private boolean prettyPrinting = true;
 
+        private boolean requireExposeAnnotation = false;
+
         private boolean serializeNulls = false;
 
-        public Version version = Version.of(1, 0);
+        private final Map<Class<?>, JsonSerializer<?>> serializers = new HashMap<>();
+
+        private final List<TypeAdapterFactory> typeAdapterFactories = new ArrayList<>();
+
+        private final Map<Class<?>, Object> typeHierarchyAdapters = new HashMap<>();
+
+        private Version version = parseVersion("1.0");
+
+        public GsonSettings()
+        {
+            exclusionStrategies.add(new ExclusionStrategy()
+            {
+                @Override
+                public boolean shouldSkipClass(Class<?> type)
+                {
+                    return classesToExclude.contains(type);
+                }
+
+                @Override
+                public boolean shouldSkipField(FieldAttributes attributes)
+                {
+                    return fieldsToExclude.contains(attributes.getName());
+                }
+            });
+        }
 
         public GsonBuilder builder()
         {
@@ -274,6 +299,18 @@ public abstract class BaseGsonFactory extends BaseRepeater implements GsonFactor
     public BaseGsonFactory htmlEscaping(boolean escape)
     {
         settings.escapeHtml = escape;
+        return this;
+    }
+
+    public BaseGsonFactory ignoreClass(Class<?> type)
+    {
+        settings.classesToExclude.add(type);
+        return this;
+    }
+
+    public BaseGsonFactory ignoreField(String name)
+    {
+        settings.fieldsToExclude.add(name);
         return this;
     }
 

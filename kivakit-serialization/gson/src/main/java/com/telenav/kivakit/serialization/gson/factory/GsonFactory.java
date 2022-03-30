@@ -65,6 +65,10 @@ public interface GsonFactory extends Repeater
 
     GsonFactory htmlEscaping(boolean escape);
 
+    GsonFactory ignoreClass(Class<?> type);
+
+    GsonFactory ignoreField(String name);
+
     GsonFactory prettyPrinting(boolean prettyPrinting);
 
     GsonFactory requireExposeAnnotation(boolean require);

@@ -21,6 +21,7 @@ package com.telenav.kivakit.core.messaging.listeners;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.messaging.Broadcaster;
+import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
 import com.telenav.kivakit.core.lexakai.DiagramListenerType;
 import com.telenav.kivakit.core.string.Formatter;
@@ -84,6 +85,11 @@ public class MessageList extends ObjectList<Message> implements MessageCounter
     {
         super(maximumSize);
         this.filter = filter;
+    }
+
+    public void broadcastTo(Listener listener)
+    {
+        forEach(listener::receive);
     }
 
     /**
