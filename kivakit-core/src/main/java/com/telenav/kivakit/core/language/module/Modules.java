@@ -42,6 +42,7 @@ import java.util.stream.Collectors;
  * @author jonathanl (shibo)
  * @see ModuleResource
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramModule.class)
 public class Modules
 {
@@ -89,7 +90,6 @@ public class Modules
                                     if (resource != null)
                                     {
                                         listener.trace("Found resource $.$", resource.packageReference(), resource.fileNameAsJavaPath());
-                                        allResources.add(resource);
                                         if (!resource.uri().toString().endsWith("/"))
                                         {
                                             allResources.add(resource);

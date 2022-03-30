@@ -152,7 +152,7 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
  *
  * @author jonathanl (shibo)
  */
-@SuppressWarnings("SameParameterValue")
+@SuppressWarnings({ "SameParameterValue", "unused" })
 @UmlClassDiagram(diagram = DiagramTest.class)
 @UmlRelation(label = "uses", referent = RandomValueFactory.class)
 @UmlRelation(label = "reports validation failures with", referent = JUnitFailureReporter.class)

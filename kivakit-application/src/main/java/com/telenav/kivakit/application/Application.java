@@ -28,7 +28,6 @@ import com.telenav.kivakit.commandline.Quantifier;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.component.BaseComponent;
 import com.telenav.kivakit.component.Component;
-import com.telenav.kivakit.conversion.core.value.VersionConverter;
 import com.telenav.kivakit.core.collections.list.ObjectList;
 import com.telenav.kivakit.core.collections.list.StringList;
 import com.telenav.kivakit.core.collections.set.IdentitySet;
@@ -46,6 +45,7 @@ import com.telenav.kivakit.core.messaging.filters.SeverityGreaterThanOrEqualTo;
 import com.telenav.kivakit.core.messaging.messages.status.Announcement;
 import com.telenav.kivakit.core.messaging.messages.status.Glitch;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
+import com.telenav.kivakit.core.project.Build;
 import com.telenav.kivakit.core.project.Project;
 import com.telenav.kivakit.core.project.StartUp;
 import com.telenav.kivakit.core.project.StartUp.Option;
@@ -89,9 +89,11 @@ import static com.telenav.kivakit.application.Application.State.READY;
 import static com.telenav.kivakit.application.Application.State.RUNNING;
 import static com.telenav.kivakit.application.Application.State.STOPPED;
 import static com.telenav.kivakit.application.Application.State.STOPPING;
+import static com.telenav.kivakit.commandline.Quantifier.*;
 import static com.telenav.kivakit.commandline.SwitchParsers.booleanSwitchParser;
 import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 
 /**
  * Base class for KivaKit applications.
@@ -388,6 +390,14 @@ public abstract class Application extends BaseComponent implements
     }
 
     /**
+     * @return The application version as specified in the resource "/project.properties"
+     */
+    public Build build()
+    {
+        return Build.build(getClass());
+    }
+
+    /**
      * @return The parsed command line
      */
     @UmlRelation(label = "parses arguments into")
@@ -422,6 +432,8 @@ public abstract class Application extends BaseComponent implements
 
     public <T> T get(SwitchParser<T> parser)
     {
+        ensureNotNull(parser);
+
         return commandLine.get(parser);
     }
 
@@ -431,6 +443,8 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> T get(SwitchParser<T> parser, T defaultValue)
     {
+        ensureNotNull(parser);
+
         return commandLine.get(parser, defaultValue);
     }
 
@@ -439,6 +453,8 @@ public abstract class Application extends BaseComponent implements
      */
     public <T> boolean has(SwitchParser<T> parser)
     {
+        ensureNotNull(parser);
+
         return commandLine.has(parser);
     }
 
@@ -550,7 +566,7 @@ public abstract class Application extends BaseComponent implements
         onConfigureListeners();
 
         // and if a deployment was specified,
-        if (!ignoreDeployments() && !deployments.isEmpty() && has(DEPLOYMENT))
+        if (deploymentSpecified())
         {
             // install it in the global settings registry.
             registerSettingsIn(get(DEPLOYMENT));
@@ -604,11 +620,11 @@ public abstract class Application extends BaseComponent implements
         var box = new StringList();
         int number = 1;
 
-        var deployment = has(DEPLOYMENT) ? get(DEPLOYMENT) : null;
+        var deployment = deploymentSpecified() ? get(DEPLOYMENT) : null;
 
         box.add(" ");
-        box.add("    Version: $", projectVersion());
-        box.add("      Build: $", projectBuild().toString());
+        box.add("    Version: $", version());
+        box.add("      Build: $", build());
         if (deployment != null)
         {
             box.add(" Deployment: $ ($)", deployment.name(), deployment.description());
@@ -652,7 +668,7 @@ public abstract class Application extends BaseComponent implements
      */
     public Version version()
     {
-        return properties().get("project-version", new VersionConverter(this));
+        return properties().asVersion("project-version");
     }
 
     /**
@@ -765,6 +781,11 @@ public abstract class Application extends BaseComponent implements
         LOGGER.listenTo(this, filter);
     }
 
+    private boolean deploymentSpecified()
+    {
+        return !ignoreDeployments() && has(DEPLOYMENT);
+    }
+
     private void initializeProject(IdentitySet<Project> uninitialized, Project project)
     {
         // For each dependent project,
@@ -806,11 +827,11 @@ public abstract class Application extends BaseComponent implements
     {
         var parsers = new HashSet<SwitchParser<?>>();
 
-        if (!ignoreDeployments() && !deployments.isEmpty() && DEPLOYMENT == null)
+        if (!ignoreDeployments() && DEPLOYMENT == null)
         {
             DEPLOYMENT = deployments
                     .switchParser("deployment")
-                    .quantifier(deployments.isEmpty() ? Quantifier.OPTIONAL : Quantifier.REQUIRED)
+                    .quantifier(deployments.isEmpty() ? OPTIONAL : REQUIRED)
                     .build();
 
             parsers.add(DEPLOYMENT);

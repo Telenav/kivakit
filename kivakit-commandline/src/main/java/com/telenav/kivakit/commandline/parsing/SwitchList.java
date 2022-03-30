@@ -34,6 +34,8 @@ import com.telenav.lexakai.annotations.visibility.UmlNotPublicApi;
 
 import java.util.Iterator;
 
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+
 /**
  * <b>Not Public API</b>
  * <p>
@@ -78,6 +80,8 @@ public class SwitchList implements
      */
     public <T> T get(SwitchParser<T> parser)
     {
+        ensureNotNull(parser);
+
         var _switch = switchForName(parser.name());
         if (_switch != null)
         {

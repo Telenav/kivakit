@@ -26,6 +26,7 @@ import com.telenav.kivakit.core.lexakai.DiagramProject;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
 import com.telenav.kivakit.core.object.LazyMap;
 import com.telenav.kivakit.core.registry.RegistryTrait;
+import com.telenav.kivakit.core.string.Align;
 import com.telenav.kivakit.core.string.AsciiArt;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.core.vm.JavaTrait;
@@ -194,7 +195,9 @@ public abstract class Project extends BaseRepeater implements
             // initialize the project
             if (!StartUp.isEnabled(StartUp.Option.QUIET))
             {
-                announce("Initializing project: ${class}", getClass());
+                announce("Loading$ $ build $",
+                        Align.right(getClass().getSimpleName(), 40, '.'),
+                        Align.left(projectVersion().toString(), 20, '.'), build());
             }
             onInitialize();
 

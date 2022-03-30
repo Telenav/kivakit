@@ -239,7 +239,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
 
     public PackageReference reference()
     {
-        return packageReference(path());
+        return packageReference(path().packageType(), path());
     }
 
     /**

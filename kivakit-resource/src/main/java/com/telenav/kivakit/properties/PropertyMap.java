@@ -64,8 +64,7 @@ import static com.telenav.kivakit.resource.packages.PackageResource.packageResou
  *     <li>{@link #propertyMap(VariableMap)} - Creates a property map from the given variable map</li>
  *     <li>{@link #load(Resource)} - Loads a property map from the given resource</li>
  *     <li>{@link #load(Listener, InputStream)} - Loads property map from the given input stream</li>
- *     <li>{@link #load(Listener, Class, String)} - Loads property map from the given package type and relative path</li>
- *     <li>{@link #load(Listener, PackagePath, String)} - Loads property map from the given package path and relative path</li>
+ *     <li>{@link #load(Listener, ResourceFolder, String)} - Loads property map from the given package path and relative path</li>
  *     <li>{@link #localized(Listener, PackagePath, Locale)} - Loads a property map from the given package with a relative path
  *      from the given {@link Locale} of the form "locales/[language-name](/[country-name])?.</li>
  * </ul>

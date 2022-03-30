@@ -261,7 +261,6 @@ public class AsciiArt
         message = Strings.format(message, arguments);
         var width = widestLine(title + "\n" + message) + 4;
         var builder = new StringBuilder();
-        builder.append(" \n");
         builder.append(TOP_LEFT_LINE_CHARACTER).append(Align.center(title, width - 2, HORIZONTAL_LINE_CHARACTER)).append(TOP_RIGHT_LINE_CHARACTER).append("\n");
         for (var line : message.split("\n"))
         {
@@ -271,7 +270,6 @@ public class AsciiArt
             builder.append('\n');
         }
         builder.append(BOTTOM_LEFT_LINE_CHARACTER).append(line(width - 2)).append(BOTTOM_RIGHT_LINE_CHARACTER);
-        builder.append("\n ");
         return builder.toString();
     }
 

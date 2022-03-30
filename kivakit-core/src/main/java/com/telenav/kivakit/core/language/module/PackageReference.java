@@ -349,7 +349,9 @@ public final class PackageReference extends StringPath
      */
     public Class<?> packageType()
     {
-        return packageType;
+        return packageType == null
+                ? getClass()
+                : packageType;
     }
 
     /**

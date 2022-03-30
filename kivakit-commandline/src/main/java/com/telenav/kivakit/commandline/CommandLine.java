@@ -38,6 +38,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.lexakai.annotations.UmlNote.Align.TOP;
 
 /**
@@ -61,6 +62,7 @@ import static com.telenav.lexakai.annotations.UmlNote.Align.TOP;
  * @author jonathanl (shibo)
  * @see CommandLineParser
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCommandLine.class)
 @UmlExcludeSuperTypes({ Stringable.class })
 @UmlNote(text = "See Application for easy access to switches and arguments", align = TOP)
@@ -233,6 +235,8 @@ public class CommandLine implements Stringable, Iterable<Argument>
     @UmlRelation(label = "gets switches")
     public <T> T get(SwitchParser<T> parser)
     {
+        ensureNotNull(parser);
+
         // Get the value for the given parser,
         var value = switches.get(parser);
 
@@ -266,6 +270,8 @@ public class CommandLine implements Stringable, Iterable<Argument>
      */
     public <T> T get(SwitchParser<T> parser, T defaultValue)
     {
+        ensureNotNull(parser);
+
         var value = switches.get(parser);
         if (value == null)
         {
@@ -279,6 +285,8 @@ public class CommandLine implements Stringable, Iterable<Argument>
      */
     public <T> boolean has(SwitchParser<T> parser)
     {
+        ensureNotNull(parser);
+
         return get(parser) != null;
     }
 

@@ -19,7 +19,6 @@
 package com.telenav.kivakit.serialization.kryo;
 
 import com.telenav.kivakit.core.path.StringPath;
-import com.telenav.kivakit.test.UnitTest;
 import com.telenav.kivakit.core.value.count.Count;
 import com.telenav.kivakit.core.version.Version;
 import com.telenav.kivakit.resource.serialization.SerializableObject;
@@ -28,11 +27,14 @@ import com.telenav.kivakit.serialization.core.SerializationSessionFactory;
 import com.telenav.kivakit.serialization.kryo.types.CoreKryoTypes;
 import com.telenav.kivakit.serialization.kryo.types.KryoTypes;
 import com.telenav.kivakit.serialization.kryo.types.ResourceKryoTypes;
+import com.telenav.kivakit.test.UnitTest;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
+import static com.telenav.kivakit.core.version.Version.version;
+import static com.telenav.kivakit.resource.serialization.ObjectMetadata.VERSION;
 import static com.telenav.kivakit.serialization.core.SerializationSession.SessionType.RESOURCE;
 
 /**
@@ -82,22 +84,22 @@ public class KryoUnitTest extends UnitTest
         var path = StringPath.stringPath("/a/b/c");
 
         var write = new SerializableObject<>(object, version);
-        serializer.write(output, path, write);
+        serializer.write(output, path, write, VERSION);
 
         var input = new ByteArrayInputStream(output.toByteArray());
 
-        var read = serializer.read(input, path, object.getClass());
+        var read = serializer.read(input, path, object.getClass(), VERSION);
         ensureEqual(write, read);
     }
 
     protected void testSerialization(Object object)
     {
-        testSerialization(object, null);
+        testSerialization(object, version("1.0"));
     }
 
     protected void testSessionSerialization(Object object)
     {
-        testSessionSerialization(object, null);
+        testSessionSerialization(object, version("1.0"));
     }
 
     protected void testSessionSerialization(Object object, Version version)
@@ -111,7 +113,7 @@ public class KryoUnitTest extends UnitTest
         // Write the object n times to the session
         {
             var session = new KryoSerializationSession(kryoTypes());
-            session.open(output, RESOURCE, projectVersion());
+            session.open(output, RESOURCE, version);
             n.loop(() -> session.write(new SerializableObject<>(object, version)));
             session.close();
         }
@@ -121,7 +123,7 @@ public class KryoUnitTest extends UnitTest
             var session = new KryoSerializationSession(kryoTypes());
             var input = new ByteArrayInputStream(output.toByteArray());
             var streamVersion = session.open(input, RESOURCE);
-            ensureEqual(projectVersion(), streamVersion);
+            ensureEqual(version, streamVersion);
             n.loop(() ->
             {
                 var deserialized = session.read();

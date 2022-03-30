@@ -90,7 +90,7 @@ import static com.telenav.kivakit.interfaces.code.FilteredLoopBody.FilterAction.
  */
 @UmlClassDiagram(diagram = DiagramTest.class)
 @LexakaiJavadoc(complete = true)
-@SuppressWarnings({ "SpellCheckingInspection", "DuplicatedCode" })
+@SuppressWarnings({ "SpellCheckingInspection", "DuplicatedCode", "unused" })
 public class RandomValueFactory implements RandomNumeric
 {
     private static volatile long SALT = 8682522807148012L;

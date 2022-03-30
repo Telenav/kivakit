@@ -203,7 +203,7 @@ public class CommandLineParser
     protected void exit(String message, Object... arguments)
     {
         var formatted = Strings.format(message, arguments);
-        System.err.println(AsciiArt.textBox("COMMAND LINE ERROR(S)", formatted));
+        System.err.println("\n" + AsciiArt.textBox("COMMAND LINE ERROR(S)", formatted));
         System.err.flush();
         Duration.seconds(0.25).sleep();
         System.out.println(help() + "\n");

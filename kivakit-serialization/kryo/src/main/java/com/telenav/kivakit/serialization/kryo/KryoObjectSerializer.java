@@ -68,7 +68,7 @@ public class KryoObjectSerializer implements
 
             // read any version,
             Version version = null;
-            if (ObjectMetadata.VERSION.containedIn(metadata))
+            if (VERSION.containedIn(metadata))
             {
                 version = kryo.get().readObject(input, Version.class);
             }
