@@ -22,6 +22,7 @@
 
  - Fixed problem with tombstone identifiers in primitive map tests
  - Added Iterables.iterable(T[])
+ - Added ObjectSet.sorted(), which produces an ObjectList
 
 ### Deployments
 
@@ -35,7 +36,11 @@
 
  - Added Matchable
  - Matcher.anything() -> Matcher.matchAll()
- - 
+
+### Microservlets
+
+ - Added support for Result to BaseMicroservletResponse, and endResponse() to MicroservletResponse
+ - Added GsonFactory.ignoreClass() and ignoreField()
 
 ### Packages
 
