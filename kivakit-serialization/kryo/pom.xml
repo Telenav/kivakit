@@ -12,7 +12,7 @@
     <parent>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-serialization</artifactId>
-        <version>1.4.3-SNAPSHOT</version>
+        <version>1.5.0</version>
     </parent>
 
     <artifactId>kivakit-serialization-kryo</artifactId>

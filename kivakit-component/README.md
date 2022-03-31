@@ -20,14 +20,14 @@ This module defines KivaKit lightweight components.
 
 ### Dependencies <a name="dependencies"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/dependencies-32.png" srcset="https://www.kivakit.org/images/dependencies-32-2x.png 2x"/>
 
-[*Dependency Diagram*](https://www.kivakit.org/1.4.2/lexakai/kivakit/kivakit-component/documentation/diagrams/dependencies.svg)
+[*Dependency Diagram*](https://www.kivakit.org/1.5.0/lexakai/kivakit/kivakit-component/documentation/diagrams/dependencies.svg)
 
 #### Maven Dependency
 
     <dependency>
         <groupId>com.telenav.kivakit</groupId>
         <artifactId>kivakit-component</artifactId>
-        <version>1.4.2</version>
+        <version>1.5.0</version>
     </dependency>
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
@@ -51,14 +51,14 @@ This module defines KivaKit lightweight components.
 
 ### Class Diagrams <a name="class-diagrams"></a> &nbsp; &nbsp; <img src="https://www.kivakit.org/images/diagram-40.png" srcset="https://www.kivakit.org/images/diagram-40-2x.png 2x"/>
 
-[*Component, BaseComponent and ComponentMixin*](https://www.kivakit.org/1.4.2/lexakai/kivakit/kivakit-component/documentation/diagrams/diagram-component.svg)
+[*Component, BaseComponent and ComponentMixin*](https://www.kivakit.org/1.5.0/lexakai/kivakit/kivakit-component/documentation/diagrams/diagram-component.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
 ### Package Diagrams <a name="package-diagrams"></a> &nbsp;&nbsp; <img src="https://www.kivakit.org/images/box-32.png" srcset="https://www.kivakit.org/images/box-32-2x.png 2x"/>
 
-[*com.telenav.kivakit.component*](https://www.kivakit.org/1.4.2/lexakai/kivakit/kivakit-component/documentation/diagrams/com.telenav.kivakit.component.svg)  
-[*com.telenav.kivakit.component.lexakai*](https://www.kivakit.org/1.4.2/lexakai/kivakit/kivakit-component/documentation/diagrams/com.telenav.kivakit.component.lexakai.svg)
+[*com.telenav.kivakit.component*](https://www.kivakit.org/1.5.0/lexakai/kivakit/kivakit-component/documentation/diagrams/com.telenav.kivakit.component.svg)  
+[*com.telenav.kivakit.component.lexakai*](https://www.kivakit.org/1.5.0/lexakai/kivakit/kivakit-component/documentation/diagrams/com.telenav.kivakit.component.lexakai.svg)
 
 <img src="https://www.kivakit.org/images/horizontal-line-128.png" srcset="https://www.kivakit.org/images/horizontal-line-128-2x.png 2x"/>
 
@@ -73,15 +73,15 @@ Javadoc coverage for this project is 75.0%.
 
 | Class | Documentation Sections |
 |---|---|
-| [*BaseComponent*](https://www.kivakit.org/1.4.2/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/BaseComponent.html) |  |  
-| [*Component*](https://www.kivakit.org/1.4.2/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/Component.html) | Language |  
+| [*BaseComponent*](https://www.kivakit.org/1.5.0/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/BaseComponent.html) |  |  
+| [*Component*](https://www.kivakit.org/1.5.0/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/Component.html) | Language |  
 | | Packaging |  
 | | Repeater |  
 | | Registry |  
 | | Sub-Interfaces |  
 | | Settings |  
-| [*ComponentMixin*](https://www.kivakit.org/1.4.2/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/ComponentMixin.html) |  |  
-| [*DiagramComponent*](https://www.kivakit.org/1.4.2/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/lexakai/DiagramComponent.html) |  |  
+| [*ComponentMixin*](https://www.kivakit.org/1.5.0/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/ComponentMixin.html) |  |  
+| [*DiagramComponent*](https://www.kivakit.org/1.5.0/javadoc/kivakit/kivakit.component/com/telenav/kivakit/component/lexakai/DiagramComponent.html) |  |  
 
 [//]: # (start-user-text)
 
