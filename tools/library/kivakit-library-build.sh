@@ -106,7 +106,7 @@ build() {
     "deploy-ossrh")
         BUILD_ARGUMENTS="clean deploy"
         # shellcheck disable=SC2206
-        BUILD_MODIFIERS=(multi-threaded no-javadoc clean-sparkling tests attach-jars sign-artifacts ${@:3})
+        BUILD_MODIFIERS=(multi-threaded clean-sparkling tests attach-jars sign-artifacts ${@:3})
         export BUILD_LEXAKAI_DOCUMENTATION=true
         ;;
 
