@@ -13,7 +13,7 @@
     <name>superpom</name>
     <groupId>com.telenav.kivakit</groupId>
     <artifactId>superpom</artifactId>
-    <version>1.5.0</version>
+    <version>1.5.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
 
@@ -179,7 +179,7 @@
 
         <!-- KivaKit Version -->
 
-        <kivakit.version>1.5.0</kivakit.version>
+        <kivakit.version>1.5.1-SNAPSHOT</kivakit.version>
 
         <!-- Merged JARs -->
         <kivakit.merged.version>1.5.0</kivakit.merged.version>
