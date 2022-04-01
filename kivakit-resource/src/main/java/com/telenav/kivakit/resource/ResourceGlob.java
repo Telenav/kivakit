@@ -72,16 +72,16 @@ import java.util.regex.Pattern;
  * <p><b>Examples</b></p>
  *
  * <pre>
- * match(Extension.JAVA)                           // Match .java resources
- * match(JAVA)                                     // Match .java resources
- * match("**.java")                                // Match .java resources
- * match(JAVA).not()                               // Match all but .java resources
- * match(JAVA).plus(MARKDOWN)                      // Match .java and .md resources
- * match(JAVA).minus(it -> it.endsWith("Test"))    // Match .java resources except tests
- * match("**&#47;target/**").select(CLASS)             // Match class files under target
- * match(CLASS).under(target)                      // Match class files under target
- * matchAllUnder(target).select(CLASS)             // Match class files under target
- * match(JAVA).plus(target)                        // Match .java and target files</pre>
+ * match(Extension.JAVA)                         // Match .java resources
+ * match(JAVA)                                   // Match .java resources
+ * match("**.java")                              // Match .java resources
+ * match(JAVA).not()                             // Match all but .java resources
+ * match(JAVA).plus(MARKDOWN)                    // Match .java and .md resources
+ * match(JAVA).minus(it -> it.endsWith("Test"))  // Match .java resources except tests
+ * match("**&#47;target/**").select(CLASS)           // Match class files under target
+ * match(CLASS).under(target)                    // Match class files under target
+ * matchAllUnder(target).select(CLASS)           // Match class files under target
+ * match(JAVA).plus(target)                      // Match .java and target files</pre>
  *
  * <p><br/><hr/><br/></p>
  *

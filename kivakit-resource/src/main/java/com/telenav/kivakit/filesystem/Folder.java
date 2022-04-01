@@ -951,6 +951,7 @@ public class Folder extends BaseRepeater implements
         return folder().lastModified();
     }
 
+    @Override
     public Folder mkdirs()
     {
         if (!exists())
@@ -1061,7 +1062,7 @@ public class Folder extends BaseRepeater implements
         return new Folder(path().root());
     }
 
-    public void safeCopyTo(Folder destination,
+    public void safeCopyTo(ResourceFolder<?> destination,
                            CopyMode mode,
                            Matcher<File> matcher,
                            ProgressReporter reporter)
@@ -1089,7 +1090,7 @@ public class Folder extends BaseRepeater implements
     }
 
     @Override
-    public void safeCopyTo(Folder destination, CopyMode mode, ProgressReporter reporter)
+    public void safeCopyTo(ResourceFolder<?> destination, CopyMode mode, ProgressReporter reporter)
     {
         safeCopyTo(destination, mode, Filter.all(), reporter);
     }

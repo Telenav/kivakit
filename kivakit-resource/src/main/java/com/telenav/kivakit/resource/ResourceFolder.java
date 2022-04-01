@@ -31,6 +31,7 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.filesystem.Folder.Type.NORMAL;
 import static com.telenav.kivakit.resource.CopyMode.OVERWRITE;
 
@@ -85,6 +86,10 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
         return that.path().startsWith(path());
     }
 
+    boolean delete();
+
+    boolean exists();
+
     /**
      * @return The child resource container at the given relative path
      */
@@ -93,6 +98,11 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     List<T> folders();
 
     ResourceFolderIdentifier identifier();
+
+    default boolean isEmpty()
+    {
+        return folders().isEmpty() && resources().isEmpty();
+    }
 
     boolean isMaterialized();
 
@@ -131,6 +141,12 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
         return folder;
     }
 
+    default ResourceFolder<?> mkdirs()
+    {
+        unsupported();
+        return this;
+    }
+
     default List<T> nestedFolders(Matcher<T> matcher)
     {
         var folders = new ArrayList<T>();
@@ -161,6 +177,10 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
         return list;
     }
 
+    ResourceFolder<?> parent();
+
+    void renameTo(ResourceFolder<?> folder);
+
     /**
      * @return The resource of the given in this container
      */
@@ -180,9 +200,9 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     }
 
     /**
-     * Copy the resources in this package to the given folder
+     * Copy the resources in this folder to the given folder
      */
-    default void safeCopyTo(Folder folder, CopyMode mode, ProgressReporter reporter)
+    default void safeCopyTo(ResourceFolder<?> folder, CopyMode mode, ProgressReporter reporter)
     {
         for (var at : resources())
         {
