@@ -35,7 +35,7 @@ import java.util.regex.Pattern;
  * @author jonathanl (shibo)
  */
 @UmlClassDiagram(diagram = DiagramComparison.class)
-public interface Matcher<Value> extends Predicate<Value>, Matchable<Value>
+public interface Matcher<Value> extends Matchable<Value>
 {
     static <T> Matcher<T> matchAll()
     {
@@ -57,6 +57,11 @@ public interface Matcher<Value> extends Predicate<Value>, Matchable<Value>
         return named -> named.name().equalsIgnoreCase(name);
     }
 
+    default Predicate<Value> asPredicate()
+    {
+        return this::matches;
+    }
+
     @Override
     default Matcher<Value> matcher()
     {
@@ -67,13 +72,4 @@ public interface Matcher<Value> extends Predicate<Value>, Matchable<Value>
      * @return True if the given value matches
      */
     boolean matches(Value value);
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    default boolean test(Value value)
-    {
-        return matches(value);
-    }
 }

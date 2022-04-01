@@ -70,7 +70,9 @@ import java.util.function.Function;
  */
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
-public class ResourcePath extends StringPath implements UriIdentified
+public class ResourcePath extends StringPath implements
+        UriIdentified,
+        ResourcePathed
 {
     private static final Logger LOGGER = LoggerFactory.newLogger();
 
@@ -257,6 +259,12 @@ public class ResourcePath extends StringPath implements UriIdentified
     public ResourcePath parent()
     {
         return (ResourcePath) super.parent();
+    }
+
+    @Override
+    public ResourcePath path()
+    {
+        return this;
     }
 
     public ResourcePath relativeTo(ResourcePath path)

@@ -22,6 +22,7 @@ import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.filesystem.Folder;
+import com.telenav.kivakit.interfaces.comparison.Matchable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.packages.Package;
 import com.telenav.kivakit.resource.spi.ResourceFolderResolverServiceLoader;
@@ -41,7 +42,8 @@ import static com.telenav.kivakit.resource.CopyMode.OVERWRITE;
  */
 public interface ResourceFolder<T extends ResourceFolder<T>> extends
         UriIdentified,
-        ResourcePathed
+        ResourcePathed,
+        Matchable<ResourcePathed>
 {
     static ResourceFolderIdentifier identifier(String identifier)
     {
@@ -78,12 +80,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
         }
     }
 
-    default boolean contains(T that)
-    {
-        return that.path().startsWith(path());
-    }
-
-    default boolean contains(Resource that)
+    default boolean contains(ResourcePathed that)
     {
         return that.path().startsWith(path());
     }
@@ -98,6 +95,22 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     ResourceFolderIdentifier identifier();
 
     boolean isMaterialized();
+
+    default Matcher<ResourcePathed> matchAllIn()
+    {
+        return resource -> path().equals(resource.path().parent());
+    }
+
+    default Matcher<ResourcePathed> matchAllUnder()
+    {
+        return this::contains;
+    }
+
+    @Override
+    default Matcher<ResourcePathed> matcher()
+    {
+        return matchAllUnder();
+    }
 
     default Folder materialize()
     {

@@ -83,7 +83,7 @@ import java.util.Objects;
         {
             value = cast(randomLongExclusive(minimum, maximum), type);
         }
-        while (!matcher.test(value));
+        while (!matcher.matches(value));
         return value;
     }
 

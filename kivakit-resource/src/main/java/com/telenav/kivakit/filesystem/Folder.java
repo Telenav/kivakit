@@ -46,7 +46,6 @@ import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.resource.ResourceFolderIdentifier;
-import com.telenav.kivakit.resource.ResourceGlob;
 import com.telenav.kivakit.resource.ResourceList;
 import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFolder;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceService;
@@ -79,6 +78,7 @@ import static com.telenav.kivakit.core.project.Project.resolveProject;
 import static com.telenav.kivakit.filesystem.Folder.Traversal.RECURSE;
 import static com.telenav.kivakit.filesystem.Folder.Type.CLEAN_UP_ON_EXIT;
 import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.fileSystem;
+import static com.telenav.kivakit.resource.ResourceGlob.match;
 import static com.telenav.kivakit.resource.ResourceList.resourceList;
 
 /**
@@ -785,7 +785,7 @@ public class Folder extends BaseRepeater implements
 
     public FileList files(String globPattern)
     {
-        return files(ResourceGlob.match(globPattern));
+        return files(file -> match(globPattern).matches(file));
     }
 
     public FileList files(Extension extension)
@@ -1052,7 +1052,7 @@ public class Folder extends BaseRepeater implements
     {
         return resourceList(files()
                 .stream()
-                .filter(matcher)
+                .filter(matcher.asPredicate())
                 .collect(Collectors.toList()));
     }
 
