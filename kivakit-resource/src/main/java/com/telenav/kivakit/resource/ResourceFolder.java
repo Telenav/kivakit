@@ -21,6 +21,7 @@ package com.telenav.kivakit.resource;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.progress.ProgressReporter;
+import com.telenav.kivakit.filesystem.File;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.comparison.Matchable;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
@@ -31,6 +32,7 @@ import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.filesystem.Folder.Type.NORMAL;
 import static com.telenav.kivakit.resource.CopyMode.OVERWRITE;
 
@@ -40,6 +42,7 @@ import static com.telenav.kivakit.resource.CopyMode.OVERWRITE;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 public interface ResourceFolder<T extends ResourceFolder<T>> extends
         UriIdentified,
         ResourcePathed,
@@ -80,6 +83,14 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
         }
     }
 
+    /**
+     * This folder as an absolute path with a trailing slash on it
+     */
+    default ResourceFolder<?> absolute()
+    {
+        return newFolder(path().absolute()).withTrailingSlash();
+    }
+
     default boolean contains(ResourcePathed that)
     {
         return that.path().startsWith(path());
@@ -91,6 +102,11 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     T folder(String path);
 
     List<T> folders();
+
+    default boolean hasTrailingSlash()
+    {
+        return path().hasTrailingSlash();
+    }
 
     ResourceFolderIdentifier identifier();
 
@@ -131,6 +147,8 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
         return folder;
     }
 
+    ResourceFolder<?> mkdirs();
+
     default List<T> nestedFolders(Matcher<T> matcher)
     {
         var folders = new ArrayList<T>();
@@ -161,10 +179,38 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
         return list;
     }
 
+    ResourceFolder<?> newFolder(ResourcePath relativePath);
+
+    default ResourcePath relativePath(ResourceFolder<?> folder)
+    {
+        return absolute().relativePath(folder.absolute());
+    }
+
+    default ResourceFolder<?> relativeTo(ResourceFolder<?> folder)
+    {
+        return newFolder(relativePath(folder));
+    }
+
     /**
      * @return The resource of the given in this container
      */
-    Resource resource(String name);
+    default Resource resource(FileName name)
+    {
+        return resource(name.asPath());
+    }
+
+    /**
+     * @return The resource of the given in this container
+     */
+    Resource resource(ResourcePathed path);
+
+    /**
+     * @return The resource of the given in this container
+     */
+    default Resource resource(String name)
+    {
+        return resource(FileName.parseFileName(Listener.throwing(), name));
+    }
 
     /**
      * @return The resources in this folder matching the given matcher
@@ -182,15 +228,36 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     /**
      * Copy the resources in this package to the given folder
      */
-    default void safeCopyTo(Folder folder, CopyMode mode, ProgressReporter reporter)
+    default void safeCopyTo(ResourceFolder<?> folder, CopyMode mode, ProgressReporter reporter)
     {
         for (var at : resources())
         {
-            var destination = folder.mkdirs().file(at.fileName());
+            var destination = folder.mkdirs().resource(at.fileName()).asWritable();
             if (mode.canCopy(at, destination))
             {
                 at.safeCopyTo(destination, mode, reporter);
             }
         }
+    }
+
+    default Resource temporary(FileName baseName)
+    {
+        return temporary(baseName, Extension.TMP);
+    }
+
+    File temporary(FileName baseName, Extension extension);
+
+    default ResourceFolder<?> temporaryFolder(FileName baseName)
+    {
+        return unsupported();
+    }
+
+    default ResourceFolder<?> withTrailingSlash()
+    {
+        if (hasTrailingSlash())
+        {
+            return this;
+        }
+        return newFolder(path().withChild(""));
     }
 }

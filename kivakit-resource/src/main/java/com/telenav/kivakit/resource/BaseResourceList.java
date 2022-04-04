@@ -10,6 +10,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 import java.util.Set;
 
+@SuppressWarnings("unused")
 public abstract class BaseResourceList<T extends Resource> extends ObjectList<T>
 {
     @Override

@@ -37,6 +37,8 @@ import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.resource.ResourceFolderIdentifier;
 import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.ResourceList;
+import com.telenav.kivakit.resource.ResourcePath;
+import com.telenav.kivakit.resource.ResourcePathed;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.spi.ResourceFolderResolver;
@@ -54,7 +56,7 @@ import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.language.module.PackageReference.packageReference;
 import static com.telenav.kivakit.core.messaging.Listener.throwing;
 import static com.telenav.kivakit.resource.ResourceList.resourceList;
@@ -219,6 +221,18 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
         return PropertyMap.localized(listener, path(), locale);
     }
 
+    @Override
+    public ResourceFolder<?> mkdirs()
+    {
+        return unsupported();
+    }
+
+    @Override
+    public ResourceFolder<?> newFolder(ResourcePath relativePath)
+    {
+        return packageForPath(this, path().withChild(relativePath));
+    }
+
     /**
      * @return The parent package of this package, or null if there is none
      */
@@ -246,21 +260,9 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
      * @return The resource in this package with the given name
      */
     @Override
-    public PackageResource resource(String name)
+    public PackageResource resource(ResourcePathed pathed)
     {
-        if (name.contains("/"))
-        {
-            var path = FilePath.parseFilePath(LOGGER, name);
-            return folder(path.withoutLast().toString()).resource(path.last());
-        }
-        for (var resource : resources())
-        {
-            if (resource.fileName().name().equals(name))
-            {
-                return (PackageResource) resource;
-            }
-        }
-        return fail("Unable to find package resource $ in package $", name, path());
+        return packageResource(this, pathed);
     }
 
     /**
