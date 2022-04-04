@@ -37,6 +37,7 @@ import com.telenav.kivakit.filesystem.spi.FileService;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Extension;
 import com.telenav.kivakit.resource.Resource;
+import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.ResourcePath;
 import com.telenav.kivakit.resource.compression.Codec;
@@ -131,6 +132,7 @@ import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.file
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("SameParameterValue")
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @LexakaiJavadoc(complete = true)
 public class File extends BaseWritableResource implements FileSystemObject
@@ -282,11 +284,6 @@ public class File extends BaseWritableResource implements FileSystemObject
         }
 
         return File.file(FilePath.parseFilePath(listener, path));
-    }
-
-    public static synchronized File temporary(Extension extension)
-    {
-        return Folder.kivakitTemporary().file("temp-" + temporaryFileNumber++ + extension);
     }
 
     /**
@@ -656,9 +653,17 @@ public class File extends BaseWritableResource implements FileSystemObject
     /**
      * @return This file with a path relative to the given folder
      */
+    @Override
     public File relativeTo(Folder folder)
     {
         return File.file(service.relativePath(folder.service()).withoutTrailingSlash());
+    }
+
+    @Override
+    public <R extends Resource, F extends ResourceFolder<?>> R relativeTo(final F folder)
+    {
+        return null;
+        r
     }
 
     /**
@@ -745,7 +750,7 @@ public class File extends BaseWritableResource implements FileSystemObject
      */
     public File withExtension(Extension extension)
     {
-        return File.parseFile(this, path().toString() + extension);
+        return parseFile(this, path().toString() + extension);
     }
 
     /**
@@ -773,7 +778,7 @@ public class File extends BaseWritableResource implements FileSystemObject
             }
             if (dot > 0)
             {
-                return File.parseFile(this, pathString.substring(0, dot));
+                return parseFile(this, pathString.substring(0, dot));
             }
         }
         return this;
@@ -788,7 +793,7 @@ public class File extends BaseWritableResource implements FileSystemObject
         if (extension != null)
         {
             var withoutExtension = Paths.withoutOptionalSuffix(path().toString(), '.');
-            return File.parseFile(this, withoutExtension);
+            return parseFile(this, withoutExtension);
         }
         return this;
     }
@@ -808,7 +813,7 @@ public class File extends BaseWritableResource implements FileSystemObject
             {
                 if (file.fileName().endsWith(extension))
                 {
-                    file = File.parseFile(this, Strip.ending(path().toString(), extension.toString()));
+                    file = parseFile(this, Strip.ending(path().toString(), extension.toString()));
                     removedOne = true;
                 }
             }
@@ -826,9 +831,14 @@ public class File extends BaseWritableResource implements FileSystemObject
         var file = this;
         while (file.exists())
         {
-            file = File.parseFile(this, withoutExtension() + "-" + count + extension());
+            file = parseFile(this, withoutExtension() + "-" + count + extension());
             count++;
         }
         return file;
+    }
+
+    File temporary(Extension extension)
+    {
+        return Folder.kivakitTemporary().file("temp-" + temporaryFileNumber++ + extension);
     }
 }

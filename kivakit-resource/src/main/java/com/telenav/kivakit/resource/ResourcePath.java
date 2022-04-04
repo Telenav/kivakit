@@ -68,6 +68,7 @@ import java.util.function.Function;
  *
  * @author jonathanl (shibo)
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramResource.class)
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
 public class ResourcePath extends StringPath implements
@@ -217,6 +218,17 @@ public class ResourcePath extends StringPath implements
     public boolean hasScheme()
     {
         return schemes.isNonEmpty();
+    }
+
+    /**
+     * Determines if this path has a trailing slash. A trailing slash is represented by having a final path component
+     * that is empty ("").
+     *
+     * @return True if the last component of this path is the empty string.
+     */
+    public boolean hasTrailingSlash()
+    {
+        return size() > 0 && "".equals(get(size() - 1));
     }
 
     /**

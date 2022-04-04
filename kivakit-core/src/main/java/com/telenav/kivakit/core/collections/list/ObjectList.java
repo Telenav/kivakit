@@ -62,6 +62,7 @@ import java.util.function.Function;
  * @see LongMapFactory
  * @see IntMapFactory
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramCollections.class)
 public class ObjectList<Element> extends BaseList<Element>
 {
