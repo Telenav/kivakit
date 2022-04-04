@@ -76,10 +76,7 @@ public interface FileSystemObjectService extends
     /**
      * Deletes this filesystem object
      */
-    default boolean delete()
-    {
-        return unsupported();
-    }
+    boolean delete();
 
     /**
      * @return The disk that this object is on

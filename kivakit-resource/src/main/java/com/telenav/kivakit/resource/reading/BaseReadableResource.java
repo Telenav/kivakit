@@ -26,16 +26,16 @@ import com.telenav.kivakit.core.object.Lazy;
 import com.telenav.kivakit.core.progress.ProgressReporter;
 import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.filesystem.File;
+import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.resource.CopyMode;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourcePath;
-import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.kivakit.resource.compression.Codec;
 import com.telenav.kivakit.resource.compression.codecs.NullCodec;
-import com.telenav.kivakit.filesystem.FilePath;
 import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFile;
 import com.telenav.kivakit.resource.lexakai.DiagramResource;
+import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
@@ -43,6 +43,8 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
+
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 /**
  * A base implementation of the {@link Resource} interface. Adds the following methods:
@@ -67,16 +69,6 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
             Folder.temporaryForProcess(Folder.Type.CLEAN_UP_ON_EXIT).ensureExists());
 
     /**
-     * Local copy if the resource is cached from a remote location
-     */
-    private File materialized;
-
-    /**
-     * StringPath to resource
-     */
-    private final ResourcePath path;
-
-    /**
      * Character mapping (default is UTF-8)
      */
     private Charset charset = StandardCharsets.UTF_8;
@@ -85,6 +77,16 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
      * Compression (default is none, but may be derived from resource extension)
      */
     private Codec codec;
+
+    /**
+     * Local copy if the resource is cached from a remote location
+     */
+    private File materialized;
+
+    /**
+     * StringPath to resource
+     */
+    private final ResourcePath path;
 
     /**
      * For serialization
@@ -105,6 +107,12 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
         codec = that.codec;
         charset = that.charset;
         materialized = that.materialized;
+    }
+
+    @Override
+    public boolean delete()
+    {
+        return unsupported();
     }
 
     @Override
@@ -141,13 +149,13 @@ public abstract class BaseReadableResource extends BaseRepeater implements Resou
      * Copies the data in this resource to the destination.
      */
     @Override
-    public void copyTo(WritableResource destination, CopyMode mode, ProgressReporter reporter)
+    public void copyTo(Resource destination, CopyMode mode, ProgressReporter reporter)
     {
         // If we can copy from this resource to the given resource in this mode,
         if (mode.canCopy(this, destination))
         {
             // copy the resource stream (which might involve compression or decompression or both).
-            if (!IO.copyAndClose(openForReading(reporter), destination.openForWriting()))
+            if (!IO.copyAndClose(openForReading(reporter), ((WritableResource) destination).openForWriting()))
             {
                 throw new IllegalStateException("Unable to copy " + this + " to " + destination);
             }

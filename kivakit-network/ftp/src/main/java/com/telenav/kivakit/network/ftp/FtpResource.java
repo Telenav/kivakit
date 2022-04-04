@@ -30,6 +30,7 @@ import com.telenav.kivakit.network.core.NetworkPath;
 import com.telenav.kivakit.network.core.Protocol;
 import com.telenav.kivakit.network.ftp.lexakai.DiagramFtp;
 import com.telenav.kivakit.resource.CopyMode;
+import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
@@ -96,11 +97,11 @@ public class FtpResource extends BaseNetworkResource
         }
     }
 
+    private final FTPClient client = new FTPClient();
+
     private final NetworkAccessConstraints constraints;
 
     private final NetworkLocation networkLocation;
-
-    private final FTPClient client = new FTPClient();
 
     public FtpResource(NetworkLocation location, NetworkAccessConstraints constraints)
     {
@@ -122,12 +123,12 @@ public class FtpResource extends BaseNetworkResource
     }
 
     @Override
-    public void copyTo(WritableResource destination, CopyMode mode, ProgressReporter reporter)
+    public void copyTo(Resource destination, CopyMode mode, ProgressReporter reporter)
     {
         try
         {
             var in = new BufferedInputStream(openBinaryFileForReading());
-            var out = new BufferedOutputStream(destination.openForWriting());
+            var out = new BufferedOutputStream(((WritableResource) destination).openForWriting());
             var buffer = new byte[1024];
             int readCount;
             reporter.start("Copying " + resource());

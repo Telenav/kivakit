@@ -32,11 +32,14 @@ import com.telenav.kivakit.filesystem.Folder;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.properties.PropertyMap;
 import com.telenav.kivakit.resource.CopyMode;
+import com.telenav.kivakit.resource.Extension;
+import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.resource.ResourceFolderIdentifier;
 import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.ResourceList;
+import com.telenav.kivakit.resource.ResourcePathed;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.spi.ResourceFolderResolver;
@@ -55,6 +58,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import static com.telenav.kivakit.core.ensure.Ensure.fail;
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.language.module.PackageReference.packageReference;
 import static com.telenav.kivakit.core.messaging.Listener.throwing;
 import static com.telenav.kivakit.resource.ResourceList.resourceList;
@@ -84,8 +88,8 @@ import static com.telenav.kivakit.resource.packages.PackageResource.packageResou
  * <p>
  * Resources in a package can be obtained with {@link ResourceFolder#resources()} and {@link
  * ResourceFolder#resources(Matcher)}. A specific resource can be located with {@link ResourceFolder#resource(String)}.
- * The resources in a package can be copied to a {@link Folder} with {@link ResourceFolder#safeCopyTo(Folder, CopyMode,
- * ProgressReporter)}.
+ * The resources in a package can be copied to a {@link Folder} with {@link ResourceFolder#safeCopyTo(ResourceFolder,
+ * CopyMode, ProgressReporter)}.
  * </p>
  *
  * @author jonathanl (shibo)
@@ -164,6 +168,12 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     }
 
     @Override
+    public boolean delete()
+    {
+        return unsupported();
+    }
+
+    @Override
     public boolean equals(Object object)
     {
         if (object instanceof Package)
@@ -172,6 +182,12 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
             return path().equals(that.path());
         }
         return false;
+    }
+
+    @Override
+    public boolean exists()
+    {
+        return unsupported();
     }
 
     @Override
@@ -222,6 +238,7 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     /**
      * @return The parent package of this package, or null if there is none
      */
+    @Override
     public Package parent()
     {
         var parent = packagePath.withoutLast();
@@ -240,6 +257,12 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
     public PackageReference reference()
     {
         return packageReference(path().packageType(), path());
+    }
+
+    @Override
+    public boolean renameTo(final ResourceFolder<?> folder)
+    {
+        return unsupported();
     }
 
     /**
@@ -261,6 +284,12 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
             }
         }
         return fail("Unable to find package resource $ in package $", name, path());
+    }
+
+    @Override
+    public Resource resource(ResourcePathed name)
+    {
+        return resource(name.path().toString());
     }
 
     /**
@@ -291,6 +320,18 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
         directoryResources(matcher).forEach(addDeduplicated);
 
         return resourceList(resources);
+    }
+
+    @Override
+    public Resource temporary(final FileName baseName, final Extension extension)
+    {
+        return unsupported();
+    }
+
+    @Override
+    public ResourceFolder<?> temporaryFolder(final FileName baseName)
+    {
+        return unsupported();
     }
 
     @Override

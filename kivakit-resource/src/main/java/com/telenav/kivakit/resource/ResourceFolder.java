@@ -34,6 +34,7 @@ import java.util.List;
 import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.filesystem.Folder.Type.NORMAL;
 import static com.telenav.kivakit.resource.CopyMode.OVERWRITE;
+import static com.telenav.kivakit.resource.ResourcePath.parseResourcePath;
 
 /**
  * A resource container is an abstraction that provides access to hierarchical resources, independent of implementation.
@@ -179,12 +180,28 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
 
     ResourceFolder<?> parent();
 
-    void renameTo(ResourceFolder<?> folder);
+    boolean renameTo(ResourceFolder<?> folder);
 
     /**
      * @return The resource of the given in this container
      */
-    Resource resource(String name);
+    default Resource resource(String name)
+    {
+        return resource(parseResourcePath(Listener.throwing(), name));
+    }
+
+    /**
+     * @return The resource of the given in this container
+     */
+    default Resource resource(FileName name)
+    {
+        return resource(name.asPath());
+    }
+
+    /**
+     * @return The resource of the given in this container
+     */
+    Resource resource(ResourcePathed name);
 
     /**
      * @return The resources in this folder matching the given matcher
@@ -206,11 +223,20 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     {
         for (var at : resources())
         {
-            var destination = folder.mkdirs().file(at.fileName());
+            var destination = folder.mkdirs().resource(at.fileName());
             if (mode.canCopy(at, destination))
             {
                 at.safeCopyTo(destination, mode, reporter);
             }
         }
     }
+
+    default Resource temporary(FileName baseName)
+    {
+        return temporary(baseName, Extension.TMP);
+    }
+
+    Resource temporary(FileName baseName, Extension extension);
+
+    ResourceFolder<?> temporaryFolder(FileName baseName);
 }

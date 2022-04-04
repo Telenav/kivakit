@@ -22,6 +22,7 @@ import com.telenav.kivakit.commandline.ArgumentParser;
 import com.telenav.kivakit.commandline.SwitchParser;
 import com.telenav.kivakit.conversion.BaseStringConverter;
 import com.telenav.kivakit.core.collections.map.VariableMap;
+import com.telenav.kivakit.core.collections.set.ObjectSet;
 import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
@@ -55,6 +56,7 @@ import java.net.URI;
 import java.nio.charset.Charset;
 import java.nio.file.attribute.PosixFilePermission;
 
+import static com.telenav.kivakit.core.collections.set.ObjectSet.objectSet;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
 import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
 import static com.telenav.kivakit.core.messaging.Listener.none;
@@ -94,7 +96,7 @@ import static com.telenav.kivakit.filesystem.loader.FileSystemServiceLoader.file
  *
  * <ul>
  *     <li>{@link #chmod(PosixFilePermission...)}</li>
- *     <li>{@link #renameTo(File)}</li>
+ *     <li>{@link #renameTo(Resource)}</li>
  *     <li>{@link #safeCopyFrom(Resource, CopyMode, ProgressReporter)}</li>
  * </ul>
  *
@@ -379,6 +381,12 @@ public class File extends BaseWritableResource implements FileSystemObject
     public java.io.File asJavaFile()
     {
         return service.asJavaFile();
+    }
+
+    @Override
+    public ObjectSet<Can> can()
+    {
+        return objectSet(Can.RENAME);
     }
 
     /**
@@ -666,11 +674,12 @@ public class File extends BaseWritableResource implements FileSystemObject
      *
      * @return True if this file was renamed to the given file
      */
+    @Override
     @SuppressWarnings("UnusedReturnValue")
-    public boolean renameTo(File that)
+    public boolean renameTo(Resource that)
     {
         trace("Rename $ to $", this, that);
-        return service.renameTo(that.service);
+        return service.renameTo(((File) that).service);
     }
 
     /**

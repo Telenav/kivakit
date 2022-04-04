@@ -47,6 +47,7 @@ import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.resource.ResourceFolderIdentifier;
 import com.telenav.kivakit.resource.ResourceList;
+import com.telenav.kivakit.resource.ResourcePathed;
 import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFolder;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.spi.ResourceFolderResolver;
@@ -133,9 +134,9 @@ import static com.telenav.kivakit.resource.ResourceList.resourceList;
  *     <li>{@link #nestedFolders(Matcher)} - All matching nested folders under this folder</li>
  *     <li>{@link #oldest()} - The oldest file in this folder</li>
  *     <li>{@link #oldest(Matcher)} - The oldest matching file in this folder</li>
- *     <li>{@link #temporaryFile(FileName)} - A temporary file in this folder with the given name</li>
- *     <li>{@link #temporary(FileName)} - A temporary sub-folder with the given name</li>
- *     <li>{@link #temporaryFile(FileName, Extension)} - A temporary file in this folder with the given name and extension</li>
+ *     <li>{@link #temporary(FileName)} - A temporary file in this folder with the given name</li>
+ *     <li>{@link #temporaryFolder(FileName)} - A temporary sub-folder with the given name</li>
+ *     <li>{@link #temporary(FileName, Extension)} - A temporary file in this folder with the given name and extension</li>
  * </ul>
  *
  * <p><b>Hierarchy</b></p>
@@ -168,7 +169,7 @@ import static com.telenav.kivakit.resource.ResourceList.resourceList;
  *     <li>{@link #copyTo(Folder, CopyMode, Matcher, ProgressReporter)} - Copies the matching files in this folder to the given folder</li>
  *     <li>{@link #delete()} - Deletes this folder if it is empty</li>
  *     <li>{@link #mkdirs()} - Creates this folder and any required parent folders</li>
- *     <li>{@link #renameTo(Folder)} - Renames this folder to the given folder</li>
+ *     <li>{@link #renameTo(ResourceFolder)} - Renames this folder to the given folder</li>
  *     <li>{@link #scheduleCleanUpOnExit()} - Schedules this folder to be removed when the VM exits</li>
  * </ul>
  *
@@ -681,6 +682,7 @@ public class Folder extends BaseRepeater implements
      *
      * @return True if the folder was removed
      */
+    @Override
     @SuppressWarnings("UnusedReturnValue")
     public boolean delete()
     {
@@ -732,6 +734,7 @@ public class Folder extends BaseRepeater implements
     /**
      * @return True if this folder exists
      */
+    @Override
     public boolean exists()
     {
         return folder().exists();
@@ -907,6 +910,7 @@ public class Folder extends BaseRepeater implements
         return ResourceFolder.identifier(path().join());
     }
 
+    @Override
     public boolean isEmpty()
     {
         return exists()
@@ -1014,6 +1018,7 @@ public class Folder extends BaseRepeater implements
         return oldestFile;
     }
 
+    @Override
     public Folder parent()
     {
         return new Folder(path().absolute().parent());
@@ -1035,17 +1040,18 @@ public class Folder extends BaseRepeater implements
         return new Folder(relativePath(folder));
     }
 
+    @Override
     @SuppressWarnings("UnusedReturnValue")
-    public boolean renameTo(Folder that)
+    public boolean renameTo(ResourceFolder<?> that)
     {
         trace("Renaming $ to $", this, that);
-        return folder().renameTo(that.folder());
+        return folder().renameTo(((Folder) that).folder());
     }
 
     @Override
-    public Resource resource(String name)
+    public Resource resource(ResourcePathed name)
     {
-        return file(name);
+        return file((FilePath) name.path());
     }
 
     @Override
@@ -1080,10 +1086,10 @@ public class Folder extends BaseRepeater implements
 
         var start = Time.now();
         information("Safely copying $ to $", this, destination);
-        var temporary = destination.parent().temporary(FileName.parseFileName(this, "temporary-copy"));
+        var temporary = destination.parent().temporaryFolder(FileName.parseFileName(this, "temporary-copy"));
         for (var file : nestedFiles(matcher))
         {
-            file.copyTo(temporary.file(file.relativeTo(this)), mode, reporter);
+            file.copyTo(temporary.resource(file.relativeTo(this)), mode, reporter);
         }
         temporary.renameTo(destination);
         information("Safe copy completed in $", start.elapsedSince());
@@ -1124,29 +1130,14 @@ public class Folder extends BaseRepeater implements
         return folder().sizeInBytes();
     }
 
-    public Folder temporary(FileName baseName)
+    @Override
+    public File temporary(FileName baseName)
     {
-        synchronized (temporaryLock)
-        {
-            var sequenceNumber = 0;
-            Folder folder;
-            do
-            {
-                folder = folder(baseName + "-" + sequenceNumber);
-                sequenceNumber++;
-            }
-            while (folder.exists());
-            folder.mkdirs();
-            return folder;
-        }
+        return (File) ResourceFolder.super.temporary(baseName);
     }
 
-    public File temporaryFile(FileName baseName)
-    {
-        return temporaryFile(baseName, Extension.TMP);
-    }
-
-    public File temporaryFile(FileName baseName, Extension extension)
+    @Override
+    public File temporary(FileName baseName, Extension extension)
     {
         synchronized (temporaryLock)
         {
@@ -1160,6 +1151,24 @@ public class Folder extends BaseRepeater implements
             while (file.exists());
             file.writer().save("");
             return file;
+        }
+    }
+
+    @Override
+    public Folder temporaryFolder(FileName baseName)
+    {
+        synchronized (temporaryLock)
+        {
+            var sequenceNumber = 0;
+            Folder folder;
+            do
+            {
+                folder = folder(baseName + "-" + sequenceNumber);
+                sequenceNumber++;
+            }
+            while (folder.exists());
+            folder.mkdirs();
+            return folder;
         }
     }
 
