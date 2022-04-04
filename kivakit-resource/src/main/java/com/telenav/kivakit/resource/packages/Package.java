@@ -269,21 +269,9 @@ public class Package extends BaseRepeater implements ResourceFolder<Package>
      * @return The resource in this package with the given name
      */
     @Override
-    public PackageResource resource(String name)
+    public PackageResource resource(ResourcePathed pathed)
     {
-        if (name.contains("/"))
-        {
-            var path = FilePath.parseFilePath(LOGGER, name);
-            return folder(path.withoutLast().toString()).resource(path.last());
-        }
-        for (var resource : resources())
-        {
-            if (resource.fileName().name().equals(name))
-            {
-                return (PackageResource) resource;
-            }
-        }
-        return fail("Unable to find package resource $ in package $", name, path());
+        return packageResource(this, pathed);
     }
 
     @Override

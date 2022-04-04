@@ -41,11 +41,14 @@ import com.telenav.kivakit.resource.resources.NullResource;
 import com.telenav.kivakit.resource.resources.StringResource;
 import com.telenav.kivakit.resource.spi.ResourceResolver;
 import com.telenav.kivakit.resource.spi.ResourceResolverServiceLoader;
+import com.telenav.kivakit.resource.writing.WritableResource;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import java.util.ServiceLoader;
+
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 
 import static com.telenav.kivakit.core.collections.set.ObjectSet.emptyObjectSet;
 import static com.telenav.kivakit.core.ensure.Ensure.ensure;
@@ -102,6 +105,7 @@ import static com.telenav.kivakit.resource.Resource.Can.RENAME;
  *     <li>{@link #isSame(Resource)}</li>
  * </ul>
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramFileSystemFile.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
 @LexakaiJavadoc(complete = true)
@@ -212,6 +216,11 @@ public interface Resource extends
         return can().contains(ability);
     }
 
+    default WritableResource asWritable()
+    {
+        return (WritableResource) this;
+    }
+
     /**
      * @return Any codec for compression / decompression
      */
@@ -221,7 +230,10 @@ public interface Resource extends
     /**
      * @return True if this file was deleted
      */
-    boolean delete();
+    default boolean delete()
+    {
+        return unsupported();
+    }
 
     /**
      * Remove any materialized local copy if this is a remote resource that's been cached
@@ -332,6 +344,14 @@ public interface Resource extends
         return unsupported();
     }
 
+    /**
+     * @return This file with a path relative to the given folder
+     */
+    default <R extends Resource, F extends ResourceFolder<?>> R relativeTo(F folder)
+    {
+        return unsupported();
+    }
+
     @Override
     default Resource resource()
     {
@@ -357,7 +377,7 @@ public interface Resource extends
      */
     default void safeCopyTo(ResourceFolder<?> destination, CopyMode mode, ProgressReporter reporter)
     {
-        safeCopyTo(destination.resource(fileName()), mode, reporter);
+        safeCopyTo((WritableResource) destination.resource(fileName()), mode, reporter);
     }
 
     /**

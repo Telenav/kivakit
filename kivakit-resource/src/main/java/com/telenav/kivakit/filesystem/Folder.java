@@ -47,7 +47,6 @@ import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceFolder;
 import com.telenav.kivakit.resource.ResourceFolderIdentifier;
 import com.telenav.kivakit.resource.ResourceList;
-import com.telenav.kivakit.resource.ResourcePathed;
 import com.telenav.kivakit.resource.lexakai.DiagramFileSystemFolder;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.spi.ResourceFolderResolver;
@@ -135,8 +134,8 @@ import static com.telenav.kivakit.resource.ResourceList.resourceList;
  *     <li>{@link #oldest()} - The oldest file in this folder</li>
  *     <li>{@link #oldest(Matcher)} - The oldest matching file in this folder</li>
  *     <li>{@link #temporary(FileName)} - A temporary file in this folder with the given name</li>
- *     <li>{@link #temporaryFolder(FileName)} - A temporary sub-folder with the given name</li>
  *     <li>{@link #temporary(FileName, Extension)} - A temporary file in this folder with the given name and extension</li>
+ *     <li>{@link #temporaryFolder(FileName)} - A temporary sub-folder with the given name</li>
  * </ul>
  *
  * <p><b>Hierarchy</b></p>
@@ -520,6 +519,7 @@ public class Folder extends BaseRepeater implements
     /**
      * This folder as an absolute path with a trailing slash on it
      */
+    @Override
     public Folder absolute()
     {
         return new Folder(path().absolute()).withTrailingSlash();
@@ -750,9 +750,9 @@ public class Folder extends BaseRepeater implements
         return new File(folder().file(name));
     }
 
-    public File file(FilePath child)
+    public File file(ResourcePathed pathed)
     {
-        child = child.withoutRoot();
+        var child = pathed.path().withoutRoot();
 
         // Get the filename from the path
         var fileName = child.fileName();
@@ -767,7 +767,7 @@ public class Folder extends BaseRepeater implements
         else
         {
             // Otherwise, append the parent path and filename to this folder
-            return new File(folder().folder(new Folder(parent)).file(fileName));
+            return new File(folder().folder(Folder.parse(this, parent)).file(fileName));
         }
     }
 
@@ -893,6 +893,7 @@ public class Folder extends BaseRepeater implements
         return true;
     }
 
+    @Override
     public boolean hasTrailingSlash()
     {
         return path().hasTrailingSlash();
@@ -995,6 +996,12 @@ public class Folder extends BaseRepeater implements
         var folders = FolderList.forVirtual(folder().nestedFolders(path -> matcher.matches(new Folder(path))));
         trace("Nested folders in $: $", this, folders);
         return folders;
+    }
+
+    @Override
+    public ResourceFolder<?> newFolder(ResourcePath relativePath)
+    {
+        return new Folder(FilePath.filePath(relativePath));
     }
 
     public File oldest()
@@ -1172,6 +1179,7 @@ public class Folder extends BaseRepeater implements
         }
     }
 
+
     @Override
     public String toString()
     {
@@ -1190,6 +1198,7 @@ public class Folder extends BaseRepeater implements
         return path().uri();
     }
 
+    @Override
     public Folder withTrailingSlash()
     {
         if (hasTrailingSlash())

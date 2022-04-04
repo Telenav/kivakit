@@ -82,6 +82,14 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
         }
     }
 
+    /**
+     * This folder as an absolute path with a trailing slash on it
+     */
+    default ResourceFolder<?> absolute()
+    {
+        return newFolder(path().absolute()).withTrailingSlash();
+    }
+
     default boolean contains(ResourcePathed that)
     {
         return that.path().startsWith(path());
@@ -97,6 +105,11 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     T folder(String path);
 
     List<T> folders();
+
+    default boolean hasTrailingSlash()
+    {
+        return path().hasTrailingSlash();
+    }
 
     ResourceFolderIdentifier identifier();
 
@@ -178,16 +191,21 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
         return list;
     }
 
+
     ResourceFolder<?> parent();
 
-    boolean renameTo(ResourceFolder<?> folder);
+    void renameTo(ResourceFolder<?> folder);
 
-    /**
-     * @return The resource of the given in this container
-     */
-    default Resource resource(String name)
+    ResourceFolder<?> newFolder(ResourcePath relativePath);
+
+    default ResourcePath relativePath(ResourceFolder<?> folder)
     {
-        return resource(parseResourcePath(Listener.throwing(), name));
+        return absolute().relativePath(folder.absolute());
+    }
+
+    default ResourceFolder<?> relativeTo(ResourceFolder<?> folder)
+    {
+        return newFolder(relativePath(folder));
     }
 
     /**
@@ -201,8 +219,17 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     /**
      * @return The resource of the given in this container
      */
-    Resource resource(ResourcePathed name);
+    default Resource resource(String name)
+    {
+        return resource(parseResourcePath(Listener.throwing(), name));
+    }
 
+
+    /**
+     * @return The resource of the given in this container
+     */
+    Resource resource(ResourcePathed name);
+    
     /**
      * @return The resources in this folder matching the given matcher
      */
@@ -217,7 +244,7 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
     }
 
     /**
-     * Copy the resources in this folder to the given folder
+     * Copy the resources in this package to the given folder
      */
     default void safeCopyTo(ResourceFolder<?> folder, CopyMode mode, ProgressReporter reporter)
     {
@@ -236,7 +263,19 @@ public interface ResourceFolder<T extends ResourceFolder<T>> extends
         return temporary(baseName, Extension.TMP);
     }
 
-    Resource temporary(FileName baseName, Extension extension);
+    File temporary(FileName baseName, Extension extension);
 
-    ResourceFolder<?> temporaryFolder(FileName baseName);
+    default ResourceFolder<?> temporaryFolder(FileName baseName)
+    {
+        return unsupported();
+    }
+
+    default ResourceFolder<?> withTrailingSlash()
+    {
+        if (hasTrailingSlash())
+        {
+            return this;
+        }
+        return newFolder(path().withChild(""));
+    }
 }

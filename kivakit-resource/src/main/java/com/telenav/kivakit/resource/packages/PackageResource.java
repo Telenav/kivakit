@@ -32,6 +32,7 @@ import com.telenav.kivakit.resource.FileName;
 import com.telenav.kivakit.resource.Resource;
 import com.telenav.kivakit.resource.ResourceIdentifier;
 import com.telenav.kivakit.resource.ResourcePath;
+import com.telenav.kivakit.resource.ResourcePathed;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceService;
 import com.telenav.kivakit.resource.lexakai.DiagramResourceType;
 import com.telenav.kivakit.resource.reading.BaseReadableResource;
@@ -97,6 +98,14 @@ public class PackageResource extends BaseReadableResource
     public static PackageResource packageResource(Listener listener, PackagePath packagePath, String path)
     {
         return packageResource(listener, packagePath, FilePath.parseFilePath(listener, path));
+    }
+
+    /**
+     * @return A package resource for the resource at the given path relative to the given package
+     */
+    public static PackageResource packageResource(Listener listener, ResourcePathed pathed)
+    {
+        return packageResource(listener, pathed, FilePath.parseFilePath(listener, path));
     }
 
     /**
