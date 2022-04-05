@@ -18,6 +18,7 @@
 
 package com.telenav.kivakit.resource;
 
+import com.telenav.kivakit.core.language.trait.TryTrait;
 import com.telenav.kivakit.interfaces.comparison.Matcher;
 import com.telenav.kivakit.resource.lexakai.DiagramResource;
 import com.telenav.kivakit.resource.lexakai.DiagramResourcePath;
@@ -26,6 +27,7 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 import com.telenav.lexakai.annotations.associations.UmlRelation;
 
 import java.net.URI;
+import java.net.URL;
 
 /**
  * An object which has a {@link ResourcePath}, as returned by {@link #path()}. Convenience methods provide access to the
@@ -36,8 +38,14 @@ import java.net.URI;
 @UmlClassDiagram(diagram = DiagramResourcePath.class)
 @UmlClassDiagram(diagram = DiagramResource.class)
 @LexakaiJavadoc(complete = true)
-public interface ResourcePathed extends UriIdentified
+public interface ResourcePathed extends
+        UriIdentified,
+        TryTrait
 {
+    default java.io.File asJavaFile()
+    {
+        return path().asJavaFile();
+    }
 
     /**
      * @return The base name of the file name of this object
@@ -100,5 +108,10 @@ public interface ResourcePathed extends UriIdentified
     default URI uri()
     {
         return path().uri();
+    }
+
+    default URL url()
+    {
+        return tryCatch(uri()::toURL);
     }
 }

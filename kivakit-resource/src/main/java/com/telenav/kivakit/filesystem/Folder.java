@@ -525,11 +525,6 @@ public class Folder extends BaseRepeater implements
         return new Folder(path().absolute()).withTrailingSlash();
     }
 
-    public java.io.File asJavaFile()
-    {
-        return new java.io.File(path().asString());
-    }
-
     public URI asUri()
     {
         try

@@ -658,20 +658,10 @@ public class File extends BaseWritableResource implements FileSystemObject
         return (File) super.println(text);
     }
 
-    /**
-     * @return This file with a path relative to the given folder
-     */
-    @Override
-    public File relativeTo(Folder folder)
-    {
-        return File.file(service.relativePath(folder.service()).withoutTrailingSlash());
-    }
-
     @Override
     public <R extends Resource, F extends ResourceFolder<?>> R relativeTo(final F folder)
     {
-        return null;
-        r
+        return File.file(service.relativePath(folder.service()).withoutTrailingSlash());
     }
 
     /**
