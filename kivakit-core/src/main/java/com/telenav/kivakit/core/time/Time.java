@@ -142,7 +142,7 @@ public class Time implements Quantizable
         var now = now();
         if (isAfter(now))
         {
-            return Duration.NONE;
+            return Duration.ZERO_DURATION;
         }
         return now.minus(this);
     }
@@ -172,7 +172,7 @@ public class Time implements Quantizable
         {
             return minus(now);
         }
-        return Duration.NONE;
+        return Duration.ZERO_DURATION;
     }
 
     /**

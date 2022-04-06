@@ -407,6 +407,11 @@ public abstract class CoreUnitTest extends TestWatcher implements
         return OperatingSystem.get().isWindows();
     }
 
+    protected Count iterations()
+    {
+        return random().iterations();
+    }
+
     protected Maximum maximum(long minimum)
     {
         return Maximum.maximum(minimum);

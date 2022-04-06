@@ -42,5 +42,5 @@ public interface Maximizable<Value>
     /**
      * Returns the maximum possible Value
      */
-    Value maximum();
+    Value maximumInclusive();
 }

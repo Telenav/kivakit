@@ -90,7 +90,7 @@ public class Duration implements
     public static final Duration MAXIMUM = milliseconds(Long.MAX_VALUE);
 
     /** Constant for no duration. */
-    public static final Duration NONE = milliseconds(0);
+    public static final Duration ZERO_DURATION = milliseconds(0);
 
     /** Constant for one day. */
     public static final Duration ONE_DAY = days(1);
@@ -320,7 +320,7 @@ public class Duration implements
         var sum = milliseconds() + that.milliseconds();
         if (restriction == POSITIVE_ONLY && sum < 0)
         {
-            return NONE;
+            return ZERO_DURATION;
         }
         return new Duration(sum, restriction);
     }
@@ -447,7 +447,7 @@ public class Duration implements
         {
             if (that.isGreaterThan(this))
             {
-                return NONE;
+                return ZERO_DURATION;
             }
         }
         return new Duration(milliseconds() - that.milliseconds(), restriction);

@@ -18,11 +18,11 @@
 
 package com.telenav.kivakit.filesystem;
 
-import com.telenav.kivakit.test.UnitTest;
 import com.telenav.kivakit.core.thread.latches.CompletionLatch;
 import com.telenav.kivakit.core.time.Duration;
 import com.telenav.kivakit.core.value.count.Bytes;
 import com.telenav.kivakit.core.value.level.Percent;
+import com.telenav.kivakit.test.UnitTest;
 import org.junit.Test;
 
 public class FolderPrunerTest extends UnitTest
@@ -48,7 +48,7 @@ public class FolderPrunerTest extends UnitTest
             }
         };
         pruner.capacity(Bytes.bytes(4));
-        pruner.minimumAge(Duration.NONE);
+        pruner.minimumAge(Duration.ZERO_DURATION);
         pruner.minimumUsableDiskSpace(Percent._0);
         pruner.start();
 
@@ -83,7 +83,7 @@ public class FolderPrunerTest extends UnitTest
                 }
             };
             pruner.minimumUsableDiskSpace(Percent.percent(100));
-            pruner.minimumAge(Duration.NONE);
+            pruner.minimumAge(Duration.ZERO_DURATION);
             pruner.start();
             Duration.seconds(0.25).sleep();
             ensureFalse(file.exists());

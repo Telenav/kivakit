@@ -54,7 +54,7 @@ import java.util.Locale;
  * <p><b>Ranges</b></p>
  *
  * <ul>
- *     <li>{@link #inRange(int, int, int)} - Returns true if the given value is within the given range, inclusive</li>
+ *     <li>{@link #inRangeInclusive(int, int, int)} - Returns true if the given value is within the given range, inclusive</li>
  *     <li>{@link #isBetweenInclusive(int, int, int)} - Returns true if the given value is in the given range, inclusive</li>
  *     <li>{@link #isBetweenExclusive(int, int, int)} - Returns true if the given value is in the given range, exclusive</li>
  * </ul>
@@ -135,7 +135,7 @@ public class Ints
      * @param maximum The maximum value, inclusive
      * @return The constrained value4
      */
-    public static int inRange(int value, int minimum, int maximum)
+    public static int inRangeInclusive(int value, int minimum, int maximum)
     {
         return Math.min(Math.max(value, minimum), maximum);
     }

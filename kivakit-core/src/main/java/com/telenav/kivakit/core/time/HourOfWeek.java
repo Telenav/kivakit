@@ -1,5 +1,6 @@
 package com.telenav.kivakit.core.time;
 
+import com.telenav.kivakit.core.test.NoTestRequired;
 import com.telenav.kivakit.core.test.Tested;
 import com.telenav.kivakit.core.value.count.BaseCount;
 
@@ -64,10 +65,12 @@ public class HourOfWeek extends BaseCount<HourOfWeek>
     /** The hour of the day used to compute the hour of the week */
     private Hour hourOfDay;
 
+    @NoTestRequired
     protected HourOfWeek()
     {
     }
 
+    @NoTestRequired
     protected HourOfWeek(DayOfWeek dayOfWeek, Hour hourOfDay)
     {
         // This value is not used because
@@ -90,6 +93,7 @@ public class HourOfWeek extends BaseCount<HourOfWeek>
     }
 
     @Override
+    @Tested
     public long asLong()
     {
         return dayOfWeek.asIso() * 24L + hourOfDay.asInt();
@@ -127,13 +131,13 @@ public class HourOfWeek extends BaseCount<HourOfWeek>
 
     @Override
     @Tested
-    public HourOfWeek maximum()
+    public HourOfWeek maximumInclusive()
     {
-        // The hour of the week is zero-based
         return hourOfWeek(7 * 24 - 1);
     }
 
     @Override
+    @Tested
     public HourOfWeek minus(long count)
     {
         return wrappedOffset(-count);
@@ -143,18 +147,21 @@ public class HourOfWeek extends BaseCount<HourOfWeek>
      * {@inheritDoc}
      */
     @Override
+    @NoTestRequired
     public HourOfWeek newInstance(long count)
     {
         return hourOfWeek((int) count);
     }
 
     @Override
+    @Tested
     public HourOfWeek plus(long count)
     {
         return wrappedOffset(count);
     }
 
     @Override
+    @NoTestRequired
     public String toString()
     {
         return dayOfWeek() + " at " + hourOfDay();
@@ -194,7 +201,7 @@ public class HourOfWeek extends BaseCount<HourOfWeek>
 
     private HourOfWeek wrappedOffset(long offset)
     {
-        var maximum = maximum().asInt() + 1;
+        var maximum = this.maximumInclusive().asInt() + 1;
         return hourOfWeek((int) ((asLong() + offset + maximum) % maximum));
     }
 }

@@ -162,6 +162,12 @@ public class DayOfWeek extends BaseCount<DayOfWeek>
         return Day.dayOfWeek(asIso(), ISO);
     }
 
+    @Tested
+    public HourOfWeek asHourOfWeek()
+    {
+        return HourOfWeek.hourOfWeek(asIso() * 24);
+    }
+
     /**
      * @return This day of the week as an ISO-8601 ordinal value
      */
@@ -238,7 +244,7 @@ public class DayOfWeek extends BaseCount<DayOfWeek>
 
     @Override
     @NoTestRequired
-    public DayOfWeek maximum()
+    public DayOfWeek maximumInclusive()
     {
         return SUNDAY;
     }
@@ -255,6 +261,16 @@ public class DayOfWeek extends BaseCount<DayOfWeek>
     public DayOfWeek newInstance(long ordinal)
     {
         return dayOfWeek((int) ordinal, standard);
+    }
+
+    @Override
+    public DayOfWeek next()
+    {
+        if (this == SUNDAY)
+        {
+            return null;
+        }
+        return super.next();
     }
 
     @Override

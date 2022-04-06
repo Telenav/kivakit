@@ -48,7 +48,7 @@ public class KivaKitThreadTest extends CoreUnitTest
         thread.startSynchronously();
         thread.waitFor(EXITED);
         ensure(thread.startedAt().elapsedSince().isApproximately(Duration.milliseconds(50), Duration.seconds(0.5)));
-        ensure(executedAt.get().elapsedSince().isApproximately(Duration.NONE, Duration.seconds(0.1)));
+        ensure(executedAt.get().elapsedSince().isApproximately(Duration.ZERO_DURATION, Duration.seconds(0.1)));
     }
 
     @Test

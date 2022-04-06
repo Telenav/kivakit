@@ -18,23 +18,23 @@
 
 package com.telenav.kivakit.core.thread;
 
-import com.telenav.kivakit.core.ensure.Ensure;
 import com.telenav.kivakit.core.code.UncheckedVoidCode;
-import com.telenav.kivakit.core.messaging.Listener;
-import com.telenav.kivakit.core.messaging.Repeater;
+import com.telenav.kivakit.core.ensure.Ensure;
+import com.telenav.kivakit.core.lexakai.DiagramThread;
 import com.telenav.kivakit.core.logging.Logger;
 import com.telenav.kivakit.core.logging.LoggerFactory;
+import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.messaging.Repeater;
 import com.telenav.kivakit.core.messaging.repeaters.BaseRepeater;
-import com.telenav.kivakit.core.lexakai.DiagramThread;
+import com.telenav.kivakit.core.time.Duration;
+import com.telenav.kivakit.core.time.Frequency;
+import com.telenav.kivakit.core.time.Time;
 import com.telenav.kivakit.interfaces.code.Code;
 import com.telenav.kivakit.interfaces.lifecycle.Pausable;
 import com.telenav.kivakit.interfaces.lifecycle.Startable;
 import com.telenav.kivakit.interfaces.lifecycle.Stoppable;
 import com.telenav.kivakit.interfaces.naming.Named;
 import com.telenav.kivakit.interfaces.time.LengthOfTime;
-import com.telenav.kivakit.core.time.Duration;
-import com.telenav.kivakit.core.time.Frequency;
-import com.telenav.kivakit.core.time.Time;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 import org.jetbrains.annotations.MustBeInvokedByOverriders;
@@ -222,7 +222,7 @@ public class KivaKitThread extends BaseRepeater implements
     private transient Runnable code;
 
     /** Any initial delay before the thread starts running */
-    private Duration initialDelay = Duration.NONE;
+    private Duration initialDelay = Duration.ZERO_DURATION;
 
     private boolean initialized;
 

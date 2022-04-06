@@ -21,6 +21,8 @@ package com.telenav.kivakit.core.time;
 import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
+import java.util.HashMap;
+
 import static com.telenav.kivakit.core.time.DayOfWeek.FRIDAY;
 import static com.telenav.kivakit.core.time.DayOfWeek.MONDAY;
 import static com.telenav.kivakit.core.time.DayOfWeek.SATURDAY;
@@ -33,6 +35,9 @@ import static com.telenav.kivakit.core.time.DayOfWeek.WEDNESDAY;
 import static com.telenav.kivakit.core.time.DayOfWeek.dayOfWeek;
 import static com.telenav.kivakit.core.time.DayOfWeek.isoDayOfWeek;
 import static com.telenav.kivakit.core.time.DayOfWeek.javaDayOfWeek;
+import static com.telenav.kivakit.core.value.count.Count._1;
+import static com.telenav.kivakit.core.value.count.Count._7;
+import static com.telenav.kivakit.core.value.count.Range.rangeInclusive;
 import static com.telenav.kivakit.core.value.level.Percent.percent;
 
 /**
@@ -107,6 +112,11 @@ public class DayOfWeekTest extends CoreUnitTest
 
         ensureNotEqual(TUESDAY, isoDayOfWeek(0));
         ensureNotEqual(TUESDAY, javaDayOfWeek(1));
+
+        var map = new HashMap<DayOfWeek, Integer>();
+
+        rangeInclusive(_1, _7).forEachInt(at -> map.put(DayOfWeek.javaDayOfWeek(at), at));
+        rangeInclusive(_1, _7).forEachInt(at -> ensureEqual(map.get(DayOfWeek.javaDayOfWeek(at)), at));
     }
 
     @Test

@@ -109,7 +109,7 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  * <p><b>Minima and Maxima</b></p>
  *
  * <ul>
- *     <li>{@link #isMaximum()} - True if this count is {@link #maximum()}</li>
+ *     <li>{@link #isMaximum()} - True if this count is {@link #maximumInclusive()}</li>
  *     <li>{@link #isMinimum()} - True if this count is zero</li>
  *     <li>{@link #asMaximum()} - Converts this count to a {@link Maximum}</li>
  *     <li>{@link #asMinimum()} - Converts this count to a {@link Minimum}</li>
@@ -301,7 +301,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
 
     public SubClass dividedBy(long divisor)
     {
-        return inRange(asLong() / divisor);
+        return inRangeExclusive(asLong() / divisor);
     }
 
     public boolean dividesEvenlyBy(Quantizable value)
@@ -330,7 +330,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
 
     public void forEachByte(Consumer<Byte> consumer)
     {
-        for (byte i = 0; i < maximum().asInt(); i++)
+        for (byte i = 0; i < maximumInclusive().asInt(); i++)
         {
             consumer.accept(i);
         }
@@ -338,7 +338,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
 
     public void forEachInteger(Consumer<Integer> consumer)
     {
-        for (var i = 0; i < maximum().asInt(); i++)
+        for (var i = 0; i < maximumInclusive().asInt(); i++)
         {
             consumer.accept(i);
         }
@@ -354,7 +354,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
 
     public void forEachShort(Consumer<Short> consumer)
     {
-        for (short i = 0; i < maximum().asInt(); i++)
+        for (short i = 0; i < maximumInclusive().asInt(); i++)
         {
             consumer.accept(i);
         }
@@ -375,9 +375,14 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         return Long.hashCode(asLong());
     }
 
-    public SubClass inRange(long value)
+    public SubClass inRangeExclusive(long value)
     {
-        if (value > maximum().asLong())
+        return inRangeInclusive(value - 1);
+    }
+
+    public SubClass inRangeInclusive(long value)
+    {
+        if (value > maximumInclusive().asLong())
         {
             return null;
         }
@@ -430,7 +435,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
 
     public boolean isMaximum()
     {
-        return asLong() == maximum().asLong();
+        return asLong() == maximumInclusive().asLong();
     }
 
     public boolean isMinimum()
@@ -488,6 +493,11 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         }
     }
 
+    public void loopIndexes(Consumer<Integer> body)
+    {
+        count().loop((LoopBody<Count>) at -> body.accept(at.asInt()));
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -509,7 +519,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
      * {@inheritDoc}
      */
     @Override
-    public SubClass maximum()
+    public SubClass maximumInclusive()
     {
         return newInstance(Long.MAX_VALUE);
     }
@@ -537,7 +547,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
     @Override
     public SubClass minimum()
     {
-        return inRange(0);
+        return inRangeExclusive(0);
     }
 
     @Override
@@ -553,7 +563,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
 
     public SubClass minus(long count)
     {
-        return inRange(asLong() - count);
+        return inRangeExclusive(asLong() - count);
     }
 
     public byte[] newByteArray()
@@ -632,12 +642,12 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
 
     public SubClass offset(long offset)
     {
-        return inRange(asLong() + offset);
+        return inRangeInclusive(asLong() + offset);
     }
 
     public SubClass percent(Percent percentage)
     {
-        return inRange((long) (asLong() * percentage.asUnitValue()));
+        return inRangeExclusive((long) (asLong() * percentage.asUnitValue()));
     }
 
     public Percent percentOf(Quantizable total)
@@ -662,7 +672,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
 
     public SubClass plus(long count)
     {
-        return inRange(asLong() + count);
+        return inRangeExclusive(asLong() + count);
     }
 
     /**
@@ -673,7 +683,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
      */
     public SubClass powerOfTenCeiling(int digits)
     {
-        return inRange((asLong() + Ints.powerOfTen(digits))
+        return inRangeExclusive((asLong() + Ints.powerOfTen(digits))
                 / Ints.powerOfTen(digits)
                 * Ints.powerOfTen(digits));
     }
@@ -686,7 +696,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
      */
     public SubClass powerOfTenFloor(int digits)
     {
-        return inRange(asLong() / Ints.powerOfTen(digits) * Ints.powerOfTen(digits));
+        return inRangeExclusive(asLong() / Ints.powerOfTen(digits) * Ints.powerOfTen(digits));
     }
 
     /**
@@ -733,12 +743,12 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
 
     public SubClass times(double multiplier)
     {
-        return inRange((long) (get() * multiplier));
+        return inRangeExclusive((long) (get() * multiplier));
     }
 
     public SubClass times(long multiplier)
     {
-        return inRange(asLong() * multiplier);
+        return inRangeExclusive(asLong() * multiplier);
     }
 
     public SubClass times(Percent percentage)
@@ -748,12 +758,12 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
 
     public Range<SubClass> toExclusive(SubClass maximum)
     {
-        return Range.exclusive(asSubclassType(), maximum);
+        return Range.rangeExclusive(asSubclassType(), maximum);
     }
 
     public Range<SubClass> toInclusive(SubClass maximum)
     {
-        return Range.inclusive(asSubclassType(), maximum);
+        return Range.rangeInclusive(asSubclassType(), maximum);
     }
 
     @Override

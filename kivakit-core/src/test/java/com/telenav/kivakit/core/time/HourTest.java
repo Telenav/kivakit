@@ -3,12 +3,18 @@ package com.telenav.kivakit.core.time;
 import com.telenav.kivakit.core.test.CoreUnitTest;
 import org.junit.Test;
 
+import java.util.HashMap;
+
 import static com.telenav.kivakit.core.time.Hour.am;
 import static com.telenav.kivakit.core.time.Hour.hour;
 import static com.telenav.kivakit.core.time.Hour.midnight;
 import static com.telenav.kivakit.core.time.Hour.militaryHour;
 import static com.telenav.kivakit.core.time.Hour.noon;
 import static com.telenav.kivakit.core.time.Hour.pm;
+import static com.telenav.kivakit.core.value.count.Count._1;
+import static com.telenav.kivakit.core.value.count.Count._12;
+import static com.telenav.kivakit.core.value.count.Count._23;
+import static com.telenav.kivakit.core.value.count.Range.rangeInclusive;
 
 /**
  * Unit test for {@link Hour}
@@ -151,6 +157,21 @@ public class HourTest extends CoreUnitTest
     }
 
     @Test
+    public void testEquals()
+    {
+        var map = new HashMap<Hour, Integer>();
+
+        rangeInclusive(_1, _12).forEachInt(at -> map.put(am(at), at));
+        rangeInclusive(_1, _12).forEachInt(at -> ensureEqual(map.get(am(at)), at));
+
+        rangeInclusive(_1, _12).forEachInt(at -> map.put(pm(at), at));
+        rangeInclusive(_1, _12).forEachInt(at -> ensureEqual(map.get(pm(at)), at));
+
+        rangeInclusive(_12, _23).forEachInt(at -> map.put(militaryHour(at), at));
+        rangeInclusive(_12, _23).forEachInt(at -> ensureEqual(map.get(militaryHour(at)), at));
+    }
+
+    @Test
     public void testHour()
     {
         ensureThrows(() -> hour(-1));
@@ -179,7 +200,7 @@ public class HourTest extends CoreUnitTest
     @Test
     public void testMaximum()
     {
-        ensureEqual(am(12).maximum(), militaryHour(23));
+        ensureEqual(am(12).maximumInclusive(), militaryHour(23));
     }
 
     @Test

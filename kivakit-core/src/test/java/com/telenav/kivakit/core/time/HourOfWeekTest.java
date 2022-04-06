@@ -11,6 +11,7 @@ import static com.telenav.kivakit.core.time.DayOfWeek.SATURDAY;
 import static com.telenav.kivakit.core.time.DayOfWeek.SUNDAY;
 import static com.telenav.kivakit.core.time.DayOfWeek.TUESDAY;
 import static com.telenav.kivakit.core.time.DayOfWeek.WEDNESDAY;
+import static com.telenav.kivakit.core.time.Hour.militaryHour;
 import static com.telenav.kivakit.core.time.HourOfWeek.hourOfWeek;
 import static com.telenav.kivakit.core.value.count.Count._100;
 import static com.telenav.kivakit.core.value.count.Count._2;
@@ -23,18 +24,25 @@ import static com.telenav.kivakit.core.value.count.Count._2;
 public class HourOfWeekTest extends CoreUnitTest
 {
     @Test
+    public void testAsLong()
+    {
+        ensureEqual(TUESDAY.asHourOfWeek().asLong(), 24L);
+        ensureEqual(FRIDAY.asHourOfWeek().asLong(), 24L * 4);
+    }
+
+    @Test
     public void testConversions()
     {
         // For all days of the week,
-        random().rangeInclusive(MONDAY, SUNDAY, 0).forEach(dayOfWeek ->
+        random().rangeInclusive(MONDAY, SUNDAY).forEach(dayOfWeek ->
         {
             // and all hours of the day,
-            random().rangeExclusive(Hour.militaryHour(0), Hour.militaryHour(24)).forEach(hourOfDay ->
+            random().rangeInclusive(militaryHour(0), militaryHour(23)).forEach(hourOfDay ->
             {
                 // create an HourOfWeek,
                 var hourOfWeek = hourOfWeek(dayOfWeek, hourOfDay);
 
-                // and ensure that it can be converted back to each original value.
+                // and ensure that it can be converted back to each original values.
                 ensure(hourOfWeek.dayOfWeek().equals(dayOfWeek));
                 ensure(hourOfWeek.hourOfDay().equals(hourOfDay));
             });
@@ -79,18 +87,18 @@ public class HourOfWeekTest extends CoreUnitTest
     {
         {
             // Tuesday at 9am in zone +04:00 is Tuesday at 5am UTC.
-            var utc = hourOfWeek(TUESDAY, Hour.militaryHour(9))
+            var utc = hourOfWeek(TUESDAY, militaryHour(9))
                     .asUtc(ZoneId.of("+04:00"));
             ensureEqual(utc.dayOfWeek(), TUESDAY);
-            ensureEqual(utc.hourOfDay(), Hour.militaryHour(5));
+            ensureEqual(utc.hourOfDay(), militaryHour(5));
         }
 
         {
             // Tuesday at 9pm in zone -04:00 is Wednesday at 1am UTC.
-            var utc = hourOfWeek(TUESDAY, Hour.militaryHour(12 + 9))
+            var utc = hourOfWeek(TUESDAY, militaryHour(12 + 9))
                     .asUtc(ZoneId.of("-04:00"));
             ensureEqual(utc.dayOfWeek(), WEDNESDAY);
-            ensureEqual(utc.hourOfDay(), Hour.militaryHour(1));
+            ensureEqual(utc.hourOfDay(), militaryHour(1));
         }
     }
 
@@ -99,25 +107,25 @@ public class HourOfWeekTest extends CoreUnitTest
     {
         {
             // Wednesday at 9am in zone +10:00 is Tuesday at 11pm UTC.
-            var utc = hourOfWeek(WEDNESDAY, Hour.militaryHour(9))
+            var utc = hourOfWeek(WEDNESDAY, militaryHour(9))
                     .asUtc(ZoneId.of("+10:00"));
             ensureEqual(utc.dayOfWeek(), TUESDAY);
-            ensureEqual(utc.hourOfDay(), Hour.militaryHour(12 + 11));
+            ensureEqual(utc.hourOfDay(), militaryHour(12 + 11));
         }
 
         {
             // Tuesday at 6pm in zone -10:00 is Wednesday at 4am UTC.
-            var utc = hourOfWeek(TUESDAY, Hour.militaryHour(12 + 6))
+            var utc = hourOfWeek(TUESDAY, militaryHour(12 + 6))
                     .asUtc(ZoneId.of("-10:00"));
             ensureEqual(utc.dayOfWeek(), WEDNESDAY);
-            ensureEqual(utc.hourOfDay(), Hour.militaryHour(4));
+            ensureEqual(utc.hourOfDay(), militaryHour(4));
         }
     }
 
     @Test
     public void testMaximum()
     {
-        ensure(hourOfWeek(0).maximum().asInt() == 167);
+        ensure(hourOfWeek(0).maximumInclusive().asInt() == 167);
     }
 
     @Test
@@ -147,18 +155,18 @@ public class HourOfWeekTest extends CoreUnitTest
     {
         {
             //  Tuesday at 9am in time zone -07:00, is TUESDAY at 2am,
-            var local = hourOfWeek(TUESDAY, Hour.militaryHour(9))
+            var local = hourOfWeek(TUESDAY, militaryHour(9))
                     .asLocalTime(ZoneId.of("-07:00"));
             ensureEqual(local.dayOfWeek(), TUESDAY);
-            ensureEqual(local.hourOfDay(), Hour.militaryHour(2));
+            ensureEqual(local.hourOfDay(), militaryHour(2));
         }
 
         {
             // Tuesday at 9am in time zone -10:00, is Monday at 11pm.
-            var local = hourOfWeek(TUESDAY, Hour.militaryHour(9))
+            var local = hourOfWeek(TUESDAY, militaryHour(9))
                     .asLocalTime(ZoneId.of("-10:00"));
             ensureEqual(local.dayOfWeek(), MONDAY);
-            ensureEqual(local.hourOfDay(), Hour.militaryHour(12 + 11));
+            ensureEqual(local.hourOfDay(), militaryHour(12 + 11));
         }
     }
 
@@ -167,18 +175,18 @@ public class HourOfWeekTest extends CoreUnitTest
     {
         {
             // Monday at 9am in time zone -10:00, is Sunday at 11pm.
-            var local = hourOfWeek(MONDAY, Hour.militaryHour(9))
+            var local = hourOfWeek(MONDAY, militaryHour(9))
                     .asLocalTime(ZoneId.of("-10:00"));
             ensureEqual(local.dayOfWeek(), SUNDAY);
-            ensureEqual(local.hourOfDay(), Hour.militaryHour(23));
+            ensureEqual(local.hourOfDay(), militaryHour(23));
         }
 
         {
             // Sunday at 9pm in time zone 6:00, is MONDAY at 3am.
-            var local = hourOfWeek(SUNDAY, Hour.militaryHour(12 + 9))
+            var local = hourOfWeek(SUNDAY, militaryHour(12 + 9))
                     .asLocalTime(ZoneId.of("+06:00"));
             ensureEqual(local.dayOfWeek(), MONDAY);
-            ensureEqual(local.hourOfDay(), Hour.militaryHour(3));
+            ensureEqual(local.hourOfDay(), militaryHour(3));
         }
     }
 }

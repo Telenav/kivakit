@@ -1,6 +1,7 @@
 package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.core.language.primitive.Ints;
+import com.telenav.kivakit.core.test.NoTestRequired;
 import com.telenav.kivakit.core.test.Tested;
 import com.telenav.kivakit.core.value.count.BaseCount;
 
@@ -93,6 +94,7 @@ public class Hour extends BaseCount<Hour>
         return hourOfDay(hour, PM);
     }
 
+    @NoTestRequired
     public enum Type
     {
         HOUR(0, Integer.MAX_VALUE),
@@ -104,18 +106,21 @@ public class Hour extends BaseCount<Hour>
 
         private final int maximumExclusive;
 
+        @NoTestRequired
         Type(int minimum, int maximumExclusive)
         {
             this.minimum = minimum;
             this.maximumExclusive = maximumExclusive;
         }
 
+        @Tested
         int ensureInRange(int hour)
         {
-            ensure(Ints.isBetweenExclusive(hour, minimum, maximumExclusive));
+            ensure(Ints.isBetweenExclusive(hour, minimum, maximumExclusive), "Hour not valid: $", hour);
             return hour;
         }
 
+        @Tested
         int militaryHour(Meridiem meridiem, int hour)
         {
             ensureInRange(hour);
@@ -128,8 +133,10 @@ public class Hour extends BaseCount<Hour>
         }
     }
 
+    /** The type of hour being modeled */
     private final Type type;
 
+    @Tested
     protected Hour(Type type, Meridiem meridiem, long hour)
     {
         super(type.militaryHour(meridiem, (int) hour));
@@ -137,6 +144,7 @@ public class Hour extends BaseCount<Hour>
         this.type = ensureNotNull(type);
     }
 
+    @NoTestRequired
     public HourOfWeek asHourOfWeek()
     {
         return hourOfWeek(asMilitaryHour());
@@ -161,6 +169,7 @@ public class Hour extends BaseCount<Hour>
     }
 
     @Override
+    @Tested
     public boolean equals(final Object object)
     {
         if (object instanceof Hour)
@@ -172,6 +181,7 @@ public class Hour extends BaseCount<Hour>
     }
 
     @Override
+    @Tested
     public int hashCode()
     {
         return Objects.hash(quantum());
@@ -179,9 +189,10 @@ public class Hour extends BaseCount<Hour>
 
     @Override
     @Tested
-    public Hour inRange(long value)
+    public Hour inRangeInclusive(long value)
     {
-        return super.inRange((value + 24) % 24);
+        var rounded = (value + 24) % 24;
+        return super.inRangeInclusive(rounded + 1);
     }
 
     @Tested
@@ -198,7 +209,7 @@ public class Hour extends BaseCount<Hour>
 
     @Override
     @Tested
-    public Hour maximum()
+    public Hour maximumInclusive()
     {
         return militaryHour(23);
     }
@@ -234,6 +245,28 @@ public class Hour extends BaseCount<Hour>
     public Hour newInstance(long count)
     {
         return militaryHour((int) count);
+    }
+
+    @Override
+    public Hour next()
+    {
+        switch (type())
+        {
+            case HOUR:
+                return super.next();
+
+            case HOUR_OF_MERIDIEM:
+                return asInt() == 11 ? null : super.next();
+
+            case MILITARY_HOUR:
+                return asInt() == 23 ? null : super.next();
+
+            case HOUR_OF_WEEK:
+                return asInt() == (7 * 24) - 1 ? null : super.next();
+
+            default:
+                return unsupported();
+        }
     }
 
     @Override
