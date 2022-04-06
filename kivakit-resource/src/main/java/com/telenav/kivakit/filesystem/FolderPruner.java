@@ -55,7 +55,7 @@ public class FolderPruner
     private volatile Matcher<File> matcher = Matcher.matchAll();
 
     /** The minimum percentage of usable disk space that must be maintained on the folder's disk. */
-    private volatile Percent minimumUsableDiskSpace = Percent.of(15);
+    private volatile Percent minimumUsableDiskSpace = Percent.percent(15);
 
     /** The minimum age for a file to be pruned */
     private volatile Duration minimumAge = Duration.weeks(2);

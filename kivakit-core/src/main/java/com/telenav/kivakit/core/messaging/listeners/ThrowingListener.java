@@ -18,11 +18,9 @@
 
 package com.telenav.kivakit.core.messaging.listeners;
 
+import com.telenav.kivakit.core.lexakai.DiagramListenerType;
 import com.telenav.kivakit.core.messaging.Listener;
 import com.telenav.kivakit.core.messaging.Message;
-import com.telenav.kivakit.core.logging.Logger;
-import com.telenav.kivakit.core.logging.LoggerFactory;
-import com.telenav.kivakit.core.lexakai.DiagramListenerType;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 /**
@@ -34,28 +32,12 @@ import com.telenav.lexakai.annotations.UmlClassDiagram;
 @UmlClassDiagram(diagram = DiagramListenerType.class)
 public class ThrowingListener implements Listener
 {
-    private static final Logger LOGGER = LoggerFactory.newLogger();
-
     @Override
     public void onMessage(Message message)
     {
-        switch (message.status())
+        if (message.isFailure())
         {
-            case PROBLEM:
-                LOGGER.log(message);
-                break;
-
-            case FAILED:
-                LOGGER.log(message);
-                throw message.asException();
-        }
-
-        switch (message.operationStatus())
-        {
-            case FAILED:
-            case HALTED:
-                LOGGER.log(message);
-                throw message.asException();
+            throw message.asException();
         }
     }
 }

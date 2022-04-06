@@ -1,6 +1,7 @@
 package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.core.language.primitive.Ints;
+import com.telenav.kivakit.core.test.NoTestRequired;
 import com.telenav.kivakit.core.test.Tested;
 import com.telenav.kivakit.core.time.DayOfWeek.Standard;
 import com.telenav.kivakit.core.value.count.BaseCount;
@@ -26,6 +27,7 @@ import static java.lang.Integer.MAX_VALUE;
  * @author jonathanl (shibo)
  */
 @SuppressWarnings("unused")
+@Tested
 public class Day extends BaseCount<Day>
 {
     /**
@@ -76,6 +78,7 @@ public class Day extends BaseCount<Day>
     /**
      * The type of day
      */
+    @NoTestRequired
     public enum Type
     {
         /** A number of days */
@@ -99,6 +102,7 @@ public class Day extends BaseCount<Day>
 
     private final Standard standard;
 
+    @NoTestRequired
     protected Day(Type type, Standard standard, int day)
     {
         super(day);
@@ -209,6 +213,7 @@ public class Day extends BaseCount<Day>
         return day((int) day);
     }
 
+    @NoTestRequired
     public Standard standard()
     {
         return standard;

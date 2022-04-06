@@ -20,6 +20,8 @@ package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.core.lexakai.DiagramTime;
 import com.telenav.kivakit.core.messaging.Listener;
+import com.telenav.kivakit.core.test.NoTestRequired;
+import com.telenav.kivakit.core.test.Tested;
 import com.telenav.kivakit.core.value.level.Percent;
 import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.kivakit.interfaces.string.Stringable;
@@ -30,6 +32,7 @@ import java.util.regex.Pattern;
 
 import static com.telenav.kivakit.core.string.Strings.isOneOf;
 import static com.telenav.kivakit.core.time.DayOfWeek.isoDayOfWeek;
+import static com.telenav.kivakit.core.time.Duration.Restriction.POSITIVE_ONLY;
 import static java.util.regex.Pattern.CASE_INSENSITIVE;
 
 /**
@@ -75,7 +78,9 @@ import static java.util.regex.Pattern.CASE_INSENSITIVE;
  * @author Jonathan Locke
  * @see Time
  */
+@SuppressWarnings("unused")
 @UmlClassDiagram(diagram = DiagramTime.class)
+@Tested
 public class Duration implements
         Stringable,
         Quantizable,
@@ -117,51 +122,67 @@ public class Duration implements
                     + "(\\s+ | - | _)?"
                     + "(?<units> d | h | m | s | ms | ((millisecond | second | minute | hour | day | week | year) s?))", CASE_INSENSITIVE);
 
+    @Tested
     public static Duration days(double days)
     {
         return hours(24.0 * days);
     }
 
+    @Tested
     public static Duration days(int days)
     {
         return hours(24 * days);
     }
 
+    @Tested
     public static Duration hours(double hours)
     {
         return minutes(60.0 * hours);
     }
 
+    @Tested
     public static Duration hours(int hours)
     {
         return minutes(60 * hours);
     }
 
+    @Tested
     public static Duration milliseconds(double milliseconds)
     {
-        return milliseconds((long) milliseconds);
+        return milliseconds((long) (milliseconds + 0.5));
     }
 
+    @Tested
     public static Duration milliseconds(long milliseconds)
     {
-        return new Duration(milliseconds, Range.POSITIVE_ONLY);
+        return new Duration(milliseconds, POSITIVE_ONLY);
     }
 
+    @Tested
     public static Duration minutes(double minutes)
     {
         return seconds(60.0 * minutes);
     }
 
+    @Tested
     public static Duration minutes(int minutes)
     {
         return seconds(60 * minutes);
     }
 
+    @Tested
     public static Duration nanoseconds(long nanoseconds)
     {
-        return new Duration(nanoseconds / 1_000_000L, Range.POSITIVE_ONLY);
+        return milliseconds(nanoseconds / 1_000_000.0);
     }
 
+    @Tested
+    public static Duration parseDuration(String value)
+    {
+        return parseDuration(Listener.throwing(), value);
+    }
+
+    @Tested
     public static Duration parseDuration(Listener listener, String value)
     {
         var matcher = PATTERN.matcher(value);
@@ -210,37 +231,35 @@ public class Duration implements
         }
     }
 
-    public static Duration profile(Runnable code)
-    {
-        var start = Time.now();
-        code.run();
-        return start.elapsedSince();
-    }
-
+    @Tested
     public static Duration seconds(double seconds)
     {
         return milliseconds(seconds * 1000.0);
     }
 
+    @Tested
     public static Duration seconds(int seconds)
     {
         return milliseconds(seconds * 1000L);
     }
 
+    @Tested
     public static Duration untilNextSecond()
     {
         var now = Time.now();
         return now.roundUp(ONE_SECOND).minus(now);
     }
 
+    @Tested
     public static Duration weeks(double scalar)
     {
         return days(7 * scalar);
     }
 
+    @Tested
     public static Duration years(double scalar)
     {
-        return weeks(LengthOfTime.WEEKS_PER_YEAR * scalar);
+        return weeks(52 * scalar);
     }
 
     /**
@@ -250,7 +269,7 @@ public class Duration implements
      * operation explicitly allows negative values. This permits a sequence of operations to produce a valid positive
      * duration at the end, while steps in the computation along the way may temporarily result in negative durations.
      */
-    public enum Range
+    public enum Restriction
     {
         POSITIVE_ONLY,
         ALLOW_NEGATIVE
@@ -261,6 +280,7 @@ public class Duration implements
     /**
      * For reflective construction
      */
+    @NoTestRequired
     public Duration()
     {
         milliseconds = 0;
@@ -271,41 +291,47 @@ public class Duration implements
      *
      * @param milliseconds Number of milliseconds in this <code>Duration</code>
      */
-    protected Duration(long milliseconds, Range range)
+    @NoTestRequired
+    protected Duration(long milliseconds, Restriction restriction)
     {
-        if (range == Range.POSITIVE_ONLY && milliseconds < 0)
+        if (restriction == POSITIVE_ONLY && milliseconds < 0)
         {
             throw new IllegalArgumentException("Negative time not allowed");
         }
+
         this.milliseconds = milliseconds;
     }
 
     /**
      * @return The sum of this duration and that one, but never a negative value.
      */
+    @Tested
     public Duration add(Duration that)
     {
-        return add(that, Range.POSITIVE_ONLY);
+        return add(that, POSITIVE_ONLY);
     }
 
     /**
      * @return The sum of this duration and that duration, but restricted to the given range
      */
-    public Duration add(Duration that, Range range)
+    @Tested
+    public Duration add(Duration that, Restriction restriction)
     {
         var sum = milliseconds() + that.milliseconds();
-        if (range == Range.POSITIVE_ONLY && sum < 0)
+        if (restriction == POSITIVE_ONLY && sum < 0)
         {
             return NONE;
         }
-        return new Duration(sum, range);
+        return new Duration(sum, restriction);
     }
 
+    @NoTestRequired
     public Frequency asFrequency()
     {
         return Frequency.every(this);
     }
 
+    @Tested
     public Duration difference(Duration that)
     {
         if (isGreaterThan(that))
@@ -318,17 +344,21 @@ public class Duration implements
         }
     }
 
+    @Tested
     public double dividedBy(Duration that)
     {
         return (double) milliseconds / that.milliseconds;
     }
 
+    @Override
+    @Tested
     public Duration dividedBy(int divisor)
     {
         return milliseconds(milliseconds / divisor);
     }
 
     @Override
+    @Tested
     public boolean equals(Object object)
     {
         if (object instanceof Duration)
@@ -343,6 +373,7 @@ public class Duration implements
      * @return A String representation of the time of week represented by this duration, assuming it starts on Monday,
      * 00:00, modulo the length of a week.
      */
+    @Tested
     public String fromStartOfWeekModuloWeekLength()
     {
         // There are 10080 minutes in a week
@@ -360,32 +391,38 @@ public class Duration implements
     }
 
     @Override
+    @Tested
     public int hashCode()
     {
         return Long.toString(milliseconds).hashCode();
     }
 
+    @Tested
     public boolean isMaximum()
     {
         return equals(Duration.MAXIMUM);
     }
 
-    public Duration longer(Percent percentage)
+    @Tested
+    public Duration longerBy(Percent percentage)
     {
         return milliseconds(milliseconds * (1.0 + percentage.asUnitValue()));
     }
 
+    @Tested
     public Duration maximum(Duration that)
     {
         return isGreaterThan(that) ? this : that;
     }
 
     @Override
+    @Tested
     public long milliseconds()
     {
         return milliseconds;
     }
 
+    @Tested
     public Duration minimum(Duration that)
     {
         return isLessThan(that) ? this : that;
@@ -394,56 +431,67 @@ public class Duration implements
     /**
      * @return This duration minus that duration, but never a negative value
      */
+    @Tested
     public Duration minus(Duration that)
     {
-        return minus(that, Range.POSITIVE_ONLY);
+        return minus(that, POSITIVE_ONLY);
     }
 
     /**
      * @return This duration minus that duration, but restricted to the given range
      */
-    public Duration minus(Duration that, Range range)
+    @Tested
+    public Duration minus(Duration that, Restriction restriction)
     {
-        if (range == Range.POSITIVE_ONLY)
+        if (restriction == POSITIVE_ONLY)
         {
             if (that.isGreaterThan(this))
             {
                 return NONE;
             }
         }
-        return new Duration(milliseconds() - that.milliseconds(), range);
+        return new Duration(milliseconds() - that.milliseconds(), restriction);
     }
 
+    @Tested
     public Duration modulus(Duration that)
     {
         return milliseconds(milliseconds % that.milliseconds);
     }
 
+    @Tested
     public Duration nearestHour()
     {
         return hours(Math.round(asHours()));
     }
 
+    @Tested
     public Percent percentageOf(Duration that)
     {
-        return Percent.of(100.0 * milliseconds / that.milliseconds);
+        return Percent.percent(100.0 * milliseconds / that.milliseconds);
     }
 
+    @Tested
     public Duration plus(Duration that)
     {
         return milliseconds(milliseconds + that.milliseconds);
     }
 
-    public Duration shorter(Percent percentage)
+    @Tested
+    public Duration shorterBy(Percent percentage)
     {
         return milliseconds(milliseconds * (1.0 - percentage.asUnitValue()));
     }
 
+    @Tested
+    @Override
     public Duration times(double multiplier)
     {
         return milliseconds(milliseconds * multiplier);
     }
 
+    @Override
+    @NoTestRequired
     public String toString()
     {
         return asString();

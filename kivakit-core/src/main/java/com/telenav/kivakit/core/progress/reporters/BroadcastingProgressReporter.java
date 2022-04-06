@@ -340,7 +340,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
     {
         if (steps().isNonZero())
         {
-            return Percent.of(100.0 * at() / steps().asLong());
+            return Percent.percent(100.0 * at() / steps().asLong());
         }
         return null;
     }
@@ -404,7 +404,7 @@ public class BroadcastingProgressReporter extends Multicaster implements Progres
         {
             builder.append(Count.count(steps));
             builder.append(" (");
-            builder.append(Percent.of(100.0 * count.get() / steps).asInt());
+            builder.append(Percent.percent(100.0 * count.get() / steps).asInt());
             builder.append("%)");
         }
         else

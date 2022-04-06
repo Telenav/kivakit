@@ -117,16 +117,19 @@ public class MutableCount implements
         return count++;
     }
 
+    @Override
     public boolean isGreaterThan(Quantizable that)
     {
         return asLong() > that.quantum();
     }
 
+    @Override
     public boolean isLessThan(Quantizable that)
     {
         return asLong() < that.quantum();
     }
 
+    @Override
     public boolean isZero()
     {
         return asLong() == 0L;
@@ -145,7 +148,7 @@ public class MutableCount implements
         {
             return Percent._0;
         }
-        return Percent.of(asLong() * 100.0 / total.asLong());
+        return Percent.percent(asLong() * 100.0 / total.asLong());
     }
 
     public long plus(long that)

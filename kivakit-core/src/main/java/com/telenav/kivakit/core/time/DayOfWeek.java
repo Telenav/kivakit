@@ -20,11 +20,17 @@ package com.telenav.kivakit.core.time;
 
 import com.telenav.kivakit.core.language.Hash;
 import com.telenav.kivakit.core.lexakai.DiagramTime;
+import com.telenav.kivakit.core.test.NoTestRequired;
+import com.telenav.kivakit.core.test.Tested;
 import com.telenav.kivakit.core.value.count.BaseCount;
+import com.telenav.kivakit.core.value.level.Percent;
+import com.telenav.kivakit.interfaces.numeric.Quantizable;
 import com.telenav.lexakai.annotations.LexakaiJavadoc;
 import com.telenav.lexakai.annotations.UmlClassDiagram;
 
 import static com.telenav.kivakit.core.ensure.Ensure.ensureBetweenInclusive;
+import static com.telenav.kivakit.core.ensure.Ensure.ensureNotNull;
+import static com.telenav.kivakit.core.ensure.Ensure.unsupported;
 import static com.telenav.kivakit.core.time.DayOfWeek.Standard.ISO;
 import static com.telenav.kivakit.core.time.DayOfWeek.Standard.JAVA;
 import static com.telenav.kivakit.interfaces.string.Stringable.Format.USER_LABEL;
@@ -58,6 +64,7 @@ import static com.telenav.kivakit.interfaces.string.Stringable.Format.USER_LABEL
  */
 @SuppressWarnings("unused") @UmlClassDiagram(diagram = DiagramTime.class)
 @LexakaiJavadoc(complete = true)
+@Tested
 public class DayOfWeek extends BaseCount<DayOfWeek>
 {
     public static final DayOfWeek MONDAY = isoDayOfWeek(0);
@@ -81,6 +88,7 @@ public class DayOfWeek extends BaseCount<DayOfWeek>
      * @param standard The standard, either ISO or JAVA
      * @return The day of the week
      */
+    @Tested
     public static DayOfWeek dayOfWeek(int dayOfWeek, Standard standard)
     {
         return new DayOfWeek(dayOfWeek, standard);
@@ -92,6 +100,7 @@ public class DayOfWeek extends BaseCount<DayOfWeek>
      * @param dayOfWeek THe value from 0 to 6
      * @return The day of the week
      */
+    @Tested
     public static DayOfWeek isoDayOfWeek(int dayOfWeek)
     {
         return dayOfWeek(dayOfWeek, ISO);
@@ -103,6 +112,7 @@ public class DayOfWeek extends BaseCount<DayOfWeek>
      * @param day THe value from 0 to 6
      * @return The day of the week
      */
+    @Tested
     public static DayOfWeek javaDayOfWeek(java.time.DayOfWeek day)
     {
         return dayOfWeek(day.getValue(), JAVA);
@@ -114,6 +124,7 @@ public class DayOfWeek extends BaseCount<DayOfWeek>
      * @param dayOfWeek THe value from 0 to 6
      * @return The day of the week
      */
+    @Tested
     public static DayOfWeek javaDayOfWeek(int dayOfWeek)
     {
         return dayOfWeek(dayOfWeek, JAVA);
@@ -122,6 +133,7 @@ public class DayOfWeek extends BaseCount<DayOfWeek>
     /**
      * The day of week numbering standard
      */
+    @NoTestRequired
     public enum Standard
     {
         /** ISO day of the week numbering is from 0 to 6 */
@@ -134,15 +146,17 @@ public class DayOfWeek extends BaseCount<DayOfWeek>
     /** The day of the week numbering standard */
     private final Standard standard;
 
+    @NoTestRequired
     protected DayOfWeek(int dayOfWeek, Standard standard)
     {
         super(dayOfWeek);
 
-        this.standard = standard;
+        this.standard = ensureNotNull(standard);
 
         ensureBetweenInclusive(asIso(), 0, 6, "Invalid day of the week: " + this);
     }
 
+    @NoTestRequired
     public Day asDay()
     {
         return Day.dayOfWeek(asIso(), ISO);
@@ -151,16 +165,19 @@ public class DayOfWeek extends BaseCount<DayOfWeek>
     /**
      * @return This day of the week as an ISO-8601 ordinal value
      */
+    @Tested
     public int asIso()
     {
         return isIso() ? asInt() : asInt() - 1;
     }
 
+    @Tested
     public int asJava()
     {
         return isJava() ? asInt() : asInt() + 1;
     }
 
+    @Tested
     public java.time.DayOfWeek asJavaDayOfWeek()
     {
         return java.time.DayOfWeek.of(asJava());
@@ -168,6 +185,7 @@ public class DayOfWeek extends BaseCount<DayOfWeek>
 
     @Override
     @SuppressWarnings("SwitchStatementWithTooFewBranches")
+    @NoTestRequired
     public String asString(final Format format)
     {
         switch (format)
@@ -181,6 +199,14 @@ public class DayOfWeek extends BaseCount<DayOfWeek>
     }
 
     @Override
+    @NoTestRequired
+    public DayOfWeek dividedBy(long divisor)
+    {
+        return unsupported();
+    }
+
+    @Override
+    @Tested
     public boolean equals(final Object object)
     {
         if (object instanceof DayOfWeek)
@@ -192,40 +218,75 @@ public class DayOfWeek extends BaseCount<DayOfWeek>
     }
 
     @Override
+    @Tested
     public int hashCode()
     {
         return Hash.code(asIso());
     }
 
+    @Tested
     public boolean isIso()
     {
         return standard == ISO;
     }
 
+    @Tested
     public boolean isJava()
     {
         return standard == JAVA;
     }
 
     @Override
+    @NoTestRequired
     public DayOfWeek maximum()
     {
         return SUNDAY;
     }
 
     @Override
+    @NoTestRequired
     public DayOfWeek minimum()
     {
         return MONDAY;
     }
 
     @Override
+    @NoTestRequired
     public DayOfWeek newInstance(long ordinal)
     {
-        return dayOfWeek(asInt(), standard);
+        return dayOfWeek((int) ordinal, standard);
     }
 
     @Override
+    @NoTestRequired
+    public DayOfWeek percent(final Percent percentage)
+    {
+        return unsupported();
+    }
+
+    @Override
+    @NoTestRequired
+    public Percent percentOf(final Quantizable total)
+    {
+        return unsupported();
+    }
+
+    @Override
+    @NoTestRequired
+    public DayOfWeek times(long multiplier)
+    {
+        return unsupported();
+    }
+
+    @Override
+    @NoTestRequired
+    public DayOfWeek times(double multiplier)
+    {
+        return unsupported();
+    }
+
+    @Override
+    @NoTestRequired
     public String toString()
     {
         return asString(USER_LABEL);

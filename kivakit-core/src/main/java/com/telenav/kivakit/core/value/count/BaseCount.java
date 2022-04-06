@@ -200,6 +200,7 @@ import static com.telenav.kivakit.core.value.count.Estimate.estimate;
  * @see Maximum
  * @see Minimum
  */
+@SuppressWarnings("unused")
 public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         IntegerNumeric<SubClass>,
         Countable,
@@ -645,7 +646,7 @@ public abstract class BaseCount<SubClass extends BaseCount<SubClass>> implements
         {
             return Percent._0;
         }
-        return Percent.of(asLong() * 100.0 / total.quantum());
+        return Percent.percent(asLong() * 100.0 / total.quantum());
     }
 
     @Override

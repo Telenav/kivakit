@@ -24,12 +24,6 @@ import static com.telenav.kivakit.core.time.DayOfWeek.WEDNESDAY;
 public class DayTest extends CoreUnitTest
 {
     @Test
-    public void test()
-    {
-
-    }
-
-    @Test
     public void testAsDayOfWeek()
     {
         ensureEqual(dayOfWeek(1, JAVA).asDayOfWeek(), MONDAY);
@@ -112,5 +106,14 @@ public class DayTest extends CoreUnitTest
         ensureEqual(dayOfMonth(29).asInt(), 29);
         ensureEqual(dayOfMonth(30).asInt(), 30);
         ensureEqual(dayOfMonth(31).asInt(), 31);
+    }
+
+    @Test
+    public void testEquals()
+    {
+        ensureEqual(day(49), (day(49)));
+        ensureEqual(dayOfWeek(4, JAVA), (dayOfWeek(4, JAVA)));
+        ensureNotEqual(dayOfWeek(4, JAVA), (day(4)));
+        ensureNotEqual(dayOfWeek(4, ISO), (day(4)));
     }
 }

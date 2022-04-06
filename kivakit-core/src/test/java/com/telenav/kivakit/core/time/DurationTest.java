@@ -22,63 +22,96 @@ import com.telenav.kivakit.core.test.CoreUnitTest;
 import com.telenav.kivakit.core.value.level.Percent;
 import org.junit.Test;
 
+import static com.telenav.kivakit.core.time.Duration.NONE;
+import static com.telenav.kivakit.core.time.Duration.ONE_DAY;
+import static com.telenav.kivakit.core.time.Duration.ONE_HOUR;
+import static com.telenav.kivakit.core.time.Duration.ONE_MINUTE;
+import static com.telenav.kivakit.core.time.Duration.ONE_SECOND;
+import static com.telenav.kivakit.core.time.Duration.Restriction.ALLOW_NEGATIVE;
+import static com.telenav.kivakit.core.time.Duration.Restriction.POSITIVE_ONLY;
+import static com.telenav.kivakit.core.time.Duration.days;
+import static com.telenav.kivakit.core.time.Duration.hours;
+import static com.telenav.kivakit.core.time.Duration.milliseconds;
+import static com.telenav.kivakit.core.time.Duration.minutes;
+import static com.telenav.kivakit.core.time.Duration.nanoseconds;
+import static com.telenav.kivakit.core.time.Duration.parseDuration;
+import static com.telenav.kivakit.core.time.Duration.seconds;
+import static com.telenav.kivakit.core.time.Duration.untilNextSecond;
+import static com.telenav.kivakit.core.time.Duration.weeks;
+import static com.telenav.kivakit.core.time.Duration.years;
+
+/**
+ * Tests for {@link Duration}
+ *
+ * @author jonathanl (shibo)
+ */
+@SuppressWarnings("EqualsWithItself")
 public class DurationTest extends CoreUnitTest
 {
     @Test
     public void testAdd()
     {
-        ensureEqual(Duration.seconds(2), Duration.ONE_SECOND.add(Duration.ONE_SECOND));
+        ensureEqual(seconds(2), ONE_SECOND.add(ONE_SECOND));
+        ensureEqual(seconds(2), ONE_SECOND.add(ONE_SECOND, POSITIVE_ONLY));
+        ensureEqual(seconds(2), ONE_SECOND.add(ONE_SECOND, ALLOW_NEGATIVE));
     }
 
     @Test
     public void testCompareTo()
     {
-        ensureEqual(-1, Duration.ONE_SECOND.compareTo(Duration.ONE_HOUR));
-        //noinspection EqualsWithItself
-        ensureEqual(0, Duration.ONE_SECOND.compareTo(Duration.ONE_SECOND));
-        ensureEqual(1, Duration.ONE_HOUR.compareTo(Duration.ONE_SECOND));
+        ensureEqual(-1, ONE_SECOND.compareTo(ONE_HOUR));
+        ensureEqual(0, ONE_SECOND.compareTo(ONE_SECOND));
+        ensureEqual(1, ONE_HOUR.compareTo(ONE_SECOND));
     }
 
     @Test
     public void testConstruction()
     {
-        ensureEqual(60.0, Duration.seconds(60).asSeconds());
-        ensureEqual(1.0, Duration.seconds(60).asMinutes());
-        ensureEqual(1.0, Duration.minutes(60).asHours());
-        ensureEqual(1.0, Duration.hours(24).asDays());
-        ensureEqual(1.0, Duration.days(7).asWeeks());
+        ensureEqual(60.0, milliseconds(60).asMilliseconds());
+        ensureEqual(1.0, nanoseconds(600_000).asMilliseconds());
+        ensureEqual(0.0, nanoseconds(400_000).asMilliseconds());
+        ensureEqual(60.0, seconds(60).asSeconds());
+        ensureEqual(1.0, seconds(60).asMinutes());
+        ensureEqual(1.0, minutes(60).asHours());
+        ensureEqual(1.0, hours(24).asDays());
+        ensureEqual(1.0, days(7).asWeeks());
     }
 
     @Test
     public void testDifference()
     {
-        ensureEqual(Duration.seconds(1), Duration.seconds(2).difference(Duration.seconds(1)));
-        ensureEqual(Duration.seconds(1), Duration.seconds(1).difference(Duration.seconds(2)));
+        ensureEqual(seconds(1), seconds(2).difference(seconds(1)));
+        ensureEqual(seconds(1), seconds(1).difference(seconds(2)));
     }
 
     @Test
-    public void testDivide()
+    public void testDividedBy()
     {
-        ensureEqual(Duration.hours(1), Duration.ONE_DAY.dividedBy(24));
-        ensureEqual(24.0, Duration.ONE_DAY.dividedBy(Duration.ONE_HOUR));
+        ensureEqual(hours(1), ONE_DAY.dividedBy(24));
+        ensureEqual(24.0, ONE_DAY.dividedBy(ONE_HOUR));
     }
 
     @SuppressWarnings("EqualsWithItself")
     @Test
     public void testEquals()
     {
-        ensure(Duration.ONE_SECOND.equals(Duration.ONE_SECOND));
-        ensureFalse(Duration.ONE_SECOND.equals(Duration.seconds(1.01)));
+        ensure(ONE_SECOND.equals(ONE_SECOND));
+        ensureFalse(ONE_SECOND.equals(seconds(1.01)));
+        ensureEqual(years(1.5), weeks(52 + 26));
+        ensureEqual(weeks(1), days(7));
+        ensureEqual(days(1.5), hours(36));
+        ensureEqual(hours(1.5), minutes(90));
+        ensureEqual(minutes(1.5), seconds(90));
     }
 
     @Test
     public void testFromStartOfWeekModuloWeekLength()
     {
-        ensureEqual("MONDAY, 00:00", Duration.minutes(0).fromStartOfWeekModuloWeekLength());
-        ensureEqual("MONDAY, 00:00", Duration.minutes(10080).fromStartOfWeekModuloWeekLength());
-        ensureEqual("MONDAY, 02:40", Duration.minutes(160).fromStartOfWeekModuloWeekLength());
-        ensureEqual("WEDNESDAY, 02:40", Duration.minutes(160 + 2 * 1440).fromStartOfWeekModuloWeekLength());
-        ensureEqual("FRIDAY, 15:40", Duration.minutes(940 + 4 * 1440).fromStartOfWeekModuloWeekLength());
+        ensureEqual("MONDAY, 00:00", minutes(0).fromStartOfWeekModuloWeekLength());
+        ensureEqual("MONDAY, 00:00", minutes(10080).fromStartOfWeekModuloWeekLength());
+        ensureEqual("MONDAY, 02:40", minutes(160).fromStartOfWeekModuloWeekLength());
+        ensureEqual("WEDNESDAY, 02:40", minutes(160 + 2 * 1440).fromStartOfWeekModuloWeekLength());
+        ensureEqual("FRIDAY, 15:40", minutes(940 + 4 * 1440).fromStartOfWeekModuloWeekLength());
     }
 
     @Test
@@ -86,99 +119,183 @@ public class DurationTest extends CoreUnitTest
     {
         for (var i = 0; i < 100; i++)
         {
-            ensureEqual(Duration.seconds(i).hashCode(), Duration.seconds(i).hashCode());
+            ensureEqual(seconds(i).hashCode(), seconds(i).hashCode());
         }
     }
 
     @Test
     public void testIsApproximately()
     {
-        ensure(Duration.ONE_SECOND.isApproximately(Duration.ONE_SECOND, Duration.NONE));
-        ensure(Duration.ONE_SECOND.isApproximately(Duration.seconds(1.01), Duration.seconds(0.1)));
-        ensureFalse(Duration.ONE_SECOND.isApproximately(Duration.seconds(1.01), Duration.seconds(0.0001)));
+        ensure(ONE_SECOND.isApproximately(ONE_SECOND, NONE));
+        ensure(ONE_SECOND.isApproximately(seconds(1.01), seconds(0.1)));
+        ensureFalse(ONE_SECOND.isApproximately(seconds(1.01), seconds(0.0001)));
     }
 
     @Test
     public void testIsNone()
     {
-        ensure(Duration.NONE.isNone());
-        ensureFalse(Duration.seconds(0.1).isNone());
+        ensure(NONE.isNone());
+        ensureFalse(seconds(0.1).isNone());
         ensureFalse(Duration.milliseconds(1).isNone());
     }
 
     @Test
     public void testIsSome()
     {
-        ensureFalse(Duration.NONE.isSome());
-        ensure(Duration.seconds(0.1).isSome());
+        ensureFalse(NONE.isSome());
+        ensure(seconds(0.1).isSome());
         ensure(Duration.milliseconds(1).isSome());
     }
 
     @Test
     public void testLessThanGreaterThan()
     {
-        ensure(Duration.seconds(5).isLessThan(Duration.ONE_DAY));
-        ensureFalse(Duration.seconds(5).isLessThan(Duration.ONE_SECOND));
-        ensure(Duration.seconds(5).isLessThanOrEqualTo(Duration.ONE_DAY));
-        ensureFalse(Duration.seconds(5).isLessThanOrEqualTo(Duration.ONE_SECOND));
-        ensureFalse(Duration.seconds(5).isGreaterThan(Duration.ONE_DAY));
-        ensure(Duration.seconds(5).isGreaterThan(Duration.ONE_SECOND));
-        ensureFalse(Duration.seconds(5).isGreaterThanOrEqualTo(Duration.ONE_DAY));
-        ensure(Duration.seconds(5).isGreaterThanOrEqualTo(Duration.ONE_SECOND));
-        ensure(Duration.seconds(5).isGreaterThanOrEqualTo(Duration.seconds(5)));
-        ensure(Duration.seconds(5).isLessThanOrEqualTo(Duration.seconds(5)));
+        ensure(seconds(5).isLessThan(ONE_DAY));
+        ensureFalse(seconds(5).isLessThan(ONE_SECOND));
+        ensure(seconds(5).isLessThanOrEqualTo(ONE_DAY));
+        ensureFalse(seconds(5).isLessThanOrEqualTo(ONE_SECOND));
+        ensureFalse(seconds(5).isGreaterThan(ONE_DAY));
+        ensure(seconds(5).isGreaterThan(ONE_SECOND));
+        ensureFalse(seconds(5).isGreaterThanOrEqualTo(ONE_DAY));
+        ensure(seconds(5).isGreaterThanOrEqualTo(ONE_SECOND));
+        ensure(seconds(5).isGreaterThanOrEqualTo(seconds(5)));
+        ensure(seconds(5).isLessThanOrEqualTo(seconds(5)));
+    }
+
+    @Test
+    public void testLongerBy()
+    {
+        ensureEqual(seconds(2), ONE_SECOND.longerBy(Percent._100));
+        ensureEqual(seconds(1.5), ONE_SECOND.longerBy(Percent._50));
     }
 
     @Test
     public void testMaximum()
     {
-        ensureEqual(Duration.ONE_HOUR, Duration.ONE_SECOND.maximum(Duration.ONE_HOUR));
+        ensureEqual(ONE_HOUR, ONE_SECOND.maximum(ONE_HOUR));
+    }
+
+    @Test
+    public void testMilliseconds()
+    {
+        ensureEqual(minutes(1).milliseconds(), 60L * 1000);
     }
 
     @Test
     public void testMinimum()
     {
-        ensureEqual(Duration.ONE_SECOND, Duration.ONE_SECOND.minimum(Duration.ONE_HOUR));
+        ensureEqual(ONE_SECOND, ONE_SECOND.minimum(ONE_HOUR));
+    }
+
+    @Test
+    public void testMinus()
+    {
+        ensureEqual(seconds(1), seconds(2).minus(seconds(1)));
+        ensureEqual(NONE, seconds(2).minus(seconds(3)));
+        ensureEqual(-1.0, seconds(2).minus(seconds(3), ALLOW_NEGATIVE).asSeconds());
     }
 
     @Test
     public void testModulus()
     {
-        ensureEqual(Duration.ONE_SECOND, Duration.ONE_MINUTE.add(Duration.ONE_SECOND).modulus(Duration.ONE_MINUTE));
+        ensureEqual(ONE_SECOND, ONE_MINUTE.add(ONE_SECOND).modulus(ONE_MINUTE));
     }
 
     @Test
     public void testNearestHour()
     {
-        ensureEqual(Duration.hours(2), Duration.hours(1.6).nearestHour());
-        ensureEqual(Duration.hours(2), Duration.hours(1.5001).nearestHour());
-        ensureEqual(Duration.hours(1), Duration.hours(1.4).nearestHour());
-        ensureEqual(Duration.hours(1), Duration.hours(1.4999).nearestHour());
+        ensureEqual(hours(2), hours(1.6).nearestHour());
+        ensureEqual(hours(2), hours(1.5001).nearestHour());
+        ensureEqual(hours(1), hours(1.4).nearestHour());
+        ensureEqual(hours(1), hours(1.4999).nearestHour());
+    }
+
+    @Test
+    public void testParse()
+    {
+        ensureThrows(() -> parseDuration("5"));
+        ensureThrows(() -> parseDuration("5ms.5"));
+        ensureThrows(() -> parseDuration("a5ms"));
+        ensureThrows(() -> parseDuration("mambo"));
+        ensureThrows(() -> parseDuration("5.4mambo"));
+
+        ensureEqual(parseDuration("1 ms"), milliseconds(1));
+        ensureEqual(parseDuration("2 ms"), milliseconds(2));
+        ensureEqual(parseDuration("1ms"), milliseconds(1));
+        ensureEqual(parseDuration("2ms"), milliseconds(2));
+        ensureEqual(parseDuration("1 millisecond"), milliseconds(1));
+        ensureEqual(parseDuration("2 milliseconds"), milliseconds(2));
+        ensureEqual(parseDuration("1.5 millisecond"), milliseconds(1.5));
+        ensureEqual(parseDuration("2.5 milliseconds"), milliseconds(2.5));
+
+        ensureEqual(parseDuration("1s"), seconds(1));
+        ensureEqual(parseDuration("2s"), seconds(2));
+        ensureEqual(parseDuration("1 second"), seconds(1));
+        ensureEqual(parseDuration("2 seconds"), seconds(2));
+        ensureEqual(parseDuration("1.5 second"), seconds(1.5));
+        ensureEqual(parseDuration("2.5 seconds"), seconds(2.5));
+
+        ensureEqual(parseDuration("1m"), minutes(1));
+        ensureEqual(parseDuration("2m"), minutes(2));
+        ensureEqual(parseDuration("1 minute"), minutes(1));
+        ensureEqual(parseDuration("2 minutes"), minutes(2));
+        ensureEqual(parseDuration("1.5 minute"), minutes(1.5));
+        ensureEqual(parseDuration("2.5 minutes"), minutes(2.5));
+
+        ensureEqual(parseDuration("1h"), hours(1));
+        ensureEqual(parseDuration("2h"), hours(2));
+        ensureEqual(parseDuration("1 hour"), hours(1));
+        ensureEqual(parseDuration("2 hours"), hours(2));
+        ensureEqual(parseDuration("1.5 hour"), hours(1.5));
+        ensureEqual(parseDuration("2.5 hours"), hours(2.5));
+
+        ensureEqual(parseDuration("1d"), days(1));
+        ensureEqual(parseDuration("2d"), days(2));
+        ensureEqual(parseDuration("1 day"), days(1));
+        ensureEqual(parseDuration("2 days"), days(2));
+        ensureEqual(parseDuration("1.5 day"), days(1.5));
+        ensureEqual(parseDuration("2.5 days"), days(2.5));
+
+        ensureEqual(parseDuration("1 week"), weeks(1));
+        ensureEqual(parseDuration("2 weeks"), weeks(2));
+        ensureEqual(parseDuration("1.5 week"), weeks(1.5));
+        ensureEqual(parseDuration("2.5 weeks"), weeks(2.5));
+
+        ensureEqual(parseDuration("1 year"), years(1));
+        ensureEqual(parseDuration("2 years"), years(2));
+        ensureEqual(parseDuration("1.5 year"), years(1.5));
+        ensureEqual(parseDuration("2.5 years"), years(2.5));
     }
 
     @Test
     public void testPercent()
     {
-        ensureEqual(Percent._100, Duration.ONE_SECOND.percentageOf(Duration.ONE_SECOND));
-        ensureEqual(Percent._50, Duration.ONE_SECOND.percentageOf(Duration.seconds(2)));
+        ensureEqual(Percent._100, ONE_SECOND.percentageOf(ONE_SECOND));
+        ensureEqual(Percent._50, ONE_SECOND.percentageOf(seconds(2)));
     }
 
     @Test
     public void testPlus()
     {
-        ensureEqual(Duration.seconds(2), Duration.ONE_SECOND.plus(Duration.ONE_SECOND));
+        ensureEqual(seconds(2), ONE_SECOND.plus(ONE_SECOND));
     }
 
     @Test
-    public void testSubtract()
+    public void testShorterBy()
     {
-        ensureEqual(Duration.seconds(1), Duration.seconds(2).minus(Duration.seconds(1)));
-        ensureEqual(Duration.NONE, Duration.seconds(2).minus(Duration.seconds(3)));
+        ensureEqual(seconds(0), ONE_SECOND.shorterBy(Percent._100));
+        ensureEqual(seconds(0.5), ONE_SECOND.shorterBy(Percent._50));
     }
 
     @Test
     public void testTimes()
     {
-        ensureEqual(Duration.seconds(5), Duration.ONE_SECOND.times(5));
+        ensureEqual(seconds(5), ONE_SECOND.times(5));
+    }
+
+    @Test
+    public void testUntilNextSecond()
+    {
+        ensure(untilNextSecond().isLessThanOrEqualTo(seconds(1)));
     }
 }
